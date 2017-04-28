@@ -1,0 +1,438 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.fin.dao.PopularityInOutLogMapper">
+	<!-- <cache-ref namespace="com.yourong.core.cms.dao.BannerMapper"/>  -->
+	<resultMap id="BaseResultMap" type="PopularityInOutLog">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="member_id" property="memberId" jdbcType="BIGINT" />
+		<result column="balance" property="balance" jdbcType="DECIMAL" />
+		<result column="type" property="type" jdbcType="INTEGER" />
+		<result column="income" property="income" jdbcType="DECIMAL" />
+		<result column="outlay" property="outlay" jdbcType="DECIMAL" />
+		<result column="source_id" property="sourceId" jdbcType="BIGINT" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<result column="happen_time" property="happenTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, member_id, balance, type, income, outlay, source_id, remark,
+		happen_time
+	</sql>
+	<insert id="insertSelective" useGeneratedKeys="true"
+		keyProperty="id" parameterType="PopularityInOutLog">
+		insert into fin_popularity_in_out_log
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="memberId != null">
+				member_id,
+			</if>
+			<if test="balance != null">
+				balance,
+			</if>
+			<if test="type != null">
+				type,
+			</if>
+			<if test="income != null">
+				income,
+			</if>
+			<if test="outlay != null">
+				outlay,
+			</if>
+			<if test="sourceId != null">
+				source_id,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+			happen_time
+
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="memberId != null">
+				#{memberId,jdbcType=BIGINT},
+			</if>
+			<if test="balance != null">
+				#{balance,jdbcType=DECIMAL},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=INTEGER},
+			</if>
+			<if test="income != null">
+				#{income,jdbcType=DECIMAL},
+			</if>
+			<if test="outlay != null">
+				#{outlay,jdbcType=DECIMAL},
+			</if>
+			<if test="sourceId != null">
+				#{sourceId,jdbcType=BIGINT},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+			now()
+		</trim>
+	</insert>
+	
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap">
+		select <include refid="Base_Column_List"/>
+		from fin_popularity_in_out_log
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	
+	<select id="selectPopularityInOutLogForGain" resultMap="BaseResultMap" parameterType="BaseQueryParam">
+		select <include refid="Base_Column_List"/>
+		from fin_popularity_in_out_log
+		where member_id = #{memberId,jdbcType=BIGINT}
+		and type in (1,2,3,5,6,7)
+		order by happen_time desc, id desc
+	LIMIT #{startRow,jdbcType=INTEGER}, #{pageSize,jdbcType=INTEGER}
+	</select>
+	
+	<select id="selectPopularityInOutLogForGainCount" resultType="java.lang.Long" parameterType="BaseQueryParam">
+		select count(0)
+		from fin_popularity_in_out_log
+		where member_id = #{memberId,jdbcType=BIGINT}
+		and type in (1,2,3,5,6,7)
+	</select>
+	
+	<select id="selectPopularityInOutLogForExchange"  resultMap="BaseResultMap"  parameterType="BaseQueryParam">
+		select <include refid="Base_Column_List"/>
+		from fin_popularity_in_out_log
+		where member_id = #{memberId,jdbcType=BIGINT}
+		and type=4
+		order by happen_time desc, id desc
+	LIMIT #{startRow,jdbcType=INTEGER}, #{pageSize,jdbcType=INTEGER}
+	</select>
+	
+	<select id="selectPopularityInOutLogForExchangeCount" resultType="java.lang.Long" parameterType="BaseQueryParam">
+		select count(0)
+		from fin_popularity_in_out_log
+		where member_id = #{memberId,jdbcType=BIGINT}
+		and type = 4
+	</select>
+	
+	
+	<resultMap id="ActivityForFirstInvestResultMap" type="ActivityForFirstInvest">
+		<result column="income" property="popularityNum" jdbcType="INTEGER" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<result column="member_id" property="memberId" jdbcType="BIGINT" />
+		<result column="username" property="username" jdbcType="VARCHAR" />
+		<result column="mobile" property="mobile" jdbcType="BIGINT" />
+		<result column="project_id" property="projectId" jdbcType="BIGINT" />
+		<result column="project_name" property="projectName" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="online_time" property="onlineTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<!-- 获取一马当先等活动送人气值列表 -->
+	<select id="selectActivityForFirstInvestList" resultMap="ActivityForFirstInvestResultMap" parameterType="PopularityInOutLogQuery">
+	SELECT 
+		f.income as income,
+		m.id as member_id,
+		m.username as username,
+		m.mobile as mobile,
+		p.id as project_id,
+		p.name as project_name,
+		p.status as status,
+		p.online_time as online_time
+	FROM 
+		fin_popularity_in_out_log f  
+	INNER JOIN uc_member m ON f.member_id=m.id
+	INNER JOIN ic_project p ON f.source_id=p.id
+	
+	<where>
+		<if test="startTime">
+			and <![CDATA[f.happen_time >= #{startTime,jdbcType=TIMESTAMP} ]]>
+		</if>
+		<if test="endTime">
+			and <![CDATA[f.happen_time <=#{endTime,jdbcType=TIMESTAMP} ]]>
+		</if>
+		<if test="type != null">
+			and f.type = #{type,jdbcType=INTEGER}
+		</if>
+		<if test="remark != null">
+			AND f.remark=#{remark,jdbcType=VARCHAR}
+		</if>
+		<if test="sourceId != null">
+			AND f.source_id = #{sourceId,jdbcType=BIGINT}
+		</if>
+	</where>
+	ORDER BY f.happen_time desc <if test="limitSize!=null">limit #{limitSize,jdbcType=INTEGER}</if>
+	</select>
+	
+	
+	
+	<resultMap id="ActivityForSingleInvestResultMap" type="ActivityForSingleInvest">
+		<result column="member_id" property="memberId" jdbcType="BIGINT" />
+		<result column="username" property="username" jdbcType="VARCHAR" />
+		<result column="mobile" property="mobile" jdbcType="BIGINT" />
+		<result column="popularity_num" property="popularityNum" jdbcType="DECIMAL" />
+		<result column="invest_amount" property="investAmount" jdbcType="DECIMAL" />
+	</resultMap>
+	<select id="selectActivityForSingleInvest" resultMap="ActivityForSingleInvestResultMap" parameterType="PopularityInOutLogQuery">
+	SELECT 
+		m.id as member_id,
+		m.username as username,
+		m.mobile as mobile,
+		f.income as popularity_num,
+		t.invest_amount as invest_amount
+	FROM 
+		fin_popularity_in_out_log f 
+	INNER JOIN uc_member m ON f.member_id=m.id
+	INNER JOIN tc_transaction t ON f.source_id=t.id
+	
+	<where>
+		<if test="startTime">
+			and <![CDATA[f.happen_time >= #{startTime,jdbcType=TIMESTAMP} ]]>
+		</if>
+		<if test="endTime">
+			and <![CDATA[f.happen_time <=#{endTime,jdbcType=TIMESTAMP} ]]>
+		</if>
+		<if test="type != null">
+			and f.type = #{type,jdbcType=INTEGER}
+		</if>
+		<if test="remark != null">
+			AND f.remark like #{remark,jdbcType=VARCHAR}"%"
+		</if>
+		<if test="sourceId != null">
+			AND f.source_id = #{sourceId,jdbcType=BIGINT}
+		</if>
+	</where>
+	ORDER BY f.happen_time desc
+	LIMIT 100
+	</select>
+	<!-- 人气值排行TOP10 -->
+	<select id="findTopPopularityMember" resultMap="BaseResultMap">
+		SELECT
+			id,member_id,sum(income)as income 
+		FROM fin_popularity_in_out_log 
+		group by
+			member_id
+		ORDER BY
+			income DESC
+		LIMIT #{topNum,jdbcType=INTEGER}
+	</select>
+	<!-- 最近兑换记录 -->
+	<select id="findLastExchangeCoupon" resultMap="BaseResultMap">
+		SELECT
+			id,member_id,outlay,happen_time
+		FROM
+			fin_popularity_in_out_log
+		where 
+			type = 4
+		ORDER BY
+			happen_time DESC
+		LIMIT 10
+	</select>
+	
+	<!-- 该用户是否获取问卷调查人气值 -->
+	<select id="findPopularityBySourceIdAndRemark" resultType="java.lang.Integer" parameterType="BaseQueryParam">
+		SELECT
+			count(0)
+		FROM
+			fin_popularity_in_out_log
+		WHERE
+			remark = #{remark,jdbcType=VARCHAR}
+		AND member_id = #{memberId,jdbcType=BIGINT}
+	</select>
+	
+	<!--====== 最近一个一羊领头（一鸣惊人、幸运女神、一锤定音）的项目start======-->
+	<resultMap id="ActivityLeadingSheepProjectMap" type="com.yourong.core.mc.model.biz.ActivityLeadingSheepProject">
+		<result column="id" property="id" jdbcType="BIGINT" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="member_id" property="memberId" jdbcType="BIGINT" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="online_time" property="onlineTime" jdbcType="TIMESTAMP" />
+		<result column="total_amount" property="totalAmount" jdbcType="DECIMAL" />
+		<result column="thumbnail" property="thumbnail" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<select id="findLastLeadingSheepProject" resultMap="ActivityLeadingSheepProjectMap" >
+	SELECT 
+		f.member_id as member_id,
+		p.id as id,
+		p.name as name,
+		p.status as status,
+		p.online_time as online_time,
+		p.total_amount as total_amount,
+		p.thumbnail as thumbnail
+	FROM 
+		fin_popularity_in_out_log f 
+	INNER JOIN ic_project p ON f.source_id=p.id
+	where type = 2
+	<if test="remark != null">
+		AND f.remark=#{remark,jdbcType=VARCHAR}
+	</if>
+	ORDER BY f.happen_time desc limit 1
+	</select>
+	
+	<select id="p2pFindLastLeadingSheepProject" resultMap="ActivityLeadingSheepProjectMap" >
+	SELECT 
+		f.member_id as member_id,
+		p.id as id,
+		p.name as name,
+		p.status as status,
+		p.online_time as online_time,
+		p.total_amount as total_amount,
+		p.thumbnail as thumbnail
+	FROM 
+		fin_popularity_in_out_log f 
+	INNER JOIN ic_project p ON f.source_id=p.id
+	where type = 2 and p.invest_type=1 
+	<if test="remark != null">
+		AND f.remark=#{remark,jdbcType=VARCHAR}
+	</if>
+	ORDER BY f.happen_time desc limit 1
+	</select>
+	<!--=====最近一个一羊领头（一鸣惊人、幸运女神、一锤定音）的项目end=======-->
+	
+	<!-- 获取过一羊领头（一鸣惊人、幸运女神、一锤定音、一掷千金）的总人数 -->
+	<select id="findGetLeadingSheepMemeberCount" resultType="java.lang.Integer">
+		select COUNT(DISTINCT member_id)
+		from 
+			fin_popularity_in_out_log 
+		where 
+			type = 2
+		    and remark = #{remark,jdbcType=VARCHAR}
+	</select>
+	
+	<resultMap id="ActivityLeadingSheepRanksMap" type="com.yourong.core.mc.model.biz.ActivityLeadingSheepRanks">
+		<result column="member_id" property="memberId" jdbcType="BIGINT" />
+		<result column="gain_times" property="gainTimes" jdbcType="INTEGER" />
+		<result column="income" property="income" jdbcType="DECIMAL" />
+	</resultMap>
+	
+	<!-- 获取一羊领头等最多的前3位用户 -->
+	<select id="findLeadingSheepRanks" resultMap="ActivityLeadingSheepRanksMap">
+		SELECT
+			member_id,
+			count(member_id) AS gain_times,
+			sum(income) AS income
+			FROM
+			fin_popularity_in_out_log
+			WHERE
+			remark =#{remark,jdbcType=VARCHAR}
+			GROUP BY
+			member_id ORDER BY gain_times desc,income desc limit 3;
+	</select>
+	
+	<!-- 任务赚取人气值（邀请好友、签到） -->
+	<select id="findTaskGetTotalPopByMemberId" resultType="java.lang.Integer">
+		select sum(income) 
+		from fin_popularity_in_out_log 
+		where 
+			type in (1,6) 
+			and member_id = #{memberId,jdbcType=BIGINT}
+	</select>
+	
+	<!-- 投资赚人气值（投资四重礼） -->
+	<select id="findInvestGetTotalPopByMemberId" resultType="java.lang.Integer">
+		select sum(income) from fin_popularity_in_out_log where type = 2 
+		and remark in ${remark} 
+		and member_id = #{memberId,jdbcType=BIGINT};
+	</select>
+	
+	<!-- 活动赚人气值（除去四重礼） -->
+	<select id="findActivityGetTotalPopByMemberId" resultType="java.lang.Integer">
+		select sum(income) from fin_popularity_in_out_log where type = 2 
+		and remark not in ${remark} 
+		and member_id = #{memberId,jdbcType=BIGINT};
+	</select>
+	
+	<!-- 用户获取人气值流水列表      start-->
+	<select id="selectPopularityInOutLog"  resultMap="BaseResultMap"  parameterType="BaseQueryParam">
+		select <include refid="Base_Column_List"/>
+		from fin_popularity_in_out_log
+		where member_id = #{memberId,jdbcType=BIGINT}
+		order by happen_time desc, id desc
+	LIMIT #{startRow,jdbcType=INTEGER}, #{pageSize,jdbcType=INTEGER}
+	</select>
+	
+	<select id="selectPopularityInOutLogCount" resultType="java.lang.Long" parameterType="BaseQueryParam">
+		select count(0)
+		from fin_popularity_in_out_log
+		where member_id = #{memberId,jdbcType=BIGINT}
+	</select>
+	<!-- 用户获取人气值流水列表     end-->
+	
+	<!-- 获取用户获取四重礼的次数 -->
+	<select id="getQuadrupleGiftCountByMemberId" resultType="java.lang.Integer">
+		SELECT
+			count(0)
+		FROM
+			fin_popularity_in_out_log
+		WHERE
+		 type = 2
+		AND remark = #{remark,jdbcType=VARCHAR}
+		<if test="memberId!=-1">
+			AND member_id = #{memberId,jdbcType=BIGINT} 
+		</if>
+	</select>
+	
+	<!-- 获取用户四重礼获取人气值总数 -->
+	<select id="findQuadrupleGiftTotalPopByMemberId" resultType="java.lang.Integer">
+		select ifnull(sum(income),0) from fin_popularity_in_out_log where type = 2 
+		and remark = #{remark,jdbcType=VARCHAR} 
+		<if test="memberId!=-1">
+		and member_id = #{memberId,jdbcType=BIGINT}
+		</if>
+	</select>
+	
+	<!-- 获取五重礼送人气值列表 -->
+	<select id="selectQuintupleGiftList" resultMap="ActivityForFirstInvestResultMap" parameterType="PopularityInOutLogQuery">
+	SELECT 
+		f.income as income,
+		f.remark as remark,
+		m.id as member_id,
+		m.username as username,
+		m.mobile as mobile,
+		p.id as project_id,
+		p.name as project_name,
+		p.status as status,
+		p.online_time as online_time
+	FROM 
+		fin_popularity_in_out_log f 
+	INNER JOIN uc_member m ON f.member_id=m.id
+	INNER JOIN ic_project p ON f.source_id=p.id
+	
+	<where>
+		<if test="type != null">
+			and f.type = #{type,jdbcType=INTEGER}
+		</if>
+		<if test="remark != null">
+			AND f.remark in ${remark}
+		</if>
+	</where>
+	ORDER BY f.happen_time desc <if test="limitSize!=null">limit #{limitSize,jdbcType=INTEGER}</if>
+	</select>
+	
+	<!-- 获取用户当日，收获人气值总额 -->
+	<select id="getMemberPopCountByDate" resultType="java.lang.Integer">
+		select sum(income) from fin_popularity_in_out_log 
+		where happen_time  <![CDATA[ <= ]]>   DATE_ADD(CURDATE(),INTERVAL 1 DAY) and happen_time <![CDATA[  >= ]]>   CURDATE()
+		<if test="map!=null">
+			<if test=" map.memberId != null">
+						and member_id = #{map.memberId}
+				</if>
+		</if>
+		
+	</select>
+	<select id="countInvestBySourceId" resultType="java.lang.Integer">
+		select count(1) from fin_popularity_in_out_log where type = 2 
+		and remark in ${remark}  
+		and source_id = #{sourceId,jdbcType=BIGINT};
+	</select>
+	
+	
+	<update id="updatePopularityByMemberId" >
+     update fin_popularity_in_out_log set  
+	         remark = #{remark,jdbcType=VARCHAR},
+	         source_id = #{sourceId,jdbcType=BIGINT} 
+    	where member_id = #{memberId,jdbcType=BIGINT} and type =2  and  remark = #{beforeRemark,jdbcType=VARCHAR}
+		
+  </update>
+
+	<select id="queryPopularityTotalIncome" resultType="java.math.BigDecimal">
+		SELECT sum(income) FROM fin_popularity_in_out_log WHERE member_id =#{memberid} AND happen_time <![CDATA[ <= ]]> #{time}
+	</select>
+
+	<select id="queryPopularityTotalOutlay" resultType="java.math.BigDecimal">
+		SELECT sum(outlay) FROM fin_popularity_in_out_log WHERE member_id =#{memberid} AND happen_time <![CDATA[ <= ]]> #{time}
+	</select>
+</mapper>

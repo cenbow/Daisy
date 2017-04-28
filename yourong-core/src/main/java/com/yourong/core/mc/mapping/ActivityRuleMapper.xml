@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.mc.dao.ActivityRuleMapper" >
+  <resultMap id="BaseResultMap" type="ActivityRule" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="activity_id" property="activityId" jdbcType="BIGINT" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="rule_type" property="ruleType" jdbcType="VARCHAR" />
+    <result column="rule_parameter" property="ruleParameter" jdbcType="VARCHAR" />
+    <result column="version" property="version" jdbcType="VARCHAR" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, activity_id, description, rule_type, rule_parameter, version, remarks, create_time
+  </sql>
+  <insert id="insertSelective" parameterType="ActivityRule" >
+    insert into mc_activity_rule
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="activityId != null" >
+        activity_id,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="ruleType != null" >
+        rule_type,
+      </if>
+      <if test="ruleParameter != null" >
+        rule_parameter,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+        create_time,
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="activityId != null" >
+        #{activityId,jdbcType=BIGINT},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleType != null" >
+        #{ruleType,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleParameter != null" >
+        #{ruleParameter,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+       now(),
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="ActivityRule" >
+    update mc_activity_rule
+    <set >
+      <if test="activityId != null" >
+        activity_id = #{activityId,jdbcType=BIGINT},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleType != null" >
+        rule_type = #{ruleType,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleParameter != null" >
+        rule_parameter = #{ruleParameter,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        version = #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <delete id="batchDelete" parameterType="java.lang.Long" >
+    delete from mc_activity_rule
+    where id in  <foreach collection="ids" index="index" item="item" open="(" separator="," close=")"> #{item}  </foreach>  
+  </delete>
+  <select id="findByPage" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from mc_activity_rule
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = #{map.id}
+        </if>
+        <if test=" map.activityId != null" >
+          activity_id = #{map.activityId}
+        </if>
+        <if test=" map.description != null" >
+          description = #{map.description}
+        </if>
+        <if test=" map.ruleType != null" >
+          rule_type = #{map.ruleType}
+        </if>
+        <if test=" map.ruleParameter != null" >
+          rule_parameter = #{map.ruleParameter}
+        </if>
+        <if test=" map.version != null" >
+          version = #{map.version}
+        </if>
+        <if test=" map.remarks != null" >
+          remarks = #{map.remarks}
+        </if>
+        <if test=" map.createTime != null" >
+          create_time = #{map.createTime}
+        </if>
+      </where>
+    </if>
+  </select>
+  <sql id="Base_Column_List_Pagin" >
+    t.id  as  id,
+t.activity_id  as  activity_id,
+t.description  as  description,
+t.rule_type  as  rule_type,
+t.rule_parameter  as  rule_parameter,
+t.version  as  version,
+t.remarks  as  remarks,
+t.create_time  as  create_time
+  </sql>
+  <select id="selectForPagin" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List_Pagin" />
+    from  (SELECT id FROM  mc_activity_rule
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = #{map.id}
+        </if>
+        <if test=" map.activityId != null" >
+          activity_id = #{map.activityId}
+        </if>
+        <if test=" map.description != null" >
+          description = #{map.description}
+        </if>
+        <if test=" map.ruleType != null" >
+          rule_type = #{map.ruleType}
+        </if>
+        <if test=" map.ruleParameter != null" >
+          rule_parameter = #{map.ruleParameter}
+        </if>
+        <if test=" map.version != null" >
+          version = #{map.version}
+        </if>
+        <if test=" map.remarks != null" >
+          remarks = #{map.remarks}
+        </if>
+        <if test=" map.createTime != null" >
+          create_time = #{map.createTime}
+        </if>
+      </where>
+    </if>
+      LIMIT	${map.startRow}, ${map.pageSize}  )  AS a,  mc_activity_rule AS t FORCE INDEX(PRIMARY) WHERE a.id = t.id   
+  </select>
+  <select id="selectForPaginTotalCount" resultType="java.lang.Integer" >
+    select count(1) 
+    from mc_activity_rule
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = ${map.id}
+        </if>
+        <if test=" map.activityId != null" >
+          activity_id = ${map.activityId}
+        </if>
+        <if test=" map.description != null" >
+          description = ${map.description}
+        </if>
+        <if test=" map.ruleType != null" >
+          rule_type = ${map.ruleType}
+        </if>
+        <if test=" map.ruleParameter != null" >
+          rule_parameter = ${map.ruleParameter}
+        </if>
+        <if test=" map.version != null" >
+          version = ${map.version}
+        </if>
+        <if test=" map.remarks != null" >
+          remarks = ${map.remarks}
+        </if>
+        <if test=" map.createTime != null" >
+          create_time = ${map.createTime}
+        </if>
+      </where>
+    </if>
+  </select>
+  
+  <select id="findRuleByActivityId" resultMap="BaseResultMap"  parameterType="java.lang.Long">
+  	select <include refid="Base_Column_List" />
+  	from mc_activity_rule where activity_id = #{activityId,jdbcType=BIGINT}
+  </select>
+  
+  <!-- 根据活动ID删除活动规则 -->
+  <delete id="deleteActivityRuleByActivityId">
+  		delete from mc_activity_rule where activity_id = #{activityId,jdbcType=BIGINT}
+  </delete>
+  
+  <update id="updateRuleByActivityId" parameterType="ActivityRule" >
+    update mc_activity_rule
+    <set >
+      <if test="ruleParameter != null" >
+        rule_parameter = #{ruleParameter,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where activity_id = #{activityId,jdbcType=BIGINT}
+  </update>
+  
+</mapper>

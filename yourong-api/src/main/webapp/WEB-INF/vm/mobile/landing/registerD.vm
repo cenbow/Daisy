@@ -1,0 +1,274 @@
+##手机登陆页D
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$m_css_url/common.css","$m_css_url/landing/season1.css"])
+#set($title="注册送大礼包")
+#set($loadJQ=true)
+<input type="hidden" id="pageTag" value="landingD"/>
+<script>
+        #if($currentUser)
+        window.location.href = '$siteurl/mCenter/home';
+        #end
+</script>
+<style>
+    a {
+        text-decoration: none;
+    }
+
+    body {
+        background: #eeeeee;
+    }
+
+
+    .m-reg-form {
+        padding: 1.2rem;
+    }
+
+    .m-reg-form .u-ipt-text {
+        height: 30px;
+        padding: 0;
+        background: #fff;
+    }
+
+    .m-reg-form input {
+        border-radius: 0;
+    }
+
+    .m-input-vercode .u-img-vercode {
+        height: 20px;
+        border-left: 1px solid #d6d6d6;
+        padding-left: 5px;
+        top: 0.5rem;
+    }
+
+    .u-tips-vercode {
+        padding: 0;
+        line-height: 30px;
+        height: 30px;
+    }
+
+    .m-reg-form .u-reg-btn1 {
+        margin: 0;
+    }
+
+    .f-wei7 {
+        font-weight: 700;
+    }
+
+    .u-wrap {
+        width: 98%;
+        margin: auto;
+        margin-bottom: 30px;
+    }
+
+    .u-wrap .f-thline {
+        border-bottom: 1px solid #aaaaaa;
+        width: 20%;
+        height: 0;
+        display: inline-block;
+        margin-top: 46px;
+    }
+
+    .u-wrap span {
+        display: inline-block;
+        color: #666666;
+        text-align: center;
+        width: 58%;
+        margin-top: 30px;;
+    }
+
+    .g-ft {
+        background-color: #eeeeee;
+        margin-top: 24px;
+    }
+
+    .u-safety-logo img {
+        width: 80%;
+        height: 30px;
+    }
+    .u-safety-logo span{
+        display: block;
+        margin: 30px 0 0 0;
+    }
+    .u-safety-logo img:first-child {
+        margin: 0;
+    }
+
+    .m-welfare-list {
+        width: 26%;
+        margin-top: 30px;
+        display: inline-block;
+        margin: 0 3%;
+        height: 194px;
+        overflow: hidden;
+    }
+
+    .m-welfare-list img {
+        width: 100%;
+    }
+
+    .m-welfare-list span {
+        margin-top: 0;
+        width: 100%;
+    }
+    .f-safe-tip{letter-spacing: 3px;}
+
+    .f-registerD-larger{
+        height:270px;
+    }
+</style>
+##header
+<h2 class="u-pageTitle f-pos-r">
+    <a href="href="$siteurl/mIndex"">
+    有融网
+    </a>
+    <span class=" f-pos-a f-fs18 f-ff-ver">
+        <a href="$siteurl/mstation/login">登录</a>
+    </span>
+</h2>
+##main-banner
+<div class="m-banner">
+    <img src="$siteurl/res/img/banner_D1.png"/>
+
+    <div class="u-status-amount f-fs14 f-cf">
+        <em class="f-ff-ver u-amount-money f-fl">
+            累计成功投资:￥
+        <span class="f-ff-din f-fs22">
+            $!{paltformCapitalUtils.getPrefixPaltformTotalInvest()}
+        </span>
+        </em>
+        <em class="f-ff-ver f-fr">
+            注册人数:
+        <span class="f-ff-din f-fs22">
+            $!{paltformCapitalUtils.getPaltformMembers()}
+        </span>
+        </em>
+    </div>
+</div>
+##注册
+<section class="g-bd">
+    <form data-action="$siteurl/mstation/register/saveMember" method="POST" class="m-reg-form j-form-xpost j-validform"
+          data-page="register" id="j-reg-form">
+        #CSRFToken('xToken')
+        #onceToken()
+        <input type="hidden" id="j-reg-mobile"/>
+
+        <div class="u-ipt-group f-pos-r">
+            <input type="tel" name="mobile" oncopy="return false;" onpaste="return false;" id="j-cpn" autocomplete="off"
+                   nullmsg="手机号码不能为空" errormsg="请输入正确的手机号码" class="f-round f-ipt-w430 u-ipt-text  u-ipt-str f-fs10"
+                   placeholder="请输入手机号码"/>
+            <span class='m-val-tips'></span>
+
+            <div class="f-mob-sha f-dn" id="j-mobile"></div>
+        </div>
+        <div class="m-input-vercode f-cf f-pos-r">
+			<span class="u-xtips-wrap ">
+				<input type="text" id="j-vercode" autocomplete="off" nullmsg="请输入图形验证码"
+                       class="u-ipt-text u-ipt-vercode j-vercode" placeholder="输入图形码"/>
+            </span>
+            <img src="$siteurl/mstation/validateCode" alt="验证码" title="点击重新获取验证码" id="j-img-vercode"
+                 class="u-img-vercode"/>
+			<span id="j-phonecode-wrap" class="u-xtips-wrap u-phonecode-wrap z-hide">
+				<input type="text" name="phonecode" autocomplete="off" id="j-phonecode" placeholder="输入手机验证码"
+                       class="f-clear f-round u-ipt-text f-ipt-w248 u-ipt-phonecode"/>
+			</span>
+			<span class="f-round u-tips-vercode f-tips-gray f-fr  f-dn">
+			获得短信验证码
+			</span>
+            <span class="m-val-tips"></span>
+        </div>
+        <div class="u-ipt-group">
+            <input type="password" name="password" oncopy="return false;" onpaste="return false;"
+                   class="f-round u-ipt-text f-ipt-w430 v-pwd" placeholder="输入密码，长度6-16位，至少包含数字和字母"/>
+        </div>
+    #*  <div class="u-ipt-group">
+            <input type="password" name="repassword" oncopy="return false;" onpaste="return false;" recheck="password" class="f-round f-ipt-w430 u-ipt-text v-pwd-reck" placeholder="再次输入密码" />
+        </div>*#
+    ##		<div class="u-ipt-group f-pos-r">
+    ##			<input type="tel" id="j-refercode" autocomplete="off" value="$!{mobile}" $!{disabled} ignore="ignore" class="f-round f-ipt-w430 u-ipt-text" placeholder="推荐人手机号码，选填   $!{tureName}"/>
+    ##			<span class="m-val-tips">
+    ##			#if($!{tureName})
+    ##				您的推荐人：$!{tureName}
+    ##			#end
+    ##			</span>
+    ##		</div>
+    ##推荐人ID
+        <input type="hidden" name="referCode" id="j-refercode-val" value="$!{shortUrl}">
+        <input type="hidden" name="tid" value="$!{request.getParameter('tid')}">
+        <input type="hidden" name="registerTraceSource" value='$!{session.getAttribute("register_TraceSource")}'/>
+        <input type="hidden" name="registerTraceNo" value='$!{session.getAttribute("register_TraceNo")}'/>
+        <input type="hidden" name="referSource" value="$!{referSource}"/>
+        <input type="hidden" name="checkType" id="j-checkType" value="1"/>
+        <input type="hidden" name="pngCode" id="j-pngcode"/>
+        <input type="hidden" name="loginSource" value="0"/>
+        <label class="f-clear f-mgl-8 f-fc-black">
+            <input type="checkbox" checked="checked" name="agree" id="j-agree"/>&nbsp;我已阅读并同意
+            <a target="_blank" href="$res_url/page/register-agreement.html">《有融网服务协议》</a>
+        </label>
+        <button type="submit" class="u-reg-btn1 j-reg-btn">注册送80元礼包</button>
+    </form>
+##        <div id="j-bind-success" class="u-bind-success f-dn">
+##            <i class="u-icon-success"></i>&nbsp;&nbsp;恭喜您绑定成功！
+##        </div>
+</section>
+
+##平台福利
+<div class="u-wrap">
+    <div style="margin-bottom: 20px;overflow: hidden;height: 63px;">
+        <div class="f-thline f-fl"></div>
+
+        <span class="f-fs14"><strong class=" f-wei7 f-fs22" style="display: inline-block;">&nbsp;平台福利</strong>&nbsp;&nbsp;豪礼大放送</span>
+
+        <div class="f-thline f-fr"></div>
+    </div>
+    <div >
+    <div class="m-welfare-list">
+        <img src="$res_url/img/registerD/zhuce.png" alt=""/>
+        <span class="f-fs14"><strong class=" f-wei7 f-fs18">注册</strong><br/>注册送80元礼包</span>
+
+    </div>
+    <div class="m-welfare-list">
+        <img src="$res_url/img/registerD/touzi.png" alt=""/>
+        <span class="f-fs14"><strong class=" f-wei7 f-fs18">投资</strong><br/>投标五重礼</span>
+
+    </div>
+    <div class="m-welfare-list">
+        <img src="$res_url/img/registerD/qiandao.png" alt=""/>
+        <span class="f-fs14"><strong class=" f-wei7 f-fs18">签到</strong><br/>每天签到1-6元</span>
+
+    </div>
+    <div class="m-welfare-list f-registerD-larger">
+        <img src="$res_url/img/registerD/cunqian.png" alt=""/>
+        <span class="f-fs14"><strong class=" f-wei7 f-fs16">新浪存钱罐</strong><br/>天天计息<br/>收益享不停</span>
+
+    </div>
+    <div class="m-welfare-list f-registerD-larger">
+        <img src="$res_url/img/registerD/shengri.png" alt=""/>
+        <span class="f-fs14"><strong class=" f-wei7 f-fs18">会员生日</strong><br/>签到翻10倍<br/>1%加息券<br/>50元现金券</span>
+
+    </div>
+    <div class="m-welfare-list f-registerD-larger">
+        <img src="$res_url/img/registerD/yaoqing.png" alt=""/>
+        <span class="f-fs14"><strong class=" f-wei7 f-fs18">邀请好友</strong><br/>推荐人即可获得好友投资额*（收益天数/30）*0.3%的人气值奖励</span>
+
+    </div></div>
+</div>
+
+
+<div class="u-safety-logo rep-text" style="display: none;">
+    <img src="$res_url/img/sinaPay_logo.png" alt=""/ >
+    <span class="f-fs12 f-safe-tip">市场有风险，投资需谨慎</span>
+</div>
+#set($pageScript="
+<script>
+    seajs.config({
+        alias: {
+            'landingRegister': '$m_js_url/landing/register.js?v=${sysServiceUtil.getStaticResourceVersion()}'
+        },
+        preload: ['jquery', 'validform']
+    });
+    seajs.use('landingRegister', function () {
+        $('.u-safety-logo').html($('.rep-text').html());
+    });
+</script>
+")

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.data.dao.DataMapper">
+    <resultMap id="LiCaiResultMap" type="com.yourong.core.data.model.LiCai">
+        <id column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="cname" property="cName" jdbcType="VARCHAR"/>
+        <result column="mobile" property="mobile" jdbcType="VARCHAR"/>
+        <result column="email" property="email" jdbcType="VARCHAR"/>
+        <result column="field5" property="field5" jdbcType="VARCHAR"/>
+        <result column="reg_time" property="regTime" jdbcType="VARCHAR"/>
+        <result column="责任人" property="belong" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <resultMap id="AlreadyInvestResultMap" type="com.yourong.core.data.model.AlreadyInvest">
+        <result column="cname" property="cName" jdbcType="VARCHAR"/>
+        <result column="mobile" property="mobile" jdbcType="VARCHAR"/>
+        <result column="register_time" property="registerTime" jdbcType="VARCHAR"/>
+        <result column="msg" property="msg" jdbcType="VARCHAR"/>
+        <result column="明天生日已投资" property="invest" jdbcType="VARCHAR"/>
+        <result column="责任人" property="belong" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <resultMap id="NoInvestResultMap" type="com.yourong.core.data.model.NoInvest">
+        <result column="register_time" property="registerTime" jdbcType="VARCHAR"/>
+        <result column="cname" property="cName" jdbcType="VARCHAR"/>
+        <result column="mobile" property="mobile" jdbcType="VARCHAR"/>
+        <result column="register_trace_source" property="registerTraceSource" jdbcType="VARCHAR"/>
+        <result column="昨日注册未投资" property="noInvest" jdbcType="VARCHAR"/>
+        <result column="责任人" property="belong" jdbcType="VARCHAR"/>
+    </resultMap>
+    
+      <resultMap id="DouWanResultMap" type="com.yourong.core.data.model.DouWan">
+        <result column="id" property="memberId" jdbcType="BIGINT"/>
+        <result column="register_trace_no" property="registerTraceNo" jdbcType="VARCHAR"/>
+        <result column="register_time" property="registerTime" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="queryLiCai" resultMap="LiCaiResultMap" statementType="CALLABLE">
+        call pr_licai_allname(#{datestart},#{datestop})
+    </select>
+
+    <select id="queryNoInvest" resultMap="NoInvestResultMap">
+        select left(a.register_time,10) register_time,concat(left(ifnull(a.true_name,''),1),case when a.sex = '0' then '女士' when a.sex = 1 then '先生' else '未实名' end)cname,a.mobile,register_trace_source,'昨日注册未投资','责任人'
+        from uc_member a left JOIN tc_transaction b on a.id = b.member_id
+        where a.register_time <![CDATA[ >= ]]> #{datestart} and a.register_time <![CDATA[ < ]]> #{datestop} and b.id is null
+        and register_trace_source not in("LLB")
+        and a.sex <![CDATA[ <> ]]> -1
+        ORDER BY rand() limit 1000
+    </select>
+
+    <select id="queryAlreadyInvest" resultMap="AlreadyInvestResultMap">
+        select concat(left(ifnull(a.true_name,''),1),case when a.sex = '0' then '女士' when a.sex = 1 then '先生' else '未实名' end)cname,a.mobile,left(a.register_time,10)register_time,
+        concat('生日:',CONVERT(right(a.birthday,5),char),';投资次数:',CONVERT(count(a.id),char),';人气值:',CONVERT(floor(c.balance),char)) msg,'明天生日已投资','责任人'
+        from uc_member a join tc_transaction b on a.id = b.member_id join fin_balance c on a.id = c.source_id where right(a.birthday,5) = #{birthday} and c.balance_type = 8 GROUP BY
+        a.id ORDER BY rand() LIMIT 120;
+    </select>
+    
+      <select id="queryDouWans" resultMap="DouWanResultMap">
+        select id,register_trace_no,register_time  from  uc_member where true_name is not null and identity_number is not null and email is not null 
+         and  register_time <![CDATA[ >= ]]> #{startDate} and register_time <![CDATA[ <= ]]> #{endDate}  and  register_trace_source='CPS'
+    </select>
+    
+</mapper>

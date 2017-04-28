@@ -1,0 +1,43 @@
+<div tabindex="-1" class="modal fade" id="modal-table" style="display: none;" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header no-padding">
+				<div class="table-header">
+					<button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+						<span class="white">×</span>
+					</button>
+					<span class="modalFormTitle">添加项目推荐</span>
+				</div>
+			</div>
+			<div class="modal-body">
+				<form role="form" class="form-horizontal" id="newRecommendForm" method="post">
+					<div class="form-group">
+						<label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 项目编号: </label>
+					    <div class="col-sm-9">
+						    <div class="clearfix">
+						    	<input type="text" name="projectId" class="col-xs-10 col-sm-5 showProjectList" placeholder="项目编号" id="projectId">
+						    </div>
+					    </div>
+					</div>
+					<div class="form-group">
+						<label for="form-field-1" class="col-sm-3 control-label no-padding-right"> </label>
+					    <div class="col-sm-2">
+						    <div class="clearfix">
+						    	<input type="checkbox" name="recommendList" class="col-xs-10 col-sm-2 showProjectList" value="1"/>PC端
+						    </div>
+					    </div>
+						<div class="col-sm-3">
+						    <div class="clearfix">
+						    	<input type="checkbox" name="recommendList" class="col-xs-10 col-sm-2 showProjectList" value="2"/>APP端
+						    </div>
+					    </div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+				<button type="button" id="save_recommend" class="btn btn-primary">保存</button>
+			</div>
+		</div>
+	</div>
+</div>

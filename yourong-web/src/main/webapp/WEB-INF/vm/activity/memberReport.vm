@@ -1,0 +1,197 @@
+##用户报名
+#parse("/common/common.vm")
+#set($title="融未来 行致远_$!{title_suffix}")
+#set($css_url=["$root_css_url/activity/memberReport.css"])
+#set($js_url=["$root_js_url/modules/area.js","$root_js_url/activity/memberReport.js"])
+##验证是否登录和实名认证
+ 			#if($currentUser)
+                #set($logined=1)
+            #else
+                #set($logined=0)
+            #end
+            
+           #if($currentUser.trueName && $currentUser.trueName!="")
+                #set($truename=1)
+                #set($true_name= $currentUser.trueName)
+            #else
+                #set($truename=0)
+            #end
+            
+            #if($isReceived)
+            	 #set($apply=true)
+            #else
+            	 #set($apply=false)
+            #end
+
+<div class="m-memberReport-hd"></div>
+<div class="m-memberReport-body">
+    <div class="g-wrap m-memberReport-wrap">
+    ##报名流程
+        <div class="u-memberReport-flow f-cf">
+            <div>
+                <span>
+                    01&nbsp;报名对象<br><i class="f-fs14">有融网用户</i>
+                </span>
+            </div>
+            <s></s>
+
+            <div>
+                <span>
+                    02&nbsp;报名方式<br><i class="f-fs14">网站&nbsp;电话&nbsp;微信</i>
+                </span>
+            </div>
+            <s></s>
+
+            <div>
+                <span>
+                    03&nbsp;报名时间<br><i class="f-fs14">10月8日止</i>
+                </span>
+            </div>
+            <s></s>
+
+            <div>
+                <span>
+                   04&nbsp;受邀人数<br><i class="f-fs14">50位</i>
+                </span>
+            </div>
+        </div>
+    ##报名方式
+        <div class="u-memberReport-way f-pos-r">
+            <p>
+                <i>•</i>网站报名：通过有融网官网活动专题页在线报名;
+                <br><i>•</i>电话报名：致电客服热线400-025-6688人工报名;
+                <br><i>•</i>微信报名：搜索微信公众号“有融网”，添加关注，回复“我要报名+姓名+手机号+所在省市+出行方式”
+                <br><i></i>进行报名（如：我要报名+许仙+13800012345+浙江杭州+汽车）；
+                <br><i></i>温馨提示：报名结果将于2015年10月10日通过官方公告及微信公布，您也可以致电客服查询报名情况。
+            </p>
+            <a class="f-fs16" data-logined="$logined" data-apply="$apply" data-truename="$truename" href="javascript:void(0)"  id="j-meeting-apply">我要报名</a>
+            #if($totalMemberReport>0)
+                <span class="f-fs16">已有$totalMemberReport位用户报名</span>
+                #else
+                    <span class="f-fs16">已有0位用户报名</span>
+            #end
+
+            <div class="u-memberReport-arrow">
+                <i>◆</i>
+                <span>◆</span>
+            </div>
+        </div>
+    ##活动行程
+        <div class="u-memberReport-journey">
+            <h3><i class="f-fs18">2</i><span class="f-fs18">活动行程</span></h3>
+            <div class="f-pos-r">
+                <i class="f-fs20 u-little-dot01">●</i>
+                <i class="f-fs30 u-little-dot02">●</i>
+                <i class="f-fs30 u-little-dot03">●</i>
+                <i class="f-fs30 u-little-dot04">●</i>
+                <i class="f-fs20 u-little-dot05">●</i>
+                <dl class="u-journey-01">
+                    <dt>11月18号</dt>
+                    <dd>与会嘉宾办理入住
+                        <br>杭州海外海皇冠假日酒店
+                    </dd>
+                </dl>
+                <dl class="u-journey-02">
+                    <dt>11月19号</dt>
+                    <dd>上午参观有融网 / 杭州旅游景点半日游
+                        <br>下午参加有融网一周年庆典大会
+                        <br>晚上参加有融网一周年庆典晚宴
+                    </dd>
+                </dl>
+                <dl class="u-journey-03">
+                    <dt>11月20号</dt>
+                    <dd>与会嘉宾返程
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    ##费用说明
+        <div class="u-memberReport-explain">
+            <h3><i class="f-fs18">3</i><span class="f-fs18">费用说明</span></h3>
+            <strong class="f-fs14">本活动不收取任何费用。活动期间，与会嘉宾所产生的相关费用由有融网承担。具体说明如下：</strong>
+
+            <p>
+                01、与会嘉宾往返行程费用，凭相关凭证报销；
+                <br>02、江浙沪及安徽、江西、福建的嘉宾，按火车票二等座票价报销往返行程费用；
+                <br>03、其他省市的嘉宾，按飞机经济舱票价报销往返行程费用；
+                <br>04、活动当天，与会嘉宾食宿均由有融网承担。
+            </p>
+            <span>温馨提示：不建议嘉宾自驾参会，自驾往返行程费用自理。</span>
+        </div>
+    </div>
+##地图
+    <div class="g-wrap">
+        <div class="u-memberReport-map">
+            <div style="width:990px;height:435px;border:#ccc solid 1px;font-size:12px" id="map"></div>
+            <p class="f-fs14">杭州海外海皇冠假日酒店 杭州市拱墅区上塘路333号</p>
+        </div>
+    </div>
+</div>
+#CSRFToken('xToken')
+## 表单
+<div class="m-memberReport-form f-dn f-pos-r" id="j-memberReport-form">
+    <form id="memberReport_form" class="j-validform">
+        #CSRFToken()
+        <table>
+            <tr class="u-qbank-card">
+                <td></td>
+                <td class="f-pos-r">
+                    <input id="j-checkname" name="trueName" placeholder="姓名" recheck="trueName" oncopy="return false;"
+                           class=" u-ipt-amount f-round f-fwb f-fs14 f-ime-disabled f-fc-red2  j-bankcard-id"
+                          value="$!{true_name}" type="text">
+                </td>
+            </tr>
+            <tr class="u-qbank-card">
+                <td></td>
+                <td class="f-pos-r">
+                    <input id="j-checkmobile" name="mobile" placeholder="手机号码" recheck="mobile" oncopy="return false;"
+                           onpaste="return false;"
+                           class="u-ipt-amount f-round  f-fwb f-fs14 f-ime-disabled f-fc-red2  j-bankcard-id"
+                           value="$currentUser.mobile" type="text">
+                </td>
+            </tr>
+            <tr class="u-qbank-area">
+                <td></td>
+                <td>
+                ##1，表示默认加载省份
+                ##2, 只加载省、市信息
+                    <div id="j-qbank-city">
+                        #regionPlugin(1,1,"reportregion")
+                    </div>
+                    <input id="j-checkprovince" type="hidden" name="bankProvince" value=""/>
+                    <input type="hidden" name="province" id="province" value=""/>
+                </td>
+            </tr>
+            <tr class="u-qbank-area">
+                <td></td>
+                <td class="u-btn-radio">
+                   <div class="u-selector u-scroll-selector f-w230 f-round f-tal">
+##                        <button>请选择出行方式</button>
+##                        <i></i>
+                        <label><input  name="travelMode" type="radio" checked="checked" value="1" />汽车 </label>
+                        <label><input name="travelMode" type="radio" value="2" />火车 </label>
+                       <label><input name="travelMode" type="radio" value="3" />飞机 </label>
+##                        <ul class="f-round" id="j-report-selector">
+##                            <li value="1">汽车</li>
+##                            <li value="2">火车</li>
+##                            <li value="3">飞机</li>
+##                        </ul>
+##                        <input type="hidden" class="j-selected-ipt" id="travelMode" name="travelMode" datatype="*"
+##                               nullmsg="该项必填" errormsg="该项必填" value=""/>
+                    </div>
+
+                </td>
+            </tr>
+        </table>
+        <div>
+            <input id="j-submit-qreport" type="button" value="报 名"
+                   class="u-circle-18 f-fs18 f-mgl-8 f-btn-m u-btn u-btn-primary j-reg-btn"/>
+        </div>
+    </form>
+    <i id="j-mReport-close"></i>
+</div>
+## /页面内容
+
+
+## /用户中心内容
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=gRqfuvZMqfWt8sl9zmVGumIw"></script>

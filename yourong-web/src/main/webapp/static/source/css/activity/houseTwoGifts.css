@@ -1,0 +1,329 @@
+.g-bd{
+    margin-bottom: 0;
+}
+.g-outter{
+    padding-bottom: 80px;
+    background: #fcf3d6;
+    font-family: "Microsoft Yahei";
+}
+
+.z-hidden{
+    display: none!important;
+}
+
+/* 头部图片 */
+.m-top{
+    background: url('/static/img/activity/houseTwoGifts/top.png') no-repeat center
+;
+    height: 505px;
+    margin-top: -7px;
+}
+
+/* 两个活动状态 */
+
+.g-container{
+    border-radius: 10px;
+    padding-top: 40px;
+    position: relative;
+    top: -50px;
+    height: 580px;
+    background: url('/static/img/activity/houseTwoGifts/box_shadow.png');
+    width: 989px;
+    box-sizing: border-box;
+}
+.g-step-wrapper{
+    height: 380px;
+}
+.g-step{
+    display: inline-block;
+    width: 420px;
+    height: 390px;
+    box-sizing: border-box;
+}
+/* 活动未激活，内部所有内容全部灰色 */
+.g-step.z-notActive {
+    color: #999;
+}
+.g-step.z-notActive .u-processBar{
+    background: #cdcdcd;
+}
+.g-step.z-notActive .u-processBar-fund,
+.g-step.z-notActive .u-processBar-fund .u-total-val{
+    background: #cdcdcd;
+    color: #fff!important;
+}
+.g-step.z-notActive .u-processBar-outer{
+    background: #cdcdcd;
+}
+
+.g-step.z-notActive .u-processBar-inner{
+    background: url('/static/img/activity/houseTwoGifts/processbar_grey.png');
+}
+.g-step.z-notActive .u-arrow-down{
+    background: url('/static/img/activity/houseTwoGifts/arrowdown_grey.png');
+}
+
+.g-step.z-notActive h2{
+    color: #bfbfbf;
+}
+
+.g-step.z-notActive tr,
+.g-step.z-notActive td {
+    color: #bfbfbf;
+    border: 1px solid #bfbfbf;
+}
+
+.g-step.z-notActive .u-white-bar{
+    background: #e6e6e6!important;
+    opacity: 0.5!important;
+}
+
+.g-step1 {
+    margin-left: 33px;
+}
+.g-step2{
+    margin-left: 80px;
+}
+
+.g-step h2{
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 80px;
+    color: #ffc02a;
+}
+.g-step h2.z-active{
+    color: #ffc02a;
+}
+
+.g-step .u-step-icon{
+    display: inline-block;
+    width: 54px;
+    height: 35px;
+    position: relative;
+    top: 5px;
+    left: 5px;
+}
+.g-step .u-step-icon.z-before{
+    background: url('/static/img/activity/houseTwoGifts/flag_notbegin.png');
+}
+
+.g-step .u-step-icon.z-during{
+    background: url('/static/img/activity/houseTwoGifts/flag_during.png');
+}
+
+.g-step .u-step-icon.z-after{
+    background: url('/static/img/activity/houseTwoGifts/flag_end.png');
+}
+
+/* 进度条 */
+.u-processBar{
+    height: 46px;
+    background: #ffdeb0;
+    border-radius: 46px;
+    padding: 5px;
+    box-sizing: border-box;
+    position: relative;
+}
+.u-processBar-outer{
+    height: 36px;
+    border-radius: 36px;
+    overflow: hidden;
+    background: #ffdeb0;
+    position: relative;
+    left: 1px;
+    overflow: hidden;
+    width: 410px;
+}
+.u-processBar-inner{
+    height: 36px;
+    border-radius: 36px;
+    background: url('/static/img/activity/houseTwoGifts/processbar.png');
+    position: absolute;
+    display: inline-block;
+    width: 410px;
+}
+
+.u-processBar-fund{
+    text-align: center;
+    box-sizing: border-box;
+    width: 200px;
+    padding-left: 16px;
+    padding-right: 16px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 20px;
+    background: #ffc02a;
+    color: #fff;
+    display: inline-block;
+    position: absolute;
+    top: -50px;
+    right: 0;
+    z-index: 100;
+    font-size: 16px;
+}
+
+.u-processBar-fund .u-arrow-down-outer{
+    position: relative;
+    display: block;
+    width: 100%;
+}
+.u-processBar-fund .u-arrow-down{
+    width: 11px;
+    height: 8px;
+    position: absolute;
+    background: url('/static/img/activity/houseTwoGifts/arrow_down.png');
+}
+
+.u-total-val{
+    color: #704211;
+    font-weight: bold;
+}
+
+.u-white-bar{
+    width: 390px;
+    height: 12px;
+    border-radius: 6px;
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    background: #ffbf2b;
+    z-index: 1000;
+    opacity: 0.3;
+}
+
+
+.g-container .m-rule{
+    margin-top: 40px;
+    background: #ffc02a;
+    color: #763800;
+    border-radius: 0 0 10px 10px;
+    padding: 25px 31px;
+    font-size: 14px;
+    line-height: 24px;
+}
+
+/* 两个表格 */
+.u-table {
+    width: 100%;
+    text-align: center;
+    margin-top: 35px;
+}
+
+.u-table tr,
+.u-table td {
+    color: #ffc02a;
+    border: 1px solid #ffc02a;
+    height: 40px;
+}
+
+/* 用户列表 */
+.m-userList {
+    padding: 0px 50px 0 155px;
+    background: #fff;
+    border-radius: 10px;
+    border: 1px solid #ffc02a;
+    margin-top: 30px;
+    height: 400px;
+}
+.m-userList.z-noData {
+    padding: 185px;
+    text-align: center;
+    color: #999;
+    height: 400px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+.u-gainList-container{
+    background: #fff;
+    text-align: center;
+    overflow: hidden;
+    width: 700px;
+    margin: 50px auto;
+    height: 300px;
+}
+.u-gainList {
+    overflow: hidden;
+    color: #9f9f9f;
+    height: 350px;
+}
+
+.u-gainList li {
+    height: 35px;
+    margin-bottom: 18px;
+    text-align: left;
+    overflow: hidden;
+}
+
+.u-user-head img {
+    vertical-align: middle;
+    width: 35px;
+    height: 35px;
+    border-radius: 20px;
+}
+
+.u-gainList li .u-user-name {
+    width: 80px;
+    margin-left: 10px;
+}
+
+.u-gainList li .u-useTime {
+    width: 190px;
+    margin-left: 60px;
+    margin-right: 50px;
+}
+
+.u-gainList li .u-giftText {
+    width: 200px;
+}
+
+.u-gainList span {
+    display: inline-block;
+}
+
+.u-giftText b {
+    color: #d94d53;
+}
+
+/* 底部按钮 */
+.u-btn-wrapper{
+    margin-top: 20px;
+    height: 50px;
+}
+.u-activity-btn{
+    display: inline-block;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    background: #ffc02a!important;
+    color: #763800!important;
+    font-size: 18px;
+    box-shadow: none;
+    font-weight: bold;
+    outline: none;
+    text-align: center;
+    border-radius: 40px;
+    cursor: pointer;
+}
+.u-activity-btn.z-disabled{
+    background: #bfbfbf!important;
+    color: #fff!important;
+}
+.u-activity-btn:hover{
+    color: #763800;
+    text-decoration: none;
+}
+.u-activity-btn.z-disabled:hover{
+    color: #fff;
+    text-decoration: none;
+    cursor: default;
+}
+
+/* 底部规则 */
+.m-bottom-rule {
+    padding-top: 60px;
+    padding-bottom: 60px;
+    background: #ffeebc;
+    color: #763800;
+    font-size: 12px;
+    line-height: 36px;
+}

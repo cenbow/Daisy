@@ -1,0 +1,189 @@
+##Pre-A轮融资发布会
+#parse("/common/common.vm")
+#set($title="融·耀_$!{title_suffix}")
+#set($css_url=["$root_css_url/activity/PreA.css"])
+#set($js_url=["/static/lib/js/template.js","$root_js_url/activity/PreA.js"])
+
+##页头
+<div class="m-PreA-hd"></div>
+##荣耀时刻文字
+<div class="m-PreA-text">
+    <div class="g-wrap">
+        <strong class="f-fs16">融耀时刻</strong>
+        <p class="f-fs16">怀梦远行
+            <br> 为平凡的梦想而歌
+            <br>我们一同见证的<strong>“融·耀”</strong>
+            <br>将一同分享
+        </p>
+        <span class="u-PreA-star">
+            <i></i>
+        </span>
+        <div class="f-fs14">
+            <strong>2016年1月13日</strong>，全透明的互联网理财优选平台<strong>有融网</strong>在浙江杭州召开融资发布会，
+            <br>正式对外宣布完成<strong>Pre-A轮融资</strong>，
+            <br>投资方为<strong>浙江千合并购基金管理有限公司</strong>，
+            <br>同时宣布<strong>中国光华科技基金会战略入股</strong>有融网。
+        </div>
+    </div>
+</div>
+##投资方介绍
+<div class="m-PreA-investor">
+    <div class="g-wrap">
+        <h3>合作方介绍</h3>
+        <span class="u-PreA-star">
+            <i></i>
+        </span>
+        <dl class="u-PreA-guanghua">
+            <dt>
+                <a href="http://www.ghstf.org/ " target="_blank"></a>
+            </dt>
+            <dd>
+                成立于1993年，是在民政部登记注册、
+                <br>共青团中央主管的全国性5A公募基金会。
+                <br>基金会早期通过颁发“光华科技奖”，
+                <br>奖励在我国科技领域做出突出成绩的科技人员，
+                <br>为科技事业发展做出了积极贡献。
+            </dd>
+        </dl><dl class="u-PreA-qianhe">
+        <dt>
+            <a href="http://www.qh-top.com/index.html " target="_blank"></a>
+        </dt>
+        <dd>
+            浙江省投融资协会旗下的平台公司之一，
+            <br>成立于2013年3月。
+            <br>千合并购基金是一家以产业并购基金发行管理为主营业务的
+            <br>专业基金管理机构，
+            <br>为协会各会员单位提供了多元的融资、投资方案。
+        </dd>
+    </dl>
+    </div>
+</div>
+##莅临嘉宾
+<div class="m-PreA-guests">
+    <div class="g-wrap">
+        <h3>莅临嘉宾</h3>
+          <span class="u-PreA-star">
+            <i></i>
+        </span>
+        <dl>
+            <dt class="f-fs20 f-fwb">王凤林</dt>
+            <dd>共青团中央直属、
+                <br>5A级基金会中国光华科技基金会
+                <br><strong>科技事业中心主任</strong></dd>
+        </dl><dl>
+        <dt class="f-fs20 f-fwb">徐海滨</dt>
+        <dd>浙江省投融资协会副会长
+            <br>浙江千合并购基金管理有限公司
+            <br><strong>董事长</strong></dd>
+    </dl><dl class="z-3th">
+        <dt class="f-fs20 f-fwb">周志刚</dt>
+        <dd>浙江省交易所联合会
+            <br><strong>秘书长</strong></dd>
+    </dl><dl>
+        <dt class="f-fs20 f-fwb">李&nbsp;&nbsp;鹏</dt>
+        <dd>共青团中央直属、
+            <br>5A级基金会中国光华科技基金会
+            <br><strong>科技事业中心副主任</strong></dd>
+    </dl><dl>
+        <dt class="f-fs20 f-fwb">高文绪</dt>
+        <dd>共青团中央直属、
+            <br>5A级基金会中国光华科技基金会
+            <br><strong>苏州科技促进中心副主任</strong></dd>
+    </dl><dl class="z-3th">
+        <dt class="f-fs20 f-fwb">袁&nbsp;&nbsp;启</dt>
+        <dd>共青团中央直属、
+            <br>5A级基金会中国光华科技基金会
+            <br><strong>科技事业中心项目主管</strong></dd>
+    </dl><dl>
+        <dt class="f-fs20 f-fwb">鲍晓菲</dt>
+        <dd>浙江千合并购基金管理有限公司
+            <br><strong>总裁助理</strong></dd>
+    </dl><dl>
+        <dt class="f-fs20 f-fwb">陈春如</dt>
+        <dd>浙江千合并购基金管理有限公司
+            <br><strong>营销总监</strong></dd>
+    </dl><dl class="z-3th">
+            <dt class="f-fs20 f-fwb">蓝&nbsp;&nbsp;巍</dt>
+            <dd>宁波国信中联汽车投资管理有限公司
+                <br><strong>总经理</strong></dd>
+        </dl>
+    </div>
+</div>
+##精彩回顾
+<div class="m-PreA-review">
+    <div class="g-wrap">
+        <h3>精彩回顾</h3>
+        <span class="u-PreA-star">
+            <i></i>
+        </span>
+        <div class="u-review-img" >
+            <ul id="j-review-img"><li>
+                <img src="/static/img/activity/PreA/PreA-01.jpg">
+                <p class="f-fs14">
+                   嘉宾签到
+                </p>
+            </li><li >
+                <img src="/static/img/activity/PreA/PreA-02.jpg">
+                <p class="f-fs14">
+                    有融网领导接受杭州都市快报专访
+                </p>
+            </li><li>
+                <img src="/static/img/activity/PreA/PreA-03.jpg">
+                <p class="f-fs14">
+                    融·耀Pre-A轮融资发布会现场
+                </p>
+            </li><li>
+                <img src="/static/img/activity/PreA/PreA-04.jpg">
+                <p class="f-fs14">
+                    融·耀Pre-A轮融资发布会现场
+                </p>
+            </li><li>
+                <img src="/static/img/activity/PreA/PreA-05.jpg">
+                <p class="f-fs14">
+                    有融网董事长程国洪致辞
+                </p>
+            </li><li>
+                <img src="/static/img/activity/PreA/PreA-06.jpg">
+                <p class="f-fs14">
+                    共青团中央直属、5A级基金会中国光华科技基金会科技事业中心主任王凤林致辞
+                </p>
+            </li><li >
+                <img src="/static/img/activity/PreA/PreA-07.jpg">
+                <p class="f-fs14">
+                    浙江省投融资协会副会长、浙江千合并购基金管理有限公司董事长徐海滨致辞
+                </p>
+            </li><li>
+                <img src="/static/img/activity/PreA/PreA-08.jpg">
+                <p class="f-fs14">
+                    融·耀Pre-A轮融资签约
+                </p>
+            </li><li>
+                <img src="/static/img/activity/PreA/PreA-09.jpg">
+                <p class="f-fs14">
+                    融·耀Pre-A轮融资签约仪式
+                </p>
+            </li><li>
+                <img src="/static/img/activity/PreA/PreA-10.jpg">
+                <p class="f-fs14">
+                    融·耀Pre-A轮融资签约方合影
+                </p>
+            </li><li>
+                <img src="/static/img/activity/PreA/PreA-11.jpg">
+                <p class="f-fs14">
+                    有融网CEO陈华志致谢
+                </p>
+            </li><li>
+                <img src="/static/img/activity/PreA/PreA-12.jpg">
+                <p class="f-fs14">
+                    浙江省交易所联合会秘书长周志刚致贺词
+                </p>
+            </li><li>
+                <img src="/static/img/activity/PreA/PreA-13.jpg">
+                <p class="f-fs14">
+                    嘉宾合影留念
+                </p>
+            </li>
+            </ul>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,207 @@
+#parse("/common/common.vm")
+#set($title="双12狂欢季 领走iPhone7_$!{title_suffix}")
+#set($css_url=["$root_css_url/activity/october.css"])
+#set($js_url=[
+    "/static/lib/js/template.js",
+    "/static/lib/js/vue/vue.js",
+    "/static/lib/js/vue/vue.extend.js",
+    "/static/lib/js/jq/snowfall.jquery.min.js",
+    "$root_js_url/activity/October.js"
+])
+#if($currentUser)
+    #set($logined=true)
+#else
+    #set($logined=false)
+#end
+
+#CSRFToken('xToken')
+<div id="j-total" data-logined="$logined">
+<div class="m-october-head"></div>
+
+<div class="f-color" id="j-october" v-cloak>
+
+    <div class="m-october-body">
+        <h1>笔笔投资享加息</h1>
+        <p class="f-center ">活动期间，单笔投资满2000元，即可获得收益券一张，投资期限越长，收益券面额越高哦！</p>
+        <table class="f-center">
+            <tr>
+                <th>项目期限（T）</th>
+                <td>1个月≤T<2个月</td>
+                <td>2个月≤T<3个月</td>
+                <td>3个月≤T<6个月</td>
+                <td>6个月≤T</td>
+            </tr>
+            <tr>
+                <th>奖励收益券</th>
+                <td>1.5%</td>
+                <td>2%</td>
+                <td>3%</td>
+                <td>5%</td>
+            </tr>
+        </table>
+        <h1>选择直投获返利</h1>
+      <p class="f-center">活动期间，投资直投项目可获得以下返利：<br>
+        1、投资任意金额可享受不同幅度的人气值返利，等待募集时间越长，返人气值越多；（所获人气值向下取整，当天履约不返利）<br>
+        2、单笔投资满3000元，可获得50元现金券一张；<br>
+        3、单笔投资满4000元，可获得100元现金券一张。</p>
+        <table class="f-center">
+            <tr>
+                <th class="f-tableTwo">履约时间</th>
+                <td class="f-tableTwo">投资第2天</td>
+                <td class="f-tableTwo">投资第3天</td>
+                <td class="f-tableTwo">投资第4天</td>
+                <td class="f-tableTwo">投资第5天</td>
+                <td class="f-tableTwo">投资第6天</td>
+                <td class="f-tableTwo">投资第7天</td>
+            </tr>
+            <tr>
+                <th class="f-tableTwo">返人气值比例</th>
+                <td class="f-tableTwo">1‰</td>
+                <td class="f-tableTwo">1.5‰</td>
+                <td class="f-tableTwo">2‰</td>
+                <td class="f-tableTwo">2.5‰</td>
+                <td class="f-tableTwo">3‰</td>
+                <td class="f-tableTwo">4‰</td>
+            </tr>
+        </table>
+        <div class="u-example f-center">
+            <p>例：活动期间，A用户投资三个月直投项目3000元，可获得一张3%收益券和一张50元现金券，若该项目在A用户投资第4天才履约，则额外获得人气值为3000x2‰=6点。<a href="$root_url/post/aboutP2P" target="_blank"> 不了解直投项目？点这里
+                    ></a></p>
+        </div>
+        <h1>土豪PK赢iPhone7</h1>
+      <p class="f-center">
+        活动期间，投资期限≥90天的项目，累计投资额最高的用户即可获得iPhone7（128G）一部，排名2~10的用户也可获得相应奖励。（直投项目履约后才能计入个人累计投资额；若投资额相等，先达到该投资额的用户排名靠前）。</p>
+        <div class="f-my-mes" v-if="logined&&activityStatus!=2">
+          <span v-if="myInvestAmount">我的累计投资额: ¥{{myInvestAmount}}</span>
+          <span v-else>我的累计投资额: {{myInvestAmount}}</span>
+        </div>
+        <ul class="f-center f-first">
+            <li>
+                <h2 class="f-yellow">土豪榜</h2>
+                <div class="u-box">
+                    <div v-if="list==''" class="u-list">
+                        <h1>排名</h1>
+                        <h1>用户名</h1>
+                        <h1>&nbsp;&nbsp;&nbsp; </h1>
+                        <h1 style="margin-left: 35px;">投资额</h1><br>
+                        <div class="f-active">
+                            <ol class="u-active" id="j-usersRankList" v-if="success">
+                                <li>
+                                    <div class="u-rank f-rank-0"></div>
+                                    <div class="u-user">
+                                 <span class="u-user-head">
+                                     <img :src="item.avatars | avatarUrl" alt="用户头像">
+                                     <i>&nbsp;</i>
+                                 </span>
+                                        <span class="u-name">虚位以待</span>
+                                    </div>
+                                </li>
+                            </ol>
+                            <div class="f-wealthy-come" v-else >
+                                一大波土豪正在赶来</div>
+                        </div>
+                    </div>
+                    <div v-else class="u-list">
+                    <h1>排名</h1>
+                    <h1>用户名</h1>
+                    <h1>&nbsp;&nbsp;&nbsp; </h1>
+                    <h1 style="margin-left: 35px;">投资额</h1><br>
+                    <div class="f-active">
+                      <ol class="u-active" id="j-usersRankList" v-if="success">
+                        <li v-for="item in list">
+                          <div class="u-rank f-rank-{{$index}}" v-if="$index<3"></div>
+                          <div class="u-rank u-rank-num" v-else><span>{{$index+1}}</span></div>
+                          <div class="u-user">
+                                 <span class="u-user-head">
+                                     <img :src="item.avatars | avatarUrl" alt="用户头像">
+                                     <i>&nbsp;</i>
+                                 </span>
+                            <span class="u-name" v-text="item.username"></span>
+                          </div>
+                          <div class="u-money">￥{{item.totalInvestFormat}}</div>
+                        </li>
+                      </ol>
+                      <div class="f-wealthy-come" v-else >
+                        一大波土豪正在赶来</div>
+                    </div>
+                  </div>
+                </div>
+            </li>
+            <li>
+                <h2>第1名</h2>
+                <div class="u-box">
+                    <div class="u-october-mobile">
+                        <div class="u-sign">iPhone7（128G）</div>
+                        <div class="u-sign f-price">￥6,188</div>
+                    </div>
+                </div>
+            </li>
+            <li><h2>第2名</h2>
+                <div class="u-box">
+                    <div class="u-october-mobile u-october-watch">
+                        <div class="u-sign">Apple Watch Sport Series 2</div>
+                        <div class="u-sign f-price">￥2,888</div>
+                    </div>
+
+                </div>
+            </li>
+        </ul>
+        <ul class="f-center">
+            <li>
+                <h2>第3名</h2>
+                <div class="u-box">
+                    <div class="u-october-mobile u-october-headset">
+                        <div class="u-sign">Apple AirPods</div>
+                        <div class="u-sign f-price">￥1,399</div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <h2>第4~6名</h2>
+                <div class="u-box">
+                    <div class="u-october-mobile u-october-interest_2">
+                      <div class="u-sign ">有融网 <i> 5%收益券</i>一张</div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <h2>第7~10名</h2>
+                <div class="u-box">
+                    <div class="u-october-mobile u-october-interest_1">
+                      <div class="u-sign ">有融网 <i> 3%收益券</i>一张</div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <h4 class="f-center">活动规则</h4>
+        <ol class="f-center">
+            <li>1、活动对象：有融网所有用户；</li>
+            <li>2、活动时间：2016年{{startTime | formatTime 'MM月dd日hh:mm'}}~{{endTime | formatTime 'MM月dd日hh:mm'}}；</li>
+            <li>3、现金券领取后7天内有效，收益券领取后7天内有效；
+                <table>
+                    <tr>
+                        <th class="f-background">现金券面额</th>
+                      <th class="f-background">起投金额（元）</th>
+                        <th class="f-background">投资期限（天）</th>
+                    </tr>
+                    <tr>
+                        <td>50</td>
+                        <td>3000</td>
+                        <td>60</td>
+                    </tr>
+                  <tr>
+                    <td>100</td>
+                    <td>4000</td>
+                    <td>90</td>
+                  </tr>
+                </table>
+            </li>
+            <li>4、实物奖励将于活动结束后3个工作日内与您联系，请保持手机畅通，如错过通知则视为放弃获奖资格；</li>
+            <li>注：实物奖品也可兑换成人气值，人气值=奖品标注价格；</li>
+            <li>5、如有其他疑问，请拨打客服热线：400-025-6688；</li>
+            <li>本活动与苹果公司无关，最终解释权归有融网所有。</li>
+        </ol>
+    </div>
+</div>
+
+

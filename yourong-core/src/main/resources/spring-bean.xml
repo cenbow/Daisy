@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans 
+xmlns="http://www.springframework.org/schema/beans" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xmlns:context="http://www.springframework.org/schema/context" 
+xmlns:p="http://www.springframework.org/schema/p"
+xsi:schemaLocation="
+http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd
+">
+	<context:property-placeholder location="classpath*:config.properties,classpath*:sina_pay.properties" />
+	<bean id="sinaPayConfig" class="com.yourong.common.thirdparty.pay.sina.SinaPayConfig">
+		 <property name="version" value="${sinaPay.version}" />
+		<property name="partnerId" value="${sinaPay.partnerId}" />
+		<property name="inputCharset" value="${sinaPay.inputCharset}" />
+		<property name="signType" value="${sinaPay.signType}" />
+		<property name="signVersion" value="${sinaPay.signVersion}" />
+		<property name="notifyUrl" value="${sinaPay.notifyUrl}" />
+		<property name="returnUrl" value="${sinaPay.returnUrl}" />
+		<property name="memberGate" value="${sinaPay.memberGate}" />
+		<property name="orderGate" value="${sinaPay.orderGate}" />
+		<property name="md5Key" value="${sinaPay.md5Key}" />
+		<property name="indentityEmail" value="${sinaPay.indentityEmail}" />
+		<property name="batchNum" value="${sinaPay.batchNum}" />
+		<property name="tradeNotifyUrl" value="${sinaPay.tradeNotifyUrl}" />
+		<property name="depositNotifyUrl" value="${sinaPay.depositNotifyUrl}" />
+		<property name="withdrawNotifyUrl" value="${sinaPay.withdrawNotifyUrl}" />
+		<property name="refundNotifyUrl" value="${sinaPay.refundNotifyUrl}" />
+		<property name="batchNotifyUrl" value="${sinaPay.batchNotifyUrl}" />
+	</bean>
+
+	<bean id="hostingTradeFacade" class="com.yourong.common.thirdparty.sinapay.pay.ext.service.HostingTradeFacadeImpl">
+		<property name="payfrontMd5KeyPath" value="${payfront.md5.key.path}" />
+		<property name="payfrontGatewayUrl" value="${payfront.gateway.url}" />
+		<property name="payfrontDefaultSignVersion" value="${payfront.default.sign.version}" />
+		<property name="payfrontDefaultEncyptVersion" value="${payfront.default.encypt.version}" />
+		<property name="payfrontDefaultServerVersion" value="${payfront.default.server.version}" />
+		<property name="payfrontPublicKey" value="${rsa.public.sigin}" />
+		<property name="payfrontDefaultParterId" value="${payfront.default.parterId}" />
+		<property name="payfrontMd5Key" value="${payfront.md5.key}" />
+		<property name="encrytPublicKey" value="${entry.public.key}" />
+		<property name="rsaPublicSiginKey" value="${rsa.public.sigin}" />
+		<property name="rsaPrivateSiginKey" value="${rsa.private.sigin}" />
+
+	</bean>
+	
+	<bean id="memberClient" class="com.yourong.common.thirdparty.sinapay.member.service.MemberClient">
+		<property name="memberPublicKey" value="${rsa.public.sigin}" />
+		<property name="memberMd5KeyPath" value="${member.md5.key.path}" />
+		<property name="memberGatewayUrl" value="${member.gateway.url}" />
+		<property name="memberDefaultSignVersion" value="${member.default.sign.version}" />
+		<property name="memberDefaultEncyptVersion" value="${member.default.encypt.version}" />
+		<property name="memberDefaultServerVersion" value="${member.default.server.version}" />
+		<property name="memberDefaultParterId" value="${member.default.parterId}" />
+		<property name="memberMd5Key" value="${member.md5.key}" />
+		<property name="encrytPublicKey" value="${entry.public.key}" />
+		<property name="rsaPublicSiginKey" value="${rsa.public.sigin}" />
+		<property name="rsaPrivateSiginKey" value="${rsa.private.sigin}" />
+	</bean>
+	<bean id="config" class="com.yourong.common.constant.Config">
+		<property name="ossAccessKeyId" value="${oss.ossAccessKeyId}" />
+		<property name="ossAccessKeySecret" value="${oss.ossAccessKeySecret}" />
+		<property name="ossPicBucket" value="${oss.ossPicBucket}" />
+		<property name="ossContractBucket" value="${oss.ossContractBucket}" />
+		<property name="ossPicUrl" value="${oss.ossPicUrl}" />
+		<property name="preservationServicesUrl" value="${preservation.preservationServicesUrl}" />
+		<property name="preservationAppKey" value="${preservation.preservationAppKey}" />
+		<property name="preservationAppSecret" value="${preservation.preservationAppSecret}" />
+		<property name="fromSys" value="${fromSys}" />
+		<property name="prefixPath" value="${contract.prefixPath}" />
+		<property name="preMaskUrl" value="${root_url}" />
+		<property name="sinaPayDefaultOrderCloseTime" value="${business.sinaPayDefaultOrderCloseTime}" />
+		<property name="internalMemberId" value="${business.internalMemberId}" />
+		<property name="firstMemberId" value="${business.firstMemberId}" />
+		<property name="finCodeSina" value="${business.finCodeSina}" />
+		<property name="poundage" value="${business.poundage}" />
+		<property name="minrecharge" value="${business.minrecharge}" />
+		<property name="minrechargeAmount" value="${business.minrechargeAmount}" />
+		<property name="minwithdrawAmount" value="${business.minwithdrawAmount}" />
+		<property name="freeWithdrawAmount" value="${business.freeWithdrawAmount}" />
+		<property name="investRecommendScale" value="${business.investRecommendScale}" />
+		<property name="activityIdForEmailBind" value="${business.activityIdForEmailBind}" />
+		<property name="activityIdForIdentityBind" value="${business.activityIdForIdentityBind}" />
+		<property name="activityIdForRecommendInvestment" value="${business.activityIdForRecommendInvestment}" />
+		<property name="activityIdForRecommendRegister" value="${business.activityIdForRecommendRegister}" />
+		<property name="activityIdForCompleteMemberInfo" value="${business.activityIdForCompleteMemberInfo}" />
+		<property name="activityIdForGiftMoney" value="${business.activityIdForGiftMoney}" />
+		<property name="activityIdForXiaomingStory" value="${business.activityIdForXiaomingStory}" />
+		<property name="activityIdForSingleInvest" value="${business.activityIdForSingleInvest}" />
+		<property name="exchangeCouponTemplate50" value="${business.exchangeCouponTemplate50}" />
+		<property name="exchangeCouponTemplate100" value="${business.exchangeCouponTemplate100}" />
+		<property name="exchangeCouponTemplate500" value="${business.exchangeCouponTemplate500}" />
+		<property name="exchangeCouponTemplate1000" value="${business.exchangeCouponTemplate1000}" />
+		<property name="firstInvestPopularity" value="${bussiness.transaction.firstInvestPopularity}" />
+		<property name="mostInvestPopularity" value="${bussiness.transaction.mostInvestPopularity}" />
+		<property name="lastInvestPopularity" value="${bussiness.transaction.lastInvestPopularity}" />
+		<property name="luckInvestPopularity" value="${bussiness.transaction.luckInvestPopularity}" />
+		<property name="mostAndLastInvestPopularity" value="${bussiness.transaction.mostAndLastInvestPopularity}" />
+		<property name="investAmount1" value="${activity.investAmount1}" />
+		<property name="investAmount2" value="${activity.investAmount2}" />
+		<property name="investAmount3" value="${activity.investAmount3}" />
+		<property name="investAmount4" value="${activity.investAmount4}" />
+		<property name="investAmount5" value="${activity.investAmount5}" />
+		<property name="investAmount6" value="${activity.investAmount6}" />
+		<property name="investAmount7" value="${activity.investAmount7}" />
+		<property name="investAmount8" value="${activity.investAmount8}" />
+		<property name="investAmount9" value="${activity.investAmount9}" />
+		<property name="investAmount10" value="${activity.investAmount10}" />
+		<property name="investAmount11" value="${activity.investAmount11}" />
+		<property name="rankingStartTime" value="${activity.rankingStartTime}" />
+		<property name="rankingEndTime" value="${activity.rankingEndTime}" />
+		<property name="rankingNum" value="${activity.rankingNum}" />
+		<property name="questionSite" value="${question.site}" />
+		<property name="questionSecretKey" value="${question.secret_key}" />
+		<property name="questionAddr" value="${question.addr}" />
+		<property name="questionNotify" value="${question.notify}" />
+		<property name="questionPopularity" value="${question.popularity}" />
+		<property name="questionEndTime" value="${question.endTime}" />
+		<property name="questionProjId" value="${question.projId}" />
+		<property name="activityIdForAppFirstInvestment" value="${business.activityIdForAppFirstInvestment}" />
+		<property name="activityIdForRedFriday" value="${business.activityIdForRedFriday}" />
+		<property name="bestSignReturnUrl" value="${bestSign.url}" />
+		<property name="bestSignPem" value="${bestSign.pem}" />
+		<property name="bestSignHost" value="${bestSign.host}" />
+		<property name="bestSignMid" value="${bestSign.mid}" />
+	</bean>
+	<bean id="randomUtils" class="com.yourong.common.util.RandomUtils">
+		<property name="rateForDick1" value="${business.rateForDick1}" />
+		<property name="rateForDick2" value="${business.rateForDick2}" />
+		<property name="rateForDick3" value="${business.rateForDick3}" />
+		<property name="rateForDick4" value="${business.rateForDick4}" />
+		<property name="rateForDick5" value="${bussiness.rateForDick5}" />
+		<property name="rateForDick6" value="${bussiness.rateForDick6}" />
+	</bean>
+
+	<bean id="sinaPayClient" class="com.yourong.common.thirdparty.sinapay.SinaPayClient">
+	</bean>
+
+	<bean id="smsMobileSend" class="com.yourong.common.thirdparty.sms.impl.SmsMobileSendImpl"></bean>
+	<!--<bean id = "fisBean" class="com.yourong.common.velocity.spring.FisBean"></bean>	-->
+	<bean id="threadPool" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+		<property name="corePoolSize" value="10" />
+		<property name="maxPoolSize" value="50" />
+		<property name="queueCapacity" value="1000" />
+		<property name="keepAliveSeconds" value="300" />
+		<property name="rejectedExecutionHandler">
+			<bean class="java.util.concurrent.ThreadPoolExecutor$CallerRunsPolicy" />
+		</property>
+	</bean>
+	<bean id="mailSender"
+		  class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host">
+			<value>smtpcloud.sohu.com</value>
+		</property>
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.timeout">600</prop>
+				<prop key="mail.smtp.port">25</prop>
+				<prop key="mail.smtp.host">smtpcloud.sohu.com</prop>
+				<prop key="mail.transport.protocol">smtp</prop>
+
+				<!-- <prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop> -->
+			</props>
+		</property>
+		<property name="username">
+			<value>yourongcn</value>
+		</property>
+		<property name="password">
+			<value>teWl9oO1705nqbx3</value>
+		</property>
+	</bean>
+
+	<bean id="qqmailSender"
+		  class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host">
+			<value>smtp.exmail.qq.com</value>
+		</property>
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.timeout">35000</prop>
+				<prop key="mail.smtp.port">465</prop>
+				<prop key="mail.smtp.socketFactory.fallback">false</prop>
+				<prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
+			</props>
+		</property>
+		<property name="username">
+			<value>notify@yourongwang.com</value>
+		</property>
+		<property name="password">
+			<value>jxoO1RfoiiVsNFC!</value>
+		</property>
+	</bean>
+	
+	<bean id="velocityEngine"
+		  class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
+		<property name="velocityProperties">
+			<value>
+				resource.loader=class
+				class.resource.loader.class=org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+			</value>
+		</property>
+	</bean>
+	
+	<bean id="sendMailService" class="com.yourong.common.mail.impl.SendMailServiceImpl">
+		<!--模板路径，采用class 包的 路径加载-->
+		<property name="tempPath" value="/mailTemplate"></property>
+	</bean>
+	<bean id="eventBus"	  class="com.google.common.eventbus.EventBus"/>
+	<bean id="eventBusPostProcessor"	  class="com.yourong.common.eventbus.EventBusPostProcessor"/>
+	<!--抽奖bean-->
+	<bean id="drawByProbability" class="com.yourong.core.lottery.draw.DrawByProbability"/>
+	<bean id="drawByPrizeDirectly" class="com.yourong.core.lottery.draw.DrawByPrizeDirectly"/>
+	<bean id="verificationByPopularity"	class="com.yourong.core.lottery.validation.impl.VerificationByPopularity"/>
+	<bean id="verificationByParticipate" class="com.yourong.core.lottery.validation.impl.VerificationByParticipate"/>
+
+	<bean id="asyncEventBus"	  class="com.google.common.eventbus.AsyncEventBus">
+		<constructor-arg name="executor" ref="threadPool"></constructor-arg>
+	</bean>
+
+</beans>

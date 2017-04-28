@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.ic.dao.BorrowerCreditGradeMapper" >
+    <resultMap id="BaseResultMap" type="BorrowerCreditGrade" >
+        <id column="id" property="Id" jdbcType="BIGINT" />
+        <result column="borrower_id" property="borrowerId" jdbcType="BIGINT" />
+        <result column="identity_number" property="identityNumber" jdbcType="VARCHAR" />
+        <result column="borrower_true_name" property="borrowerTrueName" jdbcType="VARCHAR" />
+        <result column="borrower_mobile" property="borrowerMobile" jdbcType="BIGINT" />
+        <result column="credit_level" property="creditLevel" jdbcType="VARCHAR" />
+        <result column="black_level" property="blackLevel" jdbcType="INTEGER" />
+        <result column="black_reason" property="blackReason" jdbcType="VARCHAR" />
+        <result column="black_query_time" property="blackQueryTime" jdbcType="TIMESTAMP" />
+        <result column="credit_level_des" property="creditLevelDes" jdbcType="VARCHAR" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+        <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+    </resultMap>
+
+    <sql id="select_sql">
+        SELECT id,borrower_id,identity_number,borrower_true_name,borrower_mobile,credit_level,black_level,black_reason,black_query_time,credit_level_des,
+        create_time,update_time,del_flag
+    </sql>
+
+    <select id="queryPageBorrowerCredit" resultMap="BaseResultMap">
+        <include refid="select_sql"/>
+        FROM ic_borrower_credit_grade
+        WHERE del_flag=1
+        <if test="query.borrowerId!=null">
+            AND borrower_id=#{query.borrowerId}
+        </if>
+        <if test="query.borrowerTrueName!=null">
+            AND borrower_true_name=#{query.borrowerTrueName}
+        </if>
+        <if test="query.creditLevel!=null">
+            AND credit_level=#{query.creditLevel}
+        </if>
+        ORDER BY create_time DESC
+        LIMIT #{query.startRow,jdbcType=INTEGER}, #{query.pageSize,jdbcType=INTEGER}
+    </select>
+
+    <select id="queryByBorrowerId" resultMap="BaseResultMap">
+        <include refid="select_sql"/>
+        FROM ic_borrower_credit_grade WHERE borrower_id=#{borrowId}
+    </select>
+
+    <select id="queryPageCountBorrowerCredit" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM ic_borrower_credit_grade
+        WHERE del_flag=1
+        <if test="query.borrowerId!=null">
+            AND borrower_id=#{query.borrowerId}
+        </if>
+        <if test="query.borrowerTrueName!=null">
+            AND borrower_true_name=#{query.borrowerTrueName}
+        </if>
+        <if test="query.creditLevel!=null">
+            AND credit_level=#{query.creditLevel}
+        </if>
+    </select>
+
+    <update id="updateBlackInfo">
+        UPDATE ic_borrower_credit_grade SET black_level=#{borrowerCreditGrade.blackLevel},black_reason=#{borrowerCreditGrade.blackReason}
+        WHERE borrower_id=#{borrowerCreditGrade.borrowerId}
+    </update>
+
+    <update id="updateCreditLevel">
+        UPDATE ic_borrower_credit_grade SET credit_level=#{creditLevel},update_time=#{updateTime},credit_level_des=#{creditLevelDes}
+        WHERE borrower_id=#{borrowerId}
+    </update>
+
+    <insert id="saveBorrowerCreditGrade">
+        INSERT INTO ic_borrower_credit_grade (borrower_id,identity_number,borrower_true_name,borrower_mobile,credit_level,black_level,black_reason,black_query_time,
+        credit_level_des,create_time,update_time,del_flag) VALUES (#{borrowerCreditGrade.borrowerId},#{borrowerCreditGrade.identityNumber},
+        #{borrowerCreditGrade.borrowerTrueName},#{borrowerCreditGrade.borrowerMobile},#{borrowerCreditGrade.creditLevel},#{borrowerCreditGrade.blackLevel},
+        #{borrowerCreditGrade.blackReason},#{borrowerCreditGrade.blackQueryTime},#{borrowerCreditGrade.creditLevelDes},#{borrowerCreditGrade.createTime},
+        #{borrowerCreditGrade.updateTime},#{borrowerCreditGrade.delFlag})
+    </insert>
+</mapper>

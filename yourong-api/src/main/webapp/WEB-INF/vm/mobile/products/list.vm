@@ -1,0 +1,196 @@
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($title='理财项目')
+<style>
+    .z-directProject:after {
+        content: '直投';
+        width: 100%;
+        height: 40%;
+        background: #d74148;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        text-align: center;
+        color: #fff;
+        opacity: 0.7;
+    }
+
+    body {
+        background: #eeeeee;
+    }
+
+    .m-pagenav{
+        margin-bottom: 60px;
+    }
+
+    [v-cloak]{
+        display: none;
+    }
+</style>
+##header
+<h2 class="u-header f-pos-r">
+    <span class="f-fs18">
+        理财项目
+    </span>
+</h2>
+##/header
+##新页面
+<div id="projectsList" v-cloak>
+    <ul class="m-project-list" id="j-project-list">
+        <li class="u-project-item f-pos-r" v-for="item in projectsListData.data">
+            <a href="$siteurl/products/detail-{{item.pid}}.html" class="u-project-link">
+                <h3 class="f-fs14">
+                    <em> <i v-text="item.name | formatName"></i>期</em>
+                    <span v-if="item.isNoviceProject==true" class="u-badge-red">新客专享</span>
+                    <span v-if="item.isJoinLease==true" class="u-badge-red">租赁分红</span>
+                    <i v-if="item.activitySign==1" class="u-badge-ruyi">如意</i>
+                    <span v-if="item.quickRewardFlag==1" class="u-badge-red">快投有奖</span>
+                </h3>
+                <div class="u-pl-box f-pos-r">
+                    <div class="u-pl-wrap f-pos-a">
+                        <div class="u-pl-photo f-pos-r">
+                            <div class="ui-avatar-one u-project-avatar">
+                <span :class="{'z-directProject':item.isDirectProject==true}">
+                    <img :src="item.thumbnail" alt="">
+                </span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="u-pl-info f-fl">
+                        <div>
+                            <span>项目总额 &yen; <i v-text="item.totalAmount | amountFormat 'split'"></i></span>
+                        <span>
+                            年化收益
+                            <i v-if="item.minAnnualizedRate==item.maxAnnualizedRate"> <i
+                                    v-text="item.minAnnualizedRate"></i>% <i style="color: #d74148"
+                                                                             v-if="item.extraType==2">+{{item.addRate}}%</i></i>
+                        <i v-else> <i v-text="item.minAnnualizedRate"></i>-<i v-text="item.maxAnnualizedRate"></i>%<i
+                                style="color: #d74148" v-if="item.extraType==2">+{{item.addRate}}%</i></i>
+                        </span>
+                            <div>
+                                <span v-if="item.isDirectProject==false">收益天数 <i v-text="item.earningsDays"></i>天</span>
+
+                                <span v-else>收益周期 <i v-text="item.profitPeriod"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="u-pl-process">
+                    <i style="width:{{item.investmentProgress}}%"
+                       :class="{'z-finished':item.investmentProgress==100}"></i>
+                    <div>
+                        当前进度<span v-text="item.investmentProgress"></span>%
+                        <span>剩余可投金额<span v-text="item.availableBalance | amountFloor | amountFormat 'split'"></span>元</span>
+                    </div>
+                </div>
+            </a>
+        </li>
+    </ul>
+
+##            分页的代码
+    <div v-if="pageNavi.totalPageCount>1" class="m-pagenav f-tar">
+        <span v-if="pageNavi.pageNo===1" class="u-pnav-prev u-circle-12">上一页</span>
+        <a v-else href="javascript:void(0)" class="u-pnav-prev u-circle-12"
+           data-pageno="{{pageNavi.pageNo-1}}" @click="gotoPage(pageNavi.pageNo-1)">上一页</a>
+                <span v-for="item in pageNavi.list">
+                <span v-if="item.index===pageNavi.pageNo"
+                      class="u-pnav-crt u-circle-12">{{item.index}}</span>
+                <a v-else href="javascript:void(0)" class="u-pnav-link u-circle-12" data-pageno="{{item.index}}" @click="gotoPage(item.index)">{{item.index}}</a>
+                </span>
+                <span v-if="pageNavi.pageNo==pageNavi.totalPageCount"
+                      class="u-pnav-prev u-circle-12">下一页</span>
+        <a v-else href="javascript:void(0)" class="u-pnav-prev u-circle-12"
+           data-pageno="{{pageNavi.pageNo+1}}" @click="gotoPage(pageNavi.pageNo+1)">下一页</a>
+    </div>
+##            分页的代码
+</div>
+
+
+##旧页面
+##projectList
+##<ul class="m-project-list" id="j-project-list">
+##    #foreach ($_project in $projectList.data)
+##        #set($_process=${sysServiceUtil.getProjectNumberProgress($!_project.totalAmount,$!_project.id)})
+##        <li class="u-project-item f-pos-r" data-ruyi="${projectUtils.getProjectActivitySign($project.id)}">
+##            <a href="$siteurl/products/detail-${_project.id}.html" class="u-project-link">
+##                <h3 class="f-fs14">
+##                <em>$!{_project.prefixProjectName}</em>
+##                #if(${_project.isNoviceProject()})<span class="u-badge-red">新客专享</span>#end
+##                #if($_project.joinLease)<span class="u-badge-red">租赁分红</span>#end
+##                #if(${projectUtils.getProjectActivitySign($_project.id)}==1)<i class="u-badge-ruyi">如意</i>#end
+##
+##            </h3>
+##                <div class="u-pl-box f-pos-r">
+##                <div class="u-pl-wrap f-pos-a">
+##                    <div class="u-pl-photo f-pos-r">
+##                        <div class="ui-avatar-one u-project-avatar">
+##                            <span style="background-image:url(#getProjectThumbnail($!{_project.thumbnail}))"></span>
+##                        </div>
+##                        <div class="u-project-circle#if($!{process}==100) z-finished#end">
+##                            <div class="f_pie_left"><div class="z-left"></div></div>
+##                            <div class="f_pie_right"><div class="z-right"></div></div>
+##                            <div class="u-project-mask"><span>0</span></div>
+##                        </div>
+##                    </div>
+##
+##                </div>
+##                <div class="u-pl-info f-fl">
+##                    <div>
+##                        <span>项目总额 &yen; ${_project.formatTotalAmount}</span>
+##                        <span>
+##                            年化收益
+##                            #if(${_project.formatMinAnnualizedRate}==${_project.formatMaxAnnualizedRate})
+##                                ${_project.formatMinAnnualizedRate}%
+##                            #else
+##                                ${_project.formatMinAnnualizedRate}-${_project.formatMaxAnnualizedRate}%
+##                            #end
+##                        </span>
+##                        <span>收益天数 #if($!{_project.isNotice()})${_project.getNoticeProjectEarningsTotalDays()}#else${_project.getEarningsDaysByStatus()}#end天</span>
+##                    </div>
+##                </div>
+##            </div>
+##                <div class="u-pl-process">
+##                    <i style="width:$!{_process}%" #if($_process==100)class="z-finished"#end></i>
+##                    <div>
+##                        当前进度 $!{_process}%
+##                        #set($balance=${sysServiceUtil.getProjectBalance($_project.id)})
+##                        <span>剩余可投金额 $!{formulaUtil.getFormatPrice($balance)} 元</span>
+##                    </div>
+##                </div>
+##            </a>
+##        </li>
+##    #end
+##</ul>
+
+## navi
+<ul class="ui-grid-trisect u-navi">
+    <li class=" ui-border-b">
+        <a href="$m_url">
+            <span class="u-index"></span>
+            首页
+        </a>
+    </li>
+    <li class="z-current">
+        <a href="$siteurl/products/m/list-all-all-1.html">
+            <span class="u-list"></span>
+            理财项目
+        </a>
+    </li>
+    <li>
+        <a href="#if($currentUser) $siteurl/mCenter/home#else $siteurl/mstation/login#end">
+            <span class="u-home"></span>
+            我的账户
+        </a>
+    </li>
+</ul>
+##/navi
+#set($_searchParam = "$siteurl/products/m/list-$!{query.projectType}-$!{query.statusCode}")
+###pagePlugin($projectList,$_searchParam)
+##/projectList
+#CSRFToken('xToken')
+#set($pageScript="
+<script>
+
+    seajs.use('$siteurl/res/source/js/project/project.js');
+</script>")

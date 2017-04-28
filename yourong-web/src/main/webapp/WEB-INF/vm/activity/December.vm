@@ -1,0 +1,591 @@
+#parse("/common/common.vm")
+#set($title="双旦狂欢惠_$!{title_suffix}")
+#set($css_url=["$root_css_url/activity/December.css"])
+#set($js_url=[
+  "/static/lib/js/template.js",
+  "/static/lib/js/vue/vue.js",
+  "/static/lib/js/vue/vue.extend.js",
+  "/static/lib/js/jq/snowfall.jquery.min.js",
+  "$root_js_url/activity/December.js"
+])
+#if($currentUser)
+  #set($logined=true)
+#else
+  #set($logined=false)
+#end
+
+#CSRFToken('xToken')
+<div id="j-total" data-logined="$logined">
+  <div class="f-color" id="j-december" v-cloak>
+    <div class="m-december-body">
+      <div class="m-december-content">
+        <div class="u-click">
+          <p class="f-fc-red u-p-title m-body-p">普天同庆</p>
+          <p class="f-fc-6 u-p-content m-body-p">
+            2016年{{startTime | formatTime 'M月d日'}}至2017年{{endTime | formatTime
+            'M月d日'}}，每日{{ten}}点、{{fifTeen}}点两个整点各发放500个红包，用户可点击抢券（{{ten}}点场随机发出30元、50元现金券；{{fifTeen}}点场随机发出100元、188元现金券；每人每日限抢一次）。</p>
+          <img class="u-man" src="/static/img/activity/December/oldman1.png" alt="">
+          <img class="u-animal" src="/static/img/activity/December/oldman2.png" alt="">
+          <div @click="grabred($event)" :class="{'z-get':get==1}" class="u-box-click">
+          ##            <p class="f-fc-yellow u-p-click m-body-p">点我赢红包大礼</p>
+            <p class="f-cannot u-p-click m-body-p" v-if="TimeCount && startactive">活动即将开始</p>
+            <p class="f-cannot u-p-click m-body-p" v-if="TimeCount && endactive">活动已结束</p>
+            <p class="f-fc-yellow u-p-click m-body-p" v-if="TimeCount && startGrabCash">点我赢红包大礼</p>
+            <p class="f-fc-yellow u-p-click m-body-p" v-if="TimeCount && nextfifteen">下一场：{{fifTeen}}点开抢</p>
+            <p class="f-fc-yellow u-p-click m-body-p" v-if="TimeCount && startCountDown">
+              每日{{ten}}点、{{fifTeen}}点整点开抢</p>
+            <div v-if="tenMinuteStatus" class="u-countdown f-fc-yellow">
+              开抢倒计时：{{hours}}:{{minutes}}:{{seconds}}
+            </div>
+            <img class="u-hongbao" src="/static/img/activity/December/hongbao-click.png" alt="">
+          </div>
+        </div>
+        <div class="u-award">
+          <p class="f-fc-red u-p-title m-body-p">鸿运当投</p>
+          <p class="f-fc-6 u-p-content m-body-p">活动期间，单笔投资≥2000元，即可获得对应现金券一张，多投多得哟（转让项目除外）。</p>
+          <table>
+            <thead>
+            <tr>
+              <th>单笔投资（元）</th>
+              <th>面额（元）</th>
+              <th>起投金额（元）</th>
+              <th>投资期限（天）</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>2000≤投资额＜3000</td>
+              <td>50</td>
+              <td>3000</td>
+              <td>60</td>
+            </tr>
+            <tr>
+              <td>3000≤投资额＜5000</td>
+              <td>100</td>
+              <td>5000</td>
+              <td>60</td>
+            </tr>
+            <tr>
+              <td>5000≤投资额＜10000</td>
+              <td>200</td>
+              <td>7000</td>
+              <td>90</td>
+            </tr>
+            <tr>
+              <td>投资额≥10000</td>
+              <td>500</td>
+              <td>10000</td>
+              <td>180</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="u-day-rank">
+          <p class="f-fc-red u-p-title m-body-p">累计日投King</p>
+          <p class="f-fc-6 u-p-content m-body-p">
+            活动期间，用户单日累计投资额第一名可获得500元京东E卡一张（项目履约后计入个人累计投资额；投资额相同时，先达到该投资额的用户排名靠前）。单日累计投资额排名前8的用户计为上榜1次，活动结束后，用户累计上榜10~12次，可获500元京东E卡一张；6~9次，可获300元京东E卡一张；3~5次，可获200元京东E卡一张。
+          </p>
+          <div class="u-my-mes" v-if="logined&&activityStatus!=2">
+            <span v-if="myInvestAmount">我的今日累计投资额: <em class="f-fc-red">{{myInvestAmount | amountSplit '￥'}}</em></span>
+            <span v-else>我的今日累计投资额: <em class="f-fc-red">0</em></span>
+          </div>
+          <div class="u-icon-title">
+            <span>{{date | formatTime 'd'}}日巅峰榜</span>
+          </div>
+          <div class="u-box">
+            <div v-if="list==''" class="u-list">
+              <h1>排名</h1>
+              <h1>用户名</h1>
+              <h1>&nbsp;&nbsp;&nbsp; </h1>
+              <h1 style="margin-left: 43px;">投资额</h1><br>
+              <div class="f-active">
+                <ol class="u-active" id="j-usersRankList" v-if="success">
+                  <li>
+                    <div class="u-rank f-rank-0"></div>
+                    <div class="u-user">
+                                 <span class="u-user-head">
+                                     <img :src="item.avatars | avatarUrl" alt="用户头像">
+                                     <i>&nbsp;</i>
+                                 </span>
+                      <span class="u-name">虚位以待</span>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="u-rank f-rank-1"></div>
+                    <div class="u-user">
+                                 <span class="u-user-head">
+                                     <img :src="item.avatars | avatarUrl" alt="用户头像">
+                                     <i>&nbsp;</i>
+                                 </span>
+                      <span class="u-name">虚位以待</span>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="u-rank f-rank-2"></div>
+                    <div class="u-user">
+                                 <span class="u-user-head">
+                                     <img :src="item.avatars | avatarUrl" alt="用户头像">
+                                     <i>&nbsp;</i>
+                                 </span>
+                      <span class="u-name">虚位以待</span>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="u-rank u-rank-num"><span>4</span></div>
+                    <div class="u-user">
+                                 <span class="u-user-head">
+                                     <img :src="item.avatars | avatarUrl" alt="用户头像">
+                                     <i>&nbsp;</i>
+                                 </span>
+                      <span class="u-name">虚位以待</span>
+                    </div>
+                  </li>
+                </ol>
+                <div class="f-wealthy-come" v-else>
+                  一大波土豪正在赶来
+                </div>
+              </div>
+            </div>
+            <div v-else class="u-list">
+              <h1>排名</h1>
+              <h1>用户名</h1>
+              <h1>&nbsp;&nbsp;&nbsp; </h1>
+              <h1 style="margin-left: 43px;">投资额</h1><br>
+              <div class="f-active">
+                <ol class="u-active" id="j-usersRankList" v-if="success">
+                  <li v-for="item in top | limitBy 4">
+                    <div class="u-rank f-rank-{{$index}}" v-if="$index<3"></div>
+                    <div class="u-rank u-rank-num" v-else><span>{{$index+1}}</span></div>
+                    <div class="u-user">
+                                 <span class="u-user-head">
+                                     <img :src="item.avatars | avatarUrl" alt="用户头像">
+                                     <i>&nbsp;</i>
+                                 </span>
+                      <span class="u-name" v-text="item.username"></span>
+                    </div>
+                    <div class="u-money" :class="{'z-visib':!item.totalInvestFormat}">￥{{item.totalInvestFormat}}</div>
+                  </li>
+                </ol>
+                <div class="f-wealthy-come" v-else>
+                  一大波土豪正在赶来
+                </div>
+              </div>
+            </div>
+            <div v-if="list==''" class="u-list">
+              <h1>排名</h1>
+              <h1>用户名</h1>
+              <h1>&nbsp;&nbsp;&nbsp; </h1>
+              <h1 style="margin-left: 43px;">投资额</h1><br>
+              <div class="f-active">
+                <ol class="u-active" id="j-usersRankList" v-if="success">
+                  <li>
+                    <div class="u-rank u-rank-num"><span>5</span></div>
+                    <div class="u-user">
+                                 <span class="u-user-head">
+                                     <img :src="item.avatars | avatarUrl" alt="用户头像">
+                                     <i>&nbsp;</i>
+                                 </span>
+                      <span class="u-name">虚位以待</span>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="u-rank u-rank-num"><span>6</span></div>
+                    <div class="u-user">
+                                 <span class="u-user-head">
+                                     <img :src="item.avatars | avatarUrl" alt="用户头像">
+                                     <i>&nbsp;</i>
+                                 </span>
+                      <span class="u-name">虚位以待</span>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="u-rank u-rank-num"><span>7</span></div>
+                    <div class="u-user">
+                                 <span class="u-user-head">
+                                     <img :src="item.avatars | avatarUrl" alt="用户头像">
+                                     <i>&nbsp;</i>
+                                 </span>
+                      <span class="u-name">虚位以待</span>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="u-rank u-rank-num"><span>8</span></div>
+                    <div class="u-user">
+                                 <span class="u-user-head">
+                                     <img :src="item.avatars | avatarUrl" alt="用户头像">
+                                     <i>&nbsp;</i>
+                                 </span>
+                      <span class="u-name">虚位以待</span>
+                    </div>
+                  </li>
+                </ol>
+                <div class="f-wealthy-come" v-else>
+                  一大波土豪正在赶来
+                </div>
+              </div>
+            </div>
+            <div v-else class="u-list">
+              <h1>排名</h1>
+              <h1>用户名</h1>
+              <h1>&nbsp;&nbsp;&nbsp; </h1>
+              <h1 style="margin-left: 43px;">投资额</h1><br>
+              <div class="f-active">
+                <ol class="u-active" id="j-usersRankList" v-if="success">
+                  <li v-for="item in top | limitBy 4 4">
+                    <div class="u-rank u-rank-num"><span>{{$index+5}}</span></div>
+                    <div class="u-user">
+                                 <span class="u-user-head">
+                                     <img :src="item.avatars | avatarUrl" alt="用户头像">
+                                     <i>&nbsp;</i>
+                                 </span>
+                      <span class="u-name" v-text="item.username"></span>
+                    </div>
+                    <div class="u-money" :class="{'z-visib':!item.totalInvestFormat}">￥{{item.totalInvestFormat}}</div>
+                  </li>
+                </ol>
+                <div class="f-wealthy-come" v-else>
+                  一大波土豪正在赶来
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="u-icon-title">
+            <span>每日冠军榜</span>
+          </div>
+          <div v-if="list1!=''" class="u-champion">
+            <ol class="u-active" id="" v-if="success">
+              <li v-for="item in champion">
+                <h1>{{item.dayTime | formatTime 'M月d日'}}</h1>
+                <div class="u-cha-user">
+                                 <span class="u-cha-head">
+                                     <img :src="item.avatars | avatarUrl" alt="用户头像">
+                                     <i>&nbsp;</i>
+                                 </span>
+                  <p class="u-cha-name" v-text="item.username || '虚位以待'"></p>
+                </div>
+                <div class="u-cha-money f-fc-red" :class="{'z-visib':!item.totalInvestFormat}">
+                  ￥{{item.totalInvestFormat}}
+                </div>
+              </li>
+            </ol>
+          </div>
+          <div v-else class="u-champion">
+            <ol class="u-active" id="" v-if="success">
+              <li>
+                <h1>12月23日</h1>
+                <div class="u-cha-user">
+                                 <span class="u-cha-head">
+                                     <img :src="item.avatars | avatarUrl" alt="用户头像">
+                                     <i>&nbsp;</i>
+                                 </span>
+                  <p class="u-cha-name">虚位以待</p>
+                </div>
+              </li>
+              <li>
+                <h1>12月24日</h1>
+                <div class="u-cha-user">
+                                 <span class="u-cha-head">
+                                     <img :src="item.avatars | avatarUrl" alt="用户头像">
+                                     <i>&nbsp;</i>
+                                 </span>
+                  <p class="u-cha-name">虚位以待</p>
+                </div>
+              </li>
+              <li>
+                <h1>12月25日</h1>
+                <div class="u-cha-user">
+                                 <span class="u-cha-head">
+                                     <img :src="item.avatars | avatarUrl" alt="用户头像">
+                                     <i>&nbsp;</i>
+                                 </span>
+                  <p class="u-cha-name">虚位以待</p>
+                </div>
+              </li>
+              <li>
+                <h1>12月26日</h1>
+                <div class="u-cha-user">
+                                 <span class="u-cha-head">
+                                     <img :src="item.avatars | avatarUrl" alt="用户头像">
+                                     <i>&nbsp;</i>
+                                 </span>
+                  <p class="u-cha-name">虚位以待</p>
+                </div>
+              </li>
+              <li>
+                <h1>12月27日</h1>
+                <div class="u-cha-user">
+                                 <span class="u-cha-head">
+                                     <img :src="item.avatars | avatarUrl" alt="用户头像">
+                                     <i>&nbsp;</i>
+                                 </span>
+                  <p class="u-cha-name">虚位以待</p>
+                </div>
+              </li>
+              <li>
+                <h1>12月28日</h1>
+                <div class="u-cha-user">
+                                 <span class="u-cha-head">
+                                     <img :src="item.avatars | avatarUrl" alt="用户头像">
+                                     <i>&nbsp;</i>
+                                 </span>
+                  <p class="u-cha-name">虚位以待</p>
+                </div>
+              </li>
+              <li>
+                <h1>12月29日</h1>
+                <div class="u-cha-user">
+                                 <span class="u-cha-head">
+                                     <img :src="item.avatars | avatarUrl" alt="用户头像">
+                                     <i>&nbsp;</i>
+                                 </span>
+                  <p class="u-cha-name">虚位以待</p>
+                </div>
+              </li>
+              <li>
+                <h1>12月30日</h1>
+                <div class="u-cha-user">
+                                 <span class="u-cha-head">
+                                     <img :src="item.avatars | avatarUrl" alt="用户头像">
+                                     <i>&nbsp;</i>
+                                 </span>
+                  <p class="u-cha-name">虚位以待</p>
+                </div>
+              </li>
+              <li>
+                <h1>12月31日</h1>
+                <div class="u-cha-user">
+                                 <span class="u-cha-head">
+                                     <img :src="item.avatars | avatarUrl" alt="用户头像">
+                                     <i>&nbsp;</i>
+                                 </span>
+                  <p class="u-cha-name">虚位以待</p>
+                </div>
+              </li>
+              <li>
+                <h1>1月1日</h1>
+                <div class="u-cha-user">
+                                 <span class="u-cha-head">
+                                     <img :src="item.avatars | avatarUrl" alt="用户头像">
+                                     <i>&nbsp;</i>
+                                 </span>
+                  <p class="u-cha-name">虚位以待</p>
+                </div>
+              </li>
+              <li>
+                <h1>1月2日</h1>
+                <div class="u-cha-user">
+                                 <span class="u-cha-head">
+                                     <img :src="item.avatars | avatarUrl" alt="用户头像">
+                                     <i>&nbsp;</i>
+                                 </span>
+                  <p class="u-cha-name">虚位以待</p>
+                </div>
+              </li>
+              <li>
+                <h1>1月3日</h1>
+                <div class="u-cha-user">
+                                 <span class="u-cha-head">
+                                     <img :src="item.avatars | avatarUrl" alt="用户头像">
+                                     <i>&nbsp;</i>
+                                 </span>
+                  <p class="u-cha-name">虚位以待</p>
+                </div>
+              </li>
+            </ol>
+          </div>
+          <div class="u-icon-title">
+            <span>上榜记录</span>
+          </div>
+          <div v-if="list2!=''" class="u-champion">
+            <ol class="u-active u-active-more" id="" v-if="success">
+              <li v-for="item in list2">
+                <div class="u-cha-user">
+                                 <span class="u-cha-head">
+                                     <img :src="item.avatars | avatarUrl" alt="用户头像">
+                                     <i>&nbsp;</i>
+                                 </span>
+                  <p class="u-cha-name" v-text="item.username"></p>
+                </div>
+                <div class="u-cha-num">上榜×{{item.number}}</div>
+              </li>
+            </ol>
+          </div>
+          <div v-else class="u-champion">
+            <ol class="u-active u-active-more" id="" v-if="success">
+              <li>
+                <div class="u-cha-user">
+                                 <span class="u-cha-head">
+                                     <img :src="item.avatars | avatarUrl" alt="用户头像">
+                                     <i>&nbsp;</i>
+                                 </span>
+                  <p class="u-cha-name">虚位以待</p>
+                </div>
+              </li>
+              <li>
+                <div class="u-cha-user">
+                                 <span class="u-cha-head">
+                                     <img :src="item.avatars | avatarUrl" alt="用户头像">
+                                     <i>&nbsp;</i>
+                                 </span>
+                  <p class="u-cha-name">虚位以待</p>
+                </div>
+              </li>
+              <li>
+                <div class="u-cha-user">
+                                 <span class="u-cha-head">
+                                     <img :src="item.avatars | avatarUrl" alt="用户头像">
+                                     <i>&nbsp;</i>
+                                 </span>
+                  <p class="u-cha-name">虚位以待</p>
+                </div>
+              </li>
+              <li>
+                <div class="u-cha-user">
+                                 <span class="u-cha-head">
+                                     <img :src="item.avatars | avatarUrl" alt="用户头像">
+                                     <i>&nbsp;</i>
+                                 </span>
+                  <p class="u-cha-name">虚位以待</p>
+                </div>
+              </li>
+              <li>
+                <div class="u-cha-user">
+                                 <span class="u-cha-head">
+                                     <img :src="item.avatars | avatarUrl" alt="用户头像">
+                                     <i>&nbsp;</i>
+                                 </span>
+                  <p class="u-cha-name">虚位以待</p>
+                </div>
+              </li>
+              <li>
+                <div class="u-cha-user">
+                                 <span class="u-cha-head">
+                                     <img :src="item.avatars | avatarUrl" alt="用户头像">
+                                     <i>&nbsp;</i>
+                                 </span>
+                  <p class="u-cha-name">虚位以待</p>
+                </div>
+              </li>
+              <li>
+                <div class="u-cha-user">
+                                 <span class="u-cha-head">
+                                     <img :src="item.avatars | avatarUrl" alt="用户头像">
+                                     <i>&nbsp;</i>
+                                 </span>
+                  <p class="u-cha-name">虚位以待</p>
+                </div>
+              </li>
+              <li>
+                <div class="u-cha-user">
+                                 <span class="u-cha-head">
+                                     <img :src="item.avatars | avatarUrl" alt="用户头像">
+                                     <i>&nbsp;</i>
+                                 </span>
+                  <p class="u-cha-name">虚位以待</p>
+                </div>
+              </li>
+              <li>
+                <div class="u-cha-user">
+                                 <span class="u-cha-head">
+                                     <img :src="item.avatars | avatarUrl" alt="用户头像">
+                                     <i>&nbsp;</i>
+                                 </span>
+                  <p class="u-cha-name">虚位以待</p>
+                </div>
+              </li>
+              <li>
+                <div class="u-cha-user">
+                                 <span class="u-cha-head">
+                                     <img :src="item.avatars | avatarUrl" alt="用户头像">
+                                     <i>&nbsp;</i>
+                                 </span>
+                  <p class="u-cha-name">虚位以待</p>
+                </div>
+              </li>
+              <li>
+                <div class="u-cha-user">
+                                 <span class="u-cha-head">
+                                     <img :src="item.avatars | avatarUrl" alt="用户头像">
+                                     <i>&nbsp;</i>
+                                 </span>
+                  <p class="u-cha-name">虚位以待</p>
+                </div>
+              </li>
+              <li>
+                <div class="u-cha-user">
+                                 <span class="u-cha-head">
+                                     <img :src="item.avatars | avatarUrl" alt="用户头像">
+                                     <i>&nbsp;</i>
+                                 </span>
+                  <p class="u-cha-name">虚位以待</p>
+                </div>
+              </li>
+            </ol>
+          </div>
+        ##          <div class="u-more-btn">
+        ##            查看更多<br>
+        ##            <img src="/static/img/activity/December/btn.png" alt="">
+        ##          </div>
+
+        </div>
+        <img class="u-snowman" src="/static/img/activity/December/snow-man.png" alt="">
+      </div>
+      <div class="m-december-rule f-pointer" @click="rule">
+        活动规则
+      </div>
+    </div>
+    <div class="m-december-foot"></div>
+    <div class="u-rule-content">
+      <h4 class="f-center">
+        活动规则
+      ##              <img @click="hide" src="/static/img/activity/December/return.png" alt="">
+        <div class="f-center-img f-pointer" @click="hide"></div>
+      </h4>
+      <ol class="f-center">
+        <li>1、活动对象：有融网所有用户；</li>
+        <li>2、活动时间：2016年{{startTime | formatTime 'MM月dd日hh:mm'}}~{{endTime | formatTime 'MM月dd日hh:mm'}}；</li>
+        <li>3、普天同庆红包领取后1天有效；鸿运当投获得的红包获得后7天有效。普天同庆现金券使用规则：
+          <table>
+            <tr>
+              <th class="f-background">现金券面额</th>
+              <th class="f-background">起投金额（元）</th>
+              <th class="f-background">投资期限（天）</th>
+            </tr>
+            <tr>
+              <td>30</td>
+              <td>2000</td>
+              <td>60</td>
+            </tr>
+            <tr>
+              <td>50</td>
+              <td>3000</td>
+              <td>60</td>
+            </tr>
+            <tr>
+              <td>100</td>
+              <td>4000</td>
+              <td>90</td>
+            </tr>
+            <tr>
+              <td>188</td>
+              <td>7000</td>
+              <td>90</td>
+            </tr>
+          </table>
+        </li>
+        <li>4、累计日投King奖励发放说明：</li>
+        <li>
+          项目履约后计入个人累计投资额，巅峰榜排名以每日23:59的统计结果为准；所有奖励将于活动结束后3个工作日内与您联系，请保持手机畅通，如错过通知则视为放弃获奖资格（实物奖励可兑换成人气值，人气值=奖品标注价格）；
+        </li>
+        <li>5、如有其他疑问，请拨打客服热线：400-025-6688；</li>
+        <li>6、本活动与苹果公司无关；</li>
+        <li>7、本活动最终解释权归有融网所有。</li>
+      </ol>
+    </div>
+    <div class="m-december-tip" id="u-success">
+      {{dialogTips}}
+    ##      <img @click="hide" src="/static/img/activity/December/return.png" alt="">
+      <div class="f-tip-img f-pointer" @click="hide"></div>
+    </div>
+  </div>
+</div>

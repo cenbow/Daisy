@@ -1,0 +1,137 @@
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$m_css_url/modules/withdraw.css"])
+#set($title='提现')
+#set($timeHour=${dateUtil.getHour(${dateUtil.getCurrentDate().getTime()})})
+#set($timeMonth=${dateUtil.getMonth(${dateUtil.getCurrentDate().getTime()})})
+#set($timeDay1=$dateUtil.formatDatetoString($dateUtil.addDate(${dateUtil.getCurrentDate()},1),"dd"))
+#set($timeDay2=$dateUtil.formatDatetoString($dateUtil.addDate(${dateUtil.getCurrentDate()},2),"dd"))
+<div id="withdraw">
+    <!--header-->
+    <h2 class="u-header f-pos-r">
+        <a href="$siteurl/mCenter/home">返回</a>
+    <span class="f-fs18">
+        提&nbsp;&nbsp;现
+    </span>
+    </h2>
+
+    <div>
+        <div class="u-withdraw-money">
+            <div class="f-fs16 u-withdrawTitle">提现金额</div>
+            <div class="u-withdrawAmount">
+                <span>&yen;</span>
+                <input  placeholder="" name="withdrawAmount" id="j-withdraw-num" maxlength="10" @blur="limitInput('#j-withdraw-num')"/>
+                <i @click="deleteAll" class="f-fr">x</i>
+            </div>
+            <div class="u-balanceAmount">
+                <span>可提现金额：&yen;<i v-text="balanceAmount | amountFormat 'split'"></i></span>
+                <span @click="withdrawAll" class="f-fr f-colorblue">全部提现</span>
+            </div>
+        </div>
+        <div class="u-arrivalTime">预计到账时间：<span class="j-arrivalTime"></span></div>
+        <div class="u-withdraw-btn" id="j-withdraw-btn" @click="limitSubmit"><img src="$res_url/img/member/sinalogo.png" alt="新浪支付">
+            <button type="button">去新浪提现</button>
+        </div>
+    </div>
+</div>
+
+##<div id="j-withdraw">
+##
+##</div>
+
+##<script type="text/html" id="j-chooseCard-tpl">
+##<form action="#" id="j-withdraw-list">
+##<div class="m-withdraw-body">
+##    <h4>确认银行卡信息</h4>
+##
+##    <div class="u-withdraw-cardholder">
+##        持&nbsp;卡&nbsp;人<span>$!{servletUtil.getMemberMaskTrueName()}</span>
+##    </div>
+##
+##    <div class="u-withdraw-bCard" id="j-withdraw-bCard">
+##        <div id="j-withdraw-cardInfo">
+##            <span class="u-withdraw-bankIcon">
+##                 <img src="../res/img/bankAdd/bank_{{data[0].bankCode}}.png" width="50px">
+##            </span>
+##            <span class="u-withdraw-bName">
+##                <em>{{data[0].bankCodeRemaks}}</em><br>
+##                {{data[0].cardNumber}}
+##                <input  name="bankCardId" data-bankCardId="bankCardId" type="hidden"  readonly="readonly"/>
+##
+##            </span>
+##        </div>
+##        <i>
+##            {{if data[0].cardType==2 && data[0].isSecurity==0}}
+##            <span class="u-shortcut" class="j-qcard-mark">快捷支付</span>
+##            {{/if}}
+##            <img src="../res/img/next.png" id="j-cardImg">
+##        </i>
+##    </div>
+##    <div class="u-withdraw-money">
+##        <span>提现金额&nbsp;&nbsp;￥</span>
+##        <input class="f-ff-din" type="text" value="$!{balance.availableBalance}"  placeholder=""  name="withdrawAmount" id="j-withdraw-num" maxlength="10"/>
+##    </div>
+##    <input name="bankCardId" id="j-cardid" value="{{data[0].id}}" type="hidden"/>
+##</div>
+##</form>
+####</script>
+##<button type="button" class="u-withdraw-btn" id="j-withdraw-btn">确认提现</button>
+##<!--/header-->
+##
+##<div class="ui-dialog u-withdraw-ChooseBCard" id="j-withdraw-ChooseBCard">
+##    <div>
+##        <ul>
+##            {{each data as item i}}
+##            <li data-cardid="{{item.id}}" data-cardType="{{item.cardType}}">
+##                <span class="u-withdraw-bankIcon" id="j-withdraw-bankIcon">
+##                     <img src="../res/img/bankAdd/bank_{{item.bankCode}}.png" width="45px">
+##                </span>
+##                <span class="u-withdraw-bName" id="j-withdraw-bName">
+##                    <em>{{item.bankCodeRemaks}}</em><br>
+##                    {{item.cardNumber}}
+##                </span>
+##            </li>
+##            {{/each}}
+##        </ul>
+##    </div>
+##</div>
+##</script>
+##选择银行
+##<div id="j-chooseCard">
+##
+##</div>
+##无卡提示
+##<div class="ui-dialog" id="j-dialog-bind">
+##    <div class="ui-width">
+##        <div class="ui-dialog-cnt">
+##            <div class="ui-dialog-bd">
+##                请您先绑定用于提现的银行卡。
+##            </div>
+##            <div class="ui-dialog-ft">
+##                <button type="button" data-role="button" class="select">确定</button>
+##            </div>
+##        </div>
+##    </div>
+##</div>
+##提现成功
+##<div class="ui-dialog u-security-card" id="j-withdraw-apply">
+##    <div class="ui-dialog-cnt">
+##        <div class="ui-dialog-bd">
+##            <span>您的提现申请已提交</span>
+##            <p>
+##                您的提现申请已提交，预计资金将在<span>$dateUtil.isJudgeAfterFifteen() 23:59:59前</span>到达您的银行账户。
+##            </p>
+##        </div>
+##        <div class="ui-dialog-ft">
+##            <button type="button" data-role="button" class="select">确定</button>
+##        </div>
+##    </div>
+##</div>
+
+#set($pageScript="
+<script>
+    seajs.use('xjs/modules/withdraw');
+</script>
+")
+
+#CSRFToken("xToken")

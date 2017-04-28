@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.co.dao.CompanyManagerMapper" >
+    <resultMap id="BaseResultMap" type="com.yourong.core.co.model.CompanyManage" >
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="manage_name" property="manageName" jdbcType="VARCHAR" />
+        <result column="manage_job" property="manageJob" jdbcType="VARCHAR" />
+        <result column="manage_href" property="manageHref" jdbcType="VARCHAR" />
+        <result column="manage_content" property="manageContent" jdbcType="VARCHAR" />
+        <result column="sort" property="sort" jdbcType="INTEGER"/>
+        <result column="status" property="status" jdbcType="INTEGER" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+        <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+    </resultMap>
+
+    <sql id="select_sql">
+        SELECT id,manage_name,manage_job,manage_href,manage_content,sort,status,create_time,update_time,del_flag
+    </sql>
+
+    <select id="queryById" resultMap="BaseResultMap">
+        <include refid="select_sql"/>
+        FROM co_company_manage WHERE id=#{id} AND del_flag=1
+    </select>
+
+    <select id="queryList" resultMap="BaseResultMap">
+        <include refid="select_sql"/>
+        FROM co_company_manage WHERE del_flag=1 AND status=2
+        ORDER BY sort DESC
+    </select>
+
+    <select id="queryPageCompanyManage" resultMap="BaseResultMap">
+        <include refid="select_sql"/>
+        FROM co_company_manage WHERE del_flag=1
+        <if test="query != null">
+            <if test="query.status != null">
+                AND status=#{query.status}
+            </if>
+        </if>
+        ORDER BY sort DESC LIMIT #{query.startRow,jdbcType=INTEGER}, #{query.pageSize,jdbcType=INTEGER}
+    </select>
+
+    <select id="queryPageCount" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM co_company_manage WHERE
+        del_flag=1
+    </select>
+
+    <update id="updateCompanyManage">
+        UPDATE co_company_manage SET manage_name=#{companyManage.manageName},manage_job=#{companyManage.manageJob},manage_href=#{companyManage.manageHref},manage_content=#{companyManage.manageContent},
+        update_time=#{companyManage.updateTime} WHERE id=#{companyManage.id}
+    </update>
+
+    <insert id="insertCompanyManage" parameterType="com.yourong.core.co.model.CompanyManage" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO co_company_manage(manage_name,manage_job,manage_href,manage_content,sort,status,create_time,update_time,del_flag)
+        VALUES (#{manageName},#{manageJob},#{manageHref},#{manageContent},#{sort},
+        #{status},#{createTime},#{updateTime},#{delFlag})
+    </insert>
+
+    <update id="deleteCompanyManage">
+        UPDATE co_company_manage SET del_flag = -1 WHERE id=#{managerid} AND del_flag=1
+    </update>
+
+    <update id="updateSortById">
+        UPDATE co_company_manage SET sort=#{sort},update_time=#{date} WHERE id=#{id}
+    </update>
+
+    <update id="updateHrefById">
+        UPDATE co_company_manage SET manage_href=#{href},update_time=#{date} WHERE id=#{id}
+    </update>
+
+    <update id="updateStatus">
+        UPDATE co_company_manage SET status=#{status},update_time=#{date} WHERE id=#{id}
+    </update>
+
+    <update id="releaseAll">
+        UPDATE co_company_manage SET status=2,update_time=#{date} WHERE status=1 AND del_flag=1
+    </update>
+
+    <select id="queryUnReleaseCount" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM co_company_manage WHERE status=1 AND del_flag=1
+    </select>
+</mapper>

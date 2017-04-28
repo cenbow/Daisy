@@ -1,0 +1,151 @@
+##友情链接
+#parse('/common/common.vm')
+#set($title="友情链接_$!{title_suffix}")
+<style>
+
+
+    .g-bd {
+        margin-bottom: 0;
+    }
+
+    .g-wrap {
+        width: 990px;
+        margin: 0 auto;
+    }
+
+    .f-fs32 {
+        font-size: 32px;
+    }
+
+    .m-friendlyLink-body {
+        height: 738px;
+    }
+
+    .u-friendlyLink-title {
+        height: 44px;
+        line-height: 44px;
+        padding: 85px 0 0;
+        margin: 0 0 40px;
+        color: #666;
+        border-bottom: 1px solid #d6d6d6;
+    }
+
+    .m-friendlyLink-list ul {
+        width: 732px;
+        float: left;
+    }
+
+    .m-friendlyLink-list ul li {
+        margin: 0 33px 30px 0;
+        float: left;
+    }
+
+    .m-friendlyLink-list span {
+        color: #666;
+        font-size: 13px;
+        width: 221px;
+        height: 266px;
+        display: block;
+        float: left;
+        line-height: 2em;
+        margin-left: 15px;
+        padding-left: 20px;
+        padding-bottom: 75px;
+        border-left: 1px solid #d6d6d6;
+        margin-top: -10px;
+    }
+
+    .m-friendlyLink-list h6 {
+        margin-top: 20px;
+        margin-bottom: 21px;
+    }
+
+    .m-friendlyLink-list p {
+        line-height: 2em;
+        margin-bottom: 0px;
+    }
+
+    .m-friendlyLink-list i {
+        font-style: italic;
+        font-weight: bold;
+    }
+
+
+    .m-partner li .u-partner-dm {
+        width: 148px;
+        height: 48px;
+        background: transparent url("/static/img/homepage/partner_icons.png?t=20150720170324") no-repeat scroll 0px -145px;
+        float: left;
+        border: 1px solid #E0E0E0;
+    }
+
+    .m-partner {
+        padding: 40px 0px 105px;
+        height: 165px;
+        margin: 100px auto -100px;
+        clear: both;
+    }
+
+    .g-wrap {
+        width: 990px;
+        margin: 0px auto;
+    }
+
+    .u-friendlyLink-wdnl img{
+        border: 1px solid #E0E0E0;
+        width: 148px;
+        height: 48px;
+    }
+
+</style>
+
+
+<div class="f-mh500 f-cf m-friendlyLink-body">
+    <div class="u-friendlyLink-title">
+        <h2 class="g-wrap f-fs18">友情链接</h2>
+    </div>
+    <div class="m-friendlyLink-list g-wrap m-partner m-partner f-cf">
+        <ul class="f-cf">
+            <li><a href="https://pay.sina.com.cn/index" target="_blank">
+                <img src="/static/img/post/friendlyLink/friendlyLink_sina.jpg"/>
+            </a></li>
+            <li><a href="http://www.wangdaizhijia.com/" target="_blank">
+                <img src="/static/img/post/friendlyLink/friendlyLink_wdzj.jpg"/>
+            </a></li>
+            <li><a href="http://www.p2peye.com/" target="_blank">
+                <img src="/static/img/post/friendlyLink/friendlyLink_wdty.jpg"/></a></li>
+            <li><a href="http://www.sinosig.com/" target="_blank">
+                <img src="/static/img/post/friendlyLink/friendlyLink_ygbx.jpg"/>
+            </a></li>
+            <li><a href="https://www.ebaoquan.org/" target="_blank">
+                <img src="/static/img/post/friendlyLink/friendlyLink_sjbq.jpg" alt=""/>
+            </a></li>
+            <li>
+                <a href="http://www.midai.cn/" target="_blank" title="米袋">
+                    <img src="/static/img/post/friendlyLink/friendlyLink_midai.jpg" alt="米袋"/>
+                </a>
+            </li>
+            <li title="浙江德睦律师事务所" class="u-friendlyLink-zjdm" target="_blank">
+                <a class="u-partner-dm" href="http://www.zjdml.com/" target="_blank"></a>
+            </li>
+            <li>
+                <a href="http://www.wangdainengliang.com" class="u-friendlyLink-wdnl" target="_blank" title="网贷能量">
+                    <img src="/static/img/post/friendlyLink/friendlyLink_wdnl.jpg" alt="网贷能量"/>
+                </a>
+            </li>
+        </ul>
+
+    		<span>
+    			<h6>有融网欢迎和各类网站交换友链</h6>
+    			<p>
+                    申请条件：
+                    <br/>1、PR≥5或者百度权重高的网站；
+                    <br/>2、百度和google的收录良好的网站；
+                    <br/>3、网站内容符合相关法律要求，
+                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;没有不良或者色情内容的网站。
+                </p>
+					<br/>如果您满足以上要求，请联系我们。
+					<br/>邮件：<i>media@yrw.com</i>
+    		</span>
+    </div>
+</div>

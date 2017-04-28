@@ -1,0 +1,194 @@
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($title='我的反馈')
+#set($loginSource=$request.getHeader("loginSource"))
+#set($memberId=$!{memberId})
+#if($currentUser)
+    #set($logined=true)
+#else
+    #set($logined=false)
+#end
+#set($os=3)
+##  安卓
+#if($loginSource==1)
+    #set($os=1)
+#end
+##  IOS
+#if($loginSource==2)
+    #set($os=2)
+#end
+<style>
+    body {
+        background: #eeeeee;
+    }
+
+    [v-cloak] {
+        display: none;
+    }
+
+    .f-fc3 {
+        color: #333333;
+    }
+
+    .f-fc6 {
+        color: #666666;
+    }
+
+    .f-fc9 {
+        color: #999999;
+    }
+
+    .m-questionBlock {
+        width: 90%;
+        margin: auto;
+    }
+
+    .u-questionBlock {
+        background: #FFFFFF;
+        border-radius: 20px;
+        width: 90%;
+        line-height: 30px;
+        padding: 5%;
+        margin-top: 20px;
+    }
+
+    .u-questionBlock.z-answered {
+        border-radius: 20px 20px 0 0;
+    }
+
+    .u-questionStatus {
+        display: inline-block;
+        color: #ffffff;
+        border-radius: 3px;
+        padding: 0 6px;
+        line-height: 20px;
+    }
+
+    .z-actived {
+        background: #d74148;
+    }
+
+    .z-unactived {
+        background: #999999;
+    }
+
+    .u-answerBlock {
+        width: 90%;
+        line-height: 24px;
+        padding: 5% 5% 12% 5%;
+        background: #FFFDF4;
+        border-radius: 0px 0px 20px 20px;
+        position: relative;
+        margin-top: 1px;
+    }
+
+    .u-contentBlock {
+        width: 100%;
+        vertical-align: middle;
+    }
+
+    .u-answerBlock .u-contentBlock img {
+        width: 40px;
+        height: 40px;
+        vertical-align: middle;
+        display: inline-block;
+    }
+
+    .u-answerBlock .u-contentBlock span {
+        display: inline-block;
+        width: 78%;
+        vertical-align: middle;
+        color: #d74148;
+    }
+
+    .u-load-more {
+        width: 90%;
+        margin: 10px auto;
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+        font-size: 14px;
+        background: #ffffff;
+        border-radius: 10px;
+        border: 1px solid #e5e5e5;
+        color: #666666;
+    }
+
+    .z-loading {
+        background: #f3f3f3;
+    }
+</style>
+<div id="feedbackInfo" v-cloak>
+    <input type="hidden" id="j-selfInfo" memberId="$memberId">
+    #if($os>2)
+        <h2 class="u-header f-pos-r">
+            <a href="$siteurl/mCenter/reputationPage">返回</a>
+    <span class="f-fs18">
+        我的反馈
+    </span>
+        </h2>
+    #else
+        <style>
+            .g-ft {
+                display: none;
+            }
+        </style>
+    #end
+    <div v-if="initData!=''">
+        <div class="m-questionBlock" v-for="item in initData">
+            <div class="u-questionBlock" :class="{'z-answered':item.reply}">
+                <p class="f-fs14 f-fc6">
+                    <span v-if="item.replyStatus==0" class="u-questionStatus z-actived f-fs12">处理中</span>
+                    <span v-if="item.replyStatus==1" class="u-questionStatus z-unactived f-fs12">已回复</span>
+                    <span v-if="item.replyStatus==2" class="u-questionStatus z-unactived f-fs12">已关闭</span>
+                    <span v-text="item.content"></span>
+                </p>
+                <div class="f-fs12 f-fc9">
+                    <span>类别：
+                        <i v-if="item.type==1">建议</i>
+                        <i v-if="item.type==2">资金</i>
+                        <i v-if="item.type==3">投资</i>
+                        <i v-if="item.type==4">账户</i>
+                        <i v-if="item.type==5">活动</i>
+                        <i v-if="item.type==6">其他</i>
+                    </span>
+                    <span class="f-fr" v-text="item.createTime | dateFormat 'yyyy-MM-dd hh:mm:ss'"></span>
+                </div>
+
+            </div>
+
+            <div class="u-answerBlock" v-if="item.reply">
+                <div class="u-contentBlock">
+                    <img src="$res_url/img/APP/ico_service.png" alt="">
+                    <span class="f-fs14 " v-text="item.reply"></span>
+                </div>
+                <div>
+                    <span class="f-fr f-fs12 f-fc9" v-text="item.replyTime | dateFormat 'yyyy-MM-dd hh:mm:ss'"></span>
+                </div>
+            </div>
+
+        </div>
+    ##            分页的代码
+        <div v-if="pageNo<totalPageCount" class="u-load-more" :class="{'z-loading':isLoad}" @click="reloadMore">
+            <span v-if="isLoad">加载中...</span>
+            <span v-else>加载更多</span>
+        </div>
+    ##            分页的代码
+    </div>
+
+    <div v-else style="margin: 40% 30%;width: 40%; color: #999999; text-align: center">
+        <img src="$res_url/img/logoGray.png" alt=""/>
+
+        <p class="f-fs14"> 您的意见和建议是我们成长最大的动力</p>
+    </div>
+
+
+</div>
+
+#CSRFToken("xToken")
+#set($pageScript="
+<script src='$aliyunOss_url/res/lib/vue/v1/vue.min.js'></script>
+<script>
+    seajs.use('$m_js_url/post/feedbackInfo.js')
+</script>
+")

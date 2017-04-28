@@ -1,0 +1,71 @@
+#if($query.categoryId==2)
+    #set($title="媒体报道-有融网-全透明的互联网理财优选平台")
+    #set($keywords="媒体报道,新闻报道,有融网")
+    #set($description="有融网运用高效的运营管理体系和创新的互联网思维,搭建了一个安全透明的互联网理财服务平台.  ")
+#else
+    #set($title="网站公告-有融网-全透明的互联网理财优选平台")
+    #set($keywords="网站公告,有融网公告,有融网")
+    #set($description="有融网运用高效的运营管理体系和创新的互联网思维,搭建了一个安全透明的互联网理财服务平台. ")
+#end
+#parse("/common/common.vm")
+
+##页面入口标识
+#set($entry=["post","post"])
+
+##媒体报道
+#set($css_url=["$root_css_url/modules/post.css"])
+
+<div class="g-wrap">
+	<ul class="u-navi-tab f-fs14 f-tac f-round f-cf" id="j-plist-tab">
+		<li #if($query.categoryId==2) class="z-current j-select-article" #else class="u-ptab-chock f-nbr j-select-article" #end ><em><a href="$root_url/article/news-2-1.html">媒体报道</a></em></li>
+		<li #if($query.categoryId==1) class="z-current j-select-article" #else class="u-ptab-chock f-nbr j-select-article" #end><em><a href="$root_url/article/news-1-1.html">网站公告</a></em></li>
+	</ul>
+	#if($!query.categoryId==2)
+	 	<div class="m-news-list f-round j-news-list">
+		    #if($!newsPage && $!newsPage.data && $!newsPage.data.size()>0)
+		      <ul>
+		        #foreach($!news in $!newsPage.data)
+		          <li><img class="u-news-thumbnail" 
+		              #if( $news.image )
+		                src="$aliyun_url/$news.image"
+		              #else
+		                src="$root_url/static/img/default.jpg"
+		              #end
+		              alt="新闻标题"/> <strong data-articleid="$!news.id"><a href="$root_url/article/detail-$!{news.id}.html" target="_blank" >$!news.title</a></strong> <span>$!news.copyfrom&nbsp;$!news.createDateStr&nbsp;<a
+		              href="$!news.link" target="_blank" rel="nofollow">原文链接</a></span>
+		            <div>
+		              $!news.contentHtml
+					  
+					  $!news.getFirstSentence()
+		            </div>
+		          </li>
+		        #end
+		      </ul>
+			#end
+	 	</div>
+		#set($_searchParam = "/article/news-$!{query.categoryId}")
+		##分页条放在这里
+		#pagePlugin($!newsPage,$_searchParam)
+ 	#else
+	 	<div class="m-notice-list f-round j-notice-list">
+	 		#if($!newsPage && $!newsPage.data && $!newsPage.data.size()>0)
+				<ul>
+					#foreach($!news in $!newsPage.data)
+					<li id="newsId_$!news.id">
+						<span>$!news.createDateStr&nbsp;</span><strong>$!news.title</strong>
+						<div class="f-fs14">
+							$!news.contentHtml
+							
+							
+						</div>
+					</li>
+					#end
+
+				</ul>
+			#end
+		</div>
+	 	#set($_searchParam = "/article/news-$!{query.categoryId}")
+		##分页条放在这里
+		#pagePlugin($!newsPage,$_searchParam)
+	#end
+</div>

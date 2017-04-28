@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.ic.dao.DebtCollateralMapper" >
+  <resultMap id="BaseResultMap" type="DebtCollateral" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="debt_id" property="debtId" jdbcType="BIGINT" />
+    <result column="collateral_type" property="collateralType" jdbcType="VARCHAR" />
+    <result column="collateral_details" property="collateralDetails" jdbcType="VARCHAR" />
+    <result column="collateral_verify" property="collateralVerify" jdbcType="VARCHAR" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+    <result column="collateral_valuation" property="collateralValuation" jdbcType="DOUBLE" />
+    <result column="debt_type" property="debtType" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, debt_id, collateral_type, collateral_details, collateral_verify, remarks, create_time, 
+    update_time,collateral_valuation,del_flag,debt_type
+  </sql>
+  <insert id="insertSelective" parameterType="DebtCollateral" >
+    insert into ic_debt_collateral
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="debtId != null" >
+        debt_id,
+      </if>
+      <if test="collateralType != null" >
+        collateral_type,
+      </if>
+      <if test="collateralDetails != null" >
+        collateral_details,
+      </if>
+      <if test="collateralVerify != null" >
+        collateral_verify,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+      <if test="collateralValuation != null" >
+        collateral_valuation,
+      </if>
+      <if test="debtType != null" >
+        debt_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="debtId != null" >
+        #{debtId,jdbcType=BIGINT},
+      </if>
+      <if test="collateralType != null" >
+        #{collateralType,jdbcType=VARCHAR},
+      </if>
+      <if test="collateralDetails != null" >
+        #{collateralDetails,jdbcType=VARCHAR},
+      </if>
+      <if test="collateralVerify != null" >
+        #{collateralVerify,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="del_flag != null" >
+        #{delFlag,jdbcType=INTEGER},
+      </if>
+      <if test="collateral_valuation != null" >
+        #{collateralValuation,jdbcType=DOUBLE},
+      </if>
+      <if test="debt_type != null" >
+        #{debtType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="DebtCollateral" >
+    update ic_debt_collateral
+    <set >
+      <if test="debtId != null" >
+        debt_id = #{debtId,jdbcType=BIGINT},
+      </if>
+      <if test="collateralType != null" >
+        collateral_type = #{collateralType,jdbcType=VARCHAR},
+      </if>
+      <if test="collateralDetails != null" >
+        collateral_details = #{collateralDetails,jdbcType=VARCHAR},
+      </if>
+      <if test="collateralVerify != null" >
+        collateral_verify = #{collateralVerify,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+       <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=INTEGER},
+      </if>
+       <if test="collateralValuation != null" >
+        collateral_valuation = #{collateralValuation,jdbcType=DOUBLE},
+      </if>
+       <if test="debtType != null" >
+        debt_type = #{debtType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <delete id="batchDelete" parameterType="java.lang.Long" >
+    delete from ic_debt_collateral
+    where id in  <foreach collection="ids" index="index" item="item" open="(" separator="," close=")"> #{item}  </foreach>  
+  </delete>
+  <select id="findByPage" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from ic_debt_collateral
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = #{map.id}
+        </if>
+        <if test=" map.debtId != null" >
+          debt_id = #{map.debtId}
+        </if>
+        <if test=" map.collateralType != null" >
+          collateral_type = #{map.collateralType}
+        </if>
+        <if test=" map.collateralDetails != null" >
+          collateral_details = #{map.collateralDetails}
+        </if>
+        <if test=" map.collateralVerify != null" >
+          collateral_verify = #{map.collateralVerify}
+        </if>
+        <if test=" map.remarks != null" >
+          remarks = #{map.remarks}
+        </if>
+        <if test=" map.createTime != null" >
+          create_time = #{map.createTime}
+        </if>
+        <if test=" map.updateTime != null" >
+          update_time = #{map.updateTime}
+        </if>
+        <if test=" map.collateralValuation != null" >
+          collateral_valuation = #{map.collateralValuation}
+        </if>
+        <if test=" map.debtType != null" >
+          debt_type = #{map.debtType}
+        </if>
+      </where>
+    </if>
+  </select>
+  <sql id="Base_Column_List_Pagin" >
+    t.id  as  id,
+t.debt_id  as  debt_id,
+t.collateral_type  as  collateral_type,
+t.collateral_details  as  collateral_details,
+t.collateral_verify  as  collateral_verify,
+t.remarks  as  remarks,
+t.create_time  as  create_time,
+t.update_time  as  update_time,
+t.debt_type  as  debt_type
+  </sql>
+  <select id="selectForPagin" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List_Pagin" />
+    from  (SELECT id FROM  ic_debt_collateral
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = #{map.id}
+        </if>
+        <if test=" map.debtId != null" >
+          debt_id = #{map.debtId}
+        </if>
+        <if test=" map.collateralType != null" >
+          collateral_type = #{map.collateralType}
+        </if>
+        <if test=" map.collateralDetails != null" >
+          collateral_details = #{map.collateralDetails}
+        </if>
+        <if test=" map.collateralVerify != null" >
+          collateral_verify = #{map.collateralVerify}
+        </if>
+        <if test=" map.remarks != null" >
+          remarks = #{map.remarks}
+        </if>
+        <if test=" map.createTime != null" >
+          create_time = #{map.createTime}
+        </if>
+        <if test=" map.updateTime != null" >
+          update_time = #{map.updateTime}
+        </if>
+        <if test=" map.debtType != null" >
+          debt_type = #{map.debtType}
+        </if>
+      </where>
+    </if>
+      LIMIT	${map.startRow}, ${map.pageSize}  )  AS a,  ic_debt_collateral AS t FORCE INDEX(PRIMARY) WHERE a.id = t.id   
+  </select>
+  <select id="selectForPaginTotalCount" resultType="java.lang.Integer" >
+    select count(1) 
+    from ic_debt_collateral
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = ${map.id}
+        </if>
+        <if test=" map.debtId != null" >
+          debt_id = ${map.debtId}
+        </if>
+        <if test=" map.collateralType != null" >
+          collateral_type = ${map.collateralType}
+        </if>
+        <if test=" map.collateralDetails != null" >
+          collateral_details = ${map.collateralDetails}
+        </if>
+        <if test=" map.collateralVerify != null" >
+          collateral_verify = ${map.collateralVerify}
+        </if>
+        <if test=" map.remarks != null" >
+          remarks = ${map.remarks}
+        </if>
+        <if test=" map.createTime != null" >
+          create_time = ${map.createTime}
+        </if>
+        <if test=" map.updateTime != null" >
+          update_time = ${map.updateTime}
+        </if>
+        <if test=" map.collateralValuation != null" >
+          collateral_valuation = ${map.collateralValuation}
+        </if>
+        <if test=" map.debtType != null" >
+          debt_type = ${map.debtType}
+        </if>
+      </where>
+    </if>
+  </select>
+  
+  <!-- 根据债权id获取抵押物信息 -->
+  <select id="findCollateralByDebtId" resultMap="BaseResultMap">
+  	select 
+  	<include refid="Base_Column_List" />
+  	from 
+  	ic_debt_collateral
+  	where del_flag>0 and debt_id = #{debtId,jdbcType=BIGINT}
+  </select>
+  
+    <!-- 根据债权id删除抵押物信息 -->
+  <delete id="deleteCollateralByDebtId">
+  	delete 
+  	from 
+  	ic_debt_collateral
+  	where debt_id = #{debtId,jdbcType=BIGINT}
+  </delete>
+  
+  
+  <!-- 根据项目id获取抵押物信息 -->
+  <select id="findCollateralByProjectId" resultMap="BaseResultMap">
+  	select 
+  	<include refid="Base_Column_List" />
+  	from 
+  	ic_debt_collateral
+  	where del_flag>0 and project_id = #{projectId,jdbcType=BIGINT}
+  </select>
+  
+</mapper>

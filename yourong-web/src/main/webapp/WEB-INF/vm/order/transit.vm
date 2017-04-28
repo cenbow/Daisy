@@ -1,0 +1,81 @@
+##订单页面
+#parse("/common/common.vm")
+#set($js_url=["$root_js_url/modules/order.js"])
+#CSRFToken('xToken')
+<style>
+    .u-transit-tips{
+        height: 400px;
+        background: #fff;
+        border-radius: 8px;
+        margin: 50px auto 30px;
+        padding: 45px 30px 50px;
+    }
+    .u-transit-tips div{
+        margin: 190px 240px 0 215px;
+        padding: 0 0 0 53px;
+        text-align: center;
+    }
+    .u-transit-tips div p{
+        display: inline;
+        vertical-align: top;
+        margin-left: 17px;
+    }
+    .u-transit-tips div i{
+        height: 25px;
+        width: 25px;
+        display: inline-block;
+        background: url("/static/img/member/eSignature/transit-icon.png") no-repeat center;
+    }
+</style>
+<div id="j-transit-page" class="g-wrap u-transit-tips">
+    <div class="f-dn"><i></i><p class="f-fs16"></p></div>
+</div>
+<script type="text/javascript">
+    var environment = env = {
+        globalPath: '',
+        globalDomain: 'http://dev.yourong.cn:8081',
+        mGlobalDomain: 'http://m.dev.yourong.cn:8081/yourong-api',
+        aliyunPath: 'https://oss-cn-hangzhou.aliyuncs.com'
+    };
+
+
+</script>
+<script src="/static/lib/js/base/lodash.js?v=compat1451287261500"></script>
+
+<script src="/static/lib/js/jq/jquery-1.11.1.min.js"></script>
+
+<script src="/static/lib/js/dialog-min.js"></script>
+
+<script src="/static/lib/js/validform.js"></script>
+
+
+<script src="/static/source/js/common.js?v="></script>
+<script>
+
+    (function(){
+        $("#j-data-transactionId").data("transactionid")
+        var transactionId=getUrlParam("transactionId")
+        $.xPost({
+            url: environment.globalPath + "/transaction/signContract",
+            data:{transactionId:transactionId},
+            callback: function (data) {
+                if (data.success) {
+                    window.location.href=data.result
+                }else{
+                    $("#j-transit-page p").text(data.resultCodeEum[0].msg)
+                    $("#j-transit-page div").removeClass("f-dn")
+                }
+            }
+        })
+
+        // 获取URL参数
+        function getUrlParam(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); // 构造一个含有目标参数的正则表达式对象
+            var r = window.location.search.substr(1).match(reg); // 匹配目标参数
+            if (r != null) {
+                return unescape(r[2]);
+            }
+            return null; // 返回参数值
+        }
+    })()
+</script>

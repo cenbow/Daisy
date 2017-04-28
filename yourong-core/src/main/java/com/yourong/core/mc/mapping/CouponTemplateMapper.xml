@@ -1,0 +1,512 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.mc.dao.CouponTemplateMapper" >
+  <resultMap id="BaseResultMap" type="CouponTemplate" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="coupon_type" property="couponType" jdbcType="INTEGER" />
+    <result column="amount" property="amount" jdbcType="DECIMAL" />
+    <result column="vaild_calc_type" property="vaildCalcType" jdbcType="INTEGER" />
+    <result column="web_scope" property="webScope" jdbcType="INTEGER" />
+    <result column="wap_scope" property="wapScope" jdbcType="INTEGER" />
+    <result column="app_scope" property="appScope" jdbcType="INTEGER" />
+    <result column="amount_scope" property="amountScope" jdbcType="DECIMAL" />
+    <result column="days_scope" property="daysScope" jdbcType="INTEGER" />
+    <result column="start_date" property="startDate" jdbcType="DATE" />
+    <result column="end_date" property="endDate" jdbcType="DATE" />
+    <result column="days" property="days" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="use_condition" property="useCondition" jdbcType="VARCHAR" />
+    <result column="create_by" property="createBy" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+    <result column="extra_interest_type" property="extraInterestType" jdbcType="INTEGER" />
+    <result column="extra_interest_day" property="extraInterestDay" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, coupon_type, amount, vaild_calc_type, web_scope, wap_scope, app_scope, amount_scope, days_scope, start_date, end_date, days, status, use_condition, 
+    create_by, create_time, update_time, del_flag,extra_interest_type,extra_interest_day
+  </sql>
+  <insert id="insertSelective" parameterType="CouponTemplate" >
+    insert into mc_coupon_template
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name!= null" >
+        name,
+      </if>
+      <if test="couponType != null" >
+        coupon_type,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="vaildCalcType != null" >
+        vaild_calc_type,
+      </if>
+      <if test="webScope != null" >
+        web_scope,
+      </if>
+      <if test="wapScope != null" >
+        wap_scope,
+      </if>
+      <if test="appScope != null" >
+        app_scope,
+      </if>
+      <if test="amountScope != null" >
+        amount_scope,
+      </if>
+      <if test="daysScope != null" >
+        days_scope,
+      </if>
+      <if test="startDate != null" >
+        start_date,
+      </if>
+      <if test="endDate != null" >
+        end_date,
+      </if>
+      <if test="days != null" >
+        days,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="useCondition != null" >
+        use_condition,
+      </if>
+      <if test="createBy != null" >
+        create_by,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="couponType != null" >
+        #{couponType,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="vaildCalcType != null" >
+        #{vaildCalcType,jdbcType=INTEGER},
+      </if>
+      <if test="webScope != null" >
+        #{webScope,jdbcType=INTEGER},
+      </if>
+      <if test="wapScope != null" >
+        #{wapScope,jdbcType=INTEGER},
+      </if>
+      <if test="appScope != null" >
+        #{appScope,jdbcType=INTEGER},
+      </if>
+      <if test="amountScope != null" >
+        #{amountScope,jdbcType=DECIMAL},
+      </if>
+      <if test="daysScope != null" >
+        #{daysScope,jdbcType=INTEGER},
+      </if>
+      <if test="startDate != null" >
+        #{startDate,jdbcType=DATE},
+      </if>
+      <if test="endDate != null" >
+        #{endDate,jdbcType=DATE},
+      </if>
+      <if test="days != null" >
+        #{days,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="useCondition != null" >
+        #{useCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeyPartSelective" parameterType="CouponTemplate" >
+    update mc_coupon_template
+    <set >
+   	  <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="couponType != null" >
+        coupon_type = #{couponType,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="vaildCalcType != null" >
+        vaild_calc_type = #{vaildCalcType,jdbcType=INTEGER},
+      </if>
+      <if test="webScope != null" >
+        web_scope = #{webScope,jdbcType=INTEGER},
+      </if>
+      <if test="wapScope != null" >
+        wap_scope = #{wapScope,jdbcType=INTEGER},
+      </if>
+      <if test="appScope != null" >
+        app_scope = #{appScope,jdbcType=INTEGER},
+      </if>
+      <if test="amountScope != null" >
+        amount_scope = #{amountScope,jdbcType=DECIMAL},
+      </if>
+      <if test="daysScope != null" >
+        days_scope = #{daysScope,jdbcType=INTEGER},
+      </if>
+        start_date = #{startDate,jdbcType=DATE},
+        end_date = #{endDate,jdbcType=DATE},
+        days = #{days,jdbcType=INTEGER},
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="extraInterestType != null" >
+        extra_interest_type = #{extraInterestType,jdbcType=INTEGER},
+      </if>
+      <if test="extraInterestDay != null" >
+        extra_interest_day = #{extraInterestDay,jdbcType=INTEGER},
+      </if>
+      <if test="useCondition != null" >
+        use_condition = #{useCondition,jdbcType=VARCHAR},
+      </if>
+        update_time = now()
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  
+   <update id="updateByPrimaryKeySelective" parameterType="CouponTemplate" >
+    update mc_coupon_template
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="couponType != null" >
+        coupon_type = #{couponType,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="vaildCalcType != null" >
+        vaild_calc_type = #{vaildCalcType,jdbcType=INTEGER},
+      </if>
+      <if test="webScope != null" >
+        web_scope = #{webScope,jdbcType=INTEGER},
+      </if>
+      <if test="wapScope != null" >
+        wap_scope = #{wapScope,jdbcType=INTEGER},
+      </if>
+      <if test="appScope != null" >
+        app_scope = #{appScope,jdbcType=INTEGER},
+      </if>
+      <if test="amountScope != null" >
+        amount_scope = #{amountScope,jdbcType=DECIMAL},
+      </if>
+      <if test="daysScope != null" >
+        days_scope = #{daysScope,jdbcType=INTEGER},
+      </if>
+      <if test="startDate != null" >
+        start_date = #{startDate,jdbcType=DATE},
+      </if>
+      <if test="startDate != null" >
+        end_date = #{endDate,jdbcType=DATE},
+      </if>
+      <if test="startDate != null" >
+        days = #{days,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="useCondition != null" >
+        use_condition = #{useCondition,jdbcType=VARCHAR},
+      </if>
+        update_time = now()
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  
+  
+  
+  <delete id="batchDelete" parameterType="java.lang.Long" >
+    delete from mc_coupon_template
+    where id in  <foreach collection="ids" index="index" item="item" open="(" separator="," close=")"> #{item}  </foreach>  
+  </delete>
+  <select id="findByPage" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from mc_coupon_template
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = #{map.id}
+        </if>
+        <if test=" map.name != null" >
+          name = #{map.name}
+        </if>
+        <if test=" map.couponType != null" >
+          coupon_type = #{map.couponType}
+        </if>
+        <if test=" map.amount != null" >
+          amount = #{map.amount}
+        </if>
+        <if test=" map.vaildCalcType != null" >
+          vaild_calc_type = #{map.vaildCalcType}
+        </if>
+        <if test=" map.webScope != null" >
+          web_scope = #{map.webScope}
+        </if>
+        <if test=" map.wapScope != null" >
+          wap_scope = #{map.wapScope}
+        </if>
+        <if test=" map.appScope != null" >
+          app_scope = #{map.appScope}
+        </if>
+        <if test=" map.amountScope != null" >
+          amount_scope = #{map.amountScope}
+        </if>
+        <if test=" map.daysScope != null" >
+          days_scope = #{map.daysScope}
+        </if>
+        <if test=" map.startDate != null" >
+          start_date = #{map.startDate}
+        </if>
+        <if test=" map.endDate != null" >
+          end_date = #{map.endDate}
+        </if>
+        <if test=" map.days != null" >
+          days = #{map.days}
+        </if>
+        <if test=" map.status != null" >
+          status = #{map.status}
+        </if>
+        <if test=" map.useCondition != null" >
+          use_condition = #{map.useCondition}
+        </if>
+        <if test=" map.createBy != null" >
+          create_by = #{map.createBy}
+        </if>
+        <if test=" map.createTime != null" >
+          create_time = #{map.createTime}
+        </if>
+        <if test=" map.updateTime != null" >
+          update_time = #{map.updateTime}
+        </if>
+        <if test=" map.delFlag != null" >
+          del_flag = #{map.delFlag }
+        </if>
+      </where>
+    </if>
+  </select>
+  <resultMap id="ExtendResultMap" type="CouponTemplate"  extends="BaseResultMap">
+      <result column="print_num" property="printNum" jdbcType="INTEGER" />
+      <result column="total_amount" property="totalAmount" jdbcType="DECIMAL" />
+      <result column="received_num" property="receivedNum" jdbcType="INTEGER" />
+      <result column="used_num" property="usedNum" jdbcType="INTEGER" />
+      <result column="print_times" property="printTimes" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List_Pagin" >
+t.id  as  id,
+t.name as name,
+t.coupon_type  as  coupon_type,
+t.amount  as  amount,
+t.vaild_calc_type  as  vaild_calc_type,
+t.web_scope  as  web_scope,
+t.wap_scope  as  wap_scope,
+t.app_scope  as  app_scope,
+t.amount_scope  as  amount_scope,
+t.days_scope  as  days_scope,
+t.start_date  as  start_date,
+t.end_date  as  end_date,
+t.days  as  days,
+t.status  as  status,
+t.use_condition  as  use_condition,
+t.create_by  as  create_by,
+t.create_time  as  create_time,
+t.update_time  as  update_time,
+t.del_flag as delFlag,
+t.sort_time as sortTime,
+b.print_num as print_num,
+b.total_amount as total_amount,
+b.received_num as received_num,
+b.used_num as used_num,
+b.print_times as print_times
+  </sql>
+  <select id="selectForPagin" resultMap="ExtendResultMap" >
+    select 
+    <include refid="Base_Column_List_Pagin" />
+    from  (SELECT id FROM  mc_coupon_template where del_flag>0
+    <if test=" map != null" >
+        <if test=" map.id != null" >
+         and id = #{map.id}
+        </if>
+         <if test=" map.name != null" >
+         and name like "%"#{map.name}"%"
+        </if>
+        <if test=" map.couponType != null" >
+         and coupon_type = #{map.couponType}
+        </if>
+        <if test=" map.amountmin != null" >
+          and  amount <![CDATA[>=]]> #{map.amountmin}
+        </if>
+         <if test=" map.amountmax != null" >
+          and  amount <![CDATA[<=]]> #{map.amountmax}
+        </if>
+        <if test=" map.vaildCalcType != null" >
+         and vaild_calc_type = #{map.vaildCalcType}
+        </if>
+        <if test=" map.webScope != null" >
+         and web_scope = #{map.webScope}
+        </if>
+        <if test=" map.wapScope != null" >
+         and wap_scope = #{map.wapScope}
+        </if>
+        <if test=" map.appScope != null" >
+         and app_scope = #{map.appScope}
+        </if>
+        <if test=" map.amountScope != null" >
+         and amount_scope = #{map.amountScope}
+        </if>
+        <if test=" map.daysScope != null" >
+         and days_scope = #{map.daysScope}
+        </if>
+        <if test=" map.startDate != null" >
+          and start_date <![CDATA[>=]]> #{map.startDate}
+        </if>
+        <if test=" map.endDate != null" >
+          and end_date <![CDATA[<=]]> #{map.endDate}
+        </if>
+        <if test=" map.days != null" >
+         and days = #{map.days}
+        </if>
+        <if test=" map.status != null" >
+         and status = #{map.status}
+        </if>
+        <if test=" map.useCondition != null" >
+         and use_condition = #{map.useCondition}
+        </if>
+        <if test=" map.createBy != null" >
+         and create_by = #{map.createBy}
+        </if>
+        <if test=" map.createTime != null" >
+         and create_time = #{map.createTime}
+        </if>
+        <if test=" map.updateTime != null" >
+         and update_time = #{map.updateTime}
+        </if>
+        order by sort_time desc, create_time desc
+    </if>
+      LIMIT	${map.startRow}, ${map.pageSize}  )  AS a,  mc_coupon_template AS t FORCE INDEX(PRIMARY) 
+      LEFT JOIN (SELECT p.coupon_template_id as template_id,SUM(p.print_num)as print_num,SUM(p.used_num) as used_num,SUM(p.received_num) as received_num,SUM(p.total_amount) as total_amount,COUNT(*) as print_times
+		from mc_coupon_template_print as p 
+		group by p.coupon_template_id)b 
+		on b.template_id = t.id  
+		WHERE a.id = t.id
+  </select>
+  <select id="selectForPaginTotalCount" resultType="java.lang.Integer" >
+    select count(1) 
+    from mc_coupon_template where del_flag > 0
+    <if test=" map != null" >
+        <if test=" map.id != null" >
+          and id = #{map.id}
+        </if>
+        <if test=" map.name != null" >
+          and name like "%"#{map.name}"%"
+        </if>
+        <if test=" map.couponType != null" >
+          and coupon_type = #{map.couponType}
+        </if>
+        <if test=" map.amountmin != null" >
+          and  amount <![CDATA[>=]]> #{map.amountmin}
+        </if>
+         <if test=" map.amountmax != null" >
+          and  amount <![CDATA[<=]]> #{map.amountmax}
+        </if>
+        <if test=" map.vaildCalcType != null" >
+          and vaild_calc_type = #{map.vaildCalcType}
+        </if>
+        <if test=" map.webScope != null" >
+          and web_scope = #{map.webScope}
+        </if>
+        <if test=" map.wapScope != null" >
+          and wap_scope = #{map.wapScope}
+        </if>
+        <if test=" map.appScope != null" >
+          and app_scope = #{map.appScope}
+        </if>
+        <if test=" map.amountScope != null" >
+          and amount_scope = #{map.amountScope}
+        </if>
+        <if test=" map.daysScope != null" >
+          and days_scope = #{map.daysScope}
+        </if>
+        <if test=" map.startDate != null" >
+          and start_date <![CDATA[>=]]> #{map.startDate}
+        </if>
+        <if test=" map.endDate != null" >
+          and end_date <![CDATA[<=]]> #{map.endDate}
+        </if>
+        <if test=" map.days != null" >
+          and days = #{map.days}
+        </if>
+        <if test=" map.status != null" >
+          and status = #{map.status}
+        </if>
+        <if test=" map.useCondition != null" >
+          and use_condition = #{map.useCondition}
+        </if>
+        <if test=" map.createBy != null" >
+          and create_by = #{map.createBy}
+        </if>
+        <if test=" map.createTime != null" >
+          and create_time = #{map.createTime}
+        </if>
+        <if test=" map.updateTime != null" >
+          and update_time = #{map.updateTime}
+        </if>
+    </if>
+  </select>
+  <!-- 根据主键删除（逻辑） -->
+  <delete id="deleteByCouponTemplateId">
+  	update mc_coupon_template set del_flag = -1 where id = #{id,jdbcType=BIGINT}
+  </delete>
+  
+  <!-- 获取所有用于人气值兑换的优惠券模板  -->
+  <select id="findExchangeCouponsByIds" parameterType="java.lang.Long" resultMap="ExtendResultMap">
+  	SELECT
+		id, name, coupon_type, amount, vaild_calc_type, web_scope, wap_scope, app_scope, amount_scope, days_scope, start_date, end_date, days, status, use_condition
+	FROM
+		mc_coupon_template
+	WHERE
+		id IN <foreach collection="ids" index="index" item="item" open="(" separator="," close=")"> #{item} </foreach> order by amount 
+  </select>
+
+    <update id="updateSort">
+      UPDATE mc_coupon_template SET sort_time =#{sorttime}  WHERE id=#{id}
+    </update>
+</mapper>

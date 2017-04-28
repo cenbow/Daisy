@@ -1,0 +1,273 @@
+.g-bd {
+    margin-bottom: 0;
+}
+.m-memberReport-hd{
+    width: 100%;
+    height: 582px;
+    margin-top: -8px;
+    position: relative;
+    color: #fff;
+    background: url(/static/img/activity/memberReport/memberReport_hd.jpg) no-repeat center;
+}
+/**内容**/
+.m-memberReport-body{
+    height: 1643px;
+    background: #eee;
+}
+@-moz-document url-prefix() {
+    .m-memberReport-body {
+        margin: -30px 0 0;
+    }
+}
+.m-memberReport-wrap{
+    padding: 0 50px;
+    width: 890px;
+    background: #fff;
+}
+.u-memberReport-flow{
+    background: #fff;
+}
+.u-memberReport-flow div{
+    height: 123px;
+    width: 123px;
+    display: block;
+    background: url("/static/img/activity/memberReport/memberReport_icon.png") no-repeat 0 0;
+    text-align: center;
+    float: left;
+    color: #fff;
+}
+.u-memberReport-flow s{
+    float: left;
+    width: 85px;
+    display: block;
+    margin: 60px 23px;
+    height: 3px;
+    background: url("/static/img/activity/memberReport/memberReport_icon.png") no-repeat -126px 0;
+}
+.u-memberReport-flow span{
+    height: 40px;
+    display: block;
+    margin-top: 36%;
+}
+/**线路**/
+ .u-memberReport-way{
+     height: 248px;
+     width: 828px;
+     background: #fff;
+     border: 1px solid #ffc4c7;
+     margin-top: 30px;
+     padding: 45px 30px 0;
+ }
+.u-memberReport-way p{
+    color: #663032;
+    line-height: 19px;
+}
+.u-memberReport-way p i{
+    width: 10px;
+    display: inline-block;
+}
+.u-memberReport-way a{
+    width: 342px;
+    height: 60px;
+    display: block;
+    text-align: center;
+    line-height: 60px;
+    margin: 30px auto 0;
+    color: #fff;
+    letter-spacing:2px;
+    background: url("/static/img/activity/memberReport/memberReport_icon.png") no-repeat 0 -173px;
+}
+.u-memberReport-way a:link,
+.u-memberReport-way a:visited,
+.u-memberReport-way a:hover{
+    color: #fff;
+    text-decoration: none;
+}
+.u-memberReport-way>span{
+    display: block;
+    margin: 10px 0 0;
+    text-align: center;
+    color: #d74147;
+}
+.u-memberReport-arrow{
+    position: absolute;
+    top:-41px;
+    left: 34%;
+}
+.u-memberReport-arrow i,
+.u-memberReport-arrow span{
+    color: #ffc4c7;
+    font-size: 50px;
+    position: absolute;
+    top: 1px;
+    left: -1px;
+}
+.u-memberReport-arrow span{
+    color: #fff;
+    top:2px;
+}
+/**活动行程**/
+ .u-memberReport-journey{
+
+ }
+.u-memberReport-journey h3{
+    margin: 66px 0 0;
+    height: 40px;
+    width: 186px;
+    display: block;
+    line-height: 40px;
+    color: #fff;
+    background: url("/static/img/activity/memberReport/memberReport_icon.png") no-repeat 0 -128px;
+}
+.u-memberReport-journey h3 i,
+.u-memberReport-journey h3 span,
+.u-memberReport-explain h3 i,
+.u-memberReport-explain h3 span {
+    height: 40px;
+    width: 40px;
+    display: inline-block;
+    text-align: center;
+}
+.u-memberReport-journey h3 span,.u-memberReport-explain h3 span {
+    width: 134px;
+}
+.u-memberReport-journey>div{
+    height: 75px;
+    margin: 123px 0 0;
+    border-top: 1px solid #d74148;
+}
+.u-memberReport-journey div i {
+    color: #d74148;
+    position: absolute;
+}
+.u-little-dot01{
+    top: -18px;
+    left: -2px;
+}
+.u-little-dot02{
+    top: -26px;
+    left: 219px;
+}
+.u-little-dot03{
+    top: -26px;
+    left: 438px;
+}
+.u-little-dot04{
+    top: -26px;
+    left: 657px;
+}
+.u-little-dot05{
+    top: -18px;
+    right: -2px;
+}
+.u-memberReport-journey dl{
+    color: #663032;
+    position: absolute;
+    text-align: center;
+    top: -36px;
+}
+.u-memberReport-journey dl dt{
+    margin: 0 0 30px;
+}
+.u-journey-01{
+    left: 162px;
+}
+.u-journey-02{
+    left: 344px;
+}
+.u-journey-03{
+    left: 628px;
+}
+/**说明**/
+ .u-memberReport-explain{
+     margin: 65px 0 0;
+     height: 260px;
+ }
+.u-memberReport-explain h3{
+    margin: 0 0 35px;
+    height: 40px;
+    width: 186px;
+    display: block;
+    line-height: 40px;
+    color: #fff;
+    background: url("/static/img/activity/memberReport/memberReport_icon.png") no-repeat 0 -128px;
+}
+.u-memberReport-explain strong{
+    color: #663032;
+    display: block;
+    margin: 0 0 13px;
+}
+.u-memberReport-explain p{
+    color: #663032;
+}
+.u-memberReport-explain>span{
+    color: #5d0e12;
+    display: block;
+    margin: 12px 0 0;
+    font-weight: bold;
+}
+/**地图**/
+ .u-memberReport-map{
+     height: 485px;
+     background: #fff;
+ }
+.u-memberReport-map>p{
+    color: #663032;
+    padding: 0 0 0 50px;
+    margin: 12px 0 0;
+}
+/**form**/
+.m-memberReport-form {
+    height: 316px;
+    width: 280px;
+    background-color: #eee;
+    padding: 80px 40px 0px;
+    position: fixed;
+    left: 40%;
+    top: 30%;
+    z-index: 999;
+    background: url("/static/img/activity/memberReport/memberReport_form_bg.png") no-repeat center;
+}
+
+.u-memberReport-shade {
+    filter: alpha(opacity=70);
+    opacity: .7;
+}
+.m-memberReport-form .u-ipt-amount,
+.m-memberReport-form .u-selector{
+    width: 268px;
+    height: 36px;
+    margin: 12px auto 0;
+    padding: 0 5px 0;
+}
+.u-btn-radio .u-scroll-selector{
+    border: none;
+    text-align: center;
+    margin-top: 20px;
+}
+.m-memberReport-form .u-scroll-selector label{
+    margin: 0 15px 0;
+}
+.m-memberReport-form .u-ipt-amount:focus{
+    border: 1px solid #d74148;
+}
+.m-memberReport-form .u-btn-primary{
+    width: 273px;
+    margin: 20px auto 0;
+}
+.m-memberReport-form .Validform_checktip{
+    position: absolute;
+    top: 30%;
+    right: 5px;
+}
+.m-memberReport-form>i{
+    position: absolute;
+    right: 14px;
+    top: 8px;
+    height: 18px;
+    width: 18px;
+    display: block;
+    background: url("/static/img/activity/memberReport/memberReport_close.png") no-repeat center;
+    background-size: 100%;
+    cursor: pointer;
+}

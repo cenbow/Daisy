@@ -1,0 +1,47 @@
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$m_css_url/modules/login.css"])
+#set($js_url=["$m_js_url/modules/login.js"])
+##header
+<h2 class="u-header f-pos-r">
+    <a href="$m_url">返回</a>
+    <span class="f-fs18">
+        登&nbsp;&nbsp;录
+    </span>
+</h2>
+##/header
+<section class="g-bd">
+    <form data-action="$root_url/security/logined"  method="POST" class="m-reg-form j-form-xpost j-validform" data-page="login" id="j-reg-form">
+        #CSRFToken('xToken')
+        <div class="u-tips-login #if("$!{openIdIsBind}" =="" )f-dn #end" id="j-login-error">
+        </div>
+        <div class="u-ipt-group">
+            <input type="text" name="username" id="j-cpn2" class="f-round f-ipt-w430 u-ipt-text u-ipt-str v-loginid" placeholder="请输入手机号或昵称" />
+        </div>
+        <div class="u-ipt-group">
+            <input type="password" name="password" datatype="s6-16" oncopy="return false;" onpaste="return false;" class="f-round u-ipt-text f-ipt-w430 v-pwd" placeholder="密码长度6-16位，至少包含数字和字母" />
+        </div>
+
+        <input type="hidden" name="pngCode" id="j-pngcode"/>
+        <input type="hidden" name="openId" id="j-openId" value="" />
+        <input type="hidden" name="loginSource" value="0"/><br />
+        <button type="submit" id="j-login-submit" class="u-reg-btn">登录</button>
+        <div class="u-reg-tips">
+            没有账号？<a href="/security/m/register" class="f-fc-gray">注册</a>
+        </div>
+    </form>
+    <div class="m-input-vercode f-cf z-hide">
+        <input type="text" id="j-vercode2" nullmsg="请输入验证码" class="f-round u-ipt-text f-ipt-w430 z-hide" placeholder="验证码" />
+        <img src="" id="j-img-vercode2" alt="验证码" class="u-img-vercode u-img-vercode2" />
+        <span class="m-val-tips"> &nbsp; </span>
+    </div>
+</section>
+
+#set($pageScript="
+<script>
+    seajs.config({
+        preload:['jquery','base']
+    });
+    seajs.use('$m_js_url/modules/login');
+</script>
+")

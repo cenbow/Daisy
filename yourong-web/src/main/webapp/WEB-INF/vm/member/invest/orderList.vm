@@ -1,0 +1,123 @@
+#parse("/common/common.vm")
+#set($layout = "/layout/default.vm")
+<div class="u-rtable">
+	<div class="u-rtable-wrap f-round">
+		<table>
+			<thead class="u-invest-ntunderline">
+				<tr>
+					<th width="108">下单时间</th>
+					<th width="150">订单号</th>
+					<th >项目名称</th>
+					<th width="150">订单金额</th>
+					<th width="125" class="f-tac">
+                        #set($statusList=['待支付','支付中','','已支付','支付失败','','','','待确认','已取消'])
+                        #set($status=$!{query.status})
+                        #if($status)
+                            #set($statusText=$statusList[$status])
+                        #else
+                            #set($statusText='全部订单')
+                        #end
+						<div class="u-selector j-orderType-selector f-round f-fr f-w150  f-tar">
+							<button>$statusText</button> <i></i>
+							<ul class="f-round">
+								<li value="">全部订单</li>
+								<li value="3">已支付</li>
+								<li value="0">待支付</li>
+								<li value="8">待确认</li>
+								<li value="1">支付中</li>
+								<li value="4">支付失败</li>
+								<li value="9">已取消</li>
+							</ul>
+							<input type="hidden" id="j-order-status" class="j-selected-ipt" name="status" value="$!{status}"/>
+						</div>
+					</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+			#if($!ordersForPage.data && $!ordersForPage.data.size()>0)
+				#foreach( $!order in $!ordersForPage.data )
+				<tr>
+					<td>
+						<span>$!{order.orderDate}</span>
+						<span>$!{order.orderHour}</span>
+					</td>
+					<td class="u-orderid">
+						<span>$!{order.orderNoPrefix}</span>
+						<span>$!{order.orderNoSuffix}</span>
+					</td>
+					#if($!{order.projectCategory}==2)
+						#set($pid=$!{order.transferId})
+					#else
+						#set($pid=$!{order.projectId})
+					#end
+					<td width="250">
+						<a class="u-row f-tal u-invest-underline" target="_blank" href="$root_url/products/detail-${pid}.html">
+							$!{order.prefixProjectName}<br/>$!{order.suffixProjectName}
+
+						</a>
+					</td>
+					<td>
+						#if($!order.projectCategory == 1)
+                            <em class="u-amount f-ff-ver">¥$!{order.formatInvestAmount}</em>
+						#else
+                            <em class="u-amount f-ff-ver">¥$!{order.transferPrincipal}</em>
+						#end
+					</td>
+					<td>$!{order.statusName}
+						#if($!order.status==8)
+                            #if($order.investType==1)
+                                <i class="u-icon u-icon-tips j-userTips" data-align="top" data-tips="该笔订单已提交至新浪支付，您可继续支付或等待15分钟后，订单将自动关闭"></i>
+                            #else
+                                <i class="u-icon u-icon-tips j-userTips" data-align="top" data-tips="订单15分钟后将自动关闭或联系客服进行人工处理"></i>
+                            #end
+						#end
+					</td>
+					<td>
+						#if($!order.status==0)<a href="$root_url/order/to/pay?orderNo=$!{order.orderNo}" data-orderid="$!order.orderId">支付</a>&nbsp;&nbsp;
+                        #elseif($!order.status==8&&$order.investType==1)
+                            <a href="$root_url/order/to/pay?orderNo=$!{order.orderNo}" data-orderid="$!order.orderId">继续支付</a>&nbsp;&nbsp;
+                        #end
+						#if($!order.status==0)<a href="#" class="order-cancel-link j-box-pos" data-action="cancel" data-orderid="$!order.orderId">取消</a>
+						&nbsp;&nbsp;#end
+						<a href="#" class="order-detail-link u-invest-detail f-pos-r j-box-pos" data-projecttype="$!{order.isDirectProject}" 
+						data-action="oprdetail" data-status="$!order.status" data-orderid="$!order.orderId" data-category="$!order.projectCategory"><s></s>详情</a>
+					</td>
+					<input type="hidden" class="orderId" value="$!order.orderId">
+					
+				</tr>
+				#end
+			#else
+				<tr>
+				#if(!$!query && !$!query.status)
+					<td colspan="6" class="u-table-empty">暂无订单记录，<a href="$root_url/products/list-all-all-investing-1-createTimeAsc-1.html">立即投资</a></td>
+				#elseif($!query.status==0)
+					<td colspan="6" class="u-table-empty">暂无待支付订单</td>
+				#elseif($!query.status==1)
+					<td colspan="6" class="u-table-empty">暂无支付中订单</td>
+				#elseif($!query.status==3)
+					<td colspan="6" class="u-table-empty">暂无已支付订单</td>
+				#elseif($!query.status==4)
+					<td colspan="6" class="u-table-empty">暂无支付失败订单</td>
+				#elseif($!query.status==8)
+                    <td colspan="6" class="u-table-empty">暂无待确认订单</td>
+				#elseif($!query.status==9)
+					<td colspan="6" class="u-table-empty">暂无已取消订单</td>
+				#else
+					<td colspan="6" class="u-table-empty">暂无订单记录，<a href="$products_url[0]">立即投资</a></td>
+				#end
+				</tr>
+			#end	
+			</tbody>
+		</table>
+
+	</div>
+	<!--<div class="m-pagenav f-tac">
+		<span class="u-pnav-prev u-circle-12">上一页</span>
+		<span class="u-pnav-crt u-circle-12">1</span>
+		<a href="" class="u-pnav-link u-circle-12">2</a>
+		<a href="" class="u-pnav-link u-circle-12">3</a>
+		<a href="" class="u-pnav-prev u-circle-12">下一页</a>
+	</div>-->
+</div>
+#ajaxPagePlugin($!ordersForPage,"Order")

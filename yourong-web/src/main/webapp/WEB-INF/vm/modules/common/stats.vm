@@ -1,0 +1,67 @@
+<div style="display:none;">
+    <script type="text/javascript">
+        ###cnzz
+        var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+        document.write(unescape("%3Cspan id='cnzz_stat_icon_1253600367'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1253600367' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+
+    ##品友
+##    #set($pingyouUserID="0")
+##    #set($pingyouPv="0")
+##    #if($stringUtil.equalsIgnoreCases($!{currentUser.registerTraceSource},'DSPPC',true))
+##        #set($pingyouUserID="$!{currentUser.id}")
+##        #if(${currentUser.isMemberInvested})
+##            #set($pingyouPv="2")
+##        #else
+##            #set($pingyouPv="1")
+##        #end
+##    #end
+##    <script type="text/javascript">
+##        var _py = _py || [];
+##        var _userId = "$!{pingyouUserID}";
+##        var _source = "0";
+##        var _pv = "$!{pingyouPv}";
+##        _py.push(['a', 'qJ..OIEiS_boFsG_SD2lEUB5nX']);
+##        _py.push(['domain', 'stats.ipinyou.com']);
+##        _py.push(['e', "{\"userId\":\"" + _userId + "\",\"source\":\"" + _source + "\"}"]);
+##        _py.push(['pv', _pv]);
+##        -function (d) {
+##            var s = d.createElement('script'),
+##                    e = document.body.getElementsByTagName('script')[0];
+##            e.parentNode.insertBefore(s, e),
+##                    f = 'https:' == location.protocol;
+##            s.src = (f ? 'https' : 'http') + '://' + (f ? 'fm.ipinyou.com' : 'fm.p0y.cn') + '/j/adv.js';
+##        }(document);
+##    </script>
+    <script type="text/javascript">
+        var _py = _py || [];
+        _py.push(['a', 'qJ..OIEiS_boFsG_SD2lEUB5nX']);
+        _py.push(['domain', 'stats.ipinyou.com']);
+        _py.push(['e', '']);
+        -function (d) {
+            var s = d.createElement('script'),
+                    e = d.body.getElementsByTagName('script')[0];
+            e.parentNode.insertBefore(s, e),
+                    f = 'https:' == location.protocol;
+            s.src = (f ? 'https' : 'http') + '://' + (f ? 'fm.ipinyou.com' : 'fm.p0y.cn') + '/j/adv.js';
+        }(document);
+    </script>
+    <noscript>
+        <img src="//stats.ipinyou.com/adv.gif?a=qJ..OIEiS_boFsG_SD2lEUB5nX&e=" style="display:none;"/>
+    </noscript>
+
+    ##广告家
+    <script>
+        _pro_track_id='4ad27d1a01547b3a9e04';
+    </script>
+    <script src="https://conversion.pro.cn/files/m.js"></script>
+    ##安全联盟
+    ##<script src="https://static.anquan.org/static/outer/js/aq_auth.js"></script>
+
+    ##诚信网站
+    <script type='text/javascript'>(function(){document.getElementById('___szfw_logo___').oncontextmenu = function(){return false;}})();</script>
+
+    ##互联网金融行业认证
+    ##<script src="http://v.trustutn.org/js/cert.js?v=2"></script>
+    ##<script type="text/javascript"   src="http://si.trustutn.org/certShow?type=421&certType=4&sn=169150603000188543452"></script>
+</div>

@@ -1,0 +1,126 @@
+## 紧急活动 房有融二重礼  edit by cc at 2016-4-1
+#parse("/common/common.vm")
+#set($title="投房有礼 80万现金大放送_$!{title_suffix}")
+#set($css_url=["$root_css_url/activity/houseTwoGifts.css"])
+
+##页面入口标识
+#set($entry=["activity","houseTwoGifts"])
+
+#if($currentUser)
+    #set($logined=true)
+#else
+    #set($logined=false)
+#end
+#CSRFToken('xToken')
+
+<div class="m-top"></div>
+
+<div class="g-outter">
+    <div class="g-wrap">
+
+        <div class="g-container">
+            <div class="g-step-wrapper">
+                ## 第一轮送30万
+                <div class="g-step g-step1 j-step z-hidden" id="j-step1">
+                    <h2>第一轮 <span class="u-step-icon j-step-icon"></span>  <span id="j-status"></span></h2>
+                    ## 结构有点特殊，需要三层
+                    <div class="u-processBar" id="j-processBar-1">
+                        <span class="u-processBar-fund j-processBar-fund">
+                            <span class="u-total-val">30万 </span>还剩￥<i class="u-left-val j-left-val" id="j-left-val1"></i>
+                            <div class="u-arrow-down-outer">
+                                <i class="u-arrow-down j-arrow-down"></i>
+                            </div>
+                        </span>
+                        <div class="u-white-bar j-white-bar"></div>
+
+                        <div class="u-processBar-outer">
+                            <div class="u-processBar-inner j-processBar-inner">
+                            </div>
+                        </div>
+                    </div>
+                    <table class="u-table">
+                        <tr>
+                            <td width="140">面额（元）</td>
+                            <td width="140">起投金额（元）</td>
+                            <td width="140">起投期限（天）</td>
+                        </tr>
+                        <tr><td>50</td><td>2000</td><td>25</td></tr>
+                        <tr><td>100</td><td>4000</td><td>25</td></tr>
+                        <tr><td>200</td><td>8000</td><td>60</td></tr>
+                    </table>
+                </div>
+
+                ## 第二轮送50万
+                <div class="g-step g-step2 j-step z-hidden" id="j-step2">
+                    <h2>第二轮 <span class="u-step-icon j-step-icon"></span></h2>
+
+                    <div class="u-processBar" id="j-processBar-2">
+                        <span class="u-processBar-fund j-processBar-fund">
+                            <span class="u-total-val">50万 </span>还剩￥<i class="u-left-val j-left-val" id="j-left-val2"></i>
+                            <div class="u-arrow-down-outer">
+                                <i class="u-arrow-down j-arrow-down"></i>
+                            </div>
+                        </span>
+                        <div class="u-white-bar j-white-bar"></div>
+                        <div class="u-processBar-outer">
+                            <div class="u-processBar-inner j-processBar-inner"></div>
+                        </div>
+                    </div>
+
+                    <table class="u-table">
+                        <tr>
+                            <td width="140">面额（元）</td>
+                            <td width="140">起投金额（元）</td>
+                            <td width="140">起投期限（天）</td>
+                        </tr>
+                        <tr><td>100</td><td>4000</td><td>25</td></tr>
+                        <tr><td>200</td><td>8000</td><td>60</td></tr>
+                        <tr><td>500</td><td>20000</td><td>90</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="m-rule">
+                1. 活动上线后，每成功投资房有融或房租融项目一笔，可随机获得50/100/200元现金券中的一张，多投多得，共30万，发完即止；<br>
+                2. 第一轮中30万现金券发送完，即可开启第二轮；<br>
+                3. 第二轮奖励50万现金券，包含100/200/500元面额，每成功投资房有融或房租融项目一笔，可随机获得100/200/500元现金券中的一张，多投多得；
+            </div>
+        </div>
+
+        ## 用户列表
+        <div class="m-userList">
+            <div class="u-gainList-container">
+                <ul class="u-gainList" id="j-gainList"></ul>
+            </div>
+
+            <script id="j-gainList-tpl" type="text/html">
+                {{each investList as item}}
+                <li>
+                    <span class="u-user-head">
+                         <img src="{{if item.avatar}}$aliyun_url/{{item.avatar}}{{else}}/static/img/member/avatar_35x35.png{{/if}}" alt="用户头像">
+                    </span>
+                        <span class="u-user-name">{{item.memberName}}</span>
+                        <span class="u-useTime">{{item.createTime | dateFormat:'yyyy年MM月dd日 hh时mm分ss秒'}}</span>
+                    <span class="u-giftText">投资 <b> {{item.chip |
+                        amountFormat:'split'}}元</b>获得<b>{{item.rewardInfo}}</b></span>
+                </li>
+                {{/each}}
+            </script>
+        </div>
+
+        <div class="u-btn-wrapper">
+            <a href="/products/list-all-house-investing-1.html" class="u-activity-btn z-hidden" id="j-activity-btn"></a>
+        </div>
+    </div>
+</div>
+
+<div class="m-bottom-rule">
+    <div class="g-wrap">
+    <strong>活动规则：</strong><br>
+        1、活动时间：<span id="j-startDate"></span>开始，第二轮现金券发送完为止；<br>
+        2、活动对象：有融网所有用户；<br>
+        3、活动所得现金券使用条件详见券面注明；<br>
+        4、如有其他疑问，请拨打客服热线：<strong>400-025-6688</strong>；<br>
+        本活动最终解释权归有融网所有
+    </div>
+</div>

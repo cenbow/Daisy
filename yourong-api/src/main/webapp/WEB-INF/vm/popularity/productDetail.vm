@@ -1,0 +1,165 @@
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$res_url/source/css/post/popularity.css","$res_url/source/css/vue-swipe.css",
+    "$res_url/source/css/LArea.css"])
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+#set($encryptionId=$request.getParameter("encryptionId"))
+#set($goodId=$request.getParameter("goodId"))
+<style>
+    body {
+        background: #ffffff;
+    }
+
+    .swiper-pagination-bullet-active {
+        background: #D74148;
+    }
+</style>
+<div id="j-productDetail" v-cloak>
+    <input id="j-token" type="hidden" htmlToken="$encryptionId" goodId="$goodId">
+    <div>
+    ##        <!--##banner-->
+    ##        <!--##aliyun-->
+        <div>
+            <div v-if="imageList.length>1" class="swiper-container u-swiperWrap"
+                 style=" width: 100%;height: 200px;text-align: center;overflow: hidden;">
+                <div v-if="imageList.length" class="swiper-wrapper"
+                     style="width: 100%;height: 200px;line-height: 200px;">
+                    <div v-for="item  in imageList" class="swiper-slide" style="100%">
+                        <img :src="item.fileUrl  | avatarUrl" alt="" heigth="200px" width="200px">
+                    </div>
+                </div>
+                <!-- 如果需要分页器 -->
+                <div class="swiper-pagination"></div>
+            </div>
+
+            <div v-else class="u-swiperWrap"
+                 style=" width: 90%;height: 200px;text-align: center;padding: 0 5%;overflow: hidden;">
+                <img :src="productData.imageList[0].fileUrl | avatarUrl" alt="" heigth="200px" width="200px">
+            </div>
+        </div>
+    ##    <!--##/banner-->
+        <div style="background:#F3F3F3;width: 100%;height: 10px; "></div>
+        <div class="u-productInfo">
+            <div class="u-exchangeValue">
+                <p class="f-color3 f-fs16">
+                    {{productData.goodsName}}
+                </p>
+                <p class="f-fs16 f-color6">
+                    <em>{{productData.discountPrice}}点</em>人气值 <span class="f-fs12 f-color9"
+                                                                     v-if="productData.price>productData.discountPrice">{{productData.price}}点人气值</span>
+                </p>
+                <input v-if="productData.goodsType==2&&productData.rechargeType==1"
+                       class="u-phoneNumber f-color9 f-fs14 " id="j-rechargeMobile" type="number" placeholder="请输入手机号码"
+                       @focus="hideChangeBtn('#j-submitBtn')"
+                       @blur="limitMobile('#j-rechargeMobile')" v-model="reChangeMobile">
+            </div>
+            <div>
+                <p class="f-fs16 f-color6 u-infoTitle">详情说明</p>
+                <p class="f-fs14 f-color9" v-for="item in finalGoodsDes">{{item}}</p>
+                <p class="f-fs16 f-color6 u-infoTitle">兑换规则</p>
+                <p class="f-fs14 f-color9">1、卡券类商品3个工作日内发放，实物类商品10个工作日内包邮寄出；<br>
+                    2、除商品质量问题外，概不退货；<br>
+                    3、最终解释权归有融网所有。
+                </p>
+            </div>
+            <a href="javascript:void(0)" @click="submitBtn('#j-submitBtn',$event)">
+                <div id="j-submitBtn" class="u-changeBtn " :class="{'z-disabled':productData.goodStatusFlag>0}"
+                     v-if="productData.goodStatusFlag==3">
+                    V{{levelNeed}}及以上才可以兑换哦
+                </div>
+                <div v-else id="j-submitBtn" class="u-changeBtn " :class="{'z-disabled':productData.goodStatusFlag>0}">
+                    <!--z-disabled-->
+                    {{btnText[statusFlag]}}
+                </div>
+            </a>
+        </div>
+
+
+    ##    <!--##    提示框-->
+        <div class="u-checkBox animated zoomIn" v-show="exchangeSuccess">
+            <p class="f-color3 f-fs16">
+                兑换成功
+            </p>
+            <div class="f-fs16">
+                <span @click="cancleBtn">取消</span> <a
+                    :href="'$siteurl/yrwHtml/exchangeRecord?isAuthorization=Y&title='+exchangeRecordTitle"><span>查看兑换记录</span></a>
+            </div>
+        </div>
+
+        <div class="u-checkBox animated zoomIn" v-show="surePayTip">
+            <p class="f-color3 f-fs16">
+                确认花费{{productData.discountPrice}}点人气值兑换?
+            </p>
+            <div class="f-fs16">
+                <span @click="cancleBtn">取消</span> <a href="javascript:void(0)"
+                                                      @click="submitOrder(3,$event,'productOrder')"><span>确定</span></a>
+            </div>
+        </div>
+    ##        <!--##    收货地址弹框-->
+        <div id="j-addressBox" class="u-addressBox animated zoomIn" v-show="inputAddress">
+            <p class="f-fs16 f-color3">
+                请填写收货信息
+            </p>
+            <em>
+                <input @focus="hideChangeBtn('#j-submitBtn')" class="j-watchChange" type="text" placeholder="输入收货人姓名"
+                       v-model="receiver">
+            </em>
+            <em>
+                <input @focus="hideChangeBtn('#j-submitBtn')" class="j-watchChange" type="number" name="userPhone"
+                       placeholder="输入手机号码"
+                       min="0"
+                       max="11"
+                       pattern="[0-9]" v-model="mobile">
+            </em>
+            <div>
+                <input @focus="hideChangeBtn('#j-submitBtn')" id="j-address" type="text" readonly="" placeholder="省、市、区"
+                       v-model="address">
+                <input id="province" type="hidden" value="{{province}}" v-model="province"/>
+                <input id="city" type="hidden" value="{{city}}" v-model="city"/>
+                <input id="county" type="hidden" value="{{county}}" v-model="county"/>
+                <i class="u-arrow"></i>
+            </div>
+            <textarea @focus="hideChangeBtn('#j-submitBtn'),bindAndroidScorll('#j-addressBox')"
+                      @blur="getNomal('#j-addressBox')" class="j-watchChange" type="text" name="userAddress"
+                      placeholder="详细地址"
+                      v-model="detailAddress"></textarea>
+            <div class="f-fs16 u-sureBtn">
+                <span @click="cancleBtn">取消</span> <span
+                    :class="{'z-filled':limitInput(address,receiver,mobile,detailAddress)}"
+                    @click="toSubmitOrder">确定</span>
+            </div>
+        </div>
+        <!--兑换错误提示-->
+        <div class="u-wrongTips" v-if="isError">
+            {{errorText}}
+        </div>
+        <!--手机号错误提示框-->
+        <div class="u-wrongTips j-wrongTips " v-if="isWrong">
+            {{phoneErrorText}}
+        </div>
+    ##    令牌过期提示
+        <div class="u-checkBox animated zoomIn" v-show="loginTimeOut">
+            <p class="f-color3 f-fs16">
+                登录超时，请重新登录
+            </p>
+            <div class="f-fs16">
+                <span @click="cancleBtn">取消</span> <a href="javascript:void(0)"
+                                                      @click="getNewToken($event)"><span>确定</span></a>
+            </div>
+        </div>
+
+        <div class="u-cover" style="display: block" v-if="coverShow"></div>
+    </div>
+</div>
+<script src="$res_url/lib/js/zepto.min.js"></script>
+<script src="$res_url/lib/js/LArea.js"></script>
+<script src='https://yrstatic.oss-cn-hangzhou.aliyuncs.com/res/lib/vue/v1/vue.min.js'></script>
+<script src='https://oss-cn-hangzhou.aliyuncs.com/yrstatic/res/lib/js/appHookES5.js'></script>
+<script src='$res_url/assets/lib/swiper-min.js'></script>
+##$console
+#set($pageScript="
+<script>
+    seajs.use('$res_url/source/js/popularity/productDetail.js')
+</script>
+")

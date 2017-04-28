@@ -1,0 +1,45 @@
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$m_css_url/common.css","$m_css_url/landing/season1.css"])
+#set($title="领取30元")
+<script>
+        #if(!$currentUser)
+        window.location.href = '$siteurl/mstation/landing/registerA';
+        #end
+</script>
+<h2 class="u-pageTitle f-pos-r">
+    <a href="/mIndex">
+        有融网
+    </a>
+    <span class="u-login-link f-pos-a">
+        <a href="$siteurl">
+            返回首页
+        </a>
+    </span>
+</h2>
+<div class="m-banner">
+    <img src="$siteurl/res/img/landing/a/banner.jpg" />
+    <div class="u-status-amount f-fs14 f-cf">
+        <em class="f-ff-ver u-amount-money f-fl">
+            累计成功投资:￥
+        <span class="f-ff-din f-fs22">
+            $!{paltformCapitalUtils.getPrefixPaltformTotalInvest()}
+        </span>
+        </em>
+        <em class="f-ff-ver f-fr">
+            注册人数:
+        <span class="f-ff-din f-fs22">
+            $!{paltformCapitalUtils.getPaltformMembers()}
+        </span>
+        </em>
+    </div>
+</div>
+<div class="m-guide-main">
+    <div class="m-success">
+        恭喜您成功注册成为有融网会员
+    </div>
+    <a class="u-reg-btn" href="$siteurl/mCenter/sinapay" target="_blank">领取30元</a>
+    <div class="m-bunding">
+        立即<a href="$tips_url" target="_blank">绑定邮箱、完善信息</a>可再获得<em>20元</em>！
+    </div>
+</div>

@@ -1,0 +1,67 @@
+<select id="area_prov" style="width:150px;">
+	#set($areaList = ${sysServiceUtil.getAllAreaList(2)})
+	<option value="">选择省</option>
+	#foreach($!{sysArea} in $!{areaList})
+        <option value="$!{sysArea.code}">$!{sysArea.name}</option>
+    #end
+</select>
+<select id="area_city" style="width:150px;">
+	<option value="">选择市</option>
+</select>
+<select id="area_dict" style="width:150px;">
+	<option value="">选择区</option>
+</select>
+<input type="hidden" name="censusRegisterId" id="censusRegisterId"/>
+<input type="hidden" name="censusRegisterName" id="censusRegisterName"/>
+<script type="text/javascript">
+	jQuery(function($) {
+		$("#area_prov").on('change', function() {
+			if($(this).val() != '') {
+				loadAreaByParentId($(this).val(), "area_city", "选择市");
+				resetSelect("area_dict", "选择区");
+			} else {
+				resetSelect("area_city", "选择市");
+				resetSelect("area_dict", "选择区");
+			}
+		});
+		
+		$("#area_city").on('change', function() {
+			if($(this).val() != '') {
+				loadAreaByParentId($(this).val(), "area_dict", "选择区");
+			} else {
+				resetSelect("area_dict", "选择区");
+			}
+		});
+		
+		$("#area_dict").on('change', function() {
+			$("#censusRegisterId").val($(this).val());
+			if($(this).val() != '') {
+				$("#censusRegisterName").val($('#area_prov  option:selected').text() + $('#area_city  option:selected').text() + $('#area_dict option:selected').text());
+			} else {
+				$("#censusRegisterName").val('');
+			}
+		});
+		
+		
+		function loadAreaByParentId(code, callbackObj, nullName){
+			//加载数据，返回数组。让回调函数处理	
+			$.post('$root_url/sysArea/getAreaList?code=' + code,null,function(data){
+				if(data.success) {
+					$("#" + callbackObj).empty();
+					$("#" + callbackObj).append("<option value=''>"+nullName+"</option>");
+					$.each(data.resultList,function(name,value){
+						$("#"+callbackObj).append("<option value='"+value.code+"'>"+value.name+"</option>");
+					});
+				}
+			});
+		}
+		
+		function resetSelect(objName, nullName) {
+			$("#" + objName).empty();
+			$("#" + objName).append("<option value=''>"+nullName+"</option>");
+		}
+		
+
+	});	
+			
+</script>

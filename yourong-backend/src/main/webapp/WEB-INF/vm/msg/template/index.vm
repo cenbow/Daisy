@@ -1,0 +1,65 @@
+#set($layout = "/layout/iframe.vm")
+#parse("/msg/template/head.vm")
+<style>
+.edit-msg-template{color:#2b7dbc;cursor:pointer}
+.edit-mail-template{color:#2b7dbc;cursor:pointer}
+.del-mail-template{color:#2b7dbc;cursor:pointer}
+</style>
+<div class="col-xs-12">
+  <p>
+    <button id = "new_emailTemplate" type="button" class="btn btn-info btn-sm btn-primary permission-$shiro.hasPermission('bscBank:save')" >新增邮件模板</button>
+  </p>
+</div>
+<div class="col-xs-12">
+	<div class="alert alert-warning">
+    	<button data-dismiss="alert" class="close" type="button">
+    		<i class="icon-remove"></i>
+    	</button>
+    	<strong>温馨提示：</strong>
+    		点击修改模板，可以修改对应的消息。
+	</div>
+	<div class="table-responsive">
+		<table id="msg-template-table" class="table table-striped table-bordered" cellspacing="0" width="100%">
+			<thead>
+				<tr>
+					<th>消息模板</th>
+					<th>手机短信</th>
+					<th>电子邮件</th>
+					<th>站内短信</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+</div>
+	
+#*
+#foreach($template in $templateList)
+				<tr>
+					<td>${template.templateName}</td>
+					<td>
+						#if($!{template.mobileMsgStatus} && $template.mobileMsgStatus !="")
+							<input type="checkbox" class="cancel-msg-template" id="tpl-${template.mobileMsgId}" data-id="${template.mobileMsgId}" name="mobileMsg-${template.mobileMsgId}" #if($template.mobileMsgStatus == 1) checked='checked' #end />
+							<span class="edit-msg-template" data-id="${template.mobileMsgId}" data-name="${template.templateName}-手机短信">编辑模板</span>
+						#else
+							编辑模板
+						#end
+					</td>
+					<td>
+						#if($!{template.emailMsgStatus} && $template.emailMsgStatus !="")
+							<input type="checkbox" class="cancel-msg-template" id="tpl-${template.emailMsgId}" data-id="${template.emailMsgId}" name="emailMsg-${template.emailMsgId}" #if($template.emailMsgStatus == 1) checked='checked' #end />
+							<span class="edit-msg-template" data-id="${template.emailMsgId}" data-name="${template.templateName}-电子邮件">编辑模板</span>
+						#else
+							编辑模板
+						#end
+					</td>
+					<td>
+						#if($!{template.msgStatus} && ${template.msgStatus} !="")
+							<input type="checkbox" class="cancel-msg-template" id="tpl-${template.msgId}" data-id="${template.msgId}" name="msgMsg-${template.msgId}" #if($template.msgStatus == 1) checked='checked' #end />
+							<span class="edit-msg-template" data-id="${template.msgId}" data-name="${template.templateName}-站内短信">编辑模板</span>
+						#else
+							编辑模板
+						#end
+					</td>
+				</tr>
+#end
+*#

@@ -1,0 +1,104 @@
+#parse('/common/common.vm')
+#set($layout = "/layout/default.vm")
+#if($!orderList.size() > 0)
+	#set($projectId = $!{orderList.get(0).projectId})
+	<div class="m-detail-info f-round f-pos-r">
+		<h3 class="u-block-title f-fs18 f-fwb" id="j-area-c">投资记录</h3>
+		<table class="u-data-table">
+		    <thead>
+		        <tr>
+		            <th class="f-tac u-invest-uName" width="240">投资用户</th>
+		            <th class="f-tar" width="180">投资金额</th>
+		            <th class="f-tac" width="130">年化收益</th>
+##					#if(${projectUtils.getTransactionListProfitStatus($projectId)})
+                    <th class="f-tac" width="240">预期收益</th>
+		            <th class="f-tac" width="130">投资时间</th>
+		        </tr>
+		    </thead>
+		    <tbody>
+		    	#foreach($_order in $!orderList)
+		        <tr>
+		            <td class="u-invest-user">
+		            	<div class="u-user-wrap">
+		            	<span class="u-user-head">
+		                    <img src="#getMemberAvatar35(${_order.memberId},"40x40")" alt="用户头像">
+		                    <i>&nbsp;</i>
+						##APP活动临时注释
+							#if(${_order.orderSource}!=0)
+							<em></em>
+							#end
+		                </span>
+		                	#getMemberUserName(${_order.memberId})
+		            	</div>
+		                
+		                ##一羊零头活动
+                    <div class="u-icon-wrap">
+											#if($!_order.lastInvest)
+                        <a href="/activity/quadrupleGift#j-ycdy" target="_blank" class="u-icon-act u-icon-ycdy"></a>
+											#end
+											#if($!_order.luckInvest)
+                        <a href="/activity/quadrupleGift#j-xyns" target="_blank" class="u-icon-act u-icon-xyns"></a>
+											#end
+											#if($!_order.mostInvest)
+                        <a href="/activity/quadrupleGift#j-ymjr" target="_blank" class="u-icon-act u-icon-ymjr"></a>
+											#end
+											#if($!_order.firstInvest)
+                        <a href="/activity/quadrupleGift#j-yylt" target="_blank" class="u-icon-act u-icon-yylt"></a>
+											#end
+											#if($!_order.mostAndLastInvest)
+                        <a href="/activity/quadrupleGift#j-yzqj" target="_blank" class="u-icon-act u-icon-yzqj"></a>
+											#end
+                    </div>
+
+		            </td>
+		            <td class="u-invest-amount">
+						<em>￥${formulaUtil.getFormatPrice($!_order.investAmount)}</em>
+					</td>
+		            <td class="u-invest-profit">
+##		            	#if($_order.extraAnnualizedRate&&$!_order.extraAnnualizedRate > 0)
+##		            	($!{_order.annualizedRate}%+<strong class="f-fc-red">$!{_order.extraAnnualizedRate}%</strong>)
+##		            	#end
+						#if($_order.extraAnnualizedRate&&$!_order.extraAnnualizedRate > 0)
+                            <span>$!{_order.annualizedRate}%</span>
+						#else
+                            <span>$!{_order.totalRate}%</span>
+						#end
+		            </td>
+##					预期收益或者获得收益
+		            #if($!_order.leaseBonus)
+		            <td class="u-invest-bonus f-fs12 j-invest-bonus" data-bonus='$!_order.leaseBonusDetailJson' data-bonusrate='${formulaUtil.getFormatPrice($!_order.bonusAnnualizedRate)}'><span class="u-bonus-amount">￥${formulaUtil.getFormatPrice($!_order.totalInterest)}</span>
+		            &nbsp;&nbsp;+￥<em>${formulaUtil.getFormatPrice($!_order.leaseBonusAmounts)}</em>
+		            #else
+		            <td class="u-invest-bonus f-fs12" width="190">
+						#if($!{_order.totalExtraInterest} && $!{_order.totalExtraInterest}>0)
+                            <span>￥$formulaUtil.getFormatPrice($!{_order.allInterest})</br>
+                                (￥$formulaUtil.getFormatPrice($!{_order.totalInterest})+<strong
+                                        class="f-fc-red">￥$formulaUtil.getFormatPrice($!{_order.totalExtraInterest})</strong>)
+							</span>
+						#else
+                            <span>￥${formulaUtil.getFormatPrice($!_order.totalInterest)}</span>
+						#end
+		            #end
+		            </td>
+		            <td class="u-invest-time">${dateUtil.getDateStrFromDate($!_order.transactionTime)}<span>${dateUtil.getStrFromDate($!_order.transactionTime,'HH:mm:ss')}</span></td>
+		        </tr>
+		        #end
+		    </tbody>
+		</table>
+		
+		<div class="m-dividend-box f-dn" id="j-bonus-detail">
+			<div class="u-dividend-boxTop"></div>
+			<div class="u-dividend-boxCenter">
+                <p>租赁分红<em></em></p>
+				<div id="j-bonus-amount">
+				</div>
+				<span>年化收益增加了<em></em>%</span>
+			</div>
+			<div class="u-dividend-boxBottom"></div>
+		</div>
+	</div>
+#else
+<style>
+    #j-transactions-detail{display: none;}
+</style>
+#end

@@ -1,0 +1,35 @@
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$siteurl/res/lib/frozenui/kit.css","$m_css_url/modules/member.css"])
+#set($title='兑换现金券')
+<!--header-->
+<h2 class="u-header f-pos-r">
+    <a href="$siteurl/mCenter/reputationPage">返回</a>
+    <span class="f-fs18">
+        兑&nbsp;换&nbsp;现&nbsp;金&nbsp;券
+    </span>
+</h2>
+<!--/header-->
+<script type="text/html" id="j-actionsheetExchange-tpl">
+{{each data as item i}}
+    <span data-amount="{{item.id}}" class="z-disabled">
+        <em>{{item.name}}</em>
+        {{item.couponPrivileges}}&nbsp;&nbsp;{{item.couponValidity}}<br>
+        {{item.couponAmountScope}}&nbsp;&nbsp;{{item.couponDaysScope}}
+    </span>
+{{/each}}
+
+</script>
+<div class="ui-actionsheet-choise" id="j-repExchange-list">
+
+</div>
+#set($pageScript="
+<script src='$siteurl/res/lib/frozenjs/kit.js'></script>
+<script>
+    seajs.config({
+        'preload': ['zepto','base']
+    });
+    seajs.use('$m_js_url/modules/coupon');
+</script>
+")
+#CSRFToken("xToken")

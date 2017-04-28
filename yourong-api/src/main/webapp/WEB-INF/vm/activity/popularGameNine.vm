@@ -1,0 +1,43 @@
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$res_url/source/css/post/popularity.css"])
+#set($tradeNo=$request.getParameter("tradeNo"))
+#set($title='幸运九宫格')
+
+#if($currentUser)
+    #set($logined=true)
+#else
+    #set($logined=false)
+#end
+#CSRFToken('xToken')
+##  安卓
+#if($loginSource==1)
+    #set($os=1)
+#end
+##  IOS
+#if($loginSource==2)
+    #set($os=2)
+#end
+##
+<style>
+[v-cloak]{
+    display: none;
+}
+#if($loginSource==1 || $loginSource==2)
+.g-ft{
+    display: none;
+}
+#else
+</style>
+##header，安卓ios，不需要头部
+<h2 class="u-header f-pos-r">
+    <a class="f-fs16" href="$m_url">返回</a>
+    <span class="f-fs18">
+        幸运九宫格
+    </span>
+</h2>
+#end
+<div>
+
+</div>
+#CSRFToken('xToken')

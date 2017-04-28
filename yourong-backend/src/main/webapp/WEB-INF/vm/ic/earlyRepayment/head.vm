@@ -1,0 +1,17 @@
+ #parse("/common/common.vm")
+ #########################################script##################################### 
+  #set($js_config=[ 
+ "'urlMap':{ 
+   'ajax':'$root_url/earlyRepayment/ajax?', 
+   'repay':'$root_url/earlyRepayment/repay?'
+   },
+  
+   'permission':{ 
+      'edit':$shiro.hasPermission('directProject:edit')##提前还款
+	
+   },
+    'projectStatus':#buildDictJson('project_status') ##项目状态   
+   "
+ ])
+#set($css_url=["$root_url/static/assets/css/dropzone.css","$root_url/static/js/lib/jcrop/jquery.Jcrop.min.css","$root_url/static/js/lib/colorbox/colorbox.css","$root_url/static/js/lib/My97DatePicker/skin/WdatePicker.css","$root_url/static/css/project.css","$root_url/static/js/lib/colorbox/colorbox.css"])
+#set($js_url=["$root_url/static/assets/js/dropzone.min.js","$root_url/static/js/dz-upload.js","$root_url/static/js/lib/jcrop/jquery.Jcrop.min.js","$root_url/static/js/lib/colorbox/jquery.colorbox-min.js","$root_url/static/js/earlyRepayment.js","$root_url/static/js/lib/My97DatePicker/WdatePicker.js","$root_url/static/js/lib/colorbox/jquery.colorbox-min.js"]) 

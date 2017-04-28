@@ -1,0 +1,89 @@
+##快捷支付银行卡添加
+#parse("/common/common.vm")
+#set($css_url=["$cssv2_url/member/member.css"])
+#set($js_url=["$root_js_url/modules/member.js","$root_js_url/modules/area.js"])
+## 用户中心头部
+#parse("/member/head.vm")
+## 用户中心内容
+<div class="g-wrap">
+	<div class="g-uc-bd f-round">
+##		<div class="u-uc-menu f-round f-cf">
+##			<ul class="f-fr">
+##				<li><a href="$account_url[0]">账户总览</a></li>
+##				<li><a href="$account_url[1]">充值提现</a></li>
+##				<li class="z-current"><a href="$account_url[2]">银行卡管理</a></li>
+## 			</ul>
+##			<i class="u-arrow-i1"></i>
+##		</div>
+		<div class="g-uc-wrap m-bankcard-add u-quickbank-add">
+			<h3 class="u-round-title">
+				<em class="u-circle-12">添加快捷支付银行卡</em>
+				<span class="u-arrow-down">
+                	<i>◆</i>
+                	<span>◆</span>
+            	</span>
+			</h3>
+			## 页面内容
+
+			<form id= "bankAdd_form" class="j-validform u-addqbank-content" >
+				#CSRFToken()
+			<table>
+				<tr height="96" class="u-addqbank-info">
+					<td>您的实名认证信息</td>
+					<td class="u-addqbank-uname">			
+					姓&nbsp;&nbsp;&nbsp;&nbsp;名:&nbsp;&nbsp;&nbsp;<span>$!{currentUser.trueName}</span><i></i>
+					<p>身份证号：<span>422202198905062122</span><i></i></p>
+					</td>
+					<input name="cardHolder" type="hidden" class="u-ipt-amount f-round f-fwb f-fs14 f-fc-red2" value="$!{currentUser.trueName}" type="text">
+					<input name="memberId"   type="hidden" class="u-ipt-amount f-round f-fwb f-fs14 f-fc-red2" value="$currentUser.id" type="text">
+				</tr>
+				<tr>
+					<td>选择银行</td>
+					<td>
+						<div id="j-bankAdd-select" class="u-selector j-selector f-round f-w100 f-tal f-vam u-scroll-selector">
+							<button></button>
+							<i></i>
+							<ul class="f-round ">	
+							 #set($banks = $sysServiceUtil.getBankCode())							
+								#foreach($bank in $banks)
+								  <li value="$!{bank}">$bank.remarks</li>
+								#end
+							</ul>
+							<input type="hidden" class="v-input-req" name ="bankCode" id="bankCode" />										
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>银行账号</td>
+					<td>
+						<input name="cardNumber" class="u-ipt-amount f-round f-fwb f-fs14 f-fc-red2 v-bankcard j-bankcard-id" value="" type="text">
+					</td>
+				</tr>
+				<tr>
+					<td>手机号码</td>
+					<td>
+						<input name="checkCardNumber" recheck="cardNumber" class="u-ipt-amount f-round f-fwb f-fs14 f-fc-red2 v-bank-reck" value="此卡在银行预留的手机号码" type="text" oncopy="return false" onpaste="return false">
+					</td>
+				</tr>
+					
+				
+				<tr>
+					<td>开通校验码</td>
+					<td>
+					<input name="checkCode" recheck="" class="u-ipt-amount f-round f-fwb f-fs14 f-fc-red2" value="" type="text" oncopy="return false" onpaste="return false">
+					<label class="u-addqbank-fcolor">校验码已发送，十五分钟内有效，请注意查收。</label>
+					</td>
+				</tr>
+			</table> 
+			
+			<p class="u-bankcard-btn">
+			
+				<label  class="u-addqbank-fcolor">开通快捷支付，下次可快速付款无需再次绑定。</label><br>
+				<input id="submit_bankcard" type="button" class="f-round f-fs18 f-btn-m u-btn u-btn-primary" value="开通快捷支付"/>
+			</p>
+			</form>
+			## /页面内容
+		</div>
+	</div>
+	## /用户中心内容
+</div>

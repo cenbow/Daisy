@@ -1,0 +1,24 @@
+#parse("/common/common.vm")
+ #########################################script##################################### 
+ #set($js_config=[ 
+ "'urlMap':{ 
+   'ajax':'$root_url/forzenBalance/ajax?', 
+   'detail':'$root_url/forzenBalance/detail?id=',
+   'unforzen':'$root_url/forzenBalance/unforzen',
+   'unforzenDetail':'$root_url/forzenBalance/unforzenDetail',
+   'syncFrozen':'$root_url/forzenBalance/syncFrozen'
+   },
+   'forzenType':#buildDictJson('forzen_type'),
+   'forzenStatus':#buildDictJson('forzen_status'),
+   'unforzenStatus':#buildDictJson('unforzen_status'),
+   'permission':{
+   		'unforzen':$shiro.hasPermission('forzenBalance:unforzen'),
+		'unforzenDetail':$shiro.hasPermission('forzenBalance:unforzenDetail'),
+		'syncFrozen':$shiro.hasPermission('forzenBalance:syncFrozen')
+   },
+   'projectStatus':#buildDictJson('project_status'), ##项目状态
+   "
+ ]) 
+ #set($js_url=["$root_url/static/js/forzen.js","$root_url/static/js/lib/My97DatePicker/WdatePicker.js"]) 
+ #set($css_url=["$root_url/static/css/loan.css","$root_url/static/js/lib/My97DatePicker/skin/WdatePicker.css"])
+ #########################################DOM##################################### 

@@ -1,0 +1,104 @@
+
+.m-sg-content{
+    background-color: #ffffff;
+    margin-bottom:-100px;
+    border-bottom: 1px solid #ddd;
+}
+.u-sg-hd{
+     width:100%;
+     height:861px;
+     background: url(/static/img/post/signUpgrade/header_bg.png) no-repeat center top;
+     margin-top:-10px;
+}
+.m-sg-ctcenter{
+    width:990px;
+    height:3040px;
+    margin:0 auto;
+}
+.m-sg-hd1{
+    width:100px;
+    height:75px;
+    color:#d74148;
+    font-size: 60px;
+    font-family: "DINCond";
+    text-align: center;
+    border-bottom: solid 3px;
+    border-color: #d74148;
+    display:inline-block;
+    line-height: 90px;
+    position: absolute;
+}
+.m-sg-hd2{
+    height:86px;
+    width:855px;
+    border-bottom:solid 2px;
+    margin-left:130px;
+    border-color:#dddddd;
+    display:inline-block;
+    position:relative;
+}
+.m-sg-hd2 h2{
+    color:#d74148;
+    font-size:30px;
+    line-height:60px;
+}
+.m-sg-hd2 h3{
+    font-size:16px;
+    line-height:20px;
+    color:#747474;
+}
+.m-sg-ct{
+    margin:30px 0 15px 130px;
+    position:relative;
+}
+.m-sg-ct a,.m-sg-ct a:visited{
+    color:#d74148;
+}
+.u-sg-photo{
+    margin:50px auto 50px 130px;
+}
+.u-sg-little-tt{
+     width:300px;
+     height:20px;
+     padding-top:30px;
+     padding-bottom:10px;
+     color:#666666;
+     line-height:20px;
+     font-weight:bold;
+     font-size:14px;
+}
+.u-sg-little-tt span{
+     background: url(/static/img/post/signUpgrade/p3.png) no-repeat 0 4px;
+     padding-left:30px;
+}
+.u-sg-fontstyle{
+    font-size:14px;
+    font-family: "Microsoft YaHei";
+    color:#a1a1a1;
+}
+.f-sg-ct{
+    border-bottom: 1px solid #dddddd;
+}
+.u-sg-button{
+    width:172px;
+    height:32px;
+    background:#d74148;
+    border-radius: 8px;
+    border:solid #d74148;
+    text-align: center;
+    font-weight:bold;
+    font-size:14px;
+    line-height:32px;
+}
+.u-sg-button a{
+    display:block;
+    text-decoration: none;
+}
+.f-sg-motivation{
+       margin-left:130px;
+
+}
+
+
+
+

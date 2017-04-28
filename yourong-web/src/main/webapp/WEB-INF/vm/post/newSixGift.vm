@@ -1,0 +1,296 @@
+## 新手六重礼
+#parse('/common/common.vm')
+#set($css_url=["$root_css_url/post/newSixGift.css"])
+#set($js_url=["/static/lib/js/jq/jquery.circliful.min.js",
+    "/static/lib/js/template.js",
+    "$root_js_url/post/newSixGift.js"])
+
+#set($title="新手六重礼_$!{title_suffix}") ## title
+#set($keywords="新手六重礼，有融网") ## SEO 关键词
+#set($description="有融网运用高效的运营管理体系和创新的互联网思维,搭建了一个安全透明的互联网理财服务平台. ") ## SEO 描述
+
+#if($currentUser)
+    #set($logined=true)
+#else
+    #set($logined=false)
+#end
+#CSRFToken('xToken')
+
+<div class="u-hd" id="top" data-logined="$logined"></div>
+
+## part1
+<div class="g-font">
+    <div class="g-part1">
+        <div class="g-wrap">
+            <h1 class="u-h1">新手六重礼</h1>
+            <ul class="u-task-list" id="j-task-list">
+                ## 实名认证任务
+                #if(${servletUtil.isVerifyTrueName()})
+                    <li class="z-active z-hide" data-href="trueName">
+                        <div class="u-task-name">实名认证</div>
+                        <div>送518大礼包</div>
+                        <div class="u-result">已完成</div>
+                    </li>
+                #else
+                    <li class="z-hide" data-href="trueName">
+                        <div class="u-task-name">实名认证</div>
+                        <div>送518大礼包</div>
+                        <div class="u-result">未完成</div>
+                    </li>
+                #end
+
+
+                ## 其他任务
+                #if($currentUser)
+                    #foreach($noviceTask in $noviceTaskList)
+                        <li class="#if($noviceTask.isJoin()) z-active #end z-hide" data-href="$noviceTask.code">
+                            <div class="u-task-name">$!{noviceTask.name}</div>
+                            <div>送10点人气值</div>
+                            <div class="u-result">
+                                #if($noviceTask.isJoin())
+                                    已完成
+                                #else
+                                    未完成
+                                #end
+                            </div>
+                        </li>
+                    #end
+                #else
+                    <li class="z-hide" data-href="project">
+                        <div class="u-task-name">首次投资</div>
+                        <div>送10点人气值</div>
+                        <div class="u-result">未完成</div>
+                    </li>
+                    <li class="z-hide" data-href="info">
+                        <div class="u-task-name">完善信息</div>
+                        <div>送10点人气值</div>
+                        <div class="u-result">未完成</div>
+                    </li>
+                    <li class="z-hide" data-href="email">
+                        <div class="u-task-name">绑定邮箱</div>
+                        <div>送10点人气值</div>
+                        <div class="u-result">未完成</div>
+                    </li>
+                    <li class="z-hide" data-href="app">
+                        <div class="u-task-name">体验APP</div>
+                        <div>送10点人气值</div>
+                        <div class="u-result">未完成</div>
+                    </li>
+                    <li class="z-hide" data-href="weixin">
+                        <div class="u-task-name">绑定微信</div>
+                        <div>送10点人气值</div>
+                        <div class="u-result">未完成</div>
+                    </li>
+                #end
+            </ul>
+        </div>
+    </div>
+
+    ## part2
+    <div class="g-part2 trueName">
+        <div class="g-wrap">
+            <h1 class="u-h1">实名认证</h1>
+
+            <div class="u-steps-bg"></div>
+
+            <ul class="u-steps">
+                <li class="u-step1">
+                    <div class="u-title">15秒快速注册会员</div>
+                </li>
+                <li class="u-step2">
+                    <div class="u-title">开通新浪支付存钱罐</div>
+                </li>
+                <li class="u-step3">
+                    <div class="u-title">完成实名认证</div>
+                </li>
+                <li class="u-step4">
+                    #if(!$currentUser)
+                        <a class="u-steps-btn" id="j-steps-btn">我要518大礼包</a>
+                    #else
+                        #if(${servletUtil.isVerifyTrueName()})
+                            <a class="u-steps-btn z-active">现金券已获得</a>
+                        #else
+                            <a href="/member/sinapay?register=true" target="_blank" class="u-steps-btn">开通新浪支付存钱罐</a>
+                        #end
+                    #end
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    ## part3
+    <div class="g-part3 project" id="part2">
+        <div class="g-wrap pos-r">
+            <h1 class="u-h1">首次投资</h1>
+            <div class="u-part3-left">
+                <div id="j-newerMission" class="u-newerMission"></div>
+                ## 用atrTemplate来做这个更方便
+                <script id="j-newerMission-tpl" type="text/html">
+                    <div class="u-newCustomer-item {{if !isNovice}} z-current {{/if}}" id="j-nc-item">
+                    <a id="newC_aA" class="u-pl-wrap u-newCustomer-pic j-trace-url"
+                       href="/products/detail-{{id}}.html" target="_blank">
+                        {{if thumbnail}}
+                        <img id="newC_img" src="https://oss-cn-hangzhou.aliyuncs.com/{{thumbnail}}">
+                        {{else}}
+                        <img id="newC_img" src="/static/img/common/default-product.jpg">
+                        {{/if}}
+                        <span id="newC_round" class="u-ring-bg" style="background-image:url(/static/img/homepage/round/round_finish.png)"></span>
+                        <i></i>
+                        <span class="u-pl-stat circliful" id="j-pl-stat2" data-dimension="160" data-fontsize="14" data-percent="{{round}}" data-fgcolor="#e33f4a" data-bordersize="5" data-bgcolor="#eee" style="width: 160px;">
+                        </span>
+                    </a>
+                    <div class="u-newCustomer-particulars">
+                        <a id="newC_aB" target="_blank" class="u-newCustomer-itemNm f-fs16 j-trace-url" href="/products/detail-{{id}}.html">
+                            <strong>{{prefixProjectName}}</strong>
+                            <em>{{suffixProjectName}}</em>
+                            <i id="newC_joinLease" class="{{if joinLease}} u-dividend-leaseicon {{/if}}"></i>
+                        </a>
+                        <div class="u-newCustomer-info">
+                            <span class="u-newCustomer-data01">
+                                项目总额
+                                <span class="f-ff-rmb f-fs22">￥</span><em class="f-ff-amount f-fs28" id="newC_totalAmount">{{formatTotalAmount}}</em>
+                            </span>
+                            <em class="u-newCustomer-data">
+                                年化收益
+                                <em class="f-ff-amount f-fs28 f-fc-red2">
+                                    {{if minAnnualizedRate != maxAnnualizedRate}}
+                                        {{formatMinAnnualizedRate}}~{{formatMaxAnnualizedRate}}%
+                                    {{else}}
+                                        {{formatMinAnnualizedRate}}%
+                                    {{/if}}
+                                </em>
+                            </em>
+                            <strong class="u-newCustomer-days">
+                                收益天数
+                                <em class="f-ff-amount f-fs28" id="newC_earningsDays">{{borrowPeriod}}</em>
+                                <span class="f-fs18">{{formatProfitPeriodType}}</span>
+                            </strong>
+                        </div>
+                        <div class="u-newCustomer-process f-clear">
+                            <span id="newC_processBar" style="width:{{process}}"></span>
+                        </div>
+                        <div class="u-newCustomer-meta">
+                            <em>当前进度：<strong class="f-ff-ver">{{process}}</strong></em><span>剩余可投金额 <strong class="f-ff-ver" id="newC_balance">{{formatAvailableBalance}}</strong> 元</span>
+                            <a id="newC_aC" target="_blank" href="/products/detail-{{id}}.html" class="u-newCustomer-btn f-round f-fr j-trace-url">{{buttonText}}</a>
+                        </div>
+                    </div>
+                </div>
+                </script>
+
+            ##                <p class="u-part3-tips">小提示：新客专享100元起投，单笔投资满1000元即可使用30元现金券</p>
+            </div>
+
+            <div class="u-part3-right">
+                <p class="u-part3-right-title">投资可享<br/>
+                    最高<span class="f-fc-red">15%</span>年化收益</p>
+                <p class="u-part3-right-content">财富自由 触手可及</p>
+
+                #if($currentUser)
+                    <a class="u-part3-btn" id="j-part3-btn1"></a>
+                #else
+                    <a class="u-part3-btn" id="j-part3-btn2">我要10点人气值</a>
+                #end
+
+                <span class="u-question" id="j-question">
+                    <span class="u-answer">
+                        人气值可用于兑换现金券、收益券和其他福利，可通过邀请<br/>好友投资、抢标五重礼、每日签到等活动获得。<br/>
+                        <a href="/activity/popularityValues" class="u-answer-link">详情点击人气值专题页</a>
+                        <span class="u-arrow-down">
+                            <i>◆</i><span>◆</span>
+                        </span>
+                    </span>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    ## part4
+    <div class="g-part4 app email info weixin" id="part3">
+        <div class="g-wrap">
+            <div class="u-part4-left">
+                <h1 class="u-h1 mb-30">完善资料</h1>
+
+                <div class="u-part4-left-body">
+                    <div class="u-part4-left1">
+                        <span class="u-part4-img1"></span>
+                        <p class="u-part4-title">完善个人资料</p>
+                        <p class="u-part4-content">乐享定制服务</p>
+                        #if($currentUser)
+                            <a class="u-part4-btn" href="/member/profile" id="j-part4-btn1a" target="_blank"></a>
+                        #else
+                            <a class="u-part4-btn" id="j-part4-btn1b">我要10点人气值</a>
+                        #end
+                    </div>
+                    <div class="u-part4-left2 ml-100">
+                        <span class="u-part4-img2"></span>
+                        <p class="u-part4-title">绑定邮箱</p>
+                        <p class="u-part4-content">账户动态及时传递</p>
+                        #if($currentUser)
+                            <a class="u-part4-btn" href="/member/security" id="j-part4-btn2a" target="_blank"></a>
+                        #else
+                            <a class="u-part4-btn" id="j-part4-btn2b">我要10点人气值</a>
+                        #end
+                    </div>
+                </div>
+            </div>
+
+            <div class="u-part4-right">
+                <h1 class="u-h1 ml-60 mb-30">掌上理财</h1>
+                <div class="u-part4-right-body">
+                    <div class="u-part4-right1">
+                        <div class="u-qrcode-app" id="j-qrcode-app">
+                            <span class="u-completeIcon"></span>
+                        </div>
+                        <p class="u-part4-title">开启财富之路</p>
+                        <p class="u-part4-content"><span class="f-fc-red">有融网APP</span>，扫描下载</p>
+                    </div>
+                    <div class="u-part4-left2">
+                        <div class="u-qrcode-weixin" id="j-qrcode-weixin">
+                            <span class="u-completeIcon"></span>
+                        </div>
+                        <p class="u-part4-title">掌握一手资讯</p>
+                        <p class="u-part4-content"><span class="f-fc-red">公众号：有融网</span></p>
+                    </div>
+
+                    <div class="u-part4-tips">
+                        小提示：<br/>
+                        1.在<span class="f-fwb">APP上登录</span>您的有融网账号，即可<span class="f-fwb">领取10点人气值</span>奖励。<br/>
+                        2.在<span class="f-fwb">微信</span>菜单中点击“我的账户”-“注册/绑定”，<span class="f-fwb">绑定您的有融网账号</span>，<br/>
+                        即可<span class="f-fwb">领取10点人气值奖励</span>。
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    ## part5
+    <div class="g-part5" id="part4">
+        <div class="g-wrap">
+            <h1 class="u-h1">实时播报</h1>
+
+            ## 用户列表
+            <div class="u-list">
+                <div class="m-heavyInvestment-box">
+                    <div class="u-divider"></div> ## 中间一条竖线
+                    <ul id="j-heavyInvestment-list"></ul>
+
+                    <script id="j-heavyInvestment-list-tpl" type="text/html">
+                        {{if resultList && resultList.length > 0}}
+                        {{each resultList as item}}
+                        <li class="u-heavyInvestment-user">
+                            <span class="u-user-head">
+                                <img src='{{if item.avatar}}$aliyun_url/{{item.avatar}}{{else}}/static/img/member/avatar_35x35.png{{/if}}' alt="用户头像">
+                                <i>&nbsp;</i>
+                            </span>
+                            <span class="u-user-name">{{item.memberName}}</span>
+                            <span class="u-user-time">{{item.createDay}} <i class="u-createClock">{{item.createClock}}</i></span>
+                            <span>{{item.strHead}}<span class="f-fc-red">{{item.strTail}}</span></span>
+                        </li>
+                        {{/each}}
+                        {{/if}}
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

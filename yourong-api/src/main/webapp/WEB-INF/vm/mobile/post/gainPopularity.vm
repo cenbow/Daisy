@@ -1,0 +1,199 @@
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($encryptionId=$request.getParameter("encryptionId"))
+###set($encryptionId='2563496')
+#set($loginSource=$request.getHeader("loginSource"))
+###CSRFToken('xToken')
+<style>
+    body {
+        background: #F4F5F7
+    }
+
+    .f-color3 {
+        color: #333333;
+    }
+
+    .f-color9 {
+        color: #999999;
+    }
+
+    .f-colorRed {
+        color: #d74148;
+    }
+
+    .u-userInfo {
+        background: #ffffff;
+        border: 1px solid #F5F5F5;
+        padding: 5%;
+        vertical-align: middle;
+    }
+
+    .u-userInfo span {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .u-userInfo div {
+        position: relative;
+    }
+
+    .u-userInfo .u-signBtn {
+        border: 1px solid #D74148;
+        border-radius: 4px;
+        height: 28px;
+        line-height: 28px;
+        position: absolute;
+        right: 0;
+        top: -3px;
+        padding: 0 6%;
+    }
+
+    .u-activityList ul {
+        margin-top: 20px;
+    }
+    .u-activityList ul li {
+        width: 94%;
+        padding: 0 3%;
+        height: 50px;
+        line-height: 50px;
+        vertical-align: middle;
+        background: #FFFFFF;
+        border-top: 1px solid #F5F5F5;
+        position: relative;
+    }
+
+    .u-activityList ul li:last-child {
+        border-bottom: 1px solid #F5F5F5;
+    }
+
+    .u-activityList ul li a {
+        width: 100%;
+        height: 50px;
+        display: block;
+    }
+
+    .u-activityList ul li span {
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 3%;
+    }
+
+    .u-activityList ul li span img {
+        vertical-align: middle;
+    }
+
+    .u-activityList ul li .u-linkBtn {
+        /*font-size: 18px;*/
+        color: #cdcdd3;
+        position: absolute;
+        right: 0;
+        vertical-align: middle;
+    }
+
+    .u-activityList ul li .u-linkBtn img {
+        vertical-align: middle;
+    }
+</style>
+<div id="j-gainPopularity">
+    <input id="j-token" type="hidden" htmlToken="$encryptionId">
+
+##    <a href="yrw-skip://invokeMethod=getToken" style="color: #ffffff;background: red;padding: 20px;">IOS点击请求测试</a>
+    <div class="u-userInfo">
+        <div>
+        <span>
+            <p class="f-fs16 f-color3">每日任务：签到</p>
+        </span>
+            <span class="f-fs12 f-colorRed u-signBtn " @click="MemberBehavior('I1')"> <a
+                    class="j-linkSignIn f-colorRed">去签到</a></span>
+        </div>
+    </div>
+    <div class="u-activityList">
+        <ul>
+            <li @click="MemberBehavior('I2')">
+                <a @click="gotoLogin(event)"
+                   :href="'$siteurl/activity/newSixGift/index?isNeedYRWtoken=Y&HtmlToken=$encryptionId&title='+sixGiftTitle">
+                    <span><img src="$res_url/img/post/popularityPark/ico_newtask.png"
+                               alt="" height="27px" width="27px"></span>
+                    <span class="f-color3">新手任务</span>
+                    <span class="u-linkBtn"> <img src="$res_url/img/post/popularityPark/ico_arrow.png" alt=""
+                                                  width="60%"/></span>
+                </a>
+            </li>
+            <li @click="MemberBehavior('I3')">
+                <a @click="gotoLogin(event)"
+                   :href="'$siteurl/mstation/post/invite?isNeedYRWtoken=Y&title='+inviteTitle">
+                    <span><img src="$res_url/img/post/popularityPark/ico_invite.png" alt=""
+                               height="27px" width="27px"></span>
+                    <span class="f-color3">邀请好友</span>
+                    <span class="u-linkBtn"><img src="$res_url/img/post/popularityPark/ico_arrow.png" alt=""
+                                                 width="60%"/></span>
+                </a>
+            </li>
+        ##            <li @click="MemberBehavior('I4')">
+        ##                <a @click="gotoLogin(event)" :href="'$siteurl/activity/marathon?isNeedYRWtoken=Y&title='+marathonTitle">
+        ##                    <span><img src="$res_url/img/post/popularityPark/ico_years.png"
+        ##                               alt="" height="27px" width="27px"></span>
+        ##                    <span class="f-color3">友情岁月</span>
+        ##                    <span class="u-linkBtn"><img src="$res_url/img/post/popularityPark/ico_arrow.png" alt=""
+        ##                                                 width="60%"/></span>
+        ##                </a>
+        ##            </li>
+            <li @click="MemberBehavior('I5')">
+                <a @click="gotoLogin(event)"
+                   :href="'$siteurl/mstation/post/quadrupleGift?isNeedYRWtoken=Y&title='+quadrupleGiftTitle">
+                    <span><img src="$res_url/img/post/popularityPark/ico_fivegift.png"
+                               alt="" height="27px" width="27px"></span>
+                    <span class="f-color3">抢标五重礼</span>
+                    <span class="u-linkBtn"><img src="$res_url/img/post/popularityPark/ico_arrow.png" alt=""
+                                                 width="60%"/></span>
+                </a>
+            </li>
+            <li @click="MemberBehavior('I6')">
+                <a @click="gotoLogin(event)"
+                   :href="'$siteurl/activity/popRedPackage/mine?isNeedYRWtoken=Y&title='+popRedPackageTitle">
+                    <span><img src="$res_url/img/post/popularityPark/ico_redb.png" alt=""
+                               height="27px" width="27px"></span>
+                    <span class="f-color3">投资红包</span>
+                    <span class="u-linkBtn"><img src="$res_url/img/post/popularityPark/ico_arrow.png" alt=""
+                                                 width="60%"/></span>
+                </a>
+            </li>
+
+        </ul>
+    </div>
+
+    <div class="u-errorBlock">
+
+    </div>
+</div>
+##<script src="$res_url/lib/js/vconsole.min.js"></script>
+<script src="$res_url/lib/js/zepto.min.js"></script>
+<script src='$res_url/assets/js/common/appHookES5.js'></script>
+#set($pageScript="
+<script src='$aliyunOss_url/res/lib/vue/v1/vue.min.js'></script>
+<script>
+    var u = navigator.userAgent;
+    var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+    var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+    console.log('os:',$loginSource)
+    //    console.log(233)
+    window.hook = new AppHook($loginSource)
+    $('.j-linkSignIn').on('click', function () {
+        if (isAndroid) {
+            Android.ToActivity('signIn', null);
+        } else if (isiOS) {
+            {
+                $(this).attr('href', 'yrw-skip://invokeMethod=signIn')
+            }
+        }
+        b
+    })
+
+    if ($loginSource==1
+    )
+    {
+        Android.UpdateTitle('赚人气值')
+    }
+    seajs.use('$m_js_url/post/gainPopularity.js')
+</script>
+")

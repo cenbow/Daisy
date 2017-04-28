@@ -1,0 +1,168 @@
+<div tabindex="-1" class="modal fade" id="modal-table" style="display: none;" aria-hidden="true">
+     <div class="modal-dialog">
+     <div class="modal-content">
+ <div class="modal-header no-padding">
+             <div class="table-header">
+                  <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+                    <span class="white">×</span>
+              </button>
+    <span class="modalFormTitle">添加模板</span>
+       </div>
+  </div>
+   <div class="modal-body">
+     <form role="form" class="form-horizontal" id="weixin_key_form1" method="post">
+				<div class="row">
+					<div class="col-xs-9 col-sm-9 widget-container-span ui-sortable">
+						<div class="widget-box">
+							<div class="widget-header">
+								<h5>关键字回复模板信息</h5>
+							</div>
+						<div class="widget-body">
+							<div class="widget-main">
+							<div  >
+									<div class="form-group clearfix">
+										<label class="col-sm-3 control-label no-padding-right" for="l_member_url" >模板类别</label>
+											<div class="col-sm-5">
+											<select id="templateType" name="templateType">
+												<option value="1">文字</option>
+												<option value="2">图文</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div >
+									<div class="form-group ">
+										<label class="col-sm-3 control-label no-padding-right" for="l_member_type" >规则名</label>
+											<div class="col-sm-5">
+											<input type="text" datatype="*"   name="name" id="form-field-name" placeholder="" class="col-xs-12 col-sm-12" >
+										</div>
+									</div>
+								</div>
+							<div >
+								<div class="form-group">
+									<label class="col-sm-3 control-label no-padding-right" for="l_member_type" >关键字1</label>
+									<div class="col-sm-5">
+										<input type="text" datatype="*"  name="keyword1" id="form-field-keyword1" placeholder="" class="col-xs-12 col-sm-12" >
+									</div>
+								</div>
+							</div>
+							<div >
+								<div class="form-group">
+									<label class="col-sm-3 control-label no-padding-right" for="l_member_type" >关键字2</label>
+									<div class="col-sm-5">
+										<input type="text"  name="keyword2" id="form-field-keyword2" placeholder="" class="col-xs-12 col-sm-12" >
+									</div>
+								</div>
+							</div>
+							<div >
+								<div class="form-group">
+									<label class="col-sm-3 control-label no-padding-right" for="l_member_type" >关键字3</label>
+									<div class="col-sm-5">
+										<input type="text"  name="keyword3" id="form-field-keyword3" placeholder="" class="col-xs-12 col-sm-12" >
+									</div>
+								</div>
+							</div>
+							<div >
+								<div class="form-group">
+									<label class="col-sm-3 control-label no-padding-right" for="l_member_type" >关键字4</label>
+									<div class="col-sm-5">
+										<input type="text"  name="keyword4" id="form-field-keyword4" placeholder="" class="col-xs-12 col-sm-12" >
+									</div>
+								</div>
+							</div>
+							<div >
+								<div class="form-group">
+									<label class="col-sm-3 control-label no-padding-right" for="l_member_type" >关键字5</label>
+									<div class="col-sm-5">
+										<input type="text"  name="keyword5" id="form-field-keyword5" placeholder="" class="col-xs-12 col-sm-12" >
+									</div>
+								</div>
+							</div>
+						  <div >
+						  
+						  <div id="showTitle">
+									<div class="form-group clearfix">
+										<label class="col-sm-3 control-label no-padding-right" for="l_member_type" >标题</label>
+											<div class="col-sm-5">
+											<input type="text"  name="title"  id="form-field-title" placeholder="" class="col-xs-12 col-sm-12" >
+										</div>
+									</div>
+								</div>
+								
+									<div  id="showUrl">
+									<div class="form-group clearfix">
+										<label class="col-sm-3 control-label no-padding-right" for="l_member_url" >链接</label>
+											<div class="col-sm-5">
+											<input type="text"  name="url" datatype="*" id="form-field-url" placeholder="" class="col-xs-12 col-sm-12" >
+										</div>
+									</div>
+								</div>
+						  
+							 <div class="form-group clearfix" id="showText">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-debtPerson">内容</label>
+									<div class="col-sm-3">
+										<textarea type="text" datatype="*" name="textDescribe" id="form-field-textDescribe" ></textarea>
+									</div>
+								</div>
+							</div>
+						
+						##<div class="well">
+							##<div class="form-group clearfix">
+  							###添加文件按钮
+						  	##<span class="btn btn-success fileinput-button image dz-upload-btn">
+						       ## <i class="glyphicon glyphicon-plus"></i>
+						       ## <span>添加文件</span>
+						   	## </span>
+     						###图片控件容器
+  							##<div class="dropzoneImage dropzone dropzoneSort" id="image" data-maxfiles="1" data-category="debt_base">
+								  ##  <div class="fallback"> 
+								   ## </div>
+  							##</div>  
+						##</div>
+				  		##</div>
+				  		
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+			<input type="hidden" id="j-json-dropzone-weixin" name="lenderAttachmentsData"/>
+	<input type="hidden" name="id" value="$!id"/><!--id-->
+		</form>
+				#set($weixinDropzone = [
+	    {"title":"关键字回复相关图片", "category":"weixin_lender","dzId":"dropzone_weixin"}
+ ])
+ <div class="row">
+	<div class="col-xs-9 col-sm-9 widget-container-span ui-sortable" id="weixin_img">
+		<div class="widget-box">
+			<div class="widget-header">
+			</div>
+			<div class="widget-body">
+				<div class="widget-main">
+					<div class="form-group clearfix">
+					
+						###添加文件按钮
+						<span class="btn btn-success fileinput-button dropzone_weixin dz-upload-btn">
+					        <i class="glyphicon glyphicon-plus"></i>
+					        <span>添加文件</span>
+					    </span>
+					    ###图片控件容器
+						<div class="dropzoneImage dropzone dropzoneSort" id="dropzone_weixin" data-category="weixin_lender">
+						</div>	
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+<button type="button" id="save_weixin_key" class="btn btn-primary">保存</button>
+</div>
+</div>
+<!-- /.modal-content -->
+ </div>
+<!-- /.modal-dialog -->
+</div>

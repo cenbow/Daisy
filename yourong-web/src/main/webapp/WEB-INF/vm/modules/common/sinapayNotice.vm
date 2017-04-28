@@ -1,0 +1,15 @@
+#set($dict = $sysServiceUtil.getDictByGroupNameAndKey("is_redirect", "is_handle_sina_pay"))
+#set($content = $sysServiceUtil.getDictValue("content","web_notice",""))
+#set($webCheck = $sysServiceUtil.getDictValue("is_redirect","is_handle_sina_pay",""))
+
+#if($webCheck=='Y')
+    <div class="u-banner-topNotice">
+        <div class="g-wrap f-pos-r">
+            <a href="$!dict.remarks">
+                尊敬的有融网会员：<br/>
+                $content
+            ##					<i class="j-layer-close" data-label="sinapayBanner20150702" data-target="#j-banner-sinapay"></i>
+            </a>
+        </div>
+    </div>
+#end

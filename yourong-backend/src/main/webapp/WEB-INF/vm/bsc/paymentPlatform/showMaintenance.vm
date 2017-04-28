@@ -1,0 +1,48 @@
+<div tabindex="-1" class="modal fade bs-example-modal-lg" id="show-table" style="display: none;" aria-hidden="true" >
+     <div class="modal-dialog">
+     <div class="modal-content" style="width: 800px;">
+ <div class="modal-header no-padding">
+             <div class="table-header">
+                  <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+                    <span class="white">×</span>
+              </button>
+    <span class="modalFormTitle"></span>
+       </div>
+  </div>
+   <div class="modal-body">
+    <form role="form" class="form-horizontal" id="maintenance_form" method="post">
+    <input type="hidden" id="maintenanceId" name="maintenanceId" value=""/> 
+<div class="form-group">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 维护开始时间: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+		<em id="show_startTime"></em>
+    </div>
+  </div>
+</div>
+<div class="form-group">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 维护结束时间: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+		<em id="show_endTime"></em>
+    </div>
+  </div>
+</div>
+<div class="form-group">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 维护公告: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+		<em name="show_maintenanceContent", id="show_maintenanceContent"></em>
+    </div>
+  </div>
+</div>
+</form>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+</div>
+</div>
+<!-- /.modal-content -->
+ </div>
+<!-- /.modal-dialog -->
+</div>

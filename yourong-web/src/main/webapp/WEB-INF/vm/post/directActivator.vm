@@ -1,0 +1,290 @@
+#parse('/common/common.vm')
+#set($title="快投有奖_$!{title_suffix}")
+#set($css_url=["$root_css_url/post/directActivator.css"])
+#set($js_url=[
+    "$root_url/static/lib/js/vue/vue.js",
+    "$root_url/static/lib/js/vue/vue.extend.js",
+    "$root_url/static/lib/js/jq/jquery.circliful.min.js",
+    "$root_url/static/lib/js/jq/jquery.rotate.min.js",
+    "$root_url/static/lib/js/jq/jquery.dropkick-min.js",
+    "$root_url/static/lib/js/moment.min.js",
+    "$root_js_url/post/directActivator.js"
+])
+
+#if($currentUser)
+    #set($logined=true)
+#else
+    #set($logined=false)
+#end
+#CSRFToken('xToken')
+
+<div id="j-directLottery" data-logined="$logined" v-cloak>
+    <div class="m-top-bg-logined">
+        <div class="g-wrap">
+            <h1 class="m-lottery-tt">
+                <span class="u-m-content"><strong>快投有奖·全新改版</strong>抽中<em>“即送现金”</em></span>
+            </h1>
+            <div class="m-rotateDisc-container">
+                ## 当前抽奖项目
+                <div class="m-prizeDraw-container f-clear" v-if="logined && initData.listProjectLottery && initData.listProjectLottery.length > 0">
+                    <div class="u-current-project">当前抽奖项目:</div>
+                    <select name="project" class="default" style="width: 130px">
+                        <option :value="item.projectId+'&'+item.nummber" v-for="item in initData.listProjectLottery">{{item.projectName}}</option>
+                    </select>
+                </div>
+                ## 抽奖转盘
+                <div class="m-rotateDisc">
+                    <img class="u-rotate-disc" id="j-lottery-rotate" :src="'/static/img/products/directActivator/newRotateDisc_bgm'+rewardNum+'.png'">
+                    <div class="u-rotate-needle" :class="{'z-disabled': lotteryNumber==0}" id="j-lottery-arrow">
+                        <span class="u-lottery-btn" @click="goLottery(1)">抽奖<em v-text="lotteryNumber"></em>次</span>
+                        <span class="u-lottery-btn" @click="goLottery(2)">一键抽奖</span>
+                    </div>
+                </div>
+            </div>
+            <div class="u-arrow"></div>
+            ## 登录时，我的中奖记录
+            <div class="m-prizeList-container" :class="{'z-logined': logined && initData.listProjectLottery && initData.listProjectLottery.length > 0}" v-if="logined">
+                <div class="m-prizeList-panel">
+                    <div class="m-prizeList-header">
+                        <i class="u-star"></i>我的中奖记录<i class="u-star"></i>
+                    </div>
+                    <div class="m-prizeList-content" v-if="initData.projectForReward && initData.projectForReward.length > 0">
+                        <div class="m-prizeList-item" v-for="item in initData.projectForReward" :class="{'z-multiLine': item.projectForLevel.length>3}">
+                            <div>
+                                <a class="u-project-name" target="_blank" v-text="item.prefixProjectName" href="/products/detail-{{item.id}}.html"></a>
+                                <div class="u-project-rank">
+                                    <ul class="u-my-project-list">
+                                        <li v-for="obj in item.projectForLevel">{{obj.level | formatNumToDay}}等奖<i class="u-prize-icon">X{{obj.number}}</i></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="z-second" v-if="item.status != 51 && item.status != 52 && item.status != 70 && item.status != 90 ">
+                                <span class="f-process-bar" v-if="item.progress"><em style="width: {{item.progress}}%"></em></span>{{item.progress}}%
+                                <span class="f-fr">
+                                    <i v-if="item.totalCash>0"><em class="f-fc-yellow">{{item.totalCash}}元</em>现金履约当日发放</i>
+                                    <i v-if="item.totalCash && item.popularity">,</i>
+                                    <i v-if="item.popularity>0"><em class="f-fc-yellow">{{item.popularity}}点</em>人气值</i>
+                                </span>
+                            </div>
+                            <div class="z-second" v-if="item.status == 51 || item.status == 52 || item.status == 70">
+                                <span class="u-project-status">募集成功</span>
+                                <span class="f-fr" v-if="!item.overDate">募集时间超过奖励期限，无奖励</span>
+                                <span v-else>
+                                    <span class="f-fr" v-if="item.totalRewardAmount && !item.totalCash">
+                                        获得<em class="f-fc-yellow">{{item.totalRewardAmount}}元</em>现金券
+                                        <i v-if="item.popularity">，<em class="f-fc-yellow">{{item.popularity}}点</em>人气值</i>
+                                    </span>
+
+                                    <span class="f-fr" v-if="!item.totalRewardAmount && item.totalCash">
+                                        <em class="f-fc-yellow">{{item.totalCash}}元</em>现金已发放
+                                        <i v-if="item.popularity">，获得<em class="f-fc-yellow">{{item.popularity}}点</em>人气值</i>
+                                    </span>
+
+                                    <span class="f-fr"
+                                          v-if="!item.totalRewardAmount && !item.totalCash && item.popularity">
+                                        获得<em class="f-fc-yellow">{{item.popularity}}点</em>人气值
+                                    </span>
+                                </span>
+                            </div>
+                            <div class="z-second" v-if="item.status == 90">
+                                <span class="u-project-status">募集失败</span>
+                                <span class="f-fr" v-if="item.totalCash && item.totalCash>0">
+                                    <i v-if="item.totalCash>0"><em
+                                            class="f-fc-yellow">{{item.totalCash}}元</em>现金奖励已失效</i>
+                                    <i v-if="item.totalCash>0 && (item.totalRewardAmount>0 || item.popularity>0)">,</i>
+                                    <i v-if="item.totalRewardAmount>0 || item.popularity>0">获得</i>
+                                    <i v-if="item.totalRewardAmount>0"><em class="f-fc-yellow">{{item.totalRewardAmount}}元</em>现金券</i>
+                                    <i v-if="item.totalRewardAmount>0 && item.totalRewardAmount>0">,</i>
+                                    <i v-if="item.popularity>0"><em class="f-fc-yellow">{{item.popularity}}点</em>人气值</i>
+                                </span>
+                            </div>
+
+                            <div class="u-shadow" v-if="item.status == 90"></div>
+                        </div>
+                    </div>
+                    <div class="m-prizeList-content" v-else>
+                        <span class="z-noData">暂无记录</span>
+                    </div>
+                </div>
+            </div>
+            ## 未登录时，项目的活跃度
+            <div class="m-prizeList-container z-logined" v-else>
+                <div class="m-prizeList-panel">
+                    <div class="m-prizeList-header">
+                        <i class="u-star"></i>中奖记录<i class="u-star"></i>
+                    </div>
+                    <div class="m-prizeList-content z-hidden" v-if="initData.listReward && initData.listReward.length > 0">
+                        <div>
+                            <ul id="j-directLotteryList">
+                                <li class="m-prizeList-item" v-for="item in initData.listReward">
+                                    <a class="u-prizeList-tt f-db" target="_blank"
+                                       href="/products/detail-{{item.id}}.html" v-text="item.prefixProjectName"></a>
+                                    <div class="u-project-detail">
+                                        <span>{{item.receivedTime | compareTime}}前</span>
+                                        <span><em>{{item.level1 | formatNumToDay}}等奖</em>已被夺得</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="m-prizeList-content" v-else>
+                        <span class="z-noData">暂无记录</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="m-direct-body">
+        <div class="g-wrap">
+            <div class="m-direct-update">
+                <h1>升级介绍：</h1>
+                <ul>
+                    <li>1、在项目上线一定时间内投资即可获得抽奖机会；</li>
+                    <li>2、奖励皆为现金；</li>
+                    <li>3、现金奖励于项目履约后到账。</li>
+                </ul>
+            </div>
+            <div class="m-direct-model">
+                <span class="u-direct-tip-icon u-dialog-left">借款人</span>
+                <span class="m-direct-left"></span>
+                <span class="u-direct-center"></span>
+                <span class="m-direct-right"></span>
+                <span class="u-direct-tip-icon u-dialog-right">投资人</span>
+                <span class="u-direct-msg">借款人与有融网签订《委托协议》</span>
+            </div>
+            <div class="m-direct-module">
+                <div class="m-module-header">
+                    <span class="m-module-tag f-ff-din">1<em class="u-line"></em></span>
+                    <div class="m-content-title">
+                        <h1>什么是快投有奖</h1>
+                        借款人为了加快项目募集速度，愿提供资金委托有融网设立抽奖奖项鼓励投资，投资成功即可抽奖，抽中即送<em>现金</em>，奖励将于项目履约后到账。
+                    </div>
+                </div>
+                <div class="m-module-content m-products-list">
+                    <div class="u-contc-title">快投有奖项目</div>
+                    <ul class="f-cf j-products-list">
+                        <li class="f-round" :class="{'z-actived': item.active,'z-4th': $index == 3}" v-for="item in initData.projectFrontList">
+                            <h4 class="f-fs14">
+                                <a href="/products/detail-{{item.id}}.html">
+                                    {{item.prefixProjectName}}
+                                    <i class="u-direct-lottery"></i>
+                                    <i class="u-transfer-icon" v-if="item.status==30 && item.transferFlag==1"></i>
+                                    <i class="u-dividend-leaseicon" v-if="item.joinLease"></i>
+                                    <i class="u-icon-newCustomer" v-if="item.noviceProject"></i>
+                                    <span class="f-fs12 f-text-overflow">{{item.suffixProjectName}}</span>
+                                </a>
+                            </h4>
+                            <div class="u-pl-photo">
+                                <s></s>
+                                <a class="u-pl-wrap" href="/products/detail-{{item.id}}.html">
+                                    <img :src="'https://oss-cn-hangzhou.aliyuncs.com'+item.thumbnail" :alt="item.suffixProjectName">
+                                    <span class="u-ring-bg" style="background-image:url(/static/img/homepage/round/round{{item.round}}.png)"></span>
+                                    <i></i>
+                                    <span class="j-pl-stat u-pl-stat" data-dimension="160" data-fontsize="14" data-percent="{{item.process}}" data-fgcolor="#e33f4a" data-bordersize="5" data-bgcolor="#ccc" v-if="item.process != 100"></span>
+                                    <span class="j-pl-stat u-pl-stat" data-dimension="160" data-fontsize="14" data-percent="{{item.process}}" data-fgcolor="#f8ada8" data-bordersize="5" data-bgcolor="#ccc" v-else></span>
+                                </a>
+                                <div class="u-pl-process f-tac f-fs12">当前进度{{item.process}}%</div>
+                                <div class="u-pl-amount f-tac f-fs12" v-if="item.process != 100">剩余可投金额{{item.formatAvailableBalance}}元</div>
+                                <div class="u-pl-amount f-tac f-fs12" v-else>当前进度{{item.process}}%</div>
+                                <s></s>
+                            </div>
+
+                            <ul>
+                                <li class="u-pl-total">项目总额&nbsp;
+                                    <span class="f-fs14 f-ff-ver">￥</span><span class="f-ff-din f-fs28">{{item.formatTotalAmount}}</span><span class="f-ff-din f-fs24">.00</span></li>
+                                <li v-if="item.formatMinAnnualizedRate == item.formatMaxAnnualizedRate">年化收益&nbsp;
+                                    <span class="f-ff-din f-fs28 f-fc-red2">{{item.formatMinAnnualizedRate | splitNumber}}</span>
+                                    <span class="f-ff-din f-fs24 f-fc-red2">.{{item.formatMinAnnualizedRate | splitNumber true}}</span>
+                                    <span class="f-ff-din f-fs24 f-fc-red2">%</span>
+                                </li>
+                                <li v-else>年化收益&nbsp;
+                                    <span class="f-ff-din f-fs28 f-fc-red2">{{item.formatMinAnnualizedRate | splitNumber}}</span>
+                                    <span class="f-ff-din f-fs24 f-fc-red2">.{{item.formatMinAnnualizedRate | splitNumber true}}</span>
+                                    <span class="f-fs20 f-ff-ver f-fc-red2">~</span>
+                                    <span class="f-ff-din f-fs28 f-fc-red2">{{item.formatMaxAnnualizedRate | splitNumber}}</span>
+                                    <span class="f-ff-din f-fs24 f-fc-red2">.{{item.formatMaxAnnualizedRate | splitNumber true}}%</span>
+                                </li>
+                                <li class="u-pl-date">收益周期&nbsp;
+                                    <span class="f-ff-din f-fs28">{{item.borrowPeriod}}</span><span class="f-fs14">{{item.formatProfitPeriodType}}</span>
+                                </li>
+                            </ul>
+                            <a href="/products/detail-{{item.id}}.html" class="u-pl-btn f-round z-actived" :class="{'z-closed': item.stop,'z-actived': !item.stop}" v-if="item.balance <= 0">支付确认中</a>
+                            <a href="/products/detail-{{item.id}}.html" class="u-pl-btn f-round z-actived" :class="{'z-closed': item.stop,'z-actived': !item.stop}" v-else>{{item.buttonText}}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="m-direct-module" style="margin-top: 42px">
+                <div class="m-module-header">
+                    <span class="m-module-tag f-ff-din">2<em class="u-line"></em></span>
+                    <div class="m-content-title">
+                        <h1>如何抽奖</h1>
+                        投资成功即可抽奖，单笔投资金额越多可获得的抽奖次数也越多，在项目履约前都可进行抽奖。
+                    </div>
+                </div>
+                <div class="m-module-content m-ml">
+                    <table class="m-direct-table">
+                        <thead>
+                        <tr>
+                            <th>单笔投资金额（元）</th>
+                            <th v-for="item in initData.ruleAmountList">{{item.startAmount}} <em v-if="item.endAmount">-
+                                {{item.endAmount}}</em><em v-else>以上</em></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>抽奖次数</td>
+                            <td v-for="item in initData.ruleAmountList">x<i v-if="item.number>0">+{{item.number}}</i></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <p class="u-rule-text">X=投资金额 / 项目起投金额</p>
+                </div>
+            </div>
+            <div class="m-direct-module" style="margin-top: 42px">
+                <div class="m-module-header">
+                    <span class="m-module-tag f-ff-din">3<em class="u-line"></em></span>
+                    <div class="m-content-title">
+                        <h1>奖励如何发放</h1>
+                        <h3 class="u-bt-line"><em class="u-point"></em>奖励发放时间</h3>
+                        <p class="u-text">在项目履约当日发放。</p>
+                        <h3 class="u-bt-line f-mt-14"><em class="u-point"></em>抽奖机会是否会作废</h3>
+                        <p class="u-text">在项目履约后未使用的抽奖机会，系统会自动抽奖。</p>
+                        <h3 class="f-mt-14"><em class="u-point"></em>奖励如何发放</h3>
+                    </div>
+                </div>
+                <div class="m-module-content m-ml">
+                    <p class="u-text u-hack">
+                        履约当日以现金的形式发放至您的存钱罐账户。
+                    </p>
+                </div>
+            </div>
+            <p class="u-all-rule">以上规则最终解释权归有融网所有</p>
+        ##        提示框
+            <div class="m-dialog-wrapper" v-show="open">
+                <div class="m-dialog-header">抽奖结果</div>
+                <div class="m-dialog-content" v-if="isLottery">
+                    <h3 v-if="lotteryContent.length>1">恭喜您，获得</h3>
+                    <div style="display: table;height: 116px;width: 100%;" v-if="lotteryContent.length>1">
+                        <div style="display: table-cell;vertical-align: middle">
+                            <ul class="m-lottery-rank-list f-clear">
+                                <li class="z-pos-l" :class="{'z-pos-r': $index == 1 || $index == 3 || $index == 5}" v-for="item in lotteryContent">{{item.level}}<i class="u-medal">X{{item.number}}</i></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="m-lottery-result" v-if="lotteryContent.length === 1">恭喜您，获得<em>{{lotteryContent[0] | formatNumToDay}}等奖</em>！</div>
+                </div>
+                <div class="m-dialog-content" v-else>
+                    <div class="m-lottery-result">未中奖，再接再励！<p v-if="popularity && popularity>0">快投福利期间，补贴<em
+                            class="f-fc-red2">{{popularity}}点人气值</em>。
+                    </p></div>
+                </div>
+                <div class="m-dialog-footer">
+                    <div class="u-confirm-btn" @click="closeLotteryDialog">确&nbsp;&nbsp;定</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

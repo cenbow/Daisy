@@ -1,0 +1,55 @@
+#set($layout = "/layout/iframe.vm")
+#parse("/bsc/paymentPlatform/head.vm") 
+<div class="col-xs-12">
+  <p>
+    <button id = "new_paymentPlatform" type="button" class="btn btn-info btn-sm btn-primary permission-$shiro.hasPermission('paymentPlatform:add')" >新增</button>
+  </p>
+</div>
+<div class="col-xs-12">
+	<div class="table-header">
+		支付平台管理
+	</div>
+	<div class="table-responsive">
+	<form id="paymentPlatform_form" role="form" class="form-horizontal" method="post">
+		<table class="table table-striped table-bordered">
+			<thead>
+				<tr>
+					<td width="100">银行简称</td>
+					<td width="200"><input type="text" name="search_simpleName"  class="input-medium search_init" /></td>
+					<td width="100">银行编码</td>
+					<td width="200"><input type="text" name="search_code"  class="input-medium search_init" /></td>
+					<td >
+						<button id = "query_paymentPlatform" type="button" class="btn btn-info btn-sm btn-primary" >查询</button>
+						<button id = "reset_paymentPlatform" type="button" class="btn btn-info btn-sm btn-primary resetButton" >重置</button>
+					</td>
+				</tr>
+			</thead>
+		</table>
+	</form> 
+	
+	
+<table id="paymentPlatform-table-2" class="table table-striped table-bordered" cellspacing="0" width="100%">
+<thead> 	           
+<tr >
+<th width="5"><label><input class="ace" type="checkbox"> <span class="lbl"></span></label></th>
+<th >编号</th>
+<th >支付平台</th>
+<th >银行简称</th>
+<th >银行编码</th>
+<th >类型</th>
+<th >单笔限额</th>
+<th >每日限额</th>
+<th >最低支付额度</th>
+<th >状态</th>
+<th >备注</th>
+<th >创建时间</th>
+<th >更新时间</th>
+<th >操作</th>
+</tr>
+</thead>
+</table>
+</div>
+</div>
+#parse("/bsc/paymentPlatform/form.vm") 
+#parse("/bsc/paymentPlatform/maintenance.vm") 
+#parse("/bsc/paymentPlatform/showMaintenance.vm") 

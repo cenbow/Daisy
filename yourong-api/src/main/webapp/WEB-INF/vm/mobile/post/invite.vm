@@ -1,0 +1,120 @@
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$res_url/source/css/post/shareAndInvite.css"])
+#set($encryptionId=$request.getParameter("encryptionId"))
+#if($currentUser)
+    #set($logined=true)
+#else
+    #set($logined=false)
+#end
+#CSRFToken('xToken')
+#set($loginSource=$request.getParameter("loginSource"))
+##  安卓
+#if($loginSource==1)
+    #set($os=1)
+#end
+##  IOS
+#if($loginSource==2)
+    #set($os=2)
+#end
+#if($loginSource==1||$loginSource==2)
+<style>
+    .g-ft{
+        display: none;
+    }
+    body{
+        background:#f3f3f3
+    }
+</style>
+#end
+
+##
+#if($loginSource==1 || $loginSource==2)
+#else
+##header，安卓ios，不需要头部
+<h2 class="u-pageTitle f-pos-r">
+    <a href="$siteurl/mIndex">有融网</a>
+        <span class=" f-pos-a f-fs18 f-ff-ver">
+            #if(!$currentUser)
+                <a href="$siteurl/mstation/login" id="j-login">登录</a>
+                <a href="$siteurl/mstation/register" id="j-register">注册</a>
+            #else
+                <a href="$mCenter_logout_url">退出</a>
+            #end
+        </span>
+</h2>
+#end
+<div class="m-invite-hd" id="j-invite-hd" data-os="$os">
+    <div style="background: #f3f3f3;">
+        <img src="$siteurl/res/img/post/shareAndInvite/invite-banner.png" alt="" width="100%">
+    </div>
+##记录
+    <div class="u-invite">
+        <p>
+            <span class="u-firstSpan">2016年7月1日起，邀请好友注册并投资</span>
+            <br><span>您可获得 <em>好友投资额*（收益天数/30）*0.3‰</em> 的人气值奖励</span>
+        </p>
+        <div class="u-invite-remarks">
+            备注：好友成功注册后360天内的投资有效，直投项目履约后才会奖励人气值哦！（2016年7月1日前邀请的好友，从7月1日起计算360天有效时间）
+        </div>
+        <a id="j-record-link">奖励记录</a>
+        <div class="m-invite-btn">
+            <a id="j-invite-link">邀请好友</a>
+        </div>
+    </div>
+##活动
+    <div class="u-invite f-dn">
+        <p>
+            <strong>友情岁月</strong>
+            <br><span>邀好友.攒里程.赢大奖</span>
+        </p>
+        <a>查看活动</a>
+    </div>
+</div>
+
+<script src="$res_url/lib/js/sea.js"></script>
+<script src="$res_url/lib/js/zepto.min.js"></script>
+<script src='$res_url/assets/js/common/appHookES5.js'></script>
+##<script src='$siteurl/res/lib/js/vconsole.min.js'></script>
+<script>
+    (function(){
+        console.log(window.location.href)
+        //“意见反馈”区别调用不同app
+        var i=$("#j-invite-hd").data("os");
+//        奖励记录
+        $("#j-record-link").on("click",function(){
+            if(i==1){
+                Android.ToActivity("friendList",  null);
+            }
+            memberBehavior('C2')
+            if (i == 2) {
+                $(this).attr('href', 'yrw-skip://invokeMethod=friendList')
+            }
+        })
+        if ($os==1
+        )
+        {
+            Android.UpdateTitle('邀请有礼')
+        }
+//        邀请好友
+        $("#j-invite-link").on("click",function(){
+            if(i==1){
+                Android.ToActivity("inviteFriend",  null);
+            }
+            memberBehavior('C1')
+            if (i == 2) {
+                $(this).attr('href', 'yrw-skip://invokeMethod=inviteFriend')
+            }
+        })
+        var hook = new AppHook($platform)
+
+        function memberBehavior(anchor, isLink) {
+            hook.getEvent(14 + '&isNeedRealName=0&args_anchor_1_string_' + anchor, $(event.currentTarget), 1)
+        }
+
+        window.hookCallback = function (data, method) {
+
+        }
+    })()
+
+</script>

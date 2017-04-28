@@ -1,0 +1,125 @@
+/*@media screen and (min-width: 390px) {*/
+  /*html {*/
+    /*font-size: 15.5px;*/
+  /*}*/
+/*}*/
+
+/*@media screen and (min-width: 360px) and (max-width: 389px) {*/
+
+  /*html {*/
+    /*font-size: 14px;*/
+  /*}*/
+/*}*/
+
+/*@media screen and (max-width: 359px) {*/
+  /*html {*/
+    /*font-size: 12px;*/
+  /*}*/
+/*}*/
+.m-content-title{
+  background: url("../../../img/landing/sixgift/bg-title.png") no-repeat center;
+  width: 22rem;
+  height: 3rem;
+  background-size: 100% 100%;
+  margin: 20px auto;
+  text-align: center;
+  color: white;
+  font-size: 16px;
+}
+.m-content-main1{
+  background: url("../../../img/landing/sixgift/bg-main1.png") no-repeat center;
+  width: 100%;
+  height: 19.75rem;
+  background-size: 100% 100%;
+  overflow: hidden;
+}
+.m-content-main2{
+  background: url("../../../img/landing/sixgift/bg-main2.png") no-repeat center;
+  width: 100%;
+  height: 19.75rem;
+  background-size: 100% 100%;
+  overflow: hidden;
+}
+.m-content-main3{
+  background: url("../../../img/landing/sixgift/bg-main3.png") no-repeat center;
+  width: 100%;
+  height: 20.7rem;
+  background-size: 100% 100%;
+  overflow: hidden;
+}
+.u-title{
+  font-size: 20px;
+  color: white;
+  text-align: center;
+  margin-top: 2.5rem;
+}
+.u-foot{
+  color: white;
+  text-align: center;
+  margin-top: 9rem;
+  font-size: 14px;
+}
+.u-last{
+  margin-top: 11rem;
+}
+.u-title em{
+  color: #fdbe0e;
+}
+.u-foot em{
+  color: #fdbe0e;
+  font-size: 16px;
+}
+.m-content-foot{
+  width: 60%;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.m-content-foot span{
+  color: #69687c;
+  display: block;
+  margin: 20px 0 60px;
+}
+.m-content-foot span:first-child{
+  float: left;
+}
+.m-content-foot span:last-child{
+  float: right;
+}
+
+.f-fix{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 64px;
+  background: white;
+  opacity: 0.94;
+}
+/*.f-fix a{*/
+/*padding-left: 50px;*/
+/*}*/
+.f-fix .m-logo{
+  padding-left: 50px;
+  margin-top: 10px;
+  margin-left: 20px;
+  height: 43px;
+  width: 60%;
+  overflow: hidden;
+  background: url("../../../img/landing/sixgiftB/Icon.png") no-repeat 1px center;
+  background-size: 40px 40px;
+}
+.m-logo span{
+  display: block;
+  font-size: 12px;
+}
+.m-down a{
+  position: absolute;
+  right: 10px;
+  bottom: 15px;
+  background: #D74048;
+  border-radius: 4px;
+  color: white;
+  height: 30px;
+  line-height: 30px;
+  width: 80px;
+  text-align: center;
+}

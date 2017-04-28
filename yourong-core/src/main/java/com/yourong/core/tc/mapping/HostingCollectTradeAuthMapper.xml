@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.tc.dao.HostingCollectTradeAuthMapper" >
+  <resultMap id="BaseResultMap" type="com.yourong.core.tc.model.HostingCollectTradeAuth" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="trade_no" property="tradeNo" jdbcType="VARCHAR" />
+    <result column="trade_request_no" property="tradeRequestNo" jdbcType="VARCHAR" />
+    <result column="batch_request_no" property="batchRequestNo" jdbcType="VARCHAR" />
+    <result column="auth_type" property="authType" jdbcType="INTEGER" />
+    <result column="project_id" property="projectId" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="user_ip" property="userIp" jdbcType="VARCHAR" />
+    <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, trade_no, trade_request_no, batch_request_no, auth_type, project_id, create_time, 
+    update_time, remark,user_ip, del_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from tc_hosting_collect_trade_auth
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yourong.core.tc.model.HostingCollectTradeAuth" >
+    update tc_hosting_collect_trade_auth
+    <set >
+      <if test="tradeNo != null" >
+        trade_no = #{tradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeRequestNo != null" >
+        trade_request_no = #{tradeRequestNo,jdbcType=VARCHAR},
+      </if>
+      <if test="batchRequestNo != null" >
+        batch_request_no = #{batchRequestNo,jdbcType=VARCHAR},
+      </if>
+      <if test="authType != null" >
+        auth_type = #{authType,jdbcType=INTEGER},
+      </if>
+      <if test="projectId != null" >
+        project_id = #{projectId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <!-- 批量插入 -->
+  <insert id="batchInsert" parameterType="java.util.List" >
+	    insert into tc_hosting_collect_trade_auth (trade_no, trade_request_no, 
+	      batch_request_no, auth_type, project_id, 
+	      create_time, remark,user_ip, 
+	      del_flag)   values   
+      <foreach collection="list" item="item" index="index"   separator=",">  
+        ( #{item.tradeNo}, 
+        #{item.tradeRequestNo},
+        #{item.batchRequestNo},
+        #{item.authType}, 
+        #{item.projectId}, 
+        now(),
+        #{item.remark}, 
+        #{item.userIp},
+        1)  
+      </foreach>     
+  </insert>
+  
+</mapper>

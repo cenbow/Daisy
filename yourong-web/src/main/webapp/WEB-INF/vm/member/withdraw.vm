@@ -1,0 +1,192 @@
+##提现请求页面
+
+#parse("/common/common.vm")
+#set($title="提现_账户概览_$!{title_suffix}")
+#set($css_url=["$cssv2_url/member/member.css","$root_css_url/modules/delegatePay.css"])
+#set($js_url=["$root_js_url/modules/member.js"])
+#set($account="z-current")
+#set($hasSafecard=$!{servletUtil.isHasSarfeCard($cardlist)})
+#set($isWithDrawMoney = $request.getParameter('isClean'))
+#set($hasSetPayPassword=${servletUtil.synPayPasswordFlag()})
+<input type="hidden" value="$hasSetPayPassword" id="j-hasSetPayPassword">
+## 用户中心头部
+#parse("/member/head.vm")
+## 用户中心内容
+<div class="g-wrap">
+    <div class="m-nav-title">
+        <a class="u-title-secondary u-tit-l" href="/memberBalance/rechargePage">
+            <em>充值</em>
+        </a>
+        <a class="z-current" href="/memberBalance/withdrawPage">
+            提现
+        </a>
+    </div>
+  <div class="g-uc-bd f-round">
+    <div class="g-uc-wrap">
+      	<div class="u-sinapay-banner j-sinapay-banner">
+            <img src="../static/img/common/sinapay_logo_s20151117.png" alt="新浪支付|全程提供账户托管和支付服务">
+        </div>
+       <form role="withdrawForm"  class="j-validform" id="withdrawLog_form" method="post" action="$root_url/memberBalance/withdrawSubmit">
+        
+      <div class="m-withdraw">
+        <table>
+          <tr>
+            <td width="75">可提现金额</td>
+            <td class="u-amount-box"><span class="f-fs24 f-fc-red2 f-ff-din"><span class="f-ff-ver">¥</span><em class="f-fs42" id="j-available-balance" data-amount="$!availableBalance">${formulaUtil.getIntegerDefaultZero($!availableBalance)}</em><span class="f-fs30">${formulaUtil.getDecimalDefaultZero($!availableBalance)}</span></span></td>
+          </tr>
+          <tr>
+            <td>提现金额</td>
+            <td>            
+              <span class="u-amount-wrap">
+                <i class="f-ff-ver">¥</i>
+                #if($!{isWithDrawMoney})
+                  #set($withDrawMoney = $!availableBalance )
+                #end
+                <input name="withdrawAmount" id="withdrawAmount" oncopy="return false;" placeholder="" onpaste="return false;" class="u-ipt-amount f-round f-fs14" value="$!{withDrawMoney}"  type="text"/>
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td>手续费</td>
+##            <td class="f-fs14"><del>¥&nbsp;2.00</del>&nbsp;由平台支付</td>
+            #if(${sysServiceUtil.getWithdrawalFees()}>0)
+              #if(${popularityBalance} >= ${sysServiceUtil.getWithdrawalFees()})
+                 #* <td class="f-fs14 u-reputation-2point">
+                      ${sysServiceUtil.getWithdrawalFees()}点人气值&nbsp;<i class="u-icon u-icon-tips j-user-tips" data-align="top" data-tips="提现操作过程中${sysServiceUtil.getWithdrawalFees()}点人气值将被<em class='f-fc-red2'>冻结</em>，提现成功后<em class='f-fc-red2'>扣除</em>。"></i>（可用人气值$!servletUtil.getPopularityVaule()点）</td>
+              #else
+                  <td class="f-fs14 u-reputation-2point">${sysServiceUtil.getWithdrawalFees()}点人气值&nbsp;<i class="u-icon u-icon-tips j-user-tips" data-align="top" data-tips="提现操作过程中${sysServiceUtil.getWithdrawalFees()}点人气值将被<em class='f-fc-red2'>冻结</em>，提现成功后<em class='f-fc-red2'>扣除</em>。"></i>（人气值不足）<a href="/coupon/reputation">赚人气值</a></td>
+              #end*#
+                 <td class="f-fs14 u-reputation-2point">
+                      ${sysServiceUtil.getWithdrawalFees()}点人气值&nbsp;
+                     <div class="u-withdraw-tips f-pos-r j-reputation-tips">
+                         <p class="f-dn">
+                             提现操作过程中将<em class='f-fc-red2'>冻结</em>${sysServiceUtil.getWithdrawalFees()}点人气值，提现成功后<em class='f-fc-red2'>扣除</em>。
+                           <span class="u-arrow-down">
+                                <i>◆</i>
+					            <span>◆</span>
+                             </span>
+                         </p>
+                     </div>（可用人气值$!servletUtil.getPopularityVaule()点）
+                 </td>
+              #else
+                  <td class="f-fs14 u-reputation-2point">${sysServiceUtil.getWithdrawalFees()}点人气值&nbsp;
+                      <div class="u-withdraw-tips f-pos-r j-reputation-tips">
+                          <p class="f-dn">
+                              提现操作过程中将<em class='f-fc-red2'>冻结</em>${sysServiceUtil.getWithdrawalFees()}点人气值，提现成功后<em class='f-fc-red2'>扣除</em>。
+                           <span class="u-arrow-down">
+                                <i>◆</i>
+					            <span>◆</span>
+                             </span>
+                          </p>
+                      </div>
+                      （人气值不足）<a href="/coupon/reputation">赚人气值</a></td>
+              #end
+            #else
+                <td class="f-fs14"><del>¥&nbsp;2.00</del>&nbsp;由平台支付</td>
+            #end
+
+          </tr>
+            <tr>
+                <td class="u-withdraw-timeday">预计到账时间</td>
+                <td id="j-duedate"></td>
+            </tr>
+        </table>
+        <div class="u-withdraw-btn">
+        	#CSRFToken()
+            #onceToken()
+        	<input type="hidden" name="fee" value="2.00" >
+            #if(${sysServiceUtil.getWithdrawalFees()}>0)
+              #if(${popularityBalance} >= ${sysServiceUtil.getWithdrawalFees()})
+                  <div class="u-submit-wrap d-eBank"  style="padding: 0;">
+                      <a target="_blank" id="j-withdraw-submit" class="#if($!availableBalance==0)z-disabled#end">
+                          <div class="u-submitBtn">
+                              <img src="../static/img/sina/sinalogo.png" alt="新浪支付" style="vertical-align: middle; margin-top: -10px;">
+
+                              <span  class="f-fs18">去新浪提现</span>
+                          </div>
+
+                      </a>
+                  </div>
+              #else
+                  <div class="u-submit-wrap"  style="padding: 0;">
+                      <a href="javascript:void(0)">
+                          <div class="u-submitBtn  z-disabled">
+                              <img src="../static/img/sina/sinalogo.png" alt="新浪支付" style="vertical-align: middle; margin-top: -10px;">
+
+                              <span  class="f-fs18">去新浪提现</span>
+                          </div>
+
+                      </a>
+                  </div>
+              #end
+            #else
+                <div class="u-submit-wrap "  style="padding: 0;">
+                    <a target="_blank" id="j-withdraw-submit" class="#if($!availableBalance==0)z-disabled#end">
+                        <div class="u-submitBtn ">
+                            <img src="../static/img/sina/sinalogo.png" alt="新浪支付" style="vertical-align: middle; margin-top: -10px;">
+
+                            <span  class="f-fs18">去新浪提现</span>
+                        </div>
+
+                    </a>
+                </div>
+            #end
+
+        </div>
+      </div>
+      </form>
+      ## /页面内容
+    ##        跳转到设置支付密码弹窗
+        <div class="u-paymentCipherBlock f-dn" id="j-paymentCipherBlock">
+            <div class="f-fs20 u-tipTitle">
+                设置支付密码提示
+            </div>
+            <img class="j-close" src="../static/img/member/closeBtn.png" alt="关闭">
+            <p class="f-fs20">
+                新浪支付全新升级，设置支付密码后方可进行操作
+            </p>
+            <a href="/member/paymentPassword">
+                <button class="f-fs14">
+                    前往设置
+                </button>
+            </a>
+        </div>
+##支付状态层
+    <div class="u-goToSinaBlock f-dn" id="j-goToSinaBlock"  style="top: 44%;left: 28%;">
+        <div class="f-fs20 u-tipTitle">跳转到新浪支付</div>
+        <p class="f-fs20">请在打开的新浪页面完成提现</p>
+        <a href="/memberBalance/rechargeIndex?type=withdraw"><button class="f-fs14" >查看提现记录</button></a>
+        <a class="j-close"><button class="f-fs14 u-lastButton">提现遇到问题，重新提现</button></a>
+        <div class="u-helpTips">
+            <a href="http://wpa.b.qq.com/cgi/wpa.php?ln=2&uin=4000266688" target="_blank">
+                    <span class="f-fs14" >
+                        如果您在操作过程中遇到问题，可咨询 在线客服 >
+                    </span>
+            </a>
+        </div>
+    </div>
+    </div>
+  </div>
+  ## /用户中心内容
+</div>
+
+
+<script>
+window.onload=function(){
+
+    //到帐日期显示
+    var curDate = new Date(environment.serverDate),
+        curHours = curDate.getHours(),
+        curDay = curDate.getDate(),
+        dueDate = curDate,
+        splitDay = 1
+
+    if(curHours>=15){
+        splitDay = 2
+    }
+
+    dueDate = new Date(curDate.setDate(curDay+splitDay))
+
+    $('#j-duedate').text((dueDate.getMonth()+1)+'月'+dueDate.getDate()+'日')
+}
+</script>

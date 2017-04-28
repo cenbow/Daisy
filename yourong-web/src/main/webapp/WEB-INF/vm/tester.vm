@@ -1,0 +1,3 @@
+#set($layout = "/layout/default.vm")
+<input type="text" name="code" value="$!{code}"/>
+<input type="text" name="mobileCode" value="$!{mobileCode}" />

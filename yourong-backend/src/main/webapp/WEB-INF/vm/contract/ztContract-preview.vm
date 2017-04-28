@@ -1,0 +1,620 @@
+#parse('/common/common.vm')
+#set($layout = "/layout/default.vm")
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>借款协议</title>
+    <style>
+        html {
+            color:#000;background:#fff;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }
+
+        /* 内外边距通常让各个浏览器样式的表现位置不同 */
+        body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td,hr,button,article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section {
+            margin:0;padding:0;
+        }
+
+        /* 重设 HTML5 标签, IE 需要在 js 中 createElement(TAG) */
+        article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section {
+            display:block;
+        }
+
+        /* HTML5 媒体文件跟 img 保持一致 */
+        audio,canvas,video {
+            display: inline-block;*display: inline;*zoom: 1;
+        }
+
+        /* 要注意表单元素并不继承父级 font 的问题 */
+        body,button,input,select,textarea {
+            font:12px/1.5 tahoma,arial,"Hiragino Sans GB","Microsoft Yahei",\5b8b\4f53;
+        }
+        input,select,textarea {
+            font-size:100%;
+        }
+
+        /* 去掉各Table  cell 的边距并让其边重合 */
+        table {border-collapse:collapse;border-spacing:0;}
+
+        /* IE bug fixed: th 不继承 text-align*/
+        th {text-align:inherit;}
+
+        /* 去除默认边框 */
+        fieldset,img {border:0;}
+
+        /* ie6 7 8(q) bug 显示为行内表现 */
+        iframe {display:block;}
+
+        /* 去掉 firefox 下此元素的边框 */
+        abbr,acronym {border:0;font-variant:normal;}
+
+        /* 一致的 del 样式 */
+        del {text-decoration:line-through;}
+
+        address,caption,cite,code,dfn,em,th,var {
+            font-style:normal;
+            font-weight:500;
+        }
+
+        /* 去掉列表前的标识, li 会继承 */
+        ol,ul {
+            list-style:none;
+        }
+
+        /* 对齐是排版最重要的因素, 别让什么都居中 */
+        caption,th {
+            text-align:left;
+        }
+
+        /* 来自yahoo, 让标题都自定义, 适应多个系统应用 */
+        h1,h2,h3,h4,h5,h6 {
+            font-size:100%;
+            font-weight:500;
+        }
+
+        q:before,q:after {
+            content:'';
+        }
+
+        /* 统一上标和下标 */
+        sub, sup {
+            font-size: 75%; line-height: 0; position: relative; vertical-align: baseline;
+        }
+        sup { top: -0.5em; }
+        sub { bottom: -0.25em; }
+
+        /* 正常链接 未访问 */
+        a:link {
+            color: #08c;
+        }
+
+        /* 鼠标悬停 */
+        a:hover {
+            color: #08c;
+            text-decoration: underline;
+        }
+
+        /* 默认不显示下划线，保持页面简洁 */
+        ins,a {
+            text-decoration:none;
+        }
+        i{font-style: normal;}
+        /* 代码字体 */
+        code,
+        kbd,
+        pre,
+        samp {
+            font-family: monospace, serif;
+            font-size: 1em;
+        }
+
+        body {
+            font-family: "Microsoft Yahei", Arial;
+            font-size: 12px;
+            color: #666;
+        }
+        .m-contract-box {
+            width: 970px;
+            padding: 10px;
+            margin: 0 auto;
+        }
+        .u-con-t {
+            height: 35px;
+            background: url($root_url/static/img/contract/contract_page_tbg.png) no-repeat;
+            overflow: hidden;
+        }
+        .u-con-c {
+            position: relative;
+            min-height: 100px;
+            background: url($root_url/static/img/contract/contract_page_cbg.png) repeat-y;
+            padding: 0 65px 60px;
+            overflow: hidden;
+        }
+        .u-con-b {
+            height: 37px;
+            background: url($root_url/static/img/contract/contract_page_bbg.png) no-repeat;
+            overflow: hidden;
+        }
+        .u-con-num {
+            color: #666;
+            text-align: right;
+        }
+        .u-con-title {
+            font-family: "Simsun";
+            text-align: center;
+            font-size: 30px;
+            height: 205px;
+            line-height: 205px;
+            background: url($root_url/static/img/contract/contract_title_bg.gif) no-repeat center center;
+        }
+        .u-info-table {
+            font-size: 14px;
+            width: 100%;
+            margin: 20px 0 70px;
+        }
+        .u-info-table td {
+            border-bottom: 1px solid #cdcdcd;
+            padding: 10px 0 0;
+        }
+        .u-info-table .u-itable-t {
+            text-align: right;
+            border-bottom: none;
+        }
+        .u-con-content {
+            line-height: 2em;
+            font-size: 14px;
+        }
+        .u-con-content h3 {
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .u-con-content p {
+            padding: 0 0 36px;
+        }
+        .u-con-content p strong {
+            color: #d74148;
+            font-style: normal;
+        }
+        .u-con-content p span {
+            display: block;
+            font-weight: bold;
+        }
+        .u-data-table {
+            width: 100%;
+            margin: -20px 0 20px;
+        }
+        .u-data-table tbody {
+            border-top: 2px solid #cdcdcd;
+            border-bottom: 2px solid #cdcdcd;
+        }
+        .u-data-table td{
+            padding: 0 0 0 20px;
+            border-bottom: 1px solid #cdcdcd;
+            border-left: 1px solid #cdcdcd;
+        }
+        .u-data-table td{height: 28px;line-height: 28px;}
+        .u-data-table th{height: 40px;line-height: 40px;text-align: center;color: #464646;}
+        .u-data-table td:first-child,.u-data-table th:first-child{
+            border-left: 0;
+        }
+        .u-data-table tr td:first-child{
+            border-left:none;
+        }
+        .f-tac{
+            text-align: center;
+        }
+        .f-tar {
+            text-align: right;
+        }
+        .u-stable-even td {
+            padding: 55px 0 0;
+        }
+        .u-sign-table{
+            position: relative;
+            padding: 75px 0 165px;
+        }
+        .u-sign-table .u-mask{
+            position: absolute;
+            right: 10px;
+            top: 0;
+        }
+        /**数据保全按钮**/
+        .u-con-icon{
+            font-weight:bold;
+            width:319px;
+            height:50px;
+            background:url(/static/img/contract/eDataSecurity_icon.jpg) no-repeat left;
+            position:absolute;
+            top: 13px;
+            left: 50px;
+        }
+        .u-con-icon a{
+            font-size: 14px;
+            float: right;
+            text-align: center;
+            line-height: 50px;
+            width:169px;
+            height:50px;
+            display:block;
+            background-color:#03b8d9;
+            color:#fff;
+        }
+        .u-con-icon a:link{
+            color:#fff;
+            text-decoration:none;
+        }
+        .u-con-icon a:visited{
+            color:#fff;
+            text-decoration:none;
+        }
+
+        　　.u-con-icon a:hover {
+            color:#fff;
+            text-decoration:none;
+        }
+        .u-info-table td.f-pl{
+            padding: 0 0 0 2px;
+        }
+/*下划线*/
+        .m-contract-box p em{
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+<div class="m-contract-box">
+    <div class="u-con-t"></div>
+    <div class="u-con-c">
+        #if($!{contract.transactionId})
+            <div class="u-con-num">编号：$!{contract.transactionId}</div>
+        #end
+        <h1 class="u-con-title">借款协议</h1>
+
+            <span class="u-con-icon f-cf">
+                #if($!contract.preservationLink)
+                    <a target="_blank" href="$!{contract.preservationLink}">查看数据保全证书</a>
+                #end
+            </span>
+
+        <table class="u-info-table">
+            <thead></thead>
+            <tbody>
+            #if($!{preview})
+            	  <tr>
+                   #if($!{isEnterprise})
+	               		 <td width="175" class="u-itable-t">甲方(借款企业)：</td>
+	               #else
+		                 <td width="175" class="u-itable-t">甲方(借款人)：</td>
+	               #end
+                <td width="305"> $!{contract.originalCreditorName} </td>
+                <td width="175" class="u-itable-t">乙方 (出借人)：</td>
+                <td>$!{contract.name}</td>
+           		 </tr>
+            #else
+           		 <tr>
+                   #if(${contract.isBorrowerTypeEnterprise}=='Y')
+	               		 <td width="175" class="u-itable-t">甲方(借款企业)：</td>
+	               #else
+		                 <td width="175" class="u-itable-t">甲方(借款人)：</td>
+	               #end
+	                <td width="305"> $!{contract.originalCreditorName} </td>
+	                <td width="175" class="u-itable-t">乙方 (出借人)：</td>
+	                <td>$!{contract.name}</td>
+            	</tr>
+            #end
+          
+             #if($!{preview})
+	             <tr>
+	               #if($!{isEnterprise})
+	               		 <td class="u-itable-t">社会统一代码：</td>
+	              	     <td></td>
+	               #else
+		                 <td class="u-itable-t">身份证号：</td>
+		                 <td></td>
+	               #end
+	               <td class="u-itable-t">身份证号：</td>
+		           <td></td>
+	            </tr>
+             #else
+             	<tr>
+                #if(${contract.isBorrowerTypeEnterprise}=='Y')
+                    <td class="u-itable-t">社会统一代码：</td>
+                #else
+                    <td class="u-itable-t">身份证号：</td>
+                #end
+                <td>$!{contract.originalCreditorIdentityNumber}</td>
+                <td class="u-itable-t">身份证号：</td>
+                <td>$!{contract.identity}</td>
+            </tr>
+             #end
+            
+            <input class="ccc" value="$!{preview}" type="hidden">
+
+            #if($!{preview})
+            <tr>
+                <td class="u-itable-t">地址：</td>
+
+                <td class="f-pl"></td>
+
+                <td class="u-itable-t">地址：</td>
+                <td class="f-pl"></td>
+
+            </tr>
+            <tr>
+                <td class="u-itable-t">电子邮箱：</td>
+                <td class="f-pl"></td>
+                <td class="u-itable-t">电子邮箱：</td>
+                <td class=" f-pl"></td>
+            </tr>
+			<tr>
+                <td class="u-itable-t"></td>
+                <td class="u-itable-t"></td>
+                <td class="u-itable-t">电话：</td>
+                <td></td>
+            </tr>
+                #else
+                <tr>
+                    <td class="u-itable-t">地址：</td>
+                    #if($!{contract.originalCreditorAddress}!="")
+                        <td>$!{contract.originalCreditorAddress}</td>
+                    #else
+                        <td class="f-pl">—</td>
+                    #end
+                    <td class="u-itable-t">地址：</td>
+                    #if($!{contract.address}!="")
+                        <td>$!{contract.address}</td>
+                    #else
+                        <td class="f-pl">—</td>
+                    #end
+                </tr>
+                <tr>
+                    <td class="u-itable-t">电子邮箱：</td>
+                    #if($!{contract.emailLender}!="")
+                        <td>$!{contract.emailLender}</td>
+                    #else
+                        <td class="f-pl">—</td>
+                    #end
+
+                    <td class="u-itable-t">电子邮箱：</td>
+                    #if($!{contract.emailBorrower}!="")
+                        <td>$!{contract.emailBorrower}</td>
+                    #else
+                        <td class=" f-pl">—</td>
+                    #end
+                </tr>
+				   <tr>
+                    <td class="u-itable-t"></td>
+					 <td class="u-itable-t"></td>
+                    <td class="u-itable-t">电话：</td>
+                    <td>$!{contract.mobile}</td>
+                </tr>
+            #end
+
+            <tr>
+                <td class="u-itable-t"></td>
+            </tr>
+            <tr class="u-stable-even">
+                <td class="u-itable-t">丙方（第三方服务机构）：</td>
+                <td>浙江小融网络科技股份有限公司</td>
+                <td class="u-itable-t">网站：</td>
+                <td>www.yrw.com</td>
+            </tr>
+            <tr>
+                <td class="u-itable-t">法定代表人：</td>
+                <td>吴建</td>
+                <td class="u-itable-t">电话：</td>
+                <td>400-025-6688</td>
+            </tr>
+            <tr>
+                <td class="u-itable-t">地址：</td>
+                <td>浙江省杭州市西湖区古墩路87号<br>浙商财富中心3号楼12F</td>
+                <td colspan="2" class="u-itable-t"></td>
+            </tr>
+            </tbody>
+        </table>
+        <input type="hidden" value="$!{contract.emailLender}" class="aaa">
+        <div class="u-con-content">
+##            鉴于：
+##            <p>
+##                1、有融网（域名：www.yrw.com）由丙方运营管理。甲乙双方均系有融网的注册会员。
+##                <br>2、甲方与基础债权债务人通过丙方合作线下投融资服务平台的居间服务达成了借款合意，并在丙方法务和风控人员的全程监管和见证下， 形成了本协议项下的基础债权。丙方法务和风控人员就该基础债权的真实性、合法性、有效性向丙方出具了法律风控意见。根据《中华人民共和国合同法》、《中华人民共和国民法通则》等有关法律规定，甲乙丙三方本着诚实信用的基本原则，经平等友好协商，自愿就甲方通过有融网平台向乙方转让债权收益权的相关事宜达成如下协议：
+##            </p>
+            <p>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                丙方系从事网络借贷信息中介业务活动的金融信息中介企业，拥有丰富的借款人信息。丙方在其运营管理的有融网（域名为www.YRW.com，“有融网”）网站上发布各借款人的资料信息，撮合借款人和投资人借款合意达成，并收取相应服务管理费用。甲、乙双方均已成功注册为有融网注册会员。甲方是需要筹集资金的借款人，需要通过丙方运营管理的有融网平台筹集资金。乙方是拥有充足的合法资金予以支配的投资人，通过有融网平台选择甲方作为其投资目标。各方根据平等、自愿的原则，达成具体协议如下：
+            </p>
+            <h3>第一条 借款详情</h3>
+            <p>甲方同意通过有融网平台向乙方借款明细如下，乙方同意通过有融网平台向甲方发放下列借款：</p>
+    <table class="u-data-table">
+        <tbody>
+        <tr>
+            <td>借款详细用途</td>
+            <td colspan="3">$!{contract.usageOfLoan}</td>
+        </tr>
+        <tr>
+            <td width="155">借款本金(元)</td>
+            <td>$!{contract.totalAmount}</td>
+            <td width="140">借款周期</td>
+            <td width="140">$!{contract.profitPeriod}</td>
+        </tr>
+        <tr>
+            <td>借款年化利率（%）</td>
+            <td>  
+            #if(${contract.isP2pExtraAnnualiz}=='Y')
+           		 <td>$!{contract.p2pAnnualizedRate}%(原始)+$!{contract.p2pExtraAnnualizedRate}%(收益券)</td>
+            #else 
+           		 <td>$!{contract.p2pTotalAnnualizedRate}%</td>
+            #end
+            </td>
+            <td>还款方式</td>
+            <td>$!{contract.profitType}</td>
+        </tr>
+        <tr>
+            <td>起息日</td>
+            <td>$!{contract.startTime}</td>
+            <td>还款日</td>
+            <td>$!{contract.endDate}</td>
+        </tr>
+    #if($!{preview})
+    <tr>
+        <td>抵、质押物信息</td>
+        <td colspan="3"></td>
+    </tr>
+    #else
+        #if($!{contract.collateralDetails}&&$!{contract.collateralDetails}!="")
+        <tr>
+            <td>抵、质押物信息</td>
+            <td colspan="3">$!{contract.collateralDetails}</td>
+        </tr>
+        #end
+    #end
+
+        </tbody>
+    </table>
+            <h3>第二条 借款流程</h3>
+            <p>1.接受本协议：乙方筛选确定甲方作为其投资对象后，通过网络确认点击的方式接受本协议，即可通过快捷支付、新浪存钱罐余额支付或两种方式结合进行投资。
+                <br>2.出借资金冻结：乙方成功点击“确定支付”后，即不可撤销的授权新浪支付将金额等同于第一条中列明的借款本金数额予以冻结，上述冻结在本协议生效时或该项目出现流标（第一条第6款）时解除。
+                <br>3.满额信用审核：在项目期限内，甲方借款项目达到满额状态，且通过丙方的满额信用审核的，由丙方授权新浪支付最终确定放款。
+                <br>4. 本协议生效：本协议在丙方最终点击“确定”放款按钮时生效。
+                <br>5. 出借资金划转：本协议生效的同时，新浪支付即将金额等同于本协议第一条所列的"借款本金数额"的资金，由乙方新浪存钱罐账户下划转至甲方或甲方指定第三方的新浪存钱罐账户中，划转完毕即视为借款发放成功。
+                <br>6. 在甲方募集资金的过程中，有可能出现募集不成功的情形。募集不成功的情形被称为流标。流标在两种情形下出现：
+                <br>（1）该项目在规定的募集期限内未能达到满额状态的；
+                <br>（2）该项目在规定的时间内达到满额状态，但丙方对甲方的满额信用审核未能通过，丙方决定不向甲方放款的。
+            </p>
+            <h3>第三条 本息偿还方式</h3>
+            <p>
+                1. 本次借款本息的还款日以借款项目成功后于项目界面生成的投资计划为准，甲乙双方予以认可。
+                <br>2. 在每期还款日的前三日，由丙方通知甲方，并提醒甲方于还款日12：00之前将甲方存钱罐账户充值。还款当日甲方新浪存钱罐账户的资金余额足以偿还当期应还本金和利息的，由新浪支付将相应金额划转至乙方新浪存钱罐账户。为避免还款不成功，甲方应至少在还款日前二日，将足额资金充值至其新浪存钱罐账户中，因甲方未足额存入资金导致还款不成功的，因此导致的一切损失均由甲方承担。
+                <br>3. 如果还款日遇到法定假日或公休日，还款日期不进行顺延。
+                <br>4. 如果还款日为每月30日，则遇到天数不足30天的月份，还款日为应还款当月的最后一日。
+                <br>5. 本协议项下借款自成功出借给甲方之日起开始计息，甲方按照实际借款天数向乙方支付利息，则最后一期支付周期不足一个月或一周的，利息应当在到期日一并支付。计息方式如下：
+                <br>  （1）按日计息，日收益计算方式为：年化利率/360*借款本金。
+                <br>  （2）按月计息，日收益计算方式为：年化利率/12*借款本金/当月天数。
+                <br>6. 还款方式：
+                <br>  （1）按月付息，到期还本：按日计息，每月利息于该月结息日支付，本金及最后一期利息于借款到期日支付。
+                <br>  （2）按季付息，到期还本：按日计息，每季度利息于该季度结息日支付，本金及最后一期利息于借款到期日支付。
+                <br>  （3）一次性还本付息：按日计息，全部本金和利息于借款到期日支付。
+                <br>  （4）等本等息按月还款：按月计息，每月还款日支付当月利息及1/n（n为借款总月数）本金，最后一期借款本金及利息于借款到期日支付。
+                <br>  （5）等本等息按周还款：按日计息，每周还款日支付当周利息及1/n（n为借款总周数）本金，最后一期借款本金及利息于借款到期日支付。
+            </p>
+            <h3>第四条 各方的权利义务</h3>
+            <p>
+                <span>（一）甲方的权利义务</span>
+                    1. 甲方必须按照本协议第一条的约定按时、足额偿还每期应还的本金和利息。
+                <br>2. 甲方变更账户信息、通讯地址、电话等相关重要信息，须及时通知乙方和丙方；
+                <br>3. 甲方应当严格按照本协议约定的借款用途使用乙方的出借资金；
+                <br>4. 在本协议生效之日，甲方应当向丙方一次性支付借款总金额<em>&nbsp; $!{contract.manageFeeRate} &nbsp;</em>%的居间服务费，由丙方在确定向甲方放款的同时在已筹集借款金额中代为扣取。
+                <br>5. 在本协议生效之日，甲方应当向丙方支付借款总金额<em>&nbsp; $!{contract.guaranteeFeeRate} &nbsp;</em>%的保证金。甲方同意丙方确定向甲方放款的同时在已筹集借款金额中代为扣取并存入有融网平台在新浪支付开设立的保证金专用账户；
+                <br>6. 甲方应当接受并全力配合乙方委托的第三方资产公司对甲方资金运用状况进行的监督；
+                <br>7. 甲方须对乙方个人信息、资产情况及其他服务相关事务的情况和资料依法保密；
+                <br>8. 甲方承诺，甲方出现未能如期偿还债务情形，且甲方提供担保物的，乙方有权委托第三方对该担保物进行处理，担保物处理后得到的资金大于甲方应当偿还的债务总额的，甲方承诺不予以追偿；甲方出现未能如期偿还债务情形，但甲方未提供担保物的，甲方承诺乙方有权委托第三方对甲方的财产采取救济措施；若乙方委托的第三方采取全额收购甲方未能按期偿还的债务的，甲方承诺除了向该第三方偿还被收购的债务外，还将按照被收购部分总额的千分之<em>&nbsp; $!{contract.overdueFeeRate} &nbsp;</em>/日的标准向该第三方支付罚息。
+                <span>（二）乙方的权利义务</span>
+                    1. 乙方参考丙方推荐后拥有最终决定是否出借资金给特定借款人的权利；
+                <br>2. 乙方应当承担其选择甲方作为其投资对象所带来的一切风险；
+                <br>3. 乙方享有其所出借款项带来的利息收益；
+                <br>4. 乙方在本协议履行期间不可撤销地委托丙方寻找并确定第三方资产管理公司并授权该第三方资产管理公司对甲方的资金运用情况进行监督并向乙方汇报。
+                <br>5. 乙方在本合同履行期间不可撤销地委托丙方或丙方指定的第三方作为本合同项下抵质押物/权利的名义抵/质押权人，代为处理抵质押权登记注销等事项，并且代为保管甲方交付的相关担保资料。
+                <br>6. 对于丙方基于推荐出借的需要而提供给乙方的借款人的个人证件及其他相关信用信息，乙方确保仅用于出借参考，不向任何甲方、丙方以外的第三方透露，乙方有义务为甲方的信用信息、丙方的业务内容进行保密。如果乙方擅自、不恰当地向他人透露甲方的信用信息或丙方的商业秘密，由此对甲方、丙方造成的损失，由乙方承担全部责任；
+                <br>7. 乙方保证其所用于出借的资金来源合法，乙方是该资金的合法所有人。如果第三人对资金归属、合法性问题发生争议，由乙方负责解决；
+                <br>8. 乙方变更账户信息、通讯地址、电话等相关重要信息，须及时通知丙方。因乙方未及时通知丙方而导致自身受到损失，由乙方自行承担责任。
+                <br>9. 乙方同意甲方按借款项目成功后于项目界面生成的投资计划进行还本付息。
+                <span>（三）丙方的权利义务</span>
+                    1. 丙方承诺在有融网平台发布借款人的借款需求之前经过谨慎的信用资质审核；
+                <br>2. 丙方确保借款人真实存在，乙方出借后形成的民间个人债权债务关系真实存在，否则丙方承担因该债权债务关系不存在而对乙方造成的损失；
+                <br>3. 甲方不能按约定还本付息的，丙方不承担任何责任；
+                <br>4. 丙方接受乙方委托并承诺按照乙方的要求寻找并确定第三方资产管理公司；
+                <br>5. 丙方接受乙方委托同意以自己名义或指定第三方作为本合同项下抵质押物/权利的名义抵/质押权人，代为处理抵质押权登记注销等事项。
+                <br>6. 本协议生效同时，丙方有权向甲方收取相应的管理服务费用；
+                <br>7. 丙方应当在甲方全部履行偿还借款本息义务之日起三个工作日内向甲方一次性返还全部保证金；
+                <br>8. 丙方须对乙方的个人信息、资产情况及其他服务相关事务的情况和资料依法保密；
+                <br>9. 丙方应妥善保存本协议及相关的全部资料以备查阅，保存期限为本协议存续期间及本协议终止之日起2年；
+                <br>10. 丙方有权根据平台发展需要决定是否在有融网平台相应的项目上通过在甲方应当支付的基础年化收益上“+年化收益”方式（除此方式之外，丙方有权采取其他的同等方式，包括但不限于给予优惠券等，具体见相应项目的展示）给予乙方额外的年化收益，该额外收益的支付时间由丙方自行决定。若甲方未能如期偿还借款本金或利息的，丙方有权自行决定是否继续向乙方支付额外收益。
+            </p>
+            <h3>第五条 丙方免责条款</h3>
+            <p>丙方作为居间服务方不需要承担以下情形下甲方或者乙方可能遭受的任何损失：
+            	<br>1. 因黑客、病毒或甲方或者乙方的保管疏忽等原因导致其本人的账户遭他人非法使用可能导致的所有损失的；
+            	<br>2. 因政策风险、有关法律、法规及相关政策、规则发生变化，甲方或者乙方有可能因此遭受损失的；
+            	<br>3. 因其他交易方未按时足额履约，甲方或者乙方有可能遭受损失的；
+            	<br>4. 因甲方或者乙方的过错导致的任何损失，该过错包括但不限于：决策失误、操作不当、遗忘或泄露密码、密码被他人破解、甲方或者乙方使用的计算机系统被第三方侵入、甲方或者乙方委托他人代理交易时他人恶意或不当操作以及银行系统及银行网络出现故障而造成的损失的；
+            	<br>5. 其他不可抗力因素导致的风险给甲方或者乙方可能带来的损失的。
+            </p>
+            <h3>第六条 违约情形及处理</h3>
+            <p>1.  发生下列任何一项或几项情形的，视为甲方违约：
+                <br>（1）甲方擅自改变本协议第一条规定的借款用途或严重违反还款义务，或未经乙方同意擅自转让本协议项下借款债务的；
+                <br>（2）甲方提供虚假资料或者故意隐瞒重要事实，影响乙方的投资决定的；
+                <br>（3）借款需求发布之后尚未满额之前，甲方自行中止借款需求发布的；
+                <br>（4）甲方的任何财产遭受没收、征用、查封、扣押、冻结等可能影响其履约能力的不利事件，且不能及时提供有效补救措施的；
+                <br>（5）甲方提供的担保物出现价值贬损，且甲方未能在规定的时间内提供相应价值的担保的；
+                <br>（6）甲方的财务状况出现影响其履约能力的不利变化，且不能及时提供有效补救措施的。
+                <br>2. 甲方出现上述的违约情形或者违反本协议项下的其他规定的，乙方有权自行或委托丙方采取下列任何一项或几项救济措施：
+                <br>（1）立即暂缓、取消发放全部借款；
+                <br>（2）宣布已发放借款全部提前到期，甲方应立即按照约定借款期限偿还所有借款本金和利息；
+                <br>（3）解除本协议；
+                <br>（4）要求甲方在三日内向乙方支付借款本金总额20%的金额作为违约金；
+                <br>（5）丙方有权在有融网平台或者以其他合法的形式公布甲方信息；披露信息的具体范围包括但不限于甲方姓名、身份证号码、家庭住址、工厂或公司所在地、电话号码等；
+                <br>（6）甲方出现除第六条第1款第（3）项规定之外的违约情形，且本协议项下甲方提供担保物的，乙方有权根据不同担保物采取不同的救济措施：
+                <br>A. 若甲方以自有车辆（以下简称该车辆）向乙方抵押或者质押来担保本协议项下债务履行并出现上述违约情形的，乙方有权扣留保管抵押车辆或无偿取得质押车辆的使用权，有权自行或者授权他人无偿使用该车辆，若该车辆在使用过程中发生毁损，甲方不得要求赔偿。乙方取得该车辆的使用权并不影响其依据法律规定及双方约定行使债权和抵押权或质押权，甲方应当无条件配合；
+                <br>B. 若甲方以自有的房屋向乙方抵押担保本协议项下债务履行并出现上述违约情形的，乙方有权依据双方约定及法律规定行使抵押权，甲方需无条件配合。
+                <br>C. 甲方以自有车辆或者自有房屋之外的其他动产或者不动产向乙方提供担保且甲方出现上述违约情形的，乙方有权依据法律的相关行使抵押权或者质押权，甲方应当无条件配合；
+                <br>D. 担保物的担保范围及担保顺序：
+                <br>担保范围包括：借款本金、利息、罚息、违约金，滞纳金等，在本协议履行期间产生的有关抵/质押物的评估、鉴定、保管、维修等费用，以及乙方为实现债权和担保物权而支出的一切费用，包括但不限于诉讼费、财产保全费、公证费、律师费等；
+                <br>担保顺序依次为乙方为实现债权和担保物权而支出的一切费用、罚息、借款违约金、借款利息、借款本金；
+                <br>（7）采取法律、法规以及本协议约定的其他救济措施。
+                <br>3. 甲方未按期还本付息的，甲方同意已支付的保证金用于优先偿还借款本息，并承诺承担未偿还借款本息总额<em>&nbsp; $!{contract.lateFeeRate} &nbsp;</em>/千分/日的罚息；
+                <br>4. 乙方保留将甲方违约失信的相关信息在媒体披露的权利。因甲方未还款而带来的调查及诉讼费用将由甲方承担。</p>
+            <h3>第七条 权利义务转让</h3>
+
+            <p>1. 各方同意并确认，乙方可将本协议项下的全部借款债权转让给第三方，但该第三方必须为有融网的注册用户。乙方转让其借款债权的，乙方委托有融网在转让完成后以向甲方发出电子邮件等方式通知甲方。
+               <br> 2. 未经乙方事先书面同意，甲方不得将本协议项下的任何权利义务转让给任何第三方。
+            </p>
+
+            <h3>第八条 其他</h3>
+            <p>1. 自甲、乙、丙三方均对本协议通过有融网平台进行确认并成功签署时本协议成立；自乙方向甲方成功出借资金时，本协议生效。
+                <br>2. 甲方发布的相应借款需求在规定时间内未达到满额状态的或借款需求达到满额状态之后，甲方未能通过丙方满额信用审核的，本协议自始不生效。
+                <br>3. 甲方将本协议下全部本金、利息、逾期罚息、滞纳金、违约金及其他相关费用全部偿还完毕之时，本协议自动终止。
+                <br>4. 本协议若有修改或者补充的，均由有融网以电子文本形式在有融网平台进行公布，修改后或者补充后的内容与本协议有冲突的，以修改后或者补充后的效力为准。
+                <br>5. 各方在本协议履行过程中发生任何争议的，应友好协商解决；如协商不成，任何一方均有权向杭州市西湖区人民法院提起诉讼。</p>
+
+
+            <div class="u-sign-table">
+                <table>
+                    <thead></thead>
+                    <tbody>
+                    <tr>
+                        <td width="45">甲方：</td>
+                        <td width="440">$!{contract.originalCreditorName}</td>
+                        <td width="130" class="f-tar">第三方服务机构：</td>
+                        <td>浙江小融网络科技股份有限公司</td>
+                    </tr>
+                    <tr>
+                        <td>日期：</td>
+                        <td>$!{contract.investDate}</td>
+                        <td class="f-tar">日期：</td>
+                        <td>$!{contract.investDate}</td>
+                    </tr>
+                    <tr class="u-stable-even">
+                        <td>乙方：</td>
+                        <td colspan="3">$!{contract.name}</td>
+                    </tr>
+                    <tr>
+                        <td>日期：</td>
+                        <td>$!{contract.investDate}</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="u-mask"><img src="$root_url/static/img/contract/mask.png?20151210" width="210" height="210" alt=""></div>
+            </div>
+
+
+        </div>
+    </div>
+    <div class="u-con-b"></div>
+</div>
+
+</body>
+
+</html>

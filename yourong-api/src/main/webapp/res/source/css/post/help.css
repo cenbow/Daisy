@@ -1,0 +1,220 @@
+/*首屏*/
+.m-homepage,.m-question,.m-QA{
+    background: #f3f3f3;
+}
+.u-homepage-interlayer{
+    height: 1rem;
+    width: 100%;
+    background: #f3f3f3;
+}
+.u-help-type{
+    height: 173px;
+    background: #fff;
+    border-top: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
+}
+.u-help-type span{
+    display: inline-block;
+    margin: 20px 0 0;
+    width: 25%;
+    position: relative;
+    text-align: center;
+}
+.u-help-type span em{
+    display: block;
+    font-size: 12px;
+    margin-top: 0.4rem;
+    text-align: center;
+}
+.u-help-type span a{
+    display: block;
+    position: relative;
+    color: #333;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.u-help-type span a img {
+    vertical-align: middle;
+}
+.u-icon-investment a{
+    background-position: 0 0;
+}
+/*热门问题*/
+.m-homepage h4, .m-question h4 {
+    line-height: 3.4375rem;
+    font-size: 1rem;
+    background: #fff;
+    color: #333;
+    position: relative;
+    margin-top: 0.75rem;
+    padding: 0 1rem;
+}
+
+.m-homepage h4 em, .m-question h4 em {
+    background: #D74148;
+    width: 0.15625rem;
+    height: 0.75rem;
+    border-radius: 1rem;
+    margin: 0 0.6rem 0 0;
+    display: inline-block;
+}
+
+.m-question h4 i {
+    transform: rotate(135deg);
+    -ms-transform: rotate(135deg);
+    -moz-transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+    -o-transform: rotate(135deg);
+    width: 6px;
+    height: 6px;
+    border-top: 1px solid #cccccc;
+    border-right: 1px solid #cccccc;
+    display: inline-block;
+    position: absolute;
+    right: 1.2rem;
+    top: 1.7rem;
+}
+
+.m-question h4 i.z-unfold {
+    transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    border-color: #666;
+}
+.m-question ul{
+    padding: 0.25rem 0 0;
+}
+.m-question ul li{
+    display: none;
+}
+.m-question ul li.z-current{
+    display: block;
+}
+.u-help-hot{
+    padding: 0 1rem;
+    color: #666;
+    font-size: 0.875rem;
+    background: #fff;
+    border-bottom: 1px solid #efefef;
+}
+.u-help-hot table{
+    width: 100%;
+}
+.u-help-hot tr{
+    border-top: 1px solid #efefef;
+    text-align: left;
+}
+.u-help-hot tr td span{
+    margin: 0.7rem 20px 0.7rem 0;
+    display: block;
+}
+.u-help-hot tr td em{
+    transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    border-top: 1px solid #cccccc;
+    border-right: 1px solid #cccccc;
+    width: 6px;
+    height: 6px;
+    display: inline-block;
+    margin-left: -2px;
+}
+.u-help-more-wrapper{
+    height: 8rem;
+}
+.u-help-more-wrapper a{
+
+    display: block;
+    text-align: center;
+    padding: 2rem 0 2rem;
+    color: #999;
+    font-size: 0.9rem;
+    text-decoration: underline;
+}
+/*问题*/
+.m-QA{
+    margin-top: 1rem;
+    color: #333;
+}
+.m-QA ul{
+    background: #fff;
+}
+.m-QA ul li{
+    display: none;
+}
+.m-QA ul li.z-current{
+    display: block;
+}
+.m-QA h1{
+    padding: 0.7rem 5% 0.7rem 0;
+    font-size: 1rem;
+    border-bottom: 1px solid #efefef;
+    color: #333;
+    margin: 0 0 0 5%;
+}
+.u-help-answer{
+    padding: 0.7rem 5% 0.7rem 5%;
+    color: #666;
+    font-size: 0.875rem;
+    line-height: 1.5rem;
+}
+
+.u-help-answer div {
+    display: inline-block;
+    width: 100%;
+    vertical-align: top;
+}
+
+.u-help-answer img {
+    display: block;
+    width: auto;
+    max-width: 100%;
+}
+
+.m-QA .u-help-more{
+    border-top: 1px solid #e5e5e5;
+}
+
+.u-transfer-poundage table {
+    width: 100%;
+    text-align: center;
+    color: white;
+    margin-top: 0.5rem;
+}
+
+.u-transfer-poundage table thead.f-transfer {
+    background: #d5d5d5;
+}
+
+.u-transfer-poundage table.f-transfer {
+    color: #777777;
+}
+
+.u-transfer-poundage table tbody tr.f-transfer:nth-child(even) {
+    background: #f2f2f2;
+}
+
+.u-transfer-poundage table tbody tr.f-transfer:nth-child(odd) {
+    background: #e5e5e5;
+}
+
+.u-transfer-poundage table.f-transfer tr td:first-child {
+    border-right: 1px solid #b5b5b5;
+}
+
+.f-center {
+    text-align: center;
+}
+
+.u-icon-investment, .u-icon-activity {
+    float: left;
+}
+
+.u-icon-function {
+    float: right;
+}

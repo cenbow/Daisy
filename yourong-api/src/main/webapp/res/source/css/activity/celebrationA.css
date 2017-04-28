@@ -1,0 +1,223 @@
+.m-celebrationA-hd{
+    width: 100%;
+    font-size: 0;
+}
+.m-celebrationA{
+    background: #b31a32;
+    padding: 0 2%;
+
+}
+/*红包雨*/
+.u-celebrationA-redPacket{
+    font-size: 0;
+}
+.u-redPacket-rule{
+    background: #fff9e6;
+    border-top-left-radius:5px;
+    border-top-right-radius:5px;
+    padding: 16px 0 0;
+    text-align: center;
+}
+.u-redPacket-rule h3{
+    color:#f99206;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.u-redPacket-rule p{
+    color: #333333;
+    line-height: 22px;
+    font-size: 0.8rem;
+}
+.u-celebrationA-redPacket img{
+    margin-top: -1px;
+}
+.u-redPacket-btn{
+    background: #e72e36;
+    border-bottom-left-radius:5px;
+    border-bottom-right-radius:5px;
+    padding: 0 5% 25px;
+}
+.u-redPacket-btn a{
+    width: 100%;
+    height: 45px;
+    display: block;
+    background: url("../../../img/activity/celebrationA/celebrationA-btn.png") no-repeat;
+    background-size: 100%;
+    text-align: center;
+    color: #953500;
+    font-size: 16px;
+    line-height: 30px;
+    letter-spacing: 3px;
+    font-weight: bold;
+}
+.u-redPacket-btn a.z-finish{
+    background: url("../../../img/activity/celebrationA/celebrationA-btn-end.png") no-repeat;
+    background-size: 100%;
+    color: #666;
+}
+@media screen and (min-width: 320px) {
+    .u-redPacket-btn a{
+        line-height: 30px;
+        height: 34px;
+    }
+}
+@media screen and (min-width: 400px) {
+    .u-redPacket-btn a{
+        line-height: 37px;
+        height: 38px;
+    }
+}
+@media screen and (min-width: 450px) {
+    .u-redPacket-btn a{
+        line-height: 45px;
+        height: 43px;
+    }
+}
+/*狂欢*/
+.u-celebrationA-hilarity{
+    margin-top: 20px;
+    border-radius: 5px;
+    padding: 25px 3% 25px;
+    background: #fff9e6;
+    margin-bottom: 20px;
+}
+.u-celebrationA-hilarity h3{
+    text-align: center;
+    color: #f99206;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.u-celebrationA-hilarity p{
+    color: #333333;
+    text-align: center;
+    font-size: 0.8rem;
+}
+.u-celebrationA-hilarity table{
+    border-top: 1px solid #7b7972;
+    border-left: 1px solid #7b7972;
+    width: 100%;
+}
+.u-celebrationA-hilarity table td{
+    border-right: 1px solid #7b7972;
+    border-bottom: 1px solid #7b7972;
+    text-align: center;
+    height: 30px;
+    font-size: 1rem;
+}
+.u-celebrationA-hilarity a{
+    width: 100%;
+    height: 30px;
+    background: #e32d36;
+    color: #fff;
+    font-size: 1rem;
+    line-height: 30px;
+    display: block;
+    text-align: center;
+    border-radius: 15px;
+    margin-top: 25px;
+}
+/*活动规则*/
+.u-celebrationA-rule{
+    margin: 40px 5% 0;
+    color: #fff;
+    font-size: 0.8rem;
+    line-height: 28px;
+    padding: 0 0 50px;
+}
+.u-celebrationA-rule h4{
+    font-size: 18px;
+    font-weight: bold;
+}
+.u-celebrationA-rule p span{
+    margin-left: 1.6rem;
+    display: block;
+}
+/*top*/
+.m-celebrationA-hd{
+    position: relative;
+}
+.m-celebrationA-hd a{
+    position: absolute;
+    bottom: 30px;
+    right: 10%;
+    width: 70%;
+    height: 30px;
+    display: block;
+    color: #c83940;
+    text-align: center;
+    line-height: 22px;
+    font-size: 1rem;
+    background: #fff884;
+    border-radius: 15px;
+}
+@media screen and (max-width: 300px) {
+    .m-celebrationA-hd a {
+        bottom: 27px;
+    }
+}
+@media screen and (min-width: 320px) {
+    .m-celebrationA-hd a {
+        bottom: 33px;
+    }
+}
+@media screen and (min-width: 350px) {
+    .m-celebrationA-hd a {
+        bottom: 40px;
+    }
+}
+@media screen and (min-width: 400px) {
+    .m-celebrationA-hd a {
+        bottom: 50px;
+    }
+}
+@media screen and (min-width: 450px) {
+    .m-celebrationA-hd a {
+        bottom: 60px;
+    }
+}
+@media screen and (min-width: 500px) {
+    .m-celebrationA-hd a {
+        bottom: 70px;
+    }
+}
+
+.u-rewards-detail{
+    padding: 15px 0;
+    background: #fff;
+    color: #333;
+    text-align: center;
+    width: 280px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    z-index:101;
+    display: none;
+    position: fixed;
+    top:45%;
+    left:50%;
+    margin-left:-140px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.12), 0 2px 3px rgba(0,0,0,0.24);
+}
+.u-rewards-detail .u-close {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    line-height: 20px;
+    text-align: center;
+    position: absolute;
+    font-size: 12px;
+    top: 4px;
+    right: 4px;
+    border: 1px solid #645016;
+    color: #645016;
+    background: #fff;
+    box-shadow: 0 0 0 3px #fff;
+}
+
+sup.u-icon-plus{
+    top: 1px;
+    display: inline-block;
+    font-size: 50%;
+    position: relative;
+    left: -1px;
+}

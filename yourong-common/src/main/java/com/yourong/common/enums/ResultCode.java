@@ -1,0 +1,1742 @@
+package com.yourong.common.enums;
+
+public enum ResultCode {
+	/**
+	 * 正常
+	 */
+	NORMAL(0, "NORMAL", "正常", 0), SUCCESS(1, "SUCCESS", "成功", 0), ERROR(2, "ERROR", "失败", 0), REGIST_COUNT(3, "ERROR", "发送短信或者语音超过次数", 0), SUBMIT_REPEAT_DATA(
+			4, "ERROR", "请勿重复提交数据", 0),CUSTOM(9,"CUSTOM","自定义返回结果",2),
+
+	REQUEST_ERROR(-101, "SINA_INTERFACE_REQUEST_ERROR", "新浪接口暂时不可用，请稍后重试", -1),
+
+	/** ========== 系统错误码10001 ========== **/
+
+	/**
+	 * 系统错误
+	 */
+	ERROR_SYSTEM(10001, "ERROR_SYSTEM", "系统异常", 1),
+
+	/**
+	 * 接口请求参数编码错误
+	 */
+	ERROR_SYSTEM_REQUEST_PARAM_DECODE(10002, "ERROR_SYSTEM_REQUEST_PARAM_DECODE", "接口请求参数解码错误！", 1),
+
+	/**
+	 * 数据库查询失败
+	 */
+	ERROR_SYSTEM_DATABASE_QUERY(10003, "ERROR_SYSTEM_DATABASE_QUERY", "数据库查询失败！", 1),
+
+	/**
+	 * 数据库存储失败
+	 */
+	ERROR_SYSTEM_DATABASE_INSERT(10004, "ERROR_SYSTEM_DATABASE_INSERT", "数据库存储失败！", 1),
+
+	/**
+	 * 数据库更新失败
+	 */
+	ERROR_SYSTEM_DATABASE_UPDATE(10005, "ERROR_SYSTEM_DATABASE_UPDATE", "数据库更新失败！", 1),
+
+	/**
+	 * 数据库事务执行失败
+	 */
+	ERROR_SYSTEM_DATABASE_TRANSACTION(10006, "ERROR_SYSTEM_DATABASE_TRANSACTION", "数据库事务执行失败！", 1),
+
+	/**
+	 * 数据对象转换失败
+	 */
+	ERROR_SYSTEM_DATAOBJECT_TRANSFORM(10007, "ERROR_SYSTEM_DATAOBJECT_TRANSFORM", "数据对象转换失败！", 1),
+
+	/**
+	 * 参数不能为空
+	 */
+	ERROR_SYSTEM_PARAM_CANNOT_EMPTY(10008, "ERROR_SYSTEM_PARAM_CANNOT_EMPTY", "参数不能为空！", 1),
+
+	/**
+	 * 参数不能全为数字
+	 */
+	ERROR_SYSTEM_PARAM_CANNOT_BE_NUMBER(10009, "ERROR_SYSTEM_PARAM_CANNOT_BE_NUMBER", "参数不能全为数字！", 1),
+
+	/**
+	 * 参数不能小于给定参数
+	 */
+	ERROR_SYSTEM_PARAM_CANNOT_LESS_THAN_ANOTHER(10010, "ERROR_SYSTEM_PARAM_CANNOT_LESS_THAN_ANOTHER", "参数不能小于给定参数！", 1),
+
+	/**
+	 * 参数长度过长
+	 */
+	ERROR_SYSTEM_PARAM_TOO_LONG(10011, "ERROR_SYSTEM_PARAM_TOO_LONG", "参数长度过长！", 1),
+
+	/**
+	 * 参数长度过短
+	 */
+	ERROR_SYSTEM_PARAM_TOO_SHORT(10012, "ERROR_SYSTEM_PARAM_TOO_SHORT", "参数长度过短！", 1),
+
+	/**
+	 * 系统参数错误
+	 */
+	ERROR_SYSTEM_PARAM(10013, "ERROR_SYSTEM_PARAM", "系统参数错误！", 1),
+
+	/**
+	 * 请求出错，请检查您传入的参数格式是否正确
+	 */
+	ERROR_SYSTEM_PARAM_FORMAT(10014, "ERROR_SYSTEM_PARAM_FORMAT", "请求出错，请检查您传入的参数格式是否正确", 1),
+
+	/**
+	 * 时间格式不正确
+	 */
+	ERROR_SYSTEM_DATETIME_PARAM_FORMAT(10015, "ERROR_SYSTEM_DATETIME_PARAM_FORMAT", "时间格式不正确！", 1),
+
+	/**
+	 * 数据库查询失败
+	 */
+	ERROR_SYSTEM_DATABASE_QUERY_NULL(10016, "ERROR_SYSTEM_DATABASE_QUERY", "数据库查询值为空！", 1),
+
+	/**
+	 * redis中取值为null
+	 */
+	ERROR_SYSTEM_REDIS_VALUE_NULL(10017, "ERROR_SYSTEM_REDIS_VALUE_NULL", "redis中取值为null！", 1),
+	/**
+	 * redis中值格式不正确
+	 */
+	ERROR_SYSTEM_REDIS_VALUE_FORMAT_ERROR(10018, "ERROR_SYSTEM_REDIS_VALUE_FORMAT_ERROR", "redis中值格式不正确！", 1),
+
+	/**
+	 * 短信发送失败
+	 */
+	MOBILE_SYSTEM_SEND_SMS_ERROR(10019, "MOBILE_SYSTEM_SEND_SMS_ERROR", "短信发送失败", 1),
+	/**
+	 * 语音发送失败
+	 */
+	MOBILE_SYSTEM_SEND_VOICE_ERROR(10020, "MOBILE_SYSTEM_SEND_VOICE_ERROR", "语音发送失败", 1),
+
+	/**
+	 * 语音验证异常
+	 */
+	MOBILE_SYSTEM_SEND_VOICE_VALIDATOR_ERROR(10021, "MOBILE_SYSTEM_SEND_VOICE_VALIDATOR_ERROR", "语音发送失败", 1),
+	/**
+	 * 调用新浪接口发生异常
+	 */
+	SINA_PAY_ERROR(10023, "SINA_PAY_ERROR", "调用新浪接口发生异常", 1),
+
+	/**
+	 * 用户未授权
+	 */
+	UNAUTHOR_MEMBER_ERROR(10024, "UNAUTHOR_MEMBER_ERROR", "用户未授权！", 1),
+
+	/**
+	 * 新浪异常信息提示
+	 */
+	SINA_BIZ_ERROR(10025, "SINA_MEMBER_TRUENAME_ERROR", "新浪异常信息提示", 1),
+
+	/**
+	 * 新浪设置支付密码异常:未设置支付密码的用户不允许修改或者找回密码
+	 */
+	PAY_PASSWORD_NOT_SET_ERROR(10026, "SET_PAY_PASSWORD_ERROR", "用户未设置支付密码", 1),
+	/**
+	 * 新浪设置支付密码异常:已设置支付密码的用户不允许重复设置密码
+	 */
+	PAY_PASSWORD_SET_ERROR(10027, "SET_PAY_PASSWORD_ERROR", "已设置支付密码的用户不允许重复设置密码", 1),
+	
+	/**
+	 * 新浪开通委托扣款授权异常:未设置支付密码的用户不允许开通委托扣款
+	 */
+	HANDLE_WITHHOLD_AUTHORITY_ERROR(10028, "HANDLE_WITHHOLD_AUTHORITY_ERROR", "未设置支付密码的用户不允许开通委托扣款", 1),
+	
+	/**
+	 * 新浪设置支付密码异常:未设置支付密码的用户不允许修改或者找回密码-APP
+	 */
+	PAY_PASSWORD_APP_NOT_SET_ERROR(10029, "PAY_PASSWORD_APP_NOT_SET_ERROR", "新浪支付全新升级，请前往设置支付密码。 ", 1),
+	
+	/**
+	 * 当前版本已停止支持，请更新至最新版本-APP
+	 */
+	APP_VERSION_ERROR(10030, "APP_VERSION_ERROR", "当前版本已停止支持，请更新至最新版本。 ", 1),
+
+
+
+	/** ========== 应用错误码 ========== **/
+	/*** 短信 语音 业务提示 80001-80099 ***/
+
+	/**
+	 * 验证码错误或已过期
+	 */
+	MOBILE_SYSTEM_VOICE_VALIDATOR_ERROR(80001, "MOBILE_SYSTEM_VOICE_VALIDATOR_ERROR", "验证码错误或已过期！", 2),
+	/**
+	 * 此号码已验证过，请不要重复验证
+	 */
+	MOBILE_SYSTEM_VOICE_EXIT_ERROR(80002, "MOBILE_SYSTEM_SEND_VOICE_ERROR", "发送语音失败", 2),
+	/**
+	 * 请注意来电
+	 */
+	MOBILE_SYSTEM_VOICE_PHONE_CALL(80003, "MOBILE_SYSTEM_VOICE_PHONE_CALL", "请注意来电", 2), MOBILE_SYSTEM_VOICE_PHONE_TWO(80004,
+			"MOBILE_SYSTEM_VOICE_PHONE_TWO", "2分钟内只能验证一次", 2),
+
+	/**
+	 * 会员模块 90001-90099
+	 */
+	/**
+	 * 手机号已经存在
+	 */
+	MEMBER_PHONE_NUMBER_ISEXIST_ERROR(90001, "MEMBER_PHONE_NUMBER_ISEXIST_ERROR", "手机号已经存在！", 2),
+	/**
+	 * 此用户不存在
+	 */
+	MEMBER_NOT_EXIST_ERROR(90002, "MEMBER_NOT_EXIST_ERROR", "此用户不存在！", 2),
+	/**
+	 * 此用户冻结状态
+	 */
+	MEMBER_FOZONE_ERROR(90003, "MEMBER_FOZONE_ERROR", "此用户冻结状态！", 2),
+	
+	/**
+	 * 该手机号已注册
+	 */
+	MEMBER_PHONE_NUMBER_REGISTED_ERROR(90004, "MEMBER_PHONE_NUMBER_REGISTED_ERROR", "该手机号已注册！", 2),
+
+	/**
+	 * 此用户密码错误
+	 */
+	MEMBER_PASSWORD_ERROR(90005, "MEMBER_PASSWORD_ERROR", "密码错误！", 2),
+
+	/**
+	 * 此用户登录失败次数太多
+	 */
+	MEMBER_LOGIN_COUNT_ERROR(90006, "MEMBER_LOGIN_COUNT_ERROR", "此用户登录失败次数太多！", 2),
+
+	/**
+	 * 身份证认证失败
+	 */
+	MEMBER_AUTH_IDENTITY_ERROR(90007, "AUTH_IDENTITY_ERROR", "身份证认证失败!", 2),
+
+	/**
+	 * 修改密码失败
+	 */
+	MEMBER_UPDATE_PASSWORD_ERROR(90008, "MEMBER_UPDATE_PASSWORD_ERROR", "修改密码失败!", 2),
+
+	/**
+	 * 验证码错误
+	 */
+	MEMBER_CAPTCHA_ERROR(90009, "MEMBER_CAPTCHA_ERROR", "验证码错误!", 2),
+
+	/**
+	 * 用户消息通知状态更新失败
+	 */
+	MEMBER_UPDATE_NOTIFY_SETTINGS_ERROR(90010, "MEMBER_UPDATE_NOTIFY_SETTINGS_ERROR", "用户消息通知状态更新失败!", 2),
+
+	/**
+	 * 此银行不存在
+	 */
+	MEMBER_BANK_NOT_EXIST_ERROR(90011, "MEMBER_BANK_NOT_EXIST_ERROR", "此银行不存在！", 2),
+
+	/**
+	 * 此银行卡号已存在
+	 */
+	MEMBER_BANK_CARD_EXIST_ERROR(90012, "MEMBER_BANK_CARD_EXIST_ERROR", "此银行卡号已存在！", 2),
+
+	/**
+	 * 绑定银行卡失败
+	 */
+	MEMBER_ADD_BANK_CARD_ERROR(90013, "MEMBER_ADD_BANK_CARD_ERROR", "绑定银行卡失败！", 2),
+
+	/**
+	 * 用户注册失败
+	 */
+	MEMBER_REGISTER_ERROR(90014, "MEMBER_REGISTER_ERROR", "用户注册失败！", 2),
+
+	/**
+	 * 此用户未激活
+	 */
+	MEMBER_NOT_ACTIVATION_ERROR(90015, "MEMBER_NOT_ACTIVATION_ERROR", "此用户未激活！", 2),
+
+	/**
+	 * 用户id不能为空
+	 */
+	MEMBER_ID_IS_NOT_NULL(90016, "MEMBER_ID_IS_NOT_NULL", "用户id不能为空！", 2),
+
+	/**
+	 * 用户没有进行手机认证和实名认证
+	 */
+	MEMBER_IS_NOT_AUTH_ID_AND_PHONE_NULL(90017, "MEMBER_IS_NOT_AUTH_ID_AND_PHONE_NULL", "用户没有进行手机认证和实名认证！", 2),
+	/**
+	 * 会员已经存在
+	 */
+	MEMBER_IS_EXIST(90018, "MEMBER_IS_EXIST", "会员已经存在！", 2),
+
+	MEMBER_PNGCODE_ERROR(90019, "MEMBER_PNGCODE_ERROR", "图形验证码错误", 2),
+
+	MEMBER_RE_PASSWORD_ERROR(90020, "MEMBER_RE_PASSWORD_ERROR", "两次输入新密码不一致", 2),
+
+	MEMBER_VOICECODE_ERROR(90021, "MEMBER_VOICECODE_ERROR", "语音验证码错误", 2),
+
+	MEMBER_AUTH_IDENTITY_EXIT(90022, "MEMBER_AUTH_IDENTITY_EXIT", "身份证重复", 2),
+
+	/**
+	 * 会员昵称已经存在
+	 */
+	MEMBER_USERNAME_IS_EXIST(90023, "MEMBER_USERNAME_IS_EXIST", "会员昵称已经存在！", 2),
+
+	/**
+	 * 该邮箱已经绑定
+	 */
+	MEMBER_EMAIL_IS_BINDED(90024, "MEMBER_EMAIL_IS_BINDED", "该邮箱已经绑定！", 2),
+	/**
+	 * 邮箱token不存在或者失效
+	 */
+	MEMBER_EMAIL_TOKEN_VAILD(90025, "MEMBER_EMAIL_TOKEN_VAILD", "邮箱token不存在或者失效！", 2),
+	/**
+	 * 邮箱token不匹配
+	 */
+	MEMBER_EMAIL_TOKEN_NOT_EQUAL(90026, "MEMBER_EMAIL_TOKEN_NOT_EQUAL", "邮箱token不匹配！", 2),
+
+	/****
+	 * 银行卡长度不对
+	 */
+	MEMBER_BANKCARD_LENGTH_ERROR(90027, "MEMBER_BANKCARD_LENGTH_ERROR", "银行卡长度不正确", 2),
+	/**
+	 * 两次输入的银行卡不一致
+	 */
+	MEMBER_BANKCARD_CHECK_ERROR(90028, "MEMBER_BANKCARD_CHECK_ERROR", "两次输入的银行卡不一致", 2),
+
+	/**
+	 * 用户下载合同密码不正确
+	 */
+	MEMBER_DOWNLOAD_CONTRACT_PASSWORD_NOT_EQUAL(90029, "MEMBER_DOWNLOAD_CONTRACT_PASSWORD_NOT_EQUAL", "用户下载合同密码不正确！", 2),
+	/**
+	 * 获取推荐用户列表发生错误
+	 */
+	MEMBER_GET_REFERRAL_ERROR(90030, "MEMBER_GET_REFERRAL_ERROR", "获取推荐用户列表发生错误！", 2),
+
+	/**
+	 * 当前保存手机号码跟发送验证码的手机号码不一致
+	 */
+	MEMBER_CHECK_MOBILE_CODE_ERROR(90031, "MEMBER_CHECK_MOBILE_CODE_ERROR", "当前保存手机号码跟发送验证码的手机号码不一致！", 2),
+
+	/**
+	 * 您的昵称不可包含数字、特殊符号和非法词汇且长度在3~14个字符之间
+	 */
+	MEMBER_USERNAME_CHECK_ERROR(90032, "MEMBER_USERNAME_CHECK_ERROR", "昵称需为中文、字母或中文字母的组合，长度为3-14个字符（一个汉字为2个字符）。", 2),
+
+	/**
+	 * 昵称不可包含敏感词，请重新设置昵称
+	 */
+	MEMBER_USERNAME_FILTER_WORDS_ERROR(90033, "MEMBER_USERNAME_FILTER_WORDS_ERROR", "昵称不可包含敏感词，请重新设置昵称。", 2),
+
+	/**
+	 * 用户银行卡不存在
+	 */
+	MEMBER_USERNAME_WITHDRAW_BANKID(90034, "MEMBER_USERNAME_WITHDRAW_BANKID", "用户银行卡不存在", 2),
+
+	/**
+	 * 此银行卡不属于这用户
+	 */
+	MEMBER_USERNAME_WRONG_BANKID(90035, "MEMBER_USERNAME_WRONG_BANKID", "此银行卡不属于这用户", 2),
+	/**
+	 * 有处理中的提现业务关联了该卡，暂不能删除
+	 */
+	MEMBER_USERNAME_ISWITHDRAWING_BANKID(90036, "MEMBER_USERNAME_ISWITHDRAWING_BANKID", "有处理中的提现业务关联了该卡，暂不能删除", 2),
+	/*** 银行不支持快捷支付 ***/
+	MEMBER_BANK_NOTSUPPORT_PAY(90037, "MEMBER_BANK_NOTSUPPORT_PAY", "银行不支持快捷支付", 2),
+	/** 支付推进失败 */
+	MEMBER_BANK_ADVACE_CODE(90038, "MEMBER_BANK_ADVACE_CODE", "校验码有误，请重新获取", 2),
+
+	/** 身份证未满18周岁 */
+	MEMBER_IDENTITYNUMBER_ERROR(90039, "MEMBER_IDENTITYNUMBER_ERROR", "年龄未满十八周岁，未达到投资年龄，谢谢您的关注。", 2),
+
+	/** 充值金额必须>1.0 */
+	MEMBER_RECHARGE_MUST_MORE_ERROR(90040, "MEMBER_RECHARGE_MUST_MORE_ERROR", "充值金额必须大于0.01元", 2),
+	
+	/*** 快捷卡未认证 ***/
+	MEMBER_BANK_NOT_VERIFIED(90041, "MEMBER_BANK_NOT_VERIFIED", "银行卡未认证", 2),
+
+	/*** 会员已经签到过 ***/
+	MEMBER_IS_CHECKED_YET_ERROR(90050, "MEMBER_IS_CHECKED_YET_ERROR", "会员已经签到过", 2),
+
+	/*** 实名未认证 ***/
+	MEMBER_UN_TRUE_NAME(90042, "MEMBER_UN_TRUE_NAME", "未实名认证", 2),
+
+	/**
+	 * 用户已经实名认证
+	 */
+	MEMBER_TRUE_NAME_IDENTITY_ISEXIST(90060, "MEMBER_TRUE_NAME_IDENTITY_ISEXIST", "该用户已经实名认证！", 2),
+	
+	
+	/*** 删除安全卡前，需将存钱罐余额清零 ***/
+	MEMBER_BANKCARD_NOT_ZERO(90043, "MEMBER_BANKCARD_NOT_ZERO", "资产总计为0，方可删除安全卡", 2),
+
+	/** 支付推进失败 */
+	MEMBER_ADVACE_CODE_EROOR(90044, "MEMBER_ADVACE_CODE_EROOR", "输入错误，新验证码已发送", 2),
+
+	/** 已经绑定过微信 */
+	MEMBER_IS_EXIT_WEIXIN_EROOR(90045, "MEMBER_IS_EXIT_WEIXIN_EROOR", "您的账号已经绑定过微信", 2),
+
+	/*** 推荐人错误 **/
+	MEMBER_ERRO_TUIJIAN_EROOR(90046, "MEMBER_ERRO_TUIJIAN_EROOR", "您填写的推荐人手机号码不存在，请重新输入", 2),
+
+	/*** 今日短信次数超限 **/
+	MEMBER_API_SMS_COUNT_EROOR(90047, "MEMBER_API_SMS_COUNT_EROOR", "今日短信次数超限", 2),
+
+	/** 抱歉，您已绑定了有融网微信公众号！ */
+	WEIXIN_IS_UNBUNDLING_EROOR(90048, "WEIXIN_IS_UNBUNDLING_EROOR", "您已绑定了有融网公众号！请返回操作。", 2),
+
+	/** 上传头像文件格式错误，只支持JPG、JPEG、PNG文件格式 **/
+	MEMBER_UPLOAD_AVATAR_FILE_TYPE_ERROR(90049, "MEMBER_UPLOAD_IMG_FILE_TYPE_ERROR", "上传头像文件格式错误，只支持JPG、JPEG、PNG文件格式", 2),
+
+	/** 上传头像文件超过2MB，请重新选择文件上传 **/
+	MEMBER_UPLOAD_AVATAR_FILE_SIZE_ERROR(90050, "MEMBER_UPLOAD_AVATAR_FILE_SIZE_ERROR", "上传头像文件超过2MB，请重新选择文件上传", 2),
+
+	/*** 银行卡已经是快捷支付卡 ***/
+	MEMBER_BANK_CARD_IS_QUICK_PAY(90051, "MEMBER_BANK_CARD_IS_QUICK_PAY", "银行卡已经是快捷支付卡", 2),
+
+	/**
+	 * 亲爱的会员，您的生日还没到哦~
+	 */
+	MEMBER_TODAY_IS_NOT_BIRTHDAY_ERROR(90052, "MEMBER_TODAY_IS_NOT_BIRTHDAY", "亲爱的会员，您的生日还没到哦~", 2),
+
+	/**
+	 * 亲爱的会员，您今年的生日过咯，别着急，总有份礼物等着你~
+	 */
+	MEMBER_TODAY_IS_NOT_BIRTHDAY_2_ERROR(90053, "MEMBER_TODAY_IS_NOT_BIRTHDAY_2_ERROR", "亲爱的会员，您今年的生日过咯，别着急，总有份礼物等着你~", 2),
+
+	/**
+	 * 亲爱的会员，您已经领取过生日礼包啦~
+	 */
+	MEMBER_RECEIVED_BIRTHDAY_GIFT(90054, "MEMBER_RECEIVED_BIRTHDAY_GIFT", "亲爱的会员，您已经领取过生日礼包啦~", 2),
+
+	/**
+	 * 亲爱的会员，只有生日当天才能享受签到特权噢~
+	 */
+	MEMBER_BIRTHDAY_SIGN_TIPS_ERROR(90055, "MEMBER_BIRTHDAY_TIPS_ERROR", "亲爱的会员，只有生日当天才能享受签到特权噢~", 2),
+
+	/**
+	 * 亲爱的会员，只有生日当天才能享受红包特权噢~
+	 */
+	MEMBER_BIRTHDAY_COUPON_TIPS_ERROR(90056, "MEMBER_BIRTHDAY_COUPON_TIPS_ERROR", "亲爱的会员，只有生日当天才能享受红包特权噢~", 2),
+
+	/**
+	 * 亲爱的会员，只有生日当天才能享受收益特权噢~
+	 */
+	MEMBER_BIRTHDAY_INCOME_TIPS_ERROR(90057, "MEMBER_BIRTHDAY_INCOME_TIPS_ERROR", "亲爱的会员，只有生日当天才能享受收益特权噢~", 2),
+
+	/**
+	 * 亲爱的会员，活动还未开始，不要着急噢~
+	 */
+	ACTIVITY_BIRTHDAY_IS_NOT_START(90058, "ACTIVITY_BIRTHDAY_IS_NOT_START", "亲爱的会员，活动还未开始，不要着急噢~", 2),
+	/**
+	 * 亲爱的 用戶，请先去登录
+	 */
+	ACTIVITY_REPORT_IS_NOT_LOGIN(90059, "ACTIVITY_REPORT_IS_NOT_LOGIN", "亲爱的	用戶，请先去登录", 2),
+
+	/***添加推荐人，推荐人未激活**/
+	MEMBER_ERRO_REFERRAL_STATUS_EROOR(90060, "MEMBER_ERRO_REFERRAL_EROOR", "推荐人未激活", 2),
+
+	/***添加推荐人，推荐人未实名认证**/
+	MEMBER_ERRO_REFERRAL_IDENTY_EROOR(90061, "MEMBER_ERRO_REFERRAL_IDENTY_EROOR", "推荐人未实名认证", 2),
+
+	/***添加推荐人，被推荐人未激活**/
+	MEMBER_ERRO_REFERRED_STATUS_EROOR(90062, "MEMBER_ERRO_REFERRED_STATUS_EROOR", "被推荐人未激活", 2),
+
+	/***添加推荐人，被推荐人未实名认证**/
+	MEMBER_ERRO_REFERRED_IDENTY_EROOR(90063, "MEMBER_ERRO_REFERRED_IDENTY_EROOR", "被推荐人未实名认证", 2),
+
+	/***添加推荐人，被推荐人不存在**/
+	MEMBER_ERRO_REFERRED_NULL_EROOR(90064, "MEMBER_ERRO_REFERRED_NULL_EROOR", "被推荐人不存在", 2),
+
+	/***添加推荐人，已存在推荐人**/
+	MEMBER_ERRO_REFERRED_DUPLICATE_EROOR(90065, "MEMBER_ERRO_REFERRED_DUPLICATE_EROOR", "已存在推荐人", 2),
+
+	/***添加推荐人，已存在推荐人**/
+	MEMBER_ERRO_REFERRED_MYSELF_EROOR(90066, "MEMBER_ERRO_REFERRED_MYSELF_EROOR", "推荐人不能是本人", 2),
+	
+	/***修改手机号，姓名输入错误**/
+	MEMBER_TRUENAME_ERROR(90067, "MEMBER_TRUENAME_ERROR", "姓名错误", 2),
+	
+	/***修改手机号，身份证号码填写有误**/
+	MEMBER_IDENTITY_ERROR(90068, "MEMBER_IDENTITY_ERROR", "身份证号码有误", 2),
+	
+	/***修改手机号，获取手机号有误**/
+	MEMBER_MOBILE_ERROR(90069, "MEMBER_MOBILE_ERROR", "手机号有误", 2),
+	
+	/*** 未设置支付密码的用户不允许充值 **/
+	RECHARGE_MUST_SET_PAY_PASSWORD_ERROR(90070, "RECHARGE_MUST_SET_PAY_PASSWORD_ERROR", "未设置支付密码的用户不允许充值", 2),
+
+	/*** 当前用户被限制使用优惠券 **/
+	MEMBER_USE_COUPON_LIMIT_ERROR(90071, "MEMBER_USE_COUPON_LIMIT_ERROR", "当前用户被限制使用优惠券", 2),
+	
+	/*** 当前用户注册时未采用正确的验证方式 **/
+	MEMBER_REGISTER_CHECK_TYPE_ERROR(90072, "MEMBER_REGISTER_CHECK_TYPE_ERROR", "验证方式错误！", 2),
+	
+	/*** 您使用的IP已超过单日最大注册数，如有疑问请联系客服：400-025-6688。 **/
+	MEMBER_REGISTER_IP_RESTRICT_ERROR(90073, "MEMBER_REGISTER_IP_RESTRICT_ERROR", "您使用的IP已超过单日最大注册数，如有疑问请联系客服：400-025-6688。", 2),
+	
+
+	/**
+	 * 资金模块 90201-90299
+	 */
+	/**
+	 * 用户存钱罐余额不足
+	 */
+	BALANCE_MEMBER_PIGGY_BALANCE_LACKING(90201, "BALANCE_MEMBER_PIGGY_BALANCE_LACKING", "您的存钱罐余额不足！", 2),
+
+	/**
+	 * 用户存钱罐余额不存在
+	 */
+	BALANCE_MEMBER_PIGGY_BALANCE_NOT_EXISTS(90202, "BALANCE_MEMBER_PIGGY_BALANCE_NOT_EXISTS", "用户存钱罐余额不存在！", 2),
+	/**
+	 * 平台余额不足
+	 */
+	BALANCE_PALTFORM_BALANCE_LACKING(90203, "BALANCE_PALTFORM_BALANCE_LACKING", "平台余额不足！", 2),
+
+	/*** 存钱罐不为0 ***/
+	BALANCE_IS_NOT_ZERO(90204, "BALANCE_IS_NOT_ZERO", "资产统计不能0", 2),
+
+	/*** 提现需扣除两点人气值，当前您的人气值不足无法提现。 ***/
+	BALANCE_MEMBER_POPULARITY_LACKING(90205, "BALANCE_MEMBER_POPULARITY_LACKING", "提现需扣除两点人气值，当前您的人气值不足无法提现。", 2),
+
+	/** 用户提现取消失败 **/
+	BANLANCE_WITHDRAW_CANCEL_ERROR(90206, "BANLANCE_WITHDRAW_CANCEL_ERROR", "提现取消失败", 2),
+
+	/** 提现状态不是处理中，无法取消提现 **/
+	BANLANCE_WITHDRAW_STATUS_NOT_PROCESS_ERROR(90206, "BANLANCE_WITHDRAW_STATUS_NOT_PROCESS_ERROR", "您的提现申请已提交处理，无法取消提现申请。", 2),
+
+	/** 提现状态是取消，已经取消提现 **/
+	BANLANCE_WITHDRAW_STATUS_CANCEL_ERROR(90206, "BANLANCE_WITHDRAW_STATUS_CANCEL_ERROR", "您的提现申请已取消，无法重复取消。", 2),
+	
+	/** 垫资人的存钱罐余额不足，请选择请他垫资人！ **/
+	BALANCE_MEMBER_PIGGY_BALANCE_LACKING_SELECTOTHER(90207, "BALANCE_MEMBER_PIGGY_BALANCE_LACKING_SELECTOTHER", "垫资人的存钱罐余额不足，请选择其他垫资人！", 2),
+	
+	/** 提现金额必须大于0.01元！ **/
+	MEMBER_WITHDRAW_MUST_MORE_ERROR(90208, "MEMBER_WITHDRAW_MUST_MORE_ERROR", "提现金额必须大于0.01元", 2),
+	
+	/** 未设置支付密码的用户不允许提现！ **/
+	WITHDRAW_MUST_SET_PAY_PASSWORD_ERROR(90209, "WITHDRAW_MUST_SET_PAY_PASSWORD_ERROR", "未设置支付密码的用户不允许提现", 2),
+
+	/**
+	 * 交易模块 90301-90399
+	 * 
+	 */
+	/**
+	 * 该项目没有可以放款的投资
+	 */
+	TRANSACTION_LOAN_NO_INVEST_ERROR(90370, "TRANSACTION_LOAN_NO_INVEST_ERROR", "该项目没有可以放款的投资！", 2),
+	/**
+	 * 订单不是待支付状态
+	 */
+	ORDER_FRONT_ORDER_NOT_WAIT_PAY(90382, "ORDER_FRONT_ORDER_NOT_WAIT_PAY", "订单不是待支付状态！", 2),
+	/**
+	 * 订单已经是支付中状态
+	 */
+	ORDER_FRONT_ORDER_YET_PAYING(90380, "ORDER_FRONT_ORDER_YET_PAYING", "订单已经是支付中状态！", 2),
+	/**
+	 * 第三方回调在本地保存代收交易之前
+	 */
+	TRANSACTION_NOTIFY_BEFORE_CREATE_COLLECT_TRADE(90383, "TRANSACTION_NOTIFY_BEFORE_CREATE_COLLECT_TRADE", " 第三方回调在本地保存代收交易之前", 2),
+	/**
+	 * 订单已关闭
+	 */
+	ORDER_FRONT_ORDER_CLOSE(90384, "ORDER_FRONT_ORDER_CLOSE", "订单已关闭，请重新下单！", 2),
+	/**
+	 * 保存交易信息出错
+	 */
+	TRANSACTION_SAVE_ERROR(90385, "TRANSACTION_SAVE_ERROR", "保存交易信息出错", 2),
+	/**
+	 * 优惠券金额与使用订单优惠券金额不匹配
+	 */
+	TRANSACTION_COUPON_AMOUNT_NOT_MATCH_ERROR(90386, "TRANSACTION_COUPON_AMOUNT_NOT_MATCH_ERROR", "优惠券金额与使用订单优惠券金额不匹配", 2),
+
+	/**
+	 * 交易前置条件验证发生异常
+	 */
+	TRANSACTION_PRE_VALIDATE_EXCEPTION_ERROR(90387, "TRANSACTION_PRE_VALIDATE_EXCEPTION_ERROR", "交易前置条件验证发生异常！", 2),
+
+	/**
+	 * 用户投资金额不是递增金额的整数倍
+	 */
+	TRANSACTION_INCREMENT_AMOUNT_ERROR(90388, "TRANSACTION_INCREMENT_AMOUNT_ERROR", "用户投资金额不是递增金额的整数倍！", 2),
+	/**
+	 * 使用账户资金和使用现金券金额相加小于项目最小投资额
+	 */
+	TRANSACTION_PROJECT_LESS_MINIVESTMOUNT(90389, "TRANSACTION_PROJECT_LESS_MINIVESTMOUNT", "使用账户资金和使用现金券金额相加小于项目最小投资额！", 2),
+	/**
+	 * 使用资金账户金额与使用现金券金额以及支付金额都为0
+	 */
+	TRANSACTION_CAPITAL_REWARD_ZERO(90390, "TRANSACTION_CAPITAL_REWARD_ZERO", "使用资金账户金额与使用现金券金额以及支付金额都为0！", 2),
+
+	/**
+	 * 使用资金账户金额与使用现金券金额是不等于投资金额
+	 */
+	TRANSACTION_USEDCAPITAL_USEDREWARD_NOT_EQUAL_INVESTAMOUNT(90391, "TRANSACTION_USEDCAPITAL_USEDREWARD_NOT_EQUAL_INVESTAMOUNT",
+			"使用资金账户金额与使用现金券金额之和不等于投资金额！", 2),
+	/**
+	 * 用户每日创建的待支付订单超过10笔
+	 */
+	ORDER_FRONT_ORDER_THAN_TEN(90392, "ORDER_FRONT_ORDER_THAN_TEN", "用户每日创建的待支付订单超过10笔！", 2),
+	/**
+	 * 网站前台订单保存失败
+	 */
+	ORDER_FRONT_SAVE_FAIL_ERROR(90393, "ORDER_FRONT_SAVE_FAIL_ERROR", "网站前台订单保存失败！", 2),
+
+	/**
+	 * 交易不存在
+	 */
+	TRANSACTION_NOT_EXIST_ERROR(90394, "TRANSACTION_NOT_EXIST_ERROR", "交易不存在！", 2),
+	/**
+	 * 交易不属于该会员
+	 */
+	TRANSACTION_NOT_BELONG_TO_MEMBER_ERROR(90395, "TRANSACTION_NOT_BELONG_TO_MEMBER_ERROR", "交易不属于该会员！", 2),
+	/**
+	 * 用户投资额必须大于0
+	 */
+	ORDER_FRONT_INVESTAMOUNT_MUST_GREATER_THAN_ZERO(90396, "ORDER_FRONT_INVESTAMOUNT_MUST_GREATER_THAN_ZERO", "用户投资额必须大于0！", 2),
+	/**
+	 * 投资额小于项目最小投资额
+	 */
+	ORDER_FRONT_INVESTAMOUNT_LESS_MINIVESTMOUNT(90397, "ORDER_FRONT_INVESTAMOUNT_LESS_MINIVESTMOUNT", "投资额小于项目最小投资额！", 2),
+	/**
+	 * 支付订单发生异常
+	 */
+	ORDER_FRONT_PAY_ERROR(90398, "ORDER_FRONT_PAY_ERROR", "支付订单发生异常！", 2),
+
+	/**
+	 * 交易金额必须大于0
+	 */
+	TRANSACTION_AMOUNT_MUST_BE_ABOVE_ZERO(90399, "TRANSACTION_AMOUNT_MUST_BE_ABOVE_ZERO", "交易金额必须大于0！", 2),
+	/**
+	 * 订单不属于该会员
+	 */
+	ORDER_NOT_BELONG_TO_MEMBER_ERROR(90370, "ORDER_NOT_BELONG_TO_MEMBER_ERROR", "订单不属于该会员！", 2),
+
+	/**
+	 * 新客项目，只允许从未投资过的用户投资！
+	 */
+	ORDER_ONLY_ALLOWING_NEW_USERS_ERROR(90371, "ORDER_ALLOWING_NEW_USERS_ERROR", "新客项目，只允许从未投资过的用户投资！", 2),
+	/**
+	 * 新客项目投资额小于1000不能使用收益券或者 现金券！
+	 */
+	ORDER_NEW_MEMBER_FIRST_NOT_ALLOW_USED_COUPON_ERROR(90372, "ORDER_NEW_MEMBER_FIRST_NOT_ALLOW_USED_COUPON_ERROR",
+			"新客项目投资额小于1000不能使用收益券或者现金券！", 2),
+
+	/**
+	 * 代收冻结/撤销更新本地代收交易状态必须前置状态为代收冻结
+	 */
+	COLLECT_TRADE_AUTH_STATUS_ERROR(90373, "COLLECT_TRADE_AUTH_STATUS_ERROR", "代收冻结/撤销更新本地代收交易状态必须前置状态为代收冻结！", 2),
+
+	/**
+	 * 代收交易状态已经是最终状态
+	 */
+	COLLECT_TRADE_AUTH_IS_LAST_STATUS_ERROR(90374, "COLLECT_TRADE_AUTH_IS_LAST_STATUS_ERROR", "代收交易状态已经是最终状态！", 2),
+
+	/**
+	 * 订单取消失败
+	 */
+	ORDER_CANCEL_ERROR(90328, "ORDER_CANCEL_ERROR", "订单取消失败", 2),
+
+	/**
+	 * 订单使用的现金券编号为空
+	 */
+	ORDER_USED_COUPON_AMOUNT_EMPTY_ERROR(90329, "ORDER_USED_COUPON_AMOUNT_EMPTY_ERROR", "订单使用的现金券编号为空", 2),
+
+	/**
+	 * 订单不存在
+	 */
+	ORDER_NOT_EXISTS_ERROR(90329, "ORDER_NOT_EXISTS_ERROR", "订单不存在", 2),
+
+	/**
+	 * 新浪代收交易重定向链接为空
+	 */
+	COLLECT_TRADE_RETURN_URL_NULL_ERROR(90330, "COLLECT_TRADE_RETURN_URL_NULL_ERROR", "新浪代收交易重定向链接为空", 2),
+
+	/**
+	 * 未开通委托支付无法发起存钱罐余额交易
+	 */
+	COLLECT_TRADE_AUTH_EMPTY_ERROR(90331, "COLLECT_TRADE_AUTH_EMPTY_ERROR", "未开通委托支付无法发起存钱罐余额交易", 2),
+
+	/**
+	 * 订单已经是最终状态
+	 */
+	ORDER_PAY_STATUS_ERROR(90332, "ORDER_PAY_STATUS_ERROR", "订单已受理，无需支付！", 2),
+
+	/**
+	 * 订单对应的本地代收记录为空
+	 */
+	ORDER_COLLECT_TRADE_NULL_ERROR(90333, "ORDER_COLLECT_TRADE_NULL_ERROR", "订单对应的本地代收记录为空", 2),
+
+	/**
+	 * 订单对应的本地代收记录不是待支付状态
+	 */
+	ORDER_COLLECT_TRADE_WAIT_PAY_ERROR(90334, "ORDER_COLLECT_TRADE_WAIT_PAY_ERROR", "订单对应的本地代收记录不是待支付状态", 2),
+
+	/**
+	 * 订单不是非委托支付
+	 */
+	ORDER_IS_NOT_WITHHOLD_AUTHORITY_ERROR(90335, "ORDER_IS_NOT_WITHHOLD_AUTHORITY_ERROR", "订单不是非委托支付", 2),
+	
+	/**
+	 * 用户未开通委托支付
+	 */
+	AUTO_INVEST_AUTHORITY_ERROR(90336, "AUTO_INVEST_AUTHORITY_ERROR", "未开通委托支付", 2),
+	
+	
+	AUTO_INVEST_HAD_OPEN_ERROR(90337, "AUTO_INVEST_HAD_OPEN_ERROR", "自动投标已经开启", 2),
+	
+	AUTO_INVEST_HAD_CLOSE_ERROR(90338, "AUTO_INVEST_HAD_CLOSE_ERROR", "自动投标已经关闭", 2),
+	
+	AUTO_INVEST_NO_SAVE_ERROR(90339, "AUTO_INVEST_NO_SAVE_ERROR", "自动投标设置信息未保存！", 2),
+	
+	AUTO_INVEST_OPEN_SUCCESS(90340, "AUTO_INVEST_OPEN_SUCCESS", "自动投标开启成功！", 2),
+	
+	AUTO_INVEST_CLOSE_SUCCESS(90341, "AUTO_INVEST_CLOSE_SUCCESS", "自动投标关闭成功！", 2),
+
+	/**
+	 * 订单使用的现金券不存在
+	 */
+	ORDER_USED_COUPON_NOT_EXISTS_ERROR(90337, "ORDER_USED_COUPON_NOT_EXISTS_ERROR", "订单使用的现金券不存在", 2),
+	
+	
+	/**
+	 * 该订单已无法支付，若未付款15分钟后订单将自动关闭。
+	 */
+	ORDER_SINA_UNWITHHOLD_NOT_PAY_ERROR(90338, "ORDER_SINA_UNWITHHOLD_NOT_PAY_ERROR", "该订单已无法支付，若未付款15分钟后订单将自动关闭。", 2),
+
+	/**
+	 * 使用资金账户金额不等于投资金额
+	 */
+	TRANSACTION_USEDCAPITAL_USEPAYAMOUNT_NOT_EQUAL_INVESTAMOUNT(90339, "TRANSACTION_USEDCAPITAL_USEPAYAMOUNT_NOT_EQUAL_INVESTAMOUNT",
+			"使用资金账户金额不等于投资金额！", 2),
+
+	/**
+	 * 该笔转让项目的订单认购本金错误
+	 */
+	ORDER_TRANSFER_PRINCIAL_ERROR(90340, "ORDER_TRANSFER_PRINCIAL_ERROR", "该笔转让项目的订单认购本金金额错误！", 2),
+
+	/**
+	 * 用户认购本金必须大于0
+	 */
+	ORDER_FRONT_TRANSFER_PRINCIPAL_MUST_GREATER_THAN_ZERO(90341, "ORDER_FRONT_TRANSFER_PRINCIPAL_MUST_GREATER_THAN_ZERO",
+			"用户认购本金必须大于0！", 2),
+
+	/**
+	 * 认购本金小于转让项目最小认购额
+	 */
+	ORDER_FRONT_TRANSFER_PRINCIPAL_LESS_MINPRINCIPAL(90342, "ORDER_FRONT_TRANSFER_PRINCIPAL_LESS_MINPRINCIPAL", "认购本金小于转让项目最小认购额！", 2),
+
+	/**
+	 * 用户认购金额不是递增金额的整数倍
+	 */
+	TRANSFER_TRANSACTION_INCREMENT_AMOUNT_ERROR(90343, "TRANSFER_TRANSACTION_INCREMENT_AMOUNT_ERROR", "用户认购金额不是递增金额的整数倍！", 2),
+
+	/**
+	 * 投资金额错误
+	 */
+	TRANSFER_TRANSACTION_INVEST_AMOUNT_ERROR(90344, "TRANSFER_TRANSACTION_INVEST_AMOUNT_ERROR", "投资金额错误！", 2),
+
+	/**
+	 * 项目模块 90401-90499
+	 */
+
+	/**
+	 * 添加项目失败
+	 */
+	PROJECT_SAVE_FAIL_ERROR(90401, "PROJECT_ADD_SAVE_FAIL_ERROR", "添加项目失败", 2),
+
+	/**
+	 * 阶递收益不允许为空
+	 */
+	PROJECT_INTEREST_IS_NULL_ERROR(90402, "PROJECT_INTEREST_IS_NULL", "阶递收益不允许为空", 3),
+
+	/**
+	 * 债权编号不存在或者已被使用
+	 */
+	PROJECT_SERIAL_NUMBER_IS_NOT_ADD_ERROR(90403, "PROJECT_SERIAL_NUMBER_IS_NOT_ADD_ERROR", "债权编号不存在或者已被使用", 3),
+
+	/**
+	 * 项目在存盘状态下才可以编辑
+	 */
+	PROJECT_STATUS_IS_NOT_SAVE_ERROR(90404, "PROJECT_STATUS_IS_NOT_SAVE_ERROR", "项目在存盘状态下才可以编辑", 3),
+
+	/**
+	 * 项目更新失败
+	 */
+	PROJECT_UPDATE_FAIL_ERROR(90405, "PROJECT_UPDATE_FAIL_ERROR", "项目更新失败", 3),
+
+	/**
+	 * 项目不存在
+	 */
+	PROJECT_NOT_EXIST_ERROR(90406, "PROJECT_NOT_EXIST_ERROR", "项目不存在", 3),
+
+	/**
+	 * 项目不是投资中状态
+	 */
+	PROJECT_NOT_INVESTING_STATUS_ERROR(90407, "PROJECT_NOT_INVESTING_STATUS_ERROR", "项目不是投资中状态", 3),
+	/**
+	 * 项目余额为0
+	 */
+	PROJECT_BALANCE_ZERO_ERROR(90408, "PROJECT_BALANCE_ZERO_ERROR", "你手太慢了，项目已经被抢完！", 3),
+	/**
+	 * 项目余额不足
+	 */
+	PROJECT_BALANCE_LACEING_ERROR(90409, "PROJECT_BALANCE_LACEING_ERROR", " 项目余额不足，赶紧去修改投资额度吧！", 3),
+
+	/**
+	 * 项目名称已经存在
+	 */
+	PROJECT_NAME_EXISTS_ERROR(90410, "PROJECT_NAME_EXISTS_ERROR", "项目名称已经存在", 3),
+	
+	/**
+	 * 项目不是可放款状态
+	 */
+	PROJECT_NOT_FULL_STATUS_ERROR(90411, "PROJECT_NOT_FULL_STATUS_ERROR", "项目不是可放款状态", 3),
+
+	/**
+	 * 项目已经放款过了
+	 */
+	PROJECT_IS_LOAN_BEORE_ERROR(90412, "PROJECT_IS_LOAN_BEORE_ERROR", "项目已经放款过了", 3),
+	/**
+	 * 项目投资金额错误
+	 */
+	PROJECT_INVEST_AMOUNT_ERROR(90413, "PROJECT_INVEST_AMOUNT_ERROR_ERROR", "项目投资金额错误", 3),
+	/**
+	 * 可用信用额度不能小于项目金额
+	 */
+	PROJECT_AVAILABLE_CREDIT_LESS_THEN_PROJECT_AMOUNT_ERROR(90413, "PROJECT_AVAILABLE_CREDIT_LESS_THEN_PROJECT_AMOUNT_ERROR",
+			"可用信用额度不能小于项目金额", 3),
+
+	/**
+	 * 亲，项目还没开始哟，摆好姿势准备！
+	 */
+	PROJECT_NOT_EXIST_OR_NOT_INVESTING_STATUS__ERROR(90414, "PROJECT_NOT_EXIST_OR_NOT_INVESTING_STATUS__ERROR", "亲，项目还没开始哟，摆好姿势准备！", 3),
+
+	/**
+	 * 项目已经做过数据保全
+	 */
+	PROJECT_IS_PRESERVATIONED_ERROR(90415, "PROJECT_IS_LOAN_BEORE_ERROR", "项目已经做过数据保全", 3),
+
+	/**
+	 * 车垫资或车商融项目暂不支持使用优惠券
+	 */
+	PROJECT_CARPAYIN_CANOT_USE_COUPON(90416, "PROJECT_CARPAYIN_CANOT_USE_COUPON", "该项目暂不支持使用优惠券", 3),
+
+	/**
+	 * 购车分期暂不支持使用收益券
+	 */
+	PROJECT_BUYCAR_CANOT_USE_COUPON(90417, "PROJECT_BUYCAR_CANOT_USE_COUPON", "购车分期暂不支持使用收益券", 3),
+
+	/**
+	 * 亲，项目已被一锤定音
+	 */
+	PROJECT_INVEST_END_ERROR(90417, "PROJECT_INVEST_END_ERROR", "亲，项目已被一锤定音", 3),
+	
+	/**
+	 * 项目不是已满额状态
+	 */
+	PROJECT_LOSE_NOT_PROJECT_STATUS_FULL(90418, "PROJECT_LOSE_NOT_INVEST_ERROR", "项目不是已满额状态！", 2),
+	
+	/**
+	 * 项目不存在需要退款的交易
+	 */
+	PROJECT_NOT_EXIST_HOSTING_COLLECT_TRADE(90419,"PROJECT_NOT_EXIST_HOSTING_COLLECT_TRADE","项目不存在需要退款的交易",2),
+	
+	/**
+	 * 项目不是已截止状态
+	 */
+	PROJECT_LOSE_NOT_PROJECT_STATUS_END(90420, "PROJECT_LOSE_NOT_PROJECT_STATUS_END", "项目不是已截止状态！", 2),
+	
+	/**
+	 * 项目余额为0-app
+	 */
+	PROJECT_BALANCE_ZERO_APP_ERROR(90421, "PROJECT_BALANCE_ZERO_APP_ERROR", "亲，您来晚了，项目已投满", 3),
+	
+	/**
+	 * 项目不可投-app
+	 */
+	PROJECT_NOT_INVESTING_STATUS_APP_ERROR(90422, "PROJECT_NOT_INVESTING_STATUS_APP_ERROR", "亲，该项目不可投，换个项目试试吧", 3),
+	
+	/**
+	 * 抱歉，新手项目只能投资一次哦
+	 */
+	PROJECT_ONLY_ALLOWING_NEW_USERS_ERROR(90423, "PROJECT_ONLY_ALLOWING_NEW_USERS_ERROR", "抱歉，新手项目只能投资一次哦！", 3),
+	
+	/**
+	 * 该项目当前期数已存在或该项目名称已存在
+	 */
+	PROJECT_NAME_TERM_EXISTS_ERROR(90424, "PROJECT_NAME_TERM_EXISTS_ERROR", "该项目当前期数已存在或该项目名称已存在，请重新添加！", 3),
+	
+	
+	/**
+	 * 项目不是待发布状态
+	 */
+	PROJECT_WAIT_RELEASE_NOT_EXITS(90421, "PROJECT_WAIT_RELEASE_NOT_EXITS", "项目不是待发布状态",2),
+	
+	/**
+	 * 逾期结算记录不存在
+	 */
+	OVERDUE_REPAY_LOG_NOT_EXITS(90422, "OVERDUE_REPAY_LOG_NOT_EXITS", "逾期结算记录不存在！",2),
+	/**
+	 * 逾期结算记录不是已还款状态，不能添加催收历程成功
+	 */
+	OVERDUE_REPAY_LOG_NOT_HADPAY_STATUS(90423, "OVERDUE_REPAY_LOG_NOT_HADPAY_STATUS", "逾期结算记录不是已还款状态，不能添加催收历程成功！",2),
+
+	/**
+	 * 项目不是审核通过状态或者流标中状态
+	 */
+	PROJECT_LOSE_NOT_AUTH_STATUS_ERROR(90424, "PROJECT_LOSE_NOT_AUTH_STATUS_ERROR", "项目不是审核通过状态或者流标中状态！", 2),
+
+	/**
+	 * 转让项目不允许使用优惠券
+	 */
+	TRANSFER_PROJECT_EXISTS_COUPON_ERROR(90425, "TRANSFER_PROJECT_EXISTS_COUPON_ERROR", "转让项目不允许使用优惠券！", 2),
+
+	/**
+	 * 转让人不能投资自己的转让项目
+	 */
+	TRANSFER_PROJECT_OWNER_INVEST_ERROR(90426, "TRANSFER_PROJECT_OWNER_INVEST_ERROR", "转让人不能投资自己的转让项目！", 2),
+
+	/**
+	 * 转让项目剩余可用金额减当前投资额不能小于起投金额
+	 */
+	TRANSFER_PROJECT_INVEST_LIMIT_ERROR(90427, "TRANSFER_PROJECT_INVEST_LIMIT_ERROR", "转让项目剩余可用金额减当前投资额不能小于起投金额！", 2),
+
+	/**
+	 * 转让项目不存在
+	 */
+	TRANSFER_PROJECT_NOT_EXISTS_ERROR(90428, "TRANSFER_PROJECT_NOT_EXISTS_ERROR", "转让项目不存在！", 2),
+
+	/**
+	 * 转让项目认购本金余额不足
+	 */
+	TRANSFER_PROJECT_BALANCE_LACEING_ERROR(90429, "TRANSFER_PROJECT_BALANCE_LACEING_ERROR", "转让项目认购本金余额不足！", 3),
+
+	/**
+	 * 该转让项目今日提前还款
+	 */
+	TRANSFER_PROJECT_EXISTS_EARLY_PAYMENT_ERROR(90430, "TRANSFER_PROJECT_EXISTS_EARLY_PAYMENT_ERROR", "该转让项目今日提前还款！", 2),
+	
+	/**
+	 * 债权模块 90501-90599
+	 */
+
+	/**
+	 * 添加债权失败
+	 */
+	DEBT_ADD_SAVE_FAIL_ERROR(90501, "DEBT_ADD_SAVE_FAIL_ERROR", "添加债权失败", 2),
+
+	/**
+	 * 原始债权编号重复
+	 */
+	DEBT_ORIGINAL_REPEAT_ERROR(90502, "DEBT_ORIGINAL_REPEAT_ERROR", "原始债权编号重复", 2),
+	/**
+	 * 更新债权失败
+	 */
+	DEBT_UPDATE_FAIL_ERROR(90503, "DEBT_UPDATE_FAIL_ERROR", "更新债权失败", 2),
+	/**
+	 * 删除债权失败
+	 */
+	DEBT_DELETE_FAIL_ERROR(90504, "DEBT_DELETE_FAIL_ERROR", "删除债权失败", 2),
+
+	/**
+	 * 债权已经关联项目，并且项目不是存盘状态下无法修改
+	 */
+	DEBT_UPDATE_PROJECT_NOT_IN_SAVE_ERROR(90505, "DEBT_UPDATE_PROJECT_NOT_IN_SAVE_ERROR", "债权已经关联项目，并且项目不是存盘状态下无法修改", 2),
+
+	/**
+	 * 添加经营融项目，信用额度不能为空
+	 */
+	DEBT_SAVE_ENTERPRISE_CREDIT_AMOUNT_NOT_NULL(90506, "DEBT_SAVE_ENTERPRISE_CREDIT_AMOUNT", "添加经营融项目，信用额度不能为空", 2),
+	/**
+	 * 项目预告开始时间不能为空
+	 */
+	DEBT_SAVE_PROJECT_NOTICE_NOT_NULL(90507, "DEBT_SAVE_PROJECT_NOTICE_NOT_NULL", "项目预告开始时间不能为空", 2),
+	
+	/**
+	 * 不是债权项目
+	 */
+	PROJECT_INVEST_TYPE_NO_DEBT_ERROR(90508, "PROJECT_INVEST_TYPE_NO_DEBT_ERROR", "不是债权项目!", 2),
+
+	/**
+	 * 优惠券活动模块 90601-90699
+	 */
+
+	/**
+	 * 添加优惠券模板失败
+	 */
+
+	COUPONTEMPLATE_ADD_SAVE_FAIL_ERROR(90601, "COUPONTEMPLATE_ADD_SAVE_FAIL_ERROR", "添加优惠券模板失败", 2),
+	/**
+	 * 印刷优惠券失败
+	 */
+	COUPONTEMPLATE_PRINT_FAIL_ERROR(90602, "COUPONTEMPLATE_PRINT_FAIL_ERROR", "印刷优惠券失败", 2),
+	/**
+	 * 优惠券模板id不能为空
+	 */
+	COUPONTEMPLATE_ID_IS_NULL_ERROR(90603, "COUPONTEMPLATE_ID_IS_NULL_ERROR", "优惠券模板id不能为空", 2),
+	/**
+	 * 优惠券模板不存在
+	 */
+	COUPONTEMPLATE_NOT_EXIST_ERROR(90604, "COUPONTEMPLATE_NOT_EXIST_ERROR", "优惠券模板不存在", 2),
+
+	/**
+	 * 优惠券不是有效的持有人
+	 */
+	COUPON_HOLDER_NOT_VALID_ERROR(90655, "COUPON_HOLDER_NOT_VALID_ERROR", "优惠券不是有效的持有人", 2),
+	/**
+	 * 优惠券不是有效可用状态
+	 */
+	COUPON_STATUS_NOT_VALID_ERROR(90656, "COUPON_STATUS_NOT_VALID_ERROR", "优惠券不是有效可用状态", 2),
+	/**
+	 * 优惠券不存在
+	 */
+	COUPON_NOT_EXIST_ERROR(90657, "COUPON_NOT_EXIST_ERROR", "优惠券不存在", 2),
+	/**
+	 * 兑换优惠券人气值不够
+	 */
+	COUPON_EXCHANGE_POPULARITY_NOT_ENOUGH_ERROR(90658, "COUPON_EXCHANGE_POPULARITY_NOT_ENOUGH_ERROR", "兑换优惠券人气值不够", 2),
+
+	/**
+	 * 新客项目不允许使用收益券
+	 */
+	COUPON_INCOME_DISABLE_BY_NOVICE_PROJECT_ERROR(90659, "COUPON_INCOME_DISABLE_BY_NOVICE_PROJECT_ERROR", "新客项目不允许使用收益券", 2),
+
+	/**
+	 * 新客项目不允许使用现金券
+	 */
+	COUPON_CASH_DISABLE_BY_NOVICE_PROJECT_ERROR(90660, "COUPON_CASH_DISABLE_BY_NOVICE_PROJECT_ERROR", "新客项目不允许使用现金券", 2),
+	/**
+	 * 领用优惠券失败
+	 */
+	COUPON_INCOME_RECEIVE_ERROR(90661, "COUPON_INCOME_RECEIVE_ERROR", "领用优惠券失败", 2),
+	/**
+	 * 该优惠券模板不能用于兑换人气值
+	 */
+	COUPON_NOT_USE_FOR_EXCHANGE_POPULARITY_ERROR(90662, "COUPON_NOT_USE_FOR_EXCHANGE_POPULARITY_ERROR", "该类型优惠券不能用于兑换人气值", 2),
+	/**
+	 * 优惠券不支持当前客户端
+	 */
+	COUPON_NOT_SUPPORT_CURRENT_CLIENT_ERROR(90663, "COUPON_NOT_SUPPORT_CURRENT_CLIENT_ERROR", "优惠券不支持当前客户端", 2),
+	/**
+	 * 投资额不满足优惠券的使用条件
+	 */
+	COUPON_AMOUNT_NOT_MATCH_CONDITION_ERROR(90664, "COUPON_AMOUNT_NOT_MATCH_CONDITION_ERROR", "投资额不满足优惠券的使用条件", 2),
+	/**
+	 * 投资天数不满足优惠券的使用条件
+	 */
+	COUPON_DAYS_NOT_MATCH_CONDITION_ERROR(90665, "COUPON_DAYS_NOT_MATCH_CONDITION_ERROR", "投资天数不满足优惠券的使用条件", 2),
+	/**
+	 * 优惠券不在有效的使用时间内
+	 */
+	COUPON_NOT_VALID_TIME_ERROR(90666, "COUPON_NOT_VALID_TIME_ERROR", "优惠券不在有效的使用时间内", 2),
+	/**
+	 * 等本等息不能使用收益券
+	 */
+	COUPON_NOT_VALID_AVG_PRINCIPAL_INTEREST_ERROR(90667, "COUPON_NOT_VALID_AVG_PRINCIPAL_INTEREST_ERROR", "等本等息不能使用收益券", 2),
+	
+	/**
+	 * 新手项目不能使用高额收益券
+	 */
+	COUPON_NOT_VALID_EXTRA_ERROR(90668, "COUPON_NOT_VALID_EXTRA_ERROR", "新手项目不能使用高额收益券", 2),
+	/**
+	 * 活动模块 90701-90799
+	 */
+	/**
+	 * 活动尚未开始
+	 */
+	ACTIVITY_NOT_START_ERROR(90701, "ACTIVITY_NOT_START_ERROR", "活动还未开始呢，先去看看投资项目吧！", 2),
+	/**
+	 * 活动已经结束
+	 */
+	ACTIVITY_YET_END_ERROR(90702, "ACTIVITY_YET_END_ERROR", "来晚啦，活动已经结束，明年再来吧！", 2),
+	/**
+	 * 会员已经参加该活动
+	 */
+	ACTIVITY_YET_JOIN_ACTIVITY_ERROR(90703, "ACTIVITY_YET_JOIN_ACTIVITY_ERROR", "你已经参加过该活动了，不能重复参加！", 2),
+	/**
+	 * 活动不存在
+	 */
+	ACTIVITY_NOT_EXSIST_ERROR(90704, "ACTIVITY_NOT_EXSIST_ERROR", "活动不存在", 2),
+
+	/**
+	 * 活动尚未开始或已结束
+	 */
+	ACTIVITY_NOT_START_OR_YET_END_ERROR(90705, "ACTIVITY_NOT_START_OR_YET_END_ERROR", "活动尚未开始或已结束！", 2),
+	/**
+	 * 本期活动你已经参加了了，请等待下一期吧
+	 */
+	ACTIVITY_CURRENT_YET_JOIN_ACTIVITY_ERROR(90706, "ACTIVITY_CURRENT_YET_JOIN_ACTIVITY_ERROR", "本期活动你已经参加了，请等待下一期吧！", 2),
+
+	/**
+	 * 参加活动需要的人气值不足
+	 */
+	ACTIVITY_POPULARITY__ERROR(90707, "ACTIVITY_POPULARITY__ERROR", "您当前人气值余额不足", 2),
+
+	/**
+	 * 参加大集换大利需要的图标不足
+	 */
+	ACTIVITY_ICON__ERROR(90708, "ACTIVITY_ICON__ERROR", "您当前图标不足", 2),
+
+	/**
+	 * 鸡年新年活动您需要使用后才能领取压岁钱
+	 */
+	ACTIVITY_LUCKYMONEY__ERROR(90709, "ACTIVITY_ICON__ERROR", "您需要使用后才能领取压岁钱", 2),
+
+	/**
+	 * 鸡年新年活动您需要一笔投资才能领取压岁钱
+	 */
+	ACTIVITY_LUCKYBAG__ERROR(90711, "ACTIVITY_LUCKYBAG__ERROR", "已领取登录福袋", 2),
+
+	/**
+	 * 您已经领取过压岁钱了
+	 */
+	ACTIVITY_LUCKYMONEY_NO__ERROR(90710, "ACTIVITY_ICON__ERROR", "您已经领取过压岁钱了", 2),
+	/**
+	 * 小明小刚的故事活动90721-90730
+	 */
+	/**
+	 * 小明小刚的故事活动尚未开始
+	 */
+	ACTIVITY_XIAOMING_STORY_NOT_START_ERROR(90721, "ACTIVITY_XIAOMING_STORY_NOT_START_ERROR", "活动还未开始呢，先去看看投资项目吧！", 2),
+	/**
+	 * 小明小刚的故事活动已经结束
+	 */
+	ACTIVITY_XIAOMING_STORY_YET_END_ERROR(90722, "ACTIVITY_XIAOMING_STORY_YET_END_ERROR", "来晚啦，活动已经结束！", 2),
+	/**
+	 * 会员已经参加该活动
+	 */
+	ACTIVITY_XIAOMING_STORY_YET_JOIN_ACTIVITY_ERROR(90723, "ACTIVITY_XIAOMING_STORY_YET_JOIN_ACTIVITY_ERROR", "你已经参加过该活动了，不能重复参加！", 2),
+	/**
+	 * 用户的投资总额不满足活动条件
+	 */
+	ACTIVITY_NOT_MEET_INVEST_CONDITIONS_ERROR(90724, "ACTIVITY_NOT_MEET_INVEST_CONDITIONS_ERROR", "你的投资总额不满足条件，赶紧去投资吧！", 2),
+	/**
+	 * 中秋活动未开始
+	 */
+	ACTIVITY_MIDAUTUMN_NOT_START_ERROR(90725, "ACTIVITY_MIDAUTUMN_NOT_START_ERROR", "亲爱的用户，活动未开始，9月26日10点准时约！", 2),
+	/**
+	 * 中秋活动优惠券已领取完
+	 */
+	ACTIVITY_MIDAUTUMN_NOCOUPON_ERROR(90726, "ACTIVITY_MIDAUTUMN_NOCOUPON_ERROR", "亲爱的用户，祝您中秋快乐！现金券已经送完啦，十一还有惊喜，记得赶早哦~", 2),
+	/**
+	 * 中秋活动已经参与
+	 */
+	ACTIVITY_MIDAUTUMN_HAD_JOINED_ERROR(90727, "ACTIVITY_MIDAUTUMN_HAD_JOINED_ERROR", "亲爱的用户，祝您中秋快乐！您已领取过现金券，把机会分享给好友吧~", 2),
+	/**
+	 * 中秋活动已结束
+	 */
+	ACTIVITY_MIDAUTUMN_END_ERROR(90728, "ACTIVITY_MIDAUTUMN_END_ERROR", "亲爱的用户，祝您中秋快乐！活动已结束啦，十一还有惊喜，记得赶早哦~", 2),
+
+	/**
+	 * 周年庆-非本人投资不能分享红包
+	 */
+	ANNIVERSARY_SHARE_INVESTSELF_ERROR(90729, "ANNIVERSARY_SHARE_INVESTSELF_ERROR", "非本人投资不能分享红包！", 2),
+
+	/**
+	 * 周年庆-投资额不小于500才能分享红包
+	 */
+	ANNIVERSARY_SHARE_INVEST_ERROR(90730, "ANNIVERSARY_SHARE_INVEST_ERROR", "投资额不小于500！", 2),
+
+	/**
+	 * 周年庆-投资要在活动期间内
+	 */
+	ANNIVERSARY_SHARE_TIMEOUT_ERROR(90731, "ANNIVERSARY_SHARE_INVEST_ERROR", "投资要在活动期间内！", 2),
+
+	/**
+	 * 周年庆-非会员瓜分红包失败
+	 */
+	ANNIVERSARY_RED_OUTSIDER_ERROR(90732, "ANNIVERSARY_RED_OUTSIDER_ERROR", "非会员瓜分红包失败！", 2),
+
+	/**
+	 * 周年庆-瓜分红包链接失效
+	 */
+	ANNIVERSARY_REDURL_TIMEOUT_ERROR(90733, "ANNIVERSARY_REDURL_TIMEOUT_ERROR", "红包链接失效！", 2),
+
+	/**
+	 * 周年庆-新客项目不能分享链接
+	 */
+	ANNIVERSARY_REDURL_ISNOVICE_ERROR(90734, "ANNIVERSARY_REDURL_ISNOVICE_ERROR", "新客项目不能分享链接！", 2),
+
+	/**
+	 * 周年庆-红包领用次数
+	 */
+	ANNIVERSARY_RED_PARTICIPATE_ERROR(90735, "ANNIVERSARY_RED_PARTICIPATE_ERROR", "您今日已领2次，明日再来吧！", 2),
+
+	/**
+	 * 双旦迎薪-元旦未到当天关卡
+	 */
+	ACTIVITY_DOUBLEDAN_BEFOREREQUIRETIME_ERROR(90736, "ACTIVITY_DOUBLEDAN_BEFOREREQUIRETIME_ERROR", "未到当天关卡！", 2),
+
+	/**
+	 * 双旦迎薪-元旦上一关的优惠券未领取
+	 */
+	ACTIVITY_DOUBLEDAN_LASTDAY_NOTRECEIVE_ERROR(90737, "ACTIVITY_DOUBLEDAN_LASTDAY_NOTRECEIVE_ERROR", "上一关的优惠券未领取！", 2),
+
+	/**
+	 * 双旦迎薪-元旦上一关的优惠券未使用
+	 */
+	ACTIVITY_DOUBLEDAN_LASTDAY_NOTUSED_ERROR(90738, "ACTIVITY_DOUBLEDAN_LASTDAY_NOTUSED_ERROR", "上一关的优惠券未使用！", 2),
+
+	/**
+	 * 双旦迎薪-元旦上一关的优惠券已过期
+	 */
+	ACTIVITY_DOUBLEDAN_LASTDAY_OUTTIME_ERROR(90739, "ACTIVITY_DOUBLEDAN_LASTDAY_OUTTIME_ERROR", "上一关的优惠券已过期！", 2),
+
+	/**
+	 * 春节活动-判断是否留言
+	 */
+	ACTIVITY_SPRINGFESTIVAL_CHECKMESSAGE_ERROR(90740, "ACTIVITY_SPRINGFESTIVAL_CHECKMESSAGE_ERROR", "请先许愿！", 2),
+
+	/**
+	 * 投资额不小于活动要求的起投金额
+	 */
+	ACTIVITY_REDBAG_LESSINVEST_ERROR(90741, "ACTIVITY_REDBAG_LESSINVEST_ERROR", "投资额不小于活动要求的起投金额", 2),
+
+	/**
+	 * 特殊项目不能参与红包活动
+	 */
+	ACTIVITY_REDBAG_PROJECTSIGN_ERROR(90742, "ACTIVITY_REDBAG_PROJECTSIGN_ERROR", "特殊项目不能参与红包活动", 2),
+
+	/**
+	 * 生成红包分享码失败
+	 */
+	ACTIVITY_REDBAG_SHARECODE_ERROR(90743, "ACTIVITY_REDBAG_SHARECODE_ERROR", "生产红包分享码失败", 2),
+
+	/**
+	 * 重复领取红包
+	 */
+	ACTIVITY_REDBAG_JOINED_ERROR(90744, "ACTIVITY_REDBAG_SHARECODE_ERROR", "重复领取", 2),
+
+	/**
+	 * 领取红包拥挤，请稍后重试
+	 */
+	ACTIVITY_REDBAG_BUSY_ERROR(90745, "ACTIVITY_REDBAG_BUSY_ERROR", "领取红包拥挤，请稍后重试", 2),
+
+	/**
+	 * 红包抢完
+	 */
+	ACTIVITY_REDBAG_NULL_ERROR(90746, "ACTIVITY_REDBAG_NULL_ERROR", "红包抢完", 2),
+
+	/**
+	 * 租赁分红模块90750-90760
+	 */
+	/**
+	 * 租赁分红添加出错
+	 */
+	LEASE_BONUS_SAVE_ERROR(90750, "LEASE_BONUS_SAVE_ERROR", "租赁分红添加出错", 2),
+	/**
+	 * 租赁分红删除出错
+	 */
+	LEASE_BONUS_DELETE_ERROR(90751, "LEASE_BONUS_DELETE_ERROR", "租赁分红删除出错", 2),
+	/**
+	 * 该项目已经参与过租赁分红
+	 */
+	LEASE_BONUS_DUPLICATE_ERROR(90752, "LEASE_BONUS_DUPLICATE_ERROR", "该项目已经参与过租赁分红", 2),
+	/**
+	 * 该项目不是履约中或已还款状态，不能进行租赁分红
+	 */
+	LEASE_BONUS_PROJECT_NOT_REPAYMENT_STATUS_ERROR(90753, "LEASE_BONUS_PROJECT_NOT_REPAYMENT_STATUS_ERROR", "该项目不是履约中或已还款状态，不能进行租赁分红", 2),
+	/**
+	 * 租赁单价必须大于0
+	 * **/
+	LEASE_LEASE_RENTAL_NOT_MORE_ZERO_ERROR(90754, "LEASE_LEASE_RENTAL_NOT_MORE_ZERO_ERROR", "租赁单价必须大于0", 2),
+	/**
+	 * 分红金额必须大于0
+	 * **/
+	LEASE_LEASE_BONUS_NOT_MORE_ZERO_ERROR(90755, "LEASE_LEASE_BONUS_NOT_MORE_ZERO_ERROR", "分红金额必须大于0", 2),
+
+	/**
+	 * 问卷调查 90780-90790
+	 */
+	QUESTION_POPULARITY_RECEIVED(90780, "QUESTION_POPULARITY_RECEIVED", "问卷调查人气值已领取", 2),
+
+	/**
+	 * 异常处理 后台删除银行卡
+	 */
+	/**
+	 * 银行卡不存在或已删除
+	 */
+	MEMBER_BANK_CARD_HAD_DELETED_ERROR(90791, "MEMBER_BANK_CARD_HAD_DELETED_ERROR", "银行卡不存在或已删除！", 2),
+
+	/**
+	 * 银行卡的外部source id不存在
+	 */
+	MEMBER_BANK_CARD_OUTER_SOURCE_ID_NOT_EXIST_ERROR(90792, "MEMBER_BANK_CARD_OUTER_SOURCE_ID_NOT_EXIST_ERROR", "银行卡的外部source id不存在", 2),
+
+	/**
+	 * 用户不存在安全卡
+	 */
+	MEMBER_BANK_SECURITY_CARD_NOT_EXIST_ERROR(90793, "MEMBER_BANK_SECURITY_CARD_NOT_EXIST_ERROR", "用户不存在安全卡", 2),
+
+	/**
+	 * 用户信息-完善企业信息(90900-90910)
+	 */
+	/**
+	 * 信用额度不能小于已使用的信用额度
+	 */
+	MEMBER_ENTERPRISE_MODIFY_CREDIT_LESS_THEN_USED_ERROR(90900, "MEMBER_ENTERPRISE_MODIFY_CREDIT_LESS_THEN_USED_ERROR", "信用额度不能小于已使用的信用额度",
+			2),
+
+	/**
+	 *  直投项目(91000-91050)
+	 */
+	/**
+	 * 项目名称或者编号重复错误
+	 */
+	DIRECT_PROJECT_NAME_OR_CODE_REPEAT_ERROR(91000,"DIRECT_PROJECT_NAME_OR_CODE_REPEAT_ERROR","项目名称或者编号重复",2),
+	
+	/**
+	 * 该记录已经垫资过
+	 */
+	UNDER_WRITE_LOG_EXIST_ERROR(91001,"UNDER_WRITE_LOG_EXIST_ERROR","该记录已经垫资过",2),
+	
+	/**
+	 * 项目状态不支持流标
+	 */
+	PROJECT_STATUS_CANNOT_LOSE(91002,"PROJECT_STATUS_CANNOT_LOSE","项目状态不支持流标",2),
+	
+	/**
+	 * 该项目没有逾期金额
+	 */
+	PROJECT_OVERDUE_NO_AMOUNT(91003,"PROJECT_OVERDUE_NO_AMOUNT","没有逾期金额",2),
+	/**
+	 * 有逾期记录处在还款中
+	 */
+	PROJECT_OVERDUE_PAYING(91004,"PROJECT_OVERDUE_PAYING","有逾期记录处在还款中",2),
+	
+	/**
+	 * 项目状态不能操作紧急修改全部功能
+	 */
+	PROJECT_STATUS_CANNOT_EMERGENCYALL(91005,"PROJECT_STATUS_CANNOT_EMERGENCYALL","项目状态不能操作紧急修改全部功能",2),
+	
+	/**
+	 * 项目状态不能操作修改
+	 */
+	PROJECT_STATUS_CANNOT_EDIT(91006,"PROJECT_STATUS_CANNOT_EDIT","项目状态不能操作修改",2),
+	
+	/**
+	 * 不是直投项目
+	 */
+	PROJECT_INVEST_TYPE_ERROR(91007, "PROJECT_INVEST_TYPE_ERROR", "不是直投项目!", 2),
+	/**
+	 * 有逾期未还记录,不能垫资
+	 */
+	PROJECT_OVERDUE_NOPAY(91008,"PROJECT_OVERDUE_NOPAY","有逾期未还记录,不能垫资!",2),
+	
+	/**
+	 * 新客项目，不能转让;转让项目，不能是新客项目
+	 */
+	PROJECT_NOVICE_NO_TRANSFER(91011,"PROJECT_NOVICE_NO_TRANSFER","新客项目，不能转让;转让项目，不能是新客项目!",2),
+	/**
+	 * 借款周期以周为单位时，还款方式必须选择等本等息按周还款
+	 */
+	PROJECT_BORROW_PERIOD_WEEK_REPAY(91009,"PROJECT_BORROW_PERIOD_WEEK_REPAY","借款周期以周为单位时，还款方式必须选择等本等息按周还款!",2),
+	
+	
+	
+	/**
+	 * 逾期还款（91051-91080）
+	 */
+	/**
+	 * 您的还款正在处理中
+	 */
+	OVERDUE_REPAY_EXIST_PAYING(91051,"OVERDUE_REPAY_EXIST_PAYING","您的还款正在处理中，请稍后",2),
+	/**
+	 * 不存在未支付的逾期记录
+	 */
+	OVERDUE_REPAY_NOT_EXIST_NO_PAY(91052,"OVERDUE_REPAY_NOT_EXIST_NO_PAY","您的逾期还款已全部支付",2),
+	/**
+	 * 您的存钱罐余额不足
+	 */
+	OVERDUE_REPAY_PIGGY_BALANCE_LACKING(91052,"OVERDUE_REPAY_PIGGY_BALANCE_LACKING","您的存钱罐余额不足",2),
+	
+	/**
+	 * 该项目当前期数已存在或该项目名称已存在或项目编号已存在
+	 */
+	DIRECT_PROJECT_NAME_OR_PERIOD_OR_CODE_REPEAT_ERROR(91053,"DIRECT_PROJECT_NAME_OR_PERIOD_OR_CODE_REPEAT_ERROR","该项目当前期数已存在或该项目名称已存在或项目编号已存在，请重新添加！",2),
+
+	/**
+	 * 活动中心(91100-91200)
+	 */
+	REDPACKAGE_CHECK_RULE_PARAMETERS_ERROR(91100, "REDPACKAGE_CHECK_RULE_PARAMETERS_ERROR", "红包规则为空", 2),
+
+	REDPACKAGE_CHECK_ALLOW_NOVISE_ERROR(91101, "REDPACKAGE_CHECK_ALLOW_NOVISE_ERROR", "新客项目不允许参与红包", 2),
+
+	REDPACKAGE_CHECK_ALLOW_ACTIVITYSIGN_ERROR(91102, "REDPACKAGE_CHECK_ALLOW_ACTIVITYSIGN_ERROR", "特殊活动项目不允许参与红包", 2),
+	
+	REDPACKAGE_CHECK_MIN_INVEST_AMOUNT_ERROR(91103, "REDPACKAGE_CHECK_NOT_ALLOW_ACTIVITYSIGN", "投资额小于最小值不允许参与红包", 2),
+
+	REDPACKAGE_CHECK_TIME_OUT_ERROR(91104, "REDPACKAGE_CHECK_TIME_OUT_ERROR", "红包不存在或者已过期", 2),
+
+	REDPACKAGE_CHECK_EMPTY_ERROR(91105, "REDPACKAGE_CHECK_EMPTY_ERROR", "红包已抢完", 2),
+
+	REDPACKAGE_CHECK_INVESTSELF_ERROR(91106, "REDPACKAGE_CHECK_INVESTSELF_ERROR", "非本人投资不能分享红包", 2),
+
+	REDPACKAGE_CHECK_ACTIVITY_ERROR(91107, "REDPACKAGE_CHECK_ACTIVITY_ERROR", "红包不属于当前活动", 2),
+
+	REDPACKAGE_CHECK_ALLOW_DIRECT_PROJECT_ERROR(91108, "REDPACKAGE_CHECK_ALLOW_DIRECT_PROJECT_ERROR", "P2P项目不允许参与红包", 2),
+
+	REDPACKAGE_CHECK_ALLOW_INVEST_TYPE_ERROR(91109, "REDPACKAGE_CHECK_ALLOW_INVEST_TYPE_ERROR", "该投资类型不允许参加红包", 2),
+	
+	REDPACKAGE_CHECK_IS_EXISTS_ERROR(91110, "REDPACKAGE_CHECK_IS_EXISTS_ERROR", "重复生成红包", 2),
+	
+	ACTIVITY_INVITE_FRIEND_KM_ERROR(91111, "ACTIVITY_INVITE_FRIEND_KM_ERROR", "里程数不够", 2),
+	
+	REDPACKAGE_CHECK_PERFORM_DIRECT_PROJECT_ERROR(91112, "REDPACKAGE_CHECK_PERFORM_DIRECT_PROJECT_ERROR", "直投项目履约后才能分享红包哦", 2),
+	
+	WEIXIN_KEY_NOT_NULL(91300,"WEIXIN_KEY_NOT_NULL","微信key不能为空！",2),
+	
+	WEIXIN_KEY_URL_NULL(91301,"WEIXIN_KEY_URL_NULL","微信url不能为空！",2),
+	
+	WEIXIN_KEY_NAME_NULL(91302,"WEIXIN_KEY_NAME_NULL","微信菜单名字不能为空！",2),
+	
+	ENTERPRISE_NOT_DEL(91303,"ENTERPRISE_NOT_DEL","该企业有关联项目不能删除",2),
+	
+	PROJECT_BORROWER_NOT_EXITS(91304, "PROJECT_BORROWER_NOT_EXITS", "项目不是待发布状态",2),
+	
+	EVALUATION_SCORE_RESULT(91306, "EVALUATION_SCORE_RESULT", "测试结果为0,请从新测试",2),
+	
+	ACTIVITY_TODAY_RED_HAD_RECEIVED_ERROR(91307, "ACTIVITY_TODAY_RED_HAD_RECEIVED_ERROR", "今天的红包已领取！", 2),
+
+	EVALUATION_SCORE_FAIL(91308, "EVALUATION_SCORE_FAIL", "获取测试结果失败,请从新测试",2),
+	
+	FORZEN_BALANCE_NO_EXIST_ERROR(91400, "FORZEN_BALANCE_NO_EXIST_ERROR", "冻结订单号不存在！", 2),
+	
+	RECHARGE_NO_NOT_EXSIST_ERROR(91402, "RECHARGE_NO_NOT_EXSIST_ERROR", "流水不存在", 2),
+	
+	UNFORZEN_BALANCE_GREATHER_THAN_FORZEN_ERROR(91401, "UNFORZEN_BALANCE_GREATHER_THAN_FORZEN_ERROR", "解冻余额大于冻结剩余金额！", 2),
+	
+	REDPACKAGE_CHECK_ALLOW_TRANSFER_ERROR(91402, "REDPACKAGE_CHECK_ALLOW_TRANSFER_ERROR", "转让项目不允许参与红包", 2),
+	
+	/**
+	 * 合同签署(91201-91300)
+	 */
+	CONTRACT_SIGN_NO_TO_SIGN(91100, "CONTRACT_SIGN_NO_TO_SIGN", "该用户无未签署合同", 2),
+	
+	CONTRACT_SIGN_FAIL_TO_INIT(91201, "CONTRACT_SIGN_FAIL_TO_INIT", "合同正在生成中，请您耐心等待，稍后签署", 2),
+	
+	CONTRACT_SIGN_MEMBER_NOT_MATCH(91202, "CONTRACT_SIGN_MEMBER_NOT_MATCH", "该合同不属于当前用户", 2),
+	
+	CONTRACT_SIGN_ALREADY_SIGN(91203, "CONTRACT_SIGN_FAIL_TO_INIT", "您已签署该协议，请到我的投资查看", 2),
+	
+	CONTRACT_SIGN_EXPIRED(91204, "CONTRACT_SIGN_EXPIRED", "您的协议已过期", 2),
+	
+	/**
+	 * 玩转奥运（91341-91360）
+	 */
+	ACTIVITY_PLAYOLYMPIC_GUESSMEDAL_ERROR(91341, "ACTIVITY_PLAYOLYMPIC_GUESSMEDAL_ERROR", "每日9:00~19:00才可以竞猜", 2),
+	ACTIVITY_PLAYOLYMPIC_GUESSMEDALTIME_ERROR(91341, "ACTIVITY_PLAYOLYMPIC_GUESSMEDALTIME_ERROR", "8月6日到8月21才可以猜", 2),
+	ACTIVITY_PLAYOLYMPIC_GUESSMEDAL_HADONCE_ERROR(91342, "ACTIVITY_PLAYOLYMPIC_GUESSMEDAL_HADONCE_ERROR", "每天只有一次机会", 2),
+	ACTIVITY_PLAYOLYMPIC_GUESSMEDAL_POPULARVALUE_ERROR(91343, "ACTIVITY_PLAYOLYMPIC_GUESSMEDAL_POPULARVALUE_ERROR", "人气值不足", 2),
+	ACTIVITY_PLAYOLYMPIC_MASCOT_HADNO_ERROR(91344, "ACTIVITY_PLAYOLYMPIC_MASCOT_HADNO_ERROR", "吉祥物不足", 2),
+	ACTIVITY_PLAYOLYMPIC_GUESSGOLD_OUTTIME_ERROR(91345, "ACTIVITY_PLAYOLYMPIC_GUESSGOLD_OUTTIME_ERROR", "只能在8月5日00:00~8月12日23:59猜", 2),
+	ACTIVITY_JULYTEAM_COUPON_NOTEXITS_ERROR(91346, "ACTIVITY_JULYTEAM_COUPON_NOTEXITS_ERROR", "优惠券不存在", 2),
+	ACTIVITY_PLAYOLYMPIC_PUZZE_NO_ERROR(91347, "ACTIVITY_PLAYOLYMPIC_PUZZE_NO_ERROR", "您的奥运吉祥物拼图不足", 2),
+	
+	ACTIVITY_PLAYOLYMPIC_CURRENT_HADADD_ERROR(91348, "ACTIVITY_PLAYOLYMPIC_CURRENT_HADADD_ERROR", "当天的奥运奖牌已经添加过", 2),
+	
+	ACTIVITY_PARAM_WRONG_ERROR(91349, "ACTIVITY_PARAM_WRONG_ERROR", "参数格式不正确，不能为空并且只能为正整数", 2),
+	
+	ACTIVITY_PARAM_SAME_ERROR(91350, "ACTIVITY_PARAM_SAME_ERROR", "参数不能重复", 2),
+	
+	
+	COLLECT_TRADE_NOT_EXIST_ERROR(91351, "COLLECT_TRADE_NOT_EXIST_ERROR", "代收交易不存在！", 2),
+	
+	
+	COLLECT_TRADE_NOT_FINISH_STATUS_ERROR(91352, "COLLECT_TRADE_NOT_FINISH_STATUS_ERROR", "代收交易状态不是交易结束状态！", 2),
+	
+	
+	AUTO_SET_PERIOD_ERROR(91353, "AUTO_SET_PERIOD_ERROR", "项目周期最小时间不能大于最大时间！", 2),
+	
+	AUTO_SET_TIME_ERROR(91354, "AUTO_SET_TIME_ERROR", "有效期开始时间不能大于结束时间！", 2),
+	
+	POPULARITY_FIV_RITES_HAD_SEND_ERROR(91355, "POPULARITY_FIV_RITES_HAD_SEND_ERROR", "五重礼人气值已经发放过！", 2),
+	
+	
+	/**
+	 * 91310-91340 (七月战队)
+	 * 
+	 */
+	ACTIVITY_JULYTEAM_HAD_JOINED_ERROR(91310, "ACTIVITY_JULYTEAM_HAD_JOINED_ERROR", "战队已加入过！", 2),
+	
+	ACTIVITY_JULYTEAM_WAIT_TIME_ERROR(91311, "ACTIVITY_JULYTEAM_WAIT_TIME_ERROR", "每日9：00 到 10 ：00可加入战队", 2),
+	
+	ACTIVITY_JULYTEAM_RECEIVE_TIME_ERROR(91313, "ACTIVITY_JULYTEAM_RECEIVE_TIME_ERROR", "每日10：00 到 22 ：00才可领取", 2),
+	
+	ACTIVITY_JULYTEAM_BET_TIME_ERROR(91315, "ACTIVITY_JULYTEAM_BET_TIME_ERROR", "每日9:00-10:00才可竞猜", 2), 
+	
+	ACTIVITY_JULYTEAM_HAD_BETED_ERROR(91316, "ACTIVITY_JULYTEAM_HAD_BETED_ERROR", "每天只能押注一次哦", 2),
+	
+	ACTIVITY_JULYTEAM_CANT_BETED_TWENTY_ERROR(91317, "ACTIVITY_JULYTEAM_CANT_BETED_TWENTY_ERROR", "押注人气值不能超过20点", 2),
+	
+	ACTIVITY_JULYTEAM_NOTNULL_ERROR(91319, "ACTIVITY_JULYTEAM_NOTNULL_ERROR", "押注人气值不能为空", 2),
+	
+	ACTIVITY_JULYTEAM_COUPON_ERROR(91320, "ACTIVITY_JULYTEAM_COUPON_ERROR", "每单笔投资≥2000元领取一次哦", 2),
+	
+	ACTIVITY_JULYTEAM_COUPON_JOIN_ERROR(91320, "ACTIVITY_JULYTEAM_COUPON_JOIN_ERROR", "加入战队之后，才能领取", 2),
+	
+	
+	ACTIVITY_JULYTEAM_COUPON_HADEND_ERROR(91322, "ACTIVITY_JULYTEAM_COUPON_HADEND_ERROR", "该红包领完了", 2),
+
+	/**
+	 * 还本付息（92001-92099）
+	 */
+	/**
+	 * 平台收益券垫付代收状态还未TRADE_FINISHED
+	 */
+	REPAYMENT_PLATFORM_COLLECT_NOT_TRADE_FINISHED(92001,"REPAYMENT_PLATFORM_COLLECT_NOT_TRADE_FINISHED","平台收益券垫付代收状态还未TRADE_FINISHED",2),
+	
+	
+	
+	
+	/**
+	 * 转让项目(93001-93200)
+	 */
+	TRANSFER_PROJECT_ALREADY_TRANSFER(93001, "TRANSFER_PROJECT_ALREADY_TRANSFER", "每个项目每天只能提交一次转让申请", 2),
+	
+	
+	TRANSFER_PROJECT_PROJECT_CANNOT_TRANSFER(93002, "TRANSFER_PROJECT_PROJECT_CANNOT_TRANSFER", "该项目当前不可转让", 2),
+	
+	TRANSFER_PROJECT_TRANSACTION_CANNOT_TRANSFER_TWICE(93003, "TRANSFER_PROJECT_TRANSACTION_CANNOT_TRANSFER_TWICE", "该笔交易对应项目为转让项目，不可进行二次转让", 2),
+
+	TRANSFER_PROJECT_TRANSACTION_REPAYMENTING(93004, "TRANSFER_PROJECT_TRANSACTION_REPAYMENTING", "该笔交易不可进行转让", 2),
+	
+	
+	TRANSFER_PROJECT_TRANSFERAMOUNT_INVALID(93005, "TRANSFER_PROJECT_TRANSFERAMOUNT_INVALID", "转让价格大于剩余未还本金", 2),
+	
+	TRANSFER_PROJECT_TRANSACTION_TIME_FAIL(93006, "TRANSFER_PROJECT_TRANSACTION_TIME_FAIL", "该笔交易目前无法转让", 2),
+	
+	TRANSFER_PROJECT_ALREADY_SUCCESS_TRANSFER(93007, "TRANSFER_PROJECT_ALREADY_SUCCESS_TRANSFER", "该笔交易已成功转让", 2),
+	
+	
+	TRANSFER_PROJECT_NOT_EXIST(93008, "TRANSFER_PROJECT_NOT_EXIST", "转让项目不存在", 2),
+	
+	TRANSFER_PROJECT_NOT_INVESTING(93009, "TRANSFER_PROJECT_NOT_INVESTING", "转让项目不是投资中状态", 2),
+	
+	TRANSFER_PROJECT_ALREADY_CANCLE(93010, "TRANSFER_PROJECT_ALREADY_CANCLE", "转让项目已撤销", 2),
+	
+	TRANSFER_PROJECT_ALREADY_INVESTED(93011, "TRANSFER_PROJECT_ALREADY_INVESTED", "该转让项目已有用户投资，不能撤销", 2),
+	
+	TRANSFER_PROJECT_TRANSFERAMOUNT_FALSE_DISCOUNT_TRANSFERAMOUNT(93012, "TRANSFER_PROJECT_TRANSFERAMOUNT_FALSE_DISCOUNT_TRANSFERAMOUNT", "错误的折价和转让价格", 2),
+	
+	
+	TRANSFER_NOT_BELONG_TRANSFER(93013, "TRANSFER_NOT_BELONG_TRANSFER", "不是转让项目的交易", 2),
+	
+	TRANSFER_PROJECT_FAILING(93014, "TRANSFER_PROJECT_FAILING", "该笔转让正在撤销中,请稍等", 2),
+	
+	TRANSFER_PROJECT_HAS_LOST(93015, "TRANSFER_PROJECT_HAS_LOST", "该项目已流标，去看看其他项目吧", 2),
+	
+	TRANSFER_PROJECT_TRANSFERAMOUNT_ERROR(93016, "TRANSFER_PROJECT_TRANSFERAMOUNT_ERROR", "转让价格和折价错误", 2),
+	
+	TRANSFER_PROJECT_PROJECT_CANNOT_TRANSFER_REPAY(93020, "TRANSFER_PROJECT_PROJECT_CANNOT_TRANSFER_REPAY", "项目还款当天，不能发起转让！", 2),
+	
+	TRANSFER_PROJECT_PROJECT_CANNOT_TRANSFER_EARLY_REPAYMENT(93021, "TRANSFER_PROJECT_PROJECT_CANNOT_TRANSFER_EARLY_REPAYMENT", "项目发生提前还款，不能转让", 2),
+	
+	TRANSFER_PROJECT_PROJECT_CANNOT_TRANSFER_OVER(93022, "TRANSFER_PROJECT_PROJECT_CANNOT_TRANSFER_OVER", "项目处于逾期中，不能发起转让", 2),
+	
+	TRANSFER_PROJECT_PROJECT_CANNOT_TRANSFER_HIGH_EXTRA(93023, "TRANSFER_PROJECT_PROJECT_CANNOT_TRANSFER_HIGH_EXTRA", "投资使用高额收益券项目，暂不支持转让", 2),
+	
+	
+	
+	ACTIVITY_FOURCHANGE_NOT_START_ERROR(93017, "ACTIVITY_FOURCHANGE_NOT_START_ERROR", "每日10:00~15:59开抢！", 2),
+	ACTIVITY_FOURCHANGE_RECEIVED_ERROR(93018, "ACTIVITY_FOURCHANGE_RECEIVED_ERROR", "每天限领一张！", 2),
+	ACTIVITY_FOURCHANGE_RECEIVEDEND_ERROR(93019, "ACTIVITY_FOURCHANGE_RECEIVEDEND_ERROR", "今日已领完！", 2),
+	
+	
+	PROJECT_DIRECT_LOTTERY_NUM_ERROR(95000, "PROJECT_DIRECT_LOTTERY_NUM_ERROR", "无抽奖次数！", 2),
+	
+	PROJECT_DIRECT_LOTTERY_RECORD_ERROR(95001, "PROJECT_DIRECT_LOTTERY_RECORD_ERROR", "该项目无对应的抽奖记录！", 2),
+	
+	PROJECT_DIRECT_LOTTERY_HADSEND_ERROR(95002, "PROJECT_DIRECT_LOTTERY_HADSEND_ERROR", "该项目已开奖！", 2),
+	
+	
+	PROJECT_DIRECT_LOTTERY_NOT_SET_ERROR(95003, "PROJECT_DIRECT_LOTTERY_NOT_SET_ERROR", "设置抽奖规则后，才能设置投资抽奖项目", 2),
+	
+	PROJECT_DIRECT_LOTTERY_PORJECT_INVESTING_ERROR(95004, "PROJECT_DIRECT_LOTTERY_PORJECT_INVESTING_ERROR", "尚有快投有奖项目在募集中，请在履约后设置", 2),
+	
+	PROJECT_DIRECT_LOTTERY_PRIZE_POOL_ERROR(95005, "PROJECT_DIRECT_LOTTERY_PRIZE_POOL_ERROR", "奖池系数不能大于1", 2),
+	
+	PROJECT_DIRECT_LOTTERY_PRIZE_IN_POOL_ERROR(95006, "PROJECT_DIRECT_LOTTERY_PRIZE_IN_POOL_ERROR", "奖项总比例和应为100%", 2),
+	
+	PROJECT_DIRECT_LOTTERY_STARTAMOUNT_ERROR(95007, "PROJECT_DIRECT_LOTTERY_STARTAMOUNT_ERROR", "抽奖规则第一条的起始金额必须为0", 2),
+	
+	PROJECT_DIRECT_LOTTERY_FIRST_ENDAMOUNT_ERROR(95008, "PROJECT_DIRECT_LOTTERY_FIRST_ENDAMOUNT_ERROR", "抽奖规则每一条的结束金额必须大于起始金额", 2),
+	
+	PROJECT_DIRECT_LOTTERY_MORE_THAN_ONE_ERROR(95009, "PROJECT_DIRECT_LOTTERY_MORE_THAN_ONE_ERROR", "抽奖规则每一条的起始金额必须大于上一条的结束金额", 2),
+	
+	PROJECT_DIRECT_LOTTERY_LAST_ERROR(950010, "PROJECT_DIRECT_LOTTERY_LAST_ERROR", "抽奖规则最后一条的结束金额必须为空", 2),
+	
+	PROJECT_DIRECT_LOTTERY_NUM_MORE_THAN_ONE_ERROR(950011, "PROJECT_DIRECT_LOTTERY_NUM_MORE_THAN_ONE_ERROR", "抽奖规则至少为两条", 2),
+	
+	PROJECT_DIRECT_LOTTERY_AMOUNT_ERROR(950012, "PROJECT_DIRECT_LOTTERY_AMOUNT_ERROR", "设置了快投有奖的情况下，金额不能为0", 2),
+	
+	PROJECT_DIRECT_LOTTERY_LOTTERY_NUM_ERROR(950013, "PROJECT_DIRECT_LOTTERY_LOTTERY_NUM_ERROR", "抽奖规则中的额外次数不能为空，你不想给额外次数，可以写0", 2),
+	
+	PROJECT_DIRECT_LOTTERY_NOVICE_ERROR(950014, "PROJECT_DIRECT_LOTTERY_NOVICE_ERROR", "一个项目不能同时成为新客项目和快投项目", 2),
+	
+	PROJECT_DIRECT_LOTTERY_NUM_NULL_ERROR(950015, "PROJECT_DIRECT_LOTTERY_NUM_NULL_ERROR", "奖项个数不能为空", 2),
+	
+	PROJECT_DIRECT_LOTTERY_PRIZE_POOL_ZERO_ERROR(95016, "PROJECT_DIRECT_LOTTERY_PRIZE_POOL_ZERO_ERROR", "奖池系数不能小于0", 2),
+	
+	PROJECT_DIRECT_LOTTERY_PRIZE_NUM_ZERO_ERROR(95017, "PROJECT_DIRECT_LOTTERY_PRIZE_NUM_ZERO_ERROR", "奖项个数不能小于1", 2),
+	
+	PROJECT_DIRECT_LOTTERY_PRIZE_IN_POOL_PROPORTION_ZERO_ERROR(95018, "PROJECT_DIRECT_LOTTERY_PRIZE_IN_POOL_PROPORTION_ZERO_ERROR", "奖金系数不能小于0", 2),
+	
+	PROJECT_DIRECT_LOTTERY_LOTTERY_NUM_ZERO_ERROR(950019, "PROJECT_DIRECT_LOTTERY_LOTTERY_NUM_ZERO_ERROR", "抽奖规则中的额外次数不能小于0", 2),
+	
+	PROJECT_DIRECT_LOTTERY_LOTTERY_NUM_NULL_ERROR(950020, "PROJECT_DIRECT_LOTTERY_LOTTERY_NUM_NULL_ERROR", "抽奖规则区间内金额不能为空", 2),
+	
+	PROJECT_DIRECT_LOTTERY_PRIZE_POOL_NULL_ERROR(95022, "PROJECT_DIRECT_LOTTERY_PRIZE_POOL_NULL_ERROR", "奖池系数不能为空", 2),
+	
+	PROJECT_DIRECT_LOTTERY_SUB_MORE_THAN_ONE_ERROR(95023, "PROJECT_DIRECT_LOTTERY_SUB_MORE_THAN_ONE_ERROR", "抽奖规则每一条的起始金额必须比上一条的结束金额多1", 2),
+	
+	PROJECT_DIRECT_LOTTERY_NOT_SET_HOUR_ERROR(95024, "PROJECT_DIRECT_LOTTERY_NOT_SET_HOUR_ERROR", "项目上线xx小时设置异常", 2),
+	
+	PROJECT_DIRECT_LOTTERY_NOT_SET_POPULARITY_ERROR(95025, "PROJECT_DIRECT_LOTTERY_NOT_SET_POPULARITY_ERROR", "设置未中奖返人气值异常", 2),
+
+
+	
+	DIRECCT_PROJECT_HONEY_MACHINE_ERROR(93020, "DIRECCT_PROJECT_HONEY_MACHINE_ERROR", "添加直投项目，如果信用类型为消费分期时必须选择渠道商类型！", 2),
+	
+	UC_MEMBER_HONEY_MACHINE_EXIT_ERROR(93021, "UC_MEMBER_HONEY_MACHINE_EXIT_ERROR","渠道会员已经注册过！",2) ,
+	
+	
+	/**
+	 * 商品相关异常(93201-93400)
+	 */
+	SHOP_GOOD_NOT_EXIST_ERROR(93201, "SHOP_GOOD_NOT_EXIST_ERROR", "商品不存在", 2),
+	
+	SHOP_GOOD_NUM_NOT_ENOUGH_ERROR(93202, "SHOP_GOOD_NUM_NOT_ENOUGH_ERROR", "商品已售空", 2),
+	
+	/**
+	 * 人气值不足
+	 */
+	SHOP_GOOD_POPULARITY_NOT_ENOUGH_ERROR(93203, "SHOP_GOOD_POPULARITY_NOT_ENOUGH_ERROR", "您当前人气值余额不足", 2),
+	
+	
+	SHOP_GOOD_AMOUNT_ERROR(93204, "SHOP_GOOD_AMOUNT_ERROR", "您的vip等级尚不达标，想一想不充钱你会变得更强吗?", 2),
+	
+	SHOP_GOOD_NOT_FOR_UNINVEST_MEMBER_ERROR(93205, "SHOP_GOOD_NOT_FOR_UNINVEST_MEMBER_ERROR", "您还是先选择兑换优惠券，前往投资吧！", 2),
+	
+	DIRECT_LOTTERY_LOSE_NOCHANCE_ERROR(93206, "DIRECT_LOTTERY_LOSE_NOCHANCE_ERROR", "项目流标，抽奖失效", 2),
+	
+	SHOP_GOOD_NUM_NOT_SALE_ERROR(93207, "SHOP_GOOD_NUM_NOT_SALE_ERROR", "商品已下架", 2),
+	
+	SHOP_GOOD_NOT_INVEST_ERROR(93208, "SHOP_GOOD_NOT_INVEST_ERROR", "该类商品只允许已投资用户兑换", 2),
+	
+	
+	/**
+	 * 94000-95000 周年庆
+	 */
+	
+	ACTIVITY_ANNIVERSARY_NO_CHANCE_ERROR(94000, "ACTIVITY_ANNIVERSARY_NO_CHANCE_ERROR", "今日已超限，明天再来哦！", 2),
+	
+	ACTIVITY_ANNIVERSARY_NO_START_ERROR(94001, "ACTIVITY_ANNIVERSARY_NO_START_ERROR", "领取时间未到！", 2),
+	
+	ACTIVITY_ANNIVERSARY_JUST_ONE_ERROR(94002, "ACTIVITY_ANNIVERSARY_JUST_ONE_ERROR", "每人限领一张！", 2),
+	
+	ACTIVITY_ANNIVERSARY_HAD_END_ERROR(94003, "ACTIVITY_ANNIVERSARY_HAD_END_ERROR", "红包已抢完！", 2),
+	
+	ACTIVITY_ANNIVERSARY_INVEST_RECEIVE_ERROR(94004, "ACTIVITY_ANNIVERSARY_INVEST_RECEIVE_ERROR", "投资后才可领取！", 2),
+	
+	ACTIVITY_ANNIVERSARY_HAD_RECEIVE_ERROR(94005, "ACTIVITY_ANNIVERSARY_HAD_RECEIVE_ERROR", "已经领取过！", 2),
+	
+	ACTIVITY_ANNIVERSARY_TOTAL_INVEST_ERROR(94006, "ACTIVITY_ANNIVERSARY_TOTAL_INVEST_ERROR", "累计投资额不满足！", 2),
+	
+	COUPON_TEMPLATE_EXTRA_DAY_ERROR(94007, "COUPON_TEMPLATE_EXTRA_DAY_ERROR", "加息天数不能大于起投期限！", 2),
+	
+	
+	
+	/**
+	 * 98000-99000 app端H5页面提示
+	 */
+	
+	/***未登录 ***/
+	APP_HTML_MEMBER_UNLOGIN(98001, "APP_HTML_MEMBER_UNLOGIN", "未登录", 2),
+	
+	/***登录时效超时 ***/
+	APP_HTML_MEMBER_TOKEN_OVERTIME(98002, "APP_HTML_MEMBER_LOGIN_OVERTIME", "登录时效超时", 2),
+	
+
+	/**
+	 * 除夕抢压岁钱
+	 */
+
+	ACTIVITY_GRAB_ERROR(94010, "ACTIVITY_GRAB_ERROR", "只能抢一次！", 2),
+
+	ACTIVITY_GRAB_COUNT_ERROR(94011, "ACTIVITY_GRAB_COUNT_ERROR", "压岁钱已抢完！", 2),
+
+	/**
+	 * 38节
+	 */
+	ACTIVITY_MAN_BAG_ERROR(94012, "ACTIVITY_WOMEN_BAG_ERROR", "用户为男性！", 2),
+
+	ACTIVITY_REAL_BAG_ERROR(94013, "ACTIVITY_REAL_BAG_ERROR", "用户未实名 ！", 2),
+
+	ACTIVITY_DATE_ERROR(94014, "ACTIVITY_DATE_ERROR", "38节活动日期出错 ！", 2),
+	
+	
+	UNDERWRITE_RECORD_NOT_EXIT_ERROR(94012, "UNDERWRITE_RECORD_NOT_EXIT_ERROR", "垫资记录不存在！", 2),
+	
+	UNDERWRITE_RECORD_NOT_UNDER_ERROR(94013, "UNDERWRITE_RECORD_NOT_UNDER_ERROR", "该垫资不能撤销！", 2),
+	
+	
+	ACTIVITY_RECEIVE_TOTAL_NUM_ERROR(94015, "ACTIVITY_RECEIVE_TOTAL_NUM_ERROR", "无领取机会！", 2),
+	
+	
+	
+	MEMBER_IS_CHECK_NO(94016, "MEMBER_IS_CHECK_NO", "会员未签到！", 2),
+	;
+	
+	
+
+	private String msg;
+
+	private int code;
+
+	private String codeStr;
+
+	/**
+	 * 错误类型（0:一般结果码；1：系统级的错误；2：应用级的错误）
+	 */
+	private int type;
+
+	public String getCode() {
+		return String.valueOf(this.code);
+	}
+
+	public String getMsg() {
+		return this.msg;
+	}
+
+	public String getCodeStr() {
+		return this.codeStr;
+	}
+
+	public int getType() {
+		return this.type;
+	}
+
+	private ResultCode(int code, String codeStr, String msg, int type) {
+		this.msg = msg;
+		this.code = code;
+		this.codeStr = codeStr;
+		this.type = type;
+	}
+
+	public void setMsg(String msg) {
+		this.msg = msg;
+	}
+
+	public static ResultCode getResultCodeByCode(String code) {
+		for (ResultCode result : ResultCode.values()) {
+			if (result.getCode().equals(code)) {
+				return result;
+			}
+		}
+		return null;
+	}
+
+	public static ResultCode getResultCodeByMessage(String message) {
+		for (ResultCode result : ResultCode.values()) {
+			if (result.getMsg().equals(message)) {
+				return result;
+			}
+		}
+		return null;
+	}
+
+}

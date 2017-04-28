@@ -1,0 +1,244 @@
+#parse("/common/common.vm")
+#set($title="我的资料_$!{title_suffix}")
+#set($css_url=["$cssv2_url/member/member.css","$cssv2_url/member/autoInvest.css"])
+#set($js_url=["$root_url/static/lib/js/vue/vue.js","$root_url/static/lib/js/vue/vue.extend.js","/static/lib/js/datepicker/WdatePicker.js","$root_js_url/modules/member.js",
+    "$root_js_url/modules/autoInvest.js"])
+#set($profile="z-current")
+
+## 用户中心头部
+#parse("/member/head.vm")
+## 用户中心内容
+<div id="j-setbox" v-cloak>
+    #set($hasWithholdAuthority=${servletUtil.synWithholdAuthorityFlag()})
+    <input type="hidden" v-model="hasWithholdAuthority" number value="$hasWithholdAuthority">
+    <div class="g-wrap f-auto">
+        <div class="g-uc-bd f-round">
+            <div class="g-uc-wrap">
+            ## 页面内容
+                <div class="u-auto-box">
+                    <div class="u-auto-random" v-if="autoInvestSwitch">当前排名:<span class="f-auto-random">{{sort||init.sort}}</span></div>
+                </div>
+                <div class="m-auto-box"><h1><i>我的资料</i>>自动投标</h1>
+                    <h2> 自动投标：
+                        <span v-if="autoInvestSwitch">开启</span>
+                        <span v-else>关闭</span>
+                        <span class="u-auto-switch" @click="switchAutoInvest" :class="{'f-auto-off': !autoInvestSwitch,
+                     'f-auto-on':autoInvestSwitch }"></span></h2>
+
+                    <h3>投标设置</h3>
+                    <div class="m-auto-box u-auto-box1">
+                        <div class="u-auto-time"> 自动投标有效期：
+                            <span v-if="autoInvestSwitch&&editable">
+                            <input id="jStartTime" name="startTime" class="u-circle-15 u-time-range" type="text" v-model="startTime | formatTime 'yyyy-MM-dd'" lazy
+                                   onfocus="WdatePicker({maxDate:'{%y+50}-%M-%d',minDate:'%y-%M-%d',
+onpicked:function(){pickFilterDate(this.value,1);jEndTime.focus()}})" value="{{initStartTime | formatTime 'yyyy-MM-dd'}}"/>
+                        &nbsp;&nbsp;&nbsp;到&nbsp;&nbsp;
+                            <input id="jEndTime" name="endTime" class="u-circle-15 u-time-range" type="text" onfocus="WdatePicker({minDate:'#F{$dp.$D(\'jStartTime\')}',maxDate:'{%y+50}-%M-%d',onpicked:pickFilterDate(this.value,0)})" v-model="endTime | formatTime 'yyyy-MM-dd'" lazy value="{{initEndTime | formatTime 'yyyy-MM-dd'}}"/>
+                        </span>
+                            <span v-else>
+                                <strong v-if="!init.open">
+                                    --
+                                </strong>
+                                <strong v-else>
+                            <span v-if="startTime&&endTime">
+                                {{startTime}} - {{endTime}}
+                            </span>
+                            <span v-else>
+                                {{initStartTime | formatTime 'yyyy.M.d'}} - {{initEndTime | formatTime 'yyyy.M.d'}}
+                            </span>
+                                </strong>
+                            </span>
+                        </div>
+
+                        <div class="u-auto-box3">
+                            <div class="f-textadjust"> 投标频率：</div>
+                            <div class="u-pro-input" v-if="autoInvestSwitch&&editable">
+                                <div class="u-selector u-scroll-selector j-selector2 f-w230 f-round f-auto-add">
+                                    <button class="f-auto-add" v-text="investFrequencyText"></button>
+                                    <i></i>
+                                    <ul class="f-round" style="height: 86px;">
+                                        ##<li>请选择投资频率</li>
+                                        <li value="1" @click="setInvestFrequency(1)">每天投标一次</li>
+                                        <li value="2" @click="setInvestFrequency(2)">每个项目投标一次</li>
+                                    </ul>
+                                    <input type="hidden" class="j-selected-ipt" v-model="investFrequency" value="{{investFrequency}}"/>
+                                </div>
+                            </div>
+                            <span v-else>
+                                <h4 v-if="!init.open">
+                                    --
+                                </h4>
+                                 <h4 v-else>{{investFrequencyText}}</h4>
+                            </span>
+                        </div>
+
+                        <div class="u-auto-box3">
+                            <div class="f-textadjust">项目类型：</div>
+                            <h4 v-if="autoInvestSwitch&&editable">
+                                <span class="u-auto-kind" id="j-credit" @click="selectProjectType(0)" :class="{'z-selected':projectType[0]}"></span>
+                                <label for="j-credit" @click="selectProjectType(0)">
+                                    &nbsp;<span class="f-invest-color1">债权项目</span></label>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <span class="u-auto-kind" id="j-direct" @click="selectProjectType(1)"
+                                      :class="{'z-selected':projectType[1]}"></span>
+                                <label for="j-direct" @click="selectProjectType(1)">
+                                    &nbsp;<span class="f-invest-color1">直投项目</span></label>
+                            </h4>
+                            <sapn v-else>
+                                <h4 v-if="!init.open">
+                                    --
+                                </h4>
+                                <h4 v-else>
+                                    <span v-if="projectType[0]">债权项目</span>
+                                    <span v-if="projectType[0]!==0&&projectType[1]!==0">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                    <span v-if="projectType[1]">直投项目</span>
+                                </h4>
+                            </sapn>
+                        </div>
+
+                        <div class="u-auto-box3 ">
+                            <div class="f-textadjust"> 项目周期：</div>
+                            <div class="u-auto-period" v-if="autoInvestSwitch&&editable">
+                                <div class="u-pro-input">
+                                    <div class="u-selector u-scroll-selector j-selector2 f-round f-auto-add f-auto-w150 z-period" @focusOut="closeSelector">
+                                        <button class="f-auto-add" v-text="periodMinText" id="j-periodMinText"></button>
+                                        <i></i>
+                                        <ul class="f-round">
+                                            ##<li>请选择项目周期</li>
+                                            <li value="1" @click="setPeriod(1,0)">5天</li>
+                                            <li value="2" @click="setPeriod(2,0)">15天</li>
+                                            <li value="3" @click="setPeriod(3,0)">30天</li>
+                                            <li value="4" @click="setPeriod(4,0)">2个月</li>
+                                            <li value="5" @click="setPeriod(5,0)">3个月</li>
+                                            <li value="6" @click="setPeriod(6,0)">6个月</li>
+                                            <li value="7" @click="setPeriod(7,0)">12个月</li>
+                                            <li value="8" @click="setPeriod(8,0)">24个月</li>
+                                        </ul>
+                                        <input type="hidden" class="j-selected-ipt" v-model="periodMin" value="{{periodMin||init.periodMin}}"/>
+                                    </div>
+                                </div>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<strong>—</strong>
+                                <div class="u-pro-input">
+                                    <div class="u-selector u-scroll-selector j-selector2 f-round f-auto-add f-auto-w150 z-period" @focusOut="closeSelector">
+                                        <button class="f-auto-add">{{periodMaxText}}</button>
+                                        <i></i>
+                                        <ul class="f-round">
+                                            ##<li>请选择项目周期</li>
+                                            <li value="1" @click="setPeriod(1,1)">5天</li>
+                                            <li value="2" @click="setPeriod(2,1)">15天</li>
+                                            <li value="3" @click="setPeriod(3,1)">30天</li>
+                                            <li value="4" @click="setPeriod(4,1)">2个月</li>
+                                            <li value="5" @click="setPeriod(5,1)">3个月</li>
+                                            <li value="6" @click="setPeriod(6,1)">6个月</li>
+                                            <li value="7" @click="setPeriod(7,1)">12个月</li>
+                                            <li value="8" @click="setPeriod(8,1)">24个月</li>
+                                        </ul>
+                                        <input type="hidden" class="j-selected-ipt" v-model="periodMax" value="{{periodMax||init.periodMax}}"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <span v-else>
+                                <h4 v-if="!init.open">--</h4>
+                                <h4 v-else>{{periodMinText}} - {{periodMaxText}}</h4>
+                            </span>
+                        </div>
+
+                        <div class="u-auto-box3">
+                            <div class="f-textadjust">投标金额：</div>
+                            <span class="f-auto-point" v-if="autoInvestSwitch&&editable">
+                                <input class="u-auto-frame" type="text" v-model="amount" value="{{amount||init.amount||'1000'}}" id="j-amount"/>
+                                &nbsp;&nbsp;(1000的整数倍，上限10万)
+                          </span>
+                        <span v-else>
+
+                            <h4 v-if="!init.open">--</h4>
+                            <span v-else>
+                                <h4>￥</h4>
+                                <h5>{{init.amount | amountSplit}}</h5>
+                            </span>
+                        </span>
+                        </div>
+
+                        <div class="u-auto-box3">
+                            <div class="f-textadjust">优惠券使用：</div>
+                            <div class="u-pro-input" v-if="autoInvestSwitch&&editable">
+                                <div class="u-selector u-scroll-selector j-selector2 f-w230 f-round f-auto-add">
+                                    <button class="f-auto-add"  v-text="couponTypeText"></button>
+                                    <i></i>
+                                    <ul class="f-round" style="height: 86px;">
+                                        <li value="0" @click="setCouponType(0)">不使用优惠券</li>
+                                        <li value="1" @click="setCouponType(1)">优先使用收益最高优惠券</li>
+                                        <li value="2" @click="setCouponType(2)">优先使用有效期最短优惠券</li>
+                                    </ul>
+                                    <input type="hidden" class="j-selected-ipt" v-model="couponType" value="{{couponType}}"/>
+                                </div>
+                            </div>
+                            <span v-else>
+                                <h4 v-if="!init.open">
+                                    --
+                                </h4>
+                                 <h4 v-else>{{couponTypeText}}</h4>
+                            </span>
+                            <span class="f-color9" v-if="init.couponType===1||couponRemark===1"> 系统自动选择账户中，现金券金额高，收益劵收益高的券 </span>
+                            <span class="f-color9" v-if="init.couponType===2||couponRemark===2"> 系统自动为您选择有限期最短优惠券，若有效期相同则使用收益最高的券 </span>
+                        </div>
+                    </div>
+                    <div v-if="!autoInvestSwitch||!editable" class="u-auto-button" :class="{'z-disabled':!autoInvestSwitch}" @click="switchEditable">修改设置</div>
+                    <div v-if="autoInvestSwitch&&editable" class="u-auto-button" @click="saveAutoInvest" @mouseEnter="updateAmount('#j-amount')">保存设置</div>
+                    <div class="m-auto-box u-auto-box2"><p>自动投标说明</p>
+                        <div class="u-auto-box3">
+                            1、中标后，自动投标将重新排名；<br>
+                            2、账户余额需大于投标金额。<br>
+                            3、自动投标支持使用优惠券。
+                            &nbsp;&nbsp;&nbsp;&nbsp; <a href="/post/autoInvestSubject">了解更多</a>
+                        </div>
+                    </div>
+                ## 页面内容
+                </div>
+            </div>
+        </div>
+    </div>
+    <div v-if="tipsSwitch" >
+        <div class="m-auto-shade"></div>
+        <div class="u-auto-tip">
+            <h1>提示：</h1>
+            <div v-if="tipsSwitch===1">
+                <div class="u-auto-text">确定开启自动投标吗？</div>
+                <div class="u-auto-selectbox">
+                    <span @click="switchContract">
+                    <span class="u-auto-sb" :class="{'z-selected':contractSwitch}"></span>
+                    <span class="f-auto-text">我已阅读并同意</span>
+                    </span>
+                    <a href="javascript:void(0)" class="f-auto-text f-red-text" @click="textAgree">《自动投标协议书》</a>
+                 </div>
+                <span class="u-button-yes" :class="{'z-current':contractSwitch}" @click="switchOpenTips(1)">确定</span>
+                <span class="u-button-yes u-button-no" @click="switchOpenTips(0)">取消</span>
+            </div>
+
+            <div v-if="tipsSwitch===3">
+                <div class="u-auto-text">开启自动投标需要先开通委托支付功能。</div>
+                <div class="u-auto-selectbox"></div>
+                <a class="u-button-yes z-current" href="$root_url/member/delegatePay">前往开通</a>
+                <span class="u-button-yes u-button-no" @click="closeTips">暂不开通</span>
+            </div>
+
+            <div v-if="tipsSwitch===2">
+                <div class="u-auto-text">确定关闭自动投标吗？</div>
+                <div class="u-auto-selectbox"></div>
+                <span class="u-button-yes z-current"   @click="switchCloseTips(1)">确定</span>
+                <span class="u-button-yes u-button-no" @click="switchCloseTips(0)">取消</span>
+            </div>
+
+        </div>
+    </div>
+
+    <div v-if="agreeText"  :class="{'z-fd':closeButton}">
+    <div class="u-agreement-box">
+           <h3>有融网自动投标协议书<i  @click=" buttonClose"></i></h3>
+        <div>
+            <iframe  src="/static/page/autoInvest-agreement.html"></iframe>
+        </div>
+    </div>
+    </div>
+</div>
+#CSRFToken("xToken")

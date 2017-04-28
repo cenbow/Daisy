@@ -1,0 +1,230 @@
+html{
+    margin-left: 0!important;
+}
+
+ img{
+    width: 100%;
+}
+.m-projectsSafe{
+    width: 100%;
+    background: #fff;
+    padding-bottom: 30px;
+}
+.m-process{
+    width: 100%;
+    background: #fff;
+    padding-bottom: 20px;
+    position: relative;
+}
+
+.u-detailMsgBlock{
+    background: url("../../../img/member/safetyAssurance/whiteBlock.png") no-repeat center;
+    background-size: 100%;
+    width: 70%;
+    margin: auto;
+    height: 135px;
+    text-align: center;
+    padding-top: 2rem;
+    font-size: 0.9rem;
+    padding-left: 0.6rem;
+    padding-right: 0.6rem;
+    box-sizing: border-box;
+}
+
+ /* iphone4,5 */
+ /*iPhone4*/
+ @media only screen and (max-device-width: 320px){
+     .m-process{
+         padding-bottom:0;
+     }
+     .u-detailMsgBlock{
+         padding-top: 2rem;
+         position: relative;
+         top: -1.5rem;
+     }
+     .m-legalGuarantee .u-topTitle .u-detailMsg{
+         top:1rem!important;
+     }
+     .u-security01,
+     .u-security02,
+     .u-security03{
+         font-size: 12px!important;
+         margin-bottom: 0!important;
+     }
+     .u-legalGuarantee01,
+     .u-legalGuarantee02,
+     .u-legalGuarantee03{
+         line-height: 16px!important;
+         margin-bottom: 0!important;
+         padding: 7% 6px 12%!important;
+     }
+ }
+ /*@media screen and (max-width: 350px) {*/
+     /**/
+ /*}*/
+
+
+ .u-detailMsgBlock span{
+     display: block;
+ }
+ .m-process .u-titleTip{
+     color: #d74148;
+     line-height: 30px;
+     font-weight: bold;
+ }
+.m-process .u-detailMsg{
+    color: #828282;
+    line-height: 22px;
+    font-size: 0.7rem;
+}
+.u-directProcess{
+    background: url("../../../img/member/safetyAssurance/progressBlock02.png") no-repeat center;
+    background-size: 100%;
+}
+ .m-assetsSecurity{
+     width: 100%;
+     background: #edf2f5;
+ }
+.g-wrap{
+    width: 96%;
+    margin: auto;
+}
+ .m-assetsSecurity .u-topTitle{
+     margin:10px 0 20px;
+     padding-top: 20px;
+ }
+  .u-topTitle img{
+     width: 45%;
+     display: inline-block;
+ }
+ .u-topTitle .u-detailMsg{
+     display: inline-block;
+     width: 50%;
+     position: relative;
+     left: 5%;
+     color: #828282;
+     margin-left: 6px;
+     font-size: 0.7rem;
+     line-height: 1.4rem;
+ }
+ .u-topTitle .u-detailMsg strong{
+     color: #575757;
+ }
+ .m-assetsSecurity .u-davantageList li i{
+     background: url("../../../img/member/safetyAssurance/white-round.png") no-repeat center;
+     background-size: 100%;
+     width: 24%;
+     display: inline-block;
+     height: 100px;
+     text-align: center;
+     line-height: 105px;
+     font-weight: bold;
+     color: #575757;
+     font-size: 0.8rem;
+ }
+ .m-assetsSecurity .u-davantageList li span{
+     width: 70%;
+     display: inline-block;
+     color: #828282;
+     vertical-align: middle;
+     margin-left: 10px;
+     font-size: 0.9rem;
+ }
+ .m-assetsSecurity .u-davantageList .u-lastLi{
+     padding-bottom: 30px;
+ }
+ .m-technologySecurity{
+     width: 100%;
+     background: #fff;
+     margin-top: 30px;
+     line-height:30px;
+ }
+ .m-legalGuarantee .u-topTitle,
+ .m-technologySecurity .u-topTitle{
+     position: relative;
+     margin-bottom: 1rem;
+ }
+ .m-technologySecurity .u-topTitle span{
+     position: relative;
+     z-index: 2;
+ }
+ .m-technologySecurity .u-topTitle img {
+     float: right;
+     position: absolute;
+     top: 0px;
+     right: 3px;
+     z-index: 1;
+ }
+ .u-securityList{
+     clear: both;
+     padding: 20px 0;
+     line-height: 50px;
+ }
+ .u-security01,
+ .u-security02,
+ .u-security03{
+     color: #828282;
+     padding-left: 20%;
+     padding-top:10%;
+     line-height: 20px;
+     font-size: 14px;
+     margin-bottom: 2rem;
+     padding-bottom: 6%;
+ }
+.u-security01{
+
+    background: url("../../../img/member/safetyAssurance/security01.png") no-repeat top;
+    background-size: 100%;
+}
+.u-security02{
+    background: url("../../../img/member/safetyAssurance/security02.png") no-repeat top;
+    background-size: 100%;
+}
+.u-security03{
+    background: url("../../../img/member/safetyAssurance/security03.png") no-repeat top;
+    background-size: 100%;
+}
+ .m-legalGuarantee{
+     width: 100%;
+     background: #edf2f5;
+    position: relative;
+ }
+ .m-legalGuarantee .u-topTitle .u-detailMsg {
+     width: 55%;
+     position: absolute;
+     top:2rem;
+     left: 40%;
+     line-height: 20px;
+ }
+ .u-legalGuarantee01,
+ .u-legalGuarantee02,
+ .u-legalGuarantee03{
+     color: #828282;
+     line-height: 18px;
+     font-size: 12px;
+     margin-bottom: 1rem;
+     padding: 8% 6px 12%;
+ }
+.u-legalGuarantee01{
+    background: url("../../../img/member/safetyAssurance/legalSecurity01.png") no-repeat top;
+    background-size: 100%;
+}
+.u-legalGuarantee02{
+    background: url("../../../img/member/safetyAssurance/legalSecurity02.png") no-repeat top;
+    background-size: 100%;
+}
+.u-legalGuarantee03{
+    background: url("../../../img/member/safetyAssurance/legalSecurity03.png") no-repeat top;
+    background-size: 100%;
+}
+
+ .u-grayLogo{
+     text-align: center;
+     padding-bottom: 20px;
+ }
+ .u-grayLogo img{
+     width: 50%;
+ }
+
+
+/* 最大头一块，滑块的css */

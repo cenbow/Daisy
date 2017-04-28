@@ -1,0 +1,80 @@
+#parse('/common/common.vm')
+#set($css_url=["$root_css_url/post/autoInvestSubject.css"])
+#set($title="自动投标_$!{title_suffix}")
+#set($yrimg_url='https://yrimg.oss-cn-hangzhou.aliyuncs.com')
+<style>
+    .u-autoSubject-hbd{
+        width:100%;
+        height:487px;
+        margin-top: -10px;
+        background: url($yrimg_url/banner/banner/autoInvest-hbd.png)  no-repeat  center;
+    }
+</style>
+
+<div class="u-autoSubject-hbd"></div>
+<div class="m-autoSubject-box">
+    <div class="u-autoSubject-box1">
+        <h1>有融网自动投标功能正式上线啦！</h1>
+        <p>用户可根据自己的投资习惯与偏好，进行自动投标功能的设置。 </p>
+        <p> 闲置资金不站岗，投资理财更省心！</p>
+        <i></i>
+    </div>
+    <div class="m-autoSubject-box2">
+        <ol>
+            <li><h1 class="f-autoSubject-titile1"></h1>
+                <h2>自动投标是什么？</h2>
+                <p>自动投标是一种智能投标功能。用户开启自动投标功能后，系统将根据用户设置的投标条件匹配合适的项目，自动帮助用户完成投标。</p>
+
+            </li>
+
+
+            <li><h1 class="f-autoSubject-titile2"></h1>
+                <h2>自动投标的规则？</h2>
+                <p class="f-autoSubjectR">
+                    1、<span class="f-adjust"> 开启自动投标后，系统会分配排队号。投标成功后，将重新排队至队尾。</span><br>
+                    2、<span class="f-adjust">若用户存钱罐可用余额不足，或设置的自动投标金额超过项目可投金额，则投标无效，仍保留当前队列号，等待下次轮询。</span><br>
+                    3、<span class="f-adjust">第一次开启，或关闭后重新开启自动投标功能，会排队至队尾。</span><br>
+                    4、<span class="f-adjust">系统将根据用户的设置进行自动投标，直至用户存钱罐可用余额低于投标金额。</span><br>
+                    5、<span class="f-adjust">自动投标支持使用优惠券。</span><br>
+                </p>
+            </li>
+
+
+            <li><h1 class="f-autoSubject-titile3"></h1>
+                <h2>自动投标的优势？</h2>
+                 <p>
+                <span class="u-Subject-smallPhoto" style="background-position:-72px -15px "></span>
+                <span class="u-Subject-titile3">资金不站岗</span><br>
+                     <span class="f-gap">开启自动投标功能，可提高用户存钱罐中可用余额的利用率，实现收益最大化。</span><br>
+                <span class="u-Subject-smallPhoto" style="background-position:-72px -60px "></span>
+                <span class="u-Subject-titile3 f-gap" >投标更便捷</span><br>
+                     自动投标系统将根据用户设定的条件，为用户完成投标，投资理财更便捷。
+                </p>
+            </li>
+
+
+            <li><h1 class="f-autoSubject-titile4"></h1>
+                <h2>如何设置自动投标？</h2>
+                <p>目前自动投标功能只支持<span class="f-red">电脑登录有融网官网</span>操作。具体方式如下：<br>
+                    进入<strong>“我的账户”-“我的资料”-“自动投标”</strong>，即可设置开通。
+                </p>
+            </li>
+
+
+            <li><h1 class="f-autoSubject-titile5"></h1>
+                <h2>常见问题</h2>
+                <p><span class="f-red">Q:</span>
+                  <span class="u-Subject-titile4">为什么我不能开启自动投标？</span><br>
+                    <span class="f-gaps">A: 自动投标需先前往“我的账户”开启委托支付功能后，方可开通。</span>
+                    <span class="f-red">Q:</span>
+                    <span class="u-Subject-titile4">自动投标是否可以关闭？</span><br>
+                    <span class="f-gaps">A: 可进入“我的账户”-“我的资料”-“自动投标”，点击“关闭”按钮即可。</span>
+                    <span class="f-red">Q:</span>
+                    <span class="u-Subject-titile4">自动投标的每笔投资，是否会有提醒？</span><br>
+                   A: 每笔自动投标成功后，均会以手机短信等形式告知用户。用户也可前往“我的账户”-“资金记录”中查看投资记录。
+                </p>
+                 <a class="u-autoSubject-botton" href="/member/autoInvest" >立即设置</a>
+            </li>
+        </ol>
+    </div>
+</div>

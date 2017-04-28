@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.mc.dao.ActivityHistoryMapper" >
+	<resultMap id="BaseResultMap" type="ActivityHistory" >
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="member_id" property="memberId" jdbcType="BIGINT" />
+		<result column="activity_id" property="activityId" jdbcType="BIGINT" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+ 	
+ 	<insert id="insert" parameterType="ActivityHistory">
+ 		insert into mc_activity_history(member_id, activity_id,create_time) values(#{memberId,jdbcType=BIGINT},#{activityId,jdbcType=BIGINT},now())
+ 	</insert>
+ 	
+ 	<select id="getActivityHistory" resultMap="BaseResultMap" >
+ 		select * from mc_activity_history where member_id=#{memberId,jdbcType=BIGINT} and activity_id = #{activityId,jdbcType=BIGINT} limit 0,1
+ 	</select>
+ 	
+ 	
+ 	<resultMap id="ActivityHistoryBizMap" type="ActivityHistoryBiz" >
+		<id column="activity_id" property="activityId" jdbcType="BIGINT" />
+		<result column="activity_name" property="activityName" jdbcType="VARCHAR" />
+		<result column="type" property="type" jdbcType="INTEGER" />
+		<result column="total" property="total" jdbcType="BIGINT" />
+		<result column="member_id" property="memberId" jdbcType="BIGINT" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+ 	
+ 	
+ 	<select id="selectForPagin" resultMap="ActivityHistoryBizMap">
+ 		select activity_name, act.id as activity_id,type, (select count(0) from mc_activity_history where activity_id = act.id) as total from mc_activity as act where act.type > 0 
+ 		LIMIT ${map.startRow}, ${map.pageSize}
+ 	</select>
+ 	
+ 	<select id="selectForPaginTotalCount" resultType="java.lang.Integer">
+ 		select count(1) from (
+ 			select activity_name, (select count(0) from mc_activity_history where activity_id = act.id) from mc_activity as act where act.type > 0
+ 		) as htab
+ 	</select>
+ 	
+ 	<!-- 活动参与人数汇总 -->
+ 	<select id="totalMemberByActivityId" resultType="java.lang.Long">
+ 		select count(1) from mc_activity_history where activity_id=#{activityId,jdbcType=BIGINT}
+ 	</select>
+ 	
+ 
+ 	<resultMap id="ActivityHistoryDetailMap" type="ActivityHistoryDetail" >
+		<id column="memberId" property="memberId" jdbcType="BIGINT" />
+		<result column="true_name" property="trueName" jdbcType="VARCHAR" />
+		<result column="mobile" property="mobile" jdbcType="BIGINT" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+ 	
+ 	<!-- 活动实际参与人数详情 -->
+ 	<select id="selectActivityHistoryDetailForPagin" resultMap="ActivityHistoryDetailMap">
+ 		select m.true_name, m.mobile,m.id as memberId,a.create_time from mc_activity_history as a left join uc_member as m on a.member_id=m.id 
+ 		where a.activity_id= ${map.activityId}
+ 		LIMIT ${map.startRow}, ${map.pageSize}
+ 	</select>
+ 	<!-- 活动实际参与人数详情 -->
+ 	<select id="selectActivityHistoryDetailForPaginTotalCount" resultType="java.lang.Integer">
+ 		select count(1) from (select m.id from mc_activity_history as a left join uc_member as m on a.member_id=m.id where a.activity_id=${map.activityId}) as ahd
+ 	</select>
+ 	<!-- 新手任务最新动态 -->
+ 	<select id="getNewerPrizeList" resultMap="ActivityHistoryBizMap">
+ 		SELECT
+			h.member_id,
+			a.activity_name,
+			h.create_time
+		FROM
+			mc_activity_history AS h
+		INNER JOIN mc_activity AS a ON a.id in <foreach collection="ids" index="index" item="item" open="(" separator="," close=")"> #{item}  </foreach>  
+		AND a.id = h.activity_id
+		ORDER BY
+			h.create_time DESC
+		LIMIT #{num,jdbcType=INTEGER}
+ 	</select>
+ </mapper>

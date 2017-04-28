@@ -1,0 +1,534 @@
+##订单支付
+#parse('/common/common.vm')
+#set($title="订单支付_理财项目_$!{title_suffix}")
+#set($css_url=["$root_css_url/modules/order.css"]) 
+#set($js_url=["$root_js_url/modules/order.js"])
+
+
+	#set($payOrderBiz = ${result.result})
+$payOrderBiz
+	#if($payOrderBiz)
+		#if(${payOrderBiz.orderPayAmount} && ${payOrderBiz.orderPayAmount} > 0)		
+			##是否显示充值银行
+			#set($isRechargeOnBlank = false)	
+			##是否显示未使用优惠劵	
+			#set($isShowCupon = false )
+			##灰显 已经使用的优惠劵
+			#set($isUserdCupon = $stringUtil.isNotBlank($payOrderBiz.orderUsedCashNo) )
+			##需要充值支付
+			#set($needPayAmountOnBank =  ${payOrderBiz.orderPayAmount} )			
+			##是否第一次创建订单
+			#set($isFirstCreaterOrder =  false )
+		#else
+			#set($isRechargeOnBlank =  $payOrderBiz.investAmount - $payOrderBiz.savingPotBalance  <= 0 )
+			##是否显示未使用优惠劵	
+			#set($isShowCupon = $collections3.isNotEmpty($payOrderBiz.coupons) )
+			##需要充值支付
+			#set($needPayAmountOnBank =  ${payOrderBiz.payAmountInit} )
+			##是否第一次创建订单
+			#set($isFirstCreaterOrder =  true )
+		#end		
+	#end
+
+#set($hasSafecard=$!{servletUtil.isHasSarfeCard($payBankCards)})
+	
+	
+<div class="g-wrap f-round m-pay-info">
+	#if(${result.success})
+	<dl class="u-pay-now">
+		<dt class="f-fs18"><i class="u-icon f-icon-35 u-icon-success2">&nbsp;</i>订单确认成功！立即支付</dt>
+		<dd>请您在提交订单30分钟内完成支付，否则订单会自动取消。 </dd>
+	</dl>	
+	<form class="u-pay-wrap j-validform">
+		<div class="m-pay-data f-cf">
+			<div class="u-sinapay-banner j-sinapay-banner">
+				<img src="$root_url/static/img/common/sinapay_logo_s.png" alt="新浪支付|资金托管解决方案">
+			</div>
+			<div class="u-pay-title"><strong>订单编号：${payOrderBiz.orderNo}</strong><span class="f-text-overflow u-project-name" title="${payOrderBiz.projectName}">项目名称：<a class="u-invest-underline" target="_blank" href="$root_url/products/detail-$!{payOrderBiz.projectId}.html" >${payOrderBiz.projectName}</a></span>
+				<span class="u-amount-tips2 f-fc-gray f-fr">投资本金：<span class="f-ff-ver f-fs18 f-fc-red2">￥</span><em class="f-fc-red2 f-fs30 f-ff-din">${payOrderBiz.investAmount}</em></span>
+				<input type="hidden" id="investAmount" name="investAmount" data-name="investAmount" value="${payOrderBiz.investAmount}">
+			</div>
+			
+			#if( ${payOrderBiz.orderPayAmount} && ${payOrderBiz.orderPayAmount} > 0)	                	  	
+	             #set($payPageSavingPot = $!{payOrderBiz.orderSavingPotAmount} ) 
+	             #set($isNotCanEdit =  true ) 			
+	       #else
+	             #set($payPageSavingPot = $!{payOrderBiz.usedCapitalInit} )	
+	             #set($isNotCanEdit =  false ) 		 	              	               	    		
+	       #end
+			
+			<div class="u-balance-wrap">
+				<div class="u-select-balance f-fs12">
+					<span class="j-pay-checkbox u-pay-checkbox f-vam  z-checked #if(${isNotCanEdit}) z-disabled #end" id="j-sinapay-check"></span>
+					<input  type="checkbox" name="payType" checked="checked" class="j-paytype f-dn"/>
+					使用新浪支付存钱罐
+					<span class="u-amount-wrap u-amount-sinapay f-vam">
+	                	<i class="f-ff-ver">¥</i>
+	                	<input type="text" id="sinapay" placeholder="" #if($isNotCanEdit) readOnly #end  name="sinapay" data-name="sinapay" class="j-ipt-amount u-ipt-amount f-round f-fs14" 
+	                	     ignore="ignore" value="$payPageSavingPot"/>               	     
+	                	    
+	              	</span>
+					<span class="u-amount-tips f-vam">存钱罐可用余额：&nbsp;<span class="f-ff-ver">¥</span><em id="j-available-balance">${payOrderBiz.savingPotBalance}					
+					</em></span>					
+				</div>
+				#if(!$!projectUtils.isProjectOfCannotUseCoupon($payOrderBiz.projectId))
+				#if($isShowCupon)
+				<div class="u-select-balance f-fs12">
+					<span id="j-use-coupon"  class="j-pay-checkbox u-pay-checkbox f-vam z-checked">
+						<i class="u-icon-sred"></i>
+					</span>
+					<input type="checkbox" name="payType" checked=true  class="j-paytype f-dn"/>
+					使用现金券&nbsp;&nbsp;
+					<div id ="j-use-copon-div" class="f-vam u-selector u-scroll-selector j-selector f-round f-tar f-w200" type="pay">
+						<button class="f-text-overflow" value="0" id="j-use-coupon-button">请选择现金券</button><i></i>
+						<ul class="f-round m-coupon-list" id="coupon_ul" >
+							<li><em>请选择现金券</em></li>
+							#foreach( $coupon in ${payOrderBiz.coupons} )
+								<li class="z-disabled" data-value="${coupon.amount}"
+                                    data-number="${coupon.couponCode}"
+                                    class="#if($!{coupon.limited}==1)z-disabled#end">
+									<em>
+                                    +${coupon.amount}元
+                                    #if( $!{coupon.vaildCalcType} ==0 )
+                                        长期有效
+                                    #else
+                                        #if(!${coupon.isShowCouponValidity()} && $!{coupon.couponValidity})<span>有效期 $!{coupon.couponValidity}</span>
+				                         #else
+					                     有效期 ${coupon.endDateStr}
+										#end
+                                    #end
+                                     #if(!${coupon.isAvailable()})
+                                        #if($!{coupon.couponPrivileges})
+                                            <span>$!{coupon.couponPrivileges}</span>
+										#end
+                                        #if($!{coupon.couponAmountScope})
+                                            <span>$!{coupon.couponAmountScope}</span>
+										#end
+                                        #if($!{coupon.couponDaysScope})
+                                            <span>$!{coupon.couponDaysScope}</span>
+										#end
+                                    #else
+										 <span>全网通用</span>
+									#end
+                                    </em>
+                                </li>
+							#end 
+						</ul>
+						<input type="hidden" class="j-selected-ipt"/>
+					</div>					
+				</div>
+				#end
+				
+				#if($isUserdCupon)
+				<div class="u-select-balance f-fs12">
+					<span id="j-use-coupon"  class="j-pay-checkbox u-pay-checkbox f-vam z-checked z-disabled">
+						<i class="u-icon-sred"></i>
+					</span>
+					<input type="checkbox" name="payType" checked=true  class="j-paytype f-dn"/>
+					使用现金券&nbsp;&nbsp;
+					<div id ="j-use-copon-div" class="f-vam u-selector u-scroll-selector j-selector f-round f-tar f-w200" type="pay">
+
+						<button  value="$!{payOrderBiz.orderUsedCashAmount}" id="j-use-coupon-button">+$!{payOrderBiz.orderUsedCashAmount}元
+							#if($!{payOrderBiz.isLongTimeCashCounpons()})
+                                长期有效
+							#else
+                                有效期 $!{payOrderBiz.orderCashEndDate}
+							#end </button><i></i>
+						<input type="hidden" class="j-selected-ipt"/>
+					</div>					
+				</div>
+				#end		
+				#end
+			</div>
+
+			<div id="j-need-pay"  class=" #if($isRechargeOnBlank) f-dn #end ">
+			<span class="u-amount-tips2 f-fc-gray f-fr">还需支付&nbsp;<span class="f-ff-ver f-fs18 f-fc-red2">￥</span><em class="f-fc-red2 f-fs30 f-ff-din" id="payAmount_html">$!{needPayAmountOnBank} 			
+			</em></span>
+			</div>
+								<input type="button" value="确认支付"  class="f-round f-fs18 f-btn-m u-btn u-btn-primary u-order-btn3 #if($isRechargeOnBlank) z-available #else z-disabled #end" id="submit_pay_balance" />			
+		</div>
+		<div class="m-pay-bank #if($isRechargeOnBlank) f-dn #end" id="j-paybank-list">
+					<div class="m-paybank-wrap">
+						<h3 class="u-pay-title f-fs14 j-paybank-title"><em class="z-current">网上银行支付</em><em>快捷支付</em></h3>
+						<div class="u-bank-list u-pay-type"> 
+							#CSRFToken()    
+							<h4 class="f-fs14">选择银行</h4>
+							<ul class="f-cf" id="j-bank-selector">
+							     #usedRechargeBandCode()							
+							</ul>
+                            <div class="u-sina-notice d-ebank-maint f-dn"></div>
+							<div class="u-submit-wrap d-eBank">
+								<input type="button" id="submit_pay_order"  data-type="bankPay" class="f-round f-fs18 f-btn-m u-btn u-btn-primary u-order-btn2" value="确认支付"/>
+							</div>
+						</div>
+						<div class="u-quickbank-list u-pay-type f-dn">
+							<div class="u-qbank-info f-round">
+								<span>您的实名认证信息</span>
+								<span>姓名：$!{servletUtil.getMemberMaskTrueName()}&nbsp;&nbsp;</span>
+								<span>身份证号：${servletUtil.getUserDO().maskIdentityNumber}&nbsp;&nbsp;<i class="u-icon u-icon-lock j-user-tips" data-align="top" data-tips="此信息用于校验身份真实性，<br /> 受新浪支付多重安全保障。"></i></span>
+							</div>
+							#if($collections3.isNotEmpty($payBankCards))
+                                <div class="u-qbank-list u-bank-select" id="j-qbank-list">
+                                	#if($!hasSafecard)
+										#set($card = $!{servletUtil.getSarfeCard($payBankCards)})
+                                        #set($mobileNumber = $stringUtil.maskMobileCanNull($card.bankMobile))
+                                		<div class="u-bank-safecard">                         		
+	                                		<span class="u-pay-qbank u-circle-25" id="j-isSafecard" data-cardid="$card.id"
+                                                  data-bankMobile="$stringUtil.maskMobileCanNull($card.bankMobile)"  data-code="$!{card.bankCode}" title="">
+						               			 <img src="/static/img/member/bank/bank_$!{card.bankCode}.png" alt="bank icon" class="f-vam">
+						               				<strong>$stringUtil.maskBankCodeNumber($card.cardNumber)</strong>
+						               				<i class="u-icon"></i>
+						                     </span>
+						                     <em>
+						                     	新浪支付已验证了您的开卡信息，并指定该卡为提现银行卡，<br />
+						                     	可以有效的保障您的资产安全及银行卡安全。<a href="$root_url/memberBankCard/bankManage" target="_blank">管理安全卡</a>
+											</em>
+					                     </div>
+                                	#else
+									#foreach($card in $payBankCards )
+                                        <span class="u-pay-qbank u-circle-25 j-pay-qbank #if($velocityCount == 1) z-selected #end " data-cardid="$card.id"
+											  data-bankmobile="$stringUtil.maskMobileCanNull($card.bankMobile)"  data-code="$!{card.bankCode}" title="">
+					               			 <img src="/static/img/member/bank/bank_$!{card.bankCode}.png" alt="bank icon" class="f-vam">
+					               				<strong>$stringUtil.maskBankCodeNumber($card.cardNumber)</strong>
+					                    </span>
+									#end
+                                    #set($mobileNumber = $stringUtil.maskMobileCanNull($payBankCards[0].bankMobile))
+                                    <a class="u-qbank-more u-circle-25 f-vam f-ff-ver" href="$memberBankCard_quickBankAdd_url">
+                                        <strong>+</strong>
+                                    </a>
+                                    #end
+                                    <h6 id="h6-bankName-quick"></h6>
+                                    <table id="t-quick">
+                                        <thead>
+                                        <tr>
+                                            <th width="165">单笔限额(元)</th>
+                                            <th width="170">每日限额(元)</th>
+                                            <th width="210">最低支付额度(元)</th>
+                                            <th width="275">备注</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td id="td-quick-singleLimit"></td>
+                                            <td id="td-quick-dailyLimit"></td>
+                                            <td id="td-quick-minLimit"></td>
+                                            <td id="td-quick-remark"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="u-qlist-wrap f-dn"></div>
+                                </div>
+                                	<div class="u-pay-amount u-recharge-amount2">
+                                		支付金额：<span class="f-ff-ver f-fs18 f-fc-red2">￥</span><span class="f-ff-din f-fs30 f-fc-red2" id="j-qbank-amount">$!{needPayAmountOnBank} </span>
+                                	</div>
+									<div class="u-pay-smscode f-dn" id="j-pay-smscode">
+										<p>接收验证码的手机号：<strong>${mobileNumber}</strong></p>
+										<input name="checkCode" placeholder="手机验证码" class="u-ipt-amount f-round f-w200 v-num" id="j-bank-checkcode">
+										&nbsp;&nbsp; <span class="u-recode-tips f-round" id="j-recode-tips" data-time="60">校验码已发送<em>60</em>秒后可重获</span>
+									</div>
+									<div class="u-submit-wrap2 d-quick">
+										<input type="button"  id="order_pay_rechargeOnBank_submit"  class="f-round f-fs18 f-btn-m u-btn u-btn-primary u-order-btn2" value="提交支付"/>
+		                                <input type="button"  id="order_pay_rechargeOnBank_advance"  class="f-round f-fs18 f-btn-m u-btn u-btn-primary u-order-btn2" style="display:none;" value="确认支付"/>
+		                                <br />
+		                                <label>
+		                                	<input type="checkbox" checked="checked" name="isAgreement" id="j-qbank-agree"/>
+		                                	我已阅读并同意<a href="#" id="j-qbank-argreement-link" data-url="$root_url/static/page/quickPay-agreement.html"  data-target="j-qbank-argreement">《新浪支付快捷支付服务协议》</a>
+		                                </label>
+									</div>
+                                <div class="u-sina-notice d-quick-maint f-dn"></div>
+							#else
+                                <div class="u-qbank-info z-disabled f-fs18">
+                                    您尚未开通快捷支付，<a href="$account_url[2]">立即开通</a>
+                                </div>
+							#end
+                            
+                    </div>
+					
+					</div> 
+				</div>	
+
+	</form>
+	#else
+	<div class="u-page-tips">
+		<div class="u-tips-box">		
+			<i class="u-icon u-icon-error2 f-icon-35"></i>
+			<p class="f-fs18 f-fwb">
+				#if(${result.getResultCode().getMsg()})
+				   ${result.getResultCode().getMsg()}
+				#else
+				   网络异常，请刷新浏览器
+				#end
+			</p>		
+		</div>
+	</div>			
+	#end
+</div>
+##支付状态层
+
+##提交支付跳转提示
+<div id="pay_order_recharge_directly_pay" class="m-pay-state j-floatlayer f-dn" style="width:600px;">
+	<div class="u-state-bank">
+		<h3 class="f-fs18 f-fwb" id="j-payorder-by-bankcard">余额支付</h3>　
+		<p class="f-fs14">新浪支付存钱罐正在为您安全支付中，倒计时<em id="message_time">5</em>秒</p>
+		<a class="f-round u-pay-state" href="$transaction_url[1]" id=""><i class="u-icon u-icon-success2 f-icon-35"></i>查看我的投资</a>
+		<a class="f-round" href="$products_url[0]"><i class="u-icon u-icon-success2 f-icon-35"></i>继续投资</a>
+		<p class="f-fs14"><span>如果您支付遇到问题可咨询 <a href="http://wpa.b.qq.com/cgi/wpa.php?ln=2&uin=4000266688" target="_blank">在线客服</a></span></p>
+	</div>
+</div>
+
+
+##提交支付跳转提示
+<div id="pay_order_bank" class="m-pay-state j-floatlayer f-dn" style="margin-left: -350px;">
+	<div class="u-state-bank">
+		<h3 class="f-fs18 f-fwb">跳转到网银支付</h3>　
+		<p class="f-fs14">请在新打开的网银页面完成支付 <span>如果您支付遇到问题可咨询 <a href="http://wpa.b.qq.com/cgi/wpa.php?ln=2&uin=4000266688" target="_blank">在线客服</a></span></p>
+		<a class="f-round j-already-recharge" href="#" id=""><i class="u-icon u-icon-success2 f-icon-35"></i>已完成支付</a>
+		<a class="f-round" href="$root_url/order/to/pay?orderId=${payOrderBiz.orderId}"><i class="u-icon u-icon-error2 f-icon-35"></i>充值遇到问题，重新支付</a>
+	</div>
+</div>
+##支付状态提示
+##失败
+<div id="error-pay-investment" class="m-pay-state j-floatlayer f-dn" style="width:565px;">
+	<div class="u-pay-result u-pay-error">
+		<i class="u-icon u-icon-error2 f-icon-35"></i>
+		<div>
+			<h3 class="f-fs18">对不起，您的投资失败了！</h3>
+			<p class="f-fs14">失败原因：<em id="error-message">下手太慢项目被人抢先一步投资</em></p>
+			<a href="$products_url[0]" class="f-round">重新投资</a>
+			<a href="$account_url[0]" class="f-round">查看账户余额</a>
+		</div>
+	</div>
+</div>
+<div class="m-pay-state j-floatlayer f-dn" style="width:565px;">
+	<div class="u-pay-result u-pay-error">
+		<i class="u-icon u-icon-error2 f-icon-35"></i>
+		<div>
+			<h3 class="f-fs18">对不起，您的投资失败了！</h3>
+			<p class="f-fs14">失败原因：网银支付失败</p>
+			<a href="$account_url[1]" class="f-round">重新充值</a>
+			<a href="$account_url[0]" class="f-round">查看账户余额</a>
+		</div>
+	</div>
+</div>
+##处理中
+<div class="m-pay-state j-floatlayer f-dn" id="process-investment" style="width:565px;">
+	<div class="u-pay-result u-pay-doing">
+		<i class="u-icon u-icon-doing f-icon-35"></i>
+		<div>
+			<h3 class="f-fs18">投资处理中，请稍后到我的账户中查看。</h3>
+			<p class="f-fs14">如果您支付遇到问题可咨询&nbsp;&nbsp;<a href="http://wpa.b.qq.com/cgi/wpa.php?ln=2&uin=4000266688" target="_blank">在线客服</a></p>
+			<a href="$products_url[0]" class="f-round">继续投资</a>
+			<a href="$transaction_url[1]" class="f-round">查看我的投资</a>
+		</div>
+	</div>
+</div>
+##成功
+<div id="success-pay-investment" class="m-pay-state j-floatlayer f-dn" style="width:850px;">
+##非p2p项目投资成功时弹框
+	<div class="u-pay-result2 u-pay-success">
+		<h3 class="f-fs18">
+			<i class="u-icon u-icon-success2 f-icon-35"></i>
+			<span>您的投资已成功！</span>
+		</h3>
+		<div>
+			<h4>投资项目信息</h4>
+			<table id="sucess-inverstment-return">
+				<tr>
+					<td>项目名称</td>
+					<td name="projectName"></td>
+				</tr>
+				<tr>
+					<td>投资本金</td>
+					<td><strong name="investAmountStr"></strong>元</td>
+				</tr>
+				<tr>
+					<td>项目年化收益</td>
+					<td><strong name="totalAnnualizedRate"></strong>%</td>
+				</tr>
+				<tr>
+					<td>预期收益</td>
+					<td><strong name="totalInterestStr"></strong>元</td>
+				</tr>
+				<tr>
+					<td>购买时间</td>
+					<td><strong name="transactionTimeStr"></strong></td>
+				</tr>
+			</table>
+			<a href="$products_url[0]" class="f-round">继续投资</a>
+			<a href="$transaction_url[1]" class="f-round">查看我的投资</a>
+		</div>
+	</div>
+</div>
+##p2p项目投资成功时弹框
+##zt=直投项目
+<div id="success-pay-investment-directProject" class="m-pay-state j-floatlayer f-dn" style="width:900px;">
+    <div class="m-ztPay-state" >
+        <div class="u-state-tipsText">
+            <p>
+                <i class="u-icon u-icon-success2 f-icon-35"></i>您的订单已支付成功，
+                <br>请等待项目募集完成！</p>
+            <div class="u-new-tShaft">
+                <div class="u-info-tShaft f-pos-r">
+                    <dl class="u-tShaft-dl01">
+                        <dt class="z-current"></dt>
+                        <dd>订单支付</dd>
+                    </dl>
+                    <dl class="u-tShaft-dl02">
+                        <dt></dt>
+                        <dd>募集满额</dd>
+                    </dl>
+                    <dl class="u-tShaft-dl03">
+                        <dt></dt>
+                        <dd>审核通过</dd>
+                    </dl>
+                    <dl class="u-tShaft-dl04">
+                        <dt></dt>
+                        <dd>还款完成</dd>
+                    </dl>
+                    <span class="z-current1"></span>
+                </div>
+            </div>
+        </div><div class="u-state-info">
+            <table id="sucess-inverstment-return">
+                <tr>
+                    <td>项目名称</td>
+                    <td name="projectName"></td>
+                </tr>
+                <tr>
+                    <td>投资本金</td>
+                    <td><strong name="investAmountStr"></strong>元</td>
+                </tr>
+                <tr>
+                    <td>项目年化收益</td>
+                    <td><strong name="totalAnnualizedRate"></strong>%</td>
+                </tr>
+                <tr>
+                    <td>预期收益</td>
+                    <td><strong name="totalInterestStr"></strong>元</td>
+                </tr>
+                <tr>
+                    <td>购买时间</td>
+                    <td><strong name="transactionTimeStr"></strong></td>
+                </tr>
+                <tr>
+                    <td>起息方式</td>
+                    <td>T(募集完成日）+<strong name="interestFrom"></strong></td>
+                </tr>
+            </table>
+            <a class="f-round" href="$products_url[0]">继续投资</a>
+            <a class="f-round u-pay-state" href="$root_url/transaction/collectingProject" id="">查看我的投资</a>
+        </div>
+    </div>
+</div>
+
+<form id="payOrderForm" action="$root_url/transaction/pay/order" method="post">
+ 	#CSRFToken()
+	<input type="hidden" id="orderId" value="${payOrderBiz.orderId}" name="orderId"/>
+	##使用存钱余额
+	<input type="hidden" id="usedCapital" value="${payOrderBiz.usedCapitalInit}" name="usedCapital" />
+	<input type="hidden" id="orderNo" value="${payOrderBiz.orderNo}" name="orderNo"/>
+	##现金编号
+	<input type="hidden" id="cashCouponNo" name="cashCouponNo" value="$!{payOrderBiz.orderUsedCashNo}"/>
+	##现金编号
+	<input type="hidden" id="usedCouponAmount"  name="usedCouponAmount" value="$!{payOrderBiz.orderUsedCashAmount}"/>
+	 ##支付多少钱
+	<input type="hidden" id="payAmount" value="$!{needPayAmountOnBank}" name="payAmount"/>
+	##是否第一次 创建订单
+	<input type="hidden"  value="$!{isFirstCreaterOrder}" name="isFirstCreaterOrder"/>	
+	<input type="hidden" name="bankCode" id="j-bankid"/>	
+	<input type="hidden" name="payMethod" id="j-payMethod" value="1"/>
+    <input type="hidden" name="cardID" id="j-cardId" value="#if($collections3.isNotEmpty($payBankCards))${payBankCards[0].id}#end">
+</form>
+
+<form id="payOrderFormAdvace" method="post">
+	#CSRFToken()
+	##充值单号
+    <input type="hidden" name="outAdvanceNo"  id="outAdvanceNo">
+    <input   type="hidden"  name="ticket" id="ticket">
+	##验证码
+    <input   type="hidden"  name="checkCode" id="checkCode">
+</form>
+
+<div class="u-agreement-box f-dn" id="j-qbank-argreement" style="display: none;">
+	<h3 class="f-fs18">新浪支付快捷支付服务协议<i></i></h3>
+	<div>
+		<iframe src="http://www.yrw.com/static/register-agreement.html" frameborder="0"></iframe>
+	</div>
+</div>
+
+
+<script>
+window.onload=function(){
+	$(".j-paybank-title em").on("click",function(){
+		var i=$(this).index();
+		$(this).addClass("z-current").siblings().removeClass("z-current");
+		$(".u-pay-type").eq(i).show().siblings(".u-pay-type").hide();
+		if(i===1){
+			$("#j-bankid").val($("#j-qbank-list .j-pay-qbank.z-selected").data("code"));
+		}else if(i===0){
+			var bankSelected=$("#j-bank-selector li.z-selected");
+			if(bankSelected.length===1){
+				$("#j-bankid").val($("#j-bank-selector li.z-selected").attr("value"));
+			}else{
+				$("#j-bankid").val("");
+			}
+		}
+	}); 
+	var bankCodeList={ 
+		"ICBC":"中国工商银行",
+		"ABC":"中国农业银行",
+		"BOC":"中国银行",
+		"CMB":"招商银行",
+		"CITIC":"中信银行",
+		"GDB":"广发银行",
+		"HXB":"华夏银行",
+		"PSBC":"中国邮储银行",
+		"CMBC":"民生银行",
+		"CCB":"建设银行",
+		"COMM":"交通银行",
+		"SPDB":"浦发银行",
+		"CZB":"浙商银行",
+		"SZPAB":"平安银行",
+		"CEB":"光大银行",
+		"BCCB":"北京银行",
+		"BOS":"上海银行",
+		"CIB":"兴业银行",
+		"HCCB":"杭州银行",
+		"HKBCHINA":"汉口银行",
+		"NJCB":"南京银行",
+		"NBCB":"宁波银行"
+	}
+	$(".j-pay-qbank").each(function(i){ 
+		var code=$(this).data("code");
+		#if($collections3.isNotEmpty($payBankCards))
+			#if(!$!hasSafecard)
+				if(i == 0) {
+    				showBankLimit(code, 2, 1);
+    				firstFlag = false;
+    			}
+			#end
+		#end
+			bankName=bankCodeList[code];
+		$(this).attr("title",bankName);
+	});
+	
+	
+	(function(){
+      	var safeCard=$("#j-isSafecard");
+          if(safeCard.length===1){
+          	var cardId=safeCard.data("cardid");
+          	$("#j-cardId").val(cardId);
+          }
+    })();
+};
+#if(!$sysServiceUtil.isDev())
+##品友-投资成功转化
+!function(w,d,e){
+var _orderno='${payOrderBiz.orderNo}';
+var _money='${payOrderBiz.investAmount}';
+var _productList='$!{payOrderBiz.projectId},1;';
+var b=location.href,c=d.referrer,f,s,g=d.cookie,h=g.match(/(^|;)\s*ipycookie=([^;]*)/),i=g.match(/(^|;)\s*ipysession=([^;]*)/);if (w.parent!=w){f=b;b=c;c=f;};u='//stats.ipinyou.com/cvt?a='+e('qJ.lq.8rVcp1CIGvRRC_jch4xZcP')+'&c='+e(h?h[2]:'')+'&s='+e(i?i[2].match(/jump\%3D(\d+)/)[1]:'')+'&u='+e(b)+'&r='+e(c)+'&rd='+(new Date()).getTime()+'&OrderNo='+e(_orderno)+'&Money='+e(_money)+'&ProductList='+e(_productList)+'&e=';
+function _(){if(!d.body){setTimeout(_(),100);}else{s= d.createElement('script');s.src = u;d.body.insertBefore(s,d.body.firstChild);}}_();
+}(window,document,encodeURIComponent);
+#end
+</script>

@@ -1,0 +1,12 @@
+#parse("/common/common.vm")
+#set($layout = "/layout/layout.vm")
+500 error
+#if($sysServiceUtil.isDev())
+<script>
+    console.warn('java_error:'+
+        #foreach ($_dict in $!exception.getStackTrace())
+        ' $_dict.toString() '
+        #end
+        +'');
+</script>
+#end

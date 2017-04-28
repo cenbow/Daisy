@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.sys.dao.SysDictMapper" >
+   <cache-ref namespace="com.yourong.core.cms.dao.BannerMapper"/>
+  	<resultMap id="BaseResultMap" type="SysDict" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="label" property="label" jdbcType="VARCHAR" />
+    <result column="group_name" property="groupName" jdbcType="VARCHAR" />
+    <result column="key" property="key" jdbcType="VARCHAR" />
+    <result column="value" property="value" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, label, group_name, `key`, value, description, sort, `status`, create_time, update_time, 
+    remarks, del_flag
+  </sql>
+  <insert id="insertSelective" parameterType="SysDict" useGeneratedKeys="true" keyProperty="id">
+    insert into sys_dict
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="label != null" >
+        `label`,
+      </if>
+      <if test="groupName != null" >
+        `group_name`,
+      </if>
+      <if test="key != null" >
+        `key`,
+      </if>
+      <if test="value != null" >
+        `value`,
+      </if>
+      <if test="description != null" >
+        `description`,
+      </if>
+      <if test="sort != null" >
+        `sort`,
+      </if>
+      <if test="status != null" >
+        `status`,
+      </if>
+     
+      <if test="remarks != null" >
+        `remarks`,
+      </if>
+      <if test="delFlag != null" >
+        `del_flag`,
+      </if>
+        `create_time`,
+        `update_time`
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="label != null" >
+        #{label,jdbcType=VARCHAR},
+      </if>
+      <if test="groupName != null" >
+        #{groupName,jdbcType=VARCHAR},
+      </if>
+      <if test="key != null" >
+        #{key,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null" >
+        #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=INTEGER},
+      </if>
+      now(),
+      now()
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="SysDict" >
+    update sys_dict
+    <set >
+      <if test="label != null" >
+        label = #{label,jdbcType=VARCHAR},
+      </if>
+      <if test="groupName != null" >
+        group_name = #{groupName,jdbcType=VARCHAR},
+      </if>
+      <if test="key != null" >
+        `key` = #{key,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null" >
+        value = #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        `status` = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <delete id="batchDelete" parameterType="java.lang.Long" >
+    delete from sys_dict
+    where id in  <foreach collection="ids" index="index" item="item" open="(" separator="," close=")"> #{item}  </foreach>  
+  </delete>
+  <select id="findByPage" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_dict
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          and id = #{map.id}
+        </if>
+        <if test=" map.label != null" >
+          and label = #{map.label}
+        </if>
+        <if test=" map.groupName != null" >
+          and group_name = #{map.groupName}
+        </if>
+        <if test=" map.key != null" >
+          and `key` = #{map.key}
+        </if>
+        <if test=" map.value != null" >
+          and value = #{map.value}
+        </if>
+        <if test=" map.description != null" >
+          and description = #{map.description}
+        </if>
+        <if test=" map.sort != null" >
+          and sort = #{map.sort}
+        </if>
+        <if test=" map.status != null" >
+          and `status` = #{map.status}
+        </if>
+        <if test=" map.createTime != null" >
+          and date_format(create_time,'%Y-%m-%d') = #{map.createTime}
+        </if>
+        <if test=" map.createTimeStart != null" >
+          and create_time <![CDATA[ >= ]]> #{map.createTimeStart}
+        </if>
+        <if test=" map.createTimeEnd != null" >
+          and create_time <![CDATA[ < ]]> DATE_ADD(#{map.createTimeEnd},INTERVAL 1 DAY)
+        </if>
+        <if test=" map.updateTime != null" >
+          and date_format(update_time,'%Y-%m-%d') = #{map.updateTime}
+        </if>
+        <if test=" map.updateTimeStart != null" >
+          and update_time <![CDATA[ >= ]]> #{map.updateTimeStart}
+        </if>
+        <if test=" map.updateTimeEnd != null" >
+          and update_time <![CDATA[ < ]]> DATE_ADD(#{map.updateTimeEnd},INTERVAL 1 DAY)
+        </if>
+        <if test=" map.remarks != null" >
+          and remarks = #{map.remarks}
+        </if>
+        <if test=" map.delFlag != null" >
+          and del_flag = #{map.delFlag}
+        </if>
+      </where>
+      <if test=" map.desc != null" >
+          order by  ${map.desc}  desc
+       </if>      	
+      	<if test=" map.asc != null" >
+          order by ${map.asc}  asc
+       </if>
+    </if>
+  </select>
+  <!-- flushCache  -->
+  <select id="findByGroupName" resultMap="BaseResultMap" parameterType="java.lang.String" flushCache="false" useCache="true" >
+   	select 
+    <include refid="Base_Column_List" />
+    from sys_dict
+    where
+    group_name = #{groupName,jdbcType=VARCHAR} and status > 0 order by sort
+  </select>
+  <select id="findByValue" resultMap="BaseResultMap" parameterType="java.lang.String" flushCache="false" useCache="true" >
+   	select 
+    <include refid="Base_Column_List" />
+    from sys_dict
+    where
+    value = #{value,jdbcType=VARCHAR}   order by sort
+  </select>
+  <!-- flushCache  -->
+  <select id="findByGroupNameAndKey" resultMap="BaseResultMap"   flushCache="false" useCache="true" >
+    select
+    <include refid="Base_Column_List" />
+    from sys_dict
+    where
+    group_name = #{map.groupName,jdbcType=VARCHAR}  and `key` = #{map.key,jdbcType=VARCHAR} and status > 0
+  </select>
+  
+  <update id="updateByGroupNameAndKey" parameterType="SysDict" >
+    update sys_dict
+    <set >
+      <if test="label != null" >
+        label = #{label,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null" >
+        value = #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        `status` = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where group_name = #{groupName,jdbcType=VARCHAR}  and `key` = #{key,jdbcType=VARCHAR} and status > 0
+  </update>
+  
+</mapper>

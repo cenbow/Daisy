@@ -1,0 +1,530 @@
+##2016春节活动
+#parse("/common/common.vm")
+#set($title="红运当头_$!{title_suffix}")
+#set($css_url=["$root_css_url/activity/springFestival.css","$cssv2_url/member/member.css"])
+#set($js_url=[
+    "/static/lib/js/jq/jquery.circliful.min.js",
+    "/static/lib/js/jq/snowfall.jquery.min.js",
+    "/static/lib/js/template.js",
+    "$root_js_url/activity/springFestival.js"
+])
+
+#if($currentUser)
+    #set($logined=true)
+#else
+    #set($logined=false)
+#end
+#CSRFToken('xToken')
+
+<style>
+
+    /* 头部的图片分三张 */
+    .u-springFestival-hd1{
+        width: 100%;
+        height:253px;
+        margin-top: -8px;
+        background: url(https://yrimg.oss-cn-hangzhou.aliyuncs.com/activity/springFestival/springFestival_hd1.jpg)
+        no-repeat center;
+    }
+
+    .u-springFestival-hd2 {
+        width: 100%;
+        height: 292px;
+        background: url(https://yrimg.oss-cn-hangzhou.aliyuncs.com/activity/springFestival/springFestival_hd2.jpg)
+        no-repeat center;
+    }
+
+    .u-springFestival-hd3 {
+        width: 100%;
+        height: 306px;
+        background: url(https://yrimg.oss-cn-hangzhou.aliyuncs.com/activity/springFestival/springFestival_hd3.jpg)
+        no-repeat center;
+    }
+
+    /* act1的两个按钮 */
+    .u-btn1 {
+        cursor: pointer;
+        margin-top: 15px;
+        height: 26px;
+        line-height: 26px;
+        color: #fff;
+        text-align: center;
+        font-size: 14px;
+        background: url("https://yrimg.oss-cn-hangzhou.aliyuncs.com/activity/springFestival/sprite.png") no-repeat
+        -207px 0;
+    }
+    .u-btn1.z-current {
+        background: url("https://yrimg.oss-cn-hangzhou.aliyuncs.com/activity/springFestival/sprite.png") no-repeat
+        -207px -35px;
+        cursor: default;
+    }
+
+    .u-btn2 {
+        cursor: pointer;
+        margin-top: 16px;
+        height: 36px;
+        line-height: 36px;
+        font-size: 16px;
+        color: #fff;
+        text-align: center;
+        background: url("https://yrimg.oss-cn-hangzhou.aliyuncs.com/activity/springFestival/sprite.png") no-repeat
+        -207px -71px;
+    }
+    .u-btn2.z-current {
+        background: url("https://yrimg.oss-cn-hangzhou.aliyuncs.com/activity/springFestival/sprite.png") no-repeat
+        -207px -117px;
+        cursor: default;
+    }
+    .u-springFestival-sideMenu {
+        cursor: pointer;
+        display: none;
+        position: fixed;
+        top: 30%;
+        left: 50%;
+        margin: 0 0 0 520px;
+        padding-top: 80px;
+        width: 70px;
+        height: 203px;
+        background: url(https://yrimg.oss-cn-hangzhou.aliyuncs.com/activity/springFestival/sprite.png) no-repeat 0 0;
+    }
+
+
+    .u-springFestival-dialogClose {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        width: 24px;
+        height: 24px;
+        cursor: pointer;
+        background: url(https://yrimg.oss-cn-hangzhou.aliyuncs.com/activity/springFestival/sprite.png) no-repeat
+        -80px 0;
+    }
+
+    .u-qr-share-weixin,.u-qr-share-weibo {
+        display: inline-block;
+        width: 110px;
+        height: 110px;
+        margin-left: 1px;
+        background: url(https://yrimg.oss-cn-hangzhou.aliyuncs.com/activity/springFestival/sprite.png) no-repeat
+    }
+
+    .u-qr-share-weixin {
+        background-position: -80px -155px;
+    }
+
+    .u-qr-share-weibo {
+        background-position: -80px -35px;
+    }
+
+    .u-icon-point {
+        border-radius: 4px 0 0 4px;
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        background: url(https://yrimg.oss-cn-hangzhou.aliyuncs.com/activity/springFestival/sprite.png) no-repeat
+        -115px 0;
+    }
+    .u-choose.z-choosed>.u-icon-point {
+        background: url(https://yrimg.oss-cn-hangzhou.aliyuncs.com/activity/springFestival/sprite.png) no-repeat
+        -150px 0;
+    }
+
+    .u-act2-btn {
+        color: #fff!important;
+        cursor: pointer;
+        text-decoration: none;
+        text-align: center;
+        display: inline-block;
+        width: 153px;
+        height: 25px;
+        line-height: 25px;
+        font-weight: bold;
+        background: url(https://yrimg.oss-cn-hangzhou.aliyuncs.com/activity/springFestival/sprite.png) no-repeat
+        -201px -162px;
+    }
+    .u-act2-btn:hover {
+        color: #fff!important;
+        text-decoration: none;
+    }
+    .u-act2-btn.z-current {
+        cursor: default;
+        background: url(https://yrimg.oss-cn-hangzhou.aliyuncs.com/activity/springFestival/sprite.png) no-repeat
+        -201px -197px;
+    }
+
+    .u-act3-img {
+        width: 750px;
+        height: 192px;
+        margin: 40px auto 0 40px;
+        background: url(https://yrimg.oss-cn-hangzhou.aliyuncs.com/activity/springFestival/sprite.png) no-repeat 55px
+        -287px;
+    }
+</style>
+
+<!--[if (gte IE 7)&(lte IE 9)]>
+<style>
+/*首页项目进度环*/
+.u-ring-bg{
+	position: absolute;
+	top: 10px;
+	left: 40px;
+	z-index: 1;
+	background: url(/static/img/homepage/round/round0.png) no-repeat center;
+	height: 160px;
+	width: 160px;
+}
+</style>
+<![endif]-->
+
+<!-- head -->
+<div class="u-springFestival-hd1" id="top" data-logined="$logined"></div>
+<div class="u-springFestival-hd2"></div>
+<div class="u-springFestival-hd3"></div>
+
+<div class="u-springFestival-redBg">
+## 侧边栏
+    <div class="u-springFestival-sideMenu" id="j-toggle-sideMenu">
+        <a data-href="#act1">守岁跨年</a>
+        <a data-href="#act2">辞旧迎新</a>
+        <a data-href="#act3">恭喜发财</a>
+        <a data-href="#act4">万事如意</a>
+        <a data-href="#top" class="backToTop">返回顶部</a>
+    </div>
+
+## 许愿对话框
+    <div class="u-springFestival-dialog" id="j-dialog1">
+        <span class="u-springFestival-dialogClose j-closeDialog"></span>
+        <h1 id="j-dialog1-title">除夕来领压岁钱哦！</h1>
+        <p>关注有融网官方微博、微信，参与新年互动，<br>
+            过完年还有惊喜哦！</p>
+        <div class="u-springFestival-dialog-qrCode">
+            <div class="m-r-60">
+                <span class="u-qr-share-weixin"></span>
+                <br/><br/>
+                <span class="u-qrCode-title">有融网微信</span>
+            </div>
+            <div>
+                <span class="u-qr-share-weibo"></span>
+                <br/><br/>
+                <span class="u-qrCode-title">有融网微博</span>
+            </div>
+        </div>
+        <button class="u-btn-red j-closeDialog" id="j-makeWishBtn">许愿完成</button>
+    </div>
+
+## 领压岁钱对话框
+    <div class="u-springFestival-dialog u-dialog2" id="j-dialog2">
+        <span class="u-springFestival-dialogClose j-closeDialog"></span>
+        <p>您已成功领取<span class="f-fc-red">118元现金券</span>压岁钱，<br>
+            祝您在新的一年幸福安康，财源广进！</p>
+        <button class="j-closeDialog">新年快乐</button>
+    </div>
+
+    <div class="u-springFestival-actWrap act1" id="act1">
+        <div class="u-springFestival-actHead">
+            <h2>守岁跨年<span class="u-point">●</span>许愿领红包</h2>
+            <p>活动期间，用户在活动页面许下新年愿望，即可在<span class="f-bold-red">除夕当天（2月7日）</span>领取<span class="f-bold-red">118元</span>压岁钱红包。<br>
+                扫码关注有融网官方微博、微信，参与新年互动，过完年还有惊喜哦！</p>
+            <div class="u-springFestival-actBody act1-body">
+                <div class="act1-left">
+                    <h2>许愿墙</h2>
+                    <img src="/static/img/activity/springFestival/wishList_all.png" id="j-wishWall" class="u-wishWall"/>
+                    <div id="j-act1-wishWall">
+                        <div class="u-act1-list-wrap">
+                            <ul id="j-act1-list" class="u-act1-list"></ul>
+                            <script id="j-act1-list-tpl" type="text/html">
+                                {{if wishList && wishList.length > 0}}
+                                {{each wishList as item}}
+                                <li>
+                                    <div class="u-rL2nd-user">
+                                        <span class="u-user-head">
+                                            <img src="{{if item.avatar}}$aliyun_url/{{item.avatar}}{{else}}/static/img/member/avatar_35x35.png{{/if}}">
+                                            <i>&nbsp;</i>
+                                        </span>
+                                        <span class="u-user-name">{{item.memberName}}</span>
+                                    </div>
+                                    <span class="u-list-content">{{item.remark}}</span>
+                                    <span class="u-list-time">{{item.createTimeStr}}</span>
+                                </li>
+                                {{/each}}
+                                {{/if}}
+                            </script>
+                        </div>
+
+                        <div class="u-act1-choose-wrap">
+                            <div id="j-act1-choose" class="u-act1-choose">
+                                <span class="u-choose u-choose-1" data-msgId="4"><span
+                                        class="u-icon-point"></span><i>推倒国民老公</i></span>
+                                <span class="u-choose u-choose-2" data-msgId="2"><span
+                                        class="u-icon-point"></span><i>来一次说走就走的旅行</i></span>
+                                <span class="u-choose u-choose-3" data-msgId="5"><span
+                                        class="u-icon-point"></span><i>出任花果山猴王</i></span>
+                                <span class="u-choose u-choose-4" data-msgId="3"><span
+                                        class="u-icon-point"></span><i>体重满一百减20</i></span>
+                                <span class="u-choose u-choose-5" data-msgId="1"><span
+                                        class="u-icon-point"></span><i>迎娶白富美</i></span>
+                                <span class="u-choose u-choose-6" data-msgId="6"><span
+                                        class="u-icon-point"></span><i>一天睡一次，一次睡一天</i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="j-openDialog1" class="u-btn1">留言许愿</div>
+                    <div style="height: 10px"></div>
+                    <div class="u-share">
+                        <span class="u-share-text">互动有奖：</span>
+                        <span id="j-share-box" class="u-share-box">
+                            <div class="u-share">
+                                <a class="u-icon-weixin j-popup-trigger"></a>
+                                <div class="u-popup-weixin">
+                                    <img src="/static/img/common/new-weixin-qrcode.png">
+                                </div>
+                                <a class="u-icon-weibo j-popup-trigger"></a>
+                                <div class="u-popup-weibo">
+                                    <img src="/static/img/common/new-weibo-qrcode.png">
+                                </div>
+                            </div>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="act1-right">
+                    <p class="u-act1-text" id="j-act1-text">&nbsp;</p>
+                    <div class="u-giftMoney-card"></div>
+                    <div id="j-openDialog2" class="u-btn2">
+                        <span id="j-timer1"></span>后领压岁钱
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="u-springFestival-actWrap act2" id="act2">
+        <div class="u-springFestival-actHead">
+            <h2>辞旧迎新<span class="u-point">●</span>兑现返人气</h2>
+            <p>活动期间，用户将账户中的人气值兑换任一面值的现金券并使用，即可获得其所消耗人气值<span class="f-bold-red">10%的“辞旧迎新”返利。</span></p>
+            <div class="u-springFestival-actBody act2-body">
+                <style>
+                    .f-bar-red.z-current {
+                        height: 270px;width: 270px;position: absolute; left: 30px;top:50px;
+                        background: url($root_url/static/img/member/coupon240/000.png) no-repeat 0 0!important;
+                    }
+                </style>
+                <div class="u-act2-circle" data-logined="$logined">
+                    #if($logined)
+                        <strong id="j-rep-round" data-point="$!servletUtil.getPopularityBalanceValue()">
+                            #set($point=$!servletUtil.getPopularityBalanceValue())
+                            #if($point==0)
+                                <div class="f-bar-red" id="j-bar-red" style="height: 270px;width: 300px;position: absolute; left: 30px;top:50px;background: url($root_url/static/img/member/coupon240/000.png) no-repeat 0 0;"></div>
+                            #else
+                                #set($percent=$point/10)
+                                #if($percent>=0.1&&$percent<1)
+                                    #set($percent=1)
+                                #elseif($percent<0.1)
+                                    <div class="f-bar-red" id="j-bar-red" style="height: 270px;width: 300px;position: absolute; left: 30px;top:50px;background: url($root_url/static/img/member/coupon240/1.png) no-repeat 0 0;"></div>
+                                #elseif($percent>100)
+                                    #set($percent=100)
+                                #else
+                                    #set($percent=$point/10)
+                                #end
+                                #set($percentPoint=$percent+'.png')
+                                #if($percent!=0)
+                                    <div class="f-bar-red" id="j-bar-red" style="height: 270px;width: 270px;position: absolute; left: 30px;top:50px;background: url($root_url/static/img/member/coupon240/$percentPoint) no-repeat 0 0;"></div>
+                                #end
+                            #end
+                        </strong>
+                    #else
+                        <div class="f-bar-red" style="height: 270px;width: 270px;position: absolute; left: 30px;top:50px;background: url($root_url/static/img/member/coupon240/000.png) no-repeat 0 0;"></div>
+                    #end
+
+                    <div class="u-act2-circle-content">
+                        <p class="f-ff-din" id="j-act2-count">
+                            #if ($logined)
+                                <span id="j-coupon-num">$!servletUtil.getPopularityBalanceValue()</span><span class="f-fs18 f-bold">点</span>
+                            #end
+                        </p>
+                    ##                        <a href="#!" class="" id="j-act2-btn">兑换现金券</a>
+                        <a href="javascript:void(0)" id="j-exchange-cashCoupon" class="u-act2-btn f-fs14 j-exchage-coupon">兑换现金券</a>
+                    </div>
+                </div>
+
+                <div class="u-act2-right">
+                    <div class="u-act2-list-title" id="j-act2-list-title">
+                        <span>扫尘用户</span>
+                        <span class="m-l-75">辞旧<i>(兑换并使用)</i></span>
+                        <span class="m-l-30">迎新<i>(返还人气值)</i></span>
+                        <span class="m-l-30">时间</span>
+                    </div>
+                    <div class="u-act2-list-wrap">
+                        <div class="u-act2-noData hide" id="j-act2-noData">活动期间兑换并使用现金券，<br/>享受“辞旧迎新”返利</div>
+                        <ul id="j-act2-list" class="u-act2-list"></ul>
+                        <script id="j-act2-list-tpl" type="text/html">
+                            {{if rechargePopularityList && rechargePopularityList.length>0}}
+                            {{each rechargePopularityList as item}}
+                            <li>
+                                <div class="u-rL2nd-user">
+                                        <span class="u-user-head">
+                                            <img src="{{if item.avatar}}$aliyun_url/{{item.avatar}}{{else}}/static/img/member/avatar_35x35.png{{/if}}">
+                                            <i>&nbsp;</i>
+                                        </span>
+                                    <span class="u-user-name">{{item.memberName}}</span>
+                                </div>
+                                <span class="u-giftText"><b>{{item.chip}}</b>元现金券</span>
+                                <span class="f-fc-red u-rewardInfo">{{item.rewardInfo}}</span>
+                                <span class="u-act2-time">{{item.createTimeStr}}</span>
+                            </li>
+                            {{/each}}
+                            {{/if}}
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="u-springFestival-actWrap act3" id="act3">
+        <div class="u-springFestival-actHead">
+            <h2>恭喜发财<span class="u-point">●</span>分享抢红包</h2>
+            <p>活动期间，用户每完成一笔<span class="f-bold-red">金额≥1000元</span>的投资（新春专享“如意”项目除外），都可获得“恭喜发财”拼手气红包，<br/>
+                将红包<span class="f-bold-red">分享</span>给好友，即可与好友一起抢红包，红包将以<span class="f-bold-red">随机人气值</span>形式发放；</p>
+
+            <div class="u-springFestival-actBody act3-body">
+                <p class="u-act3-text" id="j-act3-text"></p>
+                <div class="u-act3-img"></div>
+                <div class="u-act3-label">
+                    <p class="u-act3-label-p1">PC端：前往 <span class="f-bold-black"> “我的投资”-“投资记录”</span>、<br/>
+                        点击<span class="f-bold-black">“发红包”</span>扫码分享</p>
+                    <p class="u-act3-label-p2">APP端：前往<span class="f-bold-black">“我的交易”-“我的投资”</span>、<br/>
+                        点击<span class="f-bold-black">“发红包”</span>进行分享</p>
+                </div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="u-springFestival-actWrap act4" id="act4">
+        <div class="u-springFestival-actHead">
+            <h2>万事如意<span class="u-point">●</span>投资赢奖励</h2>
+
+            <p>活动期间，平台特供新春专享项目（带有“如意”标识）。新春专享项目中，<span class="f-bold-red">单笔金额＜10000元</span>的投资，<br>
+                可获得<span class="f-bold-red">投资额1‰</span>的人气值奖励；<span class="f-bold-red">单笔金额≥10000元</span>的投资，可获得<span class="f-bold-red">投资额2‰</span>的人气值奖励。</p>
+            <div class="u-springFestival-actBody act4-body">
+                <div class="u-act4-left" id="j-act4-left">
+                    <div class="u-act4-left-head">
+                        <h3 class="f-fwb">新春专享项目 <span class="u-act4-icon"></span></h3>
+                        <p class="f-fc-9 m-t-10" style="width: 210px">祝您猴年大吉，万事如意，猴年猴开心</p>
+                    </div>
+                    <s></s>
+                    <div class="u-act4-left-body f-tac">
+                        <span class="u-ring-bg" style="background-image:url(/static/img/homepage/round/round12.png)"></span>
+                        <span class="j-pl-stat u-pl-stat" data-dimension="160" data-fontsize="14" data-percent="0" data-fgcolor="#e33f4a" data-bordersize="5" data-bgcolor="#ccc"></span>
+                        <img src="$aliyun_url/yrimg/98980/29/49/2016/01/07/989802949.jpg"/>
+                        <i class="u-act4-left-body-wrap"></i>
+                        <p class="f-tac f-fc-9"></p>
+                    </div>
+                    <s></s>
+                    <div class="u-act4-left-foot">
+                        <button class="u-act4-left-foot-btn" id="j-act4-btn">距上线 <span id="j-timer2"></span></button>
+                    </div>
+                </div>
+
+                <script id="j-act4-left-tpl" type="text/html">
+                    <div class="u-act4-left-head">
+                        <a href="/products/detail-{{recommendProject.id}}.html" target="_blank">
+                            {{if recommendProject.prefixProjectName}}
+                            <h3 class="f-fwb">{{recommendProject.prefixProjectName}} <span class="u-act4-icon"></span></h3>
+                            {{/if}}
+                            <p class="f-fc-9 m-t-10">{{recommendProject.suffixProjectName}}</p>
+                        </a>
+                    </div>
+                    <s></s>
+                    <div class="u-act4-left-body f-tac">
+                        <a href="/products/detail-{{recommendProject.id}}.html" target="_blank">
+                            <span class="u-ring-bg" style="background-image:url(/static/img/homepage/round/round{{if recommendProject.round==100}}_finish{{else}}{{recommendProject.round}}{{/if}}.png)"></span>
+                            <span class="j-pl-stat u-pl-stat" data-dimension="160" data-fontsize="14" data-percent="{{recommendProject.round}}" data-fgcolor="{{if recommendProject.round==100}}#f8ada8{{else}}#e33f4a{{/if}}" data-bordersize="5" data-bgcolor="#ccc"></span>
+                            <img src="{{if recommendProject.thumbnail}}$aliyun_url/{{recommendProject.thumbnail}}{{else}}/static/img/common/default-product.jpg{{/if}}" class="m-t-10" />
+                        </a>
+                        <i class="u-act4-left-body-wrap"></i>
+                        <p class="f-tac f-fc-9">当前进度<span>{{recommendProject.round}}</span>%</p>
+                    </div>
+                    <s></s>
+                    <div class="u-act4-left-foot">
+                        <a class="u-act4-left-foot-btn" target="_blank" id="j-act4-btn">距上线 <span id="j-timer2" data-time="{{recommendProject.startDate}}"></span></a>
+                    </div>
+                </script>
+
+                <div class="u-act4-right">
+                    <div class="u-act4-list-title" id="j-act4-list-title">如意客</div>
+                    <div class="u-act4-list-wrap">
+                        <ul id="j-act4-list" class="u-act4-list"></ul>
+
+                        <script id="j-act4-list-tpl" type="text/html">
+                            {{if sprProInvestList && sprProInvestList.length > 0}}
+                            {{each sprProInvestList as item}}
+                            <li>
+                                <div class="u-rL2nd-user">
+                                    <span class="u-user-head">
+                                        <img src="{{if item.avatar}}$aliyun_url/{{item.avatar}}{{else}}/static/img/member/avatar_35x35.png{{/if}}">
+                                        <i>&nbsp;</i>
+                                    </span>
+                                    <span class="u-user-name">{{item.memberName}}</span>
+                                </div>
+                                <span class="u-giftText-long f-fc-red">{{if item.chip}}投资￥{{item.chip}}奖励{{item.rewardInfo}}{{/if}}</span>
+                                <a {{if item.rewardId}}href="/products/detail-{{item.rewardId}}.html"{{/if}}
+                                class="u-act4-link">{{item.remark}}</a>
+                                <span class="u-act4-time">{{item.createTimeStr}}</span>
+                            </li>
+                            {{/each}}
+                            {{/if}}
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="u-springFestival-rule">
+        <h2>活动规则</h2>
+        <p>
+            1、活动对象：有融网所有用户； <br>
+            2、活动时间：<span class="f-fc-white">2016年2月2日10:00—2016年2月8日23:59:59；</span><br>
+            3、守岁跨年：活动期间，用户在活动页面许下新年愿望，即可在<span class="f-fc-white">除夕当天（2月7日）</span>领取<span class="f-fc-white">118元</span>压岁钱红包。<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关注有融网官方微博、微信，参与新年互动，过完年还有惊喜哦！<br>
+            4、辞旧迎新：用户所获“辞旧迎新”返利人气值，将于5分钟内发放至用户的账户；<br>
+            5、恭喜发财：用户分享“恭喜发财”红包至微信朋友圈，即可与好友一起抢红包，红包将以<span class="f-fc-white">随机人气值</span>形式发放；<br>
+            6、万事如意：投资新春专享项目所获人气值奖励，将于5分钟内发放至用户的账户；<br>
+            7、如有其他疑问，请拨打客服热线：400-025-6688。<br>
+            本活动最终解释权归有融网所有
+        </p>
+    </div>
+#if($currentUser)
+    #set($currentPoint=$!{servletUtil.getPopularityBalanceValue()})
+##兑换现金券
+    #if($!cashTemplates && $cashTemplates.size()>0)
+
+        <div class="m-reputation-exchange j-floatlayer f-dn j-reputation-exchange" >
+            #if($!{servletUtil.getLockPopularityValue()}&&$!{servletUtil.getLockPopularityValue()}>0)<span class="u-reputation-frozenTips">温馨提醒：您当前人气值$currentPoint点（含提现手续费冻结$!{servletUtil.getLockPopularityValue()}点）</span>#end
+            <ul class="f-cf j-rep-list" id="j-cash-list"  data-point="$!servletUtil.getPopularityVaule()">
+                #foreach($coupon in $!cashTemplates)
+                    <li data-point="$coupon.formatAmount" data-templateid="${coupon.id}">
+                        <div class="u-rep-card u-rep-card$coupon.formatAmount"></div>
+                        <span>消耗$!{coupon.formatAmount}点人气值</span>
+                        <span>$!{coupon.couponPrivileges}</span>
+                        <span>#if($!{coupon.couponAmountScope})$!{coupon.couponAmountScope}#else—#end</span>
+                        #if($!{coupon.couponDaysScope})<span>$!{coupon.couponDaysScope}</span>#else<span class="j-couponScope-disabled">-</span>#end
+                        <span>#if($!{coupon.couponValidity})$!{coupon.couponValidity}#else—#end</span>
+                        <i></i>
+                    </li>
+                #end
+            </ul>
+            <div class="u-rep-select">
+                <span></span>
+                <button class="u-btn f-btn-s f-round z-pos-a1 j-exc-button" id="j-cash-button" >确定兑换</button>
+                <input type="hidden" id="j-rep-cash-curPoint" class="j-exc-curPoint"/>
+            </div>
+            <button class="u-exchange-close j-exc-close" id="j-exc-cash-close" >X</button>
+        </div>
+    #end
+#end
+
+
+</div>

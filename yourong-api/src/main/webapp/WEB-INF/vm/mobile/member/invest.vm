@@ -1,0 +1,193 @@
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$m_css_url/modules/invest.css","$m_css_url/modules/member.css"])
+#set($title='立即投资')
+#set($loadJQ=true)
+<style>
+    .g-ft {
+        display: none;
+    }
+</style>
+<!--header-->
+#set($pid=$request.getParameter("pid"))
+#set($vtitle=$request.getParameter("title"))
+#set($severTime=${dateUtil.getCurrentDate().getTime()})
+#set($memberId=$currentUser.id)
+
+<div id="order">
+<input type="hidden" severTime="$severTime" id="j-severTime">
+<h2 class="u-header f-pos-r">
+    <a href="$siteurl/products/detail-${pid}.html" id="j-goback">返回</a>
+
+    <span class="f-fs22" id="j-invest-title" data-pid="$pid" data-title="$vtitle" memberId="$memberId">
+    </span>
+</h2>
+<!--/header-->
+<!--body-->
+##投资框
+<div class="z-mInvest-width f-cf">
+    <div class="u-mInvest-width f-fl">
+        <div class="u-couponList" id="j-coupons">
+            <span><em class="j-couponAmount">选择收益券</em> &gt;</span>
+            <span class="f-dn">暂无可用收益券</span>
+            <input type="hidden" id="j-couponNo" value="" exAnnualizedRate="" limitAmount="">
+        </div>
+
+        <div class="m-circle">
+            <span>今日投</span>
+            <div id="j-dynamic-profit">
+                <div class="u-invest-block">
+                    <input id="j-investment" tabindex="1" class="f-fs18 f-round f-fwb" type="number" value="" maxlength="7"/>元
+                </div>
+                <em>年化收益
+                    <i class="f-red-color" id="j-profit-percent"></i>
+                    <i class="f-red-color">%</i>
+                ##                    <i class="f-red-color j-exProfit-percent f-dn">+<i class="f-red-color" id="j-exProfit-percent"></i>
+                ##                        <i class="j-exProfitDay f-red-color"></i>
+                ##                    </i>
+                </em>
+                <em>可获收益<i class="f-red-color" id="j-profit-amount"></i>元</em>
+
+                <i class="f-fs12 j-exProfit f-dn">（含券收益 <i class="f-red-color" id="j-exAmount"></i> 元）</i>
+            </div>
+
+        </div>
+
+        <div class="u-gainRank f-fs14" id="j-gainRank"></div>
+        <script type="text/html" id="j-gainRank-tpl">
+            <p>剩余可投金额<span class="f-red-color j-restAmount"></span>元</p>
+            <p>一鸣惊人&nbsp;获得<span class="f-red-color">{{reward.ymjr}}</span>点人气值</p>
+
+            <p>一锤定音&nbsp;获得<span class="f-red-color">{{reward.ycdy}}</span>点人气值</p>
+
+            <p>一掷千金&nbsp;获得<span class="f-red-color">{{reward.yzqj}}</span>点人气值</p>
+        </script>
+    </div>
+##    滑动条
+    <div class="u-mInvest-width1 f-fr m-detail-process" id="j-detail-process">
+    #*<i class="m-detail-process"></i>*#
+
+        <i></i>
+        <div id="j-process-amount"></div>
+##        <span class="u-point-amount u-process-s0" data-amount="1000">1000元</span>
+##        <span class="u-point-amount u-process-s1 -amount" data-amount="10000">10000元</span>
+##        <span class="u-point-amount u-process-s2" data-amount="50000">50000元</span>
+##        <span class="u-point-amount u-process-s3" data-amount="490000">490000元</span>
+##
+##        <span class="u-point u-process-s0 f-fs24"><em></em><s></s></span>
+##        <span class="u-point u-process-s1 f-fs24 -point"><em></em><s></s></span>
+##        <span class="u-point u-process-s2 f-fs24"><em></em><s></s></span>
+##        <span class="u-point u-process-s3 f-fs24"><em></em><s></s></span>
+##
+##        <span class="u-rate-percent u-rate-s1 -rate j-rate" data-rate="10.99">10.99%</span>
+##        <span class="u-rate-percent u-rate-s2 -rate j-rate" data-rate="12.19">12.19%</span>
+##        <span class="u-rate-percent u-rate-s3 -rate j-rate" data-rate="13.39">13.39%</span>
+
+
+        <script id="j-process-tpl" type="text/html">
+            <span class="u-point-amount u-process-s0" data-amount="{{processInfo.minInvestAmount}}">{{processInfo.minInvestAmount}}元</span>
+            <span class="u-point u-process-s0 f-fs24"><em></em><s></s></span>
+            {{if processList.length<2}}
+                <span class="u-point-amount u-sole-amount u-process-s1" data-amount="{{processInfo.maxInvest}}">{{processInfo.maxInvest}}元</span>
+                <span class="u-point u-sole-point u-process-s1 f-fs24"><em></em><s></s></span>
+                <span class="u-rate-percent u-sole-rate u-rate-s1 j-rate" data-rate="{{processInfo.minRate}}">{{processInfo.minRate}}%</span>
+            {{else}}
+                {{each processList as item i}}
+                <div class="m-proccess-unit{{i+1}} {{if processInfo.annualizedRateType==2}}z-dz{{/if}}">
+                <span class="u-point-amount u-process-s{{i+1}}" id="j-process-s{{i+1}}" data-amount="{{item.maxInvest}}">{{item.maxInvest}}元</span>
+                <span class="u-point u-process-s{{i+1}} f-fs24"><em></em><s></s></span>
+                {{if processInfo.annualizedRateType==2 && i==0}}
+                    <span class="u-rate-percent u-rate-s{{i+1}} j-rate" data-rate="{{item.annualizedRate}}">{{processInfo.minRate}}%<br>~<br>{{processInfo.maxRate}}%</span>
+                {{else}}
+                    <span class="u-rate-percent u-rate-s{{i+1}} j-rate" data-rate="{{item.annualizedRate}}">{{item.annualizedRate}}%</span>
+                {{/if}}
+                </div>
+                {{/each}}
+            {{/if}}
+##            <div class="wrapper">
+##                <div class="sub-wrapper">
+##                    <div class="scroller">
+##                        <button id="j-process-drag" class="u-process-drag scroller"></button>
+##                    </div>
+##                </div>
+##            </div>
+            ##<s id="j-process-crt" class="u-line-red"></s>
+        </script>
+    </div>
+</div>
+<div class="j-tipblock u-projectStatusTip f-dn">
+    <div class="j-tipText u-tipText">
+
+    </div>
+    <div>
+        <a class="j-reload f-dn" href="#">刷新</a>
+        <a class="j-goback" href="$siteurl/products/m/list-all-all-1.html">返回</a>
+    </div>
+</div>
+
+<div class="u-cover j-cover"></div>
+<div>
+        <div id="j-noticeProject" class="f-fs18 f-btn-submit u-btn u-btn-primary f-dn">
+            距上线
+            <i class="j-project-noticeTime" data-time=""></i>
+        </div>
+<a href="javascript:void(0)" url="$siteurl/mCenter/orderPayment?orderId=" id="j-submit-select" class="f-fs18 f-btn-submit u-btn u-btn-primary">
+    立 即 投 资
+
+</a>
+</div>
+##    收益券弹框
+##收益券
+    <div class="u-cashCoupon-popup f-dn" id="j-coupon-popup">
+        <ul class="u-cashCoupon" id="j-profitCoupon-list" >
+        </ul>
+        <script type="text/html" id="j-profitCoupon-tpl">
+            <li class="f-fc-red j-certificate" amountScope="0" code="" exAnnualizedRate="" isavailable="0"><em>不使用收益券</em></li>
+            {{each coupons as item i}}
+            <li class="f-fc-red j-profitCoupon {{if item.isAvailable==0}}z-disabled{{/if}} "
+                isavailable="{{item.isAvailable}}" code="{{item.couponCode}}" exAnnualizedRate="{{item.amount}}"
+                index="{{i}}"
+                amountScope="{{item.amountScope}}" extraInterestDay="{{item.extraInterestDay}}"
+                extraInterestType="{{item.extraInterestType}}">
+
+                <em>{{item.amount}}%</em> {{if item.extraName}}<i class="f-fs12" style="color: #999999">({{item.extraName}})</i>
+                {{/if}}
+            <span class="f-rule f-fs12">{{item.couponValidity}}
+        {{if item.couponAmountScope}}
+            <br/>
+             {{item.couponAmountScope}}
+        {{/if}}
+        {{if item.couponDaysScope}}
+        <br/>
+        {{item.couponDaysScope}}
+        {{/if}}
+        </span>
+            </li>
+            {{/each}}
+        </script>
+    </div>
+##提现去设置支付密码
+    <div class="u-tipsBlock j-tipsBlock f-dn" id="j-SetPayPwdTips">
+        <p class="f-fs14 f-color6">新浪支付全新升级，设置支付密码后方可进行操作</p>
+        <div class="u-btnBlock">
+            <span class="j-closeBtn">暂不设置</span>
+            <a href="$siteurl/mCenter/setPayPassword"><span>前往设置</span></a>
+        </div>
+    </div>
+##    提现去新浪实名认证
+    <div class="u-tipsBlock j-tipsBlock f-dn" id="j-sinapayDialog">
+        <p class="f-fs14 f-color6">为了确保您的正常投资和资金安全，请开通新浪支付存钱罐。</p>
+        <div class="u-btnBlock">
+            <span class="j-closeBtn">取消</span>
+            <a href="$mCenter_sinapay_url"><span>立即开通</span></a>
+        </div>
+    </div>
+</div>
+<div class="u-cover j-cover"></div>
+    <!--/body-->
+#set($pageScript="
+<script>
+    seajs.use('$siteurl/res/source/js/modules/transactionInput.js');
+</script>
+")
+#CSRFToken('xToken')

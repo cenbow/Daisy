@@ -1,0 +1,329 @@
+##安全卡 
+#parse('/common/common.vm') 
+#set($css_url=["$root_css_url/common.css"])
+#set($title="安全你的投资_$!{title_suffix}")
+
+<style>
+
+          	.g-bd {
+				margin-bottom: 0;
+				}
+			.g-wrap {
+				width: 990px;
+				margin: 0 auto;
+			}
+			/**页头**/
+		  	.u-securityCard-hd{
+            	width: 100%;
+            	height: 384px;
+            	margin-top: -8px;
+            	text-indent: -9999px;
+            	position: relative;
+            	background: url($root_url/static/img/activity/securityCard/securityCard_hd.jpg) no-repeat center;
+	        }
+	        /**什么是安全卡？**/
+	        .m-whatIs-content div{ 
+				width: 650px;
+				height: 88px;
+				padding-top: 132px;
+				padding-left: 80px;
+	        }
+	        .m-securityCard-whatIs,.m-whatIs-content{ 
+				background-color: #fffaec;
+				height: 350px;
+	        }
+	        .m-whatIs-content h3,.m-why-content h3,.m-advantage-content h3{
+	        	font-weight: bold;
+	        	color:#dbad77;
+	        	font-size: 26px;
+	        }
+	         .m-whatIs-content h3{ 
+				padding-bottom: 15px;
+	         }
+	         .m-whatIs-content span,.m-why-content span{ 
+				color: #999;
+				display: block;
+				width:630px;
+	         }
+	          .m-whatIs-content i{ 
+	          	width: 173px;
+	          	height: 164px;
+	          	margin-top: -120px;
+				float: right;
+	          	display: block;
+	          	margin-right: 80px;
+				background: url($root_url/static/img/activity/securityCard/securityCard_icon.png)  no-repeat -181px -145px;
+	          }
+	        /**为什么要开通安全卡？**/
+	        .m-securityCard-why,.m-why-content{ 
+	        	background-color: #fef8de;
+	        	height: 350px;
+	        }
+	        .m-why-content i{ 
+	          	width: 160px;
+	          	height: 161px;
+	          	margin-top: 99px;
+				float: left;
+	          	display: block;
+	          	margin-left: 80px;
+				background: url($root_url/static/img/activity/securityCard/securityCard_icon.png)  no-repeat 0 -144px;
+	          }
+	          .m-why-content div{ 
+				width: 600px;
+				height: 115px;
+				padding-top: 120px;
+				margin-right: 80px;
+				float: right;
+	        }
+	        /**开通安全卡的优点？**/
+	        .m-securityCard-advantage{ 
+				background-color: #fffaec;
+				height: 400px;
+	        } 
+	        .m-advantage-content h3{ 
+				padding: 55px 0 19px 80px;
+	        }
+	        .m-advantage-content div{ 
+				padding-left: 80px;
+				width: 830px;
+				height: 222px;
+				text-align: center;
+	        }
+	        .u-advantage-safety{ 
+				height: 225px;
+				width: 180px;
+				float: left;
+	        }
+	        .u-advantage-convenient{ 
+				width: 210px;
+				height: 225px;
+				float: left;
+				margin: 0 155px 0 140px;
+	        }
+	        .u-advantage-multiple{ 
+				width: 145px;
+				height: 225px;
+				float: left;
+	        }
+	        .m-advantage-content i{ 
+				width: 139px;
+	          	height: 139px;
+	          	display: block;	
+	        }
+	        .u-advantage-safety i{ 
+	        	margin-left: 19px;
+				background: url($root_url/static/img/activity/securityCard/securityCard_icon.png)  no-repeat 0 0;	
+	        }
+	        .u-advantage-convenient i{
+	        	margin-left:35px;  
+				background: url($root_url/static/img/activity/securityCard/securityCard_icon.png)  no-repeat -144px -1px;
+	        }
+	        .u-advantage-multiple i{ 
+				background: url($root_url/static/img/activity/securityCard/securityCard_icon.png)  no-repeat -288px 0;
+	        }
+	        .m-advantage-content dd{ 
+				color: #999;
+				font-size: 16px;
+	        }
+	        .m-advantage-content h4{
+				margin-top: 5px;
+				color: #666;
+				font-size: 22px;			
+	        } 
+	        /**如何开通安全卡？**/
+	        .m-securityCard-open,.m-open-content{ 
+				background-color: #fcf2e8;
+				height: 350px;
+	        }
+			.m-open-content h2,.m-close-content h2{
+	       		font-size: 26px;
+				font-weight: bold;
+				padding: 85px 0 27px 80px;
+				color: #dbad77;
+			}
+			.m-open-content p,.m-close-content p{ 
+				width: 910px;
+				height: 84px;
+				display: block;
+				margin-left: 80px;
+				font-size: 16px;
+				color:#f7944d;
+				line-height: 81px;
+				margin-bottom: 30px;
+			}
+			.m-open-content p{ 
+				background: url($root_url/static/img/activity/securityCard/securityCard01.png)  no-repeat center;
+			}
+			.m-open-content i,.m-close-content a{ 
+				padding-left: 80px;
+				color: #666;
+				margin-top: 30px;
+			}
+	        /**如何关闭安全卡？**/
+	        .m-securityCard-close,.m-close-content{ 
+	        	background-color: #fff;
+	        	height: 350px;
+	        }
+	        .u-open-Step1,.u-close-Step1{ 
+				margin-left: 40px;
+				color: #fafafa;
+	        }
+	        .u-open-Step2{ 
+				margin: 0 135px 0 90px;
+	        }
+	        .u-close-Step2{ 
+				margin: 0 75px 0 97px;
+	        }
+	        .m-close-content p{
+				background: url($root_url/static/img/activity/securityCard/securityCard02.png)  no-repeat center;
+			}
+			.m-close-content a:link{ 
+				color: #666;
+				text-decoration:underline;
+			}
+		　　.m-close-content a:visited{
+				color: #666; 
+				text-decoration:underline;
+			}
+　　		.m-close-content a:hover{
+				color: #666; 		
+				text-decoration:underline;
+			}                                                         
+ 
+	        /**问题**/
+	    	.m-securityCard-question,.m-question-content{ 
+				background-color:#fcf2e8;
+				height: 400px;
+	    	}
+	    	.m-question-content{ 
+				color: #666;
+	    	}
+			.m-question-content h1{ 
+				font-weight: bold;
+				font-size: 26px;
+				padding-top: 60px;
+			}
+			.m-question-content h1,.m-question-content h5,.m-question-content span{ 
+				padding-left: 80px;
+			}
+			.m-question-content h5{ 
+				margin-top: 10px;
+				font-size: 16px;
+				font-weight:bold;
+			}
+			.m-question-content span{ 
+				color: #999;
+				font-size: 16px;
+			}
+</style>
+
+
+
+ <div class="f-mh500 f-cf ">
+    <!--head-->
+    	<div class="u-securityCard-hd"></div>
+    	<!--什么是安全卡？-->
+    		<div class="m-securityCard-whatIs">
+    			<div class="m-whatIs-content g-wrap">
+    				<div class="f-cf">
+    					<h3>什么是安全卡</h3>
+    					<span class="f-fs18">安全卡即新浪支付为保障用户资金安全而开发的快捷支付状态下充值、<br/>
+											提现同卡进出的银行卡安全设置。
+						</span>
+					</div>
+    				<i></i>
+    			</div>
+    		</div>
+    		 <!--为什么要开通安全卡？-->
+    		<div class="m-securityCard-why">
+    			<div class="m-why-content g-wrap f-cf">
+    				<i></i>
+					<div class="f-cf">	
+    					<h3>为什么要开通安全卡</h3>
+    					<span class="f-fs18">安全卡能在最大程度上保护用户资金安全，因为资金只能提现到一张银行卡，<br/>
+											那么即使账户被盗用，资金也无法转移到其他银行卡，<br/>
+											这样可以充分保障账户资金的安全。
+						</span>
+    				</div>
+    			</div>
+    		</div>
+    		<!--开通安全卡的优点？-->
+    		<div class="m-securityCard-advantage">
+    			<div class="m-advantage-content g-wrap">
+    				<h3>安全卡有哪些优点</h3>
+    				<div class="f-cf">
+    					<dl class="u-advantage-safety">
+    						<dt>
+    							<i></i>
+    							<h4>安全</h4>
+    						</dt>
+    						<dd>
+    							新浪支付专门设置，<br>
+    							唯一可提现的认证银行卡
+    						</dd>
+    					</dl>
+						<dl class="u-advantage-convenient">
+    						<dt>
+    							<i></i>
+    							<h4>便捷</h4>
+    						</dt>
+    						<dd>
+    							在快捷支付状态下，<br>
+    							充值提现同卡进出，方便管理
+    						</dd>
+    					</dl>
+    					<dl class="u-advantage-multiple">
+    						<dt>
+    							<i></i>
+    							<h4>多选择</h4>
+    						</dt>
+    						<dd>
+    							不影响使用<br>
+								其他银行卡网银充值
+							</dd>
+    					</dl>
+    				</div>
+    			</div>
+    		</div>
+			<!--如何开通安全卡？-->
+    		<div class="m-securityCard-open">
+    			<div class="m-open-content g-wrap">
+    				<h2>如何开通安全卡</h2>
+    				<p>
+    					<span class="u-open-Step1">Step1:用户银行卡已开通快捷支付</span>
+    					<span class="u-open-Step2">Step2:用该卡成功交易</span>
+    					<span>Step3:该卡即升级为安全卡</span>
+    				</p>
+    				<i class="f-fs14">注：安全卡推出之前已成功投资的用户，其第一张投资成功的快捷卡将自动升级为安全卡</i>
+    			</div>
+    		</div>
+			<!--如何关闭安全卡？-->
+    		<div class="m-securityCard-close">
+    			<div class="m-close-content g-wrap">
+    				<h2>如何删除安全卡</h2>
+    				<p>
+    					<span class="u-close-Step1">Step1:将新浪存钱罐中的余额清零</span>
+    					<span class="u-close-Step2">Step2:删除已绑定的安全卡</span>
+    					<span>Step3:该卡即成功解除安全卡功能</span>
+    				</p>
+    				<a class="f-fs14" href="/memberBankCard/bankManage" target="_break">查看我的安全卡</a>
+    			</div>
+    		</div>
+    		<!--问题-->
+    		<div class="m-securityCard-question">
+    			<div class="m-question-content g-wrap">
+    				<h1 class="f-fs26">常见问题</h1>
+    				<p>
+    					<h5>Q:如何更换安全卡?</h5>
+						<span>A:按“删除安全卡”的步骤成功删除已绑定的安全卡，再使用另一张快捷卡成功交易，此快捷卡即成为新的安全卡。</span>
+						<h5>Q:安全卡是否强制开通？</h5>
+						<span>A:安全卡不会强制使用，用户也可用网银充值，用普通卡提现。但如果是快捷支付卡，须用安全卡才能完成快捷支付功能。</span>					
+						<h5>Q:开通安全卡之后，是否可以使用其他快捷卡？</h5>
+						<span>A：开通安全卡之后，快捷充值和快捷支付时只能用安全卡。</span>
+						<h5>Q:开通安全卡之后是否可提现至任意银行卡？</h5>
+						<span>A:开通安全卡之后只能提现至安全卡。</span>
+    				</p>
+    			</div>
+    		</div>
+   	    </div>
+

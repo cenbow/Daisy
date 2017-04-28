@@ -1,0 +1,406 @@
+##新浪支付专题
+#parse('/common/common.vm')
+#set($title="新浪存钱罐-有融网-全透明的互联网理财优选平台")
+#set($keywords="新浪存钱罐,有融网")
+#set($description="有融网和新浪支付存钱罐强强联手达成战略合作协议,让用户的资金托管更安全,同时贡献了互联网金融行业突破性的管理模式,真正实现资金隔离,杜绝资金池风险,托管资金不站岗,余额每日有收益 ")
+#set($isSinaPayNavi="z-current")
+<style>
+    .u-ssave-bg {
+        width: 100%;
+        height: 413px;
+        margin-top: -8px;
+        text-indent: -9999px;
+        background: url($root_url/static/img/activity/sinapay/ssave_01.jpg) no-repeat center center;
+    }
+    .u-ssave-wpay {
+    	text-indent: 20px;
+        margin-top:-39px;
+    }
+    .u-ssave-bd {
+        background: #f1dd6d;
+        min-height: 500px;
+        margin: 0 0 -110px;
+    }
+    .u-ssave-ctent {
+        margin: 0 auto;
+        height: 2780px;
+        width: 990px;
+        padding-top: 20px;
+    }
+    .u-ssave-clist {
+        text-align: center;
+        height: 300px;
+        margin-bottom: 20px;
+        background: url($root_url/static/img/activity/sinapay/ssane_02.png) no-repeat center center;
+    }
+    .u-ssave-cltop {
+        text-align: center;
+        height: 570px;
+        margin-bottom: 20px;
+        background: url($root_url/static/img/activity/sinapay/ssane_03.png) no-repeat center center;
+    }
+    .u-ssave-clbottom {
+        text-align: center;
+        height: 650px;
+        background: url($root_url/static/img/activity/sinapay/ssane_04.png) no-repeat center center;
+    }
+    .u-ssave-clunit {
+        height: 180px;
+        width: 820px;
+        padding: 37px 88px 83px 82px;
+        position: relative;
+    }
+    .u-ssave-fc {
+        color: #d74148;
+        padding: 13px 680px 9px 34px;
+    }
+    .u-ssave-cleft {
+        border: 3px solid #d74148;
+        width: 164px;
+        height: 44px;
+        position: absolute;
+        top: 65px;
+        left: 82px;
+    }
+    .u-ssave-cright {
+        border: 3px solid #c5a0a0;
+        width: 647px;
+        height: 137px;
+        float: left;
+        margin: 7px 0 0 167px;
+    }
+    .u-ssave-element {
+        padding: 4px 0 4px 0;
+        letter-spacing: 0.2em;
+        color: #d74148;
+    }
+    .u-ssave-spacial {
+        height: 25px;
+        width: 167px;
+        position: absolute;
+        top: 114px;
+        left: 82px;
+    }
+    .u-ssave-cright ol {
+        text-align: left;
+        line-height: 2em;
+        padding: 33px 0 0 33px;
+        color: #7e4747;
+    }
+    .u-ssave-clunit {
+        height: 180px;
+        width: 820px;
+        padding: 37px 88px 51px 82px;
+        position: relative;
+    }
+    .u-ssave-form {
+        width: 820px;
+        height: 218px;
+        margin: 0 88px 0 82px;
+    }
+    .u-ssave-listhd {
+        color: #666;
+        float: left;
+    }
+    .u-ssave-formlist {
+        width: 820px;
+        border-top: 2px solid #999;
+        border-bottom: 2px solid #999;
+    }
+    .u-ssave-formlist th {
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+        color: #464646;
+    }
+    .u-ssave-formlist td {
+        border-top: 1px solid #999;
+        height: 30px;
+        line-height: 30px;
+        color: #666;
+    }
+    .u-ssave-formlist td:first-child{
+        color: #999;
+    }
+    .u-ssave-formlist td,
+    .u-ssave-formlist th {
+        border-left: 1px solid #999;
+    }
+    .u-ssave-formlist td:first-child,
+    .u-ssave-formlist th:first-child {
+        border-left: none;
+    }
+    .u-ssave-fbox {
+        height: 511px;
+        width: 889px;
+        padding: 83px 53px 56px 48px;
+    }
+    .u-ssave-rbox {
+        margin: auto;
+        border: 3px solid #d74148;
+        width: 164px;
+        height: 44px;
+    }
+    .u-ssave-tlogo {
+        margin: 35px auto;
+        height: 30px;
+    }
+    .u-ssave-llogo {
+        background: url($root_url/static/img/activity/sinapay/logo.png) no-repeat 0px 0px;
+        width: 115px;
+        height: 30px;
+        display: inline-block;
+        margin: 0 30px 0 0;
+    }
+    .u-ssave-rlogo {
+        background: url($root_url/static/img/activity/sinapay/logo.png) no-repeat -118px 0px;
+        width: 118px;
+        height: 30px;
+        display: inline-block;
+    }
+    .u-ssave-section {
+        line-height: 2em;
+        color: #333;
+    }
+    .u-ssave-section p{
+        line-height: 30px;
+    }
+    .u-ssave-logolist li {
+        width: 188px;
+        height: 58px;
+        border: 1px solid #b3ac82;
+        margin-left: 43px;
+        float: left;
+        color: #fff;
+    }
+    .u-ssave-logolist li:first-child {
+        margin-left: 0px;
+    }
+    .u-sinapay-butbg {
+		display: block;
+		width:328px;
+		height: 80px;
+		margin: 80px auto 0;
+		text-indent: -9999px;
+		background: url($root_url/static/img/activity/sinapay/sinapay_btn.png) no-repeat center;
+	}
+    .u-ssave-ctent .u-sinapay-verify{
+        position: absolute;
+        bottom: 30px;
+        right: 170px;
+        font-size: 14px;
+        color: #d74148;
+        text-decoration:underline;
+    }
+    .u-ssave-ctent .u-sinapay-verify:link {
+        color: #d74148;
+        text-decoration:underline;
+    }
+    .u-ssave-ctent .u-sinapay-verify:visited {
+        color: #d74148;
+        text-decoration:underline;
+    }
+    .u-ssave-ctent .u-sinapay-verify:hover {
+        color: #d74148;
+        text-decoration:underline;
+    }
+/**温馨提示**/
+    .u-sinapay-tips{
+        margin: 4px 0 0;
+        text-align: left;
+    }
+    .u-sinapay-tips a,
+    .u-sinapay-tips a:link,
+    .u-sinapay-tips a:visited,
+    .u-sinapay-tips a:hover{
+        color: #d74148;
+        text-decoration: none;
+    }
+    </style>
+
+    <div class="u-ssave-hd">
+            <div class="u-ssave-bg"></div>
+            <div class="u-ssave-wpay f-fs12 g-wrap">
+                <strong class="f-fs14">什么是新浪支付存钱罐？</strong>
+                <p>
+                    新浪支付（存钱罐）隶属于新浪旗下，是新浪联手汇添富基金主推的名为“存钱罐”第三方支付机构，同时也具有账户余额增值功能。
+                </p>
+            </div>
+        </div>
+        <div class="u-ssave-bd">
+            <ul class="u-ssave-ctent">
+                <li class="u-ssave-clist">
+                    <div class="u-ssave-clunit f-cf">
+                        <strong class="f-fs14 u-ssave-fc f-fwb">新浪支付存钱罐</strong>
+                        <div>
+                            <div class="u-ssave-cleft">
+                                <p class="u-ssave-element f-fs24">更规范</p>
+                            </div>
+                            <div class="u-ssave-cright">
+                                <ol class="f-fs12">
+                                    <li>1、严格遵守银监会对资金托管的要求，杜绝平台自建资金池。</li>
+                                    <li>2、用户资金全程由新浪支付存钱罐托管，与有融网平台完全隔离。</li>
+                                    <li>3、投资和还款资金开设独立账户，实行专人专户，专款专用。</li>
+                                </ol>
+                            </div>
+                            <span class="u-ssave-spacial f-fs14">专人专户&nbsp;资金专款专用</span>
+                        </div>
+                    </div>
+                </li>
+                <li class="u-ssave-clist">
+                    <div class="u-ssave-clunit f-cf">
+                        <strong class="f-fs14 u-ssave-fc">新浪支付存钱罐</strong>
+                        <div>
+                            <div class="u-ssave-cleft">
+                                <p class="u-ssave-element f-fs24">更安全</p>
+                            </div>
+                            <div class="u-ssave-cright">
+                                <ol class="f-fs12">
+                                    <li>1、中国支付清算协会会员，已通过Symantec认证、PCIDSS认证。</li>
+                                    <li>2、采用VeriSign SSL证书（128位）加密保护客户资料。</li>
+                                    <li>3、多级安全策略，全程SSL加密，实时安全提醒。</li>
+                                </ol>
+                            </div>
+                            <span class="u-ssave-spacial f-fs14">完美护航&nbsp;银行级别保障</span>
+                        </div>
+                    </div>
+                </li>
+                <li class="u-ssave-clist">
+                    <div class="u-ssave-clunit f-cf">
+                        <strong class="f-fs14 u-ssave-fc">新浪支付存钱罐</strong>
+                        <div>
+                            <div class="u-ssave-cleft">
+                                <p class="u-ssave-element f-fs24">更丰富</p>
+                            </div>
+                            <div class="u-ssave-cright">
+                                <ol class="f-fs12">
+                                    <li>1、集多项功能为一体，一个账户，多种体验。</li>
+                                    <li>2、高危操作提醒功能，随时随地，掌握账户动态。</li>
+                                    <li>3、注册即开通，化繁为简，带来完美极致体验。</li>
+                                </ol>
+                            </div>
+                            <span class="u-ssave-spacial f-fs14">功能丰富&nbsp;乐享极致体验</span>
+                        </div>
+                    </div>
+                </li>
+                <li class="u-ssave-clist">
+                    <div class="u-ssave-clunit f-cf">
+                        <strong class="f-fs14 u-ssave-fc">新浪支付存钱罐</strong>
+                        <div>
+                            <div class="u-ssave-cleft">
+                                <p class="u-ssave-element f-fs24">更灵活</p>
+                            </div>
+                            <div class="u-ssave-cright">
+                                <ol class="f-fs12">
+                                    <li>1、 一分钱起存，资金极速到账。</li>
+                                    <li>2、天天计息，收益享不停。</li>
+                                    <li>3、账户资金7*24小时随时存取。</li>
+                                </ol>
+                            </div>
+                            <span class="u-ssave-spacial f-fs14">资金灵活&nbsp;收益每天结</span>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div  class="f-pos-r">
+                        <ul>
+                            <li class="u-ssave-cltop">
+                                <div class="u-ssave-clunit f-cf">
+                                    <strong class="f-fs14 u-ssave-fc">新浪支付存钱罐</strong>
+                                    <div>
+                                        <div class="u-ssave-cleft">
+                                            <p class="u-ssave-element f-fs24">更高收益</p>
+                                        </div>
+                                        <div class="u-ssave-cright">
+                                            <ol class="f-fs12">
+                                                <li>1、新浪支付存钱罐是一款具备货基收益的产品。</li>
+                                                <li>2、账户闲置资金可获得每日收益，真正实现资金不站岗。</li>
+                                                <li>3、七日年化收益率$!{fin[0].servenEaring}%，超银行活期存款的16倍。</li>
+                                            </ol>
+                                        </div>
+                                        <span class="u-ssave-spacial f-fs14">货基支持&nbsp;闲置资金不站岗</span>
+                                    </div>
+                                </div>
+                                <div class="u-ssave-form f-cf">
+                                    <p class="f-fs12 u-ssave-listhd">收益时间表</p>
+                                    <table class="u-ssave-formlist">
+                                        <tr>
+                                            <th scope="col">购买时间</th>
+                                            <th scope="col">开始计算收益时间</th>
+                                            <th scope="col">首次显示收益时间</th>
+                                        </tr>
+                                        <tr>
+                                            <td>周一15:00—周二15:00前</td>
+                                            <td>周三</td>
+                                            <td>周四</td>
+                                        </tr>
+                                        <tr>
+                                            <td>周二15:00—周三15:00前</td>
+                                            <td>周四</td>
+                                            <td>周五</td>
+                                        </tr>
+                                        <tr>
+                                            <td>周三15:00—周四15:00前</td>
+                                            <td>周五（可享受周六周日收益）</td>
+                                            <td>下周一（显示周五周六周日三天收益）</td>
+                                        </tr>
+                                        <tr>
+                                            <td>周四15:00—周五15:00前</td>
+                                            <td>下周一（不享受周六周日收益）</td>
+                                            <td>下周二</td>
+                                        </tr>
+                                        <tr>
+                                            <td>周五15:00—下周一15:00前</td>
+                                            <td>下周二</td>
+                                            <td>下周三</td>
+                                        </tr>
+                                    </table>
+                                <p class="u-sinapay-tips"> 温馨提示：新浪支付托管升级——还本付息提前到账，账户余额早享收益<a href="/article/news-1-1.html#newsId_190" target="_blank">（详见公告）</a></p>
+                                </div>
+                            </li>
+                            <li class="u-ssave-clbottom">
+                                <div class="u-ssave-fbox">
+                                    <div>
+                                        <ul>
+                                            <li>
+                                                <p style="color:#d74148; padding-bottom:10px;">新浪支付存钱罐</p>
+                                                <div class="u-ssave-rbox">
+                                                    <p style=" font-weight:200;color:#d74148; height:auto; padding-top:4px;" class="f-fs24">更完美的合作</p>
+                                                </div>
+                                                <p class="f-fs14" style="color:#666;">资金灵活&nbsp;收益每天结</p>
+                                            </li>
+                                            <li class="u-ssave-tlogo">
+                                                <span class="u-ssave-llogo"></span>
+                                                <span class="u-ssave-rlogo"></span>
+                                            </li>
+                                            <li class="u-ssave-section">
+                                                <p class="f-fs12">有融网是一家专业的第三方债权交易金融信息服务平台</p>
+                                                <p class="f-fs12">和新浪支付存钱罐强强联手达成战略合作协议，让用户的资金托管更安全</p>
+                                                <p class="f-fs12">同时贡献了互联网金融行业突破性的管理模式</p>
+                                                <p class="f-fs12">真正实现资金隔离，杜绝资金池风险</p>
+                                                <p class="f-fs12">托管资金不站岗，余额每日有收益</p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div style="width:890px; height:178px; padding-top:68px;">
+                                        <div style="width:889px; height:50px; border-top:1px solid #b3ac82;">
+                                            <p style=" margin:15px 480px 0 0;" class="f-fs12">有融网与他们一起，牵手新浪支付存钱罐，共建互联网金融行业和谐生态圈。</p>
+                                        </div>
+                                        <div>
+                                            <ul class="f-cf u-ssave-logolist">
+                                                <li><img src="$root_url/static/img/activity/sinapay/icon_iwei.jpg" alt="微财富" /></li>
+                                                <li><img src="$root_url/static/img/activity/sinapay/icon_ifang.jpg" alt="房金所" /></li>
+                                                <li><img src="$root_url/static/img/activity/sinapay/icon_icao.jpg" alt="操盘宝" /></li>
+                                                <li><img src="$root_url/static/img/activity/sinapay/icon_ijin.jpg" alt="金生宝" /></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <a href="/memberBalance/savingPot" class="u-sinapay-butbg">查看我的存钱罐</a>
+                        <a  href="/member/auditMemberInfos" class="u-sinapay-verify" target="_blank">去新浪支付查询验证</a>
+                    </div>
+                </li>
+            </ul>
+        </div>

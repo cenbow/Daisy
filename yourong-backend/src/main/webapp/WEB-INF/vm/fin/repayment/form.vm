@@ -1,0 +1,105 @@
+<div tabindex="-1" class="modal fade" id="modal-table" style="display: none;" aria-hidden="true">
+     <div class="modal-dialog">
+     <div class="modal-content">
+ <div class="modal-header no-padding">
+             <div class="table-header">
+                  <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+                    <span class="white">×</span>
+              </button>
+    增加用户
+       </div>
+  </div>
+   <div class="modal-body">
+    <form role="form" class="form-horizontal" id="withdrawLog_form" method="post">
+     <input type="hidden" name="id" />
+ <div class="form-group">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 提现金额: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+     <input type="text" name="withdrawAmount" class="col-xs-10 col-sm-5" placeholder="withdrawAmount" id="form-field-withdrawAmount">
+    </div>
+  </div>
+</div>
+ <div class="form-group">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 到账金额: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+     <input type="text" name="arrivedAmount" class="col-xs-10 col-sm-5" placeholder="arrivedAmount" id="form-field-arrivedAmount">
+    </div>
+  </div>
+</div>
+ <div class="form-group">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 更新时间: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+     <input type="text" name="withdrawTime" class="col-xs-10 col-sm-5" placeholder="withdrawTime" id="form-field-withdrawTime">
+    </div>
+  </div>
+</div>
+ <div class="form-group">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 用户绑定银行卡id: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+     <input type="text" name="bankCardId" class="col-xs-10 col-sm-5" placeholder="bankCardId" id="form-field-bankCardId">
+    </div>
+  </div>
+</div>
+ <div class="form-group">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 会员id: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+     <input type="text" name="memberId" class="col-xs-10 col-sm-5" placeholder="memberId" id="form-field-memberId">
+    </div>
+  </div>
+</div>
+ <div class="form-group">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 手续费: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+     <input type="text" name="fee" class="col-xs-10 col-sm-5" placeholder="fee" id="form-field-fee">
+    </div>
+  </div>
+</div>
+ <div class="form-group">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 备注: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+     <input type="text" name="notice" class="col-xs-10 col-sm-5" placeholder="notice" id="form-field-notice">
+    </div>
+  </div>
+</div>
+ <div class="form-group">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> -2-失败 -1-拒绝  0-冻结  1-处理中 2-提现待支付 3-支付中 5-操作成功  : </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+     <input type="text" name="status" class="col-xs-10 col-sm-5" placeholder="status" id="form-field-status">
+    </div>
+  </div>
+</div>
+ <div class="form-group">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 提现流水号: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+     <input type="text" name="withdrawNo" class="col-xs-10 col-sm-5" placeholder="withdrawNo" id="form-field-withdrawNo">
+    </div>
+  </div>
+</div>
+ <div class="form-group">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> updateTime: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+     <input type="text" name="updateTime" class="col-xs-10 col-sm-5" placeholder="updateTime" id="form-field-updateTime">
+    </div>
+  </div>
+</div>
+</form>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+<button type="button" id="save_withdrawLog" class="btn btn-primary">保存</button>
+</div>
+</div>
+<!-- /.modal-content -->
+ </div>
+<!-- /.modal-dialog -->
+</div>

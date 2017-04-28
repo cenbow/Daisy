@@ -1,0 +1,165 @@
+##抽奖啦~
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($title='抽奖啦')
+#set($css_url=["$res_url/source/css/app/activity/directReward/lottery.css"])
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+#set($os=3)
+##  安卓
+#if($loginSource==1)
+    #set($os=1)
+#end
+##  IOS
+#if($loginSource==2)
+    #set($os=2)
+#end
+<div id="j-lottery" v-cloak>
+
+##有抽奖机会
+    <div v-if="projectLottery.length">
+        <div class="u-border-red" v-if="projectLottery.length>=3"></div>
+        <div class="u-border-red f-longer" v-if="projectLottery.length>=2"></div>
+        <div class="m-award-wrap j-award-wrap">
+            <div class="m-award-head" v-for="item in projectLottery" index="{{$index}}">
+                <div class="u-head-bg">
+                <div class="u-product">
+                    <img v-if="item.thumbnail" :src="item.thumbnail">
+                    <img v-else src="$res_url/img/member/login_avatar.png">
+                    <i>{{item.projectName.split('期')[0]}}期</i>
+                </div>
+                <h1 class="f-adjust"> 抽奖机会<strong>{{item.nummber}}</strong>次</h1>
+            </div>
+            <div class="u-bottom">
+                <div class="u-button u-lotteryBtn">
+                    <a style="position: relative;z-index: 100" class="f-left" href="javascript:void(0)"
+                       @click="luckyDraw(2,$event,item.projectId)"> 一键抽奖</a>
+                    <a style="position: relative;z-index: 100" href="javascript:void(0)"
+                       @click="luckyDraw(1,$event,item.projectId)">
+                    抽奖</a>
+                </div>
+            </div>
+                <div class="u-award-choice m--reject"></div>
+                <div class="u-award-choice m--like"></div>
+                <div class="u-award-drag"></div>
+        </div>
+        </div>
+
+
+    </div>
+##抽奖机会0次
+    <div v-else class="m-award-wrap">
+        <div class="m-award-head">
+        <div class="u-head-bg">
+            <h1> 抽奖机会<strong>0</strong>次</h1>
+        </div>
+        <div class="u-bottom">
+            <div class="u-button" v-if="!init.prizePool">
+                #if($platform==1)
+                    <a class="u-invest-button" href="javascript:void(0)"
+                       @click="toAndroidProjectList">投资获得抽奖机会</a>
+                #else
+                    <a class="u-invest-button"
+                       href="yrw-skip://invokeMethod=projectList">投资获得抽奖机会</a>
+                #end
+            </div>
+            <div class="u-linkBlock" v-else>
+                <div class="f-fs16">暂无快投项目</div>
+                <div class="u-findDetail">上期快投有奖，最高奖励 <em>{{init.prizePool.split('.')[0]}}</em> 元！
+                    <a href="$siteurl/project/p2p-direct-reward-{{init.projectId}}.html?isNeedYRWtoken=Y">查看详情</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div v-if="init.projectForReward&&init.projectForReward.length">
+        <div class="m-title"><i></i> 中奖纪录 <i></i></div>
+        <ul class="m-product">
+            <li v-for="item in init.projectForReward">
+                <a href="$siteurl/project/p2p-direct-reward-{{item.id}}.html?isNeedYRWtoken=Y">
+                    <h2><strong
+                            :class="{'f-color999':item.status<2 || item.status==4}">{{item.prefixProjectName}}</strong>
+                        <em :class="{'f-color999':item.status<2 || item.status==4}">{{item.progress}}</em>
+                </h2>
+                    <p>
+                    {{getAwardList(item.projectForLevel,1)}}
+                </p>
+                    <div :class="{'f-color9':item.status<2 || item.status==4}">
+                    {{item.rewardInfo}}
+                ##                    <span>已发放</span><span>履约后发放</span><span class="f-color9">奖励已失效</span>
+                </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div v-else>
+        <div class="m-title"><i></i> 中奖纪录 <i></i></div>
+        <div class="u-none-award">暂无获奖记录</div>
+    </div>
+    <div class="u-cover" v-if="showDialog"></div>
+
+    <div class="m-tips-frame" v-if="showDialog">
+    ##抽奖中
+        <div class="u-draw-on" v-if="showDialog===1||showDialog===2">
+            <div class="u-sign"></div>
+            <div class="u-progress-bar">
+                <span class="u-red-bar" id="j-process-bar"></span>
+            </div>
+            <div class="u-now-lottery"> 正在抽奖
+                <span v-if="showDialog===2">{{drawStep}}/{{current.nummber}}</span>
+            </div>
+        </div>
+
+    ##抽奖结果
+        <div v-if="showDialog===3" class="u-result">
+            <div class="u-result-head">
+                <p>恭喜抽中奖励</p>
+            </div>
+            <div class="u-result-text f-text-won">
+                <span class="f-fs12 f-color6" v-for="item in getAwardList(rewardList,2)">{{item}}</span>
+            ##                <em>获得二等奖x2</em>
+                <p class="f-fs16">{{rewardAmount}}元 <span v-if="rewardCode">，补贴{{rewardCode}}点人气值</span></p>
+            </div>
+        ##            #if($os==2)yrw-skip://invokeMethod=reloadData #else#end
+            <a href=" #if($os==2)yrw-skip://invokeMethod=reloadData #else javascript:void(0) #end"
+               class="u-know-button j-reloadData" @click="reload($event)">我知道了</a>
+        </div>
+
+    ##无图片头部的中奖结果
+        <div v-if="showDialog===4" class="u-result">
+            <div class="u-result-text  f-effort-again">
+                {{unSuccessText}}
+                <p class="f-fs12 f-colorD7" v-if="rewardCode">快投福利期间，补贴{{rewardCode}}点人气值</p>
+            </div>
+        ##            #if($os==2)yrw-skip://invokeMethod=reloadData #else#end
+            <a class="u-know-button f-text-blue j-reloadData"
+               href="#if($os==2)yrw-skip://invokeMethod=reloadData #else javascript:void(0) #end"
+               @click="reload($event)"> 我知道了</a>
+        </div>
+    </div>
+</div>
+<div data='$!{data}' id="j-data"></div>
+##$console
+<script src='$aliyunOss_url/res/lib/jquery/v2/jquery.min.js'></script>
+<script src='$res_url/lib/vue/vue.min.js'></script>
+<script src='$res_url/lib/vue/vue.extend.js'></script>
+<script src='$res_url/assets/js/common/appHookES5.js'></script>
+<script>
+
+    var env = {
+        path: '$siteurl',
+        debug:$debug,
+        aliyunPath: '$aliyun_url',
+        time:${dateUtil.getCurrentDate().getTime()},
+        platform:$!{platform},
+        os:$os
+    }
+    var environment = env
+    var hook = new AppHook($platform)
+    ##    alert($!{platform})
+    $devtools
+</script>
+<script src='$res_url/source/js/app/activity/directReward/lottery.js?t=${dateUtil.getCurrentDate().getTime()}'></script>
+<script src='$res_url/source/js/app/activity/directReward/slideSwiper.js'></script>
+
+

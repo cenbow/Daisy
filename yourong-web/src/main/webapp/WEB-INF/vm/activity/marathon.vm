@@ -1,0 +1,376 @@
+## 里程拉新
+#parse("/common/common.vm")
+#set($title="友情岁月_$!{title_suffix}")
+#set($css_url=["$root_css_url/activity/marathon.css"])
+##页面入口标识
+#set($entry=["activity","marathon",["$root_url/static/lib/js/clipboard.min.js"]])
+
+#if($currentUser)
+    #set($logined=true)
+#else
+    #set($logined=false)
+#end
+#CSRFToken('xToken')
+
+## banner
+<div class="g-top1"></div>
+<div class="g-top2"></div>
+<div class="g-top3"></div>
+<div class="g-top4"></div>
+<div class="g-top5"></div>
+
+##// TODO delete
+##<input type="number" id="j-test-input">
+
+## main
+<div class="g-main" id="j-main" data-logined="$logined" data-userDo="${servletUtil.getUserDO().id}">
+    <div class="g-wrap">
+
+        ## 马拉松
+        <div class="g-marathon">
+            <div class="m-road"></div>
+
+            ## 当前位置标记
+            <div class="u-mapIcon z-step0 z-hide" style="padding-top: 15px;" id="j-mapIcon">
+                <div class="u-mapIcon-content-wrapper" id="j-mapIcon-content-wrapper">
+                    <i id="j-mapIcon-content">0</i><small>km</small>
+                </div>
+                <div class="u-mapIcon-img" id="j-mapIcon-img">
+                    <img src="/static/img/activity/marathon/mapIcon.png" id="j-this-avatar" alt="用户头像"/>
+                </div>
+            </div>
+
+            ## 五个路标中的文字
+            <span class="u-roadSign u-roadSign1">
+                <i class="j-roadSign" data-roadNotice="0">0</i><small>km</small>
+            </span>
+            <span class="u-roadSign u-roadSign2">
+                <i class="j-roadSign" data-roadNotice="30">30</i><small>km</small>
+            </span>
+            <span class="u-roadSign u-roadSign3">
+                <i class="j-roadSign" data-roadNotice="50">50</i><small>km</small>
+            </span>
+            <span class="u-roadSign u-roadSign4">
+               <i class="j-roadSign" data-roadNotice="80">80</i><small>km</small>
+            </span>
+            <span class="u-roadSign u-roadSign5">
+                <i class="j-roadSign" data-roadNotice="100">100</i><small>km</small>
+            </span>
+
+            ## 四个背包鼠标移上去的时候需要有具体奖励提示，这里用空的dom来代替
+            <div class="u-vr-bag u-vr-bag1 j-vr-bag">
+                <div class="u-gift-detail u-gift-detail1">
+                    <h3>幸运背包</h3>
+                    <p>5-10随机数值的人气值</p>
+                    <i class="u-arrow-down"></i>
+                </div>
+            </div>
+            <div class="u-vr-bag u-vr-bag2 j-vr-bag">
+                <div class="u-gift-detail u-gift-detail2">
+                    <h3>幸运背包</h3>
+                    <p>5-10随机数值的人气值</p>
+                    <i class="u-arrow-down"></i>
+                </div>
+            </div>
+            <div class="u-vr-bag u-vr-bag3 j-vr-bag">
+                <div class="u-gift-detail u-gift-detail3">
+                    <h3>幸运背包</h3>
+                    <p>5-10随机数值的人气值</p>
+                    <i class="u-arrow-down"></i>
+                </div>
+            </div>
+            <div class="u-vr-bag u-vr-bag4 j-vr-bag">
+                <div class="u-gift-detail u-gift-detail4">
+                    <h3>终极宝箱</h3>
+
+                    <div id="j-box-detail">
+                        <p><span class="u-cash-count">30元现金券</span>x1</p>
+                        <p><span class="u-cash-count">50元现金券</span>x1</p>
+                        <p><span class="u-cash-count">100元现金券</span>x1</p>
+                    </div>
+
+                    <script id="j-box-detail-tpl" type="text/html">
+                        <p><span class="u-cash-count">30元现金券</span>x{{coupon30}}</p>
+                        <p><span class="u-cash-count">50元现金券</span>x{{coupon50}}</p>
+                        <p><span class="u-cash-count">100元现金券</span><span>x{{coupon100}}</span></p>
+                    </script>
+
+                    <i class="u-arrow-down"></i>
+                </div>
+            </div>
+
+            ## 右边的未领取箱子
+            <div class="m-resultBox">
+                <p class="u-result-content">
+                    <span class="z-hide" id="j-result-content">您已累计领取<i id="j-totalPop"></i>点人气值，<i id="j-totalCoupon"></i>元现金券</span>
+                </p>
+                <div class="u-result-btn1">
+                    <span class="u-result-icon">X<i id="j-packages">0</i></span>
+                    <span class="u-btn-left-circle">
+                         <span class="u-btn-left-circle1"></span>
+                    </span>
+                    <span class="u-btn-right" id="j-btn-packages">点击领取</span>
+                </div>
+                <div class="u-result-btn2">
+                    <span class="u-result-icon">X<i id="j-boxes">0</i></span>
+                    <span class="u-btn-left-circle">
+                        <span class="u-btn-left-circle2"></span>
+                    </span>
+                    <span class="u-btn-right" id="j-btn-boxes">点击领取</span>
+                </div>
+            </div>
+
+            ## 底部两个按钮
+            <div class="m-btns">
+                <div class="u-btn z-pull-left" id="j-checkAssist">
+                    #if($currentUser)
+                        查看好友助力记录
+                    #else
+                        查看我的奖励
+                    #end
+                </div>
+
+                <div class="u-btn z-pull-right" id="j-btn-invite">邀请好友</div>
+
+                <div class="u-qrcode-wrap z-hide" id="j-qrcode-wrap">
+##                    <div class="u-qrcode"></div>
+##                    <p class="u-qrcode-text">请用微信扫码参与分享哦</p>
+##                    <div class="u-qrcode-close" id="j-qrcode-close">关闭</div>
+                    <div class="u-qrcode-close" id="j-qrcode-close">×</div>
+                    ## TODO 点击复制链接，这里是我没来的及做微信分享
+                    <div class="u-myinvite-link">
+                        <p id="j-invite-url" class="u-invite-url"
+                                data-url="$domain_url/${servletUtil.getUserDO().shortUrl}"
+                                data-clipboard-text="$domain_url/${servletUtil.getUserDO().shortUrl}">
+                            邀请好友链接：www.yrw.com/${servletUtil.getUserDO().shortUrl}
+                        </p>
+                        <button class="f-round u-myinvite-btn" id="j-copy-invite"
+                                data-clipboard-text="$domain_url/${servletUtil.getUserDO().shortUrl}">
+                            点击复制
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        ## 三重好礼
+        <div class="g-threeGifts">
+            <h1 class="u-title">三重壕礼</h1>
+
+            <ul class="m-threeGifts-list">
+                <li class="m-gift m-gift1">
+                    <div class="u-gift-circle">
+                        <div class="u-gift-circle1"></div>
+                    </div>
+                    <p>每成功邀请一位好友注册并首次投资<br>
+                        邀请人可直接获得一张<strong>30元现金券</strong>。</p>
+                </li>
+                <li class="m-gift m-gift2">
+                    <div class="u-gift-circle">
+                        <div class="u-gift-circle2"></div>
+                    </div>
+                    <p>友情岁月每100KM为一段里程，<br>
+                        在每段里程的30/50/80KM处设里程碑，<br>
+                        每到达一个里程碑即可获得一个幸运背包，<br>
+                        背包内藏有随机数量的<strong>人气值奖励</strong>。</p>
+                </li>
+                <li class="m-gift m-gift3">
+                    <div class="u-gift-circle">
+                        <div class="u-gift-circle3"></div>
+                    </div>
+                    <p>到达每段里程终点的用户<br>
+                        可获得终极宝箱一个，<br>
+                        宝箱内藏有价值<strong>至少180元的现金券</strong>，<br>
+                        并且里程数越大，现金券奖励越高。</p>
+                </li>
+            </ul>
+
+            ## TODO
+            <div class="z-pull-right">
+                <strong class="u-share-text">互动赢取更多好礼哦</strong>
+                <span id="j-share-box" class="u-share-box">
+                    <div class="u-share" id="j-share">
+                        <a class="u-icon-weixin j-popup-trigger"></a>
+                        <div class="u-popup-weixin">
+                            <img src="/static/img/common/new-weixin-qrcode.png">
+                        </div>
+                        <a class="u-icon-weibo j-popup-trigger"></a>
+                        <div class="u-popup-weibo">
+                            <img src="/static/img/common/new-weibo-qrcode.png">
+                        </div>
+                    </div>
+                </span>
+            </div>
+        </div>
+
+
+        ## 如何获得里程
+        <div class="g-howTwoGet">
+            <h1 class="u-title">如何获得里程<br>
+                <small><span class="u-square">■</span>&nbsp;以下里程奖励需邀请该好友<strong>首次投资成功后</strong>才可获得</small>
+            </h1>
+
+            <div class="u-getMethods-img"></div>
+
+            <ul class="u-getMethods">
+                <li style="padding-left: 40px;">
+                    <small>好友首次投资</small>
+                    <strong style="padding-left: 3px;">＋10km</strong>
+                </li>
+                <li style="padding-left: 50px;">
+                    <small>好友体验APP</small>
+                    <strong style="padding-left: 10px;">＋3km</strong>
+                </li>
+                <li style="padding-left: 55px;">
+                    <small>好友绑定微信</small>
+                    <strong style="padding-left: 10px;">＋3km</strong>
+                </li>
+                <li style="padding-left: 50px;">
+                    <small>好友完善个人资料</small>
+                    <strong style="padding-left: 20px;">＋2km</strong>
+                </li>
+                <li style="padding-left: 70px;">
+                    <small>好友绑定邮箱</small>
+                    <strong style="padding-left: 5px;">＋2km</strong>
+                </li>
+            </ul>
+        </div>
+
+
+        ## 好友助力记录 登录了才展示这一块
+        #if($currentUser)
+        <div class="g-assist" id="j-assist">
+            <h1 class="u-title">好友助力记录</h1>
+
+            <div id="j-assist-table-wrap" style="position: relative;">
+                <table class="m-assist-table" id="j-assist-table">
+                <thead>
+                    <tr class="u-table-header">
+                        <td width="210" class="f-fs20">好友</td>
+                        <td width="155"><span>首次投资</span>
+                            <strong>＋10km</strong></td>
+                        <td width="155"><span>体验APP</span>
+                            <strong>＋3km</strong></td>
+                        <td width="155"><span>绑定微信</span>
+                            <strong>＋3km</strong></td>
+                        <td width="155"><span>完善个人资料</span>
+                            <strong>＋2km</strong></td>
+                        <td width="155"><span>绑定邮箱</span>
+                            <strong>＋2km</strong></td>
+                    </tr>
+                </thead>
+                <tbody id="j-friendList">
+                    <tr style="height: 50px;">
+                        <td></td><td></td><td></td><td></td><td></td><td></td>
+                    </tr><tr style="height: 50px;">
+                        <td></td><td></td><td></td><td></td><td></td><td></td>
+                    </tr><tr style="height: 50px;">
+                        <td></td><td></td><td></td><td></td><td></td><td></td>
+                    </tr><tr style="height: 50px;">
+                        <td></td><td></td><td></td><td></td><td></td><td></td>
+                    </tr><tr style="height: 50px;">
+                        <td></td><td></td><td></td><td></td><td></td><td></td>
+                    </tr>
+                </tbody>
+                <script id="j-friendList-tpl" type="text/html">
+                    {{each friendList as item i}}
+                    <tr>
+                        <td class="u-table-avatar">
+                            <span class="u-assist-header">
+                                <img src="{{if item.avatar}}$aliyun_url/{{item.avatar}}{{else}}/static/img/member/avatar_35x35.png{{/if}}" alt="用户头像">
+                            </span>
+                            <span class="u-assist-memberName">{{item.memberName}}</span>
+                        </td>
+
+                        ## 如果第一个任务（首次投资）完成，后面全是黑色钩钩
+                        {{if item.friendListObj.firstInvest}}
+                            <td>{{if item.friendListObj.firstInvest}}<span class="u-mission-status z-complete"></span>{{/if}}</td>
+                            <td>{{if item.friendListObj.firstBindApp}}<span class="u-mission-status z-complete"></span>{{/if}}</td>
+                            <td>{{if item.friendListObj.firstBindWeChat}}<span class="u-mission-status z-complete"></span>{{/if}}</td>
+                            <td>{{if item.friendListObj.firstImproveInfo}}<span class="u-mission-status z-complete"></span>{{/if}}</td>
+                            <td>{{if item.friendListObj.firstBindEmail}}<span class="u-mission-status z-complete"></span>{{/if}}</td>
+                        {{else}}
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        {{/if}}
+
+                    </tr>
+                    {{/each}}
+                </script>
+            </table>
+
+                <div id="j-assist-shade" class="u-assist-shade z-hide">
+                    您的好友还没有来呢
+                </div>
+            </div>
+
+            <ul class="m-pagination z-hide" id="j-pagination">
+##                <li class="u-prev" id="j-prev">上一页</li>
+##                <li class="u-page" data-page="1">1</li>
+##                <li class="u-page z-current" data-page="2">2</li>
+##                <li class="u-page" data-page="3">3</li>
+##                <li class="u-page" data-page="4">4</li>
+##                <li class="u-page" data-page="5">5</li>
+##                <li class="u-next" id="j-next">下一页</li>
+            </ul>
+        </div>
+        #end
+
+
+        ## 友情榜
+        <div class="g-userList">
+            <h1 class="u-title">友情榜</h1>
+
+            <div class="m-userList">
+                <div class="u-gainList-container">
+                    <ul class="u-gainList" id="j-gainList"></ul>
+
+                    <script id="j-gainList-tpl" type="text/html">
+                        {{each topList as item i}}
+                        <li>
+                            <span>{{i+1}}</span>
+                            <span class="u-user-head">
+                                 <img src="{{if item.avatar}}$aliyun_url/{{item.avatar}}{{else}}/static/img/member/avatar_35x35.png{{/if}}" alt="用户头像">
+                            </span>
+                            <span class="u-user-name">
+                                {{if item.memberName}}
+                                    {{item.memberName}}
+                                {{/if}}
+                            </span>
+                            <span class="u-useTime">
+                                {{if item.rewardResult}}
+                                累计里程 <i style="color: #d94d53">{{item.rewardResult || 0}}km</i>
+                                {{/if}}
+                            </span>
+                            <span class="u-giftText">
+                                {{if item.remark}}
+                                    {{item.remark}}
+                                {{/if}}
+                            </span>
+                        </li>
+                        {{/each}}
+                    </script>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+## 规则
+<div class="g-rule">
+    <div class="g-wrap">
+        <strong class="f-fs14">活动规则：</strong><br>
+        1、活动对象：有融网所有用户；<br>
+        2、活动时间：2016年6月17日起；<br>
+        3、活动所获人气值奖励，将于5分钟内发放至用户的账户；<br>
+        4、活动期间现金券领取后7天内有效；<br>
+        5、如有其他疑问，请拨打客服热线：<strong>400-025-6688</strong>；<br>
+        本活动最终解释权归有融网所有
+    </div>
+</div>
+

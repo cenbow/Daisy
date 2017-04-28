@@ -1,0 +1,28 @@
+##第三步
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$m_css_url/common.css","$m_css_url/landing/season1.css","$m_css_url/landing/inviteRegister.css"])
+#set($title="80元礼包")
+
+<h2 class="u-invite-pageTitle f-pos-r">
+    <a href="$siteurl/mIndex">
+    </a>
+</h2>
+<div class="u-invite-banner">
+    <img src="http://yrimg.oss-cn-hangzhou.aliyuncs.com/m/investRegister03.jpg" />
+</div>
+<div class="u-invite-line"></div>
+<div class="u-invite-step">
+    <span>1</span>
+    <span>2</span>
+    <span class="z-current">3</span>
+</div>
+<div class="u-invite-title">赚钱5步走，50元到手</div>
+<div class="u-invite-contents">
+    <span>关注微信&nbsp;&nbsp;…………………………………………&nbsp;&nbsp;<em>10元</em></span>
+    <span>体验APP&nbsp;&nbsp;…………………………………………&nbsp;&nbsp;<em>10元</em></span>
+    <span>绑定邮箱&nbsp;&nbsp;…………………………………………&nbsp;&nbsp;<em>10元</em></span>
+    <span>完善信息&nbsp;&nbsp;…………………………………………&nbsp;&nbsp;<em>10元</em></span>
+    <span>首次投资&nbsp;&nbsp;…………………………………………&nbsp;&nbsp;<em>10元</em></span>
+</div>
+<a href="$siteurl/mIndex" class="u-invite-finish">立即理财</a>

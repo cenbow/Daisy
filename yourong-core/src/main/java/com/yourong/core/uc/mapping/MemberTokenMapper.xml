@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.uc.dao.MemberTokenMapper" >
+  <resultMap id="BaseResultMap" type="com.yourong.core.uc.model.MemberToken" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="member_id" property="memberId" jdbcType="BIGINT" />
+    <result column="token_type" property="tokenType" jdbcType="INTEGER" />
+    <result column="token" property="token" jdbcType="VARCHAR" />
+    <result column="equipment" property="equipment" jdbcType="VARCHAR" />
+    <result column="device" property="device" jdbcType="VARCHAR" />
+    <result column="channel_id" property="channelId" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, member_id, token_type, token,  equipment, device, channel_id,create_time, update_time,
+    del_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+  select
+  <include refid="Base_Column_List" />
+  from uc_member_token
+  where id = #{id,jdbcType=BIGINT} and del_flag =1
+</select>
+
+  <select id="selectByDevice" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from uc_member_token
+    where device = #{device,jdbcType=VARCHAR} and del_flag =1
+  </select>
+  <select id="selectByWeixinIDAndMemberId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from uc_member_token
+    where device = #{map.device,jdbcType=VARCHAR} and del_flag =1 and member_id = #{map.memberId,jdbcType=BIGINT} and  token_type = 3
+  </select>
+
+  <select id="selectByMap" resultMap="BaseResultMap"  >
+    select
+    <include refid="Base_Column_List" />
+    from uc_member_token
+    where device = #{map.device,jdbcType=VARCHAR} and del_flag =1 and member_id = #{map.memberId,jdbcType=BIGINT}
+  </select>
+
+  <update id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+      update uc_member_token set del_flag = -1 , update_time =now()
+    where id = #{id,jdbcType=BIGINT}  and del_flag =1
+  </update>
+  <update id="deleteMemberTokenByMemberID" parameterType="java.lang.Long" >
+    update uc_member_token  set del_flag = -1 , update_time =now()
+    where member_id = #{memberID,jdbcType=BIGINT}  and del_flag =1 and  token_type &lt;  3
+  </update>
+
+  <insert id="insert" parameterType="com.yourong.core.uc.model.MemberToken" >
+    insert into uc_member_token (id, member_id, token_type, 
+      token,  equipment,
+      device,channel_id, create_time, update_time,
+      del_flag)
+    values (#{id,jdbcType=BIGINT}, #{memberId,jdbcType=BIGINT}, #{tokenType,jdbcType=INTEGER}, 
+      #{token,jdbcType=VARCHAR},  #{equipment,jdbcType=VARCHAR},
+      #{device,jdbcType=VARCHAR},  #{channelId,jdbcType=VARCHAR},  now() , #{updateTime,jdbcType=TIMESTAMP},
+      1)
+  </insert>
+  <insert id="insertSelective" parameterType="com.yourong.core.uc.model.MemberToken" >
+    insert into uc_member_token
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="memberId != null" >
+        member_id,
+      </if>
+      <if test="tokenType != null" >
+        token_type,
+      </if>
+      <if test="token != null" >
+        token,
+      </if>
+
+      <if test="equipment != null" >
+        equipment,
+      </if>
+      <if test="device != null" >
+        device,
+      </if>
+      <if test="channelId != null" >
+        channel_id,
+      </if>
+        create_time,
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+        del_flag
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="memberId != null" >
+        #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="tokenType != null" >
+        #{tokenType,jdbcType=INTEGER},
+      </if>
+      <if test="token != null" >
+        #{token,jdbcType=VARCHAR},
+      </if>
+
+      <if test="equipment != null" >
+        #{equipment,jdbcType=VARCHAR},
+      </if>
+      <if test="device != null" >
+        #{device,jdbcType=VARCHAR},
+      </if>
+      <if test="channelId != null" >
+        #{channelId,jdbcType=VARCHAR},
+      </if>
+        now(),
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+        1
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yourong.core.uc.model.MemberToken" >
+    update uc_member_token
+    <set >
+      <if test="memberId != null" >
+        member_id = #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="tokenType != null" >
+        token_type = #{tokenType,jdbcType=INTEGER},
+      </if>
+      <if test="token != null" >
+        token = #{token,jdbcType=VARCHAR},
+      </if>
+
+      <if test="equipment != null" >
+        equipment = #{equipment,jdbcType=VARCHAR},
+      </if>
+      <if test="device != null" >
+        device = #{device,jdbcType=VARCHAR},
+      </if>
+      <if test="channelId != null" >
+        channel_id = #{channelId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+        update_time =now(),
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yourong.core.uc.model.MemberToken" >
+    update uc_member_token
+    set member_id = #{memberId,jdbcType=BIGINT},
+      token_type = #{tokenType,jdbcType=INTEGER},
+      token = #{token,jdbcType=VARCHAR},
+      equipment = #{equipment,jdbcType=VARCHAR},
+      device = #{device,jdbcType=VARCHAR},
+      channel_id = #{channelId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = now()
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="findByPage" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from uc_member_token
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = #{map.id}
+        </if>
+        <if test=" map.memberId != null" >
+          member_id = #{map.memberId}
+        </if>
+        <if test=" map.tokenType != null" >
+          token_type = #{map.tokenType}
+        </if>
+        <if test=" map.token != null" >
+          token = #{map.token}
+        </if>
+        <if test=" map.equipment != null" >
+          equipment = #{map.equipment}
+        </if>
+        <if test=" map.device != null" >
+          device = #{map.device}
+        </if>
+        <if test=" map.createTime != null" >
+          create_time = #{map.createTime}
+        </if>
+        <if test=" map.updateTime != null" >
+          update_time = #{map.updateTime}
+        </if>
+        <if test=" map.delFlag != null" >
+          del_flag = #{map.delFlag}
+        </if>
+      </where>
+    </if>
+  </select>
+  <sql id="Base_Column_List_Pagin" >
+    t.id  as  id,
+t.member_id  as  member_id,
+t.token_type  as  token_type,
+t.token  as  token,
+t.equipment  as  equipment,
+t.device  as  device,
+t.channel_Id  as  channel_Id,
+t.create_time  as  create_time,
+t.update_time  as  update_time,
+t.del_flag  as  del_flag
+  </sql>
+  <select id="selectForPagin" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List_Pagin" />
+    from  (SELECT id FROM  uc_member_token
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = #{map.id}
+        </if>
+        <if test=" map.memberId != null" >
+          member_id = #{map.memberId}
+        </if>
+        <if test=" map.tokenType != null" >
+          token_type = #{map.tokenType}
+        </if>
+        <if test=" map.token != null" >
+          token = #{map.token}
+        </if>
+        <if test=" map.equipment != null" >
+          equipment = #{map.equipment}
+        </if>
+        <if test=" map.device != null" >
+          device = #{map.device}
+        </if>
+        <if test=" map.createTime != null" >
+          create_time = #{map.createTime}
+        </if>
+        <if test=" map.updateTime != null" >
+          update_time = #{map.updateTime}
+        </if>
+        <if test=" map.delFlag != null" >
+          del_flag = #{map.delFlag}
+        </if>
+      </where>
+    </if>
+      LIMIT	${map.startRow}, ${map.pageSize}  )  AS a,  uc_member_token AS t FORCE INDEX(PRIMARY) WHERE a.id = t.id   
+  </select>
+  <select id="selectForPaginTotalCount" resultType="java.lang.Integer" >
+    select count(1) 
+    from uc_member_token
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = ${map.id}
+        </if>
+        <if test=" map.memberId != null" >
+          member_id = ${map.memberId}
+        </if>
+        <if test=" map.tokenType != null" >
+          token_type = ${map.tokenType}
+        </if>
+        <if test=" map.token != null" >
+          token = ${map.token}
+        </if>
+        <if test=" map.equipment != null" >
+          equipment = ${map.equipment}
+        </if>
+        <if test=" map.device != null" >
+          device = ${map.device}
+        </if>
+        <if test=" map.createTime != null" >
+          create_time = ${map.createTime}
+        </if>
+        <if test=" map.updateTime != null" >
+          update_time = ${map.updateTime}
+        </if>
+        <if test=" map.delFlag != null" >
+          del_flag = ${map.delFlag}
+        </if>
+      </where>
+    </if>
+  </select>
+  
+  <!--通过会员ID查询最后一次在IOS或者Android登录设备-->
+  <select id="queryLastLoginDeviceByMemberId" resultMap="BaseResultMap">
+  	select
+   		 <include refid="Base_Column_List" />
+    from uc_member_token
+    where member_id = #{memberId,jdbcType=BIGINT} and token_type <![CDATA[ <=2 ]]> and del_flag =1 order by id desc limit 1
+  </select>
+
+
+  <!--通过会员ID查询最后一次在IOS或者Android登录设备-->
+  <select id="selectWeixinTokenByMemberId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from uc_member_token
+    where member_id = #{memberId,jdbcType=BIGINT}  and token_type = 3  and del_flag =1  limit 1
+  </select>
+  
+  <!-- 查询会员绑定微信次数 -->
+  <select id="selectBindWeiXinCount" resultType="java.lang.Integer">
+  	select count(1) from uc_member_token where token_type=3 and member_id=#{memberId,jdbcType=BIGINT}
+  	<if test=" startTime != null" >
+		 <![CDATA[ AND create_time >= #{startTime,jdbcType=VARCHAR} ]]>
+    </if>
+  	 and del_flag = 1 group by member_id 
+  </select>
+
+  <!-- 取消微信绑定 -->
+  <update id="unbundlingWeiXin">
+	 update uc_member_token set del_flag=-1, update_time=now() where token_type=3 and member_id=#{memberId,jdbcType=BIGINT} and del_flag=1
+  </update>
+
+  <!--查询首次在微信登录-->
+  <select id="selectFirstLoginWeiXin" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from uc_member_token
+    where member_id = #{memberId,jdbcType=BIGINT}  and token_type = 3 order by create_time limit 1
+  </select>
+  
+  <!--查询首次在APP登录-->
+  <select id="selectFirstLoginApp" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from uc_member_token
+    where member_id = #{memberId,jdbcType=BIGINT}  and token_type  <![CDATA[ <=2 ]]> order by create_time limit 1
+  </select>
+
+</mapper>

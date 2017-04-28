@@ -1,0 +1,65 @@
+#parse("/fin/interestSettlement/head.vm")
+<div class="col-xs-12"></div>
+<div class="col-xs-12">
+	<div class="table-responsive">
+	<form>
+		<table class="table table-striped table-bordered">
+			<thead>
+				<tr>
+					<!--<td>项目编号</td>
+					<td><input type="text" name="search_id"  class="input-small search_init" /></td>-->
+					<td style="width:300px">项目名称：
+					<input type="text" style="width:200px" name="search_projectName"  class="input-small search_init" /></td>
+					<td width="300">项目到期日：
+						<input type="text" name="search_endDate"  class="input-small search_init" onclick="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM'})"/>
+					</td>
+					<td>投资完成时间：
+						<input type="text" name="search_transactionFinishDate"  class="input-small search_init" onclick="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM'})"/>
+					</td>
+					<td>出借人姓名：
+						<input type="text" name="search_trueName"  class="input-small search_init" />
+					</td>
+					<!--<td>出借人手机</td>
+					<td><input type="text" name="search_mobile"  class="input-small search_init" /></td>
+					<td>上线时间</td>
+					<td>
+						<input type="text" name="search_onlineTimeStart"  class="input-small search_init" onclick="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd'})"/>
+						至
+						<input type="text" name="search_onlineTimeEnd"  class="input-small search_init" onclick="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd'})"/>
+					</td>
+					<td>放款状态</td>
+					<td>
+						#dictSelect("search_loanStatus",$!{sysServiceUtil.getDictList("loan_status")},"请选择")
+					</td>-->
+					<td width="140"><button id = "query_interest" type="button" class="btn btn-info btn-sm btn-primary">查询</button>
+						<button id = "reset_interest" type="button" class="btn btn-info btn-sm btn-primary resetButton">重置</button>
+					</td>
+				</tr>
+			</thead>
+		</table>
+		</form>
+		<table id="interestSettlement-table" class="table table-striped table-bordered" cellspacing="0" width="100%">
+			<thead>
+				<tr >
+					<th></th>
+					<th width="180">项目名称</th>
+					<th width="100">出借人姓名</th>
+					<th width="120">项目到期日</th>
+					<th width="100">项目总额</th>
+					<th width="80">线下支付利率</th>
+					<th>期数</th>
+					<th>项目周期</th>
+					<th>线下利息结算</th>
+					<th>线下利息结算金额</th>
+					<th>出借人支付投资人利息</th>
+					<th>现金券支出</th>
+					<th>收益券支出</th>
+					<th>平台利润</th>
+					<th>投资完成时间</th>
+					<th>平台毛利润</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+</div>
+#parse("/fin/interestSettlement/detail.vm")

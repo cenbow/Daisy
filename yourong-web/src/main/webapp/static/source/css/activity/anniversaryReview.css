@@ -1,0 +1,147 @@
+
+.g-bd {
+    margin-bottom: 0;
+}
+.m-review-hd{
+    width: 100%;
+    height: 663px;
+    margin-top: -8px;
+    position: relative;
+    color: #fff;
+    background: url(/static/img/activity/anniversaryReview/review-hd1.jpg) no-repeat center;
+}
+/**视频回顾**/
+.m-review-video,
+.m-review-guapai,
+.m-review-yuanzhuo,
+.m-review-guandian,
+.m-review-shunjian,
+.m-review-meiti{
+    padding: 85px 0 0;
+}
+.m-review-video h2,
+.m-review-guapai h2,
+.m-review-yuanzhuo h2,
+.m-review-guandian h2,
+.m-review-shunjian h2,
+.m-review-meiti h2{
+    font-size: 30px;
+    color: #c93940;
+    font-weight: bold;
+    text-align: center;
+    margin: 0 0 50px;
+
+}
+.m-review-video{
+    height: 782px;
+    background: #f6f6f6;
+}
+.m-review-guapai{
+    height: 800px;
+    background: #fff;
+}
+.m-review-yuanzhuo{
+    height: 460px;
+    background: #f6f6f6;
+}
+.m-review-guandian{
+    height: 690px;
+    background: #fff;
+}
+.m-review-shunjian{
+    height: 1032px;
+    background: #f6f6f6;
+}
+.m-review-meiti{
+    height: 500px;
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+}
+.m-review-video iframe{
+    width: 100%;
+    border: 0;
+}
+/**挂牌成功**/
+.u-guapai-icon{
+    text-align: center;
+    margin:  0 0 31px;
+}
+.u-guapai-icon em{
+    font-size: 14px;
+    font-weight: bold;
+    display: inline-block;
+    vertical-align: top;
+}
+.u-guapai-icon img{
+    margin-right:50px;
+}
+.u-guapai-pic img{
+    margin: 8px 0 0;
+}
+/**圆桌会议**/
+.u-yuanzhuo-pic {
+    margin: 55px 0 0;
+}
+/**观点碰撞**/
+.u-guandian-pic{
+    overflow: hidden;
+    height: 540px;
+}
+.u-guandian-pic li{
+    margin: 0 0 28px 0;
+}
+.u-guandian-pic li i{
+    height: 149px;
+    width: 149px;
+    display: inline-block;
+}
+.u-guandian-pic li>div{
+    display: inline-block;
+    width: 750px;
+    margin: 30px 0 0 40px;
+    vertical-align: top;
+}
+.u-guandian-pic li h5{
+    color: #666;
+    font-weight: bold;
+    margin: 0 0 10px 0;
+}
+.u-guandian-pic li p{
+    color: #999;
+}
+/**精彩瞬间**/
+.u-shunjian-pic{
+    overflow: hidden;
+    height: 859px;
+}
+.u-shunjian-pic li div{
+    margin: 0 0 8px 0;
+    overflow: hidden;
+}
+.u-shunjian-pic li span{
+    width: 100%;
+    height: 40px;
+    background: #d74148;
+    color: #fff;
+    text-align: center;
+    line-height: 40px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+/**媒体报道**/
+.m-review-meiti dl{
+    width: 33%;
+    display: inline-block;
+    text-align: center;
+    margin: 0 0 75px;
+}
+.m-review-meiti dl dd{
+    margin: 25px 0 0;
+}
+.m-review-meiti a,
+.m-review-meiti a:link,
+.m-review-meiti a:visited,
+.m-review-meiti a:hover{
+    color: #666;
+}

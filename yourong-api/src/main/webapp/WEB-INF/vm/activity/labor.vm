@@ -1,0 +1,527 @@
+##好春来活动
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($domain_url = "$sysServiceUtil.getRootURL()")
+#set($css_url=["$res_url/source/css/activity/labor.css"])
+#set($title="劳动最光荣$!{title_suffix}")
+
+#set($aliyun='https://oss-cn-hangzhou.aliyuncs.com/yrstatic/res')
+
+#set($encryptionId=$request.getParameter("encryptionId"))
+#set($loginSource=$request.getHeader("loginSource"))
+
+#if($currentUser)
+  #set($logined=true)
+#else
+  #set($logined=false)
+#end
+#set($os=3)
+##  安卓
+#if($loginSource==1)
+  #set($os=1)
+#end
+##  IOS
+#if($loginSource==2)
+  #set($os=2)
+#end
+
+#if(($os==3 && $logined) || ($os<3 && $encryptionId))
+  #set($loginedflag=true)
+#else
+  #set($loginedflag=false)
+#end
+
+<div class="g-main" id="j-labor" os="$!{os}" data-logined="$logined" v-cloak="">
+  #if($loginSource==1 || $loginSource==2)
+    <style>
+      .g-ft {
+        display: none;
+      }
+    </style>
+  #else
+  ##header，安卓ios，不需要头部
+    <h2 class="u-pageTitle f-pos-r u-section1-title" id="j-title">
+      <a href="$m_url">有融网</a>
+      <span class="u-login-link f-pos-a">
+        #if(!$currentUser)
+          <a href="{{loginUrl}}">登录</a>
+            <a href="$siteurl/mstation/register">注册</a>
+        #else
+          <a href="$mCenter_logout_url">退出</a>
+        #end
+            </span>
+    </h2>
+  #end
+  <div class="u-head m-fu-title">
+    <p>{{init.startTime | formatTime 'M月d日'}}~{{init.endTime | formatTime 'M月d日'}}</p>
+  </div>
+
+  <div class="m-body f-fc-brown">
+  ##劳有所得
+    <div class="m-labor m-labor1">
+      <div class="g-wrap">
+        <div class="m-body-title">
+          <div class="m-title-div m-title-left">劳有所得</div>
+          <div class="m-title-div m-title-right">坚持享加息</div>
+        </div>
+        <h1>活动期间，用户每连续签到2天即可获得0.51%收益券一张，累计签到7天可额外获得五一劳模奖章和510元现金券一张。</h1>
+        <div class="m-body-checkbox">
+          <span class="dot-right4">
+            ·4月
+          </span>
+          <span class="dot-right5">
+            ·5月
+          </span>
+          <ul class="m-checkbox-week">
+            <li>周日</li>
+            <li>周一</li>
+            <li>周二</li>
+            <li>周三</li>
+            <li>周四</li>
+            <li>周五</li>
+            <li>周六</li>
+          </ul>
+          <ul class="m-checkbox-date">
+            <li>
+              <span class="m-daytime">23</span>
+            </li>
+            <li>
+              <span class="m-daytime">24</span>
+            </li>
+            <li>
+              <span class="m-daytime">25</span>
+            </li>
+            <li>
+              <span class="m-daytime">26</span>
+            </li>
+            <li>
+              <span class="m-daytime">27</span>
+            </li>
+            <li #if($loginedflag)class="m-all-day" :class="{'z-check':signIn[0],'z-no-check':checkSign<0,'z-gocheck':checkSign==0&&!signIn[0]&&$loginedflag}" #else class="m-eightday"#end>
+              <span class="m-daytime">28</span>
+              <div v-show="checkSign==0&&!signIn[0]&&$loginedflag">
+                <template v-if="$os > 2">
+                  <a href="$siteurl/mCenter/checkin" class="m-check-btn"></a>
+                </template>
+                <template v-else>
+                  <a class="m-check-btn" id="j-invite-link" #if($os==2)href="yrw-skip://invokeMethod=signIn"#end></a>
+                </template>
+              </div>
+            </li>
+
+            <li #if($loginedflag)class="m-all-day" :class="{'z-check':signIn[1],'z-no-check':checkSign<1,'z-gocheck':checkSign==1&&!signIn[1]&&$loginedflag}" #else class="m-eightday"#end>
+              <span class="m-daytime">29</span>
+              <div v-show="checkSign==1&&!signIn[1]&&$loginedflag">
+                <template v-if="$os > 2">
+                  <a href="$siteurl/mCenter/checkin" class="m-check-btn"></a>
+                </template>
+                <template v-else>
+                  <a class="m-check-btn" id="j-invite-link" #if($os==2)href="yrw-skip://invokeMethod=signIn"#end></a>
+                </template>
+              </div>
+            </li>
+
+            <li #if($loginedflag)class="m-all-day" :class="{'z-check':signIn[2],'z-no-check':checkSign<2,'z-gocheck':checkSign==2&&!signIn[2]&&$loginedflag}" #else class="m-eightday"#end>
+              <span class="m-daytime">30</span>
+              <div v-show="checkSign==2&&!signIn[2]&&$loginedflag">
+                <template v-if="$os > 2">
+                  <a href="$siteurl/mCenter/checkin" class="m-check-btn"></a>
+                </template>
+                <template v-else>
+                  <a class="m-check-btn" id="j-invite-link" #if($os==2)href="yrw-skip://invokeMethod=signIn"#end></a>
+                </template>
+              </div>
+            </li>
+
+            <li #if($loginedflag)class="m-all-day" :class="{'z-check':signIn[3],'z-no-check':checkSign<3,'z-gocheck':checkSign==3&&!signIn[3]&&$loginedflag}" #else class="m-eightday"#end>
+              <span class="m-daytime">1</span>
+              <div v-show="checkSign==3&&!signIn[3]&&$loginedflag">
+                <template v-if="$os > 2">
+                  <a href="$siteurl/mCenter/checkin" class="m-check-btn"></a>
+                </template>
+                <template v-else>
+                  <a class="m-check-btn" id="j-invite-link" #if($os==2)href="yrw-skip://invokeMethod=signIn"#end></a>
+                </template>
+              </div>
+            </li>
+
+            <li #if($loginedflag)class="m-all-day" :class="{'z-check':signIn[4],'z-no-check':checkSign<4,'z-gocheck':checkSign==4&&!signIn[4]&&$loginedflag}" #else class="m-eightday"#end>
+              <span class="m-daytime">2</span>
+              <div v-show="checkSign==4&&!signIn[4]&&$loginedflag">
+                <template v-if="$os > 2">
+                  <a href="$siteurl/mCenter/checkin" class="m-check-btn"></a>
+                </template>
+                <template v-else>
+                  <a class="m-check-btn" id="j-invite-link" #if($os==2)href="yrw-skip://invokeMethod=signIn"#end></a>
+                </template>
+              </div>
+            </li>
+
+            <li #if($loginedflag)class="m-all-day" :class="{'z-check':signIn[5],'z-no-check':checkSign<5,'z-gocheck':checkSign==5&&!signIn[5]&&$loginedflag}" #else class="m-eightday"#end>
+              <span class="m-daytime">3</span>
+              <div v-show="checkSign==5&&!signIn[5]&&$loginedflag">
+                <template v-if="$os > 2">
+                  <a href="$siteurl/mCenter/checkin" class="m-check-btn"></a>
+                </template>
+                <template v-else>
+                  <a class="m-check-btn" id="j-invite-link" #if($os==2)href="yrw-skip://invokeMethod=signIn"#end></a>
+                </template>
+              </div>
+            </li>
+
+            <li #if($loginedflag)class="m-all-day" :class="{'z-check':signIn[6],'z-no-check':checkSign<6,'z-gocheck':checkSign==6&&!signIn[6]&&$loginedflag}" #else class="m-eightday"#end>
+              <span class="m-daytime">4</span>
+              <div v-show="checkSign==6&&!signIn[6]&&$loginedflag">
+                <template v-if="$os > 2">
+                  <a href="$siteurl/mCenter/checkin" class="m-check-btn"></a>
+                </template>
+                <template v-else>
+                  <a class="m-check-btn" id="j-invite-link" #if($os==2)href="yrw-skip://invokeMethod=signIn"#end></a>
+                </template>
+              </div>
+            </li>
+
+            <li #if($loginedflag)class="m-all-day" :class="{'z-check':signIn[7],'z-no-check':checkSign<7,'z-gocheck':checkSign==7&&!signIn[7]&&$loginedflag}" #else class="m-eightday"#end>
+              <span class="m-daytime">5</span>
+              <div v-show="checkSign==7&&!signIn[7]&&$loginedflag">
+                <template v-if="$os > 2">
+                  <a href="$siteurl/mCenter/checkin" class="m-check-btn"></a>
+                </template>
+                <template v-else>
+                  <a class="m-check-btn" id="j-invite-link" #if($os==2)href="yrw-skip://invokeMethod=signIn"#end></a>
+                </template>
+              </div>
+            </li>
+
+            <li>
+              <span class="m-daytime">6</span>
+            </li>
+          </ul>
+        </div>
+        <div class="m-body-jiangzhang">
+          <img class="m-pic-laomo" src="$res_url/img/activity/labor/laomo.png" alt="" v-if="init.receiveWorker">
+          <img class="m-pic-laomo" src="$res_url/img/activity/labor/laomo-no.png" alt="" v-else>
+          <img class="m-smile-left" src="$res_url/img/activity/labor/smile-left.png" alt="">
+          <img class="m-smile-right" src="$res_url/img/activity/labor/smile-right.png" alt="">
+        </div>
+      </div>
+    </div>
+  ##多劳多得
+    <div class="m-labor m-labor2 m-fu-title">
+      <div class="g-wrap">
+        <div class="m-body-title">
+          <div class="m-title-div m-title-left">多劳多得</div>
+          <div class="m-title-div m-title-right">专属510</div>
+        </div>
+        <h1>活动期间，用户每日累计投资额满{{init.workInvest}}元即可领取510现金大礼包，累计领取7个大礼包的用户即可获得五一先锋奖章（礼包当日未领取视为自动放弃）。</h1>
+        <div class="m-body-getbox">
+          <ul>
+            <li #if($loginedflag):class="{'z-gift':giftIn[0],'z-today':giftSign==0&&!giftIn[0],'z-no-get':giftSign<0}" #else class="f-no-login"#end>
+              <img class="m-getbox-date" src="$res_url/img/activity/labor/4-28.png" alt="">
+              <div v-show="giftSign==0&&!giftIn[0]&&$loginedflag">
+                <template v-if="$os > 2">
+                  <a href="$siteurl/products/m/list-all-all-1.html"></a>
+                </template>
+                <template v-else>
+                  <a class="j-invite-invest" #if($os==2)href="yrw-skip://invokeMethod=projectList"#end></a>
+                </template>
+              </div>
+            </li>
+
+            <li #if($loginedflag):class="{'z-gift':giftIn[1],'z-today':giftSign==1&&!giftIn[1],'z-no-get':giftSign<1}" #else class="f-no-login"#end>
+              <img class="m-getbox-date" src="$res_url/img/activity/labor/4-29.png" alt="">
+              <div v-show="giftSign==1&&!giftIn[1]&&$loginedflag">
+                <template v-if="$os > 2">
+                  <a href="$siteurl/products/m/list-all-all-1.html"></a>
+                </template>
+                <template v-else>
+                  <a class="j-invite-invest" #if($os==2)href="yrw-skip://invokeMethod=projectList"#end></a>
+                </template>
+              </div>
+            </li>
+
+            <li #if($loginedflag):class="{'z-gift':giftIn[2],'z-today':giftSign==2&&!giftIn[2],'z-no-get':giftSign<2}" #else class="f-no-login"#end>
+              <img class="m-getbox-date" src="$res_url/img/activity/labor/4-30.png" alt="">
+              <div v-show="giftSign==2&&!giftIn[2]&&$loginedflag">
+                <template v-if="$os > 2">
+                  <a href="$siteurl/products/m/list-all-all-1.html"></a>
+                </template>
+                <template v-else>
+                  <a class="j-invite-invest" #if($os==2)href="yrw-skip://invokeMethod=projectList"#end></a>
+                </template>
+              </div>
+            </li>
+
+            <li #if($loginedflag)class="f-fc-right" :class="{'z-gift':giftIn[3],'z-today':giftSign==3&&!giftIn[3],'z-no-get':giftSign<3}" #else class="f-no-login f-fc-right"#end>
+              <img class="m-getbox-date" src="$res_url/img/activity/labor/5-1.png" alt="">
+              <div v-show="giftSign==3&&!giftIn[3]&&$loginedflag">
+                <template v-if="$os > 2">
+                  <a href="$siteurl/products/m/list-all-all-1.html"></a>
+                </template>
+                <template v-else>
+                  <a class="j-invite-invest" #if($os==2)href="yrw-skip://invokeMethod=projectList"#end></a>
+                </template>
+              </div>
+            </li>
+
+            <li #if($loginedflag):class="{'z-gift':giftIn[4],'z-today':giftSign==4&&!giftIn[4],'z-no-get':giftSign<4}" #else class="f-no-login"#end>
+              <img class="m-getbox-date" src="$res_url/img/activity/labor/5-2.png" alt="">
+              <div v-show="giftSign==4&&!giftIn[4]&&$loginedflag">
+                <template v-if="$os > 2">
+                  <a href="$siteurl/products/m/list-all-all-1.html"></a>
+                </template>
+                <template v-else>
+                  <a class="j-invite-invest" #if($os==2)href="yrw-skip://invokeMethod=projectList"#end></a>
+                </template>
+              </div>
+            </li>
+
+            <li #if($loginedflag):class="{'z-gift':giftIn[5],'z-today':giftSign==5&&!giftIn[5],'z-no-get':giftSign<5}" #else class="f-no-login"#end>
+              <img class="m-getbox-date" src="$res_url/img/activity/labor/5-3.png" alt="">
+              <div v-show="giftSign==5&&!giftIn[5]&&$loginedflag">
+                <template v-if="$os > 2">
+                  <a href="$siteurl/products/m/list-all-all-1.html"></a>
+                </template>
+                <template v-else>
+                  <a class="j-invite-invest" #if($os==2)href="yrw-skip://invokeMethod=projectList"#end></a>
+                </template>
+              </div>
+            </li>
+
+            <li #if($loginedflag):class="{'z-gift':giftIn[6],'z-today':giftSign==6&&!giftIn[6],'z-no-get':giftSign<6}" #else class="f-no-login"#end>
+              <img class="m-getbox-date" src="$res_url/img/activity/labor/5-4.png" alt="">
+              <div v-show="giftSign==6&&!giftIn[6]&&$loginedflag">
+                <template v-if="$os > 2">
+                  <a href="$siteurl/products/m/list-all-all-1.html"></a>
+                </template>
+                <template v-else>
+                  <a class="j-invite-invest" #if($os==2)href="yrw-skip://invokeMethod=projectList"#end></a>
+                </template>
+              </div>
+            </li>
+
+            <li #if($loginedflag)class="f-fc-right" :class="{'z-gift':giftIn[7],'z-today':giftSign==7&&!giftIn[7],'z-no-get':giftSign<7}" #else class="f-no-login f-fc-right"#end>
+              <img class="m-getbox-date" src="$res_url/img/activity/labor/5-5.png" alt="">
+              <div v-show="giftSign==7&&!giftIn[7]&&$loginedflag">
+                <template v-if="$os > 2">
+                  <a href="$siteurl/products/m/list-all-all-1.html"></a>
+                </template>
+                <template v-else>
+                  <a class="j-invite-invest" #if($os==2)href="yrw-skip://invokeMethod=projectList"#end></a>
+                </template>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="m-get-btn">
+          <a v-text="tipsList[tipsIndex]" :class="{'z-can': init.workRight && canget}" @click="goget($event)"></a>
+        </div>
+        <h2 class="m-my-invest" v-if="init.newDate>init.startTime && $loginedflag">
+          <template v-if="init.invest">
+            今日累计投资额:{{init.invest | amountSplit '￥'}}
+          </template>
+          <template v-else>
+            今日累计投资额:{{init.invest}}元
+          </template>
+        </h2>
+        <div class="m-body-jiangzhang">
+          <img class="m-pic-laomo" src="$res_url/img/activity/labor/xianfeng.png" alt="" v-if="init.receivePioneer">
+          <img class="m-pic-laomo" src="$res_url/img/activity/labor/xianfeng-no.png" alt="" v-else>
+          <img class="m-smile-left" src="$res_url/img/activity/labor/smile-left.png" alt="">
+          <img class="m-smile-right" src="$res_url/img/activity/labor/smile-right.png" alt="">
+        </div>
+      </div>
+    </div>
+  ##五一荣耀
+    <div class="m-labor m-labor3 m-fu-title">
+      <div class="g-wrap">
+        <div class="m-body-title">
+          <div class="m-title-div m-title-left">五一荣耀</div>
+          <div class="m-title-div m-title-right">坚持享加息</div>
+        </div>
+        <h1>五一国际劳动节当天，用户投资6个月及以上项目，累计投资额满51000元可获得五一敬业奖章，集齐3个五一奖章的用户可获得有融网送出的劳动节豪礼一份（包含51点人气值和2张3%收益券）。</h1>
+        <div class="m-first-line">
+          <img src="$res_url/img/activity/labor/medal1.png" alt="" v-if="init.receiveWorker">
+          <img src="$res_url/img/activity/labor/medal1-no.png" alt="" v-else>
+        </div>
+        <div class="m-second-line">
+          <img src="$res_url/img/activity/labor/medal2.png" alt="" v-if="init.receivePioneer">
+          <img src="$res_url/img/activity/labor/medal2-no.png" alt="" v-else>
+          <img src="$res_url/img/activity/labor/medal3.png" alt="" v-if="init.receiveDedicated">
+          <img src="$res_url/img/activity/labor/medal3-no.png" alt="" v-else>
+        </div>
+        <h2 v-if="init.receiveWorker&&init.receivePioneer&&init.receiveDedicated">已集齐3枚五一奖章，奖励已发放</h2>
+        <h2 v-else>
+          集齐3枚奖章便可兑换豪礼哦！
+          <template v-if="$os > 2">
+            <a href="$siteurl/products/m/list-all-all-1.html">我马上去投资>></a>
+          </template>
+          <template v-else>
+            <a class="j-invite-invest" #if($os==2)href="yrw-skip://invokeMethod=projectList"#end>我马上去投资>></a>
+          </template>
+        </h2>
+      </div>
+    </div>
+
+    <img @click="openrule" class="m-labor-rule" src="$res_url/img/activity/labor/rule.png" alt="">
+  </div>
+
+## 底部导航
+  <div class="u-nav-bottom">
+    <ul>
+      <li class="m-nav-btn active">
+        <a>
+          <p>劳有所得</p>
+        </a>
+      </li>
+      <li class="m-nav-btn">
+        <a>
+          <p>多劳多得</p>
+        </a>
+      </li>
+      <li class="m-nav-btn">
+        <a>
+          <p>五一荣耀</p>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="u-award-record" v-show="rule">
+    #if($os > 2)
+      <h1>活动规则
+        <div class="u-goback" @click="closeDialog()">返回</div>
+      </h1>
+    #end
+    <div class="u-record-wrapper #if($os==1||$os==2)f-mt#end">
+      #if($os==1||$os==2)
+        <h3 class="u-inner-title">活动规则</h3>
+      #end
+      <div class="m-rule">
+        <div class="m-main-content u-rule-content">
+          <p>1. 活动对象：有融网所有用户；</p>
+          <p>2. 活动时间：{{init.startTime | formatTime 'yyyy年MM月dd日hh:mm'}}~{{init.endTime | formatTime 'MM月dd日hh:mm'}}；</p>
+          <p>3. 现金券使用规则详见下表；</p>
+          <table>
+            <thead>
+            <tr>
+              <td>面额(元)</td>
+              <td>起投金额(元)</td>
+              <td>起投期限(天)</td>
+              <td>有效期</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>10</td>
+              <td>2000</td>
+              <td>25</td>
+              <td>领取后3天</td>
+            </tr>
+            <tr>
+              <td>60</td>
+              <td>4000</td>
+              <td>60</td>
+              <td>领取后3天</td>
+            </tr>
+            <tr>
+              <td>120</td>
+              <td>6000</td>
+              <td>90</td>
+              <td>领取后3天</td>
+            </tr>
+            <tr>
+              <td>320</td>
+              <td>8000</td>
+              <td>180</td>
+              <td>领取后3天</td>
+            </tr>
+            <tr>
+              <td>510</td>
+              <td>12000</td>
+              <td>180</td>
+              <td>领取后5天</td>
+            </tr>
+            </tbody>
+          </table>
+          <p>4. 转让专区项目不参加本活动；</p>
+          <p>5. 如有其他疑问，请拨打客服热线：400-025-6688；</p>
+          <p>6. 本活动最终解释权归有融网所有。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+##活动规则
+
+
+##蒙层
+  <div class="u-cover j-cover" v-if="door"></div>
+  <div class="u-white-cover" v-show="whiteCoverShow"></div>
+
+####非模态框
+  <div class="m-tips-window animated zoomIn" v-show="isShowTips">已领取</div>
+
+##领取提示
+  <div class="m-tips-box f-fudai animated zoomIn" v-show="showDialog">
+    <img src="$res_url/img/activity/labor/rays_main_bg.png" class="u-response-img u-win-bg">
+    <div class="u-confirm-lottery f-tac">
+      <img src="$res_url/img/activity/labor/xiaorong.png" class="u-xiaorong-img">
+      <div class="u-reward-content">
+        <img @click="close" src="$res_url/img/activity/labor/close.png" alt="">
+        <p><em class="f-fc-red">510大礼包</em>已到手~</p>
+        <template v-if="$os > 2">
+          <a href="$siteurl/products/m/list-all-all-1.html" class="m-reward-btn">我要去投资</a>
+        </template>
+        <template v-else>
+          <a class="m-reward-btn j-invite-invest" #if($os==2)href="yrw-skip://invokeMethod=projectList"#end>我要去投资</a>
+        </template>
+      </div>
+    </div>
+  </div>
+
+</div>
+<script src="$res_url/lib/js/zepto.min.js"></script>
+<script>
+
+  //“意见反馈”区别调用不同app
+  //    var i=$("#j-newyear").data("os");
+  var os = $!{os};
+  //        奖励记录
+  //    $("#j-record-link").on("click",function(){
+  //      if(i==1){
+  //
+  //        Android.ToActivity("friendList",  null);
+  //      }
+  //    })
+  //        邀请好友
+  $("#j-labor").on("click","#j-invite-link",function(){
+    if(os==1){
+      Android.ToActivity("signIn",  null);
+    }
+  })
+
+  $("#j-labor").on("click",".j-invite-invest",function(){
+    if(os==1){
+      Android.ToActivity("projectList",  null);
+    }
+  })
+
+
+</script>
+#set($pageScript="
+<script src='$aliyun/lib/js/appHookES5.js'></script>
+<script src='$res_url/build/js/appHook.js'></script>
+##<script src='$res_url/assets/js/common/appHookES5.js'></script>
+<script src='$aliyun/lib/vue/vue.min.js'></script>
+<script src='$aliyun/lib/vue/vue.extend.js'></script>
+##<script src='$siteurl/res/lib/js/vconsole.min.js'></script>
+<script>
+  var logined =$!{logined}
+  var receiveData = $!{data},
+          os = $!{os};
+  console.log(receiveData)
+  seajs.use('$res_url/source/js/activity/labor201704');
+</script>
+")
+#CSRFToken("xToken")

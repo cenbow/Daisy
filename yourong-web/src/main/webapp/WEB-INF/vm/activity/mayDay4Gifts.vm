@@ -1,0 +1,129 @@
+##四重壕礼，嗨翻五一
+#parse("/common/common.vm")
+#set($title="四重壕礼，嗨翻五一_$!{title_suffix}")
+#set($css_url=["$root_css_url/activity/mayDay4Gifts.css"])
+##页面入口标识
+#set($entry=["activity","mayDay4Gifts"])
+
+#if($currentUser)
+    #set($logined=true)
+#else
+    #set($logined=false)
+#end
+#CSRFToken('xToken')
+
+## banner
+<div class="g-top1"></div>
+<div class="g-top2"></div>
+<div class="g-top3"></div>
+
+## main
+<div class="g-main" id="j-main" data-logined="$logined" data-userDo="${servletUtil.getUserDO().id}">
+    ## 右边一个小礼盒 cc wait
+    <div class="u-gift"></div>
+
+    <div class="g-wrap" id="j-wrap">
+        <div class="g-redbag-wrapper z-hide" id="j-redbag-wrapper">
+            ## 活动未开始或者已经结束时的蒙层
+            <div class="u-rain-area-mask z-hide" id="j-rain-area-mask">
+                <h1 class="u-mask-title" id="j-mask-title"></h1>
+            </div>
+            
+            ## 红包打开的弹框
+            <div class="m-redbag-open z-hide" id="j-redbag-open">
+                <div class="u-redbag-open-img"></div>
+                <span class="u-redbag-close" id="j-redbag-close"></span>
+                <div class="u-redbag-open-btn" id="j-redbag-open-btn">点击查看</div>
+            </div>
+
+            ## 红包雨
+            <div class="g-redbag-rain" id="j-redbag-rain" data-couponForDayFlag>
+                ## IE9只做一些静止图片
+                <div class="m-rain-area z-hide" id="j-rain-area-IE">
+                    <h1 class="u-title-1"><span class="u-title-icon u-icon-clock"></span>准点红包雨</h1>
+                    <span class="u-redbag-flakes-IE flakes-IE-1"></span>
+                    <span class="u-redbag-flakes-IE flakes-IE-2"></span>
+                    <span class="u-redbag-flakes-IE flakes-IE-3"></span>
+                    <span class="u-redbag-flakes-IE flakes-IE-4"></span>
+                    <span class="u-redbag-flakes-IE flakes-IE-5"></span>
+                    <span class="u-redbag-flakes-IE flakes-IE-6"></span>
+                    <span class="u-redbag-flakes-IE flakes-IE-7"></span>
+                    <span class="u-redbag-flakes-IE flakes-IE-8"></span>
+                </div>
+
+                <div class="m-rain-area z-hide" id="j-rain-area">
+                    <h1 class="u-title-1"><span class="u-title-icon u-icon-clock"></span>准点红包雨</h1>
+                    <span class="u-redbag-flakes flakes-1"></span>
+                    <span class="u-redbag-flakes flakes-2"></span>
+                    <span class="u-redbag-flakes flakes-3"></span>
+                    <span class="u-redbag-flakes flakes-4"></span>
+                    <span class="u-redbag-flakes flakes-5"></span>
+                    <span class="u-redbag-flakes flakes-6"></span>
+                    <span class="u-redbag-flakes flakes-7"></span>
+                    <span class="u-redbag-flakes flakes-8"></span>
+                    <span class="u-redbag-flakes flakes-9"></span>
+                    <span class="u-redbag-flakes flakes-10"></span>
+                    <span class="u-redbag-flakes flakes-11"></span>
+                    <span class="u-redbag-flakes flakes-12"></span>
+                    <span class="u-redbag-flakes flakes-13"></span>
+                    <span class="u-redbag-flakes flakes-14"></span>
+                    <span class="u-redbag-flakes flakes-15"></span>
+                </div>
+                <div class="m-rule-wrapper">
+                    <div class="u-waves"></div>
+                    <div class="m-rule-30">
+                        1.每日<span id="j-receiveStartTime"></span>—<span id="j-receiveEndTime"></span>期间，登录点击红包雨可领取现金券；每日一场，每场每位用户最多只获得一张现金券；<br>
+                        2.活动期间，新用户可得60元哦（实名认证送30元+本活动领30元）；<br>
+                        3.现金券起投金额≥1000元，起投期限≥30天，领取后5天内有效；
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        ## 三重礼
+        <div class="g-three-gifts z-hide" id="j-three-gifts">
+            <h1 class="u-title-2"><span class="u-title-icon u-icon-doller"></span>投满拿奖励</h1>
+            <div class="u-total-count-wrapper">
+                <p class="u-total-count z-hide">您当日累计额为：<span id="j-investAmout"></span>元</p>
+            </div>
+            <div class="g-gifts-wrapper z-hide" id="j-gifts-wrapper">
+                <div class="m-gift">
+                    <div class="u-redbag u-redbag-88 j-redbag" id="j-redbag-88"></div>
+                    <p class="u-rule-three">
+                        1.当天累计投资额满1万元可领取；<br>2.奖励使用条件：起投金额≥4000元，<br>&nbsp;&nbsp;&nbsp;起投期限≥60天；<br>3.奖励仅限当天领取，领取后5天内有效；
+                    </p>
+                    <span class="u-red-btn j-gift-btn" id="j-gift-btn-88"></span>
+                </div>
+
+                <div class="m-gift" style="margin-left: 55px;">
+                    <div class="u-redbag u-redbag-188 j-redbag" id="j-redbag-188"></div>
+                    <p class="u-rule-three">
+                        1.当天累计投资额满3万元可领取；<br>2.奖励使用条件：起投金额≥8000元，<br>&nbsp;&nbsp;&nbsp;起投期限≥90天；<br>3.奖励仅限当天领取，领取后5天内有效 ；
+                    </p>
+                    <span class="u-red-btn j-gift-btn" id="j-gift-btn-188"></span>
+                </div>
+
+                <div class="m-gift" style="width: 250px; margin-left:57px;">
+                    <div class="u-redbag u-redbag-500 j-redbag" id="j-redbag-500"></div>
+                    <p class="u-rule-three">
+                        1.当天累计投资额满5万元可领取；<br>2.奖励使用条件：起投金额≥20000元，<br>&nbsp;&nbsp;&nbsp;起投期限≥120天；<br>3.奖励仅限当天领取，领取后5天内有效；
+                    </p>
+                    <span class="u-red-btn j-gift-btn" id="j-gift-btn-500"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+## 规则
+<div class="g-rule">
+    <div class="g-wrap">
+        <strong class="f-fs14">活动规则：</strong><br>
+        1、活动时间：<strong>2016年5月1日—5月3日；</strong><br>
+        2、活动对象：有融网所有用户，新用户注册后可参与活动；<br>
+        3、准点红包雨：<strong>每日14:00—15:00</strong>，登录点击红包雨可领取现金券；每日一场，每场每位用户最多只获得一张现金券；<br>
+        4、投满拿奖励：用户每日投资满一定额度，即可领取对应奖励，每档奖励每日最多领取一次，可领取多档奖励； 每日累计投资额只计算当天24小时内投资额，前一天投资额不计入次日；<br>
+        5、如有其他疑问，请拨打客服热线：<strong>400-025-6688</strong>；<br>
+        本活动最终解释权归有融网所有
+    </div>
+</div>

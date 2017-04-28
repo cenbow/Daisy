@@ -1,0 +1,79 @@
+##禁止通过IP直接访问
+#parse("/common/common.vm")
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+
+    <title>有融网-全透明的互联网理财优选平台！</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+
+    <link rel="stylesheet" href="$root_css_url/base.css" />
+    <link rel="stylesheet" href="$root_css_url/common.css" />
+    <link rel="stylesheet" href="$root_url/static/lib/css/ui-dialog.css">
+</head>
+<style>
+body{
+	padding: 0 0 9999px;
+	margin: 0 0 -9999px;
+	overflow: hidden;
+}
+.u-ip-bd {
+    width: 260px;
+    margin: 0 auto;
+    height: 760px;
+    text-align: center;
+}
+.u-ip-red {
+    height: 250px;
+    width: 260px;
+    background: #d74148;
+}
+.u-ip-logo {
+    width: 260px;
+    color: #ffdbdb;
+    height: 180px;
+    background: url($root_url/static/img/common/ip_logo.png) no-repeat center top;
+    font-size: 24px;
+    text-align: center;
+    line-height: 1em;
+}
+.u-ip-service {
+    padding-top: 96px;
+}
+.u-ip-sorry {
+    width: 260px;
+    height: 55px;
+    margin-top: 44px;
+    text-align: center;
+    color: #666;
+}
+.u-ip-sorry a:visited {
+    color: #d74148;
+}
+.u-ip-sorry a {
+    font-style: oblique;
+    padding: 0 6px 0 0;
+}
+.u-ip-sorry a:link {
+    color: #d74148;
+}
+</style>
+
+<body>
+    <div class="u-ip-bd">
+        <div class="u-ip-red"></div>
+        <div class="u-ip-logo">
+            <p class="f-fs14 u-ip-service">客户服务热线</p>
+            <p>400-025-6688</p>
+        </div>
+        <div class="u-ip-sorry">
+            <p class="f-fs14">抱歉！您不能通过IP来访问有融网</p>
+            <p class="f-fs14">请点击 <a class="f-fs18 f-fwb" href="http://www.yrw.com">www.yrw.com</a>登录</p>
+        </div>
+    </div>
+</body>
+
+</html>

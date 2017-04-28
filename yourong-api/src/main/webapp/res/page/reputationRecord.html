@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    <title>我的人气值</title>
+    <link rel="stylesheet" href="/res/lib/frozenui/1.2.1/css/frozen.css" media="all">
+    <link href="/res/source/css/common.css" rel="stylesheet">
+    <style>
+
+        .u-header {
+            z-index: 2;
+            text-align: center;
+            color: #fff;
+            height: 50px;
+            line-height: 50px;
+            margin: 0;
+            padding: 0 1rem;
+            background-color: #d74148;
+            background-size: auto 50%;
+        }
+
+        .u-header a {
+            position: absolute;
+            left: 1rem;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        .u-header a:link,
+        .u-header a :visited,
+        .u-header a :hover {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .u-header span {
+            font-weight: bold;
+        }
+
+        .f-pos-r {
+            position: relative;
+        }
+
+        body {
+            font-size: 16px;
+            background: #eee;
+            margin: 0;
+        }
+
+        /**公共**/
+        .m-reRecord-table {
+            padding: 0 3%;
+        }
+
+        .m-reRecord-table table {
+            width: 100%;
+            margin: 23px 0 30px;
+        }
+
+        .m-reRecord-table thead {
+            height: 37px;
+            line-height: 37px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #ccc;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .m-reRecord-table tbody {
+            color: #999;
+        }
+
+        .m-reRecord-table table th {
+            font-size: 1rem;
+            border-left: 1px solid #ccc;
+        }
+
+        .m-reRecord-table table th:first-child {
+            border-left: none;
+        }
+        .m-reRecord-table tbody td{
+            height: 37px;
+            line-height: 37px;
+            text-align: center;
+            border-left: 1px solid #ccc;
+            border-bottom:1px solid #ccc ;
+        }
+        .m-reRecord-table tbody td:first-child{
+            border-left: none;
+        }
+    </style>
+</head>
+<body>
+<h2 class="u-header f-pos-r">
+    <a href="http://192.168.0.5:8081/res/page/reputationPage.html">返回</a>
+    <span class="f-fs18">
+        人气值
+    </span>
+</h2>
+
+<div class="m-reRecord-table">
+    <table>
+        <thead>
+        <tr>
+            <th width="50%">时间</th>
+            <th width="25%">行为</th>
+            <th width="25%">人气值</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>2015-02-21 23:20:30</td>
+            <td>每日签到</td>
+            <td>5.00点</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div class="m-pagenav f-tar">
+    <span class="u-pnav-prev u-circle-12">上一页</span>
+    <span class="u-pnav-crt u-circle-12">1</span>
+    <a href="/products/m/list-all-all-2.html" class="u-pnav-link u-circle-12">2</a>
+    <a href="/products/m/list-all-all-3.html" class="u-pnav-link u-circle-12">3</a>
+    <a href="/products/m/list-all-all-4.html" class="u-pnav-link u-circle-12">4</a>
+    <a href="/products/m/list-all-all-5.html" class="u-pnav-link u-circle-12">5</a>
+    <a href="/products/m/list-all-all-6.html" class="u-pnav-link u-circle-12">6</a>
+    <a href="/products/m/list-all-all-7.html" class="u-pnav-link u-circle-12">7</a>
+    <a href="/products/m/list-all-all-8.html" class="u-pnav-link u-circle-12">8</a>
+    <a href="/products/m/list-all-all-9.html" class="u-pnav-link u-circle-12">9</a>
+    <a href="/products/m/list-all-all-2.html" class="u-pnav-prev u-circle-12">下一页</a>
+</div>
+
+<script src="/res/lib/js/sea.js"></script>
+<script src="/res/lib/js/zepto.min.js"></script>
+</body>
+</html>

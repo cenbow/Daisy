@@ -1,0 +1,75 @@
+.m-memberReport-body{
+    padding: 0 9% 0;
+    width: 82%;
+}
+.m-memberReport-body h2{
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #666;
+    margin: 3rem 0 0.8rem;
+}
+.m-memberReport-body h5{
+    margin: 2rem 0 0;
+    font-size: 1.8rem;
+    color: #666;
+}
+.m-memberReport-body h5 span{
+    font-size: 1.6rem;
+    color: #999;
+}
+.m-memberReport-way p{
+    font-size: 1.6rem;
+    color: #999;
+    margin: 1rem 0 0;
+}
+.m-memberReport-way p i{
+    display: inline-block;
+    position: absolute;
+    top: 5px;
+    left: 0;
+}
+.m-memberReport-way p span{
+    margin: 0 0 0 26px;
+}
+.u-way-pc{
+    width: 22px;
+    height: 18px;
+    background: url("../../../img/activity/memberReport_icon.png") no-repeat 0 0;
+}
+.u-way-tel{
+    width: 22px;
+    height: 19px;
+    background: url("../../../img/activity/memberReport_icon.png") no-repeat 0 -23px;
+}
+.u-way-wechat{
+    width: 22px;
+    height: 19px;
+    background: url("../../../img/activity/memberReport_icon.png") no-repeat 0 -47px;
+}
+.m-memberReport-way span{
+    width: 91%;
+    display: inline-block;
+}
+.m-memberReport-body>p{
+    font-size: 1.6rem;
+    color: #999;
+    margin: 1rem 0 0;
+}
+.m-memberReport-body>a{
+    width: 98%;
+    height: 5rem;
+    display: block;
+    text-align: center;
+    line-height: 5rem;
+    margin: 5rem auto 4rem;
+    background: #d74148;
+    color: #fff;
+    font-size: 2.4rem;
+    -moz-border-radius: 2.5rem;
+    -webkit-border-radius: 2.5rem;
+    border-radius: 2.5rem;
+}
+.m-memberReport-body>span{
+    font-size: 1.6rem;
+    color: #999;
+}

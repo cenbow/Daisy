@@ -1,0 +1,336 @@
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+###set($description="知识换惊喜，答题送红包，快来参加吧！")
+#set($subTitle="知识换惊喜，答题送红包，快来参加吧！")
+#if($currentUser)
+    #set($logined=true)
+#else
+    #set($logined=false)
+#end
+<style>
+    [v-cloak] {
+        display: none;
+    }
+
+    .u-wrap {
+        width: 100%;
+        background: #fef1df;
+        padding-bottom: 40px;
+        position: relative;
+    }
+
+    .u-glodBg {
+        font-size: 0;
+    }
+
+    .u-outWrap {
+        width: 92.02%;
+        background: #f08d58;
+        margin: auto;
+        position: relative;
+    }
+
+    .u-innerWrap {
+        width: 94.02%;
+        background: #fffdf2;
+        margin: auto;
+        position: relative;
+        padding-bottom: 76px;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+        padding-top: 20px;
+    }
+
+    .m-couponList .u-coupon {
+        width: 60%;
+        margin: auto;
+        position: relative;
+        margin-bottom: 10px;
+    }
+
+    .u-receiveBtn {
+        width: 100%;
+        text-align: center;
+        color: #c47f5a;
+        font-size: 14px;
+    }
+
+    .u-receiveBtn .u-submitBtn {
+        width: 90%;
+        margin: auto;
+        background: #ff7545;
+        font-size: 20px;
+        height: 40px;
+        line-height: 40px;
+        border-radius: 20px;
+        box-shadow: 0px 6px 0px #ee5a26;
+        margin-bottom: 14px;
+        color: #ffffff;
+    }
+
+    .u-receiveBtn .u-submitBtn.z-gameOver {
+        background: #cccccc;
+        box-shadow: 0px 6px 0px #c4c4c4;
+    }
+
+    .u-receiveBtn .u-submitBtn div {
+        width: 100%;
+        height: 100%;
+    }
+    .u-receiveBtn .u-submitBtn a {
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        color: #ffffff;
+    }
+
+    .u-littleTip {
+        width: 100%;
+        background: url("$res_url/img/activity/subscription/tipBg.png") no-repeat center;
+        background-size: 100%;
+        color: #c47f5a;
+        text-align: center;
+        font-size: 15px;
+        line-height: 81px;
+        vertical-align: middle;
+    }
+
+    .u-littleTip em {
+        color: #ee5a26;
+    }
+
+    .u-dimensional div {
+        width: 49%;
+        display: inline-block;
+        vertical-align: middle;
+        color: #c47f5a;
+        font-size: 15px;
+        line-height: 26px;
+        text-align: center;
+    }
+
+    .u-dimensional div em {
+        color: #d74148;
+    }
+
+    .u-dimensional div i {
+        text-decoration: underline;
+    }
+
+    .u-lastTips {
+        width: 92%;
+        text-align: left;
+        font-size: 15px;
+        color: #c47f5a;
+        margin: auto;
+        line-height: 26px;
+    }
+
+    .u-lastTips em {
+        color: #d74148;
+    }
+
+    .u-rules {
+        width: 90px;
+        height: 66px;
+        position: absolute;
+        right: 6px;
+        margin-left: 71%;
+        font-size: 0;
+    }
+
+    .u-footerImg {
+        position: relative;
+        font-size: 0;
+    }
+
+    .u-rulesBlock {
+        color: #c47f5a;
+        font-size: 12px;
+        width: 74%;
+        margin: auto;
+        position: fixed;
+        top: 30%;
+        left: 8%;
+        background: #ffffff;
+        border-radius: 8px;
+        padding: 50px 5%;
+        z-index: 1000;
+        display: none;
+        line-height: 24px;
+    }
+
+    .u-closeBtn {
+        width: 18px;
+        height: 18px;
+        border: 1px solid #c47f5a;
+        border-radius: 50%;
+        position: absolute;
+        right: 14px;
+        top: 14px;
+        text-align: center;
+        line-height: 18px;
+    }
+
+    .f-fix {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        height: 64px;
+        background: white;
+        opacity: 0.94;
+        font-family: "Microsoft Yahei";
+        font-size: 100%;
+        font-weight: normal;
+    }
+
+    .f-fix .m-logo {
+        padding-left: 50px;
+        margin-top: 10px;
+        margin-left: 20px;
+        height: 43px;
+        width: 60%;
+        overflow: hidden;
+        background: url($res_url/img/landing/sixgiftB/logo-new.png) no-repeat 1px center;
+        background-size: 40px 40px;
+    }
+
+    .m-logo span {
+        display: block;
+        font-size: 14px;
+        margin-bottom: 4px;
+        margin-top: 1px;
+        color: black;
+    }
+
+    .m-down a {
+        position: absolute;
+        right: 10px;
+        bottom: 15px;
+        background: #D74048;
+        border-radius: 4px;
+        color: white;
+        height: 30px;
+        line-height: 30px;
+        width: 80px;
+        text-align: center;
+        font-size: 16px;
+    }
+</style>
+<div id="j-subscription" logined="$logined" v-cloak>
+    <div class="u-wrap">
+        <div class="u-topBanner">
+            <img src="$res_url/img/activity/subscription/banner.png" alt="" width="100%">
+        </div>
+        <div class="u-glodBg">
+            <img src="$res_url/img/activity/subscription/gold.png" alt="" width="100%">
+        </div>
+        <div class="u-outWrap">
+            <div class="u-innerWrap">
+                <div class="m-couponList">
+                    <div class="u-coupon">
+                        <img v-if="isGet" src="$res_url/img/activity/subscription/code_38.png" alt="" width="100%">
+                        <img v-else src="$res_url/img/activity/subscription/grayCode_38.png" alt="" width="100%">
+                    </div>
+                    <div class="u-coupon">
+                        <img v-if="isGet" src="$res_url/img/activity/subscription/code_78.png" alt="" width="100%">
+
+                        <img v-else src="$res_url/img/activity/subscription/grayCode_78.png" alt="" width="100%">
+                    </div>
+                    <div class="u-coupon">
+                        <img v-if="isGet" src="$res_url/img/activity/subscription/code_188.png" alt="" width="100%">
+
+                        <img v-else src="$res_url/img/activity/subscription/grayCode_188.png" alt="" width="100%">
+
+                    </div>
+
+                </div>
+                <div class="u-receiveBtn">
+                    <div class="u-submitBtn" :class="{'z-gameOver':gameEnd}">
+                        <div v-if="unStart" class="j-unStart">活动未开始</div>
+                        <div v-if="gameEnd" class="j-end">活动已结束</div>
+
+                        <div class="j-start" v-if="gameStart">
+                            #if(($logined&&$!data.result.receive)||!$logined)
+                                <a class="j-loginHref" href="{{loginUrl}}">领 取</a>
+                            #else
+                                <div>领取成功！</div>
+                            #end
+                        </div>
+                    </div>
+                    <div>
+                        每天可领取一次哦
+                    </div>
+                </div>
+                <div class="u-littleTip">
+                    右上角分享至朋友圈，一起<em>领取奖励</em>！
+                </div>
+                <div class="u-dividingLine">
+                    <img src="$res_url/img/activity/subscription/dividingLine.png" alt="" width="100%">
+                </div>
+                <div class="u-dimensional">
+                    <div>
+                        <span style="text-align: left">
+                        关注<em>【有融范】</em> <br>
+                        <i>更多精彩等你发现</i>
+                        </span>
+                        <br>
+                        <img src="$res_url/img/activity/subscription/icon_hand.png" alt="" width="32px" height="26px">
+                    </div>
+                    <div>
+                        <img src="$res_url/img/activity/subscription/dimensional_code.png" alt="" width="80%">
+                    </div>
+                </div>
+
+                <div class="u-lastTips">
+                    <em>有融范</em>是一个谈天说地聊理财的地方 <br>
+                    <em>有钱途</em>，等你哦～
+                </div>
+                <div class="u-rules ">
+                    <img @click="showRules('.j-rulesBlock')" src="$res_url/img/activity/subscription/rule.png" alt=""
+                         width="100%">
+                </div>
+
+            </div>
+        </div>
+        <div class="u-footerImg">
+            <img src="$res_url/img/activity/subscription/footerImg.png" alt="" width="100%">
+        </div>
+
+        <div class="u-rulesBlock j-rulesBlock">
+            <div class="u-closeBtn j-closeBtn" @click="closeRules('.j-rulesBlock')">X</div>
+            1.通过订阅号【有融范】答题可以获得现金券奖励；<br>
+            2.每个用户每天可领取一次，现金券领取后1天内有效，使用条件见券面；<br>
+            3.活动时间:{{initData.result.startTime | dateFormat 'yyyy年MM月dd日hh:mm'}}-{{initData.result.endTime | dateFormat
+            'MM月dd日hh:mm' }}；<br>
+            4.如有其他疑问，请拨打客服热线:400-025-6688；<br>
+            5. 本活动最终解释权归有融网所有。
+        </div>
+        <div class="u-cover j-cover"></div>
+    </div>
+    <h2 class="f-fix z-hidden">
+        <a href="$siteurl/mIndex">
+            <div class="m-logo">
+                <span>有融网</span>
+                <span>全透明的互联网理财优选平台</span>
+            </div>
+        </a>
+    <span class="m-down">
+
+        <a href="$siteurl/static/page/twoCodeRedict.html">立即下载</a>
+    </span>
+    </h2>
+
+</div>
+#CSRFToken('xToken')
+##<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+<script src="$aliyunOss_url/res/lib/vue/v1/vue.min.js"></script>
+
+#set($pageScript="
+<script>
+    var initData = $!{data},
+            mLogined = $logined
+                    seajs.use('$m_js_url/activity/subscription.js')
+</script>
+")
+

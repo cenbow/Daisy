@@ -1,0 +1,247 @@
+#parse("/common/common.vm")
+#set($layout = "/layout/default.vm")
+#set($js_url=["$root_js_url/modules/member/core.js","$root_js_url/modules/investment.js"])
+###租赁分红
+<style>
+.u-dividend-leaseicon{ 
+	height:16px;
+	width:60px;
+    margin: -4px 0 0 5px;
+	vertical-align: middle;
+	display:inline-block;
+	margin-left:5px;
+	background:url($root_url/static/img/activity/leaseBonus/dividend_icon.png) no-repeat -159px -204px;
+}
+
+.u-selector li {
+    padding: 0 12px;
+}
+
+</style>
+
+
+<div class="u-rtable-wrap  u-investList-wrap f-round">
+	#if($!{servletUtil.getTransactionSignableContractNum()}>0)
+        <span id="j-eSignatue-allbtn" data-page="2">一键签署</span>
+	#end
+	<table id="j-invest-table" class="u-invest-table u-investList-table u-invest-ntunderline">
+		<thead>
+			<tr>
+                <th width="150">项目名称</th>
+                <th width="90">年化收益</th>
+    			<th width="70">收益周期</th>
+    			<th width="160">投资额</th>
+                <th width="152">收益总计</th>
+    			<th width="134">查看</th>
+    			<th width="95">
+                    #set($statusList=['','履约中','已还款','流标',''])
+                    #set($status=$!{query.status})
+                    #if($status)
+                        #set($statusText=$statusList[$status])
+                    #else
+                        #set($statusText='全部状态')
+                    #end
+                    <div class="u-selector j-selector f-round j-status-selector">
+                        <button>$statusText</button> <i></i>
+                        <ul class="f-round">
+                            <li value="">全部状态</li>
+                            <li value="1">履约中</li>
+                            <li value="2">已还款</li>
+                            <li value="3">流标</li>
+                        </ul>
+                        <input type="hidden" class="j-selected-ipt" id="j-invest-status" name="status" value="$!{status}">
+                    </div>
+				</th>
+                <th width="95">
+                    #set($signStatusList=['','未签署','已签署','已过期'])
+                    #set($signStatus=$!{query.signStatus})
+                    #if($signStatus)
+                        #set($signStatusText=$signStatusList[$signStatus])
+                    #else
+                        #set($signStatusText='协议')
+                    #end
+
+                    <div class="u-selector j-selector f-round j-signStatus-selector">
+                        <button>$signStatusText</button> <i></i>
+                        <ul class="f-round">
+                            <li value="">协议</li>
+                            <li value="1">未签署</li>
+                            <li value="2">已签署</li>
+                            <li value="3">已过期</li>
+                        </ul>
+                        <input type="hidden" class="j-selected-ipt" name="signStatus" value="$!{signStatus}">
+                    </div>
+                </th>
+			</tr>
+		</thead>
+
+		<tbody>
+		#if($!transactionPage.data && $!transactionPage.data.size()>0)
+			#foreach( $!transaction in $!{transactionPage.data} ) 
+			<tr data-activitySign="$!{transaction.activitySign}"
+			    data-state="$!{transaction.statusName}"
+			    data-status="$!{transaction.status}"
+			    data-transactionId="$!{transaction.transactionId}"
+			    data-transactionTime="$!{transaction.transactionTime}"
+				data-sign="${projectUtils.getProjectActivitySign($!{transaction.projectId})}==1">
+                #if($!{transaction.projectCategory}==2)
+                    #set($pid=$!{transaction.transferId})
+                #else
+                    #set($pid=$!{transaction.projectId})
+                #end
+                <td class="u-invest-pjname">
+                    <a class="u-row f-tal u-invest-underline" target="_blank"
+                       href="$root_url/products/detail-$!{pid}.html">$!{transaction.prefixProjectName}
+				#if(${projectUtils.getProjectActivitySign($!{transaction.projectId})}==1)<i class="u-icon-ruyi j-icon-ruyi"></i>#end
+				#if($!transaction.joinLease)<i class="u-dividend-leaseicon"></i>#end
+
+                #if($!transaction.projectCategory ==1)
+                    <i class="#if($!transaction.transferStatus==2) u-transfer-flag z-part-transfered
+                 #elseif($!transaction.transferStatus==3) u-transfer-flag #end"></i>#end<br>
+                        <em class="f-color-b7">交易号：$!{transaction.transactionId}</em></a>
+                </td>
+
+                <td><em class="u-row">
+					#if($!transaction.extraAnnualizedRate!=0)
+						$!{transaction.annualizedRate}%
+					#else
+						$!{transaction.totalAnnualizedRate}%
+					#end</em>
+                </td>
+				<td>
+				#if($!transaction.projectCategory=="2")
+					$!{transaction.profitPeriod}
+				#else
+					#if($!transaction.investType=="2")
+					$!{transaction.profitPeriod}
+					#else
+						$!{transaction.totalDays}天
+					#end
+				#end
+				</td>
+				<td>
+					#if($!transaction.projectCategory == 1)
+                        <em class="u-amount f-ff-ver u-withAmount" data-investAmount="$!{transaction.investAmount}">¥$!formulaUtil.getFormatPrice($!{transaction.investAmount})<br>
+						#if($!transaction.formatUsedCouponAmount && $!transaction.formatUsedCouponAmount!="")<span class="f-fc-gray">
+							(¥$!{transaction.formatUsedUserAmount} + <strong class="f-fwn f-fc-red2">¥$!{transaction.formatUsedCouponAmount}</strong>)
+								</span>#end									
+						</em>
+					#else
+                        <em class="u-amount f-ff-ver u-withAmount" data-investAmount="$!{transaction.transferPrincipal}">¥$!formulaUtil.getFormatPrice($!{transaction.transferPrincipal})</em>
+					#end
+				</td>
+##				<td>
+##                        <em class="u-amount f-ff-ver">¥$!formulaUtil.formatCurrencyNoUnit($!{transaction.totalInterest})</em>
+##				</td>
+
+				#if($!{transaction.totalExtraInterest}>0)
+                    <td><em class="u-amount f-ff-ver">¥$!formulaUtil.formatCurrencyNoUnit($!{transaction.allInterest})</em></br>
+                        <span class="f-extra-amount-span f-ff-ver">
+							(￥$!{transaction.totalInterest} + <strong class="f-fwn f-fc-red2">￥$!{transaction.totalExtraInterest}</strong>)
+						</span>
+                    </td>
+				#else
+					<td>
+						<em class="u-amount f-ff-ver">¥$!formulaUtil.formatCurrencyNoUnit($!{transaction.totalInterest})</em>
+					</td>
+				#end
+
+
+
+                <td>
+                    <a href="#" class="details-link u-invest-detail f-pos-r j-box-pos"
+                       data-action="detail"
+                       data-status="$!{transaction.status}"
+                       data-projecttype="$!{transaction.isDirectProject}"
+                       data-tranId="$!{transaction.transactionId}"
+                       data-category="$!{transaction.projectCategory}"
+					   data-projectstatus="$!{transaction.projectStatus}"
+                       data-prepayment="$!{transaction.prepayment}"><s></s>详情</a>
+
+					#if(($!transaction.investType=="2"&&$!transaction.status=="3")||($!transaction.projectCategory=="2"&&$!transaction.status=="3"))
+
+					#else
+                        <a href="#" class="interests-link u-invest-detail f-pos-r j-box-pos"
+                           data-action="profit"
+                           data-tranId="$!{transaction.transactionId}"
+                           data-category="$!{transaction.projectCategory}"
+                           data-statusTransfer="$!{transaction.transferStatus}"
+                           data-prepayment="$!{transaction.prepayment}"><s class="z-current"></s>收益表</a>
+					#end
+                </td>
+				<td data-investAmount="$!transaction.investAmount" data-status="$!transaction.status">
+					$!transaction.statusCNName
+				</td>
+				<td class="u-eSignatue-btn">
+				#if($!transaction.signStatus==0)
+                    <a class="u-eSignatue j-eSignatue-fail">立即签署</a>
+				#elseif($!transaction.signStatus==1)
+                    <a class="u-eSignatue j-eSignatue-result" target="_blank" href="/member/transit?transactionId=$!{transaction.transactionId}"  data-transactionid="$!{transaction.transactionId}"
+						#if($!{transaction.projectCategory}==2)
+							#if($!{transaction.projectType}==1)
+                                   data-contracturl="/transaction/ztTransferContract/view?orderId=$!{transaction.orderId}"
+							#else
+                                 data-contracturl="/transaction/transferContract/view?orderId=$!{transaction.orderId}"
+							#end
+						#else
+							#if($!{transaction.projectType}==1)
+                                data-contracturl="/transaction/p2pContract/view?orderId=$!{transaction.orderId}"
+							#else
+                               data-contracturl="/transaction/contract/view?orderId=$!{transaction.orderId}"
+							#end
+						#end
+						>立即签署</a>
+				#elseif($!transaction.signStatus==2)
+				  
+					#if($!{transaction.projectCategory}==2)
+						#if($!{transaction.projectType}==1)
+                            <a href="/transaction/ztTransferContract/view?orderId=$!{transaction.orderId}" target="_blank" class="u-eSignatue z-current j-eSignatue-finish">已签署</a>
+						#else
+                            <a href="/transaction/transferContract/view?orderId=$!{transaction.orderId}" target="_blank" class="u-eSignatue z-current j-eSignatue-finish">已签署</a>
+						#end
+					#else
+						#if($!{transaction.projectType}==1)
+                            <a href="/transaction/p2pContract/view?orderId=$!{transaction.orderId}" target="_blank" class="u-eSignatue z-current j-eSignatue-finish">已签署</a>
+						#else
+                            <a href="/transaction/contract/view?orderId=$!{transaction.orderId}" target="_blank" class="u-eSignatue z-current j-eSignatue-finish">已签署</a>
+						#end
+					#end
+
+				#elseif($!transaction.signStatus==3)
+					#if($!{transaction.projectCategory}==2)
+						#if($!{transaction.projectType}==1)
+                            <a href="/transaction/ztTransferContract/view?orderId=$!{transaction.orderId}" target="_blank" class="u-eSignatue z-current j-eSignatue-past">已过期</a>
+						#else
+                            <a href="/transaction/transferContract/view?orderId=$!{transaction.orderId}" target="_blank" class="u-eSignatue z-current j-eSignatue-past">已过期</a>
+						#end
+					#else
+						#if($!{transaction.projectType}==1)
+                            <a href="/transaction/p2pContract/view?orderId=$!{transaction.orderId}" target="_blank" class="u-eSignatue z-current j-eSignatue-past">已过期</a>
+						#else
+                            <a href="/transaction/contract/view?orderId=$!{transaction.orderId}" target="_blank" class="u-eSignatue z-current j-eSignatue-past">已过期</a>
+						#end
+					#end
+
+				#end </td>
+				<input type="hidden" id="transactionId" value="$!{transaction.transactionId}"> 
+			</tr>
+			#end
+
+		#else
+    		#if($!query.startDate || $!query.endDate || $!query.status)
+				<tr><td colspan="7" class="u-table-empty">暂无记录</td></tr>
+            #else
+            <tr>
+                <td colspan="7" class="u-table-empty">您还没有投资，<a
+                        href="#if(${projectUtils.isInvestingProject()})/products/list-all-all-investing-1-createTimeAsc-1.html#else/products/list-all-all-all-1-createTimeAsc-1.html#end">立即投资</a>
+                </td>
+            </tr>
+    		#end
+		#end
+		</tbody>
+	</table>
+</div>
+
+<div id="qrcode" class="u-qrcode"></div>
+
+#ajaxPagePlugin($!transactionPage)

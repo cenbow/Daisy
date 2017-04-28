@@ -1,0 +1,83 @@
+#set($layout = "/layout/iframe.vm")
+#parse("/ic/overdue/head.vm")
+<div class="col-xs-12">
+<div class="table-responsive">
+    <div>
+       <form id="overdueInfoSearchForm">
+		<table id="overdueInfo-table-search" class="table table-striped table-bordered" cellspacing="0" width="100%">
+			<tr>
+				<td>项目ID：</td>
+				<td><input type="text" name="projectId" id="debtOverRepay_projectId" class="input-medium" datatype="/^[0-9]\d*$/" /></td>
+				<td>还款日期：</td>
+				<td>
+					<input type="text" id="debtOverRepay_debtOverRepayDate" name="refundTime" placeholder="" datatype="*" dateFormat="yyyy-mm-dd" value="" class="col-xs-12 col-sm-4 dateInput" onclick="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd'});">
+                </td>
+				</td>
+				<td colspan="10" style="text-align:center">
+					<button id = "query_overdue_debt" type="button" class="btn btn-info btn-sm btn-primary">确定</button>
+				</td>
+			</tr>
+		</table>
+	   </form>
+    </div>
+	<br/>
+	<div id="debt_overdue_info" style="display:none">
+	  <table id="overdueRemark-table-1" class="table table-striped table-bordered" cellspacing="0" width="100%">
+	    <tr>
+		  <th>
+			<form role="form" class="form-horizontal" id="debt_overdue_repay_info_form" method="post">
+                 <input type="hidden" name="projectId"  id="form-field-debt-overdue-projectId" >
+                 <input type="hidden" name="refundTime"  id="form-field-debt-overdue-refundTime" >
+                 <input type="hidden" name="unreturnPrincipal"  id="form-field-debt-overdue-unreturnPrincipal" >
+                 <input type="hidden" name="overdueDays"  id="form-field-debt-overdue-overdueDays" >
+                <div class="form-group">
+                    <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 逾期本金: </label>
+                    <div class="col-sm-9">
+                        <div class="clearfix">
+                            <input type="text" name="overduePrincipal"  readonly  class="col-xs-10 col-sm-5" placeholder="" id="form-field-debtOverduePrincipal">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="form-field-1" class="col-sm-3 control-label no-padding-right">逾期利息: </label>
+                    <div class="col-sm-9">
+                        <div class="clearfix">
+                            <input type="text" name="overdueInterest"  readonly class="col-xs-10 col-sm-5" placeholder="" id="form-field-debtOverdueInterest">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 滞纳金:</label>
+                    <div class="col-sm-9">
+                        <div class="clearfix">
+                            <input type="text" name="lateFees" readonly class="col-xs-10 col-sm-5" placeholder="" id="form-field-debtLateFees" >
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 共需还款:</label>
+                    <div class="col-sm-9">
+                        <div class="clearfix">
+                            <input type="text" name="payableAmount" readonly class="col-xs-10 col-sm-5" placeholder="" id="form-field-debtPayableAmount" >
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 实际还款:</label>
+                    <div class="col-sm-9">
+                        <div class="clearfix">
+                            <input type="text" name="realPayAmount"  datatype="*" class="col-xs-10 col-sm-5" placeholder="" id="form-field-debtRealPayAmount" >
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" style="text-align:center">
+	                <button type="button" id="btn_save_debt_overdue" class="btn btn-primary">确定</button>
+	                <button type="button" class="btn btn-default" id="cancel_overdue" data-dismiss="modal">取消</button>
+                </div>
+            </form>
+			</th>
+		  </tr>
+		</table>
+	</div>
+</div>

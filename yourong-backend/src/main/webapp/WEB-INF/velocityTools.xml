@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tools>
+
+	<toolbox scope="request">
+		<!-- <tool key="toytool" class="ToyTool" restrictTo="index*"/> -->
+	</toolbox>
+
+	<toolbox scope="session">
+		<!-- <tool key="map" class="java.util.HashMap"/> -->
+	</toolbox>
+
+	<toolbox scope="application">
+	     <tool key="stringUtil" class="com.yourong.common.util.StringUtil" />
+     	 <tool key="dateUtil" class="com.yourong.common.util.DateUtils" />     	 
+		 <tool key="sysServiceUtil" class="com.yourong.backend.utils.SysServiceUtils"/>
+		<tool key="shiro" class="com.yourong.common.web.Permission" />
+	</toolbox>
+</tools>

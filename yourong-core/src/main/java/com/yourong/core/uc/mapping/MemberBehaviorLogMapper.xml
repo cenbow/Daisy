@@ -1,0 +1,89 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.uc.dao.MemberBehaviorLogMapper">
+	<resultMap id="BaseResultMap" type="MemberBehaviorLog">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="member_id" property="memberId" jdbcType="BIGINT" />
+		<result column="type" property="type" jdbcType="INTEGER" />
+		<result column="operat_way" property="operatWay" jdbcType="INTEGER" />
+		<result column="source_id" property="sourceId" jdbcType="VARCHAR" />
+		<result column="operat_time" property="operatTime" jdbcType="TIMESTAMP" />
+		<result column="device" property="device" jdbcType="VARCHAR" />
+		<result column="device_param" property="deviceParam" jdbcType="VARCHAR" />
+		<result column="anchor" property="anchor" jdbcType="VARCHAR" />
+		<result column="remarks" property="remarks" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		id, member_id, type, operat_way, source_id, operat_time, device, device_param, anchor, remarks
+	</sql>
+	<insert id="insert" useGeneratedKeys="true"
+		keyProperty="id" parameterType="MemberBehaviorLog">
+		insert into uc_member_behavior_log
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="memberId != null">
+				member_id,
+			</if>
+			<if test="type != null">
+				type,
+			</if>
+			<if test="operatWay != null">
+				operat_way,
+			</if>
+			<if test="sourceId != null">
+				source_id,
+			</if>
+			<if test="operatTime != null">
+				operat_time,
+			</if>
+			<if test="device != null">
+				device,
+			</if>
+			<if test="deviceParam != null">
+				device_param,
+			</if>
+			<if test="anchor != null">
+				anchor,
+			</if>
+			<if test="remarks != null">
+				remarks,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="memberId != null">
+				#{memberId,jdbcType=BIGINT},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=INTEGER},
+			</if>
+			<if test="operatWay != null">
+				#{operatWay,jdbcType=INTEGER},
+			</if>
+			<if test="sourceId != null">
+				#{sourceId,jdbcType=VARCHAR},
+			</if>
+			<if test="operatTime != null">
+				#{operatTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="device != null">
+				#{device,jdbcType=VARCHAR},
+			</if>
+			<if test="deviceParam != null">
+				#{deviceParam,jdbcType=VARCHAR},
+			</if>
+			<if test="anchor != null">
+				#{anchor,jdbcType=VARCHAR},
+			</if>
+			<if test="remarks != null">
+				#{remarks,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	
+	
+</mapper>

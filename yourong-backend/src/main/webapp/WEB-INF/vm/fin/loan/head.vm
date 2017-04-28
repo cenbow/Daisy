@@ -1,0 +1,21 @@
+#parse("/common/common.vm")
+ #########################################script##################################### 
+ #set($js_config=[ 
+ "'urlMap':{ 
+   'ajax':'$root_url/loan/ajax?', 
+   'query':'$root_url/loan/index?', 
+   'showLoan':'$root_url/loan/showLoan',
+   'toLoan':'$root_url/transaction/loan',
+   'detail':'$root_url/loanDetail/ajax'
+   },
+   'status':#buildDictJson('loan_status'),
+   'permission':{
+   		'loan':$shiro.hasPermission('loan:showLoan'),
+		'indexExcel':$shiro.hasPermission('loan:indexExcel')
+   },
+   'projectStatus':#buildDictJson('project_status'), ##项目状态
+   "
+ ]) 
+ #set($js_url=["$root_url/static/js/loan.js","$root_url/static/js/lib/My97DatePicker/WdatePicker.js"]) 
+ #set($css_url=["$root_url/static/css/loan.css","$root_url/static/js/lib/My97DatePicker/skin/WdatePicker.css"])
+ #########################################DOM##################################### 

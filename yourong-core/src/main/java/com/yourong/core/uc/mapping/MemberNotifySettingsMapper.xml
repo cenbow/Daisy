@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.uc.dao.MemberNotifySettingsMapper" >
+  <resultMap id="BaseResultMap" type="MemberNotifySettings" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="member_id" property="memberId" jdbcType="BIGINT" />
+    <result column="notify_type" property="notifyType" jdbcType="INTEGER" />
+    <result column="notify_way" property="notifyWay" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, member_id, notify_type, notify_way, status, create_time, update_time
+  </sql>
+  <insert id="insertSelective" parameterType="MemberNotifySettings" >
+    insert into uc_member_notify_settings
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="memberId != null" >
+        member_id,
+      </if>
+      <if test="notifyType != null" >
+        notify_type,
+      </if>
+      <if test="notifyWay != null" >
+        notify_way,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="memberId != null" >
+        #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="notifyType != null" >
+        #{notifyType,jdbcType=INTEGER},
+      </if>
+      <if test="notifyWay != null" >
+        #{notifyWay,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="MemberNotifySettings" >
+    update uc_member_notify_settings
+    <set >
+      <if test="memberId != null" >
+        member_id = #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="notifyType != null" >
+        notify_type = #{notifyType,jdbcType=INTEGER},
+      </if>
+      <if test="notifyWay != null" >
+        notify_way = #{notifyWay,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <delete id="batchDelete" parameterType="java.lang.Integer" >
+    delete from uc_member_notify_settings
+    where id in  <foreach collection="ids" index="index" item="item" open="(" separator="," close=")"> #{item}  </foreach>  
+  </delete>
+  <select id="findByPage" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from uc_member_notify_settings
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = #{map.id}
+        </if>
+        <if test=" map.memberId != null" >
+          member_id = #{map.memberId}
+        </if>
+        <if test=" map.notifyType != null" >
+          notify_type = #{map.notifyType}
+        </if>
+        <if test=" map.notifyWay != null" >
+          notify_way = #{map.notifyWay}
+        </if>
+        <if test=" map.status != null" >
+          status = #{map.status}
+        </if>
+        <if test=" map.createTime != null" >
+          create_time = #{map.createTime}
+        </if>
+        <if test=" map.updateTime != null" >
+          update_time = #{map.updateTime}
+        </if>
+      </where>
+    </if>
+  </select>
+  
+  <insert id="batchInsertNotifySettings" parameterType="java.util.List" >
+    insert into uc_member_notify_settings (member_id,notify_type,notify_way,status,create_time,update_time)   values   
+      <foreach collection="notifySettingsList" item="item" index="index"   separator=",">  
+        ( #{item.memberId}, #{item.notifyType}, #{item.notifyWay}, #{item.status}, #{item.createTime}, #{item.updateTime})  
+      </foreach>     
+  </insert>
+  
+  <!-- 取消邮箱订阅 -->
+  <update id="unsubscribe" parameterType="java.lang.Long">
+  		update uc_member_notify_settings set status=-1,update_time=now()  where member_id=#{memberId,jdbcType=BIGINT} and notify_way=3 and status=1;
+  </update>
+  
+</mapper>

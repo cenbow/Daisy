@@ -1,0 +1,311 @@
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$m_css_url/common.css","$m_css_url/landing/season1.css"])
+#set($title="周年庆")
+###set($loadJQ=true)
+####<input type="hidden" id="pageTag" value=""/>
+<script>
+        #if($currentUser)
+        window.location.href = '$siteurl/mCenter/home';
+        #end
+</script>
+<style>
+
+    .f-background-color{
+        background-color: #222052;
+    }
+
+    .u-status-amount{
+        height:5rem !important;
+        line-height:5rem !important;
+    }
+    .f-bd{
+        background: url($siteurl/res/img/landing/anniversary2016/background.png) no-repeat;
+        background-size:100% ;
+    }
+    .f-background{
+        background-color:#222052;
+    }
+    .m-title{
+        background: url($siteurl/res/img/landing/anniversary2016/title.png) no-repeat;
+        background-size:100% ;
+        width:100%;
+        color:#fff;
+        text-align: center;
+        font-size:16px;
+        line-height:100px;
+        margin-top: -30px;
+    }
+    .m-register{
+        background: url($siteurl/res/img/landing/anniversary2016/register.png) no-repeat;
+        background-size:100% ;
+        width:100%;
+        height:270px;
+    }
+    .m-redbag{
+        background: url($siteurl/res/img/landing/anniversary2016/get-regbag.png) no-repeat;
+        background-size:100% ;
+        width:100%;
+        height:270px;
+    }
+    .m-money{
+        background: url($siteurl/res/img/landing/anniversary2016/earn-money.png) no-repeat;
+        background-size:100% ;
+        width:100%;
+        height:290px;
+    }
+    .m-reg-form input{
+        background: #fff;
+    }
+    .m-reg-form .u-reg-btn1{
+        margin-bottom: 10%;
+    }
+    .m-input-vercode .u-img-vercode{
+        padding-left: 8px;
+        border-left: 1px solid #d6d6d6;
+    }
+    .m-reg-form .u-reg-btn1.f-yellow{
+        background-color:#fdbe0e;
+        border: 1px solid #fdbe0e;
+        color:#bd6200;
+    }
+    .u-title{
+        position:relative;
+        top:2.5rem;
+        color:#fff;
+        font-size:20px;
+        text-align: center;
+    }
+    .u-title em{
+        color:#fdbe0e;
+    }
+    .u-content{
+        text-align: center;
+        font-size:14px;
+        position:relative;
+        color:#fff;
+        top:175px;
+    }
+    .u-content.f-adjust{
+        top:208px;
+    }
+    .u-content em{
+        color:#fdbe0e;
+        font-size:16px;
+    }
+    .m-bottom{
+        background-color:#211f51 ;
+        width:46.8%;
+        color:#999;
+        padding:35px 26.6%;
+        font-size:12px;
+        text-align: center;
+    }
+    .f-white{
+        color:#fff;
+    }
+    .g-ft .u-download-btn{
+        display: inline-block;
+        border:1px solid #999999;
+        border-radius:6px;
+        color:#999999;
+        font-size:14px;
+        line-height:40px;
+        text-align: center;
+        width:40%;
+        margin:20px 4%;
+    }
+    .u-guide-link {
+        width:90%;
+        font-size:12px;
+        color:#999999;
+        text-align: center;
+        margin:20px auto;
+    }
+    .u-guide-link a{
+       width:24%;
+        display: inline-block;
+        margin-bottom:10px;
+        line-height:12px;
+        padding:0;
+        border-right:1px solid #999999;
+    }
+    .u-guide-link a:last-child{
+        border:0;
+    }
+    .u-copyright{
+        margin-top:10px;
+        font-size:12px;
+        text-align: center;
+    }
+    @media screen and (min-width: 390px) {
+        .u-content{
+            top:198px;
+        }
+        .u-content.f-adjust{
+            top:232px;
+        }
+        .m-title{
+            line-height:114px;
+        }
+        .m-register{
+            height:305px;
+        }
+        .m-redbag{
+            height:305px;
+        }
+        .m-money{
+            height:322px;
+        }
+    }
+    @media screen and (min-width: 360px) and (max-width:389px) {
+
+    }
+    @media screen and (max-width:359px) {
+        .u-content{
+            font-size:12px;
+            top:145px;
+        }
+        .u-content em{
+            font-size:14px;
+        }
+        .u-content.f-adjust{
+            top:170px;
+        }
+        .m-title{
+            line-height:88px;
+        }
+        .m-register{
+            height:235px;
+        }
+        .m-redbag{
+            height:235px;
+        }
+        .m-money{
+            height:250px;
+        }
+    }
+</style>
+##header
+<h2 class="u-pageTitle f-pos-r">
+    <a href="$siteurl/mIndex">
+        有融网
+    </a>
+    <span class=" f-pos-a f-fs18 f-ff-ver">
+
+        <a href="/static/page/twoCodeRedict.html">下载APP</a>
+    </span>
+</h2>
+##main-banner
+<div class="m-banner">
+    <img src="$siteurl/res/img/landing/anniversary2016/anniversary-hd.png"/>
+
+    <div class="u-status-amount f-fs14 f-cf ">
+        <em class="f-ff-ver u-amount-money f-fl">
+            累计成功投资:￥
+            <span class="f-ff-din f-fs22">
+                $!{paltformCapitalUtils.getPrefixPaltformTotalInvest()}
+        </span>
+        </em>
+        <em class="f-ff-ver f-fr">
+            注册人数:
+            <span class="f-ff-din f-fs22">
+                $!{paltformCapitalUtils.getPaltformMembers()}
+        </span>
+        </em>
+    </div>
+</div>
+##注册
+<div class="f-bd">
+<section class="g-bd">
+    <form data-action="$siteurl/mstation/register/saveMember" method="POST" class="m-reg-form j-form-xpost j-validform"
+          data-page="register" id="j-reg-form">
+        #CSRFToken('xToken')
+        #onceToken()
+        <input type="hidden" id="j-reg-mobile"/>
+
+        <div class="u-ipt-group f-pos-r">
+            <input type="tel" name="mobile" oncopy="return false;" onpaste="return false;" id="j-cpn" autocomplete="off"
+                   nullmsg="手机号码不能为空" errormsg="请输入正确的手机号码" class="f-round f-ipt-w430 u-ipt-text  u-ipt-str f-fs10"
+                   placeholder="请输入手机号码"/>
+            <span class='m-val-tips'></span>
+
+            <div class="f-mob-sha f-dn" id="j-mobile"></div>
+        </div>
+        <div class="m-input-vercode f-cf f-pos-r">
+			<span class="u-xtips-wrap ">
+				<input type="text" id="j-vercode" autocomplete="off" nullmsg="请输入图形验证码"
+                       class="u-ipt-text u-ipt-vercode j-vercode" placeholder="输入图形码"/>
+            </span>
+            <img src="$siteurl/mstation/validateCode" alt="验证码" title="点击重新获取验证码" id="j-img-vercode"
+                 class="u-img-vercode"/>
+            <span id="j-phonecode-wrap" class="u-xtips-wrap u-phonecode-wrap z-hide">
+				<input type="text" name="phonecode" autocomplete="off" id="j-phonecode" placeholder="输入手机验证码"
+                       class="f-clear f-round u-ipt-text f-ipt-w248 u-ipt-phonecode"/>
+			</span>
+            <span class="f-round u-tips-vercode f-tips-gray f-fr  f-dn">
+			获得短信验证码
+			</span>
+            <span class="m-val-tips"></span>
+        </div>
+        <div class="u-ipt-group">
+            <input type="password" name="password" oncopy="return false;" onpaste="return false;"
+                   class="f-round u-ipt-text f-ipt-w430 v-pwd" placeholder="输入密码，长度6-16位，至少包含数字和字母"/>
+        </div>
+        <input type="hidden" name="referCode" id="j-refercode-val" value="$!{shortUrl}">
+        <input type="hidden" name="tid" value="$!{request.getParameter('tid')}">
+        <input type="hidden" name="registerTraceSource" value='$!{session.getAttribute("register_TraceSource")}'/>
+        <input type="hidden" name="registerTraceNo" value='$!{session.getAttribute("register_TraceNo")}'/>
+        <input type="hidden" name="referSource" value="$!{referSource}"/>
+        <input type="hidden" name="checkType" id="j-checkType" value="1"/>
+        <input type="hidden" name="pngCode" id="j-pngcode"/>
+        <input type="hidden" name="loginSource" value="0"/>
+        <label class="f-clear f-mgl-8 f-fc-black f-white">
+            <input type="checkbox" checked="checked" name="agree" id="j-agree"/>&nbsp;我已阅读并同意
+            <a target="_blank" href="$res_url/page/register-agreement.html" class="f-white">《有融网服务协议》</a>
+        </label>
+        <button type="submit" class="u-reg-btn1 j-reg-btn f-yellow">注册即送80元大礼包</button>
+    </form>
+</section>
+</div>
+##content
+<div class="f-background-color">
+<div class="m-title"> 三重狂欢  嗨翻全场  </div>
+<div class="m-register">
+          <div class="u-title">注册即送<em>80元</em></div>
+          <div class="u-content">  完成体验任务即可获得<em>80元</em>现金</div>
+</div>
+<div class="m-redbag">
+    <div class="u-title">投资分享<em>抢红包</em></div>
+    <div class="u-content"> 与好友一起抢红包  即可获得随机现金奖励</div>
+</div>
+<div class="m-money">
+    <div class="u-title">邀请好友<em>赚大奖</em></div>
+    <div class="u-content f-adjust">  攒里程开宝箱即可获得至少<em>210元</em>现金奖励</div>
+</div>
+<div class="m-bottom">  投资有风险 &nbsp;&nbsp;&nbsp;入市需谨慎</div>
+</div>
+##footer
+<div class="g-ft">
+        <a href="$siteurl/mstation/register" target="_blank" class="u-download-btn">立即注册</a>
+
+        <a href="/static/page/twoCodeRedict.html" target="_blank" class="u-download-btn">下载APP</a>
+
+    <div class="u-guide-link">
+        <a href="$m_url">首页</a><a href="$tips_url">关于我们</a><a href="$tips_url">安全保障</a><a href="$tips_url">帮助中心</a>
+    </div><br>
+    <div class="u-copyright">©2014-2015 YRW.COM 版权所有</div>
+</div>
+##/footer
+
+#set($pageScript="
+<script>
+    seajs.config({
+        alias: {
+            'landingRegister': '$m_js_url/landing/register.js?v=${sysServiceUtil.getStaticResourceVersion()}'
+        },
+        preload: ['jquery', 'validform']
+    });
+    seajs.use('landingRegister');
+</script>
+")

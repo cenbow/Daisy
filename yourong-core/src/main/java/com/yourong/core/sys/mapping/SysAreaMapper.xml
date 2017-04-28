@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.sys.dao.SysAreaMapper" > 
+  <cache-ref namespace="com.yourong.core.sys.dao.SysDictMapper"/> 
+  <resultMap id="BaseResultMap" type="SysArea" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="parent_id" property="parentId" jdbcType="BIGINT" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, parent_id, code, name, type, create_time, update_time, remarks, del_flag
+  </sql>
+  <insert id="insertSelective" parameterType="SysArea" >
+    insert into sys_area
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="SysArea" >
+    update sys_area
+    <set >
+        update_time = now(),
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <delete id="batchDelete" parameterType="java.lang.Long" >
+    delete from sys_area
+    where id in  <foreach collection="ids" index="index" item="item" open="(" separator="," close=")"> #{item}  </foreach>  
+  </delete>
+  <select id="findByPage" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_area
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          and id = #{map.id}
+        </if>
+        <if test=" map.parentId != null" >
+          and parent_id = #{map.parentId}
+        </if>
+        <if test=" map.code != null" >
+          and code = #{map.code}
+        </if>
+        <if test=" map.name != null" >
+          and name = #{map.name}
+        </if>
+        <if test=" map.type != null" >
+          and type = #{map.type}
+        </if>
+        <if test=" map.createTime != null" >
+          and date_format(create_time,'%Y-%m-%d') = #{map.createTime}
+        </if>
+        <if test=" map.createTimeStart != null" >
+          and create_time <![CDATA[ >= ]]> #{map.createTimeStart}
+        </if>
+        <if test=" map.createTimeEnd != null" >
+          and create_time <![CDATA[ < ]]> DATE_ADD(#{map.createTimeEnd},INTERVAL 1 DAY)
+        </if>
+        <if test=" map.updateTime != null" >
+          and date_format(update_time,'%Y-%m-%d') = #{map.updateTime}
+        </if>
+        <if test=" map.updateTimeStart != null" >
+          and update_time <![CDATA[ >= ]]> #{map.updateTimeStart}
+        </if>
+        <if test=" map.updateTimeEnd != null" >
+          and update_time <![CDATA[ < ]]> DATE_ADD(#{map.updateTimeEnd},INTERVAL 1 DAY)
+        </if>
+        <if test=" map.remarks != null" >
+          and remarks = #{map.remarks}
+        </if>
+        <if test=" map.delFlag != null" >
+          and del_flag = #{map.delFlag}
+        </if>
+      </where>
+    </if>
+  </select>
+  
+  <select id="selectAllSysArea" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from sys_area where del_flag = 1 order by id
+  </select>
+  
+  <!--根据类别查找区域  type=2查询所有省，type=3 查询所有市，type=4 查询所有区 -->
+  <select id="selectSysAreasByType" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from sys_area  where type = #{type} and del_flag = 1 order by id
+  </select>
+  
+   <!--根据父级区域编码查找区域 -->
+  <select id="selectSysAreasByParentId" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from sys_area  where parent_id = #{parentId} and del_flag = 1 order by id
+  </select>
+</mapper>

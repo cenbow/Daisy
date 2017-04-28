@@ -1,0 +1,128 @@
+#parse("/mobile/common.vm")
+#set($title='过年狂欢，一路惊喜')
+###set($layout = "/mobile/layout.vm")
+#CSRFToken("xToken")
+#set($css_url=["$res_url/source/css/activity/springFestival/springFestival.css"])
+
+#if($currentUser)
+    #set($logined=1)
+#else
+    #set($logined=0)
+#end
+
+<h2 class="u-pageTitle f-pos-r">
+    <a href="/yourong-api/mIndex">有融网</a>
+    <span>
+        #if(!$currentUser)
+            <a id="j-login" href="/yourong-api/mstation/login" style="margin-right: 1rem;">登录</a>
+            <a id="j-register" href="/yourong-api/mstation/register">注册</a>
+        #else
+            <a href="$mCenter_logout_url">退出</a>
+        #end
+    </span>
+</h2>
+
+<ul class="u-tab-nav" data-logined="$logined" id="j-tab-nav">
+    <li class="z-active">领压岁钱</li>
+    <li>返人气值</li>
+    <li>疯抢红包</li>
+    <li>投资赢奖</li>
+</ul>
+
+<div class="u-tab-content" id="j-tab-content">
+    <div id="u-tab1" class="z-active">
+        <img src="https://yrimg.oss-cn-hangzhou.aliyuncs.com/m/activity/springFestival/main_bg.png" class="u-main-img">
+        <div class="g-content">
+            <h1 class="u-title">守岁跨年·许愿领红包</h1>
+
+            <ul class="u-wish-list" id="j-wish-list">
+                <li data-msgId="4">推倒国民老公</li><li data-msgId="3">体重满一百<br>减20</li><li data-msgId="2">来一次说走<br>就走的旅行</li><li data-msgId="5">出任花果山<br>猴王</li><li data-msgId="1">迎娶白富美</li><li data-msgId="6">一天睡一次<br>一次睡一天</li>
+            </ul>
+
+            <button class="u-red-btn" id="j-btn1">留言许愿</button>
+
+            <h1 id="j-pink-title" class="u-pink-title">已有 <span class="u-red-text" id="j-count2">37985</span>
+                <span class="u-red-text">人</span>成功领取压岁钱</h1>
+            <img src="https://yrimg.oss-cn-hangzhou.aliyuncs.com/m/activity/springFestival/redpacket_card.png"
+                 class="u-main-img">
+
+            <div class="u-redpacket-card"></div>
+            <button class="u-red-btn" id="j-btn2">领压岁钱</button>
+        </div>
+    </div>
+
+    <div id="u-tab2">
+        <div class="u-tab-body">
+            <img src="$res_url/img/weixin/activity/springFestival/share2-top.png" class="u-share-top"/>
+            <div class="u-tab-foot">
+                <div class="u-btns-wrap">
+                    <a href="/yourong-api/mCenter/reputationPage" class="u-white-btn pull-left j-exchange-btn">马上兑换</a>
+                    <a href="http://m.yrw.com/static/page/twoCodeRedict.html" class="u-white-btn pull-right">下载APP</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="u-tab3">
+        <div class="u-tab-body">
+            <img src="$res_url/img/weixin/activity/springFestival/share3-top.png" class="u-share-top"/>
+            <div class="u-tab-foot">
+                <p class="f-fc-pink f-fc-sm j-nums" id="j-nums">已发出<span class="f-white-lg" id="j-totalNum"></span>个红包，已有<span
+                        class="f-white-lg" id="j-claimNum"></span>人领取红包</p>
+                <div class="u-btns-wrap">
+                    <a href="/yourong-api/products/m/list-all-all-1.html" class="u-white-btn pull-left j-exchange-btn">马上投资</a>
+                    <a href="http://m.yrw.com/static/page/twoCodeRedict.html" class="u-white-btn pull-right">下载APP</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="u-tab4">
+        <div class="u-tab-body">
+            <img src="$res_url/img/weixin/activity/springFestival/share4-top.png" class="u-share-top"/>
+            <div class="u-tab-foot">
+                <div class="u-btns-wrap">
+                    <a href="/yourong-api/products/m/list-all-all-1.html" class="u-white-btn pull-left j-exchange-btn">马上投资</a>
+                    <a href="http://m.yrw.com/static/page/twoCodeRedict.html" class="u-white-btn pull-right">下载APP</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+## 弹出框
+<div class="g-mask hide" id="j-mask"></div>
+<div class="u-msgWindow" id="j-msgWindow"></div>
+
+<script src="$res_url/lib/js/sea.js"></script>
+#if(!$loadJQ)
+<script src='$res_url/lib/js/zepto.min.js'></script>
+#else
+<script src="$res_url/lib/js/jquery.min.js"></script>
+#end
+<script>
+    seajs.config({
+        paths: {
+            'lib':'$res_url/lib',
+            'xjs':'$res_url/source/js',
+            'xcss':'$res_url/source/css'
+        },
+        alias: {
+            'zepto': 'lib/js/zepto.min',
+            'jquery':'lib/js/jquery.min',
+//            'frozen': 'lib/frozenjs/1.0.1/frozen',
+//            'validform':'lib/js/validform',
+//            'template':'lib/js/template',
+            'base': 'xjs/base'
+        }
+    });
+
+    var environment = {
+        globalPath : '$siteurl',
+        globalDomain : '$sysServiceUtil.getRootURL()',
+        mGlobalDomain : '$sysServiceUtil.getMRootURL()',
+        serverDate :  '${dateUtil.getCurrentDate().getTime()}',
+    };
+
+    seajs.use('$res_url/source/js/activity/springFestival/springFestival');
+</script>

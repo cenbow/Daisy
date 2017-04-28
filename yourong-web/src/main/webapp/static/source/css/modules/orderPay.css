@@ -1,0 +1,1085 @@
+[v-cloak]{
+    display: none;
+}
+.m-pay-info {
+    border-color: #fff;
+    background-color: #fff;
+    margin: 50px auto 30px;
+    padding: 45px 30px 50px;
+}
+.u-pay-now {
+    margin: 0 0 10px;
+    position: relative;
+    padding: 20px 0 20px 70px;
+    color: #464646;
+    border: 1px solid #e0cd74;
+    background-color: #fffab0;
+}
+
+.u-pay-now i {
+    position: absolute;
+    left: 20px;
+    top: 25px;
+}
+
+.u-pay-wrap {
+    border: 1px solid #cdcdcd;
+}
+/*p2p直投项目-订单页新增*/
+.m-new-tShaft{
+    background:#ffffff;
+    border:1px solid #c5c5c5;
+    border-radius:2px;
+    width:990px;
+    height:100px;
+    overflow: hidden;
+    margin-top: 20px;
+}
+.m-new-tShaft .u-infoTitle{
+    width: 120px;
+    border-right:1px dashed #c5c5c5 ;
+    font-size:18px;
+    color:#666666;
+    height: 80px;
+    display: inline-block;
+    vertical-align: top;
+    padding-top: 20px;
+    margin-left: 20px;
+}
+.m-new-tShaft .u-info-tShaft{
+    width: 800px;
+    height: 50px;
+    margin: 30px 0 0 20px;
+    border-top: 4px solid #ccc;
+    display: inline-block;
+}
+.m-new-tShaft .u-info-transfer{
+    width: 600px;
+}
+.m-new-tShaft .u-info-tShaft>span{
+    position: absolute;
+    top:-4px;
+    height: 4px;
+    display: block;
+    z-index: 1;
+    background: #d74147;
+}
+.m-new-tShaft .u-info-tShaft>span.z-current0{
+    width: 13%;
+}
+.m-new-tShaft .u-info-transfer>span.z-current0{
+    width:136px;
+}
+.m-new-tShaft .u-info-tShaft>span.z-current1{
+    width: 37%;
+}
+.m-new-tShaft .u-info-tShaft>span.z-current2{
+    width: 62%;
+}
+.m-new-tShaft .u-info-tShaft>span.z-current3{
+    width: 85%;
+}
+.m-new-tShaft .u-info-tShaft>span.z-current4{
+    width: 100%;
+}
+.m-new-tShaft .u-info-tShaft dl{
+    position: absolute;
+    top: -17px;
+    z-index: 2;
+    text-align: center;
+    display: inline-block;
+}
+.m-new-tShaft .u-tShaft-dl01{
+    left: 90px;
+}
+.m-new-tShaft .u-info-transfer .u-tShaft-dl01{
+    left:108px;
+}
+.m-new-tShaft .u-tShaft-dl02{
+    left: 260px;
+}
+.m-new-tShaft .u-info-transfer .u-tShaft-dl02{
+    left:272px;
+}
+.m-new-tShaft .u-tShaft-dl03{
+    left: 450px;
+}
+.m-new-tShaft .u-info-transfer .u-tShaft-dl03{
+    left:436px;
+}
+.m-new-tShaft .u-tShaft-dl04{
+    left: 645px;
+}
+.m-new-tShaft .u-info-tShaft dl dt{
+    margin: 0 0 15px;
+    height: 30px;
+    width: 30px;
+    display: inline-block;
+    background: url("/static/img/products/p2p-detail-sprites.png") no-repeat -35px 0;
+}
+.m-new-tShaft .u-info-tShaft dl dt.z-current{
+    background: url("/static/img/products/p2p-detail-sprites.png") no-repeat;
+}
+.m-new-tShaft .u-info-tShaft dl dd{
+    color: #999;
+    font-size: 14px;
+    font-weight: bold;
+}
+.m-balance{
+    width: 990px;
+    border: 1px solid #cdcdcd;
+}
+.m-balance .u-balanceTitle{
+    height: 50px;
+    line-height: 50px;
+    font-size: 18px;
+    color: #666666;
+    margin-left: 20px;
+}
+.u-balance-wrap {
+    margin: 0 0 20px;
+    background-color: #fff1f1;
+    padding: 20px 0 20px 80px;
+}
+.u-select-balance {
+    width: 775px;
+    height: 48px;
+    line-height: 48px;
+    border: 1px dashed #dbbcbc;
+    margin: 0 20px 10px 0;
+    padding: 0 30px 0 20px;
+}
+
+.u-select-balance .u-selector {
+    margin-left: 50px;
+    border-radius: 0;
+}
+.u-select-balance .u-input-cover,.u-select-balance .z-input-disabled{
+    display: inline-block;
+    width: 244px;
+    height: 30px;
+    position: absolute;
+    left: 132px;
+    top: 11px;
+    margin-left: 50px;
+}
+.u-select-balance .z-input-disabled{
+    background-color: #ccc;
+    opacity: 0.25;
+alpha(opacity=25);
+}
+.u-select-balance .u-amount-wrap {
+    margin: 0 8px 0 11px;
+    line-height: 30px;
+}
+
+.u-select-balance .u-amount-wrap i {
+    top: 1px;
+}
+
+.u-select-balance .u-ipt-amount {
+    width: 232px;
+    margin: 0;
+}
+.u-select-balance .z-disabled {
+    background-position: -389px -200px;
+}
+.u-pay-checkbox {
+    display: inline-block;
+    height: 25px;
+    width: 25px;
+    overflow: hidden;
+    background: url(/static/img/common/sprites.png) no-repeat -234px 0;
+    cursor: pointer;
+    margin: 0 12px 0 0;
+}
+.u-pay-checkbox.z-checked {
+    background-position: -207px -1px;
+}
+.u-balance-residue{
+    color: #999;
+    margin-left: 596px;
+    margin-bottom: 5px;
+}
+.u-balance-residue span{
+    margin-left: 40px;
+}
+/*订单信息*/
+.m-order-info{
+    background:#ffffff;
+    border-top:1px solid #c5c5c5;
+    border-left:1px solid #c5c5c5;
+    border-right:1px solid #c5c5c5;
+    border-radius:2px;
+    width:990px;
+    height:60px;
+    margin-top: 20px;
+    overflow: hidden;
+    position: relative;
+}
+.m-order-info.z-extend{
+    height: 170px;
+}
+.m-order-info.z-extend.z-high-extend {
+    height: 198px;
+}
+.m-transferOrder-info.z-extend{
+    height: 220px;
+}
+
+.f-justify-left {
+    text-indent: 3px;
+}
+.m-order-info h3{
+    display: inline-block;
+    font-size: 18px;
+    color: #666;
+    margin: 20px 70px 0 20px;
+    vertical-align: top;
+}
+.m-order-info table{
+    color: #666;
+    font-size: 14px;
+    margin-top: 9px;
+    display: inline-block;
+}
+.m-order-info thead tr{
+    height: 44px;
+}
+.m-order-info tbody tr{
+    height: 28px;
+}
+.m-order-info tr td:first-child{
+    color: #999;
+}
+.m-order-info tr th:first-child{
+    color: #999;
+}
+.f-c-c9{
+    color: #999;
+}
+.m-order-info>span{
+    position: absolute;
+    top:25px;
+    right: 15px;
+    color: #999;
+    font-size: 14px;
+    cursor: pointer;
+}
+.m-order-info>span i {
+    width: 13px;
+    height: 11px;
+    display: inline-block;
+    margin-left: 7px;
+    background: url("/static/img/member/more-down.png") no-repeat center;
+}
+.m-order-info>span i.z-open{
+    background: url("/static/img/member/more-up.png") no-repeat center;
+}
+.u-balance-tips{
+    width: 912px;
+    height: 50px;
+    background: #f4f4f4;
+    color: #666;
+    padding-left: 80px;
+    line-height: 50px;
+    text-align: left;
+}
+.u-balance-recharge{
+    width: 96px;
+    height: 24px;
+    border-radius: 12px;
+    background: #d74148;
+    text-align: center;
+    line-height: 24px;
+    color: #fff;
+    display: inline-block;
+    outline: none;
+}
+
+.u-balance-tips a:link,
+.u-balance-tips a:active,
+.u-balance-tips a:hover{
+    text-decoration: none;
+    color: #d74148;
+}
+.u-balance-tips a.u-balance-recharge:link,
+.u-balance-tips a.u-balance-recharge:active,
+.u-balance-tips a.u-balance-recharge:hover{
+    color: #fff;
+}
+/*提交按钮*/
+.u-submit-wrap2{
+    padding:30px 0 0 80px
+}
+.u-submit-wrap2>a{
+    width: 220px;
+    height: 40px;
+    display: inline-block;
+    background: #d74148;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 18px;
+    text-align: center;
+    line-height: 40px;
+    margin:0 0 10px 0;
+    cursor: pointer;
+    text-decoration: none;
+    outline:none;
+}
+.u-submit-wrap2>a.z-disabled{
+    background: #c5c5c5;
+    cursor: default;
+}
+.u-submit-wrap2>a i{
+    width: 40px;
+    height: 28px;
+    display: inline-block;
+    background: url("/static/img/member/sina-mini-logo.png") no-repeat center;
+    vertical-align: top;
+    margin: 6px 6px 0 0;
+}
+
+
+/*支付状态*/
+.m-pay-state {
+    height: 368px;
+    width: 738px;
+    position: fixed;
+    z-index: 1001;
+    background-color: #fff;
+    margin: 0 auto;
+    top: 50%;
+    left: 50%;
+    margin-top:-184px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.u-settings-auto>a{
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 16px;
+    height: 16px;
+    padding: 6px;
+    display: block;
+    background: url("/static/img/v2/member/invest-close.png") no-repeat center;
+    cursor: pointer;
+    font-size: 20px;
+    line-height: 16px;
+}
+.m-pay-state>p{
+    background: #d74148;
+    width: 738px;
+    height: 70px;
+    position: absolute;
+    bottom: 0;
+}
+.m-pay-state>p a{
+    background:#c73d43;
+    border:1px solid #c0343a;
+    border-radius:20px;
+    width:458px;
+    height:38px;
+    margin: 15px auto 15px;
+    font-size:14px;
+    color:#ffffff;
+    display: block;
+    text-align: center;
+    line-height: 38px;
+    outline: none;
+}
+.m-pay-state>p a:link,.m-pay-state>p a:visited,.m-pay-state>p a:hover{
+    text-decoration: none;
+    color: #fff;
+}
+.m-pay-state>p a em{
+    height: 12px;
+    width: 12px;
+    overflow: hidden;
+    display: inline-block;
+    position: relative;
+    margin: 0 0 0 4px;
+}
+.m-pay-state>p a i{
+    transform: rotate(45deg);
+    border: 1px solid #ffffff;
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    position: absolute;
+    left: -5px;
+}
+.u-state-bank {
+    font-size: 0;
+    width: 660px;
+    padding: 30px 40px 0;
+}
+
+.u-state-bank h3 {
+    font-weight: 100;
+    font-size:20px;
+    color:#737373;
+    margin-bottom: 50px;
+}
+
+.u-state-bank p {
+    text-align: center;
+    font-size:20px;
+    color:#333333;
+    margin-bottom: 70px;
+}
+.u-count-down{
+    color: #0088CC;
+}
+/*color: #999;*/
+/*height: 40px;*/
+/*line-height: 40px;*/
+/*border-top: solid 1px #c3c3c3;*/
+/*border-bottom: solid 1px #c3c3c3;*/
+/*padding: 0 0 0 20px;*/
+/*margin: 0 0 26px;*/
+.u-state-bank span {
+    color: #b9b9b9;
+    display: inline-block;
+    padding: 0 0 0 35px;
+}
+
+.u-state-bank a {
+    color: #d74148;
+    text-decoration: none;
+    border-bottom: solid 1px #d74148;
+    cursor: pointer;
+}
+
+.u-state-bank div>a {
+    display: inline-block;
+    height: 38px;
+    line-height: 38px;
+    width: 218px;
+    background: none;
+    border-color: #d74148;
+    color: #d74148;
+    font-size: 14px;
+    text-align: center;
+    margin: 0 0 0 100px;
+}
+
+.u-state-bank div>a:last-child {
+    border-color: #e75d5d;
+    color: #e75d5d;
+    margin: 0 0 0 40px;
+}
+
+.u-state-bank>a i {
+    margin: 0 23px 0 20px;
+    vertical-align: middle;
+}
+
+.u-pay-result {
+    padding: 30px 40px 20px;
+    position: relative;
+    font-size: 0;
+}
+
+.u-pay-result>div {
+    padding: 0 0 0 55px;
+}
+
+.u-pay-result h3 {
+    line-height: 36px;
+    color: #737373;
+    font-size: 20px;
+}
+
+.u-pay-result p {
+    line-height: 40px;
+    margin: 50px 0 60px;
+    color: #333;
+    font-size: 20px;
+    text-align: center;
+}
+
+.u-pay-result>i {
+    position: absolute;
+    left: 80px;
+    top: 30px;
+}
+
+.u-pay-result>div>a, .u-pay-result2>div>a {
+    display: inline-block;
+    border-radius:4px;
+    width:218px;
+    height:38px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 14px;
+    text-decoration: none;
+    margin-left: 40px;
+}
+
+/*.u-pay-result>div>a:last-child, .u-pay-result2>div>a:last-child {*/
+/*margin-left: 40px;*/
+/*}*/
+
+.u-pay-error>div>a {
+    color: #e75d5d;
+    border-color: #e75d5d;
+}
+
+.u-pay-doing>div>a {
+    color: #d74148;
+    border-color: #d74148;
+}
+
+.u-pay-doing p a {
+    color: #f1b136;
+    text-decoration: none;
+    border-bottom: solid 1px #f1b136;
+}
+
+.u-pay-result2 {
+    /*padding: 30px 40px 0;*/
+    padding: 30px 10px 0 40px;
+}
+
+.u-pay-result2 table {
+    /*width: 290px;*/
+    width: 320px;
+}
+
+.u-pay-result2 td {
+    color: #333;
+    height: 30px;
+    line-height: 30px;
+    /*width: 175px;*/
+    width: 225px;
+    font-size: 14px;
+}
+
+.u-pay-result2 td:first-child {
+    color: #737373;
+    /*width: 95px;*/
+    width: 85px;
+    font-size: 12px;
+}
+
+.u-pay-result2 h3 {
+    color: #737373;
+}
+
+.u-pay-result2 .u-result2-left div{
+    width: 270px;
+    height: 117px;
+    margin-top: 25px;
+}
+.u-pay-result2 .u-result2-left div img{
+    margin: 0 auto;
+    display: block;
+}
+.u-pay-result2 h3 span {
+    color: #333;
+    margin-left: 10px;
+}
+.u-result2-eSignatue h3{
+    text-align: left;
+    color: #333;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+.u-result2-eSignatue p{
+    font-size: 12px;
+    color: #737373;
+    text-align: left;
+    margin-bottom: 10px;
+}
+.u-result2-eSignatue p a,
+.u-result2-eSignatue p a:link,
+.u-result2-eSignatue p a:visited,
+.u-result2-eSignatue p a:hover{
+    color: #737373;
+    text-decoration: underline;
+}
+.u-result2-eSignatue>div>a{
+    background: #ffffff;
+    border: 1px solid #d74148;
+    border-radius: 4px;
+    width: 118px;
+    height: 30px;
+    display: inline-block;
+    color: #d74148;
+    text-align: center;
+    line-height: 30px;
+    font-size: 14px;
+}
+.u-result2-eSignatue>div>a:link,
+.u-result2-eSignatue>div>a:visited,
+.u-result2-eSignatue>div>a:hover{
+    color: #d74148;
+    text-decoration: none;
+}
+.u-result2-eSignatue{
+    padding: 0 0 5px 30px;
+    border-left: 1px solid #eee;
+    vertical-align: top;
+}
+
+/*.u-pay-result2>div {*/
+/*margin: 0 0 0 245px;*/
+/*padding: 0 0 25px 28px;*/
+/*border-left: solid 1px #c3c3c3;*/
+/*}*/
+.u-pay-result2>div{
+    display: inline-block;
+    font-size: 0;
+}
+.u-result2-left{
+    width: 330px;
+}
+.u-result2-left h5{
+    font-size:12px;
+    color:#737373;
+    text-align:center;
+    position: relative;
+    top: 30px;
+}
+.u-result2-right div{
+    margin-top: 45px;
+}
+.u-result2-right.z-extra div{
+    margin-top: 25px;
+}
+.u-result2-right{
+    padding: 20px 0 5px 30px;
+    border-left: 1px solid #eee;
+    vertical-align: top;
+}
+.u-result2-right div a{
+    background:#ffffff;
+    border:1px solid #d74148;
+    border-radius:4px;
+    width:118px;
+    height:30px;
+    display: inline-block;
+    color: #d74148;
+    text-align: center;
+    line-height: 30px;
+    font-size: 14px;
+    margin-left: 30px;
+}
+.u-result2-right div a:first-child{
+    margin-left: 0;
+}
+.u-result2-right div a:link,
+.u-result2-right div a:visited,
+.u-result2-right div a:hover{
+    color: #d74148;
+    text-decoration: none;
+}
+.u-pay-success>div>a {
+    color: #d74148;
+    border-color: #d74148;
+}
+
+.u-pay-result2 h4 {
+    color: #666;
+    padding: 7px 0 0;
+    height: 46px;
+    line-height: 46px;
+}
+/* 支付页面使用现金券样式  */
+.u-selector button {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    text-align: right;
+    padding-right: 25px;
+    padding-left: 5px;
+}
+.u-selector button.z-disabled{
+    color: #aaa;
+    cursor: default;
+}
+.u-select-balance .z-disabled {
+    background-position: -389px -200px;
+}
+
+.u-pay-checkbox.z-disabled {
+    cursor: default;
+}
+
+.u-bank-list .u-bank-checkbox {
+    margin: 0 0 0 80px;
+    color: red;
+}
+/* 订单支付页面的项目名称 */
+.u-pay-title .u-project-name {
+    display: inline-block;
+    width: 400px;
+}
+
+.u-amount-sinapay .Validform_checktip {
+    vertical-align: middle;
+}
+/* 余额支付状态页面样式 */
+.u-state-bank a.u-pay-state {
+    margin-bottom: 25px;
+}
+
+.u-order-vam {
+    line-height: 32px;
+}
+
+.u-order-btn3{
+    margin: 30px 0 50px 60px;
+}
+.u-order-btn3.z-disabled{
+    display: none;
+}
+.u-pay-amount{
+    margin: 36px 0 0 30px;
+}
+.u-submit-wrap2{
+    padding: 13px 0 44px 80px;
+}
+.u-submit-wrap2 label{
+    display: inline-block;
+    padding: 15px 0 0;
+}
+.u-submit-wrap2 label a,.u-submit-wrap2 label a:visited{
+    color: #D74148;
+}
+.u-pay-smscode input{
+    margin: 0;
+}
+/* 隐藏对话框关闭按钮 */
+.ui-dialog-close{display: none;}
+/*项目名称链接去掉下划线*/
+.u-invest-underline:link,
+.u-invest-underline:hover,
+.u-invest-underline:visited{
+    color:#666;
+    text-decoration: none;
+}
+
+.u-project-name .u-project-name:link,
+.u-project-name .u-project-name:hover,
+.u-project-name .u-project-name:visited{
+    color:#666;
+    text-decoration: none;
+}
+/**投资支付页快捷支付银行限额表**/
+.u-qbank-list h6 {
+    color: #6b6b6b;
+    margin: 10px 0 12px;
+}
+.u-qbank-list table {
+    color: #6b6b6b;
+    border-left: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+}
+.u-qbank-list table th, .u-qbank-list table td {
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+.u-sina-notice {
+    font-size: 16px;
+    color: #464646;
+    line-height: 2em;
+    margin: 10px 0 0;
+    padding: 30px 30px 35px;
+    border: 1px solid #e0cd74;
+    background: #fffab0;
+}
+
+/*p2p直投项目-订单支付页新增*/
+.m-ztPay-state{
+    padding: 10px 20px;
+    position: relative;
+}
+.m-ztPay-state>div{
+    vertical-align: top;
+    display: inline-block;
+}
+.m-ztPay-state .u-state-tipsText{
+    width: 360px;
+    padding: 105px 50px 130px 0;
+    border-right: 1px solid #c3c3c3;
+}
+.m-ztPay-state .u-state-tipsText>p{
+    font-size: 18px;
+    font-weight: bold;
+    color: #464646;
+    padding: 0 0 0 50px;
+    position: relative;
+}
+.m-ztPay-state .u-state-tipsText p i{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.m-ztPay-state .u-new-tShaft>strong{
+    background-color: #eee;
+    height: 38px;
+    line-height: 38px;
+    text-indent: 20px;
+    border-bottom: 2px solid #cdcdcd;
+    display: block;
+}
+.m-ztPay-state .u-info-tShaft{
+    height: 50px;
+    margin-top: 100px;
+    border-top: 4px solid #ccc;
+}
+.m-ztPay-state .u-info-tShaft>span{
+    position: absolute;
+    top:-4px;
+    height: 4px;
+    display: block;
+    z-index: 1;
+    background: #d74147;
+}
+.m-ztPay-state .u-info-tShaft>span.z-current0{
+    width: 13%;
+}
+.m-ztPay-state .u-info-tShaft>span.z-current1{
+    width: 38%;
+}
+.m-ztPay-state .u-info-tShaft>span.z-current2{
+    width: 62%;
+}
+.m-ztPay-state .u-info-tShaft>span.z-current3{
+    width: 85%;
+}
+.m-ztPay-state .u-info-tShaft>span.z-current4{
+    width: 100%;
+}
+.m-ztPay-state .u-info-tShaft dl{
+    position: absolute;
+    top: -17px;
+    z-index: 2;
+    text-align: center;
+    display: inline-block;
+    width: 60px;
+}
+.m-ztPay-state .u-tShaft-dl01{
+    left: -25px;
+}
+.m-ztPay-state .u-tShaft-dl02{
+    left: 70px;
+}
+.m-ztPay-state .u-tShaft-dl03{
+    left: 160px;
+}
+.m-ztPay-state .u-tShaft-dl04{
+    left: 245px;
+}
+.m-ztPay-state .u-info-tShaft dl dt{
+    margin: 0 0 15px;
+    height: 30px;
+    width: 30px;
+    display: inline-block;
+    background: url("/static/img/products/p2p-detail-sprites.png") no-repeat -35px 0;
+}
+.m-ztPay-state .u-info-tShaft dl dt.z-current{
+    background: url("/static/img/products/p2p-detail-sprites.png") no-repeat;
+}
+.m-ztPay-state .u-info-tShaft dl dd{
+    color: #999;
+    font-size: 14px;
+    font-weight: bold;
+}
+/**直投项目支付订单右侧表单**/
+.u-state-info{
+    padding: 12px 0 0;
+    margin: 0 0 0 34px;
+}
+.u-state-info tbody{
+    border: 2px solid #cdcdcd;
+}
+.u-state-info thead tr{
+    height: 50px;
+    color: #666;
+    font-weight: bold;
+}
+.u-state-info tbody tr{
+    border-top: 1px solid #cdcdcd;
+}
+.u-state-info tbody tr:first-child{
+    border-top: none;
+}
+.u-state-info tbody td{
+    padding-left: 15px;
+    width: 285px;
+    height: 48px;
+}
+.u-state-info tbody tr td:first-child{
+    width: 95px;
+    border-right: 1px solid #cdcdcd;
+}
+.u-state-info>a{
+    height: 38px;
+    width: 158px;
+    display: inline-block;
+    text-align: center;
+    line-height: 38px;
+    color: #d74148;
+    font-size: 14px;
+    font-weight: bold;
+    border: 1px solid #d74148;
+    margin: 30px 18px 0 0;
+}
+.u-state-info>a:link{
+    text-decoration: none;
+}
+/*\p2p直投项目-订单支付页新增*/
+
+
+.m-coupon-list li{
+    height:auto;
+    line-height: 2em;
+    padding: 5px 24px 10px 19px;
+}
+.m-coupon-list li span, .m-coupon-list .z-disabled span{
+    display: block;
+    line-height:1.5em;
+}
+.m-coupon-list .z-disabled {
+    color: #aaa;
+    cursor: not-allowed;
+    height: auto;
+    line-height: 2em;
+    background-color: #eee;
+    border-top: 1px solid #ddd;
+    padding: 5px 24px 10px 5px;
+}
+.m-coupon-list .z-disabled:hover {
+    color: #aaa;
+    background-color: #eee;
+}
+/*global*/
+.f-unselectable{
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.u-pay-cover{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #000;
+    opacity: 0.4;
+    z-index: 110;
+}
+/**转让相关**/
+.u-transfer-flag{
+    display: inline-block;
+    padding:0 2px;
+    font-size: 12px;
+    border:1px solid #d74148;
+    color: #d74148;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+}
+.u-pay-result2 .u-transfer-flag{
+    color: #d74148;
+    margin-left: 0;
+}
+.m-success-transfer .u-tShaft-dl02{
+    left:105px;
+}
+.m-success-transfer .u-info-tShaft{
+    margin-right:-30px;
+}
+.m-success-transfer.u-info-tShaft>span.z-current0{
+    width: 125px;
+}
+.m-success-transfer .u-tShaft-dl03{
+    left:240px;
+}
+.m-transferResult-right{
+    padding-top: 0;
+}
+.m-transferResult-right div{
+    margin-top: 35px;
+}
+.u-pay-result .m-new-h,
+.u-pay-result2 .m-new-h {
+    text-align: center;
+    margin-top: 77px;
+    margin-bottom: 60px;
+}
+.u-pay-result .m-new-h span {
+    color: #333;
+    margin-left: 10px;
+}
+.u-pay-result .m-project-operation,
+.u-pay-result2 .m-project-operation {
+    display: block;
+    text-align: center;
+    padding: 0;
+}
+.u-pay-result .m-project-operation>a,
+.u-pay-result2 .m-project-operation>a {
+    margin: 0 20px;
+}
+.u-pay-success>div>.u-lottery-count {
+    position: absolute;
+    display: block;
+    width: 330px;
+    text-align: center;
+    color: #737373;
+    font-size: 14px;
+    margin: 0;
+    cursor: pointer;
+}
+.u-lottery-count:hover {
+    color: #737373;
+}
+.u-lottery-count em {
+    color: #d74148;
+}
+.u-pay-result .u-lottery-count {
+    position: absolute;
+    display: block;
+    right: 124px;
+    color: #737373;
+    font-size: 14px;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+.m-pay-state .m-lottery-img{
+    background: url("/static/img/products/lottery.png") no-repeat;
+    background-size: 100%;
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    right: 36px;
+    top: 32px;
+    padding: 0;
+    color: #fff;
+    text-align: center;
+    line-height: 18px;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.m-pay-state .m-lottery-img:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+.m-pay-state .m-lottery-img span {
+    position: relative;
+    top: 10px;
+}

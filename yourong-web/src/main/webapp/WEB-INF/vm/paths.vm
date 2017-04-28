@@ -1,0 +1,10 @@
+#set($assetsHash={
+"home":"1fdb0660",
+"memberIndex":"ec820dd0",
+"messages":"38dd47b2",
+"post":"f9c72411",
+"questionnaire":"101269e4",
+"savingPot":"88c1a0d3",
+"security":"5a88d40e",
+"core":"250bdf8d"
+})

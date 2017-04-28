@@ -1,0 +1,550 @@
+##CSRF验证
+#macro( CSRFToken $id)
+	#if(!$id || $id == "")
+	#set($id="xToken")
+	#end
+	<input type="hidden" id="$id" name="xToken" value="$csrfTool.getToken($request)"/>
+#end
+
+
+
+
+##分页函数   分页url  总记录	
+#macro(pager $__uri $page )
+    ## 总的记录数
+    #set($__obj_count =  $page.getiTotalRecords() )
+    ##当前页的条数
+    #set($__page_size =  $page.getSize() )
+    ##当前页
+    #set($__p =  $page.getNumber() )
+    ##总页数
+    #set($PAGE_COUNT =  $page.getTotalPages()  )
+	
+	<div class="row">
+    <div class="col-sm-4">
+        <div class="dataTables_info" id="sample-table-2_info">总 $__obj_count 条数 ，当前页$__p</div>
+    </div>
+    <div class="col-sm-4">
+		<label>Display <select id="page_size_core" size="1" name="sample-table-2_length" >
+				<option value="10" selected="selected">10</option>
+				<option value="25">25</option>
+				<option value="50">50</option>
+				<option value="100">100</option>
+			</select> 条数
+		</label>
+    </div>
+	 <div class="col-sm-4">
+        <div class="dataTables_paginate paging_bootstrap">
+			
+    #if($__obj_count > $__page_size)
+        #if($__uri.indexOf("?")>=0)
+            #set($param_char='&')
+            #else
+                #set($param_char='?')
+        #end
+        #if(!$__uri.endsWith("?") && !$__uri.endsWith("&"))
+            #set($__p_uri = "${__uri}${param_char}")
+            #else
+                #set($__p_uri = $__uri)
+        #end
+        #if($__p <= $PAGE_COUNT)
+                #set($pre_page = $__p - 1)
+                #set($next_page = $__p + 1)
+                #if($__p > 3)
+                    #set($begin_idx = $__p - 3)
+                    #else
+                        #set($begin_idx = 1)
+                #end	
+                #set($end_idx = $begin_idx + 9)
+                #if($end_idx > $PAGE_COUNT)
+                    #set($end_idx = $PAGE_COUNT)
+                #end    	
+                <ul class="pagination">
+                    #if($__p > 1)                      
+						
+        				<li class="prev disabled">
+                           <a href="${__p_uri}p=$pre_page&size=15">
+                                <i class="icon-double-angle-left"></i>
+                            </a>
+                        </li>				
+                    #end       
+                    #foreach($idx in $page.getSlider() )
+                        #if($idx != $__p)
+                            <li data-value="${__p_uri}p=$idx" >
+                                <a href="${__p_uri}p=$idx&size=15">$idx</a>
+                            </li>
+                            #else
+                                <li  data-value="${__p_uri}p=$idx"  class="active"  >
+                                    <a href="${__p_uri}p=$idx&size=15">$idx</a>
+                                </li>
+                        #end
+                    #end
+                    #if($__p < $PAGE_COUNT)        
+							
+        				<li class="next">
+                            <a href="${__p_uri}p=$next_page&size=15">
+                                <i class="icon-double-angle-right"></i>
+                            </a>
+                        </li>
+                    #end
+</ul>
+        #end
+    #end
+#end
+
+##数据字典select box#
+##hint 提示选项（非必填）不填则无提示选项
+##selectId 选择器的Id(非必填)
+##valid 验证内容(非必填)
+##className 选择框的样式(非必填)
+#macro (dictSelect $name $list  $hint $selectId $valid $className $_selected $excludeValue)
+
+<select name="$name" #if($selectId&&$!selectId!="") id="$!selectId" #end #if($!valid&&$!valid!="") datatype="$!valid" #end #if($!className&&$!className!="") class="$!className" #end>
+#if($hint&&$hint!="")
+  <option value="">$hint</option>
+#end
+
+#foreach ($_dict in $list)
+ #if($excludeValue != $_dict.value)
+  <option value="$_dict.value" #if ($_dict.value == $_selected) selected #end>$_dict.label</option>
+ #end
+#end
+
+</select>
+#end
+
+##角色checkbox#
+#macro (roleCheckBox $name $list)
+	#foreach ($_role in $list)
+		<label class="checkbox-line labelBox" value="${_role.id}">
+			<input type="checkbox" name="${name}" value="${_role.id}" />${_role.name}
+		</label>
+	#end
+#end
+
+##根据入参生成定时任务页面对应行内容
+#macro(buildTimeTask $title $name $time)
+<tr>
+     <td>$title</td> 
+     <td> <button  type="button"  class="btn btn-xs btn-info excuteTask "  data-value="$name">执行</button></td>
+     <td>$name</td> 
+     <td>$time</td> 
+     
+                  
+</tr>                  
+#end
+
+
+
+##根据groupName生成字典Json对象
+#macro (buildDictJson $groupName)
+	#set($isFirst=true)
+	#set($dictList = ${sysServiceUtil.getDictList($groupName)})
+	#if($!dictList.size() > 0)
+		[{
+			#foreach ($dict in $dictList)
+				#if($!isFirst) 
+					"value":"${dict.value}","label":"${dict.label}"}
+				#set($isFirst=false)
+				#else
+				,{"value":"${dict.value}","label":"${dict.label}"}
+				#end		
+			#end
+		]
+	#else
+	""
+	#end
+#end
+
+
+##地区选择select box#
+#macro (areaProvSelect $name $list  $hint1 $hint2 $hint3) 
+<div class="areaSelector">
+	<div class="col-sm-2">
+		<select  class="form-control areaSelect" id="areaSelect_province">
+		  <option value="">$hint1</option>
+		#foreach ($_areaProv in $list)
+		  <option value="$_areaProv.code" #if ($_areaProv.code == $_selected) selected #end>$!_areaProv.name</option>
+		#end
+		</select>  
+	</div>	   
+    <div class="col-sm-2">
+    	<select class="form-control areaSelect" id="areaSelect_city">
+    		<option value="">$hint2</option>
+    	</select>
+    </div>
+    <div class="col-sm-2">
+    	<select class="form-control" id="areaSelect_district">
+    		<option value="">$hint3</option>
+    	</select>
+    </div>
+</div>
+    <script>
+    	window.onload=function(){
+    		$(".areaSelect").change(function(){
+				getAreaCode($(this));
+			});
+    	};
+    </script>
+#end
+
+
+##上传图片控件。上传其它类型文件打算另外封装（回调事件的处理），这是考虑到前端排序和文件展示差异的问题。
+#macro (uploadImagePlugin $fileID $category $fileType $buttonText $height $width $multi $fileSizeLimit)
+#if(!$category || $category == "")##存放的路径，以类目区分
+	#set($category="default")
+#end
+#if(!$fileType || $fileType == "")##支持的上传类型
+	#set($fileTypeExts="*.gif;*.png;*.jpg;*.jpeg;*.bmp") ##默认支持的图片类型
+#elseif($fileType == "all")
+ 	#set($fileTypeExts="*.rar;*.doc;*.docx;*.zip;*.pdf;*.txt;*.swf;*.wmv;*.gif;*.png;*.jpg;*.jpeg;*.bmp")
+#else
+	#set($fileTypeExts="${fileType}")
+#end
+#if(!$buttonText || $buttonText == "")##文本按钮
+	#set($buttonText="上传文件")
+#end
+#if(!$height || $height == "")##高度
+	#set($height="31")
+#end
+#if(!$width || $width == "")##宽度
+	#set($width="120")
+#end
+#if(!$multi || $multi == "")##是否支持多张同时上传
+	#set($multi="true")
+#end
+#if(!$fileSizeLimit || $fileSizeLimit == "")##默认3MB上传文件大小
+	#set($fileSizeLimit="3")
+#end
+<script type="text/javascript" defer>
+jQuery(function($) {
+	$("#${fileID}").uploadify({
+		height        : ${height},##高度
+		width         : ${width},##宽度
+		method        : 'post',
+		swf           : '$root_url/static/js/lib/uploadify/uploadify.swf',
+		uploader      : '$root_url/commonUpload/uploadFile;jsessionid=${session.getId()}',##上传处理
+		formData      : {'category' : '${category}'},##附加提交数据
+		fileTypeExts  : '${fileTypeExts}',##支持文件类型，多个使用分号;分隔
+		fileObjName   : 'uploadFile',##文件对象名称
+		buttonImage   : '$root_url/static/img/upload-img-btn.png',
+		fileSizeLimit : '${fileSizeLimit}MB',##上传大小限制
+		overrideEvents: ['onSelectError','onDialogClose','onUploadError','onUploadSuccess'],##重写事件
+		onSelectError : overrideOnSelectError,##选择错误事件
+		onDialogClose : overrideOnDialogClose,##窗口关闭事件
+		onUploadError : overrideOnUploadError,##上传错误事件
+		onUploadSuccess:overrideOnUploadSuccess${fileID},##上传成功事件
+		multi         : ${multi}##是否可上传多个，默认为不支持
+	});
+});
+
+##上传成功回调事件
+var overrideOnUploadSuccess${fileID} = function(file, data, response) {
+	var info = eval("("+data+")");
+	if(info.uploadStatus >= 1){
+		#if($multi == false) ##如果不允许多个上传，则删除上次上传的文件。如果属于限制个数类的,暂不考虑
+			deleteFile${fileID}();
+		#end
+		var fileInfo = info.fileInfo[0];
+		var imgObj = $("<img src='$root_url/"+fileInfo.filePath+"'  class='edui-image-pic' style='left: -1px;'/>"),
+		     closeObj = $("<div class='upload-file-close close-${fileID}' title='删除该文件'></div>"),
+		 	 spanObj =$("<div class='upload-file-name'>文件名称 ：<input type='text' class='fileInfo uploadFileInput${fileID}' originalFilename="+fileInfo.originalFilename+" id=fn_"+fileInfo.name+"  value="+fileInfo.originalFilename+"></div>"),
+	         item = $("<li class='ui-sortable-handle upload-file-item' id="+fileInfo.name+"${fileID} attachmentId='' category="+fileInfo.category+" fileSize="+fileInfo.fileSize+" fileName="+fileInfo.name+" filePath="+fileInfo.filePath+" suffix="+fileInfo.suffix+"></li>").append(spanObj).append(closeObj).append(imgObj);
+		//加入元素
+		$("#sortable${fileID}").append(item);
+		//更新排序数值
+		updateFileItem${fileID}();
+	}else{
+		bootbox.alert("上传失败");
+	}
+}
+	
+jQuery(function($) {
+
+	##文件名编辑点击事件
+	$(document).on('click','.uploadFileInput${fileID}',function(){
+		if($(this).hasClass("fileInfo")){
+			$(this).removeClass("fileInfo");
+			$(this).addClass("fileInfoEdit");
+		}
+	});
+	
+	##文件名编辑完成事件
+	$(document).on('blur','.uploadFileInput${fileID}',function(){
+		if($(this).hasClass("fileInfoEdit")){
+			$(this).removeClass("fileInfoEdit");
+			$(this).addClass("fileInfo");
+			var v = $(this).val();
+			if(v == "" || v.length > 30){
+				bootbox.alert("文件名称不允许为空且长度不能超过30");
+				$(this).val($(this).attr("originalFilename"));//还原原史文件名称
+			}
+			updateFileItem${fileID}();
+		}
+	});
+	
+	##删除图片
+	$(document).on('click','.close-${fileID}',function(){
+		$(this).parent().fadeOut(500, function() {
+			$(this).remove();
+			updateFileItem${fileID}();
+			##删除磁盘的文件???
+		});
+	});
+	
+	##文件排序
+	$("#sortable${fileID}").sortable({
+		cursor:'move', ##鼠标样式
+		opacity:'0.6', ##透明度
+		revert:true,   ##动画效果
+		update:function(e,u){
+			##排序成功，更新排序数值
+			updateFileItem${fileID}();
+		}
+	});
+})
+
+//更新排序数值，组装成JSON格式
+function updateFileItem${fileID}(){
+	##获得排序的元素ID
+	var ids = $("#sortable${fileID}").sortable("toArray");
+	var _jsonArray = "";
+	var idsLength = ids.length-1;
+	##组装成JSON
+	for(var i=0; i<=idsLength;i++){
+		var item = $("#"+ids[i]);
+		var originalFilename = $("#fn_"+item.attr("fileName")).val();
+		_jsonArray += "{id:'"+item.attr("attachmentId")+"',fileName:'"+originalFilename+"',fileUrl:'"+item.attr("filePath")+"',fileExt:'"+item.attr("suffix")+"',module:'"+item.attr("category")+"',fileSize:'"+item.attr("fileSize")+"'}";
+		if(i < idsLength){
+			_jsonArray += ",";
+		}
+	}
+	if(_jsonArray != ""){
+		##把JSON值写入文本框
+		$("#fileJosn${fileID}").val("["+_jsonArray+"]");
+	}else{
+		$("#fileJosn${fileID}").val("");
+	}
+}
+
+//如果不允许多个文件上传，重复上传时删除之前上传的文件
+function deleteFile${fileID}(){
+	$("#sortable${fileID} li").remove();
+	updateFileItem${fileID}();
+	##删除磁盘的文件???
+}
+
+</script>
+#end
+
+##随机数
+#macro(random)
+${sysServiceUtil.getRandom()}
+#end
+
+
+
+
+
+
+
+
+
+
+
+
+
+##datatable列操作#
+#macro (columOperation $name)
+
+<div>
+    <div style="float:left; position:relative; z-index:9999;height:100%;">
+        <button class="showCol">列段显示/隐藏</button>
+        <ul class="showUl"
+            style=" list-style:none;display:none; position:absolute; left:80px; top:10px; background:#FFFFFF; border:1px solid #ccc; width:200px;">
+        </ul>
+    </div>
+    <div style="clear:both;"></div>
+</div>
+
+<script type="text/javascript" defer>
+jQuery(function($) {
+    var firstFlag = true;
+    	
+	//显示列控制台
+	$('.showCol').click(function () {
+		if(firstFlag) {
+			var table = $('#$name').dataTable();
+			var cols = table.fnSettings().aoColumns;
+			for(var i=1;i<cols.length;i++){
+				if(cols[i].sTitle != '') {
+					var innerHtml = " <li> <input type='checkbox' class='toggle-vis' ";
+					var key = '$name' + "_" + i;
+					var checkFlag = $.cookie(key);
+					if(checkFlag != '0') {
+						innerHtml += "checked";
+					}
+					innerHtml += " colIndex='" + i + "' onChange='operationCol(this)' />" + cols[i].sTitle + " </li>";
+					$(".showUl").append(innerHtml);
+				}
+			}
+			firstFlag = false;
+		}
+        $('.showUl').toggle();
+    })
+
+})
+
+function operationCol(obj) {
+	var colIndex = obj.attributes.colIndex.value;
+	var table = $('#$name').dataTable();
+    var bVis = table.fnSettings().aoColumns[colIndex].bVisible;
+    table.fnSetColumnVis( colIndex , bVis ? false : true );
+    var key = '$name' + "_" + colIndex;
+    var obj = $.cookie(key); 
+    var value = '0';
+    if(!bVis) {
+    	var value = '1';
+    }
+    $.cookie(key, value); 
+}
+
+function initCallBack() {
+    var table = $('#$name').dataTable();
+    var cols = table.fnSettings().aoColumns;
+	for(var i=1;i<cols.length;i++){
+		if(cols[i].sTitle != '' && cols[i].bVisible) {
+			var key = '$name' + "_" + i;
+			var checkFlag = $.cookie(key);
+			if(checkFlag == '0') {
+				table.fnSetColumnVis(i , false);
+			}
+		}
+	}	
+}	
+</script>
+#end
+
+##单选框
+#macro (radioSwitchBox $id $name)
+	<input type="checkbox" class="ace ace-switch ace-switch-5 col-xs-10 col-sm-12" placeholder="0:否 1:是" id="form-field-${id}" value="0">
+		<span class="lbl"></span>
+    <input type="hidden" id="${id}" name="${name}" class="switchInput" value="0"/>
+#end
+
+##图片控件 title:标题  dzId:控件id category:图片所属分类  maxfiles：支持的最多上传文件数量  uploadImageName:上传图片数据提交的名称
+#macro (dropzoneImageBox $title $dzId $category $uploadImageName $maxfiles)
+	<input type="hidden" id="j-json-$!{dzId}" class="j-input-dropzone" name="$!{uploadImageName}"/>
+<div class="row">
+	<div class="col-xs-9 col-sm-9 widget-container-span ui-sortable">
+		<div class="widget-box">
+			<div class="widget-header">
+				<h5>$!{title}</h5>
+			</div>
+			<div class="widget-body">
+				<div class="widget-main">
+					<div class="form-group clearfix">
+						###添加文件按钮
+						<span class="btn btn-success fileinput-button $!{dzId} dz-upload-btn">
+					        <i class="glyphicon glyphicon-plus"></i>
+					        <span>添加文件</span>
+					    </span>
+					    &nbsp;&nbsp;&nbsp;&nbsp;<span class="btn btn-primary delAllImage" id="del-${dzId}">一键删除</span>
+					     ###图片控件容器
+						<div class="dropzoneImage dropzone dropzoneSort" id="$!{dzId}" data-category="$!{category}" data-maxfiles="$!{maxfiles}">
+							<div class="fallback"> 
+							</div>
+						</div>	
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+#end
+
+##图片控件 title:标题  dzId:控件id category:图片所属分类  maxfiles：支持的最多上传文件数量  uploadImageName:上传图片数据提交的名称
+#macro (dropzoneImageBoxTwo $title $dzIdF $categoryF $uploadImageNameF $dzIdS $categoryS $uploadImageNameS $maxfiles)
+	
+	<input type="hidden" id="j-json-$!{dzIdF}" class="j-input-dropzone" name="$!{uploadImageNameF}"/>
+	<input type="hidden" id="j-json-$!{dzIdS}" class="j-input-dropzone" name="$!{uploadImageNameS}"/>
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 widget-container-span ui-sortable">
+			<div class="widget-box">
+				<div class="widget-header">
+					<h5>$!{title}</h5>
+				</div>
+	
+				<div class="tabbable">
+					<ul class="nav nav-tabs" style="border-right: 1px solid #c5d0dc" id="myTab">
+						<li class="active">
+							<a data-toggle="tab" href="#$!{dzIdS}B">
+								磨砂效果图片
+							</a>
+						</li>
+						<li>
+							<a data-toggle="tab" href="#$!{dzIdF}A">
+								原图片文件
+							</a>
+						</li>
+					</ul>
+					<div class="tab-content" style="padding:0">
+						<div id="$!{dzIdF}A" class="tab-pane ">
+										
+									<div class="widget-body">
+										<div class="widget-main">
+											<div class="form-group clearfix">
+												###添加文件按钮
+												<span class="btn btn-success fileinput-button $!{dzIdF} dz-upload-btn">
+											        <i class="glyphicon glyphicon-plus"></i>
+											        <span>添加文件</span>
+											    </span>
+											    &nbsp;&nbsp;&nbsp;&nbsp;<span class="btn btn-primary delAllImage" id="del-${dzIdF}">一键删除</span>
+											     ###图片控件容器
+												<div class="dropzoneImage dropzone dropzoneSort" id="$!{dzIdF}" data-category="$!{categoryF}" data-maxfiles="$!{maxfiles}">
+													<div class="fallback"> 
+													</div>
+												</div>	
+												
+											</div>
+										</div>
+									</div>
+						</div>
+						<div id="$!{dzIdS}B" class="tab-pane in active">
+								<div class="widget-body">
+									<div class="widget-main">
+										<div class="form-group clearfix">
+												###添加文件按钮
+												<span class="btn btn-success fileinput-button $!{dzIdS} dz-upload-btn">
+											        <i class="glyphicon glyphicon-plus"></i>
+											        <span>添加文件</span>
+											    </span>
+											    &nbsp;&nbsp;&nbsp;&nbsp;<span class="btn btn-primary delAllImage" id="del-${dzIdS}">一键删除</span>
+											     ###图片控件容器
+												<div class="dropzoneImage dropzone dropzoneSort" id="$!{dzIdS}" data-category="$!{categoryS}" data-maxfiles="$!{maxfiles}">
+													<div class="fallback"> 
+													</div>
+												</div>	
+											
+										</div>
+									</div>
+								</div>
+						</div>
+				
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+#end
+
+
+
+##是否选择框
+#macro (radioSelectBox $id $name $valid)
+	<select name="$name" #if($id&&$!id!="") id="$!id" #end #if($!valid&&$!valid!="") datatype="$!valid" #end>
+			<option value="0">否</option>
+			<option value="1">是</option>
+	</select>
+#end

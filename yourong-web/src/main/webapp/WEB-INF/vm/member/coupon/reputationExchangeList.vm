@@ -1,0 +1,30 @@
+#parse("/common/common.vm")
+#set($layout = "/layout/default.vm")
+<div class="u-rtable-wrap f-round">
+	<table>
+		<thead>
+
+			<tr>
+				<th width="190">时间</th>
+				<th width="150">兑换人气值</th>
+				<th width="155">获取现金券</th>
+				<th>备注</th>
+			</tr>
+		</thead>
+		<tbody>
+			#if($!result.data && $!result.data.size()>0)
+				#foreach($popularity in ${result.data})
+				<tr>
+					<td>$!{popularity.happenTimeStr}</td>
+					<td>$!{popularity.outlay}点</td>
+					<td>$!{popularity.outlay}</td>
+					<td>$!{popularity.remark}</td>
+				</tr>
+				#end
+			#else
+				<tr><td colspan="4" class="u-table-empty">暂无“兑换记录”</td></tr>
+			#end
+		</tbody>
+	</table>
+</div>
+#ajaxPagePlugin($!result,"Exchange")

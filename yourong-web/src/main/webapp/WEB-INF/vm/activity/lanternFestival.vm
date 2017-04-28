@@ -1,0 +1,139 @@
+##2017元宵活动
+#parse("/common/common.vm")
+#set($title="元宵邂逅情人节$!{title_suffix}")
+#set($css_url=["$root_css_url/activity/lanternFestival.css"])
+#set($js_url=[
+  "/static/lib/js/jq/snowfall.jquery.min.js",
+  "$root_url/static/lib/js/vue/vue.js",
+  "$root_url/static/lib/js/vue/vue.extend.js",
+  "$root_url/static/lib/js/moment.min.js",
+  "$root_url/static/lib/js/clipboard.min.js",
+  "$root_js_url/activity/lanternFestival.js"
+])
+
+#if($currentUser)
+  #set($logined=true)
+#else
+  #set($logined=false)
+#end
+#CSRFToken('xToken')
+
+<div class="m-top" data-logined="$logined" id="j-top">
+  <div class="u-top">
+    <div class="m-top-text f-fc-pink">人气值兑换低至<em class="f-fc-brown"> 4 折 </em>/全场加息<em class="f-fc-brown"> "13.14%"</em></div>
+  </div>
+  <div class="u-body u-body-1">
+    <div class="g-wrap-lan">
+      <div class="m-box m-box1">
+        <p class="m-box-title">
+          <span class="f-fc-pink">乐园新品</span>
+          <span class="f-fc-brown">低至 4 折</span>
+        </p>
+        <div class="m-box-introduce">活动期间，人气值乐园新品现金券兑换<em class="f-fc-yellow">全场 4 折</em>起。</div>
+        <ul class="m-box-sale">
+          <li class="m-box-qiqiu1">
+            <p class="m-box-num f-fc-pink">￥<em>38</em></p>
+            <p class="m-box-pop"><em class="f-fc-yellow">19点人气值</em> <i>38点人气值</i></p>
+          </li>
+          <li class="m-box-qiqiu1">
+            <p class="m-box-num f-fc-pink">￥<em>168</em></p>
+            <p class="m-box-pop"><em class="f-fc-yellow">84点人气值</em> <i>168点人气值</i></p>
+          </li>
+          <li class="m-box-qiqiu1 m-right-none">
+            <p class="m-box-num f-fc-pink">￥<em>666</em></p>
+            <p class="m-box-pop"><em class="f-fc-yellow">333点人气值</em> <i>666点人气值</i></p>
+          </li>
+          <li class="m-box-qiqiu2">
+            <p class="m-box-num f-fc-pink">￥<em>48</em></p>
+            <p class="m-box-pop"><em class="f-fc-yellow">19点人气值</em> <i>48点人气值</i></p>
+          </li>
+          <li class="m-box-qiqiu2">
+            <p class="m-box-num f-fc-pink">￥<em>188</em></p>
+            <p class="m-box-pop"><em class="f-fc-yellow">75点人气值</em> <i>188点人气值</i></p>
+          </li>
+          <li class="m-box-qiqiu2 m-right-none">
+            <p class="m-box-num f-fc-pink">￥<em>888</em></p>
+            <p class="m-box-pop"><em class="f-fc-yellow">355点人气值</em> <i>888点人气值</i></p>
+          </li>
+        </ul>
+        <div class="m-down-app f-fc-pink" id="m-down">点此下载APP，在 “发现” 版块玩转人气值乐园~</div>
+
+      </div>
+      <img src="/static/img/activity/lanternFestival/app.png" class="u-app" id="img">
+    </div>
+  </div>
+  <div class="u-body u-body-2">
+    <div class="g-wrap-lan">
+      <div class="m-box m-box2">
+        <p class="m-box-title">
+          <span class="f-fc-pink">欢度元宵</span>
+          <span class="f-fc-brown">限时加息</span>
+        </p>
+        <div class="m-box-introduce">活动期间，平台将在每日 <em class="f-fc-yellow">10:00、14:00、18:00、20:00</em> 随机上线加息项目，投资期限越长，加息力度越高，快来抢吧!</div>
+        <table class="m-box-table f-fc-pink">
+          <thead>
+          <tr>
+            <td>收益周期</td>
+            <td>一个月</td>
+            <td>二个月</td>
+            <td>三个月</td>
+            <td>六个月</td>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>加息幅度</td>
+            <td>0.5%</td>
+            <td>1%</td>
+            <td>1.5%</td>
+            <td>2%</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="u-body u-body-3">
+    <div class="g-wrap-lan">
+      <div class="m-box m-box3">
+        <p class="m-box-title">
+          <span class="f-fc-pink">爱你一世</span>
+          <span class="f-fc-brown">超额收益</span>
+        </p>
+        <div class="m-box-introduce">情人节（2月14日）当天，每位用户签到后均可获得两张高额收益券, 面额为 <em class="f-fc-yellow">5.20%</em> 和 <em class="f-fc-yellow">13.14%</em>，5201314哦！</div>
+        <div class="m-box-love">
+          <div class="m-box-quan f-fc-pink">收益券</div>
+          <div class="m-box-quan-num f-fc-pink">5.20<em>%</em></div>
+        </div>
+        <div class="m-box-love">
+          <div class="m-box-quan f-fc-pink">收益券</div>
+          <div class="m-box-quan-num f-fc-pink f-left-small">13.14<em>%</em></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="u-body u-body-4">
+    <div class="g-wrap-lan">
+      <div class="m-box-rule">
+        <h2>活动规则</h2>
+        <p>1. 活动对象：有融网所有用户；</p>
+        <p>2. 活动时间：2017年2月10日00:00~2月20日23:59；</p>
+        <p>3. 现金券、收益券使用条件详见券面；</p>
+        <p>4. 转让专区项目不参与本活动；</p>
+        <p>5. 如有其他疑问，请拨打客服热线: 400-025-6688；</p>
+        <p>6. 本活动最终解释权归有融网所有。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  var app = document.getElementById('m-down');
+  var img = document.getElementById('img');
+  app.onmouseover = function (){
+    img.style.display = 'block';
+  }
+  app.onmouseout = function (){
+    img.style.display = 'none';
+  }
+</script>

@@ -1,0 +1,59 @@
+#set($layout = "/layout/iframe.vm")
+#parse("/ic/directProject/head.vm")
+<div class="col-xs-12">
+	<div class="table-responsive">
+		<form id="directProjectSearchForm">
+			<table id="direct-project-package-table-search" class="table table-striped table-bordered" cellspacing="0" width="100%">
+			<thead>
+			   <tr>
+					<td>
+					项目名称：<input type="text" name="name" id="name" class="input-medium search_init"/>
+					项目状态：<select id="status" name="status">
+					     <option value="">请选择</option>
+					     <option value="0">待审核</option>
+					     <option value="1">募集中</option>
+					     <option value="2">已售罄</option>
+					   </select>
+					    <button id = "query_direct_project_package"  type="button" class="btn btn-info btn-sm btn-primary">查询</button>
+						<button id = "reset_direct_project_package" type="reset" class="btn btn-info btn-sm btn-primary">重置</button>
+					</td>					
+				</tr>
+				<tr>
+					<td colspan="1" style="text-align:left">
+						<button id = "add_direct_project_package" type="button" class="btn btn-info btn-sm btn-primary">新增集合项目</button>
+						<button id = "update_direct_project_package" type="button" class="btn btn-info btn-sm btn-primary">修改</button>
+						<button id = "delete_direct_project_package" type="button" class="btn btn-info btn-sm btn-primary resetButton">删除</button>
+					</td>
+				</tr>
+			  </thead>
+			</table>
+		</form>
+	</div>
+</div>
+<div class="col-xs-12">
+	<div class="table-responsive">
+		<table id="direct-project-package-table" class="table table-striped table-bordered" cellspacing="0" width="100%">
+			<thead>
+				<tr>
+					<th>
+						<label>
+							<span class="lbl"></span>
+						</label>
+					</th>
+					<th>序号</th>
+					<th>资产包名称</th>
+					<th>项目总额</th>
+					<th>子项目个数</th>
+					<th>年化利率</th>
+					<th>收益周期</th>
+					<th>募集结束时间</th>
+					<th>募集进度</th>
+					<th>项目状态</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+</div>
+#parse("/ic/directProject/addPackage.vm")
+#parse("/ic/directProject/packageDetail.vm")

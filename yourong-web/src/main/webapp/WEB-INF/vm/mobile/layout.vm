@@ -1,0 +1,84 @@
+#parse('/mobile/common.vm')
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="viewport" content="width=device-width,user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <title>#if($title) $title #else 有融网-全透明的互联网理财优选平台！#end</title>
+    <meta name="keywords" content="#if($keywords) $keywords #else 债权转让,债权交易,互联网金融,金融信息服务,有融网   #end"/>
+    <meta name="description"
+          content="#if($description) $description #else 有融网运用高效的运营管理体系和创新的互联网思维搭建了一个专业、安全、透明的债权信息披露媒介。  #end"/>
+    <link rel="stylesheet" href="$res_url/lib/frozenui/1.2.1/css/frozen.css" media="all">
+    <link rel="stylesheet" href="$m_css_url/common.css"/>
+    ##加载模块内的CSS文件
+    #if($!css_url)
+        #foreach($src in $css_url)
+            <link rel="stylesheet" href="$src?v=${sysServiceUtil.getStaticResourceVersion()}" />
+        #end
+    #end
+    <link rel="shortcut icon" href="/favicon.ico"/>
+</head>
+<body>
+    $screen_content
+##footer
+<div class="g-ft">
+    <div class="u-safety-logo">
+        <img src="$res_url/img/sinaPay_logo.png" width="80%">
+        <img src="$res_url/img/sinosig_logo.png" width="74%">
+    </div>
+    <div class="u-download-btn">
+        <a href="/static/page/twoCodeRedict.html" target="_blank">下载APP</a>
+        <a href="$sysServiceUtil.getRootURL()/?formMobile=true">电脑版</a>
+    </div>
+    <div class="u-guide-link">
+        <a href="$m_url">首页</a>|<a href="$tips_url">关于我们</a>|<a href="$tips_url">安全保障</a>|<a href="$tips_url">帮助中心</a>
+    </div>
+    <span class="m-copyright">©2014-2015 YRW.COM 版权所有</span>
+</div>
+##/footer
+
+<script src="$res_url/lib/js/sea.js"></script>
+<script>
+    seajs.config({
+        paths: {
+            'lib':'$res_url/lib',
+            'res': '$res_url/source'
+        },
+        alias: {
+            'zepto': 'lib/js/zepto.min',
+            'jquery':'lib/js/jquery.min',
+            'frozen': 'lib/frozenjs/1.0.1/frozen',
+            'validform':'lib/js/validform',
+            'base': 'res/js/base'
+        }
+    });
+    var environment = {
+        globalPath : '',
+        globalDomain : '$sysServiceUtil.getRootURL()',
+        mGlobalDomain : '$sysServiceUtil.getMRootURL()',
+        serverDate :  '${dateUtil.getCurrentDate().getTime()}'
+    };
+</script>
+    $!pageScript
+
+
+<div style="display:none;">
+    <script type="text/javascript">
+        var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+        document.write(unescape("%3Cspan id='cnzz_stat_icon_1255767947'%3E%3C/span%3E%3Cscript src='" +
+        cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1255767947' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+</div>
+
+
+</body>
+
+
+
+
+</html>
+
+

@@ -1,0 +1,178 @@
+
+.f-fc-weight{
+  font-weight: bold;
+}
+.f-fc-brown{
+  color: #e5102c;
+}
+
+.f-fix{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 64px;
+  background: white;
+  opacity: 0.94;
+}
+/*.f-fix a{*/
+/*padding-left: 50px;*/
+/*}*/
+.f-fix .m-logo{
+  padding-left: 50px;
+  margin-top: 10px;
+  margin-left: 20px;
+  height: 43px;
+  width: 60%;
+  overflow: hidden;
+  background: url("https://yrstatic.oss-cn-hangzhou.aliyuncs.com/res/img/sixgiftB/Icon-new.png") no-repeat 1px center;
+  background-size: 40px 40px;
+}
+.m-logo span{
+  display: block;
+  font-size: 12px;
+}
+.m-down a{
+  position: absolute;
+  right: 10px;
+  bottom: 15px;
+  background: #D74048;
+  border-radius: 4px;
+  color: white;
+  height: 30px;
+  line-height: 30px;
+  width: 80px;
+  text-align: center;
+}
+.u-back{
+  display: inline-block;
+  width: 25%;
+  color: white;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  background: #b23339;
+  margin-left: -10px;
+  border-radius: 5px;
+}
+
+.m-body-bg{
+  width: 100%;
+  overflow: hidden;
+}
+
+.m-bg-1{
+  background: url("../../../img/landing/exceed50/bg1.png") no-repeat center #fcb84c;
+  background-size: 100% 100%;
+  height: 200px;
+}
+.m-bg-2{
+  background: url("../../../img/landing/exceed50/bg2.png") no-repeat center #ff2844;
+  background-size: 100% 100%;
+  height: 200px;
+}
+.m-bg-3{
+  background: url("../../../img/landing/exceed50/bg3.png") no-repeat center #31b6a8;
+  background-size: 100% 100%;
+  height: 200px;
+  position: relative;
+}
+
+.m-bg-3 .f-fc-left .f-fc-right {
+  color: #31b6a8;
+}
+
+.m-bg-3 .f-fc-left {
+  font-size: 16px;
+  position: absolute;
+  left: 6%;
+  top: 32%;
+  border-radius: 50%;
+  background: #FFF;
+    width: 95px;
+  height: 75px;
+}
+
+.m-bg-3 .f-fc-right {
+  color: #31b6a8;
+  font-size: 12px;
+  position: absolute;
+  left: 70%;
+  top: 48%;
+  width: 70px;
+  height: 60px;
+  background: #FFF;
+  border-radius: 50%;
+  text-align: center;
+  font-weight: 600;
+  padding-top: 4px;
+}
+.m-bg-3 .f-fc-rightnew{
+  display: none;
+}
+
+.m-bg-3 .f-fc-right span {
+  display: block;
+}
+
+.f-fc-left .p1 {
+  color: #31b6a8;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.f-fc-left .p2 {
+  color: #31b6a8;
+  font-size: 12px;
+  font-weight: 600;
+    width: 100px;
+}
+
+.f-fc-left em {
+  color: #31b6a8;
+    font-size: 18px;
+  font-weight: 700;
+}
+.m-bg-4{
+  background: url("../../../img/landing/exceed50/bg4.png") no-repeat center #ac3dab;
+  background-size: 100% 100%;
+  height: 200px;
+}
+
+.m-body-bg p{
+  color: white;
+  font-size: 20px;
+  text-align: center;
+}
+.f-fc-top{
+  margin-top: 15px;
+}
+.m-body-bg .f-fc-small{
+  font-size: 16px;
+}
+.m-click-back{
+  background: #ffdd54;
+  text-align: center;
+  height: 60px;
+  line-height: 60px;
+  color: #ff6528;
+  font-size: 1.6rem;
+}
+.m-content{
+  padding-bottom: 100px;
+}
+.f-new-get{
+  width: 42%;
+  border: none;
+}
+.m-foot{
+  background: #eeeeee;
+  font-size: 1.6rem;
+  text-align: center;
+  color: #999999;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  line-height: 25px;
+}
+#j-agree{
+  -webkit-appearance: checkbox;
+}

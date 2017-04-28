@@ -1,0 +1,419 @@
+.u-grid-transaction{
+    line-height: 52px;
+    border-bottom: 1px solid #e5e5e5;
+    padding: 0;
+    height: 56px;
+    background-color: #fff;
+    width: 100%;
+}
+
+.u-grid-transaction li {
+    width: 21%;
+    float: left;
+    color: #999;
+    margin:0 6%;
+
+
+}
+/*新页面样式*/
+.z-redColor{
+    color: #dc595f;
+}
+.u-projectBlock{
+    width: 96%;
+    background: #fff;
+    padding: 2%;
+    border-bottom: 1px solid #e5e5e5;
+    border-top: 1px solid #e5e5e5;
+    margin-top: 10px;
+    color: #999999;
+    font-size: 1.0rem;
+    line-height:28px;
+}
+.u-projectBlock .u-investDetail{
+    border-bottom: 1px dashed #e5e5e5;
+    padding-bottom: 10px;
+}
+.u-projectBlock .u-projectName{
+    color: #666666;
+}
+.u-projectBlock .u-projectName .u-payWay{
+    display: inline-block;
+    font-size: 12px;
+    border: 1px solid #d74148;
+    border-radius: 5px;
+    line-height: 18px;
+    padding: 0 4px;
+    margin-left: 4px;
+
+}
+.u-projectBlock .u-investTime{
+    font-size: 0.8rem;
+}
+.u-investAmount{
+    margin-top: 6px;
+    padding: 0 2% 0 0;
+
+}
+.u-investAmount i{
+    color: #666666;
+    font-size: 1.1rem;
+}
+.m-order-list .u-projectBlock .u-investDetail{
+    border: none;
+}
+.m-order-list .u-projectBlock .u-investDetail .u-amount{
+    color: #666666;
+}
+.m-order-list .u-projectBlock .u-investDetail .u-payBtn{
+    display: inline-block;
+    font-size: 16px;
+    padding: 2px 8px;
+    border: 1px solid #dc595f;
+    text-align: center;
+    border-radius: 5px;
+}
+.m-order-list .u-projectBlock .u-investDetail .u-canclePay{
+    border: 1px solid #999999;
+}
+/*原先的页面样式*/
+.u-invest-list {
+    width: 100%;
+    z-index: 100;
+}
+.u-invest-list li{
+    border-left: 1px solid #ccc;
+}
+.m-circle {
+    width: 95%;
+    margin-left: 5%;
+    border-bottom: 1px solid #cccccc;
+}
+
+
+.u-title {
+    width: 100%;
+    margin-right: 12%;
+    color: #333;
+    line-height: 20px;
+
+}
+
+.u-circle-white3 {
+    background: #fff;
+    width: 8px;
+    height: 8px;
+    z-index: 2;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+
+}
+
+.u-title span {
+    background: #e53f49;
+    width: 50px;
+    height: 20px;
+    border-radius: 20px;
+    color: #fff;
+    padding: 0 6px;
+    margin: 0 0 0 2%;
+}
+
+.u-circle-red7 {
+    border: 5px solid #e53f49;
+    width: 8px;
+    height: 8px;
+    z-index: 2;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    position: absolute;
+    left: 12px;
+
+}
+
+.u-carList {
+    padding: 36px 0 0 0;
+}
+
+.u-carList-investment {
+    margin: 1% 0 0 5%;
+    line-height: 30px;
+    font-size: 15px;
+}
+
+.u-carList-investment i {
+    box-sizing: border-box;
+    min-width: 70px;
+    padding:0 10px;
+    height: 20px;
+    border-radius: 20px;
+    background: #ddd;
+    display: inline-block;
+    text-align: center;
+    line-height: 20px;
+    margin: 0 3px;
+}
+
+/*i > a {*/
+    /*color: #999;*/
+    /*display: block;*/
+/*}*/
+
+/* 发红包按钮 和 红包已抢完按钮 */
+i.z-redPackage{
+    background: #da404a;
+}
+i.z-redPackage > a {
+    color: #fff!important;
+}
+
+
+.f-order-pay {
+    background: #eeeeee;
+    border: 1px solid #da404a;
+}
+
+.f-order-pay > a {
+    color: #da404a;
+}
+
+.u-circle-3 {
+    width: 6px;
+    height: 6px;
+    z-index: 2;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    background: #d74248;
+    margin: 4px 0 0 4px;
+}
+
+.u-circle-7 {
+    width: 14px;
+    height: 14px;
+    z-index: 2;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    position: absolute;
+    left: 12px;
+    border: 1px solid #d74248;
+}
+
+.f-circle-white {
+    width: 92%;
+    position: fixed;
+    bottom: 6px;
+    left: 4%;
+    z-index: 200;
+    overflow-y: scroll;
+}
+
+.f-invest-block{
+    border-radius: 5px;
+    background: #fff;
+    padding: 0 0 0 6px;
+}
+
+.u-btn-close {
+    width: 100%;
+    background-color: #fff;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 5px;
+    margin-top: 20px;
+    color: #999;
+
+}
+
+.f-fs13 {
+    font-size: 13px;
+}
+
+.u-cancelOrder-popup{
+    background: #fff;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    width:80%;
+    text-align: center;
+    color: #000;
+    position: absolute;
+    top: 46%;
+    left: 10%;
+    z-index: 200;
+}
+.u-cancelOrder-popup li{
+    line-height:46px;
+    width: 100%;
+}
+.u-cancelOrder-popup .f-firstLi{
+    border-bottom: 1px solid #ccc;
+}
+.u-cancelOrder-popup .f-secondLi span{
+    width: 46%;
+    display: inline-block;
+    border-right: 1px solid #ccc;
+}
+.u-cancelOrder-popup .f-secondLi .f-secondSpan{
+    border:none;
+    color: #da404a;
+}
+table {
+    width: 100%;
+    background: #fff;
+    border-radius: 5px;
+}
+
+thead {
+    border-bottom: 1px solid lightgray;
+    line-height: 50px;
+    color: #999;
+}
+
+tr {
+    height:30px;
+}
+
+tbody {
+    border-bottom: 1px solid #666;
+    color: #999;
+}
+
+.f-circle-white span {
+    color: #da404a;
+    line-height: 40px;
+    text-align: center;
+    display: block;
+}
+
+.f-circle-profit {
+    width: 92%;
+    position: fixed;
+    bottom: 6px;
+    left: 4%;
+    z-index: 200;
+}
+.f-circle-profit .u-remarks-msg{
+    background: #fff;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    padding: 16px;
+    color: #666;
+}
+
+.f-circle-profit tbody {
+    border: 0 none;
+}
+
+.f-red-color {
+    border-bottom: 2px solid #d74148;
+    color: #da404a !important;
+}
+.f-fc-red{
+    color: #d74148;
+}
+td em {
+    margin-left: 20px;
+    display: inline-block;
+}
+
+td span {
+    margin-right: 20px;
+    float: right;
+}
+.f-earnings-form ul{
+    width: 100%;
+    background: #fff;
+    color: #999;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    padding:6px 0 10px;
+    overflow-y: scroll;
+}
+.f-earnings-form ul li{
+    width: 90%;
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 1px solid #ccc;
+    margin: auto;
+}
+.f-earnings-form ul li time,
+.f-earnings-form ul li span
+  {
+    width: 22%;
+    text-align: right;
+}
+.f-earnings-form ul li em{
+    width: 40%;
+    margin-left:5%;
+}
+.u-corpus{
+    border: none !important;
+
+}
+
+.u-corpus em{
+    margin-left:28% !important;
+}
+
+@media screen  and (min-width: 320px) and (max-width: 340px) {
+    .u-corpus em{
+        margin-left:31% !important;
+    }
+}
+@media screen  and (min-width:400px) {
+    .u-corpus em{
+        margin-left:25% !important;
+    }
+}
+.u-cover {
+    display: none;
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    z-index:198;
+    -moz-opacity: 0.5;
+    opacity: .50;
+    filter: alpha(opacity=50);
+}
+.f-agree-pos{
+    display: inline-block;
+}
+.f-agree-pos a:active,
+.f-agree-pos a:link,
+.f-agree-pos a:visited,
+.f-agree-pos a:hover{
+    color: #d74148;
+}
+
+.m-pagenav a:active,
+.m-pagenav a:link,
+.m-pagenav a:visited,
+.m-pagenav a:hover{
+    color: #fff;
+}
+.u-contract{
+    position: absolute;
+    top: 0;
+    left: auto;
+    z-index: 10001;
+}
+.u-contract-back{
+    height: 40px;
+    width:100%;
+    position: fixed;
+    bottom:0;
+    left:auto;
+    text-align: center;
+    background: #d74147;
+    line-height: 40px;
+    color: #fff;
+}

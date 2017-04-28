@@ -1,0 +1,13 @@
+#parse("/common/common.vm")
+#set($css_url=["$cssv2_url/member/member.css"])
+##set($js_url=["$root_js_url/modules/member.js"])
+
+#set($layout = "/layout/default.vm")
+
+$!payHtml
+
+<script type="text/javascript">
+		window.onload=function(){
+			document.getElementById("frmBankID").submit();
+		}		
+</script>

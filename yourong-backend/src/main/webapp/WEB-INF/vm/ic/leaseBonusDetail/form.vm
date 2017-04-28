@@ -1,0 +1,97 @@
+<div tabindex="-1" class="modal fade" id="modal-table" style="display: none;" aria-hidden="true">
+     <div class="modal-dialog">
+     <div class="modal-content">
+ <div class="modal-header no-padding">
+             <div class="table-header">
+                  <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+                    <span class="white">×</span>
+              </button>
+    增加用户
+       </div>
+  </div>
+   <div class="modal-body">
+    <form role="form" class="form-horizontal" id="leaseBonusDetail_form" method="post">
+     <input type="hidden" name="id" />
+ <div class="form-group">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 租赁分红id: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+     <input type="text" name="leaseBonusId" class="col-xs-10 col-sm-5" placeholder="leaseBonusId" id="form-field-leaseBonusId">
+    </div>
+  </div>
+</div>
+ <div class="form-group">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 项目id: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+     <input type="text" name="projectId" class="col-xs-10 col-sm-5" placeholder="projectId" id="form-field-projectId">
+    </div>
+  </div>
+</div>
+ <div class="form-group">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 用户id: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+     <input type="text" name="memberId" class="col-xs-10 col-sm-5" placeholder="memberId" id="form-field-memberId">
+    </div>
+  </div>
+</div>
+ <div class="form-group">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 交易id: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+     <input type="text" name="transactionId" class="col-xs-10 col-sm-5" placeholder="transactionId" id="form-field-transactionId">
+    </div>
+  </div>
+</div>
+ <div class="form-group">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 新浪代收交易号: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+     <input type="text" name="sinaCollectNo" class="col-xs-10 col-sm-5" placeholder="sinaCollectNo" id="form-field-sinaCollectNo">
+    </div>
+  </div>
+</div>
+ <div class="form-group">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 新浪代付交易号: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+     <input type="text" name="sinaPayNo" class="col-xs-10 col-sm-5" placeholder="sinaPayNo" id="form-field-sinaPayNo">
+    </div>
+  </div>
+</div>
+ <div class="form-group">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 分红值: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+     <input type="text" name="bonusAmount" class="col-xs-10 col-sm-5" placeholder="bonusAmount" id="form-field-bonusAmount">
+    </div>
+  </div>
+</div>
+ <div class="form-group">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 创建时间: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+     <input type="text" name="createTime" class="col-xs-10 col-sm-5" placeholder="createTime" id="form-field-createTime">
+    </div>
+  </div>
+</div>
+ <div class="form-group">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 更新时间: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+     <input type="text" name="updateTime" class="col-xs-10 col-sm-5" placeholder="updateTime" id="form-field-updateTime">
+    </div>
+  </div>
+</div>
+</form>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+<button type="button" id="save_leaseBonusDetail" class="btn btn-primary">保存</button>
+</div>
+</div>
+<!-- /.modal-content -->
+ </div>
+<!-- /.modal-dialog -->
+</div>

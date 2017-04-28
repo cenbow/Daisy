@@ -1,0 +1,24 @@
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+##header
+<h2 class="u-header f-pos-r">
+    <a href="$siteurl/mCenter/home">返回</a>
+    <span class="f-fs18">
+        直投初体验
+    </span>
+</h2>
+##/header
+## navi
+
+<style>
+    p.u-notice {
+        font-size:12px;
+        color: #999;
+        line-height: 20px;
+        padding: 30px 15px 100px 15px;
+    }
+</style>
+
+<p class="u-notice">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;亲爱的有融网会员：感谢您对有融网的支持！恭喜您成为有融网直投项目的首批投资人。当前，只有PC端支持直投项目的投资和查看功能。我们的程序猿和攻城狮正在火力全开研发移动端（APP、WAP），期待不久之后与大家正式见面！
+
+</p>

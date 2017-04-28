@@ -1,0 +1,48 @@
+ #parse("/common/common.vm")
+ #########################################script##################################### 
+  #set($js_config=[ 
+ "'urlMap':{ 
+   'ajax':'$root_url/debt/ajax?', 
+   'query':'$root_url/debt/index?', 
+   'add':'$root_url/debt/add?',
+   'save':'$root_url/debt/save', 
+   'show':'$root_url/debt/show?id=',
+   'emergency':'$root_url/debt/emergency?id=',
+   'find':'$root_url/debt/find?id=',
+   'update':'$root_url/debt/update',
+   'detail':'$root_url/debt/detail?id=',
+   'del':'$root_url/debt/delete?id=',
+   'searchMember':'$root_url/debt/searchMember?',
+   'searchMemberInfo':'$root_url/debt/searchMemberInfo?',
+   'searchEnterprise':'$root_url/debt/searchEnterprise?',    
+   'searchEnterpriseLegal':'$root_url/debt/searchEnterpriseLegal?',   
+   'uploadURL':'$root_url/commonUpload/uploadFile',
+   'infoAjax':'$root_url/debt/infoAjax?',
+   'showInterest':'$root_url/debt/showInterest?debtId=',
+   'addRemarks':'$root_url/debt/addRemarks?',
+   'addControlRemarks':'$root_url/debt/addControlRemarks?',
+   'debtStatus':'$root_url/debt/debtStatus',
+   'autoInterest':'$root_url/debt/autoInterest'
+   },
+   'debtType':#buildDictJson('debt_type'),  ##担保方式
+   'guarantyType':#buildDictJson('guaranty_type'),
+   'sex':#buildDictJson('sex'),##性别
+   'marriage':#buildDictJson('marriage'),##婚姻
+   'education':#buildDictJson('education'),##学历
+   'interestStatus':#buildDictJson('debt_interest_status'),  ##债权本息状态
+   'permission':{
+   		'detail':$shiro.hasPermission('debt:detail'),
+   		'show':$shiro.hasPermission('debt:show'),
+   		'del':$shiro.hasPermission('debt:delete'),
+   		'emergency':$shiro.hasPermission('debt:emergency'),
+		'infoExcel':$shiro.hasPermission('debt:infoExcel')
+   },
+   'aliyuncsUrl':'https://oss-cn-hangzhou.aliyuncs.com'
+   "])
+ #set($css_url=["$root_url/static/assets/css/dropzone.css","$root_url/static/js/lib/My97DatePicker/skin/WdatePicker.css","$root_url/static/js/lib/jcrop/jquery.Jcrop.min.css","$root_url/static/js/lib/colorbox/colorbox.css","$root_url/static/js/lib/umeditor/themes/default/css/umeditor.min.css"])
+ #if($action == "debtInfo")
+	#set($js_url=["$root_url/static/js/debtInfo.js","$root_url/static/js/lib/My97DatePicker/WdatePicker.js"]) 
+ #else
+	#set($js_url=["$root_url/static/assets/js/dropzone.min.js","$root_url/static/js/dz-upload.js","$root_url/static/js/lib/jcrop/jquery.Jcrop.min.js","$root_url/static/js/lib/colorbox/jquery.colorbox-min.js","$root_url/static/js/debt.js","$root_url/static/js/lib/My97DatePicker/WdatePicker.js"]) 
+ #end
+#########################################DOM##################################### 

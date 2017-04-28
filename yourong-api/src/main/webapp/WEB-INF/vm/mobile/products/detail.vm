@@ -1,0 +1,150 @@
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$m_css_url/modules/detail.css"])
+#set($title='项目详情')
+#CSRFToken('xToken')
+<input type="hidden" id="j-pid" value="${pid}" encryptionId="$!{currentUser.id}">
+##新页面
+<div id="projectDetail" v-model=" projectDetailData" v-cloak>
+    <h2 class="u-header f-pos-r">
+        <a id="j-detail-back" href="$m_url">返回</a>
+    <span class="f-fs18" id="j-detail-title" data-title="{{projectDetailData.name.split('期')[0]}}">
+        <i v-text="projectDetailData.name.split('期')[0]"></i>期
+        <em v-if="projectDetailData.isJoinLease==true">（租赁分红）</em>
+##        <em v-if="projectDetailData.isNoviceProject==true">（新客专享）</em>
+    </span>
+    </h2>
+    <!--header-->
+    <!--项目详情-->
+    <div class="u-detail-alReturn">
+    <span class="u-project-name" v-text="projectDetailData.name.split('期')[1]"></span>
+
+        <span class="u-project-alReturn f-ff-din">
+            <i v-if="projectDetailData.minAnnualizedRate==projectDetailData.maxAnnualizedRate"><i
+                    v-text="projectDetailData.minAnnualizedRate+'%'"></i><i class="u-extraAnnualizedRate"
+                                                                            v-if="projectDetailData.extraType==2">+{{projectDetailData.addRate}}%</i></i>
+            <i v-else><i v-text="projectDetailData.minAnnualizedRate"></i>~<i
+                    v-text="projectDetailData.maxAnnualizedRate"></i>%<i class="u-extraAnnualizedRate"
+                                                                         v-if="projectDetailData.extraType==2">+{{projectDetailData.addRate}}%</i></i>
+        </span>
+
+        <p>年化收益</p>
+    </div>
+    <div class="u-project-isNovice" v-if="projectDetailData.isNoviceProject==true">
+        <span class="u-badge-red"> 新客专享</span> 100元起投 1000元可使用券
+    </div>
+
+    <a class="u-direct-invest"  href="$siteurl/mstation/post/directActivatorTips" v-if="projectDetailData.quickRewardFlag==1">
+        <div class="u-sign"></div>
+        <i v-if="projectDetailData.status==90"> 项目已流标，奖励失效 > </i>
+         <i v-if="projectDetailData.status==51||projectDetailData.status==52||projectDetailData.status==70">  奖励已公布，看看谁是幸运儿 > </i>
+        <i v-if="projectDetailData.status!=90&&projectDetailData.status!=51&&projectDetailData.status!=52&&projectDetailData.status!=70">投资参与快投有奖，一起赢取幸运礼物
+            > </i>
+    </a>
+
+    <div class="u-detail-proceeds f-cf" v-if="projectDetailData.investType==1">
+    <span class="u-border-r u-border-b">
+        <em>&yen; <em v-text="projectDetailData.totalAmount | amountFormat 'split'"></em></em>
+        <p>项目总额</p>
+    </span>
+    <span class="u-border-b">
+         <em> <em v-text="projectDetailData.earningsDays"></em>天</em>
+        <p>收益天数</p>
+    </span>
+    <span class="u-border-r">
+         <em>T(成交日)+ <em v-text="projectDetailData.interestFrom"></em></em>
+        <p>起息方式</p>
+    </span>
+    <span>
+         <em v-text="projectDetailData.endDate | dateFormat 'yyyy-MM-dd'"></em>
+        <p>还款日期</p>
+    </span>
+    </div>
+    <div class="u-directProject" v-if="projectDetailData.investType==2">
+        <ul>
+            <li><span v-text="projectDetailData.profitPeriod"></span><br> <i class="f-fs12">收益周期</i> </li>
+            <li><span>&yen;<span v-text="projectDetailData.totalAmount | amountFormat 'split'"></span></span><br> <i class="f-fs12">项目总额</i> </li>
+            <li><span>T <i class="f-fs12"> (募集完成日)</i>+<i v-text="projectDetailData.interestFrom"></i></span><br> <i class="f-fs12">起息方式</i> </li>
+        </ul>
+        <div class="u-grayLine"></div>
+    </div>
+
+    <span v-if="projectDetailData.status>=30&&projectDetailData.status<=40" style="width: {{projectDetailData.investmentProgress}}%;" class="u-detail-progress"></span>
+    <div class="u-detail-people">
+        <div v-if="projectDetailData.status===70">
+            投资会员：<span v-text="projectDetailData.transactionMemberCount"></span>人；累计获得收益：<i v-text="projectDetailData.totalTransactionInterest"></i> <i v-if=" projectDetailData.totalTransactionInterest===null">0</i>元
+        </div>
+        <div v-if="projectDetailData.status>40&&projectDetailData.status<=90&&projectDetailData.status!==70">
+            投资会员：<span v-text="projectDetailData.transactionMemberCount"></span>人；预期总收益：<i v-text="projectDetailData.totalTransactionInterest"></i> <i v-if=" projectDetailData.totalTransactionInterest===null">0</i>元
+        </div>
+        <div v-if="projectDetailData.status<30">
+              当前进度：0% 剩余可投资金额： <span v-text="projectDetailData.availableBalance | amountFormat 'split'"></span>元
+        </div>
+        <div v-if="projectDetailData.status>=30&&projectDetailData.status<=40&&projectDetailData.investmentProgress<100">
+              当前进度：<i v-text="projectDetailData.investmentProgress"></i>% 剩余可投金额：<i v-text="projectDetailData.availableBalance | amountFloor | amountFormat 'split'"></i>元
+        </div>
+        <div v-if="projectDetailData.status==30&&projectDetailData.investmentProgress==100">
+            <span v-text="projectDetailData.orders"></span> 笔交易支付确认中，处理金额 <span v-text="projectDetailData.orderAmount"></span>元
+        </div>
+    </div>
+    <div class="u-detail-way">
+        还款方式：<span v-text="projectDetailData.repaymentText"></span>
+        <div v-if="projectDetailData.transferFlag==1">
+            项目转让：自起息日起 <i v-text="projectDetailData.transferAfterInterest"></i>天后可转让
+        </div>
+    </div>
+    <div class="u-detail-tab f-cf" id="j-detail-tab"
+         :class="{'u-directProject':projectDetailData.investType==2}">
+    <span v-if="projectDetailData.investType==1" class=" j-detail-select z-current"  data-url="$siteurl/project/detail-${pid}.html">项目信息</span>
+    <span v-if="projectDetailData.investType==2" class=" j-detail-select z-current"  data-url="$siteurl/project/p2p-detail150-${pid}.html?isMsite=Y&&encryptionId=$!{currentUser.id}">项目信息</span>
+    <span v-if="projectDetailData.investType==1" class=" j-detail-select"   data-url="$siteurl/project/contract-${pid}.html">合同资料</span>
+    <span  v-if="projectDetailData.investType==2" class=" j-detail-select"   data-url="$siteurl/project/p2p-contract-${pid}.html?isMsite=Y&&encryptionId=$!{currentUser.id}">信用认证</span>
+    <span  class=" j-detail-select"  data-url="$siteurl/project/record-${pid}.html">投资记录
+        <div v-if="projectDetailData.totalInvestment!=0">
+        <em v-if="projectDetailData.totalInvestment<99" class="ui-badge-cornernum" id="j-detail-count">
+            <em v-text="projectDetailData.totalInvestment"></em>
+        </em>
+         <em v-else class="ui-badge-cornernum" id="j-detail-count">
+            99+
+        </em>
+            </div>
+    </span>
+
+        <span v-if="projectDetailData.investType==2" class=" j-detail-select"
+              data-url="$siteurl/project/p2p-repaymentPlan-${pid}.html">还款计划</span>
+
+</div>
+
+<iframe class="u-detailFrame" id="j-detail-frame"  name="detailFrame" frameborder="0" width="100%">
+</iframe>
+
+
+<div class="u-investment-btn" >
+    <a id="j-investment-btn" @click="setName" href="$siteurl/mCenter/invest?pid=${pid}">
+        <div id="j-investmentStatus">立即投资
+            <div v-if="projectDetailData.investType==2&&projectDetailData.status===30&&projectDetailData.availableBalance>0&&projectData.isNewCustomer" id="j-residualTime" class="f-fs14">
+                (剩余时间
+                <i class="j-project-noticeTime" data-time="{{(projectDetailData.saleEndTime-projectDetailData.currentDate)/1000}}"></i>
+                )
+            </div>
+
+        </div>
+        <div v-if="projectDetailData.investType==2&&projectDetailData.status===40" class="j-relactTime ">
+            (剩余时间
+            <i class="j-project-noticeTime" data-time="{{(projectDetailData.saleEndTime-projectDetailData.currentDate)/1000}}"></i>
+            )
+        </div>
+        <div id="j-noticeProject" class="f-dn">
+            距上线
+            <i class="j-project-noticeTime" data-time="{{(projectDetailData.onlineTime-${dateUtil.getCurrentDate().getTime()})/1000}}"></i>
+        </div>
+    </a>
+
+</div>
+</div>
+<!--body-->
+#set($pageScript="
+<script>
+    seajs.use('$res_url/source/js/modules/detail.js');
+</script>
+")

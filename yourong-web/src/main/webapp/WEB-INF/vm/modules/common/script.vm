@@ -1,0 +1,48 @@
+<script type="text/javascript">
+    var environment = env = {
+        globalPath: '',
+        globalDomain: '$sysServiceUtil.getRootURL()',
+        mGlobalDomain: '$sysServiceUtil.getMRootURL()',
+        serverDate:  ${dateUtil.getCurrentDate().getTime()},
+        aliyunPath: '$aliyun_url'
+    };
+#if($isDev)
+    window.log=function(){};
+    window.chrome&&(window.log=console.log.bind(console));
+#else
+    window.log=function(){};
+#end
+
+//余额支付倒计时
+var inverst_wait_time = 5;
+</script>
+##请把 插件JS 放在 vm 的js_url数组变量里，而不是这里
+##lodash
+<script src="/static/lib/js/base/lodash.js?v=compat1451287261500"></script>
+
+##jQuery
+<script src="$root_url/static/lib/js/jq/jquery-1.11.1.min.js"></script>
+
+##artDialog
+<script src="$root_url/static/lib/js/dialog-min.js"></script>
+
+#if(!$isHomeNavi)##validForm
+<script src="$root_url/static/lib/js/validform.js"></script>
+#end
+
+##项目圆环
+#if($isHomeNavi||$isProductsNavi)
+<script src="$root_url/static/lib/js/jq/jquery.circliful.min.js"></script>
+#end
+
+##Common.js -网站通用组件库
+<script src="$root_js_url/common.js?v=${sysServiceUtil.getStaticResourceVersion()}"></script>
+
+##加载模块内的JS文件
+#if($!js_url)
+#foreach($src in $js_url)
+#if($src != "")
+<script type="text/javascript" src="$src?v=${sysServiceUtil.getStaticResourceVersion()}"></script>
+#end
+#end
+#end

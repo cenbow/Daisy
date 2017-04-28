@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xmlns:tx="http://www.springframework.org/schema/tx" 
+xmlns:aop="http://www.springframework.org/schema/aop" 
+xmlns:context="http://www.springframework.org/schema/context" 
+xsi:schemaLocation="
+http://www.springframework.org/schema/beans 
+http://www.springframework.org/schema/beans/spring-beans-3.2.xsd 
+http://www.springframework.org/schema/tx 
+http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+http://www.springframework.org/schema/aop 
+http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd
+">
+<bean id="imagesConfig" class="java.util.HashMap">
+	<constructor-arg>
+		<map>
+			<entry key="avatar" value-ref="avatar" />
+		</map>
+	</constructor-arg>
+</bean>
+
+<!-- 会员头像大小配置 -->
+<bean id="avatar" class="java.util.ArrayList">
+	<constructor-arg>
+		<list>
+			<bean class="com.yourong.core.upload.model.ImageConfig">
+				<property name="height" value="210" />
+				<property name="width" value="210" />
+				<property name="isAddWatermark" value="false" />
+				<property name="keepAspectRatio" value="false" />
+				<property name="sizeType" value="default" />
+			</bean>
+			<bean class="com.yourong.core.upload.model.ImageConfig">
+				<property name="height" value="70" />
+				<property name="width" value="70" />
+				<property name="isAddWatermark" value="false" />
+				<property name="keepAspectRatio" value="false" />
+				<property name="sizeType" value="_70x70" />
+			</bean>
+			<bean class="com.yourong.core.upload.model.ImageConfig">
+				<property name="height" value="40" />
+				<property name="width" value="40" />
+				<property name="isAddWatermark" value="false" />
+				<property name="keepAspectRatio" value="false" />
+				<property name="sizeType" value="_40x40" />
+			</bean>
+		</list>	
+	</constructor-arg>
+</bean>
+
+</beans>

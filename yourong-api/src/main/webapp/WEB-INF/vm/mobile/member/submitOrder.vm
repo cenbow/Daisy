@@ -1,0 +1,137 @@
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$m_css_url/modules/member.css","$m_css_url/modules/submitOrder.css","$res_url/lib/frozenui/kit.css"])
+#set($title='提交订单')
+
+<!--header-->
+#set($pid=$request.getParameter("pid"))
+#set($investAmount=$request.getParameter("investAmount"))
+<style>
+    body{
+        height: 100%;
+    }
+</style>
+<h2 class="u-header f-pos-r">
+    <a href="$siteurl/mCenter/invest?pid=$pid">返回</a>
+    #set($orderId=$request.getParameter("orderId"))
+    <span class="f-fs22"  id="j-orderId" orderId="$!{orderId}">
+        提交订单
+    </span>
+</h2>
+<!--/header-->
+<!--body-->
+
+<input type="hidden" id="j-order-title" pid="$!{pid}" investamount="$!{investAmount}">
+<div class="m-bankcard-grap" id="j-screenHeight">
+<div  id="j-orderInfo">
+</div>
+
+</div>
+<div class="u-contract" id="j-contract"></div>
+<script id="j-orderInfo-tpl" type="text/html">
+    <h2 class="f-fs22 m-bankcard-border">{{orderInfo.preName}}</h2>
+
+    <ul class="m-submit">
+
+        <li>投资本金<span>&yen;{{orderInfo.investAmount |  amountFormat:'split'}}</span></li>
+
+        <li>年化收益<em class="j-annualizedRate">{{orderInfo.annualizedRate}}%</em></li>
+
+        <li class=" f-choice j-choice f-dn">
+            <input type="button" value="请选择收益券" class="z-indent "/>
+        </li>
+
+        <li>预期收益<em  class="j-profit">&yen; {{orderInfo.expectAmount |  amountFormat:'split'}}</em></li>
+    </ul>
+    <div class=" f-fs12 f-agree-pos">
+        <input type="checkbox" checked="checked" name="agree" id="j-agree">&nbsp;我已阅读并同意
+        <a class="f-fc-red" id="j-contract-btn" href="javascript:void(0)">《{{order.contractTitle}}》</a>
+        <form id="j-previewForm" url="$siteurl/security/transaction/contract/preview" method="POST">
+            <input type="hidden" name="investAmount" value="$!{investAmount}">
+            <input type="hidden" name="projectId" value="$!{pid}">
+            <input type="hidden" name="annualizedRate" value="{{orderInfo.annualizedRate}}" id="j-rate">
+        </form>
+    </div>
+
+</script>
+
+
+<button url="$siteurl/mCenter/orderPayment?pid=$pid&&orderId=" id="j-orderSubmit" class="f-fs18 f-btn-submit u-btn-primary u-reg-btn" couponid="" type="submit">提 交</button>
+
+
+##收益券
+<div class="u-cashCoupon-popup f-dn ">
+    <ul class="u-cashCoupon" id="j-profitCoupon-list" >
+    </ul>
+    <script type="text/html" id="j-profitCoupon-tpl">
+        <li class="f-fc-red j-certificate">不使用收益券</li>
+        {{each coupons as item i}}
+        <li class="f-fc-red j-profitCoupon  {{if item.isAvailable===false}}z-disabled f-color-gray{{/if}}" couponCode="{{item.couponCode}}" couponamount="{{item.amount}}" index="{{i}}">
+            {{item.amount}}%
+            <span class="f-rule f-fs12">{{item.couponValidity}}
+        {{if item.couponAmountScope}}
+            <br/>
+             {{item.couponAmountScope}}
+        {{/if}}
+        {{if item.couponDaysScope}}
+        <br/>
+        {{item.couponDaysScope}}
+        {{/if}}
+        </span>
+            {{if item.isAvailable===false}}
+            <div class="f-gray-bg z-show "></div>
+            {{/if}}
+        </li>
+        {{/each}}
+    </script>
+    <button class="u-btn-close j-btn-close ">取消</button>
+</div>
+
+##检测是否进行了实名认证
+#if(!${servletUtil.isVerifyTrueName()})
+<div class="ui-dialog show" id="j-sinapay-dialog">
+    <div class="ui-dialog-cnt " >
+        <div class="ui-dialog-bd">
+            <div>为了保证您的正常投资和资金安全，请开通新浪支付存钱罐。</div>
+        </div>
+        <div class="ui-dialog-ft">
+            <button type="button" data-role="button" data-target="$siteurl/mCenter/invest?pid=$pid" style="color: #000;">暂不开通</button>
+            <button class="f-fc-red " type="button" data-role="button" data-target="$mCenter_sinapay_url">立即开通</button>
+        </div>
+    </div>
+</div>
+#end
+<input id="j-isTrueName" type="hidden" isTrueName="${servletUtil.isVerifyTrueName()}">
+
+##遮罩层
+<div class="u-cover j-cover"></div>
+<!--/body-->
+#set($pageScript="
+<script src='$aliyunOss_url/res/lib/lodash/4.0.0/lodash.min.js'></script>
+<script>
+    seajs.use('$siteurl/res/source/js/modules/transaction.js',function(base){
+
+                //开通新浪存钱罐弹窗
+                var jSinapayDialog=$('#j-sinapay-dialog');
+                $('.j-show-dialog').on('click', function () {
+                    if(jSinapayDialog.length){
+                        showSinapayDialog();
+                        return false;
+                    }
+                });
+                jSinapayDialog.on('click','button', function () {
+                    var target=$(this).data('target');
+                    if(target==='cancel'){
+                        jSinapayDialog.removeClass('show');
+                    }else{
+                        window.location.href=target;
+                    }
+                });
+                function showSinapayDialog(){
+                    jSinapayDialog.addClass('show');
+                }
+            }
+    );
+</script>
+")
+#CSRFToken("xToken")

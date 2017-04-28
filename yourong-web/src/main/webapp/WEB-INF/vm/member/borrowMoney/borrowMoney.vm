@@ -1,0 +1,321 @@
+##我的借款
+#parse("/common/common.vm")
+#set($title="我的借款_$!{title_suffix}")
+#set($css_url=["$cssv2_url/member/member.css"])
+#set($js_url=["$root_url/static/lib/js/zclip/jquery.zclip.min.js","/static/lib/js/jq/jquery.radialIndicator.js","$root_js_url/modules/borrow.js","$root_js_url/modules/member.js"])
+
+#set($borrowMoney="z-current")
+#set($isBorrowMoney=true)
+#CSRFToken('xToken')
+## 用户中心头部
+#parse("/member/head.vm")
+
+<div class="g-wrap">
+    <div class="g-uc-bd f-round">
+        <div class="g-uc-wrap">
+##            项目和借款
+            <div class="m-borrowMoney-aggregate">
+                <span class="u-project-sum">
+                    <strong class="f-ff-din f-fs48">$!{data.totalPerfom}</strong>
+                    <em>个</em><br>
+                    <i class="f-fs14">还款中的借款项目</i>
+                </span>
+                <span class="u-project-sum">
+                    <span class="f-fs18 f-ff-rmb">￥</span>
+                    <strong class="f-ff-din f-fs48">$!{data.payableTotal}</strong>
+                    <em class="f-fs24 f-ff-din"></em><br>
+                    <i class="f-fs14">待还本息总计</i>
+                </span>
+                <em class="f-ff-din">=</em>
+                <span class="u-project-sum">
+                    <span class="f-fs18 f-ff-rmb">￥</span>
+                    <strong class="f-ff-din f-fs48">$!{data.totalPayablePrincipal}</strong>
+                    <em class="f-fs24 f-ff-din"></em><br>
+                    <i class="f-fs14">待还本金总计</i>
+                </span>
+                <em class="f-ff-din">+</em>
+                <span class="u-project-sum">
+                     <span class="f-fs18 f-ff-rmb">￥</span>
+                     <strong class="f-ff-din f-fs48">$!{data.totalPayableInterest}</strong>
+                     <em class="f-fs24 f-ff-din"></em><br>
+                     <i class="f-fs14">待还利息总计</i>
+                </span>
+            </div>
+##            借款表单
+    <div class="m-activity-list u-table-list" id="inviteFriends">
+        <h4 id="j-invitefriend-list">
+            <strong class="f-round j-type-select z-current" id="j-popularity-gain" value="52">还款中的借款</strong>
+            ##set($inviteCounts=$!{servletUtil.getReferralMemberByIdCount()})
+            <strong class="j-type-select" id="j-popularity-raising" value="30">募集中的借款 </strong>
+            <strong class="j-type-select" id="j-popularity-overdue" value="30">逾期/垫资的借款 </strong>
+            <strong class="j-type-select" id="j-popularity-end" value="70">已还清的借款 </strong>
+            <strong class="f-round j-type-select" id="j-popularity-label" value="90">流标 </strong>
+        </h4>
+      <div class="u-arrow-up u-arrow-i0" id="u-jiantou-up">
+            <i>◆</i>
+            <span>◆</span>
+        </div>
+        <form id="j-popularity-form">
+           <input type="hidden" name="status" value="52">
+             <input type="hidden" name="type" value="0">
+            <div class="u-rtable u-popularity-borrowlist" id="j-popularity-borrowlist">
+
+            </div>
+        </form>
+    </div>
+        </div>
+    </div>
+##弹框
+##本息记录
+    <div class="j-piRecord m-piRecord u-record-popping j-position-top f-dn" id="j-pi-record">
+            <h3>本息记录</h3>
+            <table>
+                <thead class="f-fwb">
+                <tr>
+                    <th width="120">期数</th>
+                    <th width="359">还款时间</th>
+                    <th width="259">还款类型</th>
+                    <th width="217">还款金额</th>
+                    <th width="170">还款状态</th>
+                    <th width="130">垫资记录</th>
+                    <th width="130">逾期记录</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>2016-02-28利息</td>
+                    <td>￥1,428.35</td>
+                    <td class="f-fwb">已还款</td>
+                    <td>需补还垫资</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+            <i class="j-close-popping"></i>
+    </div>
+##逾期还款
+     <div class="j-overdue-comm m-overdue u-record-popping j-position-top f-dn" id="j-overdue-comm-record">
+                <h3>逾期还款记录</h3>
+                <table>
+                    <thead class="f-fwb">
+                    <tr>
+                        <th width="50">序号</th>
+                        <th width="93">逾期开始日期</th>
+                        <th width="93">还款日期</th>
+                        <th width="93">逾期天数</th>
+                        <th width="100">逾期本金</th>
+                        <th width="99">逾期利息</th>
+                        <th width="100">滞纳金</th>
+                        <th width="100">实际支付</th>
+                        <th width="90">还款状态</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>2016-02-28</td>
+                        <td>￥2000.00</td>
+                        <td>￥10,428.35</td>
+                        <td>￥10,428.35</td>
+                        <td>￥10,428.35</td>
+                        <td>￥10,428.35</td>
+                        <td>线上</td>
+                        <td>还款成功</td>
+                    </tr>
+                    </tbody>
+                </table>
+    <i class="j-close-popping"></i>
+</div>
+## 垫资还款记录
+    <div class="j-overdue m-overdue u-record-popping j-position-top f-dn" id="j-overdue-record">
+                <h3>垫资还款记录</h3>
+                <table>
+                    <thead class="f-fwb">
+                    <tr>
+                        <th width="50">序号</th>
+                        <th width="93">还款时间</th>
+                        <th width="100">逾期本金</th>
+                        <th width="99">逾期利息</th>
+                        <th width="100">滞纳金</th>
+                        <th width="100">违约金</th>
+                        <th width="99">共需支付</th>
+                        <th width="100">实际支付</th>
+                        <th width="90">还款方式</th>
+                        <th width="90">还款状态</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
+    <i class="j-close-popping"></i>
+</div>
+## 垫资还款
+    <div class="j-underwrite m-underwrite u-record-popping j-position-top f-dn" >
+                <h3>垫资还款</h3>
+        <div >
+                <table id="j-popping-record">
+                    <thead class="f-fwb">
+                    <tr>
+                       	<th width="120">期数</th>
+                        <th width="369">还款时间</th>
+                        <th width="218">还款类型</th>
+                        <th width="218">还款金额</th>
+                        <th width="218">还款状态</th>
+                        <th width="218">是否垫资</th>
+                        <th width="220">是否逾期</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>2016-02-28 利息</td>
+                        <td>￥10,428.35</td>
+                        <td>需补还垫资</td>
+                    </tr>
+                    </tbody>
+                </table>
+        </div>
+            <table class="u-borrow-table" id="j-borrow-table">
+                <tbody>
+                    <tr>
+                        <td class="f-fs14 f-fwb" width="90">逾期本金</td>
+                        <td width="779"><strong><span id="borrow_overduePrincipal"></span></strong></td>
+                    </tr>
+                    <tr>
+                        <td class="f-fs14 f-fwb">逾期利息</td>
+                        <td><strong><span id="borrow_overdueInterest"></strong></td>
+                    </tr>
+                    <tr>
+                        <td class="f-fs14 f-fwb">滞纳金</td>
+                        <td>
+                            <div class="u-borrowtable-money">
+                                    <span class="f-fs14 f-fc-red"><strong class="f-fs24"><span id="borrow_overdueFine"></strong></span>
+                                <strong class="f-fs14">=</strong>
+                                <span>
+                                    <span class="f-fs14"><strong class="f-fs24"><span id="borrow_returnPrincipal"></strong></span><br>
+                                    未还本金总额
+                                </span>
+                                <strong class="f-fs14">×</strong>
+                                <span>
+                                    <strong class="f-fwb f-fs24"><span id="borrow_overdueDay"><span class="f-fs14">天</span></strong><br>
+                                    垫资天数
+                                </span>
+
+                                <strong class="f-fs14">×</strong>
+                                <span>
+                                    <strong class="f-fwb f-fs24"><span id="borrow_overdueFeeRate"><span class="f-fs14">/天</span></strong><br>
+                                    垫资罚息率
+                                </span>
+                            </div>
+
+                        </td>
+                    </tr>
+                    <tr class="f-fs14 f-fwb">
+                        <td>合计应还款</td>
+                        <td class="f-fc-red"><strong><span id="borrow_payableAmount"></strong></td>
+                    </tr>
+                </tbody>
+            </table>
+            <a class="u-borrow-button f-round " href="javascript:void(0)">还款</a>
+            <input type="hidden" name="borrow_projectId" id="borrow_projectId">
+        <i class="j-close-popping"></i>
+    </div>
+    ## 普通逾期还款
+    <div class="j-underwrite-common m-underwrite u-record-popping j-position-top f-dn" >
+                <h3>逾期还款</h3>
+        <div >
+                <table id="j-popping-common-record">
+                    <thead class="f-fwb">
+                    <tr>
+                        <th width="120">期数</th>
+                        <th width="369">还款时间</th>
+                        <th width="218">还款类型</th>
+                        <th width="218">还款金额</th>
+                        <th width="218">还款状态</th>
+                        <th width="218">是否垫资</th>
+                        <th width="220">是否逾期</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>2016-02-28 利息</td>
+                        <td>￥10,428.35</td>
+                        <td></td>
+                        <td></td>
+                        <td>是</td>
+                        <td>否</td>
+                    </tr>
+                    </tbody>
+                </table>
+        </div>
+            <table class="u-borrow-table" id="j-borrow-table">
+                <tbody>
+                    <tr>
+                        <td class="f-fs14 f-fwb" width="90">逾期本金</td>
+                        <td width="779"><strong><span id="overdue_overduePrincipal"></span></strong></td>
+                    </tr>
+                    <tr>
+                        <td class="f-fs14 f-fwb">逾期利息</td>
+                        <td><strong><span id="overdue_overdueInterest"></strong></td>
+                    </tr>
+                    <tr>
+                        <td class="f-fs14 f-fwb">滞纳金</td>
+                        <td class="u-left-money">
+                            <div class="u-borrowtable-money">
+                                <span class="f-fs14 f-fc-red">
+                                    <strong class="f-fs24 u-overdue">
+                                        <span id="overdue_overdueFine"></span>
+                                    </strong>
+                                </span>
+                                （
+                                <span class="f-fs14">
+                                    <em>未还本息总额</em><span id="overdue_returnPrincipal"></span>
+                                </span>
+                                <strong class="f-fs14">×</strong>
+                                <span class="f-fs14">
+                                    <em>逾期天数</em>
+                                    <span id="overdue_overdueDay">
+                                        <span class="f-fs14">天</span>
+                                    </span>
+                                </span>
+
+                                <strong class="f-fs14">×</strong>
+                                <span class="f-fs14">
+                                    <em>逾期罚息率</em>
+                                    <span id="overdue_overdueFeeRate">
+                                        <span class="f-fs14">/天</span>
+                                    </span>
+                                </span>
+                                ）
+                            </div>
+                            <div class="u-borrowtable-notice">
+                                （注：计算公式仅供参考，以实际结算滞纳金为准）
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="f-fs14 f-fwb">
+                        <td>合计应还款</td>
+                        <td class="f-fc-red"><strong><span id="overdue_payableAmount"></strong></td>
+                    </tr>
+                </tbody>
+            </table>
+            <a class="u-borrow-button f-round " href="javascript:void(0)">逾期还款</a>
+            <input type="hidden" name="borrow_projectId" id="borrow_projectId">
+        <i class="j-close-popping"></i>
+    </div>
+</div>

@@ -1,0 +1,100 @@
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$res_url/lib/frozenui/kit.css","$m_css_url/modules/member.css"])
+#set($title='投资红包天天抢')
+<style>
+    body{
+        background: #fff;
+    }
+    .m-tipTitle{
+        width: 80%;
+        text-align: center;
+        margin: auto;
+        padding: 30px 0 0;
+
+    }
+    .m-share-steps .u-share-grawp{
+        width: 96%;
+        margin: auto;
+    }
+    .m-share-steps .u-share-grawp ul li{
+        margin-top: 20px;
+    }
+    .m-share-steps .u-share-grawp ul li i{
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        background: url("$res_url/img/post/shareAndInvite/share-littleBlock.png") no-repeat center;
+        background-size: 100%;
+        color: #fff;
+        text-align: center;
+        line-height: 24px;
+        vertical-align: top;
+        margin-top: 4px;
+    }
+    .m-share-steps .u-share-grawp ul li p{
+        display: inline-block;
+        color: #999;
+        font-size: 12px;
+        margin-left:18px;
+    }
+    .m-share-steps .u-share-grawp ul li p span{
+        display: inline-block;
+        color: #333;
+        font-size: 15px;
+        vertical-align: top;
+    }
+    .m-screenshot{
+        width: 90%;
+        text-align: center;
+        margin: auto;
+        margin-top: 30px;
+    }
+    .u-downloadBtn{
+        height: 60px;
+
+    }
+    .u-downloadBtn a button{
+        width: 80%;
+        height: 44px;
+        line-height: 44px;
+        background: #d74148;
+        text-align: center;
+        margin:10px auto;
+        color: #fff;
+        font-size: 16px;
+        border-radius: 5px;
+        display: block;
+    }
+</style>
+##header
+<div>
+    <h2 class="u-header f-pos-r">
+        <a href="$m_url">返回</a>
+    <span class="f-fs18">
+        投资红包天天抢
+    </span>
+    </h2>
+##/header
+    <div class="m-contentWrap">
+        <div class="m-tipTitle">
+            <img src="$res_url/img/post/downloadApp/label_rule.png" alt="" width="100%">
+        </div>
+
+    </div>
+    <div class="m-share-steps">
+        <div class="u-share-grawp">
+            <ul>
+                <li><i>1</i><p><span>完成一笔满足条件的投资</span> <br>单笔投资≥1000元 </p></li>
+                <li><i>2</i><p><span>将红包分享给好友</span> <br>获得一个拼手气红包，您和好友皆可打开红包 <br> (红包可在“我的投资”-“投资详情”中查看)</p></li>
+                <li><i>3</i><p><span>得到随机数值的人气值奖励</span> <br>人气值可兑换收益券、现金券 </p></li>
+            </ul>
+        </div>
+    </div>
+    <div class="m-screenshot">
+        <img src="$res_url/img/post/downloadApp/screenshot.png" alt="" width="100%">
+    </div>
+    <div class="u-downloadBtn">
+        <a href="$siteurl/static/page/twoCodeRedict.html"> <button>下载APP，分享红包</button></a>
+    </div>
+</div>

@@ -1,0 +1,62 @@
+#parse("/fin/loan/head.vm")
+<div class="col-xs-12"></div>
+<div class="col-xs-12">
+	<div class="table-header">表头信息</div>
+	<div class="table-responsive">
+	<form>
+		<table class="table table-striped table-bordered">
+			<thead>
+				<tr>
+					<td>项目编号</td>
+					<td><input type="text" name="search_id"  class="input-small search_init" /></td>
+					<td>项目名称</td>
+					<td><input type="text" name="search_name"  class="input-small search_init" /></td>
+					<td>出借人手机</td>
+					<td><input type="text" name="search_mobile"  class="input-small search_init" /></td>
+					<td>出借人姓名</td>
+					<td><input type="text" name="search_trueName"  class="input-small search_init" /></td>
+					<td>上线时间</td>
+					<td>
+						<input type="text" name="search_onlineTimeStart"  class="input-small search_init" onclick="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd'})"/>
+						至
+						<input type="text" name="search_onlineTimeEnd"  class="input-small search_init" onclick="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd'})"/>
+					</td>
+					<td>放款状态</td>
+					<td>
+						#dictSelect("search_loanStatus",$!{sysServiceUtil.getDictList("loan_status")},"请选择")
+					</td>
+				</tr><tr>
+					<td>项目状态：</td>
+					<td>#dictSelect ("search_projectStatus",${sysServiceUtil.getDictList('project_status')} ,"请选择")</td>
+					<td colspan=10><button id = "query_loan" type="button" class="btn btn-info btn-sm btn-primary">查询</button>
+						<button id = "reset_loan" type="button" class="btn btn-info btn-sm btn-primary resetButton">重置</button>
+					</td>
+				</tr>
+			</thead>
+		</table>
+		</form>
+		<table id="loan-table" class="table table-striped table-bordered" cellspacing="0" width="100%">
+			<thead>
+				<tr >
+
+					<th>项目编号</th>
+					<th width="50">项目名称</th>
+					<th width="50">项目状态</th>
+					<th width="160">上线时间</th>
+					<th width="160">销售截止时间</th>
+					<th>进度</th>
+					<th width="160">最后一笔投资时间</th>
+					<th width="100">出借人手机</th>
+					<th width="100">出借人姓名</th>
+					<th>项目总额</th>
+					<th>可结算额度</th>
+					<th>已结算额度</th>
+					<th width="80">结算状态</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+</div>
+#parse("/fin/loan/loan.vm")
+#parse("/fin/loan/detail.vm")

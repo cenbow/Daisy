@@ -1,0 +1,95 @@
+##投房有喜
+#parse('/common/common.vm')
+#set($title="投房有喜_$!{title_suffix}")
+#set($css_url=["$root_css_url/activity/investHouse.css"])
+#set($js_url=["/static/lib/js/template.js","$root_js_url/activity/investHouseJoy.js"])
+<div class="u-investHouse-body">
+    <div class="g-wrap">
+        <script type="text/html" id="j-investHouse-tplcoupon">
+        <div class="u-investHouse-prize f-cf">
+            <div class="u-investHouse-iwatch">
+                <strong class="f-fs24">50台Apple Watch疯狂送</strong>
+                <span>投资房有融项目<em>累计金额排名前50，且不低于20万元，</em><br>
+                即可获得Apple Watch奖励（若投资额相等，先达到该投资额的用户排名靠前）;</span>
+                <i></i>
+
+                <p class="f-fs14">38毫米不锈钢表壳搭配黑色运动型表带</p>
+            </div>
+            <div class="u-investHouse-ticket">
+                <strong class="f-fs24">20万现金券先到先得</strong>
+                <span><em>前2000位</em>投资房有融项目<em>累计金额满1万元</em>的用户，<br>
+                    将会获得一张100元现金券，每位用户限得一张；</span>
+                <i></i>
+                {{if result.surplusCoupon===0}}
+                <p class="f-fs14 u-coupon-empty">现金券太抢手，已经送完啦~</p>
+                {{else}}
+                <p class="f-fs14">现金券已送出{{result.sentCoupon}}张，仅剩{{result.surplusCoupon}}张<br>
+                    （现金劵领取后30天内有效 投资项目期限≥80天）
+                </p>
+                {{/if}}
+            </div>
+        </div>
+        </script>
+        <script type="text/html" id="j-investHouse-tpllist">
+        <div class="m-investHouse-list">
+            <strong class="f-fs24">Apple Watch 争夺榜</strong>
+            <h6>（房有融累计投资额排名,仅显示前60名）</h6>
+
+            {{if resultList}}
+            <div>
+                <ul class="j-investHouse-list">
+                    {{each resultList as item i}}
+                    <li class="u-investHouse-user" width="188">
+                        <em>{{i+1}}</em>
+                                <span class="u-user-head">
+                                    {{if item.avatar}}
+                                    <img src="https://oss-cn-hangzhou.aliyuncs.com/{{item.avatar}}" alt="用户头像">
+                                    {{else}}
+                                    <img src="/static/img/member/avatar_35x35.png" alt="用户头像">
+                                    {{/if}}
+                                    <i>&nbsp;</i>
+                                </span>
+                        <span class="u-user-name">{{item.username}}</span>
+                        <span class="u-user-money f-fwb">￥{{item.investAmountInteger}}</span>
+                    </li>
+                    {{/each}}
+                </ul>
+            </div>
+            {{else}}
+            <div class="u-investHouse-none">
+                Apple Watch，I want you !
+            </div>
+            {{/if}}
+                    </script>
+                    <div id="j-investHouse-coupon"></div>
+        <div id="j-investHouse-list"></div>
+        #if($currentUser)
+            #set($logined=1)
+        #else
+            #set($logined=0)
+        #end
+        #if(${dateUtil.getCurrentDate().getTime()}>1447689599000)
+        <a class="u-investHouse-endbtn f-fs16" href="javascript:void(0)">活动已结束</a>
+        #else
+        <a class="u-investHouse-btn f-fs16" data-logined="$logined" href="javascript:void(0)" id="j-queryRanking">查看我的排名</a>
+        #end
+    </div>
+    </div>
+
+<div class="u-investHouse-rule">
+    <div class="g-wrap">
+        <h5 class="f-fs14 f-fwb">活动规则：</h5>
+
+        <p class="f-fs12">
+            1、活动时间：2015年8月22日——11月16日；
+            <br>2、活动对象：活动期间所有投资用户（各客户端均可参与）；
+            <br>3、活动期间，用户投资房有融项目累计金额排名前50，且不低于20万元，即可获得Apple Watch奖励（若投资额相等，先达到该投资额的用户排名靠前）；
+            <br>4、活动期间，前2000位投资房有融项目累计金额满1万元的用户，将会获得一张100元现金券，每位用户限得一张；
+            <br>5、现金券有效期为领取后30天，仅限投资使用，投资项目期限≥80天；
+            <br>6、如有其他疑问，请拨打客服热线：<strong>400-025-6688</strong>；
+            <br>7、本活动与苹果公司无关。
+            <br>本活动最终解释权归有融网所有
+        </p>
+    </div>
+</div>
+#CSRFToken('xToken')

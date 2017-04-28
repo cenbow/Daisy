@@ -1,0 +1,259 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: #fff;
+}
+
+/* 取消手机浏览器蓝色框 */
+* {
+   -webkit-tap-highlight-color: transparent;
+   -webkit-appearance: none;
+}
+
+/* 导航 */
+.u-nav {
+    height: 50px;
+    line-height: 50px;
+    padding: 0 1rem ;
+}
+.u-pageTitle {
+    box-sizing: border-box;
+    height: 50px;
+    line-height: 50px;
+    margin-top: 0px;
+    padding: 0 1rem;
+    background: #d74148 url(../../../../img/weixin/activity/springFestival/logo_m.png) no-repeat 1rem center;
+    background-size: auto 50%;
+}
+.u-pageTitle>span {
+    text-indent: 0;
+    right: 1rem;
+    top: 0;
+    position: absolute;
+    margin-top: -3px;
+}
+.u-pageTitle>a {
+    display: inline-block;
+    height: 47px;
+    width: 150px;
+    text-indent: -9999em;
+}
+.u-pageTitle span a {
+    color: white!important;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: normal;
+}
+
+/* tab页导航 */
+.u-tab-nav {
+    list-style: none;
+    margin: -20px 0 0 0;
+    padding: 0;
+}
+
+.u-tab-nav {
+    display: block;
+    height: 48px;
+}
+.u-tab-nav>li {
+    float: left;
+    text-align: center;
+    width: 25%;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    color: #ebb0b2;
+    cursor: pointer;
+}
+
+.u-tab-nav>li.z-active {
+    color: #d74148;
+    font-weight: bold;
+}
+
+/* 主体内容 */
+.g-content {
+    width: 86%;
+    margin: 0 auto;
+    padding-bottom: 3rem;
+}
+
+.u-main-img {
+    display: inline-block;
+    width: 100%;
+}
+
+.u-title {
+    text-align: center;
+    color: #d74148;
+    font-size: 1.2rem;
+}
+.u-wish-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.u-wish-list>li {
+    list-style: none;
+    width: 30%;
+    height: 44px;
+    padding-top: 20px;
+    margin-bottom: 0.2rem;
+    margin-left: 5%;
+    font-size: 0.8rem;
+    display: inline-block;
+    background: url(../../../../img/weixin/activity/springFestival/redpacket_bg.png) no-repeat center;
+    background-size: 100%;
+    color: #fffba5;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.u-wish-list>li:nth-child(1), .u-wish-list>li:nth-child(4) {
+    margin-left: 0;
+}
+
+.u-wish-list>li.z-active{
+    color: #fff;
+    font-weight: bold;
+}
+
+.u-red-btn {
+    background: #d74148;
+    color: #FFF;
+    padding:0.7rem 0.5rem 0.5rem 0.5rem;
+    font-size: 1.1rem;
+    border: none;
+    width: 100%;
+    border-radius: 100px;
+    margin-top: 1rem;
+    outline-style: none;
+    cursor: pointer;
+    box-shadow: 0 3px #b41921;
+}
+
+.u-red-btn.z-current {
+    background: #f8ada8 !important;
+    box-shadow: 0 3px #f8ada8;
+    cursor: default;
+}
+
+.u-tab-content>div {
+    display: none;
+}
+
+.u-tab-content>div.z-active {
+    display: block;
+}
+
+.u-pink-text {
+    text-align: center;
+    font-style: 1rem;
+    color: #eeb9bb;
+}
+
+.u-pink-title {
+    color: #eeb9bb;
+    text-align: center;
+    font-size: 1.2rem;
+    margin-top: 2rem;
+    visibility: hidden;
+}
+.u-pink-title.z-visible{
+    visibility: visible;
+}
+.u-red-text {
+    color: #b41921;
+}
+
+/* 整体页面 */
+.u-tab-body {
+    background: #d74148;
+    position: relative;
+}
+
+.u-share-top {
+    width: 100%; margin-top: -5px;
+}
+.u-tab-foot {
+    text-align: center;
+    background: #d74148;
+    padding-bottom: 3rem;
+}
+.f-fc-pink {
+    color: #eeb9bb;
+    font-size: 0.9rem;
+}
+.f-fc-white {
+    color: #fff;
+}
+
+/* 后三个tab的底部按钮 */
+.u-btns-wrap {
+    overflow: hidden;
+    margin: 0 auto;
+    padding: 0 10%;
+    box-sizing: border-box;
+}
+.u-white-btn {
+    font-size: 1rem;
+    border: 1px solid white;
+    border-radius: 100px;
+    background: #d74148;
+    width: 45%;
+    padding: 0.8rem;
+    color: white;
+    display: inline-block;
+    box-sizing: border-box;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.j-exchange-btn.z-current {
+    background: #f8ada8 !important;
+    cursor: default;
+}
+
+.pull-left{
+    float: left;
+}
+.pull-right {
+    float: right;
+}
+.f-white-lg {
+    color: #fff;
+    font-size: 1rem;
+}
+
+/* 疯抢红包的人数 */
+.j-nums {
+    display: none;
+}
+
+/* 弹出框 */
+.u-msgWindow {
+    width: 86%;
+    background: white;
+    color: #000;
+    border-radius: 4px;
+    text-align: center;
+    position: fixed;
+    top: 200px;
+    left: 7%;
+    box-sizing: border-box;
+    padding: 2rem;
+    display: none;
+    z-index: 200;
+}
+.g-mask {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    z-index: 100;
+    background: black;
+    opacity: 0.3;
+}
+.hide {
+    display: none;
+}

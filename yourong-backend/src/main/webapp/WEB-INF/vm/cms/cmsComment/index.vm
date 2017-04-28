@@ -1,0 +1,54 @@
+#parse("/cms/cmsComment/head.vm") 
+<div class="col-xs-12">
+  <p>
+  	#if($shiro.hasPermission("cmsComment:show"))
+    <button id = "new_cmsComment" type="button" class="btn btn-info btn-sm btn-primary" >新增</button>
+    #end
+    #if($shiro.hasPermission("cmsComment:save"))
+    <button id = "edit_cmsComment" type="button" class="btn  btn-pink btn-sm btn-primary" >修改</button>
+    #end
+    #if($shiro.hasPermission("cmsComment:delete"))
+    <button id = "delete_cmsComment" type="button" class="btn btn-danger btn-sm btn-primary" >删除</button>
+    #end
+  </p>
+</div>
+<div class="col-xs-12">
+     <div class="table-header">
+     		评论列表
+     </div>
+   <div class="table-responsive">
+     	<table id="cmsComment-table-2" class="table table-striped table-bordered" cellspacing="0" width="100%">
+     	       <thead> 
+     	           <tr>  
+     	            <th></th>
+ <th><input type="text" name="search_id"  class="input-small search_init" /></th>
+ <th><input type="text" name="search_categoryId"  class="input-small search_init" /></th>
+ <th><input type="text" name="search_articleId"  class="input-small search_init" /></th>
+ <th><input type="text" name="search_title"  class="input-small search_init" /></th>
+ <th><input type="text" name="search_content"  class="input-small search_init" /></th>
+ <th><input type="text" name="search_name"  class="input-small search_init" /></th>
+ <th><input type="text" name="search_ip"  class="input-small search_init" /></th>
+ <th><input type="text" name="search_auditUserId"  class="input-small search_init" /></th>
+ <th><input type="text" name="search_auditTime"  class="input-small search_init" /></th>
+ <th><input type="text" name="search_createTime"  class="input-small search_init" /></th>
+         <th><button id = "query_cmsComment" type="button" class="btn btn-info btn-sm btn-primary">查询</button></th>
+                    </tr>
+ <tr >
+ <th ><label><input class="ace" type="checkbox"> <span class="lbl"></span></label></th>
+<th >编号</th>
+<th >栏目编号</th>
+<th >栏目内容的编号</th>
+<th >栏目内容的标题</th>
+<th >评论内容</th>
+<th >评论姓名</th>
+<th >评论IP</th>
+<th >审核人</th>
+<th >审核时间</th>
+<th >评论时间</th>
+<th ></th>
+ </tr>
+ </thead>
+ </table>
+ </div>
+ </div>
+ #parse("/cms/cmsComment/form.vm")

@@ -1,0 +1,237 @@
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$m_css_url/common.css","$m_css_url/landing/season1.css"])
+#set($title="注册就送518")
+#set($loadJQ=true)
+<style media="screen">
+    @media screen and (max-width: 359px) {
+        .u-amount-cover {
+            padding: 0 5px;
+        }
+    }
+    .m-top {
+        width: 100%;
+        position: relative;
+    }
+    .m-top img {
+        width: 100%;
+        display: block;
+    }
+    .g-bd {
+        background: #ffdba2;
+    }
+    .g-bd input {
+        background: #FFF;
+    }
+    .u-reg-btn-cover {
+        position: relative;
+        width: 100%;
+    }
+    .u-reg-btn-cover img {
+        width: 100%;
+        display: block;
+    }
+    .u-reg-btn-cover button {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        color: #FFF;
+        letter-spacing: 2px;
+        line-height: 1;
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+    .u-amount-cover {
+        height: 3.4rem !important;
+        line-height: 3.2rem !important;
+        background: #ffe6be;
+        box-shadow: 0 10px 10px #ffe6be;
+    }
+
+    .u-amount-cover em {
+        font-size: 12px;
+        color: #ff5b3e;
+    }
+
+    .u-amount-cover span {
+        color: #ff5b3e;
+        font-size: 18px;
+    }
+    footer {
+        width: 100%;
+    }
+    footer img {
+        display: block;
+        width: 100%;
+    }
+    .u-btn-cover {
+        position: absolute;
+        top: 88%;
+        left: 23%;
+        width: 54%;
+        height: 7%;
+        border-radius: 20px;
+    }
+    .m-foot{
+        background: #eeeeee;
+        font-size: 14px;
+        text-align: center;
+        color: #999999;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        line-height: 25px;
+        margin-bottom: 64px;
+    }
+    .f-fix{
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        height: 64px;
+        background: white;
+        opacity: 0.94;
+    }
+
+    .f-fix .m-logo {
+        padding-left: 50px;
+        margin-top: 10px;
+        margin-left: 20px;
+        height: 43px;
+        width: 60%;
+        overflow: hidden;
+        background: url("https://yrstatic.oss-cn-hangzhou.aliyuncs.com/res/img/sixgiftB/Icon-new.png") no-repeat 1px center;
+        background-size: 40px 40px;
+    }
+
+    .m-logo span {
+        display: block;
+        font-size: 12px;
+    }
+
+    .m-down a {
+        position: absolute;
+        right: 10px;
+        bottom: 15px;
+        background: #D74048;
+        border-radius: 4px;
+        color: white;
+        height: 30px;
+        line-height: 30px;
+        width: 80px;
+        text-align: center;
+    }
+</style>
+<div class="m-top">
+    <img src="$siteurl/res/img/landing/registerG/banner.png" alt="">
+    <div class="u-btn-cover"></div>
+</div>
+##注册
+<section class="g-bd">
+    <form data-action="$siteurl/mstation/register/saveMember" method="POST" class="m-reg-form j-form-xpost j-validform"
+          data-page="register" id="j-reg-form">
+        #CSRFToken('xToken')
+        #onceToken()
+        <input type="hidden" id="j-reg-mobile"/>
+
+        <div class="u-ipt-group f-pos-r">
+            <input type="tel" name="mobile" oncopy="return false;" onpaste="return false;" id="j-cpn" autocomplete="off"
+                   nullmsg="手机号码不能为空" errormsg="请输入正确的手机号码" class="f-round f-ipt-w430 u-ipt-text u-ipt-str"
+                   placeholder="请输入手机号码"/>
+            <span class='m-val-tips'></span>
+
+            <div class="f-mob-sha f-dn" id="j-mobile"></div>
+        </div>
+        <div class="m-input-vercode f-cf f-pos-r">
+			<span class="u-xtips-wrap ">
+				<input type="text" id="j-vercode" autocomplete="off" nullmsg="请输入右侧验证码"
+                       class="u-ipt-text u-ipt-vercode j-vercode" placeholder="输入图形码"/>
+            </span>
+            <img src="$siteurl/mstation/validateCode" alt="验证码" title="点击重新获取验证码" id="j-img-vercode"
+                 class="u-img-vercode"/>
+            <span id="j-phonecode-wrap" class="u-xtips-wrap u-phonecode-wrap z-hide">
+				<input type="text" name="phonecode" autocomplete="off" id="j-phonecode" placeholder="输入手机验证码"
+                       class="f-clear f-round u-ipt-text f-ipt-w248 u-ipt-phonecode"/>
+			</span>
+            <span class="f-round u-tips-vercode f-tips-gray f-fr  f-dn">
+			获得短信验证码
+			</span>
+            <span class="m-val-tips"></span>
+        </div>
+        <div class="u-ipt-group">
+            <input id="j-user-pwd" type="password" name="password" oncopy="return false;" onpaste="return false;"
+                   class="f-round u-ipt-text f-ipt-w430 v-pwd" placeholder="请输入密码"/>
+        </div>
+
+        <input type="hidden" name="referCode" id="j-refercode-val" value="$!{shortUrl}">
+        <input type="hidden" name="tid" value="$!{request.getParameter('tid')}">
+        <input type="hidden" name="registerTraceSource" value='$!{session.getAttribute("register_TraceSource")}'/>
+        <input type="hidden" name="registerTraceNo" value='$!{session.getAttribute("register_TraceNo")}'/>
+        <input type="hidden" name="referSource" value="$!{referSource}"/>
+        <input type="hidden" name="checkType" id="j-checkType" value="1"/>
+        <input type="hidden" name="pngCode" id="j-pngcode"/>
+        <input type="hidden" name="loginSource" value="0"/>
+        <div class="u-reg-btn-cover">
+            <img src="$siteurl/res/img/landing/rewardForNew/register_btn.png" alt="">
+            <button type="submit" class="posi-absolute j-reg-btn j-reg-btn-a f-bold">注册领取518</button>
+        </div>
+
+
+    </form>
+</section>
+
+##投资总数/注册人数
+<div class="u-amount-cover u-status-amount f-fs14 f-cf">
+    <em class="f-ff-ver u-amount-money f-fl">
+        累计成功投资:￥
+        <span class="f-ff-din f-fs22">
+            $!{paltformCapitalUtils.getPrefixPaltformTotalInvest()}
+        </span>
+    </em>
+    <em class="f-ff-ver f-fr">
+        注册人数:
+        <span class="f-ff-din f-fs22">
+            $!{paltformCapitalUtils.getPaltformMembers()}
+        </span>
+    </em>
+</div>
+
+<footer>
+    <img src="$siteurl/res/img/landing/registerG/advantages.png" alt="">
+</footer>
+<div class="m-foot">
+    &copy;2014-2017 YRW.COM<br>
+    浙江小融网络科技股份有限公司 版权所有<br>
+    备案号：浙ICP备14032974号-3<br>
+    ICP经营许可证：浙B2-20150596<br>
+    理财有风险 投资需谨慎
+</div>
+<section class="f-fix">
+    <a href="$siteurl/mIndex">
+        <div class="m-logo">
+            <span style="font-size: 16px;color: #333333">有融网理财</span>
+            <span style="color: #999999">全透明的互联网理财优选平台</span>
+        </div>
+    </a>
+    <span class="m-down">
+
+        <a href="$siteurl/static/page/twoCodeRedict.html">立即下载</a>
+    </span>
+</section>
+#set($pageScript="
+##<script src='$res_url/lib/js/lucky-card.min.js'></script>
+<script>
+    seajs.config({
+        alias: {
+            'landingRegister': '$m_js_url/landing/register.js?v=${sysServiceUtil.getStaticResourceVersion()}'
+        },
+        preload: ['validform']
+    });
+    seajs.use('landingRegister');
+    var u_btn = document.querySelector('.u-btn-cover');
+    u_btn.addEventListener('click', function () {
+        document.querySelector('.g-bd').scrollIntoView(true);
+    });
+</script>
+")

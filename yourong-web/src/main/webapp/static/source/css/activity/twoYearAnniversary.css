@@ -1,0 +1,1954 @@
+.m-top {
+    position: relative;
+    width: 100%;
+    font-size: 0;
+    margin-top: -7px;
+}
+
+.g-bd {
+    margin-bottom: 0;
+}
+
+.f-mt-15 {
+    margin-top: 15px;
+}
+
+.f-mt-30 {
+    margin-top: 30px;
+}
+
+.f-mt-70 {
+    margin-top: 70px;
+}
+
+.f-fc-red {
+    color: #ee5858;
+}
+
+.f-fc-spring {
+    color: #5f7f00;
+}
+
+.f-fc-summer {
+    color: #3c8f00;
+}
+
+.f-fc-autumn {
+    color: #bf8000;
+}
+
+.f-fc-winter {
+    color: #d5784b;
+}
+
+.z-show {
+    display: block !important;
+}
+
+.f-text-overflow {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.f-clear:before,
+.f-clear:after {
+    content: " ";
+    display: table;
+}
+
+.f-clear:after {
+    height: 0;
+    overflow: hidden;
+    clear: both;
+}
+
+/* 顶部固定导航栏 */
+.m-navbar-nav {
+    position: fixed;
+    top: 27px;
+    left: 50%;
+    width: 990px;
+    margin-left: -495px;
+    padding: 0 35px;
+    z-index: 15;
+    overflow-x: visible;
+    -webkit-overflow-scrolling: touch;
+    display: none;
+}
+
+.m-navbar-nav:before, .m-navbar-nav:after {
+    display: table;
+    content: " ";
+}
+
+.m-navbar-nav:after {
+    clear: both;
+}
+
+.m-navbar-nav .u-menuItem {
+    position: relative;
+    display: block;
+    float: left;
+}
+
+.m-navbar-nav .u-menuItem.active {
+    top: -8px;
+}
+
+.m-navbar-nav .u-menuItem a {
+    position: relative;
+    display: block;
+    width: 114px;
+    height: 70px;
+    margin: 0 35px;
+    background: url(/static/img/activity/twoYearAnniversary/anniversaryNav.png) no-repeat;
+    background-size: 626px 279px;
+    background-position: 0 0;
+}
+
+.m-navbar-nav .u-menuItem .u-two-year-nav {
+    background-position: 0 0;
+}
+
+.m-navbar-nav .u-menuItem .u-spring-nav {
+    background-position:-128px 0;
+}
+
+.m-navbar-nav .u-menuItem .u-summer-nav {
+    background-position:-256px 0;
+}
+
+.m-navbar-nav .u-menuItem .u-autumn-nav {
+    background-position:-384px 0;
+}
+
+.m-navbar-nav .u-menuItem .u-winter-nav {
+    background-position:-512px 0;
+}
+
+.m-navbar-nav .u-menuItem:hover {
+    top: -8px;
+}
+
+.m-navbar-nav .u-menuItem:hover .u-two-year-nav,
+.m-navbar-nav .u-menuItem.active .u-two-year-nav {
+    width: 143px;
+    height: 86px;
+    margin: 0 20.5px;
+    background-position:0 -88px;
+}
+
+.m-navbar-nav .u-menuItem:hover .u-spring-nav,
+.m-navbar-nav .u-menuItem.active .u-spring-nav {
+    width: 218px;
+    height: 86px;
+    margin: 0;
+    background-position:-160px -88px;
+}
+
+.m-navbar-nav .u-menuItem:hover .u-summer-nav,
+.m-navbar-nav .u-menuItem.active .u-summer-nav {
+    width: 146px;
+    height: 87px;
+    margin: 0 19px;
+    background-position:0 -192px;
+}
+
+.m-navbar-nav .u-menuItem:hover .u-autumn-nav,
+.m-navbar-nav .u-menuItem.active .u-autumn-nav {
+    width: 167px;
+    height: 86px;
+    margin: 0 8.5px;
+    background-position:-160px -192px;
+}
+
+.m-navbar-nav .u-menuItem:hover .u-winter-nav,
+.m-navbar-nav .u-menuItem.active .u-winter-nav {
+    width: 155px;
+    height: 86px;
+    margin: 0 9.5px;
+    background-position:-344px -192px;
+}
+
+.m-navbar.navbar-inverse.navbar-static-top a {
+    color: #fff;
+}
+
+
+
+.navbar-inverse .m-navbar-nav>.active>a, .navbar-inverse .m-navbar-nav>.active>a:focus {
+    /*background: #398439;*/
+    /*font-weight: 700;*/
+}
+
+/*头部图片*/
+.u-top1 {
+    background: url('/static/img/activity/twoYearAnniversary/top1.png') no-repeat center;
+    background-size: 100% 100%;
+    height: 220px;
+}
+
+.u-top2 {
+    background: url('/static/img/activity/twoYearAnniversary/top2.png') no-repeat center;
+    background-size: 100% 100%;
+    height: 220px;
+}
+
+.u-top3 {
+    background: url('/static/img/activity/twoYearAnniversary/top3.png') no-repeat center;
+    background-size: 100% 100%;
+    height: 220px;
+}
+
+.m-top img {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+}
+
+.u-activity-theme {
+    top: 132px;
+    -webkit-transform: scale(0);
+    -ms-transform: scale(0);
+    transform: scale(0);
+    -webkit-animation-name: theme;
+    animation-name: theme;
+    -webkit-animation-delay: 1s;
+    animation-delay: 1s;
+    -webkit-animation-duration: 1.3s;
+    animation-duration: 1.3s;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+}
+
+.IE9 .u-activity-theme {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+}
+
+.u-activity-ren {
+    bottom: 0;
+    -webkit-animation-name: ren;
+    animation-name: ren;
+    -webkit-animation-delay: 0s;
+    animation-delay: 0s;
+    -webkit-animation-duration: 0.6s;
+    animation-duration: 0.6s;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+}
+
+/*正文主体*/
+.m-main-wrap {
+    padding-top: 62px;
+    padding-bottom: 50px;
+    width: 100%;
+    background: url(../../../img/activity/twoYearAnniversary/mainBg.png);
+    background-repeat: repeat-x;
+}
+
+.m-main-wrap .m-module-wrap {
+    position: relative;
+    margin-bottom: 130px;
+}
+
+.m-main-wrap .m-content-head {
+    text-align: center;
+}
+
+.m-content-head .u-head-bg {
+    display: inline-block;
+    width: 635px;
+    height: 68px;
+}
+
+.u-main-text {
+    font-size: 14px;
+}
+
+/*春季模块*/
+.spring-bg {
+    background: url(../../../img/activity/twoYearAnniversary/twoYearAnniversary.png) no-repeat;
+    background-size: 1255px 947px;
+    background-position:0 0;
+}
+
+.m-redPacket-container {
+    text-align: center;
+    margin-bottom: 56px;
+}
+
+.m-blessRed-wrapper {
+    position: relative;
+    left: -65px;
+    margin-top: 16px;
+    width: 1194px;
+    height: 330px;
+    background: url(/static/img/activity/twoYearAnniversary/blessRed_bg.png) no-repeat;
+}
+
+.m-blessRed-wrapper .m-time-count-cont {
+    margin: 0 15px;
+}
+
+.m-blessRed-wrapper .m-time-count-msg {
+    position: absolute;
+    top: 45px;
+    left: 238px;
+    width: 646px;
+    height: 36px;
+    line-height: 36px;
+    font-size: 20px;
+    color: #fff;
+    text-align: center;
+}
+
+.m-blessRed-wrapper .m-time-count-msg.z-start {
+    color: #ffee5b;
+}
+
+.m-blessRed-wrapper .m-time-count {
+    position: absolute;
+    top: 42px;
+    left: 415px;
+    width: 304px;
+    height: 36px;
+    line-height: 36px;
+    font-size: 18px;
+    background: url(/static/img/activity/twoYearAnniversary/timeCount_bg.png) no-repeat;
+}
+
+.m-blessRed-wrapper .m-time-count i {
+    color: #fff;
+    margin-right: 5px;
+}
+
+.m-blessRed-wrapper .m-time-count .u-symbol {
+    margin-right: 2px;
+    margin-left: 2px;
+}
+
+.m-blessRed-wrapper span {
+    display: inline-block;
+    width: 36px;
+    height: 34px;
+    letter-spacing: 10px;
+    text-align: left;
+    text-indent: 4px;
+    color: #ff353e;
+}
+
+.m-blessRed-wrapper .u-blessRed-rule {
+    position: relative;
+    top: 200px;
+    left: 238px;
+    width: 646px;
+    color: #b20000;
+    font-size: 12px;
+    text-align: center;
+}
+
+.m-blessRed-wrapper .u-blessRed-total {
+    position: relative;
+    top: 204px;
+    left: 238px;
+    width: 646px;
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
+}
+
+.m-blessRed-wrapper .u-blessRed-total em {
+    color: #fdd926;
+    font-size: 20px;
+}
+
+.m-blessRed-wrapper .u-blessRed-btn {
+    position: relative;
+    top: 212px;
+    left: 238px;
+    width: 646px;
+    text-align: center;
+}
+
+.m-blessRed-wrapper .u-blessRed-btn span {
+    display: inline-block;
+    width: 144px;
+    height: 30px;
+    line-height: 30px;
+    background-color: #FFEE5B;
+    font-size: 14px;
+    color: #ee5858;
+    border-radius: 50px;
+    letter-spacing: 0;
+    text-align: center;
+    cursor: pointer;
+}
+
+.m-blessRed-wrapper .u-blessRed-btn.z-disabled span {
+    background-color: #C9C9C9;
+    color: #888;
+    cursor: default;
+}
+
+.u-redPack {
+    position: relative;
+    display: inline-block;
+    width: 228px;
+    height: 182px;
+    margin: 0 15px;
+    background: url(../../../img/activity/twoYearAnniversary/twoYearAnniversary.png) no-repeat;
+    background-size: 1255px 947px;
+    background-position:-656px -448px;
+}
+
+.m-redPacket-list {
+    margin-top: 62px;
+}
+
+.m-redPacket-list li {
+    font-size: 14px;
+    color: #5f7f00;
+}
+
+.m-redPacket-list li span {
+    display: block;
+    text-align: center;
+}
+
+.u-redPack-value {
+    font-size: 40px;
+}
+
+.u-redPack-value em {
+    font-size: 18px;
+}
+
+.u-redPack-rule {
+    color: #ff8a00;
+    font-size: 12px;
+}
+
+.u-redPack-btn {
+    position: absolute;
+    left: 72px;
+    bottom: 28px;
+    width: 89px;
+    height: 29px;
+    font-size: 14px;
+    line-height: 30px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.u-redPack-btn.z-disabled {
+    background: #c9c9c9;
+    border-radius: 14px;
+    color: #888888;
+}
+
+.u-left-tree {
+    position: absolute;
+    top: 70px;
+    left: -460px;
+    width: 576px;
+    height: 309px;
+    background: url(/static/img/activity/twoYearAnniversary/testLeft.png) no-repeat;
+}
+
+.QQBrowser .u-left-tree {
+    left: -562px;
+}
+
+.u-right-tree {
+    position: absolute;
+    top: 530px;
+    right: -460px;
+    width: 573px;
+    height: 309px;
+    background: url(/static/img/activity/twoYearAnniversary/testRight.png) no-repeat;
+}
+
+.QQBrowser .u-right-tree {
+    right: -562px;
+}
+
+
+.bag1 {
+    position: absolute;
+    left: 316px;
+    top: 194px;
+    width: 26px;
+    height: 31px;
+    background: url(/static/img/activity/twoYearAnniversary/bag1.png) no-repeat;
+    transform-origin: 70% 0 0;
+    animation: shakeBag1 1.5s linear infinite alternate;
+    -moz-animation: shakeBag1 1.5s linear infinite alternate;
+    -webkit-animation: shakeBag1 1.5s linear infinite alternate;
+    -o-animation: shakeBag1 1.5s linear infinite alternate;
+}
+
+.bag2 {
+    position: absolute;
+    left: 487px;
+    top: 139px;
+    width: 37px;
+    height: 44px;
+    background: url(/static/img/activity/twoYearAnniversary/bag4.png) no-repeat;
+    transform-origin: 50% 0 0;
+    animation: shakeBag2 2s linear infinite alternate;
+    -moz-animation: shakeBag2 2s linear infinite alternate;
+    -webkit-animation: shakeBag2 2s linear infinite alternate;
+    -o-animation: shakeBag2 2s linear infinite alternate;
+}
+
+.bag3 {
+    position: absolute;
+    left: 231px;
+    top: 194px;
+    width: 26px;
+    height: 32px;
+    background: url(/static/img/activity/twoYearAnniversary/bag3.png) no-repeat;
+    transform-origin: 50% 0 0;
+    animation: shakeBag1 1.5s linear infinite alternate;
+    -moz-animation: shakeBag1 1.5s linear infinite alternate;
+    -webkit-animation: shakeBag1 1.5s linear infinite alternate;
+    -o-animation: shakeBag1 1.5s linear infinite alternate;
+}
+
+.bag4 {
+    position: absolute;
+    top: 138px;
+    left: 51px;
+    width: 37px;
+    height: 44px;
+    background: url(/static/img/activity/twoYearAnniversary/bag2.png) no-repeat;
+    transform-origin: 60% 0 0;
+    animation: shakeBag3 2s linear infinite alternate;
+    -moz-animation: shakeBag3 2s linear infinite alternate;
+    -webkit-animation: shakeBag3 2s linear infinite alternate;
+    -o-animation: shakeBag3 2s linear infinite alternate;
+}
+
+.g-fallDown-left {
+    position: absolute;
+    top: 160px;
+    left: -460px;
+    width: 576px;
+    height: 1220px;
+    z-index: 99;
+}
+
+.g-fallDown-right {
+    position: absolute;
+    top: 630px;
+    right: -460px;
+    width: 573px;
+    height: 665px;
+}
+
+.QQBrowser .g-fallDown-left {
+    left: -562px;
+}
+
+.QQBrowser .g-fallDown-right {
+    right: -542px;
+}
+
+/*夏季模块*/
+.summer-bg {
+    background: url(../../../img/activity/twoYearAnniversary/twoYearAnniversary.png) no-repeat;
+    background-size: 1255px 947px;
+    background-position:0 -74px;
+}
+
+.m-giftPacks-container {
+    text-align: center;
+    margin-top: 70px;
+}
+
+.m-giftPacks-container.z-container-two {
+    margin-top: 45px;
+}
+
+.m-giftPacks-container .u-giftPacks {
+    display: inline-block;
+    width: 226px;
+    height: 268px;
+    background: url(../../../img/activity/twoYearAnniversary/twoYearAnniversary.png) no-repeat;
+    background-size: 1255px 947px;
+    background-position:-398px -304px;
+    text-align: center;
+    color: #d58e00;
+}
+
+.z-container-one .u-giftPacks {
+    margin: 0 24px;
+}
+
+.z-container-one .u-giftPacks.z-center {
+    margin: 0 64px;
+}
+
+.z-container-two .u-giftPacks {
+    margin: 0 44px;
+}
+
+.u-giftPacks .u-giftPacks-value {
+    font-size: 20px;
+    margin-top: 55px;
+    line-height: 26px;
+}
+
+.u-giftPacks .u-giftPacks-rule {
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.u-giftPacks .u-giftPacks-btn {
+    display: inline-block;
+    width: 89px;
+    height: 30px;
+    margin-top: 10px;
+    font-size: 16px;
+    color: #fff;
+    background: url(../../../img/activity/twoYearAnniversary/twoYearAnniversary.png) no-repeat;
+    background-size: 1255px 947px;
+    background-position:-304px -305px;
+    cursor: pointer;
+}
+
+.u-giftPacks .u-giftPacks-btn.z-disabled {
+    background: url(/static/img/activity/twoYearAnniversary/grayBtn.png) no-repeat;
+    background-size: 89px 30px;
+    background-position: 0 0;
+    cursor: default;
+}
+
+.u-myData-total {
+    position: absolute;
+    bottom: -66px;
+    width: 100%;
+    font-size: 20px;
+    text-align: center;
+}
+
+.u-myData-total.f-fc-spring {
+    color: #5f7f00;
+}
+
+.u-myData-total.f-fc-summer {
+    color: #3c8f00;
+}
+
+.u-myData-total.f-fc-autumn {
+    color: #bf8000;
+}
+
+.m-module-wrap .u-left-object {
+    position: absolute;
+    left: -160px;
+    top: 460px;
+    z-index: 10;
+}
+
+.m-module-wrap .u-left-shadow {
+    position: absolute;
+    left: -102px;
+    top: 626px;
+    z-index: 9;
+}
+
+.m-module-wrap .u-right-object {
+    position: absolute;
+    right: -208px;
+    top: 300px;
+    z-index: 10;
+}
+
+.m-module-wrap .u-right-shadow {
+    position: absolute;
+    right: -184px;
+    top: 439px;
+    z-index: 9;
+}
+
+.fallDown {
+    -webkit-animation-name: fallDown;
+    -moz-animation-name: fallDown;
+    -o-animation-name: fallDown;
+    animation-name: fallDown;
+}
+
+.expansion {
+    -webkit-animation-name: expansion;
+    -moz-animation-name: expansion;
+    -o-animation-name: expansion;
+    animation-name: expansion;
+}
+
+.animated2 {
+    -webkit-animation-duration: 2s;
+    -moz-animation-duration: 2s;
+    -o-animation-duration: 2s;
+    animation-duration: 2s;
+    -webkit-animation-fill-mode: both;
+    -moz-animation-fill-mode: both;
+    -o-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-animation-play-state:paused;
+    -moz-animation-play-state: paused;
+    -o-animation-play-state: paused;
+    animation-play-state:paused;
+}
+
+.animated2.running {
+    -webkit-animation-play-state:running;
+    -moz-animation-play-state: running;
+    -o-animation-play-state: running;
+    animation-play-state:running;
+}
+
+/*秋季模块*/
+.autumn-bg {
+    background: url(../../../img/activity/twoYearAnniversary/twoYearAnniversary.png) no-repeat;
+    background-size: 1255px 947px;
+    background-position:0 -149px;
+}
+
+.m-cards-list {
+    height: 269px;
+    margin-top: 92px;
+    font-size: 0;
+    text-align: center;
+}
+
+.m-cards-list .u-cards {
+    position: relative;
+    top: 20px;
+    display: block;
+    float: left;
+    width: 168px;
+    height: 229px;
+    margin: 0 14px;
+    color: #eead2a;
+    font-size: 98px;
+    text-align: center;
+    line-height: 210px;
+    background: url(../../../img/activity/twoYearAnniversary/twoYearAnniversary2.png) no-repeat;
+    background-size: 838px 679px;
+    background-position:0 -136px;
+    cursor: pointer;
+}
+
+.m-cards-list .u-cards.z-active,
+.m-cards-list .u-cards:hover {
+    top: 4px;
+    width: 193px;
+    height: 264px;
+    margin: 0 1.5px;
+    font-size: 112px;
+    line-height: 236px;
+    background-position: -183px -136px;
+}
+
+.m-module-wrap .u-flower-left {
+    position: absolute;
+    left: -202px;
+    top: 300px;
+    width:142px;
+    height:121px;
+    background: url(../../../img/activity/twoYearAnniversary/twoYearAnniversary.png) no-repeat;
+    background-size: 1255px 947px;
+    background-position:-148px -302px;
+}
+
+.m-module-wrap .u-flower-right {
+    position: absolute;
+    right: -218px;
+    top: 300px;
+    width:142px;
+    height:121px;
+    background: url(../../../img/activity/twoYearAnniversary/twoYearAnniversary.png) no-repeat;
+    background-size: 1255px 947px;
+    background-position:0 -302px;
+}
+
+.m-cards-footer {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.m-cards-footer .u-gift-list-btn {
+    position: relative;
+    display: inline-block;
+    color: #bf8000;
+    font-size: 20px;
+    margin: 0 102px;
+}
+
+.m-cards-footer .u-gift-list-btn:hover {
+    text-decoration: none;
+}
+
+.m-cards-footer .u-gift-list-btn:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #bf8000;
+    visibility: hidden;
+    -webkit-transform: scaleX(0);
+    -o-transform: scaleX(0);
+    transform: scaleX(0);
+    -webkit-transition: all 0.3s ease-in-out 0s;
+    -o-transition: all 0.3s ease-in-out 0s;
+    transition: all 0.3s ease-in-out 0s;
+}
+
+.m-cards-footer .u-gift-list-btn.z-active:before,
+.m-cards-footer .u-gift-list-btn:hover:before {
+    visibility: visible;
+    -webkit-transform: scaleX(1);
+    -o-transform: scaleX(1);
+    transform: scaleX(1);
+}
+
+.m-open-cards {
+    position: absolute;
+    display: block;
+    width:193px;
+    height:263px;
+    color: #fff;
+    text-align: center;
+    background: url(../../../img/activity/twoYearAnniversary/twoYearAnniversary2.png) no-repeat;
+    background-size: 838px 679px;
+    background-position:-185px -416px;
+}
+
+.m-open-cards .m-prizes-amount {
+    position: absolute;
+    display: block;
+    top: 83px;
+    width: 193px;
+    color: #fff;
+    line-height: 1;
+}
+
+.m-open-cards .u-cnum-a {
+    display: inline-block;
+    background: url(/static/img/activity/twoYearAnniversary/twoYearAnniversary2.png) no-repeat 0 0;
+    background-size: 838px 679px;
+    overflow: hidden;
+}
+
+.m-open-cards .u-cnum-s0 {
+    width: 25px;
+    height: 57px;
+    background-position:0 -64px;
+}
+
+.m-open-cards .u-cnum-s1 {
+    width:17px;
+    height:57px;
+    background-position:-32px -64px;
+}
+
+.m-open-cards .u-cnum-s3 {
+    width:25px;
+    height:57px;
+    background-position:-89px -64px;
+}
+
+.m-open-cards .u-cnum-s5 {
+    width:25px;
+    height:57px;
+    background-position:-57px -64px;
+}
+
+.m-open-cards .u-cnum-point {
+    width:9px;
+    height:8px;
+    background-position:-129px -87px;
+}
+
+.m-open-cards .u-cnum-unit {
+    width:20px;
+    height:17px;
+    background-position:-128px -64px;
+}
+
+.m-open-cards .m-prizes-rule {
+    left: 25px;
+    bottom: 42px;
+    padding: 4px 0;
+}
+
+.m-open-cards .m-prizes-rule em {
+    font-size: 14px;
+    line-height: 22px;
+}
+
+.m-open-cards strong {
+    position: absolute;
+    display: block;
+    top: 95px;
+    width: 193px;
+    font-size: 36px;
+    font-weight: normal;
+}
+
+.m-open-cards .u-iqy {
+    position: absolute;
+    display: block;
+    bottom: 76px;
+    width: 193px;
+    font-size: 18px;
+}
+
+.m-open-cards .u-coupon {
+    position: absolute;
+    display: block;
+    bottom: 60px;
+    font-size: 20px;
+    width: 193px;
+}
+
+.z-position0 {
+    display: none !important;
+}
+
+.z-position1 {
+    top: 215px;
+    left: 2px;
+}
+
+.z-position2 {
+    top: 215px;
+    left: 198px;
+}
+
+.z-position3 {
+    top: 215px;
+    left: 394px;
+}
+
+.z-position4 {
+    top: 215px;
+    left: 590px;
+}
+
+.z-position5 {
+    top: 215px;
+    left: 786px;
+}
+
+/*冬季模块*/
+.winter-bg {
+    background: url(../../../img/activity/twoYearAnniversary/twoYearAnniversary.png) no-repeat;
+    background-size: 1255px 947px;
+    background-position:0 -224px;
+}
+
+.m-anniversary-screen {
+    position: relative;
+    width: 1206px;
+    height: 685px;
+    margin-top: 40px;
+    margin-left: -108px;
+    background: url(../../../img/activity/twoYearAnniversary/screen.png) no-repeat;
+}
+
+.m-anniversary-screen .m-anniversary-tag {
+    position: relative;
+    display: inline-block;
+    width: 161px;
+}
+
+.m-anniversary-screen .tag1 {
+    height: 490px;
+    margin-top: 8px;
+    margin-left: 216px;
+    background: url(/static/img/activity/twoYearAnniversary/tag1.png) no-repeat;
+    background-size: 100%;
+    transform-origin: 50% 0 0;
+    -moz-transform-origin: 50% 0 0;
+    -webkit-transform-origin: 50% 0 0;
+    -o-transform-origin: 50% 0 0;
+    animation: myfirst 3s linear infinite;
+    -moz-animation: myfirst 3s linear infinite;
+    -webkit-animation: myfirst 3s linear infinite;
+    -o-animation: myfirst 3s linear infinite;
+}
+
+.m-anniversary-screen .tag2 {
+    height: 442px;
+    top: -49px;
+    margin-left: 42px;
+    background: url(/static/img/activity/twoYearAnniversary/tag2.png) no-repeat;
+    background-size: 100%;
+    transform-origin: 50% 0 0;
+    -moz-transform-origin: 50% 0 0;
+    -webkit-transform-origin: 50% 0 0;
+    -o-transform-origin: 50% 0 0;
+    animation: myfirst 3s linear 0.75s infinite;
+    -moz-animation: myfirst 3s linear 0.75s infinite;
+    -webkit-animation: myfirst 3s linear 0.75s infinite;
+    -o-animation: myfirst 3s linear 0.75s infinite;
+}
+
+.m-anniversary-screen .tag3 {
+    height: 490px;
+    margin-top: 8px;
+    margin-left: 42px;
+    background: url(/static/img/activity/twoYearAnniversary/tag3.png) no-repeat;
+    background-size: 100%;
+    transform-origin: 50% 0 0;
+    -moz-transform-origin: 50% 0 0;
+    -webkit-transform-origin: 50% 0 0;
+    -o-transform-origin: 50% 0 0;
+    animation: myfirst 3s linear 1.5s infinite;
+    -moz-animation: myfirst 3s linear 1.5s infinite;
+    -webkit-animation: myfirst 3s linear 1.5s infinite;
+    -o-animation: myfirst 3s linear 1.5s infinite;
+}
+
+.m-anniversary-screen .tag4 {
+    height: 442px;
+    top: -49px;
+    margin-left: 37px;
+    background: url(/static/img/activity/twoYearAnniversary/tag4.png) no-repeat;
+    background-size: 100%;
+    transform-origin: 50% 0 0;
+    -moz-transform-origin: 50% 0 0;
+    -webkit-transform-origin: 50% 0 0;
+    -o-transform-origin: 50% 0 0;
+    animation: myfirst 3s linear 2.25s infinite;
+    -moz-animation: myfirst 3s linear 2.25s infinite;
+    -webkit-animation: myfirst 3s linear 2.25s infinite;
+    -o-animation: myfirst 3s linear 2.25s infinite;
+}
+
+.m-anniversary-tag .m-tag-info {
+    position: absolute;
+    left: 36px;
+    bottom: 1px;
+    width: 89px;
+    height: 126px;
+    color: #fff;
+    text-align: center;
+}
+
+.m-anniversary-tag .u-tag-rule {
+    font-size: 14px;
+    margin-top: 18px;
+    line-height: 18px;
+}
+
+.m-anniversary-tag .u-tag-value {
+    width: 52px;
+    height: 42px;
+    line-height: 42px;
+    font-size: 24px;
+    border: 2px solid #fff;
+    border-radius: 6px;
+    margin: 18px auto 0;
+}
+
+.m-anniversary-tag .u-tag-value em {
+    font-size: 12px;
+}
+
+.m-anniversary-screen .star1 {
+    position: absolute;
+    display: inline-block;
+    bottom: 120px;
+    left: 212px;
+    width: 19px;
+    height: 27px;
+    background: url(/static/img/activity/twoYearAnniversary/stars.png) no-repeat;
+    background-size: 172px 27px;
+    background-position: -88px 0;
+}
+
+.animated {
+    -webkit-animation-duration: 1s;
+    -moz-animation-duration: 1s;
+    -o-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    -moz-animation-fill-mode: both;
+    -o-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+.animated.infinite {
+    -webkit-animation-iteration-count: infinite;
+    -moz-animation-iteration-count: infinite;
+    -o-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+}
+
+.twinkling {
+    -webkit-animation-name: twinkling;
+    -moz-animation-name: twinkling;
+    -o-animation-name: twinkling;
+    animation-name: twinkling;
+}
+
+.delay1 {
+    animation-delay: 0.2s;
+    -webkit-animation-delay: 0.2s;
+    -moz-animation-delay: 0.2s;
+    -o-animation-delay: 0.2s;
+}
+
+.delay2 {
+    animation-delay: 0.4s;
+    -webkit-animation-delay: 0.4s;
+    -moz-animation-delay: 0.4s;
+    -o-animation-delay: 0.4s;
+}
+
+.delay3 {
+    animation-delay: 0.6s;
+    -webkit-animation-delay: 0.6s;
+    -moz-animation-delay: 0.6s;
+    -o-animation-delay: 0.6s;
+}
+
+.m-anniversary-screen .star2 {
+    position: absolute;
+    display: inline-block;
+    bottom: 135px;
+    left: 246px;
+    width: 8px;
+    height: 11px;
+    background: url(/static/img/activity/twoYearAnniversary/stars.png) no-repeat;
+    background-size: 172px 27px;
+    background-position: 0 0;
+}
+
+.m-anniversary-screen .star3 {
+    position: absolute;
+    display: inline-block;
+    bottom: 45px;
+    right: 400px;
+    width: 19px;
+    height: 26px;
+    background: url(/static/img/activity/twoYearAnniversary/stars.png) no-repeat;
+    background-size: 172px 27px;
+    background-position: -56px 0;
+}
+
+.m-anniversary-screen .star4 {
+    position: absolute;
+    display: inline-block;
+    bottom: 160px;
+    right: 300px;
+    width: 9px;
+    height: 12px;
+    background: url(/static/img/activity/twoYearAnniversary/stars.png) no-repeat;
+    background-size: 172px 27px;
+    background-position: -32px 0;
+}
+
+.m-anniversary-screen .star5 {
+    position: absolute;
+    display: inline-block;
+    bottom: 154px;
+    right: 275px;
+    width: 20px;
+    height: 27px;
+    background: url(/static/img/activity/twoYearAnniversary/stars.png) no-repeat;
+    background-size: 172px 27px;
+    background-position: -120px 0;
+}
+
+.m-anniversary-screen .star6 {
+    position: absolute;
+    display: inline-block;
+    bottom: 156px;
+    right: 262px;
+    width: 8px;
+    height: 12px;
+    background: url(/static/img/activity/twoYearAnniversary/stars.png) no-repeat;
+    background-size: 172px 27px;
+    background-position: -16px 0;
+}
+
+.m-anniversary-screen .star7 {
+    position: absolute;
+    display: inline-block;
+    right: 158px;
+    bottom: 132px;
+    width: 20px;
+    height: 27px;
+    background: url(/static/img/activity/twoYearAnniversary/stars.png) no-repeat;
+    background-size: 172px 27px;
+    background-position: -152px 0;
+}
+
+/*活动规则*/
+.m-anniversary-rule {
+    position: relative;
+    top: -45px;
+}
+
+.m-anniversary-rule .m-rule-content {
+    color: #9a6500;
+    font-size: 14px;
+    padding-left: 35px;
+}
+
+.m-rule-content .u-rule-title {
+    display: inline-block;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.m-rule-content p {
+    margin-bottom: 10px;
+}
+
+/*弹框*/
+.m-dialog-container {
+    position: fixed;
+    display: none;
+    top: 50%;
+    left: 50%;
+    width: 500px;
+    height: 200px;
+    margin-left: -250px;
+    margin-top: -100px;
+    z-index: 1001;
+    box-sizing: border-box;
+    padding-top: 50px;
+    background: #fff;
+    border-radius: 10px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.m-dialog-container .u-dialog-close {
+    position: relative;
+    _position: absolute;
+    float: right;
+    top: -31px;
+    right: 25px;
+    width: 26px;
+    height: 26px;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 26px;
+    color: #000;
+    text-shadow: 0 1px 0 #FFF;
+    opacity: .2;
+    filter: alpha(opacity=20);
+    cursor: pointer;
+    background: 0;
+    _background: #FFF;
+    border: 2px solid #000;
+    -webkit-appearance: none;
+    border-radius: 50%;
+}
+
+.m-dialog-container .m-dialog-content {
+    color: #555;
+    font-size: 14px;
+    margin-top: 40px;
+}
+
+.m-dialog-container .m-dialog-content a {
+    text-decoration: underline;
+}
+
+/*选择人气值弹框*/
+.m-dialog-container.m-select-dialog {
+    width: 720px;
+    height: 290px;
+    margin-left: -360px;
+    margin-top: -145px;
+}
+
+.m-dialog-container.m-select-dialog .u-dialog-close {
+    position: absolute;
+    top: 18px;
+}
+
+.m-select-dialog .m-dialog-content {
+    font-size: 0;
+    margin-top: 20px;
+}
+
+.u-select-btn {
+    display: inline-block;
+    width: 256px;
+    height: 60px;
+    line-height: 60px;
+    margin: 0 40px;
+    font-size: 16px;
+    color: #EE5858;
+    border: 3px solid #EE5858;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.u-select-btn.z-active {
+    color: #fff;
+    background-color: #ee5858;
+}
+
+.u-sure-btn {
+    display: inline-block;
+    width: 156px;
+    height: 46px;
+    line-height: 46px;
+    margin: 55px 40px 0;
+    font-size: 20px;
+    color: #fff;
+    background-color: #EE5858;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.u-sure-btn.z-disabled {
+    background-color: #C9C9C9;
+}
+
+/*人气值奖品列表*/
+.m-modal-container {
+    position: fixed;
+    display: none;
+    top: 50%;
+    left: 50%;
+    width: 790px;
+    height: 756px;
+    margin-left: -345px;
+    margin-top: -378px;
+    z-index: 1001;
+}
+
+.m-modal-container .m-modal-head {
+    position: relative;
+}
+
+.m-modal-head .m-modal-logo {
+    position: relative;
+    width:271px;
+    height:303px;
+    background: url(../../../img/activity/twoYearAnniversary/twoYearAnniversary2.png) no-repeat;
+    background-size: 838px 679px;
+    background-position:-392px -184px;
+}
+
+.m-modal-logo .u-modal-title {
+    position: absolute;
+    top: 140px;
+    left: 205px;
+    width:446px;
+    height:81px;
+    background: url(../../../img/activity/twoYearAnniversary/twoYearAnniversary2.png) no-repeat;
+    background-size: 838px 679px;
+}
+
+.m-modal-logo .z-title-ten {
+    background-position:-392px 0;
+}
+
+.m-modal-logo .z-title-thirty {
+    background-position:-392px -89px;
+}
+
+.m-modal-close {
+    position: absolute;
+    top: 82px;
+    right: 54px;
+    width: 36px;
+    height: 36px;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 36px;
+    color: #fff;
+    cursor: pointer;
+    background: 0;
+    border: 2px solid #fff;
+    -webkit-appearance: none;
+    border-radius: 50%;
+    text-align: center;
+    font-weight: normal;
+}
+
+.m-modal-container .m-modal-content {
+    position: relative;
+    top: -74px;
+    width: 730px;
+    height: 466px;
+    padding: 30px;
+    background-color: #F2921B;
+    border-radius: 8px;
+    box-shadow: inset 12.5px 21.651px 19.44px 4.56px rgba(189, 146, 0, 0.392);
+}
+
+.m-modal-content .m-modal-main {
+    width: 100%;
+    height: 100%;
+    background-color: #FFEE89;
+}
+
+.m-prizes-card-list {
+    text-align: center;
+    padding-top: 12px;
+}
+
+.m-prizes-card-list li {
+    position: relative;
+    display: inline-block;
+    width:174px;
+    height:192px;
+    margin: 20px 20px 0;
+    color: #fff;
+    background: url(../../../img/activity/twoYearAnniversary/twoYearAnniversary2.png) no-repeat;
+    background-size: 838px 679px;
+    background-position:0 -416px;
+}
+
+.m-prizes-card-list .m-prizes-amount {
+    position: absolute;
+    display: block;
+    top: 56px;
+    width:174px;
+    color: #fff;
+    line-height: 1;
+}
+
+.m-prizes-card-list .u-cnum-a {
+    display: inline-block;
+    background: url(/static/img/activity/twoYearAnniversary/twoYearAnniversary2.png) no-repeat 0 0;
+    background-size: 838px 679px;
+    overflow: hidden;
+}
+
+.m-prizes-card-list .u-cnum-s0 {
+    width: 22px;
+    height: 51px;
+    background-position:0 0;
+}
+
+.m-prizes-card-list .u-cnum-s1 {
+    width:16px;
+    height:51px;
+    background-position:-32px 0;
+}
+
+.m-prizes-card-list .u-cnum-s3 {
+    width:23px;
+    height:51px;
+    background-position:-88px 0;
+}
+
+.m-prizes-card-list .u-cnum-s5 {
+    width:22px;
+    height:52px;
+    background-position:-56px 0;
+}
+
+.m-prizes-card-list .u-cnum-point {
+    width:8px;
+    height:7px;
+    background-position:-119px -23px;
+}
+
+.m-prizes-card-list .u-cnum-unit {
+    width:20px;
+    height:16px;
+    background-position:-119px 0;
+}
+
+.m-prizes-rule {
+    position: absolute;
+    display: block;
+    left: 17px;
+    bottom: 18px;
+    width: 139px;
+    padding: 6px 0;
+    border-top: 1px solid #f9b9bd;
+    border-bottom: 1px solid #f9b9bd;
+}
+
+.m-prizes-rule em {
+    display: block;
+    color: #f9b9bd;
+    font-size: 12px;
+    line-height: 18px;
+}
+
+.m-prizes-card-list strong {
+    position: absolute;
+    display: block;
+    top: 58px;
+    width: 174px;
+    font-size: 36px;
+    font-weight: normal;
+}
+
+.m-prizes-card-list .u-iqy {
+    position: absolute;
+    display: block;
+    bottom: 47px;
+    width: 174px;
+    font-size: 18px;
+}
+
+.m-prizes-card-list .u-coupon {
+    position: absolute;
+    display: block;
+    bottom: 40px;
+    font-size: 20px;
+    width: 174px;
+}
+
+/* 右侧固定导航 */
+.u-fr-nav {
+    position: fixed;
+    right: 70px;
+    z-index: 99;
+    width: 50px;
+    height: 50px;
+    display: block;
+    background: rgba(255,255,255,.3) url(/static/img/activity/twoYearAnniversary/toTop.png) no-repeat center;
+    border-radius: 6px;
+}
+
+.u-fr-nav:hover {
+    background-color: rgba(255,255,255,.6);
+}
+
+.f-dn {
+    display: none!important;
+}
+
+/* 摇晃的牌子--我爱有融 */
+@keyframes myfirst {
+    0% {
+        transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(-10deg);
+        -webkit-transform: rotate(-10deg);
+    }
+    50% {
+        transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+    }
+    75% {
+        -webkit-transform: rotate(10deg);
+        transform: rotate(10deg);
+    }
+    100% {
+        transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+    }
+}
+
+@-moz-keyframes myfirst { /* Firefox */
+    0% {
+        transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(-10deg);
+        -webkit-transform: rotate(-10deg);
+    }
+    50% {
+        transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+    }
+    75% {
+        -webkit-transform: rotate(10deg);
+        transform: rotate(10deg);
+    }
+    100% {
+        transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+    }
+}
+
+@-webkit-keyframes myfirst { /* Safari 和 Chrome */
+    0% {
+        transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(-10deg);
+        -webkit-transform: rotate(-10deg);
+    }
+    50% {
+        transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+    }
+    75% {
+        -webkit-transform: rotate(10deg);
+        transform: rotate(10deg);
+    }
+    100% {
+        transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+    }
+}
+
+@-o-keyframes myfirst { /* Opera */
+    0% {
+        transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(-10deg);
+        -webkit-transform: rotate(-10deg);
+    }
+    50% {
+        transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+    }
+    75% {
+        -webkit-transform: rotate(10deg);
+        transform: rotate(10deg);
+    }
+    100% {
+        transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+    }
+}
+
+/* 摇晃的钱袋 */
+@keyframes shakeBag1 {
+    0% {
+        transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(20deg);
+        -webkit-transform: rotate(20deg);
+    }
+}
+
+@-moz-keyframes shakeBag1 {
+    0% {
+        transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(20deg);
+        -webkit-transform: rotate(20deg);
+    }
+}
+
+@-webkit-keyframes shakeBag1 {
+    0% {
+        transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(20deg);
+        -webkit-transform: rotate(20deg);
+    }
+}
+
+@-o-keyframes shakeBag1 {
+    0% {
+        transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(20deg);
+        -webkit-transform: rotate(20deg);
+    }
+}
+
+@-ms-keyframes shakeBag1 {
+    0% {
+        transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(20deg);
+        -webkit-transform: rotate(20deg);
+    }
+}
+
+@keyframes shakeBag2 {
+    0% {
+        transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(30deg);
+        -webkit-transform: rotate(30deg);
+    }
+}
+
+@-moz-keyframes shakeBag2 {
+    0% {
+        transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(30deg);
+        -webkit-transform: rotate(30deg);
+    }
+}
+
+@-webkit-keyframes shakeBag2 {
+    0% {
+        transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(30deg);
+        -webkit-transform: rotate(30deg);
+    }
+}
+
+@-o-keyframes shakeBag2 {
+    0% {
+        transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(30deg);
+        -webkit-transform: rotate(30deg);
+    }
+}
+
+@-ms-keyframes shakeBag2 {
+    0% {
+        transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(30deg);
+        -webkit-transform: rotate(30deg);
+    }
+}
+
+@keyframes shakeBag3 {
+    0% {
+        transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(-30deg);
+        -webkit-transform: rotate(-30deg);
+    }
+}
+
+@-moz-keyframes shakeBag3 {
+    0% {
+        transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(-30deg);
+        -webkit-transform: rotate(-30deg);
+    }
+}
+
+@-webkit-keyframes shakeBag3 {
+    0% {
+        transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(-30deg);
+        -webkit-transform: rotate(-30deg);
+    }
+}
+
+@-o-keyframes shakeBag3 {
+    0% {
+        transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(-30deg);
+        -webkit-transform: rotate(-30deg);
+    }
+}
+
+@-ms-keyframes shakeBag3 {
+    0% {
+        transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(-30deg);
+        -webkit-transform: rotate(-30deg);
+    }
+}
+
+/* banner的人群 */
+@-webkit-keyframes ren {
+    0% {
+        -webkit-transform: translateY(100px);
+        transform: translateY(100px);
+        opacity: 0;
+    }
+    80% {
+        -webkit-transform: translateY(-10px);
+        transform: translateY(-10px);
+    }
+    100% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes ren {
+    0% {
+        -webkit-transform: translateY(100px);
+        transform: translateY(100px);
+        opacity: 0;
+    }
+    80% {
+        -webkit-transform: translateY(-10px);
+        transform: translateY(-10px);
+    }
+    100% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* banner的文字 */
+
+@-webkit-keyframes theme {
+    0% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    }
+    40%, 70% {
+        -webkit-transform: scale(1.2);
+        transform: scale(1.2);
+    }
+    55%, 85% {
+        -webkit-transform: scale(0.8);
+        transform: scale(0.8);
+    }
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+@keyframes theme {
+    0% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    }
+    40%, 70% {
+        -webkit-transform: scale(1.2);
+        transform: scale(1.2);
+    }
+    55%, 85% {
+        -webkit-transform: scale(0.8);
+        transform: scale(0.8);
+    }
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+/* 闪烁的星星 */
+@-webkit-keyframes twinkling{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+@-moz-keyframes twinkling {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+@-o-keyframes twinkling {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+@-ms-keyframes twinkling {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+@keyframes twinkling{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+/* 夏季 */
+@keyframes fallDown {
+    0% {
+        -webkit-transform: translateY(-80%);
+        -moz-transform: translateY(-80%);
+        -o-transform: translateY(-80%);
+        -ms-transform: translateY(-80%);
+        transform: translateY(-80%);
+        opacity: 0;
+    }
+    100% {
+        -webkit-transform: translateY(0);
+        -moz-transform: translateY(0);
+        -o-transform: translateY(0);
+        -ms-transform: translateY(0);
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes expansion {
+    0% {
+        -webkit-transform: scale(0);
+        -moz-transform: scale(0);
+        -o-transform: scale(0);
+        -ms-transform: scale(0);
+        transform: scaleX(0);
+        opacity: 0;
+    }
+    100% {
+        -webkit-transform: scale(1);
+        -moz-transform: scale(1);
+        -o-transform: scale(1);
+        -ms-transform: scale(1);
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+[v-cloak] {
+    display: none;
+}

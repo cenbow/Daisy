@@ -1,0 +1,4 @@
+#parse("/common/common.vm")
+#set($layout = "/layout/default.vm")
+
+$!{ex}

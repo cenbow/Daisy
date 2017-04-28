@@ -1,0 +1,233 @@
+#parse("/common/common.vm")
+#set($title="项目转让_$!{title_suffix}")
+#set($css_url=["$cssv2_url/member/member.css","$cssv2_url/member/transferInvest.css"])
+#set($js_url=[
+    "$root_url/static/lib/js/vue/vue.js",
+    "$root_js_url/modules/member/core.js",
+    "$root_js_url/modules/investment.js",
+    "$root_js_url/modules/member.js"
+])
+#set($transferProject="z-current")
+## 用户中心头部
+#parse("/member/head.vm")
+## 债权转让内容")
+<div class="g-wrap">
+    <div class="m-nav-title f-project-transfer">
+        <div class="u-tit-l f-transfer">转让项目</div>
+    </div>
+    <div class="g-uc-bd f-round">
+        <div class="g-uc-wrap f-pos-r">
+
+            <form id="j-transferStatus">
+                <div class="m-recharge-list m-order-list" id="j-transferProject-list"></div>
+            </form>
+        </div>
+    </div>
+## /债权转让内容
+</div>
+
+## 转让交互
+<div id="j-transfer" v-cloak class="m-transfer-box">
+    <div class="u-transfer-cover j-transfer-cover"></div>
+##转让详情
+    <div class="u-floatbox u-order-detail f-clear j-box-transferDetail f-transferDetail"
+         style="top:50%;"><s></s>
+        <div class="u-floatbox-content f-round">
+            <div class="u-transfer-table u-plan-table">
+                <button class="ui-dialog-close u-detail-close j-dialog-close" title="关闭">×</button>
+                <div class="u-plan-title f-fs18 f-tac">转让记录</div>
+                <h4 class="f-cf f-transfer">
+                    <span>当前转让状态：<span>{{ status }}</span></span>
+                </h4>
+
+                <table class="f-transfering" v-if="status=='转让中'">
+                    <tbody>
+                    <tr>
+                        <td width="90">发起时间</td>
+                        <td width="180">{{ currentDetail.transferStartDate | dateFormat 'yyyy-MM-dd hh:mm:ss'}}</td>
+                        <td width="90">转让本金</td>
+                        <td>￥{{ currentDetail.subscriptionPrincipal | amountSplit }}</td>
+                    </tr>
+                    <tr>
+                        <td>已转本金</td>
+                        <td> ￥{{ currentDetail.transferedAmount | amountSplit }}</td>
+                        <td>折价费</td>
+                        <td> ￥{{ currentDetail.discount | amountSplit}}</td>
+                    </tr>
+                    <tr>
+                        <td>手续费</td>
+                        <td> ￥{{ currentDetail.transferFee | amountSplit}} （{{ currentDetail.transferRate }}%）</td>
+                        <td>已经获得</td>
+                        <td> ￥{{ currentDetail.totalIncome | amountSplit }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+
+                <h5 v-if="detail">
+                    历史转让记录（共{{ pageDetail.totalPageCount }}条，
+                    {{ pageDetail.pageNo }}/{{ pageDetail.totalPageCount}}）
+                </h5>
+                <table class="f-transfer" v-if="detail">
+                    <tbody>
+                    <tr>
+                        <td width="90">发起时间</td>
+                        <td colspan="3">{{ detail.transferStartDate | dateFormat 'yyyy-MM-dd hh:mm:ss'}}</td>
+                    </tr>
+                    <tr>
+                        <td width="90">已转本金</td>
+                        <td width="180">￥{{ detail.transferedAmount | amountSplit }}</td>
+                        <td>折价费</td>
+                        <td>￥{{ detail.discount | amountSplit }}</td>
+                    </tr>
+                    <tr>
+                        <td>手续费</td>
+                        <td>￥{{ detail.transferFee | amountSplit}} ({{ detail.transferRate }}%)</td>
+                        <td>已经获得</td>
+                        <td> ￥{{ detail.totalIncome | amountSplit }}</td>
+                    </tr>
+                    <tr>
+                        <td>结束时间</td>
+                        <td colspan="3"> {{ detail.transferEndDate | dateFormat 'yyyy-MM-dd hh:mm:ss' }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <span class="u-transferTable-lastLine" v-if="detail"><em>备注</em> {{ detail.remarks }}</span>
+
+                <div class="u-page-switch" v-if="detail&&totalPages>1">
+                    <div class="u-forth-button j-page-button" :class="{'z-abled':pageDetail.pageNo>1}"
+                         @click="pageTurning(0)">上一条
+                    </div>
+                    <div class="u-forth-button j-page-button"
+                         :class="{'z-abled':pageDetail.pageNo !=pageDetail.totalPageCount}"
+                         @click="pageTurning(1)">下一条
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+##不能发起转让弹框
+    <div class="u-assign-alert f-transfer" v-if="cannotTransfer" style="left: 50%; text-align: center;">
+        <p class="f-transfer">
+            <span class="u-alert-content">
+                {{tips.cannotTransfer}}
+                <a class="f-transfer" href="$root_url/post/transferMarket" target="_blank">了解转让</a>
+            </span>
+        </p>
+        <button class="u-assgin-btnCon " @click="closeAndReload">确定</button>
+    </div>
+## 发起转让弹框
+    <div class="u-floatbox u-order-detail f-clear f-transfer j-box-transfer"
+         :class="{'u-cannotTransfer':cannotTransfer}" id="j_investmentTransfer">
+        <div class="u-floatbox-content f-round f-border-shadow" v-if="!cannotTransfer">
+            <div :class="{'u-transfer-table u-plan-table':!cannotTransfer}">
+                <div v-if="!cannotTransfer">
+                    <div class="u-plan-title f-fs18 f-tac">债权转让</div>
+                    <table class="f-project-transfer">
+                        <tbody>
+                        <tr>
+                            <td width="121px" class="f-startTransfer">转让本金</td>
+                            <td>￥{{info.residualPrincipal | amountSplit}}</td>
+                        </tr>
+                        <tr>
+                            <td width="121px" class="f-startTransfer">转让价格</td>
+                            <td>
+                                <div>
+                                    <input class="u-assign-input" v-model="transferAmount" type="text"
+                                           placeholder="请输入转让价格" @keyup="checkInput"/>
+                                    <span class="f-fc-red" v-if="!inputCorrect&&inputTips">{{inputTips}}</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="121px" class="f-startTransfer">手续费率</td>
+                            <td>{{info.transferRate}}%(当前持有{{holdDays}}天，费率说明
+                                <div class="u-icon-ques">
+                                    <span>
+                                    <strong class="u-rate-regular"
+                                            v-for="item in Rateregulary">{{item.desc}}<em>{{item.rate}}%</em></strong>
+                                    </span>
+                                </div>
+                                )
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="121px" class="f-startTransfer">转让手续费</td>
+                            <td class="j_transferCharge" colspan="3">
+                                <div>
+                                    <em v-if="transferAmount">￥{{fixed(info.transferRate * transferAmount/100) |
+                                        amountSplit}}</em>
+                                    <em v-else>--</em>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="121px" class="f-startTransfer">转让时间</td>
+                            <td>72小时</td>
+                        </tr>
+                        <tr>
+                            <td width="121px" class="f-startTransfer">预期获得</td>
+                            <td class="j_finalGet">
+                                <em class="f-fc-red">￥{{fixed(transferAmount-info.transferRate *
+                                    transferAmount/100)||'0.00' | amountSplit}}</em>
+                                <em class="f-fc-tips">(最终获得金额以实际到账为准)</em>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <label class="u-assign-confirminput f-pos-r">
+                        <input type="checkbox" checked="checked" v-model="agree"/>
+                        我已阅读并同意
+                    ##                                协议的内容还没有确定，需要后定
+                        <a href="$root_url/transaction/ztTransferContract/preview"
+                           id="j-ztTransferProtocol" target="_blank"> <strong>《债权转让协议范本》</strong></a>
+                    </label>
+                    <div class="u-button-rank">
+                        <button class="u-assign-confirmbtn" @click="submitTransfer" :class="{'z-disabled':!agree}">确认转让
+                        </button>
+                        <button class="u-assign-confirmbtn f-cancel" @click="clearData" title="取消">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+## 确定转让弹框
+    <div class="u-assign-alert f-transfer" v-if="confirmOpened">
+        <p>确定以￥{{transferAmount}}转让该项目？</p>
+        <button class="u-assgin-btnCon j_assignBtnCon" @click="confirmTransfer(1)">确定</button>
+        <button class="u-assign-btnCan" @click="confirmTransfer(0)">取消</button>
+    </div>
+##转让成功弹窗
+    <div class="u-assign-alert f-transfer" v-if="transferSuccess" style="text-align: center;">
+        <p>恭喜，项目已在转让中</p>
+        <button class="u-assgin-btnCon " @click="closeAndReload">确定</button>
+    </div>
+##转让结束确认弹框
+    <div class="u-assign-alert f-transfer" v-if="confirmCancelOpened">
+        <p>确定终止该笔转让吗？</p>
+        <button class="u-assgin-btnCon j_assignBtnCon" @click="confirmCancelTransfer(1)">确定</button>
+        <button class="u-assign-btnCan" @click="confirmCancelTransfer(0)">取消</button>
+    </div>
+
+##结束转让确认失败(避免文字延迟出现分开判断)
+    <div class="u-assign-alert f-transfer" v-if="cancelTipsOpened && cancelSuccess==1"
+         style="left: 50%; text-align: center;" v-cloak>
+        <p><span>{{tips.cancelTransferError}} </span></p>
+        <button class="u-assgin-btnCon " @click="closeAndReload">确定</button>
+    </div>
+
+##结束转让确认成功
+    <div class="u-assign-alert f-transfer" v-if="cancelTipsOpened && cancelSuccess==2"
+         style="left: 50%; text-align: center;" v-cloak>
+        <p><span>该笔转让已终止</span></p>
+        <button class="u-assgin-btnCon " @click="closeAndReload">确定</button>
+    </div>
+
+</div>
+
+
+
+
+
+
+#CSRFToken('xToken')

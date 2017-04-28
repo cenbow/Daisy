@@ -1,0 +1,226 @@
+##天降金喜活动
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$res_url/source/css/activity/dayDropGold.css"])
+#set($title="天降金喜$!{title_suffix}")
+
+#set($aliyun='https://oss-cn-hangzhou.aliyuncs.com/yrstatic/res')
+
+#set($encryptionId=$request.getParameter("encryptionId"))
+#set($loginSource=$request.getHeader("loginSource"))
+
+#if($currentUser)
+    #set($logined=true)
+#else
+    #set($logined=false)
+#end
+#set($os=3)
+##  安卓
+#if($loginSource==1)
+    #set($os=1)
+#end
+##  IOS
+#if($loginSource==2)
+    #set($os=2)
+#end
+
+
+<div class="g-main" id="j-dayDropGold" os="$!{os}" data-logined="$logined" v-cloak>
+    #if($loginSource==1 || $loginSource==2)
+        <style>
+            .g-ft {
+                display: none;
+            }
+        </style>
+    #else
+    ##header，安卓ios，不需要头部
+        <h2 class="u-pageTitle f-pos-r u-section1-title" id="j-title">
+            <a href="$m_url">有融网</a>
+            <span class="u-login-link f-pos-a">
+                #if(!$currentUser)
+                    <a href="{{loginUrl}}">登录</a>
+            <a href="$siteurl/mstation/register">注册</a>
+                #else
+                    <a href="$mCenter_logout_url">退出</a>
+                #end
+            </span>
+        </h2>
+    #end
+    <div class="u-head m-fu-title"><img src="$res_url/img/activity/dayDropGold/head.png"></div>
+
+    <div class="u-add-interest">
+        <h2><img src="$res_url/img/activity/dayDropGold/no_1.png">疯狂抢加息</h2>
+        <p>活动期间，平台将于每个工作日10:00、13:00、15:00、18:00定时上线3个月和6个月加息项目，
+            周末随机上线，投资期限越长，加息力度越高，快来抢吧!</p>
+        <table>
+            <thead>
+            <th>收益周期</th>
+            <th>3个月</th>
+            <th>6个月</th>
+            </thead>
+            <tbody>
+            <td>加息幅度</td>
+            <td>1%</td>
+            <td>2%</td>
+            </tbody>
+        </table>
+        <img src="$res_url/img/activity/dayDropGold/cash.png" class="u-cash-img">
+    </div>
+
+    <div class="u-pick-redBag m-fu-title">
+        <h2><img src="$res_url/img/activity/dayDropGold/no_2.png">任性挑红包</h2>
+        <p>活动期间，单笔投资≥2000元，即可任意领取以下现金券一张，3种现金券每天共3000张，多投多领，领完即止。</p>
+##        <img src="$res_url/img/activity/dayDropGold/bags.png" class="u-redBag-img">
+        <ul>
+          <li>
+            <img src="$res_url/img/activity/dayDropGold/quan88.png">
+            <a :class="{'z-disabled': (initData.status===4 && initData.totalRed===0) || initData.status===6}" @click="getbag(1,$event)" v-text="redBagText"></a>
+          </li>
+          <li>
+            <img src="$res_url/img/activity/dayDropGold/quan128.png">
+            <a :class="{'z-disabled': (initData.status===4 && initData.totalRed===0) || initData.status===6}" @click="getbag(2,$event)" v-text="redBagText"></a>
+          </li>
+          <li>
+            <img src="$res_url/img/activity/dayDropGold/quan238.png">
+            <a :class="{'z-disabled': (initData.status===4 && initData.totalRed===0) || initData.status===6}" @click="getbag(3,$event)" v-text="redBagText"></a>
+          </li>
+        </ul>
+        <h3 v-if="initData.status > 2">今日现金券仅剩：<em>{{initData.totalRed}}</em> 张</h3>
+    </div>
+
+    <div class="u-grab-gold m-fu-title">
+        <h2><img src="$res_url/img/activity/dayDropGold/no_3.png">火热夺黄金</h2>
+        <p>活动期间投资3个月及以上项目，可获得以下奖励：<br>
+            1. 每日累计投资额满20000元即可获得一张2%收益券；<br>
+            2. 活动期间累计投资额排名前10的用户均可获得投资豪礼，排名前3的用户更可收获黄金大奖！
+        </p>
+        <img src="$res_url/img/activity/dayDropGold/gold.png">
+        <h4>Au9999投资金条10g</h4>
+        <h5>（图片仅供参考，实际以实物为准）</h5>
+        <h6 v-if="initData.status == 4 && logined"> 我的今日投资额：<em>{{initData.myInvestAmount}}</em>元</h6>
+        <h6 v-if="initData.status == 4 && logined" class="f-fc-top"> 我的累计投资额：<em>{{initData.myTotalInvestAmount}}</em>元</h6>
+        <h1><img src="$res_url/img/activity/dayDropGold/list_title.png"></h1>
+        <table v-if="initData.investFirstTen.length > 0">
+            <thead>
+            <th style="width: 25%">用户名</th>
+            <th style="width: 25%">投资额</th>
+            <th style="width: 45%;color: #fe5725;">奖励</th>
+            </thead>
+            <tbody>
+            <tr v-for="item in initData.investFirstTen">
+              <td>{{item.username}}</td>
+              <td>{{item.totalInvestAmount | amountSplit '￥'}}</td>
+              <td v-if="item.totalInvestAmount">{{rewardInfoList[$index]}}</td>
+              <td v-else></td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="m-no-mes" v-else>
+          夺金英雄榜，等你来上榜！
+        </div>
+        <img @click="openrule" class="m-rule-icon" src="$res_url/img/activity/dayDropGold/rule.png" alt="">
+    </div>
+
+## 底部导航
+  <div class="u-nav-bottom">
+    <ul>
+      <li class="m-nav-btn active">
+        <a>
+          <span class="m-nav-icon1 m-nav-icon"></span>
+          <p>疯狂抢加息</p>
+        </a>
+      </li>
+      <li class="m-nav-btn">
+        <a>
+          <span class="m-nav-icon2 m-nav-icon"></span>
+          <p>任性挑红包</p>
+        </a>
+      </li>
+      <li class="m-nav-btn">
+        <a>
+          <span class="m-nav-icon3 m-nav-icon"></span>
+          <p>火热夺黄金</p>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  ##活动规则
+  <div class="m-rule" v-if="rule">
+    <h2 class="f-fs-16 u-rule-title f-pl-50">活动规则</h2>
+    <img @click="close" src="$res_url/img/activity/dayDropGold/close2.png" alt="">
+    <div class="m-main-content u-rule-content">
+      <p>1. 活动对象：有融网所有用户；</p>
+      <p>2. 活动时间：{{initData.startTime | formatTime 'yyyy年MM月dd日hh:mm'}}~{{initData.endTime | formatTime 'MM月dd日hh:mm'}}；</p>
+      <p>3. 现金券使用条件详见下表：</p>
+      <table class="u-rule-table">
+        <thead>
+        <tr>
+          <th width="20%">面额</th>
+          <th width="28%">起投金额（元）</th>
+          <th width="28%">起投期限（天）</th>
+          <th width="24%">有效期</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>88</td>
+          <td>6000</td>
+          <td>60</td>
+          <td>领取后5天</td>
+        </tr>
+        <tr>
+          <td>128</td>
+          <td>6000</td>
+          <td>90</td>
+          <td>领取后5天</td>
+        </tr>
+        <tr>
+          <td>238</td>
+          <td>6000</td>
+          <td>180</td>
+          <td>领取后5天</td>
+        </tr>
+        </tbody>
+      </table>
+      <p>4. 英雄榜奖励将于活动结束后3个工作日内与您联系，请保持手机畅通，如错过通知则视为放弃获奖资格</p>
+      <p>（注：实物奖品也可兑换成人气值，人气值=奖品标注价格）；</p>
+      <p>5. 转让专区项目不参与本活动；</p>
+      <p>6. 如有其他疑问，请拨打客服热线：400-025-6688；本活动最终解释权归有融网所有。</p>
+    </div>
+  </div>
+
+  <div class="u-dialog u-dialog-s animated zoomIn" v-if="gettrue">
+    <p>{{dialogTips}}</p>
+    <img @click="close" src="$res_url/img/activity/dayDropGold/close.png" alt="">
+  </div>
+
+  <div class="u-dialog u-dialog-f animated zoomIn" v-if="getfalse">
+    <p>{{dialogTips}}</p>
+    <img @click="close" src="$res_url/img/activity/dayDropGold/close.png" alt="">
+  </div>
+
+##蒙层
+  <div class="u-cover j-cover" v-if="door"></div>
+
+## 非模态框
+  <div class="m-tips-window animated zoomIn" v-show="isShowTips" v-text="tipsList[tipsIndex]"></div>
+
+</div>
+
+
+#set($pageScript="
+<script src='$aliyun/lib/js/appHookES5.js'></script>
+##<script src='$res_url/assets/js/common/appHookES5.js'></script>
+<script src='$aliyun/lib/vue/vue.min.js'></script>
+<script src='$aliyun/lib/vue/vue.extend.js'></script>
+##<script src='$siteurl/res/lib/js/vconsole.min.js'></script>
+<script>
+        var logined =$!{logined}
+        var receiveData = $!{data},
+                os = $!{os};
+        console.log(receiveData)
+    seajs.use('$res_url/source/js/activity/dayDropGold.js');
+</script>
+")
+#CSRFToken("xToken")

@@ -1,0 +1,97 @@
+<div tabindex="-1" class="modal fade" id="modal-table" style="display: none;" aria-hidden="true">
+     <div class="modal-dialog">
+     <div class="modal-content">
+ <div class="modal-header no-padding">
+             <div class="table-header">
+                  <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+                    <span class="white">×</span>
+              </button>
+    增加用户
+       </div>
+  </div>
+   <div class="modal-body">
+    <form role="form" class="form-horizontal" id="preservation_form" method="post">
+     <input type="hidden" name="id" />
+ <div class="form-group">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 数据保全id: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+     <input type="text" name="preservationId" class="col-xs-10 col-sm-5" placeholder="preservationId" id="form-field-preservationId">
+    </div>
+  </div>
+</div>
+ <div class="form-group">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 交易号: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+     <input type="text" name="transactionId" class="col-xs-10 col-sm-5" placeholder="transactionId" id="form-field-transactionId">
+    </div>
+  </div>
+</div>
+ <div class="form-group">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 附件id: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+     <input type="text" name="attachmentId" class="col-xs-10 col-sm-5" placeholder="attachmentId" id="form-field-attachmentId">
+    </div>
+  </div>
+</div>
+ <div class="form-group">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 保全时间: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+     <input type="text" name="preservationTime" class="col-xs-10 col-sm-5" placeholder="preservationTime" id="form-field-preservationTime">
+    </div>
+  </div>
+</div>
+ <div class="form-group">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 保全状态， -1-失败，1-成功: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+     <input type="text" name="successFlag" class="col-xs-10 col-sm-5" placeholder="successFlag" id="form-field-successFlag">
+    </div>
+  </div>
+</div>
+ <div class="form-group">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 备注: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+     <input type="text" name="remarks" class="col-xs-10 col-sm-5" placeholder="remarks" id="form-field-remarks">
+    </div>
+  </div>
+</div>
+ <div class="form-group">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 删除标记: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+     <input type="text" name="delFlag" class="col-xs-10 col-sm-5" placeholder="delFlag" id="form-field-delFlag">
+    </div>
+  </div>
+</div>
+ <div class="form-group">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 创建时间: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+     <input type="text" name="createTime" class="col-xs-10 col-sm-5" placeholder="createTime" id="form-field-createTime">
+    </div>
+  </div>
+</div>
+ <div class="form-group">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 更新时间: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+     <input type="text" name="updateTime" class="col-xs-10 col-sm-5" placeholder="updateTime" id="form-field-updateTime">
+    </div>
+  </div>
+</div>
+</form>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+<button type="button" id="save_preservation" class="btn btn-primary">保存</button>
+</div>
+</div>
+<!-- /.modal-content -->
+ </div>
+<!-- /.modal-dialog -->
+</div>

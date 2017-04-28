@@ -1,0 +1,37 @@
+ #parse("/common/common.vm")
+  #########################################script##################################### 
+ #set($js_config=[ 
+ "'urlMap':{ 
+   'save':'$root_url/message/save', 
+   'saveShortMsg':'$root_url/message/saveShortMsg', 
+   'saveAppMsg':'$root_url/message/saveAppMsg', 
+   'saveAppPush':'$root_url/message/saveAppPush', 
+   'update':'$root_url/message/update', 
+   'ajax':'$root_url/message/ajax', 
+   'find':'$root_url/message/find', 
+   'edit':'$root_url/message/edit', 
+   'submitReview':'$root_url/message/submitReview',
+   'review':'$root_url/message/review',
+   'del':'$root_url/message/delete', 
+   'cancel':'$root_url/message/cancel', 
+   'ueditor':'$root_url/static/js/lib/ueditor/',
+   'uploadPic':'$root_url/static/'
+   },
+   'permission':{
+	   	'find': $shiro.hasPermission('message:find'),
+	   	'edit' : $shiro.hasPermission('message:edit'), 
+	   	'waitReview' : $shiro.hasPermission('message:waitReview'), 
+	   	'review' : $shiro.hasPermission('message:review'), 
+	   	'del' : $shiro.hasPermission('message:del'), 
+	   	'cancel' : $shiro.hasPermission('message:cancel')
+   	},
+   'notifyType':#buildDictJson('msg_notify_type'),
+   'userType':#buildDictJson('msg_user_type'),
+   'msgType':#buildDictJson('msg_type'),
+   'msgStatus':#buildDictJson('msg_status')
+ "
+ ]) 
+ #set($css_url=["$root_url/static/js/lib/ueditor/themes/default/css/ueditor.min.css","$root_url/static/js/lib/My97DatePicker/skin/WdatePicker.css"])
+ #set($js_url=["$root_url/static/js/lib/My97DatePicker/WdatePicker.js","$root_url/static/js/customMessage.js"]) 
+
+ #########################################DOM##################################### 

@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.fin.dao.UnderwriteLogMapper" >
+  <resultMap id="BaseResultMap" type="com.yourong.core.fin.model.UnderwriteLog" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="project_interest_id" property="projectInterestId" jdbcType="BIGINT" />
+    <result column="underwrite_member_id" property="underwriteMemberId" jdbcType="BIGINT" />
+    <result column="payable_interest" property="payableInterest" jdbcType="DECIMAL" />
+    <result column="payable_principal" property="payablePrincipal" jdbcType="DECIMAL" />
+    <result column="underwrite_status" property="underwriteStatus" jdbcType="INTEGER" />
+    <result column="underwrite_date" property="underwriteDate" jdbcType="TIMESTAMP" />
+    <result column="underwrite_end_date" property="underwriteEndDate" jdbcType="TIMESTAMP" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, project_interest_id, underwrite_member_id, payable_interest, payable_principal, 
+    underwrite_status, underwrite_date, underwrite_end_date, remarks, 
+    update_time, create_time, del_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from fin_underwrite_log
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from fin_underwrite_log
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.yourong.core.fin.model.UnderwriteLog" >
+    insert into fin_underwrite_log (id, project_interest_id, underwrite_member_id, 
+      payable_interest, payable_principal, real_pay_interest, 
+      real_pay_principal, underwrite_time, underwrite_state, 
+      remarks, update_time, create_time, 
+      del_flag)
+    values (#{id,jdbcType=BIGINT}, #{projectInterestId,jdbcType=BIGINT}, #{underwriteMemberId,jdbcType=BIGINT}, 
+      #{payableInterest,jdbcType=DECIMAL}, #{payablePrincipal,jdbcType=DECIMAL}, #{realPayInterest,jdbcType=DECIMAL}, 
+      #{realPayPrincipal,jdbcType=DECIMAL}, #{underwriteTime,jdbcType=TIMESTAMP}, #{underwriteState,jdbcType=INTEGER}, 
+      #{remarks,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{delFlag,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yourong.core.fin.model.UnderwriteLog" >
+    insert into fin_underwrite_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="projectInterestId != null" >
+        project_interest_id,
+      </if>
+      <if test="underwriteMemberId != null" >
+        underwrite_member_id,
+      </if>
+      <if test="payableInterest != null" >
+        payable_interest,
+      </if>
+      <if test="payablePrincipal != null" >
+        payable_principal,
+      </if>
+      <if test="underwriteDate != null" >
+        underwrite_date,
+      </if>
+       <if test="underwriteEndDate != null" >
+        underwrite_end_date,
+      </if>
+      <if test="underwriteStatus != null" >
+        underwrite_status,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="projectInterestId != null" >
+        #{projectInterestId,jdbcType=BIGINT},
+      </if>
+      <if test="underwriteMemberId != null" >
+        #{underwriteMemberId,jdbcType=BIGINT},
+      </if>
+      <if test="payableInterest != null" >
+        #{payableInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="payablePrincipal != null" >
+        #{payablePrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="underwriteDate != null" >
+        #{underwriteDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="underwriteEndDate != null" >
+        #{underwriteEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="underwriteStatus != null" >
+        #{underwriteStatus,jdbcType=INTEGER},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yourong.core.fin.model.UnderwriteLog" >
+    update fin_underwrite_log
+    <set >
+      <if test="projectInterestId != null" >
+        project_interest_id = #{projectInterestId,jdbcType=BIGINT},
+      </if>
+      <if test="underwriteMemberId != null" >
+        underwrite_member_id = #{underwriteMemberId,jdbcType=BIGINT},
+      </if>
+      <if test="payableInterest != null" >
+        payable_interest = #{payableInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="payablePrincipal != null" >
+        payable_principal = #{payablePrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="realPayInterest != null" >
+        real_pay_interest = #{realPayInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="realPayPrincipal != null" >
+        real_pay_principal = #{realPayPrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="underwriteTime != null" >
+        underwrite_time = #{underwriteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="underwriteState != null" >
+        underwrite_state = #{underwriteState,jdbcType=INTEGER},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yourong.core.fin.model.UnderwriteLog" >
+    update fin_underwrite_log
+    set project_interest_id = #{projectInterestId,jdbcType=BIGINT},
+      underwrite_member_id = #{underwriteMemberId,jdbcType=BIGINT},
+      payable_interest = #{payableInterest,jdbcType=DECIMAL},
+      payable_principal = #{payablePrincipal,jdbcType=DECIMAL},
+      real_pay_interest = #{realPayInterest,jdbcType=DECIMAL},
+      real_pay_principal = #{realPayPrincipal,jdbcType=DECIMAL},
+      underwrite_time = #{underwriteTime,jdbcType=TIMESTAMP},
+      underwrite_status = #{underwriteStatus,jdbcType=INTEGER},
+      remarks = #{remarks,jdbcType=VARCHAR},
+      update_time = now(),
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      del_flag = #{delFlag,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+   <select id="getUnderwriteLogByInterestId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from fin_underwrite_log
+    where project_interest_id = #{interestId,jdbcType=BIGINT}
+  </select>
+   <update  id="updateUnderWriteLogByInterestId"  parameterType="java.lang.Long" >
+    update  fin_underwrite_log set
+    underwrite_date = now(),
+    update_time = now(),
+    underwrite_status = 3
+    where project_interest_id = #{interestId,jdbcType=BIGINT}  and underwrite_status = 1
+  </update>
+  
+  <update id="updateForOverdueRepaySuccess" >
+  	update  fin_underwrite_log
+  	set underwrite_status = #{afterStatus,jdbcType=INTEGER},
+  	update_time = now(),
+  	remarks = #{remarks,jdbcType=VARCHAR},
+  	underwrite_end_date = now()
+  	where 
+  	underwrite_status = #{beforeStatus,jdbcType=INTEGER} and id = #{underwriteId,jdbcType=BIGINT}
+  </update>
+   <update  id="updateUnderWriteByInterestId"  parameterType="java.lang.Long" >
+    update  fin_underwrite_log set
+    underwrite_date = now(),
+    update_time = now(),
+    underwrite_end_date = now(),
+    underwrite_status = 4
+    where project_interest_id = #{interestId,jdbcType=BIGINT}  and underwrite_status = 3
+  </update>
+  
+  <sql id="Extend_Column_List" >
+    u.id as id,
+    u.project_interest_id as project_interest_id,
+    u.underwrite_member_id as underwrite_member_id,
+    u.payable_interest as payable_interest, 
+    u.payable_principal as payable_principal, 
+    u.underwrite_status as underwrite_status, 
+    u.underwrite_date as underwrite_date, 
+    u.underwrite_end_date as underwrite_end_date, 
+    u.remarks as remarks, 
+    u.update_time as update_time, 
+    u.create_time as create_time, 
+    u.del_flag as del_flag
+  </sql>
+  
+  <!-- 查询垫资未记录逾期记录的垫资记录 -->
+  <select id="findUnderwriteNoOverdue" resultMap="BaseResultMap" >
+  	select  
+  	<include refid="Extend_Column_List" />
+  	from fin_underwrite_log as u LEFT JOIN fin_overdue_log as o on o.underwrite_id = u.id 
+	where underwrite_date <![CDATA[ < now()]]>  and o.id is null 
+  </select>
+  
+  
+   <delete id="deleteByInterestId" parameterType="java.lang.Long" >
+    delete from fin_underwrite_log
+    where project_interest_id = #{interestId,jdbcType=BIGINT}  and underwrite_status = 1 
+  </delete>
+</mapper>

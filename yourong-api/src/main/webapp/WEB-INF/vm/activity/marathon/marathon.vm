@@ -1,0 +1,346 @@
+## 友情岁月
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$res_url/source/css/activity/marathon/marathon.css"])
+#set($title='友情岁月')
+#if($currentUser)
+    #set($logined=true)
+#else
+    #set($logined=false)
+#end
+#set($os=3)
+##  安卓
+#if($loginSource==1)
+    #set($os=1)
+#end
+##  IOS
+#if($loginSource==2)
+    #set($os=2)
+#end
+#if($loginSource==1||$loginSource==2)
+<style>
+    .g-ft {
+        display: none;
+    }
+
+    body {
+        background: #f3f3f3
+    }
+</style>
+#end
+#set($debug=$request.getParameter("debug"))
+#set($isApp=$request.getParameter("app"))
+#set($avatar=$servletUtil.getUserDO().avatars)
+<div id="j-marathon" os="$!{os}" logined="$logined">
+##阴影层
+##<div class="u-shade z-fadeOut" id="j-shade"></div>
+    <div class="u-shade z-fadeOut" id="j-shade"></div>
+    <div class="m-main">
+    ## 安卓IOS上不显示头部
+    ## 这里用于标记是M站打开的，即使没有document.referrer
+    ##if($!{os}==3)
+        <h2 class="u-pageTitle f-pos-r u-section1-title" id="j-title">
+            <a href="$m_url">有融网</a>
+            <span class="u-login-link f-pos-a">
+                #if(!$currentUser)
+                    <a href="{{loginUrl}}">登录</a>
+                    <a href="$siteurl/mstation/register">注册</a>
+                #else
+                    <a href="$mCenter_logout_url">退出</a>
+                #end
+            </span>
+        </h2>
+    ##end
+        <img src="$res_url/img/activity/marathon/top.png" style="width: 100%;">
+
+        <div class="g-main">
+            <div class="m-btn-group-top">
+                <span class="u-btn-top u-btn-threeGifts j-btn-slide"
+                      data-target="threeGifts">三重壕礼</span>
+                <span class="u-btn-top u-btn-howTo j-btn-slide"
+                      data-target="howTo">如何获得里程</span>
+            </div>
+
+        ## 主要的马拉松部分
+            <div class="g-marathon">
+                <div class="road-wrap" style="min-height: 275px;">
+                    <img src="$res_url/img/activity/marathon/road.png" style="width: 100%;">
+                </div>
+
+            ## 当前位置标记
+                <div class="u-mapIcon z-step{{totalKm | milestone '-1'}}">
+                    <div class="u-mapIcon-content-wrapper" id="j-mapIcon-content-wrapper">
+                        <i id="j-mapIcon-content" v-text="totalKm||0"></i>
+                        <small>km</small>
+                    </div>
+                    #if($avatar)
+                        <div class="u-mapIcon-img">
+                            <img src="$aliyun_url/$avatar" alt="avatar">
+                        </div>
+                    #else
+                        <div class="u-mapIcon-img"></div>
+                    #end
+
+                </div>
+
+            ## 五个路标中的文字
+                <span class="u-roadSign u-roadSign1">
+                    <i class="j-roadSign z-smallFont" data-roadNotice="0" v-text="totalKm | milestone 0"></i><small>km</small>
+                </span>
+                <span class="u-roadSign u-roadSign2">
+                    <i class="j-roadSign z-smallFont" data-roadNotice="30" v-text="totalKm | milestone 30">30</i><small>km</small>
+                </span>
+                <span class="u-roadSign u-roadSign3">
+                    <i class="j-roadSign z-smallFont" data-roadNotice="50" v-text="totalKm | milestone 50">50</i><small>km</small>
+                </span>
+                <span class="u-roadSign u-roadSign4">
+                   <i class="j-roadSign z-smallFont" data-roadNotice="80" v-text="totalKm | milestone 80">80</i><small>km</small>
+                </span>
+                <span class="u-roadSign u-roadSign5">
+                    <i class="j-roadSign z-smallFont" data-roadNotice="100" v-text="totalKm | milestone 100">100</i><small>km</small>
+                </span>
+
+            ## 四个背包鼠标移上去的时候需要有具体奖励提示，这里用空的dom来代替
+                <div class="u-vr-bag u-vr-bag1 j-vr-bag">
+                    <div class="u-gift-detail u-gift-detail1">
+                        <h3>幸运背包</h3>
+                        <p>5-10随机数值的人气值</p>
+                        <i class="u-close">X</i>
+                    </div>
+                </div>
+                <div class="u-vr-bag u-vr-bag2 j-vr-bag">
+                    <div class="u-gift-detail">
+                        <h3>幸运背包</h3>
+                        <p>5-10随机数值的人气值</p>
+                        <i class="u-close">X</i>
+                    </div>
+                </div>
+                <div class="u-vr-bag u-vr-bag3 j-vr-bag">
+                    <div class="u-gift-detail u-gift-detail3">
+                        <h3>幸运背包</h3>
+                        <p>5-10随机数值的人气值</p>
+                        <i class="u-close">X</i>
+                    </div>
+                </div>
+                <div class="u-vr-bag u-vr-bag4 j-vr-bag">
+                    <div class="u-gift-detail u-gift-detail4">
+                        <h3>终极宝箱</h3>
+
+                        <p v-for="coupon in boxRewards"><span class="u-cash-count">{{coupon.value}}元现金券</span>x{{coupon.size}}
+                        </p>
+                        <i class="u-close">X</i>
+                    </div>
+                </div>
+
+            </div>
+
+            #if($logined)
+                <p class="u-result-content">
+                    <span class="z-hide" id="j-result-content">您已累计领取<em v-text="totalPop||initData.totalPop||0"></em>点人气值，<em
+                            v-text="totalCoupon||initData.totalCoupon||0"></em>元现金券</span>
+                </p>
+            #end
+        ## 两个按钮
+            <div class="m-btn-group-mid">
+                <div class="u-btn-wrap" @click="getRewards(1,initData.packages||0,$logined)">
+                    <div class="u-btn-icon">x<em v-text="initData.packages||0"></em></div>
+                    <img src="$res_url/img/activity/marathon/btn-left.png" class="u-btn-circle-img">
+                </div>
+                <div class="u-btn-wrap u-btn-wrap2" @click="getRewards(2,initData.boxes||0,$logined)">
+                    <div class="u-btn-icon">x<em v-text="initData.boxes||0"></em></div>
+                    <img src="$res_url/img/activity/marathon/btn-right.png" class="u-btn-circle-img">
+                </div>
+            </div>
+
+        ## 邀请好友按钮
+            #if($logined)
+                #if($os==1)
+                    <div class="u-btn-invite" onclick='Android.ToActivity("inviteFriend",  null)'>邀请好友</div>
+                #elseif($os=='2' || $isApp)
+                    <a class="u-btn-invite" href="yrw-skip://invokeMethod=inviteFriend">邀请好友</a>
+                #end
+            #else
+                #if($os==1||$os==2)
+                    <a class="u-btn-invite" href="{{loginUrl}}">登录后邀请好友</a>
+                #end
+            #end
+
+
+        ## 查看好友任务记录 >>
+            <div class="u-check-invite j-btn-slide" data-target="checkInvite" data-id="$!{currentUser.id}">查看好友助力记录 >>
+            </div>
+        </div>
+
+    ## 规则
+        <div class="g-rule">
+            <div class="g-wrap">
+                <strong class="f-fs14">活动规则：<em id="log"></em></strong>
+                1、活动对象：有融网所有用户；<br>
+                2、活动时间：2016年6月17日起；<br>
+                3、活动所获人气值奖励，将于5分钟内发放至用户的账户；<br>
+                4、活动期间现金券领取后7天内有效；<br>
+                5、如有其他疑问，请拨打客服热线：400-025-6688；<br>
+                本活动最终解释权归有融网所有
+            </div>
+        </div>
+    </div>
+
+    <div class="g-sidePage" id="j-sidePage">
+
+    ## 三重壕礼和 如何获得里程 （背景蓝色）
+        <div class="m-sidePage-wrapper z-hidden">
+            <div class="j-goBack u-goBack"><span class="u-icon-right1"></span>返回</div>
+
+            <div id="j-slide-threeGifts" class="u-slide z-hidden">
+                <h1 class="u-sidePage-title">三重壕礼</h1>
+                <div class="u-method-list">
+                    <p class="u-threeGifts-rule">1. 每次邀请好友注册并首次投资，<br>
+                        邀请人可直接<i class="u-text-yellow">获得30元现金券</i>；
+                    </p>
+                    <p class="u-threeGifts-rule">2. 友情岁月每100KM为一段里程，<br>
+                        在每段里程的30/50/80KM处设里程碑，<br>
+                        每到达一个里程碑即可获得一个幸运背包，<br>
+                        背包内藏有随机数量的<i class="u-text-yellow">人气值奖励</i>；
+                    </p>
+                    <p class="u-threeGifts-rule">3. 到达每段里程终点的用户可获得终极宝箱一个，<br>
+                        宝箱内藏有价值<i class="u-text-yellow">至少180元的现金券</i>，<br>
+                        并且<i class="u-text-yellow">里程数越大，现金券奖励越高</i>。</p>
+                </div>
+                <img src="$res_url/img/activity/marathon/side-bottom.png" class="m-side-bottom " id="j-side-bottom">
+            </div>
+
+            <div id="j-slide-method" class="u-slide z-hidden">
+                <h1 class="u-sidePage-title">攒里程方式</h1>
+                <ul class="u-method-list">
+                    <li style="padding-left: 11px;">
+                        <span class="u-icon u-icon1"></span><span class="u-text-method">好友首次投资 </span><span
+                            class="u-text-notice u-text-yellow">+ 10km</span>
+                    </li>
+                    <li>
+                        <span class="u-icon u-icon2"></span><span class="u-text-method">好友体验APP </span><span
+                            class="u-text-notice u-text-yellow">+ 3km</span>
+                    </li>
+                    <li>
+                        <span class="u-icon u-icon3"></span><span class="u-text-method">好友绑定微信 </span><span
+                            class="u-text-notice u-text-yellow">+ 3km</span>
+                    </li>
+                    <li>
+                        <span class="u-icon u-icon4"></span><span class="u-text-method">好友完善资料 </span><span
+                            class="u-text-notice u-text-yellow">+ 2km</span>
+                    </li>
+                    <li>
+                        <span class="u-icon u-icon5"></span><span class="u-text-method">好友绑定邮箱 </span><span
+                            class="u-text-notice u-text-yellow">+ 2km</span>
+                    </li>
+                </ul>
+
+                <p class="u-sidePage-text"><span class="u-square">■</span>&nbsp;以上里程奖励需邀请该好友<i
+                        class="u-text-notice u-text-yellow">首次投资成功后</i>才可获得</p>
+                <img src="$res_url/img/activity/marathon/side-bottom.png" class="m-side-bottom" id="j-side-bottom">
+            </div>
+        </div>
+    ## 查看好友助力 （背景灰色）
+        <div class="m-check-invite z-hidden" id="j-check-invite">
+            <div class="m-side-header">
+                <span class="j-goBack u-header-goBack"><span class="u-icon-right2"></span>返回</span>
+                好友任务记录
+            </div>
+
+            <div class="m-inviteListWrap">
+
+                <ul class="f-investList" id="j-fellInLove-list" v-if="friendList.length">
+                    <li>
+                        <strong class="f-listTitle1">昵称</strong>
+                        <strong class="f-listTitle2">任务进度</strong>
+                        <strong class="f-listTitle3">&nbsp;</strong>
+                    </li>
+
+                    <li v-for="(index,item) in friendList">
+                        <span class="f-userName">
+                            <em class="f-avatar" v-if="item.avatar">
+                                <img src="https://oss-cn-hangzhou.aliyuncs.com/{{item.avatar}}" alt="用户头像">
+                            </em>
+                            <em class="f-avatar" v-else>
+                                <img src="$res_url/img/member/avatar.png" alt=""/>
+                            </em>
+                            <em class="f-nickName">
+                                {{item.memberName}}
+                            </em>
+                        </span>
+                        <span class="f-mission" v-if="item.remark&&item.remark.split(',').length>4"><em>完成</em></span>
+                        <span class="f-mission" v-else>未完成</span>
+                        <span class="u-check-mission" @click="checkMission(index)">查看</span>
+                    </li>
+                </ul>
+                <div class="u-getMore u-btn-invite" @click="readMore" v-if="friendList.length>4">查看更多</div>
+                <ul id="j-list-beforeActive" class="u-list-beforeActive" v-if="!friendList.length">
+                    <li style="text-align: center;">您的好友还没有来哦</li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+    <div class="u-gift-detail2" :style="{display:rewardsList.length?'block':'none'}">
+
+        <div v-if="rewardsList.length>1">
+            <h3 v-text="tips.box"></h3>
+            <p v-for="coupon in rewardsList">
+                <span class="u-cash-count">奖励{{coupon.value}}元现金券</span>{{coupon.size}}张
+            </p>
+        </div>
+        <div v-else>
+            <h3 v-text="tips.package"></h3>
+            <p v-for="point in rewardsList">奖励{{point.value}}</p>
+        </div>
+        <i class="u-close" @click="rewardsList=[]">X</i>
+    </div>
+## 查看好友助力 弹出框
+    <div class="u-check-modal" style="display: none;" :style="{display:showMissionModal?'block':'none'}"
+         id="j-check-modal">
+        <h1 id="j-render"></h1>
+        <ul class="u-modal-list">
+            <li>
+                <span class="u-modal-icon u-modal-icon1"></span><span class="u-text-method">首次投资 + 10km</span><span
+                    class="u-mission-status" :class="{'z-complete':taskProcess.firstInvest}" style="margin-left: 1rem;"
+                    v-text="taskProcess.firstInvest?'完成':'未完成'"></span>
+            </li>
+            <li>
+                <span class="u-modal-icon u-modal-icon2"></span><span class="u-text-method">体验APP + 3km</span><span
+                    class="u-mission-status" :class="{'z-complete':taskProcess.firstBindApp}"
+                    v-text="taskProcess.firstBindApp?'完成':'未完成'"></span>
+            </li>
+            <li>
+                <span class="u-modal-icon u-modal-icon3"></span><span class="u-text-method">绑定微信 + 3km</span><span
+                    class="u-mission-status" :class="{'z-complete':taskProcess.firstBindWeChat}"
+                    v-text="taskProcess.firstBindWeChat?'完成':'未完成'"></span>
+            </li>
+            <li>
+                <span class="u-modal-icon u-modal-icon4"></span><span class="u-text-method">完善资料 + 2km</span><span
+                    class="u-mission-status" :class="{'z-complete':taskProcess.firstImproveInfo}"
+                    v-text="taskProcess.firstImproveInfo?'完成':'未完成'"></span>
+            </li>
+            <li>
+                <span class="u-modal-icon u-modal-icon5"></span><span class="u-text-method">绑定邮箱 + 2km</span><span
+                    class="u-mission-status" :class="{'z-complete':taskProcess.firstBindEmail}"
+                    v-text="taskProcess.firstBindEmail?'完成':'未完成'"></span>
+            </li>
+        </ul>
+
+        <p class="u-modal-text"><span class="u-square">■</span><span class="u-content">好友完成首次投资，邀请人才能获得里程奖励哦</span></p>
+
+        <div class="u-modal-close" @click="closeMissionModal">关闭</div>
+    </div>
+</div>
+
+#set($pageScript="
+<script src='$aliyunOss_url/res/lib/vue/v1/vue.min.js'></script>
+##<script src='$siteurl/res/lib/js/vconsole.min.js'></script>
+<script>
+    var initData = $data
+        #if($debug)
+        var debug = true
+        #end
+    seajs.use('$res_url/source/js/activity/marathon/marathon.js');
+</script>
+")
+#CSRFToken("xToken")

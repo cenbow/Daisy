@@ -1,0 +1,309 @@
+.m-aplus-hd {
+    width: 100%;
+    height: 715px;
+    margin-top: -8px;
+    background: url(/static/img/landing/aplusLand/aplusLand-hd.png) no-repeat center;
+}
+
+/**登录框样式**/
+.m-regform-land {
+    width: 360px;
+    padding: 65px 0 0;
+}
+
+.m-regform-land .u-ipt-text {
+    width: 342px;
+}
+
+.m-regform-land .u-img-vercode {
+    left: 240px;
+}
+
+.m-regform-land .u-ipt-phonecode {
+    width: 177px;
+    margin: 0 0 0 4px;
+}
+
+.m-regform-land .m-voice-box .u-tips-vercode {
+    width: 84px;
+}
+
+.m-regform-land input[type='submit'] {
+    width: 360px;
+    margin: 10px 0 0;
+}
+
+.u-ipt-blank {
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    color: #656565;
+    vertical-align: middle;
+}
+
+.m-regform-land .m-val-tips i {
+    margin-left: 0;
+}
+
+.m-regform-land .Validform_checktip {
+    margin: 0;
+}
+
+.m-input-vercode {
+    min-height: 69px;
+}
+
+.m-regform-land .u-icon-success {
+    display: none;
+}
+
+/**登录框样式**/
+.u-aplus-button {
+    background-color: #fdbe0e;
+    border-color: #fdbe0e;
+    outline: none;
+}
+
+.m-aplus-body {
+    width: 100%;
+    height: 100%;
+    background-color: #ffd569;
+    padding-bottom: 100px;
+    margin-bottom: -100px;
+}
+
+.m-wrap1 {
+    width: 1160px;
+    margin: 0 auto;
+    background-color: #fff7cf;
+    padding-bottom: 80px;
+}
+
+.u-little-hd {
+    width: 640px;
+    height: 120px;
+    margin: 0 auto;
+    padding-top: 80px;
+}
+
+.u-aplus-redbag {
+    margin-right: 40px;
+    margin-top: 80px;
+    display: inline-block;
+}
+
+.f-aplus-left1 {
+    margin-left: 75px;
+}
+
+.f-aplus-right1 {
+    margin-right: 75px;
+}
+
+.f-aplus-left2 {
+    margin-left: 154px;
+}
+
+.f-aplus-right2 {
+    margin-right: 154px;
+}
+
+.m-wrap2 {
+    width: 1160px;
+    height: 1045px;
+    margin: -4px auto 0 auto;
+    background-color: #fffae0;
+}
+
+.f-aplus-position1 {
+    width: 180px;
+    text-align: left;
+}
+
+.f-aplus-position2 {
+    width: 175px;
+    text-align: right;
+    padding-right: 4px;
+}
+
+.f-aplus-center {
+    width: 220px;
+    margin: 0 75px;
+}
+
+.m-aplus-bottom {
+    background: url(/static/img/landing/aplusLand/bottom.png) no-repeat center;
+    width: 1270px;
+    height: 380px;
+    margin: -100px auto 215px auto;
+}
+
+.f-aplus-color {
+    background-color: #fdbe0e;
+    border-color: #fdbe0e;
+}
+
+.f-aplus-textcolor {
+    color: #ffffff;
+}
+
+.f-aplus-textcolor:link {
+    color: #ffffff;
+}
+
+.f-aplus-textcolor:visited {
+    color: #ffffff;
+}
+
+.f-aplus-textcolor:hover {
+    color: #ffffff;
+}
+
+.u-apluslanding-box1 {
+    width: 825px;
+    margin: 0 auto;
+}
+
+.u-apluslanding-box1.f-aplus-position {
+    margin-top: 60px;
+}
+
+.u-apluslanding-box2 {
+    width: 410px;
+    height: 310px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.u-apluslanding-box2.u-aplus-border1 {
+    border-bottom: solid 1px;
+    border-right: solid 1px;
+    border-color: #cccccc;
+
+}
+
+.u-apluslanding-box2.u-aplus-border2 {
+    border-top: solid 1px;
+    border-left: solid 1px;
+    border-color: #cccccc;
+    margin-top: -2px;
+    margin-left: -4px;
+}
+
+.u-apluslanding-box3_1 {
+    width: 225px;
+    height: 185px;
+    position: relative;
+    left: 75px;
+    background: url("/static/img/landing/aplusLand/advantages.png") no-repeat;
+}
+
+.u-apluslanding-box3_1.u-position-circle1 {
+    background-position: 0 0;
+}
+
+.u-apluslanding-box3_1.f-aplus-black {
+    margin-top: 50px;
+}
+
+.u-apluslanding-box3_1.u-position-circle3 {
+    background-position: -425px 0;
+}
+
+.u-apluslanding-box3_2 {
+    width: 215px;
+    height: 185px;
+    right: 100px;
+    left: 115px;
+    position: relative;
+    background: url("/static/img/landing/aplusLand/advantages.png") no-repeat;
+}
+
+.u-apluslanding-box3_2.u-position-circle2 {
+    background-position: -222px 0;
+}
+
+.u-apluslanding-box3_2.u-position-circle4 {
+    background-position: -650px 0;
+    margin-left: 25px;
+}
+
+.u-apluslanding-box3_2.f-aplus-black {
+    margin-top: 50px;
+}
+
+.u-apluslanding-box2 h1 {
+    color: #e6ac00;
+    font-size: 25px;
+    margin-left: 130px;
+    font-weight: bold;
+    font-family: 宋体 Regular;
+}
+
+.u-apluslanding-box2 h4 {
+    color: #e6ac00;
+    font-size: 25px;
+    margin-left: 175px;
+    font-weight: bold;
+    font-family: 宋体 Regular;
+}
+
+.u-apluslanding-box2 h2 {
+    color: #e6ac00;
+    font-size: 15px;
+    display: inline-block;
+    font-weight: bold;
+    font-family: 宋体 Regular;
+}
+
+.u-apluslanding-box2 h3 {
+    color: #f14f49;
+    font-size: 15px;
+    display: inline-block;
+    font-weight: bold;
+    font-family: 宋体 Regular;
+}
+
+.m-aplus-diamond {
+    width: 82px;
+    height: 80px;
+    background-color: #fffae0;
+    margin: -40px auto;
+    z-index: 10;
+    position: relative;
+}
+
+.f-aplus-position3 {
+    width: 226px;
+    text-align: right;
+}
+
+.m-aplus-circle {
+    background-color: #ffd569;
+    width: 30px;
+    height: 30px;
+    border-radius: 14px;
+    border: 1px solid;
+    margin: -15px auto -15px -15px;
+    top: 80px;
+    border-color: #ffd569;
+    z-index: 10;
+    position: relative;
+}
+
+.m-aplus-circle.f-aplus-position {
+    left: 1158px;
+    display: inline-block;
+}
+
+.m-regform-land .u-hotline-tips{
+    margin:0;
+    color:#fff;
+    line-height:20px;
+}
+.m-regform-land  .u-tips-waring{
+    width:360px;
+}
+
+
+

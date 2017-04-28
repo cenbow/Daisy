@@ -1,0 +1,167 @@
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$m_css_url/common.css","$m_css_url/landing/season1.css"])
+#set($title="注册送大礼包")
+#set($loadJQ=true)
+<input type="hidden" id="pageTag" value="sixRites"/>
+<script>
+        #if($currentUser)
+        window.location.href = '$siteurl/mCenter/home';
+        #end
+</script>
+<style>
+    .m-reg-form input{
+        background: #fff;
+    }
+    .m-reg-form{
+        padding: 2rem 2rem 8px;
+    }
+    .m-reg-form .u-reg-btn1{
+        margin-bottom: 10%;
+    }
+    .m-input-vercode .u-img-vercode{
+        padding-left: 8px;
+        border-left: 1px solid #d6d6d6;
+    }
+    .g-content{
+       background: #fff;
+        padding-bottom: 16%;
+    }
+    .u-content{
+       text-align: center;
+    }
+    .u-content>li{
+        padding-top: 16%;
+    }
+    .u-content>li>img{
+       width: 50%;
+    }
+    .u-content>li>div{
+       line-height: 30px;
+        color: #999;
+        margin-top: 5%;
+    }
+    .u-content>li>div>strong{
+      color: #666;
+        font-weight: 600;
+    }
+</style>
+##header
+<h2 class="u-pageTitle f-pos-r">
+    <a href="$siteurl/mIndex">
+        有融网
+    </a>
+    <span class=" f-pos-a f-fs18 f-ff-ver">
+        <a href="$siteurl/mstation/login">登录</a>
+        <a href="$siteurl/mstation/register">注册</a>
+    </span>
+</h2>
+##main-banner
+<div class="m-banner">
+    <img src="$siteurl/res/img/landing/canvas.png"/>
+
+    <div class="u-status-amount f-fs14 f-cf">
+        <em class="f-ff-ver u-amount-money f-fl">
+            累计成功投资:￥
+        <span class="f-ff-din f-fs22">
+            $!{paltformCapitalUtils.getPrefixPaltformTotalInvest()}
+        </span>
+        </em>
+        <em class="f-ff-ver f-fr">
+            注册人数:
+        <span class="f-ff-din f-fs22">
+            $!{paltformCapitalUtils.getPaltformMembers()}
+        </span>
+        </em>
+    </div>
+</div>
+##注册
+<section class="g-bd">
+    <form data-action="$siteurl/mstation/register/saveMember" method="POST" class="m-reg-form j-form-xpost j-validform"
+          data-page="register" id="j-reg-form">
+        #CSRFToken('xToken')
+        #onceToken()
+        <input type="hidden" id="j-reg-mobile"/>
+
+        <div class="u-ipt-group f-pos-r">
+            <input type="tel" name="mobile" oncopy="return false;" onpaste="return false;" id="j-cpn" autocomplete="off"
+                   nullmsg="手机号码不能为空" errormsg="请输入正确的手机号码" class="f-round f-ipt-w430 u-ipt-text  u-ipt-str f-fs10"
+                   placeholder="请输入手机号码"/>
+            <span class='m-val-tips'></span>
+
+            <div class="f-mob-sha f-dn" id="j-mobile"></div>
+        </div>
+        <div class="m-input-vercode f-cf f-pos-r">
+			<span class="u-xtips-wrap ">
+				<input type="text" id="j-vercode" autocomplete="off" nullmsg="请输入图形验证码"
+                       class="u-ipt-text u-ipt-vercode j-vercode" placeholder="输入图形码"/>
+            </span>
+            <img src="$siteurl/mstation/validateCode" alt="验证码" title="点击重新获取验证码" id="j-img-vercode"
+                 class="u-img-vercode"/>
+			<span id="j-phonecode-wrap" class="u-xtips-wrap u-phonecode-wrap z-hide">
+				<input type="text" name="phonecode" autocomplete="off" id="j-phonecode" placeholder="输入手机验证码"
+                       class="f-clear f-round u-ipt-text f-ipt-w248 u-ipt-phonecode"/>
+			</span>
+			<span class="f-round u-tips-vercode f-tips-gray f-fr  f-dn">
+			获得短信验证码
+			</span>
+            <span class="m-val-tips"></span>
+        </div>
+        <div class="u-ipt-group">
+            <input type="password" name="password" oncopy="return false;" onpaste="return false;"
+                   class="f-round u-ipt-text f-ipt-w430 v-pwd" placeholder="输入密码，长度6-16位，至少包含数字和字母"/>
+        </div>
+        <input type="hidden" name="referCode" id="j-refercode-val" value="$!{shortUrl}">
+        <input type="hidden" name="tid" value="$!{request.getParameter('tid')}">
+        <input type="hidden" name="registerTraceSource" value='$!{session.getAttribute("register_TraceSource")}'/>
+        <input type="hidden" name="registerTraceNo" value='$!{session.getAttribute("register_TraceNo")}'/>
+        <input type="hidden" name="referSource" value="$!{referSource}"/>
+        <input type="hidden" name="checkType" id="j-checkType" value="1"/>
+        <input type="hidden" name="pngCode" id="j-pngcode"/>
+        <input type="hidden" name="loginSource" value="0"/>
+        <label class="f-clear f-mgl-8 f-fc-black">
+            <input type="checkbox" checked="checked" name="agree" id="j-agree"/>&nbsp;我已阅读并同意
+            <a target="_blank" href="$res_url/page/register-agreement.html">《有融网服务协议》</a>
+        </label>
+        <button type="submit" class="u-reg-btn1 j-reg-btn">领80元礼包</button>
+    </form>
+</section>
+
+##content
+<div class="g-bd s-bg g-content">
+    <ul class="u-content">
+        <li>
+            <img src="$res_url/img/landing/sixRites_icon01.gif" alt=""/>
+            <div>
+                <strong class="f-fs18">专业大平台，让你的投资更踏实</strong>
+                <p class="f-fs14">杭州西湖区政府重点引进企业 <br/>
+                                  2016年1月，获千合基金，光华基金Pre-A轮投资 <br/>
+                                  成功挂牌浙江股权交易中心 <br/>
+                                  2016年3月，加入互联网金融协会</p>
+            </div>
+        </li>
+        <li><img src="$res_url/img/landing/sixRites_icon02.gif" alt=""/>
+            <div>
+                <strong class="f-fs18">多重保障，全方位保护你的资金安全</strong>
+                <p class="f-fs14">新浪支付托管、获ICP经营许可证、电子数据保全</p>
+            </div>
+        </li>
+        <li><img src="$res_url/img/landing/sixRites_icon03.gif" alt=""/>
+            <div>
+                <strong class="f-fs18">全新全意，更低门槛，稳健收益</strong>
+                <p class="f-fs14">预期年化收益7%-15%</p>
+            </div>
+        </li>
+    </ul>
+</div>
+#set($pageScript="
+<script>
+    seajs.config({
+        alias: {
+            'landingRegister': '$m_js_url/landing/register.js?v=${sysServiceUtil.getStaticResourceVersion()}'
+        },
+        preload: ['jquery', 'validform']
+    });
+    seajs.use('landingRegister');
+</script>
+")

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>验证</title>
+<link rel="stylesheet"
+	href="http://localhost:8080/yourong-web/static/css/common.css">
+<style>
+#j-form input {
+	margin: 0;
+	padding: 6px;
+}
+
+#j-form input[type='submit'] {
+	height: 30px;
+	line-height: 30px;
+	display: inline-block;
+	width: 60px;
+}
+</style>
+</head>
+<body>
+	<h2>使用文档：<a href="http://validform.rjboy.cn/document.html#dataType">http://validform.rjboy.cn/document.html#dataType</a></h2>
+	<form action="/" id="j-form" method="GET" class="j-validform">
+		<div class="u-ipt-group">
+
+			<input type="text" datatype="n16-16|n19-19" nullmsg="此项必填"
+				errormsg="请输入正确的银行卡号" sucmsg="输入正确" />
+		</div>
+		<input type="submit" value="SUBMIT" />
+	</form>
+	<script
+		src="http://localhost:8080/yourong-web/static/js/jquery-1.11.1.js"></script>
+	<script
+		src="http://localhost:8080/yourong-web/static/lib/js/validform.js"></script>
+	<script src="http://localhost:8080/yourong-web/static/js/common.js"></script>
+	<script>
+		var demo = $(".j-validform").Validform({
+			tiptype : 3
+		});
+	</script>
+
+</body>
+</html>

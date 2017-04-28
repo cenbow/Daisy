@@ -1,0 +1,1327 @@
+<style>
+    .u-new-wrap {
+        position: absolute;
+        width: 463px;
+        height: 165px;
+        top: 725px;
+        left: 35%;
+        z-index: 99;
+    }
+
+    .u-new-wrap .u-new-tips {
+        width: 463px;
+        height: 163px;
+        z-index: 501;
+        background: url(/static/img/products/newCustomer/tips.png) no-repeat;
+    }
+
+    .u-new-wrap .u-new-tips i {
+        display: block;
+        width: 50px;
+        height: 38px;
+        position: absolute;
+        top: 35px;
+        left: 45px;
+        background: url(/static/img/products/newCustomer/icon.png) no-repeat;
+    }
+
+    .u-new-wrap .u-new-tips p {
+        padding: 28px 0 0 120px;
+        line-height: 24px;
+    }
+
+    .u-new-wrap .u-new-tips .u-btn {
+        width: 138px;
+        height: 33px;
+        line-height: 33px;
+        margin: 12px 0 0;
+    }
+</style>
+##页头
+#set($collateral = ${projectInfo.debtCollateral})
+#set($projectStatus = ${projectInfo.status})
+#set($direct = ${projectInfo.directLotteryDetail})
+#set($status = $direct.status)
+<input type="hidden" value="$projectStatus" name="projectStatus">
+<div class="m-detail-programShows f-pos-r">
+    <div class="g-wrap f-pos-r">
+        <div class="u-investment-schedule" id="j-investment-schedule">
+        ##            新客专享提示
+            <div classs="m-detail-data f-round">
+                #if($projectInfo.isNoviceProject())
+                    <div class="f-fs12"><em class="u-icon-newCustomer"
+                                            style="background: #d74148;border-radius: 10px;padding: 2px 6px; margin-left: 10px;">新客专享</em>
+                        100元起投 &nbsp;机会仅有一次哟
+                    </div>
+                #end
+            </div>
+        ##            新客专享提示
+            <input type="hidden" id="j-product-amount" data-amount="$projectInfo.totalAmount">
+            #set($balance=${sysServiceUtil.getProjectBalance($projectInfo.id)})
+            <input type="hidden" id="j-product-amount" data-amount="$projectInfo.totalAmount">
+            #set($balance=${sysServiceUtil.getProjectBalance($projectInfo.id)})
+            <span class="z-current" id="productBalance" value="$!{balance}" data-balance="$!{balance}">
+                #if($projectStatus==20 ||$projectStatus==52 || $projectStatus == 70 || $projectStatus == 90 )
+                    项目总额<em class="f-fs48 f-ff-din"><i
+                        class="f-fs24 f-ff-ver">￥</i>$!{formulaUtil.getFormatPrice(${projectInfo.totalAmount})}</em>
+                #else
+                    可投金额<em class="f-fs48 f-ff-din"><i
+                        class="f-fs24 f-ff-ver">￥</i>$!{formulaUtil.getFormatPrice($balance)}</em>
+                #end
+			</span>
+            #set($process=$sysServiceUtil.getProjectProgress($projectInfo.totalAmount,$projectInfo.id))
+            <strong class="f-pos-r">投资进度<span class="f-pos-r"><em
+                    style="width: $process"></em></span><i>$process</i></strong>
+            <span>年化收益<em class="f-fs48 f-ff-din">${formulaUtil.getIntegerDefaultZero($projectInfo.annualizedRate)}<i
+                    class="f-fs24">${formulaUtil.getDecimalDefaultZero($projectInfo.annualizedRate)}%</i></em>
+                #if ($!{projectInfo.extraType} == 2)
+                    <em class="f-fs24 f-ff-din">+<i
+                            class="f-fs48 f-ff-din">${formulaUtil.getIntegerDefaultZero($!{projectInfo.addRateBigDecimal})}</i>${formulaUtil.getDecimalDefaultZero($!{projectInfo.addRateBigDecimal})}%</em>
+                #end
+            </span>
+            <span>收益周期<em class="f-fs48 f-ff-din">${projectInfo.borrowPeriod}</em><i
+                    class="f-fs18">${projectInfo.formatProfitPeriodType}</i></span>
+            <table>
+                <tbody>
+                <tr>
+                    <td>起息方式</td>
+                    <td class="f-fwb">$!{projectInfo.interestFromStr}</td>
+                </tr>
+                <tr>
+                    <td>还款方式</td>
+                    <td>
+                        #if(${sysServiceUtil.getDictLabelByValue($projectInfo.profitType,"return_type","")}=="等本等息")
+                            <a class="u-financialPlan-link" target="_blank"
+                               href="/activity/financialPlan">${sysServiceUtil.getDictLabelByValue($projectInfo.profitType,
+                                "return_type","")}</a>
+                        #else
+                            ${sysServiceUtil.getDictLabelByValue($projectInfo.profitType,"return_type","")}
+                        #end</td>
+                </tr>
+                <tr>
+                    <td>借款合同</td>
+                    <td><a href="$root_url/products/p2pContract/preview?projectId=$projectInfo.id" target="_blank"
+                           data-target="j-argreement-box" onclick="window.event.cancelBubble=true;">合同范本</a>
+                    </td>
+                </tr>
+                    #if($projectInfo.transferFlag == 1)
+                    <tr>
+                        <td>项目转让</td>
+                        <td class="f-fwb">自起息日起$!{projectInfo.transferAfterInterest}天后可转让</td>
+                    </tr>
+                    #end
+                </tbody>
+            </table>
+        </div>
+
+        <i class="u-programShows-shadow"></i>
+        #set($signAttachments=$!{projectInfo.signAttachments})
+        #if($!signAttachments && $!signAttachments.size()>0)
+            <img src="$!{aliyun_url}/$signAttachments.get(0).fileUrl">
+        #end
+        <span class="u-programShows-name"><i
+                class="f-fwb">$!{projectInfo.prefixProjectName}</i>$!{projectInfo.suffixProjectName}
+            #if($!{projectInfo.isQuickLottery})
+                <div class="u-direct-invest">快投有奖</div>#end
+            #if($!{projectInfo.transferFlag}==1)
+                <div class="u-direct-invest">可转让</div>#end
+        </span>
+    </div>
+    <span></span>
+    <em id="j-shade-gray"></em>
+</div>
+#if(${projectInfo.isNoviceProject()} && ${projectInfo.isActive()})
+<div class="u-new-wrap f-dn" id="j-new-tips">
+    <div class="u-new-tips">
+        <i></i>
+        <p class="f-fs14">
+            抱歉，您已经是理财高手了。<br/>这是给新手专享的投资项目，您不能投资。<br/>
+            <a #if(${projectUtils.isInvestingProjectByProject()})
+                    href="$root_url/products/list-all-all-investing-1-createTimeDesc-1.html" #else
+                    href="$root_url/products/list-all-all-all-1-createTimeDesc-1.html"#end
+                    class="f-round u-btn u-btn-primary">查看其他项目</a>
+        </p>
+    </div>
+</div>
+#end
+##投资金额拖动条
+<div class="u-choise-money">
+    <div class="g-wrap f-pos-r">
+        #parse('/products/selectedAmount.vm')
+
+        #if($projectInfo.status==30||$projectInfo.status==40)
+            <div class="u-choise-countDown f-fs14" id="j-choise-countDown"
+                 data-saleendtime="$!{projectInfo.saleEndTime}">
+
+            </div>
+        #end
+
+    </div>
+    <form id="productForm" action="$!{root_url}/order/new" method="post">
+        <input type="hidden" name="projectId" id="projectId" value="$!{projectInfo.id}"/>
+        <input type="hidden" name="investAmount" id="investAmount" value="$!{projectInfo.minInvestAmount}"/>
+        #CSRFToken()
+    </form>
+</div>
+
+##p2p项目详情
+<div class="g-wrap">
+
+    #if( $!{projectInfo.isQuickLottery} == true)
+	##快投有奖
+
+    	#if(${direct.isQuick2Project} == true)
+			##快投二期开始
+
+            <div id="j-direct" v-cloak>
+                <div class="m-direct-lottery-module">
+                    <div class="m-module-top">
+
+                        <div class="u-lottery-list-title #if($!{direct.status}==51||$!{direct.status}==52)z-project-lv#else z-fail#end">
+                        	#if($!{direct.status}==51||$!{direct.status}==52)
+                        		中奖公布
+                        	#else
+                                最高现金奖励:
+								<em class="f-ff-din f-fs32">$!{formulaUtil.getFormatPrice($projectInfo.extraAmount)}</em><em>元</em>现金
+							#end
+
+                        </div>
+
+                        <div class="m-lottery-info">
+##						#if($!{projectInfo.status} ==20 && $!{projectInfo.onlineCountDown} > 0 )
+                            <div class="u-collect-countdown" v-if="pInfoStatus===20 && onlineCountDown > 0">
+                                <i>千元大奖</i>
+                                <div>
+                                    <countdown :time="$!{projectInfo.onlineCountDown}" text="" lang="zh" :callback="noticeEndEvent"></countdown>
+                                </div>
+                                后来袭！
+                            </div>
+##                        #elseif($!{projectInfo.status} ==30 && $!{projectInfo.lotteryEndCountDown} > 0 )
+                            <div class="u-collect-countdown f-drew" v-if="pInfoStatus===30 && lotteryEndCountDown > 0">
+                                <i>抽奖火热进行中，</i>
+                                <div>
+                                    <countdown :time="$!{projectInfo.lotteryEndCountDown}" text="" lang="zh" :callback="lotteryEndEvent"></countdown>
+                                </div>
+                                后结束。
+                            </div>
+##                        #end
+
+                        #if($!{direct.status} !=51 && $!{direct.status} !=52)
+
+##							#if( $!{projectInfo.lotteryEndCountDown} < 0 || $!{projectInfo.lotteryEndCountDown} == 0)
+                            <div class="u-collect-countdown f-drew" v-if="lotteryEndCountDown < 1">
+                                	抽奖已结束，中奖结果将于项目履约后公布
+                            </div>
+##                        	#end
+
+                            #if($!{projectInfo.popularityFlag})
+                            <div class="u-time-tips">
+                                    (超值福利：$!{projectInfo.popularityStratDate} 至 $!{projectInfo.popularityEndDate}期间，每个未中奖奖项补贴$!{projectInfo.popularity}点人气值。)
+                            </div>
+                            #end
+                        #end
+
+                        <div class="m-lottery-progress #if( $!direct.projectForLevel.size()==5|| $!direct.projectForLevel.size()==6 || $!direct.projectForLevel.size()==3 ) f-width-smaller #end">
+                            #foreach($level in $direct.projectForLevel)
+                            <div class="u-pl-wrap #if( $!direct.projectForLevel.size()==5|| $!direct.projectForLevel.size()==6 || $!direct.projectForLevel.size()==3 ) f-width-smaller #end">
+                                <span class="u-lottery-reward">
+                                   	 ￥<em class="f-ff-amount">$!{level.reward}</em>
+                                </span>
+                                <span class="u-lottery-msg">
+                                   #if($!{level.level} == 1)
+                                   	一
+                                   #elseif($!{level.level} == 2)
+                                   	二
+                                   #elseif($!{level.level} == 3)
+                                   	三
+                                   #elseif($!{level.level} == 4)
+                                   	四
+                                   #elseif($!{level.level} == 5)
+                                   	五
+                                   #elseif($!{level.level} == 6)
+                                   	六
+                                   #end
+                                   	等奖：
+                                   <em>$!{level.number}</em>名
+                                </span>
+                                <span class="u-ring-bg" style="background-image:url(/static/img/homepage/round/round0.png)"></span>
+                                <span class="j-pl-stat u-pl-stat circliful" data-dimension="160"
+                                      data-fontsize="14"
+                                      data-percent="100" data-fgcolor="#e33f4a"
+                                      data-bordersize="5"
+                                      data-bgcolor="#ccc">
+                                </span>
+                            </div>
+                            #end
+
+                        	#if($!{direct.status}==51||$!{direct.status}==52||$!{direct.status}==70)
+                                <div class="m-lottery-users-list">
+                                    <h1>幸运名单</h1>
+                                    <div class="m-list-deader">
+                                        <span class="name">用户名</span>
+                                        <span class="level">获奖等级</span>
+                                        <span class="amount">获奖金额</span>
+                                    </div>
+                                    <div class="m-list-content">
+                                        <ul>
+                                            #if($direct.projectRwardMember.size()==0)
+                                                <div class="f-luck-none"> 真遗憾，没有人抽到奖励哦！</div>
+                                            #else
+                                                #foreach($rewardMember in $direct.projectRwardMember)
+                                                    <li>
+                                                        <span class="name">
+                                                            <span class="u-user-head">
+                                                                <img src="#if($rewardMember.avatars) https://oss-cn-hangzhou.aliyuncs.com/$!{rewardMember.avatars} #else $root_url/static/img/member/avatar_35x35.png #end ">
+                                                                <i></i>
+                                                            </span>
+                                                            $!{rewardMember.username}
+                                                        </span>
+                                                        <span class="level">
+                                                            #foreach($levelDetail in $rewardMember.projectForLevelDetail)
+                                                                <span>#set($detailLevel=['零','一','二','三','四','五','六'])
+                                                                    $!detailLevel[$!{levelDetail.level}]等奖<i class="u-medal">x $!{levelDetail.number} </i>
+                                                                </span>
+                                                            #end
+                                                        </span>
+                                                        <span class="amount">￥$!{rewardMember.reward}</span>
+                                                    </li>
+                                                #end
+                                            #end
+                                        </ul>
+                                    </div>
+                                </div>
+							#end
+                        </div>
+                    </div>
+                </div>
+                    <div class="m-module-bottom f-pos-r">
+                        <h3><strong>快投有奖说明：</strong>投资成功即可抽奖，抽中即送<em class="f-fc-red">现金</em>，奖励将于项目履约后到账。</h3>
+                        <a href="/post/directActivator" class="u-rule-link">了解具体规则》</a>
+                        <div class="m-direct-model">
+                            <span class="u-direct-tip-icon u-dialog-left">借款人</span>
+                            <span class="m-direct-left"></span>
+                            <span class="u-direct-center"></span>
+                            <span class="m-direct-right"></span>
+                            <span class="u-direct-tip-icon u-dialog-right">投资人</span>
+                            <span class="u-direct-msg">借款人与有融网签订
+		                        <a href="javascript:" id="j-agreement">《委托协议》</a>
+		                    </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+    		##快投二期结束
+
+    	#else
+    		##快投一期开始
+    		<div id="j-direct" v-cloak>
+	            <div class="m-direct-lottery-module">
+	                <div class="m-module-top">
+	                    <a href="/post/directActivator" class="u-rule-link">了解具体规则》</a>
+	                ##流标提示
+	                    #if($!{direct.status}==90)
+	                        <div class="m-tips-wrapper f-flow">
+	                            <div>
+	                                项目<em class="f-fc-red">流标</em>，抽奖失效
+	                            </div>
+	                        </div>
+	                    #end
+	                ##流标提示
+	                ##履约
+	                    #if($!{direct.status}==51||$!{direct.status}==52||$!{direct.status}==70)
+	                        #if($!{direct.hasReward}==true)
+	                            <div class="u-lottery-list-title">中奖公布</div>
+	                        ##/履约
+	                        #end
+	                    #end
+
+	                    #if($!{direct.status}==20|| $!{direct.status}==30 || $!{direct.status}==40 || $!{direct.status}==60 )
+	                    ##募集--奖励不为零
+	                        <div class="u-lottery-list-title z-fail"><em>当前奖池</em>
+	                            （ 项目募集第 $!{direct.totalDays} 天
+	                            #if($!{direct.proportion})
+	                            #if($direct.totalDays==1)，借款人提供全额奖励
+	                            #else ，奖励已降为 $!{direct.proportion}%
+	                            #end #end）
+	                        </div>
+	                    #elseif($!{direct.status}==50&&$!{direct.hasReward}==true|| $!{direct.status}==81&&$!{direct.hasReward}==true)
+	                        <div class="u-lottery-list-title z-fail"><em>当前奖池</em>
+	                            ( 当前满额用时$!{direct.totalDays}天，#if($direct.totalDays==1)，借款人提供全额奖励 #else
+	                                奖池已降为 $!{direct.proportion} %  #end)
+	                        </div>
+	                    ##募集--奖励不为零
+	                    #end
+	                ##募集或履约详情
+	                    <div class="m-lottery-info">
+	                        #if($!{direct.hasReward}==true)
+	                            #if($!{direct.status}==51||$!{direct.status}==52||$!{direct.status}==70)
+	                                <table class="m-lottery-rank-tb">
+	                                    <thead>
+	                                    <tr>
+	                                        <th>募集完成日期</th>
+	                                        <th>募集用时（天）</th>
+	                                        <th>发放总奖励（元）</th>
+	                                    </tr>
+	                                    </thead>
+	                                    <tbody>
+	                                    <tr>
+	                                        <td>$!{dateUtil.formatDatetoString($direct.saleComplatedTime,"yyyy-MM-dd")}</td>
+	                                        <td>$!{direct.totalDays}</td>
+	                                        <td>$!{direct.prizeAmount}</td>
+	                                    </tr>
+	                                    </tbody>
+	                                </table>
+	                            #elseif($!{direct.status}==30)
+	                                <div class="u-collect-countdown">
+	                                    <div>
+	                                        #set($coutdownTime=$!{dateUtil.getTimeIntervalSencond(${dateUtil.getCurrentDate()},
+	                                            $!{dateUtil.addDate($!projectInfo.onlineTime,$!{direct.totalDays})})})
+	                                        <countdown :time="$!coutdownTime" text="" :callback="refresh"></countdown>
+	                                    </div>
+	                                        #if($!{direct.totalDays}==$!{direct.listRewardDetail.size()})后无奖励
+	                                        #else 后降为$!{direct.listRewardDetail[$!{direct.totalDays}].proportion}%
+	                                        #end
+	                                </div>
+	                            #end
+
+	                            #if($!{direct.status}!=90)
+	                                <div class="m-lottery-progress #if( $!direct.projectForLevel.size()==5|| $!direct.projectForLevel.size()==6 || $!direct.projectForLevel.size()==3 ) f-width-smaller #end">
+	                                    #foreach($rewardType in  $direct.projectForLevel)
+	                                        <div class="u-pl-wrap #if( $!direct.projectForLevel.size()==5|| $!direct.projectForLevel.size()==6 || $!direct.projectForLevel.size()==3) f-width-smaller #end">
+	                                            #if($!direct.totalDays>1)
+	                                                <span class="u-before-award">
+	                                                ￥#if($!{rewardType.level}==1)
+	                                                    $!{formulaUtil.getInteger($direct.listRewardDetail[0].level1Amount)}
+	                                                #elseif($!{rewardType.level}==2)$!{formulaUtil.getInteger($direct.listRewardDetail[0].level2Amount)}
+	                                                #elseif ($!{rewardType.level}==3)$!{formulaUtil.getInteger($direct.listRewardDetail[0].level3Amount)}
+	                                                #elseif($!{rewardType.level}==4)$!{formulaUtil.getInteger($direct.listRewardDetail[0].level4Amount)}
+	                                                #elseif($!{rewardType.level}==5)$!{formulaUtil.getInteger($direct.listRewardDetail[0].level5Amount)}
+	                                                #elseif($!{rewardType.level}==6)$!{formulaUtil.getInteger($direct.listRewardDetail[0].level6Amount)}
+	                                                #end
+	                                                <br><i></i></span>
+	                                            #end
+	                                            <span class="u-lottery-reward">￥<em
+	                                                    class="f-ff-amount">$!{rewardType.reward}</em></span>
+	                                            <span class="u-lottery-msg">
+	                                                #set($rewardLevel=['零','一','二','三','四','五','六'])
+	                                                $!rewardLevel[$!{rewardType.level}]等奖：<em> $!{rewardType.number} </em>名</span>
+	                                            <span class="u-ring-bg"
+	                                                  style="background-image:url(/static/img/homepage/round/round0.png)"></span>
+	                                            <span class="j-pl-stat u-pl-stat circliful" data-dimension="160"
+	                                                  data-fontsize="14"
+	                                                  data-percent="$!{rewardType.radio}" data-fgcolor="#e33f4a"
+	                                                  data-bordersize="5"
+	                                                  data-bgcolor="#ccc"></span>
+	                                        </div>
+	                                    #end
+	                                    <div class="u-lottery-detail" @click="switchTip(true)">
+	                                        <span>奖励</br>详情</span>
+	                                    </div>
+	                                </div>
+	                            #end
+	                            #if($!{direct.status}==51||$!{direct.status}==52||$!{direct.status}==70)
+	                                <div class="m-lottery-users-list">
+                                        <h1>幸运名单</h1>
+	                                    <div class="m-list-deader">
+	                                        <span class="name">用户名</span>
+	                                        <span class="level">获奖等级</span>
+	                                        <span class="amount">获奖金额</span>
+	                                    </div>
+	                                    <div class="m-list-content">
+	                                        <ul>
+	                                            #if($direct.projectRwardMember.size()==0)
+	                                                <div class="f-luck-none"> 大家都没有来抽奖呢~</div>
+	                                            #else
+	                                                #foreach($rewardMember in $direct.projectRwardMember)
+	                                                    <li>
+	                                          <span class="name">
+	                                          <span class="u-user-head">
+	                                        <img src="#if($rewardMember.avatars) https://oss-cn-hangzhou.aliyuncs.com/$!{rewardMember.avatars} #else $root_url/static/img/member/avatar_35x35.png #end ">
+	                                        <i></i>
+	                                        </span>
+	                                              $!{rewardMember.username}
+	                                          </span>
+	                                                        <span class="level">
+	                                                            #foreach($levelDetail in $rewardMember.projectForLevelDetail)
+	                                                                <span>#set($detailLevel=['零','一','二','三','四','五','六'])
+	                                                                    $!detailLevel[$!{levelDetail.level}]等奖<i
+	                                                                            class="u-medal">x $!{levelDetail.number} </i></span>
+	                                                            #end
+	                                                         </span>
+	                                                        <span class="amount">￥$!{rewardMember.reward}</span>
+	                                                    </li>
+	                                                #end
+	                                            #end
+	                                        </ul>
+	                                    </div>
+	                                </div>
+	                            #end
+	                        #end
+	                    </div>
+	                ##/募集或履约详情
+
+	                ##募集或履约奖励为零(文案不同)
+	                    #if(${direct.hasReward}==false && ${direct.status}!=90)
+	                        <div class="m-tips-wrapper #if(${direct.status}==51 ||${direct.status}==52||${direct.status}==70)f-appoint-status#end">
+	                            <div class="z-coming #if(${direct.status}==51 ||${direct.status}==52||${direct.status}==70)f-appoint-status#end">
+	                                募集时间超过奖励期限#if(${direct.status}==51 ||${direct.status}==52||${direct.status}==70)，</br>本次奖池无奖励。
+	                                #else </br>投资要趁早哦！
+	                                #end
+	                            </div>
+	                            <span class="u-lottery-detail" @click="switchTip(true)">
+	                    <span>奖励</br>详情</span>
+	                </span>
+	                        </div>
+	                    #end
+	                ##/募集或履约奖励为零
+
+	                </div>
+
+	                <div class="m-module-bottom">
+	                    <h3><strong>快投有奖说明：</strong>投资即可获得抽奖机会，越<em class="f-fc-red">早</em>募集成功，借款人提供的奖励越<em
+	                            class="f-fc-red">多</em>。</h3>
+	                    <div class="m-direct-model">
+	                        <span class="u-direct-tip-icon u-dialog-left">借款人</span>
+	                        <span class="m-direct-left"></span>
+	                        <span class="u-direct-center"></span>
+	                        <span class="m-direct-right"></span>
+	                        <span class="u-direct-tip-icon u-dialog-right">投资人</span>
+	                        <span class="u-direct-msg">借款人与有融网签订
+	                        <a href="javascript:" id="j-agreement">《委托协议》</a>
+	                    </span>
+	                    </div>
+	                </div>
+	            </div>
+            	<div class="u-cover" v-if="open"></div>
+        ##奖励表格弹框
+	            <div class="m-modal-wrapper" v-show="open">
+	                <div class="m-modal-close">
+	                    <span class="u-close-btn" @click="switchTip(false)"></span>
+	                </div>
+	                <div class="m-modal-header">
+	                    募集用时超过$!{direct.listRewardDetail.size()}天无奖励，投资要趁早哦！
+	                </div>
+	                <div class="m-modal-content">
+	                    <table class="m-project-detail-tb">
+	                        <thead>
+	                        <tr>
+	                            <th>募集用时（天）</th>
+	                            <th>发放比例</th>
+	                            #foreach($rewardType in  $direct.projectForLevel)
+	                                <th>  #set($rewardLevel=['零','一','二','三','四','五','六'])
+	                                    $!rewardLevel[$!{rewardType.level}] 等奖 （元）
+	                                </th>
+	                            #end
+	                        </tr>
+	                        </thead>
+	                        <tbody>
+	                            #set($complateDate=$!{dateUtil.formatDatetoString($direct.saleComplatedTime,"yyyy-MM-dd")})
+	                            #set($curDate=$!{dateUtil.formatDatetoString(${dateUtil.getCurrentDate()},"yyyy-MM-dd")})
+	                            #foreach($rewardDetail in $direct.listRewardDetail)
+	                                #set($rewardTime=$!{dateUtil.formatDatetoString($rewardDetail.time,"yyyy-MM-dd")})
+	                            <tr class="#if($!{status}!=51 && $!{status}!=52 && $!{status}!=70&& $!{status}!=50&& $!{status}!=81)
+	                                  #if( $!{rewardDetail.day}==$!{direct.totalDays} ) z-mj-completed #end
+	                                  #elseif($!{status}==51 || $!{status}==52 || $!{status}==70||$!{status}==81||$!{status}==50)
+	                                 #if ($!{direct.totalDays}==$!{rewardDetail.day}) z-ly-completed  #end
+	                                   #end">
+
+	                                <td>
+	                                    #if($!{status}!=51 && $!{status}!=52 && $!{status}!=70&& $!{status}!=90&& $!{status}!=50&& $!{status}!=81)
+	                                        #if($!{rewardDetail.day}==$!{direct.totalDays})
+	                                            <div class="u-r-arrow"></div> #end #end
+	                                    $!{rewardDetail.day}</td>
+	                                <td> $!{rewardDetail.proportion}%</td>
+	                                #if($!direct.projectForLevel.size()>0)
+	                                <td >$!{formulaUtil.getInteger($rewardDetail.level1Amount)}</td>
+	                                <td >$!{formulaUtil.getInteger($rewardDetail.level2Amount)}</td>
+	                                <td >$!{formulaUtil.getInteger($rewardDetail.level3Amount)}</td>
+	                                <td class="#if ($!direct.projectForLevel.size()<4 ) f-hidden #end">$!{formulaUtil.getInteger($rewardDetail.level4Amount)}</td>
+	                                <td class="#if ($!direct.projectForLevel.size()<5 ) f-hidden #end">$!{formulaUtil.getInteger($rewardDetail.level5Amount)}</td>
+	                                <td class="#if ($!direct.projectForLevel.size()<6 ) f-hidden #end">$!{formulaUtil.getInteger($rewardDetail.level6Amount)}</td>
+	                                #end
+	                            </tr>
+	                            #end
+	                        </tbody>
+	                    </table>
+	                </div>
+	            </div>
+        </div>
+    		##快投一期结束
+    	#end
+
+
+    #end
+##菜单切换
+    <div class="m-nav-switch" id="j-tab-info">
+        <a href="javascript:void(0);" class="z-current">项目信息</a>
+        <a href="javascript:void(0);" class="u-tit-r" id="j-selfInfoMsg">
+            #if(${projectInfo.projectTypeGroupName}==999) 企业信息 #else   ${projectInfo.projectTypeGroupName}信息#end
+        </a>
+        <a href="javascript:void(0);" class="u-tit-r">风控信息</a>
+        #set($contractCategory=$!{projectInfo.contractCategoryName})
+        #if($!contractCategory.size()==0)
+        #else
+            <a href="javascript:void(0);" class="u-tit-r j-credit-prove">
+                信用认证
+            </a>#end
+        <a href="javascript:void(0);" class="u-tit-r">
+            还款计划
+        </a>
+    </div>
+##基本信息
+    <div class="m-detail-wrap z-current">
+        <div class="u-info-tShaft f-pos-r">
+            #set($status = $!{projectInfo.status})
+            #set($currentProgress = "z-current0")
+            <dl class="u-tShaft-dl01">
+                <dt #if($!status!=20)class="z-current" #set($currentProgress = "z-current1") #end></dt>
+                <dd>项目发布</dd>
+            </dl>
+            <dl class="u-tShaft-dl02">
+                <dt #if($!status==50||$!status==51||$!status==52||$!status==70||$!status==81)class="z-current"  #set($currentProgress =
+                    "z-current2") #end></dt>
+                <dd>募集满额</dd>
+            </dl>
+            <dl class="u-tShaft-dl03">
+                <dt #if($!status==51||$!status==52||$!status==70||$!status==81)
+                        class="z-current"  #set($currentProgress = "z-current3")  #end></dt>
+                <dd>审核通过</dd>
+            </dl>
+            <dl class="u-tShaft-dl04">
+                <dt #if($!status==70) class="z-current" #set($currentProgress = "z-current4") #end></dt>
+                <dd>还款成功</dd>
+            </dl>
+            <span class="$currentProgress"></span>
+        </div>
+        #if($!{projectInfo.openPlatformKey}=='taizilong')
+            <h3>业务模式介绍</h3>
+            <div style="margin: 40px 0;">
+                <img src="https://yrstatic.oss-cn-hangzhou.aliyuncs.com/static/img/supply_chain/mode_tzl.png"
+                     alt="业务模式介绍" width="100%">
+            </div>
+        #end
+        #if($!{projectInfo.openPlatformKey}=='jimistore')
+            <h3>业务模式介绍</h3>
+            <div style="margin: 40px 0;">
+                <img src="https://yrstatic.oss-cn-hangzhou.aliyuncs.com/static/img/supply_chain/mode_jm.png "
+                     alt="业务模式介绍" width="100%">
+            </div>
+        #end
+				#if($!{projectInfo.projectType}=='car_leas_type_car')
+					<h3>业务模式介绍</h3>
+						<div style="margin: 40px 0;text-align: center">
+								<img src="https://yrstatic.oss-cn-hangzhou.aliyuncs.com/static/img/supply_chain/mode_zc.png "
+										 alt="业务模式介绍" width="566px">
+						</div>
+				#end
+        <h3>项目介绍</h3>
+        <div class="u-info-productsInfo">
+            <p>$!{projectInfo.shortDesc}</p>
+        </div>
+
+        #if(${projectInfo.borrowerType}==1)
+            <h3>借款人信息</h3>
+            <div class="u-info-personalInfo f-pos-r f-cf">
+                <div class="u-personalInfo-img f-cf j-personalInfo-img">
+                    <ul>
+                    ##200*126
+                        #foreach($_attach in $!projectInfo.borrowMemberAttachments)
+                            <li>
+                                <img src="$!{aliyun_url}/$!{_attach.fileUrl}"
+                                     url="#getImagePath($!{_attach.fileUrl},'425')" alt="$!{_attach.fileName}">
+                            </li>
+                        #end
+                    </ul>
+                </div>
+                <i class="u-direction-l j-direction-btn" data-direction="right"></i>
+                <i class="u-direction-r j-direction-btn" data-direction="left"></i>
+                #if(${projectInfo.borrowerType}==1)
+                    #set($bMember = $!{projectInfo.borrowMemberBiz.member})
+                    #set($bMemberInfo = $!{projectInfo.borrowMemberBiz.memberInfo})
+                    <div class="u-personalInfo-info">
+                        <p><strong>$!{bMember.maskTrueName}</strong><strong>${sysServiceUtil.getDictLabelByValue(
+                            "$!{bMember.sex}","sex","")}</strong><strong>$!{bMember.getAge()}
+                            岁</strong><strong>${sysServiceUtil.getDictLabelByValue(
+                            "$!{bMemberInfo.marriage}","marriage",
+                            "")}</strong><strong>${sysServiceUtil.getDictLabelByValue(
+                            "$!{bMemberInfo.highEdu}","education","")}</strong></p>
+                        <p>
+                            <strong>$!{bMember.maskIdentityNumber()}</strong><strong>$!{bMemberInfo.censusRegisterName}</strong><strong>${sysServiceUtil.getDictLabelByValue(
+                            "$!{bMemberInfo.registerType}","register_type","")}</strong></p>
+
+                        #if($!{bMemberInfo.detailInfo} && "$!{bMemberInfo.detailInfo}" != "")
+                            <p>职业：$!{bMemberInfo.detailInfo}</p>
+                        #else
+                            <p>职业：--</p>
+                        #end
+
+                        <input type="hidden" type="income" value="$!{bMemberInfo.income}">
+
+                        #if($!{bMemberInfo.income} && "$!{bMemberInfo.income}" != "" && "$!{bMemberInfo.income}" != 0)
+                            <p>收入：${sysServiceUtil.getDictLabelByValue("$!{bMemberInfo.income}","income","")}/月</p>
+                        #else
+                            <p>收入：--</p>
+                        #end
+
+                    </div>
+                #end
+				#if($!{projectInfo.borrowerCreditLevel})
+                    <div class="u-risk-info">
+                        借款人评级：<em>$!{projectInfo.borrowerCreditLevel}</em>$!{projectInfo.borrowerCreditLevelDes}<span>（有融风控结合百度金融云评定，仅供参考）</span>
+                    </div>
+				#end
+            </div>
+        #elseif(${projectInfo.borrowerType}==2)
+            <h3>借款企业介绍</h3>
+            <div class="u-info-personalInfo f-pos-r">
+                <div class="u-personalInfo-img f-cf j-personalInfo-img">
+                    <ul>
+                    ##200*126
+                        #foreach($_attach in $!projectInfo.borrowMemberAttachments)
+                            <li>
+                                <img src="$!{aliyun_url}/$!{_attach.fileUrl}"
+                                     url="#getImagePath($!{_attach.fileUrl},'425')" alt="$!{_attach.fileName}">
+                            </li>
+                        #end
+                    </ul>
+                </div>
+                <i class="u-direction-l j-direction-btn" data-direction="right"></i>
+                <i class="u-direction-r j-direction-btn" data-direction="left"></i>
+                #set($enterprise = $!{projectInfo.enterprise})
+                <div class="u-companyInfo-info">
+                    <table>
+                        <tbody>
+                        <tr>
+                            <td class="f-fwb" width="220">$!{enterprise.name}</td>
+                            <td class="f-fwb" width="210">法定代表人：$!{enterprise.maskLegalName}</td>
+                        </tr>
+                        <tr>
+                            #if($!{enterprise.region} && "$!{enterprise.region}" != "")
+                                <td class="f-fwb">$!{enterprise.region}</td>
+                            #else
+                                <td class="f-fwb">--</td>
+                            #end
+                            <td class="f-fwb">成立于$!{dateUtil.formatDatetoString(${enterprise.regeditDate},
+                                "yyyy年MM月")}</td>
+                        </tr>
+                        <tr>
+                            #if($!{enterprise.income} && "$!{enterprise.income}"!="")
+                                <td>注册资本：$!{enterprise.income}万</td>
+                            #else
+                                <td>--</td>
+                            #end
+
+                            #if($!{enterprise.maskOrganizationCode} && "$!{enterprise.maskOrganizationCode}"!="")
+                                <td>社会统一代码：<br>$!{enterprise.maskOrganizationCode}</td>
+                            #else
+                                <td>社会统一代码：--</td>
+                            #end
+                        </tr>
+                        <tr>
+                            #if($!{enterprise.yearSales} && "$!{enterprise.yearSales}"!="")
+                                <td>年均销售额：$!{enterprise.yearSales}万</td>
+                            #else
+                                <td>年均销售额：--万</td>
+                            #end
+                            <td></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+				#if($!{projectInfo.borrowerCreditLevel})
+					<div class="u-risk-info">
+						企业法人评级：<em>$!{projectInfo.borrowerCreditLevel}</em>$!{projectInfo.borrowerCreditLevelDes}<span>（有融风控结合百度金融云评定，仅供参考）</span>
+					</div>
+				#end
+            </div>
+        #elseif(${projectInfo.borrowerType}==4)
+            <h3>借款主体介绍</h3>
+            <div class="u-info-personalInfo f-pos-r">
+                <div class="u-personalInfo-img f-cf j-personalInfo-img">
+                    <ul>
+                    ##200*126
+                        #foreach($_attach in $!projectInfo.borrowMemberAttachments)
+                            <li>
+                                <img src="$!{aliyun_url}/$!{_attach.fileUrl}"
+                                     url="#getImagePath($!{_attach.fileUrl},'425')" alt="$!{_attach.fileName}">
+                            </li>
+                        #end
+                    </ul>
+                </div>
+                <i class="u-direction-l j-direction-btn" data-direction="right"></i>
+                <i class="u-direction-r j-direction-btn" data-direction="left"></i>
+                #set($enterprise = $!{projectInfo.enterprise})
+                <div class="u-companyInfo-info">
+                    <table>
+                        <tbody>
+                        <tr>
+                            <td class="f-fwb" width="220">$!{enterprise.name}</td>
+                            <td class="f-fwb">成立于$!{dateUtil.formatDatetoString(${enterprise.regeditDate},
+                                "yyyy年MM月")}</td>
+                        </tr>
+                        <tr>
+                            #if($!{enterprise.region} && "$!{enterprise.region}" != "")
+                                <td class="f-fwb">$!{enterprise.region}</td>
+                            #else
+                                <td class="f-fwb">--</td>
+                            #end
+
+                            #if($!{enterprise.maskOrganizationCode} && "$!{enterprise.maskOrganizationCode}"!="")
+                                <td class="f-fwb">社会统一代码：<br>$!{enterprise.maskOrganizationCode}</td>
+                            #else
+                                <td class="f-fwb">社会统一代码：--</td>
+                            #end
+                        </tr>
+                        <tr>
+                            <td class="f-fwb" width="210">负责人：$!{enterprise.maskLegalName}</td>
+                            <td></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+				#if($!{projectInfo.borrowerCreditLevel})
+                    <div class="u-risk-info">
+                        企业法人评级：<em>$!{projectInfo.borrowerCreditLevel}</em>$!{projectInfo.borrowerCreditLevelDes}<span>（有融风控结合百度金融云评定，仅供参考）</span>
+                    </div>
+				#end
+            </div>
+        #end
+##        <h3>借款记录</h3>
+##        <div class="u-info-riskControlInfo">
+##            <table>
+##                <tbody>
+##                <tr>
+##                    <td>已还清项目：$!{projectInfo.payOffCount}个</td>
+##                    <td>逾期未还期数：$!{projectInfo.overdueCount}期</td>
+##                    <td>逾期未还金额：$!{projectInfo.overdueAmount}元</td>
+##                </tr>
+##                </tbody>
+##            </table>
+##        </div>
+    </div>
+
+##车辆信息
+    <div class="m-detail-wrap">
+        <input type="hidden" id="j-collateralImg" data-size="$!projectInfo.collateralAttachments.size()">
+        #if($!projectInfo.collateralAttachments.size()!=0)
+            <div class="u-imgWrape">
+                <h3>#if(${projectInfo.projectTypeGroupName}==999)企业图片#else ${projectInfo.projectTypeGroupName}
+                    图片 #end</h3>
+                <div class="u-carInfo-img j-carInfo-img">
+                    <ul>
+                        #foreach($_attach in $!projectInfo.collateralAttachments)
+                            <li>
+                                <img src="$!{aliyun_url}/$!{_attach.fileUrl}"
+                                     url="#getImagePath($!{_attach.fileUrl},'425')"
+                                     alt="$!{_attach.fileName}">
+                            </li>
+                        #end
+                    </ul>
+                </div>
+            </div>
+        #else
+        #end
+        #if(${projectInfo.projectTypeGroupName}!=999)
+            <div class="u-infoWrap" id="j-collateral-detailWrap">
+                <h3>基本信息</h3>
+                <div class="u-carInfo-info">
+                    <div id="j-collateral-detail">
+                    </div>
+
+                </div>
+            </div>
+        #end
+    </div>
+
+##风控信息
+##RS=RiskManagement(风险控制)
+    <div class="m-detail-wrap">
+        <div class="u-RS-info">
+            <table>
+                <tbody>
+                <tr>
+                    <td>保证措施</td>
+                    <td id="fk_bzcs"></td>
+                </tr>
+                <tr>
+                    <td>还款来源</td>
+                    <td id="fk_hkly"></td>
+                </tr>
+                <tr>
+                    <td>风控审核</td>
+                    <td id="fk_fksh"></td>
+                </tr>
+                <tr>
+                    <td>监管保障</td>
+                    <td id="fk_jgbz"></td>
+                </tr>
+                <tr>
+                    <td>法律监管</td>
+                    <td id="fk_fljg"></td>
+                </tr>
+                <tr>
+                    <td>资金管理</td>
+                    <td id="fk_zjgl"></td>
+                </tr>
+                <tr>
+                    <td>其他风控信息</td>
+                    <td id="fk_qtfkxx"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+##合同资料
+##    <div class="m-detail-wrap">
+    #if($!contractCategory.size()==0)
+    #else
+    <div class="m-detail-wrap m-detail-contract j-credit-prove" id="j-area-b">
+        <div class="u-arrow-down">
+            <i>◆</i>
+            <span>◆</span>
+        </div>
+        <div class="u-pinfo-tab f-fs14 j-infotab">
+            #set($otherInfo="其他资料图片")
+            #foreach($_categoryName in $!projectInfo.contractCategoryName)
+                #set($_num = $velocityCount)
+                #if($_num < 10)
+                    #set($_num = "0"+""+$_num)
+                #end
+                #if($_categoryName==$otherInfo)
+                    #set($oterInfoId="id='j-other-info'")
+                #end
+                #if($velocityCount == 1)
+                    <span class="z-current" $!{oterInfoId}>$!{_num}&nbsp;&nbsp;$!{_categoryName}</span>
+                #else
+                    <span $!{oterInfoId}>$!{_num}&nbsp;&nbsp;$!{_categoryName}</span>
+                #end
+            #end
+        </div>
+        #foreach($_categoryName in $!projectInfo.contractCategoryName)
+            #if($velocityCount == 1)
+            <div class="u-pinfo-contract z-current">
+            #else
+            <div class="u-pinfo-contract">
+            #end
+            #foreach($_attach in $!projectInfo.contractAttachments)
+                #if($_categoryName == $_attach.module)
+                    <span>
+                            <img src="$!{aliyun_url}/$!{_attach.fileUrl}" alt="$!{_attach.fileName}">
+                            <em>$!{_attach.fileName}</em>
+                       </span>
+                #end
+            #end
+        </div>
+        #end
+    </div>
+    #end
+
+##还款计划
+    <div class="m-detail-wrap">
+        #if( $!{projectInfo.status}==51 || $!{projectInfo.status}==52 || $!{projectInfo.status}==70)
+            <table class="u-repayment-plan">
+                <thead>
+                <tr>
+                    <td width="128">期数</td>
+                    #if(($!{projectInfo.prepayment}==1 && $!{projectInfo.status}==70) || $!{projectInfo.isOverdue}==true)
+                        <td width="220">预期/实际<br>还款时间</td>
+                    #else
+                        <td width="220">还款时间</td>
+                    #end
+                    #if(($!{projectInfo.prepayment}==1 && $!{projectInfo.status}==70))
+                        <td width="314">预期/实际<br>还款金额</td>
+                    #else
+                        <td width="314">还款金额</td>
+                    #end
+                    <td width="166">还款类型</td>
+                    <td width="156">还款状态</td>
+                </tr>
+                </thead>
+                <tbody>
+                    #foreach($interest in $!{projectInfo.interests})
+                        #if(${interest.payableInterest}>0 && ${interest.payablePrincipal}>0 )
+                            #set($repayType="本金+利息")
+                        #elseif(${interest.payableInterest}>0 && ${interest.payablePrincipal}<=0 )
+                            #set($repayType="利息")
+                        #end
+                    <tr>
+                        <td class="u-repayment-center">$velocityCount</td>
+                        #if(($!{projectInfo.prepayment}==1 && $!{projectInfo.status}==70)|| $!{projectInfo.isOverdue}==true)
+                            <td class="u-repayment-center">$!{dateUtil.formatDatetoString($interest.endDate,
+                                "yyyy-MM-dd")}/
+                                #if($dateUtil.isDateNull($interest.payTime))
+                                    -
+                                #else
+                                    $!{dateUtil.formatDatetoString($interest.payTime ,"yyyy-MM-dd")}
+                                #end
+
+                            </td>
+                        #else
+                            <td class="u-repayment-center">$!{dateUtil.formatDatetoString($interest.endDate,
+                                "yyyy-MM-dd")}</td>
+                        #end
+
+                        #if(($!{projectInfo.prepayment}==1 && $!{projectInfo.status}==70))
+                            <td class="u-repayment-left">
+                                ￥$!{formulaUtil.formatCurrencyNoUnit($interest.principalAndInterest)}/￥$!{formulaUtil.formatCurrencyNoUnit($interest.realPrincipalAndInterest)}</td>
+                        #else
+                            <td class="u-repayment-left">
+                                ￥$!{formulaUtil.formatCurrencyNoUnit($interest.principalAndInterest)}</td>
+                        #end
+                        <td class="u-repayment-left">$!repayType</td>
+                        <td class="u-repayment-center"><i
+                            #if($!{interest.status}==1)class="z-current"#end></i>$!{sysServiceUtil.getDictLabelByValue(
+                            "$!{interest.status}","debt_interest_status_for_front","")}</td>
+                    </tr>
+                    #end
+                </tbody>
+            </table>
+        #elseif($!{projectInfo.status}==80 || $!{projectInfo.status}==90)
+            <table class="u-repayment-tiptext">
+                <tr>
+                    <td>项目募集未完成，没有相应还款计划</td>
+                </tr>
+            </table>
+        #else
+            <table class="u-repayment-tiptext">
+                <tr>
+                    <td>还款计划将于项目履约后显示</td>
+                </tr>
+            </table>
+        #end
+
+    ## 提前还款
+    ## 如果有提前还款
+        #if($!{projectInfo.prepayment}==1&&$!{projectInfo.status}==70)
+            <div class="m-prev-giveback-wrap">
+                <div class="m-prev-giveback">
+                    <span class="u-prev-giveBack-arrowUp"></span>
+                    <span class="u-prev-giveBack-tip">提前还款</span>
+                    <div class="u-prev-giveBack-content">
+                        <p>提前还款时间：
+                            <span class="u-prev-giveBack-time">
+                                $!{dateUtil.formatDatetoString($!{projectInfo.prepaymentTime},"yyyy-MM-dd")}
+                            </span>
+                        </p>
+                        <p>提前还款原因：
+                            <span>$!{projectInfo.prepaymentRemark}</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        #end
+
+    ## TODO 如果都为空就不显示这一块
+        #if($!{projectInfo.overdueRepayBiz.size()} > 0 || $!{projectInfo.overdue})
+        ## 催收历程 此处对应api文档 http://192.168.0.197:8090/pages/viewpage.action?pageId=31392570 （由柴森编写的文档）
+
+            <div class="u-divider"></div> ## 灰色分割线
+        ## 正在催收中
+            <div id="j-collectList-wrap" class="u-collectList-wrap">
+                #set($overdue = $!{projectInfo.overdue})
+                #if(!$overdue)
+                #else
+                    <h2 class="u-collectList-title">正在催收中</h2>
+                    <div class="u-collectList-header">
+                        <span style="width:110px;">逾期开始时间</span>
+                        <span style="width: 100px;">逾期期数</span>
+                        <span style="width: 90px;">逾期天数</span>
+                        <span style="width: 100px">逾期利息</span>
+                        <span style="width: 150px">逾期本金</span>
+                        <span style="width: 150px">滞纳金</span>
+                        <span style="width: 130px">逾期还款时间</span>
+                        <span style="width: 70px">状态</span>
+                    </div>
+
+                    <div class="u-collectList-info">
+                        <span style="width:110px;">$!{dateUtil.formatDatetoString($overdue.overdueStartDate,
+                            "yyyy-MM-dd")}</span>
+                        <span style="width: 100px; cursor: pointer;" class="f-text-overflow"
+                              title="$!{overdue.interestPeriods}">
+                            <em class="f-text-overflow"
+                                style="display: inline-block;width:100px; cursor: pointer;">$!{overdue.interestPeriods}</em>
+                        </span> ## 逾期期数
+                        <span style="width: 90px;">$!{overdue.overdueDay}<i>天</i></span>
+                        <span style="width: 100px">￥$!{formulaUtil.formatCurrencyNoUnit($overdue.overdueInterest)}</span>
+                        <span style="width: 150px">￥$!{formulaUtil.formatCurrencyNoUnit($overdue.overduePrincipal)}</span>
+                        <span style="width: 150px">￥$!{formulaUtil.formatCurrencyNoUnit($overdue.overdueFine)}</span>
+                        <span style="width: 130px">
+                            #if($!{overdue.repayTime})
+                                $!{dateUtil.formatDatetoString($overdue.repayTime,"yyyy-MM-dd")}
+                            #else
+                                -
+                            #end
+                        </span>
+                        <span style="width: 70px; color: #d74148;">$!{overdue.collectStatusName}</span>
+                    </div>
+
+                    #if($overdue.collectList.size()>0)
+                        <div class="u-collectList-main-wrap z-show z-noToggle">
+                            <div class="u-collectList-main">
+                            ## 循环一次：正在催收中-催收历程
+                                <ul class="u-collectList">
+                                    #foreach($collectList in $overdue.collectList)
+                                    ##                                    <li>$collectList.nextCollectForm ,,,,,,, $collectList.nextCollectTime</li>
+                                    ## 预计下次催收
+                                        #if($collectList.nextCollectForm && $!{collectList.collectStatus}!=1)
+                                            <li>
+                                                <span class="u-collectList-icon u-collectList-icon-clock"><i></i></span>
+                                                <p class="u-collect-title">$!{collectList.nextCollectForm}</p> ## 催收方式
+                                                <p class="u-collect-msg">
+                                                <div class="u-collectList-date">预计下次催收日期：
+                                                    <span>
+                                                        $!{dateUtil.formatDatetoString($collectList.nextCollectTime,
+                                                            "yyyy-MM-dd")}
+
+                                                        #if($!{collectList.nextDays}>0)
+                                                            （逾期第<span>$!{collectList.nextDays}</span>天）
+                                                        #elseif($!{collectList.nextDays}==0)
+                                                            （逾期当天）
+                                                        #end
+                                                    </span>
+                                                </div>
+                                                </p>
+                                            </li>
+                                        #end
+
+                                        <li> ##催收结果图标
+                                            #if($!{collectList.collectStatus}==1) ## 成功
+                                                <span class="u-collectList-icon u-collectList-icon-success"><i></i></span>
+                                            #elseif($!{collectList.collectStatus}==2) ## 失败
+                                                <span class="u-collectList-icon u-collectList-icon-fail"><i></i></span>
+                                            #else
+                                                <span class="u-collectList-icon u-collectList-icon-clock"><i></i></span>
+                                            #end
+                                            <p class="u-collect-title">$!{collectList.collectForm}</p> ## 催收方式
+
+                                            <p class="u-collect-msg">
+                                            <div class="u-collectList-date">催收日期：
+                                                <span>
+                                                    $!{dateUtil.formatDatetoString($collectList.collectTime,
+                                                        "yyyy-MM-dd")}
+                                                    #if($!{collectList.days}>0)
+                                                        （逾期第<span>$!{collectList.days}</span>天）
+                                                    #elseif($!{collectList.days}==0)
+                                                        （逾期当天）
+                                                    #end
+                                                </span>
+                                            </div>
+                                            <div class="u-collectList-result">催收结果：
+                                                <span>$!{collectList.collectDetail}</span>
+                                            </div>
+                                            </p>
+
+                                            <div class="u-carInfo-img j-carInfo-img u-collectList-img">
+                                                <ul>
+                                                    #foreach($bscAttachments in $!{collectList.bscAttachments})
+                                                        <li>
+                                                            <img src="$!{aliyun_url}/$bscAttachments.fileUrl"
+                                                                 url="#getImagePath($bscAttachments.fileUrl)">
+                                                        </li>
+                                                    #end
+                                                </ul>
+                                            </div>
+                                        </li>
+                                    #end
+
+                                </ul>
+                            </div>
+                        </div>
+                    #end
+
+                #end
+
+            ## 催收成果按钮
+                <input type="hidden" name='dfad'
+                       value="$!{projectInfo.overdueRepayBiz} && $!{projectInfo.overdueRepayBiz.size()} > 0">
+                #if($!{projectInfo.overdueRepayBiz} && $!{projectInfo.overdueRepayBiz.size()} > 0)
+                    <div class="u-prev-collectList-switcher" id="j-prev-collectList-switcher">
+                        催收成果 <span class="u-switcher-arrow z-arrow-up" id="j-switcher-arrow"></span>
+                    </div>
+
+                ## 所有的以往的催收
+                    <div class="u-all-result" id="j-all-result">
+                    ## 对应的每一期 1
+                        <div class="u-prev-result-wrap j-prev-result-wrap">
+                            <div class="j-collectList-tab">
+                                <div class="u-collectList-header">
+                                    <span style="width:110px;">逾期开始时间</span>
+                                    <span style="width: 100px;">逾期期数</span>
+                                    <span style="width: 90px;">逾期天数</span>
+                                    <span style="width: 100px">逾期利息</span>
+                                    <span style="width: 150px">逾期本金</span>
+                                    <span style="width: 150px">滞纳金</span>
+                                    <span style="width: 130px">逾期还款时间</span>
+                                    <span style="width: 70px">状态</span>
+                                </div>
+
+                            ## 催收成果列表
+                                #foreach($!overdueRepayBiz in $!{projectInfo.overdueRepayBiz})
+                                ##                                    <input type="hidden" name="toTest" value="$overdueRepayBiz"> ## 测试催收成果用
+                                    <div class="u-prev-list-item">
+                                        <div class="u-collectList-info">
+                                            <span style="width:110px;">$!{dateUtil.formatDatetoString($overdueRepayBiz.overdueStartDate,
+                                                "yyyy-MM-dd")}</span>
+                                            <span style="width: 100px; cursor: pointer;"
+                                                  title="$!{overdueRepayBiz.interestPeriods}">
+                                                <em class="f-text-overflow"
+                                                    style="display: inline-block;width:100px;">$!{overdueRepayBiz.interestPeriods}</em>
+                                            </span> ## 逾期期数
+                                            <span style="width: 90px;">$!{overdueRepayBiz.overdueDay}<i>天</i></span>
+                                            <span style="width: 100px">￥$!{formulaUtil.formatCurrencyNoUnit($overdueRepayBiz.overdueInterest)}</span>
+                                            <span style="width: 150px">￥$!{formulaUtil.formatCurrencyNoUnit($overdueRepayBiz.overduePrincipal)}</span>
+                                            <span style="width: 150px">￥$!{formulaUtil.formatCurrencyNoUnit($overdueRepayBiz.overdueFine)}</span>
+                                            <span style="width: 130px">
+                                                #if($!{overdueRepayBiz.repayTime})
+                                                    $!{dateUtil.formatDatetoString($!{overdueRepayBiz.repayTime},
+                                                        "yyyy-MM-dd")}
+                                                #else
+                                                    -
+                                                #end
+                                            </span>
+                                            <span style="width: 70px;">$!{overdueRepayBiz.collectStatusName}</span>
+                                        </div>
+
+                                        #if($!{overdueRepayBiz.collectList.size()}>0)
+                                            <div class="u-collectList-main-wrap j-collectList-main-wrap">
+
+                                                <div class="u-collectList-main">
+                                                    <ul class="u-collectList">
+
+                                                        #foreach($collectList in $overdueRepayBiz.collectList)
+                                                            #if($collectList.nextCollectForm && $collectList.nextCollectForm!=
+                                                                '')
+                                                                <li>
+                                                                    <span class="u-collectList-icon u-collectList-icon-clock"><i></i></span>
+                                                                    <p class="u-collect-title">$!{collectList.nextCollectForm}</p>
+                                                                    <p class="u-collect-msg">
+                                                                    <div class="u-collectList-date">预计下次催收日期:
+                                                                        <span>
+                                                                        $!{dateUtil.formatDatetoString($collectList.nextCollectTime,
+                                                                            "yyyy-MM-dd")}
+                                                                            #if($!{collectList.nextDays}>0)
+                                                                                （逾期第<span>$!{collectList.nextDays}</span>天）
+                                                                            #elseif($!{collectList.nextDays}==0)
+                                                                                （逾期当天）
+                                                                            #end
+
+                                                                    </span>
+                                                                    </div>
+                                                                    </p>
+                                                                </li>
+                                                            #else
+
+                                                            #end
+                                                            <li>##催收结果图标
+
+                                                                #if($!{collectList.collectStatus}==1) ## 成功
+                                                                    <span class="u-collectList-icon u-collectList-icon-success"><i></i></span>
+                                                                #elseif($!{collectList.collectStatus}==2) ## 失败
+                                                                    <span class="u-collectList-icon u-collectList-icon-fail"><i></i></span>
+                                                                #else
+                                                                    <span class="u-collectList-icon u-collectList-icon-clock"><i></i></span>
+                                                                #end
+                                                                <p class="u-collect-title">$!{collectList.collectForm}</p> ## 催收方式
+
+                                                                <p class="u-collect-msg">
+                                                                <div class="u-collectList-date">催收日期：
+                                                                    <span>
+                                                                        $!{dateUtil.formatDatetoString($collectList.collectTime,
+                                                                            "yyyy-MM-dd")}
+                                                                        #if($!{collectList.days}>0)
+                                                                            （逾期第<span>$!{collectList.days}</span>天）
+                                                                        #elseif($!{collectList.days}==0)
+                                                                            （逾期当天）
+                                                                        #end
+
+                                                                    </span>
+                                                                </div>
+                                                                <div class="u-collectList-result">催收结果：
+                                                                    <span>$!{collectList.collectDetail}</span>
+                                                                </div>
+                                                                </p>
+
+                                                                <div class="u-carInfo-img j-collectInfo-img u-collectList-img">
+                                                                    <ul>
+                                                                        #foreach($bscAttachments in $!{collectList.bscAttachments})
+                                                                            <li>
+                                                                                <img src="$!{aliyun_url}/$bscAttachments.fileUrl"
+                                                                                     url="#getImagePath($bscAttachments.fileUrl)">
+                                                                            </li>
+                                                                        #end
+                                                                    </ul>
+                                                                </div>
+                                                            </li>
+                                                        #end
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        #end
+
+                                    </div>
+                                #end
+                            </div>
+                        </div>
+                    </div>
+                #end
+            </div>
+        #end
+    </div>
+
+## 逾期结算
+
+
+    <div id="transactionsDetail" class="m-transactions-detail j-area-c">
+
+    </div>
+</div>
+
+
+
+    <script src="/static/lib/js/jq/jquery-1.11.1.min.js"></script>
+    <script src="/static/lib/js/vue/vue.js"></script>
+    <script src="/static/lib/js/vue/vue.extend.js"></script>
+    <script>
+
+        var vm = new Vue({
+            el: '#j-direct',
+            data: {
+                open: false,
+				pInfoStatus: $!{projectInfo.status},                           //项目状态
+                onlineCountDown: $!{projectInfo.onlineCountDown},              //快投预告倒计时
+                lotteryEndCountDown: $!{projectInfo.lotteryEndCountDown}       //快投抽奖结束时间
+            },
+            created: function () {
+                var self = this
+                if (self.onlineCountDown && self.onlineCountDown>0) {
+                    self.lotteryEndCountDown = self.lotteryEndCountDown - self.onlineCountDown
+                }
+
+                $("#j-agreement").click(function () {
+                    $('.j-credit-prove').addClass('z-current').siblings().removeClass('z-current');
+                });
+            },
+            methods: {
+                switchTip: function (index) {
+                    this.open = index
+                },
+                refresh: function () {
+                    window.location.reload()
+                },
+                noticeEndEvent: function () {
+					this.pInfoStatus = 30
+					this.onlineCountDown = 0
+                },
+                lotteryEndEvent: function () {
+					this.lotteryEndCountDown = 0
+                }
+            }
+        });
+        var directProjectInfo = {
+            "riskInfo":$!{projectInfo.description},
+            "collateral":$!{collateral.collateralDetails}
+        }
+    </script>

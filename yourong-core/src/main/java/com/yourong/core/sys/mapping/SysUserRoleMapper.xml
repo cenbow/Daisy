@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.sys.dao.SysUserRoleMapper" >
+  <resultMap id="BaseResultMap" type="SysUserRole" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <id column="user_id" property="userId" jdbcType="BIGINT" />
+    <id column="role_id" property="roleId" jdbcType="BIGINT" />
+  </resultMap>
+  <insert id="insertSelective" parameterType="SysUserRole" >
+    insert into sys_user_role
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="roleId != null" >
+        role_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="roleId != null" >
+        #{roleId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  
+  <sql id="Base_Column_List" >
+    	id, user_id,role_id
+  </sql> 
+  
+  <delete id="batchDelete" parameterType="map" >
+    delete from sys_user_role
+    where id in  <foreach collection="ids" index="index" item="item" open="(" separator="," close=")"> #{item}  </foreach>  
+  </delete>
+  <select id="findByPage" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user_role
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = #{map.id}
+        </if>
+        <if test=" map.userId != null" >
+          user_id = #{map.userId}
+        </if>
+        <if test=" map.roleId != null" >
+          role_id = #{map.roleId}
+        </if>
+      </where>
+    </if>
+  </select>
+  
+  <insert id="batchInsertSysUserRole" parameterType="java.util.List" >
+    insert into sys_user_role (user_id,role_id)   values   
+      <foreach collection="list" item="item" index="index" separator=",">  
+        ( #{item.userId}, #{item.roleId})  
+      </foreach>     
+  </insert>
+</mapper>

@@ -1,0 +1,169 @@
+<div tabindex="-1" class="modal fade" id="modal-table" style="display: none;" aria-hidden="true">
+	<div class="modal-dialog w800">
+		<div class="modal-content">
+			<div class="modal-header no-padding">
+				<div class="table-header">
+					<button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+						<span class="white">×</span>
+					</button>
+					<span class="modalFormTitle" id="couponTemplateTitle">增加优惠券模板</span>
+				</div>
+			</div>
+			<div class="modal-body">
+				<form role="form" class="form-horizontal" name="couponTemplateForm" id="couponTemplate_form" method="post" action="$root_url/couponTemplate/save" >
+					<div class="form-group">
+						<input type="hidden" name="id" id="couponTemplate_id"/>
+						<label for="form-field-parentId" class="col-sm-1 control-label no-padding-right">名称:</label>
+						<div class="col-sm-4">
+							<div class="clearfix">
+								<input type="text" name="name" class="col-xs-8 col-sm-8" placeholder="" id="form-field-name"></div>
+						</div>
+					</div>
+					<div class="form-group">
+						<input type="hidden" name="id" id="couponTemplate_id"/>
+						<label for="form-field-parentId" class="col-sm-1 control-label no-padding-right">类型:</label>
+						<div class="col-sm-4">
+							<div class="clearfix">
+								#dictSelect ("couponType",${sysServiceUtil.getDictList('coupon_type')} ,"","coupon_type")
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="form-field-1" class="col-sm-1 control-label no-padding-right">面值:</label>
+						<div class="col-sm-4">
+							<div class="clearfix">
+								<input type="text" name="amount" class="col-xs-8 col-sm-8" placeholder="" id="form-field-amount" dataType="*" errormsg="请输入非零正数，且最多有两位小数！"><span id="unit" class="input-text">&nbsp;元</span></div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="form-field-1" class="col-sm-1 control-label no-padding-right">有效期:</label>
+						<div class="col-sm-1">
+							<div class="clearfix">
+								#dictSelect ("vaildCalcType",${sysServiceUtil.getDictList('coupon_vaild_calc_type')} ,"","vaild_calc_type")
+							</div>
+						</div>
+						<div id="type_time_zone" style="display:none">
+							<label for="form-field-1" class="col-sm-2 control-label no-padding-right">时间区间:</label>
+							<div class="col-sm-7">
+								<div class="col-sm-5">
+									<input type="date" name="startDate" datatype="*" >
+								</div>
+								<div class="col-sm-1">
+									<span class="input-text">到</span>
+								</div>
+								<div class="col-sm-5">
+									<input type="date" name="endDate" datatype="*">
+								</div>
+							</div>
+						</div>
+						<div id="type_days" style="display:none">
+							<label for="form-field-days" class="col-sm-2 control-label no-padding-right">领用后:</label>
+							<div class="col-sm-4" >
+								<input type="text" name="days" class="col-xs-8 col-sm-8" placeholder="" id="form-field-days"  datatype="/^[0-9]*[1-9][0-9]*$/" errormsg="请输入正整数！"><span class="input-text">&nbsp;天</span>
+							</div>
+						</div>
+
+					</div>
+					<div class="form-group">
+						<label for="form-field-amountScope" class="col-sm-1 control-label no-padding-right" style="padding-left: 0px;">起投金额:</label>
+						<div class="col-sm-4">
+							<div class="clearfix">
+								<input type="text" name="amountScope" class="col-xs-8 col-sm-8" placeholder="" id="form-field-amountScope" dataType="/^(0|\+?[1-9][0-9]*)$/" errormsg="请输入正数"><span class="input-text">元</span>
+							</div>
+						</div>
+						<label for="form-field-daysScope" class="col-sm-1 control-label no-padding-right" style="padding-left: 0px;">起投期限:</label>
+						<div class="col-sm-4">
+							<div class="clearfix">
+								<input type="text" name="daysScope" class="col-xs-8 col-sm-8" placeholder="" id="form-field-daysScope" dataType="/^(0|\+?[1-9][0-9]*)$/" errormsg="请输入正数"><span class="input-text"> 天</span>
+							</div>
+						</div>
+					</div>
+					
+					<div style="display:none" id="extra_type_coupon">
+					<div class="form-group">
+						<label for="form-field-extraInterestType" class="col-sm-1 control-label no-padding-right" style="padding-left: 0px;"> 加息时间:</label>
+						<div class="col-sm-4">
+							<div class="clearfix">
+								#dictSelect ("extraInterestType",${sysServiceUtil.getDictList('extra_type')} ,"","extra_type")
+							</div>
+						</div>
+						<div style="display:none" id="extra_type_is">
+						<label for="form-field-extraInterestDay" class="col-sm-1 control-label no-padding-right" style="padding-left: 0px;">加息天数:</label>
+						<div class="col-sm-4">
+							<div class="clearfix">
+								<input type="text" name="extraInterestDay" class="col-xs-8 col-sm-8" placeholder="" id="form-field-extraInterestDay" dataType="/^(0|\+?[1-9][0-9]*)$/" errormsg="请输入正数"><span class="input-text"> 天</span>
+							</div>
+						</div>
+						</div>
+					</div>
+					</div>
+					<div class="form-group">
+						<label for="form-field-1" class="col-sm-1 control-label no-padding-right">客户端:</label>
+						<div class="col-sm-4" >
+							<div class="clearfix">
+								<input type="checkbox" id="webScope" class="client-scope" checked />web
+								<input type="hidden" class="client-scope-v" name="webScope"/>
+								<input type="checkbox" id="wapScope" class="client-scope" checked />wap
+								<input type="hidden" class="client-scope-v" name="wapScope"/>
+								<input type="checkbox" id="appScope" class="client-scope" checked />app
+								<input type="hidden" class="client-scope-v" name="appScope"/>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="form-field-1" class="col-sm-1 control-label no-padding-right">用途:</label>
+						<div class="col-sm-11">
+							<div class="clearfix">
+								<textarea name="useCondition" class="col-xs-8 col-sm-8" placeholder="" id="form-field-useCondition" ></textarea></div>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" id="cancel_couponTemplate" class="btn btn-default" data-dismiss="modal">关闭</button>
+				<button type="button" id="save_couponTemplate" class="btn btn-primary">保存</button>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+
+<div tabindex="-1" class="modal fade" id="modal-table-sms" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog w800">
+        <div class="modal-content">
+            <div class="modal-header no-padding">
+                <div class="table-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+                        <span class="white">×</span>
+                    </button>
+                    <span class="modalFormTitle" id="">增加优惠券模板</span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class='row'>
+					<div class='col-md-12'>
+						<form class='form-horizontal' id="couponTemplateSMS_form" method="post">
+							<input type="hidden" name="id" id="smsid" value="">
+							<input type="hidden" name="templateId" id="templateId" value="">
+                            <div class='form-group'>
+                                <label class='col-md-4 control-label' for='name'>启用提醒：</label>
+                                <div class='col-md-4'><input type='checkbox' value='1' id='status' name="status" /></div>
+                            </div>
+                    		<div class='form-group'>
+								<label class='col-md-4 control-label' for='name'>提醒日期：</label>
+								<div class='col-md-4'><input type='text' value='' id='validDays' placeholder="输入距离有效期天数" name="validDays" datatype="/^(0|\+?[1-9][0-9]*)$/" errormsg="请输入正数"/></div>
+							</div>
+                		</form>
+					</div>
+				</div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="cancel_couponTemplate_SMS" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" id="save_couponTemplate_SMS" class="btn btn-primary">保存</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+
+</div>

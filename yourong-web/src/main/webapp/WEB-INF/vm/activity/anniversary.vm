@@ -1,0 +1,321 @@
+##周年活动
+#parse("/common/common.vm")
+#set($title="干杯！我们的纪念日_$!{title_suffix}")
+#set($css_url=["/static/lib/js/flipclock/flipclock.css","$root_css_url/activity/anniversary.css"])
+#set($js_url=["/static/lib/js/flipclock/flipclock.min.js","/static/lib/js/template.js","$root_js_url/activity/anniversary.js"])
+##页头
+
+#if($currentUser)
+    #set($logined=1)
+#else
+    #set($logined=0)
+#end
+#CSRFToken('xToken')
+
+#set($yrimg_url='https://yrimg.oss-cn-hangzhou.aliyuncs.com/')
+<style>
+    .u-anniversary-bg{
+        background: url("$yrimg_url/anniversary/anniversary_bg.png") no-repeat top center;
+    }
+    .m-anniversary-hd{
+        width: 100%;
+        height: 488px;
+        margin-top: -8px;
+        position: relative;
+        color: #fff;
+        background: url($yrimg_url/anniversary/anniversary_hd1.jpg) no-repeat center;
+    }
+    .u-anniversary-act1{
+        width: 100%;
+        height: 362px;
+        background: url($yrimg_url/anniversary/anniversary_hd2.jpg) no-repeat center;
+        margin: 0 0 45px 0;
+    }
+    .u-anniversary-menu{
+        position: fixed;
+        top: 30%;
+        left: 50%;
+        height: 231px;
+        margin: 0 0 0 510px;
+        width: 110px;
+        padding: 163px 43px 0 34px;
+        background: url("$yrimg_url/anniversary/anniversary_menu.png");
+    }
+</style>
+<div class="m-anniversary-hd" id="top">
+    <div class="g-wrap f-pos-r">
+        <div class="u-anniversary-countdown">
+            <div id="j-activity-countdown">
+            </div>
+            <span>距离活动开始还有</span>
+        </div>
+    </div>
+
+</div>
+##内容
+<div class="m-anniversary-body">
+
+##活动1
+    <div class="u-anniversary-act1" id="act1">
+        <div class="g-wrap">
+            <div class="u-anniversary-act1Wrap f-cf">
+                <div class="u-anniversary-act1Left">
+                    <i>01</i>
+
+                    <h2>奖励大放送</h2>
+
+                    <p>活动期间，每天上午10:00-11:00时段，将进行奖励大放送——人气值、
+                        <br>收益券、现金券一个都不能少，凡注册用户均可参与，每位用户每场限领一次。</p>
+                    <table>
+                        <thead>
+                        <tr>
+                            <td width="138">奖励放送时间</td>
+                            <td width="136">奖励放送时段</td>
+                            <td width="137" class="f-fc-red">奖励内容</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>11月17、20、23日</td>
+                            <td rowspan="3">上午10:00-11:00</td>
+                            <td class="f-fc-red">30点人气值</td>
+                        </tr>
+                        <tr>
+                            <td>11月18、21日</td>
+
+                            <td class="f-fc-red">1%收益券</td>
+                        </tr>
+                        <tr>
+                            <td>11月19、22日</td>
+
+                            <td class="f-fc-red">50元现金券</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="u-anniversary-act1Right">
+                    <i></i>
+                    <span id="j-award-name"></span>
+                    <a href="javascript:void (0)" id="j-award-btn" data-logined="$logined"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="u-anniversary-bg">
+        <div class="g-anniversary-wrap">
+
+        ##活动2
+            <div class="u-anniversary-act2" id="act2">
+                <div class="u-anniversary-bgtop"></div>
+                <div class="u-anniversary-act2center f-cf">
+                    <div class="u-anniversary-act2Left">
+                        <i>02</i>
+
+                        <h2>巅峰1小时</h2>
+
+                        <p>11月19日14点11分19秒—11月19日15点11分19秒，该时间段累计投资额
+                            <br>排名前三的用户将获得相应人气值奖励（若投资额相等，先投资的用户名次优先）。</p>
+                        <span style="display: none;">距离<em id="j-hour-tips">活动结束</em>仅剩 <em id="j-hour-countdown">00:00:00</em> </span>
+                        <img src="$yrimg_url/anniversary/anniversary_ranking.png">
+                    </div>
+                    <div class="u-anniversary-act2Right">
+                        <h4>土豪排行</h4>
+
+                        <div class="u-anniversary-act2hd"><span>排名</span><em>用户名</em>投资额</div>
+                        <div id="j-anniversary-cat2list"></div>
+                        <script type="text/html" id="j-anniversary-cat2listtpl">
+                            {{if resultList&&resultList.length>0}}
+                        <div class="u-anniversary-cat2list">
+                            <ul>
+                                {{each resultList as item i}}
+                                <li>
+                                    <div class="u-anniversary-act2wrap">
+                                        <em>{{i+1}}</em>
+                                                <span class="u-user-head">
+                                                      {{if item.avatar}}
+                                                        <img src="https://oss-cn-hangzhou.aliyuncs.com/{{item.avatar}}" alt="用户头像">
+                                                        {{else}}
+                                                        <img src="/static/img/member/avatar_35x35.png" alt="用户头像">
+                                                        {{/if}}
+                                                <i>&nbsp;</i>
+                                                </span>
+                                        <span class="u-user-name">{{item.lastUsername}}</span>
+                                        <strong>￥{{item.lastTotalInvest}}</strong>
+                                    </div>
+                                </li>
+                                {{/each}}
+                            </ul>
+                        </div>
+                            {{else}}
+                            ##无人抽奖时
+                            <div class="u-anniversary-none">
+                                快来占位拿大奖
+                            </div>
+                            {{/if}}
+                        </script>
+                    </div>
+                </div>
+                <div class="u-anniversary-bgbuttom"></div>
+            </div>
+        ##活动3
+            <div class="u-anniversary-act3" id="act3">
+                <div class="u-anniversary-bgtop"></div>
+                <div class="u-anniversary-act3center">
+                    <i>03</i>
+
+                    <h2>投资分红包</h2>
+
+                    <p>活动期间，用户每完成一笔投资（新客专享项目除外），即可分享有融网赠送的1个红包。用户成功分享红包至微信好友或朋友圈，即可与好友一起瓜分红包，
+                        <br>红包将以人气值形式发放，每日每位用户限领2次。</p>
+                    <img src="$yrimg_url/anniversary/anniversary_step.jpg">
+
+                    <div>
+                    <span>1、任意一笔投资完成后,
+                        <br>点击查看我的投资</span>
+                    <span>
+                        2、点开我的收益表,
+                        <br>点击分享拿红包,弹出二维码
+                    </span>
+                    <span>3、扫一扫，分享至
+                        <br>微信好友或微信朋友圈</span>
+                    <span>
+                        4、点击链接，
+                        <br>与好友瓜分红包
+                    </span>
+                    </div>
+                </div>
+                <div class="u-anniversary-bgbuttom"></div>
+            </div>
+        ##活动4
+            <div class="u-anniversary-act4" id="act4">
+                <div class="u-anniversary-bgtop"></div>
+
+                <div class="u-anniversary-act4center f-cf">
+                    <div class="u-anniversary-act4Left f-pos-r">
+                        <i>04</i>
+                        <h2>幸运25宫格</h2>
+                        <p>用户选择任意点数人气值下注，即可获得一次机会猜“幸运格”，
+                            <br>25宫格中共有3块“幸运格”，分别对应10倍、5倍以及2倍人气值奖励，
+                            <br> 选中“幸运格”的用户所下注的人气值将翻倍，未选中的用户人气值不予返还。</p>
+                        <div class="u-anniversary-game" id="j-luckyGrid">
+                            <span></span><span>
+                    </span><span>
+                    </span><span>
+                    </span><span>
+                    </span><span>
+                    </span><span>
+                    </span><span>
+                    </span><span>
+                    </span><span>
+                    </span><span>
+                    </span><span>
+                    </span><span>
+                    </span><span>
+                    </span><span>
+                    </span><span>
+                    </span><span>
+                    </span><span>
+                    </span><span>
+                    </span><span>
+                    </span><span>
+                    </span><span>
+                    </span><span>
+                    </span><span>
+                    </span><span>
+                    </span>
+                        </div>
+                        <div class="u-luckyDialog f-pos-a" id="j-lucky-dialog">
+                            <em></em>
+                            <div class="f-pos-r">
+                                <input type="text" placeholder="11月17日，翻倍赢人气">
+                                #if(!$currentUser)
+                                    <strong class="f-pos-a">先登录，再翻倍哟~</strong>
+                                #end
+                            </div>
+                            #if($currentUser)
+                                <a href="javascript:void(0)" data-logined="true" id="j-luck-btn" class="z-disabled">确定</a>
+                            #else
+                                <a href="/security/login" target="_blank" data-logined="false" id="j-luck-btn">登录</a>
+                            #end
+                            <i>×</i>
+                        </div>
+                        <strong>
+                        #if($currentUser)
+                            您当前拥有：<em id="j-repValue">$!servletUtil.getPopularityVaule()</em>点人气值
+                        #else
+                            请<a href="/security/login" target="_blank">登录</a>后查看您的人气值
+                        #end
+                            </strong>
+                    </div>
+                    <div class="u-anniversary-act4Right">
+                        <h4>25宫格赢家</h4>
+
+                        <div class="u-anniversary-gameRankhd"><span>中奖时刻</span><em>赢家</em><i>下注</i>赢得</div>
+                        <div id="j-anniversary-game"></div>
+                        <script type="text/html" id="j-anniversary-gametpl">
+                            {{if resultList&&resultList.length>0}}
+                        <div class="u-anniversary-gamewrap">
+                            <ul class="j-anniversary-ranking">
+                                {{each resultList as item i}}
+                                <li>
+                                    <em>{{item.createTime | dateFormat:'MM-dd hh:mm:ss'}} </em>
+                                    <span class="u-user-head">
+                                    {{if item.avatar}}
+                                    <img src="https://oss-cn-hangzhou.aliyuncs.com/{{item.avatar}}" alt="用户头像">
+                                    {{else}}
+                                    <img src="/static/img/member/avatar_35x35.png" alt="用户头像">
+                                    {{/if}}
+                                    <i>&nbsp;</i>
+                                </span>
+                                    <span class="u-user-name">{{item.memberName}}</span>
+                                    <span class="u-game-stake">{{item.chip}}点</span>
+                                    <span class="u-game-gain">{{item.rewardResult}}点</span>
+                                </li>
+                                {{/each}}
+                            </ul>
+                        </div>
+                            {{else}}
+                            ##无人抽奖时
+                            <div class="u-gameRank-none">
+                                你就是赌神
+                            </div>
+                            {{/if}}
+                        </script>
+                    </div>
+
+                </div>
+
+                <div class="u-anniversary-bgbuttom"></div>
+            </div>
+        </div>
+        <div class="g-wrap" id="rule">
+            <div class="u-anniversary-rule">
+                <h6>活动规则</h6>
+
+                <p>
+                    <i>1</i>活动时间：2015年11月17日—2015年11月23日；
+                    <br><i>2</i>活动对象：有融网所有用户（各客户端均可参与）；
+                    <br><i>3</i>奖励大放送：活动期间，每天上午10:00-11:00时段，将进行奖励大放送——人气值、收益券、现金券一个都不能少，凡注册用户均可参与，每位用户每场限领一次；
+                    <br><i>4</i>巅峰1小时：11月19日14点11分19秒—11月19日15点11分19秒，该时间段累计投资额排名前三的用户将获得相应人气值奖励（若投资额相等，先投资的用户名次优先）；
+                    <br><i>5</i>投资分红包：用户每完成一笔投资，即可分享有融网赠送的1个红包。用户成功分享红包至微信好友或朋友圈，即可与好友一起瓜分红包，红包将以人气值形式发放，
+                    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;每日每位用户限领2次（已注册用户直接登录有融网账号即可领取奖励，未注册用户注册后即可领取奖励）；
+                    <br><i>6</i>幸运25宫格：用户选择任意点数人气值下注，即可获得一次机会猜“幸运格”，25宫格中共有3块“幸运格”，分别对应10倍、5倍以及2倍人气值奖励，
+                    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;选中“幸运格”的用户所下注的人气值将翻倍，未选中的用户人气值不予返还；
+                    <br><i>7</i>现金券及收益券领取后30天内有效；
+                    <br><i>8</i>如有其他疑问，请拨打客服热线：<strong>400-025-6688</strong>；
+                </p>
+                <span> 本活动最终解释权归有融网所有</span>
+            </div>
+        </div>
+
+    </div>
+</div>
+##菜单
+<div class="u-anniversary-menu">
+    <a href="#act1">奖励大放送</a>
+    <a href="#act2">巅峰1小时</a>
+    <a href="#act3">投资分红包</a>
+    <a href="#act4">幸运25宫格</a>
+    <a href="#rule">活动规则</a>
+    <a href="#top">返回顶部</a>
+</div>

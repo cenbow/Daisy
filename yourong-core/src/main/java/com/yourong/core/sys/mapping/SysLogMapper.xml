@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.sys.dao.SysLogMapper" >
+  <resultMap id="BaseResultMap" type="com.yourong.core.sys.model.SysLog" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="module_name" property="moduleName" jdbcType="VARCHAR" />
+    <result column="module_desc" property="moduleDesc" jdbcType="VARCHAR" />
+    <result column="remote_addr" property="remoteAddr" jdbcType="VARCHAR" />
+    <result column="operate_id" property="operateId" jdbcType="BIGINT" />
+    <result column="operate_name" property="operateName" jdbcType="VARCHAR" />
+    <result column="operate_method" property="operateMethod" jdbcType="VARCHAR" />
+    <result column="request_url" property="requestUrl" jdbcType="VARCHAR" />
+    <result column="params" property="params" jdbcType="VARCHAR" />
+    <result column="result" property="result" jdbcType="VARCHAR" />
+    <result column="exception" property="exception" jdbcType="VARCHAR" />
+    <result column="operate_time" property="operateTime" jdbcType="TIMESTAMP" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, module_name, module_desc, remote_addr, operate_id, operate_name, operate_method, 
+    request_url, params, result, exception, operate_time, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_log
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sys_log
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.yourong.core.sys.model.SysLog" >
+    insert into sys_log (id, module_name, module_desc, 
+      remote_addr, operate_id, operate_name, 
+      operate_method, request_url, params, 
+      result, exception, operate_time, 
+      create_time)
+    values (#{id,jdbcType=BIGINT}, #{moduleName,jdbcType=VARCHAR}, #{moduleDesc,jdbcType=VARCHAR}, 
+      #{remoteAddr,jdbcType=VARCHAR}, #{operateId,jdbcType=BIGINT}, #{operateName,jdbcType=VARCHAR}, 
+      #{operateMethod,jdbcType=VARCHAR}, #{requestUrl,jdbcType=VARCHAR}, #{params,jdbcType=VARCHAR}, 
+      #{result,jdbcType=VARCHAR}, #{exception,jdbcType=VARCHAR}, #{operateTime,jdbcType=TIMESTAMP}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yourong.core.sys.model.SysLog" >
+    insert into sys_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="moduleName != null" >
+        module_name,
+      </if>
+      <if test="moduleDesc != null" >
+        module_desc,
+      </if>
+      <if test="remoteAddr != null" >
+        remote_addr,
+      </if>
+      <if test="operateId != null" >
+        operate_id,
+      </if>
+      <if test="operateName != null" >
+        operate_name,
+      </if>
+      <if test="operateMethod != null" >
+        operate_method,
+      </if>
+      <if test="requestUrl != null" >
+        request_url,
+      </if>
+      <if test="params != null" >
+        params,
+      </if>
+      <if test="result != null" >
+        result,
+      </if>
+      <if test="exception != null" >
+        exception,
+      </if>
+      <if test="operateTime != null" >
+        operate_time,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="moduleName != null" >
+        #{moduleName,jdbcType=VARCHAR},
+      </if>
+      <if test="moduleDesc != null" >
+        #{moduleDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="remoteAddr != null" >
+        #{remoteAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="operateId != null" >
+        #{operateId,jdbcType=BIGINT},
+      </if>
+      <if test="operateName != null" >
+        #{operateName,jdbcType=VARCHAR},
+      </if>
+      <if test="operateMethod != null" >
+        #{operateMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="requestUrl != null" >
+        #{requestUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="params != null" >
+        #{params,jdbcType=VARCHAR},
+      </if>
+      <if test="result != null" >
+        #{result,jdbcType=VARCHAR},
+      </if>
+      <if test="exception != null" >
+        #{exception,jdbcType=VARCHAR},
+      </if>
+      <if test="operateTime != null" >
+        #{operateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yourong.core.sys.model.SysLog" >
+    update sys_log
+    <set >
+      <if test="moduleName != null" >
+        module_name = #{moduleName,jdbcType=VARCHAR},
+      </if>
+      <if test="moduleDesc != null" >
+        module_desc = #{moduleDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="remoteAddr != null" >
+        remote_addr = #{remoteAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="operateId != null" >
+        operate_id = #{operateId,jdbcType=BIGINT},
+      </if>
+      <if test="operateName != null" >
+        operate_name = #{operateName,jdbcType=VARCHAR},
+      </if>
+      <if test="operateMethod != null" >
+        operate_method = #{operateMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="requestUrl != null" >
+        request_url = #{requestUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="params != null" >
+        params = #{params,jdbcType=VARCHAR},
+      </if>
+      <if test="result != null" >
+        result = #{result,jdbcType=VARCHAR},
+      </if>
+      <if test="exception != null" >
+        exception = #{exception,jdbcType=VARCHAR},
+      </if>
+      <if test="operateTime != null" >
+        operate_time = #{operateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yourong.core.sys.model.SysLog" >
+    update sys_log
+    set module_name = #{moduleName,jdbcType=VARCHAR},
+      module_desc = #{moduleDesc,jdbcType=VARCHAR},
+      remote_addr = #{remoteAddr,jdbcType=VARCHAR},
+      operate_id = #{operateId,jdbcType=BIGINT},
+      operate_name = #{operateName,jdbcType=VARCHAR},
+      operate_method = #{operateMethod,jdbcType=VARCHAR},
+      request_url = #{requestUrl,jdbcType=VARCHAR},
+      params = #{params,jdbcType=VARCHAR},
+      result = #{result,jdbcType=VARCHAR},
+      exception = #{exception,jdbcType=VARCHAR},
+      operate_time = #{operateTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <delete id="batchDelete" parameterType="java.lang.Long" >
+    delete from sys_log
+    where id in  <foreach collection="ids" index="index" item="item" open="(" separator="," close=")"> #{item}  </foreach>  
+  </delete>
+  <select id="findByPage" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_log
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = #{map.id}
+        </if>
+        <if test=" map.moduleName != null" >
+          module_name = #{map.moduleName}
+        </if>
+        <if test=" map.moduleDesc != null" >
+          module_desc = #{map.moduleDesc}
+        </if>
+        <if test=" map.remoteAddr != null" >
+          remote_addr = #{map.remoteAddr}
+        </if>
+        <if test=" map.operateId != null" >
+          operate_id = #{map.operateId}
+        </if>
+        <if test=" map.operateName != null" >
+          operate_name = #{map.operateName}
+        </if>
+        <if test=" map.operateMethod != null" >
+          operate_method = #{map.operateMethod}
+        </if>
+        <if test=" map.requestUrl != null" >
+          request_url = #{map.requestUrl}
+        </if>
+        <if test=" map.params != null" >
+          params = #{map.params}
+        </if>
+        <if test=" map.result != null" >
+          result = #{map.result}
+        </if>
+        <if test=" map.exception != null" >
+          exception = #{map.exception}
+        </if>
+        <if test=" map.operateTime != null" >
+          operate_time = #{map.operateTime}
+        </if>
+        <if test=" map.createTime != null" >
+          create_time = #{map.createTime}
+        </if>
+      </where>
+    </if>
+  </select>
+  <sql id="Base_Column_List_Pagin" >
+    t.id  as  id,
+t.module_name  as  module_name,
+t.module_desc  as  module_desc,
+t.remote_addr  as  remote_addr,
+t.operate_id  as  operate_id,
+t.operate_name  as  operate_name,
+t.operate_method  as  operate_method,
+t.request_url  as  request_url,
+t.params  as  params,
+t.result  as  result,
+t.exception  as  exception,
+t.operate_time  as  operate_time,
+t.create_time  as  create_time
+  </sql>
+  <select id="selectForPagin" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List_Pagin" />
+    from  (SELECT id FROM  sys_log
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = #{map.id}
+        </if>
+        <if test=" map.moduleName != null" >
+          module_name = #{map.moduleName}
+        </if>
+        <if test=" map.moduleDesc != null" >
+          module_desc = #{map.moduleDesc}
+        </if>
+        <if test=" map.remoteAddr != null" >
+          remote_addr = #{map.remoteAddr}
+        </if>
+        <if test=" map.operateId != null" >
+          operate_id = #{map.operateId}
+        </if>
+        <if test=" map.operateName != null" >
+          operate_name = #{map.operateName}
+        </if>
+        <if test=" map.operateMethod != null" >
+          operate_method = #{map.operateMethod}
+        </if>
+        <if test=" map.requestUrl != null" >
+          request_url = #{map.requestUrl}
+        </if>
+        <if test=" map.params != null" >
+          params = #{map.params}
+        </if>
+        <if test=" map.result != null" >
+          result = #{map.result}
+        </if>
+        <if test=" map.exception != null" >
+          exception = #{map.exception}
+        </if>
+        <if test=" map.operateTime != null" >
+          operate_time = #{map.operateTime}
+        </if>
+        <if test=" map.createTime != null" >
+          create_time = #{map.createTime}
+        </if>
+      </where>
+    </if>
+      LIMIT	${map.startRow}, ${map.pageSize}  )  AS a,  sys_log AS t FORCE INDEX(PRIMARY) WHERE a.id = t.id   
+  </select>
+  <select id="selectForPaginTotalCount" resultType="java.lang.Integer" >
+    select count(1) 
+    from sys_log
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = ${map.id}
+        </if>
+        <if test=" map.moduleName != null" >
+          module_name = ${map.moduleName}
+        </if>
+        <if test=" map.moduleDesc != null" >
+          module_desc = ${map.moduleDesc}
+        </if>
+        <if test=" map.remoteAddr != null" >
+          remote_addr = ${map.remoteAddr}
+        </if>
+        <if test=" map.operateId != null" >
+          operate_id = ${map.operateId}
+        </if>
+        <if test=" map.operateName != null" >
+          operate_name = ${map.operateName}
+        </if>
+        <if test=" map.operateMethod != null" >
+          operate_method = ${map.operateMethod}
+        </if>
+        <if test=" map.requestUrl != null" >
+          request_url = ${map.requestUrl}
+        </if>
+        <if test=" map.params != null" >
+          params = ${map.params}
+        </if>
+        <if test=" map.result != null" >
+          result = ${map.result}
+        </if>
+        <if test=" map.exception != null" >
+          exception = ${map.exception}
+        </if>
+        <if test=" map.operateTime != null" >
+          operate_time = ${map.operateTime}
+        </if>
+        <if test=" map.createTime != null" >
+          create_time = ${map.createTime}
+        </if>
+      </where>
+    </if>
+  </select>
+</mapper>

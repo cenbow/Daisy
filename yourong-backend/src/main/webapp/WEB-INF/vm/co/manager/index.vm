@@ -1,0 +1,41 @@
+#set($layout = "/layout/iframe.vm")
+#parse("/co/manager/head.vm")
+<div class="col-xs-12">
+</div>
+<div class="col-xs-12">
+    <button type="button" class="btn btn-info btn-sm btn-primary" id="add_manager">添加管理层</button>
+    <div class="table-header">管理层列表</div>
+    <div class="table-responsive">
+        <form id="interest_form">
+            <table id="debt-table-search" class="table table-striped table-bordered " cellspacing="0" width="100%">
+                <thead>
+                <tr>
+                    <td colspan="10" style="text-align:center">
+                        <button id = "query_manage" type="button" class="btn btn-info btn-sm btn-primary">列表刷新</button>
+                    </td>
+                </tr>
+                </thead>
+            </table>
+        </form>
+    </div>
+    </br>
+    <button type="button" class="btn btn-info btn-sm btn-primary" id="manage_sort">排序</button>
+    <button type="button" class="btn btn-info btn-sm btn-primary" style="display: none" id="submit_manage_sort">保存排序</button>
+    <button type="button" class="btn btn-info btn-sm btn-primary" id="manage_all_release">一键发布</button>
+    <div class="table-responsive">
+        <table id="manager-table" class="table table-striped table-bordered" cellspacing="0" width="100%">
+            <thead>
+            <tr>
+                <th>序号</th>
+                <th>排序</th>
+                <th>姓名</th>
+                <th>职位</th>
+                <th>个人简介</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+#parse("/co/manager/add.vm")

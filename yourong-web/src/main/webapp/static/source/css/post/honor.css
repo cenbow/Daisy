@@ -1,0 +1,213 @@
+body {
+    background: #fff;
+}
+
+.f-bg-gray {
+    background: #f7f7f7;
+}
+
+.g-bd {
+    border-top: 1px solid #E9E9E9;
+}
+
+.g-about-wrap {
+    width: 1170px;
+    margin: 0 auto;
+    clear: both;
+}
+
+.u-head-nav a, .u-head-nav a:hover, .u-head-nav a:link, .u-head-nav a:visited,
+.u-head-nav a:active {
+    display: inline-block;
+    padding-right: 2.5rem;
+    color: #999;
+    font-size: 1.125rem;
+    line-height: 3.625rem;
+    text-decoration: none;
+}
+
+.u-head-nav a.z-selected {
+    color: #000;
+}
+
+.u-banner {
+    height: 23.75rem;
+    background: url("https://yrstatic.oss-cn-hangzhou.aliyuncs.com/static/img/newAbout/banner_honor.png");
+    background-size: 100% 100%;
+}
+
+.u-banner h1 {
+    color: #fff;
+    padding-top: 8.75rem;
+    padding-bottom: 0.5rem;
+    font-weight: 100;
+    font-size: 2.25rem;
+}
+
+.u-banner p {
+    color: #fff;
+    font-size: 1.75rem;
+}
+
+.u-word {
+    padding: 115px 0;
+}
+
+.u-word img {
+    width: 3.0625rem;
+    left: 5.9375rem;
+    margin-bottom: -1rem;
+    position: relative;
+}
+
+.u-word p {
+    width: 100%;
+    text-align: center;
+    color: #333333;
+    font-size: 18px;
+}
+
+.f-bg-gray {
+    background: #F7F7F7;
+}
+
+.m-qualification {
+    width: 1225px;
+    margin: 0 auto;
+    position: relative;
+
+}
+
+.m-qualification h1, .m-honor h1 {
+    text-align: center;
+    width: 100%;
+    color: #333;
+    font-size: 36px;
+    padding: 80px 0;
+    font-weight: 100;
+}
+
+.m-qualification li {
+    vertical-align: top;
+    width: 610px;
+    display: inline-block;
+}
+
+.m-qualification li p {
+    color: #333333;
+    font-size: 16px;
+    text-align: center;
+}
+
+.m-qualification li .u-img-vertical {
+    border: 5px solid #E8E8E8;
+    width: 252px;
+    margin: 30px auto 110px;
+    display: block;
+}
+
+.u-img-larger {
+    display: block;
+    position: fixed;
+    left: 50%;
+    z-index: 200;
+    top: 0;
+}
+
+.m-qualification li .u-img-sidelong {
+    border: 5px solid #E8E8E8;
+    width: 345px;
+    margin: 54px auto;
+    display: block;
+}
+
+.m-honor {
+    width: 1217px;
+    margin: 0 auto;
+}
+
+.m-honor h1 {
+    text-indent: -20px;;
+}
+
+.m-honor li {
+    display: inline-block;
+    width: 363px;
+    height: 310px;
+    background: #FAFAFA;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.10);
+    margin-right: 40px;
+    vertical-align: middle;
+    margin-top: 40px;
+}
+
+.m-honor ul {
+    margin-top: -40px;
+}
+
+.m-honor li h2 {
+    padding: 20px 0;
+    text-align: center;
+    color: #333;
+    font-size: 16px;
+    height: 44px;
+    line-height: 44px;
+}
+
+.m-honor li .m-h2-br {
+    line-height: 24px;
+}
+
+.m-honor li .u-img-vertical {
+    width: 250px;
+    margin: 0 auto;
+    display: block;
+}
+
+.m-honor li .u-img-small {
+    width: 135px;
+    margin: 0 auto;
+    display: block;
+}
+
+.u-shade-cover {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    z-index: 198;
+    -moz-opacity: 0.75;
+    opacity: .75;
+    filter: alpha(opacity=75);
+}
+
+/*适配1024、1152和1280*/
+@media screen and (max-width: 63.99em) {
+    html {
+        font-size: 80%;
+    }
+
+    body {
+        width: 1024px;
+        overflow: scroll;
+    }
+}
+
+@media screen and (min-width: 64em) and (max-width: 71.99em) {
+    html {
+        font-size: 80%;
+    }
+}
+
+@media screen and (min-width: 71.99em) and (max-width: 79.99em) {
+    html {
+        font-size: 90%;
+    }
+}
+
+@media screen and  (min-width: 80em) {
+
+}

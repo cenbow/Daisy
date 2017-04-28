@@ -1,0 +1,10 @@
+#set($m_root_url="")
+#set($root_url="")
+#set($m_url="$m_root_url/mIndex")
+#set($res_url="$m_root_url/res")
+##set($root_url="$sysServiceUtil.getRootURL()")
+#set($tips_url="/m/tips")
+#set($aliyun_url="http://oss.aliyuncs.com")
+
+#set($m_js_url = $res_url+"/source/js")
+#set($m_css_url = $res_url+"/source/css")

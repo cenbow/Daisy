@@ -1,0 +1,286 @@
+.f-dis-inlineBlock{
+    display: inline-block;
+    vertical-align: middle;
+}
+.f-color-gold{
+    color: #ffe29c !important;
+}
+.f-color3{
+    color: #333333;
+}
+.f-color6{
+    color: #666666;
+}
+.f-color9{
+    color: #999999;
+}
+.f-color-blue{
+    color: #308BFF!important;
+}
+.u-header{
+    background: #ffffff;
+    color: #282828;
+}
+.u-header a{
+    color: #282828;
+}
+
+.u-gameBg{
+    width: 100%;
+    background: url("../../../img/activity/popularGameNine/bg_lucky.png") no-repeat top;
+    background-size: 100%;
+    padding-top: 80px;
+    text-align: center;
+    color: #b090d1;
+}
+.u-playAgainBtn{
+    background:#51a2f3;
+    color: #ffffff;
+    padding:6px 8px;
+    border-radius: 14px;
+    box-shadow: 0 4px 0 #3b89d9;
+    margin-left: 8px;
+}
+.u-myGrade{
+    padding: 24px 0 0 0;
+}
+.u-popularGameNine{
+    width: 245px;
+    height: 234px;
+    background: url("../../../img/activity/popularGameNine/twinkle.gif") no-repeat center;
+    background-size: 100%;
+    margin-left: 28px;
+    padding: 33px 10px 10px 10px;
+}
+.u-popularGameNine a{
+    display: inline-block;
+}
+.u-popularGameNine span{
+    display: inline-block;
+    width: 66px;
+    height: 66px;
+    background: url("../../../img/activity/popularGameNine/card_fw.png") no-repeat center;
+    background-size: 100%;
+}
+.u-popularGameNine span.z-actived0{
+    background: url("../../../img/activity/popularGameNine/card_redopenops.png") no-repeat;
+    background-size: 100%;
+}
+.u-popularGameNine span.z-actived2{
+    background: url("../../../img/activity/popularGameNine/card_redopen2.png") no-repeat;
+    background-size: 100%;
+}
+.u-popularGameNine span.z-actived10{
+    background: url("../../../img/activity/popularGameNine/card_redopen10.png") no-repeat;
+    background-size: 100%;
+}
+.u-popularGameNine span.z-actived5{
+    background: url("../../../img/activity/popularGameNine/card_redopen5.png") no-repeat;
+    background-size: 100%;
+}
+.u-popularGameNine span.z-opened{
+    background: url("../../../img/activity/popularGameNine/car_openops.png") no-repeat;
+    background-size: 100%;
+}
+.u-popularGameNine span.z-opened2{
+    background: url("../../../img/activity/popularGameNine/car_open2.png") no-repeat;
+    background-size: 100%;
+}
+.u-popularGameNine span.z-opened10{
+    background: url("../../../img/activity/popularGameNine/car_open10.png") no-repeat;
+    background-size: 100%;
+}
+.u-popularGameNine span.z-opened5{
+    background: url("../../../img/activity/popularGameNine/car_open5.png") no-repeat;
+    background-size: 100%;
+}
+.u-activityRules{
+    padding: 9px 0;
+}
+@media screen and (min-width: 360px) {
+    .u-gameBg{
+        padding-top: 90px;
+    }
+    .u-myGrade{
+        padding: 14px 0 5px 0;
+    }
+    .u-popularGameNine{
+        width: 305px;
+        height: 295px;
+        margin-left: 18px;
+        padding: 36px 10px 0 10px;
+    }
+    .u-popularGameNine span{
+        width: 83px;
+        height: 83px;
+    }
+    .u-activityRules{
+        padding: 7px 0;
+    }
+
+}
+@media screen and (min-width: 370px) {
+    .u-gameBg{
+        padding-top: 90px;
+    }
+    .u-myGrade{
+        padding: 24px 0 0 0;
+    }
+    .u-popularGameNine{
+        width: 305px;
+        height: 295px;
+        margin-left: 25px;
+        padding: 41px 10px 10px 10px;
+    }
+    .u-popularGameNine span{
+        width: 83px;
+        height: 83px;
+    }
+    .u-activityRules{
+        padding: 7px 0;
+    }
+
+}
+@media screen and (min-width: 400px){
+    .u-gameBg{
+        padding-top: 90px;
+    }
+    .u-myGrade{
+        padding: 34px 0 0 0;
+    }
+    .u-popularGameNine{
+        width: 335px;
+        height: 335px;
+        margin-left: 30px;
+        padding: 51px 10px 0px 10px;
+    }
+    .u-popularGameNine span{
+        width: 90px;
+        height: 90px;
+    }
+    .u-activityRules{
+        padding: 0 0 18px 0;
+    }
+}
+
+.u-winnerBlock{
+    width: 96%;
+    background: #3a264d;
+    padding: 10px 2% 30px ;
+}
+.u-winnerBlock p{
+    color:#b090d1;;
+}
+.u-winnerBlock .u-winnerListWrap{
+    overflow: hidden;
+    padding-bottom: 20px;
+    height: 306px;
+}
+.u-winnerBlock .u-winnerList{
+    overflow: hidden;
+    padding-bottom: 20px;
+}
+.u-winnerBlock .u-winnerList li img{
+    width: 35px;
+    height: 35px;
+    vertical-align: middle;
+    border-radius: 50%;
+}
+.u-winnerBlock .u-winnerList li {
+    line-height: 24px;
+    margin-top: 14px;
+}
+.u-winnerBlock .u-winnerList li .u-memberPhone{
+    width: 30%;
+    margin-left: 4px;
+}
+.u-winnerBlock .u-winnerList li .u-gainGift{
+    width: 50%;
+    margin-left: 8px;
+}
+.u-winnerBlock .u-noWinnerList{
+    width: 100%;
+    color: #97816f;
+    text-align: center;
+    margin-top: 150px ;
+}
+/*活动规则弹窗*/
+.u-activityRulesWrap{
+    width: 84%;
+    background: #ffffff;
+    padding: 20px 3%;
+    z-index: 1000;
+    position: fixed;
+    top: 20%;
+    left: 5%;
+    border-radius: 10px;
+}
+.u-activityRulesWrap p{
+    text-align: center;
+}
+.u-activityRulesWrap ul li{
+    list-style-type: decimal;
+    margin: 20px 0 0 20px;
+    line-height: 20px;
+}
+/*输入人气值弹窗*/
+.u-inputBlock{
+    width: 86%;
+    margin: auto;
+    text-align: center;
+    background: #ffffff;
+    border-radius: 10px;
+    position: fixed;
+    top:30%;
+    left: 7%;
+    z-index: 1000;
+}
+.u-inputBlock p{
+    padding:20px 10px;
+}
+.u-inputBlock input{
+    border-radius: 4px;
+    border: 1px solid #E5E5E5;
+    text-align: center;
+    height: 50px;
+    line-height: 50px;
+    width: 90%;
+}
+.u-inputBlock a .u-sureBtn{
+    width: 100%;
+    border-top: 1px solid #e5e5e5;
+    margin-top: 20px;
+    line-height: 60px;
+    color: #cccccc;
+}
+/*中奖等提示弹窗*/
+.u-gameTipBlock{
+    width: 86%;
+    text-align: center;
+    background: #ffffff;
+    border-radius: 10px;
+    position: fixed;
+    top:40%;
+    left: 7%;
+    z-index: 1000;
+}
+.u-gameTipBlock p{
+    padding: 20px 0;
+    text-align: center;
+    width: 80%;
+    margin: auto;
+}
+.u-gameTipBlock .u-sureBtn{
+    width: 100%;
+    border-top: 1px solid #e5e5e5;
+    line-height: 60px;
+}
+.u-gameTipBlock .u-sureBtn span{
+    display: inline-block;
+    width: 49%;
+    text-align: center;
+    border-right: 1px solid #e5e5e5;
+}
+.u-gameTipBlock .u-sureBtn span:last-child{
+    border: none;
+}

@@ -1,0 +1,363 @@
+##我是王活动页
+#parse('/common/common.vm')
+#set($title="我是王_$!{title_suffix}")
+<style>
+        .g-bd{margin-bottom: 0;}
+		.g-king-bd{
+			background-color:#f1e25c;
+		}
+		.u-king-hd{
+			width: 100%;
+			height: 446px;
+			margin-top: -8px;
+			text-indent: -9999px;
+			background: url($root_url/static/img/activity/iamKing/king_focus.jpg) no-repeat center center;
+			}
+		.u-king-center{
+			margin: 0 auto;
+			width: 990px;
+			}
+		.u-king-act01,.u-king-act02{
+			margin-bottom:50px;
+	
+			}
+		.u-king-center ul li:first-child{
+			margin-top:0px;
+			}
+		.u-king-act01{
+			width:990px;
+			height:322px;
+			color:#666;
+			background:url($root_url/static/img/activity/iamKing/king_act01.jpg) no-repeat center;
+			}
+		.u-king-act02{
+			width:990px;
+			height:326px;
+			color:#666;
+			background:url($root_url/static/img/activity/iamKing/king_act02.jpg) no-repeat center;
+			}
+		.u-king-act03{
+			width:990px;
+			height:323px;
+			color:#666;
+			background:url($root_url/static/img/activity/iamKing/king_act03.jpg) no-repeat center;
+			}
+		.u-king-spec{
+			width:290px;
+			padding:120px 91px 0 240px;
+			float:left;
+			}
+		.u-king-act01 table{
+			text-align:center; 
+			border:none; 
+			float:left; 
+			margin-top:66px;
+			color:#666;
+			}
+		.u-king-act01 table thead th{
+			text-align:center;
+			font-weight:bold;
+			}
+		.u-king-act01 table tr{
+			width:320px;
+			height:35px;
+			}
+		.u-king-spec p{
+			color:#959595;
+			padding-top:30px;
+			line-height:2em;
+			}
+		.u-king-act02 table{
+			text-align:center; 
+			border:none; 
+			float:left; 
+			margin-top:70px;
+			color:#666;
+			}
+		.u-king-act02 table thead th{
+			text-align:center;
+			font-weight:bold;
+			}
+		.u-king-act02 table tr{
+			width:320px;
+			height:35px;
+			}
+		.u-king-button{
+			width:268px;
+			height:210px;
+			padding:74px 0 0 360px;
+            overflow: hidden;
+			}
+		.u-king-butbg{
+			display: block;
+			height: 80px;
+			text-indent: -9999px;
+			background:url($root_url/static/img/activity/iamKing/king_button.jpg) no-repeat center;
+			}
+		.u-king-center ol{
+			clear:float;
+			height:10px;
+			width:40px;
+			float:right;
+			margin-right:214px;
+			}
+		.u-king-center ol li{
+			float: left;
+			font-size: 20px;
+			color: #cebfab;
+			width: 10px;
+			padding: 5px 5px 0;
+			margin-top:0px;
+			cursor: pointer;
+			padding: 5px;
+			}
+		.u-king-center ol li.z-current{
+				color:#b7b7b7;
+				
+			}
+		.u-king-table li{
+		  display:none;
+		}
+		.u-king-table li.z-current{display:block;}
+        </style>
+        
+        
+         <div class="g-king-bd f-mh500 f-cf">
+    	<div class="u-king-hd"></div>
+        <div class="u-king-center f-cf">
+        	<div>
+			<ul>
+            	<li class="u-king-act01">
+                	<div class="u-king-spec f-cf">
+                    <strong class="f-fs14">累计推荐好友数量排名，奖励现金券。</strong>
+                    <p>活动期间，平台将根据推荐的好友数量进行排名，<br />排名前五名的将获得相应面额现金券奖励。</p>
+                    </div>
+                    <div id="j-table-show01">
+                        <ul class="u-king-table f-cf">
+                        <li class="z-current">
+                       <table>
+                    	<thead>
+                        	<tr>
+                            	<th width="80">名次</th>
+                                <th width="126">获得奖励</th>
+                                <th width="97">获奖者</th>
+                            </tr>           
+                        </thead>
+                        <tbody>
+							<tr>
+                            	<td>第一名</td>
+                                <td>188元现金券</td>
+                                <td>等你哦</td>
+                            </tr>
+                        	<tr>
+                           		<td>第二名</td>
+                                <td>168元现金券</td>
+                                <td>等你哦</td>
+                            </tr>
+                           	<tr>
+                           		<td>第三名</td>
+                                <td>158元现金券</td>
+                                <td>等你哦</td>
+                            </tr>
+                            <tr>
+                            	<td>第四名</td>
+                                <td>138元现金券</td>
+                                <td>等你哦</td>
+                            </tr>
+                            <tr>
+                            	<td>第五名</td>
+                                <td>118元现金券</td>
+                                <td>等你哦</td>
+                            </tr>
+                        </tbody>
+                            </table>   
+                        </li>
+                    
+                    
+                    
+                    <li>
+                    <table>
+                    	<thead>
+                        	<tr>
+                            	<th width="80">当前排名</th>
+                                <th width="126">用户名</th>
+                                <th width="97">邀请好友数</th>
+                            </tr>           
+                        </thead>
+                        <tbody>
+                         #foreach($!{refferalCount} in $!{refferalCountList})
+                         <tr>
+                            	<td>第$!{numberFormatUtil.formatNumberToChinese($!{velocityCount})}名</td>
+                                <td>$!{refferalCount.username}</td>
+                                <td>$!{refferalCount.refferCount}</td>
+                            </tr>
+                        #end
+                        </tbody>
+                    </table>  
+                </li>
+                </ul>
+              <ol>
+          		<li class="j-table-point z-current">●</li>
+				<li class="j-table-point">●</li>
+			 </ol>    
+            </div>  
+              </li>
+                <li class="u-king-act02">
+               	<div class="u-king-spec f-cf">
+                    <strong class="f-fs14">好友累计投资额排名，奖励现金券+收益券。</strong>
+                    <p>平台将对被推荐的好友累计投资额进行名次排名，<br />好友累计投资额排名越高的，获得奖励越多。</p>
+                    </div>
+                    <div id="j-table-show02">
+                        <ul class="u-king-table">
+                        <li class="z-current">
+                    <table>
+                    	<thead>
+                        	<tr>
+                            	<th width="70">名次</th>
+                                <th width="144">获得奖励</th>
+                                <th width="110">获奖者</th>
+                            </tr>           
+                        </thead>
+                        <tbody>
+                        
+							<tr>
+                            	<td>第一名</td>
+                                <td>188元现金券+1%收益券</td>
+                                <td>等你哦</td>
+                            </tr>
+                        	<tr>
+                           		<td>第二名</td>
+                                <td>168元现金券+0.8%收益券</td>
+                                <td>等你哦</td>
+                            </tr>
+                           	<tr>
+                           		<td>第三名</td>
+                                <td>158元现金券+0.7%收益券</td>
+                                <td>等你哦</td>
+                            </tr>
+                            <tr>
+                            	<td>第四名</td>
+                                <td>138元现金券+0.6%收益券</td>
+                                <td>等你哦</td>
+                            </tr>
+                            <tr>
+                            	<td>第五名</td>
+                                <td>118元现金券+0.5%收益券</td>
+                                <td>等你哦</td>
+                            </tr>
+                        </tbody>
+                    </table> 
+                        </li>      
+
+                    <li>
+                    <table>
+                    	<thead>
+                    	
+                        	<tr>
+                            	<th width="70">当前排名</th>
+                                <th width="144">用户名</th>
+                                <th width="110">好友投资总额</th>
+                            </tr>           
+                        </thead>
+                        <tbody>
+                         #foreach($!{refferalInvestAmount} in $!{refferalInvestAmountList})
+                         <tr>
+                            	<td>第$!{numberFormatUtil.formatNumberToChinese($!{velocityCount})}名</td>
+                                <td>$!{refferalInvestAmount.username}</td>
+                                <td>$!{formulaUtil.formatCurrencyNoUnit($!{refferalInvestAmount.refferalInvestAmount})}</td>
+                            </tr>
+                        #end
+                        </tbody>
+                    </table>  
+                    </li>  
+                    </ul>  
+       		<ol>
+          		<li class="j-table-point z-current">●</li>
+				<li class="j-table-point">●</li>
+			</ol> 
+            </div> 
+                </li>
+                <li class="u-king-act03">
+                	  <div class="u-king-spec">
+                    <strong class="f-fs14">抱团投资，赢福利：</strong>
+                    <p>在一个项目中，人均投资额大于等于2万，<br />同时投资人数少于等于10人完成此项目，<br />则投资该项目的所有投资者均可获得0.8%的收益券。</p>
+                    </div> 
+                </li>
+                </li>
+            </ul>
+            <div class="u-king-button">
+            	<a class="u-king-butbg" href="/coupon/reputation">我要称王</a>
+            </div>
+        </div>	
+    </div>
+    </div>
+   
+    
+    
+    <script>
+    	window.onload=function(){
+    	//焦点图
+    $.fn.fadeShow = function(config) {
+        var _this = $(this);
+        if (typeof(config) !== "undefined") {
+            var time = typeof(config.time) !== "undefined" ? config.time : 3000;
+            var size = typeof(config.size) !== "undefined" ? config.size : 3;
+        } else {
+            throw new Error("fadeShow():config is not defined");
+        }
+
+        function fadeSlider() {
+
+            var news = _this.find("ul li.z-current").eq(0),
+                dot = _this.find("ol li"),
+                i = news.index(),
+                n = 0;
+
+            if (i >= 0 && i < (size - 1)) {
+                news.next().css("z-index", "50");
+                news.css("z-index", "51").fadeOut(500, function() {
+                    news.hide().css("z-index", "-1").removeClass("z-current");
+                    news.next().show().css("z-index", "50").addClass("z-current");
+                });
+                n = i + 1;
+            } else if (i === (size - 1)) {
+                news.siblings().eq(0).css("z-index", "50");
+                news.css("z-index", "51").fadeOut(500, function() {
+                    news.hide().css("z-index", "-1").removeClass("z-current");
+                    news.siblings().eq(0).show().css("z-index", "50").addClass("z-current");
+                });
+                n = 0;
+            }
+            dot.eq(n).addClass("z-current").siblings().removeClass("z-current");
+        };
+
+        var timer = setInterval(function() {
+            fadeSlider();
+        }, time);
+
+        _this.on("mouseenter", "ul li", function() {
+            clearInterval(timer);
+        });
+        _this.on("mouseleave", "ul li, ol", function() {
+            timer = setInterval(function() {
+                fadeSlider();
+            }, time);
+        });
+        _this.on("click", "ol li:not(.z-current)", function() {
+            var i = $(this).index();
+            $(this).addClass("z-current").siblings().removeClass("z-current");
+            _this.find("ul li").eq(i).css("z-index", "50").addClass("z-current")
+                .siblings().css("z-index", "-1").removeClass("z-current");
+            clearInterval(timer);
+        });
+    }
+        	$("#j-table-show01").fadeShow({
+    	        time: 5000,
+    	        size: 2
+        	});
+    	   $("#j-table-show02").fadeShow({
+                time: 5000,
+                size: 2
+            });
+    	}
+    </script>

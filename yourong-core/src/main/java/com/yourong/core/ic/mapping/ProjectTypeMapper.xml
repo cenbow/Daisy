@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.ic.dao.ProjectTypeMapper" >
+  <resultMap id="BaseResultMap" type="com.yourong.core.ic.model.ProjectType" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="project_type_name" property="projectTypeName" jdbcType="VARCHAR" />
+    <result column="project_type_code" property="projectTypeCode" jdbcType="VARCHAR" />
+    <result column="guaranty_type" property="guarantyType" jdbcType="VARCHAR" />
+    <result column="guaranty_thing_type" property="guarantyThingType" jdbcType="VARCHAR" />
+    <result column="instalment" property="instalment" jdbcType="VARCHAR" />
+    <result column="guaranty_info" property="guarantyInfo" jdbcType="VARCHAR" />
+    <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, project_type_name, project_type_code, guaranty_type, guaranty_thing_type, instalment, 
+    guaranty_info,del_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from ic_project_type
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from ic_project_type
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.yourong.core.ic.model.ProjectType" >
+    insert into ic_project_type (id, project_type_name, project_type_code, 
+      guaranty_type, guaranty_thing_type, instalment, 
+      guaranty_info,del_flag)
+    values (#{id,jdbcType=BIGINT}, #{projectTypeName,jdbcType=VARCHAR}, #{projectTypeCode,jdbcType=VARCHAR}, 
+      #{guarantyType,jdbcType=VARCHAR}, #{guarantyThingType,jdbcType=VARCHAR}, #{instalment,jdbcType=VARCHAR}, 
+      #{guarantyInfo,jdbcType=VARCHAR},#{delFlag,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yourong.core.ic.model.ProjectType" >
+    insert into ic_project_type
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="projectTypeName != null" >
+        project_type_name,
+      </if>
+      <if test="projectTypeCode != null" >
+        project_type_code,
+      </if>
+      <if test="guarantyType != null" >
+        guaranty_type,
+      </if>
+      <if test="guarantyThingType != null" >
+        guaranty_thing_type,
+      </if>
+      <if test="instalment != null" >
+        instalment,
+      </if>
+      <if test="guarantyInfo != null" >
+        guaranty_info,
+      </if>
+        del_flag,
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="projectTypeName != null" >
+        #{projectTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectTypeCode != null" >
+        #{projectTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="guarantyType != null" >
+        #{guarantyType,jdbcType=VARCHAR},
+      </if>
+      <if test="guarantyThingType != null" >
+        #{guarantyThingType,jdbcType=VARCHAR},
+      </if>
+      <if test="instalment != null" >
+        #{instalment,jdbcType=VARCHAR},
+      </if>
+      <if test="guarantyInfo != null" >
+        #{guarantyInfo,jdbcType=VARCHAR},
+      </if>
+        1,
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yourong.core.ic.model.ProjectType" >
+    update ic_project_type
+    <set >
+      <if test="projectTypeName != null" >
+        project_type_name = #{projectTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectTypeCode != null" >
+        project_type_code = #{projectTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="guarantyType != null" >
+        guaranty_type = #{guarantyType,jdbcType=VARCHAR},
+      </if>
+      <if test="guarantyThingType != null" >
+        guaranty_thing_type = #{guarantyThingType,jdbcType=VARCHAR},
+      </if>
+      <if test="instalment != null" >
+        instalment = #{instalment,jdbcType=VARCHAR},
+      </if>
+      <if test="guarantyInfo != null" >
+        guaranty_info = #{guarantyInfo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yourong.core.ic.model.ProjectType" >
+    update ic_project_type
+    set project_type_name = #{projectTypeName,jdbcType=VARCHAR},
+      project_type_code = #{projectTypeCode,jdbcType=VARCHAR},
+      guaranty_type = #{guarantyType,jdbcType=VARCHAR},
+      guaranty_thing_type = #{guarantyThingType,jdbcType=VARCHAR},
+      instalment = #{instalment,jdbcType=VARCHAR},
+      guaranty_info = #{guarantyInfo,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <sql id="Base_Column_List_Pagin" >
+    t.id  as  id,
+t.project_type_name  as  project_type_name,
+t.project_type_code  as  project_type_code,
+t.guaranty_type  as  guaranty_type,
+t.guaranty_thing_type  as  guaranty_thing_type,
+t.instalment  as  instalment,
+t.guaranty_info  as  guaranty_info,
+t.del_flag as del_flag
+  </sql>
+  
+  <select id="selectForPagin" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List_Pagin" />
+    from  (SELECT id FROM  ic_project_type
+    <if test=" map != null" >
+      <where >
+        <if test=" map.projectTypeCode != null" >
+          project_type_code = #{map.projectTypeCode}
+        </if>
+      </where>
+    </if>
+      LIMIT	${map.startRow}, ${map.pageSize}  )  AS a,  ic_project_type AS t FORCE INDEX(PRIMARY) WHERE a.id = t.id   
+  </select>
+  <select id="selectForPaginTotalCount" resultType="java.lang.Integer" >
+    select count(1) 
+    from ic_project_type
+    <if test=" map != null" >
+      <where >
+        <if test=" map.projectTypeCode != null" >
+          project_type_code = #{map.projectTypeCode}
+        </if>
+      </where>
+    </if>
+  </select> 
+  
+  <delete id="batchDelete" parameterType="java.lang.Long" >
+    delete from ic_project_type
+    where id in  <foreach collection="ids" index="index" item="item" open="(" separator="," close=")"> #{item}  </foreach>  
+  </delete>
+  
+  <select id="selectProjectTypeDetail" resultMap="BaseResultMap" parameterType="com.yourong.core.ic.model.ProjectType" >
+  	select 
+	<include refid="Base_Column_List"/>
+	 from ic_project_type as t 
+      where t.guaranty_type =  #{guarantyType}
+          and t.guaranty_thing_type = #{guarantyThingType}
+          and t.instalment = #{instalment}
+    limit 1
+  </select>
+  
+</mapper>

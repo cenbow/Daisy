@@ -1,0 +1,97 @@
+#set($title="平台动态-有融网-全透明的互联网理财优选平台")
+#parse("/common/common.vm")
+##平台动态
+#set($css_url=["$root_css_url/modules/post.css"])
+#set($js_url=[
+    "/static/lib/js/vue/vue.js",
+    "$root_js_url/post/condition.js"
+])
+
+
+<div id="j-officalNotice" v-cloak>
+    <div class="g-wrap f-clear">
+        <div class="u-head-nav">
+            <a href="$root_url/about/index.html">有融简介</a><a href="$root_url/about/disclosure">信息披露</a><a
+                href="$root_url/about/honor">资质荣誉</a>
+            <a href="$root_url/about/cooperator">合作伙伴</a><a href="javascript:"
+                                                            @click="condition(1,null,1),typeText='全部类型'"
+                                                            class="z-selected">平台动态</a>
+            <a href="$root_url/about/join">加入有融</a>
+        </div>
+    </div>
+
+    <div class="u-nav-bg">
+        <div class="g-wrap">
+            <a href="javascript:" :class="{'z-selected':categoryId===1}" @click="condition(1,null,1),typeText='全部类型'">官方公告</a>
+            <a href="javascript:" :class="{'z-selected':categoryId===2}" @click="condition(2,null,1)">媒体报道</a>
+        </div>
+    </div>
+    <div class="g-about-wrap" v-show="categoryId===1">
+        <div class="u-sort">类型:&nbsp;&nbsp;
+            <a href="javascript:" @click="show=!show">{{typeText}}</a> <i @click="show=!show"
+                                                                          :class="{'z-selected':show}"></i>
+            <ul v-if="show"><s></s>
+                <li @click="condition(1,null,1),show=false,typeText='全部类型'">全部类型</li>
+                <li @click="condition(1,1,1),show=false,typeText='银行公告'">银行公告</li>
+                <li @click="condition(1,2,1),show=false,typeText='活动公告'">活动公告</li>
+                <li @click="condition(1,3,1),show=false,typeText='其他公告'">其他公告</li>
+            </ul>
+        </div>
+        <div class="m-notice-list f-round " id="j-notice-list">
+                <ul>
+                    <li v-for="item in init" id="newsId_{{item.id}}">
+                        <span>{{noticeKind[item.genre]}}</span>
+                        <i :class="{'f-bg-other':item.genre===3,
+                            'f-bg-activity':item.genre===2,'f-bg-bank':item.genre===1}"></i>
+                        <strong>{{item.title}}</strong>
+                        <em>{{item.createDateStr}}</em>
+                            <div class="f-fs14">
+                                <span>
+                                {{{item.contentHtml}}}
+                                </span>
+                            </div>
+                        </li>
+                </ul>
+            <div class="u-loading-tips" v-if="isLoading">
+                <img src="$root_url/static/img/post/newAbout/web_loading.gif">
+            </div>
+        </div>
+    </div>
+
+    <div class="g-about-wrap" v-show="categoryId===2">
+        <div class="m-news-list j-news-list">
+            <ul>
+                <li v-for="item in init">
+                    <ul class="u-content">
+                        <li>
+                                <img class="u-news-thumbnail"
+                                     src="$aliyun_url/{{item.image}}"
+                                     alt="新闻标题" v-if="item.image"/>
+                                <a href="$root_url/article/detail-{{item.id}}.html" target="_blank">{{item.title}}</a>
+                                <span>{{item.copyfrom}}&nbsp;{{item.createDateStr}}&nbsp;
+                            <a href="{{item.link}}" target="_blank" rel="nofollow">查看原文链接</a></span>
+                                <div>
+                                    {{{item.contentHtml}}}
+                                </div>
+                        </li>
+                        <li>
+                                <img
+                                        src="$aliyun_url/{{item.chosenImage}}"
+                                        alt="新闻标题" v-if="item.chosenImage"/>
+                                <img
+                                        src="$root_url/static/img/post/newAbout/default.png"
+                                        alt="新闻标题" v-else/>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="u-loading-tips" v-if="isLoading">
+                <img src="$root_url/static/img/post/newAbout/web_loading.gif">
+                <p>加载中</p>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<script src="$root_url/static/lib/js/jq/jquery-1.11.1.min.js"></script>

@@ -1,0 +1,149 @@
+#parse("/common/common.vm")
+#set($layout = "/layout/default.vm")
+<style>
+    .u-selector li {
+        padding: 0 16px 0 17px;
+    }
+    .u-transfer-flag{
+        display: inline-block;
+        padding:0 2px;
+        font-size: 12px;
+        border:1px solid #d74148;
+        color: #d74148;
+        border-radius: 4px;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+    }
+</style>
+<div class="u-rtable">
+    <div class="u-rtable-wrap f-round">
+        #if($!{servletUtil.getCollectSignableContractNum()}>0)
+            <span id="j-eSignatue-allbtn" data-page="1">一键签署</span>
+        #end
+        <table>
+            <thead class="u-invest-ntunderline">
+                <tr>
+                    <th width="90">投资时间</th>
+                    <th width="170">项目名称</th>
+                    <th width="90">预期年化收益</th>
+                    <th width="70">收益周期</th>
+                    <th width="150">投资金额</th>
+                    <th width="150">预期收益</th>
+                    <th width="60">查看</th>
+                    <th width="100">
+                        #set($collectSignStatusList=['','未签署','已签署','已过期'])
+                        #set($collectSignStatus=$!{query.signStatus})
+                        #if($collectSignStatus)
+                            #set($collectSignStatusText=$collectSignStatusList[$collectSignStatus])
+                        #else
+                            #set($collectSignStatusText='协议')
+                        #end
+                        <div class="u-selector j-selector f-round j-collectSignStatus-selector">
+                            <button>$collectSignStatusText</button> <i></i>
+                            <ul class="f-round">
+                                <li value="">协议</li>
+                                <li value="1">未签署</li>
+                                <li value="2">已签署</li>
+                                <li value="3">已过期</li>
+                            </ul>
+                            <input type="hidden" name="signStatus" class="j-selected-ipt" value="$!{query.signStatus}">
+                        </div>
+                    </th>
+
+                </tr>
+            </thead>
+            ##<input type="hidden" id="j-raise-signStatus" name="signStatus" value="$!query.signStatus">
+            <tbody class="u-rtable-invest">
+            	#if($!collectProjectList.data && $!collectProjectList.data.size()>0)
+            		#foreach( $!project in $!collectProjectList.data )
+            		
+                <tr>
+                    #if($!{project.projectCategory}==2)
+                        #set($pid=$!{project.transferId})
+                    #else
+                        #set($pid=$!{project.projectId})
+                    #end
+                    <td><span>$!{project.transactionTimeYear}</span>   <span>$!{project.transactionTimeHour}</span></td>
+                    <td class="u-project-name"><a href="$root_url/products/detail-${pid}.html" target="_blank">$!{project.prefixProjectName}#if($!project.projectCategory==2) <i class="u-transfer-flag">转让</i>#end</a></td>
+                    <td><em class="u-row">
+                        #if($!project.extraAnnualizedRate!=0)
+                            $!{project.annualizedRate}%
+                        #else
+                            $!{project.totalAnnualizedRate}%
+                        #end
+					</em>
+					</td>
+                    <td>$!{project.profitPeriod}</td>
+                    <td>
+                        #if($!project.projectCategory == 1)
+                            <em class="u-amount f-ff-ver u-withAmount" data-investAmount="$!{project.formatInvestAmount}">¥$!{project.formatInvestAmount}
+                        #else
+                            <em class="u-amount f-ff-ver u-withAmount" data-investAmount="$!{project.transferPrincipal}">¥$!{project.transferPrincipal}
+                        #end
+                        <br/>
+						#if($!project.formatUsedCouponAmount && $!project.formatUsedCouponAmount!="")<span class="f-fc-gray">
+					(¥$!{project.formatUsedUserAmount} + <strong class="f-fwn f-fc-red2">¥$!{project.formatUsedCouponAmount}</strong>)
+						</span>#end									
+					</em>
+					</td>
+                    #if($!{project.totalExtraInterest}>0)
+                        <td>￥<i class="f-fs20">$!{project.totalAllInterest}</i></br>
+                            <span class="f-exAmount-span">
+							    (￥$!{project.formatExpectAmount} + <strong class="f-fwn f-fc-red2">￥$!{project.totalExtraInterest}</strong>)
+						    </span>
+                        </td>
+                    #else
+                        <td>￥<i class="f-fs20">$!{project.formatExpectAmount}</i></td>
+                    #end
+                    <td><a class="order-detail-link u-invest-detail f-pos-r j-box-pos" data-action="cpdetail" data-transactionid="$!project.transactionId"
+                    data-projectstatus="$!project.projectStatus" data-category="$!{project.projectCategory}"> <s></s>详情</a></td>
+
+                    <td class="u-eSignatue-btn">
+                    ##					不同签署状态显示不同按钮
+                        #if($!project.signStatus==0)
+                            <a class="u-eSignatue j-eSignatue-fail">立即签署</a>
+                        #elseif($!project.signStatus==1)
+                            <a class="u-eSignatue j-eSignatue-result" target="_blank"  href="/member/transit?transactionId=$!{project.transactionId}" data-transactionid="$!{project.transactionId}"
+                               #if($!{project.isDirectProject}==true)
+                                    data-contracturl="/transaction/p2pContract/view?orderId=$!{project.orderId}"
+                               #else
+                                data-contracturl="/transaction/contract/view?orderId=$!{project.orderId}"
+                               #end
+                               >立即签署</a>
+                        #elseif($!project.signStatus==2)
+                            #if($!{project.isDirectProject}==true)
+                                <a href="/transaction/p2pContract/view?orderId=$!{project.orderId}" target="_blank" class="u-eSignatue z-current j-eSignatue-finish">已签署</a>
+                            #else
+                                <a href="/transaction/contract/view?orderId=$!{project.orderId}" target="_blank" class="u-eSignatue z-current j-eSignatue-finish">已签署</a>
+                            #end
+                        #elseif($!transaction.signStatus==3)
+                            #if($!{transaction.isDirectProject}==true)
+                                <a href="/transaction/p2pContract/view?orderId=$!{project.orderId}" target="_blank" class="u-eSignatue z-current j-eSignatue-past">已过期</a>
+                            #else
+                                <a href="/transaction/contract/view?orderId=$!{project.orderId}" target="_blank" class="u-eSignatue z-current j-eSignatue-past">已过期</a>
+                            #end
+                        #end </td>
+                    <input type="hidden" class="transactionId" value="$!project.transactionId">
+                </tr>
+            	#end
+			#else
+				<tr>
+					<td colspan="6" class="u-table-empty">暂无记录</td>
+				</tr>
+			#end
+
+            </tbody>
+        </table>
+
+    </div>
+    <!--<div class="m-pagenav f-tac">
+        <span class="u-pnav-prev u-circle-12">上一页</span>
+        <span class="u-pnav-crt u-circle-12">1</span>
+        <a href="" class="u-pnav-link u-circle-12">2</a>
+        <a href="" class="u-pnav-link u-circle-12">3</a>
+        <a href="" class="u-pnav-prev u-circle-12">下一页</a>
+    </div>-->
+</div>
+#ajaxPagePlugin($!collectProjectList,"Raise")
+
+

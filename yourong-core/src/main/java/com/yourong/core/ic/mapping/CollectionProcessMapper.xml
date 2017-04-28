@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.ic.dao.CollectionProcessMapper" >
+  <resultMap id="BaseResultMap" type="com.yourong.core.ic.model.CollectionProcess" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="overdue_repay_id" property="overdueRepayId" jdbcType="BIGINT" />
+    <result column="collect_time" property="collectTime" jdbcType="TIMESTAMP" />
+    <result column="collect_form" property="collectForm" jdbcType="VARCHAR" />
+    <result column="collect_status" property="collectStatus" jdbcType="INTEGER" />
+    <result column="next_collect_time" property="nextCollectTime" jdbcType="TIMESTAMP" />
+    <result column="next_collect_form" property="nextCollectForm" jdbcType="VARCHAR" />
+    <result column="collect_detail" property="collectDetail" jdbcType="VARCHAR" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, overdue_repay_id, collect_time, collect_form, collect_status, next_collect_time, next_collect_form,
+    collect_detail, remarks, create_time, update_time, del_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from ic_collection_process
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from ic_collection_process
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.yourong.core.ic.model.CollectionProcess" >
+    insert into ic_collection_process ( id, overdue_repay_id, collect_time, collect_form, collect_status, next_collect_time, next_collect_form,
+    collect_detail, remarks, create_time, update_time, del_flag
+    )values (#{id,jdbcType=BIGINT}, #{overdueRepayId,jdbcType=BIGINT}, #{collectTime,jdbcType=TIMESTAMP}, 
+      #{collectForm,jdbcType=VARCHAR}, #{collectStatus,jdbcType=INTEGER}, #{nextCollectTime,jdbcType=TIMESTAMP}, 
+      #{nextCollectForm,jdbcType=VARCHAR}, #{collectDetail,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{delFlag,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yourong.core.ic.model.CollectionProcess" useGeneratedKeys="true" keyProperty="id">
+    insert into ic_collection_process
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="overdueRepayId != null" >
+        overdue_repay_id,
+      </if>
+      <if test="collectTime != null" >
+        collect_time,
+      </if>
+      <if test="collectForm != null" >
+        collect_form,
+      </if>
+      <if test="collectStatus != null" >
+        collect_status,
+      </if>
+      <if test="nextCollectTime != null" >
+        next_collect_time,
+      </if>
+      <if test="nextCollectForm != null" >
+        next_collect_form,
+      </if>
+      <if test="collectDetail != null" >
+        collect_detail,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+      	create_time,
+        update_time,
+        del_flag,
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="overdueRepayId != null" >
+        #{overdueRepayId,jdbcType=BIGINT},
+      </if>
+      <if test="collectTime != null" >
+        #{collectTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="collectForm != null" >
+        #{collectForm,jdbcType=VARCHAR},
+      </if>
+      <if test="collectStatus != null" >
+        #{collectStatus,jdbcType=INTEGER},
+      </if>
+      <if test="nextCollectTime != null" >
+        #{nextCollectTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="nextCollectForm != null" >
+        #{nextCollectForm,jdbcType=VARCHAR},
+      </if>
+      <if test="collectDetail != null" >
+        #{collectDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      	NOW(),
+      	NOW(),
+       1
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yourong.core.ic.model.CollectionProcess" >
+    update ic_collection_process
+    <set >
+      <if test="overdueRepayId != null" >
+        overdue_repay_id = #{overdueRepayId,jdbcType=BIGINT},
+      </if>
+      <if test="collectTime != null" >
+        collect_time = #{collectTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="collectForm != null" >
+        collect_form = #{collectForm,jdbcType=VARCHAR},
+      </if>
+      <if test="collectStatus != null" >
+        collect_status = #{collectStatus,jdbcType=INTEGER},
+      </if>
+      <if test="nextCollectTime != null" >
+        next_collect_time = #{nextCollectTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="nextCollectForm != null" >
+        next_collect_form = #{nextCollectForm,jdbcType=VARCHAR},
+      </if>
+      <if test="collectDetail != null" >
+        collect_detail = #{collectDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+       <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+   <select id="getCollectByRepayId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from ic_collection_process
+    where overdue_repay_id = #{overdueRepayId,jdbcType=BIGINT} order by create_time desc limit 1
+  </select>
+  <select id="getCollectListByRepayId" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from ic_collection_process
+    where overdue_repay_id = #{overdueRepayId,jdbcType=BIGINT} order by collect_time desc 
+  </select>
+  
+   <select id="getCollectList" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from ic_collection_process
+    where overdue_repay_id = #{overdueRepayId,jdbcType=BIGINT} and del_flag>0  order by collect_time  
+  </select>
+   <select id="countCollectionByRepayId" resultType="java.lang.Integer" >
+    select  count(1)
+    from ic_collection_process
+    where overdue_repay_id = #{overdueRepayId,jdbcType=BIGINT} and del_flag>0 
+  </select>
+</mapper>

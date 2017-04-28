@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.bsc.dao.PaymentPlatformMapper" >
+  <cache-ref namespace="com.yourong.core.cms.dao.BannerMapper"/>
+  <resultMap id="BaseResultMap" type="com.yourong.core.bsc.model.PaymentPlatform" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="platform_type" property="platformType" jdbcType="INTEGER" />
+    <result column="bank_id" property="bankId" jdbcType="BIGINT" />
+    <result column="type_limit" property="typeLimit" jdbcType="INTEGER" />
+    <result column="single_limit" property="singleLimit" jdbcType="DECIMAL" />
+    <result column="daily_limit" property="dailyLimit" jdbcType="DECIMAL" />
+    <result column="min_limit" property="minLimit" jdbcType="DECIMAL" />
+    <result column="service_status" property="serviceStatus" jdbcType="INTEGER" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="simple_name" property="simpleName" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="maintenance_content" property="maintenanceContent" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.yourong.core.bsc.model.PaymentPlatform" extends="BaseResultMap" >
+    <result column="maintenance_content" property="maintenanceContent" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, platform_type, bank_id, type_limit, single_limit, daily_limit, min_limit, service_status, 
+    start_time, end_time, remark, del_flag, create_time, update_time
+  </sql>
+  <sql id="ForBank_Column_List" >
+    p.id, p.platform_type, p.bank_id, p.type_limit, p.single_limit, p.daily_limit, p.min_limit, p.service_status, 
+    p.start_time, p.end_time, p.remark, p.del_flag, p.create_time, p.update_time, maintenance_content, b.simple_name, b.code
+  </sql>
+  <sql id="Blob_Column_List" >
+    maintenance_content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from bsc_payment_platform
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from bsc_payment_platform
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.yourong.core.bsc.model.PaymentPlatform" >
+    insert into bsc_payment_platform (id, platform_type, bank_id, 
+      type_limit, single_limit, daily_limit, 
+      min_limit, service_status, start_time, 
+      end_time, remark, del_flag, 
+      create_time, update_time, maintenance_content
+      )
+    values (#{id,jdbcType=BIGINT}, #{platformType,jdbcType=INTEGER}, #{bankId,jdbcType=BIGINT}, 
+      #{typeLimit,jdbcType=INTEGER}, #{singleLimit,jdbcType=DECIMAL}, #{dailyLimit,jdbcType=DECIMAL}, 
+      #{minLimit,jdbcType=DECIMAL}, #{serviceStatus,jdbcType=INTEGER}, #{startTime,jdbcType=TIMESTAMP}, 
+      #{endTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}, #{delFlag,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{maintenanceContent,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yourong.core.bsc.model.PaymentPlatform" >
+    insert into bsc_payment_platform
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="platformType != null" >
+        platform_type,
+      </if>
+      <if test="bankId != null" >
+        bank_id,
+      </if>
+      <if test="typeLimit != null" >
+        type_limit,
+      </if>
+      <if test="singleLimit != null" >
+        single_limit,
+      </if>
+      <if test="dailyLimit != null" >
+        daily_limit,
+      </if>
+      <if test="minLimit != null" >
+        min_limit,
+      </if>
+      <if test="serviceStatus != null" >
+        service_status,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+      <if test="maintenanceContent != null" >
+        maintenance_content,
+      </if>
+        create_time,
+        update_time
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="platformType != null" >
+        #{platformType,jdbcType=INTEGER},
+      </if>
+      <if test="bankId != null" >
+        #{bankId,jdbcType=BIGINT},
+      </if>
+      <if test="typeLimit != null" >
+        #{typeLimit,jdbcType=INTEGER},
+      </if>
+      <if test="singleLimit != null" >
+        #{singleLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="dailyLimit != null" >
+        #{dailyLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="minLimit != null" >
+        #{minLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="serviceStatus != null" >
+        #{serviceStatus,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=INTEGER},
+      </if>
+      <if test="maintenanceContent != null" >
+        #{maintenanceContent,jdbcType=LONGVARCHAR},
+      </if>
+      now(),now()
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yourong.core.bsc.model.PaymentPlatform" >
+    update bsc_payment_platform
+    <set >
+        single_limit = #{singleLimit,jdbcType=DECIMAL},
+        daily_limit = #{dailyLimit,jdbcType=DECIMAL},
+        min_limit = #{minLimit,jdbcType=DECIMAL},
+      <if test="serviceStatus != null">
+        service_status = #{serviceStatus,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+        remark = #{remark,jdbcType=VARCHAR},
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=INTEGER},
+      </if>
+      <if test="maintenanceContent != null" >
+        maintenance_content = #{maintenanceContent,jdbcType=LONGVARCHAR},
+      </if>
+      update_time = now()
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="findByPage" resultMap="BaseResultMap" >
+    select 
+    <include refid="ForBank_Column_List" />
+    from bsc_payment_platform as p 
+    inner join bsc_bank as b
+    on p.bank_id = b.id
+    and b.status = 1
+    <if test=" map != null" >
+      <if test=" map.simpleName != null" >
+        and b.simple_name = #{map.simpleName}
+      </if>
+      <if test=" map.code != null" >
+        and b.code = #{map.code}
+      </if>
+      <where >
+      	  p.del_flag = 1
+        <if test=" map.id != null" >
+          and p.id = #{map.id}
+        </if>
+        <if test=" map.platformType != null" >
+          and p.platform_type = #{map.platformType}
+        </if>
+        <if test=" map.bankId != null" >
+          and p.bank_id = #{map.bankId}
+        </if>
+        <if test=" map.typeLimit != null" >
+          and p.type_limit = #{map.typeLimit}
+        </if>
+        <if test=" map.singleLimit != null" >
+          and p.single_limit = #{map.singleLimit}
+        </if>
+        <if test=" map.dailyLimit != null" >
+          and p.daily_limit = #{map.dailyLimit}
+        </if>
+        <if test=" map.minLimit != null" >
+          and p.min_limit = #{map.minLimit}
+        </if>
+        <if test=" map.serviceStatus != null" >
+          and p.service_status = #{map.serviceStatus}
+        </if>
+        <if test=" map.startTime != null" >
+          and p.start_time = #{map.startTime}
+        </if>
+        <if test=" map.endTime != null" >
+          and p.end_time = #{map.endTime}
+        </if>
+        <if test=" map.remark != null" >
+          and p.remark = #{map.remark}
+        </if>
+        <if test=" map.delFlag != null" >
+          and p.del_flag = #{map.delFlag}
+        </if>
+        <if test=" map.createTime != null" >
+          and p.create_time = #{map.createTime}
+        </if>
+        <if test=" map.updateTime != null" >
+          and p.update_time = #{map.updateTime}
+        </if>
+        <if test=" map.maintenanceContent != null" >
+          and p.maintenance_content = #{map.maintenanceContent}
+        </if>
+      </where>
+    </if>
+    <choose>
+		<when test=" map != null">
+			<if test=" map.desc != null">
+				order by ${map.desc} desc
+			</if>
+			<if test=" map.asc != null">
+				order by ${map.asc} asc
+			</if>
+		</when>
+		<otherwise>
+			order by p.id desc
+		</otherwise>
+	</choose>
+  </select>
+   
+  <select id="findPaymentLimit" resultMap="BaseResultMap">
+  	select p.id
+    from bsc_payment_platform as p
+    where p.platform_type = #{platformType,jdbcType=BIGINT}
+    and p.bank_id = #{bankId,jdbcType=BIGINT}
+    and p.type_limit = #{typeLimit,jdbcType=BIGINT}
+    and p.del_flag = 1
+    limit 1
+  </select>
+  
+  <update id="delPaymentPlatform" parameterType="int" >
+    update bsc_payment_platform
+    <set >
+        del_flag = -1, update_time = now()
+    </set>
+    where id = #{id,jdbcType=BIGINT} and del_flag = 1
+  </update>
+  
+  <update id="saveMaintenanceById" parameterType="com.yourong.core.bsc.model.PaymentPlatform" >
+    update bsc_payment_platform
+    <set >
+        update_time = now(), start_time = #{startTime,jdbcType=TIMESTAMP}, end_time = #{endTime,jdbcType=TIMESTAMP},
+        maintenance_content = #{maintenanceContent,jdbcType=LONGVARCHAR}
+        <if test="serviceStatus != null">
+        	, service_status = #{serviceStatus,jdbcType=INTEGER}
+        </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT} and del_flag = 1
+  </update>
+  
+  <update id="delMaintence" parameterType="int" >
+    update bsc_payment_platform
+    <set >
+        maintenance_content = null, start_time = null, end_time = null, service_status = 1
+    </set>
+    where id = #{id,jdbcType=BIGINT} and del_flag = 1
+  </update>
+  
+  <select id="selectFlushStatusOff" resultMap="BaseResultMap" useCache="false">
+  	SELECT id from bsc_payment_platform
+  	WHERE
+		del_flag = 1
+	AND service_status = 1
+	AND start_time IS NOT NULL
+	AND end_time IS NOT NULL
+	AND now() BETWEEN start_time and end_time
+  </select>
+  <select id="selectFlushStatusOn" resultMap="BaseResultMap" useCache="false">
+  	SELECT id from bsc_payment_platform
+  	WHERE
+		del_flag = 1
+	AND service_status = 0
+	AND start_time IS NOT NULL
+	AND end_time IS NOT NULL
+	AND now() <![CDATA[ > ]]> end_time
+  </select>
+ <!-- 定时任务 start -->
+  <update id="autoFlushStatusOff" >
+	UPDATE bsc_payment_platform
+	SET service_status = 0,
+	 update_time = now()
+	WHERE
+		del_flag = 1
+	AND service_status = 1
+	AND start_time IS NOT NULL
+	AND end_time IS NOT NULL
+	AND now() BETWEEN start_time and end_time
+  </update>
+  <update id="autoFlushStatusOn" >
+	UPDATE bsc_payment_platform
+	SET service_status = 1,
+	 update_time = now(),
+	 start_time = NULL,
+	 end_time = NULL,
+	 maintenance_content = NULL
+	WHERE
+		del_flag = 1
+	AND service_status = 0
+	AND start_time IS NOT NULL
+	AND end_time IS NOT NULL
+	AND now() <![CDATA[ > ]]> end_time
+  </update>
+  <!-- 定时任务 end -->
+  
+  <select id="queryPlatformLimit" resultMap="BaseResultMap">
+	SELECT
+		p.single_limit, p.daily_limit, p.min_limit, p.service_status, p.remark, p.maintenance_content, p.start_time, p.end_time
+	FROM
+		bsc_payment_platform AS p
+	INNER JOIN bsc_bank AS b ON p.bank_id = b.id
+	AND b.code = #{code,jdbcType=VARCHAR}
+	AND b.status = 1
+	WHERE
+		p.platform_type = #{platformType,jdbcType=INTEGER}
+	AND p.type_limit = #{typeLimit,jdbcType=INTEGER}
+	AND p.del_flag = 1
+	ORDER BY
+		p.create_time DESC
+	LIMIT 1;
+  </select>
+  
+  <!-- 查询所有银行限额信息 -->
+  <select id="selectAllPaymentPlatform" resultMap="BaseResultMap">
+	SELECT
+		p.single_limit, p.daily_limit, p.min_limit, p.service_status,p.bank_id,b.code,b.simple_name,p.type_limit
+	FROM
+		bsc_payment_platform AS p
+	INNER JOIN bsc_bank AS b ON p.bank_id = b.id
+	AND b.status = 1
+	WHERE
+	p.del_flag = 1 and p.type_limit=2
+  </select>
+</mapper>

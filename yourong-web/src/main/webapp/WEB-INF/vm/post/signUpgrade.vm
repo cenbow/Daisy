@@ -1,0 +1,116 @@
+
+#set($title="电子签名-有融网-全透明的互联网理财优选平台")
+
+
+
+##新手指引
+#parse('/common/common.vm')
+#set($css_url=["$root_css_url/post/signUpgrade.css"])
+
+<div class="u-sg-hd"></div>
+<div class="m-sg-content">
+
+    <div class="m-sg-ctcenter">
+        <strong class="m-sg-hd1">1</strong>
+
+        <span class="m-sg-hd2"><h2>签名升级</h2>
+                  <h3>有融网：电子签名升级 为投资人保驾护航</h3>
+              </span>
+        <div class="m-sg-ct u-sg-fontstyle">有融网携手上上签签署战略合作协议<br/><br/>
+            优化电子合同签名服务，构建顶级安全防护体系<br/><br/>
+            共同守护互联网时代的契约精神，为投资人保驾护航<br/><br/>
+        </div>
+
+
+        <strong class="m-sg-hd1">2</strong>
+        <span class="m-sg-hd2"><h2>电子签名</h2>
+                      <h3>可靠的电子签名：四个条件不能少</h3>
+              </span>
+
+        <div class="u-sg-photo"><img src="/static/img/post/signUpgrade/p2.png"></div>
+
+
+        <div class="f-sg-motivation"><div class="u-sg-little-tt"><span>可靠的电子签名需具备的四个条件</span></div></div>
+        <div class="m-sg-ct u-sg-fontstyle">
+            根据《中华人民共和国电子签名法》第十三条规定：“电子签名同时符合下列条件的，视为可靠的电子签名：<br/>
+            <br>1）电子签名制作数据用于电子签名时，属于电子签名人专有；<br/>
+            <br>2）签署时电子签名制作数据仅由电子签名人控制；<br/>
+            <br>3）签署后对电子签名的任何改动能够被发现；<br/>
+            <br>4）签署后对数据电文内容和形式的任何改动能够被发现。<br/>
+        </div>
+        <div class="f-sg-motivation">
+        <div class="u-sg-little-tt"><span>签署可靠的电子签名有什么意义？</span></div></div>
+        <div class="m-sg-ct u-sg-fontstyle"> 可靠的电子签名是保障电子合同具有完整法律效力的前提，对于维护投资者法律权益具有重大意义。</div>
+        <div class="f-sg-motivation">
+        <div class="u-sg-little-tt"><span>没有可靠的电子签名，会带来哪些后果？</span></div></div>
+        <div class="m-sg-ct u-sg-fontstyle">没有可靠的电子签名的电子合同，在法律上存在效力瑕疵。具体体现在用户投资后，若项目出现了逾期等违约情形</br>
+            <br>不利于用户全面维护自身合法权益。</div><br/>
+
+
+
+        <strong class="m-sg-hd1">3</strong>
+        <span class="m-sg-hd2"><h2>核心优势</h2>
+                      <h3>上上签的核心优势：三重递进式法律保障</h3>
+               </span>
+        <div class="m-sg-ct f-sg-ct u-sg-fontstyle">上上签是一家提供电子合同签名的服务平台，<br/>
+            <br>它通过先进的CA认证技术、电子数据碎片式存储技术、防篡改技术，<br/>
+            <br>实现投资人、平台及借款人在交易过程中签署可靠的电子签名，<br/>
+            <br>形成一份具有司法效力的电子合同，有效保障各方权益。<br/>
+            <br><a href="https://www.ssqian.com.cn/" target="_blank">了解更多>></a><br/><br>
+        </div>
+        <div class="f-sg-motivation">
+        <div class="u-sg-little-tt"><span>Adobe Acrobat打开直接校验合同真伪</span></div></div>
+        <div class="m-sg-ct u-sg-fontstyle">上上签电子合同为标准的 PDF 格式，可以直接在 Adobe Acrobat内打开并自动校验真伪，同时显示个人/企业的电子签名详情，<br/>
+            <br>让您的合同规范化一目了然。</div>
+
+        <div class="f-sg-motivation">
+        <div class="u-sg-little-tt"><span>CA 中心出具业务报告</span></div></div>
+        <div class="m-sg-ct u-sg-fontstyle">上上签和具备国家资质的 CA 中心合作，万一发生法律纠纷，合作的 CA 中心可以为其出具对电子合同的 CA 校验报告，<br/>
+            <br>证明合同的签署人，签署时间及合同是否有被篡改。</div>
+
+        <div class="f-sg-motivation">
+        <div class="u-sg-little-tt"><span>合作公证处出具公证书</span></div></div>
+        <div class="m-sg-ct u-sg-fontstyle">作为国内唯一具有电子指纹系统的公证处，上海东方公证处为客户出具权威的公证书，证明实名认证，发起签约，实际签署行为，
+            <br/><br>时间戳及最终合同的托管，比仅提供最终合同公证或者司法鉴定的法律效力更强。</div><br/>
+
+
+
+
+
+
+        <strong class="m-sg-hd1">4</strong>
+        <span class="m-sg-hd2"><h2>如何使用</h2>
+                       <h3>两种签署方式随心选</h3>
+              </span>
+        <div class="f-sg-motivation">
+        <div class="u-sg-little-tt"><span>两种签署方式（两者具有同等的法律效力）</span></div></div>
+        <div class="m-sg-ct u-sg-fontstyle"> 1）手动签署：指用户在完成投资后进行协议签署时，通过手动签名完成签署的方式。</div>
+         <div class="f-sg-motivation"><img src="/static/img/post/signUpgrade/p4.png"></div>
+        <div class="m-sg-ct u-sg-fontstyle"> 2）自动签署：指用户在完成投资后进行协议签署时，系统通过默认签名快速完成签署的方式。</div>
+               <div class="f-sg-motivation"> <img src="/static/img/post/signUpgrade/p5.png">
+
+        <div class="u-sg-little-tt"><span>如何设置自动签署</span></div></div>
+        <div class="m-sg-ct u-sg-fontstyle">电子签名的初始状态默认为手动签名，如果您需要更改为自动签名，请到设置中心设置。<br/>
+            <br>1）电脑登录：个人中心-我的资料-电子签名<br/>
+            <br>2）手机APP登录：我的账户-点击头像设置-电子签名<br/>
+            <br>注：手机浏览器暂不支持电子签名功能</div><br/>
+
+        <div class="f-sg-motivation">
+        <div class="u-sg-button"><a href="/member/eSignature" style="color:#ffffff ">
+            立即设置>></a></div></div>
+
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+

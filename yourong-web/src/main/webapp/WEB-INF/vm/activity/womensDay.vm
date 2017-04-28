@@ -1,0 +1,209 @@
+##38活动
+#parse("/common/common.vm")
+#set($title="女神节，绽放你的美_$!{title_suffix}")
+#set($css_url=["$root_css_url/activity/womensDay.css"])
+#set($js_url=[
+  "/static/lib/js/jq/snowfall.jquery.min.js",
+  "/static/lib/js/vue/vue.js",
+  "/static/lib/js/vue/vue.extend.js",
+  "$root_js_url/activity/womensDay.js"
+])
+#set($aliyun='https://yrstatic.oss-cn-hangzhou.aliyuncs.com')
+#if($currentUser)
+  #set($logined=true)
+#else
+  #set($logined=false)
+#end
+#CSRFToken('xToken')
+
+<div id="j-womensDay" class="m-top" data-logined="$logined" v-cloak>
+  <div class="m-head">
+    <div class="m-head-text"></div>
+  </div>
+
+  <div class="m-body m-body1">
+    <div class="g-wrap m-content m-content-1">
+      <div class="m-content-top">
+        <img src="/static/img/activity/womensDay/huangguan.png" alt="">
+        <div class="m-content-title">签到惊喜随机送</div>
+      </div>
+      <p class="m-content-introduce">活动期间，用户每日签到即可获得<em class="f-fc-brown">38或48元现金券</em>中的一张，及<em class="f-fc-brown">1%收益券</em>一张。</p>
+      <img src="/static/img/activity/womensDay/quan.png" alt="" class="m-img-quan">
+      <ul>
+        <li>
+          <img src="/static/img/activity/womensDay/day7.png" alt="">
+          <div class="m-check" v-show="one"></div>
+        </li>
+        <li>
+          <img src="/static/img/activity/womensDay/day8.png" alt="">
+          <div class="m-check" v-show="two"></div>
+        </li>
+        <li>
+          <img src="/static/img/activity/womensDay/day9.png" alt="">
+          <div class="m-check" v-show="three"></div>
+        </li>
+        <li>
+          <img src="/static/img/activity/womensDay/day10.png" alt="">
+          <div class="m-check" v-show="four"></div>
+        </li>
+        <li>
+          <img src="/static/img/activity/womensDay/day11.png" alt="">
+          <div class="m-check" v-show="five"></div>
+        </li>
+        <li>
+          <img src="/static/img/activity/womensDay/day12.png" alt="">
+          <div class="m-check" v-show="six"></div>
+        </li>
+        <li>
+          <img src="/static/img/activity/womensDay/day13.png" alt="">
+          <div class="m-check" v-show="seven"></div>
+        </li>
+        <li>
+          <img src="/static/img/activity/womensDay/day14.png" alt="">
+          <div class="m-check" v-show="eight"></div>
+        </li>
+        <li>
+          <img src="/static/img/activity/womensDay/day15.png" alt="">
+          <div class="m-check" v-show="nine"></div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="m-body m-body2">
+    <div class="g-wrap m-content m-content-2">
+      <div class="m-content-top">
+        <img src="/static/img/activity/womensDay/huangguan.png" alt="">
+        <div class="m-content-title">累投豪礼日日拿</div>
+      </div>
+      <p class="m-content-introduce">活动期间，用户每日累计投资额达到以下额度，即可获得对应现金券奖励。</p>
+      <img src="/static/img/activity/womensDay/floor.png" alt="" class="m-img-floor">
+      <div class="m-gift-78 m-gift">
+        <p>累计投资满2000元</p>
+        <div class="m-gift-box">￥<em>68</em></div>
+      </div>
+      <div class="m-gift-168 m-gift">
+        <p>累计投资满6000元</p>
+        <div class="m-gift-box">￥<em>138</em></div>
+      </div>
+      <div class="m-gift-498 m-gift">
+        <p>累计投资满12000元</p>
+        <div class="m-gift-box">￥<em>458</em></div>
+      </div>
+      <div class="m-my-count" v-if="logined && timestamp < init.endTime">
+        <img src="/static/img/activity/womensDay/icon.png" alt="">
+        <template v-if="init.investment && timestamp < init.endTime">
+          我的今日累计投资额：{{init.investment | amountSplit '￥'}}
+        </template>
+        <template v-else>
+          我的今日累计投资额：0
+        </template>
+      </div>
+    </div>
+  </div>
+
+  <div class="m-body m-body3">
+    <div class="g-wrap m-content m-content-3">
+      <div class="m-content-top">
+        <img src="/static/img/activity/womensDay/huangguan.png" alt="">
+        <div class="m-content-title">女神节专属礼包</div>
+      </div>
+      <p class="m-content-introduce">3月8日女神节当日，<em class="f-fc-brown">女性用户</em>登录即可领取女神节专属礼包，有融给你女神节独一无二的爱~</p>
+      <div class="m-img-box">
+        <div class="m-img-flower-l m-img-flower">
+          <span style="font-weight: bold;"><em>3.8</em>%</span>
+          <div>收益券</div>
+        </div>
+        <div class="m-img-flower-r m-img-flower">
+          <span style="font-weight: bold;"><em>8</em>点</span>
+          <div>人气值</div>
+        </div>
+        <img src="/static/img/activity/womensDay/add.png" alt="" class="m-img-add">
+      </div>
+      <div class="m-button-happend" v-if="happend && timestamp < init.endTime">已领取</div>
+      <div class="m-button-happend" v-if="timeLate">活动已结束</div>
+      <div class="m-button" @click="getbag" v-if="!happend && timestamp < init.endTime">领取我的专属礼包</div>
+    </div>
+  </div>
+
+  <div class="m-body m-body4">
+    <div class="g-wrap">
+      <div class="m-box-rule">
+        <h2>活动规则</h2>
+        <p>1. 活动对象：有融网所有用户；</p>
+        <p>2. 活动时间：{{init.startTime | formatTime 'yyyy年MM月dd日 hh:mm' }}~{{init.endTime | formatTime 'MM月dd日 hh:mm' }}；</p>
+        <p>3. 现金券使用条件详见下表；</p>
+        <table>
+          <thead>
+          <tr>
+            <td>面额(元)</td>
+            <td>起投金额(元)</td>
+            <td>起投期限(天)</td>
+            <td>有效期</td>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>38</td>
+            <td>2000</td>
+            <td>60</td>
+            <td>领取后1天</td>
+          </tr>
+          <tr>
+            <td>48</td>
+            <td>2000</td>
+            <td>90</td>
+            <td>领取后1天</td>
+          </tr>
+          <tr>
+            <td>68</td>
+            <td>4000</td>
+            <td>60</td>
+            <td>领取后5天</td>
+          </tr>
+          <tr>
+            <td>138</td>
+            <td>6000</td>
+            <td>90</td>
+            <td>领取后5天</td>
+          </tr>
+          <tr>
+            <td>458</td>
+            <td>10000</td>
+            <td>180</td>
+            <td>领取后5天</td>
+          </tr>
+          </tbody>
+        </table>
+        <p>4. 转让专区项目不参与本活动；</p>
+        <p>5. 如有其他疑问，请拨打客服热线: 400-025-6688；</p>
+        <p>6. 本活动最终解释权归有融网所有。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="u-vanish-get animated zoomIn" v-show="tipsShow" v-text="tipsTextList[tipsType]"></div>
+
+  <div class="u-success fadeIn" v-show="womentip">
+    <p class="f-fc-orange">女神，节日快乐~</p>
+    <p class="f-fc-55">专属礼包已发放，记得去账户中查收哦~</p>
+    <img src="/static/img/activity/womensDay/close.png" alt="" class="m-img-close" @click="close">
+  </div>
+
+  <div class="u-success fadeIn" v-show="nosextip">
+    <p class="f-fc-55">快去<em class="f-fc-orange">开通新浪存钱罐</em>，亮出女神身份哦~</p>
+    <a href="$root_url/member/sinapay">立即开通存钱罐</a>
+    <img src="/static/img/activity/womensDay/close.png" alt="" class="m-img-close" @click="close">
+  </div>
+
+##蒙层
+  <div class="u-cover j-cover" v-if="door"></div>
+  <div class="u-cover-white j-cover" v-if="whitedoor"></div>
+
+</div>
+
+<script>
+  var logined = $logined,
+          isDev =$isDev
+</script>
+

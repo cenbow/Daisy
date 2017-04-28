@@ -1,0 +1,150 @@
+[v-cloak]{
+    display: none;
+}
+.z-red-color{
+    color: #d74148!important;
+}
+.u-header span{
+    font-weight: normal!important;
+}
+.u-header a{
+    position: absolute;
+    width: 12px;
+    left: 93%;
+}
+.m-investStatus{
+    text-align: center;
+    font-size: 17px;
+    color: #d74148;
+    vertical-align: middle;
+    line-height: 30px;
+    height: 50px;
+    margin: 26px 0;
+}
+.m-investStatus img{
+    width: 18px;
+    vertical-align: middle;
+    margin:-5px  10px 0 0;
+}
+.m-investStatus .u-refresh img{
+    margin:-5px  0 0 0;
+}
+.m-investStatus .u-refresh span{
+    margin-right: 10px;
+    color: #666666;
+}
+.m-investStatus .u-investFaile span{
+    color: #666666;
+}
+.m-investStatus .u-faileReason{
+    color: #999999;
+    font-size: 12px;
+}
+.m-contentWrap{
+    width: 90%;
+    margin: auto;
+    border-top: 1px solid #e5e5e5;
+    color: #999999;
+    padding: 16px 0;
+    line-height: 26px;
+    font-size: 15px;
+}
+.m-contentWrap ul li span:last-child{
+    color: #666666;
+}
+.m-contentWrap ul li .u-orderNum{
+    font-size: 12px;
+}
+/*.m-contentWrap ul li .u-payWay{*/
+/*font-size: 13px;*/
+/*}*/
+.u-lookDetail{
+    width: 90%;
+    border-top: 1px solid #e5e5e5;
+    padding: 0 5%;
+    height: 45px;
+    line-height: 45px;
+    border-bottom: 1px solid #e5e5e5;
+}
+.u-lookDetail a{
+    color: #333333;
+    font-size: 16px;
+    display: block;
+    width: 100%;
+}
+.u-lookDetail a span:last-child{
+    color: #999999;
+    font-size: 22px;
+}
+.u-investBtn{
+    width: 100%;
+    background: #f3f3f3;
+    text-align: center;
+    padding: 20px 0;
+}
+.u-investBtn div {
+    width: 90%;
+    margin:auto;
+    height: 44px;
+    line-height: 44px;
+    background: #d74148;
+    border-radius: 5px;
+    text-align: center;
+}
+.u-investBtn div a{
+    color: #fff;
+    display: block;
+    width: 100%;
+}
+.m-redPacket{
+    padding: 50px 0;
+    position: relative;
+    background: #f3f3f3;
+}
+.m-redPacket a{
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+.m-redPacket a img{
+    width: 15%;
+    position: absolute;
+    top: 20px;
+    right: 0;
+}
+/*!*倒计时弹窗*!*/
+/*.u-paySuccess{*/
+    /*width: 60%;*/
+    /*-webkit-border-radius: 8px;*/
+    /*-moz-border-radius: 8px;*/
+    /*border-radius: 8px;*/
+    /*position: absolute;*/
+    /*top: 20%;*/
+    /*left: 20%;*/
+    /*text-align: center;*/
+    /*background: #fff;*/
+    /*line-height: 40px;*/
+    /*z-index: 200;*/
+/*}*/
+/*.u-paySuccess .u-countdown{*/
+    /*width: 40px;*/
+    /*height: 40px;*/
+    /*background: #CCCCCC;*/
+    /*position: absolute;*/
+    /*top: 0;*/
+    /*right: 0;*/
+    /*border-bottom-left-radius: 40px;*/
+    /*border-top-right-radius:8px;*/
+    /*color: #fff;*/
+    /*font-size: 18px;*/
+/*}*/
+/*.u-paySuccess .u-countdown i{*/
+    /*margin:-4px 0 0 8px;*/
+/*}*/
+/*.u-paySuccess img{*/
+    /*width: 140px;*/
+/*}*/
+/*.u-paySuccess span{*/
+    /*display: block;*/
+    /*font-size: 14px;*/
+/*}*/

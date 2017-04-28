@@ -1,0 +1,164 @@
+##520活动
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$res_url/source/css/activity/celebrationA.css"])
+
+#if($currentUser)
+    #set($logined=true)
+#else
+    #set($logined=false)
+#end
+#CSRFToken('xToken')
+#set($os=3)
+##  安卓
+#if($loginSource==1)
+    #set($os=1)
+#end
+##  IOS 用mweb的处理方式
+#if($loginSource==2)
+    #set($os=3)
+#end
+##
+#if($loginSource==1 || $loginSource==2)
+    <style>
+        .g-ft{
+            display: none;
+        }
+    </style>
+#end
+
+
+<div id="j-celebration" platform="$os">
+##header，安卓，不需要头部
+    #if($loginSource!=1)
+        <h2 class="u-pageTitle f-pos-r">
+            <a href="$siteurl/mIndex">有融网</a>
+        <span class=" f-pos-a f-fs18 f-ff-ver">
+            #if(!$currentUser)
+                <a href="{{loginUrl}}" id="j-login">登录</a>
+                <a href="$siteurl/mstation/register" id="j-register">注册</a>
+            #else
+                <a href="$mCenter_logout_url">退出</a>
+            #end
+        </span>
+        </h2>
+    #end
+##页头
+    <div class="m-celebrationA-hd">
+        <img src="$res_url/img/activity/celebrationA/celebrationA-hd.jpg" alt="" width="100%"/>
+        <a href="$siteurl/mstation/post/Again">前往A<sup class="u-icon-plus">+</sup>轮发布会>></a>
+    </div>
+    <div class="u-rewards-detail" :style="{display:rewards?'block':'none'}">
+        恭喜您，获得<em v-text="rewards"></em>元现金券一张。
+        <i class="u-close" @click="rewards=''">X</i>
+    </div>
+    <div class="m-celebrationA">
+    ##红包雨
+        <div class="u-celebrationA-redPacket">
+            #set($!encryptionId=$request.getParameter("encryptionId"))
+            <div class="u-redPacket-rule">
+                <h3>感恩红包雨</h3>
+                <p><em v-text="startTime"></em> - <em v-text="endTime"></em>，每日均有感恩红包雨，<br>
+                    登录即可领取红包，每人每天只能领取一个红包哦。
+                </p>
+            </div>
+            <img src="$res_url/img/activity/celebrationA/celebrationA-award.jpg" alt="" width="100%"/>
+
+            <div class="u-redPacket-btn">
+                <a :class="{'z-finish':received||status===2||status===6}" @click="getRewards($event)" href="javascript:void(0)" v-text="rewardsBtnText"></a>
+            </div>
+        </div>
+        <div class="u-celebrationA-hilarity">
+            <h3>感恩齐狂欢</h3>
+            <p>活动期间，单笔投资任意项目满足以下条件<br>
+                即可获得对应的现金券一张，多投多得哦。</p>
+            <table>
+                <tbody>
+                <tr>
+                    <td >单笔投资</td>
+                    <td >现金券</td>
+                </tr>
+
+                <tr>
+                    <td>3000~3999</td>
+                    <td>50</td>
+                </tr>
+                <tr>
+                    <td>4000~4999</td>
+                    <td>100</td>
+                </tr>
+                <tr>
+                    <td>≥5000</td>
+                    <td>200</td>
+                </tr>
+                </tbody>
+            </table>
+            #if($loginSource == 1)
+            <a href="javascript:;" onclick="Android.ToActivity('projectList',null)">立即投资</a>
+            #elseif($loginSource == 2)
+            <a href="yrw-skip://invokeMethod=projectList">立即投资</a>
+            #else
+            <a href="$siteurl/products/m/list-all-all-1.html">立即投资</a>
+            #end
+        </div>
+        <div class="u-celebrationA-hilarity">
+            <h3>感恩高收益</h3>
+            <p>活动期间，单笔投资房有融或房租融项目满8000元，<br>
+                即可获得收益券一张，乐享高收益。</p>
+            <table>
+                <tbody>
+                <tr>
+                    <td >收益天数</td>
+                    <td >收益券</td>
+                </tr>
+
+                <tr>
+                    <td>N<100</td>
+                    <td>0.5%</td>
+                </tr>
+                <tr>
+                    <td>N≥100</td>
+                    <td>1.5%</td>
+                </tr>
+                </tbody>
+            </table>
+            #if($loginSource == 1)
+            <a href="javascript:;" onclick="Android.ToActivity('projectList',null)">立即投资</a>
+            #elseif($loginSource == 2)
+            <a href="yrw-skip://invokeMethod=projectList">立即投资</a>
+            #else
+            <a href="$siteurl/products/m/list-all-all-1.html">立即投资</a>
+            #end
+        </div>
+        <div class="u-celebrationA-rule">
+            <h4>活动规则</h4>
+            <p>
+                1、活动对象：有融网所有用户；<br>
+##               <em v-text="startDate"></em>00:00 - <em v-text="endDate"></em>23:59；
+                2、活动时间：<em style="display: inline-block;"><i v-text="fullStartTime"></i>~<i v-text="fullEndTime"></i></em>
+                <br>3、现金券领取后7天内有效，收益券领取后10天内有效；
+            <span>现金券使用规则:
+            <br>面额为50元的现金券，起投金额3000元，起投期限30天
+            <br>面额为66元的现金券，起投金额3000元，起投期限40天
+            <br>面额为88元的现金券，起投金额4000元，起投期限60天
+            <br>面额为100元的现金券，起投金额5000元，起投期限60天
+            面额为200元的现金券，起投金额8000元，起投期限90天
+                </span>
+                4、如有其他疑问，请拨打客服热线：400-025-6688；
+                <br>本活动最终解释权归有融网所有
+            </p>
+        </div>
+    </div>
+</div>
+#set($pageScript="
+##<script src='$res_url/lib/js/vconsole.min.js'></script>
+<script src='$res_url/build/js/appHook.js'></script>
+<script src='$aliyunOss_url/res/lib/vue/v1/vue.min.js'></script>
+<script>
+    var initData = $!{data},
+        os = $!{os},
+        mLogined = $logined
+    seajs.use('$m_js_url/activity/celebrationA.js')
+</script>
+")
+#CSRFToken("xToken")

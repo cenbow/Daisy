@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.ic.dao.ProjectOpenMapper" >
+    <resultMap id="BaseResultMap" type="com.yourong.core.ic.model.ProjectOpen" >
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="outbiz_no" property="outBizNo" jdbcType="VARCHAR" />
+        <result column="open_platform_key" property="openPlatformKey" jdbcType="VARCHAR" />
+        <result column="project_id" property="projectId" jdbcType="BIGINT" />
+        <result column="total_amount" property="totalAmount" jdbcType="DECIMAL" />
+        <result column="annualized_rate" property="annualizedRate" jdbcType="DECIMAL" />
+        <result column="borrow_period" property="borrowPeriod" jdbcType="INTEGER" />
+        <result column="borrow_period_type" property="borrowPeriodType" jdbcType="INTEGER" />
+        <result column="borrower_name" property="borrowerName" jdbcType="VARCHAR" />
+        <result column="identity_number" property="identityNumber" jdbcType="VARCHAR" />
+        <result column="job" property="job" jdbcType="VARCHAR" />
+        <result column="income" property="income" jdbcType="INTEGER" />
+        <result column="personal_info" property="personalInfo" jdbcType="VARCHAR" />
+        <result column="projectbiz_json" property="projectbizJson" jdbcType="VARCHAR" />
+        <result column="short_desc" property="shortDesc" jdbcType="VARCHAR" />
+        <result column="borrow_detail" property="borrowDetail" jdbcType="VARCHAR" />
+        <result column="bscAttachments_json" property="bscAttachmentsJson" jdbcType="VARCHAR" />
+        <result column="sku" property="sku" jdbcType="VARCHAR" />
+        <result column="status" property="status" jdbcType="INTEGER" />
+        <result column="refuse_cause" property="refuseCause" jdbcType="VARCHAR" />
+        <result column="remark" property="remark" jdbcType="VARCHAR" />
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        id, outbiz_no,open_platform_key, project_id,total_amount,annualized_rate,borrow_period,borrow_period_type,borrower_name,identity_number, job,income,personal_info,
+        projectbiz_json,short_desc,borrow_detail,bscAttachments_json,sku, status,remark,refuse_cause, update_time, create_time,del_flag
+    </sql>
+
+    <select id="queryPageProjectOpen" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM ic_project_open
+        WHERE del_flag=1
+        <if test=" query.outBizNo != null">
+            and outbiz_no = #{query.outBizNo}
+        </if>
+        <if test=" query.openPlatformKey != null">
+            and open_platform_key = #{query.openPlatformKey}
+        </if>
+        <if test=" query.projectId != null">
+            and project_id = #{query.projectId}
+        </if>
+        <if test=" query.borrowerName != null">
+            and borrower_name = #{query.borrowerName}
+        </if>
+        <if test=" query.startTime != null">
+            and create_time <![CDATA[>=]]> #{query.startTime}
+        </if>
+        <if test=" query.endTime != null">
+            and create_time <![CDATA[<=]]> #{query.endTime}
+        </if>
+        <if test=" query.status != null">
+            and status = #{query.status}
+        </if>
+        <if test=" query.status == null">
+            and (status = 3 or status = 4 or status = 5 or status = 6)
+        </if>
+        ORDER BY create_time DESC
+        LIMIT #{query.startRow,jdbcType=INTEGER}, #{query.pageSize,jdbcType=INTEGER}
+    </select>
+
+    <select id="queryPageCountProjectOpen" resultType="java.lang.Integer">
+        SELECT COUNT(1)
+        FROM ic_project_open
+        WHERE del_flag=1
+        <if test=" query.outBizNo != null">
+            and outbiz_no = #{query.outBizNo}
+        </if>
+        <if test=" query.openPlatformKey != null">
+            and open_platform_key = #{query.openPlatformKey}
+        </if>
+        <if test=" query.projectId != null">
+            and project_id = #{query.projectId}
+        </if>
+        <if test=" query.borrowerName != null">
+            and borrower_name = #{query.borrowerName}
+        </if>
+        <if test=" query.startTime != null">
+            and create_time <![CDATA[>=]]> #{query.startTime}
+        </if>
+        <if test=" query.endTime != null">
+            and create_time <![CDATA[<=]]> #{query.endTime}
+        </if>
+        <if test=" query.status != null">
+            and status = #{query.status}
+        </if>
+        <if test=" query.status == null">
+            and (status = 3 or status = 4 or status = 5 or status = 6)
+        </if>
+    </select>
+
+    <select id="queryHandleList" resultMap="BaseResultMap">
+        SELECT id,bscAttachments_json FROM ic_project_open WHERE status=1 AND del_flag=1
+    </select>
+
+    <select id="queryBuildCountByOutBizNo" resultType="java.lang.Integer">
+        SELECT COUNT(1)
+        FROM ic_project_open
+        WHERE outbiz_no = #{outBizNo}
+    </select>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+        select
+        <include refid="Base_Column_List" />
+        from ic_project_open
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+
+    <resultMap id="SynBizMap" type="com.yourong.core.ic.model.biz.ProjectOpenSynBiz" >
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="outbiz_no" property="outBizNo" jdbcType="VARCHAR" />
+        <result column="open_platform_key" property="openPlatformKey" jdbcType="VARCHAR" />
+        <result column="project_id" property="projectId" jdbcType="BIGINT" />
+        <result column="name" property="projectName" jdbcType="VARCHAR" />
+        <result column="sku" property="sku" jdbcType="VARCHAR" />
+        <result column="status" property="status" jdbcType="INTEGER" />
+        <result column="refuse_cause" property="refuseCause" jdbcType="VARCHAR" />
+        <result column="loan_status" property="loanStatus" jdbcType="VARCHAR" />
+        <result column="loan_time" property="loanTime" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="queryByOutBizNo" resultMap="SynBizMap">
+        select o.id,o.outbiz_no,o.open_platform_key,o.project_id,o.sku,o.status,o.refuse_cause,p.name,d.loan_status,d.loan_time loan_time from
+        ic_project_open o LEFT JOIN ic_project p ON o.project_id=p.id LEFT JOIN fin_loan_detail d ON o.project_id=d.project_id
+        where o.outbiz_no = #{outBizNo}
+    </select>
+
+    <select id="queryAuditingInfo" resultMap="BaseResultMap">
+        SELECT status,short_desc,borrow_detail,refuse_cause FROM ic_project_open WHERE id=#{openid}
+    </select>
+
+    <select id="queryRemarkById" resultMap="BaseResultMap">
+        SELECT remark FROM ic_project_open WHERE id=#{openid}
+    </select>
+
+    <update id="updateAttachmentById" parameterType="com.yourong.core.ic.model.ProjectOpen">
+        UPDATE ic_project_open SET bscAttachments_json=#{bscAttachmentsJson} ,status=#{status} ,update_time=#{updateTime} WHERE id=#{id} AND status=1
+    </update>
+
+    <update id="auditingById">
+        UPDATE ic_project_open SET short_desc=#{shortdesc},borrow_detail=#{borrowdetail},status=5 WHERE id=#{openid}
+    </update>
+
+    <update id="refuseById">
+        UPDATE ic_project_open SET refuse_cause=#{refuseCause},status=6 WHERE id=#{openid}
+    </update>
+
+    <update id="updateRemarkById">
+        UPDATE ic_project_open SET remark=#{remark} WHERE id=#{openid}
+    </update>
+
+    <update id="updateStatusAndRemarkById">
+        UPDATE ic_project_open SET status=#{status},update_time=#{updateTime},remark=#{remark} WHERE id=#{id} AND status=#{needstatus}
+    </update>
+
+    <update id="updateProjectbizJsonAndStatusById">
+        UPDATE ic_project_open SET projectbiz_json=#{projectbizJson}, status=#{status},update_time=#{updateTime} WHERE id=#{id}
+    </update>
+
+    <update id="buildProject" parameterType="com.yourong.core.ic.model.ProjectOpen">
+        UPDATE ic_project_open SET project_id=#{projectId},status=#{status},update_time=#{updateTime} WHERE id=#{id}
+    </update>
+
+    <insert id="insertProjectOpen" parameterType="com.yourong.core.ic.model.ProjectOpen" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO ic_project_open (`outbiz_no`,`project_id`,`open_platform_key`,`total_amount`,`annualized_rate`,`borrow_period`,`borrow_period_type`,`borrower_name`,`identity_number`,`job`,`income`,`personal_info`,`projectbiz_json`,`short_desc`,`borrow_detail`,`bscAttachments_json`,`sku`,`status`,`refuse_cause`,`update_time`,`create_time`,`del_flag`)
+        VALUES(#{outBizNo},#{projectId},#{openPlatformKey},#{totalAmount},#{annualizedRate},#{borrowPeriod},#{borrowPeriodType},#{borrowerName},#{identityNumber},#{job},#{income},#{personalInfo},#{projectbizJson},#{shortDesc},#{borrowDetail},#{bscAttachmentsJson},#{sku},#{status},#{refuseCause},#{updateTime},#{createTime},#{delFlag})
+    </insert>
+
+</mapper>

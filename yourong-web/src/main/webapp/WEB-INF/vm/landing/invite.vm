@@ -1,0 +1,291 @@
+##收益着落页
+#parse('/common/common.vm')
+#set($css_url=["$root_css_url/modules/login.css","$root_css_url/landing/invite.css"])
+#set($title="众享其乐 步步有礼_$!{title_suffix}")
+#set($js_url=["$root_url/static/lib/js/jq/jquery.circliful.min.js","$root_js_url/modules/register.js",
+  "$root_js_url/landing/seasonFour.js"])
+
+
+
+<!--[if (gte IE 7)&(lte IE 9)]>
+<style>
+/*首页项目进度环*/
+.u-ring-bg{
+	position: absolute;
+	top: -20px;
+	left: -20px;
+	z-index: 1;
+	background: url(/static/img/homepage/round/round0.png) no-repeat center;
+	height: 160px;
+	width: 160px;
+	}
+</style>
+<![endif]-->
+#if($currentUser)
+<script type="text/javascript">
+  var login_url = '$root_url' + "/member/home"
+  window.location.href = login_url;
+
+</script>
+#else
+<style>
+  .m-payRiseLand-partner h3 {
+    margin: 130px 0 72px;
+  }
+
+  .m-payRiseLand-partner li {
+    width: 113px;
+    height: 47px;
+    overflow: hidden;
+    display: inline-block;
+    border: 1px solid #d7d7d7;
+    margin: 0 0 10px 10px;
+  }
+
+  .m-payRiseLand-partner li:first-child {
+    margin-left: 0;
+  }
+</style>
+<div class="u-invite-hd" id="register">
+  <div class="g-wrap">
+    <form data-action="$root_url/security/register/saveMember" method="POST"
+          class="f-pos-r j-form-xpost j-validform m-regform-land f-fr" data-page="register" id="j-reg-form">
+      #CSRFToken()
+      #onceToken()
+      <input type="hidden" id="j-reg-mobile"/>
+      <div class="u-ipt-group f-pos-r">
+        <input type="text" name="mobile" oncopy="return false;" onpaste="return false;" id="j-cpn" autocomplete="off"
+               nullmsg="手机号码不能为空" errormsg="请输入正确的手机号码" class="f-round f-ipt-w430 u-ipt-text u-ipt-str"
+               placeholder="请输入手机号码"/>
+        <span class='m-val-tips'></span>
+        <div class="f-mob-sha f-dn" id="j-mobile"></div>
+      </div>
+      <div class="m-input-vercode f-cf">
+                <span class="u-xtips-wrap">
+				<!--[if (gte IE 7)&(lte IE 9)]>
+                  <em>输入图形码</em>
+                  <![endif]-->
+                  <input type="text" id="j-vercode" autocomplete="off" nullmsg="请输入图形验证码"
+                         class="f-round u-ipt-text f-ipt-w260 j-vercode u-ipt-vercode" placeholder="输入图形码"/>
+			</span>
+        <img src="$root_url/security/validateCode" alt="验证码" title="点击重新获取验证码" id="j-img-vercode"
+             class="u-img-vercode"/>
+                <span id="j-phonecode-wrap" class="u-xtips-wrap u-phonecode-wrap z-hide">
+				<!--[if (gte IE 7)&(lte IE 9)]>
+                  <em>输入手机验证码</em>
+                  <![endif]-->
+                  <input type="text" name="phonecode" autocomplete="off" id="j-phonecode" placeholder="输入手机验证码"
+                         class="f-clear f-round u-ipt-text f-ipt-w260 u-ipt-phonecode"/>
+			</span>
+                <span class="f-round u-tips-vercode f-tips-gray">
+			获得手机验证码
+			</span>
+        <span class="m-val-tips"> &nbsp; </span>
+        <span class="u-ipt-blank"> &nbsp; </span>
+      </div>
+      <div class="u-ipt-group">
+        <input type="password" name="password" oncopy="return false;" onpaste="return false;"
+               class="f-round u-ipt-text f-ipt-w430 v-pwd" placeholder="输入密码，长度6-16位，至少包含数字和字母"/>
+        <span class="u-ipt-blank"> &nbsp; </span>
+      </div>
+      <div class="u-ipt-group">
+        <input type="password" name="repassword" oncopy="return false;" onpaste="return false;" recheck="password"
+               class="f-round f-ipt-w430 u-ipt-text v-pwd-reck" placeholder="再次输入密码"/>
+        <span class="u-ipt-blank"> &nbsp; </span>
+      </div>
+
+      <input type="hidden" name="tid" value="$!{request.getParameter('tid')}"/>
+      <input type="hidden" name="registerTraceSource" value="$!{session.getAttribute(" register_TraceSource ")}"/>
+      <input type="hidden" name="registerTraceNo" value="$!{session.getAttribute(" register_TraceNo ")}"/>
+      <input type="hidden" name="checkType" id="j-checkType" value="1"/>
+      <input type="hidden" name="pngCode" id="j-pngcode"/>
+      <label class="f-clear f-mgl-8">
+        <input type="checkbox" checked="checked" name="agree" id="j-agree"/>&nbsp;我已阅读并同意<a href="#" class="f-fc-red"
+                                                                                            id="j-register-argreement-link"
+                                                                                            data-target="j-register-argreement"
+                                                                                            data-url="$root_url/static/register-agreement.html">《有融网服务协议》</a>
+      </label>
+      <br/>
+      <input type="submit" value="立即领取568大礼包" class="f-round f-fs18 f-btn-m u-btn u-btn-primary j-reg-btn"/>
+    </form>
+  </div>
+</div>
+<div class="u-invite-body1">
+  <div class="g-wrap-invite">
+    <div class="u-rool">
+      <p>邀请好友注册并首次投资，即可获得<em>30元</em><i>现金券</i>；</p>
+      <p>好友投资后可再得好友<i>投资额*（收益天数/30）*0.3‰的现金奖励</i>;</p>
+      <p>每100km为里程终点，每30km/50km/80km可获得幸运背包；到达终点获终极宝箱，<i>至少<em>180元</em>现金券</i>，里程越大，奖励越高。</p>
+    </div>
+  </div>
+</div>
+<div class="u-invite-body2">
+  <div class="g-wrap-invite">
+    <table>
+      <thead>
+      <tr>
+        <th>好友</th>
+        <th>首次投资<br><em>+10km</em></th>
+        <th>体验APP<br><em>+3km</em></th>
+        <th>绑定微信<br><em>+3km</em></th>
+        <th>完善个人资料<br><em>+2km</em></th>
+        <th>绑定邮箱<br><em>+2km</em></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>
+          <div class="u-pic u-pic-1">酒***</div>
+        </td>
+        <td class="u-td-check"></td>
+        <td class="u-td-check"></td>
+        <td></td>
+        <td></td>
+        <td class="u-td-check"></td>
+      </tr>
+      <tr>
+        <td>
+          <div class="u-pic u-pic-2">l***b</div>
+        </td>
+        <td></td>
+        <td class="u-td-check"></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>
+          <div class="u-pic u-pic-3">135***34</div>
+        </td>
+        <td></td>
+        <td></td>
+        <td class="u-td-check"></td>
+        <td class="u-td-check"></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>
+          <div class="u-pic u-pic-4">刘***宝</div>
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td class="u-td-check"></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+##项目
+<!--理财项目-->
+<div class="m-seasonFour-products">
+  <div class="g-wrap f-cf">
+    <!--新手项目-->
+    <div class="u-newCustomer-item" id="j-nc-item">
+      <a id="newC_aA" class="u-pl-wrap u-newCustomer-pic" href="">
+        <img id="newC_img" src="" alt="">
+        <span id="newC_round" class="u-ring-bg"
+              style="background-image:url(/static/img/homepage/round/round_finish.png)"></span>
+        <i></i>
+                <span class="u-pl-stat circliful" id="j-pl-stat2" data-dimension="160" data-fontsize="14"
+                      data-percent="" data-fgcolor="#e33f4a" data-bordersize="5" data-bgcolor="#eee"
+                      style="width: 160px;">
+                </span>
+      </a>
+      <div class="u-newCustomer-particulars">
+        <a id="newC_aB" class="u-newCustomer-itemNm f-fs16" href="/products/detail-989800431.html">
+          <strong id="newC_prefixProjectName"></strong><em id="newC_suffixProjectName"></em><i id="newC_joinLease"
+                                                                                               class=""></i>
+        </a>
+        <div class="u-newCustomer-info">
+          <span class="u-newCustomer-data01">项目总额&nbsp;<span class="f-ff-rmb f-fs22">￥</span><em
+                  class="f-ff-amount f-fs28" id="newC_totalAmount"></em> </span>
+          <em class="u-newCustomer-data">年化收益&nbsp;<em class="f-ff-amount f-fs28 f-fc-red2"
+                                                       id="newC_annualizedRate"></em></em> <strong
+                class="u-newCustomer-days">
+          <span id="newC_date">收益天数</span>
+          <em class="f-ff-amount f-fs28" id="newC_earningsDays"></em><span class="f-fs18" id="newC_unit">天</span>
+        </strong>
+        </div>
+        <div class="u-newCustomer-process f-clear">
+          <span id="newC_processBar" style=""></span>
+        </div>
+        <div class="u-newCustomer-meta">
+          <em>当前进度：<strong class="f-ff-ver" id="newC_process"></strong></em><span>剩余可投金额 <strong class="f-ff-ver"
+                                                                                                 id="newC_balance"></strong> 元</span>
+          <a id="newC_aC" href="" class="u-newCustomer-btn f-round f-fr"></a>
+        </div>
+      </div>
+      <div class="u-pbox-footer">
+      </div>
+    </div>
+  </div>
+  <!--常规项目-->
+  <div class="g-wrap f-cf">
+    <div class="m-product-box">
+      <div class="m-pbox-wrap">
+        <h3 class="u-pbox-title u-circle-12 f-text-overflow">
+          <a id="rec_aA" href="">
+            <em class="f-fl" id="rec_projectName"></em>
+            <i id="rec_joinLease" class=""></i>
+          </a>
+        </h3>
+        <div class="u-arrow-down">
+          <i>◆</i>
+          <span>◆</span>
+        </div>
+        <div class="m-pbox-main f-cf">
+          <div class="u-pbox-thumbnail f-fl" style="width:120px;height:120px;">
+            <a id="rec_aB" href="" class="u-thumbnail-wrap"></a>
+            <img id="rec_img" src="" width="120" height="120" alt="">
+          </div>
+          <div class="m-pbox-info f-fr">
+								<span class="u-pbox-data">
+									<span class="f-ff-rmb f-fs22">￥</span><em class="f-ff-amount f-fs38" id="rec_totalAmount"></em>
+									<br>项目总额
+								</span>
+            <em class="u-pbox-data">
+              <em id="rec_annualizedRate" class="f-ff-amount f-fs38 f-fc-red2"></em><span
+                    class="f-ff-amount f-fs22 f-fc-red2">%</span>
+              <br>年化收益
+            </em>
+            <strong class="u-pbox-data">
+              <em class="f-ff-amount f-fs38" id="rec_earningsDays"></em><span class="f-fs18" id="rec_unit">天</span>
+              <br><span id="rec_date">收益天数</span>
+            </strong>
+            <div class="u-pbox-process f-clear">
+              <span class="f-bgc-red2" id="rec_processBar" style=""></span>
+            </div>
+            <div class="u-pbox-meta">
+              <em>当前进度：<span class="f-ff-ver" id="rec_process"></span></em>
+              <span>剩余可投金额 <strong class="f-ff-ver" id="rec_balance"></strong> 元</span>
+              <a id="rec_aC" href="" class="u-pbox-btn f-round f-bgc-red2 f-fr"></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="u-pbox-footer">
+      </div>
+    </div>
+  </div>
+</div>
+<!--/理财项目-->
+<!--二维码-->
+<div class="g-wrap u-seasonFour-recode f-pos-r">
+  <img src="/static/img/landing/seasonFour/seasonFour_recode.png" width="240" height="496"/>
+</div>
+<!--/二维码-->
+####立即去领按钮
+<div class="u-btn-bg">
+  <a class="u-invite-btn" href="#register">立即领取568大礼包</a>
+</div>
+<!--有融网服务协议-->
+<div class="u-agreement-box f-dn" id="j-register-argreement">
+  <h3 class="f-fs18">有融网服务协议<i></i></h3>
+  <div>
+    <iframe src="" frameborder="0"></iframe>
+  </div>
+</div>
+<!--/有融网服务协议-->
+#end

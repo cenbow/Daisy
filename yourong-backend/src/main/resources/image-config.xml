@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xmlns:tx="http://www.springframework.org/schema/tx" 
+xmlns:aop="http://www.springframework.org/schema/aop" 
+xmlns:context="http://www.springframework.org/schema/context" 
+xsi:schemaLocation="
+http://www.springframework.org/schema/beans 
+http://www.springframework.org/schema/beans/spring-beans-3.2.xsd 
+http://www.springframework.org/schema/tx 
+http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+http://www.springframework.org/schema/aop 
+http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd
+">
+
+<!-- 图片裁剪、水印配置 -->
+<bean id="imagesConfig" class="java.util.HashMap">
+	<constructor-arg>
+		<map>
+			<entry key="default" value-ref="default" />
+			<entry key="debt" value-ref="debt" />
+			<entry key="debt_lender" value-ref="debt_lender" />
+			<entry key="debt_borrower" value-ref="debt_borrower" />
+			<entry key="debt_collateral" value-ref="debt_collateral" />
+			<entry key="project-thumbnail" value-ref="project-thumbnail" />
+			<entry key="debt_legal" value-ref="debt_legal" />
+			<entry key="debt_contract" value-ref="debt_contract" />
+			<entry key="debt_base" value-ref="debt_base" />
+			<entry key="shopgoods" value-ref="shopgoods" />
+			<entry key="manager_href" value-ref="manager_href" />
+		</map>
+	</constructor-arg>
+</bean>
+
+<!-- 默认类目上传文件大小配置 -->
+<bean id="default" class="java.util.ArrayList">
+	<constructor-arg>
+		<list>
+			<bean class="com.yourong.core.upload.model.ImageConfig">
+				<property name="height" value="433" />
+				<property name="width" value="600" />
+				<property name="sizeType" value="default" />
+			</bean>
+			<bean class="com.yourong.core.upload.model.ImageConfig">
+				<property name="height" value="216" />
+				<property name="width" value="300" />
+				<property name="sizeType" value="_300x216" />
+			</bean>
+		</list>	
+	</constructor-arg>
+</bean>
+
+<!-- 债权上传文件大小配置 -->
+<bean id="debt" class="java.util.ArrayList">
+	<constructor-arg>
+		<list>
+			<bean class="com.yourong.core.upload.model.ImageConfig">
+				<property name="height" value="433" />
+				<property name="width" value="600" />
+				<property name="sizeType" value="default" />
+			</bean>
+		</list>	
+	</constructor-arg>
+</bean>
+
+<!-- 原始债权人上传文件大小配置 -->
+<bean id="debt_lender" class="java.util.ArrayList">
+	<constructor-arg>
+		<list>
+			<bean class="com.yourong.core.upload.model.ImageConfig">
+				<property name="width" value="425" />
+				<property name="sizeType" value="_425" />
+			</bean>
+			<bean class="com.yourong.core.upload.model.ImageConfig">
+				<property name="height" value="60" />
+				<property name="width" value="95" />
+				<property name="sizeType" value="_95x60" />
+				<property name="isAddWatermark" value="false" />
+			</bean>
+		</list>	
+	</constructor-arg>
+</bean>
+
+<!-- 借款人上传文件大小配置 -->
+<bean id="debt_borrower" class="java.util.ArrayList">
+	<constructor-arg>
+		<list>
+			<bean class="com.yourong.core.upload.model.ImageConfig">
+				<property name="width" value="425" />
+				<property name="sizeType" value="_425" />
+			</bean>
+			<bean class="com.yourong.core.upload.model.ImageConfig">
+				<property name="height" value="60" />
+				<property name="width" value="95" />
+				<property name="sizeType" value="_95x60" />
+				<property name="isAddWatermark" value="false" />
+			</bean>
+		</list>	
+	</constructor-arg>
+</bean>
+
+<!-- 质押物&抵押物上传文件大小配置 -->
+<bean id="debt_collateral" class="java.util.ArrayList">
+	<constructor-arg>
+		<list>
+			<bean class="com.yourong.core.upload.model.ImageConfig">
+				<property name="width" value="425" />
+				<property name="sizeType" value="_425" />
+			</bean>
+			<bean class="com.yourong.core.upload.model.ImageConfig">
+				<property name="height" value="60" />
+				<property name="width" value="95" />
+				<property name="sizeType" value="_95x60" />
+				<property name="isAddWatermark" value="false" />
+			</bean>
+		</list>	
+	</constructor-arg>
+</bean>
+
+<!-- 项目缩略图 -->
+<bean id="project-thumbnail" class="java.util.ArrayList">
+	<constructor-arg>
+		<list>
+			<bean class="com.yourong.core.upload.model.ImageConfig">
+				<property name="height" value="300" />
+				<property name="width" value="300" />
+				<property name="isAddWatermark" value="false" />
+				<property name="keepAspectRatio" value="false" />
+				<property name="sizeType" value="default" />
+			</bean>
+		</list>	
+	</constructor-arg>
+</bean>
+
+
+<!-- 债权合同上传文件大小配置 -->
+<bean id="debt_contract" class="java.util.ArrayList">
+	<constructor-arg>
+		<list>
+			<bean class="com.yourong.core.upload.model.ImageConfig">
+				<property name="height" value="665" />
+				<property name="width" value="470" />
+				<property name="watermarkImagePath" value="static/img/watermark/ylw-contract.png" />
+				<property name="sizeType" value="default" />
+				<property name="keepAspectRatio" value="false" />
+			</bean>
+		</list>	
+	</constructor-arg>
+</bean>
+
+<!-- 法律意见书上传文件大小配置 -->
+<bean id="debt_legal" class="java.util.ArrayList">
+	<constructor-arg>
+		<list>
+			<bean class="com.yourong.core.upload.model.ImageConfig">
+				<property name="height" value="665" />
+				<property name="width" value="470" />
+				<property name="watermarkImagePath" value="static/img/watermark/ylw-contract.png" />
+				<property name="sizeType" value="default" />
+				<property name="keepAspectRatio" value="false" />
+			</bean>
+		</list>	
+	</constructor-arg>
+</bean>
+
+<!-- 债权其他资料图片上传文件大小配置 -->
+<bean id="debt_base" class="java.util.ArrayList">
+	<constructor-arg>
+		<list>
+			<bean class="com.yourong.core.upload.model.ImageConfig">
+				<property name="height" value="590" />
+				<property name="width" value="455" />
+				<property name="watermarkImagePath" value="static/img/watermark/ylw-contract.png" />
+				<property name="sizeType" value="default" />
+				<property name="keepAspectRatio" value="false" />
+			</bean>
+		</list>	
+	</constructor-arg>
+</bean>
+
+<!-- 直投项目其他资料图片上传文件大小配置 -->
+<bean id="direct_project_base" class="java.util.ArrayList">
+	<constructor-arg>
+		<list>
+			<bean class="com.yourong.core.upload.model.ImageConfig">
+				<property name="height" value="590" />
+				<property name="width" value="455" />
+				<property name="watermarkImagePath" value="static/img/watermark/ylw-contract.png" />
+				<property name="sizeType" value="default" />
+				<property name="keepAspectRatio" value="false" />
+			</bean>
+		</list>	
+	</constructor-arg>
+</bean>
+<!-- 直投项目其他资料图片上传文件大小配置 -->
+<bean id="direct_project_base_mosaic" class="java.util.ArrayList">
+	<constructor-arg>
+		<list>
+			<bean class="com.yourong.core.upload.model.ImageConfig">
+				<property name="height" value="590" />
+				<property name="width" value="455" />
+				<property name="watermarkImagePath" value="static/img/watermark/ylw-contract.png" />
+				<property name="sizeType" value="default" />
+				<property name="keepAspectRatio" value="false" />
+			</bean>
+		</list>	
+	</constructor-arg>
+</bean>
+<!-- 直投项目质押物&抵押物上传文件大小配置 -->
+<bean id="direct_project_collateral" class="java.util.ArrayList">
+	<constructor-arg>
+		<list>
+			<bean class="com.yourong.core.upload.model.ImageConfig">
+				<property name="width" value="425" />
+				<property name="sizeType" value="_425" />
+			</bean>
+			<bean class="com.yourong.core.upload.model.ImageConfig">
+				<property name="height" value="126" />
+				<property name="width" value="200" />
+				<property name="watermarkImagePath" value="static/img/watermark/ylw-contract.png" />
+				<property name="sizeType" value="default" />
+				<property name="keepAspectRatio" value="false" />
+			</bean>
+		</list>	
+	</constructor-arg>
+</bean>
+<!-- 直投项目质押物&抵押物马赛克上传文件大小配置 -->
+<bean id="direct_project_collateral_mosaic" class="java.util.ArrayList">
+	<constructor-arg>
+		<list>
+			<bean class="com.yourong.core.upload.model.ImageConfig">
+				<property name="width" value="425" />
+				<property name="sizeType" value="_425" />
+			</bean>
+			<bean class="com.yourong.core.upload.model.ImageConfig">
+				<property name="height" value="126" />
+				<property name="width" value="200" />
+				<property name="watermarkImagePath" value="static/img/watermark/ylw-contract.png" />
+				<property name="sizeType" value="default" />
+				<property name="keepAspectRatio" value="false" />
+			</bean>
+		</list>	
+	</constructor-arg>
+</bean>
+<!-- 直投项目法律意见书上传文件大小配置 -->
+<bean id="direct_project_legal" class="java.util.ArrayList">
+	<constructor-arg>
+		<list>
+			<bean class="com.yourong.core.upload.model.ImageConfig">
+				<property name="height" value="665" />
+				<property name="width" value="470" />
+				<property name="watermarkImagePath" value="static/img/watermark/ylw-contract.png" />
+				<property name="sizeType" value="default" />
+				<property name="keepAspectRatio" value="false" />
+			</bean>
+		</list>	
+	</constructor-arg>
+</bean>
+<!-- 直投项目法律意见书马赛克上传文件大小配置 -->
+<bean id="direct_project_legal_mosaic" class="java.util.ArrayList">
+	<constructor-arg>
+		<list>
+			<bean class="com.yourong.core.upload.model.ImageConfig">
+				<property name="height" value="665" />
+				<property name="width" value="470" />
+				<property name="watermarkImagePath" value="static/img/watermark/ylw-contract.png" />
+				<property name="sizeType" value="default" />
+				<property name="keepAspectRatio" value="false" />
+			</bean>
+		</list>	
+	</constructor-arg>
+</bean>
+
+<!-- 直投项目借款人上传文件大小配置 -->
+<bean id="direct_project_borrower" class="java.util.ArrayList">
+	<constructor-arg>
+		<list>
+			<bean class="com.yourong.core.upload.model.ImageConfig">
+				<property name="width" value="425" />
+				<property name="sizeType" value="_425" />
+			</bean>
+			<bean class="com.yourong.core.upload.model.ImageConfig">
+				<property name="height" value="126" />
+				<property name="width" value="200" />
+				<property name="watermarkImagePath" value="static/img/watermark/ylw-contract.png" />
+				<property name="sizeType" value="default" />
+				<property name="keepAspectRatio" value="false" />
+			</bean>
+		</list>	
+	</constructor-arg>
+</bean>
+
+<!-- 直投项目借款人马赛克上传文件大小配置 -->
+<bean id="direct_project_borrower_mosaic" class="java.util.ArrayList">
+	<constructor-arg>
+		<list>
+			<bean class="com.yourong.core.upload.model.ImageConfig">
+				<property name="width" value="425" />
+				<property name="sizeType" value="_425" />
+			</bean>
+			<bean class="com.yourong.core.upload.model.ImageConfig">
+				<property name="height" value="126" />
+				<property name="width" value="200" />
+				<property name="watermarkImagePath" value="static/img/watermark/ylw-contract.png" />
+				<property name="sizeType" value="default" />
+				<property name="keepAspectRatio" value="false" />
+			</bean>
+		</list>	
+	</constructor-arg>
+</bean>
+
+<!-- 直投项目项目形象图上传文件大小配置 -->
+<bean id="direct_project_sign" class="java.util.ArrayList">
+	<constructor-arg>
+		<list>
+			<bean class="com.yourong.core.upload.model.ImageConfig">
+				<property name="height" value="620" />
+				<property name="width" value="1455" />
+				<property name="sizeType" value="default" />
+				<property name="isAddWatermark" value="false" />
+			</bean>
+		</list>	
+	</constructor-arg>
+</bean>
+<!-- 直投项目合同相关图片上传文件大小配置-->
+<bean id="direct_project_contract" class="java.util.ArrayList">
+	<constructor-arg>
+		<list>
+			<bean class="com.yourong.core.upload.model.ImageConfig">
+				<property name="height" value="665" />
+				<property name="width" value="470" />
+				<property name="watermarkImagePath" value="static/img/watermark/ylw-contract.png" />
+				<property name="sizeType" value="default" />
+				<property name="keepAspectRatio" value="false" />
+			</bean>
+		</list>	
+	</constructor-arg>
+</bean>
+<!-- 直投项目合同相关图片马赛克上传文件大小配置-->
+<bean id="direct_project_contract_mosaic" class="java.util.ArrayList">
+	<constructor-arg>
+		<list>
+			<bean class="com.yourong.core.upload.model.ImageConfig">
+				<property name="height" value="665" />
+				<property name="width" value="470" />
+				<property name="watermarkImagePath" value="static/img/watermark/ylw-contract.png" />
+				<property name="sizeType" value="default" />
+				<property name="keepAspectRatio" value="false" />
+			</bean>
+		</list>	
+	</constructor-arg>
+</bean>
+
+<!-- 直投项目合同相关图片上传文件大小配置-->
+<bean id="direct_project_credit" class="java.util.ArrayList">
+	<constructor-arg>
+		<list>
+			<bean class="com.yourong.core.upload.model.ImageConfig">
+				<property name="height" value="665" />
+				<property name="width" value="470" />
+				<property name="watermarkImagePath" value="static/img/watermark/ylw-contract.png" />
+				<property name="sizeType" value="default" />
+				<property name="keepAspectRatio" value="false" />
+			</bean>
+		</list>	
+	</constructor-arg>
+</bean>
+<!-- 直投项目合同相关图片马赛克上传文件大小配置-->
+<bean id="direct_project_credit_mosaic" class="java.util.ArrayList">
+	<constructor-arg>
+		<list>
+			<bean class="com.yourong.core.upload.model.ImageConfig">
+				<property name="height" value="665" />
+				<property name="width" value="470" />
+				<property name="watermarkImagePath" value="static/img/watermark/ylw-contract.png" />
+				<property name="sizeType" value="default" />
+				<property name="keepAspectRatio" value="false" />
+			</bean>
+		</list>	
+	</constructor-arg>
+</bean>
+
+<!-- 人气值商品上传文件大小配置-->
+<bean id="shopgoods" class="java.util.ArrayList">
+	<constructor-arg>
+		<list>
+			<bean class="com.yourong.core.upload.model.ImageConfig">
+				<property name="height" value="400" />
+				<property name="width" value="400" />
+				<property name="isAddWatermark" value="false" />
+				<property name="keepAspectRatio" value="false" />
+				<property name="sizeType" value="default" />
+			</bean>
+		</list>
+	</constructor-arg>
+</bean>
+
+<!-- 管理层上传文件大小配置-->
+<bean id="manager_href" class="java.util.ArrayList">
+	<constructor-arg>
+		<list>
+			<bean class="com.yourong.core.upload.model.ImageConfig">
+				<property name="height" value="400" />
+				<property name="width" value="400" />
+				<property name="isAddWatermark" value="false" />
+				<property name="keepAspectRatio" value="false" />
+				<property name="sizeType" value="default" />
+			</bean>
+		</list>
+	</constructor-arg>
+</bean>
+
+
+
+</beans>

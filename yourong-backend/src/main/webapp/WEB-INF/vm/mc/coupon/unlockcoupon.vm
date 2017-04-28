@@ -1,0 +1,77 @@
+#set($layout = "/layout/iframe.vm")
+#parse("/mc/coupon/head.vm")
+
+
+<div class="col-xs-12">
+	<div class="table-responsive">
+	<form id="atta_form">
+		<table id="unlockcoupon1-table-search" class="table table-striped table-bordered " cellspacing="0" width="100%">
+			<thead>
+				<tr>
+					<td>
+						会员手机号：
+					</td>
+					<td>
+						<input type="text" id="search_mobile" name="search_mobile" class="input-medium search_init"/>
+					</td>
+					<td>
+						会员真实姓名：
+					</td>
+					<td>
+						<input type="text" id="search_trueName" name="search_trueName" class="input-medium search_init"/>
+					</td>     
+					
+					<td>
+						会员id：
+					</td>
+					<td>
+						<input type="text" id="search_id" name="search_id" class="input-medium search_init"/>
+					</td>     
+					     
+				</tr>
+				<tr>
+					<td colspan="10" style="text-align:center">
+						<button id = "query_unlock" type="button" class="btn btn-info btn-sm btn-primary ">查询</button>
+						##permission-$shiro.hasPermission('attachment:query') 
+					</td>
+				</tr>
+			</thead>
+		</table>
+		</form>
+	</div>
+</div>
+
+<div  class="tab-pane">
+	<div class="col-xs-12">
+		<div class="table-header">优惠券列表</div>
+		<div class="table-responsive">
+			<table id="unlockcoupon2-table" class="table table-striped table-bordered" cellspacing="0" width="100%">
+				<thead>
+					<tr>
+						<th>
+							<label>
+								<input class="ace" type="checkbox">
+								<span class="lbl"></span>
+							</label>
+						</th>
+						<th>编号</th>
+						<th>模板编号</th>
+						<th>模板名称</th>
+						<th>优惠券类型</th>
+						<th>面值</th>
+						<th>活动ID</th>
+						<th>活动名称</th>
+						<th>使用时间</th>
+						<th>有效期类型</th>
+						<th>优惠券状态</th>
+						<th>发放人ID</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+			</table>
+		</div>
+	</div>
+</div>
+</div>
+</div>
+#parse("/mc/coupon/coupon.vm")

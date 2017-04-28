@@ -1,0 +1,341 @@
+#parse('/mobile/common.vm')
+
+#set($title="还款计划")
+#if(!$sysServiceUtil.isDev())
+    #set($siteurl='')
+#else
+    #set($siteurl='/yourong-api')
+#end
+#set($css_url=["$siteurl/static/source/css/detail.css"])
+#set($aliyun_url="https://oss-cn-hangzhou.aliyuncs.com")
+#CSRFToken('xToken')
+<style>
+    html {
+        font-size: 62.5%;
+    }
+
+
+</style>
+<input type="hidden" id="j-pid" value="${pid}">
+
+<section class="m-project-repaymentPlan" id="top">
+    <table class="u-repayment-tiptext">
+        <tr>
+            <td>还款计划将于项目履约后显示</td>
+        </tr>
+    </table>
+##    逾期状态
+    <div class="" id="j-repaymentPlan-overdue">
+
+    </div>
+    <script type="text/html" id="j-repaymentPlan-overdue-tpl">
+        ##    还款计划表
+        {{if interestList&&interestList.length>0}}
+        <ul class="u-repaymentPlan-periods">
+            {{each interestList as item i}}
+            <li>
+                <div><em style="width:10%">{{i+1}}</em><span style="width:40%">￥{{item.amount}}</span><em
+                        style="width:30%">
+                    {{if item.interPrinMark===0}}利息{{else if item.interPrinMark===1}}本金{{else if
+                    item.interPrinMark===2}}利息+本金{{/if}}</em>
+                    <span style="width:20%;"
+                          {{if item.status==1}}
+                          class="z-current1"
+                          {{else if item.status!=1}}
+                          {{if item.payType==2}}
+                          class="z-current2"
+                          {{else if item.payType==0}}
+                          class="z-current3"
+                          {{/if}}
+                    {{/if}}>
+                        {{if item.status===1}}
+                    已还款
+                        {{else if item.status!=1}}
+                    {{if item.payType===2}}
+                    逾期
+                    {{else if item.payType===0}}
+                    待付款
+                    {{/if}}
+                        {{/if}}</span></div>
+                <em>{{if item.status===1}}
+                        {{if item.payType===0}}
+                    {{item.payTimeStr}}
+                        {{else if item.payType===1}}
+                    提前还款 {{item.payTimeStr}}
+                        {{else if item.payType===2}}
+                    逾期还款 {{item.payTimeStr}}
+                        {{/if}}
+                    {{else}}
+                        {{if item.payType===0}}
+                    预期 {{item.endDateStr}}
+                        {{else if item.payType===2}}
+                    预期 {{item.endDateStr}}(已逾期{{item.overDays}}天)
+                        {{/if}}
+                    {{/if}}
+                </em>
+            </li>
+            {{/each}}
+        </ul>
+        {{/if}}
+        {{if overFlag===1}}
+
+        ##    正在催收表
+        {{if overdue.length>0}}
+        <div>
+            <h5><span>正在催收中</span></h5>
+            <div class="u-collection-table">
+                <table>
+                    <tbody>
+                    <tr>
+                        <td colspan="2" class="u-first-td">
+                            <em>逾期期数</em>
+                            <span>{{overdue.interestPeriods}}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <em>逾期开始时间</em>
+                            <span>{{overdue.overdueStartDateStr}}</span>
+                        </td>
+                        <td>
+                            <em>已逾期天数</em>
+                            <span>{{overdue.overdueDay}}<i>天</i></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <em>逾期本金</em>
+                            <span>{{overdue.overduePrincipal}}<i>元</i></span>
+                        </td>
+                        <td>
+                            <em>逾期利息</em>
+                            <span>{{overdue.overdueInterest}}<i>元</i></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <em>逾期还款时间</em>
+                            <span>{{if overdue.repayDateStr}}{{overdue.repayDateStr}}{{else}}－{{/if}}</span>
+                        </td>
+                        <td>
+                            <em>滞纳金</em>
+                            <span>{{if overdue.overdueFine}}{{overdue.overdueFine}}{{else}}－{{/if}}<i>元</i></span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            {{/if}}
+            {{if overdue.collectList&&overdue.collectList.length>0}}
+            <div class="u-repaymentPlan-collectioning ">
+
+                <ul>
+
+                    {{each overdue.collectList as item i}}
+                    {{if item.nextCollectForm}}
+                    <li>
+                        <i class="z-first"></i>
+                        <strong>{{item.nextCollectForm}}<em>{{if item.nextDays>0}}
+                            （逾期第{{item.nextDays}}天）
+                            {{else if item.nextDays==0}}
+                            （逾期当天）
+                            {{/if}}</em></strong>
+                        <span>预计下次催收日期：{{item.nextCollectTimeStr}}</span>
+                    </li>
+                    {{/if}}
+                    <li>
+
+                        <i class="{{if item.collectStatus==1}} z-success {{/if}}"></i>
+                        <strong>{{item.collectForm}}<em>{{if item.days>0}}
+                            （逾期第{{item.days}}天）
+                            {{else if item.days==0}}
+                            （逾期当天）
+                            {{/if}}</em></strong>
+                        <span>催收日期：{{item.collectTimeStr}}</span>
+                        <span> 催收结果：{{item.collectDetail}}
+                        </span>
+                        {{if item.bscAttachments&&item.bscAttachments.length>0}}
+                        {{each item.bscAttachments as item i}}
+                        <img src="$aliyun_url/{{item.fileUrl}}" alt=""/>
+                        {{/each}}
+                        {{/if}}
+
+                    </li>
+                    {{/each}}
+                </ul>
+
+            </div>
+            {{/if}}
+        </div>
+        {{/if}}
+
+        {{if preFlag===1}}
+        ##        提前还款状态
+        <div class="m-repayment">
+            <em>提前还款日期</em>
+            <span>{{preDate}}</span>
+            <em>提前还款原因</em>
+            <span>{{prepaymentRemark}}</span>
+        </div>
+        {{/if}}
+
+    </script>
+
+##    查看催收成果
+    <div id="j-check-result" class="f-dn">
+        <a class="u-check-result">
+            查看催收成果<i></i>
+        </a>
+    </div>
+##    催收成果
+    <div class="m-repaymentPlan-result f-dn" id="j-repaymentPlan-result">
+
+    </div>
+
+    <script type="text/html" id="j-repaymentPlan-result-tpl">
+        ##        <p>专业贷后管理，确保资金安全</p>
+        ##        催收完成表
+        {{if overdueRepayBiz&&overdueRepayBiz.length>0}}
+
+        {{each overdueRepayBiz as item i}}
+
+            <div class="u-collection-table">
+                <table>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <em>逾期期数</em>
+                            <span>{{item.interestPeriods}}</span>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <em>逾期开始时间</em>
+                            <span>{{item.overdueStartDateStr}}</span>
+                        </td>
+                        <td>
+                            <em>逾期天数</em>
+                            <span>{{item.overdueDay}}<i>天</i></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <em>逾期本金</em>
+                            <span>{{item.overduePrincipal}}<i>元</i></span>
+                        </td>
+                        <td>
+                            <em>逾期利息</em>
+                            <span>{{item.overdueInterest}}<i>元</i></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <em>逾期还款时间</em>
+                            <span>{{if item.repayDateStr}}{{item.repayDateStr}}{{else}}－{{/if}}</span>
+                        </td>
+                        <td>
+                            <em>滞纳金</em>
+                            <span>{{if item.overdueFine}}{{item.overdueFine}}{{else}}－{{/if}}<i>元</i></span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        <div class="u-repaymentPlan-collectioning">
+
+            <ul>
+                {{each item.collectList as item i}}
+                    {{if item.nextCollectForm}}
+                    <li>
+                        <i class="z-first"></i>
+                        <strong>{{item.nextCollectForm}}<em>{{if item.nextDays>0}}
+                            （逾期第{{item.nextDays}}天）
+                            {{else if item.nextDays==0}}
+                            （逾期当天）
+                            {{/if}}</em></strong>
+                        <span>预计下次催收日期：{{item.nextCollectTimeStr}}</span>
+                    </li>
+                    {{/if}}
+                    <li>
+
+                        <i class="{{if item.collectStatus==1}} z-success {{/if}}"></i>
+                        <strong>{{item.collectForm}}<em>{{if item.days>0}}
+                            （逾期第{{item.days}}天）
+                            {{else if item.days==0}}
+                            （逾期当天）
+                            {{/if}}</em></strong>
+                        <span>催收日期：{{item.collectTimeStr}}</span>
+                        <span> 催收结果：{{item.collectDetail}}
+                        </span>
+                        {{if item.bscAttachments&&item.bscAttachments.length>0}}
+                        {{each item.bscAttachments as item i}}
+                        <img src="$aliyun_url/{{item.fileUrl}}" alt=""/>
+                        {{/each}}
+                        {{/if}}
+
+                    </li>
+                    {{/each}}
+                </ul>
+
+            </div>
+
+        {{/each}}
+            {{/if}}
+
+        <div class="u-repaymentPlan-logo"><img src="../res/img/product/yr-logo.png" alt="" width="100%"/></div>
+    </script>
+
+</section>
+
+
+
+
+
+
+<script src="../res/lib/js/sea.js"></script>
+##<script src="../res/lib/js/zepto.min.js"></script>
+<!-- environment -->
+<script type="text/javascript">
+    if(!window.$){
+        document.write('<script src="$res_url/lib/js/jquery.min.js"><\/script>')
+    }
+    seajs.config({
+        paths: {
+            'lib':'$res_url/lib',
+            'xjs':'$res_url/source/js',
+            'xcss':'$res_url/source/css',
+            'cdnlib':'//cdn.bootcss.com'
+        },
+        alias: {
+            'zepto':'cdnlib/zepto/1.1.6/zepto.min.js',
+            'jquery':'cdnlib/jquery/2.2.1/jquery.min.js',
+            'unslider':'cdnlib/unslider/2.0.3/js/unslider-min.js',
+            'vue':'cdnlib/vue/1.0.17/vue.min.js',
+            'frozen': 'cdnlib/FrozenUI/1.3.0/js/frozen.js',
+            'lodash':'cdnlib/lodash.js/4.6.1/lodash.min.js',
+            'base': 'xjs/base',
+            'wxShare':'xjs/common/wxShare',
+            'validform':'lib/js/validform',
+            'template':'lib/js/template'
+        }
+    })
+    var environment = {
+        globalPath : '$siteurl',
+        globalDomain : '$sysServiceUtil.getRootURL()',
+        mGlobalDomain : '$sysServiceUtil.getMRootURL()',
+        serverDate :  '${dateUtil.getCurrentDate().getTime()}',
+        debug:$sysServiceUtil.isDev()
+    }
+        #if($debug)
+        window.log = console.log.bind(console)
+        #else
+        window.log = function(){}
+        #end
+
+</script>
+<!-- /environment -->
+<script>
+    seajs.use('$res_url/source/js/project/detail');
+</script>

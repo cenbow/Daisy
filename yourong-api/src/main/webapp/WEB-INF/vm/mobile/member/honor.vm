@@ -1,0 +1,188 @@
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$res_url/lib/frozenui/kit.css","$m_css_url/modules/aboutYR.css",
+    "$res_url/source/css/swiper-3.4.0.min.css"])
+#set($title='资质荣誉')
+#set($aliyun='https://yrstatic.oss-cn-hangzhou.aliyuncs.com')
+#set($loginSource=$request.getHeader("loginSource"))
+#set($os=3)
+##  安卓
+#if($loginSource==1)
+    #set($os=1)
+#end
+##  IOS
+#if($loginSource==2)
+    #set($os=2)
+#end
+
+<style>
+    .swiper-pagination-h1, .swiper-pagination-h2 {
+        color: #333;
+        font-size: 12px;
+        width: 84%;
+        margin: 0 auto;
+        text-align: center;
+        left: 8%;
+    }
+</style>
+<ul class="u-nav">
+    <li><a href="$siteurl/mstation/aboutYR">关于有融</a></li>
+    <li><a href="$siteurl/mstation/safetyAssurance">安全保障</a></li>
+    <li><a href="$siteurl/mstation/cooperator">合作伙伴</a></li>
+    <li><a href="$siteurl/mstation/honor" class="z-selected">资质荣誉</a></li>
+</ul>
+
+<div class="m-honor">
+    <div class="u-head-img f-pos-r">
+        <img src="$res_url/img/post/about/honor_head.png">
+        <p>口碑源于服务，诚信铸就荣誉，<br>
+            让有融网成为用户首选的互联网理财平台，<br>
+            我们，一直在努力。</p>
+    </div>
+    <h1><i></i> 平台资质 <i></i></h1>
+    <div class="swiper-container j-swiper-honor1">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <div class="u-honor1">
+                    <img src="$aliyun/res/img/honor/about_qualification_new2.png" class="u-img-width1">
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="u-honor1">
+                    <img src="$aliyun/res/img/honor/about_qualification_b04.png" class="u-img-width1">
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="u-honor1">
+                    <img src="$aliyun/res/img/honor/ICP.png" class="u-img-width1">
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="u-honor1">
+                    <img src="$aliyun/res/img/honor/INFOSEC1.png" class="u-img-width2">
+                </div>
+            </div>
+        </div>
+        <div class="swiper-pagination swiper-pagination-h1"></div>
+    </div>
+
+##荣誉证书比较web少两张竖的证书，运营那边觉得视觉效果不好去掉了
+    <h1><i></i> 荣誉证书 <i></i></h1>
+    <div class="swiper-container j-swiper-honor2">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <div class="u-honor2">
+                    <img src="$aliyun/res/img/honor/Internet__finance.png" class="u-img-width2">
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="u-honor2">
+                    <img src="$aliyun/res/img/honor/guojiagaoxin.png" class="u-img-width2">
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="u-honor2">
+                    <img src="$aliyun/res/img/honor/zuijujinzhengli.png" class="u-img-width2">
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="u-honor2">
+                    <img src="$aliyun/res/img/honor/technology.png" class="u-img-width2">
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="u-honor2">
+                    <img src="$aliyun/res/img/honor/chengxinshifan.png" class="u-img-width2">
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="u-honor2">
+                    <img src="$aliyun/res/img/honor/kexinwangzhan.png" class="u-img-width2">
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="u-honor2">
+                    <img src="$aliyun/res/img/honor/kexinwangzhan2.png" class="u-img-width2">
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="u-honor2">
+                    <img src="$aliyun/res/img/honor/tourongzi.png" class="u-img-width2">
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="u-honor2">
+                    <img src="$aliyun/res/img/honor/shiqiang.png" class="u-img-width2">
+                </div>
+            </div>
+        </div>
+        <div class="swiper-pagination swiper-pagination-h2"></div>
+    </div>
+</div>
+<script src='$res_url/lib/js/swiper-3.4.0.min.js'></script>
+<script src="$res_url/lib/js/jquery.min.js"></script>
+###if($debug)
+##<script src='$siteurl/res/lib/js/vconsole.min.js'></script>
+###end
+<script>
+    var honor1 = ['',
+                '杭州信有诚互联网金融服务有限公司营业执照',
+                '浙江小融网络科技股份有限公司营业执照',
+                '浙江小融网络科技股份有限公司ICP许可证',
+                '浙江小融网络科技股份有限公司信息系统安全等级保护备案证明'
+            ],
+            honor2 = ['',
+                '中国互联网金融协会会员证书',
+                '国家级高新技术企业证书',
+                '杭州市高新技术企业证书',
+                '中国互联网电子商务诚信示范企业',
+                '中国互联网络信息中心可信网站验证单位',
+                '中国科学院计算机网络信息中心可信网站示范单位',
+                '浙江省投融资协会会员证书',
+                '中国互联网金融行业十强企业',
+                '中国金融科技最具竞争力企业'
+            ]
+    var swiperH1 = new Swiper('.j-swiper-honor1', {
+        pagination: '.swiper-pagination-h1',
+        loop: true,
+//        loopAdditionalSlides : 100,
+        effect: 'coverflow',
+        coverflow: {
+            rotate: 0,
+            stretch: 250,
+            slideShadows: false
+        },
+        paginationType: 'custom',
+        paginationCustomRender: function (swiper, current, total) {
+            return honor1[current];
+        }
+    });
+    var swiperH2 = new Swiper('.j-swiper-honor2', {
+        pagination: '.swiper-pagination-h2',
+        loop: true,
+//        loopAdditionalSlides : 100,
+        effect: 'coverflow',
+        coverflow: {
+            rotate: 0,
+            stretch: 250,
+            slideShadows: false
+        },
+        paginationType: 'custom',
+        paginationCustomRender: function (swiper, current, total) {
+            return honor2[current]
+        }
+    });
+    var os =$!{os}
+    if (os === 1) {
+        Android.UpdateTitle('资质荣誉');
+    } else if (os === 2) {
+        var aboutYRTitle = window.encodeURI('关于有融'),
+                safeTitle = window.encodeURI('安全保障'),
+                cooperatorTitle = window.encodeURI('合作伙伴'),
+                honorTitle = window.encodeURI('资质荣誉')
+        $('.u-nav').find('a:eq(0)').attr('href', '$siteurl/mstation/aboutYR?title=' + aboutYRTitle)
+        $('.u-nav').find('a:eq(1)').attr('href', '$siteurl/mstation/safetyAssurance?title=' + safeTitle)
+        $('.u-nav').find('a:eq(2)').attr('href', '$siteurl/mstation/cooperator?title=' + cooperatorTitle)
+        $('.u-nav').find('a:eq(3)').attr('href', '$siteurl/mstation/honor?title=' + honorTitle)
+    }
+</script>

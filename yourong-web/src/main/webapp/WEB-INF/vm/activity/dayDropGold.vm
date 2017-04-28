@@ -1,0 +1,248 @@
+##天降惊喜
+#parse("/common/common.vm")
+#set($title="天降金喜_$!{title_suffix}")
+#set($css_url=["$root_css_url/activity/dayDropGold.css","$root_css_url/activity/activityCommon/activityNav.css"])
+#set($js_url=[
+    "/static/lib/js/vue/vue.js",
+    "/static/lib/js/vue/vue.extend.js",
+    "$root_js_url/activity/activityCommon/activityNav.js",
+    "$root_js_url/activity/dayDropGold.js"
+])
+#set($aliyun='https://yrstatic.oss-cn-hangzhou.aliyuncs.com')
+#if($currentUser)
+    #set($logined=true)
+#else
+    #set($logined=false)
+#end
+#CSRFToken('xToken')
+
+<div id="j-dayDropGold" data-logined="$logined" v-cloak>
+    <div class="m-head"></div>
+    <div class="m-body">
+        <div class="m-activity-container">
+            ## 疯狂抢加息
+            <div class="m-module-item">
+                <div class="g-wrap">
+                    <h1 class="f-fc-purple"><span class="u-index-icon f-ff-din">01</span>疯狂抢加息</h1>
+                    <p class="f-fc-purple f-fs14 f-pl-50">活动期间，平台将于每个工作日10:00、13:00、15:00、18:00定时上线3个月和6个月加息项目，周末随机上线，投资期限越长，加息力度越高，<br />快来抢吧！</p>
+                    <div class="m-main-content m-jx-module f-pos-r">
+                        <table class="u-table u-jx-table">
+                            <tbody>
+                            <tr>
+                                <td>收益周期</td>
+                                <td>3个月</td>
+                                <td>6个月</td>
+                            </tr>
+                            <tr>
+                                <td>加息幅度</td>
+                                <td>1%</td>
+                                <td>2%</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <span class="f-pos-a u-money-icon">
+                            <img src="/static/img/activity/dayDropGold/money.png" class="f-db">
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            ## 任性挑红包
+            <div class="m-module-item">
+                <div class="g-wrap">
+                    <h1 class="f-fc-purple"><span class="u-index-icon f-ff-din">02</span>任性挑红包</h1>
+                    <p class="f-fc-purple f-fs14 f-pl-50">活动期间，单笔投资≥2000元，即可任意领取以下现金券一张，3种现金券每天共3000张，多投多领，领完即止。</p>
+                    <div class="m-main-content m-hb-module f-pos-r">
+                        <div class="m-bag-wrap f-clear">
+                            <div class="u-bag-item f-fl f-tac f-pos-r">
+                                <img src="/static/img/activity/dayDropGold/gold_bag.png" class="f-db">
+                                <div class="u-bag-value f-pos-a">
+                                    <em>88</em>元<br />
+                                    现金券
+                                </div>
+                                <a class="u-receive-btn f-fs-20" :class="{'z-disabled': (init.status===4 && init.totalRed===0) || init.status===6}" href="javascript:;" @click="getRedBag(1)" v-text="redBagText"></a>
+                            </div>
+                            <div class="u-bag-item f-fl f-tac f-pos-r">
+                                <img src="/static/img/activity/dayDropGold/gold_bag.png" class="f-db">
+                                <div class="u-bag-value f-pos-a">
+                                    <em>128</em>元<br />
+                                    现金券
+                                </div>
+                                <a class="u-receive-btn f-fs-20" :class="{'z-disabled': (init.status===4 && init.totalRed===0) || init.status===6}" href="javascript:;" @click="getRedBag(2)" v-text="redBagText"></a>
+                            </div>
+                            <div class="u-bag-item f-fl f-tac f-pos-r">
+                                <img src="/static/img/activity/dayDropGold/gold_bag.png" class="f-db">
+                                <div class="u-bag-value f-pos-a">
+                                    <em>238</em>元<br />
+                                    现金券
+                                </div>
+                                <a class="u-receive-btn f-fs-20" :class="{'z-disabled': (init.status===4 && init.totalRed===0) || init.status===6}" href="javascript:;" @click="getRedBag(3)" v-text="redBagText"></a>
+                            </div>
+                        </div>
+                        <div class="u-coupon-num f-tac f-fc-purple f-fs-18" v-if="init.status===4 || init.status===6">今日现金券仅剩：<em class="f-fc-orange f-fs-20">{{init.totalRed}}</em>张</div>
+                    </div>
+                </div>
+            </div>
+
+            ## 火热夺黄金
+            <div class="m-module-item">
+                <div class="g-wrap">
+                    <h1 class="f-fc-purple"><span class="u-index-icon f-ff-din">03</span>火热夺黄金</h1>
+                    <p class="f-fc-purple f-fs14 f-pl-50">活动期间投资3个月及以上项目，可获得以下奖励：<br />
+                        1. 每日累计投资额满20000元即可获得一张2%收益券；<br />
+                        2. 活动期间累计投资额排名前10的用户均可获得投资豪礼，排名前3的用户更可收获黄金大奖！
+                    </p>
+                    <div class="m-main-content m-gold-module f-pos-r">
+                        <div class="u-gold-wrap">
+                            <img src="/static/img/activity/dayDropGold/beauty_gold.png">
+                            <p class="f-fc-purple f-fs-16 f-tar" style="margin-top: 17px;width: 416px;">Au9999投资金条10g</p>
+                            <p class="f-fc-purple f-fs-14 f-tar">（图片仅供参考，实际以实物为准）</p>
+                        </div>
+                        <div class="u-invest-amount f-fc-purple" v-if="init.status===4">
+                            <span class="f-fs-18">我的今日投资额：<em class="f-fs-20 f-fc-orange">{{init.myInvestAmount | amountSplit '' true}}</em>元</span>
+                            <span class="f-fs-18">我的累计投资额：<em class="f-fs-20 f-fc-orange">{{init.myTotalInvestAmount | amountSplit '' true}}</em>元</span>
+                        </div>
+                        <div class="u-table-head f-pos-r">
+                            <img src="/static/img/activity/dayDropGold/module_top.png">
+                            <div class="u-head-title f-pos-a f-fs-20">
+                                <i class="u-star-icon"></i>夺金英雄榜<i class="u-star-icon"></i>
+                            </div>
+                        </div>
+                        <div class="u-table-wrap">
+                            <table class="u-table u-lucky-table" v-if="init.investFirstTen.length>0">
+                                <thead>
+                                    <tr>
+                                        <th width="190">排名</th>
+                                        <th width="240">用户名</th>
+                                        <th>投资额</th>
+                                        <th>奖励</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="item in init.investFirstTen">
+                                        <td v-if="$index<3">
+                                            <i class="u-jp-icon" :class="{'u-jp-gold': $index==0, 'u-jp-silver': $index==1, 'u-jp-copper': $index==2}"></i>{{$index+1}}
+                                        </td>
+                                        <td v-else>
+                                            <i class="u-jp-icon"></i>{{$index+1}}
+                                        </td>
+                                        <td class="u-name-td"><img :src="item.avatars | avatarUrl" alt="用户头像" width="35px" height="35px" class="u-user-head">{{item.usernames}}</td>
+                                        <td><em v-if="item.totalInvestAmount>0">￥{{item.totalInvestAmount | amountSplit '' true}}</em></td>
+                                        <td><em v-if="item.totalInvestAmount>0">{{rewardInfoList[$index]}}</em></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="u-no-data f-fc-purple f-fs-16 f-tac" v-else>夺金英雄榜，等你来上榜！</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            ## 活动规则
+            <div class="m-module-item">
+                <div class="g-wrap f-fc-purple">
+                    <h2 class="f-fs-16 u-rule-title f-pl-50">活动规则</h2>
+                    <div class="m-main-content u-rule-content f-pos-r f-fs14">
+                        <p>1. 活动对象：有融网所有用户；</p>
+                        <p>2. 活动时间：{{init.startTime | formatTime 'yyyy年MM月dd日hh:mm'}}~{{init.endTime | formatTime 'MM月dd日hh:mm'}}；</p>
+                        <p>3. 现金券使用条件详见下表：</p>
+                        <table class="u-rule-table">
+                            <thead>
+                            <tr>
+                                <th width="25%">面额</th>
+                                <th width="25%">起投金额（元）</th>
+                                <th width="25%">起投期限（天）</th>
+                                <th width="25%">有效期</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>88</td>
+                                <td>6000</td>
+                                <td>60</td>
+                                <td>领取后5天</td>
+                            </tr>
+                            <tr>
+                                <td>128</td>
+                                <td>6000</td>
+                                <td>90</td>
+                                <td>领取后5天</td>
+                            </tr>
+                            <tr>
+                                <td>238</td>
+                                <td>6000</td>
+                                <td>180</td>
+                                <td>领取后5天</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <p>4. 英雄榜奖励将于活动结束后3个工作日内与您联系，请保持手机畅通，如错过通知则视为放弃获奖资格</p>
+                        <p>（注：实物奖品也可兑换成人气值，人气值=奖品标注价格）；</p>
+                        <p>5. 转让专区项目不参与本活动；</p>
+                        <p>6. 如有其他疑问，请拨打客服热线：400-025-6688；本活动最终解释权归有融网所有。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    ## 遮罩
+    <div class="m-cover-layer" v-show="isCover"></div>
+    <div class="m-white-cover-layer" v-show="isWhiteCover"></div>
+
+    ## 非模态框
+    <div class="m-tips-window animated zoomIn" v-show="isShowTips" v-text="tipsList[tipsIndex]"></div>
+
+    ## 弹框
+    <div class="m-dialog-window animated zoomIn" v-show="isShow && isSuccess">
+        <span class="u-close-btn" @click="showDialog('hidden')"></span>
+        <div class="u-dialog-tips">{{cashList[cashIndex]}}元现金券已到手</div>
+        <div class="u-dialog-img">
+            <img src="/static/img/activity/dayDropGold/lucky_win_bg.png">
+        </div>
+        <a href="$root_url/products/list-all-all-investing-1-createTimeDesc-1.html" class="u-invest-btn">我要去投资</a>
+    </div>
+
+    <div class="m-dialog-window z-evil animated zoomIn" v-show="isShow && !isSuccess">
+        <span class="u-close-btn" @click="showDialog('hidden')"></span>
+        <div class="u-dialog-tips">单笔投资≥2000才可以领取哦</div>
+        <div class="u-dialog-img">
+            <img src="/static/img/activity/dayDropGold/evil_win_bg.png">
+        </div>
+        <a href="$root_url/products/list-all-all-investing-1-createTimeDesc-1.html" class="u-invest-btn">我要去投资</a>
+    </div>
+</div>
+
+
+##    活动公共导航
+<div class="u-floating-window " id="j-floating-window">
+    <span class="u-icon-robot"></span>
+    <a href="http://wpa.b.qq.com/cgi/wpa.php?ln=2&amp;uin=4000266688" target="_blank" class="u-icon-kefu f-pos-r"
+       id="j-icon-kefu">
+    </a>
+    <a class="u-icon-weibo f-pos-r" href="http://weibo.com/5248978316/" target="_blank" id="j-icon-weibo">
+        <span class="f-dn">
+            <i class="f-fs20"></i>
+            <img src="/static/img/common/new-weibo-qrcode.png">
+        </span>
+    </a>
+    <a class="u-icon-weixin f-pos-r" id="j-icon-app">
+        <span class="f-dn">
+            <i class="f-fs20"></i>
+            <img src="/static/img/common/new-weixin-qrcode.png">
+        </span>
+    </a>
+    <a class="u-icon-app f-pos-r" id="j-icon-weixin">
+        <span class="f-dn">
+            <i class="f-fs20"></i>
+            <img src="/static/img/common/new-app-qrcode.png">
+        </span>
+    </a>
+    <a class="u-icon-top f-pos-r" id="j-icon-gotop"></a>
+</div>
+
+
+<script>
+    var logined = $logined,
+            isDev =$isDev
+</script>

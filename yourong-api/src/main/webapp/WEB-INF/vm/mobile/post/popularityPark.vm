@@ -1,0 +1,201 @@
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#if($currentUser)
+    #set($logined=true)
+#else
+    #set($logined=false)
+#end
+#CSRFToken('xToken')
+##  安卓
+#if($loginSource==1)
+    #set($os=1)
+#end
+##  IOS
+#if($loginSource==2)
+    #set($os=2)
+#end
+##
+###if($loginSource==3)
+##<style>
+##    .g-ft {
+##        display: none;
+##    }
+##</style>
+##<h2 class="u-pageTitle f-pos-r">
+##    <a href="$siteurl/mIndex">有融网</a>
+##    <span class=" f-pos-a f-fs18 f-ff-ver">
+##        #if(!$currentUser)
+##            <a href="$siteurl/mstation/login" id="j-login">登录</a>
+##            <a href="$siteurl/mstation/register" id="j-register">注册</a>
+##        #else
+##            <a href="$mCenter_logout_url">退出</a>
+##        #end
+##    </span>
+##</h2>
+###end
+<style>
+body{
+   background-color:#35b0fd;
+    }
+.m-head{
+    width:100%;
+    height:11.9rem;
+    background: url($res_url/img/post/popularityPark/head.png)   no-repeat   center;
+    background-size:100%;
+}
+.m-bg1-text{
+    width:100%;
+    height:2.8125rem;
+    background: url($res_url/img/post/popularityPark/text-one.png)   no-repeat center;
+    background-size:100%;
+}
+.m-bg1-text h1{
+    width:100%;
+    text-indent: 1.2rem;
+    color:#35b0fd;
+    line-height:2.5rem;
+    font-size:0.95rem;
+    font-weight:bold;
+}
+
+.m-bg1-photo{
+    width:100%;
+    height:28.1rem;
+    background: url($res_url/img/post/popularityPark/photo-one.png)   no-repeat center;
+    background-size:100%;
+    position:relative;
+}
+.m-bg2-text{
+    width:100%;
+    height:4.44rem;
+    background: url($res_url/img/post/popularityPark/text-two.png)   no-repeat center;
+    background-size:100%;
+    position:relative;
+}
+.m-bg2-text h1{
+    width:100%;
+    text-indent: 6rem;
+    color:#35b0fd;
+    line-height:2.5rem;
+    font-size:0.95rem;
+    font-weight:bold;
+}
+.m-bg2-photo{
+    width:100%;
+    height:14.3rem;
+    background: url($res_url/img/post/popularityPark/photo-two.png)   no-repeat center;
+    background-size:100%;
+position:relative;
+}
+.m-bg3-text{
+    width:100%;
+    height:5rem;
+    background: url($res_url/img/post/popularityPark/text-three.png)   no-repeat center;
+    background-size:100%;
+    position:relative;
+}
+.m-bg3-text h1{
+    width:100%;
+    text-indent: 2.5rem;
+    color:#35b0fd;
+    line-height:1.2rem;
+    font-size:0.95rem;
+    font-weight:bold;
+    position:relative;
+    top:0.5rem;
+}
+
+.m-bg3-photo{
+    width:100%;
+    height:26.34rem;
+    background: url($res_url/img/post/popularityPark/photo-three.png)   no-repeat center;
+    background-size:100%;
+    position:relative;
+}
+.m-bg4-text{
+    width:100%;
+    height:5rem;
+    background: url($res_url/img/post/popularityPark/text-four.png)   no-repeat center;
+    background-size:100%;
+    position:relative;
+}
+.m-bg4-text h1{
+    width:100%;
+    position:relative;
+    top:0.6rem;
+    text-indent: 6.5rem;
+    color:#35b0fd;
+    line-height:1.2rem;
+    font-size:0.95rem;
+    font-weight:bold;
+}
+.m-bg4-photo{
+    width:100%;
+    height:12.8rem;
+    background: url($res_url/img/post/popularityPark/photo-four.png)   no-repeat center;
+    background-size:100%;
+    position:relative;
+}
+.m-bg4-photo .u-nine {
+    width:70%;
+    margin:0 auto;
+    height:13.2rem;
+    background: url($res_url/img/post/popularityPark/nine.png)   no-repeat center;
+    background-size:100%;
+    position:relative;
+    z-index: 100;
+}
+.m-bottom{
+    width:100%;
+    height:9.25rem;
+    background: url($res_url/img/post/popularityPark/bottom.png)   no-repeat center;
+    background-size:100%;
+    position:relative;
+    margin-top:-1.8rem;
+    z-index: 10;
+}
+.m-bottom .u-download{
+    width:7.25rem;
+    height:4.28rem;
+    position:relative;
+    top:3.4rem;
+    left:6.2rem;
+    background: url($res_url/img/post/popularityPark/download.png)   no-repeat center;
+    background-size:100%;
+}
+@media screen and (min-width: 390px) {
+    html {
+        font-size:20.7px;
+    }
+}
+@media screen and (min-width: 360px) and (max-width:389px) {
+    html {
+        font-size: 18.5px;
+    }
+    .m-bg1-text h1, .m-bg2-text h1, .m-bg3-text h1, .m-bg4-text h1 {
+        font-size:17px;
+    }
+    .m-bottom{
+        margin-top:-38px;
+    }
+}
+@media screen and (max-width:359px) {
+    html {
+        font-size:16px;
+    }
+    .m-bg1-text h1{
+        text-indent: 1.5rem;
+    }
+    .m-bottom{
+        margin-top:-2rem;
+    }
+}
+</style>
+
+<div class="m-head"></div>
+<div class="m-bg1-text"><h1>人气值大用途，全新乐园玩转嗨不停~</h1></div><div class="m-bg1-photo"></div>
+<div class="m-bg2-text"><h1>会员尊享，解锁更多特权~</h1></div><div class="m-bg2-photo"></div>
+<div class="m-bg3-text"><h1> 你想要的通通满足，</h1><h1>超值商品任你挑选~</h1></div><div class="m-bg3-photo"></div>
+<div class="m-bg4-text"><h1>10倍人气值在呼唤，</h1><h1>快来动动手指翻格子~</h1></div>
+<div class="m-bg4-photo"> <div class="u-nine"></div></div>
+<div class="m-bottom"><a href="/yourong-api/static/page/twoCodeRedict.html"><div href="" class="u-download"></div></a></div>

@@ -1,0 +1,126 @@
+
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$res_url/source/css/activity/Again/Again.css"])
+
+#if($currentUser)
+    #set($logined=true)
+#else
+    #set($logined=false)
+#end
+#CSRFToken('xToken')
+
+
+<style>
+    body{
+        background: #f3f3f3;
+        position: relative;
+        font-family: PingFangSC-Regular
+    }
+    .g-ft{
+        display: none;
+    }
+.m-yrGather-body{
+    background: #f3f3f3;
+}
+.m-yrGather-body ul{
+    padding-top: 20px;
+}
+.m-yrGather-body ul li a{
+    padding: 14px 8% 14px 2%;
+    width: 90%;
+    background: #fff;
+    border-bottom: 1px solid #E5E5E5;
+    display: block;
+    vertical-align: middle;
+}
+.m-yrGather-body li img{
+    width: 30px;
+    vertical-align: middle;
+    display: inline-block;
+}
+.m-yrGather-body li span{
+    font-size: 20px;
+    color: #d74148;
+    margin-left: 7%;
+}
+.m-yrGather-body li em{
+    color: #999;
+}
+.m-yrGather-body li i img{
+    width: 10px;
+    vertical-align: middle;
+}
+    .m-yrGather-body li a div{
+        display: inline-block;
+        vertical-align: middle;
+        margin-left: 10px;
+    }
+    .m-yrGather-body li a div p:first-child{
+        color: #333333;
+    }
+    .m-yrGather-body li a div p:last-child{
+        color: #333333;
+    }
+.m-yrGather-body li i{
+    position: absolute;
+    top: 14px;
+    right: 5%;
+    display: inline-block;
+    vertical-align: middle;
+}
+.u-yrGather-logo{
+    display: block;
+    position: absolute;
+    bottom:15%;
+    left: 25%;
+    width: 50%;
+}
+</style>
+<div class="m-yrGather-body">
+    <ul>
+    ##        <li class="f-pos-r">
+    ##            <a href="http://m.yrw.com/activity/dataChannel/init?isNeedYRWtoken=Y">
+    ##                <img src="../../res/img/post/yrGather/ico_datecter.png" width="100%">
+    ##                <div>
+    ##                    <p class="f-fs16">数据频道</p>
+    ##                    <p class="f-fs12">平台数据实时披露</p>
+    ##                </div>
+    ##                <i><img src="../../res/img/post/yrGather/yrGather-arrow.jpg" width="100%"></i>
+    ##            </a>
+    ##        </li>
+        <li class="f-pos-r">
+            <a class="j-linkHref">
+            ##                <img src="../../res/img/post/yrGather/ico_about.png" width="100%">
+                <div>
+                    <p class="f-fs16">关于有融</p>
+                ##                    <p class="f-fs12">全方位了解有融网</p>
+                </div>
+                <i><img src="../../res/img/post/yrGather/yrGather-arrow.jpg" width="100%"></i>
+            </a>
+        </li>
+
+    </ul>
+
+</div>
+<script src='$res_url/assets/js/common/appHookES5.js'></script>
+##<script src='$siteurl/res/lib/js/vconsole.min.js'></script>
+<script src="$res_url/lib/js/zepto.min.js"></script>
+<script>
+    (function () {
+        var aboutYRTitle = window.encodeURI('关于有融')
+        $(".j-linkHref").on("click", function () {
+            memberBehavior('E1')
+            $(this).attr('href', '$siteurl/mstation/aboutYR?os=$loginSource&title=' + aboutYRTitle)
+        })
+        var hook = new AppHook($platform)
+        function memberBehavior(anchor, isLink) {
+            hook.getEvent(14 + '&isNeedRealName=0&args_anchor_1_string_' + anchor, $(event.currentTarget), 1)
+        }
+
+        window.hookCallback = function (data, method) {
+
+        }
+    })()
+
+</script>

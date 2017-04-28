@@ -1,0 +1,1631 @@
+body{
+    background: #fff0b5;
+}
+[v-cloak] { display: none }
+/* top img */
+.m-top{
+    width: 100%;
+    font-size: 0;
+    margin-top: -7px;
+}
+.u-top1{
+    background: url('/static/img/activity/playOlympic/top1.png') no-repeat center;
+    height: 178px;
+}
+.u-top2{
+    background: url('/static/img/activity/playOlympic/top2.png') no-repeat center;
+    height: 197px;
+}
+.u-top3{
+    background: url('/static/img/activity/playOlympic/top3.png') no-repeat center;
+    height: 143px;
+}
+.u-top4{
+    background: url('/static/img/activity/playOlympic/top4.png') no-repeat center;
+    height: 153px;
+}
+
+
+/* nav */
+.m-nav-wrap{
+    box-sizing: border-box;
+    background: #ffd571;
+    border: 8px solid white;
+    padding: 25px 50px;
+    position: relative;
+}
+
+/* nav 右边的操作杆 */
+.u-lever{
+    position: absolute;
+    display: inline-block;
+    width: 109px;
+    height: 247px;
+    right: -119px;
+    top: 0;
+    background: url('/static/img/activity/playOlympic/left-part.png') no-repeat center;
+}
+
+.u-stick-outter{
+    width: 55px;
+    position: absolute;
+    top: -68px;
+    left: 49px;
+    height: 186px;
+}
+.u-lever-ball{
+    display: inline-block;
+    width: 54px;
+    height: 54px;
+    background: url('/static/img/activity/playOlympic/left-ball.png') no-repeat center;
+    z-index: 100;
+    position: relative;
+}
+
+.u-lever-stick{
+    display: inline-block;
+    width: 20px;
+    height: 186px;
+    background-color: #fff;
+    border-radius: 20px;
+    position: absolute;
+    left: 17px;
+}
+
+.u-light{
+    width: 40px;
+    position: absolute;
+    top: 50px;
+    z-index:10;
+}
+.u-light-left{  left: 80px;  }
+.u-light-right{  right: 70px;  }
+
+.u-light span{
+    display: inline-block;
+    box-sizing: border-box;
+    width: 30px;
+    height: 30px;
+    border-radius: 30px;
+    border: 5px solid #fff;
+    margin: 10px 0;
+}
+.u-light span.u-light-1{
+    background: #65c15e;
+}
+.u-light span.u-light-2{
+    background: #ffcd06;
+}
+.u-light span.u-light-3{
+    background: #71caf2;
+}
+
+.u-nav{
+    background: #36494d;
+    height: 200px;
+    box-sizing: border-box;
+    border: 8px solid #fff;
+    border-radius: 5px;
+    padding: 35px 90px;
+    position: relative;
+}
+
+.u-nav li ,
+.u-nav li span{
+    display: inline-block;
+    width: 115px;
+    height: 116px;
+    margin-left: 15px;
+    cursor: pointer;
+    position: relative;
+    z-index:10;
+}
+
+/* tab的金币 */
+.u-nav .u-golds{
+    position: absolute;
+    /*display: inline-block;*/
+    width: 82px;
+    height: 45px;
+    background: url('/static/img/activity/playOlympic/bottom-gold.png') no-repeat center;
+    z-index: 8;
+    top: 90px;
+    left: 33px;
+    display: none;
+}
+
+
+    /* tab 切换的样式 */
+.u-nav .u-tab-1 span {background: url('/static/img/activity/playOlympic/tab1-dis.png') no-repeat center;}
+.u-nav .u-tab-2 span {background: url('/static/img/activity/playOlympic/tab2-dis.png') no-repeat center;}
+.u-nav .u-tab-3 span {background: url('/static/img/activity/playOlympic/tab3-dis.png') no-repeat center;}
+.u-nav .u-tab-4 span {background: url('/static/img/activity/playOlympic/tab4-dis.png') no-repeat center;}
+.u-nav .u-tab-5 span {background: url('/static/img/activity/playOlympic/tab5-dis.png') no-repeat center;}
+
+/* 在日历的tab时，都显示高亮 */
+.g-body.z-tab-cal .u-nav .u-tab-1 span {background: url('/static/img/activity/playOlympic/tab1.png') no-repeat center;}
+.g-body.z-tab-cal .u-nav .u-tab-2 span {background: url('/static/img/activity/playOlympic/tab2.png') no-repeat center;}
+.g-body.z-tab-cal .u-nav .u-tab-3 span {background: url('/static/img/activity/playOlympic/tab3.png') no-repeat center;}
+.g-body.z-tab-cal .u-nav .u-tab-4 span {background: url('/static/img/activity/playOlympic/tab4.png') no-repeat center;}
+.g-body.z-tab-cal .u-nav .u-tab-5 span {background: url('/static/img/activity/playOlympic/tab5.png') no-repeat center;}
+
+.g-body.z-tab-1 .u-tab-1 span {background: url('/static/img/activity/playOlympic/tab1.png') no-repeat center;}
+.g-body.z-tab-2 .u-tab-2 span {background: url('/static/img/activity/playOlympic/tab2.png') no-repeat center;}
+.g-body.z-tab-3 .u-tab-3 span {background: url('/static/img/activity/playOlympic/tab3.png') no-repeat center;}
+.g-body.z-tab-4 .u-tab-4 span {background: url('/static/img/activity/playOlympic/tab4.png') no-repeat center;}
+.g-body.z-tab-5 .u-tab-5 span {background: url('/static/img/activity/playOlympic/tab5.png') no-repeat center;}
+
+.g-body.z-tab-1 .u-tab-1 .u-golds,
+.g-body.z-tab-2 .u-tab-2 .u-golds,
+.g-body.z-tab-3 .u-tab-3 .u-golds,
+.g-body.z-tab-4 .u-tab-4 .u-golds,
+.g-body.z-tab-5 .u-tab-5 .u-golds,
+.g-body.z-tab-cal .m-content-cal,
+.g-body.z-tab-1 .m-content-1,
+.g-body.z-tab-2 .m-content-2,
+.g-body.z-tab-3 .m-content-3,
+.g-body.z-tab-4 .m-content-4,
+.g-body.z-tab-5 .m-content-5{
+    display: block;
+}
+
+/* nav下面的图形 */
+.u-main-header{
+    box-sizing: border-box;
+    border: 8px solid #fff;
+    border-top: none;
+    height: 100px;
+    background-color: #bfbfbf;
+    text-align: center;
+}
+
+.u-main-header .u-line{
+    background: #36494d;
+    display: inline-block;
+    width: 940px;
+    height: 8px;
+    margin-top: 35px;
+}
+
+.m-main{
+    background: #ffd571;
+    border: 8px solid #fff;
+    border-top: none;
+    box-sizing: border-box;
+}
+.m-main .m-content{
+    box-sizing: border-box;
+    width: 910px;
+    background: #fff;
+    padding: 100px 40px;
+    margin-left: 40px;
+    position: relative;
+    top: -57px;
+    display: none;
+}
+
+/* tab 日历 */
+.m-links-wrap{
+    border: 2px solid orange;
+    border-radius: 10px;
+    padding: 40px 70px 30px 70px;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+    margin: 0 15px;
+}
+.u-icon-hot{
+    display: inline-block;
+    width: 87px;
+    height: 82px;
+    background: url('/static/img/activity/playOlympic/icon-hot.png') no-repeat center;
+    position: absolute;
+    left: -18px;
+    top: -20px;
+}
+.u-links li {
+    height: 35px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    color: #999;
+}
+.u-links li .u-mark{
+    width: 100px;
+    color: #fff;
+    font-size: 20px;
+    display: inline-block;
+    padding-left: 15px;
+    height: 33px;
+    box-sizing: border-box;
+    margin-right: 10px;
+    position: relative;
+}
+
+.u-links li .u-mark::before{
+    content: "";
+    display: inline-block;
+    width: 15px;
+    height: 34px;
+    background: url('/static/img/activity/playOlympic/btn-before.png') no-repeat center;
+    position: absolute;
+    left: -15px;
+}
+.u-links li .u-mark::after{
+    content: "";
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-top: 17px solid transparent;
+    border-bottom: 17px solid transparent;
+    border-right: 10px solid #fff;
+    position: absolute;
+    right: 0px;
+}
+
+.u-links li .u-mark-1{background: #5edcff;}
+.u-links li .u-mark-2{background: #fec230;}
+.u-links li .u-mark-3{background: #887878;}
+.u-links li .u-mark-4{background: #5adb51;}
+.u-links li .u-mark-5{background: #ff6141;}
+
+.u-links li .u-link-go{
+    float: right;
+    padding-top: 8px;
+}
+
+/* 奥运日历表格 */
+.g-oly-cal-wrap{
+    margin-top: 100px;
+    border: 2px solid #a17224;
+    position: relative;
+}
+.u-cal-icon{
+    display: inline-block;
+    width: 20px;
+    height: 60px;
+    position: absolute;
+    border-radius: 20px;
+    background-color: #ffc000;
+    border: 4px solid #fff;
+    box-sizing: border-box;
+    top: -30px;
+}
+.u-cal-icon.u-cal-icon1{  left: 210px;  }
+.u-cal-icon.u-cal-icon2{  left: 605px;  }
+
+.u-title-line{
+    width: 80px;
+    height: 10px;
+    box-sizing: border-box;
+    border: 3px solid #63d8fe;
+    background: #fff;
+    position: absolute;
+    top: 66px;
+    border-radius: 20px;
+}
+.u-title-line.u-title-line-1{  left: 247px;  }
+.u-title-line.u-title-line-2{  left: 495px;  }
+
+.u-oly-cal-title{
+    background: #70e1ff;
+    color: #fff;
+    text-align: center;
+    font-size: 40px;
+    height: 135px;
+    line-height: 135px;
+}
+
+.oly-com-table{width:100%;}
+.oly-com-table,.oly-com-table th,.oly-com-table td{border:solid 1px #dcdcdc;}
+.oly-com-table th{font-weight:bold;background:#e7e7e7;padding:10px 0;}
+.oly-com-table th,
+.oly-com-table td{text-align:center;color:#888888;}
+
+.oly-match-plan .oly-com-table th{width:30px;overflow:hidden;}
+
+.oly-match-plan .oly-com-table th span{font-weight:normal;display:block;font-size:12px;}
+
+.oly-match-plan .oly-com-table tr.cell-top td{
+    height: 50px;
+    color: #9a6500;
+    font-size: 16px;
+    text-align: center;
+    border-right-color:#a17224;
+}
+.oly-match-plan .oly-com-table tr.cell-top td:nth-last-child(1){
+    border-right:none;
+}
+.oly-match-plan .oly-com-table tr.cell-top td span{
+    position: relative;
+    top: 3px;
+    left: -5px;
+}
+
+.oly-match-plan .u-icon-begin{
+    display: inline-block;
+    width: 25px;
+    height: 21px;
+    background:url('/static/img/activity/playOlympic/icon-begin.png') center top no-repeat;border:0;
+}
+.oly-match-plan .u-icon-gold{
+    display: inline-block;
+    width: 19px;
+    height: 19px;
+    background:url('/static/img/activity/playOlympic/icon-gold.png') center top no-repeat;border:0;
+}
+.oly-match-plan .u-icon-close{
+    display: inline-block;
+    width: 25px;
+    height: 21px;
+    background:url('/static/img/activity/playOlympic/icon-close.png') center top no-repeat;border:0;
+}
+
+
+.oly-match-plan .oly-com-table th.cell-first{width:130px;}
+.oly-match-plan .oly-com-table th.cell-last{width:50px;}
+.oly-match-plan .oly-com-table th.cell-first,.oly-match-plan .oly-com-table th.cell-last{font-size:16px;}
+.oly-match-plan .oly-com-table td{height:30px;text-align:center;}
+.oly-match-plan .oly-com-table td.cell-first,.oly-match-plan .oly-com-table td.cell-last{font-size:16px;}
+.oly-match-plan .oly-com-table td.had-join{background-color:#f0f2fa;}
+.oly-match-plan .oly-com-table td.had-win{background:#f0f2fa url('/static/img/activity/playOlympic/medal-gold-a.png') center top no-repeat;color:#fff;font-size:12px;}
+.oly-match-plan .oly-com-table td.had-win span{display:inline-block;padding-top:6px;text-align:center;line-height:14px;}
+.oly-match-plan .table-tips{margin-right:15px;}
+.oly-match-plan .table-tips span{display:inline-block;line-height:30px;margin-left:10px;color:#666;}
+.oly-match-plan .table-tips span em{width:30px;height:30px;background:#f0f2fa;display:inline-block;vertical-align: middle;margin-right:5px;font-size:12px;text-align:center;line-height:30px;border:solid 1px #e7e8e9;}
+
+
+
+/* tab的标题 */
+.m-content .u-content-title{
+    display: inline-block;
+    width: 851px;
+    height: 79px;
+    background: url('/static/img/activity/playOlympic/bg-title.png') no-repeat center;
+    font-size: 36px;
+    text-align: center;
+    color: #fff;
+    padding-top: 10px;
+    margin-bottom: 80px;
+    box-sizing: border-box;
+}
+
+.m-content .u-saiOlympic{
+    background: url("/static/img/activity/playOlympic/saiTitle_bg.png") no-repeat center;
+}
+.m-content .u-playOlympic{
+    background: url("/static/img/activity/playOlympic/playTitle_bg.png") no-repeat center;
+}
+.m-content .u-gatherOlympic{
+    background: url("/static/img/activity/playOlympic/gatherTitle_bg.png") no-repeat center;
+}
+.m-content .u-lightOlympic{
+    background: url("/static/img/activity/playOlympic/lightTitle_bg.png") no-repeat center;
+}
+/* 亮奥运 */
+.m-content-1{
+    text-align: center;
+}
+.u-light-table-wrap{
+    display: inline-block;
+    width: 800px;
+    border: 4px solid #ffa200;
+    height: 660px;
+}
+.u-light-table-title{
+    border-bottom: 4px solid #ffa200;
+    height: 90px;
+    box-sizing: border-box;
+}
+.u-three-icons{
+    display: inline-block;
+    width: 100px;
+    height: 80px;
+    padding: 25px;
+    box-sizing: border-box;
+}
+.u-three-icons.u-three-icons-left{  float: left;}
+.u-three-icons.u-three-icons-right{  float: right;}
+.u-three-icons .u-icons-line{
+    display: inline-block;
+    width: 50px;
+    height: 8px;
+    border: 2px solid #ffa200;
+    border-radius: 10px;
+    box-sizing: border-box;
+    margin-bottom: 5px;
+}
+
+.u-light-table-year{
+    font-size: 44px;
+    color: #ffa200;
+    display: inline-block;
+    padding-top: 10px;
+    font-family: "dincond";
+}
+
+/* 亮奥运表格 */
+.u-light-table{
+    width: 100%;
+    height: 580px;
+    font-size: 0;
+}
+
+.u-light-table span{
+    border-left: 1px solid #999;
+    font-weight: bold;
+    text-align: center;
+    font-size: 18px;
+    display: inline-block;
+    width: 113px;
+    height: 113px;
+    position: relative;
+    color: #b1b1b1;
+    font-family: "dincond";
+}
+
+.u-light-table span:nth-child(7n+1){  border-left: none  }
+.u-light-table span:nth-last-child(n+8){  border-bottom: 1px solid #999;  }
+
+.u-light-table span i{
+    display: inline-block;
+    position: absolute;
+    top: 5px;
+    left: 15px;
+    font-size: 30px;
+}
+.u-light-table span em{
+    display: inline-block;
+    width: 46px;
+    height: 57px;
+    background: url('/static/img/activity/playOlympic/medal-gold-lg-dis.png') no-repeat center;
+    position: absolute;
+    top: 44px;
+    left: 35px;
+}
+.u-light-table span.z-active em{
+    display: inline-block;
+    width: 46px;
+    height: 57px;
+    background: url('/static/img/activity/playOlympic/medal-gold-lg.png') no-repeat center;
+    position: absolute;
+    top: 44px;
+    left: 35px;
+}
+.u-light-table span.z-today{
+    background: #fff0b5;
+}
+.u-light-table span.z-noGold i{
+    color: #e8e8e8;
+}
+
+.m-content-1 .u-light-text{
+    color: #999;
+    font-size: 14px;
+    margin: 60px 0;
+    text-align: left;
+    padding-left: 15px;
+}
+
+/* 亮-三张券 */
+.u-cash{
+    display: inline-block;
+    width: 269px;
+    height: 169px;
+    position: relative;
+    overflow: hidden;
+}
+
+.u-cash .u-tip{
+    display: inline-block;
+    width: 105px;
+    height: 100px;
+    background: url('/static/img/activity/playOlympic/icon-wait.png') no-repeat center;
+    position: absolute;
+    top: -25px;
+    left: -25px;
+}
+
+.u-cash.z-active .u-tip{
+    background: url('/static/img/activity/playOlympic/icon-give.png') no-repeat center;
+}
+
+.u-cash-50{
+    background: url('/static/img/activity/playOlympic/cash50.png') no-repeat center;
+    left: -20px;
+}
+.u-cash-100{  background: url('/static/img/activity/playOlympic/cash100.png') no-repeat center;  }
+.u-cash-200{
+    background: url('/static/img/activity/playOlympic/cash200.png') no-repeat center;
+    right: -20px;
+}
+
+
+/* 猜奥运 */
+.u-content-tip{
+    font-size: 26px;
+    color: #fff;
+    background: #ffa200;
+    width: 170px;
+    height: 40px;
+    padding-left: 15px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.u-content-tip::before{
+    content: "";
+    display: inline-block;
+    width: 15px;
+    height: 34px;
+    background: url('/static/img/activity/playOlympic/btn-before.png') no-repeat center;
+    position: absolute;
+    left: -15px;
+}
+.u-content-tip::after{
+    content: "";
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-right: 10px solid #fff;
+    position: absolute;
+    right: 0px;
+}
+
+.m-content-2 .u-light-text{
+    color: #999;
+    font-size: 14px;
+    margin-top: 40px;
+    text-align: left;
+    padding-left: 15px;
+    line-height: 30px;
+}
+
+
+/* 猜奖牌 */
+.m-guessMedal-wrap{
+    text-align: center;
+}
+
+.m-guessMedal-wrap .u-odd{
+    display: inline-block;
+    width: 239px;
+    height: 207px;
+    background: url('/static/img/activity/playOlympic/bg-odd.png') no-repeat center;
+    position: relative;
+}
+
+.m-guessMedal-wrap .u-btn{
+    position: absolute;
+    display: inline-block;
+    width: 90px;
+    height: 35px;
+    background-color: #fff;
+    box-sizing: border-box;
+    bottom: 10px;
+    left: 73px;
+    font-size: 20px;
+    line-height: 35px;
+    cursor: pointer;
+}
+.m-guessMedal-wrap .u-btn.z-disabled{
+    background: #c6c6c6;
+    cursor: default;
+}
+.u-odd .u-btn-odd{
+    color: #55c2e1;
+}
+.u-even .u-btn-even{
+    color: #fec536;
+}
+.m-guessMedal-wrap .u-even{
+    display: inline-block;
+    width: 239px;
+    height: 207px;
+    background: url('/static/img/activity/playOlympic/bg-even.png') no-repeat center;
+    position: relative;
+}
+
+
+.u-bet-body{
+    display: inline-block;
+    text-align: center;
+    position: relative;
+    color: #999999;
+    top: 35px;
+}
+
+.u-bet-body .u-vs{
+    font-size: 80px;
+    -webkit-text-fill-color:transparent;
+    -webkit-text-stroke:1px #ffab19;
+    position: relative;
+    top: 10px;
+}
+
+.u-bet-body .u-count-text{
+    font-size: 20px;
+}
+
+.u-bet-body .u-count-num{
+    font-size: 20px;
+    color: #fff;
+    background: #ffa200;
+    text-align: center;
+    width: 160px;
+    height: 40px;
+    line-height: 40px;
+    display: inline-block;
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+.u-bet-body .u-count-intro{
+    line-height: 25px;
+    font-size: 14px;
+}
+
+/* 竞猜记录 */
+.u-bet-wrap{
+    margin-top: 40px;
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.u-bet-table{
+    width: 660px;
+    margin: 0 auto;
+    overflow: hidden;
+    font-size: 0;
+    text-align: left;
+    border-bottom: 1px solid #888;
+    border-right: 1px solid #888;
+}
+
+.u-bet-table span{
+    display: inline-block;
+    vertical-align: top;
+    width: 110px;
+    border-top: 1px solid #888;
+    border-left: 1px solid #888;
+    color: #666;
+    text-align: left;
+    padding-left: 10px;
+    height: 35px;
+    line-height: 35px;
+    position: relative;
+    box-sizing: border-box;
+    font-size: 12px;
+}
+.u-bet-table span.z-passed{
+    background-color: #DCDCDC;
+}
+.u-bet-table span.z-odd::after{
+    content: "奇";
+    display: inline-block;
+    width: 26px;
+    height: 26px;
+    border-radius: 20px;
+    border: 1px solid #999;
+    color: #979797;
+    background-color: #fff;
+    line-height: 26px;
+    text-align: center;
+    position: absolute;
+    top: 3px;
+    right: 8px;
+    font-size: 15px;
+}
+.u-bet-table span.z-even::after{
+    content: "偶";
+    display: inline-block;
+    width: 26px;
+    height: 26px;
+    border-radius: 20px;
+    border: 1px solid #999;
+    color: #979797;
+    background-color: #fff;
+    line-height: 26px;
+    text-align: center;
+    position: absolute;
+    top: 3px;
+    right: 8px;
+    font-size: 15px;
+}
+.u-bet-table span.z-active{
+    background: #ff5f3f;
+}
+
+.u-bet-table span.z-active.z-odd::after{
+    background: #fff;
+    color: #ff5f3f;
+}
+
+.u-bet-table span.z-disabled{
+    background: #dcdcdc;
+}
+.u-bet-table span.z-disabled::after{
+    background: #fff;
+}
+/* 猜金牌 */
+.m-guessGold-wrap{
+    text-align: center;
+}
+
+.m-guessGold-wrap .u-guess-btn{
+    display: inline-block;
+    padding: 5px 70px;
+    border-radius: 50px;
+    background: #ff5f3f;
+    font-size: 20px;
+    color: #fff;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.u-guess-btn.z-disabled{
+    background: #ccc;
+    cursor: default;
+}
+.u-guess-text{
+    color: #999;
+    font-size: 14px;
+}
+
+.u-special-title{
+    display: inline-block;
+    width: 180px;
+    height: 40px;
+    font-size: 20px;
+    color: #fff;
+    background: #ffa200;
+    line-height: 40px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    text-align: center;
+    position: relative;
+}
+.u-special-title::before{
+    content: "";
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-left: 10px solid #fff;
+    position: absolute;
+    left: 0px;
+}
+
+.u-special-title::after{
+    content: "";
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-right: 10px solid #fff;
+    position: absolute;
+    right: 0px;
+}
+
+.u-input{
+    display: inline-block;
+    width: 360px;
+    height: 50px;
+    vertical-align: top;
+}
+.u-input-left{
+    width: 310px;
+    margin-right:80px;
+}
+.u-input .u-icon{
+    position: relative;
+    top: 5px;
+}
+.u-input .u-icon.u-icon-gold{
+    display: inline-block;
+    margin-right: 5px;
+    width: 20px;
+    height: 28px;
+    background: url('/static/img/activity/playOlympic/medal-gold-a.png') no-repeat center;
+}
+
+.u-input .u-icon.u-icon-point{
+    display: inline-block;
+    margin-right: 5px;
+    width: 36px;
+    height: 29px;
+    background: url('/static/img/activity/playOlympic/icon-point.png') no-repeat center;
+}
+
+.u-input em{
+    font-size: 24px;
+    color: #ffa200;
+}
+.u-input .u-error-msg{
+    font-size: 14px;
+    color: #ff5f3f;
+    display: block;
+    text-align: right;
+}
+.u-input input{
+    display: inline-block;
+    width: 150px;
+    height: 25px;
+    border: 1px solid #999;
+    margin-left: 20px;
+    text-indent:1em;
+    position: relative;
+    top: -3px;
+}
+
+.m-guess-list{
+    border: 1px solid #999;
+    width: 600px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    margin: 0 auto;
+    padding: 20px 35px;
+    color: #999999;
+}
+
+.m-guess-list li{
+    font-size: 14px ;
+    line-height: 30px;
+    text-align: left;
+    padding:0 0 0 20px;
+}
+.m-guess-list li.z-noData{
+    text-align: center;
+    color: #ffa200;
+}
+.m-guess-list li i{
+    margin-right: 15px;
+}
+.m-guess-list li .u-popularityValue{
+    display: inline-block;
+    width: 20px;
+}
+.m-guess-list li .u-goldNumber{
+    display: inline-block;
+    width: 20px;
+}
+/* tab3 集奥运 */
+.m-content-3 .u-light-text{
+    color: #999;
+    font-size: 14px;
+    text-align: left;
+    padding-left: 15px;
+    line-height: 30px;
+}
+
+/* 拼图模块 */
+
+.m-puzzle-wrap{
+    display: inline-block;
+    width: 860px;
+    height: 620px;
+    box-sizing:border-box;
+    margin-left: -15px;
+}
+
+.m-puzzle-wrap>div{
+    vertical-align: top;
+}
+
+.m-puzzle-left{
+    display: inline-block;
+    width: 580px;
+    height: 620px;
+    box-sizing: border-box;
+    background: #ffa200;
+    position: relative;
+}
+
+.m-puzzle-left>div{
+    position: absolute;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.m-puzzle-left>div>span{
+    font-size: 16px;
+    position: absolute;
+    color: #ffa200;
+}
+.m-puzzle-left span em{  font-size: 20px;  padding-left: 3px; }
+.m-puzzle-left .u-puzzle-1 span{  top: 10px;  left: 10px;  }
+.m-puzzle-left .u-puzzle-2 span{  top: 10px;  right: 10px;  }
+.m-puzzle-left .u-puzzle-3 span{  bottom: 10px;  left: 10px;  }
+.m-puzzle-left .u-puzzle-4 span{  bottom: 10px;  right: 10px;  }
+
+
+.m-puzzle-left .u-puzzle-1{
+    width: 282px;
+    height: 210px;
+    background: url('/static/img/activity/playOlympic/puzzle-dis1.png') no-repeat center;
+    top: 50px;
+    left: 35px;
+}
+.m-puzzle-left .u-puzzle-1.z-actived{
+    background-image: url('/static/img/activity/playOlympic/puzzle1.png');
+}
+.m-puzzle-left .u-puzzle-2{
+    width: 210px;
+    height: 277px;
+    background: url('/static/img/activity/playOlympic/puzzle-dis2.png') no-repeat center;
+    top: 50px;
+    left: 340px;
+}
+.m-puzzle-left .u-puzzle-2.z-actived{
+    background-image: url('/static/img/activity/playOlympic/puzzle2.png');
+}
+.m-puzzle-left .u-puzzle-3{
+    width: 210px;
+    height: 282px;
+    background: url('/static/img/activity/playOlympic/puzzle-dis3.png') no-repeat center;
+    top: 285px;
+    left: 35px;
+}
+.m-puzzle-left .u-puzzle-3.z-actived{
+    background-image: url('/static/img/activity/playOlympic/puzzle3.png');
+}
+.m-puzzle-left .u-puzzle-4{
+    width: 282px;
+    height: 210px;
+    background: url('/static/img/activity/playOlympic/puzzle-dis4.png') no-repeat center;
+    top: 355px;
+    left: 266px;
+}
+.m-puzzle-left .u-puzzle-4.z-actived{
+    background-image: url('/static/img/activity/playOlympic/puzzle4.png');
+}
+/* 拼图右边 */
+.m-puzzle-right{
+    display: inline-block;
+    width: 270px;
+    background-color: #fec532;
+    height: 620px;
+    position: relative;
+    padding: 50px 30px;
+    box-sizing: border-box;
+}
+
+.u-puzzle-right-title{
+    font-size: 22px;
+    text-align: center;
+    color: #fff;
+}
+
+.m-puzzle-preview{
+    display: inline-block;
+    width: 209px;
+    height: 209px;
+    box-sizing: border-box;
+    margin-top: 45px;
+    font-size: 0;
+    position: relative;
+    background: url('/static/img/activity/playOlympic/complete.png') no-repeat center;
+    background-color: #fff;
+    background-size: 100%;
+    overflow: hidden;
+    box-shadow: 3px 4px 9px 3px #ffa200;
+}
+.m-puzzle-preview>div{
+    display: inline-block;
+    position: absolute;
+}
+.m-puzzle-preview .u-puzzle-1{
+    width: 142px;
+    height: 106px;
+    background: url('/static/img/activity/playOlympic/shadow1.png') no-repeat center;
+    background-size: 100%;
+    top: 0;
+    left: 0;
+}
+.m-puzzle-preview .u-puzzle-2{
+    width: 106px;
+    height: 140px;
+    background: url('/static/img/activity/playOlympic/shadow2.png') no-repeat center;background-size: 100%;
+    right: -3px;
+    top: 0;
+}
+
+.m-puzzle-preview .u-puzzle-3{
+    width: 106px;
+    height: 141px;
+    background: url('/static/img/activity/playOlympic/shadow3.png') no-repeat center;
+    background-size: 100%;
+    bottom: -2px;
+    left: 0;
+}
+
+.m-puzzle-preview .u-puzzle-4{
+    width: 142px;
+    height: 106px;
+    background: url('/static/img/activity/playOlympic/shadow4.png') no-repeat center;
+    background-size: 100%;
+    bottom: -3px;
+    right: -3px;
+}
+
+.u-puzzle-tip{
+    font-size: 14px;
+    color: #fff;
+    margin-top: 30px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.u-puzzle-tip i{
+    font-size: 20px;
+    text-decoration: underline;
+}
+
+.u-puzzle-btn{
+    width: 100%;
+    background: #fff;
+    color: #ffa200;
+    text-align: center;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 20px;
+    border-radius: 40px;
+    box-shadow: 3px 4px 9px 3px #ffa200;
+    cursor: pointer;
+}
+.u-puzzle-btn.z-disabled{
+    color: #aaa;
+    cursor: default;
+    box-shadow: 3px 4px 9px 3px #aaa;
+}
+.u-puzzle-notice{
+    font-size: 12px;
+    color: #fff;
+    margin-top: 40px;
+    text-align: center;
+}
+
+.m-puzzle-gift{
+    display: inline-block;
+    width: 854px;
+    height: 270px;
+    background-color: #ffa200;
+    margin-left: -15px;
+    margin-top: 3px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.u-watch{
+    display: inline-block;
+    width: 360px;
+    height: 225px;
+    background: url('/static/img/activity/playOlympic/watch.png') no-repeat center;
+    background-color: #fff;
+}
+.u-gift-rule-wrap{
+    display: inline-block;
+    vertical-align: top;
+    padding-left: 10px;
+}
+.u-gift-rule{
+    color: #fff;font-size: 12px;
+    line-height: 21px;
+}
+
+.u-gift-rule strong{
+    font-size: 18px;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.m-lucky-user{
+    display: inline-block;
+    width: 400px;
+    height: 60px;
+    border: 1px solid #fff;
+    margin-top: 28px;
+    box-sizing: border-box;
+    overflow: hidden;
+    color: #fff;
+    padding-left: 20px;
+}
+
+.m-lucky-user>span{
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 20px;
+}
+
+.m-lucky-list{
+    display: inline-block;
+}
+
+.m-lucky-list li{
+    height: 60px;
+    line-height: 60px;
+    padding-left: 10px;
+}
+
+.m-lucky-list .u-user img{
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    border-radius: 20px;
+    position: relative;
+    top: 12px;
+    margin-right: 10px;
+}
+
+
+/* tab4 竞奥运 */
+.m-content-4 .u-light-text{
+    color: #999;
+    font-size: 14px;
+    text-align: left;
+    padding-left: 15px;
+    line-height: 30px;
+    margin-right:-30px;
+    margin-bottom:5px;
+}
+
+/* 跑道运动员 */
+.m-track{
+    display: inline-block;
+    width: 840px;
+    height: 580px;
+    background: #d04641;
+    margin-left: -5px;
+    background: url('/static/img/activity/playOlympic/track.png') no-repeat center;
+    position: relative;
+}
+
+.m-track span{
+    display: inline-block;
+    width: 66px;
+    height: 50px;
+    position: absolute;
+    left: 90px;
+    transition:all 3s ease-in;
+}
+.m-track .u-runner-1{
+    background: url('/static/img/activity/playOlympic/runner1.gif') no-repeat center;
+    top: 240px;
+}
+.m-track .u-runner-1.z-active{  left: 620px;  }
+
+.m-track .u-runner-2{
+    background: url('/static/img/activity/playOlympic/runner2.gif') no-repeat center;
+    top: 300px;
+}
+.m-track .u-runner-2.z-active{
+    left: 580px;
+}
+
+.m-track .u-runner-3{
+    background: url('/static/img/activity/playOlympic/runner3.gif') no-repeat center;
+    top: 360px;
+}
+.m-track .u-runner-3.z-active{
+    left: 520px;
+}
+
+.m-track .u-runner-4{
+    background: url('/static/img/activity/playOlympic/runner4.gif') no-repeat center;
+    top: 60px;
+}
+.m-track .u-runner-4.z-active{
+    left: 460px;
+}
+
+.m-track .u-runner-5{
+    background: url('/static/img/activity/playOlympic/runner1.gif') no-repeat center;
+    top: 120px;
+}
+
+
+.m-track .u-runner-5.z-active{
+    left: 420px;
+}
+
+.m-track .u-runner-6{
+    background: url('/static/img/activity/playOlympic/runner2.gif') no-repeat center;
+    top: 180px;
+}
+.m-track .u-runner-6.z-active{
+    left: 380px;
+}
+
+.m-track .u-runner-7{
+    background: url('/static/img/activity/playOlympic/runner4.gif') no-repeat center;
+    top: 420px;
+}
+.m-track .u-runner-7.z-active{
+    left: 270px;
+}
+
+.m-track .u-runner-8{
+    background: url('/static/img/activity/playOlympic/runner3.gif') no-repeat center;
+    top: 480px;
+}
+.m-track .u-runner-8.z-active{
+    left: 230px;
+}
+
+.m-track span .u-runner-intro{
+    display: inline-block;
+    padding: 2px 7px;
+    background-color: #fff;
+    width: 140px;
+    position: relative;
+    top: -25px;
+    left: -45px;
+    border-radius: 20px;
+    color: #999;
+    z-index: 10;
+    text-align: center;
+}
+.m-track span .u-runner-intro .u-runner-count {
+    display:inline-block;
+    color: #ee5951;
+}
+
+.m-track span .u-runner-intro::after{
+    content: "";
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 7px solid #fff;
+    position: absolute;
+    bottom: -6px;
+    left: 80px;
+}
+.u-myInvestAmount{
+    padding-left:318px ;
+    margin-bottom: 6px;
+}
+.u-todayMyInvestAmount{
+    width: 275px;
+    height: 30px;
+    background-color: #FF8224;
+    line-height: 30px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    display: inline-block;
+    margin-right: 120px;
+}
+.u-refreshIcon{
+    display: inline-block;
+    width: 96px;
+    height: 30px;
+    background: #fec536;
+    border-radius: 15px;
+    box-shadow: 3px 2px 0 #ffa200;
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
+    line-height: 30px;
+    cursor: pointer;
+}
+/* 日冠军 */
+.u-win-list-top{
+    display: inline-block;
+    width: 875px;
+    height: 54px;
+    background: url('/static/img/activity/playOlympic/win-list-top.png') no-repeat center;
+    margin-left: -20px;
+}
+
+.m-win-list-wrap{
+    margin-top: 60px;
+}
+
+.m-win-list-outter{
+    position: relative;
+}
+.u-win-list-mask{
+    position: absolute;
+    background: #666;
+    opacity: 0.5;
+    width: 841px;
+    height: 320px;
+    top: 0;
+    left: -4px;
+    font-size: 30px;
+    text-align: center;
+     padding-top: 125px;
+    box-sizing: border-box;
+    color: #fff;
+    z-index: 20;
+}
+
+.u-win-container{
+    width: 841px;
+    height: 320px;
+    box-sizing: border-box;
+    padding: 0 0 50px 40px;
+    background: #fff8d9;
+    margin-left: -4px;
+    position: relative;
+}
+.u-filter-wrapper-left,
+.u-filter-wrapper-right{
+    width: 45%;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.u-filter-wrapper-right{
+    padding-left: 8%;
+}
+
+.u-finalList{
+    width: 100%;
+    color: #999;
+}
+
+.u-finalList tr th,
+.u-finalList tr td{
+    height: 55px;
+}
+
+.m-userList {
+    padding: 0px 50px 0 155px;
+    background: #fff;
+    border-radius: 10px;
+    border: 1px solid #ffc02a;
+    margin-top: 30px;
+    height: 400px;
+}
+.m-userList.z-noData {
+    padding: 185px;
+    text-align: center;
+    color: #999;
+    height: 400px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+.u-gainList-container{
+    background: #fff;
+    text-align: center;
+    overflow: hidden;
+    width: 700px;
+    margin: 50px auto;
+    height: 300px;
+}
+
+.u-user-head img {
+    vertical-align: middle;
+    width: 35px;
+    height: 35px;
+    border-radius: 20px;
+    margin-right: 15px;
+}
+
+.u-list-divider{
+    position: absolute;
+    width: 0;
+    height: 280px;
+    border-left: 1px solid #ededed;
+    top: 20px;
+    left: 420px;
+}
+
+
+
+
+/* tab5 赛奥运 */
+.m-content-5{
+    padding-right: 0!important;
+}
+.m-content-5 .u-light-text{
+    color: #999;
+    font-size: 14px;
+    text-align: left;
+    padding-left: 15px;
+    line-height: 30px;
+}
+.m-content-5 .u-refreshIcon{
+    margin: -30px 0 6px 300px;
+}
+
+.m-final-wrap>div{
+    vertical-align: top;
+}
+
+.m-final-left{
+    display: inline-block;
+    width: 420px;
+    height: 470px;
+    box-sizing: border-box;
+    color: #999999;
+    font-size: 12px;
+    position: relative;
+}
+.u-final-mask{
+    position: absolute;
+    background: #666;
+    opacity: 0.5;
+    width: 403px;
+    height: 385px;
+    top: 54px;
+    left: 10px;
+    font-size: 30px;
+    text-align: center;
+    padding-top: 144px;
+    box-sizing: border-box;
+    color: #fff;
+}
+
+
+.m-final-list-top{
+    display: inline-block;
+    width: 422px;
+    height: 54px;
+    background: url('/static/img/activity/playOlympic/totalList.png') no-repeat center;
+}
+.u-final-fixed,
+.m-final-list{
+    width: 403px;
+    box-sizing: border-box;
+    margin-left: 10px;
+    background: #fff8d9;
+}
+
+.u-final-fixed{
+    height: 35px;
+    line-height: 35px;
+}
+
+.m-final-list{
+    height: 350px;
+    overflow-y: auto;
+}
+.u-final-fixed .u-rank,
+.m-final-list .u-rank{
+    display: inline-block;
+    width: 110px;
+    padding-left: 35px;
+    box-sizing: border-box;
+    position: relative;
+}
+.m-final-list .u-rank{  top: -15px;  }
+
+.u-final-fixed .u-user,
+.m-final-list .u-user{
+    display: inline-block;
+    width: 140px;
+    box-sizing: border-box;
+}
+.m-final-list .u-user i{
+    position: relative;
+    top: -15px;
+}
+
+.m-final-list .u-amount{
+    position: relative;
+    top: -15px;
+}
+
+.m-final-list li{
+    height: 70px;
+    line-height: 60px;
+    padding-top: 10px;
+    box-sizing: border-box;
+    position: relative;
+}
+.u-finalList-left .u-rank1:before,
+.u-finalList-left .u-rank2:before,
+.u-finalList-left .u-rank3:before,
+.m-final-list .u-rank1:before,
+.m-final-list .u-rank2:before,
+.m-final-list .u-rank3:before{
+    content: "";
+    display: inline-block;
+    width: 25px;
+    height: 32px;
+    position: absolute;
+    left: 50px;
+}
+
+.u-finalList-left .u-rank1,
+.m-final-list .u-rank1:before{
+    background: url('/static/img/activity/playOlympic/medal-gold.png') no-repeat center;
+}
+.u-finalList-left .u-rank2,
+.m-final-list .u-rank2:before{
+    background: url('/static/img/activity/playOlympic/medal-silver.png') no-repeat center;
+}
+.u-finalList-left .u-rank3,
+.m-final-list .u-rank3::before{
+    background: url('/static/img/activity/playOlympic/medal-copper.png') no-repeat center;
+}
+
+.m-final-list .u-user img{
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    border-radius: 35px;
+    margin-right: 10px;
+}
+
+/* 右边图片和我的投资额 */
+.m-final-right{
+    box-sizing: border-box;
+    padding-left: 25px;
+    display: inline-block;
+    height: 470px;
+    padding-top: 25px;
+}
+.m-final-right .m-final-img{
+    display: inline-block;
+    width: 376px;
+    height: 366px;
+    background: url('/static/img/activity/playOlympic/podium.png') no-repeat center;
+}
+
+.u-my-num{
+    margin-top: 25px;
+    position: relative;
+}
+.u-my-num .u-comma{
+    color: #ee6216;
+    position: absolute;
+    font-size: 20px;
+    top: 0px;
+}
+
+.u-comma-1{  left: 185px;  }
+.u-comma-2{  left: 275px;  }
+
+.u-my-num span{
+    font-size: 18px;
+    color: #744415;
+}
+.u-my-num ul{  display: inline-block;  }
+.u-my-num ul li{
+    display: inline-block;
+    width: 26px;
+    height: 26px;
+    text-align: center;
+    line-height: 26px;
+    border-radius: 30px;
+    color: #fff;
+    background: #ee6216;
+    font-size: 16px;
+    margin-right: 4px;
+}
+
+/* 规则 */
+.g-rule{
+    padding: 15px 0 100px 120px;
+    font-size: 14px;
+    line-height: 30px;
+    color: #9a6500;
+}
+
+.g-rule table tr td{
+    vertical-align: top;
+}
+
+/* 底部的图片 */
+.m-bg-bottom{
+    width: 990px;
+    height: 149px;
+    background: url('/static/img/activity/playOlympic/bg-bottom.png') no-repeat center;
+}
+
+.mb-40{
+    margin-bottom: 40px;
+}
+
+.z-hidden{
+    display: none!important;
+}

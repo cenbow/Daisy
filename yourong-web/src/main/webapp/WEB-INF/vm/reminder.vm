@@ -1,0 +1,12 @@
+#parse("/common/common.vm")
+##set($layout = "/layout/default.vm")
+
+<div class="g-wrap u-page-tips f-round u-page-t1">
+    <div class="u-tips-box">
+        <i class="u-icon u-icon-error2 f-icon-35"></i>
+        <p class="f-fs18 f-fwb">
+           请勿频繁提交数据
+        </p>
+    </div>
+</div>
+

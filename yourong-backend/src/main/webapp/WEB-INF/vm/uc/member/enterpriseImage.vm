@@ -1,0 +1,33 @@
+#set($layout = "/layout/iframe.vm")
+#parse("/uc/member/head.vm")
+##企业公章图
+#set($stampDropzone = {"title":"企业公章", "category":"stamp","dzId":"dropzone_stamp","uploadImageName":"stampAttachmentsData","maxfiles":"99"})
+
+<div tabindex="-1" class="modal fade" id="modal-table-ca-image" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog w1100">
+        <div class="modal-content">
+	            <div class="modal-header no-padding">
+	                <div class="table-header">
+	                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+	                        <span class="white">×</span>
+	                    </button>
+	                    <span class="modalFormTitle" >添加企业公章</span>
+	                </div>
+	            </div>
+				<input type="hidden" name="enterpriseId" id="enterpriseId" />
+	            <div class="modal-body">
+	                <form  class="form-horizontal" id="ca_image_form">
+	                        
+	                        <div class="form-group">
+	                  #dropzoneImageBox(${stampDropzone.title},${stampDropzone.dzId},$!{stampDropzone.category},${stampDropzone.uploadImageName},$!{stampDropzone.maxfiles})
+	                        </div>
+	                </form>
+	            </div>
+	
+	            <div class="modal-footer">
+	                <button type="button" id="uploadCaImage"  class="btn btn-info btn-sm">上传</button>
+	            </div>
+
+        </div>
+    </div>
+</div>

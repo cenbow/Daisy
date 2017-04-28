@@ -1,0 +1,213 @@
+/*初始页面*/
+.m-questionnaire-init{
+    background: #d74148;
+    padding-top: 85px;
+    padding-bottom: 80px;
+}
+.m-questionnaire-init img{
+    margin:0 auto;
+    display: block;
+}
+.m-questionnaire-init p{
+    color: #fff;
+    font-size: 18px;
+    text-align: center;
+    line-height: 30px;
+    margin-top: 50px;
+}
+.m-questionnaire-init a{
+    height: 50px;
+    width: 56%;
+    color: #d74148;
+    background: #ffffff;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+    display: block;
+    margin:30px auto 0;
+    text-align: center;
+    line-height: 50px;
+    font-size: 16px;
+}
+/*结果页*/
+.m-questionnaire-result{
+    background: #d74148;
+    padding-top: 75px;
+    padding-bottom: 80px;
+    font-size: 0;
+}
+.m-questionnaire-result>div{
+    width: 80%;
+    margin: 0 auto;
+}
+.u-result-user{
+    width: 100%;
+    padding: 30px 0 30px;
+    background: #ffffff;
+}
+.m-questionnaire-result .u-result-user em{
+    text-align: center;
+    display: block;
+    line-height: 12px;
+    font-size: 16px;
+    color:#999;
+    font-weight: bold;
+}
+.u-result-user em img{
+    margin: 0 auto;
+    display: block;
+}
+.u-result-type{
+    width: 100%;
+    padding: 50px 10px;
+    box-sizing: border-box;
+    background: #ffffff;
+}
+.u-result-type h3{
+    color: #d74148;
+    font-weight: bold;
+    font-size: 22px;
+    letter-spacing: 3px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.u-result-type p{
+    font-size: 18px;
+    font-weight: bold;
+    color: #666666;
+    text-align: center;
+}
+.u-result-type a{
+    height: 50px;
+    width: 56%;
+    color: #fff;
+    background: #d74148;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+    display: block;
+    margin:50px auto 0;
+    text-align: center;
+    line-height: 50px;
+    font-size: 16px;
+}
+
+
+/* 问题的样式 */
+.m-question-process-wrap {
+    background: #ffeced;
+    height: 30px;
+    line-height: 30px;
+    position: relative;
+}
+.u-question-page{
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    color: #f37379;
+    vertical-align: top;
+}
+.u-question-process{
+    display: inline-block;
+    background: #ffd5d7;
+    height: 30px;
+}
+.u-question-process.z-step1{  width: 12%;  }
+.u-question-process.z-step2{  width: 24%;  }
+.u-question-process.z-step3{  width: 36%;  }
+.u-question-process.z-step4{  width: 48%;  }
+.u-question-process.z-step5{  width: 60%;  }
+.u-question-process.z-step6{  width: 72%;  }
+.u-question-process.z-step7{  width: 84%;  }
+/*最后一步稍微处理一下 */
+.u-question-process.z-step8{  width: 100%;  }
+.u-question-process.z-step8+.u-question-page{
+    position: absolute;
+    top: 0;
+    right: 10px;
+}
+
+/* 问题列表 */
+.m-question-list li{
+    display: none;
+    -webkit-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+}
+.m-question-list li.z-active{
+    display: block;
+}
+.u-img-wrap{
+    width: 90%;
+    margin: 0 auto;
+    border-bottom: 1px solid #d8d8d8;
+    padding-bottom: 2rem;
+}
+.u-img-responsive{
+    width: 100%;
+    height: auto;
+}
+
+.u-question-title{
+    margin-top: 2rem;
+    padding: 0 1rem;
+    color: #666;
+    font-size: 1.4rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+/* 按钮 */
+   .m-btns-group{
+       padding: 0 5%;
+       font-size: 0;
+       margin-top: 2rem;
+       padding-top: 1rem;
+   }
+
+.u-question-btn{
+    display: inline-block;
+    width: 40%;
+    margin-right: 5%;
+    margin-left: 5%;
+    background: red;
+    border-radius: 5px;
+    text-align: center;
+    color: #fff;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem 0;
+    box-sizing: border-box;
+}
+.u-question-btn:nth-child(1){  background: #ffcbce;}
+.u-question-btn:nth-child(2){  background: #fe9fa4;}
+.u-question-btn:nth-child(3){  background: #f37379;}
+.u-question-btn:nth-child(4){  background: #d74148;}
+.u-question-btn:nth-child(5){  background: #be1b22;}
+
+/* 问题文案 */
+.u-questions-text-wrap{
+   margin: 5%;
+   color: #999;
+   padding-bottom: 2rem;
+   border-bottom: 1px solid #d8d8d8;
+}
+.u-question-text{
+    margin-bottom: 1rem;
+}
+.u-question-text span{
+    display: inline-block;
+    width: 7%;
+    vertical-align: top;
+}
+.u-question-text p{
+    display: inline-block;
+    width: 90%;
+}
+
+.u-result-avatar{
+    display: inline-block;
+    width: 70px;
+    height: 70px;
+    border-radius:50px;
+}

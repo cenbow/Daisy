@@ -1,0 +1,99 @@
+#parse("/mobile/common.vm")
+#set($title='过年狂欢，一路惊喜')
+#CSRFToken("xToken")
+#set($css_url=["$res_url/source/css/activity/springFestival/springFestivalGrab.css"])
+
+<style type="text/css">
+    .g-bg1 {
+        margin-top: -240px;
+        height: 550px;
+        background: url(https://yrimg.oss-cn-hangzhou.aliyuncs.com/m/activity/springFestival/springFestival_bg1.png) no-repeat center;
+        -webkit-background-size: 100%;
+        background-size: 100%;
+    }
+    .u-loading {
+        display: inline-block;
+        position: relative;
+        top: 3px;
+        left: -5px;
+        width: 20px;
+        height: 20px;
+        background-color: #fffd01;
+        background: url($res_url/img/weixin/activity/springFestival/loading.gif) no-repeat center;
+        background-size: 140px;
+        display: none;
+    }
+</style>
+
+## 输入手机号页面
+<div class="g-main" id="j-main">
+    <h3 class="u-title">输入手机号码<br>领取“恭喜发财”红包</h3>
+    <div class="g-bg1" id="j-bg1"></div>
+    <input type="text" class="u-phoneNum" id="j-phoneNum" placeholder="请输入手机号码" />
+    <div class="u-share-btn" id="j-share-btn"><span class="u-loading" id="j-loading"></span>抢红包</div>
+    <div class="u-shade" id="j-shade"></div>
+</div>
+
+## 结果列表
+<div class="g-result" id="j-result">
+    <div class="g-main" id="j-main">
+
+        ## 抢到红包的话
+        <div id="j-grapOne">
+            <h1 class="u-title">恭喜您抢到 <span class="j-rewardValue"></span> 点<br/>“恭喜发财”人气值</h1>
+            <div class="u-circle">
+                <h2 class="u-circle-content" id="j-circle-content">
+                ## 已抢过
+                    <span class="u-circle-num j-rewardValue">3</span><span class="u-circle-unit">点</span>
+                </h2>
+            </div>
+        </div>
+
+        ## 已领完
+        <div id="j-grapTwo" class="u-grapTwo">
+            <h1 class="u-title">快去投资<br/>获得新的红包</h1>
+            <h3 class="u-notify">“恭喜发财”拼手气红包已经被抢完啦</h3>
+        </div>
+
+        ## 红包列表
+        #set($appid=$!{sysServiceUtil.getWeixinAppID()})
+        <h3 class="u-list-title" id="j-appid" data-appid="$appid">好友手气</h3>
+        <ul class="u-list" id="j-list">
+##            <li><span class="u-list-phone">159****0</span> <span class="u-list-num">5点</span></li>
+        </ul>
+    </div>
+</div>
+
+
+<script src="$res_url/lib/js/sea.js"></script>
+#if(!$loadJQ)
+<script src='$res_url/lib/js/zepto.min.js'></script>
+#else
+<script src="$res_url/lib/js/jquery.min.js"></script>
+#end
+<script>
+    seajs.config({
+        paths: {
+            'lib':'$res_url/lib',
+            'xjs':'$res_url/source/js',
+            'xcss':'$res_url/source/css'
+        },
+        alias: {
+            'zepto': 'lib/js/zepto.min',
+            'jquery':'lib/js/jquery.min',
+            'base': 'xjs/base',
+            // 这里加入微信模块
+            'wxSDK':'http://res.wx.qq.com/open/js/jweixin-1.0.0.js',
+            'wxShare':'../../common/wxShare'
+        }
+    });
+
+    var environment = {
+        globalPath : '$siteurl',
+        globalDomain : '$sysServiceUtil.getRootURL()',
+        mGlobalDomain : '$sysServiceUtil.getMRootURL()',
+        serverDate :  '${dateUtil.getCurrentDate().getTime()}',
+    };
+
+    seajs.use('$res_url/source/js/activity/springFestival/springFestivalGrab');
+</script>

@@ -1,0 +1,74 @@
+<div tabindex="-1" class="modal fade" id="modal-table-voucher" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog" >
+        <div class="modal-content">
+            <div class="modal-header no-padding">
+                <div class="table-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+                        <span class="white">×</span>
+                    </button>
+                    <span class="modalFormTitle">借款协议凭证</span>
+                </div>
+            </div>
+            <div class="modal-body" id="b-voucher-table">
+                <form role="form"  id="changerMobile_form" method="post">
+                    <input type="hidden" name="id"  id="project_id"/>
+                    <div 	class="form-group">
+                        <table>
+                                <tbody>
+                                <tr>
+                                    <td  width="100">项目金额(元)：</td>
+                                    <td width="50"><span name="totalAmount"></span></td>
+                                    <td ></td>
+                                    <td ></td>
+                                    <td width="90">管理费费率：</td>
+                                    <td ><span name="manageFeeRate"></span></td>
+                                    <td ></td>
+                                    <td ></td>
+                                    <td width="110">管理费金额(元)：</td>
+                                    <td ><span name="amount"></span></td>
+                                </tr>
+                                 </tbody>
+                        </table>
+                       </div>
+                       <div class="form-group">
+                         <table>
+                                <tbody>
+                                <tr>
+                                    <td width="100"><span name="borrowerType"></span></td>
+                                    <td width="161"><span name="borrowerName"></span></td>
+                                    <td ></td>
+                                    <td ></td>
+                                    <td ></td>
+                                    <td ></td>
+                                    <td ></td>
+                                    <td ></td>
+                                    <td width="100"><span name="codeType"></span></td>
+                                    <td ><span name="code"></span></td>
+                                   
+                                </tr>
+                                 </tbody>
+                        </table>
+                       </div>
+                       <div class="form-group">
+                         <table>
+                                <tbody>
+                                <tr>
+                                    <td >生效</td>
+                                     <td id = "agreementUrl" data-id='' ><a href='javascript:;'>《借款协议》</a></td>
+                                    <td ></td>
+                                    <td name="endDateStr" ></td>
+                                    <td ></td>
+                                    <td name="transactionTimeStr"></td>	
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+</div>

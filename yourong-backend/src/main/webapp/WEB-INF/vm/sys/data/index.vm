@@ -1,0 +1,41 @@
+#set($layout = "/layout/iframe.vm")
+#parse("/sys/data/head.vm")
+
+#if($shiro.hasPermission('data:exportLiCai'))
+<hr>
+<form role="form" class="form-horizontal" id="exportLiCai_form" method="post">
+    理财顾问：
+    <input name="date" id="date" onclick="WdatePicker({isShowClear:true,readOnly:false,dateFmt:'yyyy-MM-dd'})" datatype="*" nullmsg="请输入时间"/>
+    <button id="exportLiCai" type="button" class="btn btn-warn btn-sm btn-primary" >导出Excel</button>
+</form>
+#end
+#if($shiro.hasPermission('data:exportNoInvest'))
+<hr>
+<form role="form" class="form-horizontal" id="exportNoInvest_form" method="post">
+    注册未投资用户查询：
+    <input name="date" id="date" onclick="WdatePicker({isShowClear:true,readOnly:false,dateFmt:'yyyy-MM-dd'})" datatype="*" nullmsg="请输入时间"/>
+    <button id="exportNoInvest" type="button" class="btn btn-warn btn-sm btn-primary" >导出Excel</button>
+</form>
+#end
+<hr>
+
+#if($shiro.hasPermission('data:exportAlreadyInvest'))
+<hr>
+<form role="form" class="form-horizontal" id="exportAlreadyInvest_form" method="post">
+    生日查询(已投资)：
+    <input name="date" id="date" onclick="WdatePicker({isShowClear:true,readOnly:false,dateFmt:'MM-dd'})" datatype="*" nullmsg="请输入时间"/>
+    <button id="exportAlreadyInvest" type="button" class="btn btn-warn btn-sm btn-primary" >导出Excel</button>
+</form>
+#end
+<hr>
+
+#if($shiro.hasPermission('data:exportDouWan'))
+<hr>
+<form role="form" class="form-horizontal" id="exportDouWanInvest_form" method="post">
+    渠道商注册数据：<input name="start" id="start" onclick="WdatePicker({isShowClear:true,readOnly:false,dateFmt:'yyyy-MM-dd'})" datatype="*" nullmsg="请输入时间"/>
+    <input name="end" id="end" onclick="WdatePicker({isShowClear:true,readOnly:false,dateFmt:'yyyy-MM-dd'})" datatype="*" nullmsg="请输入时间"/>
+    <button id="exportDouWanInvest" type="button" class="btn btn-warn btn-sm btn-primary" >导出Excel</button>
+</form>
+#end
+<hr>
+

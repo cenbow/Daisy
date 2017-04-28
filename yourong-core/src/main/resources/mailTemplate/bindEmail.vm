@@ -1,0 +1,187 @@
+
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<title>有融网邮件通知</title>
+<style>
+* {
+	padding: 0;
+	margin: 0;
+}
+
+img {
+	border: 0;
+}
+
+body {
+	font-size: 12px;
+	background-color: #eee;
+}
+
+#mailContainer {
+	width: 680px;
+	margin: 50px auto;
+	background-color: #fff;
+}
+
+.mailHeader {
+	height: 90px;
+	position: relative;
+	background-color: #d64048;
+	overflow: hidden;
+}
+
+.mailHeader h1 {
+	width: 147px;
+	height: 40px;
+	margin: 25px 0 0 30px;
+	text-indent: -9999em;
+	background: url(http://www.yrw.com/static/img/common/logo_normal.png) no-repeat;
+}
+
+.mailHeader h1 a {
+	display: block;
+}
+
+.mailHeader em {
+	color: #fff;
+	font-size:12px;
+	position: absolute;
+	right: 30px;
+	top: 22px;
+	font-style: normal;
+}
+
+.mailHeader em i {
+	font-size: 30px;
+	display: block;
+	width: 126px;
+	height: 32px;
+	margin-top:-7px;
+	overflow: hidden;
+	background: url(http://www.yrw.com/static/img/common/hotline_number_025.png) no-repeat;
+	text-indent: -9999em;
+}
+
+.headerBottom {
+	height: 8px;
+	width: 100%;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	background: #fff url(http://www.yrw.com/static/img/common/header_bbg.png) repeat-x;
+	overflow: hidden;
+}
+
+.mailFooter {
+	height: 80px;
+	line-height: 22px;
+	padding: 20px 0 0;
+	background-color: #777;
+	color: #fff;
+	text-align: center;
+}
+
+.mailFooter a {
+	display: inline-block;
+	line-height: 22px;
+	color: #fff;
+}
+
+.mailContent {
+	padding: 50px 30px;
+}
+
+.mailNotice {
+	padding: 20px 70px 30px;
+	line-height: 30px;
+	border-bottom: 1px solid #e0e0e0;
+}
+
+.mailNotice h3, .mailTips h3 {
+	color: #333;
+}
+
+.mailNotice h3 {
+	font-weight: normal;
+}
+
+.mailNotice p {
+	color: #666;
+}
+
+.mailTips {
+	padding: 20px 0 30px;
+	line-height: 30px;
+}
+.mailTips .mailLink{
+	color: #d64048;
+	
+}
+.mailTips .mailBtn {
+	margin: 16px 0;
+}
+
+.mailBtn {
+	display: inline-block;
+	height: 30px;
+	width: 140px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	word-spacing: 4px;
+	text-decoration: none;
+	color: #fff;
+	background-color: #e33f4a;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #e33f4a;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+}
+
+.mailBtn:hover {
+	text-decoration: none;
+}
+.emailUnsubscribe{color:#08c;text-decoration: underline;}
+</style>
+</head>
+
+<body>
+	<div id="mailContainer">
+		<div class="mailHeader">
+			<h1>
+				<a href="http://www.yrw.com">有融网</a>
+			</h1>
+			<em>客户服务热线 <i>400-025-6688</i>
+			</em>
+			<div class="headerBottom">&nbsp;</div>
+		</div>
+		<div class="mailContent">
+			<div class="mailNotice">
+				<h3>亲爱的 ${username} 您好！</h3>
+				<p>
+					感谢您注册有融网！<br /> 有融网作为网上投资理财最安全、最便捷、最正规的理财平台，<br />
+					我们将为您提供最贴心的理财服务！
+				</p>
+			</div>
+			<div class="mailTips">
+				<h3>
+					<strong>安全提示</strong>
+				</h3>
+				<p>为了您的账户安全，我们建议您点击以下链接验证邮箱：</p>
+				<a href="${url}/notify/email/verify?token=${emailToken}" class="mailBtn">验证邮箱</a>
+				<p>此链接有效期为24小时，请在有效时间内点击此验证链接，如无法点击，<br />您也可以将链接复制到浏览器地址栏访问。</p>
+				<a href="${url}/notify/email/verify?token=${emailToken}" class="mailLink">${url}/notify/email/verify?token=${emailToken}</a>
+			</div>
+		</div>
+		<div class="mailFooter">
+			如需帮助，请拨打客户服务专线：400-025-6688，或发送邮件：<a href="mailto:service@yrw.com">service@yrw.com</a>
+			<br />我们的客服专员会在24小时内回复。 <br />如果不想收到通知类邮件，请点击<a href="http://www.yrw.com/notify/unsubscribe?token=${emailUnsubscribeCode}" class="emailUnsubscribe">取消订阅</a>。此为系统邮件，请勿直接回复，谢谢。
+		</div>
+	</div>
+</body>
+
+</html>

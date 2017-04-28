@@ -1,0 +1,185 @@
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$res_url/source/css/post/dataCentre.css"])
+#set($title='有融网数据频道')
+#set($aliyun='https://yrstatic.oss-cn-hangzhou.aliyuncs.com')
+#set($os=3)
+##  安卓
+#if($loginSource==1)
+    #set($os=1)
+#end
+##  IOS
+#if($loginSource==2)
+    #set($os=2)
+#end
+<script>
+    var url = window.location.href, title = '有融网数据频道';
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        window.shareData = {
+            "timeLineLink": url,
+            "sendFriendLink": url,
+            "weiboLink": url,
+            "tTitle": "有融网数据频道",
+            "tContent": "有融网，全透明的互联网理财优选平台。平台数据频道实时披露，带你一分钟读懂有融网。",
+            "fTitle": "有融网数据频道",
+            "fContent": "有融网，全透明的互联网理财优选平台。平台数据频道实时披露，带你一分钟读懂有融网。",
+            "wContent": "有融网数据频道  有融网，全透明的互联网理财优选平台。平台数据频道实时披露，带你一分钟读懂有融网。"
+        };
+        // 发送给好友
+        if(typeof(WeixinJSBridge)!=='undefined'){
+            WeixinJSBridge.on('menu:share:appmessage', function (argv) {
+                WeixinJSBridge.invoke('sendAppMessage', {
+                    "img_url": "../../static/img/weixin/weixin_dataCentre.png",
+                    "img_width": "358",
+                    "img_height": "328",
+                    "link": window.shareData.sendFriendLink,
+                    "desc": window.shareData.fContent,
+                    "title": window.shareData.fTitle
+                }, function (res) {
+                    _report('send_msg', res.err_msg);
+                })
+            });
+            // 分享到朋友圈
+            WeixinJSBridge.on('menu:share:timeline', function (argv) {
+                WeixinJSBridge.invoke('shareTimeline', {
+                    "img_url": "../../static/img/weixin/weixin_dataCentre.png",
+                    "img_width": "358",
+                    "img_height": "328",
+                    "link": window.shareData.timeLineLink,
+                    "desc": window.shareData.tContent,
+                    "title": window.shareData.tTitle
+                }, function (res) {
+                    _report('timeline', res.err_msg);
+                });
+            });
+        }
+    }, false);
+
+</script>
+
+<div id="j-transform" v-cloak>
+    <div class="m-box1">
+        <img src="$aliyun/res/img/activity/dataCentre/banner.png" class="img-responsive">
+    </div>
+    <div class="m-add-box m-box2">
+        <ul>
+            <li><h1><i v-text="allInvestData.totalInvest | amountSplit '' true"></i>元</h1>
+                <h2>累计投资金额</h2></li>
+            <li><h1><i v-text="allInvestData.memberCount | amountSplit '' false"></i>人</h1>
+                <h2>累计注册用户</h2></li>
+            <li><h1><i v-text="allInvestData.totalInvestInterest| amountSplit '' true"></i>元</h1>
+                <h2>累计为用户赚取收益</h2></li>
+            <li><h1><i v-text="allInvestData.transactionCount | amountSplit '' false"></i>笔</h1>
+                <h2>累计交易笔数</h2></li>
+        </ul>
+        <p> 以下数据截止至<i>{{ d }}</i></p>
+        <div class="f-black"></div>
+    </div>
+    <div class="m-box m-box3">
+        <h1>累计投资金额</h1>
+        <div class="m-totalInvest" id="investment"></div>
+    </div>
+    <div class="m-box f-bgF7 m-box4">
+        <h1>项目数据</h1>
+        <h2>项目类型分布</h2>
+        <div class="u-itemData" id="projectType"></div>
+        <h2>项目期限分布</h2>
+        <div class="u-itemData" id="projectTime"></div>
+        <h2>投资终端分布</h2>
+        <div class="u-itemData" id="investTerminal"></div>
+        <h2>项目还款情况</h2>
+        <div class="u-itemData" id="projectPayments"></div>
+    </div>
+
+    <div class="m-box f-bg45 m-box5">
+        <h1 class="f-color">用户数据</h1>
+        <h3 style="margin-top: -0.25rem;">用户性别分布</h3>
+        <div class="f-center">
+            <a href="javascript:void(0)" @click="memberBehavior('D1',3)">
+            <div class="u-box u-box1" :class="{'z-active': investType==0}" @click="getSexRate(0)"> 投资人数占比
+            </div>
+            </a>
+            <a href="javascript:void(0)" @click="memberBehavior('D2',3)">
+            <div class="u-box u-box1" style="margin-left:-6px;" :class="{'z-active': investType==1}"
+                 @click="getSexRate(1)">投资额度占比
+            </div>
+            </a>
+        </div>
+        <div class="m-sexDistribute" id="userSex"></div>
+
+
+        <h3>用户年龄分布</h3>
+        <div class="m-ageDistribute" id="userAge"></div>
+    </div>
+    <div class="m-box m-box6">
+        <h1>地域分布</h1>
+        <div class="f-center">
+            <a href="javascript:void(0)" @click="memberBehavior('D3',3)">
+            <div class="u-box u-box2" :class="{'z-active': regionDistribute==0}" @click="getTopRegionRate(0)"> 注册人数
+            </div>
+            </a>
+            <a href="javascript:void(0)" @click="memberBehavior('D4',3)">
+            <div class="u-box u-box2" style="margin-left:-6px;" :class="{'z-active': regionDistribute==1}"
+                 @click="getTopRegionRate(1)">投资金额
+            </div>
+            </a>
+        </div>
+        <div class='m-areaDistribute' id="region"></div>
+        <div class="u-top-titile">TOP3</div>
+
+        <div class="u-titile-no">
+            <img src="$aliyun/res/img/activity/dataCentre/no1.png">&nbsp;&nbsp;<i v-text="pageRegisterList[0]"></i>
+            <div class="u-data-box">
+                <div class="u-data-ratio" style="width:100%"></div>
+            </div>
+        </div>
+        <div class="u-titile-no">
+            <img src="$aliyun/res/img/activity/dataCentre/no2.png">&nbsp;&nbsp;<i v-text="pageRegisterList[1]"></i>
+            <div class="u-data-box">
+                <div class="u-data-ratio" v-bind:style="{width: pageRankList[0] + '%' }"></div>
+            </div>
+        </div>
+        <div class="u-titile-no" style="margin-bottom:2rem">
+            <img src="$aliyun/res/img/activity/dataCentre/no3.png">&nbsp;&nbsp;<i v-text="pageRegisterList[2]"></i>
+            <div class="u-data-box">
+                <div class="u-data-ratio" v-bind:style="{width: pageRankList[1] + '%' }"></div>
+            </div>
+        </div>
+
+    </div>
+    <div class="m-box f-bg45">
+        <h1 class="f-color">运营报告</h1>
+        <div class="u-dataCentre-bottom">未来有无限可能，邀您与我们一起期待</div>
+
+        <a href="$siteurl/operate2017/firstQuarter" class="u-dataCentre-buton">
+            2017第一季度运营报告 >
+        </a>
+
+        <a @click="memberBehavior('D6',0)" class="u-dataCentre-buton">
+            2016下半年运营报告 >
+        </a>
+
+        <a @click="memberBehavior('D5',1)" class="u-dataCentre-buton">
+            2016上半年运营报告 >
+        </a>
+    </div>
+</div>
+
+#set($pageScript="
+
+<script src='$aliyun/res/lib/js/appHookES5.js'></script>
+<script src='$aliyun/res/lib/vue/vue.min.js'></script>
+<script src='$aliyun/res/lib/vue/vue.extend.js'></script>
+<script src='$aliyun/res/lib/echarts/3.3.2/echarts.min.js'></script>
+<script src='$aliyun/res/lib/echarts/3.3.2/extension/dataTool.min.js'></script>
+<script src='$aliyun/res/lib/echarts/3.3.2/extension/bmap.min.js'></script>
+<script src='$res_url/lib/js/china.js'></script>
+##<script src='$siteurl/res/lib/js/vconsole.min.js'></script>
+<script>
+    var receiveData = $!{data},
+            os =$os
+            seajs.use('$res_url/source/js/post/dataCenter.js');
+    var hook = new AppHook($platform)
+</script>
+")
+#CSRFToken("xToken")

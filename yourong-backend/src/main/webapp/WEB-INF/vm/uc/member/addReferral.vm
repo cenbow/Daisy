@@ -1,0 +1,32 @@
+<div tabindex="-1" class="modal fade" id="modal-table-addReferral" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog" >
+        <div class="modal-content">
+            <div class="modal-header no-padding">
+                <div class="table-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+                        <span class="white">×</span>
+                    </button>
+                    <span class="modalFormTitle">添加推荐人</span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <form role="form" class="form-horizontal" id="addReferral_form" method="post">
+                    <input type="hidden" name="referredId"  id="referredId"/>
+                    <div class="form-group">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 推荐人手机号: </label>
+                        <div class="col-sm-9">
+                            <div class="clearfix">
+                                <input type="text" name="referralMobile" class="col-xs-10 col-sm-5" placeholder="推荐人手机号" id="referralMobile"  datatype="m" errormsg="手机号码格式不对！" >
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" id="btn_save_referral" class="btn btn-primary">保存</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+</div>

@@ -1,0 +1,133 @@
+body {
+    background: #fff;
+}
+
+.g-bd {
+    border-top: 1px solid #E9E9E9;
+}
+/*适配1024、1152和1280*/
+@media screen and (max-width: 63.99em) {
+    html {
+        font-size: 80%;
+    }
+
+    body {
+        width: 1024px;
+        overflow: scroll;
+    }
+
+    .g-about-wrap {
+        width: 990px;
+    }
+}
+
+@media screen and (min-width: 64em) and (max-width: 71.99em) {
+    html {
+        font-size: 80%;
+    }
+}
+
+@media screen and (min-width: 71.99em) and (max-width: 79.99em) {
+    html {
+        font-size: 90%;
+    }
+}
+
+@media screen and  (min-width: 80em) {
+
+}
+.g-about-wrap {
+    width: 73.125rem;
+    margin: 0 auto;
+    clear: both;
+}
+
+.g-partner-wrap {
+    width: 80rem;
+    margin: 0 auto;
+}
+
+.u-head-nav a, .u-head-nav a:hover, .u-head-nav a:link, .u-head-nav a:visited,
+.u-head-nav a:active {
+    display: inline-block;
+    padding-right: 2.5rem;
+    color: #999;
+    font-size: 1.125rem;
+    line-height: 3.625rem;
+    text-decoration: none;
+}
+
+.u-head-nav a.z-selected {
+    color: #000;
+}
+
+.u-banner {
+    height: 23.75rem;
+    background: url("https://yrstatic.oss-cn-hangzhou.aliyuncs.com/static/img/newAbout/banner_partner.png");
+    background-size: 100% 100%;
+}
+
+.u-banner h1 {
+    color: #fff;
+    padding-top: 8.75rem;
+    padding-bottom: 0.75rem;
+    font-weight: 100;
+    font-size: 2.25rem;
+}
+
+.u-banner p {
+    color: #fff;
+    font-size: 1.75rem;
+}
+
+.m-content h1 {
+    color: #333333;
+    font-size: 2.25rem;
+    text-align: center;
+    width: 100%;
+    font-weight: 100;
+    margin: 5rem auto;
+    display: block;
+    position: relative;
+}
+
+.m-content ul {
+    margin-left: 3.4375rem;
+}
+
+.m-content li {
+    width: 21.375rem;
+    vertical-align: top;
+    padding-right: 3.75rem;
+    display: inline-block;
+    margin-bottom: 5rem;
+}
+
+.m-content li h2 {
+    height: 5.1875rem;
+}
+
+.m-content li h2 img {
+    display: block;
+    width: 17.75rem;
+    margin: 0 auto;
+}
+
+.m-content li h3 {
+    color: #333;
+    font-size: 1.25rem;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 1.6875rem;
+}
+
+.m-content li p {
+    text-align: left;
+    width: 100%;
+    color: #333333;
+    font-size: 0.875rem;
+}
+
+[v-cloak] {
+    display: none;
+}

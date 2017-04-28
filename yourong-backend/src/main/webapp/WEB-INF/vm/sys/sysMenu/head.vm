@@ -1,0 +1,19 @@
+ #parse("/common/common.vm")
+ #########################################script##################################### 
+ #set($js_config=[ 
+ "'urlMap':{ 
+   'ajax':'$root_url/sysMenu/ajax?', 
+   'query':'$root_url/sysMenu/index?', 
+   'save':'$root_url/sysMenu/save', 
+   'show':'$root_url/sysMenu/show?id=', 
+   'delet':'$root_url/sysMenu/delete'},
+   'permission':{
+   	'new': $shiro.hasPermission('sysMenu:new'),
+   	'save' : $shiro.hasPermission('sysMenu:save'), 
+   	'delet' : $shiro.hasPermission('sysMenu:delete')   	
+   	},
+   	'menuType':#buildDictJson('menu_type')
+   	"
+ ]) 
+ #set($js_url=["$root_url/static/js/sysMenu.js"]) 
+ #########################################DOM##################################### 

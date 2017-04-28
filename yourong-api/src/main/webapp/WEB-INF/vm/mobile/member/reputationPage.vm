@@ -1,0 +1,152 @@
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$m_css_url/modules/member.css"])
+#set($title='我的人气值')
+#set($isZepto = true)
+<style>
+    [v-cloak] {
+        display: none;
+    }
+
+    .f-color6 {
+        color: #666666;
+    }
+
+    .f-color3 {
+        color: #333333;
+    }
+
+    .u-topTips {
+        width: 92%;
+        padding: 4px 4%;
+        background: #fff5eb;
+        color: #d74148;
+        font-size: 12px;
+        vertical-align: middle;
+        float: right;
+    }
+
+    .u-topTips .u-rulesBlock {
+        width: 80%;
+        background: #ffffff;
+        position: fixed;
+        top: 30%;
+        left: 10%;
+        border-radius: 8px;
+        z-index: 1000;
+    }
+
+    .u-topTips .u-rulesBlock h2 {
+        text-align: center;
+        font-size: 16px;
+        line-height: 24px;
+        margin-top: 16px;
+    }
+
+    .u-topTips .u-rulesBlock p {
+        line-height: 24px;
+        margin: 12px 18px;
+    }
+
+    .u-topTips .u-rulesBlock .u-rulesSureBtn {
+        color: #D74148;
+        text-align: center;
+        line-height: 40px;
+        font-size: 17px;
+        border-top: 1px solid #cccccc;
+    }
+
+    .u-topTips .u-closeBtn {
+        width: 24px;
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .u-topTips .u-closeBtn img {
+        vertical-align: middle;
+    }
+
+    .u-topTips span {
+        font-size: 12px;
+        display: inline-block;
+        width: 90%;
+        vertical-align: middle;
+    }
+
+    .u-topTips .u-popularityRules {
+        display: inline-block;
+        float: right
+    }
+</style>
+<h2 class="u-header f-pos-r">
+    <a href="$siteurl/mCenter/home">返回</a>
+    <span class="f-fs18">
+        人气值
+    </span>
+</h2>
+<div class="u-cashCoupon-tab f-cf">
+    <span class="z-current ui-badge-wrap"><a href="$siteurl/mCenter/reputationPage">人气值</a></span>
+        <span class="ui-badge-wrap"><a href="$siteurl/mCenter/coupon#cash">现金券
+        ##<em class="ui-badge-cornernum">9</em>
+        </a></span>
+        <span class="ui-badge-wrap"><a href="$siteurl/mCenter/coupon#profit">收益券
+        ##<em class="ui-badge-cornernum">11</em>
+        </a></span>
+
+</div>
+<!--人气值清零提示条-->
+<div id="j-topTips">
+    <div class="u-topTips" v-if="OverduePopularity.show&&showTips" v-cloak>
+    ##
+        <div>
+            <div>
+                <div v-if="OverduePopularity.overduePopularity===0&&showTips">
+                    <span>您没有人气值将于{{OverduePopularity.outlayTime |dateFormat 'yyyy年MM月dd日'}}失效，习惯很好，继续保持噢！</span>
+                    <em @click="showOnce" class="u-closeBtn">
+                        <img src=" $res_url/img/post/popularity/closeBtn.png" alt="" width="100%"></em>
+                </div>
+                <div v-if="OverduePopularity.overduePopularity!=0">
+                    您有{{OverduePopularity.overduePopularity}}点{{OverduePopularity.incomeTime |dateFormat
+                    'yyyy年MM月dd日'}}前获得的人气值，将于{{OverduePopularity.outlayTime |dateFormat 'yyyy年MM月dd日'}}过期，建议您尽快兑换使用噢！
+                    <em v-if="OverduePopularity.showRule" @click="showTipBlock" class="u-popularityRules">查看过期规则>&nbsp;&nbsp;&nbsp;</em>
+                </div>
+            </div>
+        </div>
+        <div class="u-rulesBlock" v-if="showRules&&OverduePopularity.showRule">
+            <h2 class="f-color3">人气值说明</h2>
+            <p class="f-color6">
+                1，人气值获取：人气值可通过每日签到、抢标五重礼、投资分享红包等活动获取。<br>
+                2，人气值使用：人气值可用于兑换现金券、收益券及更多虚拟商品和超值实物。<br>
+                3，人气值有效期：每年12月31日，用户于一年前获取且至今未使用的人气值将过期失效。
+            </p>
+            <div @click="closeTipBlock" class="u-rulesSureBtn">确定</div>
+        </div>
+    </div>
+</div>
+<div class="m-reputation-circle">
+    <div class="u-reputation-circle">
+        <div class="f_pie_left">
+            <div class="z-left"></div>
+        </div>
+        <div class="f_pie_right">
+            <div class="z-right"></div>
+        </div>
+        <div class="u-reputation-mask"><span id="j-reputation-percent">80</span></div>
+        <div class="u-reputation-total"><em class="f-ff-din" id="j-reputation-count"></em><a
+                href="$siteurl/mCenter/reputationExchange">兑换现金券</a></div>
+    </div>
+</div>
+<p class="m-reputation-tips">人气值集满50、100、500、1000<br/>即可兑换相应面额的现金券</p>
+
+<div class="m-reputation-btn f-cf"><a id="j-reputation-rule" href="$siteurl/mCenter/inviteFriend">邀请好友</a><a
+        href="$siteurl/mCenter/reputationRecord">人气值记录</a></div>
+<script src="$aliyunOss_url/res/lib/vue/v1/vue.min.js"></script>
+#set($pageScript="
+<script>
+    seajs.config({
+        'preload': ['base']
+    });
+    seajs.use('xjs/modules/coupon');
+</script>
+")
+#CSRFToken("xToken")

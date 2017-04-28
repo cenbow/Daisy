@@ -1,0 +1,132 @@
+
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$!m_css_url/modules/member.css"])
+#set($title='人气值获取记录')
+
+<h2 class="u-header f-pos-r">
+    <a href="$siteurl/mCenter/reputationPage">返回</a>
+    <span class="f-fs18">
+        人气值记录
+    </span>
+</h2>
+<div class="u-reputation-tab f-cf">
+    <span class="z-current ui-badge-wrap" >获取记录
+         ##<em class="ui-badge-cornernum">9</em>
+    </span>
+    <span class="ui-badge-wrap" >兑换记录
+         ##<em class="ui-badge-cornernum">11</em>
+    </span>
+    </div>
+<!--人气值获取记录-->
+<div class="m-reRecord-table m-reRecord z-current" id="j-record-list">
+
+</div>
+    <script id="j-record-tpl" type="text/html">
+        <table>
+            <thead>
+                <tr>
+                    <th width="25%">时间</th>
+                    <th width="50%">行为</th>
+                    <th width="25%">人气值</th>
+                </tr>
+            </thead>
+            <tbody >
+                {{each data as item i}}
+                <tr>
+                    <td>{{item.happenTime | dateFormat:'yyyy-MM-dd hh:mm:ss'}}</td>
+                    <td>{{item.type | typeFormat}}</td>
+                    {{if item.income==null}}
+                    <td>-{{item.outlay}}点</td>
+                    {{else}}
+                    <td>{{item.income}}点</td>
+                    {{/if}}
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        <div class="m-pagenav f-tar">
+            {{if pageNo==1}}
+            <span class="u-pnav-prev u-circle-12">上一页</span>
+            {{else}}
+            <a href="javascript:void(0)" class="u-pnav-prev u-circle-12" data-pageno="{{pageNo-1}}">上一页</a>
+            {{/if}}
+            {{each countArray as item i}}
+            {{if item.index==pageNo}}
+            <span class="u-pnav-crt u-circle-12">{{item.index}}</span>
+            {{else}}
+            <a href="javascript:void(0)" class="u-pnav-link u-circle-12" data-pageno="{{item.index}}">{{item.index}}</a>
+            {{/if}}
+            {{/each}}
+            {{if pageNo==totalPageCount}}
+            <span class="u-pnav-prev u-circle-12">下一页</span>
+            {{else}}
+            <a href="javascript:void(0)" class="u-pnav-prev u-circle-12" data-pageno="{{pageNo+1}}">下一页</a>
+            {{/if}}
+        </div>
+    </script>
+
+<!--/人气值获取记录-->
+<!--人气值兑换记录-->
+<div class="m-reRecord-table m-reRecord" id="j-concord-list">
+
+</div>
+<script id="j-concord-tpl" type="text/html">
+    <table>
+        <thead>
+        <tr>
+            <th width="50%">时间</th>
+            <th width="25%">兑换人气值</th>
+            <th width="25%">获取现金券</th>
+        </tr>
+        </thead>
+        <tbody >
+            {{each data as item i}}
+                <tr>
+                    <td>{{item.happenTime | dateFormat:'yyyy-MM-dd hh:mm:ss'}}</td>
+                    <td>-{{item.outlay}}点</td>
+                    <td>{{item.outlay}}</td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    <div class="m-pagenav f-tar">
+        {{if pageNo==1}}
+        <span class="u-pnav-prev u-circle-12">上一页</span>
+        {{else}}
+        <a href="javascript:void(0)" class="u-pnav-prev u-circle-12" data-pageno="{{pageNo-1}}">上一页</a>
+        {{/if}}
+        {{each countArray as item i}}
+        {{if item.index==pageNo}}
+        <span class="u-pnav-crt u-circle-12">{{item.index}}</span>
+        {{else}}
+        <a href="javascript:void(0)" class="u-pnav-link u-circle-12" data-pageno="{{item.index}}">{{item.index}}</a>
+        {{/if}}
+        {{/each}}
+        {{if pageNo==totalPageCount}}
+        <span class="u-pnav-prev u-circle-12">下一页</span>
+        {{else}}
+        <a href="javascript:void(0)" class="u-pnav-prev u-circle-12" data-pageno="{{pageNo+1}}">下一页</a>
+        {{/if}}
+    </div>
+</script>
+
+<!--/人气值兑换记录-->
+
+#set($pageScript="
+    <script>
+        seajs.config({
+            'alias':{
+                'template':'$siteurl/res/lib/js/template'
+            }
+        });
+        seajs.use('$m_js_url/modules/coupon');
+        $('.u-reputation-tab').on('click', 'span', function () {
+            var _this = $(this),
+                index = $(this).index();
+            _this.addClass('z-current').siblings().removeClass('z-current');
+                $('.m-reRecord').eq(index).addClass('z-current').siblings().removeClass('z-current');
+        });
+    </script>
+")
+#CSRFToken("xToken")

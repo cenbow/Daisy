@@ -1,0 +1,218 @@
+##订单交易
+#parse('/common/common.vm')
+#set($title="提交订单_理财项目_$!{title_suffix}")
+#set($css_url=["$root_css_url/modules/order.css"]) 
+#set($js_url=["$root_js_url/modules/order.js"])
+#set($isShowCupon = $collections3.isNotEmpty($newOrderBiz.coupons) )
+$isShowCupon
+<div class="g-wrap f-round m-order-info">
+	<div class="f-cf">
+		<h2 class="f-fs18">投资信息</h2>
+		<table class="u-info-table f-fl">
+			<thead>
+				<tr>
+					<th colspan="2">投资项目信息</th>
+				</tr>
+			</thead>
+			<tbody>
+			<input type="hidden" id="projectId" value="$!{newOrderBiz.projectId}"> 
+			<input type="hidden" id="memberId" value="$!{newOrderBiz.memberId}">
+			#CSRFToken('xToken')
+				#onceToken()
+				<tr>
+					<td width="72">项目名称</td>
+					<td><a class="u-invest-underline" target="_blank" href="$root_url/products/detail-$!{newOrderBiz.projectId}.html">$!{newOrderBiz.projectName}</a></td>
+				</tr>
+				<tr>
+					<td>投资本金</td>
+					<td><span class="f-fwb f-fc-red f-fs14 f-ff-ver u-order-vam" id="investAmount"  value="$!{newOrderBiz.investAmount}" >$!{newOrderBiz.investAmountStr}</span>
+					    <a class="u-btn u-btn-white f-round f-fr f-fc-gray" href="$root_url/products/detail-$!{newOrderBiz.projectId}.html">修&nbsp;改</a>
+					</td>
+				</tr>
+				<tr>
+					<td>项目年化收益</td>
+					<td>
+						<span class="f-fwb f-fc-red f-fs14 u-order-vam" id="annualizedRate">$!{newOrderBiz.annualizedRate}%</span>
+						#if(!$!projectUtils.isProjectOfCannotUseCoupon($newOrderBiz.projectId) && !$!projectUtils.isProjectOfCannotUseProfitCoupon($newOrderBiz.projectId))
+    						#if($!isShowCupon)
+    						<div class="u-selector u-coupon-selector j-selector f-round f-fr f-w160  f-tar" type="new">
+    							<button class="f-text-overflow">请选择收益券</button>
+    							<i></i>
+    							<ul class="f-round m-coupon-list">
+    								<li>请选择收益券</li>
+    							#foreach( $!coupon in $!{newOrderBiz.coupons} )
+                                    <li value="$!{coupon.couponCode}"
+                                        class="#if($!{coupon.limited}==1)z-disabled #end">
+                                        #if( $!{coupon.vaildCalcType} ==0 )
+                                            +$!{coupon.amount}% 长期有效
+                                        #else
+                                            +$!{coupon.amount}% #if(!${coupon.isShowCouponValidity()}&&$!{coupon.couponValidity})<span>有效期 $!{coupon.couponValidity}</span>#else 有效期 $!{coupon.endDateStr}#end
+                                        #end
+                                        #if(!${coupon.isAvailable()})
+                                            #if($!{coupon.couponPrivileges})
+                                                <span>$!{coupon.couponPrivileges}</span>
+    										#end
+                                            #if($!{coupon.couponAmountScope})
+                                                <span>$!{coupon.couponAmountScope}</span>
+    										#end
+                                            #if($!{coupon.couponDaysScope})
+                                                <span>$!{coupon.couponDaysScope}</span>
+    										#end
+                                        #else
+    										 <span>全网通用</span>
+    									#end
+                                    </li>
+    							#end 
+    							</ul>	
+    							<input type="hidden" class="j-selected-ipt" id="profitCouponNo-h"/>
+    						</div>
+    						#end
+						#end
+					</td>
+				</tr>
+				<tr>
+					<td>预期收益</td>
+					<td><span class="f-fwb f-fc-red f-fs14 f-ff-ver u-order-vam" id="expectAmount">$!{newOrderBiz.expectAmountStr}</span>
+						##p2p去掉计划收益
+						#if(!${invertingProject.isDirectProject()})
+                            <div class="u-selector f-round f-fr f-w50 u-btn-plan" id="j-btn-plan"><button>收益计划</button><i></i></div>
+						#end
+					</td>
+				</tr>
+				<tr>
+					#if(${invertingProject.isDirectProject()})
+						<td>投资时间</td>
+						#else
+							<td>购买时间</td>
+					#end
+					<td class="f-fwb f-fc-gray3 f-fs14">$!{newOrderBiz.orderTime}</td>
+				</tr>
+			##p2p增加起息方式
+			#if(${invertingProject.isDirectProject()})
+			<tr>
+                <td>起息方式</td>
+                <td class="f-fwb f-fc-gray3 f-fs14">T(募集完成日）+$!{invertingProject.interestFrom}</td>
+            </tr>
+			#end
+			</tbody>
+		</table>
+		<table class="u-info-table u-info-table2 f-fr">
+			<thead>
+				<tr>
+					<th colspan="2">投资人信息</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>投资人姓名</td>
+					<td> $!{newOrderBiz.trueName}</td>
+				</tr>
+				<tr>
+					<td>身份证号码</td>
+					<td class="f-fwb f-fc-gray3 f-fs14">$!{newOrderBiz.identityNumber}</td>
+				</tr>
+				<tr>
+					<td>联系电话</td>
+					<td class="f-fwb f-fc-gray3 f-fs14">$!{newOrderBiz.mobile}</td>
+				</tr>
+				<tr>
+					<td>新浪支付存钱罐账号</td>
+					<td class="f-fwb f-fc-gray3 f-fs14">$!{newOrderBiz.sinaPayAccount}</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<div class="u-floatbox f-clear" id="j-plan-box">
+			<i></i>
+			<div class="u-floatbox-content f-round">
+				<div class="u-plan-table">
+					<h4>
+						<span class="f-ff-ver">投资本金：¥<em class="f-fs24 f-ff-amount">$!{newOrderBiz.investAmount}</em></span>
+						<span id="totalAnnualizedRate">年化收益：$!{newOrderBiz.totalAnnualizedRate}%</span>
+						<span>收益天数：$!{newOrderBiz.profitDays}天</span>
+						<span class="f-ff-ver">总收益：¥<em class="f-fs24 f-ff-amount"id="expectAmount2">$!{newOrderBiz.expectAmount}</em></span>
+					</h4>
+					<div>
+						<table>
+							<thead>
+								<tr>
+									<th width="70">期数</th>
+									<th width="100">支付天数</th>
+									<th width="115">回款时间</th>
+									<th width="120">利息</th>
+									<th><span>本金</span></th>
+									<th width="90">状态</th>
+								</tr>
+							</thead>
+							<tbody>
+							#foreach( $transactionInterestForOrder in $!{newOrderBiz.transactionInterestForOrders} ) 
+ 								<tr>
+									<td>$!{velocityCount}</td>
+									<td>$!{transactionInterestForOrder.days}</td>
+									<td>$!{transactionInterestForOrder.endDate}</td>
+									<td><span id="payableInterest_$!{velocityCount}">$!{transactionInterestForOrder.payableInterest}</span></td>
+									<td><span>$!{transactionInterestForOrder.payablePrincipal}</span></td>
+									<td>待付</td>
+								</tr>
+							#end 
+							</tbody>
+						</table>
+					</div>
+					
+					<p>还款方式：<span class="f-fc-red2 f-fwb">$!{newOrderBiz.profitTypeName}</span></p>
+				</div>
+			</div>
+		</div>
+	</div>
+##p2p项目投资进度
+#if($invertingProject.isDirectProject())
+    <div class="u-new-tShaft">
+        <strong>投资流程</strong>
+        <div class="u-info-tShaft f-pos-r">
+            <dl class="u-tShaft-dl01">
+                <dt></dt>
+                <dd>订单支付</dd>
+            </dl>
+            <dl class="u-tShaft-dl02">
+                <dt></dt>
+                <dd>募集满额</dd>
+            </dl>
+            <dl class="u-tShaft-dl03">
+                <dt></dt>
+                <dd>审核通过</dd>
+            </dl>
+            <dl class="u-tShaft-dl04">
+                <dt></dt>
+                <dd>还款成功</dd>
+            </dl>
+            <span class="z-current0"></span>
+        </div>
+    </div>
+#end
+	<p>
+		<input type="checkbox" name="" id="j-agree" checked="checked"/>
+		<label for="j-agree" id="j-argreement-label" >
+			我同意按如下
+			#if($invertingProject.isDirectProject())
+			<a href="$root_url/products/p2pContract/preview?projectId=$!{newOrderBiz.projectId}" target="_blank" class="f-fc-red" data-target="j-argreement-box" onclick="window.event.cancelBubble=true;">《借款协议》</a>的内容生成借款协议
+    		#else
+            <a href="$root_url/transaction/contract/preview?projectId=$!{newOrderBiz.projectId}&annualizedRate=$!{newOrderBiz.totalAnnualizedRate}&investAmount=$!{newOrderBiz.investAmount}" target="_blank" class="f-fc-red" data-target="j-argreement-box" onclick="window.event.cancelBubble=true;">《债权收益权转让协议范本》</a>的格式和条款生成债权转让协议
+			#end
+		</label>
+	</p>
+</div>
+<div class="g-wrap">
+	<input type="submit" id="submit_save_order" class="f-round f-fs18 f-mgl-8 f-btn-m u-btn u-btn-primary u-order-btn" value="提交订单"/>
+</div>
+#if(!$sysServiceUtil.isDev())
+##品友-投资转化
+<script>
+!function(w,d,e){
+var _money='$!{newOrderBiz.investAmount}';
+var _productList='$!{newOrderBiz.projectId},1;';
+var b=location.href,c=d.referrer,f,s,g=d.cookie,h=g.match(/(^|;)\s*ipycookie=([^;]*)/),i=g.match(/(^|;)\s*ipysession=([^;]*)/);if (w.parent!=w){f=b;b=c;c=f;};u='//stats.ipinyou.com/cvt?a='+e('qJ.tq.zjdy8Vf9bXIi1JjCLcbLS_')+'&c='+e(h?h[2]:'')+'&s='+e(i?i[2].match(/jump\%3D(\d+)/)[1]:'')+'&u='+e(b)+'&r='+e(c)+'&rd='+(new Date()).getTime()+'&Money='+e(_money)+'&ProductList='+e(_productList)+'&e=';
+function _(){if(!d.body){setTimeout(_(),100);}else{s= d.createElement('script');s.src = u;d.body.insertBefore(s,d.body.firstChild);}}_();
+}(window,document,encodeURIComponent);
+</script>
+#end
+

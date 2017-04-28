@@ -1,0 +1,181 @@
+##周年活动
+#parse("/common/common.vm")
+#set($title="精彩回顾  融未来 行致远  有融网一周年庆典暨首届投资人答谢会_$!{title_suffix}")
+#set($css_url=["$root_css_url/activity/anniversaryReview.css"])
+#set($js_url=["$root_js_url/activity/anniversaryReview.js"])
+##页头
+
+#CSRFToken('xToken')
+#set($yrimg_url='https://yrimg.oss-cn-hangzhou.aliyuncs.com/')
+
+<div class="m-review-hd">
+</div>
+##视频
+<div class="m-review-video">
+    <div class="g-wrap">
+        <h2>庆典回顾</h2>
+        <embed wmode="window" flashvars="vid=q0173sc1cu6&amp;tpid=3&amp;showend=1&amp;showcfg=1&amp;searchbar=1&amp;shownext=1&amp;list=2&amp;autoplay=1&amp;outhost=http%3A%2F%2Fv.qq.com%2Fpage%2Fq%2Fu%2F6%2Fq0173sc1cu6.html&amp;openbc=0&amp;fakefull=1&amp;title=%20%E6%9C%89%E8%9E%8D%E7%BD%91%E4%B8%80%E5%91%A8%E5%B9%B4%E5%BA%86%E5%85%B8%E6%9A%A8%E9%A6%96%E5%B1%8A%E6%8A%95%E8%B5%84%E4%BA%BA%E7%AD%94%E8%B0%A2%E4%BC%9A%E7%8E%B0%E5%9C%BA%E7%9B%B4%E6%92%AD" src="http://imgcache.qq.com/tencentvideo_v1/player/TencentPlayer.swf?max_age=86400&amp;v=20140714" quality="high" name="tenvideo_flash_player_1449110527825" id="tenvideo_flash_player_1449110527825" bgcolor="#000000" width="650px" height="472px" align="middle" allowscriptaccess="always" allowfullscreen="true" type="application/x-shockwave-flash" pluginspage="http://get.adobe.com/cn/flashplayer/" style="width: 990px; height: 601px;">
+    </div>
+</div>
+##挂牌成功
+<div class="m-review-guapai">
+    <div class="g-wrap">
+        <h2>挂牌成功</h2>
+        <div class="u-guapai-icon">
+            <img src="/static/img/activity/anniversaryReview/review-yrw.jpg">
+            <img src="/static/img/activity/anniversaryReview/review-gqjyzx.jpg">
+            <em>企业代码：851790</em>
+        </div>
+        <div class="u-guapai-pic">
+            <img src="/static/img/activity/anniversaryReview/review-guapai01.jpg">
+            <img src="/static/img/activity/anniversaryReview/review-guapai02.jpg">
+        </div>
+    </div>
+</div>
+##圆桌会议
+<div class="m-review-yuanzhuo">
+    <div class="g-wrap">
+        <h2>圆桌论坛</h2>
+        <div class="u-yuanzhuo-pic">
+            <img src="/static/img/activity/anniversaryReview/review-yuanzhuo.jpg">
+        </div>
+    </div>
+</div>
+##观点碰撞
+<div class="m-review-guandian">
+    <div class="g-wrap">
+        <h2>观点碰撞</h2>
+        <div class="u-guandian-pic">
+            <div class="u-guandian-pic"  >
+                <ul id="j-guandian-pic">
+                    <li>
+                        <i><img src="/static/img/activity/anniversaryReview/review-cgh.png"></i>
+                        <div>
+                            <h5 class="f-fs18">有融网董事长 程国洪 :  打通互联网、金融和汽车产业链</h5>
+                            <p class="f-fs14">国内的汽车金融渗透率不足20%，有很大的发展空间，有融网希望借助互联网这个载体，做有自己特色的，打通互联网、金融和整个汽车产业链，从买车到二手车置换、到租赁，包括汽车后市场这块的维修、养护，通过与大的合作商合作，提供与各环节相配套的汽车金融产品。</p>
+                        </div>
+                    </li><li>
+                    <i><img src="/static/img/activity/anniversaryReview/review-qqj.png"></i>
+                    <div>
+                        <h5 class="f-fs18">有融网首席运营官 戚川江 ： 精细化是有融网在资产端努力的方向</h5>
+                        <p class="f-fs14">有融网将来可能会规划去做汽车按揭垫资这块的金融服务的对接，深入小微汽车经销商和4S店，在做过详尽的风控之后，为他们提供相应的金融服务，拓宽他们的融资渠道，帮助他们存活下去、发展起来。</p>
+                    </div>
+                    </li><li>
+                    <i><img src="/static/img/activity/anniversaryReview/review-zq.png"></i>
+                    <div>
+                        <h5 class="f-fs18">浙江和睦律师事务所资深律师 张其 ： 合法合规是平台运营发展的前提</h5>
+                        <p class="f-fs14">有融网在线下承担的是一个居间服务的作用，在线上是一个帮助出借人进行债权收益权委托转让的作用。有融网合法合规，不存在非法集资、吸储，也没有涉及到需要有金融牌照才能从事的业务。</p>
+                    </div>
+                    </li><li>
+                        <i><img src="/static/img/activity/anniversaryReview/review-yy.png"></i>
+                        <div>
+                            <h5 class="f-fs18">大成律师事务所资深律师 游弋 ： 平台发展获法律及资本市场认可</h5>
+                            <p class="f-fs14">有融网为实现健康发展，在2015年10月，完成了股份公司的改制，并于11月，成功挂牌浙江股权交易中心，这不仅说明了有融网高层对走向资本市场的信心，也表明有融网的模式及经历，得到了资本市场及监管层的认可。</p>
+                        </div>
+                    </li><li>
+                    <i><img src="/static/img/activity/anniversaryReview/review-cah.png"></i>
+                    <div>
+                        <h5 class="f-fs18">浙江敬业会计师事务所经理 陈爱华 ： 财务真实、完整、规范</h5>
+                        <p class="f-fs14">有融网整个团队对自身要求非常严格，不管是管理层还是普通员工，在与我们对接交流的过程中始终践行“财务要真实、要完整、要规范”的理念，不管是内控还是财务核算都很规范。</p>
+                    </div>
+                </li><li>
+                    <i><img src="/static/img/activity/anniversaryReview/review-xxx.png"></i>
+                    <div>
+                        <h5 class="f-fs18">阳光保险代表 谢晓夏： 有融网是暖男型平台，考虑得非常全面</h5>
+                        <p class="f-fs14">网络上进行交易，存在盗刷或者黑客攻击的风险。为了更好地保障投资人的资金和权益，有融网主动与我们公司联系要求投保“交易资金损失险”。在严格考核有融网后台技术后，我们与有融网建立了合作关系，也希望在日后展开更多更全面的合作。</p>
+                    </div>
+                </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>
+##精彩瞬间
+<div class="m-review-shunjian">
+    <div class="g-wrap">
+        <h2>精彩瞬间</h2>
+        <div class="u-shunjian-pic">
+            <ul id="j-shunjian-pic">
+                <li>
+                    <div class="f-pos-r j-shunjian-text">
+                        <img src="/static/img/activity/anniversaryReview/review-titbit-canguan01.jpg">
+                        <span class="f-fs20">参观公司</span>
+                    </div>
+                    <img src="/static/img/activity/anniversaryReview/review-titbit-canguan02.jpg">
+                </li>
+                <li>
+                    <div class="f-pos-r j-shunjian-text">
+                        <img src="/static/img/activity/anniversaryReview/review-titbit-lvyou01.jpg">
+                        <span class="f-fs20">游览景点</span>
+                    </div>
+                    <img src="/static/img/activity/anniversaryReview/review-titbit-lvyou02.jpg">
+                </li>
+                <li>
+                    <div class="f-pos-r j-shunjian-text">
+                        <img src="/static/img/activity/anniversaryReview/review-titbit-ruchang01.jpg">
+                        <span class="f-fs20">签到入场</span>
+                    </div>
+                    <img src="/static/img/activity/anniversaryReview/review-titbit-ruchang02.jpg">
+                </li>
+                <li>
+                    <div class="f-pos-r j-shunjian-text">
+                        <img src="/static/img/activity/anniversaryReview/review-titbit-guapai-01.jpg">
+                        <span class="f-fs20">揭牌仪式</span>
+                    </div>
+                    <img src="/static/img/activity/anniversaryReview/review-titbit-guapai02.jpg">
+                </li>
+                <li>
+                    <div class="f-pos-r j-shunjian-text">
+                        <img src="/static/img/activity/anniversaryReview/review-titbit-yuanzhuo01.jpg">
+                        <span class="f-fs20">圆桌论坛</span>
+                    </div>
+                    <img src="/static/img/activity/anniversaryReview/review-titbit-yuanzhuo02.jpg">
+                </li>
+                <li>
+                    <div class="f-pos-r j-shunjian-text">
+                        <img src="/static/img/activity/anniversaryReview/review-titbit-wanyan01.jpg">
+                        <span class="f-fs20">爵士之夜</span>
+                    </div>
+                    <img src="/static/img/activity/anniversaryReview/review-titbit-wanyan02.jpg">
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+##媒体报道
+<div class="m-review-meiti">
+    <div class="g-wrap">
+        <h2>媒体报道</h2>
+        <a href="http://www.chnews.net/cjyw/jygl/201511/108523.html" target="_blank">
+            <dl>
+                <dt><img src="/static/img/activity/anniversaryReview/review-cjxww.jpg"></dt>
+                <dd class="f-fs14">有融网周年庆落幕 挂牌新四版开启全新发展之路</dd>
+            </dl>
+        </a>
+        <a href="http://caijing.chinadaily.com.cn/2015-11/24/content_22514154.htm" target="_blank">
+            <dl>
+                <dt><img src="/static/img/activity/anniversaryReview/review-zgrb.png"></dt>
+                <dd class="f-fs14">有融网：与君初相识 犹如故人归</dd>
+            </dl>
+        </a>
+        <a href="http://zj.sina.com.cn/finance/xfgz/2015-11-20/detail_finance-ifxkwuwx0247421.shtml?qq-pf-to=pcqq.discussion" target="_blank">
+            <dl>
+                <dt><img src="/static/img/activity/anniversaryReview/review-sina.png"></dt>
+                <dd class="f-fs14">有融网挂牌股交中心 开启自在理财时代</dd>
+            </dl>
+        </a>
+        <a href="http://mt.sohu.com/20151120/n427345641.shtml" target="_blank">
+            <dl>
+                <dt><img src="/static/img/activity/anniversaryReview/review-sohu.png"></dt>
+                <dd class="f-fs14">有融网挂牌股交中心 开启自在理财时代</dd>
+            </dl>
+        </a>
+        <a href="http://finance.stockstar.com/SS2015112000001977.shtml" target="_blank">
+            <dl>
+                <dt><img src="/static/img/activity/anniversaryReview/review-zqzx.jpg"></dt>
+                <dd class="f-fs14">有融网周年庆落幕 挂牌新四版开启全新发展之路</dd>
+            </dl>
+        </a>
+    </div>
+</div>

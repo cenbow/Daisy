@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.fin.dao.BalanceMapper">
+    <resultMap id="BaseResultMap" type="Balance">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="balance_type" property="balanceType" jdbcType="INTEGER"/>
+        <result column="balance" property="balance" jdbcType="DECIMAL"/>
+        <result column="available_balance" property="availableBalance" jdbcType="DECIMAL"/>
+        <result column="source_id" property="sourceId" jdbcType="BIGINT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, balance_type, balance, available_balance, source_id, create_time, update_time
+  </sql>
+    <insert id="insertSelective" parameterType="Balance">
+        insert into fin_balance
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="balanceType != null">
+                balance_type,
+            </if>
+            <if test="balance != null">
+                balance,
+            </if>
+            <if test="availableBalance != null">
+                available_balance,
+            </if>
+                         
+            <if test="sourceId != null">
+                source_id,
+            </if>
+                create_time
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="balanceType != null">
+                #{balanceType,jdbcType=INTEGER},
+            </if>
+            <if test="balance != null">
+                #{balance,jdbcType=DECIMAL},
+            </if>
+            <if test="availableBalance != null">
+                #{availableBalance,jdbcType=DECIMAL},
+            </if>           
+            <if test="sourceId != null">
+                #{sourceId,jdbcType=BIGINT},
+            </if>
+            now()
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="Balance">
+        update fin_balance
+        <set>
+            <if test="balanceType != null">
+                balance_type = #{balanceType,jdbcType=INTEGER},
+            </if>
+            <if test="balance != null">
+                balance = #{balance,jdbcType=DECIMAL},
+            </if>
+            <if test="availableBalance != null">
+                available_balance = #{availableBalance,jdbcType=DECIMAL},
+            </if>            
+            <if test="sourceId != null">
+                source_id = #{sourceId,jdbcType=BIGINT},
+            </if>
+            update_time =now()
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+
+    <update id="updateByIdAndTypeForLotty"   >
+        update fin_balance
+        <set>
+            <if test="point != null">
+                balance = balance -  #{point,jdbcType=DECIMAL},
+            </if>
+            <if test="point != null">
+                available_balance = available_balance -  #{point,jdbcType=DECIMAL},
+            </if>
+            update_time =now()
+        </set>
+        where  source_id = #{sourceId,jdbcType=BIGINT}  and   balance_type = #{balanceType,jdbcType=INTEGER}
+                and  balance >=  #{point,jdbcType=DECIMAL}  and  available_balance >= #{point,jdbcType=DECIMAL}
+    </update>
+
+	<select id="selectByQuery" resultMap="BaseResultMap" parameterType="balanceQuery">
+		select
+		<include refid="Base_Column_List" />
+		from fin_balance
+		<where>
+			<if test=" id != null">
+				id = #{id,jdbcType=BIGINT}
+			</if>
+			<if test=" balanceType != null">
+				AND balance_type = #{balanceType,jdbcType=INTEGER}
+			</if>
+			<if test=" sourceId != null">
+				AND source_id = #{sourceId,jdbcType=BIGINT}
+			</if>
+		</where>
+	</select>
+
+
+    <select id="findByPage" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from fin_balance
+        <if test=" map != null">
+            <where>
+                <if test=" map.id != null">
+                    id = #{map.id}
+                </if>
+                <if test=" map.balanceType != null">
+                    balance_type = #{map.balanceType}
+                </if>
+                <if test=" map.balance != null">
+                    balance = #{map.balance}
+                </if>
+                <if test=" map.availableBalance != null">
+                    available_balance = #{map.availableBalance}
+                </if>
+                <if test=" map.sourceId != null">
+                    source_id = #{map.sourceId}
+                </if>
+                <if test=" map.createTime != null">
+                    create_time = #{map.createTime}
+                </if>
+                <if test=" map.updateTime != null">
+                    update_time = #{map.updateTime}
+                </if>
+            </where>
+        </if>
+    </select>
+    <sql id="Base_Column_List_Pagin">
+    t.id  as  id,
+t.balance_type  as  balance_type,
+t.balance  as  balance,
+t.available_balance  as  available_balance,
+t.source_id  as  source_id,
+t.create_time  as  create_time,
+t.update_time  as  update_time
+  </sql>
+    <select id="selectForPagin" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List_Pagin"/>
+        from (SELECT id FROM fin_balance
+        <if test=" map != null">
+            <where>
+                <if test=" map.id != null">
+                    id = #{map.id}
+                </if>
+                <if test=" map.balanceType != null">
+                    balance_type = #{map.balanceType}
+                </if>
+                <if test=" map.balance != null">
+                    balance = #{map.balance}
+                </if>
+                <if test=" map.availableBalance != null">
+                    available_balance = #{map.availableBalance}
+                </if>
+                <if test=" map.sourceId != null">
+                    source_id = #{map.sourceId}
+                </if>
+                <if test=" map.createTime != null">
+                    create_time = #{map.createTime}
+                </if>
+                <if test=" map.updateTime != null">
+                    update_time = #{map.updateTime}
+                </if>
+            </where>
+        </if>
+        LIMIT ${map.startRow}, ${map.pageSize} ) AS a, fin_balance AS t FORCE INDEX(PRIMARY) WHERE a.id = t.id
+    </select>
+    <select id="selectForPaginTotalCount" resultType="java.lang.Integer">
+        select count(1)
+        from fin_balance
+        <if test=" map != null">
+            <where>
+                <if test=" map.id != null">
+                    id = ${map.id}
+                </if>
+                <if test=" map.balanceType != null">
+                    balance_type = ${map.balanceType}
+                </if>
+                <if test=" map.balance != null">
+                    balance = ${map.balance}
+                </if>
+                <if test=" map.availableBalance != null">
+                    available_balance = ${map.availableBalance}
+                </if>
+                <if test=" map.sourceId != null">
+                    source_id = ${map.sourceId}
+                </if>
+                <if test=" map.createTime != null">
+                    create_time = ${map.createTime}
+                </if>
+                <if test=" map.updateTime != null">
+                    update_time = ${map.updateTime}
+                </if>
+            </where>
+        </if>
+    </select>
+
+	<!-- 查询人气值总余额大于预设值的用户 -->
+   <select id="selectMemberPopularity" resultType="java.lang.Long">
+  	select  fin.source_id from fin_balance as fin
+	inner join uc_member as uc on uc.id = source_id
+	where fin.balance_type = 8
+	and uc.status = 2
+	and uc.del_flag > 0
+	and fin.balance >= #{map.popularity,jdbcType=BIGINT}
+    limit  #{map.startNum,jdbcType=BIGINT}, #{map.num,jdbcType=BIGINT}
+  </select>
+
+    <update id="updatePlatformTotalPoint" parameterType="Balance" >
+        update fin_balance set balance = balance + #{balance,jdbcType=DECIMAL},available_balance = available_balance + #{balance,jdbcType=DECIMAL},update_time=now()
+        where balance_type = #{balanceType,jdbcType=INTEGER}  and source_id = #{sourceId,jdbcType=BIGINT}
+    </update>
+
+
+</mapper>

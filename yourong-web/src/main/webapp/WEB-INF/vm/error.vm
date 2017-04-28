@@ -1,0 +1,15 @@
+#parse("/common/common.vm")
+##set($layout = "/layout/default.vm")
+<div class="g-wrap u-page-tips u-page-downState f-round">
+	<div class="u-tips-box">		
+		<i class="u-icon u-icon-error2 f-icon-35"></i>
+		<p class="f-fs18 f-fwb">			
+			#if(${ex})
+				$!{ex}
+			 #else
+			    网络异常，请刷新
+			 #end
+		</p>		
+	</div>
+</div>
+

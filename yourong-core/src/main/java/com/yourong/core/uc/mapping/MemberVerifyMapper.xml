@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.uc.dao.MemberVerifyMapper" >
+  <resultMap id="BaseResultMap" type="MemberVerify" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="member_id" property="memberId" jdbcType="BIGINT" />
+    <result column="verify_type" property="verifyType" jdbcType="VARCHAR" />
+    <result column="verify_content" property="verifyContent" jdbcType="VARCHAR" />
+    <result column="verify_operate" property="verifyOperate" jdbcType="INTEGER" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, member_id, verify_type, verify_content, verify_operate, remarks, create_time
+  </sql>
+  
+  
+  <insert id="insertSelective" parameterType="MemberVerify" useGeneratedKeys="true" keyProperty="id">
+    insert into uc_member_verify
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="memberId != null" >
+        member_id,
+      </if>
+      <if test="verifyType != null" >
+        verify_type,
+      </if>
+      <if test="verifyContent != null" >
+        verify_content,
+      </if>
+      <if test="verifyOperate != null" >
+        verify_operate,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+      <if test="clientIp != null">
+      	client_ip,
+      </if>
+        create_time
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="memberId != null" >
+        #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="verifyType != null" >
+        #{verifyType,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyContent != null" >
+        #{verifyContent,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyOperate != null" >
+        #{verifyOperate,jdbcType=INTEGER},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="clientIp != null">
+      	#{clientIp,jdbcType=VARCHAR},
+      </if>
+      now()
+    </trim>
+  </insert>
+  
+  
+</mapper>

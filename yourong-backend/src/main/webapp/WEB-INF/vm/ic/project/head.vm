@@ -1,0 +1,59 @@
+ #parse("/common/common.vm")
+ #########################################script##################################### 
+  #set($js_config=[ 
+ "'urlMap':{ 
+   'ajax':'$root_url/project/ajax?', 
+   'query':'$root_url/project/index?', 
+   'toDebt':'$root_url/debt/toDebt?id=', 
+   'detail':'$root_url/debt/detail?id=',
+   'save':'$root_url/project/save', 
+   'getSerialNumber':'$root_url/project/getSerialNumber', 
+   'show':'$root_url/project/show?id=',
+   'addRemarks':'$root_url/project/addRemarks?',
+   'emergency':'$root_url/project/emergency?id=', 
+   'delet':'$root_url/project/delete',
+   'findSerialNumber':'$root_url/project/autoCompleteSerialNumber',
+   'getDebtBySerialNumber':'$root_url/project/getDebtBySerialNumber?serialNumber=',
+   'find':'$root_url/project/find',
+   'edit':'$root_url/project/edit?id=',
+   'update':'$root_url/project/update',
+   'waitReview':'$root_url/project/waitReview',
+   'review':'$root_url/project/review',
+   'uotTime':'$root_url/project/updateOnlineTimeAndEndDate',
+   'uEndDate':'$root_url/project/updateEndDate',
+   'stop':'$root_url/project/stop',
+   'start':'$root_url/project/start',
+   'delProjectRedis':'$root_url/project/delProjectRedis',
+   'editor':'$root_url/static/js/lib/umeditor/',
+   'uploadURL':'$root_url/commonUpload/uploadFile',
+   'setSave':'$root_url/project/setSave'
+   },
+   'permission':{
+	   	'delet': $shiro.hasPermission('project:delete'),
+	   	'edit' : $shiro.hasPermission('project:edit'), 
+	   	'waitReview' : $shiro.hasPermission('project:waitReview'), 
+	   	'review' : $shiro.hasPermission('project:review'), 
+	   	'uotTime' : $shiro.hasPermission('project:updateOnlineTimeAndSaleEndTime'), 
+	   	'usaleEndTime' : $shiro.hasPermission('project:updateSaleEndTime'), 
+	   	'stop' : $shiro.hasPermission('project:stop'), 
+	   	'start' : $shiro.hasPermission('project:start'), 
+	   	'find' : $shiro.hasPermission('project:find'),
+	   	'addRemarks' : $shiro.hasPermission('project:addRemarks'),
+	   	'delProjectRedis' : $shiro.hasPermission('project:delProjectRedis'),
+         'emergency':$shiro.hasPermission('project:emergency'),
+         'setSave':$shiro.hasPermission('project:setSave'),  
+        'projectExcel':$shiro.hasPermission('project:projectExcel')
+   	},
+   'debtType':#buildDictJson('debt_type'),##担保方式
+   'interestFrom':#buildDictJson('interest_from'),##起息日
+   'returnType':#buildDictJson('return_type'),##还款方式
+   'debtStatus':#buildDictJson('debt_status'),##状态
+   'projectStatus':#buildDictJson('project_status'), ##项目状态   
+   'project_type':#buildDictJson('project_type'), ##项目类型
+   'guarantyType':#buildDictJson('guaranty_type'),
+   'annualizedRateType':#buildDictJson('annualized_rate_type'), ##收益计算方式
+   'activitySign':#buildDictJson('project_activity_sign') ##活动标识
+"
+ ])
+#set($css_url=["$root_url/static/assets/css/dropzone.css","$root_url/static/js/lib/My97DatePicker/skin/WdatePicker.css","$root_url/static/js/lib/umeditor/themes/default/css/umeditor.min.css","$root_url/static/js/lib/jcrop/jquery.Jcrop.min.css","$root_url/static/js/lib/colorbox/colorbox.css","$root_url/static/css/project.css"]) 
+#set($js_url=["$root_url/static/assets/js/dropzone.min.js","$root_url/static/js/dz-upload.js","$root_url/static/js/lib/jcrop/jquery.Jcrop.min.js","$root_url/static/js/lib/My97DatePicker/WdatePicker.js","$root_url/static/js/lib/colorbox/jquery.colorbox-min.js","$root_url/static/js/project.js"]) 

@@ -1,0 +1,78 @@
+##周年活动
+#parse("/common/common.vm")
+#set($title="50元现金券 触手可得_$!{title_suffix}")
+#set($css_url=["/static/lib/js/flipclock/flipclock.css","$root_css_url/activity/anniversary.css"])
+##页头
+#set($yrimg_url='https://yrimg.oss-cn-hangzhou.aliyuncs.com')
+
+<style>
+    /*页头*/
+    .m-50cashCoupon-hd{
+        width: 100%;
+        height: 534px;
+        margin-top: -8px;
+        background: url($yrimg_url/activity/50cashCoupon/50cashCoupon-hd.jpg) no-repeat center;
+    }
+    /*内容*/
+    .m-50cashCoupon-content{
+        height: 638px;
+        background: #d21e1e;
+        padding-top: 108px;
+    }
+    .m-50cashCoupon-content>div{
+        padding: 0 50px;
+        width: 890px;
+    }
+    .u-50cashCoupon-app,.u-50cashCoupon-wap{
+        height: 536px;
+        width: 400px;
+        display: inline-block;
+        margin-left: 90px;
+     }
+    .u-50cashCoupon-app{
+        background: url("/static/img/activity/50cashCoupon/50cashCoupon-APP.jpg") no-repeat center;
+    }
+    .u-50cashCoupon-wap{
+        background: url("/static/img/activity/50cashCoupon/50cashCoupon-wap.jpg") no-repeat center;
+    }
+    .m-50cashCoupon-content>div div:first-child{
+        margin-left: 0;
+    }
+    /*规则*/
+    .u-50cashCoupon-rule{
+        background: #eee;
+        color: #636363;
+        height: 305px;
+        padding: 65px 0 0;
+    }
+    .u-50cashCoupon-rule p{
+        line-height: 40px;
+    }
+</style>
+<div class="m-50cashCoupon-hd">
+
+</div>
+<div class="m-50cashCoupon-content">
+        <div class="g-wrap">
+            <div class="u-50cashCoupon-app"></div><div class="u-50cashCoupon-wap"></div>
+        </div>
+</div>
+##规则
+<div class="u-50cashCoupon-rule">
+    <div class="g-wrap">
+        <h3 class="f-fs18 f-fwb">活动规则：</h3>
+        <p>
+            1、活动对象：<strong>移动端（APP/WAP）投资用户</strong>；
+
+           <br> 2、活动时间：<strong>上线之时起至2月8日</strong>；
+
+            <br> 3、活动期间，在<strong>移动端</strong>完成<strong>任意一笔≥1000元的投资</strong>，即可获得一张<strong>50元现金券</strong>；
+
+            <br>4、50元现金券领取后5天有效，起投金额≥2000元，起投期限≥25天，<strong>仅限移动端使用</strong>；
+
+            <br> 5、每位用户活动期间只可获得一张现金券；
+
+            <br>本活动最终解释权归有融网所有
+        </p>
+    </div>
+</div>

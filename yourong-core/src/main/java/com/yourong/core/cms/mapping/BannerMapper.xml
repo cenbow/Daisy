@@ -1,0 +1,659 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.cms.dao.BannerMapper" >
+  <cache eviction="LRU" readOnly="false" type="com.yourong.common.cache.MybatisRedisCache"/> 
+  <resultMap id="BaseResultMap" type="com.yourong.core.cms.model.Banner" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="image" property="image" jdbcType="VARCHAR" />
+    <result column="image_bg" property="imageBg" jdbcType="VARCHAR" />
+    <result column="href" property="href" jdbcType="VARCHAR" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="weight" property="weight" jdbcType="INTEGER" />
+    <result column="effect" property="effect" jdbcType="VARCHAR" />
+    <result column="target_blank" property="targetBlank" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    
+    <result column="share_flag" property="shareFlag" jdbcType="INTEGER" />
+    <result column="share_title" property="shareTitle" jdbcType="VARCHAR" />
+    <result column="share_word" property="shareWord" jdbcType="VARCHAR" />
+    
+    <result column="create_by" property="createBy" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_by" property="updateBy" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+    <result column="area_sign" property="areaSign" jdbcType="INTEGER"/>
+    <result column="activity_id" property="activityId" jdbcType="BIGINT"/>
+    <result column="banner_status" property="bannerStatus" jdbcType="INTEGER"/>
+  </resultMap>
+  
+   <resultMap id="BannerForAreaMap" type="com.yourong.core.cms.model.biz.BannerFroAreaBiz"
+		extends="BaseResultMap">
+	<result column="activityStartTime" property="activityStartTime" jdbcType="VARCHAR" />
+	<result column="activityEndTime" property="activityEndTime" jdbcType="BIGINT" />
+	<result column="activity_status" property="activityStatus" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    id, name, image, image_bg, href, start_time, end_time, weight, effect, target_blank, type, create_by, create_time, update_by, share_flag,share_title,share_word,
+    update_time, remark, del_flag, area_sign, activity_id, banner_status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long"  flushCache="false" useCache="true">
+    select 
+    <include refid="Base_Column_List" />
+    from cms_banner
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long"  flushCache="true">
+    delete from cms_banner
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.yourong.core.cms.model.Banner" flushCache="true">
+    insert into cms_banner (id, name, image, image_bg,
+      href, start_time, end_time, 
+      weight, effect, target_blank,
+      type, 
+      create_by, create_time, 
+      update_by, update_time, remark, banner_status,share_flag,share_title,share_word,
+      del_flag, area_sign, activity_id)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}, #{imageBg,jdbcType=VARCHAR}, 
+      #{href,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, 
+      #{weight,jdbcType=INTEGER}, #{effect,jdbcType=VARCHAR}, #{targetBlank,jdbcType=INTEGER}, #{type,jdbcType=INTEGER},#{createBy,jdbcType=VARCHAR}, now(), 
+      #{updateBy,jdbcType=VARCHAR}, now(), #{remark,jdbcType=VARCHAR}, #{bannerStatus,jdbcType=INTEGER},
+      #{shareFlag,jdbcType=INTEGER},#{shareTitle,jdbcType=VARCHAR},#{shareWord,jdbcType=VARCHAR},
+      1, #{areaSign,jdbcType=INTEGER}, #{activityId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yourong.core.cms.model.Banner" flushCache="true">
+    insert into cms_banner
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="image != null" >
+        image,
+      </if>
+      <if test="imageBg != null" >
+        image_bg,
+      </if>
+      <if test="href != null" >
+        href,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="weight != null" >
+        weight,
+      </if>
+      <if test="effect != null" >
+        effect,
+      </if>
+      <if test="targetBlank != null" >
+        target_blank,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="appView != null" >
+        app_view,
+      </if>
+      <if test="createBy != null" >
+        create_by,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateBy != null" >
+        update_by,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+      <if test="shareFlag != null" >
+        share_flag,
+      </if>
+      <if test="shareTitle != null" >
+        share_title,
+      </if>
+      <if test="shareWord != null" >
+        share_word,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null" >
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="imageBg != null" >
+        #{imageBg,jdbcType=VARCHAR},
+      </if>
+      <if test="href != null" >
+        #{href,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="weight != null" >
+        #{weight,jdbcType=INTEGER},
+      </if>
+      <if test="effect != null" >
+        #{effect,jdbcType=VARCHAR},
+      </if>
+      <if test="targetBlank != null" >
+        #{target_blank,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=INTEGER},
+      </if>
+      <if test="shareFlag != null" >
+         #{shareFlag,jdbcType=INTEGER},
+      </if>
+      <if test="shareTitle != null" >
+        #{shareTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="shareWord != null" >
+         #{shareWord,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yourong.core.cms.model.Banner" flushCache="true">
+    update cms_banner
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null" >
+        image = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="imageBg != null" >
+        image_bg = #{imageBg,jdbcType=VARCHAR},
+      </if>
+      <if test="href != null" >
+        href = #{href,jdbcType=VARCHAR},
+      </if>
+      <if test="href == null" >
+        href = null,
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      <if test="weight != null" >
+        weight = #{weight,jdbcType=INTEGER},
+      </if>
+      <if test="effect != null" >
+        effect = #{effect,jdbcType=VARCHAR},
+      </if>
+      <if test="targetBlank != null" >
+        target_blank = #{targetBlank,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="updateBy != null" >
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+        update_time = now(),
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="areaSign != null" >
+        area_sign = #{areaSign,jdbcType=INTEGER},
+      </if>
+      <if test="activityId != null" >
+        activity_id = #{activityId,jdbcType=BIGINT},
+      </if>
+      <if test="activityId == null" >
+        activity_id = null,
+      </if>
+      <if test="bannerStatus != null" >
+        banner_status = #{bannerStatus,jdbcType=INTEGER},
+      </if>
+      <if test="shareFlag != null" >
+        share_flag =   #{shareFlag,jdbcType=INTEGER},
+      </if>
+      <if test="shareTitle != null" >
+        share_title =  #{shareTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="shareWord != null" >
+        share_word = #{shareWord,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yourong.core.cms.model.Banner" flushCache="true">
+    update cms_banner
+    set name = #{name,jdbcType=VARCHAR},
+      image = #{image,jdbcType=VARCHAR},
+      image_bg = #{imageBg,jdbcType=VARCHAR},
+      href = #{href,jdbcType=VARCHAR},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      weight = #{weight,jdbcType=INTEGER},
+      effect = #{effect,jdbcType=VARCHAR},
+      target_blank = #{targetBlank,jdbcType=INTEGER},
+      type = #{type,jdbcType=INTEGER},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR},
+      del_flag = #{delFlag,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="batchDelete" parameterType="java.lang.Long" flushCache="true">
+    update cms_banner set del_flag = -1 , update_time = now()
+    where id in  <foreach collection="ids" index="index" item="item" open="(" separator="," close=")"> #{item}  </foreach>  
+  </update>
+  <select id="findByPage" resultMap="BaseResultMap" flushCache="false" useCache="true">
+    select 
+    <include refid="Base_Column_List" />
+    from cms_banner
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          AND id = #{map.id}
+        </if>
+        <if test=" map.name != null" >
+          AND name = #{map.name}
+        </if>
+        <if test=" map.image != null" >
+          AND image = #{map.image}
+        </if>
+        <if test=" map.imageBg != null" >
+          AND image_bg = #{map.imageBg}
+        </if>
+        <if test=" map.href != null" >
+          AND href = #{map.href}
+        </if>
+        <if test=" map.startTime != null" >
+          AND start_time = #{map.startTime}
+        </if>
+        <if test=" map.endTime != null" >
+          AND end_time = #{map.endTime}
+        </if>
+        <if test=" map.weight != null" >
+          AND weight = #{map.weight}
+        </if>
+        <if test=" map.effect != null" >
+          AND effect = #{map.effect}
+        </if>
+        <if test=" map.targetBlank != null" >
+          AND target_blank = #{map.targetBlank}
+        </if>
+        <if test=" map.type != null" >
+          AND type = #{map.type}
+        </if>
+        <if test=" map.createBy != null" >
+          AND create_by = #{map.createBy}
+        </if>
+        <if test=" map.createTime != null" >
+          AND create_time = #{map.createTime}
+        </if>
+        <if test=" map.updateBy != null" >
+          AND update_by = #{map.updateBy}
+        </if>
+        <if test=" map.updateTime != null" >
+          AND update_time = #{map.updateTime}
+        </if>
+        <if test=" map.remark != null" >
+          AND remark = #{map.remark}
+        </if>
+        <if test=" map.delFlag != null" >
+          AND del_flag = #{map.delFlag}
+        </if>
+        <if test=" map.areaSign != null" >
+          AND area_sign = #{map.areaSign}
+        </if>
+      </where>
+    </if>
+  </select>
+  <sql id="Base_Column_List_Pagin" >
+    t.id  as  id,
+t.name  as  name,
+t.image  as  image,
+t.image_bg  as  image_bg,
+t.href  as  href,
+t.start_time  as  start_time,
+t.end_time  as  end_time,
+t.weight  as  weight,
+t.effect  as  effect,
+t.target_blank  as  target_blank,
+t.type  as  type,
+t.create_by  as  create_by,
+t.create_time  as  create_time,
+t.update_by  as  update_by,
+t.update_time  as  update_time,
+t.remark  as  remark,
+t.del_flag  as  del_flag,
+t.area_sign as areaSign,
+t.activity_id as activity_id,
+t.banner_status as banner_status
+  </sql>
+  <select id="selectForPagin" resultMap="BaseResultMap" flushCache="false" useCache="true">
+    select 
+    <include refid="Base_Column_List_Pagin" />
+    from  (SELECT id FROM  cms_banner where del_flag >0  and banner_status > -1
+    <if test=" map != null" >
+        <if test=" map.id != null" >
+          and id = #{map.id}
+        </if>
+        <if test=" map.name != null" >
+          and name = #{map.name}
+        </if>
+        <if test=" map.image != null" >
+          and image = #{map.image}
+        </if>
+        <if test=" map.imageBg != null" >
+          and image_bg = #{map.imageBg}
+        </if>
+        <if test=" map.href != null" >
+          and href = #{map.href}
+        </if>
+        <if test=" map.startTime != null" >
+          and start_time = #{map.startTime}
+        </if>
+        <if test=" map.endTime != null" >
+          and end_time = #{map.endTime}
+        </if>
+        <if test=" map.weight != null" >
+          and weight = #{map.weight}
+        </if>
+        <if test=" map.effect != null" >
+          and effect = #{map.effect}
+        </if>
+        <if test=" map.targetBlank != null" >
+          and target_blank = #{map.targetBlank}
+        </if>
+        <if test=" map.type != null" >
+          and type = #{map.type}
+        </if>
+        <if test=" map.createBy != null" >
+          and create_by = #{map.createBy}
+        </if>
+        <if test=" map.createTime != null" >
+          and create_time = #{map.createTime}
+        </if>
+        <if test=" map.updateBy != null" >
+          and update_by = #{map.updateBy}
+        </if>
+        <if test=" map.updateTime != null" >
+          and update_time = #{map.updateTime}
+        </if>
+        <if test=" map.remark != null" >
+          and remark = #{map.remark}
+        </if>
+        <if test=" map.areaSign != null" >
+          and area_sign = #{map.areaSign}
+        </if>
+    </if>
+    order by weight desc
+      LIMIT	${map.startRow}, ${map.pageSize}  )  AS a,  cms_banner AS t FORCE INDEX(PRIMARY) WHERE a.id = t.id   
+  </select>
+
+  <select id="selectForPaginTotalCount" resultType="java.lang.Integer" flushCache="false" useCache="true">
+    select count(1) 
+    from cms_banner where del_flag > 0  and banner_status > -1
+    <if test=" map != null" >
+        <if test=" map.id != null" >
+          and id = ${map.id}
+        </if>
+        <if test=" map.name != null" >
+          and name = ${map.name}
+        </if>
+        <if test=" map.image != null" >
+          and image = ${map.image}
+        </if>
+        <if test=" map.imageBg != null" >
+          and image_bg = ${map.imageBg}
+        </if>
+        <if test=" map.href != null" >
+          and href = ${map.href}
+        </if>
+        <if test=" map.startTime != null" >
+          and start_time = ${map.startTime}
+        </if>
+        <if test=" map.endTime != null" >
+          and end_time = ${map.endTime}
+        </if>
+        <if test=" map.weight != null" >
+          and weight = ${map.weight}
+        </if>
+        <if test=" map.effect != null" >
+          and effect = ${map.effect}
+        </if>
+        <if test=" map.targetBlank != null" >
+          and target_blank = ${map.targetBlank}
+        </if>
+        <if test=" map.type != null" >
+          and type = ${map.type}
+        </if>
+        <if test=" map.createBy != null" >
+          and create_by = ${map.createBy}
+        </if>
+        <if test=" map.createTime != null" >
+          and create_time = ${map.createTime}
+        </if>
+        <if test=" map.updateBy != null" >
+          and update_by = ${map.updateBy}
+        </if>
+        <if test=" map.updateTime != null" >
+          and update_time = ${map.updateTime}
+        </if>
+        <if test=" map.remark != null" >
+          and remark = ${map.remark}
+        </if>
+        <if test=" map.areaSign != null" >
+          and area_sign = #{map.areaSign}
+        </if>
+    </if>
+  </select>
+  
+  <!-- 获取权重最大值 -->
+  <select id="findMaxWeight" resultType="java.lang.Integer" flushCache="false" useCache="true">
+	select max(weight) from cms_banner where del_flag > 0
+  </select>
+  
+  <!-- 获取该位置banner的权重 -->
+  <select id="findPositionBannerWeight" resultType="java.lang.Integer" flushCache="false" useCache="true">
+	select weight from cms_banner where del_flag>0 
+	
+	<if test=" areaSign != null" >
+          and area_sign = #{areaSign} 
+        </if>
+	and type = #{type} and banner_status > -1 order by weight desc limit #{position},1 
+  </select>
+  
+  <!-- 向下移动时重置的banner -->
+  <update id="resetBannerWeightWhenDown" parameterType="java.lang.Integer" flushCache="true">
+  	update cms_banner set weight = weight + 1 where weight <![CDATA[<]]> #{bannerWeight} and weight <![CDATA[ >= ]]> #{positionWeight}
+  </update>
+  
+  <!-- 向上移动时重置的banner -->
+  <update id="resetBannerWeightWhenUp" parameterType="java.lang.Integer" flushCache="true">
+  	update cms_banner set weight = weight - 1 where weight > #{bannerWeight} and weight <![CDATA[ <= ]]> #{positionWeight}
+  </update>
+  
+  <!-- 定时过期 -->
+  <update id="expireBannerTask" >
+  	update cms_banner set banner_status = -1 where del_flag > 0 and banner_status = 1 and end_time <![CDATA[ <= ]]> now()
+  </update>
+  
+  <!-- 定时生效 -->
+  <update id="activeBannerTask" >
+  	update cms_banner set banner_status = 1 where del_flag > 0 and banner_status = 0 and start_time <![CDATA[ <= ]]> now()
+  </update>
+  
+  <!-- 获取显示在首页的banner -->
+  <select id="findOnlineBanner" resultMap="BaseResultMap" flushCache="false" useCache="true">
+  	select <include refid="Base_Column_List"/>
+  	from cms_banner
+  	where del_flag > 0 and start_time <![CDATA[ <= ]]> now()  and banner_status = 1
+	  <if test=" map != null" >
+	  	<if test="map.type!=null">
+			<if test="map.type==1">
+				and type=1
+				<if test="map.areaSign!=null">
+	  				and area_sign=${map.areaSign}
+	  			</if>
+			</if>
+			<if test="map.type!= 1">
+				and type=${map.type}
+			</if>
+	  	</if>
+	  	
+	  </if>
+  	order by weight desc
+  </select>
+  
+  <!-- 查询即将过期的banner -->
+  <select id="findExpireBanner" resultMap="BaseResultMap" >
+  	select <include refid="Base_Column_List"/>
+  	from cms_banner where del_flag > 0 
+  </select>
+  
+  <select id="showBannerByArea" resultMap="BannerForAreaMap" >
+  	SELECT
+		b.id, b.name, b.image, b.image_bg, b.href, b.start_time, b.end_time, b.weight, b.effect, b.target_blank, b.type,
+    	b.area_sign, b.activity_id, b.target_blank,
+		a.start_time AS activityStartTime,
+		a.end_time AS activityEndTime,
+		a.activity_status
+	FROM
+		cms_banner AS b
+	LEFT JOIN mc_activity AS a ON b.activity_id = a.id AND a.activity_status IN (2, 4, 6)
+	INNER JOIN sys_dict AS d ON d.group_name = 'banner_area_sign' AND d.KEY = #{areaSign,jdbcType=INTEGER} AND d.value = b.area_sign
+	WHERE
+		b.banner_status = 1
+		and b.del_flag = 1
+		and b.type = #{type,jdbcType=INTEGER}
+		and b.start_time <![CDATA[ <= ]]> now() 
+	ORDER BY
+		b.weight DESC
+    LIMIT #{rowStart,jdbcType=INTEGER}, #{rowLength,jdbcType=INTEGER}
+  </select>
+
+  <!--分页获取活动集合页面的banner   ====start===-->
+  <select id="findActivityListByPage" resultMap="BannerForAreaMap" >
+    SELECT
+    b.id, b.name, b.image, b.image_bg, b.href, b.start_time, b.end_time, b.weight, b.effect, b.target_blank, b.type,
+    b.area_sign, b.activity_id, b.target_blank,
+    a.start_time AS activityStartTime,
+    a.end_time AS activityEndTime,
+    a.activity_status
+    FROM
+    cms_banner AS b
+    LEFT JOIN mc_activity AS a ON b.activity_id = a.id AND a.activity_status IN (2, 4, 6)
+    INNER JOIN sys_dict AS d ON d.group_name = 'banner_area_sign' AND d.KEY = #{areaSign,jdbcType=VARCHAR} AND d.value = b.area_sign
+    WHERE
+    b.banner_status = 1
+    and b.del_flag = 1
+    and b.type = #{baseQuery.type,jdbcType=INTEGER}
+    and b.start_time <![CDATA[ <= ]]> now()
+    ORDER BY
+    b.weight DESC
+    LIMIT #{baseQuery.startRow,jdbcType=INTEGER},
+		#{baseQuery.pageSize,jdbcType=INTEGER}
+  </select>
+
+  <select id="findActivityListCountByPage"  resultType="java.lang.Integer" >
+    select count(1)
+    FROM
+    cms_banner AS b
+    LEFT JOIN mc_activity AS a ON b.activity_id = a.id AND a.activity_status IN (2, 4, 6)
+    INNER JOIN sys_dict AS d ON d.group_name = 'banner_area_sign' AND d.KEY = #{areaSign,jdbcType=VARCHAR} AND d.value = b.area_sign
+    WHERE
+    b.banner_status = 1
+    and b.del_flag = 1
+    and b.type = #{baseQuery.type,jdbcType=INTEGER}
+    and b.start_time <![CDATA[ <= ]]> now()
+    ORDER BY
+    b.weight DESC
+  </select>
+
+<select id="findAppActivityListCountByPage"  resultType="java.lang.Integer"  flushCache="true">
+    select count(1)
+    FROM
+    cms_banner AS b
+    LEFT JOIN mc_activity AS a ON b.activity_id = a.id AND a.activity_status IN (2, 4, 6)
+    WHERE
+    b.banner_status = 1
+    and b.del_flag = 1
+    and b.type = #{bannerQuery.bannerType,jdbcType=INTEGER}
+    and b.start_time <![CDATA[ <= ]]> now()
+    ORDER BY
+    b.weight DESC
+  </select>
+
+<!--分页获取活动集合页面的banner   ====start===-->
+  <select id="findAppActivityBannerByPage" resultMap="BannerForAreaMap"  flushCache="true">
+    SELECT
+    b.id, b.name, b.image, b.image_bg, b.href, b.start_time, b.end_time, b.weight, b.effect, b.target_blank, b.type,
+    b.share_flag,b.share_title,b.share_word,
+    b.area_sign, b.activity_id, b.target_blank,
+    a.start_time AS activityStartTime,
+    a.end_time AS activityEndTime,
+    a.activity_status
+    FROM
+    cms_banner AS b
+    LEFT JOIN mc_activity AS a ON b.activity_id = a.id AND a.activity_status IN (2, 4, 6)
+    WHERE
+    b.banner_status = 1
+    and b.del_flag = 1
+    and b.type = #{bannerQuery.bannerType,jdbcType=INTEGER}
+    and b.start_time <![CDATA[ <= ]]> now()
+    ORDER BY
+    b.weight DESC
+    LIMIT #{bannerQuery.startRow,jdbcType=INTEGER},
+		#{bannerQuery.pageSize,jdbcType=INTEGER}
+  </select>
+
+
+  <!--分页获取活动集合页面的banner   ====end===-->
+
+  <!--根据type查询单条banner-->
+  <select id="queryBannerByType" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List"/>
+    FROM cms_banner WHERE type=#{type} AND del_flag=1 AND banner_status > -1 LIMIT 1
+  </select>
+</mapper>

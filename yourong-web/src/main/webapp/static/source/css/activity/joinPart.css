@@ -1,0 +1,166 @@
+.g-bd {
+  margin-bottom: 0;
+}
+body{
+}
+.m-join-hd{
+  overflow: hidden;
+  position: relative;
+    top: -10px;
+  /*padding-bottom: 100px;*/
+  width: 100%;
+  background: #151246;
+}
+
+.m-top1 {
+  width: 100%;
+    background: url('https://yrstatic.oss-cn-hangzhou.aliyuncs.com/static/img/joinPart/bg-top1.png') no-repeat center;
+  height: 359px;
+}
+.m-top2 {
+  width: 100%;
+    background: url('https://yrstatic.oss-cn-hangzhou.aliyuncs.com/static/img/joinPart/bg-top2.png') no-repeat center;
+  height: 264px;
+}
+.m-top3 {
+  width: 100%;
+    background: url('https://yrstatic.oss-cn-hangzhou.aliyuncs.com/static/img/joinPart/bg-top3.png') no-repeat center;
+  height: 325px;
+}
+.m-top4 {
+  width: 100%;
+    background: url('https://yrstatic.oss-cn-hangzhou.aliyuncs.com/static/img/joinPart/bg-top4.png') no-repeat center;
+  height: 484px;
+}
+.m-top5 {
+  width: 100%;
+    background: url('https://yrstatic.oss-cn-hangzhou.aliyuncs.com/static/img/joinPart/bg-top5.png') no-repeat center;
+  height: 656px;
+}
+
+.m-join-picture{
+  background: #151246;
+  width: 100%;
+  padding-bottom: 90px;
+  margin-top: -12px;
+  padding-top: 75px;
+}
+.u-join-picture {
+  width: 918px;
+  height: 550px;
+  overflow: hidden;
+  margin: 25px auto 0;
+  position: relative;
+}
+.u-join-picture ul{
+  font-size: 0;
+}
+.u-join-picture ul li {
+  width: 918px;
+  height: 550px;
+  display: inline-block;
+}
+.u-title {
+  width: 350px;
+  margin: 0 auto;
+  padding-top: 55px;
+}
+.u-title span {
+  width: 250px;
+  font-size: 36px;
+  color: #fff;
+  text-align: center;
+  display: inline-block;
+  vertical-align: sub;
+}
+.u-title i {
+  width: 30px;
+  height: 14px;
+  display: inline-block;
+}
+.u-title-left {
+    background: url('https://yrstatic.oss-cn-hangzhou.aliyuncs.com/static/img/joinPart/icon.png') no-repeat center;
+  margin-left: 20px;
+}
+.u-title-right {
+    background: url('https://yrstatic.oss-cn-hangzhou.aliyuncs.com/static/img/joinPart/icon.png') no-repeat center;
+}
+.u-pic-box{
+  height: 740px;
+  background: #201d57;
+}
+
+.u-join-picture span.z-left {
+  position: absolute;
+  left: 0;
+  top: 60px;
+  background: url(/static/img/activity/Again/pageturning-left.png) no-repeat center;
+}
+.u-join-picture span.z-right {
+  position: absolute;
+  right: 0;
+  top: 60px;
+  background: url(/static/img/activity/Again/pageturning-right.png) no-repeat center;
+}
+.u-join-picture>span {
+  width: 50px;
+  height: 400px;
+  display: block;
+  cursor: pointer;
+}
+.u-join-picture>div {
+  width: 918px;
+  height: 48px;
+  padding: 18px 0 18px 30px;
+  background-color: rgba(0,0,0,0.7);
+  position: absolute;
+  bottom: 0;
+  line-height: 48px;
+}
+.u-join-picture>div em {
+  display: inline-block;
+  color: #fff;
+  font-size: 16px;
+  margin-right: 35px;
+  border-bottom: 2px solid white;
+}
+.u-join-picture>div div {
+  color: #fff;
+  display: inline-block;
+}
+.u-join-picture>div div p {
+  font-size: 18px;
+}
+.u-join-picture>div div span {
+  font-size: 12px;
+}
+.u-join-picture>div em strong {
+  font-weight: 100;
+  margin: 0 12px;
+}
+.f-fs36 {
+  font-size: 36px;
+}
+.m-join-meiti{
+  background: #151246;
+  width: 100%;
+  padding-bottom: 90px;
+}
+.m-join-meiti ul{
+  width: 76%;
+  margin: 0 auto;
+}
+.m-join-meiti ul li{
+  width: 49%;
+  display: inline-block;
+  margin-top: 55px;
+}
+.m-join-meiti ul li a{
+  display: block;
+  width: 300px;
+  margin: 0 auto;
+}
+.u-mei-box{
+  height: 600px;
+  background: #201d57;
+}

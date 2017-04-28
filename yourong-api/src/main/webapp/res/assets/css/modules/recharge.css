@@ -1,0 +1,394 @@
+.z-margin-top-30{margin-top: 35px;padding-bottom: 5px;}
+.f-ff-amount {
+    font-family: "dincond","Microsoft Yahei";
+}
+.f-fs36 {
+    font-size: 46px;
+}
+address, caption, cite, code, dfn, em, th, var {
+    font-style: normal;
+    font-weight: 500;
+}
+.f-db {
+    display: block;
+}
+.z-width{
+    width: 100%;
+}
+.z-width-70{
+    width: 70%;
+    padding: 0 !important;
+}
+.z-line-height-14{
+    /*line-height: 14px;*/
+    margin-top: 17px;
+
+}
+.z-line-height-44{
+    line-height: 44px;
+}
+.z-margin-top17{
+    margin-top: 24px;
+}
+.u-mRecharge-list ul li{
+    border-bottom: 1px solid #ccc;
+    float: left;
+    width: 100%;
+    padding: 23px 0 12px 0;
+    color: #999;
+}
+.u-mRecharge-list ul li a{
+    color: #999;
+}
+.u-mRecharge-list ul li > div:nth-child(1){
+    /*padding-left: 5%;*/
+   /* width: 45px;*/
+    /*margin-left: 16px;*/
+}
+.z-mRecharge-width135{
+    width: 135px;
+    margin-left: 35px;
+}
+.z-mRecharge-width135 em, .z-mRecharge-width75 em{
+    color: #999;
+}
+.z-mRecharge-width15{
+    width: 11px;
+    margin-right: 33px;
+}
+.z-mRecharge-width75{
+    width: 175px;
+    float: left;
+    margin-left: 30px;
+    position: relative;
+}
+.z-mRecharge-width75 i{
+    margin-top: 7px;
+    display: inline-block;
+}
+.z-mRecharge-width75 input{
+    width: 158px;
+    line-height: 40px;
+    color: #666;
+    position: absolute;
+    top: -7px;
+}
+/*h2{
+
+    color: #999;
+    border-bottom: 1px solid #ccc;
+    /!*padding-left: 5%;*!/
+}*/
+/*.z-margin-left10{
+    margin-left: 10px;
+}*/
+.z-margin-top10{
+    margin-top: 10px;
+}
+.u-mRecharge-list ul li:nth-child(2){
+    padding-bottom: 22px;
+}
+.u-mRecharge-list ul li img{
+    width: 45px;
+    height: 45px;
+}
+/*.m-bankcard-grap {
+    /!* height: 133px;*!/
+    width: 86%;
+    padding: 0 7%;
+    position: relative;
+    z-index: 2;
+}*/
+.z-mRecharge-width15 a{
+    /*width: 30%;*/
+    height: 30px;
+    background: url("../../../img/next.png") no-repeat -5px 0;
+    display: block;
+    color: #999;
+
+}
+.z-mRecharge-white,.z-validate{
+
+
+    background: #fff;
+    border-radius: 5px;
+    top: 136px;
+    position: absolute;
+    z-index: 300;
+
+}
+.z-mRecharge-white ul li{border: 0 none;padding-bottom: 30px;}
+.z-cur{
+    background: #eee;
+
+}
+.z-validate{
+    color: #999;
+}
+
+.z-validate-grey{
+    width: 92% !important;
+    background: #ddd;
+    padding: 0 4% 0 4%;
+    margin: 10px 0 0 0;
+    border-radius: 5px;
+
+    line-height: 30px;
+}
+.z-validate-grey em{
+    color: #999;
+}
+.z-validate-grey input{
+    width: 53%;
+    color: #666;
+}
+.z-validate-num{
+    width: 98% !important;
+    font-size: 14px;
+
+}
+.z-validate-num em{
+    color: #999;
+    display: inline-block;
+}
+.u-choose{
+    border-top: 1px solid #999;
+    margin: 30px 0 0 0;
+}
+.u-choose input{
+    width: 45%;
+    display: inline-block;
+    line-height: 40px;
+}
+.z-validate-moment{
+    border-left: 1px solid #999;
+    color: #d94249;
+}
+.u-mRecharge-list .u-safety-car{
+    margin: 10px 0 0 0 !important;
+}
+.u-mRecharge-list{
+    margin-bottom: 210px;
+}
+.ui-form-item span{
+    background-color: #999;
+    border-radius: 7px;
+    height: 27px;
+    width: 108px;
+    display: inline-block;
+    line-height: 27px;
+    float: right;
+    margin-top: 8px;
+    text-align: center;
+    font-size: 15px;
+}
+.ui-form-item span em{
+    color: #999;
+}
+    /*银行卡选择*/
+
+.z-validate-num1{
+    width: 100%;
+    padding: 10px 0;
+}
+.z-validate-num1.z-current{
+    background: #eee;
+    padding: 10px 0;
+}
+.ui-dialog-cnt1 {
+    border-radius: 6px;
+    width: 270px;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    pointer-events: auto;
+    background-color: rgba(253,253,253,.95);
+    position: relative;
+    font-size: 16px;
+    max-height: 340px;
+    overflow-y: scroll;
+}
+.ui-width .ui-dialog-cnt1 {
+    width: 320px;
+}
+.j-number{
+    display: none;
+    width: 60%;
+    position: absolute;
+    top: 120px;
+    left: 80px;
+    background: #000;
+    opacity: 0.4;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+}
+/*充值银行卡位置*/
+.f-bank-position{
+    margin-left: 36px;
+}
+
+.m-recharge-body {
+    width: 92%;
+    padding: 0 4%;
+    background: #eee;
+}
+
+.m-recharge-body h4,
+.u-recharge-cardholder,
+.u-recharge-bCard,
+.u-recharge-money {
+    padding: 0 0 0 2%;
+    border-bottom: 1px solid #ccc;
+}
+.u-recharge-bCard i{
+    padding: 20px 0;
+    position: absolute;
+    top: 12px;
+    right: 7%;
+}
+.u-recharge-bCard i img{
+    vertical-align: middle;
+}
+/*标题*/
+.m-recharge-body h4 {
+    color: #666;
+    height: 58px;
+    line-height: 80px;
+    font-weight: bold;
+}
+
+/*持卡人*/
+.u-recharge-cardholder {
+    color: #999;
+    font-size: 1rem;
+    height: 68px;
+    line-height: 90px;
+}
+
+.u-recharge-cardholder span {
+    margin: 0 0 0 5%;
+}
+
+/*银行卡*/
+.u-recharge-bCard {
+    padding: 20px 0 20px 2%;
+    position: relative;
+}
+
+.u-recharge-bName {
+    display: inline-block;
+    width: 50%;
+    height: 50px;
+    line-height: 25px;
+    color: #999;
+}
+.u-recharge-bName em{
+    color: #999;
+}
+.u-recharge-bankIcon {
+    display: inline-block;
+    height: 50px;
+    vertical-align: bottom;
+    margin-right: 5px;
+}
+
+.u-recharge-bCard .u-card-type {
+    position: absolute;
+    top: 32px;
+    right: 7%;
+}
+
+/**提现金额**/
+.u-recharge-money {
+    height: 53px;
+    padding: 20px 0 10px 2%;
+    position: relative;
+    color: #999;
+    margin: 0 0 210px 0;
+}
+
+.u-recharge-money span {
+    line-height: 80px;
+}
+
+.u-recharge-money input {
+    height: 53px;
+    display: inline-block;
+    vertical-align: bottom;
+    position: absolute;
+    top: 28px;
+    right: 0;
+    width: 72%;
+    font-size: 46px;
+    color: #999;
+}
+
+/**确认提现按钮**/
+.u-recharge-btn {
+    display: block;
+    height: 50px;
+    width: 100%;
+    line-height: 50px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    left:0;
+    background: #d74147;
+    color: #fff;
+}
+.u-recharge-btn.z-disabled{
+    background-color: #aaa;
+}
+.u-recharge-submit{
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    position: fixed;
+    bottom:0;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #d74147;
+    text-align: center;
+}
+/**选择银行卡弹层**/
+.u-recharge-ChooseBCard ul{
+}
+.u-recharge-ChooseBCard ul li {
+    background: #fff;
+    height: 50px;
+    padding: 20px 0 20px 8%;
+    width: 90%;
+    margin: 0 0 0 5%;
+}
+.u-recharge-ChooseBCard>div{
+    max-height: 350px;
+    overflow-y:auto;
+    width: 80%;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    background: #fff;
+}
+.ui-dialog .ui-dialog-cnt{
+    color: #999;
+}
+/**快捷卡图标样式**/
+.u-shortcut {
+    display: inline-block;
+    background: #999;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    width: 74px;
+    height: 24px;
+    color: #fff;
+    font-size: 14px;
+    text-align: center;
+    line-height: 24px;
+    font-style: italic;
+    font-weight: bold;
+    margin: 0 15px 0 0;
+}
+.u-shortcut.z-disabled{
+    display: none;
+}

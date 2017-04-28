@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.mc.dao.ActivityDataMapper" >
+  <resultMap id="BaseResultMap" type="ActivityData" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+     <result column="activity_id" property="activityId" jdbcType="BIGINT" />
+    <result column="data_type" property="dataType" jdbcType="INTEGER" />
+    <result column="data_gole" property="dataGole" jdbcType="INTEGER" />
+    <result column="data_silver" property="dataSilver" jdbcType="INTEGER" />
+    <result column="data_copper" property="dataCopper" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+     <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+  </resultMap>
+  
+ 
+  
+  <sql id="Base_Column_List" >
+    id, activity_id, data_type, data_gole, data_silver, data_copper, create_time, update_time,remark,del_flag
+  </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from mc_activity_data
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insertSelective" parameterType="ActivityData" useGeneratedKeys="true" keyProperty="id">
+    insert into mc_activity_data
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="activityId != null" >
+        activity_id,
+      </if>
+      <if test="dataType != null" >
+        data_type,
+      </if>
+      <if test="dataGole != null" >
+        data_gole,
+      </if>
+      <if test="dataSilver != null" >
+        data_silver,
+      </if>
+      <if test="dataCopper != null" >
+        data_copper,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+       <if test="remark != null" >
+        remark,
+      </if>
+       create_time,
+       update_time,
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="activityId != null" >
+        #{activityId,jdbcType=BIGINT},
+      </if>
+      <if test="dataType != null" >
+        #{dataType,jdbcType=INTEGER},
+      </if>
+      <if test="dataGole != null" >
+        #{dataGole,jdbcType=INTEGER},
+      </if>
+      <if test="dataSilver != null" >
+        #{dataSilver,jdbcType=INTEGER},
+      </if>
+      <if test="dataCopper != null" >
+        #{dataCopper,jdbcType=INTEGER},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      now(),
+      now()
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="Activity" >
+    update mc_activity_data
+    <set >
+      <if test="activityId != null" >
+        activity_id = #{activityId,jdbcType=BIGINT},
+      </if>
+      <if test="dataType != null" >
+        data_type = #{dataType,jdbcType=INTEGER},
+      </if>
+      <if test="dataGole != null" >
+        data_gole = #{dataGole,jdbcType=INTEGER},
+      </if>
+      <if test="dataSilver != null" >
+        data_silver = #{dataSilver,jdbcType=INTEGER},
+      </if>
+      <if test="dataCopper != null" >
+        data_copper = #{dataCopper,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+        update_time = now(),
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+   
+
+  <!-- 后台定制活动查询  -->
+  <select id="showActivityDataPages" resultMap="BaseResultMap">
+  	SELECT
+		  <include refid="Base_Column_List" />
+	FROM
+		mc_activity_data
+	WHERE
+		del_flag>0 
+		
+	ORDER BY
+		id DESC
+  </select>
+  
+  <select id="countActivityDateByActivityId" resultType="java.lang.Integer">
+  	select 
+    count(1)
+    from mc_activity_data 
+    where activity_id = #{activityId,jdbcType=BIGINT}  
+    	and remark = #{remark,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="selectActivityDateByActivityId" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from mc_activity_data 
+    where  del_flag>0  
+     <if test="activityId != null" >
+       and  activity_id = #{activityId,jdbcType=BIGINT}
+      </if>
+      <if test="remark != null" >
+        and remark = #{remark,jdbcType=VARCHAR}
+      </if>
+    	 order by create_time desc limit 1 
+  </select>
+  
+ <select id="sumTotalGold" resultType="java.lang.Integer">
+  select sum(data_gole) as data_gole
+  from mc_activity_data
+  where activity_id = #{activityId,jdbcType=BIGINT} 
+  </select>
+</mapper>

@@ -1,0 +1,121 @@
+##现金券
+#parse("/common/common.vm")
+#set($title="我的现金券_我的优惠_$!{title_suffix}")
+#set($css_url=["$cssv2_url/member/member.css"])
+#set($js_url=["$root_js_url/modules/member.js"])
+#set($coupon="z-current")
+## 用户中心头部
+#parse("/member/head.vm")
+## 用户中心内容
+<div class="g-wrap">
+	<div class="g-uc-bd f-round">
+		<div class="u-uc-menu f-round f-cf">
+			<ul class="f-fr">
+				<li class="z-current"><a href="$coupon_url[0]">我的现金券</a></li>
+				<li><a href="javascript:void(0)">我的收益券</a></li>
+			</ul>
+			<i class="u-arrow-i1"></i>
+		</div>
+		<div class="g-uc-wrap">
+			<h3 class="u-round-title">
+				<em class="u-circle-12">我的现金券</em>
+				<span class="u-arrow-down">
+                	<i>◆</i>
+                	<span>◆</span>
+            	</span>
+			</h3>
+			## 页面内容
+			<div class="m-coupon-list">
+				<div class="z-actived f-cf" id="activedCoupon">
+				</div>
+
+				<div class="z-used">
+					<div class="u-circle-37 u-total"><em class="f-ff-din f-fs36">16</em><span class="f-fs12">张</span><strong>已使用</strong></div>
+
+					<ul class="f-cf">
+						<li><span class="u-coupon-title f-text-overflow" title="好友medium9投资10万返利">好友medium9投资10万返利</span>
+
+							
+							<span class="u-coupon-number">YRCA20140711102212709559</span>
+							<span class="u-coupon-amount">
+								
+								<em class="u-cnum-a u-cnum-s0"></em><strong><em class="u-cnum-b u-cnum-mp"></em><em class="u-cnum-b u-cnum-m9"></em><em class="u-cnum-b u-cnum-m8"></em><em class="u-cnum-b u-cnum-mb"></em></strong>
+							</span>
+							<span class="u-coupon-limit f-text-overflow" title="单笔投资超过10万单笔投资超过10万">单笔投资超过10万单笔投资超过10万</span>
+							<span class="u-coupon-date">
+								<em>使用时间：</em>
+								<strong class="f-ff-din f-fs18">2014-10-30</strong>
+							</span>
+						</li>
+						<li>							<span class="u-coupon-title f-text-overflow" title="好友medium9投资10万返利">好友medium9投资10万返利</span>
+
+							
+							<span class="u-coupon-number">YRCA20140711102212709559</span>
+							<span class="u-coupon-amount">
+								
+								<em class="u-cnum-a u-cnum-s1"></em><strong><em class="u-cnum-b u-cnum-mp"></em><em class="u-cnum-b u-cnum-m7"></em><em class="u-cnum-b u-cnum-m6"></em><em class="u-cnum-b u-cnum-mb"></em></strong>
+							</span>
+							<span class="u-coupon-limit f-text-overflow" title="单笔投资超过10万单笔投资超过10万">单笔投资超过10万单笔投资超过10万</span>
+							<span class="u-coupon-date">
+								<em>使用时间：</em>
+								<strong class="f-ff-din f-fs18">2014-10-30</strong>
+							</span>
+						</li>
+					</ul>
+					<div class="m-pagenav f-tac">
+						<span class="u-pnav-prev u-circle-12">上一页</span>
+						<span class="u-pnav-crt u-circle-12">1</span>
+						<a href="＃" class="u-pnav-link u-circle-12">2</a>
+						<a href="＃" class="u-pnav-link u-circle-12">3</a>
+						<a href="＃" class="u-pnav-link u-circle-12">4</a>
+						<a href="＃" class="u-pnav-prev u-circle-12">下一页</a>
+					</div>
+				</div>
+				<div class="z-expired">
+					<div class="u-circle-37 u-total"><em class="f-ff-din f-fs36">16</em><span class="f-fs12">张</span><strong>已过期</strong></div>
+
+					<ul class="f-cf">
+						<li>							<span class="u-coupon-title f-text-overflow" title="好友medium9投资10万返利">好友medium9投资10万返利</span>
+
+							
+							<span class="u-coupon-number">YRCA20140711102212709559</span>
+							<span class="u-coupon-amount">
+								
+								<em class="u-cnum-a u-cnum-s0"></em><strong><em class="u-cnum-b u-cnum-mp"></em><em class="u-cnum-b u-cnum-m9"></em><em class="u-cnum-b u-cnum-m8"></em><em class="u-cnum-b u-cnum-mb"></em></strong>
+							</span>
+							<span class="u-coupon-limit f-text-overflow" title="单笔投资超过10万单笔投资超过10万">单笔投资超过10万单笔投资超过10万</span>
+							<span class="u-coupon-date">
+								<em>过期时间：</em>
+								<strong class="f-ff-din f-fs18">2014-10-30</strong>
+							</span>
+						</li>
+						<li>							<span class="u-coupon-title f-text-overflow" title="好友medium9投资10万返利">好友medium9投资10万返利</span>
+
+							
+							<span class="u-coupon-number">YRCA20140711102212709559</span>
+							<span class="u-coupon-amount">
+								
+								<em class="u-cnum-a u-cnum-s1"></em><strong><em class="u-cnum-b u-cnum-mp"></em><em class="u-cnum-b u-cnum-m7"></em><em class="u-cnum-b u-cnum-m6"></em><em class="u-cnum-b u-cnum-mb"></em></strong>
+							</span>
+							<span class="u-coupon-limit f-text-overflow" title="单笔投资超过10万单笔投资超过10万">单笔投资超过10万单笔投资超过10万</span>
+							<span class="u-coupon-date">
+								<em>过期时间：</em>
+								<strong class="f-ff-din f-fs18">2014-10-30</strong>
+							</span>
+						</li>
+					</ul>
+					<div class="m-pagenav f-tac">
+						<span class="u-pnav-prev u-circle-12">上一页</span>
+						<span class="u-pnav-crt u-circle-12">1</span>
+						<a href="＃" class="u-pnav-link u-circle-12">2</a>
+						<a href="＃" class="u-pnav-link u-circle-12">3</a>
+						<a href="＃" class="u-pnav-link u-circle-12">4</a>
+						<a href="＃" class="u-pnav-prev u-circle-12">下一页</a>
+					</div>
+				</div>
+			</div>
+			## /页面内容
+		</div>
+	</div>
+	## /用户中心内容
+</div>

@@ -1,0 +1,16 @@
+ #parse("/common/common.vm")
+ #########################################script##################################### 
+ #set($js_config=[ 
+ "'urlMap':{ 
+   'ajax':'$root_url/bscBank/ajax?', 
+   'query':'$root_url/bscBank/index?', 
+   'save':'$root_url/bscBank/save', 
+   'show':'$root_url/bscBank/show?id=', 
+   'del':'$root_url/bscBank/delete'},
+   'permission':{
+	   	'edit': $shiro.hasPermission('bscBank:edit')
+   	}"
+ ]) 
+ #set($css_url=["$root_url/static/js/lib/validform/css/style.css"])
+ #set($js_url=["$root_url/static/js/bscBank.js"])
+ #########################################DOM##################################### 

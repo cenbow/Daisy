@@ -1,0 +1,17 @@
+##新浪紧急通知Banner
+#if($mobCheck=='Y')
+<div class="u-banner-sina">
+    尊敬的有融网会员：<br/>
+    $content
+</div>
+#end
+##春节投资引导Banner
+###set($serverDateTime=${dateUtil.getCurrentDate().getTime()})
+###set($startTime=1454378400000)
+###set($endTime=1454947199000)
+###if($serverDateTime>=$startTime&&$serverDateTime<=$endTime)
+##<a class="u-spring-festival" href="$tips_url?sf=1">
+##    <img src="$res_url/img/activity/springFestival-redbag.jpg">
+##</a>
+###end
+##/春节投资引导Banner

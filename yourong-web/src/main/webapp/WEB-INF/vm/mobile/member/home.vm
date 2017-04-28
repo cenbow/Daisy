@@ -1,0 +1,63 @@
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+##header
+<h2 class="u-header f-pos-r">
+    <a href="$m_url">返回</a>
+    <span class="f-fs18">
+        我&nbsp;的&nbsp;账&nbsp;户
+    </span>
+</h2>
+##/header
+##home
+<div class="m-home-content">
+    <div class="u-home-info">
+        <span><i id="j-greetingTime">你好，</i>
+        #if($currentUser.username && $currentUser.username!="")
+            <em>$currentUser.username</em>
+        #else
+            <em>$stringUtil.maskMobile($currentUser.mobile)</em>
+        #end
+        <a href="$tips_url">充值</a><a href="$tips_url">提现</a></span>
+        #if(${servletUtil.isVerifyTrueName()})
+        <div class="u-home-balance">
+            <p>存钱罐余额<span>$formulaUtil.getIntegerDefaultZero($!{balance.balance})$formulaUtil.getDecimalDefaultZero($!{balance.balance})</span></p>
+            <em>存钱罐可用余额 &nbsp;&nbsp;<span>$formulaUtil.getIntegerDefaultZero($!{balance.availableBalance})$formulaUtil.getDecimalDefaultZero($!{balance.availableBalance})</span></em>
+        </div>
+        #end
+    </div>
+</div>
+#if(${servletUtil.isVerifyTrueName()})
+<div class="u-home-money">
+    <p><span>累计投资<br/><em>$formulaUtil.formatCurrencyNoUnit($!{transactionUtils.getMemberTotalInvestAmount($currentUser.id)})</em></span><span>累计投资收益<br/><em>$formulaUtil.getFormatPriceRound($!{totalEarnings})</em></span></p>
+    <p><span>待收本金<br/><em>$formulaUtil.formatCurrencyNoUnit($!{receivablePrincipal})</em></span><span>待收投资收益<br/><em>$formulaUtil.formatCurrencyNoUnit($!{receivableInterest})</em></span></p>
+</div>
+#end
+<div class="u-home-signIn">人气值<em><i>$!{servletUtil.getPopularityBalanceVaule()}</i>点</em><a href="$tips_url">签到</a><a class="u-home-nviteFriend" href="$tips_url">邀请好友</a></div>
+<div class="u-home-list">
+    <ul>
+        <li><a href="$tips_url"><span>我的银行卡</span><i></i></a></li>
+        <li><a href="$tips_url"><span>我的交易</span><i></i></a></li>
+        <li><a href="$tips_url"><span>安全认证</span><i></i></a></li>
+        <li><a href="$tips_url"><span>我的优惠</span><i></i></a></li>
+        <li><a href="$tips_url"><span>个人资料</span><i></i></a></li>
+    </ul>
+</div>
+#if(!${servletUtil.isVerifyTrueName()})
+<div class="u-home-sinaTips"></div>
+<div class="u-home-tipsText">
+    <p>为了确保您的正常投资和资金安全，<br/>
+        请开通 新浪支付存钱罐。</p>
+    <a href="/member/m/sinapay">立即开通</a>
+</div>
+#end
+##/home
+
+#set($pageScript="
+<script src='$res_url/lib/js/zepto.min.js'></script>
+<script>
+    seajs.use('base',function(base){
+        //焦点图
+        $('#j-greetingTime').greetingTime();
+    });
+</script>
+")

@@ -1,0 +1,229 @@
+#parse("/common/common.vm")
+#set($title='有融网1周年庆典，邀你狂欢7天7夜！拼手气，抢红包!')
+<script>
+    var url=window.location.href,title='有融网1周年庆典，邀你狂欢7天7夜！拼手气，抢红包!';
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        window.shareData = {
+            "timeLineLink": url,
+            "sendFriendLink": url,
+            "weiboLink": url,
+            "tTitle": "有融网1周年庆典，邀你狂欢7天7夜！拼手气，抢红包!",
+            "tContent": "11.19，相约有融，共同见证大事件",
+            "fTitle": "有融网1周年庆典，邀你狂欢7天7夜！拼手气，抢红包!",
+            "fContent": "11.19，相约有融，共同见证大事件",
+            "wContent": "有融网1周年庆典，邀你狂欢7天7夜！拼手气，抢红包! 11.19，相约有融，共同见证大事件"
+        };
+        // 发送给好友
+        if(typeof(WeixinJSBridge)!=='undefined'){
+            WeixinJSBridge.on('menu:share:appmessage', function (argv) {
+                WeixinJSBridge.invoke('sendAppMessage', {
+                    "img_url": "../../static/img/weixin/weixin_qianghongbao.png",
+                    "img_width": "358",
+                    "img_height": "328",
+                    "link": window.shareData.sendFriendLink,
+                    "desc": window.shareData.fContent,
+                    "title": window.shareData.fTitle
+                }, function (res) {
+                    _report('send_msg', res.err_msg);
+                })
+            });
+            // 分享到朋友圈
+            WeixinJSBridge.on('menu:share:timeline', function (argv) {
+                WeixinJSBridge.invoke('shareTimeline', {
+                    "img_url": "../../static/img/weixin/weixin_qianghongbao.png",
+                    "img_width": "358",
+                    "img_height": "328",
+                    "link": window.shareData.timeLineLink,
+                    "desc": window.shareData.tContent,
+                    "title": window.shareData.tTitle
+                }, function (res) {
+                    _report('timeline', res.err_msg);
+                });
+            });
+        }
+    }, false);
+</script>
+<style>
+        body{
+            background: #dd2928;
+            padding: 25px 5% 0;
+        }
+        .u-weixin-wrap{
+            width: 100%;
+            margin: 0 auto;
+        }
+        .f-dn{
+            display: none;
+        }
+        /**第一步**/
+        .m-weixin-step1>img{
+            margin: 0 0 15px 0;
+        }
+        .m-weixin-step1>a{
+            width: 100%;
+            height: 88px;
+            display: block;
+            text-align: center;
+            line-height: 88px;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #77342b;
+            margin: 15px 0 0;
+            background: url("../../res/img/weixin/activity/weixin_btn.png") no-repeat center;
+        }
+        /**第二步**/
+        .m-weixin-step2>span{
+            display: block;
+            margin: 70px 0 0;
+            color: #fff;
+            font-size: 1.2rem;
+        }
+        .m-weixin-step2>input{
+            width: 98%;
+            height: 40px;
+            padding: 0 0 0 2%;
+            -moz-border-radius: 8px;
+            -webkit-border-radius: 8px;
+            border-radius: 8px;
+            margin: 5px 0 60px 0;
+            font-size: 1.6rem;
+        }
+        .m-weixin-step2>img{
+            margin: 0 auto;
+            display: block;
+        }
+        /**第三步**/
+        .u-weixin-circle{
+            -moz-border-radius: 140px;
+            -webkit-border-radius: 140px;
+            border-radius: 140px;
+            border: 2px solid #fff;
+            display: block;
+            width: 250px;
+            height: 250px;
+            line-height: 275px;
+            color: #fff;
+            text-align: center;
+            margin: 0 auto;
+        }
+        .f-fs40{
+            font-size: 40px;
+        }
+        f-fs16{
+            font-size: 16px;
+        }
+        .u-weixin-circle em{
+            font-family: "dincond";
+            font-size: 9em;
+            font-style: normal;
+        }
+        .u-step3-tel{
+            color: #fff;
+            margin: 30px 0 40px;
+        }
+        .u-step3-tel span{
+            display: block;
+            text-align: center;
+        }
+        .u-step3-tel i{
+            font-size: 2.5rem;
+            font-style:normal;
+            text-align: center;
+            display: block;
+        }
+        .u-step3-tel i em{
+            text-decoration: underline;
+            font-size: 1rem;
+            font-style: normal;
+            padding: 20px 0 0 10px;
+        }
+        .u-step3-btn{
+            text-align: center;
+        }
+        .u-step3-btn a {
+            display: inline-block;
+            height: 35px;
+            width: 43%;
+            text-align: center;
+            border: 1px solid #fff;
+            -moz-border-radius: 50px;
+            -webkit-border-radius: 50px;
+            border-radius: 20px;
+            line-height: 35px;
+            color: #fff;
+            margin: 0 0 0 5%;
+            text-decoration: none;
+        }
+        .u-step3-btn a:first-child{
+            margin-left:0;
+        }
+        .u-step3-rule{
+            color: #fff;
+            margin: 50px 0 0;
+        }
+        .u-step3-rule strong{
+           font-size: 1rem;
+            margin: 0 0 5px;
+        }
+        .u-step3-rule p{
+            font-size: 0.8rem;
+            line-height: 1.5rem;
+        }
+        .u-step3-rule span{
+            display: block;
+            text-align: center;
+            font-size: 0.8rem;
+        }
+    </style>
+
+<div class="u-weixin-wrap">
+    ##第一步
+##    <div class="m-weixin-step1">
+##        <img src="../../res/img/weixin/activity/weixin_text.png" width="100%">
+##        <img src="../../res/img/weixin/activity/weixin_ranking.png" width="100%">
+##        <a href="javascript:void(0)"><img src="../../res/img/weixin/activity/weixin_step1_btn.png" width="100%"></a>
+##    </div>
+
+
+    ##第二步
+    <div class="m-weixin-step2" id="j-wx-input">
+        <img style="height: 1px;width: 1px;" src="../../static/img/weixin/weixin_qianghongbao.png" alt="抢红包！">
+        <img src="../../res/img/weixin/activity/weixin_text.png" width="80%">
+        <span>输入手机号码领红包</span>
+        <input type="number" value="" placeholder="请输入手机号" id="j-cpn">
+        <a href="javascript:void(0)" id="j-receiveBtn">
+            <img src="../../res/img/weixin/activity/weixin_step2_btn.png" width="100%">
+        </a>
+    </div>
+
+    ##第三步
+    <div class="m-weixin-step3 f-dn" id="j-wx-show">
+            <span class="u-weixin-circle">
+                <em id="j-show-point"></em>点人气值
+            </span>
+            <div class="u-step3-tel">
+                <span>红包已存入您的有融网账户：</span>
+                <i id="j-show-cpn"></i>
+                <span>注册有融网后可使用</span>
+            </div>
+        <div class="u-step3-btn">
+            <a href="/yourong-api/static/page/twoCodeRedict.html">下载APP</a><a href="http://m.yrw.com/mIndex">访问有融网</a>
+        </div>
+        <div class="u-step3-rule">
+            <strong>活动细则</strong>
+            <p>1、发放至手机号的红包，需用该手机号注册的有融网账户，才可使用；
+                <br>2、人气值可兑换优惠券；
+                <br>3、现金券仅限在有融网平台投资使用，不能提现、转账和找零。
+            </p>
+            <span>--本次活动最终解释权归有融网所有--</span>
+        </div>
+    </div>
+</div>
+#CSRFToken("xToken")
+<script>
+    var env={
+        path:'http://m.yrw.com'
+    }
+</script>
+<script src="../../static/lib/js/jquery.min.js"></script>
+<script src="../../static/source/js/activity/anniversary.js?t=1d4d4x77zq2ad37xdf842daf13"></script>

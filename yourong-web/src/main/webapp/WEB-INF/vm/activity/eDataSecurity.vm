@@ -1,0 +1,295 @@
+##电子数据保全中心
+#parse('/common/common.vm')
+#set($title="给你想要的安全感_$!{title_suffix}")
+
+
+  <style>
+
+          	.g-bd {
+				margin-bottom: 0;
+				}
+			.g-wrap {
+				width: 990px;
+				margin: 0 auto;
+			}
+			.f-fs32{
+				font-size: 32px;
+			}
+			/**页头**/
+		  	.u-eDataSecurity-hd{
+            	width: 100%;
+            	height: 380px;
+            	margin-top: -8px;
+            	position: relative;
+            	color: #fff;
+            	background: url(/static/img/activity/eDataSecurity/eDataSecurity_hd.jpg) no-repeat center;
+	        }
+	        /**内容**/
+	      	.m-eDataSecurity-body{
+	      		padding-top:60px;
+	      		height: 3300px;
+	      		background-color: #f2f2f2;
+	      	}
+	      	.m-eDataSecurity-box01{ 
+	      		padding: 50px 60px 75px;
+	      		margin-bottom: 80px;
+				height: 964px;
+				width: 870px;
+				background-color: #fff;
+	      	}
+			.m-eDataSecurity-box01>h2{ 
+				margin-bottom: 8px;
+				font-size: 20px;
+				font-weight: bold;
+				color: #666;
+			}
+			.m-eDataSecurity-box01 p{ 
+				margin-bottom: 10px; 
+				text-indent: 28px;
+				font-size: 14px;
+				color: #999;
+			}
+			.u-eDataSecurity-question{ 
+				margin-top: 55px;
+				margin-bottom: 78px;
+			}
+			.u-eDataSecurity-question h2{
+				font-size: 20px;
+				font-weight: bold;
+				color: #666;
+			} 
+			.u-eDataSecurity-question h3{
+				margin-bottom: 5px;
+				margin-top: 20px;
+				font-size: 16px;
+				font-weight: bold;
+				color: #666;
+			}
+			.u-eDataSecurity-question span{ 
+				color: #999;
+				font-size: 14px;
+			}
+			.u-eDataSecurity-question p{
+				margin-top: 60px;
+			}
+			.u-eDataSecurity-certificate{ 
+				height: 224px;
+				color: #999;
+			}
+			.u-eDataSecurity-certificate i{ 
+				width: 172px;
+				height: 230px;
+				margin-top: 10px;
+				display: block;
+				float: left;
+				background: url(/static/img/activity/eDataSecurity/eDataSecurity_zs.jpg) no-repeat center;
+			}
+			.u-eDataSecurity-certificate div{ 
+				width: 335px;
+				margin: 70px 45px 0 10px;
+				height: 170px;
+				float: left;
+				display: block;
+			}
+			.u-eDataSecurity-certificate h4{ 
+				font-size: 16px;
+				margin-bottom: 20px;
+			}
+			.u-eDataSecurity-certificate p{  
+				text-indent: 28px;
+			}
+			.u-eDataSecurity-certificate dl{
+				float: right;
+			} 
+			.u-eDataSecurity-certificate dt{ 
+				height: 208px;
+				width: 284px;
+				display: block;
+				margin-right: 10px;
+				margin-bottom: 10px;
+				background: url(/static/img/activity/eDataSecurity/eDataSecurity_xkz.jpg) no-repeat center;
+			}
+
+			
+		
+			.m-eDataSecurity-box02{ 
+	      		height: 810px;
+	      		width: 908px;
+				background-color: #fff;
+				padding: 70px 41px 58px;
+				margin-bottom:80px;
+			}
+			.m-eDataSecurity-box02 ul{ 
+			
+			}
+			.m-eDataSecurity-box02 h2,.m-eDataSecurity-box03 h2{
+				color: #666;
+				text-align: center;
+				font-weight: bold;
+				margin-bottom: 6px;
+			}
+			.m-eDataSecurity-box02 li{ 
+				margin: 40px 46px 0;
+				width: 208px;
+				height: 340px;
+				float: left;
+			}
+			.m-eDataSecurity-box02 span{ 
+				font-size: 14px;
+				color: #999;
+				display: block;
+				margin-top: 20px;
+				text-align: center;
+			}
+			.m-eDataSecurity-box03{
+				padding:68px 60px;
+				width:870px;
+				height:827px;
+				background-color: #fff;
+			}
+			.m-eDataSecurity-box03 span{
+				font-weight:bold;
+				color:#999;
+				float:right;
+				margin-top: -25px;
+			}
+			.m-eDataSecurity-box03>ul>li{
+				height:350px;
+				width:247px;
+				margin:45px 58px 0 0;
+				float:left;
+				border:2px solid #777799;
+				cursor: pointer;
+			}
+			.m-eDataSecurity-box03 .z-3th {
+				margin: 45px 0 0 0;
+			}
+			.u-eDataSecurity-pic01{
+				background:url(/static/img/activity/eDataSecurity/miniPic01.jpg) no-repeat;
+			}
+			.u-eDataSecurity-pic02{
+				background:url(/static/img/activity/eDataSecurity/miniPic02.jpg) no-repeat;
+			}
+			.u-eDataSecurity-pic03{
+				background:url(/static/img/activity/eDataSecurity/miniPic03.jpg) no-repeat;
+			}
+			.u-eDataSecurity-pic04{
+				background:url(/static/img/activity/eDataSecurity/miniPic04.jpg) no-repeat;
+			}
+			.u-eDataSecurity-pic05{
+				background:url(/static/img/activity/eDataSecurity/miniPic05.jpg) no-repeat;
+			}
+			.u-eDataSecurity-pic06{
+				background:url(/static/img/activity/eDataSecurity/miniPic06.jpg) no-repeat;
+			}
+	      </style>
+	      
+	      
+	      
+	      <div class="f-mh500 f-cf">
+    <!--head-->
+    	<div class="u-eDataSecurity-hd">
+		</div>
+	<!--body-->
+		<div class="m-eDataSecurity-body">
+			<div class="m-eDataSecurity-box01 g-wrap">
+				<h2>有融网交易电子数据保全，把交易合同锁进保险箱</h2>
+				<p>       有融网联手重庆邮电大学电子数据保全中心，为投资者提供交易凭证保全服务。交易凭证（担保函、担保合同等信息）一旦保全，其内容、生成时间等信息将被加密固定，任何细微的修改都会导致保全证书函数值的变化，预防遭人更改，且生成唯一的保全证书供下载。如发生司法纠纷，保全证书持有人可以通过电子数据保全中心提供的认证证书向法院或仲裁机构提供有效、可靠的证据，从而获得举证的优势地位。</p>
+				<div class="u-eDataSecurity-question">
+					<h2>常见问题</h2>
+					<h3>Q:投资者如何检验保全证书真伪？</h3>
+					<span>A:投资者拿到保全证书后，可以登录www.ebaoquan.org，录入证书上的备案号及上传被保全文件（如电子合同）进行真伪验证。或者从收到证书生成的邮件中， 点击查看“查看我的保全证书”，进入证书页面使用验证功能。</span>
+					<h3>Q:电子数据保全是否具有法律效力？</h3>
+					<span>A:最新修正的《刑事诉讼法》《民事诉讼法》均将电子数据列为证据的一种。电子数据保全中心提供的保全证书，可作为司法人员和律师分析、认定案件事实的有效 证据，让受保者在司法纠纷中占据有利地位。根据受保者需要，电子数据保全中心还可以为受保者提供合作机构出具的公证书或司法鉴定书。
+					</span>
+					<h3>Q:为什么选择电子数据保全？</h3>
+					<span>A:相较传统取证手段，电子数据保全具有低成本，高效率，保密（系统仅仅在本地生成数据的数字摘要，绝无泄露隐私、商业秘密、内容的风险）合法、权威等优势，并且可通过事先存证来预防和化解纠纷，是互联网投资者保护交易证据安全的首选。
+					</span>
+					<p>重庆邮电大学电子数据保全中心（ ebaoquan.org )是重庆邮电大学利用自研专利技术，建立的以电子数据第三方证明为核心的平台。该平台目前已获得三项专利，6项国家CNAS资格认证《电子数据保全及电子文件搜索》《录音真实性鉴定》《电子数据恢复和提取》《图像真实性鉴定》《电子数据的分析与鉴定》《电子邮件真实性鉴定》，拥有独立司法鉴定资格（国家颁发司法鉴定许可证）、与重庆版权局、公证处等单位达成合作协议，拥有专属绿色通道。
+					</p>
+				</div>
+				
+				<h2>重庆邮电大学电子数据保全中心提供什么？</h2>
+				<div class="u-eDataSecurity-certificate f-cf">
+					<i></i>
+					<div>
+						<h4>电子数据保全证书</h4>
+						<p class="f-fs14">电子数据在线保全是指对以电子数据形式(包括文字、图形、字母、数字、三维标志、颜色组合和声音以及上述要素的组合等,下同)存在的各类电子数据信息，运用专利技术进行运算、加密固定，载明保全生成的标准时间、运算值、档案编号等，以防止被人篡改，确保电子数据的原始性、客观性的程序及方法。
+						</p>
+					</div>
+					<dl>
+						<dt></dt>
+						<dd class="f-fs14">获得国家颁发司法鉴定证书，拥有司法鉴定资格</dd>
+					</dl>
+				</div>
+			</div>
+			<div class="m-eDataSecurity-box02 g-wrap">
+				<h2 class="f-fs20">鉴定中心资质</h2>
+				<ul>
+					<li>
+						<img src="/static/img/activity/eDataSecurity/eDataSecurity_tz01.jpg">
+						<span>电子数据保全及电子文件搜索</span>
+					</li>
+					<li>
+						<img src="/static/img/activity/eDataSecurity/eDataSecurity_tz02.jpg">
+						<span>电子数据恢复和提取</span>
+					</li>
+					<li>
+						<img src="/static/img/activity/eDataSecurity/eDataSecurity_tz03.jpg">
+						<span>电子数据的分析与鉴定</span>
+					</li>
+					<li>
+						<img src="/static/img/activity/eDataSecurity/eDataSecurity_tz04.jpg">
+						<span>电子邮件真实性</span>
+					</li>
+					<li>
+						<img src="/static/img/activity/eDataSecurity/eDataSecurity_tz05.jpg"/>
+						<span>录音真实性鉴定</span>
+					</li>
+					<li>
+						<img src="/static/img/activity/eDataSecurity/eDataSecurity_tz06.jpg"/>
+						<span>图像真实性</span>
+					</li>
+				</ul>
+			</div>
+			<div class="m-eDataSecurity-box03 g-wrap f-cf">
+				<h2 class="f-fs20">有融网电子数据保全中心技术服务合同书</h2>
+				<span class="f-fs14">NO.bj20150402005</span>
+				<ul id="j-eDataSecurity-cooperation">
+					<li class="u-eDataSecurity-pic01" data-img="$root_url/static/img/activity/eDataSecurity/bigPic01.jpg"></li>
+					<li class="u-eDataSecurity-pic02" data-img="$root_url/static/img/activity/eDataSecurity/bigPic02.jpg"></li>
+					<li class="u-eDataSecurity-pic03 z-3th" data-img="$root_url/static/img/activity/eDataSecurity/bigPic03.jpg"></li>
+					<li class="u-eDataSecurity-pic04" data-img="$root_url/static/img/activity/eDataSecurity/bigPic04.jpg"></li>
+					<li class="u-eDataSecurity-pic05" data-img="$root_url/static/img/activity/eDataSecurity/bigPic05.jpg"></li>
+					<li class="u-eDataSecurity-pic06 z-3th" data-img="$root_url/static/img/activity/eDataSecurity/bigPic06.jpg"></li>
+				</ul>
+				
+			</div>
+		</div>
+    </div>
+
+    <script>
+    	window.onload=function(){
+    		//合作合同大图
+    		$("#j-eDataSecurity-cooperation li").on("click",function(){
+    			var bigImg=$(this).data("img"),
+    			imgDialog= dialog({
+    				content:"<img id='j-partner-bigImg' src='"+bigImg+"' alt='有融网电子数据保全中心技术服务合同书' />",
+    				width:720
+    			});
+    			xShade("show");
+    			imgDialog.show();
+    			$(".ui-popup").css("top",$(window).scrollTop());
+    			//图片关闭
+    			$("#j-partner-bigImg").on("click",function(){
+    				imgDialog.close().remove();
+    				xShade("hide");
+    			});
+    		});
+    		//点击背景隐藏
+    		$("body").on("click", ".u-shade", function(){
+    			$(".ui-popup").remove();
+    			xShade("hide");
+    		});
+    	}
+    </script>

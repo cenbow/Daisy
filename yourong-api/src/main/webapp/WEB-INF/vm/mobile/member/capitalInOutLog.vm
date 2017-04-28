@@ -1,0 +1,120 @@
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$m_css_url/modules/capitalInOutLog.css"])
+#set($title='资金记录')
+<style>
+    [v-cloak]{
+        display: none;
+    }
+</style>
+<div id="fundRecord" v-cloak>
+    <!--header-->
+    <h2 class="u-header f-pos-r">
+        <a href="$siteurl/mCenter/home" id="j-backUrl">返回</a>
+        <span class="f-fs20" id="j-title">资金记录</span>
+    </h2>
+    <!--/header-->
+    <ul class="u-grid-transaction j-grid-transaction">
+        <li class="f-inverst f-red-color" :class="{'f-red-color':isCurrent==0}" @click="changeTab(0)"><i @click="getList('capitalFlow')">资金流水</i></li>
+        <li :class="{'f-red-color':isCurrent==1}" @click="changeTab(1)"><i @click="getList('rechargeRecord')">充值记录</i></li>
+        <li :class="{'f-red-color':isCurrent==2}" @click="changeTab(2)"><i @click="getList('withdrawalsRecord')">提现记录</i></li>
+    </ul>
+    <div class="u-grayBlock"></div>
+    <div class="m-mainContentWrap">
+    ##    资金流水
+        <div id="capitalFlow">
+            <div id="j-capitalFlow" v-if="isCurrent==0">
+                <div v-if="capitalFlow.data!=''">
+                    <ul class="u-capitalFlowList">
+                        <li v-for="item in capitalFlow.data">
+                            <div class="u-transactionTime f-fs14 f-color9" v-text="item.happenTime | dateFormat 'yyyy-MM-dd hh:mm:ss'"></div>
+                            <div class="u-grid-transactiontType f-fs16 f-color6">类型：<i v-text="item.typeDesc"></i></div>
+                            <div class="u-amountList f-fs14 f-color6">结余：&yen;<i v-text="item.balance.toFixed(2) | amountFormat 'split'"></i></div>
+                            <div class="u-transactionTips f-fs14 f-color9">备注：<i v-text="item.remark"></i></div>
+                            <div class="u-expenditure f-fs18 f-color6" v-if="item.transactionType==2">
+                                支出：&yen;<i v-text="item.amount | amountFormat 'split'"></i>
+                            </div>
+                            <div v-else class="u-expenditure f-fs18 f-color6">
+                                收入：&yen;<i v-text="item.amount | amountFormat 'split'"></i>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div v-else style="margin: 50% 30%;width: 100%; color: #999999">
+                    <img src="$res_url/img/logoGray.png" alt=""/>
+
+                    <p> 您还没有相关记录</p>
+                </div>
+            </div>
+        </div>
+    ##    充值记录
+        <div id="rechargeRecord">
+            <div id="j-rechargeRecord" v-if="isCurrent==1">
+                <div v-if="rechargeRecord.data!=''">
+                    <ul class="u-rechargeRecord">
+                        <li v-for="item in rechargeRecord.data">
+                            <div v-if="item.status===-2||item.status===5">
+                                <div class="u-transactionTime f-fs14 f-color9" v-text="item.rechargeTime | dateFormat 'yyyy-MM-dd hh:mm:ss'"></div>
+                                <div class="f-fs14 f-color6">流水号：<i v-text="item.rechargeNo"></i></div>
+                                <div class="u-amount f-fs16 f-color6">金额：<i class="f-colorRed">&yen;<i v-text="item.amount |amountFormat 'split'"></i></i></div>
+                                <div class="u-status f-fs14 f-color9" v-if="item.status===5">状态：<i>成功</i></div>
+                                <div class="u-status f-fs14 f-color9" v-if="item.status===-2">状态：<i>失败</i></div>
+                                <div v-if="item.remarks" class="u-transactionTips f-fs14 f-color9">备注：<i v-text="item.remarks"></i></div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div v-else style="margin: 50% 30%;width: 100%; color: #999999">
+                    <img src="$res_url/img/logoGray.png" alt=""/>
+
+                    <p> 您还没有相关记录</p>
+                </div>
+            </div>
+        </div>
+    ##    提现记录
+        <div id="withdrawalsRecord">
+            <div id="j-withdrawalsRecord" v-if="isCurrent==2">
+                <div  v-if="withdrawalsRecord.data!=''">
+                    <ul class="u-withdrawalsRecord">
+                        <li v-for="item in withdrawalsRecord.data">
+                            <div class="u-transactionTime f-fs14 f-color9"  v-text="item.withdrawTime | dateFormat 'yyyy-MM-dd hh:mm:ss'"></div>
+                            <div class="f-fs14 f-color6">流水号：<i v-text="item.withdrawNo"></i></div>
+                            <div class="u-amount f-fs18 f-color6">金额：&yen;<i v-text="item.withdrawAmount |amountFormat 'split'"></i></div>
+                            <div class="u-status f-fs14 f-color9">状态：<i v-text="item.withdrawStatus"></i></div>
+                            <div v-if="item.notice" class="u-transactionTips f-fs14 f-color9">备注：<i v-text="item.notice"></i></div>
+                        </li>
+
+                    </ul>
+                </div>
+                <div v-else style="margin: 50% 30%;width: 100%; color: #999999">
+                    <img src="$res_url/img/logoGray.png" alt=""/>
+
+                    <p> 您还没有相关记录</p>
+                </div>
+            </div>
+        </div>
+    </div>
+##            分页的代码
+    <div v-if="pageNavi.totalPageCount>1" class="m-pagenav f-tar">
+        <span v-if="pageNavi.pageNo===1" class="u-pnav-prev u-circle-12">上一页</span>
+        <a v-else href="javascript:void(0)" class="u-pnav-prev u-circle-12"
+           data-pageno="{{pageNavi.pageNo-1}}" @click="gotoPage(pageNavi.pageNo-1)">上一页</a>
+                <span v-for="item in pageNavi.list">
+                <span v-if="item.index===pageNavi.pageNo"
+                      class="u-pnav-crt u-circle-12">{{item.index}}</span>
+                <a v-else href="javascript:void(0)" class="u-pnav-link u-circle-12" data-pageno="{{item.index}}" @click="gotoPage(item.index)">{{item.index}}</a>
+                </span>
+                <span v-if="pageNavi.pageNo==pageNavi.totalPageCount"
+                      class="u-pnav-prev u-circle-12">下一页</span>
+        <a v-else href="javascript:void(0)" class="u-pnav-prev u-circle-12"
+           data-pageno="{{pageNavi.pageNo+1}}" @click="gotoPage(pageNavi.pageNo+1)">下一页</a>
+    </div>
+##            分页的代码
+</div>
+#set($pageScript="
+<script src='$aliyunOss_url/res/lib/vue/v1/vue.min.js'></script>
+<script>
+    seajs.use('$siteurl/res/source/js/modules/capitalInOutLog.js')
+</script>
+")
+#CSRFToken("xToken")

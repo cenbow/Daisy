@@ -1,0 +1,41 @@
+##base url
+#set($m_root_url="")
+#set($root_url="")
+#if($link.getContextPath() == '')
+    #set($siteurl='')
+#else
+    #set($siteurl=$link.getContextPath() )
+#end
+#set($m_url="$siteurl/mIndex")
+##static files url
+#set($res_url="$siteurl/res")
+#set($m_js_url = $res_url+"/source/js")
+#set($m_css_url = $res_url+"/source/css")
+##set($root_url="$sysServiceUtil.getRootURL()")
+#set($tips_url="$siteurl/mstation/tips")
+#set($aliyun_url="https://oss.aliyuncs.com")
+#set($aliyunOss_url="https://yrstatic.oss-cn-hangzhou.aliyuncs.com")
+##m站 实名认证页面  也就是开通新浪存钱罐页面
+#set($mCenter_sinapay_url = "$siteurl/mCenter/sinapay")
+##m站  我的账号
+#set($mCenter_home_url = "$siteurl/mCenter/home")
+##m站 实名认证成功显示页面
+#set($mCenter_registerSuccess_url = "$siteurl/mCenter/registerSuccess")
+##m站 退出
+#set($mCenter_logout_url = "$siteurl/mCenter/logout")
+#set($root_web_url="$sysServiceUtil.getRootWebURL()")
+
+##debug
+#set($debug=$sysServiceUtil.isDev())
+#set($devtools="")
+#set($console="")
+#set($platform=$request.getHeader("loginSource"))
+#if($debug)
+    #if($platform)
+        #set($console="
+        <script src='$res_url/lib/js/vconsole.min.js?$platform'></script>")
+    #else
+        #set($platform=0)
+        #set($devtools="Vue.config.devtools = true")
+    #end
+#end

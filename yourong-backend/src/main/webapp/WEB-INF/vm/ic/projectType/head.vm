@@ -1,0 +1,17 @@
+ #parse("/common/common.vm")
+ #########################################script##################################### 
+ #set($js_config=[ 
+ "'urlMap':{ 
+   'ajax':'$root_url/projectType/ajax?', 
+   'query':'$root_url/projectType/index?', 
+   'save':'$root_url/projectType/save', 
+   'show':'$root_url/projectType/show?id=', 
+   'delet':'$root_url/projectType/delete',
+   'search':'$root_url/projectType/search'
+   },
+   'guarantyType':#buildDictJson('direct_type'),##担保方式
+   'guarantyThingType':#buildDictJson('guaranty_type')##项目类型
+   "
+ ]) 
+ #set($js_url=["$root_url/static/js/projectType.js"]) 
+ #########################################DOM##################################### 

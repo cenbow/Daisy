@@ -1,0 +1,182 @@
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$res_url/source/css/post/transferMarket.css"])
+#if($currentUser)
+    #set($logined=true)
+#else
+    #set($logined=false)
+#end
+#CSRFToken('xToken')
+##  安卓
+#if($loginSource==1)
+    #set($os=1)
+#end
+##  IOS
+#if($loginSource==2)
+    #set($os=2)
+#end
+##
+#if($loginSource==1 || $loginSource==2)
+<style>
+    .g-ft {
+        display: none;
+    }
+</style>
+##<h2 class="u-pageTitle f-pos-r">
+##    <a href="$siteurl/mIndex">有融网</a>
+##    <span class=" f-pos-a f-fs18 f-ff-ver">
+##        #if(!$currentUser)
+##            <a href="$siteurl/mstation/login" id="j-login">登录</a>
+##                <a href="$siteurl/mstation/register" id="j-register">注册</a>
+##        #else
+##            <a href="$mCenter_logout_url">退出</a>
+##        #end
+##        </span>
+##</h2>
+#end
+<div class="f-pos-r u-transfer">
+    <div class="u-tt">
+        <img src="$res_url/img/post/transferMarket/m-transfer1.jpg" alt="">
+    ##    <div class="f-pos-r">
+    ##      <img src="$res_url/img/post/transferMarket/m-transfer11.jpg" alt="">
+    ##      <a class="f-pos-a u-transfer-dowload" href="http://m.yrw.com/static/page/twoCodeRedict.html"></a>
+    ##      <a class="f-pos-a u-transfer-desk" href="http://www.yrw.com"></a>
+    ##      <a href="http://m.yrw.com/" class="f-pos-a u-transfer-home"></a>
+    ##      <a href="http://m.yrw.com/mstation/aboutYR" class="f-pos-a u-transfer-about"></a>
+    ##      <a href="#" class="f-pos-a u-transfer-safe"></a>
+    ##      <a href="#" class="f-pos-a u-transfer-help"></a>
+    ##    </div>
+    </div>
+    <div class="u-content">
+      <div class="u-content-title">
+        <div class="m-title">
+          什么是项目转让
+        </div>
+        <p class="m-content">
+          项目转让是指，已投资的用户（转让人）因个人需求通过有融网平台，将符合条件的投资项目转让给其他投资人（受让人），并与受让人签订项目转让协议，收回本金及利息的操作。
+        </p>
+      </div>
+      <div class="u-content-title">
+        <div class="m-title">
+          项目转让的优势
+        </div>
+        <p class="m-top">量身定制，只为特别的你</p>
+        <div class="m-middle">
+          <img src="$res_url/img/post/transferMarket/icon-left.png" alt="">
+          <p>急用钱·自由变现</p>
+          <p>资金动起来</p>
+        </div>
+        <div class="m-middle">
+          <img src="$res_url/img/post/transferMarket/icon-right.png" alt="">
+          <p>转让标·利率高</p>
+          <p>收益多多</p>
+        </div>
+      </div>
+      <div class="u-content-title">
+        <div class="m-title">
+          如何转让项目
+        </div>
+        <div class="m-icon">转让须知</div>
+        <p class="m-content">
+          1、 &nbsp;项目转让人自定义转让价格,只能折价或平价转让,价格以待还本金为上限在区间内浮动;
+        </p>
+        <p class="m-content">
+          2、 &nbsp;转让期限为72小时，如遇提前还款,还本付息日,则转让提前终止;发起转让后,用户自己亦可提前终止转让;
+        </p>
+        <p class="m-content">
+          3、 &nbsp;转让手续费梯度收取,用户持有项目时间越长,费率越低,详细可参考页面下方常见问题。
+        </p>
+        <div class="m-icon">转让流程</div>
+        <img class="m-how" src="$res_url/img/post/transferMarket/foot.png" alt="">
+        <a class="m-question">
+          常见<br>问题
+        </a>
+      </div>
+    </div>
+    <!--常见问题弹框-->
+    <div class="u-transfer-pop j_TransferPop f-dn">
+      <div class="u-tranfer-close">
+        <a href="javascript:;"><img class="j_transferClose" src="$res_url/img/post/transferMarket/close.png" alt=""></a>
+      </div>
+      <div class="m-rule-main">
+        <div class="m-rule-top">项目转让的条件与限制？</div>
+        <p>1)转让项目需为可转让项目类型(具体参见项目详情页说明);</p>
+        <p>2)逾期项目不允许发起转让;</p>
+        <p>3)转让项目不支持二次转让;</p>
+        <p>4)单个项目必须全额发起转让,不可拆分转让。</p>
+      </div>
+      <div class="m-rule-main">
+        <div class="m-rule-top">转让的期限是多久？</div>
+        <p>转让期限为发起转让起72小时,超过期限后转让项目会被撤销,且每个项目每天只能提交一次转让申请。</p>
+      </div>
+      <div class="m-rule-main">
+        <div class="m-rule-top">项目转让手续费是多少？</div>
+        <p>转让手续费采取梯度收取方式,持有时间越长,手续费越低,具体费率如下:</p>
+        <table>
+          <thead>
+            <tr>
+              <td>起息日起(天)</td>
+              <td>手续费率(%)</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>0-30</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>31-90</td>
+              <td>1.8</td>
+            </tr>
+            <tr>
+              <td>90-180</td>
+              <td>1.5</td>
+            </tr>
+            <tr>
+              <td>180以上</td>
+              <td>0.8</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="m-rule-main">
+        <div class="m-rule-top">转让失败怎么办？</div>
+        <p>自项目发起之时,到当晚24:00截止,若项目仍未满标则流标,转让失败。若转让人仍有转让需求,可次日再发起申请。</p>
+      </div>
+      <div class="m-rule-main">
+        <div class="m-rule-top">可以撤销项目转让申请吗？</div>
+        <p>可以申请撤销,撤销后当天不能重新发起转让。</p>
+      </div>
+      <div class="m-rule-main">
+        <div class="m-rule-top">投资转让项目是否可以使用现金券或收益券？</div>
+        <p>转让项目不支持优惠券。</p>
+      </div>
+      <div class="m-rule-main">
+        <div class="m-rule-top">投资转让项目可以参与优惠活动吗？</div>
+        <p>转让项目不支持投资分享红包、抢标五重礼优惠活动。但是首次投资送人气值,友情岁月,邀请好友投资返人气值互动,投资转让项目仍然参与。</p>
+        <p>(详细请参考活动具体规则)</p>
+      </div>
+      <div class="m-rule-main">
+        <div class="m-more">更多问题请咨询客服>></div>
+      </div>
+    </div>
+</div>
+<div class="u-cover j-cover"></div>
+<script src="$res_url/lib/js/sea.js"></script>
+<script src="$res_url/lib/js/zepto.min.js"></script>
+<script>
+    window.onload = function () {
+        var $transferPop =
+        $('.j_TransferPop');
+        $('.m-question').on('click', function () {
+                $transferPop.show();
+                $('.j-cover').show();
+                window.scrollTo(0, 320)
+        });
+        $('.j_transferClose').on('click', function () {
+                $transferPop.hide();
+          $('.j-cover').hide();
+        });
+    }
+##  seajs.use('$res_url/source/js/activity/transferMarket.js');
+</script>

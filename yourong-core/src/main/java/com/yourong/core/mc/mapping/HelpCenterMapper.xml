@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.mc.dao.HelpCenterMapper" >
+  <resultMap id="BaseResultMap" type="HelpCenterQuestion" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+    <result column="terminal" property="terminal" jdbcType="INTEGER" />
+    <result column="label_id" property="labelId" jdbcType="BIGINT" />
+    <result column="question_order" property="questionOrder" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="answer" property="answer" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />  
+    <result column="is_hot" property="isHot" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    id, sort, terminal, label_id,question_orde, content, answer, create_time, update_time,is_hot
+  </sql>
+  
+  <resultMap id="ExtendResultMap" type="HelpCenterQuestion"  extends="BaseResultMap">
+      <result column="label_name" property="labelName" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <select id="selectForPagin" resultMap="ExtendResultMap" >
+    select t1.id,t1.sort,t1.terminal,t1.label_id,t1.question_order,
+    <if test=" map.isHot == 0" >
+    t2.label_name,
+    </if>
+    t1.content,t1.answer,t1.create_time,t1.update_time
+	from mc_help_question t1
+	<if test=" map.isHot == 0" >
+	inner join mc_help_label t2
+	on t1.label_id = t2.id
+	</if>
+    <if test=" map != null" >
+      <where >
+        <if test=" map.terminal != null" >
+          terminal = #{map.terminal}
+        </if>
+        <if test=" map.isHot != null and map.isHot == 0 and map.category != null" >
+         and t2.category = #{map.category}
+        </if>
+        <if test=" map.isHot != null and map.isHot == 1" >
+          and  is_Hot = #{map.isHot}
+        </if>
+        <if test=" map.isHot != null and map.isHot == 2" >
+          and  is_Hot = #{map.isHot}
+        </if>
+        order by t1.sort desc
+      </where>
+    </if>
+  </select>
+  
+    <select id="selectForPaginTotalCount" resultType="java.lang.Integer" >
+    select count(1) 
+    from mc_help_question t1
+    <if test=" map.isHot == 0" >
+    inner join mc_help_label t2
+    on t1.label_id = t2.id
+    </if>
+    <if test=" map != null" >
+      <where>
+    	<if test=" map.terminal != null" >
+          terminal = #{map.terminal}
+        </if>
+        <if test=" map.isHot != null and map.isHot == 0 and map.category != null" >
+          	and  t2.category = #{map.category}
+        </if>
+         <if test=" map.isHot != null and map.isHot == 1" >
+          and  is_Hot = #{map.isHot}
+        </if>
+        <if test=" map.isHot != null and map.isHot == 2" >
+          and  is_Hot = #{map.isHot}
+        </if>
+       </where>
+    </if>
+  	</select>
+  
+    <select id="findByPage" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from mc_help_question
+    <if test=" map != null" >
+      <where >
+        <if test=" map.terminal != null" >
+          terminal = #{map.terminal}
+        </if>
+        <if test=" map.id != null" >
+          and id = #{map.id}
+        </if>
+        <if test=" map.sort != null" >
+          and sort = #{map.sort}
+        </if>
+        <if test=" map.content != null" >
+          and content = #{map.content}
+        </if>
+        <if test=" map.answer != null" >
+          and answer = #{map.answer}
+        </if>
+        <if test=" map.create_time != null" >
+         and create_time = #{map.createTime}
+        </if>
+        <if test=" map.update_time != null" >
+         and update_time = #{map.updateTime}
+        </if>
+        <if test=" map.is_hot != null" >
+         and is_hot = #{map.isHot}
+        </if>
+      </where>
+    </if>
+  </select>
+  
+  
+   <!--  根据主键删除（逻辑） -->
+  <delete id="deleteByHelpCenterQuestionId">
+  	<!-- update mc_help_question set del_flag = -1 where id = #{id,jdbcType=BIGINT} -->
+  </delete> 
+  
+  
+   <!--  根据主键更新 -->
+  <update id="updateByPrimaryKeySelective" parameterType="HelpCenterQuestion" >
+    update mc_help_question
+    <set>
+      <if test="terminal != null" >
+          terminal = #{terminal,jdbcType=INTEGER},
+        </if>
+        <if test=" sort != null" >
+         sort = #{sort,jdbcType=INTEGER},
+        </if>
+        <if test=" labelId != null" >
+         label_id = #{labelId,jdbcType=BIGINT},
+        </if>
+        <if test="content != null" >
+         content = #{content,jdbcType=VARCHAR},
+        </if>
+        <if test="answer != null" >
+          answer = #{answer,jdbcType=VARCHAR},
+        </if>
+        update_time = now()
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+    <update id="updateSortById">
+        UPDATE mc_help_question SET sort=#{sort},update_time=#{date} WHERE id=#{id}
+    </update>
+  
+  <!-- 插入  -->
+  <insert id="insertSingle" parameterType="HelpCenterQuestion" >
+    insert into mc_help_question
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sort != null" >
+        sort,
+      </if>
+      <if test="terminal != null" >
+        terminal,
+      </if>
+      <if test="labelId != null" >
+        label_id,
+      </if>
+      <if test="questionOrder != null" >
+        question_order,
+      </if>
+ 	  <if test="content != null" >
+        content,
+      </if>
+      <if test="answer != null" >
+        answer,
+      </if>
+        create_time,update_time,
+      <if test="isHot != null" >
+        is_hot,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sort != null" >
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="terminal != null" >
+        #{terminal,jdbcType=INTEGER},
+      </if>
+      <if test="labelId != null" >
+        #{labelId,jdbcType=BIGINT},
+      </if>
+      <if test="questionOrder != null" >
+        #{questionOrder,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="answer != null" >
+        #{answer,jdbcType=VARCHAR},
+      </if>
+        now(),now(),
+      <if test="isHot != null" >
+        #{isHot,jdbcType=INTEGER}
+      </if>
+    </trim>
+  </insert>
+  
+  <resultMap id="ShowResultMap" type="HelpCenterQuestionShow" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="label_sort" property="sortOfLabel" jdbcType="INTEGER" />
+    <result column="sort" property="sortOfQues" jdbcType="INTEGER" />
+    <result column="category" property="category" jdbcType="VARCHAR" />
+    <result column="label_name" property="labelName" jdbcType="VARCHAR" />
+    <result column="question_order" property="questionOrder" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="answer" property="answer" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  
+  <select id="selectHotShow" resultMap="ShowResultMap">
+  select id,sort,question_order,content,answer from mc_help_question where is_hot = 1
+  	 <if test="terminal != null" >
+        and terminal = #{terminal,jdbcType=INTEGER}
+     </if>
+  	 order by sort desc
+  </select>
+  
+    <select id="selectNewComerShow" resultMap="ShowResultMap">
+  select id,sort,question_order,content,answer from mc_help_question where is_hot = 2
+  	 <if test="terminal != null" >
+        and terminal = #{terminal,jdbcType=INTEGER}
+     </if>
+  	 order by sort desc
+  </select>
+  
+  
+    <select id="selectCommonShowByLabel" resultMap="ShowResultMap">
+  	select t1.id,t2.sort as label_sort,label_name,t1.sort,category,t1.question_order,content,answer 
+  	from mc_help_question t1 inner join mc_help_label t2 
+  	on t1.label_id = t2.id 
+  	where is_hot = 0
+  	<if test="terminal != null" >
+  	and t1.terminal = #{terminal,jdbcType=INTEGER}
+  	</if>
+  	<if test="labelName != null" >
+  	and t2.label_name = #{labelName,jdbcType=VARCHAR}
+  	</if>
+  	order by t1.sort desc
+  </select>
+    	
+  <select id="selectAnswerShow" resultMap="ShowResultMap">
+  	select id,sort,question_order,content,answer from mc_help_question where
+  	 <if test="terminal != null" >
+        terminal = #{terminal,jdbcType=INTEGER}
+     </if>
+     order by sort desc
+  </select>
+</mapper>

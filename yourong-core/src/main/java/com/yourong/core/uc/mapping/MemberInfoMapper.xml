@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.uc.dao.MemberInfoMapper" >
+  <resultMap id="BaseResultMap" type="MemberInfo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="member_id" property="memberId" jdbcType="BIGINT" />
+    <result column="province" property="province" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="area_full_name" property="areaFullName" jdbcType="VARCHAR" />
+    <result column="census_register_name" property="censusRegisterName" jdbcType="VARCHAR" />
+    <result column="census_register_id" property="censusRegisterId" jdbcType="VARCHAR" />
+    <result column="postal_code" property="postalCode" jdbcType="INTEGER" />
+    <result column="qq" property="qq" jdbcType="BIGINT" />
+    <result column="occupation" property="occupation" jdbcType="VARCHAR" />
+    <result column="marriage" property="marriage" jdbcType="VARCHAR" />
+    <result column="income" property="income" jdbcType="VARCHAR" />
+    <result column="high_edu" property="highEdu" jdbcType="VARCHAR" />
+    <result column="school" property="school" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+    <result column="register_type" property="registerType" jdbcType="INTEGER" />
+    <result column="detail_info" property="detailInfo" jdbcType="VARCHAR" />
+    <result column="evaluation_score" property="evaluationScore" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, member_id, province, city, address, postal_code, qq, occupation, marriage, income, 
+    high_edu, school,area_full_name,census_register_name,census_register_id, create_time, update_time, del_flag ,register_type,detail_info,evaluation_score
+  </sql>
+  <insert id="insertSelective" parameterType="MemberInfo" >
+    insert into uc_member_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="memberId != null" >
+        member_id,
+      </if>
+      <if test="province != null" >
+        province,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="postalCode != null" >
+        postal_code,
+      </if>
+      <if test="qq != null" >
+        qq,
+      </if>
+      <if test="occupation != null" >
+        occupation,
+      </if>
+      <if test="marriage != null" >
+        marriage,
+      </if>
+      <if test="income != null" >
+        income,
+      </if>
+      <if test="highEdu != null" >
+        high_edu,
+      </if>
+      <if test="school != null" >
+        school,
+      </if>
+      <if test="areaFullName != null" >
+        area_full_name,
+      </if>
+      <if test="censusRegisterName != null" >
+        census_register_name,
+      </if>
+      <if test="censusRegisterId != null" >
+        census_register_id,
+      </if>
+      <if test="registerType != null" >
+        register_type,
+      </if>
+       <if test="detailInfo != null" >
+        detail_info,
+      </if>
+       <if test="evaluationScore != null" >
+        evaluation_score,
+      </if>
+        create_time,
+        update_time,
+        del_flag
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="memberId != null" >
+        #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="postalCode != null" >
+        #{postalCode,jdbcType=INTEGER},
+      </if>
+      <if test="qq != null" >
+        #{qq,jdbcType=BIGINT},
+      </if>
+      <if test="occupation != null" >
+        #{occupation,jdbcType=VARCHAR},
+      </if>
+      <if test="marriage != null" >
+        #{marriage,jdbcType=VARCHAR},
+      </if>
+      <if test="income != null" >
+        #{income,jdbcType=VARCHAR},
+      </if>
+      <if test="highEdu != null" >
+        #{highEdu,jdbcType=VARCHAR},
+      </if>
+      <if test="school != null" >
+        #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="areaFullName != null" >
+        #{areaFullName,jdbcType=VARCHAR},
+      </if>
+      <if test="censusRegisterName != null" >
+        #{censusRegisterName,jdbcType=VARCHAR},
+      </if>
+      <if test="censusRegisterId != null" >
+        #{censusRegisterId,jdbcType=VARCHAR},
+      </if>
+       <if test="registerType != null" >
+        #{registerType,jdbcType=INTEGER},
+      </if>
+       <if test="detailInfo != null" >
+        #{detailInfo,jdbcType=VARCHAR},
+      </if>
+       <if test="evaluationScore != null" >
+        #{evaluationScore,jdbcType=INTEGER},
+      </if>
+       now(),
+       now(),
+       1
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="MemberInfo" >
+    update uc_member_info
+    <set >
+      <if test="province != null" >
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="postalCode != null" >
+        postal_code = #{postalCode,jdbcType=INTEGER},
+      </if>
+      <if test="qq != null" >
+        qq = #{qq,jdbcType=BIGINT},
+      </if>
+      <if test="occupation != null" >
+        occupation = #{occupation,jdbcType=VARCHAR},
+      </if>
+      <if test="marriage != null" >
+        marriage = #{marriage,jdbcType=VARCHAR},
+      </if>
+      <if test="income != null" >
+        income = #{income,jdbcType=VARCHAR},
+      </if>
+      <if test="highEdu != null" >
+        high_edu = #{highEdu,jdbcType=VARCHAR},
+      </if>
+      <if test="school != null" >
+        school = #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="areaFullName != null" >
+        area_full_name=#{areaFullName,jdbcType=VARCHAR},
+      </if>
+      <if test="censusRegisterName != null" >
+        census_register_name=#{censusRegisterName,jdbcType=VARCHAR},
+      </if>
+      <if test="censusRegisterId != null" >
+        census_register_id=#{censusRegisterId,jdbcType=VARCHAR},
+      </if>
+       <if test="registerType != null" >
+        register_type = #{registerType,jdbcType=INTEGER},
+      </if>
+       <if test="detailInfo != null" >
+        detail_info = #{detailInfo,jdbcType=VARCHAR},
+      </if>
+       <if test="evaluationScore != null" >
+        evaluation_score = #{evaluationScore,jdbcType=INTEGER},
+      </if>
+       update_time = now()
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <delete id="batchDelete" parameterType="java.lang.Long" >
+    delete from uc_member_info
+    where id in  <foreach collection="ids" index="index" item="item" open="(" separator="," close=")"> #{item}  </foreach>  
+  </delete>
+  <select id="findByPage" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from uc_member_info
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = #{map.id}
+        </if>
+        <if test=" map.memberId != null" >
+          member_id = #{map.memberId}
+        </if>
+        <if test=" map.province != null" >
+          province = #{map.province}
+        </if>
+        <if test=" map.city != null" >
+          city = #{map.city}
+        </if>
+        <if test=" map.address != null" >
+          address = #{map.address}
+        </if>
+        <if test=" map.postalCode != null" >
+          postal_code = #{map.postalCode}
+        </if>
+        <if test=" map.qq != null" >
+          qq = #{map.qq}
+        </if>
+        <if test=" map.occupation != null" >
+          occupation = #{map.occupation}
+        </if>
+        <if test=" map.marriage != null" >
+          marriage = #{map.marriage}
+        </if>
+        <if test=" map.income != null" >
+          income = #{map.income}
+        </if>
+        <if test=" map.highEdu != null" >
+          high_edu = #{map.highEdu}
+        </if>
+        <if test=" map.school != null" >
+          school = #{map.school}
+        </if>
+        <if test=" map.areaFullName != null" >
+          area_full_name = #{map.areaFullName}
+        </if>
+        <if test=" map.censusRegisterName != null" >
+          census_register_name = #{map.censusRegisterName}
+        </if>
+        <if test=" map.censusRegisterId != null" >
+          census_register_id = #{map.censusRegisterId}
+        </if>
+        <if test=" map.createTime != null" >
+          create_time = #{map.createTime}
+        </if>
+        <if test=" map.updateTime != null" >
+          update_time = #{map.updateTime}
+        </if>
+        <if test=" map.delFlag != null" >
+          del_flag = #{map.delFlag}
+        </if>
+      </where>
+    </if>
+  </select>
+</mapper>

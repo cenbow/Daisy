@@ -1,0 +1,121 @@
+#parse("/common/common.vm")
+#set($layout = "/layout/default.vm")
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>登录 | 有融网后台管理系统</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!-- basic styles -->
+		<link href="$root_url/static/assets/css/bootstrap.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="$root_url/static/assets/css/font-awesome.min.css" />
+		<!-- ace styles -->
+		<link rel="stylesheet" href="$root_url/static/assets/css/ace.min.css" />
+		<link rel="stylesheet" href="$root_url/static/assets/css/ace-rtl.min.css" />
+		<style type="text/css">
+			#loginForm .fs14{font-size:14px;}
+			#loginForm .fs16, #loginForm .fs16 input{font-size:16px;}
+		</style>
+	</head>
+	<body class="login-layout">
+		<div class="main-container">
+			<div class="main-content">
+				<div class="row">
+					<div class="col-sm-10 col-sm-offset-1">
+						<div class="login-container">
+							<div class="center">
+								<h1>
+								<img src="$root_url/static/img/logo_small.png" alt="有融网" />
+								</h1>
+								<h4 class="blue">后台管理系统</h4>
+							</div>
+							<div class="space-6"></div>
+							<div class="position-relative">
+								<div id="login-box" class="login-box visible widget-box no-border">
+									<div class="widget-body">
+										<div class="widget-main">
+											<h4 class="header blue lighter bigger">
+											<i class="icon-coffee"></i>
+											请输入您的登录信息
+											</h4>
+											<div class="space-6"></div>
+											<form action="$request.getContextPath()/logined" method="POST" id="loginForm">
+												<fieldset>
+													<label class="block clearfix">
+														<span class="block input-icon input-icon-right fs14">
+														<input type="text" class="form-control" name="username" id="username" placeholder="输入用户名" />
+														<i class="icon-user"></i>
+														</span>
+													</label>
+													<label class="block clearfix">
+														<span class="block input-icon input-icon-right fs14">
+														<input type="password" class="form-control"  name="password" id="password" placeholder="输入密码" />
+														<i class="icon-lock"></i>
+														</span>
+													</label>
+													##<label class="block clearfix">
+													##	<span class="block input-icon input-icon-right fs16">
+													##	<input type="text" name="verifyCode" placeholder="验证码" />
+													##	<img id="verifyCodeImage" onclick="reloadVerifyCode()" src="$request.getContextPath()/validateCode"/>
+													##	</span>
+												##	</label>
+												
+												#if($!session.getAttribute("message_login"))
+												<div class="red fs14 errormsg"><i class="icon-warning-sign"></i>&nbsp;$!session.getAttribute("message_login")</div>											
+												#end
+												$!session.removeAttribute("message_login")												
+												
+													<div class="space">  </div>
+													<div class="clearfix">
+														<button type="submit" class="width-100 btn btn-sm fs16 btn-primary" id="submit">
+														<i class="icon-key"></i>
+														登&nbsp;&nbsp;录
+														</button>
+													</div>
+													<div class="space-4"></div>
+												</fieldset>
+											</form>
+										</div><!-- /widget-main -->
+									</div><!-- /widget-body -->
+								</div><!-- /login-box -->
+							</div><!-- /position-relative -->
+						</div>
+					</div><!-- /.col -->
+				</div><!-- /.row -->
+			</div>
+		</div><!-- /.main-container -->
+		<!-- basic scripts -->
+		<script src="$root_url/static/js/lib/jquery-2.1.1.min.js"></script>
+		<script type="text/javascript">
+				//登录验证
+				$("#submit").click(function(e){	
+					var username=$("input[name='username']").val();
+					var password=$("input[name='password']").val();
+					if(!username||!password){
+						e.preventDefault();
+						if(!$("#loginForm").find(".nullmsg").length){
+							$("#loginForm .errormsg").remove();
+							$("#loginForm .space").before('<div class="red fs14 nullmsg"><i class="icon-warning-sign"></i>&nbsp;请输入用户名和密码</div>');
+						}
+					}
+					else{
+						$("#loginForm .nullmsg").remove();
+					}
+				})
+				
+			$(function(){
+				//如果session失效，保证登录页不嵌在任何窗口内
+				resetWindow();
+			})
+				
+			function resetWindow(){
+				if(top.location != self.location){
+					top.location.href = self.location.href;
+					return;
+				}
+			}
+		</script>
+	</body>
+</html>

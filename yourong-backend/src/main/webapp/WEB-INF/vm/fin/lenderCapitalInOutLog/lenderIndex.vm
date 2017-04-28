@@ -1,0 +1,82 @@
+#parse("/fin/lenderCapitalInOutLog/head.vm") 
+<div class="col-xs-12">
+  <p>
+    ##<button id = "new_withdrawLog" type="button" class="btn btn-info btn-sm btn-primary" >新增</button>
+    ##<button id = "edit_withdrawLog" type="button" class="btn  btn-pink btn-sm btn-primary" >修改</button>
+    ##<button id = "delete_withdrawLog" type="button" class="btn btn-danger btn-sm btn-primary" >删除</button>
+  </p>
+</div>
+<div class="col-xs-12">
+<div class="table-header">
+	出借人资金管理查询
+</div>
+<div class="table-responsive">
+<form>
+	<table class="table table-striped table-bordered">
+		<thead>
+			<tr>
+				<td>编号</td>
+				<td><input type="text" name="search_id"  class="input-small search_init" /></td>
+				<td>会员ID</td>
+				<td><input type="text" name="search_memberId"  class="input-memberId search_init" /></td>
+				<td>出借人名称</td>
+				<td><input type="text" name="search_trueName"  class="input-small search_init" /></td>
+				<td>手机号</td>
+				<td><input type="text" name="search_mobile"  class="input-small search_init" /></td>
+				<!--<td>账户类型</td>
+				<td>#dictSelect ("search_payAccountType",${sysServiceUtil.getDictList('pay_account_type')} ,"请选择")</td>-->
+				<td>操作金额</td>
+				<td>
+					<input type="text" name="search_incomeOrOutlayStart"  class="input-small search_init" />
+						至
+					<input type="text" name="search_incomeOrOutlayEnd"  class="input-small search_init" />
+				</td>
+			</tr><tr>
+				<td>类型</td>
+				<td>
+					<select name="search_type">
+								<option value ="">请选择</option>
+								<option value ="1">充值</option>
+								<option value ="2">提现</option>
+								<option value ="10">新浪存钱罐收益</option>
+								<option value ="11">满标放款</option>
+								<option value ="12">原始债权人还款</option>
+							</select>
+				###dictSelect ("search_type",${sysServiceUtil.getDictList('capital_in_out_type')} ,"请选择")
+				
+				</td>
+				<td>发生时间</td>
+				<td>
+					<input type="text" name="search_happenTimeStart" class="input-medium search_init" onclick="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd'})"/>
+					至
+	            	<input type="text" name="search_happenTimeEnd" class="input-medium search_init" onclick="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd'})">
+				</td>
+				<td colspan=12 style="text-align:center;">
+					<button id = "query_lenderCapitalInOutLog" type="button" class="btn btn-info btn-sm btn-primary">查询</button>
+					<button id = "reset_lenderCapitalInOutLog" type="button" class="btn btn-info btn-sm btn-primary resetButton">重置</button>
+				</td>
+			</tr>
+		</thead>
+	</table>
+</form>
+   
+<table id="lenderCapitalInOutLog-table-2" class="table table-striped table-bordered" cellspacing="0" width="100%">
+	<thead> 
+		<tr>
+			<th ><label><input class="ace" type="checkbox"> <span class="lbl"></span></label></th>
+			<th >编号</th>
+			<th >出借人姓名</th>
+			<th >会员ID</th>
+			<th >出借人手机号</th>
+			<th >账户类型</th>
+			<th >金额</th>
+			<th >类型</th>
+			<th >收入</th>
+			<th >支出</th>
+			<th >备注</th>
+			<th >发生时间</th>
+		</tr>
+	</thead>
+</table>
+</div>
+</div>

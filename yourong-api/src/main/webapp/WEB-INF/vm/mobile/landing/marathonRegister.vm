@@ -1,0 +1,273 @@
+##里程拉新注册页
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$m_css_url/landing/season1.css"])
+#set($title="注册即送80元")
+#set($loadJQ=true)
+<input type="hidden" id="pageTag" value="marathonRegister"/>
+<script>
+        #if($currentUser)
+        window.location.href='$siteurl/mCenter/home';
+        #end
+</script>
+<style>
+    body{
+        background: #fff4d4;
+    }
+    .u-status-amount{
+        height: 56px!important;
+        color: #999;
+        font-size: 0.8rem!important;
+        padding: 0 1.5em;
+        line-height: 56px!important;
+        font-weight: 100;
+    }
+    .u-ipt-group input{
+        background: #fff;
+    }
+    .m-reg-form .u-ipt-vercode{
+        background: #fff;
+    }
+    .m-reg-form{
+        padding: 1rem;
+    }
+    .m-reg-form .u-reg-btn1{
+        background: #ff2d33;
+        border: 1px solid #ff2d33;
+        margin-bottom:10%;
+    }
+    .m-marathonMainContent{
+        width: 100%;
+        font-size: 0;
+    }
+    .m-contentText{
+        width: 90%;
+        margin: auto;
+    }
+    .m-contentText span{
+        display: inline-block;
+        background: #ff2d33;
+        height: 30px;
+        border-radius: 20px;
+        padding: 4px 10px;
+        line-height: 30px;
+        width: 100px;
+        color: #fff;
+        text-align: center;
+        font-size: 12px;
+    }
+    .m-checkBtnBlock{
+        width: 96%;
+        margin:10px auto;
+    }
+    .m-checkBtnBlock a span{
+        display: inline-block;
+        font-size: 12px;
+        padding: 28px 40px 28px 60px;
+        color: #645016;
+    }
+    .m-checkBtnBlock a:first-child span{
+        background: url("$siteurl/res/img/landing/marathonRegister/marathonRegister-checkBtn01.png") no-repeat center;
+        background-size: 100%;
+        margin-left: 0;
+    }
+    .m-checkBtnBlock a:last-child span{
+        background: url("$siteurl/res/img/landing/marathonRegister/marathonRegister-checkBtn02.png") no-repeat center;
+        background-size: 100%;
+        margin-right: 0%;
+    }
+    .u-registerBtn{
+        width: 80%;
+        background: #ff2d33;
+        height: 50px;
+        line-height: 50px;
+        border-radius: 25px;
+        margin:20px auto 40px;
+        text-align: center;
+
+    }
+    .u-registerBtn a{
+        color: #fff;
+    }
+    .m-activeRules{
+        width: 96%;
+        margin: auto;
+        color: #763800;
+        line-height: 26px;
+        font-size: 14px;
+    }
+    .m-activeRules span{
+        font-weight: 700;
+        font-size: 16px;
+    }
+    .g-wrap{
+        width: 100%;
+        background: #ffeebc;
+        padding: 30px 0;
+    }
+    .u-reg-btn1.z-disabled {
+        background-color: #AAA;
+        border-color: #AAA;
+        cursor: default;
+    }
+    .g-wrap h1{
+           text-align: center;
+           color:#763800;
+           font-size:14px;
+           font-weight: 100;
+           margin-top:20px;
+           margin-bottom: -20px;
+    }
+    .u-safety-logo{
+        margin: 0;
+    }
+    @media screen and (min-width:400px){
+        .m-contentText span:first-child{
+            margin-left: 12% !important;
+        }
+        .m-checkBtnBlock a span{
+            padding: 28px 50px 28px 90px!important;
+        }
+
+    }
+    @media screen and (min-width:360px){
+        .m-contentText span:first-child{
+            margin-left: 8%;
+        }
+        .m-checkBtnBlock a span{
+            padding: 28px 40px 28px 80px;
+            font-size: 14px;
+        }
+    }
+</style>
+<h2 class="u-pageTitle f-pos-r">
+    <a href="$siteurl/mIndex">
+        有融网
+    </a>
+    <span class=" f-pos-a f-fs18 f-ff-ver">
+        <a href="$siteurl/mstation/login">登录</a>
+        <a href="$siteurl/mstation/register">注册</a>
+    </span>
+</h2>
+<div class="m-banner">
+    <img src="$siteurl/res/img/landing/marathonRegister/marathonRegister-banner.png"  width="100%" height="100%"/>
+    <div class="u-status-amount f-fs14 f-cf">
+        <em class="f-ff-ver u-amount-money f-fl">
+            累计投资:￥
+        <span class="f-ff-din f-fs22">
+            $!{paltformCapitalUtils.getPrefixPaltformTotalInvest()}
+        </span>
+        </em>
+        <em class="f-ff-ver f-fr">
+            注册人数:
+        <span class="f-ff-din f-fs22">
+            $!{paltformCapitalUtils.getPaltformMembers()}
+        </span>
+        </em>
+    </div>
+</div>
+<section class="g-bd">
+    <form data-action="$siteurl/mstation/register/saveMember" method="POST" class="m-reg-form j-form-xpost j-validform" data-page="register" id="j-reg-form">
+        #CSRFToken('xToken')
+        #onceToken()
+        <input type="hidden" id="j-reg-mobile"/>
+        <div class="u-ipt-group f-pos-r">
+            <input type="tel" name="mobile" oncopy="return false;" onpaste="return false;" id="j-cpn" autocomplete="off" nullmsg="手机号码不能为空" errormsg="请输入正确的手机号码" class="f-round f-ipt-w430 u-ipt-text u-ipt-str" placeholder="请输入手机号码" />
+            <span class='m-val-tips'></span>
+            <div class="f-mob-sha f-dn" id="j-mobile"></div>
+        </div>
+        <div class="m-input-vercode f-cf f-pos-r">
+			<span class="u-xtips-wrap">
+				<input type="text" id="j-vercode" autocomplete="off" nullmsg="请输入图形验证码" class="u-ipt-text u-ipt-vercode j-vercode" placeholder="输入图形码" />
+			</span>
+            <img src="$siteurl/mstation/validateCode" alt="验证码" title="点击重新获取验证码" id="j-img-vercode" class="u-img-vercode" />
+			<span id="j-phonecode-wrap" class="u-xtips-wrap u-phonecode-wrap z-hide">
+				<input type="text" name="phonecode" autocomplete="off" id="j-phonecode" placeholder="输入手机验证码" class="f-clear f-round u-ipt-text f-ipt-w248 u-ipt-phonecode" />
+			</span>
+			<span class="f-round u-tips-vercode f-tips-gray f-dn">
+			获得手机验证码
+			</span>
+            <span class="m-val-tips"></span>
+        </div>
+        <div class="u-ipt-group">
+            <input type="password" name="password" oncopy="return false;" onpaste="return false;" class="f-round u-ipt-text f-ipt-w430 v-pwd" placeholder="输入密码，长度6-16位，至少包含数字和字母" />
+        </div>
+    #*  <div class="u-ipt-group">
+            <input type="password" name="repassword" oncopy="return false;" onpaste="return false;" recheck="password" class="f-round f-ipt-w430 u-ipt-text v-pwd-reck" placeholder="再次输入密码" />
+        </div>*#
+    ##		<div class="u-ipt-group f-pos-r">
+    ##			<input type="tel" id="j-refercode" autocomplete="off" value="$!{mobile}" $!{disabled} ignore="ignore" class="f-round f-ipt-w430 u-ipt-text" placeholder="推荐人手机号码，选填   $!{tureName}"/>
+    ##			<span class="m-val-tips">
+    ##			#if($!{tureName})
+    ##				您的推荐人：$!{tureName}
+    ##			#end
+    ##			</span>
+    ##		</div>
+    ##推荐人ID
+        <input type="hidden" name="referCode" id="j-refercode-val" value="$!{shortUrl}" >
+        <input type="hidden" name="tid"   value="$!{request.getParameter('tid')}" >
+        <input type="hidden" name="registerTraceSource" value='$!{session.getAttribute("register_TraceSource")}'/>
+        <input type="hidden" name="registerTraceNo"  value='$!{session.getAttribute("register_TraceNo")}'/>
+        <input type="hidden" name="referSource"  value="$!{referSource}"/>
+        <input type="hidden" name="checkType" id="j-checkType" value="1"/>
+        <input type="hidden" name="pngCode" id="j-pngcode"/>
+        <input type="hidden" name="loginSource" value="0"/>
+        <label class="f-clear f-mgl-8 f-fc-black">
+            <input type="checkbox" checked="checked" name="agree" id="j-agree" />&nbsp;我已阅读并同意
+            <a target="_blank" href="$res_url/page/register-agreement.html">《有融网服务协议》</a>
+        </label>
+        <button type="submit" class="u-reg-btn1 j-reg-btn" >注册即送80元大礼包</button>
+    </form>
+##        <div id="j-bind-success" class="u-bind-success f-dn">
+##            <i class="u-icon-success"></i>&nbsp;&nbsp;恭喜您绑定成功！
+##        </div>
+
+</section>
+<div class="m-contentText">
+    <span>三重豪礼</span><span style="margin-left: 45px;">如何获得里程</span>
+</div>
+<div class="m-marathonMainContent">
+    <img src="$siteurl/res/img/landing/marathonRegister/marathonRegister-bg01.png" alt="" width="100%" height="100%"/>
+    <img src="$siteurl/res/img/landing/marathonRegister/marathonRegister-bg02.png" alt="" width="100%" height="100%"/>
+    <img src="$siteurl/res/img/landing/marathonRegister/marathonRegister-bg03.png" alt="" width="100%" height="100%"/>
+</div>
+<div class="m-checkBtnBlock">
+    <a href="#j-reg-form"><span>点击领取</span></a>
+    <a href="#j-reg-form"><span>点击领取</span></a>
+</div>
+<div class="u-registerBtn">
+    <a href="#j-reg-form">即刻注册力邀好友</a>
+</div>
+<div class="g-wrap">
+<div class="m-activeRules">
+    <span>活动规则：</span>
+    <p>
+        1、活动对象：有融网所有用户；<br>
+
+        2、活动时间：2016年6月16日上线起长期有效；<br>
+
+        3、活动所获人气值奖励，将于5分钟内发放至<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;用户的账户；<br>
+
+        4、活动期间现金券领取后7天内有效；<br>
+
+        5、如有其他疑问，请拨打客服热线：
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 400-025-6688；<br>
+
+        本活动最终解释权归有融网所有
+    </p>
+</div>
+     <h1>投资有风险，入市需谨慎</h1>
+</div>
+#set($pageScript="
+<script>
+    seajs.config({
+        alias: {
+            'landingRegister': '$m_js_url/landing/register.js?v=${sysServiceUtil.getStaticResourceVersion()}'
+        },
+        preload: ['jquery', 'validform']
+    });
+    seajs.use('landingRegister', function () {
+        $('.u-safety-logo').html($('.rep-text').html());
+    });
+</script>
+")

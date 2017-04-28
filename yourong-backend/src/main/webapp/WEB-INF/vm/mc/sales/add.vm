@@ -1,0 +1,485 @@
+#set($layout = "/layout/iframe.vm")
+#parse("/mc/sales/head.vm")
+
+<button type="button" class="btn btn-info btn-sm btn-primary" id="add_sales">添加活动</button>
+
+<div class="tabbable">
+	<ul id="myTab4" class="nav nav-tabs padding-12 tab-color-blue background-blue activityTab">
+		<li class="active" data-target="start">
+			<a href="#start-sales" data-toggle="tab">进行中的活动</a>
+		</li>
+		<li class="" data-target="end">
+			<a href="#j-end-sales" data-toggle="tab">已结束的活动</a>
+		</li>
+		<li class="" data-target="member">
+			<a href="#j-sales-member" data-toggle="tab">参与活动的会员</a>
+		</li>
+	</ul>
+
+	<div class="tab-content">
+		<div class="tab-pane active" id="start-sales">
+			<table id="start-sales-table" class="table table-striped table-bordered" cellspacing="0" width="100%">
+				<thead>
+					<tr>
+						<th>
+							<label>
+								<input class="ace" type="checkbox">
+								<span class="lbl"></span>
+							</label>
+						</th>
+						<th>活动名称</th>
+						<th width="120">类型</th>
+						<th>活动开始时间</th>
+						<th>活动结束时间</th>
+						<th>状态</th>
+						<th>创建人</th>
+						<th width="300">操作</th>
+					</tr>
+				</thead>
+			</table>
+		</div>
+	
+		<div class="tab-pane" id="j-end-sales">
+			<table id="end-sales-table" class="table table-striped table-bordered" cellspacing="0" width="100%">
+					<thead>
+						<tr>
+							<th>
+								<label>
+									<input class="ace" type="checkbox">
+									<span class="lbl"></span>
+								</label>
+							</th>
+							<th>活动名称</th>
+							<th width="120">类型</th>
+							<th>活动开始时间</th>
+							<th>活动结束时间</th>
+							<th>状态</th>
+							<th>创建人</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+			</table>
+		</div>
+		
+		<div class="tab-pane" id="j-sales-member">
+			<table id="sales-member-table" class="table table-striped table-bordered" cellspacing="0" width="100%">
+					<thead>
+						<tr>
+							<th>
+								<label>
+									<input class="ace" type="checkbox">
+									<span class="lbl"></span>
+								</label>
+							</th>
+							<th>活动名称</th>
+							<th>类型</th>
+							<th>参与总数</th>
+							<th>查看</th>							
+						</tr>
+					</thead>
+			</table>
+		</div>
+		
+	</div>
+</div>
+
+
+
+<div tabindex="-1" class="modal fade" id="add-modal-table" style="display: none;" aria-hidden="true">
+	<div class="modal-dialog w800">
+		<div class="modal-content">
+			<div class="modal-header no-padding">
+				<div class="table-header">
+					<button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+						<span class="white">×</span>
+					</button>
+					<span class="modalFormTitle" id="couponTemplateTitle">创建活动</span>
+				</div>
+			</div>
+			
+			<div class="modal-body">
+				<form  class="form-horizontal" id="salesPromotionForm">
+					<div id="num_1">
+						<div class="form-group">
+							<label for="form-field-parentId" class="col-sm-2 control-label no-padding-right">活动类型:</label>
+							<div class="col-sm-6">
+								<div class="clearfix">
+									<select name="type" id="type" class="col-xs-8 col-sm-8 exclude activityType">
+										<option value="1">全站活动</option>
+										<option value="2">会员活动</option>
+										<option value="3">项目交易</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="form-field-parentId" class="col-sm-2 control-label no-padding-right">活动名称:</label>
+							<div class="col-sm-6">
+								<div class="clearfix">
+									<input type="text" name="name" class="col-xs-8 col-sm-8 exclude valid-other" placeholder="" id="name">
+									<input type="hidden" id="activityId" name="id" class="exclude"/>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="form-field-parentId" class="col-sm-2 control-label no-padding-right">开始时间:</label>
+							<div class="col-sm-6">
+								<div class="clearfix">
+									<input type="text" name="startTime" class="col-xs-8 col-sm-8 exclude valid-other" placeholder="" id="startTime" onclick="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd HH:mm'})">
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="form-field-parentId" class="col-sm-2 control-label no-padding-right">结束时间:</label>
+							<div class="col-sm-6">
+								<div class="clearfix">
+									<input type="text" name="endTime" class="col-xs-8 col-sm-8 exclude valid-other" placeholder="" id="endTime"  onclick="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd HH:mm'})">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="num_2" style="display:none;min-height:200px;">
+						<div style="border-bottom:1px solid #e4e9ee;margin-top:5px;margin-bottom:10px;padding-bottom:8px"><h2 style="margin:0;padding:0;font-size:18px">领取条件</h2></div>
+						<div id="j-lingqu">
+							
+						</div>
+						
+					</div>
+					
+					<div id="num_3" style="display:none;min-height:200px;">
+						<div style="border-bottom:1px solid #e4e9ee;margin-top:5px;margin-bottom:10px;padding-bottom:8px"><h2 style="margin:0;padding:0;font-size:18px">活动礼品</h2></div>
+						<div class="form-group">
+							<label for="form-field-parentId" class="col-sm-2 control-label no-padding-right">礼品类型:</label>
+							<div class="col-sm-6">
+								<div class="clearfix">
+									<div class="btn-group">
+										<button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+											请选择
+											<i class="icon-angle-down icon-on-right"></i>
+										</button>
+										<ul class="dropdown-menu">
+											<li class="addGift" data-type="xianJinQuan">
+												<a href="#">赠送现金券</a>
+											</li>
+											<li class="addGift" data-type="shouYiQuan">
+												<a href="#">赠送收益券</a>
+											</li>
+											<li class="addGift" data-type="renQiZhi">
+												<a href="#">赠送人气值</a>
+											</li>
+											<li class="divider"></li>
+											<li class="addGift" data-type="qiTa">
+												<a href="#">其它</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						
+						<div class="tabbable tabs-left">
+							<ul id="myTab3" class="nav nav-tabs">
+								<li class="active">
+									<a href="#home3" data-toggle="tab">
+										<i class="pink icon-dashboard bigger-110"></i>
+										礼品列表
+									</a>
+								</li>
+							</ul>
+							<div class="tab-content">
+								<div class="tab-pane active" id="home3">
+									<div id="liPingList">
+										
+									</div>
+									<div class="alert alert-warning" id="j-no-data-tips">
+										<strong>温馨提示</strong>
+										 <div style="margin-top:5px">还未设置礼品哦！</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+			
+			<div class="modal-footer">
+				<button type="button" id="up_action" data-page="1" class="btn" style="display:none">返回</button>
+				<button type="button" id="next_action" data-page="1" class="btn btn-primary">下一步</button>
+			</div>
+			
+		</div>
+	</div>
+</div>
+
+
+<div id="huiYuan" style="display:none">
+	<div class="form-group" style="border:1px dashed #e4e9ee">
+	<div class="col-sm-3">
+		<div class="clearfix">
+			<input type="checkbox" name="zhuCeChengGong" id="zhuCeChengGong" data-rule="member" data-method="zhuCeChengGong" value="1" class="col-xs-1 col-sm-1" >注册成功
+		</div>
+	</div>
+	<div class="col-sm-3">
+		<div class="clearfix">
+			<input type="checkbox" name="kaiTongCunQianGuan" id="kaiTongCunQianGuan" data-rule="member" data-method="kaiTongCunQianGuan" value="1" class="col-xs-1 col-sm-1" >开通新浪存钱罐
+		</div>
+	</div>
+	<div class="col-sm-3">
+		<div class="clearfix">
+			<input type="checkbox" name="youXiangBangDing" id="youXiangBangDing" data-rule="member" data-method="youXiangBangDing" value="1" class="col-xs-1 col-sm-1" >邮箱绑定
+		</div>
+	</div>
+	<div class="col-sm-3">
+		<div class="clearfix">
+			<input type="checkbox" name="shouCiTouzi" id="shouCiTouzi" data-rule="transaction" data-method="shouCiTouzi" value="1" class="col-xs-1 col-sm-1" >首次投资
+		</div>
+	</div>
+	<div class="col-sm-3">
+		<div class="clearfix">
+			<input type="checkbox" name="wanShanXinXi" id="wanShanXinXi" data-rule="member" data-method="wanShanXinXi" value="1" class="col-xs-1 col-sm-1" >完善信息
+		</div>
+	</div>
+	<div class="col-sm-3">
+		<div class="clearfix">
+			<input type="checkbox" name="yongHuShengRi" id="yongHuShengRi" data-rule="member" data-method="yongHuShengRi" value="1" class="col-xs-1 col-sm-1" >用户生日
+		</div>
+	</div>
+	<div class="col-sm-3">
+		<div class="clearfix">
+			<input type="checkbox" name="yaoQingHaoYouZhuCe" id="yaoQingHaoYouZhuCe" data-rule="member" data-method="yaoQingHaoYouZhuCe" value="1" class="col-xs-1 col-sm-1" >首次邀请好友注册
+		</div>
+	</div>
+	<div class="col-sm-3">
+		<div class="clearfix">
+			<input type="checkbox" name="haoYouShouCiKTCQG" id="haoYouShouCiKTCQG" data-rule="member" data-method="haoYouShouCiKTCQG" value="1" class="col-xs-1 col-sm-1" >好友开通存钱罐
+		</div>
+	</div>
+	<div class="col-sm-3">
+		<div class="clearfix">
+			<input type="checkbox" name="haoYouShouCiBDYX" id="haoYouShouCiBDYX" data-rule="member" data-method="haoYouShouCiBDYX" value="1" class="col-xs-1 col-sm-1" >好友绑定邮箱
+		</div>
+	</div>
+	<div class="col-sm-3">
+		<div class="clearfix">
+			<input type="checkbox" name="haoYouShouCiWSXX" id="haoYouShouCiWSXX" data-rule="member" data-method="haoYouShouCiWSXX" value="1" class="col-xs-1 col-sm-1" >好友完善信息
+		</div>
+	</div>
+	<div class="col-sm-3">
+		<div class="clearfix">
+			<input type="checkbox" name="haoYouShouCiTZ" id="haoYouShouCiTZ" data-rule="transaction" data-method="haoYouShouCiTZ" value="1" class="col-xs-1 col-sm-1" >好友首次投资
+		</div>
+	</div>
+	<div class="col-sm-3">
+		<div class="clearfix">
+			<input type="checkbox" name="meiTianDiYiZC" id="meiTianDiYiZC"  data-rule="member" data-method="meiTianDiYiZC" value="1" class="col-xs-1 col-sm-1" >每天第一个注册
+		</div>
+	</div>
+	
+	<div class="col-sm-3">
+		<div class="clearfix">
+			<input type="checkbox" name="meiTianDiYiTZ" id="meiTianDiYiTZ" data-rule="transaction" data-method="meiTianDiYiTZ" value="1" class="col-xs-1 col-sm-1" >每天第一个投资
+		</div>
+	</div>
+	
+	<div class="col-sm-3">
+		<div class="clearfix">
+			<input type="checkbox" name="firstBindingWeiXin" id="firstBindingWeiXin" data-rule="member" data-method="firstBindingWeiXin" value="1" class="col-xs-1 col-sm-1" >首次绑定微信
+		</div>
+	</div>
+	
+	<div class="col-sm-3">
+		<div class="clearfix">
+			<input type="checkbox" name="firstBindingApp" id="firstBindingApp" data-rule="member" data-method="firstBindingApp" value="1" class="col-xs-1 col-sm-1" >首次体验App
+		</div>
+	</div>
+</div>
+
+<div class="form-group" style="border:1px dashed #e4e9ee">
+	<div class="col-sm-5">
+		<div class="clearfix">
+			<input type="checkbox" name="shouCiTouZiYuan" style="margin-top:8px" id="shouCiTouZiYuan" data-refid="touZiJinE" data-rule="transaction" data-method="shouCiTouZiYuan" value="1" class="col-xs-1 col-sm-1" >首次投资
+			<input type="text" id="touZiJinE" style="width:100px;margin-left:39px;margin-right:5px;" />元
+		</div>
+	</div>
+	<div class="col-sm-5">
+		<div class="clearfix">
+			<input type="checkbox" name="leiJiTouZiYuan" style="margin-top:8px" id="leiJiTouZiYuan" data-refid="leiJitouZiJinE" data-rule="transaction" data-method="leiJiTouZiYuan" value="1" class="col-xs-1 col-sm-1" >累计投资
+			<input type="text" id="leiJitouZiJinE" style="width:100px;margin-left:39px;margin-right:5px;" />元
+		</div>
+	</div>
+	<div class="col-sm-5">
+		<div class="clearfix">
+			<input type="checkbox" name="danBiTouZiYuan" style="margin-top:8px" id="danBiTouZiYuan" data-refid="danBiTouZiJinE" data-rule="transaction" data-method="danBiTouZiYuan" value="1" class="col-xs-1 col-sm-1" >单笔投资
+			<input type="text" id="danBiTouZiJinE" style="width:100px;margin-left:39px;margin-right:5px;" />元
+		</div>
+	</div>
+	
+	<div class="col-sm-5">
+		<div class="clearfix">
+			<input type="checkbox" name="zhengDianTouZi" style="margin-top:8px" id="zhengDianTouZi" data-refid="zhengDianTouZiSJ" data-rule="transaction" data-method="zhengDianTouZi" value="1" class="col-xs-1 col-sm-1" >整点投资
+			<select id="zhengDianTouZiSJ" style="margin-left:39px;">
+			</select>
+		</div>
+	</div>
+	
+	<div class="col-sm-5">
+		<div class="clearfix">
+			<input type="checkbox" name="leiJiTouZiXM" style="margin-top:8px" id="leiJiTouZiXM" data-refid="leiJiTouZiXMSL" data-rule="transaction" data-method="leiJiTouZiXM" value="1" class="col-xs-1 col-sm-1" >累计投资项目
+			<input type="text" id="leiJiTouZiXMSL" style="width:100px;margin-left:10px;margin-right:5px;" />个
+		</div>
+	</div>
+	
+	<div class="col-sm-5">
+		<div class="clearfix">
+			<input type="checkbox" name="haoYouShouCiTZY" style="margin-top:8px" id="haoYouShouCiTZY" data-refid="haoYouShouCiTZJE" data-rule="transaction" data-method="haoYouShouCiTZY" value="1" class="col-xs-1 col-sm-1" >好友首次投资
+			<input type="text" id="haoYouShouCiTZJE" style="width:100px;margin-left:10px;margin-right:5px;" />元
+		</div>
+	</div>
+	<div class="col-sm-5">
+		<div class="clearfix">
+			<input type="checkbox" name="haoYouLeiJiTZY" style="margin-top:8px" id="haoYouLeiJiTZY" data-refid="haoYouLeiJiTZJE" data-rule="transaction" data-method="haoYouLeiJiTZY" value="1" class="col-xs-1 col-sm-1" >好友累计投资
+			<input type="text" id="haoYouLeiJiTZJE" style="width:100px;margin-left:10px;margin-right:5px;" />元
+		</div>
+	</div>
+	<div class="col-sm-5">
+		<div class="clearfix">
+			<input type="checkbox" name="yaoQingHaoYouSL" style="margin-top:8px" id="yaoQingHaoYouSL" data-refid="yaoQingHYSL" data-rule="member" data-method="yaoQingHaoYouSL" value="1" class="col-xs-1 col-sm-1" >邀请好友数量
+			<input type="text" id="yaoQingHYSL" style="width:100px;margin-left:10px;margin-right:5px;" />个
+		</div>
+	</div>
+	<div class="col-sm-5">
+		<div class="clearfix">
+			<input type="checkbox" name="haoYouDanBiTZY" style="margin-top:8px" id="haoYouDanBiTZY" data-refid="haoYouDanBiTZJE" data-rule="transaction" data-method="haoYouDanBiTZY" value="1" class="col-xs-1 col-sm-1" >好友单笔投资
+			<input type="text" id="haoYouDanBiTZJE" style="width:100px;margin-left:10px;margin-right:5px;" />元
+		</div>
+	</div>
+	<div class="col-sm-5">
+		<div class="clearfix">
+			<input type="checkbox" name="haoYouLeiJiTZXM" style="margin-top:8px" id="haoYouLeiJiTZXM" data-refid="haoYouLeiJiTZXMSL" data-rule="transaction" data-method="haoYouLeiJiTZXM" value="1" class="col-xs-1 col-sm-1" >好友累计投资项目
+			<input type="text" id="haoYouLeiJiTZXMSL" style="width:100px;margin-left:10px;margin-right:5px;" />个
+		</div>
+	</div>	
+	
+	<div class="col-sm-5">
+		<div class="clearfix">
+			<input type="checkbox" name="xingBie" style="margin-top:8px" id="xingBie" data-refid="yongHuXingBie" data-rule="member" data-method="xingBie" value="1" class="col-xs-1 col-sm-1" >性别
+			<select id="yongHuXingBie" style="width:60px;margin-left:66px">
+				<option value="1">男</option>
+				<option value="0">女</option>
+			</select>
+		</div>
+	</div>
+	
+	<div class="col-sm-5">
+		<div class="clearfix">
+			<input type="checkbox" name="nianLing" style="margin-top:8px" id="nianLing" data-refid="yongHuNianLing" data-rule="member" data-method="nianLing" value="1" class="col-xs-1 col-sm-1" >年龄
+			<select id="yongHuNianLing" data-refid="age" style="width:60px;">
+				<option value="1">≤</option>
+				<option value="2">≥</option>
+			</select>
+			<input type="text" id="age" style="width:100px;margin-left:4px" />岁
+		</div>
+	</div>
+	<div class="col-sm-5">
+		<div class="clearfix">
+			<input type="checkbox" name="appShouCiChongZhi" style="margin-top:8px" id="appShouCiChongZhi" data-refid="appChongZhiE" data-rule="transaction" data-method="appShouCiChongZhi" value="1" class="col-xs-1 col-sm-1" >APP首次充值
+			<input type="text" id="appChongZhiE" style="width:100px;margin-left:39px;margin-right:5px;" />元
+		</div>
+	</div>
+  </div>
+</div>
+
+
+<div id="xianMu" style="display:none">
+	<div class="form-group">
+		<div style="padding-left:18px;">
+			选择项目：<input type="text" id="xianMuId" name="xianMuId" style="width:300px;margin-left:5px;" class="valid-other" placeholder="请输入项目ID，多个用逗号隔开"/>
+		</div>
+	</div>
+	<div class="form-group" style="border:1px dashed #e4e9ee">
+		<div class="col-sm-5">
+			<div class="clearfix">
+				<input type="checkbox" name="xiangMuDBTZ" style="margin-top:8px" id="xiangMuDBTZ" data-refid="xiangMuDBTZY" data-rule="project" data-method="xiangMuDBTZ" value="1" class="col-xs-1 col-sm-1" >单笔投资
+				<input type="text" id="xiangMuDBTZY" style="width:100px;margin-left:39px;margin-right:5px;" />元
+			</div>
+		</div>
+		<div class="col-sm-5">
+			<div class="clearfix">
+				<input type="checkbox" name="xiangMuHYDBTZ" style="margin-top:8px" id="xiangMuHYDBTZ" data-refid="xiangMuHYDBTZY" data-rule="project" data-method="xiangMuHYDBTZ" value="1" class="col-xs-1 col-sm-1" >好友单笔投资
+				<input type="text" id="xiangMuHYDBTZY" style="width:100px;margin-left:39px;margin-right:5px;" />元
+			</div>
+		</div>
+		<div class="col-sm-5">
+			<div class="clearfix">
+				<input type="checkbox" name="xiangMuZDTZ" style="margin-top:8px" id="xiangMuZDTZ" data-refid="xiangMuZDTZSJ" data-rule="project" data-method="xiangMuZDTZ" value="1" class="col-xs-1 col-sm-1" >整点投资
+				<select id="xiangMuZDTZSJ" class="zhendianTime"  style=margin-left:39px;"></select>
+			</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-3">
+			<div class="clearfix">
+				<input type="checkbox" name="xiangMuDYTZ" style="margin-top:8px" id="xiangMuDYTZ" data-rule="project" data-method="xiangMuDYTZ" value="1" class="col-xs-1 col-sm-1" >第一个投资
+			</div>
+		</div>
+		<div class="col-sm-3">
+			<div class="clearfix">
+				<input type="checkbox" name="xiangMuZHTZ" style="margin-top:8px" id="xiangMuZHTZ" data-rule="project" data-method="xiangMuZHTZ" value="1" class="col-xs-1 col-sm-1" >第后一个投资
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div tabindex="-1" class="modal fade" id="history-modal-table" style="display: none;" aria-hidden="true">
+	<div class="modal-dialog w800">
+		<div class="modal-content">
+			<div class="modal-header no-padding">
+				<div class="table-header">
+					<button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+						<span class="white">×</span>
+					</button>
+					<span class="modalFormTitle" id="activityTitle">查看活动参与人数</span>
+				</div>
+			</div>
+			<div class="modal-body" id="activityHistoryData" style="height:600px;">
+				<div class="col-xs-12">
+					<div class="table-responsive">
+						<table id="history-detail-table" class="table table-striped table-bordered" cellspacing="0" width="100%">
+							<thead>
+								<tr>
+									<th>
+										<label>
+											<input class="ace" type="checkbox">
+											<span class="lbl"></span>
+										</label>
+									</th>
+									<th>编号</th>
+									<th>姓名</th>
+									<th>手机号</th>
+									<th>参加时间</th>
+								</tr>
+							</thead>
+						</table>
+					</div>
+					<input type="hidden" id="activityHistoryId" name="activityHistoryId" />
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<style>
+.col-sm-3,.col-sm-4,.col-sm-5{margin-top:5px;margin-bottom:5px;}
+.alert-qiTa {
+    background-color: #ac68ba;
+    border-color: #ac68ba;
+    color: #fff;
+}
+
+.validation-failed{border:1px solid #f00 !important; background:#ffb9b9 !important;}
+</style>
+
+
+

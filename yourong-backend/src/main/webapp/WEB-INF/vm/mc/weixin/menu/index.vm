@@ -1,0 +1,39 @@
+#parse("/mc/weixin/menu/head.vm")
+ <style type="text/css">
+        .l-table-edit {}
+        .l-table-edit-td{ padding:4px;}
+        .l-button-submit,.l-button-reset{width:130px;height:40px; float:left; margin-left:500px; bottom:0px;position:absolute;}
+    </style>
+<link href="$ligerui_url/lib/ligerUI/skins/Aqua/css/ligerui-all.css" rel="stylesheet" type="text/css"/>
+##<link href="$ligerui_url/lib/ligerUI/skins/Gray/css/all.css" rel="stylesheet" type="text/css"/>
+
+    <link rel="stylesheet" type="text/css" id="mylink"/>
+    <script src="$ligerui_url/lib/jquery/jquery-1.9.0.min.js" type="text/javascript"></script>
+    <script src="$ligerui_url/lib/ligerUI/js/ligerui.all.js" type="text/javascript"></script>
+    <script src="$ligerui_url/lib/ligerUI/js/plugins/ligerTab.js"></script>
+    <script src="$ligerui_url/lib/ligerUI/js/plugins/ligerLayout.js"></script>
+    <script src="$ligerui_url/lib/ligerUI/js/plugins/ligerDrag.js"></script>
+    <script src="$ligerui_url/lib/ligerUI/js/plugins/ligerTextBox.js"></script>
+    <script src="$ligerui_url/lib/jquery.cookie.js"></script>
+    <script src="$ligerui_url/lib/json2.js"></script>
+	##菜单开始
+	<div class="tab-pane active" id="start-sales">
+		   <div id="layout1" class="l-layout" ligeruiid="layout1" style="height: 545px;">
+         
+           <div class="l-layout-left" style="left: 0px; width: 200px; top: 0px; height: 543px;">
+           <div class="l-layout-header"></div>
+           <div position="left" class="l-layout-content">
+           		 <ul id="treeWeixin"></ul> 
+           </div>
+           </div>
+           
+           <div class="l-layout-center" style="width: 900px; top: 0px; left: 205px; height: 243px;">
+           <div class="l-layout-header">菜单信息</div>
+           <div position="center" title="" class="l-layout-content" style="height: 518px;">
+           <div id="form"></div>
+           </div>
+           </div>
+           </div> 
+    	   <input type="submit" value="发布" id="push" class="l-button l-button-submit" style="width:130px;height:40px; float:left; margin-left:500px; bottom:0px;position:absolute;">
+	</div>
+	

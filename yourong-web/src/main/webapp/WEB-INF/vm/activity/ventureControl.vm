@@ -1,0 +1,199 @@
+##风险管控体系
+#parse('/common/common.vm')
+<style>
+		.u-safety-hd{
+			width: 100%;
+			height: 400px;
+			margin-top: -8px;
+			text-indent: -9999px;
+			background: url($root_url/static/img/activity/ventureControl/venture_control_bg.jpg) no-repeat center center;
+			}
+		.u-safety-info{
+			width:988px;
+			height:402px;
+			border:1px solid #bbb;
+			margin-top:163px;
+			}
+		.u-safety-control{
+			width:988px;
+			height:512px;
+			border:1px solid #bbb;
+			margin-top:163px;
+			}
+		.u-safety-examine{
+			width:988px;
+			height:552px;
+			border:1px solid #bbb;
+			margin-top:163px;
+			}
+		.u-safety-follow{
+			width:988px;
+			height:412px;
+			border:1px solid #bbb;
+			margin-top:163px;
+			}
+		.u-safety-center{
+			margin: 0 auto;
+			width: 990px;
+			}
+		.u-safety-list{
+			margin-bottom:207px;		
+				}
+		.u-safety-01{
+			background:url($root_url/static/img/activity/ventureControl/venture_control_icon.png) no-repeat 0 -53px;
+			width: 130px;
+			height: 155px;
+			margin: -93px auto 0;
+			overflow: hidden;
+			text-align: center;
+			color: #d74148;
+			}
+		.u-safety-02{
+			background:url($root_url/static/img/activity/ventureControl/venture_control_icon.png) no-repeat 0 -53px;
+			width: 130px;
+			height: 155px;
+			margin: -93px auto 0;
+			overflow: hidden;
+			text-align: center;
+			color: #d74148;
+			}
+		.u-safety-03{
+			background:url($root_url/static/img/activity/ventureControl/venture_control_icon.png) no-repeat 0 -53px;
+			width: 130px;
+			height: 155px;
+			margin: -93px auto 0;
+			overflow: hidden;
+			text-align: center;
+			color: #d74148;
+			}
+		.u-safety-04{
+			background:url($root_url/static/img/activity/ventureControl/venture_control_icon.png) no-repeat 0 -53px;
+			width: 130px;
+			height: 155px;
+			margin: -93px auto 0;
+			overflow: hidden;
+			text-align: center;
+			color: #d74148;
+			}
+		.u-safety-01 i{
+			display: block;
+			width: 50px;
+			height: 50px;
+			overflow: hidden;
+			margin: 32px auto 5px;
+			background:url($root_url/static/img/activity/ventureControl/venture_control_icon.png) no-repeat -133px -53px;
+			}
+		.u-safety-02 i{
+			display: block;
+			width: 42px;
+			height: 48px;
+			overflow: hidden;
+			margin: 32px auto 5px;
+			background:url($root_url/static/img/activity/ventureControl/venture_control_icon.png) no-repeat -186px -53px;
+			}
+		.u-safety-03 i{
+			display: block;
+			width: 50px;
+			height: 39px;
+			overflow: hidden;
+			margin: 32px auto 5px;
+			background:url($root_url/static/img/activity/ventureControl/venture_control_icon.png) no-repeat -231px -53px;
+			}
+		.u-safety-04 i{
+			display: block;
+			width: 50px;
+			height: 46px;
+			overflow: hidden;
+			margin: 32px auto 5px;
+			background:url($root_url/static/img/activity/ventureControl/venture_control_icon.png) no-repeat -284px -53px;
+			}
+		.u-safety-h02{
+			margin:20px auto;
+			text-align:center;
+			font-weight:bold;
+			color:#757575;
+			}
+		.u-safety-grid li{
+			width:420px;
+			height:50px;
+			background:url($root_url/static/img/activity/ventureControl/venture_control_icon.png) no-repeat 0 0;
+			display:block;
+			margin-top:10px;
+			}
+		.u-safety-grid li strong{
+			color:#fff;
+			margin:15px 0 20px 40px;
+			display:inline-block;
+			}
+		.u-safety-grid{
+			width:420px;
+			margin:0 auto;
+			}
+        </style>
+        
+        <div class="u-safety-hd"></div>
+        <div class="u-safety-center">
+        	<ul class="u-safety-list">
+            	<li class="u-safety-info f-round">
+                  <h2 class="u-safety-01">
+                      <i></i>
+                      <strong class="f-fs16">信息尽调</strong>
+                  </h2>
+                      <div class="u-safety-list01">
+						<p class="f-fs18 u-safety-h02">专业详尽的借款人信息尽调</p>
+                          <ol class="u-safety-grid">
+                              <li><strong>1、身份证、户口本、婚姻关系证明</strong></li>
+                              <li><strong>2、个人征信报告，银行流水、个人未执行记录</strong></li>
+                              <li><strong>3、职业信息、个人净财产（房屋、车辆等）</strong></li>
+                          </ol>
+                      </div>
+                </li>
+                <li class="u-safety-control f-round">
+                  <h2 class="u-safety-02">
+                      <i></i>
+                      <strong class="f-fs16">五道风控</strong>
+                  </h2>
+	            	<div class="u-safety-list02">
+                    	<p class="f-fs18 u-safety-h02">五道线下风控&nbsp;&nbsp;见证债权诞生</p>
+                    	<ol class="u-safety-grid">
+                        	<li><strong>1、担保物权的权属调查</strong></li>
+                            <li><strong>2、担保人的信息及资产尽调</strong></li>
+                            <li><strong>3、担保物保管及专业评估</strong></li>
+                            <li><strong>4、第三方证据托管</strong></li>
+                            <li><strong>5、专业法律团队严格把控法律风险</strong></li>
+                        </ol>
+                    </div>
+                </li>
+                <li class="u-safety-examine f-round">
+                  <h2 class="u-safety-03">
+                      <i></i>
+                      <strong class="f-fs16">六重复审</strong>
+                  </h2>
+		         	<div class="u-safety-list03">
+                    	<p class="f-fs18 u-safety-h02">六重银行级别复审&nbsp;&nbsp;让风险无处遁形</p>
+                    	<ol class="u-safety-grid">
+                        	<li><strong>1、第三方资金托管</strong></li>
+                            <li><strong>2、借款人信息的二次复审</strong></li>
+                            <li><strong>3、出借人的审核及认定和债权逾期无条件赎回</strong></li>
+                            <li><strong>4、资产管理公司的逾期代付</strong></li>
+                            <li><strong>5、专业的第三方征信评估</strong></li>
+                            <li><strong>6、先进的网络技术安全保障</strong></li>
+                        </ol>
+                    </div>
+                </li>
+                <li class="u-safety-follow f-round">
+                  <h2 class="u-safety-04">
+                      <i></i>
+                      <strong class="f-fs16">贷后跟踪</strong>
+                  </h2>
+                   	<div class="u-safety-list04">
+                    	<p class="f-fs18 u-safety-h02">密切的贷后动态跟踪、催收及担保物的保管</p>
+                    	<ol class="u-safety-grid">
+                        	<li><strong>1、定期和不定期审查借款人情况</strong></li>
+                            <li><strong>2、完善的提前催收借款制度</strong></li>
+                            <li><strong>3、合理保管并维护担保物</strong></li>
+                        </ol>
+                    </div>
+                </li>
+            </ul>
+        </div>

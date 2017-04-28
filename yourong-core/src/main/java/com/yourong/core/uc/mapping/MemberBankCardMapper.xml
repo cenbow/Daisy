@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.uc.dao.MemberBankCardMapper" >
+  <resultMap id="BaseResultMap" type="MemberBankCard" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="member_id" property="memberId" jdbcType="BIGINT" />
+    <result column="card_number" property="cardNumber" jdbcType="VARCHAR" />
+    <result column="card_holder" property="cardHolder" jdbcType="VARCHAR" />
+    <result column="bank_code" property="bankCode" jdbcType="VARCHAR" />
+    <result column="bank_province" property="bankProvince" jdbcType="VARCHAR" />
+    <result column="bank_city" property="bankCity" jdbcType="VARCHAR" />
+    <result column="bank_district" property="bankDistrict" jdbcType="VARCHAR" />
+    <result column="branch_name" property="branchName" jdbcType="VARCHAR" />
+    <result column="sub_branch_name" property="subBranchName" jdbcType="VARCHAR" />
+    <result column="is_default" property="isDefault" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="outer_source_id" property="outerSourceId" jdbcType="VARCHAR" />
+    <result column="bank_Mobile" property="bankMobile" jdbcType="BIGINT" />
+    <result column="card_Type" property="cardType" jdbcType="INTEGER" />
+    <result column="is_security" property="isSecurity" jdbcType="INTEGER" />
+    <result column="true_name" property="trueName" jdbcType="VARCHAR" />
+    <result column="simple_name" property="simpleName" jdbcType="VARCHAR" />
+    <result column="user_bind_ip" property="userBindIp" jdbcType="VARCHAR" />
+    <result column="user_unbind_ip" property="userUnBindIp" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, member_id, card_number, card_holder, bank_code, bank_province, bank_city, bank_district, user_bind_ip, user_unbind_ip,
+    branch_name, sub_branch_name, is_default, create_time, update_time, del_flag, remarks, outer_source_id,bank_Mobile,card_Type,is_security
+  </sql>
+  <insert id="insertSelective" parameterType="MemberBankCard" useGeneratedKeys="true" keyProperty="id">
+    insert into uc_member_bank_card
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="memberId != null" >
+        member_id,
+      </if>
+      <if test="cardNumber != null" >
+        card_number,
+      </if>
+      <if test="cardHolder != null" >
+        card_holder,
+      </if>
+      <if test="bankCode != null" >
+        bank_code,
+      </if>
+      <if test="bankProvince != null" >
+        bank_province,
+      </if>
+      <if test="bankCity != null" >
+        bank_city,
+      </if>
+      <if test="bankDistrict != null" >
+        bank_district,
+      </if>
+      <if test="branchName != null" >
+        branch_name,
+      </if>
+      <if test="subBranchName != null" >
+        sub_branch_name,
+      </if>
+      <if test="isDefault != null" >
+        is_default,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+      <if test="outerSourceId != null" >
+        outer_source_id,
+      </if>
+      <if test="cardType != null" >
+        card_Type,
+      </if>
+      <if test="bankMobile != null" >
+        bank_Mobile,
+      </if>
+      <if test="isSecurity != null" >
+        is_security,
+      </if>
+      <if test="userBindIp != null" >
+        user_bind_ip,
+      </if>
+      <if test="userUnBindIp != null" >
+        user_unbind_ip,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="memberId != null" >
+        #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="cardNumber != null" >
+        #{cardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="cardHolder != null" >
+        #{cardHolder,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCode != null" >
+        #{bankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bankProvince != null" >
+        #{bankProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCity != null" >
+        #{bankCity,jdbcType=VARCHAR},
+      </if>
+      <if test="bankDistrict != null" >
+        #{bankDistrict,jdbcType=VARCHAR},
+      </if>
+      <if test="branchName != null" >
+        #{branchName,jdbcType=VARCHAR},
+      </if>
+      <if test="subBranchName != null" >
+        #{subBranchName,jdbcType=VARCHAR},
+      </if>
+      <if test="isDefault != null" >
+        #{isDefault,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=INTEGER},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="outerSourceId != null" >
+        #{outerSourceId,jdbcType=VARCHAR},
+      </if>
+      <if test="cardType != null" >
+        #{cardType,jdbcType=INTEGER},
+      </if>
+      <if test="bankMobile != null" >
+        #{bankMobile,jdbcType=BIGINT},
+      </if>
+      <if test="isSecurity != null" >
+        #{isSecurity,jdbcType=INTEGER},
+      </if>
+      <if test="userBindIp != null" >
+        #{userBindIp,jdbcType=VARCHAR},
+      </if>
+      <if test="userUnBindIp != null" >
+        #{userUnBindIp,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="MemberBankCard" >
+    update uc_member_bank_card
+    <set >
+      <if test="memberId != null" >
+        member_id = #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="cardNumber != null" >
+        card_number = #{cardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="cardHolder != null" >
+        card_holder = #{cardHolder,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCode != null" >
+        bank_code = #{bankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bankProvince != null" >
+        bank_province = #{bankProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCity != null" >
+        bank_city = #{bankCity,jdbcType=VARCHAR},
+      </if>
+      <if test="bankDistrict != null" >
+        bank_district = #{bankDistrict,jdbcType=VARCHAR},
+      </if>
+      <if test="branchName != null" >
+        branch_name = #{branchName,jdbcType=VARCHAR},
+      </if>
+      <if test="subBranchName != null" >
+        sub_branch_name = #{subBranchName,jdbcType=VARCHAR},
+      </if>
+      <if test="isDefault != null" >
+        is_default = #{isDefault,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=INTEGER},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="outerSourceId != null" >
+        outer_source_id = #{outerSourceId,jdbcType=VARCHAR},
+      </if>
+      <if test="cardType != null" >
+        card_Type = #{cardType,jdbcType=INTEGER},
+      </if>
+      <if test="bankMobile != null" >
+        bank_Mobile = #{bankMobile,jdbcType=BIGINT},
+      </if>
+      <if test="isSecurity != null" >
+        is_Security = #{isSecurity,jdbcType=INTEGER},
+      </if>
+      <if test="userBindIp != null" >
+        user_bind_ip = #{userBindIp,jdbcType=VARCHAR},
+      </if>
+      <if test="userUnBindIp != null" >
+        user_unbind_ip = #{userUnBindIp,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <delete id="batchDelete" parameterType="java.lang.Long" >
+    delete from uc_member_bank_card
+    where id in  <foreach collection="ids" index="index" item="item" open="(" separator="," close=")"> #{item}  </foreach>  
+  </delete>
+  <select id="findByPage" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from uc_member_bank_card
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+         and id = #{map.id}
+        </if>
+        <if test=" map.memberId != null" >
+         and member_id = #{map.memberId}
+        </if>
+        <if test=" map.cardNumber != null" >
+         and card_number = #{map.cardNumber}
+        </if>
+        <if test=" map.cardHolder != null" >
+         and card_holder = #{map.cardHolder}
+        </if>
+        <if test=" map.bankCode != null" >
+         and bank_code = #{map.bankCode}
+        </if>
+        <if test=" map.bankProvince != null" >
+         and bank_province = #{map.bankProvince}
+        </if>
+        <if test=" map.bankCity != null" >
+         and bank_city = #{map.bankCity}
+        </if>
+        <if test=" map.bankDistrict != null" >
+         and bank_district = #{map.bankDistrict}
+        </if>
+        <if test=" map.branchName != null" >
+         and branch_name = #{map.branchName}
+        </if>
+        <if test=" map.subBranchName != null" >
+         and sub_branch_name = #{map.subBranchName}
+        </if>
+        <if test=" map.isDefault != null" >
+         and is_default = #{map.isDefault}
+        </if>
+        <if test=" map.createTime != null" >
+         and create_time = #{map.createTime}
+        </if>
+        <if test=" map.updateTime != null" >
+         and update_time = #{map.updateTime}
+        </if>
+        <if test=" map.delFlag != null" >
+         and del_flag = #{map.delFlag}
+        </if>
+        <if test=" map.remarks != null" >
+         and remarks = #{map.remarks}
+        </if>
+        <if test=" map.isSecurity != null" >
+         and is_Security = #{map.isSecurity}
+        </if>
+      </where>
+    </if>
+  </select>
+  
+  <select id="queryMemberCard" resultMap="BaseResultMap" >
+    select 
+	    c.id, c.member_id, c.card_number, c.card_holder, c.bank_code, c.bank_province, c.bank_city, c.bank_district, 
+	    c.branch_name, c.sub_branch_name, c.is_default, c.create_time, c.update_time, c.del_flag, c.remarks, c.outer_source_id, c.bank_Mobile, c.card_Type, c.is_security,
+	    m.true_name, bk.simple_name
+    from uc_member_bank_card as c
+    LEFT JOIN bsc_bank as bk on bk.code = c.bank_code and bk.status = 1
+    <if test=" map != null" >
+    	<if test="map.trueName != null">
+    		INNER JOIN uc_member as m on m.id = c.member_id and m.true_name = #{map.trueName}
+    	</if>
+    	<if test="map.trueName == null">
+    		LEFT JOIN uc_member as m on m.id = c.member_id
+    	</if> 
+      <where >
+      	c.del_flag = 1
+        <if test=" map.id != null" >
+         and c.id = #{map.id}
+        </if>
+        <if test=" map.memberId != null" >
+         and c.member_id = #{map.memberId}
+        </if>
+        <if test=" map.cardNumber != null" >
+         and c.card_number = #{map.cardNumber}
+        </if>
+        <if test=" map.cardHolder != null" >
+         and c.card_holder = #{map.cardHolder}
+        </if>
+        <if test=" map.bankCode != null" >
+         and c.bank_code = #{map.bankCode}
+        </if>
+        <if test=" map.bankProvince != null" >
+         and c.bank_province = #{map.bankProvince}
+        </if>
+        <if test=" map.bankCity != null" >
+         and c.bank_city = #{map.bankCity}
+        </if>
+        <if test=" map.bankDistrict != null" >
+         and c.bank_district = #{map.bankDistrict}
+        </if>
+        <if test=" map.branchName != null" >
+         and c.branch_name = #{map.branchName}
+        </if>
+        <if test=" map.subBranchName != null" >
+         and c.sub_branch_name = #{map.subBranchName}
+        </if>
+        <if test=" map.isDefault != null" >
+         and c.is_default = #{map.isDefault}
+        </if>
+        <if test=" map.createTime != null" >
+         and c.create_time = #{map.createTime}
+        </if>
+        <if test=" map.updateTime != null" >
+         and c.update_time = #{map.updateTime}
+        </if>
+        <if test=" map.delFlag != null" >
+         and c.del_flag = #{map.delFlag}
+        </if>
+        <if test=" map.remarks != null" >
+         and c.remarks = #{map.remarks}
+        </if>
+        <if test=" map.isSecurity != null" >
+         and c.is_Security = #{map.isSecurity}
+        </if>
+        <if test=" map.bankMobile != null" >
+         and c.bank_mobile = #{map.bankMobile}
+        </if>
+        <if test=" map.cardType != null" >
+         and c.card_type = #{map.cardType}
+        </if>
+      </where>
+    </if>
+    order by c.id desc
+    LIMIT ${map.startRow}, ${map.pageSize}
+  </select>
+  <select id="getMemberBankCardQuantityByMemberId" resultType="Long">
+  	select count(*) from uc_member_bank_card where member_id = #{memberId}
+  </select>
+  
+  <!--获取默认银行卡，如果没有默认获取第一张-->
+  <select id="getDefaultBankCardByMemberId" resultMap="BaseResultMap">
+  	select b.simple_name, <include refid="Base_Column_List" /> from uc_member_bank_card 
+  	LEFT JOIN (select t.simple_name, t.code from bsc_bank as t) as b ON  bank_code = b.code
+  	where member_id = #{memberId} and del_flag =1 order by  create_time desc  LIMIT 1
+  </select>
+  <!-- 获取所有用户的快捷支付卡-->
+  <select id="selectAllQuickPayBankCard" resultMap="BaseResultMap">
+    SELECT   <include refid="Base_Column_List" />  FROM  uc_member_bank_card WHERE member_id = #{memberId}  AND card_Type = 2 and  del_flag =1 order by  create_time desc 
+  </select>
+
+  <!-- 获得用户安全快捷支付卡信息-->
+  <select id="querySecurityBankCard" resultMap="BaseResultMap">
+    SELECT   <include refid="Base_Column_List" />  FROM  uc_member_bank_card WHERE member_id = #{memberId}  AND card_Type = 2 and is_security = 1 and  del_flag =1 order by  create_time desc 
+  </select>
+  
+  <!-- 获取用户非安全卡的银行卡-->
+  <select id="selectNonSecurityBankCard" resultMap="BaseResultMap">
+    SELECT   <include refid="Base_Column_List" />  FROM  uc_member_bank_card WHERE member_id = #{memberId} and is_security = 0  and  del_flag =1
+    AND ((card_Type=2 and locate('*', card_number) > 0) or locate('*', card_number) = 0) order by  card_Type desc,create_time desc 
+  </select>
+
+  <!-- 获取用户银行卡-->
+  <select id="getMemberBankCardById" resultMap="BaseResultMap">
+    SELECT   <include refid="Base_Column_List" />  FROM  uc_member_bank_card WHERE member_id = #{memberId} and id = #{id} and  del_flag =1 
+  </select>
+  
+  <select id="queryMemberCardCount" resultType="java.lang.Integer" >
+    select 
+	    count(1)
+    from uc_member_bank_card as c
+    LEFT JOIN bsc_bank as bk on bk.code = c.bank_code and bk.status = 1
+    <if test=" map != null" >
+    	<if test="map.trueName != null">
+    		INNER JOIN uc_member as m on m.id = c.member_id and m.true_name = #{map.trueName}
+    	</if>
+    	<if test="map.trueName == null">
+    		LEFT JOIN uc_member as m on m.id = c.member_id
+    	</if> 
+      <where >
+      	c.del_flag = 1
+        <if test=" map.id != null" >
+         and c.id = #{map.id}
+        </if>
+        <if test=" map.memberId != null" >
+         and c.member_id = #{map.memberId}
+        </if>
+        <if test=" map.cardNumber != null" >
+         and c.card_number = #{map.cardNumber}
+        </if>
+        <if test=" map.cardHolder != null" >
+         and c.card_holder = #{map.cardHolder}
+        </if>
+        <if test=" map.bankCode != null" >
+         and c.bank_code = #{map.bankCode}
+        </if>
+        <if test=" map.bankProvince != null" >
+         and c.bank_province = #{map.bankProvince}
+        </if>
+        <if test=" map.bankCity != null" >
+         and c.bank_city = #{map.bankCity}
+        </if>
+        <if test=" map.bankDistrict != null" >
+         and c.bank_district = #{map.bankDistrict}
+        </if>
+        <if test=" map.branchName != null" >
+         and c.branch_name = #{map.branchName}
+        </if>
+        <if test=" map.subBranchName != null" >
+         and c.sub_branch_name = #{map.subBranchName}
+        </if>
+        <if test=" map.isDefault != null" >
+         and c.is_default = #{map.isDefault}
+        </if>
+        <if test=" map.createTime != null" >
+         and c.create_time = #{map.createTime}
+        </if>
+        <if test=" map.updateTime != null" >
+         and c.update_time = #{map.updateTime}
+        </if>
+        <if test=" map.delFlag != null" >
+         and c.del_flag = #{map.delFlag}
+        </if>
+        <if test=" map.remarks != null" >
+         and c.remarks = #{map.remarks}
+        </if>
+        <if test=" map.isSecurity != null" >
+         and c.is_Security = #{map.isSecurity}
+        </if>
+        <if test=" map.bankMobile != null" >
+         and c.bank_mobile = #{map.bankMobile}
+        </if>
+        <if test=" map.cardType != null" >
+         and c.card_type = #{map.cardType}
+        </if>
+      </where>
+    </if>
+  </select>
+  
+  <!-- 根据外部sourceId查询会员银行卡 -->
+  <select id="getMemberCardByOuterSource" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" /> 
+    from uc_member_bank_card
+    where member_id=#{memberId} and del_flag=1 and outer_source_id=#{outerSourceId}
+  </select>
+  
+</mapper>

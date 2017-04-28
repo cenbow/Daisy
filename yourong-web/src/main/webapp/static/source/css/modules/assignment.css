@@ -1,0 +1,24 @@
+/*项目列表页增加转让入口*/
+.u-goto {
+  position: absolute;
+  right: 0;
+  bottom: 12px;
+  background: #e33f4a;
+  font-size: 12px;
+  color: #fff;
+  height: 30px;
+  line-height: 30px;
+  width: 130px;
+  cursor: pointer;
+  border-radius: 15px;
+  font-weight: bold;
+  border: 1px solid #fff;
+}
+a.u-goto:link {
+  color: #fff;
+}
+a.u-goto:hover {
+  text-decoration: none;
+  color: #d74148;
+  background: #fff;
+}

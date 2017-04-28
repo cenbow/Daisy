@@ -1,0 +1,276 @@
+#parse('/common/common.vm')
+#set($css_url=["$root_css_url/post/payUpgrade.css"])
+#set($js_url=["/static/lib/js/jq/jquery-1.11.1.min.js","$root_js_url/post/payUpgrade.js"])
+
+<div class="g-bd g-bd110 f-mh500 f-cf">
+    <div class="u-hd-bg"></div>
+    <div class="m-pay-body">
+        <div class="g-pay-wrap">
+            <ul id="conTentNavList">
+                <li class="u-by-cx">
+                    <div class="m-pu-content">
+                        <h3 class="u-art-tt">有融网携手新浪支付，支付安全再升级</h3>
+                        <p>为保障用户资产安全，积极配合中国人民银行的最新监管要求，有融网携手新浪支付打造的全新升级版支付方式正式上线啦！<br/>
+                        根据中国人民银行发布的《非银行支付机构网络支付业务管理办法》（第43号）要求：“用户的每笔真实交易都需要本人授权”。<br/>
+                        新浪支付采取支付密码确认的方式，代表本人的授权。<br/>
+                        <strong class="u-fs">用户需登录有融网或APP，完成支付密码的设置后，方可投资、充值、提现。</strong>
+                        </p>
+                    </div>
+                </li>
+                <li class="u-by-cx">
+                    <div class="m-pu-content">
+                        <h3 class="u-art-tt">升级优势</h3>
+                        <strong class="u-fs">
+                            <i class="u-ug-advantage u-ug-advantage1"></i>
+                            账户更安全
+                        </strong>
+                        <p class="z-mb13">投资、充值、提现等账户资金出入，需要用户本人进行支付密码的确认。</p>
+                        <strong class="u-fs u-fs-rule">
+                            <i class="u-ug-advantage u-ug-advantage2"></i>
+                            支付更合规
+                        </strong>
+                        <p>新浪支付隶属新浪旗下，已获得中华人民共和国支付业务许可证、中国支付清算协会会员证、基金销售支付结算牌照等托管资质。<br/>
+                        有融网携手新浪支付，紧跟监管要求，打造全新升级版支付方式，全力守护用户资产安全。
+                        </p>
+                    </div>
+                </li>
+                <li class="u-by-cx">
+                    <div class="m-pu-content">
+                        <h3 class="u-art-tt">支付升级后投资、充值、提现流程有何变化？</h3>
+                        <p class="u-pm"><strong class="u-fs">用户在投资、充值、提现时，均会跳转至新浪支付平台，进行支付密码的确认</strong>（已开通委托支付功能的情况除外）。</p>
+                        <div class="m-subc-process">
+                            <div class="g-subc-left">
+                                <ul class="m-flexible-wrap">
+                                    <li class="u-menu">
+                                        <ul class="m-flexible-wrap">
+                                            <li class="u-menu-btn">
+                                                <a href="javascript:;" class="u-menu-hd z-current">投资</a>
+                                            </li>
+                                            <li class="u-menu-dropdown">
+                                                <ul class="m-flexible-wrap">
+                                                    <li data-target="payPage1" class="z-current">已开通委托支付</li>
+                                                    <li data-target="payPage2">未开通委托支付</li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="u-menu">
+                                        <ul class="m-flexible-wrap">
+                                            <li class="u-menu-btn" data-target="payPage3">
+                                                <a href="javascript:;" class="u-menu-hd">充值</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="u-menu">
+                                        <ul class="m-flexible-wrap">
+                                            <li class="u-menu-btn" data-target="payPage4">
+                                                <a href="javascript:;" class="u-menu-hd">提现</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="g-subc-right">
+                                <div class="m-subc-wrap z-ds" id="payPage1">
+                                    <div class="m-step-hd">
+                                        <ul class="m-step-contc">
+                                            <li class="u-step-item u-step-item1 z-ds">
+                                                <div class="u-step-btn u-step-btn1"></div>
+                                                <div class="u-step-btn u-step-btn2"></div>
+                                                <div class="u-step-btn u-step-btn3"></div>
+                                                <div class="u-step-btn u-step-btn4"></div>
+                                            </li>
+                                            <li class="u-step-item u-step-item2">
+                                                <div class="u-step-btn u-step-btn1"></div>
+                                                <div class="u-step-btn u-step-btn2"></div>
+                                                <div class="u-step-btn u-step-btn3"></div>
+                                                <div class="u-step-btn u-step-btn4"></div>
+                                            </li>
+                                            <li class="u-step-item u-step-item3">
+                                                <div class="u-step-btn u-step-btn1"></div>
+                                                <div class="u-step-btn u-step-btn2"></div>
+                                                <div class="u-step-btn u-step-btn3"></div>
+                                                <div class="u-step-btn u-step-btn4"></div>
+                                            </li>
+                                            <li class="u-step-item u-step-item4">
+                                                <div class="u-step-btn u-step-btn1"></div>
+                                                <div class="u-step-btn u-step-btn2"></div>
+                                                <div class="u-step-btn u-step-btn3"></div>
+                                                <div class="u-step-btn u-step-btn4"></div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <ul class="u-carousel-main" id="carouselMain">
+                                        <li class="u-itme-bg u-itme-bg1"></li>
+                                        <li class="u-itme-bg u-itme-bg2 z-dn"></li>
+                                        <li class="u-itme-bg u-itme-bg3 z-dn"></li>
+                                        <li class="u-itme-bg u-itme-bg4 z-dn"></li>
+                                    </ul>
+                                    <ol class="u-carousel-foot" id="carouselFoot">
+                                        <li class="z-current"><span class="f-sel"></span></li>
+                                        <li><span class="f-sel"></span></li>
+                                        <li><span class="f-sel"></span></li>
+                                        <li><span class="f-sel"></span></li>
+                                    </ol>
+                                </div>
+                                <div class="m-subc-wrap" id="payPage2">
+                                    <div class="m-step-hd">
+                                        <ul class="m-step-contc">
+                                            <li class="u-step-item u-step-item1 z-ds">
+                                                <div class="u-step-btn u-step-btn1"></div>
+                                                <div class="u-step-btn u-step-btn2"></div>
+                                                <div class="u-step-btn u-step-btn3"></div>
+                                                <div class="u-step-btn u-step-btn4"></div>
+                                            </li>
+                                            <li class="u-step-item u-step-item2">
+                                                <div class="u-step-btn u-step-btn1"></div>
+                                                <div class="u-step-btn u-step-btn2"></div>
+                                                <div class="u-step-btn u-step-btn3"></div>
+                                                <div class="u-step-btn u-step-btn4"></div>
+                                            </li>
+                                            <li class="u-step-item u-step-item3">
+                                                <div class="u-step-btn u-step-btn1"></div>
+                                                <div class="u-step-btn u-step-btn2"></div>
+                                                <div class="u-step-btn u-step-btn3"></div>
+                                                <div class="u-step-btn u-step-btn4"></div>
+                                            </li>
+                                            <li class="u-step-item u-step-item4">
+                                                <div class="u-step-btn u-step-btn1"></div>
+                                                <div class="u-step-btn u-step-btn2"></div>
+                                                <div class="u-step-btn u-step-btn3"></div>
+                                                <div class="u-step-btn u-step-btn4"></div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <ul class="u-carousel-main" id="carouselMain">
+                                        <li class="u-itme-bg u-itme-bg5"></li>
+                                        <li class="u-itme-bg u-itme-bg6 z-dn"></li>
+                                        <li class="u-itme-bg u-itme-bg7 z-dn"></li>
+                                        <li class="u-itme-bg u-itme-bg8 z-dn"></li>
+                                    </ul>
+                                    <ol class="u-carousel-foot" id="carouselFoot">
+                                        <li class="z-current"><span class="f-sel"></span></li>
+                                        <li><span class="f-sel"></span></li>
+                                        <li><span class="f-sel"></span></li>
+                                        <li><span class="f-sel"></span></li>
+                                    </ol>
+                                </div>
+                                <div class="m-subc-wrap" id="payPage3">
+                                    <div class="m-step-hd">
+                                        <ul class="m-step-contc">
+                                            <li class="u-step-item u-step-item5 z-ds">
+                                                <div class="u-step-btn u-step-btn1"></div>
+                                                <div class="u-step-btn u-step-btn2"></div>
+                                                <div class="u-step-btn u-step-btn3"></div>
+                                            </li>
+                                            <li class="u-step-item u-step-item6">
+                                                <div class="u-step-btn u-step-btn1"></div>
+                                                <div class="u-step-btn u-step-btn2"></div>
+                                                <div class="u-step-btn u-step-btn3"></div>
+                                            </li>
+                                            <li class="u-step-item u-step-item7">
+                                                <div class="u-step-btn u-step-btn1"></div>
+                                                <div class="u-step-btn u-step-btn2"></div>
+                                                <div class="u-step-btn u-step-btn3"></div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <ul class="u-carousel-main" id="carouselMain">
+                                        <li class="u-itme-bg u-itme-bg9"></li>
+                                        <li class="u-itme-bg u-itme-bg10 z-dn"></li>
+                                        <li class="u-itme-bg u-itme-bg11 z-dn"></li>
+                                    </ul>
+                                    <ol class="u-carousel-foot" id="carouselFoot">
+                                        <li class="z-current"><span class="f-sel"></span></li>
+                                        <li><span class="f-sel"></span></li>
+                                        <li><span class="f-sel"></span></li>
+                                    </ol>
+                                </div>
+                                <div class="m-subc-wrap" id="payPage4">
+                                    <div class="m-step-hd">
+                                        <ul class="m-step-contc">
+                                            <li class="u-step-item u-step-item8 z-ds">
+                                                <div class="u-step-btn u-step-btn1"></div>
+                                                <div class="u-step-btn u-step-btn2"></div>
+                                                <div class="u-step-btn u-step-btn3"></div>
+                                            </li>
+                                            <li class="u-step-item u-step-item9">
+                                                <div class="u-step-btn u-step-btn1"></div>
+                                                <div class="u-step-btn u-step-btn2"></div>
+                                                <div class="u-step-btn u-step-btn3"></div>
+                                            </li>
+                                            <li class="u-step-item u-step-item10">
+                                                <div class="u-step-btn u-step-btn1"></div>
+                                                <div class="u-step-btn u-step-btn2"></div>
+                                                <div class="u-step-btn u-step-btn3"></div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <ul class="u-carousel-main" id="carouselMain">
+                                        <li class="u-itme-bg u-itme-bg12"></li>
+                                        <li class="u-itme-bg u-itme-bg13 z-dn"></li>
+                                        <li class="u-itme-bg u-itme-bg14 z-dn"></li>
+                                    </ul>
+                                    <ol class="u-carousel-foot" id="carouselFoot">
+                                        <li class="z-current"><span class="f-sel"></span></li>
+                                        <li><span class="f-sel"></span></li>
+                                        <li><span class="f-sel"></span></li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="u-by-cx">
+                    <div class="m-pu-content">
+                        <h3 class="u-art-tt">常见问题</h3>
+                        <strong class="u-fs">1、支付密码是什么？必须设置吗？</strong>
+                        <p>支付密码是不同于登录密码的资金安全保护机制，特别用于保护用户的资金安全。</p>
+                        <p class="z-mb10">每位用户需设置支付密码后，方可进行投资、充值、提现等操作。</p>
+                        <strong class="u-fs">2、如何修改或找回支付密码？</strong>
+                        <p class="z-mb10">支付密码的修改或找回，请前往“我的账户”，点击“修改”或“找回”按钮后,再跳转至新浪支付平台进行操作。</p>
+                        <strong class="u-fs">3、委托支付是什么？</strong>
+                        <p>开通委托支付功能，即代表用户授权平台，当投资时自动从用户的新浪支付存钱罐账户扣除相应资金，无需输入支付密码，投资一步到位。</p>
+                    </div>
+                </li>
+                <li class="u-by-cx">
+                    <div class="m-pu-content">
+                        <h3 class="u-art-tt">如何设置</h3>
+                        <strong class="u-fs">支付密码与委托支付功能的设置及开通方式如下：</strong><br/>
+                        <strong class="u-fs">电脑登录</strong>
+                        <p class="z-mb10">进入“我的账户”<em class="u-arrow"></em>“我的存钱罐”<em class="u-arrow"></em>“支付密码”/“委托支付”，即可设置。<a href="../member/paymentPassword" class="u-set-btn">立即设置>></a></p>
+                        <strong class="u-fs">手机APP登录</strong>
+                        <p class="z-mb10">进入“我的账户”<em class="u-arrow"></em>点击头像<em class="u-arrow"></em>“账号与安全”<em class="u-arrow"></em>“支付密码”/“委托支付”，即可设置。</p>
+                        <strong class="u-fs">手机浏览器登录</strong>
+                        <p class="z-mb10">进入“我的账户”<em class="u-arrow"></em>“安全认证”<em class="u-arrow"></em>“支付密码”/“委托支付”，即可设置。</p>
+                        <em class="u-tip">温馨提示：完成支付密码的设置后，方可进行委托支付功能的开通。</em>
+                    </div>
+                </li>
+            </ul>
+            <div class="m-fr-nav" id="frNav">
+                <span class="u-icon-robot"></span>
+                <ul id="slideRightNavLsit">
+                    <li class="u-nav-item z-current">
+                        <span><i class="u-nav-icon u-nav-icon1"></i>安全升级</span>
+                    </li>
+                    <li class="u-nav-item">
+                        <span><i class="u-nav-icon u-nav-icon2"></i>升级优势</span>
+                    </li>
+                    <li class="u-nav-item">
+                        <span><i class="u-nav-icon u-nav-icon3"></i>流程体验</span>
+                    </li>
+                    <li class="u-nav-item">
+                        <span><i class="u-nav-icon u-nav-icon4"></i>常见问题</span>
+                    </li>
+                    <li class="u-nav-item">
+                        <span><i class="u-nav-icon u-nav-icon5"></i>如何设置</span>
+                    </li>
+                    <li class="u-nav-item">
+                        <span><i class="u-nav-icon u-nav-icon6"></i>Top</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+

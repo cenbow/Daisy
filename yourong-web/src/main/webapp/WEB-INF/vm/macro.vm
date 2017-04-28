@@ -1,0 +1,374 @@
+##CSRF验证
+#macro( CSRFToken $id)
+	#if(!$id || $id == "")
+		#set($id="xToken")
+	#end
+##<input type="hidden" id="$id" name="xToken" value="$tokenHelper.generateRequestAndAddToken($request)"/>
+<input type="hidden" id="$id" name="xToken" value="$csrfTool.getToken($request)"/>
+#end
+##防止重复提交
+#macro( onceToken )
+<input type="hidden" id="onceToken" name="onceToken" value="$tokenHelper.generateRequestAndAddToken($request)"/>
+#end
+
+##分页插件，整页刷新，SEO友好。缺点，需要手动组装请求条件
+#macro(pagePlugin $page $_searchParam)
+## 总页数
+	#set($_totalPageCount =  $page.getTotalPageCount() )
+##当前页的条数
+	#set($__pageSize =  $page.getiDisplayLength() )
+##当前页
+	#set($_pageNo =  $page.getPageNo())
+	#set($_minPager = $page.getMinPager())
+	#set($_maxPager = $page.getMaxPager())
+	#if($_totalPageCount > 1)
+    <div class="m-pagenav f-tar">
+		#if($_pageNo!=1)
+            <a href="${root_url}${_searchParam}-1.html" class="u-pnav-prev u-circle-12">首页</a>
+		#end
+		#if($_pageNo <=1 )
+		#else
+			#set($test_page = $_pageNo - 1)
+			<a href="${root_url}${_searchParam}-${test_page}.html" class="u-pnav-prev u-circle-12">上一页</a>
+		#end
+
+		#foreach ($_idx in [$_minPager .. $_maxPager])
+			#if($_pageNo == $_idx)
+                <span class="u-pnav-crt u-circle-12">${_idx}</span>
+			#else
+                <a href="${root_url}${_searchParam}-${_idx}.html" class="u-pnav-link u-circle-12">${_idx}</a>
+			#end
+		#end
+
+		#if($_pageNo ==$_totalPageCount)
+		#else
+			#set($_next_page = $_pageNo+1)
+            <a href="${root_url}${_searchParam}-$!{_next_page}.html" class="u-pnav-prev u-circle-12">下一页</a>
+		#end
+		#if($_pageNo!=$_totalPageCount)
+            <a href="${root_url}${_searchParam}-${_totalPageCount}.html" class="u-pnav-prev u-circle-12">尾页</a>
+		#end
+    </div>
+	#end
+#end
+
+
+
+
+##分页插件，ajax请求
+##$page 分页对象
+##pagingId 分页Id,该参数是针对一个页面有多个分布对象时而设计
+#macro(ajaxPagePlugin $page $pagingId)
+## 总页数
+	#set($_totalPageCount =  $page.getTotalPageCount() )
+##当前页的条数
+	#set($__pageSize =  $page.getiDisplayLength() )
+##当前页
+	#set($_pageNo =  $page.getPageNo())
+	#set($_minPager = $page.getMinPager())
+	#set($_maxPager = $page.getMaxPager())
+	#if($_totalPageCount && $_totalPageCount > 1)
+    <div class="m-pagenav f-tac">
+		#if($_pageNo!=1)
+            <a href="javascript:void(0)" onclick="gotoPage$!{pagingId}(1)" class="u-pnav-prev u-circle-12">首页</a>
+		#end
+		#if($_pageNo <=1 )
+            <span class="u-pnav-prev u-circle-12">上一页</span>
+		#else
+			#set($test_page = $_pageNo - 1)
+            <a href="javascript:void(0)" onclick="gotoPage$!{pagingId}($test_page)" class="u-pnav-prev u-circle-12">上一页</a>
+		#end
+
+		#foreach ($_idx in [$_minPager .. $_maxPager])
+			#if($_pageNo == $_idx)
+                <span class="u-pnav-crt u-circle-12">${_idx}</span>
+			#else
+                <a href="javascript:void(0)" onclick="gotoPage$!{pagingId}(${_idx})" class="u-pnav-link u-circle-12">${_idx}</a>
+			#end
+		#end
+
+		#if($_pageNo ==$_totalPageCount)
+            <span class="u-pnav-prev u-circle-12">下一页</span>
+		#else
+			#set($_next_page = $_pageNo+1)
+            <a href="javascript:void(0)" onclick="gotoPage$!{pagingId}($_next_page)" class="u-pnav-prev u-circle-12">下一页</a>
+		#end
+		#if($_pageNo!=$_totalPageCount)
+            <a href="javascript:void(0)" onclick="gotoPage$!{pagingId}($_totalPageCount)" class="u-pnav-prev u-circle-12">尾页</a>
+		#end
+    </div>
+    <input type="hidden" id="PrmPageNo$!{pagingId}" name="currentPage" value="$!{_pageNo}">
+    <script type="text/javascript" defer>
+        function gotoPage$!{pagingId}(pageNo) {
+            if(isNaN(pageNo) || pageNo == "undefined" || pageNo == "" || pageNo == null){
+                alert("页码，请填写数字！");
+                return false;
+            }
+            $("#PrmPageNo$!{pagingId}").val(pageNo);
+            try{
+                fnOnGoToPage$!{pagingId}(pageNo);
+                window.location.hash="#";
+            }catch(e){
+            }
+            return false;
+        }
+    </script>
+	#end
+#end
+
+
+
+##数据字典select box#
+#macro (dictSelect $name $list  $hint)
+
+<select name="$name">
+    <option value="">$hint</option>
+
+	#foreach ($_dict in $list)
+        <option value="$_dict.value" #if ($_dict.value == $_selected) selected #end>$_dict.label</option>
+	#end
+
+</select>
+#end
+
+
+#macro (getProjectGuarantyType $guarantyType $projectId)
+	${projectUtils.getProjectTypeName($guarantyType,"guaranty_type","车有融",$projectId)}
+#end
+
+##获取数据字典标签名称
+#macro(getDictLab $groupName $value $defaultLab)
+	${sysServiceUtil.getDictLabelByKey($value,$groupName,$defaultLab)}
+#end
+
+
+
+###会员头像
+#macro (getMemberAvatar $id $type)
+	#if(!$type)
+		#set($type = "default")
+	#end
+	#if(!$id || $id == "-1")
+		#set($imgPath = "$!{stringUtil.getAvatarPath($servletUtil.getMemberAvatar(), $type)}")
+	#else
+		#set($imgPath = "$!{stringUtil.getAvatarPath($servletUtil.getMemberAvatarById($id), $type)}")
+	#end
+	#if($imgPath == "")
+		${root_url}/static/img/member/$!{stringUtil.getAvatarPath("avatar.png",$type)}
+	#else
+		$!{aliyun_url}/$imgPath
+	#end
+#end
+
+###会员头像
+#macro (getMemberAvatar35 $id $type)
+	#if(!$type)
+		#set($type = "default")
+	#end
+	#if(!$id || $id == "-1")
+		#set($imgPath = "$!{stringUtil.getAvatarPath($servletUtil.getMemberAvatar(), $type)}")
+	#else
+		#set($imgPath = "$!{stringUtil.getAvatarPath($servletUtil.getMemberAvatarById($id), $type)}")
+	#end
+	#if($imgPath == "")
+		${root_url}/static/img/member/$!{stringUtil.getAvatarPath("avatar.png","35x35")}
+	#else
+		$!{aliyun_url}/$imgPath
+	#end
+#end
+
+###获得项目图像
+#macro (getProjectImagePath $id $type)
+	#if(!$type)
+		#set($type = "default")
+	#end
+	#set($imgPath = "$!{stringUtil.getFilePath($sysServiceUtil.getProjectImagePath($id), $type)}")
+	#if($imgPath == "")
+		${root_url}/static/img/common/default-product.jpg
+	#else
+		$!{aliyun_url}/$imgPath
+	#end
+#end
+
+###获得项目缩略图
+#macro (getProjectThumbnail $thumbnail)
+	#if(!$thumbnail || $thumbnail == "")
+		${root_url}/static/img/common/default-product.jpg
+	#else
+		$!{aliyun_url}/$thumbnail
+	#end
+#end
+
+###获得图像
+#macro (getImagePath $path $type)
+	#if(!$type)
+		#set($type ="default")
+	#end
+	$!{aliyun_url}/$!{stringUtil.getFilePath($path, $type)}
+#end
+
+
+##地区插件
+##$areaCode地区CODE
+##level级别 1:省份 2:省份、市 3:省份、市、区
+##暂不支持一个页面多次引用
+#macro ( regionPlugin $areaCode $level $areaId)
+	#if(!$areaCode || $areaCode == "")
+		#set($areaCode = 1)
+	#end
+	#if(!$level || $level == "" || $level >=3)
+		#set($level = 3)
+	#end
+	#if(!$areaId || $areaId == "")
+		#set($areaId = "region")
+	#end
+	#set($parentIds = ${sysServiceUtil.getParentIdsByCode("$!areaCode")})
+	#set($areaName = ["area-province", "area-city", "area-area"])
+	#set($defaultName = ["选择省", "选择市", "选择区"])
+<script type="text/javascript">
+    if(typeof(regionArray) === "undefined"){
+        regionArray = new Array();
+    }
+    var ${areaId}loadRegionArray = new Array();
+		#foreach($pid in $parentIds)
+			${areaId}loadRegionArray.push($pid);
+		#end
+    var arrayLength = ${areaId}loadRegionArray.length-1;
+    if(arrayLength >= $level){
+        for(len=$level;len<arrayLength;len++){
+				${areaId}loadRegionArray.splice(len);
+        }
+    }
+
+    function ${areaId}LoadAreaByParentIdCallback(data){
+        loadAreaByParentIdCallback(data, '$areaId',${areaId}LoadAreaByParentIdCallback);
+    }
+    var regionData ={
+        array : ${areaId}loadRegionArray,
+        callBack : ${areaId}LoadAreaByParentIdCallback
+    }
+    regionArray.push(regionData);
+</script>
+<div class="u-pro-input" >
+	#foreach($num in [1 ..$level ])
+		#set($areaSelect="area-select")
+	###set($areaSelect=$areaId)
+		#set($areaType=$num+1)
+		#if($velocityCount == $level || $level == 1)
+			#set($areaSelect="")
+		#end
+        <div class="u-selector u-scroll-selector j-selector f-round f-w150 f-tal $!{areaSelect}" data-id="${areaId}" id="${areaId}area_data_$areaType" value="$areaType">
+			#set($n = $num - 1)
+            <button>${defaultName.get($n)}</button>
+            <i></i>
+            <ul class="f-round itemData" id="${areaId}area_select_list_$areaType"></ul>
+            <input type="hidden" class="j-selected-ipt areaValue" name="${areaName.get($n)}" id="${areaId}-${areaName.get($n)}"/>
+        </div>
+	#end
+</div>
+#end
+
+#macro (datePlugin)
+	#set($dateName = ["dateYear", "dateMonth", "dateDay"])
+	#set($dateText = ["年", "月", "日"])
+<div class="u-pro-input">
+	#foreach($num in [0 ..2])
+		#set($name=${dateName.get($num)})
+        <div class="u-selector u-scroll-selector j-selector f-round f-w50 f-tar date-select">
+            <button id="${name}Btn">请选择</button>
+            <i></i>
+            <ul class="f-round" id="${name}List"></ul>
+            <input type="hidden" class="j-selected-ipt date" name="${name}" id="${name}"/>
+        </div>
+		$dateText.get($num)&nbsp;&nbsp;
+	#end
+    <input type="hidden" name="birthday" id="birthday"/>
+    <div id="dateErrorMsg" style="display:inline;color:#d74147"></div>
+</div>
+#end
+
+##不常用银行下拉列表
+#macro(rechargeBandCode)
+	#if( ${sysServiceUtil.isDev()})
+    <li value="TESTBANK">TESTBANK</li>
+	#end
+	#foreach($rechargeBankCode in ${sysServiceUtil.getAllRechargeBankCode()})
+		#if($rechargeBankCode.type == 2)
+			#if( ${sysServiceUtil.isDev()})
+            <li value="TESTBANK">$rechargeBankCode.name</li>
+			#else
+            <li value="$rechargeBankCode">$rechargeBankCode.name</li>
+			#end
+		#end
+	#end
+#end
+
+##常用银行下拉列表
+#macro(usedRechargeBandCode)
+	#foreach($rechargeBankCode in ${sysServiceUtil.getAllRechargeBankCode()})
+		#if($rechargeBankCode.type == 1)
+			#if( ${sysServiceUtil.isDev()})
+            <li value="TESTBANK">
+                <span class="u-circle-40" title="$rechargeBankCode.name"><i class="u-bankicon u-bankicon-$rechargeBankCode"></i></span>
+                <em>$rechargeBankCode.name</em>
+            </li>
+			#else
+            <li value="$rechargeBankCode">
+                <span class="u-circle-40" title="$rechargeBankCode.name"><i class="u-bankicon u-bankicon-$rechargeBankCode"></i></span>
+                <em>$rechargeBankCode.name</em>
+            </li>
+			#end
+
+		#end
+	#end
+#end
+
+##获得会员昵称
+#macro (getMemberUserName $id)
+	$!{servletUtil.getMemberUserName($id)}
+#end
+
+
+
+##banner动态获取
+##int type 0-pc 1-app, String areaCode,Integer rowStart, Integer rowEnd
+#macro (buildBannerByAreaSign $type $areaCode $rowStart $rowEnd)
+	#set($bannerList = $servletUtil.getBannerByAreaSign($type, "$areaCode", $rowStart, $rowEnd))
+<ul>
+	#if($!{bannerList.resultList} && $!{bannerList.resultList.size()}>0)
+		#foreach($!banner in $!{bannerList.resultList} )
+            <li
+				#if($!{bannerList.resultList} && $!{bannerList.resultList.size()}>1)
+					#if($!{velocityCount}==1)
+                            class="z-current"
+					#end
+				#end
+            >
+
+                <a	 #if($stringUtil.isNotBlank(${banner.href}))
+                        href="$!{banner.href}"
+					#if($banner.targetBlank==1)
+                        target="_blank"
+					#end
+				#end>
+                    <img src="$aliyun_url$!{banner.image}" title="$!{banner.name}" alt="">
+
+                </a>
+
+            </li>
+		#end
+	#end
+</ul>
+<ol >
+	#if($!{bannerList.resultList} && $!{bannerList.resultList.size()}>1)
+		#foreach($!banner in $!{bannerList.resultList})
+			#if($!{velocityCount}==1)
+            <li class="z-current">
+			#else
+            <li>
+			#end
+            ●</li>
+		#end
+	#end
+</ol>
+#end

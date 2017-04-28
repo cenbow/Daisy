@@ -1,0 +1,80 @@
+<!--
+##移动端登录页
+#parse('/common/common.vm')
+#set($layout = "/layout/default.vm")
+-->
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <title>登录 - 有融网</title>
+    <link rel="stylesheet" href="$root_css_url/modules/mLogin.css?v=${sysServiceUtil.getStaticResourceVersion()}" />
+</head>
+<body>
+    <header id="g-hd" class="u-mobile-head">
+        <h1>绑定微信账号-有融网</h1>
+    </header>
+    <section id="g-bd">
+	<form data-action="$root_url/security/logined"  method="POST" class="m-reg-form j-form-xpost j-validform" data-page="login" id="j-reg-form">
+	    #CSRFToken('xToken')
+		<div class="u-tips-login #if("$!{openIdIsBind}" =="" )f-dn #end" id="j-login-error">
+		</div>
+		<div class="u-ipt-group">
+			<input type="text" name="username" id="j-cpn2" class="f-round f-ipt-w430 u-ipt-text u-ipt-str v-loginid" placeholder="请输入手机号或昵称" />
+		</div>
+		<div class="u-ipt-group">
+			<input type="password" name="password" datatype="s6-16" oncopy="return false;" onpaste="return false;" class="f-round u-ipt-text f-ipt-w430 v-pwd" placeholder="密码长度6-16位，至少包含数字和字母" />
+		</div>
+		
+		<input type="hidden" name="pngCode" id="j-pngcode"/>
+		<input type="hidden" name="openId" id="j-openId" value="" />
+		<input type="hidden" name="loginSource" value="0"/><br />
+		<button type="submit" id="j-login-submit" class="u-reg-btn">登录并绑定微信</button>
+		<div class="u-reg-tips"> 
+			没有账号？<a href="$root_url/security/mRegister" class="f-fc-gray j-weixin-url">注册</a>
+		</div>
+	</form>
+	<div class="m-input-vercode f-cf z-hide">
+		<input type="text" id="j-vercode2" nullmsg="请输入验证码" class="f-round u-ipt-text f-ipt-w430 z-hide" placeholder="验证码" />
+		<img src="" id="j-img-vercode2" alt="验证码" class="u-img-vercode u-img-vercode2" />
+		<span class="m-val-tips"> &nbsp; </span>
+	</div>
+        <div id="j-bind-success" class="u-bind-success f-dn">
+            <i class="u-icon-success"></i>&nbsp;&nbsp;恭喜您绑定成功！
+        </div>
+    </section>
+	<section id="j-bind-tips" class="m-bindTips-content">
+		<p>抱歉，您已绑定了有融网微信公众号！<br />如需绑定其他账号，请解绑后再操作。</p>
+		<span id="j-bind-return">返回</span>
+	</section>
+    <footer id="g-ft">
+        &copy;2015 浙江小融网络科技股份有限公司 版权所有<br />新浪支付全程提供账户托管和支付服务
+    </footer>
+  		<script type="text/javascript">
+			 var environment = {		
+
+				globalPath : '',
+				serverDate : '${dateUtil.getCurrentDate().getTime()}',
+				isBinding:'$!{openIdIsBind}'		
+
+			 };
+  		</script>
+    <script src="/static/lib/js/jq/jquery-1.11.1.min.js"></script>
+    <script src="/static/lib/js/validform.js"></script>
+ 		##<script src="$root_js_url/common.js"></script>
+        <script src="$root_js_url/modules/mLogin.js?v=${sysServiceUtil.getStaticResourceVersion()}"></script>
+<script>
+    if(!!environment.isBinding) {
+        $("#j-reg-form").remove();
+        $("#j-bind-tips").show();
+	}
+    $("#j-bind-return").on("click", function(){
+        if(typeof WeixinJSBridge!=="undefined"){
+            WeixinJSBridge.call('closeWindow');
+        }
+    });
+</script>
+</body>
+
+</html>

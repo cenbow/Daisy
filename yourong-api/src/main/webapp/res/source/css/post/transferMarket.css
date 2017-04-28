@@ -1,0 +1,162 @@
+@media screen and (min-width: 390px) {
+html {
+font-size: 15.5px;
+}
+}
+
+@media screen and (min-width: 360px) and (max-width: 389px) {
+
+html {
+font-size: 14px;
+}
+}
+
+@media screen and (max-width: 359px) {
+html {
+font-size: 12px;
+}
+}
+.u-transfer{
+  background: #f4f4f4;
+}
+
+.u-tt img {
+  display: block;
+  width: 100%;
+}
+
+.u-content-title{
+  width: 92%;
+  margin: 2.5rem auto 0;
+  border-top: 1px #d74148 solid;
+  position: relative;
+  /*overflow: hidden;*/
+  /*clear: both;*/
+}
+
+.u-content-title:last-child{
+  padding-bottom: 1rem;
+}
+
+.m-title{
+  width: 60%;
+  height: 2rem;
+  line-height: 2rem;
+  background: #d74148;
+  color: white;
+  border-radius: 10px;
+  margin: -1rem auto 0;
+  text-align: center;
+  font-weight: bold;
+}
+
+.m-content{
+  font-size: 1rem;
+  color: #777777;
+  margin-top: 1rem;
+}
+
+.m-top{
+  width: 60%;
+  text-align: center;
+  font-size: 1.17rem;
+  color: #db6166;
+  margin: 1rem auto 0;
+  font-weight: bold;
+}
+
+.m-middle{
+  display: inline-block;
+  width: 49%;
+  text-align: center;
+  margin-top: 1rem;
+  color: #555555;
+}
+.m-middle img{
+  width: 8.46rem;
+  margin-bottom: 0.5rem;
+}
+.m-middle p{
+  font-size: 1.17rem;
+}
+.m-icon{
+  padding-left: 2rem;
+  background: url("../../../img/post/transferMarket/circle.png") no-repeat;
+  background-size: 1.54rem 1.54rem;
+  vertical-align: middle;
+  height: 1.55rem;
+  line-height: 1.55rem;
+  margin-top: 1rem;
+  color: #d74148;
+  font-weight: bold;
+}
+.m-how{
+  width: 100%;
+  margin-top: 1rem;
+}
+.m-question{
+  width: 45px;
+  height: 45px;
+  border-radius: 5px;
+  background: #d74148;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  display: block;
+  margin: 1rem 0 0 84%;
+}
+.u-transfer-pop{
+  width: 92%;
+  margin: 0 auto;
+  background: white;
+  border-radius: 5px;
+  position: absolute;
+  left: 4%;
+  top: 27rem;
+  z-index: 200;
+}
+.u-transfer-pop .m-rule-top{
+  padding-left: 1.5rem;
+  background: url("../../../img/post/transferMarket/dialog.png") no-repeat;
+  background-size: 1.25rem 1.25rem;
+  height: 1.25rem;
+  margin: 0 auto 0.5rem;
+  line-height: 1.25rem;
+  color: #666666;
+  font-size: 1rem;
+  font-weight: bold;
+}
+.m-rule-main{
+  width: 92%;
+  font-size: 1rem;
+  color: #777777;
+  margin: 0 auto 1rem;
+}
+table{
+  width: 100%;
+  text-align: center;
+  color: white;
+  margin-top: 0.5rem;
+}
+table thead{
+  background: #e65b5e;
+}
+table tbody tr:nth-child(even){
+  background: #fe6f71;
+}
+table tbody tr:nth-child(odd){
+  background: #ff7d80;
+}
+.m-more{
+  color: #d74148;
+  font-weight: bold;
+  text-align: center;
+}
+.u-tranfer-close{
+  text-align: right;
+}
+.u-tranfer-close img{
+  width: 1.375rem;
+  margin-right: 1rem;
+  margin-top: 1rem;
+}

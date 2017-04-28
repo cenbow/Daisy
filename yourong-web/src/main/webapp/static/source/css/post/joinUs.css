@@ -1,0 +1,137 @@
+body {
+    background: #fff;
+}
+
+.g-about-wrap {
+    width: 990px;
+    margin: 0 auto;
+    clear: both;
+}
+
+.g-bd {
+    border-top: 1px solid #E9E9E9;
+}
+
+.u-head-nav a, .u-head-nav a:hover, .u-head-nav a:link, .u-head-nav a:visited,
+.u-head-nav a:active {
+    display: inline-block;
+    padding-right: 2.5rem;
+    color: #999;
+    font-size: 1.125rem;
+    line-height: 3.625rem;
+    text-decoration: none;
+}
+
+.u-head-nav a.z-selected {
+    color: #000;
+}
+
+.u-jobs {
+    height: 5.0625rem;
+    background: url(/static/img/post/newAbout/bar_red.png);
+}
+
+.u-join-us li {
+    position: relative;
+    top: 1rem;
+    line-height: 2.75rem;
+    color: #fff;
+    text-align: center;
+    font-size: 1rem;
+    margin-right: 2.5rem;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.u-join-us li.z-selected {
+    border-bottom: 2px solid #fff;
+}
+
+.m-jobs h1 {
+    font-size: 1.75rem;
+    font-weight: 200;
+    margin: 30px 0;
+}
+
+.m-jobs ul {
+    border-bottom: 1px solid #E9E9E9;
+}
+.m-jobs li {
+    position: relative;
+    border-top: 1px solid #E9E9E9;
+}
+
+.m-jobs li h2 {
+    line-height: 58px;
+    font-size: 1.125rem;
+    color: #333;
+    position: relative;
+    cursor: pointer;
+}
+
+.m-jobs li i {
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0.8125rem;
+    vertical-align: middle;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 50px;
+    width: 1.75rem;
+    font-size: 0.875rem;
+    line-height: 1.75rem;
+    color: #D74248;
+    border: 1px solid #E9E9E9;
+}
+
+.m-jobs li i.z-disabled {
+    font-size: 1.5rem;
+    color: #BCBCBC;
+}
+
+.m-jobs li .u-demand {
+    margin: 10px 0;
+    color: #333;
+    font-size: 16px;
+}
+
+/*适配1024、1152和1280*/
+@media screen and (max-width: 63.99em) {
+    html {
+        font-size: 80%;
+    }
+
+    body {
+        width: 1024px;
+        overflow: scroll;
+    }
+
+    .m-jobs li i {
+        top: 1.5rem;
+    }
+}
+
+@media screen and (min-width: 64em) and (max-width: 71.99em) {
+    html {
+        font-size: 80%;
+    }
+
+    .m-jobs li i {
+        top: 1.5rem;
+    }
+}
+
+@media screen and (min-width: 71.99em) and (max-width: 79.99em) {
+    html {
+        font-size: 90%;
+    }
+}
+
+@media screen and  (min-width: 80em) {
+
+}
+
+[v-cloak] {
+    display: none;
+}

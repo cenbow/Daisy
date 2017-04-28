@@ -1,0 +1,106 @@
+#set($layout = "/layout/iframe.vm")
+#parse("/uc/member/head.vm")
+<form role="form" class="form-horizontal" id="regidist_member_form" method="post">
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 手机号码</label>
+        <div class="col-sm-9">
+            <input id="form-field-1" class="col-xs-10 col-sm-5" type="text" name="mobile" placeholder=""  datatype="m" errormsg="手机号码格式不对！"  >
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 密码</label>
+        <div class="col-sm-9">
+            <input id="form-field-1" class="col-xs-10 col-sm-5" type="password" name="password" placeholder="" datatype="/^(?![^a-zA-Z]+$)(?!\D+$).{6,16}$/" errormsg="密码范围在6~16位之间,至少包含数字和字母">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 真实姓名</label>
+        <div class="col-sm-9">
+            <input id="form-field-1" class="col-xs-10 col-sm-5" type="text" name="trueName" placeholder="" datatype="*" nullmsg="真实姓名不能为空">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 身份证号码</label>
+        <div class="col-sm-9">
+            <input id="form-field-1" class="col-xs-10 col-sm-5" type="text" name="identityNumber" placeholder="" datatype="/(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/" nullmsg="身份证号码不能为空" errormsg="身份证号码格式错误">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">会员类型</label>
+        <div class="col-sm-3">
+            <select name="memberType" class="form-control" >
+                <option value="1">普通会员</option>
+                <option value="2">企业会员</option>
+                <option value="4">其他组织</option>
+            </select>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 婚姻状况</label>
+        <div class="col-sm-9">
+            #set($marriageList=$sysServiceUtil.getDictList("marriage"))
+			#foreach($marriage in $marriageList) 
+				<input type="radio" name="marriage" value="${marriage.value}"
+				#if("$!{velocityCount}" == "1")
+				 checked 
+				#end
+				/>${marriage.label} &nbsp;&nbsp;
+			#end
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 学历</label>
+        <div class="col-sm-9">
+            #dictSelect ("highEdu",${sysServiceUtil.getDictList('education')} ,"请选择")</td>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 户籍地</label>
+        <div class="col-sm-9">
+            #parse("/sys/sysArea/areaSelect.vm")
+        </div>
+    </div>
+     <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 具体身份信息</label> 
+        <div class="col-sm-9">
+            <input id="form-field-1" class="col-xs-10 col-sm-4" type="text" name="detailInfo" placeholder="例如：浙江XX公司老板" ignore="ignore" datatype="s0-20" errormsg="身份信息长度不能超过20个字">
+        </div>
+    </div>
+     <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">户口性质</label>
+        <div class="col-sm-9">
+            #dictSelect ("registerType",${sysServiceUtil.getDictList('register_type')} ,"请选择")</td>
+        </div>
+    </div>
+     <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 月收入</label>
+        <div class="col-sm-9">
+         #dictSelect ("income",${sysServiceUtil.getDictList('income')} ,"请选择")元/月</td>
+        </div>
+    </div>
+     <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 渠道商</label>
+        <div class="col-sm-9">
+         #dictSelect ("channelBusiness",${sysServiceUtil.getDictList('channel_key')} ,"请选择")</td>
+        </div>
+    </div>
+    <div class="clearfix form-actions">
+        <div class="col-md-offset-3 col-md-9">
+            <button type="button" class="btn btn-info" id="j-regedit-member">
+                <i class="icon-ok bigger-110"></i>
+                注册
+            </button>
+            &nbsp; &nbsp; &nbsp;
+            <button type="reset" class="btn  btnReset">
+                <i class="icon-undo bigger-110"></i>
+                重置
+            </button>
+        </div>
+    </div>
+
+</form>
+

@@ -1,0 +1,24 @@
+#parse("/common/common.vm")
+################################script###################################
+ #set($js_config=[ 
+ "'urlMap':{ 
+   'ajax':'$root_url/helpCenter/ajax', 
+   'index':'$root_url/helpCenter/index',
+   'save':'$root_url/helpCenter/save', 
+   'show':'$root_url/helpCenter/show?id=',
+   'showLabel':'$root_url/helpCenterLabel/showLabel?category=',
+   'del':'$root_url/helpCenter/delete?id=',
+   'savesort':'$root_url/helpCenter/savesort',
+   'editor':'$root_url/static/js/lib/umeditor/',
+   'ueditor':'$root_url/static/js/lib/ueditor/',
+   'flush':'$root_url/helpCenter/flush'
+   },
+   'permission':{
+         'show':$shiro.hasPermission('helpCenter:show'),
+         'del':$shiro.hasPermission('helpCenter:delete'),
+   }"
+ ])
+#set($css_url=["$root_url/static/js/lib/My97DatePicker/skin/WdatePicker.css","$root_url/static/js/lib/umeditor/themes/default/css/umeditor.min.css","$root_url/static/js/lib/jcrop/jquery.Jcrop.min.css","$root_url/static/js/lib/colorbox/colorbox.css","$root_url/static/js/lib/ueditor/themes/default/css/ueditor.min.css"])
+#set($js_url=["$root_url/static/assets/js/ace-elements.min.js","$root_url/static/assets/js/ace.min.js","$root_url/static/js/helpCenter.js","$root_url/static/js/lib/My97DatePicker/WdatePicker.js"]) 
+##################################DOM######################################
+

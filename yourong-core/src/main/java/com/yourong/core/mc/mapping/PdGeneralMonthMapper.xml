@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.mc.dao.PdGeneralMonthMapper" >
+  <resultMap id="BaseResultMap" type="PdGeneralMonth" >
+   <result column="month" property="month" jdbcType="VARCHAR" />
+   <result column="total_invest_amount" property="totalInvestAmount" jdbcType="DECIMAL" />
+   <result column="debt_rate" property="debtRate" jdbcType="DECIMAL" />
+   <result column="direct_rate" property="directRate" jdbcType="DECIMAL" />
+   <result column="cycle0_1_rate" property="cycle01Rate" jdbcType="DECIMAL" />
+   <result column="cycle1_2_rate" property="cycle12Rate" jdbcType="DECIMAL" />
+   <result column="cycle2_3_rate" property="cycle23Rate" jdbcType="DECIMAL" />
+   <result column="cycle3_6_rate" property="cycle36Rate" jdbcType="DECIMAL" />
+   <result column="cycle6_12_rate" property="cycle612Rate" jdbcType="DECIMAL" />
+   <result column="cycle_else_rate" property="cycleElseRate" jdbcType="DECIMAL" />
+   <result column="web_rate" property="webRate" jdbcType="DECIMAL" />
+   <result column="mobile_rate" property="mobileRate" jdbcType="DECIMAL" />
+   <result column="unpaid_amount" property="unpaidAmount" jdbcType="DECIMAL" />
+   <result column="paid_amount" property="paidAmount" jdbcType="DECIMAL" />
+   <result column="unpaid_amount_rate" property="unpaidAmountRate" jdbcType="DECIMAL" />
+   <result column="paid_amount_rate" property="paidAmountRate" jdbcType="DECIMAL" />
+   <result column="woman_num_rate" property="womanNumRate" jdbcType="DECIMAL" />
+   <result column="man_num_rate" property="manNumRate" jdbcType="DECIMAL" />
+   <result column="woman_invest_amount_rate" property="womanInvestAmountRate" jdbcType="DECIMAL" />
+   <result column="man_invest_amount_rate" property="manInvestAmountRate" jdbcType="DECIMAL" />
+   <result column="year_50_rate" property="year50Rate" jdbcType="DECIMAL" />
+   <result column="year_60_rate" property="year60Rate" jdbcType="DECIMAL" />
+   <result column="year_70_rate" property="year70Rate" jdbcType="DECIMAL" />
+   <result column="year_80_rate" property="year80Rate" jdbcType="DECIMAL" />
+   <result column="year_90_rate" property="year90Rate" jdbcType="DECIMAL" />
+   <result column="year_else_rate" property="yearElseRate" jdbcType="DECIMAL" />
+   <result column="project_count_overdue" property="projectCountOverdue" jdbcType="DECIMAL" />
+   <result column="overdue_principal" property="overduePrincipal" jdbcType="DECIMAL" />
+   <result column="project_count_overdue_rate" property="projectCountOverdueRate" jdbcType="INTEGER" />
+   <result column="overdue_principal_rate" property="overduePrincipalRate" jdbcType="DECIMAL" />
+   <result column="pay_rate" property="payRate" jdbcType="DECIMAL" />
+  </resultMap>
+  
+  <select id="selectTotalInvestAmountMonth" resultMap="BaseResultMap">
+  	SELECT
+		 *
+	FROM
+		sj_pd_general_month
+	ORDER BY
+		month DESC limit 12 
+  </select>
+  
+  
+  <select id="selectPdGeneralNewMonth" resultMap="BaseResultMap">
+  	SELECT
+		 *
+	FROM
+		sj_pd_general_month
+	ORDER BY
+		month DESC limit 1 
+  </select>
+  
+</mapper>

@@ -1,0 +1,45 @@
+#set($title="加入有融-有融网-全透明的互联网理财优选平台")
+#set($keywords="关于有融,有融网")
+#set($description="有融网运用高效的运营管理体系和创新的互联网思维,搭建了一个安全透明的互联网理财服务平台.")
+
+#parse('/common/common.vm')
+#set($css_url=["$root_css_url/post/joinUs.css"])
+#set($js_url=[
+    "/static/lib/js/vue/vue.js",
+    "$root_js_url/post/join.js"
+])
+
+<div id="j-join" v-cloak>
+    <div class="g-wrap f-clear">
+        <div class="u-head-nav">
+            <a href="$root_url/about/index.html">有融简介</a><a href="$root_url/about/disclosure">信息披露</a><a
+                href="$root_url/about/honor">资质荣誉</a>
+            <a href="$root_url/about/cooperator">合作伙伴</a><a href="$root_url/article/news#notice">平台动态</a><a
+                href="$root_url/about/join"
+                class="z-selected">加入有融</a>
+        </div>
+    </div>
+    <div class="u-jobs">
+        <div class="g-about-wrap">
+            <ul class="u-join-us">
+                <li v-for="(index,item) in init" :class="{'z-selected':jobkinds===(index+1)}"
+                    @click="jobTypes(item.id),jobkinds=(index+1)">{{item.categoryName}}
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="g-about-wrap" id="j-job-centent">
+        <div class="m-jobs" v-for="(index,item) in init" v-if="jobkinds===(index+1)">
+            <h1>{{item.categoryName}}</h1>
+            <ul>
+                <li v-for="list in jobs">
+                    <h2>{{list.jobName}} <i>+</i></h2>
+                    <div class="u-demand f-dn">
+                        {{{list.jobContent}}}
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+

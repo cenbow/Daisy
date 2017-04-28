@@ -1,0 +1,323 @@
+##邀请好友活动
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($domain_url = "$sysServiceUtil.getRootURL()")
+#set($css_url=["$res_url/source/css/activity/inviteFriend.css"])
+#set($title="有钱大家一起赚$!{title_suffix}")
+
+#set($aliyun='https://oss-cn-hangzhou.aliyuncs.com/yrstatic/res')
+
+#set($encryptionId=$request.getParameter("encryptionId"))
+#set($loginSource=$request.getHeader("loginSource"))
+
+#if($currentUser)
+  #set($logined=true)
+#else
+  #set($logined=false)
+#end
+#set($os=3)
+##  安卓
+#if($loginSource==1)
+  #set($os=1)
+#end
+##  IOS
+#if($loginSource==2)
+  #set($os=2)
+#end
+
+#if(($os==3 && $logined) || ($os<3 && $encryptionId))
+  #set($loginedflag=true)
+#else
+  #set($loginedflag=false)
+#end
+
+<div class="g-main" id="j-inviteFriend" os="$!{os}" data-logined="$logined" v-cloak>
+  #if($loginSource==1 || $loginSource==2)
+      <style>
+          .g-ft {
+              display: none;
+          }
+      </style>
+  #else
+  ##header，安卓ios，不需要头部
+      <h2 class="u-pageTitle f-pos-r u-section1-title" id="j-title">
+          <a href="$m_url">有融网</a>
+          <span class="u-login-link f-pos-a">
+            #if(!$currentUser)
+                <a href="{{loginUrl}}">登录</a>
+            <a href="$siteurl/mstation/register">注册</a>
+            #else
+                <a href="$mCenter_logout_url">退出</a>
+            #end
+            </span>
+      </h2>
+  #end
+    <div class="u-head m-fu-title">
+        <p>活动时间：{{initData.startDate | formatTime 'yyyy.M.d'}}~{{initData.endDate | formatTime 'M.d'}}</p>
+        <div>跟我来赚钱</div>
+    ##    <img src="$res_url/img/activity/inviteFriend/banner.png">
+    </div>
+
+    <div class="m-body f-fc-brown #if(!$loginedflag)f-body#end">
+    ##跟我来赚钱
+        <div class="m-follow">
+            <div class="m-my-count" v-if="$loginedflag">我的奖金: <em class="f-fc-pink f-fc-weight">{{initData.reward}}</em><i v-if="initData.reward>0">元</i></div>
+            <a class="m-look" href="javascript:;" @click="showrecord($event)" v-if="$loginedflag && initData.reward>0">查看详情>></a>
+            <div class="m-step1">
+                <p class="m-step-text">步骤一</p>
+                <div class="m-rule-1 f-fc-brown">
+                    <div class="item dot-right"></div>
+                    点击“<em class="f-fc-pink f-fc-weight">马上赚钱</em>”，<br>&nbsp;&nbsp;&nbsp;选择喜欢的渠道邀请好友
+                </div>
+                <img class="m-pointer" src="$res_url/img/activity/inviteFriend/point.png" alt="">
+                <div class="m-jump"></div>
+            </div>
+            <div class="m-step2">
+                <p class="m-step-text m-step-text2">步骤二</p>
+            </div>
+            <div class="m-rule-2 f-fc-brown">
+
+                <div class="m-rule2-text">
+                    <div class="item dot-right"></div>
+                    <em class="f-fc-weight" id="m-move-flag">邀请人</em>：
+                    <p>活动期间，每邀一位好友注册并累计投资≥5000元，您将获得：<br>1. <em class="f-fc-pink f-fc-weight">一张100元无门槛</em>现金券(活动期间最高可获得20次)<br>2. 好友投资额*(收益天数/30)*0.3‰的<em class="f-fc-pink f-fc-weight">人气值</em>（项目履约后赠送）</p>
+                </div>
+            </div>
+            <div class="m-rule-2 f-fc-brown">
+
+                <div class="m-rule2-text">
+                    <div class="item dot-right"></div>
+                    <em class="f-fc-weight">被邀请人</em>：
+                    <p>您的好友也将获得：<br>1. <em class="f-fc-pink f-fc-weight">新手518大礼包</em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2. <em class="f-fc-pink f-fc-weight">一张2%收益券</em></p>
+                </div>
+            </div>
+            <div class="m-invite-click" v-if="initData.newDate < initData.endDate">
+                <div v-if="$os > 2" @click="invite">
+                    马上赚钱
+                    <img src="$res_url/img/activity/inviteFriend/right.png" alt="">
+                </div>
+                <div v-else>
+                    <template v-if="initData.newDate < initData.startDate">
+                        <a class="f-fc-white" @click="inviteapp($event)">
+                            马上赚钱
+                            <img src="$res_url/img/activity/inviteFriend/right.png" alt="">
+                        </a>
+                    </template>
+                    <template v-else>
+                        <a v-if="!$loginedflag" class="f-fc-white" @click="inviteapp($event)">
+                            马上赚钱
+                            <img src="$res_url/img/activity/inviteFriend/right.png" alt="">
+                        </a>
+                        <a v-else class="f-fc-white" id="j-invite-link" #if($os==2)href="yrw-skip://invokeMethod=inviteFriend"#end>
+                            马上赚钱
+                            <img src="$res_url/img/activity/inviteFriend/right.png" alt="">
+                        </a>
+                    </template>
+                </div>
+            </div>
+            <div class="m-invite-click" v-else>
+                <div>活动已结束</div>
+            </div>
+            <img class="m-jiantou" src="$res_url/img/activity/inviteFriend/jiantou.png">
+        </div>
+    ##冲榜达人秀
+        <div class="m-run m-fu-title">
+            <div class="m-run-title">冲榜达人秀</div>
+            <div class="m-introduce">
+                邀友风云榜按活动期间邀请好友的有效人数排名（被邀请人累计投资额≥<em class="f-fc-yellow">5000元</em>记为有效）。邀友人数相同时，活动期间好友累投金额高者排名靠前;若以上指标都相同，则先到达的用户优先。
+            </div>
+            <div class="m-award m-award1">
+                <div>
+                    <h2>第一名</h2>
+                    <p>荣泰 6039 按摩椅</p>
+                    <p>10800 元</p>
+                </div>
+            </div>
+            <div class="m-award m-award2">
+                <div>
+                    <h2>第二名</h2>
+                    <p>美国乔山 T903 跑步机</p>
+                    <p>5499 元</p>
+                </div>
+            </div>
+            <div class="m-award m-award3">
+                <div>
+                    <h2>第三名</h2>
+                    <p>Sony 高清数码摄像机</p>
+                    <p>3580 元</p>
+                </div>
+            </div>
+            <p class="m-cankao">（图片仅供参考，实际以实物为准）</p>
+            <h1 v-if="$loginedflag">我的有效邀友人数：{{initData.inviteCount}}<i v-if="initData.inviteCount>0">人</i></h1>
+            <h1 v-if="$loginedflag">好友累计投资额：<template v-if="initData.invest">{{initData.invest | amountSplit '￥'}}</template><template v-else>{{initData.invest}}</template><i v-if="initData.invest>0">元</i></h1>
+        </div>
+    ##邀友风云榜
+        <div class="m-list">
+            <div class="m-box">
+                <template v-if="initData.inviteFriendLists.length>0">
+                    <div class="m-rank-title">
+                        <span>用户</span>
+                        <span>有效邀请人数</span>
+                        <span>好友累计投资额</span>
+                    </div>
+                    <div class="m-rank-list">
+                        <ul class="j-usersRankList">
+                            <li v-for="item in initData.inviteFriendLists">
+                                <div class="u-rank f-rank-{{$index}}" v-if="$index<3"></div>
+                                <div class="u-rank" v-else></div>
+                                <div class="u-user">
+                    <span class="u-user-head">
+                       <img :src="item.avatars | avatarUrl" alt="用户头像">
+                    </span>
+                                    <span class="u-name" v-text="item.username"></span>
+                                </div>
+                                <div class="u-invite-num">{{item.referralCount}}</div>
+                                <div class="u-money" v-if="item.invest">{{item.invest | amountSplit '￥'}}</div>
+                                <div class="u-money" v-else>{{item.invest}}</div>
+                            </li>
+                        </ul>
+                    </div>
+                </template>
+
+                <template v-else>
+                    <img class="m-nolist" src="$res_url/img/activity/inviteFriend/no-mes.png" alt="">
+                </template>
+
+            </div>
+            <img @click="openrule" class="m-rule-icon" src="$res_url/img/activity/inviteFriend/rule.png" alt="">
+        </div>
+
+    </div>
+
+## 底部导航
+    <div class="u-nav-bottom">
+        <ul>
+            <li class="m-nav-btn active">
+                <a>
+                    <span class="m-nav-icon1 m-nav-icon"></span>
+                    <p>跟我来赚钱</p>
+                </a>
+            </li>
+            <li class="m-nav-btn">
+                <a>
+                    <span class="m-nav-icon2 m-nav-icon"></span>
+                    <p>冲榜达人秀</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+##活动规则
+    <div class="m-rule animated zoomIn" v-if="rule">
+        <h2 class="f-fs-16 u-rule-title f-pl-50">活动规则</h2>
+        <img @click="close" src="$res_url/img/activity/inviteFriend/close.png" alt="">
+        <div class="m-main-content u-rule-content">
+            <p>1. 活动对象：3月25号之前投资过的用户；</p>
+            <p>2. 活动时间：{{initData.startDate | formatTime 'yyyy年MM月dd日hh:mm'}}~{{initData.endDate | formatTime 'yyyy年MM月dd日hh:mm'}}；</p>
+            <p>3. 转让专区项目不参与本活动；</p>
+            <p>4. 实物奖励将于活动结束后3个工作日内与您联系，请保持手机畅通，如错过通知则视为放弃获奖资格</p>
+            <p>（注：实物奖品也可兑换成人气值，人气值=奖品标注价格）；</p>
+            <p>5. 如有其他疑问，请拨打客服热线：400-025-6688；</p>
+            <p>6. 活动期间，如发现有用户违规操作，将取消奖励资格；</p>
+            <p>7. 本活动最终解释权归有融网所有。</p>
+        </div>
+    </div>
+
+##蒙层
+    <div class="u-cover j-cover" v-if="door"></div>
+
+##  中奖纪录弹框
+    <div class="u-award-record" v-show="record">
+      #if($os > 2)
+          <h1>我的中奖纪录
+              <div class="u-goback" @click="closeDialog()">返回</div>
+          </h1>
+      #end
+        <div v-if="lotteryRecord.length>0" class="u-record-wrapper #if($os==1||$os==2)f-mt#end">
+          #if($os==1||$os==2)
+              <h3 class="u-inner-title">我的中奖记录</h3>
+          #end
+            <ul>
+                <li v-for="item in lotteryRecord">
+                    <p class="m-record-user">被推荐用户:{{item.username}}</p>
+                    <span class="f-fc-99">{{item.registerTime | formatTime 'yyyy-M-d hh:mm'}}</span>
+                    <p class="m-record-thing f-fc-d7">{{item.coupon}}元现金券、<template v-if="item.popularity">{{item.popularity}}</template><template v-else>0</template>点人气值</p>
+                </li>
+            </ul>
+            <a href="javascript:void(0)" @click="loadMoreData($event)" v-if="pages.pageNo<pages.totalPageCount">
+                <div class="u-reloadMore" :class="{'z-loading':isLoad}">
+                    <span v-if="isLoad">加载中...</span>
+                    <span v-else>加载更多</span>
+                </div>
+            </a>
+        </div>
+        <div class="u-no-history" v-else>
+            <img src="$res_url/img/activity/inviteFriend/nohistory.png">
+            <strong>暂无中奖纪录</strong>
+        </div>
+    </div>
+
+    <div class="u-qrcode-wrap animated zoomIn" id="j-qrcode-wrap" v-if="friend && $os > 2">
+    ##                    <div class="u-qrcode"></div>
+    ##                    <p class="u-qrcode-text">请用微信扫码参与分享哦</p>
+    ##                    <div class="u-qrcode-close" id="j-qrcode-close">关闭</div>
+        <div class="u-qrcode-close" id="j-qrcode-close"><img @click="close" src="$res_url/img/activity/inviteFriend/close.png" alt=""></div>
+    ## TODO 点击复制链接，这里是我没来的及做微信分享
+        <div class="u-myinvite-link">
+            <p id="j-invite-url" class="u-invite-url"
+               data-url="$domain_url/mstation/register?inviteCode_shortURL=${servletUtil.getUserDO().shortUrl}"
+               data-clipboard-text="$domain_url/mstation/register?inviteCode_shortURL=${servletUtil.getUserDO().shortUrl}">
+            <p class="u-invite-text">复制此链接邀请好友，最高可获<em class="f-fc-red">2000元</em>奖金!</p>
+            赚钱链接：www.yrw.com/mstation/register?inviteCode_shortURL=${servletUtil.getUserDO().shortUrl}
+            </p>
+            <button class="f-round u-myinvite-btn" id="j-copy-invite"
+                    data-clipboard-text="$domain_url/mstation/register?inviteCode_shortURL=${servletUtil.getUserDO().shortUrl}">
+                复制
+            </button>
+        </div>
+    </div>
+
+    <div class="u-vanish-get animated zoomIn z-hidden">复制成功</div>
+    <div class="u-vanish-get animated zoomIn" v-show="isShowTips" v-text="tipsList[tipsIndex]">复制成功</div>
+
+</div>
+
+<script src="$res_url/lib/js/zepto.min.js"></script>
+<script>
+
+    //“意见反馈”区别调用不同app
+    //    var i=$("#j-newyear").data("os");
+    var os = $!{os};
+    //        奖励记录
+    //    $("#j-record-link").on("click",function(){
+    //      if(i==1){
+    //
+    //        Android.ToActivity("friendList",  null);
+    //      }
+    //    })
+    //        邀请好友
+    $("#j-inviteFriend").on("click","#j-invite-link",function(){
+        if(os==1){
+            Android.ToActivity("inviteFriend",  null);
+        }
+    })
+
+
+</script>
+#set($pageScript="
+<script src='$aliyun/lib/js/appHookES5.js'></script>
+<script src='$res_url/build/js/appHook.js'></script>
+##<script src='$res_url/assets/js/common/appHookES5.js'></script>
+<script src='$aliyun/lib/vue/vue.min.js'></script>
+<script src='$aliyun/lib/vue/vue.extend.js'></script>
+<script src='$siteurl/res/lib/js/clipboard.min.js'></script>
+##<script src='$siteurl/res/lib/js/vconsole.min.js'></script>
+<script>
+    var logined =$!{logined}
+    var receiveData = $!{data},
+            os = $!{os};
+    console.log(receiveData)
+    seajs.use('$res_url/source/js/activity/inviteFriend.js');
+</script>
+")
+#CSRFToken("xToken")

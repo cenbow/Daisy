@@ -1,0 +1,214 @@
+#set($layout = "/layout/iframe.vm")
+#parse("/sh/goods/head.vm")
+#set($goods ={"title":"商品图片", "category":"shopgoods","dzId":"dropzone_goods"})
+
+<div tabindex="-1" class="modal fade" id="add-modal-table" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog w1100">
+        <div class="modal-content">
+            <div class="modal-header no-padding">
+                <div class="table-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+                        <span class="white">×</span>
+                    </button>
+                    <span class="modalFormTitle" id="couponTemplateTitle">添加商品</span>
+                </div>
+            </div>
+
+            <div class="modal-body">
+                <form  class="form-horizontal" id="goodsForm">
+                    <input type="hidden" id="j-json-dropzone_goods" name="goodsAttachmentsData"/>
+                    <div id="num_1">
+                        <div class="form-group">
+                            <label for="form-field-parentId" class="col-sm-2 control-label no-padding-right">商品名称:</label>
+                            <div class="col-sm-6">
+                                <div class="clearfix">
+                                    <input type="text" name="goodsName" id="goodsName" class="col-xs-8 col-sm-8 exclude valid-other" placeholder="" dataType="*" >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="form-field-parentId" class="col-sm-2 control-label no-padding-right">商品描述:</label>
+                            <div class="col-sm-6">
+                                <div class="clearfix">
+                                    <textarea name="goodsDes" id="goodsDes" rows="5" cols="60" dataType="*" maxlength=1000></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div>
+                                <div class="widget-box">
+                                    <div class="widget-header">
+                                        <h5>${goods.title}</h5>
+                                    </div>
+                                    <div class="widget-body">
+                                        <div class="widget-main">
+                                            <div class="form-group clearfix">
+                                            ###添加文件按钮
+                                                <span class="btn btn-success fileinput-button ${goods.dzId} dz-upload-btn">
+					        <i class="glyphicon glyphicon-plus"></i>
+					        <span>添加文件</span>
+					    </span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="btn btn-primary delImage" id="del-${goods.dzId}">一键删除</span>
+                                            ###图片控件容器
+                                                <div class="dropzoneImage dropzone dropzoneSort" id="${goods.dzId}" data-category="${goods.category}">
+                                                    <div class="fallback">
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="form-field-parentId" class="col-sm-2 control-label no-padding-right">商品类型:</label>
+                            <div class="col-sm-6">
+                                <div class="clearfix">
+                                    <select name="goodsType" id="goodsType">
+                                        <option value="1">投资专享</option>
+                                        <option value="2">虚拟卡券</option>
+                                        <option value="3">超值实物</option>
+                                        <option value="4">新品特惠</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" id="rechargeType_group" style="display: none">
+                            <label for="form-field-parentId" class="col-sm-2 control-label no-padding-right">充值类型:</label>
+                            <div class="col-sm-6">
+                                <div class="clearfix">
+                                    <select name="rechargeType" id="rechargeType">
+                                        <option value="1">直充</option>
+                                        <option value="2">卡密</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" id="rechargeAmount_group" style="display: none">
+                            <label for="form-field-parentId" class="col-sm-2 control-label no-padding-right">充值金额:</label>
+                            <div class="col-sm-6">
+                                <div class="clearfix">
+                                    <input type="text" name="rechargeAmount" dataType="/^\d+$/" errormsg="请输入正整数！" id="rechargeAmount" >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" id="source_group">
+                            <label for="form-field-parentId" class="col-sm-2 control-label no-padding-right">优惠券id:</label>
+                            <div class="col-sm-6">
+                                <div class="clearfix">
+                                    <input type="text" name="sourceId" class="col-xs-8 col-sm-8 exclude valid-other" placeholder="" id="sourceId" >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="form-field-parentId" class="col-sm-2 control-label no-padding-right">商品标签:</label>
+                            <div class="col-sm-6">
+                                <div class="clearfix">
+##                                    <select name="tags" id="tags">
+##                                        <option value="0">无</option>
+##                                        <option value="1">新品</option>
+##                                        <option value="2">特价</option>
+##                                        <option value="3">推荐</option>
+##                                        <option value="4">限时抢购</option>
+##                                    </select>
+                                    #dictSelect ("tags",${sysServiceUtil.getDictList('goods_tags')} ,"无","tags")
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="form-field-parentId" class="col-sm-2 control-label no-padding-right">库存:</label>
+                            <div class="col-sm-6">
+                                <div class="clearfix">
+                                    <input type="text" name="inventor" dataType="/^[0-9]*[1-9][0-9]*$/" errormsg="请输入正整数！" id="inventor"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="form-field-parentId" class="col-sm-2 control-label no-padding-right">需要人气值:</label>
+                            <div class="col-sm-6">
+                                <div class="clearfix">
+                                    <input type="text" name="price" dataType="/^[0-9]*[1-9][0-9]*$/" errormsg="请输入正整数！" id="price"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" id="levelNeed_group">
+                            <label for="form-field-parentId" class="col-sm-2 control-label no-padding-right">购买等级:</label>
+                            <div class="col-sm-6">
+                                <div class="clearfix">
+                                    <input type="text" name="levelNeed" dataType="/^\d+$/" errormsg="请输入正整数！" id="levelNeed"/>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="form-field-parentId" class="col-sm-2 control-label no-padding-right">会员折扣:</label>
+                            <div class="col-sm-6">
+                                <div class="clearfix" id="discountlist">
+                                    <input type="text" name="discountInfo"/>
+                                    <img id="addDiscount" class="img " src="$root_url/static/img/sh/addDiscount.png"/>
+                                </div>
+                                <font size=2>提示：输入1-3-8表示1、2、3级会员的折扣为8折，不输入默认为原价。</font>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="form-field-parentId" class="col-sm-2 control-label no-padding-right">定时补充数量:</label>
+                            <div class="col-sm-6">
+                                <div class="clearfix">
+                                    <input type="checkbox" value="1" id="autoInventory" name="autoInventory"/>
+                                    <input type="text" name="autoInventoryCount" id="autoInventoryCount"/>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="form-field-parentId" class="col-sm-2 control-label no-padding-right">定时上架:</label>
+                            <div class="col-sm-6">
+                                <div class="clearfix">
+                                    <input type="text" name="shelvesTime" id="shelvesTime" class="input-medium search_init" onclick="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="form-field-parentId" class="col-sm-2 control-label no-padding-right">定时下架:</label>
+                            <div class="col-sm-6">
+                                <div class="clearfix">
+                                    <input type="text" name="offShelvesTime" id="offShelvesTime" class="input-medium search_init" onclick="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})"/>
+                                </div>
+                            </div>
+                        </div>
+                        
+##                        <div class="form-group">
+##                            <label for="form-field-parentId" class="col-sm-2 control-label no-padding-right">会员折扣:</label>
+##                            <div class="col-sm-6">
+##                                <div class="clearfix">
+##                                    <input type="text" name="discount" id="discount"/>
+##                                </div>
+##                                <font size=2>提示：请在文本框内输入对应折扣，如9.5，则为9.5折，不输入默认为原价。</font>
+##                            </div>
+##                        </div>
+
+                    </div>
+                    <input type="hidden" id="id" name="id" >
+                </form>
+            </div>
+
+            <div class="modal-footer" id="modal-footer">
+            	<button type="button" id="cancel_shopgoods" class="btn btn-default" data-dismiss="modal">关闭</button>
+        		<button type="button" id="submit_goods" data-page="1" class="btn btn-primary">保存</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    jQuery(function($){
+        var id = $("#borrowid").val();
+        if(!!id){
+            findContractById(id);
+        }
+    });
+</script>
+
+
+

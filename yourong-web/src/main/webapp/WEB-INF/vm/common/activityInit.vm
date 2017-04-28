@@ -1,0 +1,10 @@
+#set($layout = "/layout/default.vm")
+$response.setHeader("Content-Type", "application/json")
+{
+#if($currentUser)
+    "logined":true,
+    "uid":$!{currentUser.id}
+#else
+    "logined":false
+#end
+}

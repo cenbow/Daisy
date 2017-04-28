@@ -1,0 +1,367 @@
+#parse('/mobile/common.vm')
+###set($title="双12狂欢季_$!{title_suffix}")
+#if($encryptionId)
+  #set($subTitle="双旦狂欢惠")
+#else
+  #set($subTitle="您有一份双旦惊喜，请查收-有融网")
+#end
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$res_url/source/css/activity/december.css"])
+
+#set($loginSource=$request.getHeader("loginSource"))
+#set($encryptionId=$request.getParameter("encryptionId"))
+
+#if($currentUser)
+  #set($logined=true)
+#else
+  #set($logined=false)
+#end
+
+#set($os=3)
+#CSRFToken('xToken')
+##  安卓
+#if($loginSource==1)
+  #set($os=1)
+#end
+##  IOS
+#if($loginSource==2)
+  #set($os=2)
+#end
+##
+#set($debug=$request.getParameter("debug"))
+#set($isApp=$request.getParameter("app"))
+#set($avatar=$servletUtil.getUserDO().avatars)
+
+#if($loginSource==1 || $loginSource==2)
+#else
+##header，安卓ios，不需要头部
+<h2 class="u-header f-pos-r">
+  <a href="$siteurl/mIndex">返回</a>
+    <span class="f-fs18">
+        双旦狂欢惠
+    </span>
+</h2>
+#end
+##<script>
+##  var url=window.location.href,title='有融网双12狂欢盛宴';
+##  document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+##    window.shareData = {
+##      "timeLineLink": url,
+##      "sendFriendLink": url,
+##      "weiboLink": url,
+##      "tTitle": "有融网双12狂欢盛宴",
+##      "tContent": "全场最高加息5%，更有苹果新品全套大放送！",
+##      "fTitle": "有融网双12狂欢盛宴",
+##      "fContent": "全场最高加息5%，更有苹果新品全套大放送！",
+##      "wContent": "有融网双12狂欢盛宴  全场最高加息5%，更有苹果新品全套大放送！"
+##    };
+##    // 发送给好友
+##    if(typeof(WeixinJSBridge)!=='undefined'){
+##      WeixinJSBridge.on('menu:share:appmessage', function (argv) {
+##        WeixinJSBridge.invoke('sendAppMessage', {
+##          "img_url": "../../static/img/weixin/weixin_october.jpg",
+##          "img_width": "358",
+##          "img_height": "328",
+##          "link": window.shareData.sendFriendLink,
+##          "desc": window.shareData.fContent,
+##          "title": window.shareData.fTitle
+##        }, function (res) {
+##          _report('send_msg', res.err_msg);
+##        })
+##      });
+##      // 分享到朋友圈
+##      WeixinJSBridge.on('menu:share:timeline', function (argv) {
+##        WeixinJSBridge.invoke('shareTimeline', {
+##          "img_url": "../../static/img/weixin/weixin_october.jpg",
+##          "img_width": "358",
+##          "img_height": "328",
+##          "link": window.shareData.timeLineLink,
+##          "desc": window.shareData.tContent,
+##          "title": window.shareData.tTitle
+##        }, function (res) {
+##          _report('timeline', res.err_msg);
+##        });
+##      });
+##    }
+##  }, false);
+##
+##
+##
+##</script>
+<div class="g-wrap" id="j-total" data-logined="$logined" v-cloak>
+  <div class="u-top-img"></div>
+  <div class="u-content">
+    <div v-if="look" class="u-click">
+      <p class="f-fc-red u-p-title m-body-p">普天同庆</p>
+      <p class="f-fc-6 u-p-content m-body-p">
+        2016年{{startTime | formatTime 'M月d日'}}至2017年{{endTime | formatTime
+        'M月d日'}}，每日{{ten}}点、{{fifTeen}}点两个整点各发放500个红包，用户可点击抢券（{{ten}}点场随机发出30元、50元现金券；{{fifTeen}}点场随机发出100元、188元现金券；每人每日限抢一次）。</p>
+      <img class="u-man" src="$res_url/img/activity/december/oldman1.png" alt="">
+      <img class="u-animal" src="$res_url/img/activity/december/oldman2.png" alt="">
+      <a @click="grabred($event)">
+        <p class="f-cannot u-p-click m-body-p" v-if="TimeCount && startactive">活动即将开始</p>
+        <p class="f-cannot u-p-click m-body-p" v-if="TimeCount && endactive">活动已结束</p>
+        <p class="f-fc-yellow u-p-click m-body-p" v-if="TimeCount && startGrabCash">点我赢红包大礼</p>
+        <p class="f-fc-yellow u-p-click m-body-p" v-if="TimeCount && nextfifteen">下一场：{{fifTeen}}点开抢</p>
+        <p class="f-fc-yellow u-p-click m-body-p" v-if="TimeCount && startCountDown">
+          每日{{ten}}点、{{fifTeen}}点整点开抢</p>
+        <div v-if="tenMinuteStatus" class="u-countdown f-fc-yellow">
+          开抢倒计时：{{hours}}:{{minutes}}:{{seconds}}
+        </div>
+        <img class="u-hongbao" src="$res_url/img/activity/december/hongbao-click.png" alt="">
+      </a>
+    </div>
+    <div v-if="look" class="u-award">
+      <p class="f-fc-red u-p-title m-body-p">鸿运当投</p>
+      <p class="f-fc-6 u-p-content m-body-p">活动期间，单笔投资≥2000元，即可获得对应现金券一张，多投多得哟（转让项目除外）。</p>
+      <table>
+        <thead>
+        <tr>
+          <th>单笔投资（元）</th>
+          <th>面额（元）</th>
+          <th>使用规则</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>2000≤投资额＜3000</td>
+          <td>50</td>
+          <td>起投金额:3000元<br>投资期限:60天</td>
+        </tr>
+        <tr>
+          <td>3000≤投资额＜5000</td>
+          <td>100</td>
+          <td>起投金额:5000元<br>投资期限:60天</td>
+        </tr>
+        <tr>
+          <td>5000≤投资额＜10000</td>
+          <td>200</td>
+          <td>起投金额:7000元<br>投资期限:90天</td>
+        </tr>
+        <tr>
+          <td>投资额≥10000</td>
+          <td>500</td>
+          <td>起投金额:10000元<br>投资期限:180天</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div v-if="look" class="u-day-rank">
+      <p class="f-fc-red u-p-title m-body-p">累计日投King</p>
+      <p class="f-fc-6 u-p-content m-body-p">
+        活动期间，用户单日累计投资额第一名可获得500元京东E卡一张（项目履约后计入个人累计投资额；投资额相同时，先达到该投资额的用户排名靠前）。<br>单日累计投资额排名前8的用户计为上榜1次，活动结束后，用户累计上榜10~12次，可获500元京东E卡一张；6~9次，可获300元京东E卡一张；3~5次，可获200元京东E卡一张。
+      </p>
+      <div class="u-my-mes" v-if="logined&&activityStatus!=2">
+        <span v-if="myInvestAmount">我的今日累计投资额: <em class="f-fc-red">{{myInvestAmount | amountSplit '￥'}}</em></span>
+        <span v-else>我的今日累计投资额: <em class="f-fc-red">0</em></span>
+      </div>
+      <ul class="u-data-title">
+        <li @click="traggleBtn(1)" :class="{'z-actived':activeTab==1}">{{date | formatTime 'd'}}日巅峰榜</li>
+        <li @click="traggleBtn(2)" :class="{'z-actived':activeTab==2}">每日冠军榜</li>
+        <li @click="traggleBtn(3)" :class="{'z-actived':activeTab==3}">上榜记录</li>
+      </ul>
+      <div v-if="current==1" class="u-data-box">
+        <h1 class="u-title-one">排名</h1>
+        <h1 class="u-title-two">用户名</h1>
+        <h1 class="u-title-three">投资额</h1><br>
+        <div v-if="list!=''" class="u-list">
+          <div class="f-active">
+            <ul class="u-users-rank-list" id="j-usersRankList1" v-if="success">
+              <li v-for="item in list">
+                <span class="u-rank u-rank-{{$index}}" v-if="$index<3"></span>
+                <span class="u-rank u-rank-num" v-else>{{$index+1}}</span>
+                <span class="u-userInfo"><img :src="item.avatars | avatarUrl" alt="用户头像">
+                        <span class="u-name" v-text="item.username"></span></span>
+                <span class="f-fc-red">{{item.totalInvest | amountSplit '￥'}}</span>
+              </li>
+            </ul>
+            <div class="f-wealthy-come" v-else>
+              一大波土豪正在赶来
+            </div>
+          </div>
+        </div>
+        <div v-else class="u-list">
+          <div class="f-active">
+            <ul class="u-users-rank-list" v-if="success">
+              <li>
+                <span class="u-rank u-rank-0" v-text=" ({{$index}}+1) | number"></span>
+                <span class="u-userInfo"><img :src="item.avatars | avatarUrl" alt="用户头像">
+                        <span class="u-name">虚位以待</span></span>
+              </li>
+            </ul>
+            <div class="f-wealthy-come" v-else>
+              一大波土豪正在赶来
+            </div>
+          </div>
+        </div>
+      </div>
+      <div v-if="current==2" class="u-data-box">
+        <h1 class="u-title-one u-title-day">日期</h1>
+        <h1 class="u-title-two">用户名</h1>
+        <h1 class="u-title-three">投资额</h1><br>
+        <div v-if="list1!=''" class="u-list">
+          <div class="f-active">
+            <ul class="u-users-rank-list" id="j-usersRankList2" v-if="success" :class="{'z-more1':more1==1}">
+              <li v-for="item in list1">
+                <span class="u-rank u-date">{{item.dayTime | formatTime 'M月d日'}}</span>
+                <span class="u-userInfo"><img :src="item.avatars | avatarUrl" alt="用户头像">
+                        <span class="u-name" v-text="item.username || '虚位以待'"></span></span>
+                <span class="f-fc-red" :class="{'z-visib':!item.totalInvestFormat}">{{item.totalInvest | amountSplit '￥'}}</span>
+              </li>
+              <li>
+                <span class="u-rank u-date">{{nextday | formatTime 'M月d日'}}</span>
+                <span class="u-userInfo"><img :src="item.avatars | avatarUrl" alt="用户头像">
+                        <span class="u-name">虚位以待</span></span>
+              </li>
+            </ul>
+            <div class="f-wealthy-come" v-else>
+              一大波土豪正在赶来
+            </div>
+            <div class="u-read-more" @click="readmore1" v-if="more1==1">
+              查看更多
+              <img src="$res_url/img/activity/december/down.png" alt="">
+            </div>
+          </div>
+        </div>
+        <div v-else class="u-list">
+          <div class="f-active">
+            <ul class="u-users-rank-list" v-if="success">
+              <li>
+                <span class="u-rank u-date">12月<br>23日</span>
+                <span class="u-userInfo"><img :src="item.avatars | avatarUrl" alt="用户头像">
+                        <span class="u-name">虚位以待</span></span>
+              </li>
+            </ul>
+            <div class="f-wealthy-come" v-else>
+              一大波土豪正在赶来
+            </div>
+          </div>
+        </div>
+      </div>
+      <div v-if="current==3" class="u-data-box">
+        <h1 class="u-title-two u-title-name">用户名</h1>
+        <h1 class="u-title-one u-number">上榜次数</h1><br>
+        <div v-if="list2!=''" class="u-list">
+          <div class="f-active">
+            <ul class="u-users-rank-list" id="j-usersRankList3" v-if="success" :class="{'z-more':more==1}">
+              <li v-for="item in list2" class="u-menu">
+                <span class="u-userInfo"><img :src="item.avatars | avatarUrl" alt="用户头像">
+                        <span class="u-name" v-text="item.username"></span></span>
+                <span class="f-fc-red u-number-num">上榜X{{item.number}}</span>
+              </li>
+            </ul>
+            <div class="f-wealthy-come" v-else>
+              一大波土豪正在赶来
+            </div>
+            <div class="u-read-more" @click="readmore" v-if="more==1">
+              查看更多
+              <img src="$res_url/img/activity/december/down.png" alt="">
+            </div>
+          </div>
+        </div>
+        <div v-else class="u-list">
+          <div class="f-active">
+            <ul class="u-users-rank-list" v-if="success">
+              <li class="u-menu">
+                <span class="u-userInfo"><img :src="item.avatars | avatarUrl" alt="用户头像">
+                        <span class="u-name">虚位以待</span></span>
+              </li>
+            </ul>
+            <div class="f-wealthy-come" v-else>
+              一大波土豪正在赶来
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div v-if="!look" class="u-rule-content">
+      <h4 class="f-center">
+        活动规则
+      </h4>
+      <table class="f-center">
+        <tr>
+          <td>1、</td>
+          <td>活动对象：有融网所有用户；</td>
+        </tr>
+        <tr>
+          <td>2、</td>
+          <td>活动时间：2016年{{startTime | formatTime 'MM月dd日hh:mm'}}~{{endTime | formatTime 'MM月dd日hh:mm'}}；</td>
+        </tr>
+        <tr>
+          <td>3、</td>
+          <td>
+            普天同庆红包领取后1天有效；鸿运当投获得的红包获得后7天有效。普天同庆现金券使用规则：
+            <table class="m-normal-table">
+              <tr>
+                <th class="f-background">现金券面额</th>
+                <th class="f-background">起投金额（元）</th>
+                <th class="f-background">投资期限（天）</th>
+              </tr>
+              <tr>
+                <td>30</td>
+                <td>2000</td>
+                <td>60</td>
+              </tr>
+              <tr>
+                <td>50</td>
+                <td>3000</td>
+                <td>60</td>
+              </tr>
+              <tr>
+                <td>100</td>
+                <td>4000</td>
+                <td>90</td>
+              </tr>
+              <tr>
+                <td>188</td>
+                <td>7000</td>
+                <td>90</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td>4、</td>
+          <td>累计日投King奖励发放说明：
+            项目履约后计入个人累计投资额，巅峰榜排名以每日23:59的统计结果为准；所有奖励将于活动结束后3个工作日内与您联系，请保持手机畅通，如错过通知则视为放弃获奖资格（实物奖励可兑换成人气值，人气值=奖品标注价格）；
+          </td>
+        </tr>
+        <tr>
+          <td>5、</td>
+          <td>如有其他疑问，请拨打客服热线：400-025-6688；</td>
+        </tr>
+        <tr>
+          <td>6、</td>
+          <td>本活动与苹果公司无关；</td>
+        </tr>
+        <tr>
+          <td>7、</td>
+          <td>本活动最终解释权归有融网所有。</td>
+        </tr>
+      </table>
+      <div class="u-know" @click="know">
+        我知道了
+      </div>
+    </div>
+  </div>
+  <div class="u-foot">
+    <div class="m-december-rule" @click="rule">活动规则</div>
+  </div>
+  <div class="m-december-tip" id="u-success">
+    恭喜您获得{{couponAmountnum}}元现金券
+    <img @click="hide" src="$res_url/img/activity/december/return.png" alt="">
+  </div>
+</div>
+
+#set($pageScript="
+<script src='$res_url/build/js/appHook.js'></script>
+<script src='$aliyunOss_url/res/lib/vue/v1/vue.min.js'></script>
+<script src='$siteurl/res/lib/vue/vue.extend.js'></script>
+<script>
+  var receiveData = $!{data},
+          os = $!{os};
+  log(receiveData)
+  seajs.use('$res_url/source/js/activity/december.js');
+</script>
+")
+#CSRFToken("xToken")

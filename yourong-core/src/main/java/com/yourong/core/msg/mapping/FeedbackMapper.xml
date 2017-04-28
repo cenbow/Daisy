@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.msg.dao.FeedbackMapper" >
+  <resultMap id="BaseResultMap" type="com.yourong.core.msg.model.Feedback" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="member_id" property="memberId" jdbcType="BIGINT" />
+    <result column="source" property="source" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="reply_status" property="replyStatus" jdbcType="INTEGER" />
+    <result column="reply" property="reply" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="reply_time" property="replyTime" jdbcType="TIMESTAMP" />
+    <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    id, member_id, source,type,reply_status,reply,content, create_time,reply_time
+  </sql>
+  
+  <resultMap id="FeedbackForMemberResultMap" type="FeedbackForMember" extends="BaseResultMap">
+		<result column="true_name" property="trueName" jdbcType="VARCHAR" />
+		<result column="mobile" property="mobile" jdbcType="BIGINT" />
+		<result column="sex" property="sex" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from msg_feedback
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  
+  <insert id="insert" parameterType="com.yourong.core.msg.model.Feedback" useGeneratedKeys="true" keyProperty="id">
+    insert into msg_feedback (member_id, source, content,type,create_time)
+    values (#{memberId,jdbcType=BIGINT}, #{source,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR},#{type,jdbcType=INTEGER},now())
+  </insert>
+  
+  <update id="updateById" parameterType="com.yourong.core.msg.model.Feedback" flushCache="true" useGeneratedKeys="true">
+    update msg_feedback
+    <set >
+      <if test="replyStatus != null" >
+        reply_status = #{replyStatus,jdbcType=INTEGER},
+      </if>
+      <if test="reply != null" >
+        reply = #{reply,jdbcType=VARCHAR},
+      </if>
+      <if test="replyTime != null" >
+        reply_time = #{replyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  
+  <select id="selectForPagin" resultMap="FeedbackForMemberResultMap">
+     select msg.id,msg.source, msg.content, msg.create_time, uc.true_name, uc.sex, uc.mobile ,msg.reply_status,msg.reply,msg.type
+     from msg_feedback as msg 
+     left join uc_member as uc on msg.member_id = uc.id 
+    <if test=" map != null" >
+      <where>
+	      	<if test=" map.source != null">
+				and msg.source = #{map.source}
+			</if>
+			<if test=" map.type!= null">
+				and msg.type = #{map.type}
+			</if>
+			<if test=" map.replyStatus != null">
+				and msg.reply_status = #{map.replyStatus}
+			</if>
+			and msg.del_flag >= 0
+      </where>
+     </if>
+     <choose>
+		<when test=" map != null">
+			<if test=" map.desc != null">
+				order by ${map.desc} desc
+			</if>
+			<if test=" map.asc != null">
+				order by ${map.asc} asc
+			</if>
+		</when>
+		<otherwise>
+			order by msg.create_time desc
+		</otherwise>
+	</choose>
+     LIMIT ${map.startRow}, ${map.pageSize}
+  </select>
+  
+  <select id="selectForPaginTotalCount" resultType="java.lang.Integer">
+    select count(1) from msg_feedback as msg left join uc_member as uc on msg.member_id = uc.id 
+    <if test=" map != null" >
+      <where>
+	      	<if test=" map.source != null">
+				and msg.source = #{map.source}
+			</if>
+			<if test=" map.type!= null">
+				and msg.type = #{map.type}
+			</if>
+			<if test=" map.replyStatus != null">
+				and msg.reply_status = #{map.replyStatus}
+			</if>
+			and msg.del_flag >= 0
+      </where>
+     </if>
+  </select>
+  	<select id="queryFeedbackList" resultMap="BaseResultMap" parameterType="FeedBackQuery">
+	  SELECT
+	  	id, member_id, type, source, content,reply_status,reply, create_time ,reply_time
+	  FROM msg_feedback 
+	   <where >
+	        <if test="memberId != null" >
+	           member_id = #{memberId,jdbcType=BIGINT}
+	        </if>
+	  </where>     
+		ORDER BY id desc
+		LIMIT #{startRow,jdbcType=INTEGER}, #{pageSize,jdbcType=INTEGER}
+	</select>
+	
+  	<select id="queryFeedbackListCount" resultType="java.lang.Integer" parameterType="FeedBackQuery">
+	  SELECT
+	  	count(1)
+	  FROM msg_feedback 
+	    <where >
+	        <if test="memberId != null" >
+	          member_id = #{memberId,jdbcType=BIGINT}
+	        </if>
+	      </where>
+	</select>
+</mapper>

@@ -1,0 +1,471 @@
+body {
+    background: #fff7d1;
+}
+
+@media screen and (min-width: 390px) {
+    html {
+        font-size: 18px;
+    }
+}
+
+@media screen and (min-width: 360px) and (max-width: 389px) {
+
+    html {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 359px) {
+    html {
+        font-size: 14px;
+    }
+}
+
+img {
+    width: 100%;
+}
+
+.f-fs-16{
+    font-size: 1rem;
+}
+
+.u-add-interest, .u-grab-gold {
+    width: 88%;
+    margin: -0.5rem auto 0;
+    padding-bottom: 4.5rem;
+}
+
+.u-add-interest h2, .u-pick-redBag h2, .u-grab-gold h2 {
+    color: #463b63;
+    font-size: 1.25rem;
+    line-height: 1.4375rem;
+    font-weight: bold;
+}
+
+.u-add-interest h2 img, .u-pick-redBag h2 img, .u-grab-gold h2 img {
+    display: inline-block;
+    width: 2.4rem;
+    position: relative;
+    top: 0.6rem;
+    margin-right: 0.5rem;
+}
+
+.u-add-interest p, .u-pick-redBag p, .u-grab-gold p {
+    font-size: 12px;
+    color: #463b63;
+    line-height: 1.2rem;
+    margin-top: 0.8rem;
+}
+
+.u-add-interest table {
+    font-size: 12px;
+    color: #fff;
+    margin-top: 1rem;
+    border-radius: 1rem;
+    width: 100%;
+}
+
+.u-add-interest table th {
+    width: 33.3%;
+    text-align: center;
+    line-height: 1.75rem;
+    background: #ff8c41;
+    border-right: 1px solid #ffb982;
+    border-bottom: 1px solid #ffb982;
+}
+
+.u-add-interest table td {
+    width: 33.3%;
+    text-align: center;
+    line-height: 1.75rem;
+    background: #ffa359;
+    border-right: 1px solid #ffb982;
+}
+
+.u-add-interest table th:first-child {
+    border-top-left-radius: 3px;
+}
+
+.u-add-interest table th:last-child {
+    border-top-right-radius: 3px;
+    border-right: 0;
+}
+
+.u-add-interest table td:first-child {
+    border-bottom-left-radius: 3px;
+}
+
+.u-add-interest table td:last-child {
+    border-bottom-right-radius: 3px;
+    border-right: 0;
+}
+
+.u-add-interest .u-cash-img {
+    width: 3rem;
+    position: relative;
+    margin-right: -1rem;
+    margin-top: -1.5rem;
+    float: right;
+}
+
+.u-pick-redBag {
+    width: 88%;
+    padding: 1rem 6% 1.5rem;
+    margin: 2rem 0;
+    background: #ffecb6;
+    border-radius: 0.5rem;
+}
+
+.u-pick-redBag .u-redBag-img {
+    margin-top: 0.3rem;
+}
+
+.u-pick-redBag ul {
+    width: 100%;
+    /*display: flex;*/
+}
+
+.u-pick-redBag li {
+    text-align: center;
+    position: relative;
+    width: 32%;
+    display: inline-block;
+}
+.u-pick-redBag li img{
+    width: 90%;
+}
+
+.u-pick-redBag li a{
+    background: url("../../../img/activity/dayDropGold/abled_btn.png") no-repeat center;
+    background-size: 100% 100%;
+    width: 4.5625rem;
+    height: 1.5625rem;
+    margin: 0 auto;
+    font-size: 12px;
+    line-height: 1.4rem;
+    display: block;
+    color: black;
+}
+
+.u-pick-redBag li .z-disabled {
+    background: url("../../../img/activity/dayDropGold/disabled_btn.png") no-repeat center;
+    background-size: 100% 100%;
+}
+
+.u-pick-redBag li i {
+    display: inline-block;
+    color: #000;
+    font-size: 12px;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    top: -2.1rem;
+}
+
+.u-pick-redBag li:last-child {
+    margin-right: 0;
+}
+
+.u-pick-redBag h3 {
+    width: 100%;
+    font-size: 12px;
+    color: #463b63;
+    text-align: center;
+    margin-top: 0.5rem;
+}
+
+.u-pick-redBag h3 em {
+    color: #fe5725;
+}
+
+.u-grab-gold h4, .u-grab-gold h5 {
+    width: 100%;
+    text-align: center;
+    color: #463b63;
+    font-size: 12px;
+}
+
+.u-grab-gold h4 {
+    font-weight: bold;
+}
+
+.u-grab-gold h6 {
+    width: 100%;
+    text-align: center;
+    color: #3e277c;
+    font-size: 12px;
+    margin-top: 1rem;
+}
+.u-grab-gold .f-fc-top{
+    margin-top: 0.5rem;
+}
+
+.u-grab-gold h6 em {
+    color: #fe5725;
+}
+
+.u-grab-gold h1 {
+    margin-top: 0.5rem;
+}
+
+.u-grab-gold table {
+    background: #fff;
+    text-align: center;
+    color: #463b63;
+    font-size: 12px;
+    margin-top: -0.5rem;
+    width: 95%;
+    margin-left: 2.5%;
+    /*display: block;*/
+    padding-bottom: 1rem;
+}
+
+.u-grab-gold table thead{
+    height: 2.5rem;
+    line-height: 2.5rem;
+}
+
+.u-grab-gold table tbody tr{
+    height: 1.5rem;
+    line-height: 1.5rem;
+}
+
+.m-rule-icon{
+    width: 3.4375rem;
+    margin-left: 80%;
+    margin-top: 0.5rem;
+}
+
+/* 底部导航 */
+.u-nav-bottom{
+    background: #ffa359;
+    width: 100%;
+    height: 4rem;
+    font-size: 0.7rem;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+.u-nav-bottom li{
+    width: 33.3%;
+    padding: 0.7rem 0;
+    float: left;
+    position: relative;
+    /*-webkit-box-sizing: border-box;*/
+    text-align: center;
+}
+.u-nav-bottom li a{
+    display: block;
+    text-align: center;
+    color: white;
+}
+.m-nav-icon1{
+    background: url("../../../img/activity/dayDropGold/btn1.png") no-repeat center;
+}
+.m-nav-icon2{
+    background: url("../../../img/activity/dayDropGold/btn2.png") no-repeat center;
+}
+.m-nav-icon3{
+    background: url("../../../img/activity/dayDropGold/btn3.png") no-repeat center;
+}
+.m-nav-icon{
+    background-size: 100% 100%;
+    width: 1.34rem;
+    height: 1.25rem;
+    display: inline-block;
+}
+/*.u-nav-bottom .z-active a{*/
+    /*color: #ffda07;*/
+    /*background-position: 0 -0.15rem;*/
+/*}*/
+/*.u-nav-bottom .z-active .m-nav-icon{*/
+    /*width: 2.6rem;*/
+    /*height: 2rem;*/
+    /*margin-top: -0.15rem;*/
+/*}*/
+
+
+.z-active{
+    background: #fc8830;
+}
+.active{
+    background: #fc8830;
+}
+
+[v-cloak] {
+    display: none;
+}
+
+/*弹框*/
+.u-dialog{
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    font-size: 12px;
+    z-index: 200;
+
+}
+.u-dialog p{
+    text-align: center;
+    line-height: 3rem;
+    /*margin-left: 0.5rem;*/
+}
+.u-dialog img{
+    position: absolute;
+    top: -1rem;
+    right: -2rem;
+    width: auto;
+}
+.u-dialog-f{
+    background: url("../../../img/activity/dayDropGold/fail.png") no-repeat center;
+    background-size: 100% 100%;
+    width: 13.34rem;
+    height: 13.125rem;
+    margin-left: -7rem;
+    margin-top: -6.5rem;
+    color: #8b8b8a;
+}
+.u-dialog-s{
+    background: url("../../../img/activity/dayDropGold/success.png") no-repeat center;
+    background-size: 100% 100%;
+    width: 13.34rem;
+    height: 11.875rem;
+    margin-left: -7rem;
+    margin-top: -6rem;
+    color: #e94b3f;
+}
+
+/* 蒙层 */
+.u-cover {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    z-index: 198;
+    -moz-opacity: 0.75;
+    opacity: .75;
+    filter: alpha(opacity=75);
+}
+
+/* 规则 */
+.m-rule{
+    position: fixed;
+    width: 94%;
+    left: 50%;
+    top: 50%;
+    margin-left: -47%;
+    margin-top: -11rem;
+    font-size: 12px;
+    background: white;
+    color: #463b63;
+    z-index: 200;
+    border-radius: 8px;
+    padding-bottom: 1rem;
+}
+.m-rule h2{
+    text-align: center;
+    font-weight: bold;
+    line-height: 3rem;
+}
+.m-rule img{
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 1.125rem;
+}
+
+.m-main-content{
+    width: 90%;
+    margin: 0 auto;
+    text-align: justify;
+}
+.m-main-content p{
+    margin-bottom: 2px;
+}
+.u-rule-table{
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+    color: white;
+}
+.u-rule-table tbody{
+    background: #ffa359;
+}
+.u-rule-table thead{
+    background: #ff8c41;
+}
+.u-rule-table th,.u-rule-table td{
+    border: 1px solid white;
+    height: 1.4375rem;
+}
+
+/*非模态框*/
+
+.m-tips-window {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 73%;
+    line-height: 2.5rem;
+    margin-top: -1.25rem;
+    margin-left: -36.5%;
+    text-align: center;
+    color: #fff;
+    font-size: 14px;
+    background-color: rgba(0, 0, 0, .8);
+    border-radius: 10px;
+    z-index: 999;
+    height: 2.5rem;
+}
+
+.m-no-mes{
+    background: #fff;
+    text-align: center;
+    color: #463b63;
+    font-size: 12px;
+    margin-top: -0.5rem;
+    width: 95%;
+    margin-left: 2.5%;
+    padding-bottom: 1rem;
+    height: 17.5rem;
+    line-height: 17.5rem;
+}
+
+@-webkit-keyframes zoomIn {
+    0% {
+        opacity: 0;
+        -webkit-transform: scale3d(.3, .3, .3);
+        transform: scale3d(.3, .3, .3)
+    }
+
+    50% {
+        opacity: 1
+    }
+}
+
+@keyframes zoomIn {
+    0% {
+        opacity: 0;
+        -webkit-transform: scale3d(.3, .3, .3);
+        transform: scale3d(.3, .3, .3)
+    }
+
+    50% {
+        opacity: 1
+    }
+}
+
+.zoomIn {
+    -webkit-animation-name: zoomIn;
+    animation-name: zoomIn
+}
+
+.animated {
+    -webkit-animation-duration: .5s;
+    animation-duration: .5s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}

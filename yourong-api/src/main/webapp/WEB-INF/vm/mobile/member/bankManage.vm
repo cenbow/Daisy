@@ -1,0 +1,77 @@
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$m_css_url/modules/member.css","$m_css_url/modules/bankManage.css","$m_css_url/modules/bankAdd.css","$res_url/lib/frozenui/kit.css"])
+#set($title='银行卡')
+<!--header-->
+<h2 class="u-header u-bankManage-head f-pos-r" id="j-pagetag" data-pagetag="bankManage">
+    <a href="$siteurl/mCenter/home">返回</a>
+    <span class="f-fs18">
+        银行卡
+    </span>
+    <em id="j-security-card">安全卡</em>
+</h2>
+<!--/header-->
+<!--body-->
+
+<div class="m-bankcard-list f-cf" id="j-bankcard-list">
+    <ul id="j-cardlist"></ul>
+    <script id="j-cardlist-tpl" type="text/html">
+        {{each data as item i}}
+        <li class="u-circle-15 f-cf" data-cardid="{{item.id}}">
+            <em class="u-withdraw-more f-ff-ver f-fl">
+                <img src="$res_url/img/bankAdd/bank_{{item.bankCode}}.png" />
+            </em>
+            <div class="f-fr z-bankName f-cf">
+                <div class="f-fl">
+                    <div class="u-bankPosition">{{item.bankCodeRemaks}}</div><br/>
+                    <div class="u-bankNumber">{{item.cardNumberMask}}</div>
+                </div>
+                {{if item.isSecurity==1}}##安全卡
+                <div class="u-safety-car f-fr"></div>
+                {{else if item.cardType==2}}##快捷卡
+                <div class="u-shortcut f-fr">快捷支付</div>
+                {{/if}}
+            </div>
+        </li>
+        {{/each}}
+
+</script>
+    <div class="u-withdraw-more">
+        <a href="$siteurl/mCenter/bankAdd" class="u-bank-add">
+            <em class="u-circle-25 f-ff-ver">
+                <strong class="u-font-normal">+</strong>
+            </em>
+            <span>添加银行卡</span>
+        </a>
+    </div>
+</div>
+##安全卡
+<div class="ui-dialog u-security-card" id="j-securityCard-box">
+        <div class="ui-dialog-cnt">
+            <div class="ui-dialog-bd">
+                <span>安全卡：是快捷支付状态下充值、提现同卡进出的银行卡安全设置</span>
+                <p>开通步骤：
+                    <br>1、银行卡开通快捷支付
+                    <br>2、用该卡成功交易（充值）
+                    <br>3、该卡即升级为安全卡
+                </p>
+            </div>
+        </div>
+</div>
+
+
+<!--/body-->
+#set($pageScript="
+    <script>
+        seajs.config({
+            alias:{
+                'touch':'lib/js/touch.min.js',
+                'area':'xjs/modules/area'
+            },
+            preload:['touch']
+        });
+        seajs.use('xjs/modules/bankcard');
+    </script>
+")
+
+#CSRFToken("xToken")

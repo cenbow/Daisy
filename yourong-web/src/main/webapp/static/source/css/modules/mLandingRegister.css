@@ -1,0 +1,635 @@
+/*
+* 移动端注册着陆页
+*/
+html {
+    color: #000;
+    background: #FFF
+}
+
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+    margin: 0;
+    padding: 0
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0
+}
+
+fieldset, img {
+    border: 0
+}
+
+address, caption, cite, code, dfn, em, strong, th, var {
+    font-style: normal;
+    font-weight: normal
+}
+
+ol, ul {
+    list-style: none
+}
+
+caption, th {
+    text-align: left
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-size: 100%;
+    font-weight: normal
+}
+
+q:before, q:after {
+    content: ''
+}
+
+abbr, acronym {
+    border: 0;
+    font-variant: normal
+}
+
+sup {
+    vertical-align: text-top
+}
+
+sub {
+    vertical-align: text-bottom
+}
+
+input, textarea, select {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    *font-size: 100%
+}
+
+legend {
+    color: #000
+}
+
+html {
+    max-width: 640px;
+    margin: auto;
+    font-size: 62.5%;
+    height: 100%;
+}
+
+body {
+    min-width: 320px;
+    min-height: 100%;
+    background-color: #F6F6F6;
+    margin: auto;
+    -webkit-font-smoothing: antialiased;
+}
+
+#g-bd .f-dn, #g-bd .z-hide {
+    display: none;
+}
+
+.f-pos-r {
+    position: relative;
+}
+
+.u-mobile-head {
+    position: relative;
+    top: 0;
+    max-height: 50px;
+    width: 640px;
+    z-index: 101;
+    background-color: #d74147;
+}
+
+.u-mobile-head h1 {
+    color: #fff;
+    height: 50px;
+    min-width: 200px;
+    text-indent: -9999em;
+    background: url(/static/img/common/logo_normal.png) no-repeat 2rem center;
+    -webkit-background-size: 90px 24px;
+    background-size: 90px 24px;
+}
+
+#g-bd {
+    margin: 0 0 -50px;
+    height: 100%;
+}
+
+#g-ft {
+    display: none;
+    background-color: #777;
+    font-size: 1.2rem;
+    color: #d7d7d7;
+    text-align: center;
+    padding: 0.8rem;
+    line-height: 1.6rem;
+}
+
+.m-reg-form {
+    padding: 2rem;
+    font-size: 1.4rem;
+}
+
+.m-reg-form input {
+    text-indent: 8px;
+    font-size: 1.4rem;
+    border: 1px solid #d6d6d6;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    color: #333;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+.m-reg-form .u-ipt-text, .m-reg-form .u-reg-btn {
+    width: 100%;
+    height: 20px;
+    padding: 12px 0 13px;
+    /* min-width: 220px; */
+}
+
+.m-reg-form .u-reg-btn {
+    margin-bottom: 10rem;
+    height: 45px;
+    background-color: #d74147;
+    border: 1px solid #d74147;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    color: #fff;
+    font-size: 1.6rem;
+    cursor: pointer;
+}
+.u-reg-btn.z-disabled {
+    background-color: #aaa;
+    border-color: #aaa;
+    cursor: default;
+}
+.m-reg-form label {
+    display: block;
+    padding: 1.5rem 0;
+}
+
+.u-ipt-group {
+    padding: 0 0 1rem;
+}
+
+.m-reg-form .u-ipt-vercode {
+    margin: 0 0 1rem 0;
+
+}
+
+.m-input-vercode {
+    font-size: 1.3rem;
+    position: relative;
+}
+
+.m-input-vercode .u-img-vercode {
+    width: 90px;
+    height: 30px;
+    position: absolute;
+    right: 1rem;
+    top: 0.8rem;
+    border-left: 1px solid #d6d6d6;
+    vertical-align: middle;
+}
+
+.m-input-vercode .u-ipt-phonecode {
+    margin: 0 0 1rem 0;
+}
+.u-phonecode-wrap{
+    display: inline-block;
+    width: 48%;
+    margin: 0 0 0 4%;
+    vertical-align: middle;
+}
+.u-phonecode-wrap span{
+    display: inline-block;
+    margin: 0 0 1rem 0.5rem;
+}
+.m-val-tips {
+    color: #d74147;
+}
+
+.Validform_wrong {
+    color: #d74147;
+    display: block;
+    padding: 1rem 0 0;
+    text-indent: 0.7rem;
+}
+
+.m-val-tips .u-icon-error {
+    display: block;
+    padding: 1rem 0 0 0.5rem;
+}
+
+.m-input-vercode .u-icon-error {
+    padding: 0 0 0 0.5rem;
+}
+
+.m-val-tips.z-success {
+    color: #656565;
+    display: inline-block;
+    padding: 1rem 0 0 0.5rem;
+}
+
+.u-phonecode-wrap.z-hide {
+    display: none;
+}
+
+.u-tips-vercode {
+    display: inline-block;
+    width: 48%;
+    line-height: 20px;
+    height: 20px;
+    padding: 12px 0;
+    text-align: center;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    vertical-align: middle;
+    margin: 0 0 1rem;
+}
+.u-tips-voice {
+    background-color: #FFFAAF;
+    border:  1px solid #E0CD74;
+    padding: 0.5rem;
+    text-align: center;
+    margin: 0 0 1rem;
+}
+.f-tips-blue {
+    background-color: #6BAAF0;
+    color: #FFF;
+    border-color: #6BAAF0;
+}
+
+.f-tips-green {
+    background-color: #47C147;
+    color: #FFF;
+    border-color: #47C147;
+
+}
+.f-tips-red {
+	background-color: #d74147;
+	color: #fff;
+	border-color: #d74147;
+}
+.f-cur-point {
+    cursor: pointer;
+}
+
+.u-tips-login {
+    height: 3rem;
+    line-height: 3rem;
+    margin: 0 0 1rem;
+    background-color: #FFFAAF;
+    border-color: #FFFAAF;
+    text-align: center;
+    color: #D74147;
+}
+
+.u-reg-tips {
+    line-height: 4rem;
+    padding: 0 0 3rem;
+    text-align: center;
+    font-size: 1.4rem;
+    color: #757575;
+}
+
+.u-reg-tips a {
+    text-decoration: none;
+    color: #06c;
+    display: inline-block;
+    padding: 1.5rem 0.5rem;
+    line-height: 1rem;
+    margin: 30px 0 0;
+}
+
+.u-bind-success {
+    padding: 10rem 0 0;
+    text-align: center;
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+
+.u-icon-success {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    background: url(/static/img/common/icon_success.png) no-repeat;
+}
+
+.m-val-tips .u-icon-success {
+    display: none;
+}
+
+/**着陆页注册第一步css样式**/
+.u-mobile-guide{
+    height: 7rem;
+    width: 100%;
+}
+.u-mobile-guide span{
+    width: 100%;
+    display: block;
+    height: 5rem;
+    border-bottom: 1px solid #d6d6d6;
+}
+.u-mobile-guide ul{
+    width: 42%;
+    padding: 0 26% 0 32%;
+}
+.u-mobile-guide ul li{
+    color:#fff;
+    font-size:1.4rem;
+    text-align:center;
+    line-height:2.8rem;
+    margin-top:-1.4rem;
+    float:left;
+    margin-right:1.2rem;
+    width: 2.8rem;
+    height: 2.8rem;
+    background-color: #d6d6d6;
+    -moz-border-radius: 1.4rem;
+    -webkit-border-radius: 1.4rem;
+    border-radius: 1.4rem;
+}
+
+.u-mobile-guide ul li:first-child{
+    margin-top:-1.7rem;
+    line-height:3.4rem;
+    width: 3.4rem;
+    height: 3.4rem;
+    background-color: #d74147;
+    -moz-border-radius: 1.7rem;
+    -webkit-border-radius: 1.7rem;
+    border-radius: 1.7rem;
+}
+.u-mobile-head p{
+    float: left;
+    font-size: 1.6rem;
+    color: #fff;
+    margin-left: 12rem;
+    margin-top: -3.2rem;
+}
+.u-mobile-head p strong{
+    font-weight:bold;
+}
+.u-mobile-head{
+    background-color: #d74147;
+    height: 50px;
+    width: 100%;
+}
+.u-wap-app{
+    width: 100%;
+    height: 4.5rem;
+    line-height: 2rem;
+    background-color: #d74147;
+    padding-top: 0.8rem;
+    display: block;
+    position: fixed;
+    bottom: 0;
+    color: #fff;
+    text-decoration: none;
+}
+.u-wap-app .u-wap-h2{
+    font-size: 2rem;
+    display: block;
+    margin-left: 4%;
+}
+.u-wap-app .u-wap-h3{
+    font-size: 1.3rem;
+    margin-left: 4%;
+}
+.u-wap-app:link{
+    color: #fff;
+    text-decoration: none;
+}
+.u-wap-app:visited{
+    color: #fff;
+    text-decoration: none;
+}
+.u-wap-app:hover{
+    color: #fff;
+    text-decoration: none;
+}
+.u-wap-app em{
+    width: 30%;
+    height: 4rem;
+    display: block;
+    font-size: 1.5rem;
+    position: absolute;
+    bottom: 0;
+    right: 1rem;
+    color: #333;
+    background-color: #fff;
+    line-height: 4rem;
+    text-align: center;
+    border-radius: 1rem;
+    -webkit-border-radius: 1rem;
+    -moz-border-radius: 1rem;
+    margin-bottom: 0.7rem;
+}
+/**着陆页注册第二步css样式**/
+.u-mobile-guide2{
+    height: 7rem;
+    width: 100%;
+}
+.u-mobile-guide2 span{
+    width: 100%;
+    display: block;
+    height: 5rem;
+    border-bottom: 1px solid #d6d6d6;
+}
+.u-mobile-guide2 ul{
+    width: 42%;
+    padding: 0 26% 0 32%;
+}
+.u-mobile-guide2 ul li{
+    color:#fff;
+    font-size:1.4rem;
+    text-align:center;
+    line-height:2.8rem;
+    margin-top:-1.4rem;
+    float:left;
+    margin-right:1.2rem;
+    width: 2.8rem;
+    height: 2.8rem;
+    background-color: #d6d6d6;
+    -moz-border-radius: 1.4rem;
+    -webkit-border-radius: 1.4rem;
+    border-radius: 1.4rem;
+}
+.u-mobile-guide2 ul li:nth-child(2){
+    margin-top:-1.7rem;
+    line-height:3.4rem;
+    width: 3.4rem;
+    height: 3.4rem;
+    background-color: #d74147;
+    -moz-border-radius: 1.7rem;
+    -webkit-border-radius: 1.7rem;
+    border-radius: 1.7rem;
+}
+.u-mobile-tips{
+    margin-top: -5rem;
+}
+.u-mobile-tips h5{
+    color: #d74147;
+    margin: 0 0 0.8rem 2rem;
+}
+.u-mobile-tips p{
+    margin-left: 2rem;
+    margin-bottom: 4rem;
+    line-height: 1.5rem;
+    color: #666;
+}
+
+/**着陆页注册第三步css样式**/
+.u-mobile-guide3{
+    height: 7rem;
+    width: 100%;
+}
+.u-mobile-guide3 span{
+    width: 100%;
+    display: block;
+    height: 5rem;
+    border-bottom: 1px solid #d6d6d6;
+}
+.u-mobile-guide3 ul{
+    width: 42%;
+    padding: 0 26% 0 32%;
+}
+.u-mobile-guide3 ul li{
+    color:#fff;
+    font-size:1.4rem;
+    text-align:center;
+    line-height:2.8rem;
+    margin-top:-1.4rem;
+    float:left;
+    margin-right:1.2rem;
+    width: 2.8rem;
+    height: 2.8rem;
+    background-color: #d6d6d6;
+    -moz-border-radius: 1.4rem;
+    -webkit-border-radius: 1.4rem;
+    border-radius: 1.4rem;
+}
+.u-mobile-guide3 ul li:nth-child(3){
+    margin-top:-1.7rem;
+    line-height:3.4rem;
+    width: 3.4rem;
+    height: 3.4rem;
+    background-color: #d74147;
+    -moz-border-radius: 1.7rem;
+    -webkit-border-radius: 1.7rem;
+    border-radius: 1.7rem;
+}
+.u-regMobile-success{
+    clear:both;
+    margin: 3rem 15% 2rem;
+}
+.u-regMobile-success img{
+    float:left;
+    margin-right: 1.5rem;
+}
+
+.u-regMobile-success dl{
+    padding-top: 1rem;
+    height:5rem;
+}
+.u-regMobile-success dl dt{
+    font-size:1.5rem;
+    color: #d74147;
+    font-weight:bold;
+}
+.u-regMobile-success dl dd{
+    font-size:1.2rem;
+    color:#666;
+}
+.u-mobReward-box img{
+    margin-left:10%;
+}
+.u-mobReward-tips{
+    color:#666;
+    margin:4% 0 0 10%;
+    line-height:1.8rem;
+    font-size:1.5rem;
+}
+.u-mobile-btn{
+    text-align:center;
+    padding-bottom:10rem;
+}
+.u-mobile-btn a:first-child {
+    margin-right: 5rem;
+}
+.u-mobile-btn a{
+    margin-top:3rem;
+    display:inline-block;
+    height: 3.5rem;
+    width: 32%;
+    line-height: 3.5rem;
+    border:1px solid #666;
+    font-size:1.4rem;
+    color:#666;
+    text-decoration:none;
+    text-align:center;
+    -moz-border-radius: 0.8rem;
+    -webkit-border-radius: 0.8rem;
+    border-radius: 0.8rem;
+}
+
+　　.u-mobile-btn a:link{
+    color:#666;
+    text-decoration:none;
+}
+.u-mobile-btn a:visited {
+    color:#666;
+    text-decoration:none;
+}
+.u-mobile-btn a:hover{
+    color:#666;
+    text-decoration:none;
+}
+.u-tips-pLeft{
+    margin-left: 4%;
+}
+
+.u-wap-safety{
+    text-align: center;
+    margin: -7rem 0 10rem 0;
+}
+.u-wap-safety img:first-child{
+    margin: 0 10% 0 0;
+}
+.u-mobileWap-banner{
+    width: 100%;
+    position: relative;
+}
+.u-mobileWap-banner ul li{
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.u-mobileWap-banner ul .z-current{
+    z-index: 50;
+}
+.u-mobileWap-banner ol {
+    position: absolute;
+    right: 42%;
+    bottom:0.5rem;
+    z-index: 52;
+}
+.u-mobileWap-banner ol .z-current{
+    background-color: #d74147;
+}
+.u-mobileWap-banner ol li{
+    float: left;
+    background-color: #666;
+    width: 1.5rem;
+    height:1.5rem;
+    margin-right:1rem;
+    overflow: hidden;
+    text-align: center;
+}

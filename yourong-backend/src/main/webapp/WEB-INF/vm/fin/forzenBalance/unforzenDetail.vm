@@ -1,0 +1,40 @@
+<div tabindex="-1" class="modal fade" id="unforzen-modal-table" style="display: none;" aria-hidden="true">
+	<div class="modal-dialog" style="width:600px;">
+		<div class="modal-content">
+			<div class="modal-header no-padding">
+				<div class="table-header">
+				<input type="hidden" name="forzenId" id="forzenId"/>
+					<button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+						<span class="white">×</span>
+					</button>
+					<span class="modalFormTitle">解冻明细</span>
+				</div>
+			</div>
+			<div class="modal-body">
+    			<table id="unforzenDetail-table" class="table table-striped table-bordered" cellspacing="0" width="100%">
+									<thead>
+										<tr>
+			        						<th width="10%">编号</th>
+				        					<th width="15%">解冻订单号</th>
+				        					<th width="9%">解冻时间</th>
+				        					<th width="9%">解冻金额</th>
+				        					<th width="9%">状态</th>
+				        					<th width="15%">解冻原因</th>
+        								</tr>
+									</thead>
+			  </table>
+			  
+			<div>
+			<div class="modal-footer">
+                <button type="button" id="btn_sync_unforzen" class="btn btn-primary">同步状态</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+			</div>
+    				
+    		</div>
+    		</div>
+		</div>
+	<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>

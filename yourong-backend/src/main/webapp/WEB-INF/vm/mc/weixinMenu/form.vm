@@ -1,0 +1,71 @@
+<div tabindex="-1" class="modal fade" id="modal-table" style="display: none;" aria-hidden="true">
+     <div class="modal-dialog">
+     <div class="modal-content">
+ <div class="modal-header no-padding">
+             <div class="table-header">
+                  <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+                    <span class="white">×</span>
+              </button>
+    <span class="modalFormTitle">添加菜单</span>
+       </div>
+  </div>
+   <div class="modal-body">
+    <form role="form" class="form-horizontal" id="weixin_form" method="post">
+     <input type="hidden" name="id" id="id" />
+     <input type="hidden" name="status" id="status" />
+<div class="form-group" id="weixin_type">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 菜单类型: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+     ##dictSelect ("type",${sysServiceUtil.getDictList('weixin_response_type')} ,"请选择","")
+     						<select id="type" name="type" >
+												<option value="click">跳转到网页</option>
+												<option value="view">发送信息</option>
+							</select>
+    </div>
+  </div>
+</div>
+ <div class="form-group">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 名称: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+     <input type="text" name="name" datatype="*1-10"  errormsg="菜单名称不多于10个汉字" class="col-xs-10 col-sm-5" placeholder="name" id="form-field-name">
+    </div>
+  </div>
+</div>
+
+ <div class="form-group" id="key">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> key: </label>
+  <div class="col-sm-9">
+    <div class="clearfix" >
+      <input type="text" name="key" class="col-xs-10 col-sm-5" placeholder="key" id="form-field-key">
+    </div>
+  </div>
+</div>
+ <div class="form-group"id="url">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> url: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+      <input type="text" name="url" class="col-xs-10 col-sm-5" placeholder="以http://或https://开头" id="form-field-url">
+    </div>
+  </div>
+</div>
+<div class="form-group" id="sort">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 排序: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+      <input type="text" name="sort" datatype="n" class="col-xs-10 col-sm-5" placeholder="sort" id="form-field-sort">
+    </div>
+  </div>
+</div>
+</form>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+<button type="button" id="save_weixin" class="btn btn-primary">保存</button>
+</div>
+</div>
+<!-- /.modal-content -->
+ </div>
+<!-- /.modal-dialog -->
+</div>

@@ -1,0 +1,81 @@
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$m_css_url/modules/recharge.css"])
+#set($tradeNo=$request.getParameter("tradeNo"))
+#set($title='充值')
+<style>
+    [v-cloak]{
+        display: none;
+    }
+</style>
+<div id="afterRechange" v-cloak="">
+    <!--header-->
+    <h2 class="u-header f-pos-r">
+        <a href="$siteurl/mCenter/recharge">返回</a>
+    <span class="f-fs18">
+        充&nbsp;值&nbsp;
+    </span>
+    </h2>
+    <!--/header-->
+    <div>
+        <div class="u-statusIcon">
+            <img v-if="rechangeData.status===1" src="$res_url/img/member/afterRechange/ico_ processing.png" alt="">
+            <img v-if="rechangeData.status===-2"  src="$res_url/img/member/afterRechange/ico_fail.png" alt="">
+            <img v-if="rechangeData.status===5"  src="$res_url/img/member/afterRechange/ico_succeed.png" alt="">
+            <div>
+                <span v-if="rechangeData.status===5" class="f-fs18 f-color3">
+                    充值成功
+                </span>
+                <span v-if="rechangeData.status===-2" class="f-fs18 f-color3">
+                    充值失败
+                </span>
+                <span v-if="rechangeData.status===1" class="f-fs18 f-color3">
+                    充值处理中
+                </span>
+                <p v-if="rechangeData.status===-2" class="f-fs12 f-color6">
+                    网络连接中断，请稍后重试
+                </p>
+            </div>
+        </div>
+        <div class="u-rechangeInfo">
+            <ul>
+                <li><span>充值金额</span><span class="f-color3">&yen;<i v-text="rechangeData.amount | amountFormat 'split'">2,000</i></span></li>
+                <li>
+                    <span>充值银行</span>
+                    <span v-if="rechangeData.bankName" class="f-color3" v-text="rechangeData.bankName"></span>
+                    <span v-else class="f-color3">--</span>
+                </li>
+
+                <li><span>流水号</span><span class="f-color3" v-text="rechangeData.rechargeNo"></span></li>
+                <li><span>充值时间</span><span class="f-color3" v-text="rechangeData.rechargeTime | dateFormat 'yyyy-MM-dd hh:mm:ss'"></span></li>
+            </ul>
+        </div>
+        <div class="u-statusBtn">
+            <a href="$siteurl/mCenter/home" v-if="rechangeData.status===5&&rechangeData.type===1" >
+                完成
+            </a>
+            <a href="$siteurl/mCenter/orderPayment?orderId={{rechangeData.orderNo}}" v-if="rechangeData.type===2&&rechangeData.status===5">
+                继续订单支付
+            </a>
+            <a @click="reloadBtn" v-if="rechangeData.status===1" >
+                刷新
+            </a>
+            <a href="$siteurl/mCenter/recharge"  v-if="rechangeData.status===-2" >
+                重新充值
+            </a>
+        </div>
+        <div class="u-functionBtn"  v-if="rechangeData.status===1 || rechangeData.status===-2">
+            <a v-if="rechangeData.status===1" href="$siteurl/mCenter/capitalInOutLog?isCurrent=1">查看充值记录</a>
+##            传一个参数确定去哪
+            <a v-if="rechangeData.status===-2" href="$siteurl/mCenter/home">关闭</a>
+        </div>
+    </div>
+    <input type="hidden" tradeNo="$tradeNo" id="j-tradeNo">
+</div>
+#set($pageScript="
+<script src='$aliyunOss_url/res/lib/vue/v1/vue.min.js'></script>
+<script>
+   seajs.use('xjs/modules/afterRechange');
+</script>
+")
+#CSRFToken("xToken")

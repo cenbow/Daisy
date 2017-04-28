@@ -1,0 +1,179 @@
+##好春来
+#parse("/common/common.vm")
+#set($title="好春来，“财”在其中_$!{title_suffix}")
+#set($css_url=["$root_css_url/activity/goodSpring.css"])
+#set($js_url=[
+  "/static/lib/js/vue/vue.js",
+  "/static/lib/js/vue/vue.extend.js",
+  "$root_url/static/lib/js/clipboard.min.js",
+  "$root_js_url/activity/goodSpring.js"
+])
+#set($aliyun='https://yrstatic.oss-cn-hangzhou.aliyuncs.com')
+#if($currentUser)
+  #set($logined=true)
+#else
+  #set($logined=false)
+#end
+#CSRFToken('xToken')
+
+<div id="j-goodSpring" class="m-goodSpring" data-logined="$logined" v-cloak>
+
+  <div class="m-head">
+      <div class="u-time">{{init.startDate | formatTime 'M月d日' }} ~ {{init.endDate | formatTime 'M月d日' }}</div>
+  </div>
+  <div class="m-bg m-bg1">
+    <div class="g-wrap">
+      <h1>签到领一张现金券，当天使用一张即可自动获同面额券一张，每日无上限噢，次日可重选面额~</h1>
+      <ul>
+        <li>
+          <div class="m-award-quan m-award-quan1">
+            <h2>¥<em>{{init.couponList[0].amount}}</em></h2>
+            <h3>{{init.couponList[0].couponAmountScope}}</h3>
+            <h3>{{init.couponList[0].couponDaysScope}}</h3>
+          </div>
+          <div class="m-award-btn" @click="getmoney(0)" :class="{'z-happend': init.template}">
+            <template v-if="!init.template">领&nbsp;&nbsp;取</template>
+            <template v-else>明天再来~</template>
+          </div>
+        </li>
+        <li>
+          <div class="m-award-quan m-award-quan1">
+            <h2>¥<em>{{init.couponList[1].amount}}</em></h2>
+            <h3>{{init.couponList[1].couponAmountScope}}</h3>
+            <h3>{{init.couponList[1].couponDaysScope}}</h3>
+          </div>
+          <div class="m-award-btn" @click="getmoney(1)" :class="{'z-happend': init.template}">
+            <template v-if="!init.template">领&nbsp;&nbsp;取</template>
+            <template v-else>明天再来~</template>
+          </div>
+        </li>
+        <li class="f-fc-margin">
+          <div class="m-award-quan m-award-quan1">
+            <h2>¥<em>{{init.couponList[2].amount}}</em></h2>
+            <h3>{{init.couponList[2].couponAmountScope}}</h3>
+            <h3>{{init.couponList[2].couponDaysScope}}</h3>
+          </div>
+          <div class="m-award-btn" @click="getmoney(2)" :class="{'z-happend': init.template}">
+            <template v-if="!init.template">领&nbsp;&nbsp;取</template>
+            <template v-else>明天再来~</template>
+          </div>
+        </li>
+        <li>
+          <div class="m-award-quan m-award-quan2">
+            <h2>¥<em>{{init.couponList[3].amount}}</em></h2>
+            <h3>{{init.couponList[3].couponAmountScope}}</h3>
+            <h3>{{init.couponList[3].couponDaysScope}}</h3>
+          </div>
+          <div class="m-award-btn" @click="getmoney(3)" :class="{'z-happend': init.template}">
+            <template v-if="!init.template">领&nbsp;&nbsp;取</template>
+            <template v-else>明天再来~</template>
+          </div>
+        </li>
+        <li>
+          <div class="m-award-quan m-award-quan2">
+            <h2>¥<em>{{init.couponList[4].amount}}</em></h2>
+            <h3>{{init.couponList[4].couponAmountScope}}</h3>
+            <h3>{{init.couponList[4].couponDaysScope}}</h3>
+          </div>
+          <div class="m-award-btn" @click="getmoney(4)" :class="{'z-happend': init.template}">
+            <template v-if="!init.template">领&nbsp;&nbsp;取</template>
+            <template v-else>明天再来~</template>
+          </div>
+        </li>
+        <li class="f-fc-margin">
+          <div class="m-award-quan m-award-quan2">
+            <h2>¥<em>{{init.couponList[5].amount}}</em></h2>
+            <h3>{{init.couponList[5].couponAmountScope}}</h3>
+            <h3>{{init.couponList[5].couponDaysScope}}</h3>
+          </div>
+          <div class="m-award-btn" @click="getmoney(5)" :class="{'z-happend': init.template}">
+            <template v-if="!init.template">领&nbsp;&nbsp;取</template>
+            <template v-else>明天再来~</template>
+          </div>
+        </li>
+        <li class="f-fc-hidden">
+          <div class="m-award-quan3"></div>
+        </li>
+        <li>
+          <div class="m-award-quan m-award-quan3">
+            <h2>¥<em>{{init.couponList[6].amount}}</em></h2>
+            <h3>{{init.couponList[6].couponAmountScope}}</h3>
+            <h3>{{init.couponList[6].couponDaysScope}}</h3>
+          </div>
+          <div class="m-award-btn" @click="getmoney(6)" :class="{'z-happend': init.template}">
+            <template v-if="!init.template">领&nbsp;&nbsp;取</template>
+            <template v-else>明天再来~</template>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="m-bg m-bg2">
+    <div class="g-wrap">
+      <h1>每日首笔投资后，随机送<em class="f-fc-purple">0.5%或者1%</em>收益券一张。</h1>
+    </div>
+  </div>
+  <div class="m-bg m-bg3">
+    <div class="g-wrap">
+      <h1>活动期间，累投金额每满5万，即可获得一个顺心如意包（例：累计投资额为15万时，可获得3个顺心如意包）。</h1>
+      <h2 v-if="init.status == 4 && $logined">
+        <img src="/static/img/activity/goodSpring/icon1.png" alt="">
+        我的累计投资额：
+        <template v-if="init.totalAmount">￥{{init.totalAmount | amountSplit '' true}}</template>
+        <template v-else>{{init.totalAmount | amountSplit '' true}}</template>
+      </h2>
+      <h3 v-if="init.pacNum && $logined" :class="{'z-status4': init.status != 4}">
+        <img src="/static/img/activity/goodSpring/icon2.png" alt="">
+        已斩获顺心如意包：{{init.pacNum}}个
+      </h3>
+    </div>
+  </div>
+  <div class="m-bg m-bg4">
+    <div class="g-wrap">
+      <h2>活动规则</h2>
+      <div class="m-activity-rule-content">
+        1. 活动对象：有融网所有用户；<br />
+        2. 活动时间：{{init.startDate | formatTime 'yyyy年MM月dd日 hh:mm' }}~{{init.endDate | formatTime 'MM月dd日 hh:mm' }}；<br />
+        3. 现金券使用规则请详见券面；<br />
+        4. 转让专区项目不参加本活动；<br/>
+        5. 如有其他疑问，请拨打客服热线：400-025-6688；<br/>
+        6. 本活动最终解释权归有融网所有。<br/>
+      </div>
+    </div>
+  </div>
+
+##  领取提示
+  <div class="m-tips-box f-fudai animated zoomIn" v-show="showDialog">
+    <img src="$aliyun/static/img/springComing/rays_main_bg.png" class="u-response-img u-win-bg">
+    <div class="u-confirm-lottery f-tac">
+      <img src="/static/img/activity/goodSpring/xiaorong.png" class="u-xiaorong-img">
+      <div class="u-reward-content">
+        <img @click="close" src="/static/img/activity/goodSpring/close.png" alt="">
+        <p><em class="f-fc-red">{{init.couponList[rewardIndex].amount}}元现金券</em>已到手~</p>
+        <a href="$root_url/products/list-all-all-investing-1-createTimeDesc-1.html" class="m-reward-btn">我要去投资</a>
+      </div>
+    </div>
+  </div>
+  <div class="m-tips-box f-fudai animated zoomIn" v-show="nocheck">
+    <div class="u-confirm-lottery f-tac">
+      <div class="u-reward-content u-top">
+        <img @click="close" src="/static/img/activity/goodSpring/close.png" alt="">
+        <p>签到后才可以领取哦</p>
+        <a href="$root_url/security/login/" class="m-reward-btn" id="j-checkin-btn" @click="checkin">签到</a>
+      </div>
+    </div>
+  </div>
+
+##  蒙层
+  <div class="u-cover" v-show="coverShow"></div>
+  <div class="u-white-cover" v-show="whiteCoverShow"></div>
+
+## 非模态框
+  <div class="m-tips-window animated zoomIn" v-show="isShowTips" v-text="tipsList[tipsIndex]"></div>
+
+</div>
+
+<script>
+  var logined = $logined,
+          isDev =$isDev
+</script>

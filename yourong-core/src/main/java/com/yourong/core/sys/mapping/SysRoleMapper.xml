@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.sys.dao.SysRoleMapper" >
+  <resultMap id="BaseResultMap" type="SysRole" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="office_id" property="officeId" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="data_scope" property="dataScope" jdbcType="CHAR" />
+    <result column="create_by" property="createBy" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_by" property="updateBy" jdbcType="VARCHAR" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+  </resultMap>
+  
+  
+  
+  <sql id="Base_Column_List" >
+    id, office_id, name, data_scope, create_by, create_date, update_by, update_date, 
+    remarks, del_flag
+  </sql>
+  <resultMap id="SysRoleMenu" type="SysRole"  extends="BaseResultMap">
+  	<collection property="menus" ofType="SysMenu">  
+            <id column="menu_id" property="id" jdbcType="BIGINT" />
+   		 <result column="menu_parentId" property="parentId" jdbcType="BIGINT" />
+   		 <result column="menu_type" property="type" jdbcType="INTEGER" />
+    	<result column="menu_name" property="name" jdbcType="VARCHAR" />
+    <result column="menu_href" property="href" jdbcType="VARCHAR" />
+    <result column="menu_target" property="target" jdbcType="VARCHAR" />
+    <result column="menu_icon" property="icon" jdbcType="VARCHAR" />
+    <result column="menu_sort" property="sort" jdbcType="INTEGER" />
+    <result column="menu_status" property="status" jdbcType="INTEGER" />
+    <result column="menu_permission" property="permission" jdbcType="VARCHAR" />
+    <result column="menu_createTime" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="menu_updateTime" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="menu_remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="menu_delFlag" property="delFlag" jdbcType="INTEGER" />
+        </collection>  
+  </resultMap>
+  
+  <select id="selectRoleMenus" resultMap="SysRoleMenu" parameterType="java.lang.Long" >
+  	SELECT role.*,menu.id AS menu_id,
+	 menu.parent_id AS menu_parentId, 
+	 menu.type AS menu_type,menu.name AS menu_name, 
+	 menu.href AS menu_href, menu.target AS menu_target,
+	  menu.icon AS menu_icon , 
+	  menu.sort AS menu_sort, menu.status AS menu_status, 
+	 menu.permission AS menu_permission,
+	  menu.create_time AS menu_createTime, 
+	  menu.update_time AS menu_updateTime, 
+	 menu.remarks AS menu_remarks, menu.del_flag AS menu_delFlag	
+	 FROM  sys_role AS role 
+  	LEFT JOIN sys_role_menu  rm ON role.id = rm.role_id
+  	LEFT JOIN sys_menu menu  ON rm.menu_id = menu.id where role.id = #{id,jdbcType=BIGINT}  
+  </select>
+  
+   <insert id="batchInsertRoleAndMenus" parameterType="java.util.List" >
+    insert into sys_role_menu (role_id,menu_id)   values   
+      <foreach collection="list" item="item" index="index"   separator=",">  
+        ( #{item.roleId}, #{item.menuId})  
+      </foreach>     
+  </insert>
+  
+  
+  <insert id="insertSelective" parameterType="SysRole" >
+    insert into sys_role
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="officeId != null" >
+        office_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="dataScope != null" >
+        data_scope,
+      </if>
+      <if test="createBy != null" >
+        create_by,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="updateBy != null" >
+        update_by,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="officeId != null" >
+        #{officeId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="dataScope != null" >
+        #{dataScope,jdbcType=CHAR},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="SysRole" >
+    update sys_role
+    <set >
+      <if test="officeId != null" >
+        office_id = #{officeId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="dataScope != null" >
+        data_scope = #{dataScope,jdbcType=CHAR},
+      </if>
+      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <delete id="batchDelete" parameterType="java.lang.Long" >
+    delete from sys_role
+    where id in  <foreach collection="ids" index="index" item="item" open="(" separator="," close=")"> #{item}  </foreach>  
+  </delete>
+  <select id="findByPage" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_role
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = #{map.id}
+        </if>
+        <if test=" map.officeId != null" >
+          office_id = #{map.officeId}
+        </if>
+        <if test=" map.name != null" >
+          name = #{map.name}
+        </if>
+        <if test=" map.dataScope != null" >
+          data_scope = #{map.dataScope}
+        </if>
+        <if test=" map.createBy != null" >
+          create_by = #{map.createBy}
+        </if>
+        <if test=" map.createDate != null" >
+          create_date = #{map.createDate}
+        </if>
+        <if test=" map.updateBy != null" >
+          update_by = #{map.updateBy}
+        </if>
+        <if test=" map.updateDate != null" >
+          update_date = #{map.updateDate}
+        </if>
+        <if test=" map.remarks != null" >
+          remarks = #{map.remarks}
+        </if>
+        <if test=" map.delFlag != null" >
+          del_flag = #{map.delFlag}
+        </if>
+      </where>
+    </if>
+  </select>
+  
+  <select id="checkRoleNameExists" resultMap="BaseResultMap">
+  		select id, name from sys_role  		
+  		<if test=" name != null" >
+  			<where>
+  				name = #{name}
+  				<if test=" id >= 0 ">
+  					and id != #{id}
+  				</if>
+  			</where>
+  		</if>
+  </select>
+  
+</mapper>

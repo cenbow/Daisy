@@ -1,0 +1,292 @@
+##土豪请出列
+#parse('/common/common.vm')
+#set($title="土豪请出列_$!{title_suffix}")
+
+ <style>
+
+          	.g-bd {
+				margin-bottom: 0;
+				}
+			.g-wrap {
+				width: 990px;
+				margin: 0 auto;
+			}
+			/**页头**/
+		  	.u-finalRanking-hd{
+            	width: 100%;
+            	height: 400px;
+            	margin-top: -8px;
+            	text-indent: -9999px;
+            	position: relative;
+            	background: url(/static/img/activity/finalRanking/finalRanking_hd.jpg) no-repeat center;
+	        }
+	        .m-finalRanking-body{ 
+                padding-top: 100px;
+                height: 1190px;
+                background-color: #f9e2a9;
+            }  
+            .m-finalRanking-center{ 
+                height: 808px;
+                padding: 85px 0px 117px;
+                background: url(/static/img/activity/finalRanking/finalRanking_bd.png) no-repeat center;
+            } 
+            .m-finalRanking-center h2{
+                color:#fe7467;
+                margin-left: 57px;
+            }
+            .m-finalRanking-center h2 em{ 
+                float: right;
+                font-size: 12px;
+                margin-right: 56px;
+            }
+            /**大表格**/
+            .u-finalRanking-tableBig{ 
+                margin: 5px 0 60px 57px;
+                width: 877px;
+                height: 529px;
+                border: 1px solid #cebfab;
+                color: #814b3d;
+            }
+            .u-finalRanking-red{ 
+                color:#f23d5e;
+                font-weight: bold;
+            }
+            .u-finalRanking-tableBig thead tr{
+                height: 53px;
+            } 
+            .u-finalRanking-tableBig tbody td{
+                height: 48px;
+                border-top: 1px solid #ebe5dd;
+            }
+
+            /**用户头像**/
+            .u-user-head{ 
+                display: inline-block;
+                height: 35px;
+                width: 35px;
+                overflow: hidden;
+                padding: 0 2px 0 0;
+                vertical-align: middle;
+                position: relative;
+            }
+            .u-user-head img {
+                display: inline-block;
+                height: 35px;
+                width: 35px;
+                overflow: hidden;
+            }
+            .u-user-head i {
+                position: absolute;
+                left: 0;    
+                top: 0;
+                z-index: 2;
+                background: url(/static/img/common/sprites.png) no-repeat -75px -21px;
+                display: inline-block;
+                height: 35px;
+                width: 35px;
+                overflow: hidden;
+            }          
+            /**用户头像**/
+            /**大表格**/
+            /**小表格**/
+             .u-finalRanking-tableSmall{ 
+                margin: 5px 0 0 57px;
+                width: 877px;
+                height: 122px;
+                border: 1px solid #cebfab;
+                color: #814b3d;
+            }
+            .u-finalRanking-tableSmall thead td{
+               height: 60px;
+                border-bottom: 1px solid #ebe5dd;
+            } 
+             .u-finalRanking-tableSmall tbody tr{
+                height: 59px;
+             }
+            /**小表格**/
+			.u-finalRanking-butbg {
+				display: block;
+				width: 328px;
+				height: 80px;
+				margin-top: 40px;
+				text-indent: -9999px;
+				background: url(/static/img/activity/finalRanking/finalRanking_btn.png) no-repeat center;
+			}
+</style>
+
+
+
+  <div class="f-mh500 f-cf ">
+    <!--head-->
+    	<div class="u-finalRanking-hd"></div>
+    <!--/head-->
+    <!--body-->
+        <div class="m-finalRanking-body">
+            <div class="m-finalRanking-center g-wrap">
+                <h2 class="f-fs20 f-cf">土豪排行<em>备注：有融网客服将与获奖用户进行沟通</em></h2>
+                <table class="u-finalRanking-tableBig">
+                    <thead>
+                        <tr>
+                            <td width="39"></td>
+                            <td width="166">名称</td>
+                            <td width="57"></td>
+                            <td width="189">用户名</td>
+                            <td width="160">累计投资额</td>
+                            <td>获得奖励</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td>第一名</td>
+                            <td>
+                                <span class="u-user-head">
+                                    <img src="#getMemberAvatar35(110850000092,"40x40")" alt="用户头像">
+                                    <i>&nbsp;</i>
+                                </span>
+                            </td>
+                            <td>小***梅</td>
+                            <td class="u-finalRanking-red">￥1,162,000.00</td>
+                            <td>iPhone 6 Plus 64GB（价值6888元）</td>
+                        </tr>
+                         <tr>
+                            <td></td>
+                            <td>第二名</td>
+                            <td>
+                                <span class="u-user-head">
+                                    <img src="#getMemberAvatar35(110850000093,"40x40")" alt="用户头像">
+                                    <i>&nbsp;</i>
+                                </span>
+                            </td>
+                            <td>小***生</td>
+                            <td class="u-finalRanking-red">￥1,134,000.00</td>
+                            <td>iPhone 6  16GB（价值5288元）</td>
+                        </tr>
+                         <tr>
+                            <td></td>
+                            <td>第三名</td>
+                            <td>
+                                <span class="u-user-head">
+                                    <img src="#getMemberAvatar35(110850016030,"40x40")" alt="用户头像">
+                                    <i>&nbsp;</i>
+                                </span>
+                            </td>
+                            <td>s***g</td>
+                            <td class="u-finalRanking-red">￥1,115,100.00</td>
+                            <td>iPad Air 2 WLAN 16GB（价值3588元）</td>
+                        </tr>
+                         <tr>
+                            <td></td>
+                            <td>第四名</td>
+                            <td><span class="u-user-head">
+                                    <img src="#getMemberAvatar35(110850000020,"40x40")" alt="用户头像">
+                                    <i>&nbsp;</i>
+                                </span></td>
+                            <td>曹***</td>
+                            <td class="u-finalRanking-red">￥677,000.00</td>
+                            <td>888元现金券+1%收益券</td>
+                        </tr>
+                         <tr>
+                            <td></td>
+                            <td>第五名</td>
+                            <td>
+                                <span class="u-user-head">
+                                    <img src="#getMemberAvatar35(110850009132,"40x40")" alt="用户头像">
+                                    <i>&nbsp;</i>
+                                </span>
+                            </td>
+                            <td>雕***光</td>
+                            <td class="u-finalRanking-red">￥551,000.00</td>
+                            <td>688元现金券+1%收益券</td>
+                        </tr>
+                         <tr>
+                            <td></td>
+                            <td>第六名</td>
+                            <td>
+                                <span class="u-user-head">
+                                    <img src="#getMemberAvatar35(110850000012,"40x40")" alt="用户头像">
+                                    <i>&nbsp;</i>
+                                </span>
+                            </td>
+                            <td>q***u</td>
+                            <td class="u-finalRanking-red">￥534,000.00</td>
+                            <td>588元现金券+0.5%收益券</td>
+                        </tr>
+                         <tr>
+                            <td></td>
+                            <td>第七名</td>
+                            <td>
+                                <span class="u-user-head">
+                                    <img src="#getMemberAvatar35(110850001064,"40x40")" alt="用户头像">
+                                    <i>&nbsp;</i>
+                                </span>
+                            </td>
+                            <td>夏***</td>
+                            <td class="u-finalRanking-red">￥407,000.00</td>
+                            <td>388元现金券+0.5%收益券</td>
+                        </tr>
+                         <tr>
+                            <td></td>
+                            <td>第八名</td>
+                            <td>
+                                <span class="u-user-head">
+                                    <img src="#getMemberAvatar35(110850010480,"40x40")" alt="用户头像">
+                                    <i>&nbsp;</i>
+                                </span>
+                            </td>
+                            <td>开***果</td>
+                            <td class="u-finalRanking-red">￥401,400.00</td>
+                            <td>288元现金券+0.5%收益券</td>
+                        </tr>
+                         <tr>
+                            <td></td>
+                            <td>第九名</td>
+                            <td>
+                                <span class="u-user-head">
+                                    <img src="#getMemberAvatar35(110850005508,"40x40")" alt="用户头像">
+                                    <i>&nbsp;</i>
+                                </span>
+                            </td>
+                            <td>S***松</td>
+                            <td class="u-finalRanking-red">￥353,000.00</td>
+                            <td>188元现金券+0.5%收益券</td>
+                        </tr>
+                         <tr>
+                            <td></td>
+                            <td>第十名</td>
+                            <td>
+                                <span class="u-user-head">
+                                    <img src="#getMemberAvatar35(110850000059,"40x40")" alt="用户头像">
+                                    <i>&nbsp;</i>
+                                </span>
+                            </td>
+                            <td>我***的</td>
+                            <td class="u-finalRanking-red">￥314,000.00</td>
+                            <td>88元现金券+0.5%收益券</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h2 class="f-fs20">投标风云榜</h2>
+                <table class="u-finalRanking-tableSmall">
+                    <thead>
+                         <tr>
+                            <td width="37"></td>
+                            <td width="405">一羊领头：第一季土豪排行  共有106人获得一羊领头奖励</td>
+                            <td>一锤定音：第一季土豪排行  共有105人获得一锤定音奖励</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td>一鸣惊人：第一季土豪排行  共有105人获得一鸣惊人奖励 </td>
+                            <td>幸运女神：第一季土豪排行  共有105人获得幸运女神奖励</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <a href="/activity/rankingList2nd" target="_blank" class="u-finalRanking-butbg g-wrap">查看我的存钱罐</a>
+        </div>
+    <!--/body-->
+    	
+	
+    </div>

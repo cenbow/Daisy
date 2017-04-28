@@ -1,0 +1,342 @@
+##2016九月组团大作战
+#parse("/common/common.vm")
+#set($title="组团大作战_$!{title_suffix}")
+#set($css_url=["$root_css_url/activity/SeptemberTeam.css"])
+#set($js_url=[
+    "$root_url/static/lib/js/vue/vue.js",
+    "$root_url/static/lib/js/vue/vue.extend.js",
+    "$root_js_url/activity/SeptemberTeam.js"
+])
+
+#if($currentUser)
+    #set($logined=true)
+#else
+    #set($logined=false)
+#end
+#CSRFToken('xToken')
+
+<div class="m-top" data-logined="$logined" id="j-top">
+    <div class="u-top1"></div>
+    <div class="u-top2"></div>
+    <div class="u-top3"></div>
+    <div class="u-top4"></div>
+    <div class="u-top5"></div>
+    <div class="u-top6"></div>
+    <div class="u-top7"></div>
+    <div class="u-top8"></div>
+</div>
+
+## 主体
+<div class="g-wrap f-dn g-wrap-1078" id="j-SepTeam" :class="{'f-db':initData.activityStatus}">
+    <p class="u-time-text">
+        活动时间：<span v-text="initData.startTime | formatTime 'M月d日'"></span>—<span v-text="initData.endTime | formatTime 'M月d日'"></span>每日<span v-text="initData.joinStartTime || 10"></span>:00—<span v-text="initData.countEndTime || 22"></span>:00
+    </p>
+    <div class="m-score-pad-main">
+        <p class="u-score-pad-notice" :class="{'f-dn': !showPkTitle || initData.activityStatus==6}"><em><span v-text="initData.countStartTime || 22"></span>:00后</em>开始新的一轮比拼</p>
+        <span class="u-logo-win" :class="{'f-dn': !initData.successFlag, 'u-logo-win-a': initData.successFlag==1, 'u-logo-win-b': initData.successFlag==2}"></span>
+
+        <ul class="u-score-list u-score-list-left" id="j-team1Count">
+##            <li v-for="item in team1Count" v-text="item"></li>
+        </ul>
+        <ul class="u-score-list u-score-list-right" id="j-team2Count">
+##            <li v-for="item in team2Count" v-text="item"></li>
+        </ul>
+    </div>
+
+    ## 加入战队
+    <div class="m-addTeam" :class="{'z-afterActive': initData.activityStatus==6}">
+        #if($currentUser)
+        <div class="u-addTeam" :class="{'u-addTeam-a': initData.currentGroupType==1,'u-addTeam-b': initData.currentGroupType==2, 'f-dn': initData.activityStatus!==4 || !initData.currentGroupType}">
+            <span class="u-flag"></span>
+            <img src="#getMemberAvatar($currentUser.id)" alt="用户头像">
+            <span class="u-today-self-amount">我的本轮投资额 <em v-text="initData.todayInvestAmountMy | amountSplit '￥' true"></em></span>
+        </div>
+        #end
+        <div class="u-addTeam-btn-wrap" :class="{'f-dn': initData.activityStatus!==2 && (initData.joined || initData.activityStatus==6)}">
+            <span class="u-addTeam-btn" @click="joinTeam">加入战队</span>
+        </div>
+
+        <p class="u-addTeam-rule" :class="{'f-dn': initData.activityStatus==6 || (initData.activityStatus==4 && initData.joined) }">
+            活动期间只能加入一次，加入时间为<span v-text="initData.joinStartTime || 9"></span>:00-<span v-text="initData.joinEndTime || 10"></span>:00
+        </p>
+        <p class="u-addTeam-tips" :class="{'f-dn': initData.activityStatus==6}">
+            备注：投资额为每日<i v-text="initData.countStartTime || 10"></i>：00-<i v-text="initData.countEndTime || 22"></i>：00的投资
+        </p>
+    </div>
+
+    ## pk 战绩
+    <div class="m-pk-result">
+        <h1 class="u-pk-title"><span class="u-title-icon">&gt;</span>PK战绩（每日<i v-text="initData.countEndTime || 22"></i>:00更新）</h1>
+
+        <table class="u-pk-table">
+            <thead>
+                <tr>
+                    <th width="150px"></th>
+                    <th v-for="item in pkHistoryList" width="110px">{{item.pkTime}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="f-noBorder">五仁月饼队投资额(元）</td>
+                    <td v-for="item in pkHistoryList">{{item.todayInvestAmountA | amountSplit '' true}}</td>
+                </tr>
+                <tr>
+                    <td class="f-noBorder">冰皮月饼队投资额(元）</td>
+                    <td v-for="item in pkHistoryList">{{item.todayInvestAmountB | amountSplit '' true}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    ## 团圆红包 每日一抢
+    <div class="m-main-wrap">
+        <div class="u-main-title">团圆红包 每日一抢
+            <span class="u-arc-left"></span>
+            <span class="u-arc-right"></span>
+        </div>
+
+        <div class="m-main-body">
+            <h3 class="u-main-text">活动期间，战队每日<span v-text="initData.receiveStartTime || 10"></span>:00开领团圆红包，<br>
+                战队成员<span v-text="initData.countStartTime || 10"></span>:00后每单笔投资≥2000元即可自主领取以下任意一档红包，每队每日共1400份，多投多得，领完即止哦~</h3>
+
+            <div class="m-main-redbag-wrap">
+                <div class="u-redbag-outter">
+                    <div class="u-redbag-val">
+                        <i>30</i>元
+                    </div>
+                    <div class="u-redbag-count">x<em v-text="initData.remindCoupon.coupon30"></em></div>
+                    <span class="u-redbag-btn" :class="{'z-disabled': initData.activityStatus==6 || initData.remindCoupon.coupon30  < 1 || !getCouponBtnStatus}" @click="getCoupon(30)" v-text="getCouponText"></span>
+                </div>
+                <div class="u-redbag-outter">
+                    <div class="u-redbag-val">
+                        <i>50</i>元
+                    </div>
+                    <div class="u-redbag-count">x<em v-text="initData.remindCoupon.coupon50"></em></div>
+                    <span class="u-redbag-btn" :class="{'z-disabled': initData.activityStatus==6 || initData.remindCoupon.coupon50  < 1 || !getCouponBtnStatus}" @click="getCoupon(50)" v-text="getCouponText"></span>
+                </div>
+                <div class="u-redbag-outter">
+                    <div class="u-redbag-val">
+                        <i>100</i>元
+                    </div>
+                    <div class="u-redbag-count">x<em v-text="initData.remindCoupon.coupon100"></em></div>
+                    <span class="u-redbag-btn" :class="{'z-disabled': initData.activityStatus==6 || initData.remindCoupon.coupon100 < 1 || !getCouponBtnStatus}" @click="getCoupon(100)" v-text="getCouponText"></span>
+                </div>
+                <div class="u-redbag-outter">
+                    <div class="u-redbag-val">
+                        <i>200</i>元
+                    </div>
+                    <div class="u-redbag-count">x<em v-text="initData.remindCoupon.coupon200"></em></div>
+                    <span class="u-redbag-btn" :class="{'z-disabled': initData.activityStatus==6 || initData.remindCoupon.coupon200 < 1 || !getCouponBtnStatus}" @click="getCoupon(200)" v-text="getCouponText"></span>
+                </div>
+            </div>
+
+            <p class="u-main-text">现金券使用规则</p>
+
+            <table class="u-rule-table">
+                <tr>
+                    <th width="220px">面额（元）</th>
+                    <th width="220px">起投金额（元）</th>
+                    <th width="220px">起投期限（天）</th>
+                    <th>备注</th>
+                </tr>
+                <tr>
+                    <td>30</td>
+                    <td>3000</td>
+                    <td>40</td>
+                    <td>现金券领取后10天内有效</td>
+                </tr>
+                <tr>
+                    <td>50</td>
+                    <td>4000</td>
+                    <td>50</td>
+                    <td>现金券领取后10天内有效</td>
+                </tr>
+                <tr>
+                    <td>100</td>
+                    <td>6000</td>
+                    <td>60</td>
+                    <td>现金券领取后10天内有效</td>
+                </tr>
+                <tr>
+                    <td>200</td>
+                    <td>8000</td>
+                    <td>90</td>
+                    <td>现金券领取后10天内有效</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+
+    ## 竞猜战队 奖励翻倍
+    <div class="m-main-wrap">
+        <div class="u-main-title">战队竞猜 奖励翻倍
+            <span class="u-arc-left"></span>
+            <span class="u-arc-right"></span>
+        </div>
+
+        <div class="m-main-body">
+            <h3 class="u-main-text">活动期间，平台用户均可消耗1-20点人气值，<br>
+                竞猜哪个战队当日投资额领先，猜对用户人气值翻倍，猜错用户人气值不予返还；<br>
+                每日 <span v-text="initData.betStartTime || 9"></span>:00- <span v-text="initData.betEndTime || 10"></span>:00为竞猜时间，竞猜结果每日<span v-text="initData.countEndTime"></span>:00公布，每人每日只有一次竞猜机会~</h3>
+
+            <div class="m-main-team-wrap">
+                <div class="u-team u-team1">
+                    <span class="u-team-icon1"></span><br>
+                    <div class="u-team-btn" @click="goShowPinDialog(1)">点击支持五仁战队</div>
+                </div>
+
+                <div class="u-team-divider"></div>
+
+                <div class="u-team u-team2">
+                    <span class="u-team-icon2"></span><br>
+                    <div class="u-team-btn" @click="goShowPinDialog(2)">点击支持冰皮战队</div>
+                </div>
+            </div>
+
+            <p class="u-main-text mb-25" v-if="initData.activityStatus==4">
+                （本轮已有<i v-text="initData.currentBetMember"></i>人竞猜<i v-if="initData.ifFirstBet">）</i>
+                <span v-if="!initData.ifFirstBet">，上轮有<i v-text="initData.lastBetMember"></i>人人气值翻倍）</span>
+            </p>
+
+        ## 活动未开始或没有数据，未登录
+            <div v-if="initData.activityStatus!==6 && (initData.activityStatus==2 || !initData.betList.length || !logined)">
+                <p class="u-main-text">快来竞猜战队，获得奖励吧</p>
+            </div>
+            <div v-else>
+                ## 用户登录且活动已结束，有押注数据
+                <div v-if="(initData.activityStatus==4 || initData.activityStatus==6) && logined && initData.betList.length">
+                    <p class="u-main-text mt-1r">我的竞猜记录</p>
+
+                    <table class="u-rule-table u-rule-table-tight">
+                        <thead>
+                        <tr>
+                            <th width="28%">竞猜时间</th><th width="45%">竞猜人气值（点）</th><th>奖励（点）</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for="item in initData.betList">
+                            <td>{{item.betTime | formatTime 'M月d日'}}</td>
+                            <td>{{item.popularityValue}}</td>
+                            <td>{{item.rewardPopularityValue | formatBetReward}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div v-else></div>
+            </div>
+        </div>
+
+    ## 投注的对话框
+        <div class="u-pin-dialog" :class="{'z-show': showPinDialog}">
+            <p class="u-pin-title">竞猜数额</p>
+            <input type="number" class="u-pin-input" placeholder="请输入1-20之间的整数" v-model="popularityValue" v-on:keyUp="validBetForm(popularityValue)" v-on:change="validBetForm(popularityValue)" v-popularityValueHasChanged="popularityValueHasChanged" min="0">
+            <span class="u-pin-error-msg" v-text="validErrorMsg"></span>
+            <div class="m-pin-btns-wrap">
+                <span class="u-pin-btn u-pin-cancel" @click="goClosePinDialog">取消</span>
+                <span class="u-pin-btn u-pin-confirm" @click="goConfirmDialog(popularityValue)">确定</span>
+            </div>
+        </div>
+    </div>
+
+    ## PK之王 尊享大奖
+    <div class="m-main-wrap">
+        <div class="u-main-title">PK之王 尊享大奖
+            <span class="u-arc-left"></span>
+            <span class="u-arc-right"></span>
+        </div>
+
+        <div class="m-main-body">
+            <h3 class="u-main-text">活动期间，两战队每日进行巅峰对决，PK当日投资总额，对战结果每日<span v-text="initData.countEndTime"></span>:00公布。<br>
+                （当日投资总额为<span v-text="initData.countStartTime || 10"></span>：00—<span v-text="initData.countEndTime || 22"></span>：00投资总额）<br>
+                获胜战队队员可获得个人当日投资额<strong>1‰的人气值奖励</strong>，<br>
+                且该战队贡献榜第一名额外获得<strong>价值258元的元祖雪月饼提货券一张</strong>；失败战队当日无奖励。<br>
+                （若投资额相等，先达到该投资额的用户排名靠前；个人所得人气值向下取整）</h3>
+            <p class="u-text-right">提示：奖品也可兑换成人气值，人气值=奖品标注价格</p>
+
+            <div class="m-finalList-list">
+                <h2 class="u-finalList-title">战队贡献榜<small>（前十名）</small></h2>
+                ## 活动未开始或者没有数据
+                <div v-if="initData.activityStatus==2 || initData.julyTeamContribution.length===0">
+                    ## 没登陆或者没加入战队
+                    <div v-if="!logined || !initData.currentGroupType" class="u-list-noData">
+                        <div v-if="initData.activityStatus==6">
+                            活动已结束
+                        </div>
+                        <div v-else>
+                            快来加入战队一起战斗吧
+                        </div>
+                    </div>
+                    ## 登陆了
+                    <div v-else class="u-list-noData">
+                        为了战队，为了荣耀，快来一起作战吧
+                    </div>
+                </div>
+
+                <div class="u-finalList-container" v-else>
+                    <span class="u-list-win" :class="{'f-db': showListWin}"></span>
+
+                    <div class="u-filter-wrapper-left">
+                        <table class="u-finalList u-finalList-left">
+                            <tr>
+                                <th width="100">排名</th>
+                                <th width="190">用户名</th>
+                                <th width="130">投资额</th>
+                            </tr>
+                            <tr v-for="(index, item) in julyTeamContributionLeft">
+                                <td class="u-rank">{{index + 1}}</td>
+                                <td class="u-user-head">
+                                    <img src="$aliyun_url/{{item.avatars}}" alt="用户头像" v-if="item.avatars">
+                                    <img src="/static/img/member/avatar_35x35.png" alt="用户头像" v-else>
+                                    {{item.usernames}}</td>
+                                <td class="f-fc-red">{{item.totalInvest | amountSplit '￥'}}</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="u-list-divider"></div>
+
+                    <div class="u-filter-wrapper-right">
+                        <table class="u-finalList u-finalList-left">
+                            <tr>
+                                <th width="100">排名</th>
+                                <th width="190">用户名</th>
+                                <th width="130">投资额</th>
+                            </tr>
+                            <tr v-for="(index, item) in julyTeamContributionRight">
+                                <td class="u-rank">{{index + 6}}</td>
+                                <td class="u-user-head">
+                                    <img src="$aliyun_url/{{item.avatars}}" alt="用户头像" v-if="item.avatars">
+                                    <img src="/static/img/member/avatar_35x35.png" alt="用户头像" v-else>
+                                    {{item.usernames}}</td>
+                                <td class="f-fc-red">{{item.totalInvest | amountSplit '￥'}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    ## 规则
+    <div class="g-rule">
+        <div class="g-rule-content">
+            <strong class="f-fs16" >活动规则：</strong><br>
+            <p><i>1、</i>活动对象：有融网所有用户；</p>
+            <p><i>2、</i>活动时间：<span v-text="initData.startTime | formatTime 'M月d日'"></span>—<span v-text="initData.endTime | formatTime 'M月d日'"></span>每日<span v-text="initData.betStartTime || 10"></span>:00—<span v-text="initData.countEndTime || 22"></span>:00；</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;(1)加入战队时间：活动期间每日<span v-text="initData.joinStartTime || 9"></span>:00-<span v-text="initData.joinEndTime || 10"></span>:00（活动期间只有一次加入机会）</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;例：小融随机加入了五仁月饼队，则活动期间均为五仁月饼队成员 </p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;(2)战队竞猜时间：活动期间每日<span v-text="initData.betStartTime || 10"></span>:00—<span v-text="initData.betEndTime || 22"></span>:00；</p>
+            <p><i>3、</i>投资额均统计每日<span v-text="initData.countStartTime || 10"></span>:00—<span v-text="initData.countEndTime || 22"></span>:00的投资总额，其余时间的投资额不计入本活动中；</p>
+            <p><i>4、</i>团圆红包、PK之王活动限战队成员参与，战队竞猜活动凡平台用户均可参与；</p>
+            <p><i>5、</i>PK之王尊享大奖活动奖励发放说明：</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;(1)人气值奖励十分钟内发放到您的账户；</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;(2)实物奖励将于活动结束后3个工作日内与您联系，请保持手机畅通，如错过通知则视为放弃获奖资格；</p>
+            <p><i>6、</i>如有其他疑问，请拨打客服热线：400-025-6688。</p>
+            本活动最终解释权归有融网所有
+        </div>
+    </div>
+
+</div>
+

@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.mc.dao.ActivityLotteryPretreatMapper" >
+  <resultMap id="BaseResultMap" type="com.yourong.core.mc.model.ActivityLotteryPretreat" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="activity_id" property="activityId" jdbcType="BIGINT" />
+    <result column="mobile" property="mobile" jdbcType="BIGINT" />
+    <result column="is_member" property="isMember" jdbcType="INTEGER" />
+    <result column="reward_type" property="rewardType" jdbcType="INTEGER" />
+    <result column="reward_value" property="rewardValue" jdbcType="INTEGER" />
+    <result column="reward_info" property="rewardInfo" jdbcType="VARCHAR" />
+    <result column="coupon_template_id" property="couponTemplateId" jdbcType="BIGINT" />
+    <result column="claim_flag" property="claimFlag" jdbcType="INTEGER" />
+    <result column="claim_time" property="claimTime" jdbcType="TIMESTAMP" />
+    <result column="receive_flag" property="receiveFlag" jdbcType="INTEGER" />
+    <result column="activity_role" property="activityRole" jdbcType="VARCHAR" />
+	<result column="source_id" property="sourceId" jdbcType="BIGINT" />
+    <result column="source_holder" property="sourceHolder" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, activity_id, mobile, reward_type, reward_value, reward_info, coupon_template_id, 
+    claim_flag, claim_time,receive_flag, source_id, create_time, update_time, remark, del_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from mc_activity_lottery_pretreat
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from mc_activity_lottery_pretreat
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.yourong.core.mc.model.ActivityLotteryPretreat" >
+    insert into mc_activity_lottery_pretreat (id, activity_id, mobile, 
+      reward_type, reward_value, reward_info, coupon_template_id, claim_flag, 
+      receive_flag, source_id, create_time, 
+      update_time, remark, del_flag
+      )
+    values (#{id,jdbcType=BIGINT}, #{activityId,jdbcType=BIGINT}, #{mobile,jdbcType=BIGINT}, 
+      #{rewardType,jdbcType=INTEGER}, #{rewardValue,jdbcType=INTEGER}, #{rewardInfo,jdbcType=VARCHAR}, 
+      #{couponTemplateId,jdbcType=BIGINT}, #{claimFlag,jdbcType=INTEGER}, 
+      #{receiveFlag,jdbcType=INTEGER}, #{sourceId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}, #{delFlag,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yourong.core.mc.model.ActivityLotteryPretreat" >
+    insert into mc_activity_lottery_pretreat
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="activityId != null" >
+        activity_id,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="rewardType != null" >
+        reward_type,
+      </if>
+      <if test="rewardValue != null" >
+        reward_value,
+      </if>
+      <if test="rewardInfo != null" >
+        reward_info,
+      </if>
+      <if test="couponTemplateId != null" >
+        coupon_template_id,
+      </if>
+      <if test="claimFlag != null" >
+        claim_flag,
+      </if>
+      <if test="receiveFlag != null" >
+        receive_flag,
+      </if>
+      <if test="sourceId != null" >
+        source_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="activityId != null" >
+        #{activityId,jdbcType=BIGINT},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=BIGINT},
+      </if>
+      <if test="rewardType != null" >
+        #{rewardType,jdbcType=INTEGER},
+      </if>
+      <if test="rewardValue != null" >
+        #{rewardValue,jdbcType=INTEGER},
+      </if>
+      <if test="rewardInfo != null" >
+        #{rewardInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="couponTemplateId != null" >
+        #{couponTemplateId,jdbcType=BIGINT},
+      </if>
+      <if test="claimFlag != null" >
+        #{claimFlag,jdbcType=INTEGER},
+      </if>
+      <if test="receiveFlag != null" >
+        #{receiveFlag,jdbcType=INTEGER},
+      </if>
+      <if test="sourceId != null" >
+        #{sourceId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yourong.core.mc.model.ActivityLotteryPretreat" >
+    update mc_activity_lottery_pretreat
+    <set >
+      <if test="activityId != null" >
+        activity_id = #{activityId,jdbcType=BIGINT},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=BIGINT},
+      </if>
+      <if test="rewardType != null" >
+        reward_type = #{rewardType,jdbcType=INTEGER},
+      </if>
+      <if test="rewardValue != null" >
+        reward_value = #{rewardValue,jdbcType=INTEGER},
+      </if>
+      <if test="rewardInfo != null" >
+        reward_info = #{rewardInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="couponTemplateId != null" >
+        coupon_template_id = #{couponTemplateId,jdbcType=BIGINT},
+      </if>
+      <if test="claimFlag != null" >
+        claim_flag = #{claimFlag,jdbcType=INTEGER},
+      </if>
+      <if test="receiveFlag != null" >
+        receive_flag = #{receiveFlag,jdbcType=INTEGER},
+      </if>
+      <if test="sourceId != null" >
+        source_id = #{sourceId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yourong.core.mc.model.ActivityLotteryPretreat" >
+    update mc_activity_lottery_pretreat
+    set activity_id = #{activityId,jdbcType=BIGINT},
+      mobile = #{mobile,jdbcType=BIGINT},
+      reward_type = #{rewardType,jdbcType=INTEGER},
+      reward_value = #{rewardValue,jdbcType=INTEGER},
+      reward_info = #{rewardInfo,jdbcType=VARCHAR},
+      coupon_template_id = #{couponTemplateId,jdbcType=BIGINT},
+      claim_flag = #{claimFlag,jdbcType=INTEGER},
+      receive_flag = #{receiveFlag,jdbcType=INTEGER},
+      source_id = #{sourceId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR},
+      del_flag = #{delFlag,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <delete id="batchDelete" parameterType="java.lang.Long" >
+    delete from mc_activity_lottery_pretreat
+    where id in  <foreach collection="ids" index="index" item="item" open="(" separator="," close=")"> #{item}  </foreach>  
+  </delete>
+  <select id="findByPage" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from mc_activity_lottery_pretreat
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = #{map.id}
+        </if>
+        <if test=" map.activityId != null" >
+          activity_id = #{map.activityId}
+        </if>
+        <if test=" map.mobile != null" >
+          mobile = #{map.mobile}
+        </if>
+        <if test=" map.rewardType != null" >
+          reward_type = #{map.rewardType}
+        </if>
+        <if test=" map.rewardValue != null" >
+          reward_value = #{map.rewardValue}
+        </if>
+        <if test=" map.rewardInfo != null" >
+          reward_info = #{map.rewardInfo}
+        </if>
+        <if test=" map.couponTemplateId != null" >
+          coupon_template_id = #{map.couponTemplateId}
+        </if>
+        <if test=" map.claimFlag != null" >
+          claim_flag = #{map.claimFlag}
+        </if>
+        <if test=" map.receiveFlag != null" >
+          receive_flag = #{map.receiveFlag}
+        </if>
+        <if test=" map.sourceId != null" >
+          source_id = #{map.sourceId}
+        </if>
+        <if test=" map.createTime != null" >
+          create_time = #{map.createTime}
+        </if>
+        <if test=" map.updateTime != null" >
+          update_time = #{map.updateTime}
+        </if>
+        <if test=" map.remark != null" >
+          remark = #{map.remark}
+        </if>
+        <if test=" map.delFlag != null" >
+          del_flag = #{map.delFlag}
+        </if>
+      </where>
+    </if>
+  </select>
+  <sql id="Base_Column_List_Pagin" >
+    t.id  as  id,
+t.activity_id  as  activity_id,
+t.mobile  as  mobile,
+t.reward_type  as  reward_type,
+t.reward_value  as  reward_value,
+t.reward_info  as  reward_info,
+t.coupon_template_id  as  coupon_template_id,
+t.claim_flag  as  claim_flag,
+t.receive_flag  as  receive_flag,
+t.source_id  as  source_id,
+t.create_time  as  create_time,
+t.update_time  as  update_time,
+t.remark  as  remark,
+t.del_flag  as  del_flag
+  </sql>
+  <select id="selectForPagin" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List_Pagin" />
+    from  (SELECT id FROM  mc_activity_lottery_pretreat
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = #{map.id}
+        </if>
+        <if test=" map.activityId != null" >
+          activity_id = #{map.activityId}
+        </if>
+        <if test=" map.mobile != null" >
+          mobile = #{map.mobile}
+        </if>
+        <if test=" map.rewardType != null" >
+          reward_type = #{map.rewardType}
+        </if>
+        <if test=" map.rewardValue != null" >
+          reward_value = #{map.rewardValue}
+        </if>
+        <if test=" map.rewardInfo != null" >
+          reward_info = #{map.rewardInfo}
+        </if>
+        <if test=" map.rewardSort != null" >
+          reward_sort = #{map.rewardSort}
+        </if>
+        <if test=" map.couponTemplateId != null" >
+          coupon_template_id = #{map.couponTemplateId}
+        </if>
+        <if test=" map.claimFlag != null" >
+          claim_flag = #{map.claimFlag}
+        </if>
+        <if test=" map.receiveFlag != null" >
+          receive_flag = #{map.receiveFlag}
+        </if>
+        <if test=" map.sourceId != null" >
+          source_id = #{map.sourceId}
+        </if>
+        <if test=" map.createTime != null" >
+          create_time = #{map.createTime}
+        </if>
+        <if test=" map.updateTime != null" >
+          update_time = #{map.updateTime}
+        </if>
+        <if test=" map.remark != null" >
+          remark = #{map.remark}
+        </if>
+        <if test=" map.delFlag != null" >
+          del_flag = #{map.delFlag}
+        </if>
+      </where>
+    </if>
+      LIMIT	${map.startRow}, ${map.pageSize}  )  AS a,  mc_activity_lottery_pretreat AS t FORCE INDEX(PRIMARY) WHERE a.id = t.id   
+  </select>
+  <select id="selectForPaginTotalCount" resultType="java.lang.Integer" >
+    select count(1) 
+    from mc_activity_lottery_pretreat
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = ${map.id}
+        </if>
+        <if test=" map.activityId != null" >
+          activity_id = ${map.activityId}
+        </if>
+        <if test=" map.mobile != null" >
+          mobile = ${map.mobile}
+        </if>
+        <if test=" map.rewardType != null" >
+          reward_type = ${map.rewardType}
+        </if>
+        <if test=" map.rewardValue != null" >
+          reward_value = ${map.rewardValue}
+        </if>
+        <if test=" map.rewardInfo != null" >
+          reward_info = ${map.rewardInfo}
+        </if>
+        <if test=" map.couponTemplateId != null" >
+          coupon_template_id = ${map.couponTemplateId}
+        </if>
+        <if test=" map.claimFlag != null" >
+          claim_flag = ${map.claimFlag}
+        </if>
+        <if test=" map.receiveFlag != null" >
+          receive_flag = ${map.receiveFlag}
+        </if>
+        <if test=" map.sourceId != null" >
+          source_id = ${map.sourceId}
+        </if>
+        <if test=" map.createTime != null" >
+          create_time = ${map.createTime}
+        </if>
+        <if test=" map.updateTime != null" >
+          update_time = ${map.updateTime}
+        </if>
+        <if test=" map.remark != null" >
+          remark = ${map.remark}
+        </if>
+        <if test=" map.delFlag != null" >
+          del_flag = ${map.delFlag}
+        </if>
+      </where>
+    </if>
+  </select>
+	
+	<!-- 认领奖励 -->
+	<update id="receivePrize" parameterType="com.yourong.core.mc.model.ActivityLotteryPretreat" >
+		insert into mc_activity_lottery_pretreat (activity_id, mobile, is_member,
+	      reward_type, reward_value, reward_info, 
+	      coupon_template_id, claim_flag, claim_time,
+	      receive_flag, source_id, source_holder, create_time, remark, del_flag
+	      )
+	    values (#{activityId,jdbcType=BIGINT}, #{mobile,jdbcType=BIGINT}, #{isMember,jdbcType=INTEGER},
+	      #{rewardType,jdbcType=INTEGER}, #{rewardValue,jdbcType=INTEGER}, #{rewardInfo,jdbcType=VARCHAR}, 
+	      #{couponTemplateId,jdbcType=BIGINT}, #{claimFlag,jdbcType=INTEGER}, now(), 
+	      #{receiveFlag,jdbcType=INTEGER}, #{sourceId,jdbcType=BIGINT}, #{sourceHolder,jdbcType=BIGINT}, now(), 
+	      #{remark,jdbcType=VARCHAR}, 1
+	      )
+	</update>
+    
+    <!-- 获取单组红包的领取记录 -->
+    <select id="selectClaimedBySourceId" parameterType="com.yourong.core.mc.model.ActivityLotteryPretreat" resultMap="BaseResultMap" >
+	    select 
+	    	mobile, reward_type, reward_value, claim_flag, is_member, receive_flag, activity_role ,claim_time 
+	    from mc_activity_lottery_pretreat
+	    where source_id = #{sourceId,jdbcType=BIGINT} and claim_flag = 1 and del_flag = 1
+	    order by claim_time
+    </select>
+    
+    <!-- 获取单组红包的领取记录 -->
+    <select id="selectUnclaimByMobile" parameterType="com.yourong.core.mc.model.ActivityLotteryPretreat" resultMap="BaseResultMap" >
+    	select
+    		 <include refid="Base_Column_List" />
+    	from mc_activity_lottery_pretreat where mobile = #{mobile,jdbcType=BIGINT} and claim_flag = 1 and receive_flag = 0 and del_flag = 1
+    </select>
+    
+    <!-- 根据主键更新领取奖励状态 -->
+    <update id="receiveById">
+    	update mc_activity_lottery_pretreat set receive_flag = 1, update_time = now()
+	    where id = #{id,jdbcType=BIGINT}
+    </update>
+    
+    <!-- 设置手气最佳 -->
+    <update id="setRedPackageTop">
+    	UPDATE mc_activity_lottery_pretreat
+		SET activity_role = 'redPackageTop'
+		WHERE
+			activity_id = #{activityId,jdbcType=BIGINT}
+		AND	del_flag > 0
+		AND id = (
+			SELECT
+				t.id
+			FROM
+				(
+					SELECT
+						p.id
+					FROM
+						mc_activity_lottery_pretreat AS p
+					WHERE
+						p.source_id = #{sourceId,jdbcType=BIGINT}
+					ORDER BY
+						p.reward_value DESC,
+						p.claim_time,
+						p.id
+					LIMIT 1
+				) AS t
+		)
+    </update>
+    
+    <select id="sendTotalPrize" resultType="java.lang.Integer">
+    	SELECT
+		    IFNULL(SUM(reward_value),0)
+		FROM
+		    mc_activity_lottery_pretreat
+		WHERE
+		    source_holder = #{sourceHolder,jdbcType=BIGINT}
+		AND activity_id = #{activityId,jdbcType=BIGINT}
+		AND reward_type = #{rewardType,jdbcType=INTEGER}
+		AND del_flag > 0
+    </select>
+    
+    <select id="receiveTotalPrize" resultType="java.lang.Integer">
+    	SELECT
+		    IFNULL(SUM(reward_value),0)
+		FROM
+		    mc_activity_lottery_pretreat
+		WHERE
+		    mobile = #{mobile,jdbcType=BIGINT}
+		AND activity_id = #{activityId,jdbcType=BIGINT}
+		AND reward_type = #{rewardType,jdbcType=INTEGER}
+		AND del_flag > 0
+    </select>
+    
+    <select id="totalTop" resultType="java.lang.Integer">
+    	SELECT
+		    count(1)
+		FROM
+		    mc_activity_lottery_pretreat
+		WHERE
+		    mobile = #{mobile,jdbcType=BIGINT}
+		AND activity_id = #{activityId,jdbcType=BIGINT}
+		AND reward_type = #{rewardType,jdbcType=INTEGER}
+		AND activity_role = #{activityRole,jdbcType=VARCHAR}
+		AND del_flag > 0
+    </select>
+    
+    <select id="getRecordByQuery" parameterType="com.yourong.core.mc.model.ActivityLotteryPretreat" resultMap="BaseResultMap" >
+    	select
+    		 <include refid="Base_Column_List" />
+    	from mc_activity_lottery_pretreat
+    	where del_flag = 1
+    	<if test="mobile != null" >
+    		and	mobile = #{mobile,jdbcType=BIGINT} 
+    	</if>
+    	<if test="sourceId != null" >
+    		and source_id = #{sourceId,jdbcType=BIGINT} 
+		</if>
+    </select>
+</mapper>

@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.tc.dao.HostingRefundMapper" >
+  <resultMap id="BaseResultMap" type="com.yourong.core.tc.model.HostingRefund" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="trade_no" property="tradeNo" jdbcType="VARCHAR" />
+    <result column="out_trade_no" property="outTradeNo" jdbcType="VARCHAR" />
+    <result column="collect_trade_no" property="collectTradeNo" jdbcType="VARCHAR" />
+    <result column="project_id" property="projectId" jdbcType="BIGINT" />
+    <result column="amount" property="amount" jdbcType="DECIMAL" />
+    <result column="receiver_id" property="receiverId" jdbcType="BIGINT" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="refund_status" property="refundStatus" jdbcType="VARCHAR" />
+    <result column="summary" property="summary" jdbcType="VARCHAR" />
+    <result column="user_ip" property="userIp" jdbcType="VARCHAR" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, trade_no, out_trade_no, collect_trade_no, project_id, amount, receiver_id, type, 
+    refund_status, summary, user_ip, remarks, create_time, update_time, del_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from tc_hosting_refund
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from tc_hosting_refund
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.yourong.core.tc.model.HostingRefund" >
+    insert into tc_hosting_refund (id, trade_no, out_trade_no, 
+      collect_trade_no, project_id, amount, 
+      receiver_id, type, refund_status, 
+      summary, remarks, create_time, 
+      update_time, del_flag)
+    values (#{id,jdbcType=BIGINT}, #{tradeNo,jdbcType=VARCHAR}, #{outTradeNo,jdbcType=VARCHAR}, 
+      #{collectTradeNo,jdbcType=VARCHAR}, #{projectId,jdbcType=BIGINT}, #{amount,jdbcType=DECIMAL}, 
+      #{receiverId,jdbcType=BIGINT}, #{type,jdbcType=INTEGER}, #{refundStatus,jdbcType=VARCHAR}, 
+      #{summary,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yourong.core.tc.model.HostingRefund"   useGeneratedKeys="true" keyProperty="id" >
+    insert into tc_hosting_refund
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+     <!--  <if test="id != null" >
+        id,
+      </if> -->
+      <if test="tradeNo != null" >
+        trade_no,
+      </if>
+      <if test="outTradeNo != null" >
+        out_trade_no,
+      </if>
+      <if test="collectTradeNo != null" >
+        collect_trade_no,
+      </if>
+      <if test="projectId != null" >
+        project_id,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="receiverId != null" >
+        receiver_id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="refundStatus != null" >
+        refund_status,
+      </if>
+      <if test="summary != null" >
+        summary,
+      </if>
+       <if test="userIp != null" >
+        user_ip,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+        create_time,
+        update_time,
+        del_flag,
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+     <!--  <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if> -->
+      <if test="tradeNo != null" >
+        #{tradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="outTradeNo != null" >
+        #{outTradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="collectTradeNo != null" >
+        #{collectTradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null" >
+        #{projectId,jdbcType=BIGINT},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="receiverId != null" >
+        #{receiverId,jdbcType=BIGINT},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="refundStatus != null" >
+        #{refundStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null" >
+        #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="userIp != null" >
+        #{userIp,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+       now(),
+      now(),
+     1,
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yourong.core.tc.model.HostingRefund" >
+    update tc_hosting_refund
+    <set >
+      <if test="tradeNo != null" >
+        trade_no = #{tradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="outTradeNo != null" >
+        out_trade_no = #{outTradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="collectTradeNo != null" >
+        collect_trade_no = #{collectTradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null" >
+        project_id = #{projectId,jdbcType=BIGINT},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="receiverId != null" >
+        receiver_id = #{receiverId,jdbcType=BIGINT},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="refundStatus != null" >
+        refund_status = #{refundStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null" >
+        summary = #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=INTEGER},
+      </if>
+      update_time = now() 
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yourong.core.tc.model.HostingRefund" >
+    update tc_hosting_refund
+    set trade_no = #{tradeNo,jdbcType=VARCHAR},
+      out_trade_no = #{outTradeNo,jdbcType=VARCHAR},
+      collect_trade_no = #{collectTradeNo,jdbcType=VARCHAR},
+      project_id = #{projectId,jdbcType=BIGINT},
+      amount = #{amount,jdbcType=DECIMAL},
+      receiver_id = #{receiverId,jdbcType=BIGINT},
+      type = #{type,jdbcType=INTEGER},
+      refund_status = #{refundStatus,jdbcType=VARCHAR},
+      summary = #{summary,jdbcType=VARCHAR},
+      remarks = #{remarks,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      del_flag = #{delFlag,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <select id="selectByTradeNo" resultMap="BaseResultMap"> 
+   select 
+    <include refid="Base_Column_List" />
+    from tc_hosting_refund
+    where trade_no = #{tradeNo,jdbcType=VARCHAR} and del_flag > 0
+  </select>
+  
+  <select id="getByIdForLock" resultMap="BaseResultMap">
+	  SELECT 
+			<include refid="Base_Column_List"/>
+	  FROM 
+	  		tc_hosting_refund
+	  WHERE 
+	  		id=#{id,jdbcType=BIGINT}
+	  FOR UPDATE
+  </select>
+  
+  <!-- 根据项目id和状态查询退款记录个数 -->
+  <select id="findHostingRefundCountByStatusAndProjectId"  resultType="java.lang.Integer">
+  	select count(1)
+  	 from 
+  	tc_hosting_refund 
+  	where refund_status = #{refundStatus,jdbcType=VARCHAR} and project_id =  #{projectId,jdbcType=BIGINT}
+  </select>
+  
+  <!--查询是交易的代收否创建退款-->
+  <select id="findRefundByCollectNoForProjectLose" resultMap="BaseResultMap">
+	SELECT
+		<include refid="Base_Column_List"/>
+	FROM
+		tc_hosting_refund
+	WHERE
+		collect_trade_no = #{collectTradeNo,jdbcType=VARCHAR}
+	AND (
+		refund_status = 'WAIT_REFUND'
+		OR refund_status = 'SUCCESS'
+	)
+	AND del_flag > 0
+  </select>
+
+    <!--根据订单id查询退款状态-->
+    <select id="queryStatusByOrderId" parameterType="java.lang.String" resultType="java.lang.String">
+        SELECT refund_status FROM tc_hosting_refund WHERE collect_trade_no=(select trade_no from tc_hosting_collect_trade where source_id=#{orderid})
+    </select>
+  
+</mapper>

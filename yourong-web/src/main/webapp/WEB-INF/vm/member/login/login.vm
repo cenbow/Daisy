@@ -1,0 +1,57 @@
+#parse('/common/common.vm')
+#set($title="登录-有融网-全透明的互联网理财优选平台")
+#set($keywords="登录,有融网登录,有融网官网登录,有融网")
+#set($description="有融网运用高效的运营管理体系和创新的互联网思维,搭建了一个安全透明的互联网理财服务平台.")
+#set($css_url=["$root_css_url/modules/login.css"])
+#set($js_url=["$root_js_url/modules/login.js"])
+<script type="text/javascript">
+var current_url = window.location.href;	
+	var login_url = '$root_url' +"/security/login"
+	if(current_url.indexOf("/security/login") <= 0  && current_url.indexOf("/security/register") <= 0 ){
+		window.location.href = login_url;	
+	}	
+</script>
+
+#if($currentUser)	
+<script type="text/javascript">
+	var login_url = '$root_url' +"/member/home"
+	window.location.href = login_url;
+		
+</script>
+#else
+<div class="u-login-title f-login-bg">
+	<h2 class="f-fs24">登录</h2>
+</div>
+<div class="g-wrap m-login-box m-login-box2">
+	<form data-action="$root_url/security/logined"  method="POST" class="m-login-form j-form-xpost j-validform" data-page="login" id="j-reg-form">
+	    #CSRFToken('xToken')
+		<div class="f-round u-tips-login f-fs14 f-tac f-fc-red f-vv f-w430 f-dn" id="j-login-error">
+			
+		</div>
+		<div class="u-ipt-group">
+			<input type="text" name="username" id="j-cpn2" class="f-round f-ipt-w430 u-ipt-text u-ipt-str v-loginid" placeholder="请输入手机号或昵称" />
+		</div>
+		<div class="u-ipt-group">
+			<input type="password" name="password" datatype="s6-16" oncopy="return false;" onpaste="return false;" class="f-round u-ipt-text f-ipt-w430 v-pwd" placeholder="输入密码，长度6-16位，至少包含数字和字母" />
+		</div>
+		
+		<input type="hidden" name="pngCode" id="j-pngcode"/>
+		<input type="hidden" name="loginSource" value="0"/>
+		<input type="submit" value="登 录" id="j-login-submit" class="f-round f-fs18 f-btn-l2 u-btn u-btn-primary" />
+		<div class="u-links-help f-tar f-fs14 f-w430"> 
+			<a href="$root_url/security/register/" class="f-fc-gray">注册</a>&nbsp;&nbsp;
+			<a href="$root_url/security/lostpwd/" class="f-fc-gray">忘记密码？</a>
+		</div>
+	</form>
+	<div class="m-input-vercode f-cf z-hide">
+		<input type="text" id="j-vercode2" nullmsg="请输入验证码" class="f-round u-ipt-text f-ipt-w430 z-hide" placeholder="验证码" />
+		<img src="" id="j-img-vercode2" alt="验证码" class="u-img-vercode u-img-vercode2" />
+		<span class="m-val-tips"> &nbsp; </span>
+	</div>
+	## 删除阳光保险，替换为光华科技和千和基金
+	<div class="u-partner-logos">
+		<span class="u-ghkj-logo"></span>
+		<span class="u-qhjj-logo"></span>
+	</div>
+</div>
+#end

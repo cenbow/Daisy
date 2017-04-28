@@ -1,0 +1,624 @@
+##广告banner
+#if($!{bannerList.resultList} && $!{bannerList.resultList.size()}>0)
+<div class="g-wrap f-pos-r">
+    <div class="u-recActivity-detail" >
+        #foreach($!banner in $!{bannerList.resultList})
+            <a  #if($stringUtil.isNotBlank(${banner.href}))  href="$!{banner.href}" #if($banner.targetBlank==1) target="_blank" #end #end >
+                <img src="$aliyun_url$!{banner.image}" title="$!{banner.name}" alt=""></a>
+        #end
+        <div id="j-banner-close"></div>
+    </div>
+</div>
+#end
+<div class="g-wrap f-pos-r" id="j-detail-wrap">
+
+    <div class="m-detail-data f-round">
+    ##新客专享
+        #if(${projectInfo.isNoviceProject()})
+            <div class="u-new-mark"></div>
+        #end
+        #if(${projectInfo.isNoviceProject()} && ${projectInfo.isActive()})
+            <div class="u-new-wrap">
+                <div class="u-new-tips f-dn" id="j-new-tips">
+                    <i></i>
+                    <p class="f-fs14">
+                        抱歉，您已经是理财高手了。<br />这是给新手专享的投资项目，您不能投资。<br />
+                        <a #if(${projectUtils.isInvestingProjectByProject()})
+                                href="$root_url/products/list-all-all-investing-1-createTimeDesc-1.html" #else
+                                href="$root_url/products/list-all-all-all-1-createTimeDesc-1.html"#end
+                                class="f-round u-btn u-btn-primary">查看其他项目</a>
+                    </p>
+                </div>
+            </div>
+        #end
+    ##/新客专享
+        <h3 class="u-pbox-title u-circle-12 f-text-overflow">
+            <em class="f-fl"><strong>$!{projectInfo.prefixProjectName}</strong>&nbsp;${projectInfo.suffixProjectName}</em>
+            #if($!projectInfo.joinLeaseBoolean)
+                <i class="u-dividend-leaseicon"></i>
+            #end
+            ## cc edit 如意标记
+            #if(${projectUtils.getProjectActivitySign($!{projectInfo.id})}==1)
+                <i class="u-icon-ruyi j-icon-ruyi"></i>
+            #end
+        </h3>
+        <div class="u-arrow-down">
+            <i>◆</i>
+            <span>◆</span>
+        </div>
+        <div class="u-detail-proceeds">
+            <span>项目总额&nbsp;&nbsp;
+                <span class="f-ff-rmb f-fs22 f-fc-gray">￥</span>
+                <em class="f-ff-amount f-fs48 f-fc-gray" id="j-product-amount" data-amount="$projectInfo.totalAmount">${formulaUtil.getFormatPrice($projectInfo.totalAmount)}</em>
+            </span>
+            <em>年化收益&nbsp;
+                #if($projectInfo.projectInterestList.size()==1)
+                    <em class="f-ff-amount f-fs48 f-fc-red2">${formulaUtil.getIntegerDefaultZero($projectInfo.minAnnualizedRate)}<span class="f-fs30">${formulaUtil.getDecimalDefaultZero($projectInfo.minAnnualizedRate)}</span><span class="f-fs22 f-fc-red2 f-ff-din">%</span></em>
+                #else
+                    <em class="f-ff-amount f-fs48 f-fc-red2">${formulaUtil.getIntegerDefaultZero($projectInfo.minAnnualizedRate)}<span class="f-fs30">${formulaUtil.getDecimalDefaultZero($projectInfo.minAnnualizedRate)}</span><span class="f-fs24 u-amount-wave">~</span>${formulaUtil.getIntegerDefaultZero($projectInfo.maxAnnualizedRate)}<span class="span f-fs30">${formulaUtil.getDecimalDefaultZero($projectInfo.maxAnnualizedRate)}</span></em><span class="f-fs22 f-fc-red2 f-ff-din">%</span>
+                #end
+            </em>
+            <strong>收益天数&nbsp;&nbsp;
+                <em class="f-ff-amount f-fs48 f-fc-gray">${projectInfo.getEarningsDaysByStatus()}</em>
+                <span class="f-fs18">天</span>
+            </strong>
+            <ul class="f-fl">
+                <li>起息方式
+                    <strong class="f-fc-red2">T(成交日)+$!{projectInfo.interestFrom}</strong>
+                </li>
+                <li>还款日期
+                    <strong class="f-fc-red2">${dateUtil.getDateStrFromDate($!projectInfo.endDate)}</strong>
+                    <span class="u-circle-15" id="j-proceeds-detail">详细<i></i></span>
+                </li>
+            </ul>
+            <div class="u-pbox-meta2 f-clear">
+                #set($process=$sysServiceUtil.getProjectProgress($projectInfo.totalAmount,$projectInfo.id))
+                <span class="u-detail-process" style="width:$process" data-process="$process" id="j-detail-process2"></span>
+                <em>当前进度：
+                    <span class="f-ff-ver">$process</span>
+                </em>
+                <span>剩余可投金额
+                    #set($balance=${sysServiceUtil.getProjectBalance($projectInfo.id)})
+                    <strong class="f-ff-ver" id="productBalance" value="$!{balance}" data-balance="$!{balance}">$!{formulaUtil.getFormatPrice($balance)}</strong>元</span>
+                    #if($projectInfo.transferFlag == 1)
+                      <span class="f-fc-gray ">项目转让：<strong>自起息日起$!{projectInfo.transferAfterInterest}天后可转让</strong></span>
+                    #end
+                <p>还款方式：${sysServiceUtil.getDictLabelByValue($projectInfo.profitType,"return_type","")} #if(${sysServiceUtil.getDictLabelByValue($projectInfo.profitType,"return_type","")}=="等本等息")
+                    (<a class="u-financialPlan-link" target="_blank" href="/activity/financialPlan">点击了解等本等息，坐享收益最大化</a>)
+                #end</p>
+            </div>
+        </div>
+    ##投资金额拖动条
+        #parse('/products/selectedAmount.vm')
+
+        <form id="productForm" action="$!{root_url}/order/new" method="post">
+                <input type="hidden" name="projectId" id="projectId" value="$!{projectInfo.id}"/>
+            <input type="hidden" name="investAmount" id="investAmount" value="$!{projectInfo.minInvestAmount}"/>
+            #CSRFToken()
+        </form>
+
+
+        <!--还款详情-->
+        <div class="m-refund-detail z-hidden" id="j-refund-detail">
+            <div class="m-refund-table">
+                <table>
+                    <thead>
+                    <tr>
+                        <td>期数</td>
+                        <td style="width:158px">还款时间</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        #set($interestSize=$debt.debtInterests.size())
+                        #if($projectInfo.isAvgPrincipalAndInterest)
+                            #foreach ($debtInterest in $debt.debtInterests)
+                            <tr>
+                                <td>$velocityCount</td>
+                                <td><span>$!{dateUtil.formatDatetoString(${debtInterest.endDate},"yyyy-MM-dd")}</span>
+                                    本金+利息</td>
+                            </tr>
+                            #end
+                        #else
+                            #foreach ($debtInterest in $debt.debtInterests)
+                            <tr>
+                                <td>$velocityCount</td>
+                                <td><span>$!{dateUtil.formatDatetoString(${debtInterest.endDate},"yyyy-MM-dd")}</span>
+                                    #if($velocityCount == $interestSize)本金+
+                                    #end
+                                    利息</td>
+                            </tr>
+                            #end
+                        #end
+                    </tbody>
+                </table>
+            </div>
+            <div class="m-refund-tableBtm"></div>
+        </div>
+        <!--/还款详情-->
+
+    </div>
+
+    <div class="m-detail-info f-round" id="j-area-a">
+        <h3 class="u-block-title f-fs18 f-fwb">项目基本信息</h3>
+        <div class="m-pinfo-intrudction">
+            <div class="f-cf">
+                <h4>项目介绍</h4>
+                <div class="u-intrudction-wrap">
+                    <div>
+                        $!{projectInfo.shortDesc}
+                    </div>
+                </div>
+                <div class="u-pinfo-person u-pinfo-person1 f-fl">
+                    #if(${debt.isEnterprise()})
+                        <h4 class="f-fs14">借款企业信息</h4>
+                    #else
+                        <h4 class="f-fs14">借款人基本信息</h4>
+                    #end
+                    <div class="m-photo-scroller f-cf" id="j-photo-scroller1">
+                        <ul>
+                            #foreach($_attach in $projectInfo.borrowMemberAttachments)
+                                <li><img src="#getImagePath($!{_attach.fileUrl},'95x60')" url="#getImagePath($!{_attach.fileUrl},'425')" title="$!{_attach.fileName}"></li>
+                            #end
+                        </ul>
+                        #if($projectInfo.borrowMemberAttachments.size() > 4)
+                            <i class="u-icon u-icon-sleft f-icon-xs j-btn-l u-btn-l">&nbsp;</i>
+                            <i class="u-icon u-icon-sright f-icon-xs j-btn-r u-btn-r">&nbsp;</i>
+                        #end
+                    </div>
+                    <div class="f-line f-bgc-gray3"></div>
+                    #set($bMember = $!{debt.borrowMemberBaseBiz.member})
+                    #set($bMemberInfo = $!{debt.borrowMemberBaseBiz.memberInfo})
+                    #if(!${debt.isEnterprise()})
+                        <table class="u-pinfo-table3">
+                            <tbody>
+                            <tr>
+                                <td width="85">性&nbsp;&nbsp;&nbsp;&nbsp;别：${sysServiceUtil.getDictLabelByValue("$!{bMember.sex}","sex","")}</td>
+                                <td width="105">年&nbsp;&nbsp;&nbsp;&nbsp;龄：$!{bMember.getAge()}</td>
+                                <td width="175">婚&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;否：${sysServiceUtil.getDictLabelByValue("$!{bMemberInfo.marriage}","marriage","")}</td>
+                                <td>学历：${sysServiceUtil.getDictLabelByValue("$!{bMemberInfo.highEdu}","education","")}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" width="190">户籍地：$!{bMemberInfo.censusRegisterName}</td>
+                                <td colspan="2" class="f-vat">身份证号：$!{bMember.maskIdentityNumber()}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    #else
+                        #set($bEnterprise = $!{debt.borrowMemberBaseBiz.getEnterprise()})
+                        <table class="u-pinfo-table3">
+                            <tbody>
+                            <tr>
+                                <td width="230">公司名称：$!{bEnterprise.name}</td>
+                                <td>注册时间：$!{dateUtil.formatDatetoString(${bEnterprise.regeditDate},"yyyy年MM月")}</td>
+                            <tr>
+                                <td class="f-vat">注册资本：$!{bEnterprise.income}万</td>
+                                <td>公司所在地：$!{bEnterprise.region}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    #end
+                </div>
+                <div class="u-pinfo-person u-pinfo-person2 f-fl">
+                     #if(${debt.isLenderEnterprise()})
+                        <h4 class="f-fs14">出借企业信息<span class="f-fc-gray"></span></h4>
+                    #else
+                        <h4 class="f-fs14">出借人基本信息<span class="f-fc-gray">（原始债权人）</span></h4>
+                    #end
+                    <div class="m-photo-scroller f-cf" id="j-photo-scroller2">
+                        <ul>
+                            #foreach($_attach in $!projectInfo.lenderMemberAttachments)
+                                <li><img src="#getImagePath($!{_attach.fileUrl},'95x60')" url="#getImagePath($!{_attach.fileUrl},'425')" title="$!{_attach.fileName}"></li>
+                            #end
+                        </ul>
+                        #if($projectInfo.lenderMemberAttachments.size() > 4)
+                            <i class="u-icon u-icon-sleft f-icon-xs j-btn-l u-btn-l">&nbsp;</i>
+                            <i class="u-icon u-icon-sright f-icon-xs j-btn-r u-btn-r">&nbsp;</i>
+                        #end
+                    </div>
+                    <div class="f-line f-bgc-gray3"></div>
+                    #set($lMemberInfo = $!debt.lenderMember.memberInfo)
+                    #if(!${debt.isLenderEnterprise()})
+                    <table class="u-pinfo-table3">
+                        <tbody>
+                        <tr>
+                            <td width="85">性&nbsp;&nbsp;&nbsp;&nbsp;别：${sysServiceUtil.getDictLabelByValue("$!{debt.lenderMember.sex}","sex","")}</td>
+                            <td width="105">年&nbsp;&nbsp;&nbsp;&nbsp;龄：$!{debt.lenderMember.getAge()}</td>
+                            <td width="175">婚&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;否：${sysServiceUtil.getDictLabelByValue("$!{lMemberInfo.marriage}","marriage","")}</td>
+                            <td>学历：${sysServiceUtil.getDictLabelByValue("$!{lMemberInfo.highEdu}","education","")}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" width="190" >户籍地：$!{lMemberInfo.censusRegisterName}</td>
+                            <td colspan="2" class="f-vat">身份证号：$!{debt.lenderMember.maskIdentityNumber()}</td>
+                        </tr>
+                            #if("$!{debt.lenderMember.recommend}" != "")
+                            <tr>
+                                <td colspan="4">
+                                    推荐方：$!{debt.lenderMember.recommend}
+                                </td>
+                            </tr>
+                            #end
+                        </tbody>
+                    </table>
+                  #else  
+                  #set($lEnterprise = $!{debt.lenderMemberBaseBiz.getEnterprise()})
+                        <table class="u-pinfo-table3">
+                            <tbody>
+                            <tr>
+                                <td width="230">公司名称：$!{lEnterprise.name}</td>
+                                <td>注册时间：$!{dateUtil.formatDatetoString(${lEnterprise.regeditDate},"yyyy年MM月")}</td>
+                            <tr>
+                                <td class="f-vat">注册资本：$!{lEnterprise.income}万</td>
+                                <td>公司所在地：$!{lEnterprise.region}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    #end
+                </div>
+            </div>
+            <span>&nbsp;</span>
+        </div>
+        <div class="u-pinfo-pledgegoods">
+            #if($debt.isCreditDebt)
+                #if($debt.isCarPayInDebt)
+                    <h4 class="f-fs14 f-fwb u-pinfo-title2 f-fc-gray">车贷垫资基本信息</h4>
+                #elseif($debt.isCarBusinessDebt)
+                    <h4 class="f-fs14 f-fwb u-pinfo-title2 f-fc-gray">财产保障信息</h4>
+                #elseif($debt.isRunCompany)
+                    <h4 class="f-fs14 f-fwb u-pinfo-title2 f-fc-gray">授信情况说明</h4>
+                #else
+                    <h4 class="f-fs14 f-fwb u-pinfo-title2 f-fc-gray">借款人财产保障信息</h4>
+                #end
+            #else
+                #if($debt.isCollateral)
+                    #if($debt.isBuyCarDebt)
+                        <h4 class="f-fs14 f-fwb u-pinfo-title2 f-fc-gray">购车分期基本信息</h4>
+                    #else
+                        <h4 class="f-fs14 f-fwb u-pinfo-title2 f-fc-gray">抵押物基本信息</h4>
+                    #end
+                #else
+                    <h4 class="f-fs14 f-fwb u-pinfo-title2 f-fc-gray">质押物基本信息</h4>
+                #end
+            #end
+            #if($debt.isCar || $debt.isCreditDebt)
+                #if($debt.isNewCar() || $debt.isCreditDebt || $debt.isBuyCarDebt)##新车融
+                    <table class="u-pinfo-table2 f-fc-gray">
+                        <tbody>
+                        <tr>
+                            <td>
+                                <div class="u-intrudction-wrap2">
+                                    #if($debt.isCarPayInDebt)
+                                        <div id="carPayIn_info"></div>
+                                    #elseif($debt.isCarBusinessDebt || $debt.isBuyCarDebt || $debt.isRunCompany)
+                                        <div id="base_info" ></div>
+                                    #else
+                                        <div id="car_ms"></div>
+                                    #end
+                                </div>
+                            </td>
+                            <td class="u-pslider-wrap" width="440" style="height:90px">
+                                <div class="m-photo-scroller f-cf" id="j-photo-scroller3">
+                                    <ul>
+                                        #foreach($_attach in $!projectInfo.collateralAttachments)
+                                            <li><img src="#getImagePath($!{_attach.fileUrl},'95x60')" url="#getImagePath($!{_attach.fileUrl},'425')" title="$!{_attach.fileName}"></li>
+                                        #end
+                                    </ul>
+                                    #if($projectInfo.collateralAttachments.size() > 4)
+                                        <i class="u-icon u-icon-sleft f-icon-xs j-btn-l u-btn-l">&nbsp;</i>
+                                        <i class="u-icon u-icon-sright f-icon-xs j-btn-r u-btn-r">&nbsp;</i>
+                                    #end
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                #else
+                    <table class="u-pinfo-table2 f-fc-gray">
+                        <tbody>
+                        <tr>
+                            <td>车型：<span id="car_cx"></span></td>
+                            <td>登记日期：<span id="car_djrq"></span></td>
+                            <td rowspan="2" class="u-pslider-wrap" width="440" height="90">
+                                <div class="m-photo-scroller f-cf" id="j-photo-scroller3">
+                                    <ul>
+                                        #foreach($_attach in $!projectInfo.collateralAttachments)
+                                            <li><img src="#getImagePath($!{_attach.fileUrl},'95x60')" url="#getImagePath($!{_attach.fileUrl},'425')" title="$!{_attach.fileName}"></li>
+                                        #end
+                                    </ul>
+                                    #if($projectInfo.collateralAttachments.size() > 4)
+                                        <i class="u-icon u-icon-sleft f-icon-xs j-btn-l u-btn-l">&nbsp;</i>
+                                        <i class="u-icon u-icon-sright f-icon-xs j-btn-r u-btn-r">&nbsp;</i>
+                                    #end
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>行驶里程：<span id="car_xsgl"></span>公里</td>
+                            <td>市场估值：<strong class="f-fc-red"><span id="car_gz"></span></strong>万</td>
+                            <!--  <td colspan="2">评估机构：<span id="car_jg"></span></td> -->
+                        </tr>
+                        </tbody>
+                    </table>
+                #end
+            #else
+                <table class="u-pinfo-table2 f-fc-gray">
+                    <tbody>
+                    <tr>
+                        <td><div class="u-text-limit36 f-text-overflow" id="house_fwlx_title">房屋类型：<span id="house_fwlx"></span></div></td>
+                        <td><div class="u-text-limit36 f-text-overflow" id="house_cqzh_title">产权证号：<span id="house_cqzh"></span></div></td>
+                        <td rowspan="5" class="u-pslider-wrap" width="440">
+                            <div class="m-photo-scroller m-photo-scroller2 f-cf" id="j-photo-scroller4" data-type="8x">
+                                <ul>
+                                    #foreach($_attach in $!projectInfo.collateralAttachments)
+                                        <li><img src="#getImagePath($!{_attach.fileUrl},'95x60')" url="#getImagePath($!{_attach.fileUrl},'425')" title="$!{_attach.fileName}"></li>
+                                    #end
+                                </ul>
+                                <i class="f-dn j-btn-u">&nbsp;</i>
+                                <i class="f-dn j-btn-d">&nbsp;</i>
+                            </div>
+                            #if($!projectInfo.collateralAttachments.size()>8)
+                                <span class="m-photo-btn">
+	                                <i class="f-icon-xs u-btn-u j-btn-u2">&nbsp;</i>
+	                                <i class="f-icon-xs u-btn-d j-btn-d2">&nbsp;</i>
+                                </span>
+                            #end
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><div class="u-text-limit36 f-text-overflow" id="house_djjg_title">登记机构：<span id="house_djjg"></span></div></td>
+                        <td>登记日期：<span id="house_djrq"></span></td>
+                    </tr>
+                    <tr>
+                        <td>建筑面积：<span id="house_jzmj"></span></td>
+                        <td>土地取得方式：<span id="house_tdqdfs"></span></td>
+                    </tr>
+                    <tr>
+                        <td><div class="u-text-limit36 f-text-overflow" id="house_fwzl_title">房屋坐落：<span id="house_fwzl"></span></div></td>
+                        <td>评估价格：<strong class="f-fc-red"><span id="house_gj"></span></strong>万</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            #end
+
+        </div>
+
+    ###经营融
+        <input type="hidden" value="$debt.guarantyType" id="debt-runcompany">
+        #if($debt.isRunCompany && ${debt.enterprise} && $!{enterpriseProject.projectInvestingDtos}  && !${enterpriseProject.projectInvestingDtos.isEmpty()})
+            <div class="u-pinfo-source f-cf">
+                <h4 class="f-fs14 f-fwb u-pinfo-title2 f-fc-gray"> 车商借款金额<span>该企业履约中的项目</span></h4>
+                <div class="u-loan-sum">
+                    <div class="u-loan-limit f-fs14">
+                        <span>授信额度<em><i class="f-fs36 f-ff-din">$!{enterpriseProject.creditAmount}</i>万</em>已使用额度 $!{enterpriseProject.usedCreditAmount}万</span>
+                        <p class="f-dn j-db-company" >授信额度内由：<i id="db_company"></i>提供全额本息担保</p>
+                    </div>
+                    <div class="u-loan-sumDetail">
+                        <span>
+                            <em class="f-fs18"><i class="f-fs36 f-ff-din">$!{enterpriseProject.currentTotalAmount}</i>万</em>
+                            <br>已借款金额
+                        </span>
+                        <span>
+                             <em class="f-fs18"><i class="f-fs36 f-ff-din">$!{enterpriseProject.repaymentTotalAmount}</i>万</em>
+                             <br>已还款金额
+                        </span>
+                        <span>
+                             <em class="f-fs18"><i class="f-fs36 f-ff-din">$!{enterpriseProject.historyTotalAmount}</i>万</em>
+                            <br>历史借款总额
+                        </span>
+                    </div>
+                </div><div class="u-loan-list">
+                <ul>
+                    #foreach($item in ${enterpriseProject.projectInvestingDtos})
+                        <li>
+                            <em>预计${item.endDate}还本付息</em>
+                            <span><a target="_blank" href="$root_url/products/detail-${item.id}.html" >${item.name}</a><i>￥${item.formatTotalAmount}</i></span>
+                        </li>
+                    #end
+                </ul>
+            </div>
+            </div>
+        #elseif($debt.isRunCompany && $debt.enterprise && !${enterpriseProject.projectInvestingDtos} )
+
+        ##无履约中的项目列表
+            <div class="u-pinfo-source">
+                <h4 class="f-fs14 f-fwb u-pinfo-title2 f-fc-gray"> 车商借款金额</h4>
+                <div class="u-loan-project">
+                    <div class="u-loan-limit f-fs14">
+                        <span>授信额度<em><i class="f-fs36 f-ff-din">$!{enterpriseProject.creditAmount}</i>万</em>已使用额度 $!{enterpriseProject.usedCreditAmount}万</span>
+                        <p class="f-dn" id="j-db_company">授信额度内由：<i id="db_company"></i>提供全额本息担保</p>
+                    </div><div class="u-loan-sumDetail">
+                           <span>
+                            <em class="f-fs18"><i class="f-fs36 f-ff-din">$!{enterpriseProject.currentTotalAmount}</i>万</em>
+                            <br>已借款金额
+                        </span>
+                        <span>
+                             <em class="f-fs18"><i class="f-fs36 f-ff-din">$!{enterpriseProject.repaymentTotalAmount}</i>万</em>
+                             <br>已还款金额
+                        </span>
+                        <span>
+                             <em class="f-fs18"><i class="f-fs36 f-ff-din">$!{enterpriseProject.historyTotalAmount}</i>万</em>
+                            <br>历史借款总额
+                        </span>
+                </div>
+                </div>
+            </div>
+
+
+        #end
+
+        <div class="u-pinfo-source">
+            <h4 class="f-fs14 f-fwb u-pinfo-title2 f-fc-gray">还款来源</h4>
+            <table class="u-pinfo-table f-fc-gray">
+                <tbody>
+                <tr>
+                    <td>
+                        <p>
+                            $!{debt.loanUse}
+                        </p>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    ###保障措施
+        <div class="u-pinfo-guarantee">
+            <h4 class="f-fs14 f-fwb u-pinfo-title2 f-fc-gray">保障措施</h4>
+            $!{projectInfo.description}
+        </div>
+    </div>
+
+###租赁分红
+    <input type="hidden" value = "$!projectInfo.joinLease">
+    #if($!projectInfo.joinLeaseBoolean)
+        <div id="j-leaseBonus-mode" class="m-detail-leaseBonus u-circle-3">
+            <h3 class="f-fs18">有融网创新 质押车辆租赁分红模式</h3>
+            <a>
+            </a>
+    	<span class="f-fs12">
+    		借款人、出借人与租赁公司签订了<a class="u-leaseBonus-agreement j-leaseBonus-agreement" href="#j-area-b">《委托租赁协议》</a>，租赁公司出具<a  class="u-leaseBonus-agreement j-leaseBonus-agreement" href="#j-area-b">《车辆使用保证函》</a>
+        ##<a class="u-circle-12 u-chack-leaseBonus" href="$root_url/activity/leaseBonus">查看车辆租赁情况</a>
+            <a class="u-leaseBonus-more" href="/activity/leaseBonus#j-leaseBonus-table" target="_blank">更多租赁分红项目</a>
+    	</span>
+            #if(!${projectInfo.isActive()} && !${projectInfo.isNotice()})
+                <table class="u-lease-table f-dn">
+                    <thead>
+                    <tr>
+                        <th style="width:55px">序号</th>
+                        <th style="width:160px">租赁时间</th>
+                        <th style="width:80px">租期(天)</th>
+                        <th style="width:104px">租金单价(元/天)</th>
+                        <th style="width:90px">租金小计</th>
+                        <th style="width:113px">投资者分红比例</th>
+                        <th style="width:80px">分红状态</th>
+                        <th style="width:98px">分红发放日期</th>
+                        <th style="width:150px">操作</th>
+                    </tr>
+                    </thead>
+                    <tbody id="j-lease-list">
+                    <tr class="f-dn">
+                        <td colspan="9">
+                            <div class="u-bonus-list f-dn" id="j-bonus-list">
+                                <p class="f-tal">投资者共分红<span name="userBonus"></span>%、出借人分红<span name="lenderBonus"></span>%、借款人分红<span name="borrowerBonus"></span>%、租赁公司分红<span name="lessorBonus"></span>%</p>
+                                <ul class="m-lease-listBox f-cf" id="j-bonus-users"></ul>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            #end
+
+        </div>
+
+    #end
+
+    <div class="m-detail-info m-detail-contract f-round" id="j-area-b">
+        <h3 class="u-block-title f-fs18 f-fwb">合同资料</h3>
+        <div class="u-arrow-down">
+            <i>◆</i>
+            <span>◆</span>
+        </div>
+        <div class="u-pinfo-tab f-fs14 j-infotab">
+            #set($otherInfo="其他资料图片")
+            #foreach($_categoryName in $!projectInfo.contractCategoryName)
+                #set($_num = $velocityCount)
+                #if($_num < 10)
+                    #set($_num = "0"+""+$_num)
+                #end
+                #if($_categoryName==$otherInfo)
+                    #set($oterInfoId="id='j-other-info'")
+                #end
+                #if($velocityCount == 1)
+                    <span class="z-current" $!{oterInfoId}>$!{_num}&nbsp;&nbsp;$!{_categoryName}</span>
+                #else
+                    <span $!{oterInfoId}>$!{_num}&nbsp;&nbsp;$!{_categoryName}</span>
+                #end
+            #end
+        </div>
+        #foreach($_categoryName in $!projectInfo.contractCategoryName)
+            #if($velocityCount == 1)
+            <div class="u-pinfo-contract z-current">
+            #else
+            <div class="u-pinfo-contract">
+            #end
+            #foreach($_attach in $!projectInfo.contractAttachments)
+                #if($_categoryName == $_attach.module)
+                    <span>
+			            	<img src="$!{aliyun_url}/$!{_attach.fileUrl}" alt="$!{_attach.fileName}">
+			            	<em>$!{_attach.fileName}</em>
+			            </span>
+                #end
+            #end
+        </div>
+        #end
+    </div>
+    ###投资记录
+        <div id="transactionsDetail" class="m-transactions-detail j-area-c">
+        </div>
+
+
+        <!-- 页面区块导航 -->
+        <div class="u-area-nav" id="j-area-nav">
+            <ul>
+                <li class="u-area-btn" data-target="j-area-a">
+                    <div class="u-arrow-down">
+                        <i>◆</i>
+                        <span>◆</span>
+                    </div>
+                    <a href="#j-area-a">基本信息</a>
+                </li>
+                <li class="u-area-btn" data-target="j-area-b">
+                    <div class="u-arrow-down">
+                        <i>◆</i>
+                        <span>◆</span>
+                    </div>
+                    <a href="#j-area-b">合同资料</a>
+                </li>
+                <li class="u-area-btn" data-target="j-area-c" id="j-transactions-detail">
+                    <div class="u-arrow-down">
+                        <i>◆</i>
+                        <span>◆</span>
+                    </div>
+                    <a href="#transactionsDetail">投资记录</a>
+                </li>
+                <li class="u-area-last" id="j-gotop">T O P <i></i></li>
+            </ul>
+        </div>
+        <!-- /页面区块导航 -->
+
+
+
+        <!--还款详情-->
+        <div class="m-refund-detail z-hidden" id="j-refund-detail">
+            <div class="m-refund-table">
+                <table>
+                    <thead>
+                    <tr>
+                        <td>期数</td>
+                        <td style="width:158px">还款时间</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        #set($interestSize=$debt.debtInterests.size())
+                        #foreach($debtInterest in $debt.debtInterests)
+                        <tr>
+                            <td>$velocityCount</td>
+                            <td><span>$!{dateUtil.formatDatetoString(${debtInterest.endDate},"yyyy-MM-dd")}
+                            </span>
+                                #if($velocityCount == $interestSize)
+                                    本金+
+                                #end
+                                利息</td>
+                        </tr>
+                        #end
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="m-refund-tableBtm"></div>
+        </div>
+        <!--/还款详情-->
+    </div>
+</div>

@@ -1,0 +1,376 @@
+@charset "UTF-8";
+/*CSS Reset*/
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+code,
+form,
+fieldset,
+legend,
+input,
+textarea,
+p,
+blockquote,
+th,
+td,
+header,
+nav,
+section,
+article,
+aside,
+footer,
+figure,
+figcaption,
+menu,
+button {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+}
+
+body {
+    font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif;
+    line-height: 1.5;
+    font-size: 14px;
+    color: #000;
+    background-color: #f8f9fa;
+    -webkit-user-select: none;
+    -webkit-text-size-adjust: none;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-size: inherit;
+    font-weight: normal;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+fieldset,
+img {
+    border: 0;
+}
+
+li {
+    list-style: none;
+}
+
+input,
+button,
+textarea,
+select {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    border: 0;
+    background: none;
+    /*-webkit-appearance: none;*/
+    outline: 0;
+}
+
+a, button, input, select, textarea, a:focus, button:focus, input:focus, select:focus, textarea:focus, [onclick] {
+    outline: 0;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+}
+
+a {
+    -webkit-touch-callout: none;
+    text-decoration: none;
+    color: #00a5e0;
+    outline: 0;
+}
+
+em, i {
+    font-style: normal;
+}
+
+
+::-webkit-input-placeholder {
+    color: #999;
+}
+
+/* 三等分 */
+.ui-grid-trisect {
+    padding-left: 10px;
+    padding-right: 3px;
+    overflow: hidden;
+}
+
+.ui-grid-trisect > li {
+    width: 33.33333333%;
+    padding: 0 7px 10px 0;
+    float: left;
+    position: relative;
+    -webkit-box-sizing: border-box;
+}
+
+.ui-grid-trisect-img {
+    padding-top: 149.47%;
+}
+
+.ui-grid-trisect h4 {
+    font-size: 12px;
+    position: relative;
+    margin: 7px 0 3px;
+}
+
+.ui-grid-trisect h4 span {
+    display: inline-block;
+    margin-left: 12px;
+    color: #808080;
+}
+
+/**
+ * 轮播组件
+ */
+.ui-slider {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    padding-top: 31.25%;
+}
+
+.ui-slider-content {
+    display: -webkit-box;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+}
+
+.ui-slider-content > li {
+    -webkit-box-flex: 1;
+    width: 100%;
+    height: 100%;
+}
+
+.ui-slider-content > li img {
+    display: block;
+    width: 100%;
+}
+
+.ui-slider-content > li span {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    -webkit-background-size: 100% 100%;
+}
+
+.ui-slider-content > li:active {
+    opacity: .7;
+}
+
+.ui-slider-indicators {
+    position: absolute;
+    display: -webkit-box;
+    -webkit-box-pack: end;
+    width: 100%;
+    bottom: 10px;
+    right: 4px;
+    font-size: 0;
+}
+
+.ui-slider-indicators li {
+    display: block;
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: 0;
+    width: 7px;
+    height: 7px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    margin-right: 6px;
+    -webkit-box-sizing: border-box;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    position: relative;
+}
+
+.ui-slider-indicators li.current:before {
+    content: '';
+    position: absolute;
+    background-color: #fff;
+    left: 1px;
+    top: 1px;
+    width: 5px;
+    height: 5px;
+    border-radius: 10px;
+    -webkit-box-sizing: border-box;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+}
+
+/**
+ * 圆角头像，列表场景，默认用100px的
+ */
+.ui-avatar, .ui-avatar-lg, .ui-avatar-s, .ui-avatar-one, .ui-avatar-tiled {
+    overflow: hidden;
+    -webkit-border-radius: 200px;
+    display: block;
+    -webkit-background-size: 100% 100%;
+    background-image: url(http://i.gtimg.cn/vipstyle/frozenui/1.2.0/img/default.png?_bid=306);
+}
+
+.ui-avatar {
+    width: 50px;
+    height: 50px;
+}
+
+.ui-avatar-lg {
+    width: 54px;
+    height: 54px;
+}
+
+.ui-avatar-s {
+    width: 40px;
+    height: 40px;
+}
+
+/* 资料场景 */
+.ui-avatar-one {
+    width: 64px;
+    height: 64px;
+}
+
+/* 平铺场景 */
+.ui-avatar-tiled {
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+}
+
+.ui-avatar span, .ui-avatar-lg span, .ui-avatar-s span, .ui-avatar-one span, .ui-avatar-tiled span {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    -webkit-border-radius: 200px;
+    display: block;
+    -webkit-background-size: 100% 100%;
+}
+
+.ui-avatar img, .ui-avatar-lg img, .ui-avatar-s img, .ui-avatar-one img, .ui-avatar-tiled img {
+    width: 100%;
+    height: 100%;
+}
+
+.ui-icon, .ui-icon-refresh, .ui-icon-close, .ui-icon-search {
+    display: inline-block;
+    height: 0px;
+    position: relative;
+    overflow: visible;
+}
+
+.ui-icon:before, .ui-icon-refresh:before, .ui-icon-close:before, .ui-icon-search:before {
+    background: url(http://i.gtimg.cn/vipstyle/frozenui/1.2.0/img/icon.png?_bid=306) no-repeat 0px 0px;
+    -webkit-background-size: 150px auto;
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0px;
+}
+
+.ui-icon-refresh {
+    width: 22px;
+}
+
+.ui-icon-refresh:before {
+    width: 22px;
+    height: 22px;
+    top: -11px;
+}
+
+.ui-icon-close {
+    width: 31px;
+    height: 31px;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.ui-icon-close:before {
+    background-position: -75px -50px;
+    width: 15px;
+    height: 15px;
+    margin: 8px;
+    position: static;
+}
+
+.ui-icon-search {
+    width: 16px;
+    margin: 4px;
+}
+
+.ui-icon-search:before {
+    width: 16px;
+    height: 16px;
+    background-position: -125px -54px;
+    top: -7px;
+}
+
+/*ui-badge*/
+.ui-badge, .ui-badge-muted, .ui-badge-num, .ui-badge-corner, .ui-badge-cornernum {
+    display: inline-block;
+    text-align: center;
+    background: #f74c31;
+    color: #fff;
+    font-size: 11px;
+    height: 16px;
+    line-height: 16px;
+    -webkit-border-radius: 8px;
+    padding: 0 6px;
+    background-clip: padding-box
+}
+
+.ui-badge-muted {
+    background: #b6cae0
+}
+
+.ui-badge-num {
+    height: 19px;
+    line-height: 20px;
+    font-size: 12px;
+    min-width: 19px;
+    -webkit-border-radius: 10px
+}
+
+.ui-badge-wrap {
+    position: relative;
+    text-align: center
+}
+
+.ui-badge-corner {
+    position: absolute;
+    border: 2px #fff solid;
+    height: 20px;
+    line-height: 20px;
+    top: -4px;
+    right: -9px
+}
+
+.ui-badge-cornernum {
+    position: absolute;
+    height: 19px;
+    line-height: 19px;
+    font-size: 12px;
+    min-width: 19px;
+    -webkit-border-radius: 10px;
+    top: -5px;
+    right: -5px
+}

@@ -1,0 +1,217 @@
+##2周年庆
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$res_url/source/css/activity/lanternfestival.css"])
+#set($title="元宵邂逅情人节$!{title_suffix}")
+
+#set($encryptionId=$request.getParameter("encryptionId"))
+#set($loginSource=$request.getHeader("loginSource"))
+
+#if($currentUser)
+  #set($logined=true)
+#else
+  #set($logined=false)
+#end
+#set($os=3)
+##  安卓
+#if($loginSource==1)
+  #set($os=1)
+#end
+##  IOS
+#if($loginSource==2)
+  #set($os=2)
+#end
+
+<div class="g-main" id="j-lanternfestival" data-logined="$logined" v-cloak>
+#if($loginSource==1 || $loginSource==2)
+  <style>
+    .g-ft{  display: none;  }
+  </style>
+#else
+##header，安卓ios，不需要头部
+  <h2 class="u-pageTitle f-pos-r u-section1-title" id="j-title">
+    <a href="$m_url">有融网</a>
+    <span class="u-login-link f-pos-a">
+      #if(!$currentUser)
+        <a href="{{loginUrl}}">登录</a>
+            <a href="$siteurl/mstation/register">注册</a>
+      #else
+        <a href="$mCenter_logout_url">退出</a>
+      #end
+    </span>
+  </h2>
+#end
+
+## top bg
+  <div class="u-top-img-wrap">
+    <img src="$res_url/img/activity/lanternfestival/top.png" class="u-img-responsive">
+    <div class="m-top-text f-fc-pink">人气值兑换低至<em class="f-fc-brown"> 4 折 </em>/全场加息<em class="f-fc-brown"> "13.14%"</em></div>
+  </div>
+
+  <div class="u-main-wrap">
+  ## 乐园新品
+    <div class="m-tab-wrap" v-show="selectTab === 1">
+      <div class="m-tab-title">
+        <span class="f-fc-pink m-tab-title-left">乐园新品</span>
+        <span class="f-fc-brown m-tab-title-right">低至 4 折</span>
+      </div>
+      <div class="m-tab-body m-tab-body1">
+        <p class="m-body-text m-text-short">活动期间，人气值乐园新品现金券兑换<em class="f-fc-yellow">全场 4 折</em>起。</p>
+        <ul>
+          <li class="m-li-4 m-li-left">
+            <p class="m-box-num f-fc-pink m-box-sale4">￥<em>48</em></p>
+            <p class="m-box-pop"><em class="f-fc-brown">19点人气值<br></em> <i>48点人气值</i></p>
+          </li>
+          <li class="m-li-4">
+            <p class="m-box-num f-fc-pink m-box-sale4">￥<em>188</em></p>
+            <p class="m-box-pop"><em class="f-fc-brown">75点人气值<br></em> <i>188点人气值</i></p>
+          </li>
+          <li class="m-li-4 m-li-left">
+            <p class="m-box-num f-fc-pink m-box-sale4">￥<em>888</em></p>
+            <p class="m-box-pop"><em class="f-fc-brown">355点人气值<br></em> <i>888点人气值</i></p>
+          </li>
+          <li class="m-li-5">
+            <p class="m-box-num f-fc-pink m-box-sale5">￥<em>38</em></p>
+            <p class="m-box-pop"><em class="f-fc-brown">19点人气值<br></em> <i>38点人气值</i></p>
+          </li>
+          <li class="m-li-5 m-li-left">
+            <p class="m-box-num f-fc-pink m-box-sale5">￥<em>168</em></p>
+            <p class="m-box-pop"><em class="f-fc-brown">84点人气值<br></em> <i>168点人气值</i></p>
+          </li>
+          <li class="m-li-5">
+            <p class="m-box-num f-fc-pink m-box-sale5">￥<em>666</em></p>
+            <p class="m-box-pop"><em class="f-fc-brown">333点人气值<br></em> <i>666点人气值</i></p>
+          </li>
+        </ul>
+        <div class="m-guide">
+          <h2>操作流程:</h2>
+          <div class="m-guide-step">打开<em class="f-fc-brown">APP“发现”</em>版块</div>
+          <img src="$res_url/img/activity/lanternfestival/jiantou.png" alt="">
+          <div class="m-guide-step">进入<em class="f-fc-brown">人气值乐园首页</em></div>
+          <img src="$res_url/img/activity/lanternfestival/jiantou.png" alt="">
+          <div class="m-guide-step">在<em class="f-fc-brown">“双节特惠”</em>中乐享折扣兑换</div>
+        </div>
+        <a @click="rule"><img class="m-rule-icon" src="$res_url/img/activity/lanternfestival/rule.png" alt=""></a>
+      </div>
+    </div>
+
+  ## 欢度元宵
+    <div class="m-tab-wrap" v-show="selectTab === 2">
+      <div class="m-tab-title">
+        <span class="f-fc-pink m-tab-title-left">欢度元宵</span>
+        <span class="f-fc-brown m-tab-title-right">限时加息</span>
+      </div>
+      <div class="m-tab-body m-tab-body2">
+        <p class="m-body-text">活动期间，平台将在每日 <em class="f-fc-yellow">10:00、14:00、18:00、20:00</em> 随机上线加息项目，投资期限越长，加息力度越高，快来抢吧!</p>
+        <table>
+          <thead>
+          <tr>
+            <td>收益周期</td>
+            <td>加息幅度</td>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>一个月</td>
+            <td>0.5%</td>
+          </tr>
+          <tr>
+            <td>二个月</td>
+            <td>1%</td>
+          </tr>
+          <tr>
+            <td>三个月</td>
+            <td>1.5%</td>
+          </tr>
+          <tr>
+            <td>六个月</td>
+            <td>2%</td>
+          </tr>
+          </tbody>
+        </table>
+        <a @click="rule"><img class="m-rule-icon" src="$res_url/img/activity/lanternfestival/rule.png" alt=""></a>
+      </div>
+
+    </div>
+
+  ## 爱你一世
+    <div class="m-tab-wrap" v-show="selectTab === 3">
+      <div class="m-tab-title">
+        <span class="f-fc-pink m-tab-title-left">爱你一世</span>
+        <span class="f-fc-brown m-tab-title-right">超额收益</span>
+      </div>
+      <div class="m-tab-body m-tab-body3">
+        <p class="m-body-text">情人节（2月14日）当天，每位用户签到后均可获得两张高额收益券, 面额为 <em class="f-fc-yellow">5.20%</em> 和 <em class="f-fc-yellow">13.14%</em>，5201314哦！</p>
+        <div class="m-box-love">
+          <div class="m-box-quan-num f-fc-pink">5.20<em>%</em></div>
+        </div>
+        <div class="m-box-love">
+          <div class="m-box-quan-num f-fc-pink f-left-small">13.14<em>%</em></div>
+        </div>
+        <a @click="rule"><img class="m-rule-icon" src="$res_url/img/activity/lanternfestival/rule.png" alt=""></a>
+      </div>
+
+    </div>
+
+  ## 活动规则
+    <div class="u-dialog-box" v-if="dialog">
+      <img class="m-alert-top" src="$res_url/img/activity/lanternfestival/yezi.png" alt="">
+      <div class="u-dialog u-rule">
+        <p class="m-rule-top">活动规则</p>
+        <p>1.活动对象：有融网所有用户;</p>
+        <p>2.活动时间：2017年2月10日00:00-2月20日23:59;</p>
+        <p>3.现金券、收益券使用条件详见券面;</p>
+        <p>4.转让专区项目不参与本活动;</p>
+        <p>5.如有其他疑问，请拨打客服热线:400-025-6688;</p>
+        <p>6.本活动最终解释权归有融网所有。</p>
+        <div class="m-dialog-touch" @click="close">
+          <img src="$res_url/img/activity/lanternfestival/close.png" alt="">
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+## 底部导航
+  <div class="u-nav-bottom">
+    <ul>
+      <li class="" :class="{'z-active': selectTab === 1}">
+        <a href="#" @click="goSelectTab(1)">
+          <span class="m-nav-icon1 m-nav-icon"></span>
+          <p>乐园新品</p>
+        </a>
+      </li>
+      <li :class="{'z-active': selectTab === 2}">
+        <a href="#" @click="goSelectTab(2)">
+          <span class="m-nav-icon2 m-nav-icon"></span>
+          <p>欢度元宵</p>
+        </a>
+      </li>
+      <li :class="{'z-active': selectTab === 3}">
+        <a href="#" @click="goSelectTab(3)">
+          <span class="m-nav-icon3 m-nav-icon"></span>
+          <p>爱你一世</p>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+##蒙层
+  <div class="u-cover j-cover" v-if="door"></div>
+</div>
+#set($pageScript="
+<script src='$res_url/build/js/appHook.js'></script>
+<script src='$aliyunOss_url/res/lib/vue/v1/vue.min.js'></script>
+<script src='$siteurl/res/lib/vue/vue.extend.js'></script>
+<script src='$siteurl/res/lib/js/moment.min.js'></script>
+##<script src='$siteurl/res/lib/js/vconsole.min.js'></script>
+<script>
+##  var receiveData = $!{data},
+          var os = $!{os};
+//  log(receiveData)
+
+  seajs.use('$res_url/source/js/activity/lanternfestival.js');
+</script>
+")
+
+#CSRFToken("xToken")

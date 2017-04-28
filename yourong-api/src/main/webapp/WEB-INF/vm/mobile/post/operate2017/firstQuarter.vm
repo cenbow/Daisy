@@ -1,0 +1,278 @@
+#parse('/mobile/common.vm')
+#set($css_url=["$res_url/source/css/post/operate2017First.css","$res_url/source/css/swiper-3.4.0.min.css"])
+#set($title='有融网2017年第一季度运营报告')
+#set($aliyun='https://yrstatic.oss-cn-hangzhou.aliyuncs.com')
+
+<style>
+    html, body {
+        position: relative;
+        height: 100%;
+    }
+    .swiper-container {
+        width: 100%;
+        height: 100%;
+    }
+
+    .swiper-pagination-bullet {
+        background: #fff;
+        opacity: 0.2;
+    }
+
+    .swiper-pagination-bullet.swiper-pagination-bullet-active {
+        background: #fff;
+        opacity: 1;
+    }
+
+    .swiper-container-horizontal > .swiper-pagination-bullets, .swiper-pagination-custom, .swiper-pagination-fraction {
+        width: 23.4375rem;
+        bottom: 0;
+    }
+</style>
+
+
+<div class="swiper-container j-direction-v">
+    <div class="swiper-wrapper">
+    ##            page1
+        <div class="swiper-slide">
+            <div class="u-section-content f-pos-r">
+                <img class="img-responsive" src="$aliyun/res/img/operate2017First/bg.png"/>
+                <div class="f-pos-a f-top0 f-first">
+                    <img class="img-responsive f-first" src="$aliyun/res/img/operate2017First/img1.png"/>
+                </div>
+            </div>
+        </div>
+    ##        page2
+        <div class="swiper-slide">
+            <div class="u-section-content f-pos-r">
+                <img class="img-responsive" src="$aliyun/res/img/operate2017First/bg.png"/>
+                <div class="f-pos-a f-top0">
+                    <h4>投资金额</h4>
+                    <img class="img-responsive" src="$aliyun/res/img/operate2017First/img2.png"/>
+                </div>
+            </div>
+        </div>
+    ##        page3
+        <div class="swiper-slide">
+            <div class="u-section-content f-pos-r">
+                <img class="img-responsive" src="$aliyun/res/img/operate2017First/bg.png"/>
+                <div class="f-pos-a f-top0">
+                    <h4>为用户赚取</h4>
+                    <img class="img-responsive" src="$aliyun/res/img/operate2017First/img3.png"/>
+                </div>
+            </div>
+        </div>
+    ##        page4
+        <div class="swiper-slide">
+            <div class="u-section-content f-pos-r">
+                <img class="img-responsive" src="$aliyun/res/img/operate2017First/bg.png"/>
+                <div class="f-pos-a f-top0">
+                    <h4>项目数据</h4>
+                    <img class="img-responsive" src="$aliyun/res/img/operate2017First/img4.png"/>
+                </div>
+            </div>
+        </div>
+    ##        page6
+        <div class="swiper-slide">
+            <div class="u-section-content f-pos-r">
+                <img class="img-responsive" src="$aliyun/res/img/operate2017First/bg.png"/>
+                <div class="f-pos-a f-top0">
+                    <h4>项目数据</h4>
+                    <img class="img-responsive" src="$aliyun/res/img/operate2017First/img6.png"/>
+                </div>
+            </div>
+        </div>
+    ##        page7
+        <div class="swiper-slide">
+            <div class="u-section-content f-pos-r">
+                <img class="img-responsive" src="$aliyun/res/img/operate2017First/bg.png"/>
+                <div class="f-pos-a f-top0">
+                    <h4>风控数据</h4>
+                    <img class="img-responsive" src="$aliyun/res/img/operate2017First/img7.png"/>
+                </div>
+            </div>
+        </div>
+    ##        page8
+        <div class="swiper-slide">
+            <div class="u-section-content f-pos-r">
+                <img class="img-responsive" src="$aliyun/res/img/operate2017First/bg.png"/>
+                <div class="f-pos-a f-top0">
+                    <h4>注册用户</h4>
+                    <img class="img-responsive" src="$aliyun/res/img/operate2017First/img8.png"/>
+                </div>
+            </div>
+        </div>
+    ##        page9
+        <div class="swiper-slide">
+            <div class="u-section-content f-pos-r">
+                <img class="img-responsive" src="$aliyun/res/img/operate2017First/bg.png"/>
+                <div class="f-pos-a f-top0">
+                    <h4>注册用户</h4>
+                    <img class="img-responsive" src="$aliyun/res/img/operate2017First/img9.png"/>
+                </div>
+            </div>
+        </div>
+    ##        page10
+        <div class="swiper-slide">
+            <div class="u-section-content f-pos-r">
+                <img class="img-responsive" src="$aliyun/res/img/operate2017First/bg.png"/>
+                <div class="f-pos-a f-top0">
+                    <h4>用户分布</h4>
+                    <img class="img-responsive" src="$aliyun/res/img/operate2017First/img10.png"/>
+                </div>
+            </div>
+        </div>
+    ##        page11
+        <div class="swiper-slide">
+            <div class="u-section-content f-pos-r">
+                <img class="img-responsive" src="$aliyun/res/img/operate2017First/bg.png"/>
+                <div class="f-pos-a f-top0">
+                    <h4>最佳有融范儿</h4>
+                    <img class="img-responsive" src="$aliyun/res/img/operate2017First/img11.png"/>
+                </div>
+            </div>
+        </div>
+    ##            page12
+        <div class="swiper-slide">
+            <div class="u-section-content f-pos-r">
+                <img class="img-responsive" src="$aliyun/res/img/operate2017First/bg.png"/>
+                <div class="f-pos-a f-top0">
+                    <h4>投资者声音</h4>
+                    <div class="swiper-container j-swiper-vioce">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <img class="u-img-voice" src="$aliyun/res/img/operate2017First/img12_1.png"/>
+                            </div>
+                            <div class="swiper-slide">
+                                <img class="u-img-voice" src="$aliyun/res/img/operate2017First/img12_2.png"/>
+                            </div>
+                        </div>
+                        <div class="swiper-pagination  swiper-pagination-h1"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    ##        page13
+        <div class="swiper-slide">
+            <div class="u-section-content f-pos-r">
+                <img class="img-responsive" src="$aliyun/res/img/operate2017First/bg.png"/>
+                <div class="f-pos-a f-top0">
+                    <h4>体验优化</h4>
+                    <img class="img-responsive" src="$aliyun/res/img/operate2017First/img13.png"/>
+                </div>
+            </div>
+        </div>
+    ##        page14
+        <div class="swiper-slide">
+            <div class="u-section-content f-pos-r">
+                <img class="img-responsive" src="$aliyun/res/img/operate2017First/bg.png"/>
+                <div class="f-pos-a f-top0">
+                    <h4>人气活动</h4>
+                    <div class="swiper-container j-swiper-activity">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <img class="u-img-activity" src="$aliyun/res/img/operate2017First/activity_one.png"/>
+                            </div>
+                            <div class="swiper-slide">
+                                <img class="u-img-activity" src="$aliyun/res/img/operate2017First/activity_two.png"/>
+                            </div>
+                        </div>
+                        <div class="swiper-pagination  swiper-pagination-h2"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    ##        page15
+        <div class="swiper-slide">
+            <div class="u-section-content f-pos-r">
+                <img class="img-responsive" src="$aliyun/res/img/operate2017First/bg.png"/>
+                <div class="f-pos-a f-top0">
+                    <h4>平台大事记</h4>
+                    <img class="img-responsive" src="$aliyun/res/img/operate2017First/img15.png"/>
+                </div>
+            </div>
+        </div>
+    ##        page16
+        <div class="swiper-slide">
+            <div class="u-section-content f-pos-r">
+                <img class="img-responsive" src="$aliyun/res/img/operate2017First/bg.png"/>
+                <div class="f-pos-a f-top0">
+                    <h4>媒体聚焦</h4>
+                    <div class="swiper-container j-swiper-report">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <span class="u-section-report">
+                                    <img class='u-report' src="$aliyun/res/img/operate2017First/img16_1.png"/>
+                                </span>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="u-section-report">
+                                    <img class='u-report' src="$aliyun/res/img/operate2017First/img16_2.png"/>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="u-section-report">
+                                    <img class='u-report' src="$aliyun/res/img/operate2017First/img16_3.png"/>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="u-section-report">
+                                    <img class='u-report' src="$aliyun/res/img/operate2017First/img16_4.png"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-pagination swiper-pagination-h3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    ##        page17
+        <div class="swiper-slide">
+            <div class="u-section-content f-pos-r">
+                <img class="img-responsive" src="$aliyun/res/img/operate2017First/bg.png"/>
+                <div class="f-pos-a" style="top:100px;">
+                    <img class="img-responsive" src="$aliyun/res/img/operate2017First/img17_1.png"/>
+                    <img class="img-responsive" style="margin-top:20px;"
+                         src="$aliyun/res/img/operate2017First/img17_2.png"/>
+                    <p class="u-bottom-text">关注官方订阅号，小编囧囧在等你哦~</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<span class="start" id="j-up-icon">
+<img src="$aliyun/res/img/operate2017First/up.png">
+</span>
+
+
+<script src='$res_url/lib/js/swiper-3.4.0.min.js'></script>
+##<script src="$res_url/lib/js/vconsole.min.js"></script>
+<script>
+    window.onload = function () {
+        var swiper = new Swiper('.j-direction-v', {
+            direction: 'vertical',
+            onSlideChangeEnd: function (swiper) {
+                if (swiper.activeIndex === 16) {
+                    document.getElementById('j-up-icon').style.display = "none";
+                }
+            }
+        });
+
+        var swiperH = new Swiper('.j-swiper-vioce', {
+            pagination: '.swiper-pagination-h1',
+            loop: true,
+            width: 400
+        });
+        var swiperH2 = new Swiper('.j-swiper-activity', {
+            pagination: '.swiper-pagination-h2',
+            loop: true,
+            width: 400
+        });
+        var swiperH3 = new Swiper('.j-swiper-report', {
+            pagination: '.swiper-pagination-h3',
+            width: 350,
+            loop: true
+        });
+    }
+</script>

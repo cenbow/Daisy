@@ -1,0 +1,97 @@
+##手机登陆页E
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$m_css_url/common.css","$m_css_url/landing/season1.css"])
+#set($title="注册送大礼包")
+#set($loadJQ=true)
+<input type="hidden" id="pageTag" value="landingD2"/>
+<script>
+        #if($currentUser)
+        window.location.href = '$siteurl/mCenter/home';
+        #end
+</script>
+<style>
+    a {
+        text-decoration: none;
+        color: #fff;
+    }
+
+    header {
+        height: 50px;
+        line-height: 50px;
+        width: 100%;
+        background: #d74148;
+    }
+
+    header img {
+        height: 50%;
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .u-reg-btn1 {
+        width: 100%;
+        background: #d74148;
+        text-align: center;
+        border: none;
+        height: 40px;
+        color: #fff;
+    }
+
+    .m-partner {
+        width: 100%;
+        height: 70px;
+        background: #fff;
+        text-align: center;
+        line-height: 70px;
+    }
+
+    .m-partner img {
+        width: 26%;
+        margin: 0 2%;
+    }
+
+    .g-ft {
+        display: none;
+    }
+
+    .u-downloadE-text{
+          text-align: center;
+          font-size:15px;
+           color: #999999;
+          line-height:20px;
+          margin-bottom:10px;
+    }
+
+    /*.g-footer{position: fixed;bottom: 0;width: 100%;}*/
+</style>
+<header>
+    <a href="$siteurl/mIndex" class="f-fs14 f-ff-din">
+        <img src="$res_url/img/back.png" alt=""/>
+        <img src="$res_url/img/logo_m.png" alt="" style="border-right: 1px solid #fff;padding: 0 0.8rem 0 0;"/>
+        &nbsp;全透明的互联网理财优选平台
+    </a>
+</header>
+##banner
+<div class="m-banner">
+    <img src="$siteurl/res/img/bannerD2_1.png"/>
+</div>
+
+<div class="u-wrap m-partner">
+    <img src="$res_url/img/sinaPay_logo20151118.png" alt=""/>
+    <img src="$res_url/img/dlbloc_logo1.png" alt=""/>
+    <img src="$res_url/img/zjguoquan.png" alt=""/>
+</div>
+<div class="u-downloadE-text">投资有风险，入市需谨慎</div>
+##footer
+<a class="g-footer" href="$siteurl/res/page/app/androidDownload_kuhuaLanding.html">
+    <button class="u-reg-btn1 f-fs18">下载有融网APP</button>
+</a>
+<div style="display:none;">
+    <script type="text/javascript">
+        var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+        document.write(unescape("%3Cspan id='cnzz_stat_icon_1255767947'%3E%3C/span%3E%3Cscript src='" +
+                cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1255767947' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+</div>
+

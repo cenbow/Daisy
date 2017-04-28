@@ -1,0 +1,41 @@
+##邀请好友
+#parse("/common/common.vm")
+#set($title="邀请好友_我的优惠_$!{title_suffix}")
+#set($css_url=["$cssv2_url/member/member.css"])
+#set($js_url=["$root_url/static/lib/js/zclip/jquery.zclip.min.js","$root_js_url/modules/member.js"])
+
+<div class="g-wrap">
+		<div class="g-act-wrap m-invite-act">
+			## 页面内容
+			<div class="u-invite-banner">
+				<p>邀请好友注册并投资，您可获得好友投资额2‰的<a style="cursor:help;" href="$root_url/post/help/wiki.html#rqz">人气值</a></p>
+			</div>
+			<div class="u-invite-recommend">
+				##微信暂时不放
+				## <h4 class="f-fs18">推荐方式&nbsp;①<span class="f-fs14">微信邀请好友</span></h4>
+				## <div class="u-invite-box u-invite-wechat f-cf">
+				## 	<img src="$root_url/static/img/member/invite_wechat.png" class="f-fl" alt="微信二维码">
+				## 	<p class="f-fs14 f-fl">
+				## 		第一步，打开微信，点击右上角“+”号， 点击扫一扫<br>
+				## 		第二步，将打开的页面内容分享到您的朋友圈，邀请您的好友注册。
+				## 	</p>
+				## </div>
+				<h4 class="f-fs18">推荐方式&nbsp;①<span class="f-fs14">让好友通过您的邀请链接注册</span></h4>					
+				<div class="u-invite-box u-invite-link">
+					<input type="text" class="f-round u-ipt-text" id="j-invite-url" data-url="$domain_url/$!{inviteCode}" value="$domain_url/$!{inviteCode}" readonly>
+					<input type="button" value="点击复制" id="j-copy-invite" class="f-round f-fs14 f-btn-s u-btn u-btn-primary">
+				</div>
+				<h4 class="f-fs18">推荐方式&nbsp;②<span class="f-fs14">让好友注册时在推荐人一项，输入您在有融网注册的手机号码</span></h4>					
+				<div class="u-invite-box u-invite-reg">
+				<img src="$root_url/static/img/member/invite_reg.jpg" alt="让好友注册时在推荐人一项，输入您在有融网注册的手机号码">
+				</div>
+			</div>
+			## /页面内容
+		</div>
+</div>
+
+<script>
+	
+
+
+</script>

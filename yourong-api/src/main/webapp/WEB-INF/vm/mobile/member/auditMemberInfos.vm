@@ -1,0 +1,23 @@
+#parse('/mobile/common.vm')
+#set($layout = "/layout/layout.vm")
+#if($link.getContextPath() == '')
+    #set($siteurl='')
+#else
+    #set($siteurl=$link.getContextPath() )
+#end
+#CSRFToken("xToken")
+<div id='j-auditMemberInfos'></div>
+<script src="$aliyunOss_url/res/lib/jquery/v2/jquery.min.js"></script>
+<script >
+    var $auditMemberInfos = $('#j-auditMemberInfos');
+    var xToken = $('#xToken').val();
+    $.ajax({
+        url: '$siteurl/security/member/auditMemberInfos',
+        type: 'POST',
+        data: {xToken: xToken},
+        success: function (data) {
+                $auditMemberInfos.html(data);
+            $('#formAuthSavingPot').submit();
+        }
+    })
+</script>

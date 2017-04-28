@@ -1,0 +1,82 @@
+##修改手机号码
+#parse('/common/common.vm')
+#set($title="修改手机号码-$!{title_suffix}")
+#set($css_url=["$root_css_url/modules/modifyMobile.css"])
+#set($js_url=["$root_url/static/lib/js/vue/vue.js","$root_url/static/lib/js/vue/vue.extend.js",
+    "$root_js_url/modules/modifyMobile.js"])
+
+<div id="j-modifyMobile" class="g-mm-bd" v-cloak>
+    <div class="m-mm-guide f-mm-bg">
+        <div class="g-mm-wrap">
+            <h4>修改手机号</h4>
+            <ul>
+                <li :class="{'z-crt':step===4}"><i class="u-mm-circle f-mm-fs">4</i><br>
+                    完成
+                </li>
+                <li :class="{'z-crt':step===3}"><i class="u-mm-circle f-mm-fs">3</i><br>
+                    重置登录密码
+                </li>
+                <li :class="{'z-crt':step===2}"><i class="u-mm-circle f-mm-fs">2</i><br>
+                    输入新的手机号
+                </li>
+                <li :class="{'z-crt':step===1}"><i class="u-mm-circle f-mm-fs">1</i><br>
+                    信息认证
+                </li>
+            </ul>
+        </div>
+    </div>
+## 信息验证
+    <div class="m-mm-vf" v-if="step===1">
+        <div class="u-mm-vf">
+            <span class="u-mm-vf-first #if(!${servletUtil.isVerifyTrueName()}) z-color73 #end" :class="{'z-current':validate.type===1}"
+                  @click="selectValidateType(1)">手机号验证</span>
+            #if(${servletUtil.isVerifyTrueName()})
+                <span class="u-mm-vf-first" :class="{'z-current':validate.type===2}"
+                      @click="selectValidateType(2)"> 身份信息验证</span>
+            #end
+
+        </div>
+
+        <div class="u-mm-vf2" v-if="validate.type===1">
+            <h5 class="f-mm-location">手机号</h5>&nbsp;&nbsp;&nbsp;&nbsp;${servletUtil.getMemberMaskMobile()}<br/>
+            <h5>验证码</h5>
+            <input type="text" autocomplete="off" class="f-round u-ipt-text f-mm-vf f-mm-help" placeholder="输入验证码"
+                   v-model="validate.vercode" @change="verifyMobileCode(validate.vercode)">
+            <span class="u-mm-get" @click="getMobileCode(0)" v-text="codeBtn.text">获取验证码</span><br>
+            <p class="u-error" :class="{'z-visibled':validate.codeCorrect<0}" v-text="tips.errorCodeTips"></p>
+            <div class="u-mm-button f-mm-button " @click="checkMobile">下一步</div>
+
+        </div>
+
+        <div class="u-mm-vf2" v-if="validate.type===2">
+
+            <h5>姓名</h5><input type="text" id="j-vercode" autocomplete="off" class="f-round u-ipt-text  j-vercode " placeholder="输入姓名" @blur="verifyIdentity(validate.realname,1)" v-model="validate.realname">
+            <p class="u-error" v-text="tips.errorRealname" :class="{'z-visibled':validate.realnameCorrect<0}"></p>
+            <h5>身份证号码</h5><input type="text" autocomplete="off" class="f-round u-ipt-text  j-vercode " placeholder="输入正确的身份证号码" @blur="verifyIdentity(validate.idcard,2)" v-model="validate.idcard">
+            <p class="u-error" v-text="tips.errorIdcard" :class="{'z-visibled':validate.idcardCorrect<0}"></p>
+            <h5>登录密码</h5><input type="password" id="j-vercode" autocomplete="off" class="f-round u-ipt-text  j-vercode " placeholder="输入登录密码" @blur="verifyIdentity(validate.loginPassword,3)" v-model="validate.loginPassword">
+            <p class="u-error" v-text="tips.errorPassword" :class="{'z-visibled':validate.loginPasswordCorrect<0}"></p>
+            <div class="u-mm-button" @click="checkIdentity">下一步</div>
+        </div>
+    </div>
+##  输入新的手机号
+    <div class="m-mm-vf f-mm-part1" v-if="step===2">
+        <div class="u-mm-vf2">
+            <h5>输入新手机号码</h5>
+            <input type="text" autocomplete="off" class="f-round u-ipt-text" placeholder="输入正确的手机号码" @blur="verifyNewMobile(validate.newMobile)" v-model="validate.newMobile">
+            <p class="u-error" :class="{'z-visibled':validate.mobileCorrect<0}" v-text="tips.errorMobileTips"></p>
+            <h5>验证码</h5>
+            <input type="text" autocomplete="off" class="f-round u-ipt-text  f-mm-vf" placeholder="输入验证码" v-model="validate.newVercode" @change="verifyMobileCode(validate.newVercode)">
+            <span class="u-mm-get" @click="getMobileCode(1)" v-text="codeBtn2.text"></span>
+            <p class="u-error" :class="{'z-visibled':validate.codeCorrect<0}" v-text="tips.errorCodeTips"></p>
+            <div class="u-mm-button" @click="modifyMobileByIdentity" v-if="validate.type>1">
+                下一步
+            </div>
+            <div class="u-mm-button" @click="modifyMobileByCaptcha" v-else>下一步</div>
+        </div>
+    </div>
+    #CSRFToken('xToken')
+</div>
+<script>
+    var initStep=1
+</script>

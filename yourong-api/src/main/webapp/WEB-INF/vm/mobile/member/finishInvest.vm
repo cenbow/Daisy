@@ -1,0 +1,138 @@
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$m_css_url/modules/finishInvest.css"])
+#set($title='投资完成')
+#set($orderId=$request.getParameter("orderId"))
+#set($pid=$request.getParameter("pid"))
+<div id="j-investDetailStatus" v-model="investDetailData" v-cloak>
+    <div>
+        <h2 class="u-header f-pos-r">
+    <span class="f-fs20">
+        <span v-text="investDetailData.order.projectName.split('期')[0]"></span>期
+    </span>
+            <a href="$siteurl/products/m/list-all-all-1.html"> <span class="f-fs24">x</span></a>
+        </h2>
+        <div>
+            <div class="m-investStatus">
+                <div class="u-investSuccess" v-if="investDetailData.order.status==3">
+                    <img src="$res_url/img/member/smile-face.png" alt="">
+                    <span>投资成功</span>
+                </div>
+                <div class="u-refresh" @click="refresh" v-if="investDetailData.order.status==1 || investDetailData.order.status==0||investDetailData.order.status==8">
+                    <span>投资处理中</span>
+                    <img src="$res_url/img/member/refresh.png" alt="">
+                </div>
+                <div class="u-investFaile" v-if="investDetailData.order.status==2||investDetailData.order.status==4">
+                    <img src="$res_url/img/member/cry-face.png" alt="">
+                    <span v-if="investDetailData.order.status==2 || investDetailData.order.status==4">投资失败</span>
+                </div>
+                <div class="u-faileReason" v-if="investDetailData.order.status==2 || investDetailData.order.status==4">{{investDetailData.order.remarks}}</div>
+                <div class="u-investFaile" v-if="investDetailData.order.status==9">
+                    <img src="$res_url/img/member/cry-face.png" alt="">
+                    <span v-if="investDetailData.order.status==9">订单已关闭，请重新下单</span>
+                </div>
+                <div class="u-faileReason" v-if="investDetailData.order.status==9">{{investDetailData.order.remarks}}</div>
+            </div>
+            <div class="m-contentWrap" v-model="investDetailData">
+                <ul>
+                    <li v-if="investDetailData.order.status!=2 && investDetailData.order.status!=4">
+                        <span>投资金额</span>
+                    <span class="f-fr">&yen;<span v-text="investDetailData.order.investAmount.split('.')[0] | amountFormat 'split'"></span>
+                        <i v-if="investDetailData.order.cashCouponNo" v-model="myAmount">(<i v-text="myAmount |  amountFormat 'split'"></i>+<i class="z-red-color" v-text="investDetailData.order.usedCouponAmount"></i>)</i>
+                    </span>
+                    </li>
+                    <li v-if="investDetailData.order.status!=2 && investDetailData.order.status!=4">
+                        <span>年化收益</span>
+                        <span class="f-fr"> <span v-text="investDetailData.order.annualizedRate"></span>%</span>
+                    </li>
+                    <li v-if="investDetailData.order.status!=2 && investDetailData.order.status!=4 &&investDetailData.order.profitCouponNo">
+                        <span>用收益券</span>
+                        <span class="f-fr"> <span v-text="investDetailData.order.extraAnnualizedRate.toFixed(2)"></span>% <em
+                                v-if="investDetailData.extraName">({{investDetailData.extraName}})</em></span>
+                    </li>
+
+                    <li v-if="investDetailData.investType==1&&(investDetailData.order.status!=2 && investDetailData.order.status!=4)">
+                        <span>收益天数</span>
+                        <span class="f-fr"> <span v-text="investDetailData.profitDays"></span>天</span>
+                    </li>
+                    <li v-if="investDetailData.investType==2&&(investDetailData.order.status!=2 && investDetailData.order.status!=4)">
+                        <span>收益周期</span>
+                        <span class="f-fr" v-text="investDetailData.profitPeriod"></span>
+                    </li>
+                ##                预期收益和首次还款日期是直投二期的内容，需要后期做
+
+                    <li v-if="investDetailData.order.status==3">
+                        <span>预期收益</span>
+                        <span class="f-fr z-red-color"><span class="z-red-color" v-text="investDetailData.expectAmount"></span>元</span>
+                    </li>
+                    <li v-if="investDetailData.investType==1&&investDetailData.order.status==3">
+                        <span>首次还款日期</span>
+                        <span class="f-fr" v-text="investDetailData.endDateStr"></span>
+                    </li>
+                    <li v-if="investDetailData.investType==2&&investDetailData.order.status==3">
+                        <span>当前募集进度</span>
+                        <span class="f-fr"><span v-text="investDetailData.progress"></span>%</span>
+                    </li>
+                    <li v-if="investDetailData.order.status==1 || investDetailData.order.status==2 || investDetailData.order.status==4 || investDetailData.order.status==0||investDetailData.order.status==8">
+                        <span>订单状态</span>
+                        <span class="f-fr" v-if="investDetailData.order.status==1 || investDetailData.order.status==0||investDetailData.order.status==8">支付中</span>
+                        <span class="f-fr" v-if="investDetailData.order.status==2 || investDetailData.order.status==4">投资失败</span>
+                    </li>
+                    <li v-if="investDetailData.order.status==1 || investDetailData.order.status==0 || investDetailData.order.status==2 || investDetailData.order.status==4||investDetailData.order.status==8">
+                        <span>订单编号</span>
+                        <span class="f-fr u-orderNum" v-text="investDetailData.order.orderNo"></span>
+                    </li>
+                    <li  v-if="investDetailData.order.status==9">
+                        <span>还款方式</span>
+                        <span class="f-fr u-payWay f-fs12" v-if="investDetailData.profitType=='monthly_paid'">按日计息，按月付息，到期还本付息</span>
+                        <span class="f-fr u-payWay f-fs14" v-if="investDetailData.profitType=='once_paid'">一次性还本付息</span>
+                        <span class="f-fr u-payWay f-fs14" v-if="investDetailData.profitType=='principal_average'">等额本金</span>
+                        <span class="f-fr u-payWay f-fs14" v-if="investDetailData.profitType=='all_average'">等额本息</span>
+                        <span class="f-fr u-payWay f-fs14" v-if="investDetailData.profitType=='avg_principal'">等本等息</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="u-lookDetail" v-if="investDetailData.order.status==3">
+                <a href="$siteurl/mCenter/investmentDetail?transactionId={{investDetailData.transactionId}}">
+                    <span>查看投资详情</span>
+                    <span class="f-fr"> ></span>
+                </a>
+
+            </div>
+            <div class="u-lookDetail" v-if="investDetailData.order.status==1 || investDetailData.order.status==0||investDetailData.order.status==8">
+                <a href="$siteurl/mCenter/myTransaction?isCurrent=2">
+                    <span>查看我的订单</span>
+                    <span class="f-fr"> ></span>
+                </a>
+
+            </div>
+        </div>
+        <div>
+            <div v-if="investDetailData.order.status==1 || investDetailData.order.status==0||investDetailData.order.status==8  "></div>
+            <div v-else class="u-investBtn">
+                <div v-if="investDetailData.order.status==9">
+                    <a href="$siteurl/mCenter/invest?pid=$pid">重新下单</a>
+                </div>
+                <div v-else><a href="$siteurl/products/m/list-all-all-1.html">继续投资</a> </div>
+            </div>
+        </div>
+
+        <div v-if="investDetailData.hasRedPackage==true&&investDetailData.order.status!=2&&investDetailData.order.status!=4" class="m-redPacket">
+            <a href="$siteurl/mstation/post/downloadApp"><img src="$res_url/img/member/investmentDetail/red_packet.png" alt=""></a>
+        </div>
+    </div>
+####确认支付后提示框
+##    <div class=" u-paySuccess f-fs12 " :class="{'f-dn':!paySuccess}">
+##        <img src="$res_url/img/member/loading.gif" alt="">
+##        <span>支付中...</span>
+##        <div class="u-countdown"><i>{{paySucessCount}}</i></div>
+##    </div>
+</div>
+
+<input id="j-orderId" type="hidden" orderId="$orderId">
+#CSRFToken('xToken')
+#set($pageScript="
+<script>
+
+    seajs.use('$siteurl/res/source/js/modules/finishInvest.js');
+</script>")

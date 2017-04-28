@@ -1,0 +1,16 @@
+ #parse("/common/common.vm")
+ #########################################script##################################### 
+ #set($js_config=[ 
+ "'urlMap':{ 
+   'ajax':'$root_url/cmsCategory/ajax?', 
+   'query':'$root_url/cmsCategory/index?', 
+   'save':'$root_url/cmsCategory/save', 
+   'show':'$root_url/cmsCategory/show?id=', 
+   'delet':'$root_url/cmsCategory/delete',
+   'tree':'$root_url/cmsCategory/tree'
+   },
+   'module':#buildDictJson('cms_module')
+   "
+ ]) 
+ #set($js_url=["$root_url/static/js/cmsCategory.js"]) 
+ #########################################DOM##################################### 

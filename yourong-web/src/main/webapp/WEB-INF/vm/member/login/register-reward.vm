@@ -1,0 +1,61 @@
+##开通新浪支付存钱罐 -- 
+#parse('/common/common.vm')
+#set($title="完成，领取奖励_$!{title_suffix}")
+#set($css_url=["$root_css_url/modules/login.css"])
+<div class="m-reg-guide f-login-bg">
+
+	<ul class="g-wrap">
+		<li><i class="u-circle-32 f-fs30 z-crt">3</i>完成，领取奖励</li>
+		<li><i class="u-circle-32 f-fs30">2</i>开通新浪支付存钱罐</li>
+		<li><i class="u-circle-32 f-fs30">1</i>注册会员</li>
+	</ul>
+</div>
+<div class="m-reg-box g-wrap f-round">
+    <div class="u-sinosig-regLogo">
+        <span class="u-reg-ghkj-logo"></span>
+        <span class="u-reg-qhjj-logo"></span>
+    </div>
+	<div class="g-grid-row">
+		<div class="g-grid-12">
+			<div class="u-reg-success f-cf">
+				<span class="u-circle-30 f-bgc-red f-fl">
+					<i class="u-icon u-icon-logo"></i>
+				</span>
+				<dl class="f-fl">
+					<dt class="f-fs18 f-fc-red f-fwb">${servletUtil.getUserDO().mobile} 恭喜您！</dt>
+					<dd class="f-fs14 f-fc-gray">成功开通了新浪支付存钱罐</dd>
+				</dl>
+			</div>
+		</div>
+		<div class="g-grid-13 m-reward-wrap z-actived">
+			<div class="u-reward-box">
+##				<span class="u-coupon-title f-text-overflow" title="现金券：开通新浪存钱罐奖励">现金券：开通新浪存钱罐奖励</span>
+				##<span class="u-coupon-number">$!{coupon.couponCode}</span>
+##				<span class="u-coupon-amount">
+##				<span class="f-ff-ver f-fs24">¥</span>
+##				<input type="hidden" class="j-cash-amount-num" value="30.00">
+##				<em class="u-cnum-a u-cnum-s3"></em><em class="u-cnum-a u-cnum-s0"></em></span>
+##				<span class="u-coupon-limit f-text-overflow" title=""></span>
+##				<span class="u-coupon-date">
+##					<a href="$root_url/coupon/couponList" class="u-coupon-link">查看现金券</a>
+##				</span>
+			</div>
+			<div class="u-reward-tips">
+				大礼包已经发放至您的账户，&nbsp;<a href="$root_url/coupon/couponList" class="u-link-a">前往查看></a>
+			</div>
+			<p class="u-reward-btn">
+				<a href="$root_url/products/list-all-all-investing-1-createTimeAsc-1.html" class="f-round f-fs14 f-btn-m u-btn u-btn-primary">立即投资</a>
+##				<a href="$root_url/coupon/reputation#newcomer" class="f-round f-fs14 f-btn-m u-btn u-btn-info">新手任务</a>
+			</p>
+		</div>
+	</div>
+</div>
+#if($stringUtil.equalsIgnoreCases($!{currentUser.registerTraceSource},'DSPPC',true))
+<script>
+!function(w,d,e){
+var _orderno='${servletUtil.getUserDO().id}'; //替换此处!;
+var b=location.href,c=d.referrer,f,s,g=d.cookie,h=g.match(/(^|;)\s*ipycookie=([^;]*)/),i=g.match(/(^|;)\s*ipysession=([^;]*)/);if (w.parent!=w){f=b;b=c;c=f;};u='//stats.ipinyou.com/cvt?a='+e('qJ.Fk.DdGAY_LtAz1Ht9S02AnXSX')+'&c='+e(h?h[2]:'')+'&s='+e(i?i[2].match(/jump\%3D(\d+)/)[1]:'')+'&u='+e(b)+'&r='+e(c)+'&rd='+(new Date()).getTime()+'&OrderNo='+e(_orderno)+'&e=';
+function _(){if(!d.body){setTimeout(_(),100);}else{s= d.createElement('script');s.src = u;d.body.insertBefore(s,d.body.firstChild);}}_();
+}(window,document,encodeURIComponent);
+</script>
+#end

@@ -1,0 +1,699 @@
+.m-questionnaire-bd{
+    width: 100%;
+    height: 380px;
+    margin-top: -8px;
+    position: relative;
+    color: #fff;
+    background: url(/static/img/post/questionnaire/questionnaire-bd.jpg) no-repeat center;
+}
+/*上半部分*/
+.m-questionnaire-up{
+    background: #eee;
+    width: 100%;
+    margin: 0 0 65px;
+}
+.u-questionnaire-text{
+    width: 910px;
+    height: 135px;
+    background: #fff;
+    padding: 62px 40px 80px;
+    color: #666;
+    line-height: 33px;
+}
+.u-questionnaire-text h2{
+    font-size: 20px;
+    font-weight: bold;
+}
+/*下半部分*/
+.m-questionnaire-bottom{
+    border-top: 1px dashed #d1d1d1;
+    background: #eee;
+    width: 100%;
+    margin: 0 0 65px;
+    padding-top: 45px;
+}
+.u-questionnaire-page{
+    height: 31px;
+    width: 181px;
+    background: #eee;
+    margin-top: -60px;
+    font-size: 0;
+    float: right;
+}
+.u-questionnaire-page span{
+    width: 31px;
+    height: 31px;
+    text-align: center;
+    line-height: 31px;
+    background: #fff;
+    color: #d74148;
+    font-size: 16px;
+    display: inline-block;
+    -moz-border-radius: 16px;
+    -webkit-border-radius: 16px;
+    border-radius: 16px;
+    margin-left: 19px;
+}
+.u-questionnaire-page span.z-current{
+    background: #d74148;
+    color: #fff;
+}
+.u-questionnaire-page span:first-child{
+    margin-left: 0;
+}
+.m-questionnaire-bottom .m-question{
+
+}
+.m-questionnaire-bottom ul li{
+    display: none;
+}
+.m-questionnaire-bottom ul li.f-db{
+    display: block;
+}
+.m-questionnaire-bottom ul li>div{
+    margin-left: 40px;
+}
+.m-questionnaire-bottom ul li>div:first-child{
+    margin-left: 0;
+}
+.u-questionnaire-question{
+    width: 475px;
+    height: 400px;
+    display: inline-block;
+    vertical-align: top;
+    background: #fff;
+    font-weight: bold;
+}
+.u-questionnaire-question h4{
+    color: #fff;
+    padding: 6px 0 0 17px;
+    height: 73px;
+    width: 458px;
+    margin-bottom: 47px;
+    background: url("/static/img/post/questionnaire/questionnaire-sprite.png") no-repeat 0 0;
+}
+.u-questionnaire-question h4 span{
+    font-size: 28px;
+    display: inline-block;
+    margin-right: 45px;
+}
+.u-questionnaire-question h4 span em{
+    font-size: 34px;
+}
+.u-questionnaire-question h4 p{
+    color: #fff;
+    font-size: 18px;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+}
+.u-questionnaire-question h4 p em{
+    font-size: 14px;
+}
+/*第一个问题*/
+.u-questionnaire-No1 .u-questionnaire-money{
+    padding: 15px 10px 0 0;
+    height: 164px;
+    width: 49px;
+    line-height: 38px;
+    color: #bbb;
+    display: inline-block;
+}
+.u-questionnaire-No1 .u-questionnaire-money span{
+    display: inline-block;
+    float: right;
+}
+.u-questionnaire-No1 .u-questionnaire-data{
+    padding-left: 34px;
+    height: 177px;
+    width: 331px;
+    border-left: 1px solid #e1e1e1;
+    border-bottom: 1px solid #e1e1e1;
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+}
+.u-questionnaire-No1 .u-questionnaire-data span {
+    position: absolute;
+    bottom: -166px;
+    display: inline-block;
+    width: 28px;
+    -webkit-background-size: 50px 50px;
+    -moz-background-size: 50px 50px;
+    background-size: 50px 20px;
+    background-image: -webkit-gradient(linear, 0 0, 100% 100%, color-stop(.25, rgba(255, 255, 255, .2)), color-stop(.25, transparent), color-stop(.5, transparent), color-stop(.5, rgba(255, 255, 255, .2)), color-stop(.75, rgba(255, 255, 255, .2)), color-stop(.75, transparent), to(transparent));
+    background-image: -moz-linear-gradient(-24deg, rgba(255, 255, 255, .2) -58%, transparent 70%, transparent 50%, rgba(255, 255, 255, .2) 0%, rgba(255, 255, 255, .2) 75%, transparent 0, transparent);
+    background-image: -o-linear-gradient(-24deg, rgba(255, 255, 255, .2) -58%, transparent 70%, transparent 50%, rgba(255, 255, 255, .2) 0%, rgba(255, 255, 255, .2) 75%, transparent 0, transparent);
+    background-image: linear-gradient(-24deg, rgba(255, 255, 255, .2) -58%, transparent 70%, transparent 50%, rgba(255, 255, 255, .2) 0%, rgba(255, 255, 255, .2) 75%, transparent 0, transparent);
+}
+li.z-current .u-questionnaire-No1 .u-questionnaire-data span {
+    bottom: 0;
+}
+.u-questionnaire-No1 .u-questionnaire-data span.u-data-01{
+    background-color: #ffeb7a;
+    height: 13px;
+}
+.u-questionnaire-No1 .u-questionnaire-data span.u-data-02{
+    background-color: #ffd553;
+    height: 54px;
+    left: 125px;
+}
+.u-questionnaire-No1 .u-questionnaire-data span.u-data-03{
+    background-color: #fe8a23;
+    height: 113px;
+    left: 215px;
+}
+.u-questionnaire-No1 .u-questionnaire-data span.u-data-04{
+    background-color: #ff5e1f;
+    height: 156px;
+    left: 306px;
+}
+.u-questionnaire-No1 .u-questionnaire-radio{
+    margin: 15px 0 0 76px;
+}
+.u-questionnaire-No1 .u-questionnaire-radio label{
+    margin-left: 19px;
+    cursor: pointer;
+}
+.u-questionnaire-No1 .u-questionnaire-radio label:first-child{
+    margin-left: 0;
+}
+.u-questionnaire-No1 .u-questionnaire-radio label span{
+    vertical-align: text-bottom;
+}
+/*第二个*/
+.u-questionnaire-No2 .u-questionnaire-pro{
+
+}
+.u-questionnaire-pro>div{
+    height: 28px;
+    width: auto;
+    margin-left: 13px;
+    margin-bottom: 22px;
+}
+.u-questionnaire-pro>div label{
+    height: 21px;
+    cursor: pointer;
+    width: 13px;
+    padding: 7px 13px 0 14px;
+    display: inline-block;
+}
+.u-questionnaire-pro>div div{
+    height: 18px;
+    width: 369px;
+    padding: 4px 5px;
+    border: 1px solid #e1e1e1;
+    -moz-border-radius: 13px;
+    -webkit-border-radius: 13px;
+    border-radius: 13px;
+    display: inline-block;
+    vertical-align: top;
+}
+.u-questionnaire-pro>div div span{
+    display: inline-block;
+    height: 18px;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+    background-size: 20px 50px;
+    background-image: -webkit-gradient(linear, 0 0, 100% 100%, color-stop(.25, rgba(255, 255, 255, .2)), color-stop(.25, transparent), color-stop(.5, transparent), color-stop(.5, rgba(255, 255, 255, .2)), color-stop(.75, rgba(255, 255, 255, .2)), color-stop(.75, transparent), to(transparent));
+    background-image: -moz-linear-gradient(45deg, rgba(255, 255, 255, .2) -58%, transparent 70%, transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%, transparent 0, transparent);
+    background-image: -o-linear-gradient(45deg, rgba(255, 255, 255, .2) -58%, transparent 70%, transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%, transparent 0, transparent);
+    background-image: linear-gradient(45deg, rgba(255, 255, 255, .2) -58%, transparent 70%, transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%, transparent 0, transparent);
+}
+.u-questionnaire-pro>div .u-pro-01 span{
+    background-color: #ffeb7a;
+    width: 0;
+}
+.u-questionnaire-pro>div .u-pro-02 span{
+    background-color: #ffd553;
+    width: 0;
+}
+.u-questionnaire-pro>div .u-pro-03 span{
+    background-color: #fe8a23;
+    width: 0;
+}
+.u-questionnaire-pro>div .u-pro-04 span{
+    background-color: #ff5e1f;
+    width: 0;
+}
+li.z-current .u-questionnaire-pro>div .u-pro-01 span{
+    width: 39px;
+}
+li.z-current .u-questionnaire-pro>div .u-pro-02 span{
+    width: 99px;
+}
+li.z-current .u-questionnaire-pro>div .u-pro-03 span{
+    width: 169px;
+}
+li.z-current .u-questionnaire-pro>div .u-pro-04 span{
+    width: 289px;
+}
+.u-questionnaire-pro>div div em{
+    margin-left: 20px;
+    display: inline-block;
+    vertical-align: top;
+}
+/*第七*/
+li.z-current .u-questionnaire-No7 .u-questionnaire-pro .u-pro-01 span {
+    background-color: #ffeb7a;
+    width: 179px;
+}
+li.z-current .u-questionnaire-No7 .u-questionnaire-pro .u-pro-02 span {
+    background-color: #ffd554;
+    width: 159px;
+}
+li.z-current .u-questionnaire-No7 .u-questionnaire-pro .u-pro-03 span {
+    background-color: #fe8a24;
+    width: 139px;
+}
+li.z-current .u-questionnaire-No7 .u-questionnaire-pro .u-pro-04 span {
+    background-color: #ff5e1f;
+    width: 109px;
+}
+li.z-current .u-questionnaire-No7 .u-questionnaire-pro .u-pro-05 span {
+    background-color: #ff3600;
+    width: 69px;
+}
+/*第三、五、六、八*/
+.u-questionnaire-No3>div{
+    padding: 0 0 0 29px;
+}
+.u-questionnaire-No3>div label{
+    display: block;
+    margin: 0 0 32px;
+}
+.u-questionnaire-No3>div label span{
+    vertical-align: text-bottom;
+    margin-left: 10px;
+    color: #666;
+}
+.u-questionnaire-No3>div label.z-current{
+    color: #d74148;
+}
+
+/*第四*/
+.u-questionnaire-No4 .u-questionnaire-money{
+    padding: 15px 10px 0 0;
+    height: 164px;
+    width: 49px;
+    line-height: 38px;
+    color: #bbb;
+    display: inline-block;
+}
+.u-questionnaire-No4 .u-questionnaire-money span{
+    display: inline-block;
+    float: right;
+    width: 48px;
+    text-align: right;
+}
+.u-questionnaire-No4 .u-questionnaire-data{
+    padding-left: 34px;
+    height: 177px;
+    width: 331px;
+    border-left: 1px solid #e1e1e1;
+    border-bottom: 1px solid #e1e1e1;
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+}
+.u-questionnaire-No4 .u-questionnaire-data span {
+    position: absolute;
+    bottom: 0;
+    display: inline-block;
+    width: 28px;
+    -webkit-background-size: 50px 50px;
+    -moz-background-size: 50px 50px;
+    background-size: 50px 20px;
+    background-image: -webkit-gradient(linear, 0 0, 100% 100%, color-stop(.25, rgba(255, 255, 255, .2)), color-stop(.25, transparent), color-stop(.5, transparent), color-stop(.5, rgba(255, 255, 255, .2)), color-stop(.75, rgba(255, 255, 255, .2)), color-stop(.75, transparent), to(transparent));
+    background-image: -moz-linear-gradient(-24deg, rgba(255, 255, 255, .2) -58%, transparent 70%, transparent 50%, rgba(255, 255, 255, .2) 0%, rgba(255, 255, 255, .2) 75%, transparent 0, transparent);
+    background-image: -o-linear-gradient(-24deg, rgba(255, 255, 255, .2) -58%, transparent 70%, transparent 50%, rgba(255, 255, 255, .2) 0%, rgba(255, 255, 255, .2) 75%, transparent 0, transparent);
+    background-image: linear-gradient(-24deg, rgba(255, 255, 255, .2) -58%, transparent 70%, transparent 50%, rgba(255, 255, 255, .2) 0%, rgba(255, 255, 255, .2) 75%, transparent 0, transparent);
+}
+.u-questionnaire-No4 .u-questionnaire-data span.u-data-01{
+    background-color: #ffeb7a;
+    height: 2px;
+    left: 12px;
+}
+.u-questionnaire-No4 .u-questionnaire-data span.u-data-02{
+    background-color: #ffd554;
+    height: 14px;
+    left: 91px;
+}
+.u-questionnaire-No4 .u-questionnaire-data span.u-data-03{
+    background-color: #fe8a24;
+    height: 64px;
+    left: 169px;
+}
+.u-questionnaire-No4 .u-questionnaire-data span.u-data-04{
+    background-color: #ff5e1f;
+    height: 125px;
+    left: 247px;
+}
+.u-questionnaire-No4 .u-questionnaire-data span.u-data-05{
+    background-color: #ff3600;
+    height: 166px;
+    left: 325px;
+}
+
+.u-questionnaire-No4 .u-questionnaire-radio{
+    margin: 15px 0 0 76px;
+}
+.u-questionnaire-No4 .u-questionnaire-radio label{
+    margin-left: 10px;
+    cursor: pointer;
+}
+.u-questionnaire-No4 .u-questionnaire-radio label:first-child{
+    margin-left: 0;
+}
+.u-questionnaire-No4 .u-questionnaire-radio label span{
+    vertical-align: text-bottom;
+}
+/*结果*/
+.u-questionnaire-result h4{
+    height: 79px;
+    background: #d74148;
+    text-align: center;
+    line-height: 79px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #fff;
+    letter-spacing: 2px;
+}
+.u-questionnaire-result>div{
+    height: 248px;
+    background: #fff;
+    padding: 40px 0 50px;
+    text-align: center;
+}
+.u-questionnaire-result>div h5{
+    color: #d74148;
+    font-size: 22px;
+    font-weight: bold;
+
+}
+.u-questionnaire-result>div p{
+    font-size: 20px;
+    color: #666;
+    font-weight: bold;
+    margin: 35px 0;
+}
+.u-questionnaire-result>div span{
+    font-size: 14px;
+    color: #929292;
+    display: block;
+    font-weight: bold;
+    margin-bottom: 35px;
+}
+.u-questionnaire-result>div a{
+    height: 52px;
+    width: 247px;
+    text-align: center;
+    line-height: 52px;
+    background: #d74148;
+    font-size: 18px;
+    color: #fff;
+    display: inline-block;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+}
+.u-questionnaire-result>div div a{
+    margin-left: 79px;
+}
+.u-questionnaire-result>div div a:first-child{
+    margin-left: 0;
+}
+/*提交按钮*/
+.u-submit-btn{
+    height: 60px;
+    letter-spacing: 5px;
+    text-align: center;
+    line-height: 60px;
+    width: 990px;
+    background: #dbdbdb;
+    color: #fff;
+    display: block;
+    font-size: 22px;
+    font-weight: bold;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+    margin-top: 60px;
+
+}
+.u-submit-btn:link,.u-submit-btn:visited,.u-submit-btn:hover,.u-submit-btn:active{
+    color: #fff;
+    text-decoration: none;
+}
+.u-submit-btn.z-current{
+    background: #d74148;
+    cursor: pointer;
+}
+
+.u-submit-btn.f-dn{
+    display: none;
+}
+.u-result-btn a:link,.u-result-btn a:visited,.u-result-btn a:hover,.u-result-btn a:active{
+    color: #fff;
+    text-decoration: none;
+}
+.u-questionnaire-pro div em{
+    font-weight: bold;
+    color: #666;
+}
+.u-questionnaire-radio label span{
+    color: #666;
+}
+.u-questionnaire-radio label.z-current span{
+    color: #d74148;
+}
+.u-questionnaire-question label.z-current span{
+    color: #d74148;
+}
+.u-questionnaire-pro div.z-current div em{
+    color: #d74148;
+}
+li.z-current .u-questionnaire-data span{
+    -webkit-animation: progress-bar 2s;
+    animation: progress-bar 2s;
+}
+/*树状图动画*/
+@keyframes progress-bar{
+    from {
+        bottom: -166px
+    }
+    to {
+        bottom: 0
+    }
+}
+@-webkit-keyframes progress-bar{
+    from {
+        bottom: -166px
+    }
+    to {
+        bottom: 0
+    }
+}
+/*横向进度动画效果*/
+li.z-current .u-questionnaire-No2 .u-questionnaire-pro .u-pro-01 span{
+    -webkit-animation: pro1 2s;
+    animation: pro1 2s;
+}
+@keyframes pro1{
+    from {
+        width: 0;
+    }
+    to {
+        width: 39px;
+    }
+}
+@-webkit-keyframes pro1{
+    from {
+        width: 0;
+    }
+    to {
+        width: 39px;
+    }
+}
+li.z-current .u-questionnaire-No2 .u-questionnaire-pro .u-pro-01 span{
+    -webkit-animation: pro1 2s;
+    animation: pro1 2s;
+}
+@keyframes pro1{
+    from {
+        width: 0;
+    }
+    to {
+        width: 39px;
+    }
+}
+@-webkit-keyframes pro1{
+    from {
+        width: 0;
+    }
+    to {
+        width: 39px;
+    }
+}
+li.z-current .u-questionnaire-No2 .u-questionnaire-pro .u-pro-02 span{
+    -webkit-animation: pro2 2s;
+    animation: pro2 2s;
+}
+@keyframes pro2{
+    from {
+        width: 0;
+    }
+    to {
+        width: 99px;
+    }
+}
+@-webkit-keyframes pro2{
+    from {
+        width: 0;
+    }
+    to {
+        width: 99px;
+    }
+}
+li.z-current .u-questionnaire-No2 .u-questionnaire-pro .u-pro-03 span{
+    -webkit-animation: pro3 2s;
+    animation: pro3 2s;
+}
+@keyframes pro3{
+    from {
+        width: 0;
+    }
+    to {
+        width: 169px;
+    }
+}
+@-webkit-keyframes pro3{
+    from {
+        width: 0;
+    }
+    to {
+        width: 169px;
+    }
+}
+li.z-current .u-questionnaire-No2 .u-questionnaire-pro .u-pro-04 span{
+    -webkit-animation: pro4 2s;
+    animation: pro4 2s;
+}
+@keyframes pro4{
+    from {
+        width: 0;
+    }
+    to {
+        width: 289px;
+    }
+}
+@-webkit-keyframes pro4{
+    from {
+        width: 0;
+    }
+    to {
+        width: 289px;
+    }
+}
+/*第二个横向进度*/
+li.z-current .u-questionnaire-No7 .u-questionnaire-pro .u-pro-01 span{
+    -webkit-animation: No7-pro1 2s;
+    animation: No7-pro1 2s;
+}
+@keyframes No7-pro1{
+    from {
+        width: 0;
+    }
+    to {
+        width: 179px;
+    }
+}
+@-webkit-keyframes No7-pro1{
+    from {
+        width: 0;
+    }
+    to {
+        width: 179px;
+    }
+}
+li.z-current .u-questionnaire-No7 .u-questionnaire-pro .u-pro-02 span{
+    -webkit-animation: No7-pro2 2s;
+    animation: No7-pro2 2s;
+}
+@keyframes No7-pro2{
+    from {
+        width: 0;
+    }
+    to {
+        width: 159px;
+    }
+}
+@-webkit-keyframes No7-pro2{
+    from {
+        width: 0;
+    }
+    to {
+        width: 159px;
+    }
+}
+li.z-current .u-questionnaire-No7 .u-questionnaire-pro .u-pro-03 span{
+    -webkit-animation: No7-pro3 2s;
+    animation: No7-pro3 2s;
+}
+@keyframes No7-pro3{
+    from {
+        width: 0;
+    }
+    to {
+        width: 139px;
+    }
+}
+@-webkit-keyframes No7-pro3{
+    from {
+        width: 0;
+    }
+    to {
+        width: 139px;
+    }
+}
+li.z-current .u-questionnaire-No7 .u-questionnaire-pro .u-pro-04 span{
+    -webkit-animation: No7-pro4 2s;
+    animation: No7-pro4 2s;
+}
+@keyframes No7-pro4{
+    from {
+        width: 0;
+    }
+    to {
+        width: 109px;
+    }
+}
+@-webkit-keyframes No7-pro4{
+    from {
+        width: 0;
+    }
+    to {
+        width: 109px;
+    }
+}
+li.z-current .u-questionnaire-No7 .u-questionnaire-pro .u-pro-05 span{
+    -webkit-animation: No7-pro5 2s;
+    animation: No7-pro5 2s;
+}
+@keyframes No7-pro5{
+    from {
+        width: 0;
+    }
+    to {
+        width: 69px;
+    }
+}
+@-webkit-keyframes No7-pro5{
+    from {
+        width: 0;
+    }
+    to {
+        width: 69px;
+    }
+}

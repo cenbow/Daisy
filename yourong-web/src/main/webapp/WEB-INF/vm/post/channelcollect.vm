@@ -1,0 +1,193 @@
+#set($layout =  "layout/default.vm" )
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>数据</title>
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="/static/lib/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/lib/bootstrap/datepicker/css/bootstrap-datetimepicker.min.css">
+    <style type="text/css">
+        .g-bd {
+            width: 830px;
+            margin: 30px auto 0;
+        }
+
+        .g-form {
+            width: 830px;
+            margin: 30px auto 0;
+        }
+
+        .u-remove {
+            display: inline-block;
+            padding: 6px 8px;
+            position: absolute;
+            right: 20px;
+            top: 3px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+<div class="panel panel-default g-form">
+    <div class="panel-heading">
+        <h3 class="panel-title">搜索框</h3>
+    </div>
+    <div class="panel-body">
+        <form class="form-horizontal" role="form" action="">
+            <div class="form-group">
+                <label for="inputPassword3" class="col-sm-2 control-label">手机号</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" name="mobile" id="mobile" value="$!{query.mobile}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="j-startDate" class="col-sm-2 control-label">投资时间</label>
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <input class="form-control" size="16" type="text"
+                               value="$!{dateUtil.formatDatetoString($!query.startdate,'yyyy-MM-dd')}" name="startdate"
+                               id="j-startDate" data-date-format="yyyy-mm-dd">
+                        <span class="input-group-addon j-remove" data-target="#j-startDate">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-sm-1" style="vertical-align: middle;line-height: 32px;">到</div>
+                <div class="col-sm-4">
+                    <div class="input-group">
+                    <input class="form-control" size="16" type="text"
+                           value="$!{dateUtil.formatDatetoString($!query.enddate,'yyyy-MM-dd')}" name="enddate"
+                           data-date-format="yyyy-mm-dd" id="j-endDate">
+                    <span class="input-group-addon j-remove" data-target="#j-endDate">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </span>
+                        </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-3 col-sm-9">
+                    <button type="submit" class="btn btn-default">查询</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="panel panel-default g-bd">
+    <div class="panel-heading">
+        <h3 class="panel-title">列表</h3>
+    </div>
+    <div class="panel-body">
+        <table class="table table-striped">
+            <thead>
+            <th>手机号</th>
+            <th>注册时间</th>
+            <th>总投资</th>
+            <th>最后投资时间</th>
+            </thead>
+            <tbody>
+                #foreach($item in $page.data)
+                <tr>
+                    <td>$!{item.mobile}</td>
+                    <td>$!{dateUtil.formatDatetoString($!item.registertime,'yyyy-MM-dd HH:mm:ss')}</td>
+                    <td>$!{item.investcollect}</td>
+                    <td>$!{dateUtil.formatDatetoString($!item.lastinvest,'yyyy-MM-dd HH:mm:ss')}</td>
+                </tr>
+                #end
+            </tbody>
+        </table>
+        #set($_searchParam =
+            "/post/channel?mobile=$!{query.mobile}&startdate=$!{dateUtil.formatDatetoString($!query.startdate,
+                'yyyy-MM-dd')}&enddate=$!{dateUtil.formatDatetoString($!query.enddate,'yyyy-MM-dd')}")
+        #channelpagePlugin($page,$_searchParam)
+    </div>
+</div>
+</body>
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="/static/lib/js/jq/jquery-1.11.1.min.js"></script>
+
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="/static/lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/lib/bootstrap/datepicker/js/bootstrap-datetimepicker.min.js"></script>
+<script src="/static/lib/bootstrap/datepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<script>
+    var _startTime = $('#j-startDate'),
+            _endTime = $('#j-endDate'),
+            dateConfig = {
+                language: 'zh-CN',
+                autoclose: 1,
+                minView: 2,
+                startView: 2,
+                todayHighlight: 0,
+                forceParse: true,
+                pickerPosition: 'bottom-right'
+            }
+
+    _startTime.datetimepicker(dateConfig);
+    _startTime.on('focus', function () {
+        var endTime = _endTime.val()
+        if (endTime) {
+            _startTime.datetimepicker('setEndDate', endTime);
+        }
+    });
+    $('.j-remove').on('click', function () {
+        var target = $(this).data('target')
+        $(target).val('')
+    })
+    _endTime.datetimepicker(dateConfig);
+    _endTime.on('focus', function () {
+        var startTime = _startTime.val()
+        if (startTime) {
+            _endTime.datetimepicker('setStartDate', startTime);
+        }
+    });
+
+    function dateNum(dateString) {
+        return dateString.replace(/\-/g, '') - 0
+    }
+</script>
+</html>
+
+#macro(channelpagePlugin $page $_searchParam)
+## 总页数
+    #set($_totalPageCount =  $page.getTotalPageCount() )
+##当前页的条数
+    #set($__pageSize =  $page.getiDisplayLength() )
+##当前页
+    #set($_pageNo =  $page.getPageNo())
+    #set($_minPager = $page.getMinPager())
+    #set($_maxPager = $page.getMaxPager())
+    #if($_totalPageCount > 1)
+    <div class="m-pagenav f-tar">
+        #if($_pageNo!=1)
+            <a href="$!{request.getContextPath()}${_searchParam}&currpage=1" class="u-pnav-prev u-circle-12">首页</a>
+        #end
+        #if($_pageNo <=1 )
+        #else
+            #set($test_page = $_pageNo - 1)
+            <a href="$!{request.getContextPath()}${_searchParam}&currpage=${test_page}" class="u-pnav-prev u-circle-12">上一页</a>
+        #end
+
+        #foreach ($_idx in [$_minPager .. $_maxPager])
+            #if($_pageNo == $_idx)
+                <span class="u-pnav-crt u-circle-12">${_idx}</span>
+            #else
+                <a href="$!{request.getContextPath()}${_searchParam}&currpage=${_idx}"
+                   class="u-pnav-link u-circle-12">${_idx}</a>
+            #end
+        #end
+
+        #if($_pageNo ==$_totalPageCount)
+        #else
+            #set($_next_page = $_pageNo+1)
+            <a href="$!{request.getContextPath()}${_searchParam}&currpage=$!{_next_page}"
+               class="u-pnav-prev u-circle-12">下一页</a>
+        #end
+        #if($_pageNo!=$_totalPageCount)
+            <a href="$!{request.getContextPath()}${_searchParam}&currpage=${_totalPageCount}"
+               class="u-pnav-prev u-circle-12">尾页</a>
+        #end
+    </div>
+    #end
+#end

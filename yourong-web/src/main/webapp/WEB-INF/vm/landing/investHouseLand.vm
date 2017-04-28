@@ -1,0 +1,516 @@
+##投房有喜
+#parse('/common/common.vm')
+#set($title="投房有喜_$!{title_suffix}")
+#set($js_url=["/static/lib/js/template.js","$root_js_url/landing/investHouseLand.js"])
+<style>
+    .g-bd {
+        margin-bottom: 0;
+    }
+
+    /**页头**/
+    .u-investHouse-body {
+        width: 100%;
+        height: 1290px;
+        margin-top: -8px;
+        position: relative;
+        padding-top: 413px;
+        color: #fff;
+        background: #fef5da url(/static/img/landing/investHouse/investHouseJoy_hd.jpg) no-repeat top center;
+    }
+
+    /**\页头**/
+    /**页面内容**/
+
+    /**奖品**/
+    .u-investHouse-iwatch,
+    .u-investHouse-ticket {
+        height: 582px;
+        width: 479px;
+        float: left;
+        background: url("/static/img/activity/investHouse/investHouseJoy.png") no-repeat 0 -53px;
+    }
+
+    .u-investHouse-iwatch {
+        margin: 0 31px 0 0;
+    }
+
+    .u-investHouse-prize strong {
+        color: #ffc02a;
+        text-align: center;
+        display: block;
+        margin: 52px 0 12px;
+    }
+
+    .u-investHouse-prize span {
+        display: block;
+        text-align: center;
+        color: #808080;
+        margin: 0 0 73px;
+        font-size: 13px;
+    }
+
+    .u-investHouse-prize span em {
+        font-weight: bold;
+    }
+
+    .u-investHouse-prize i {
+        width: 335px;
+        height: 280px;
+        display: block;
+        margin: 0 auto;
+    }
+
+    .u-investHouse-prize p ,.u-investHouse-prize .u-coupon-empty{
+        color: #704211;
+        text-align: center;
+        display: block;
+        margin: 47px 0 0;
+    }
+
+    .u-investHouse-iwatch i {
+        background: url("/static/img/activity/investHouse/investHouseJoy.png") no-repeat -481px -53px;
+    }
+
+    .u-investHouse-ticket i {
+        background: url("/static/img/activity/investHouse/investHouseJoy.png") no-repeat -481px -340px;
+    }
+
+    .u-investHouse-ticket P {
+        margin: 36px 0 0;
+    }
+    /**项目块**/
+    .m-seasonFour-products{
+        height: 505px;
+        background-color: #fef5da;
+        color: #666;
+        padding: 55px 0 30px;
+        position: relative;
+    }
+    /***常规项目模块***/
+    .m-product-box {
+        background-color: #fff;
+        margin-bottom: 16px;
+        position: relative;
+        width: 740px;
+    }
+
+    .m-pbox-wrap {
+        padding: 30px 20px 6px;
+    }
+
+    .u-pbox-title {
+        display: inline-block;
+        height: 22px;
+        line-height: 22px;
+        margin: 0 30px 13px 0;
+        padding: 0 4px 0 16px;
+        position: relative;
+        color: #7d7d7d;
+        font-size: 14px;
+        width: auto;
+        min-width: 100px;
+        max-width: 655px;
+        border: 1px solid #ccc;
+        background-color: #fff;
+    }
+    .u-pbox-title {
+        padding-right: 15px;
+    }
+    .u-pbox-title a {
+        display: block;
+        height: 22px;
+        color: #7d7d7d;
+    }
+
+    .u-pbox-title a:hover {
+        text-decoration: none;
+    }
+
+    .u-pbox-title strong, .u-pbox-title a strong {
+        color: #464646;
+    }
+
+    .u-pbox-title span {
+        display: inline-block;
+        height: 30px;
+        line-height: 30px;
+        width: 15px;
+        overflow: hidden;
+        position: absolute;
+        top: 0;
+        right: -15px;
+    }
+
+    .u-pbox-title .u-newCustomer-link {
+        position: relative;
+        padding-right: 66px;
+    }
+
+    .u-pbox-title .u-newCustomer-tag {
+        float:left;
+        display: inline-block;
+        width: 60px;
+        height: 22px;
+        overflow: hidden;
+        cursor: pointer;
+        margin:0 0 0 5px;
+        background: url(/static/img/products/newCustomer/tag.png) no-repeat 0 3px;
+    }
+
+    .m-pbox-main {
+        margin: 0 0 15px;
+        height: 150px;
+        border-top: 1px solid #ccc;
+        border-bottom: 1px solid #ccc;
+    }
+
+    .u-pbox-thumbnail {
+        padding: 14px 10px;
+        position: relative;
+    }
+
+    .u-thumbnail-wrap {
+        height: 120px;
+        width: 120px;
+        overflow: hidden;
+        display: block;
+        background: url(/static/img/common/sprites.png) no-repeat -260px 0;
+        position: absolute;
+        left: 10px;
+        top: 14px;
+    }
+
+    .m-pbox-info>span {
+        padding-top: 28px;
+        display: inline-block;
+        width: 168px;
+        margin-left: 4px;
+        border-right: 1px solid #ccc;
+    }
+
+    .m-pbox-info>em {
+        padding-top: 28px;
+        display: inline-block;
+        width: 190px;
+        margin-left: 24px;
+        border-right: 1px solid #ccc;
+    }
+
+    .m-pbox-info>strong {
+        padding-top: 28px;
+        display: inline-block;
+        width: 120px;
+        font-weight: normal;
+        margin-left: 24px;
+    }
+
+    .m-pbox-info>span>em, .m-pbox-info>em>em, .m-pbox-info>strong>em {
+        line-height: 1em;
+    }
+
+    .m-pbox-info {
+        line-height: 1em;
+    }
+
+    .u-pbox-process {
+        height: 3px;
+        *width: 534px;
+        line-height: 3px;
+        zoom: 1;
+        background-color: #ccc;
+        margin: 8px 6px 0 0;
+    }
+
+    .u-pbox-process span {
+        display: block;
+        height: 3px;
+        overflow: hidden;
+        min-width: 0;
+    }
+
+    .u-pbox-meta {
+        padding: 14px 0 0;
+        position: relative;
+    }
+
+    .u-pbox-meta>em {
+        margin: 0 25px 0 0;
+    }
+
+    .u-pbox-meta>em, .u-pbox-meta>span {
+        color: #9b9b9b;
+    }
+
+    .u-pbox-meta a {
+        color: #fff;
+        margin-right: 10px;
+    }
+
+    .u-pbox-meta a:hover {
+        text-decoration: none;
+        color: #fff;
+    }
+
+    .u-pbox-btn {
+        display: inline-block;
+        height: 30px;
+        line-height: 30px;
+        width: 120px;
+        text-align: center;
+        color: #fff;
+        font-weight: bold;
+        position: absolute;
+        right: 1px;
+        top: 10px;
+        *top: 14px;
+    }
+    .u-pbox-btn.z-closed{
+        color: #FFF;
+        background-color: #F8ADA8;
+        border-color: #F8ADA8;
+    }
+    .m-product-box .u-arrow-down {
+        position: absolute;
+        display: block;
+        width: 12px;
+        height: 7px;
+        overflow: hidden;
+        left: 60px;
+        top: 52px;
+        z-index: 10;
+    }
+
+    /***常规项目模块***/
+    /***二维码***/
+
+    .u-seasonFour-recode img{
+        position: absolute;
+        right: 0;
+        top: -535px;
+    }
+    /***二维码***/
+    /**\奖品**/
+
+    .u-investHouse-btn {
+        width: 990px;
+        height: 50px;
+        display: block;
+        text-align: center;
+        font-weight: bold;
+        line-height: 50px;
+        background: url("/static/img/activity/investHouse/investHouseJoy.png") no-repeat 0 0;
+    }
+
+    .u-investHouse-btn:link,
+    .u-investHouse-btn:visited,
+    .u-investHouse-btn:hover {
+        color: #704211;
+        text-decoration: none;
+    }
+    .u-investHouse-endbtn{
+        width: 990px;
+        height: 50px;
+        display: block;
+        margin: 20px 0 0;
+        text-align: center;
+        line-height: 50px;
+        background: #777;
+        -moz-border-radius: 25px;
+        -webkit-border-radius: 25px;
+        border-radius: 25px;
+    }
+    .u-investHouse-endbtn:link,
+    .u-investHouse-endbtn:visited,
+    .u-investHouse-endbtn:hover {
+        color: #f1f1f1;
+        text-decoration: none;
+    }
+    /**\页面内容**/
+    /**规则**/
+    .u-investHouse-rule {
+        background: #ffeebc;
+        height: 324px;
+        color: #763800;
+        padding: 50px 0 0;
+    }
+
+    .u-investHouse-rule p {
+        line-height: 3em;
+    }
+
+    .u-investHouse-rule h5 {
+        margin: 0 0 10px;
+    }
+    .u-investHouse-productsList,
+    .u-investHouse-productsList:link,
+    .u-investHouse-productsList:visited,
+    .u-investHouse-productsList:hover{
+        color: #08c;
+        text-decoration: underline;
+    }
+    .u-investHouse-user>em{
+        width: 14px;
+        height: 14px;
+        display: inline-block;
+        color: #999;
+    }
+    .u-investHouse-none{
+        font-size: 20px;
+        color: #999;
+        text-align: center;
+        line-height: 260px;
+    }
+    .u-dialog-box .u-dialog-wrap span{
+        max-width: 281px;
+    }
+</style>
+<div class="u-investHouse-body">
+    <div class="g-wrap">
+        <script type="text/html" id="j-investHouse-tplcoupon">
+            <div class="u-investHouse-prize f-cf">
+                <div class="u-investHouse-iwatch">
+                    <strong class="f-fs24">50台Apple Watch疯狂送</strong>
+                <span>投资房有融项目<em>累计金额排名前50，且不低于20万元，</em><br>
+                即可获得Apple Watch奖励（若投资额相等，先达到该投资额的用户排名靠前）;</span>
+                    <i></i>
+
+                    <p class="f-fs14">38毫米不锈钢表壳搭配黑色运动型表带</p>
+                </div>
+                <div class="u-investHouse-ticket">
+                    <strong class="f-fs24">20万现金券先到先得</strong>
+                <span><em>前2000位</em>投资房有融项目<em>累计金额满1万元</em>的用户，<br>
+                    将会获得一张100元现金券，每位用户限得一张；</span>
+                    <i></i>
+                    {{if result.surplusCoupon===0}}
+                    <p class="f-fs14 u-coupon-empty">现金券太抢手，已经送完啦~</p>
+                    {{else}}
+                    <p class="f-fs14">现金券已送出{{result.sentCoupon}}张，仅剩{{result.surplusCoupon}}张<br>
+                        （现金劵领取后30天内有效 投资项目期限≥80天）
+                    </p>
+                    {{/if}}
+                </div>
+            </div>
+        </script>
+
+        <div id="j-investHouse-coupon"></div>
+        <!--理财项目-->
+        <div class="m-seasonFour-products">
+            <!--常规项目-->
+            <div class="g-wrap f-cf">
+            <div class="m-product-box">
+                <div class="m-pbox-wrap">
+                    <h3 class="u-pbox-title u-circle-12 f-text-overflow">
+                        <a id="rec_aA1" href="">
+                            <em class="f-fl" id="rec_projectName1"></em>
+                            <i id="rec_joinLease1" class=""></i>
+                        </a>
+                    </h3>
+                    <div class="u-arrow-down">
+                        <i>◆</i>
+                        <span>◆</span>
+                    </div>
+                    <div class="m-pbox-main f-cf">
+                        <div class="u-pbox-thumbnail f-fl" style="width:120px;height:120px;">
+                            <a id="rec_aB2" href="" class="u-thumbnail-wrap"></a>
+                            <img id="rec_img1" src="" width="120" height="120" alt="">
+                        </div>
+                        <div class="m-pbox-info f-fr">
+								<span class="u-pbox-data">
+									<span class="f-ff-rmb f-fs22">￥</span><em class="f-ff-amount f-fs38" id="rec_totalAmount2"></em>
+									<br>项目总额
+								</span>
+                            <em class="u-pbox-data">
+                                <em id="rec_annualizedRate1" class="f-ff-amount f-fs38 f-fc-red2"></em><span class="f-ff-amount f-fs22 f-fc-red2">%</span>
+                                <br>年化收益
+                            </em>
+                            <strong class="u-pbox-data">
+                                <em class="f-ff-amount f-fs38" id="rec_earningsDays1"></em><span class="f-fs18">天</span>
+                                <br>收益天数
+                            </strong>
+                            <div class="u-pbox-process f-clear">
+                                <span class="f-bgc-red2" id="rec_processBar1" style=""></span>
+                            </div>
+                            <div class="u-pbox-meta">
+                                <em>当前进度：<span class="f-ff-ver" id="rec_process1"></span></em>
+                                <span>剩余可投金额 <strong class="f-ff-ver" id="rec_balance1"></strong> 元</span>
+                                <a id="rec_aC1" href="" class="u-pbox-btn f-round f-bgc-red2 f-fr"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+            <div class="g-wrap f-cf">
+                <div class="m-product-box">
+                    <div class="m-pbox-wrap">
+                        <h3 class="u-pbox-title u-circle-12 f-text-overflow">
+                            <a id="rec_aA2" href="">
+                                <em class="f-fl" id="rec_projectName2"></em>
+                                <i id="rec_joinLease2" class=""></i>
+                            </a>
+                        </h3>
+                        <div class="u-arrow-down">
+                            <i>◆</i>
+                            <span>◆</span>
+                        </div>
+                        <div class="m-pbox-main f-cf">
+                            <div class="u-pbox-thumbnail f-fl" style="width:120px;height:120px;">
+                                <a id="rec_aB1" href="" class="u-thumbnail-wrap"></a>
+                                <img id="rec_img2" src="" width="120" height="120" alt="">
+                            </div>
+                            <div class="m-pbox-info f-fr">
+								<span class="u-pbox-data">
+									<span class="f-ff-rmb f-fs22">￥</span><em class="f-ff-amount f-fs38" id="rec_totalAmount1"></em>
+									<br>项目总额
+								</span>
+                                <em class="u-pbox-data">
+                                    <em id="rec_annualizedRate2" class="f-ff-amount f-fs38 f-fc-red2"></em><span class="f-ff-amount f-fs22 f-fc-red2">%</span>
+                                    <br>年化收益
+                                </em>
+                                <strong class="u-pbox-data">
+                                    <em class="f-ff-amount f-fs38" id="rec_earningsDays2"></em><span class="f-fs18">天</span>
+                                    <br>收益天数
+                                </strong>
+                                <div class="u-pbox-process f-clear">
+                                    <span class="f-bgc-red2" id="rec_processBar2" style=""></span>
+                                </div>
+                                <div class="u-pbox-meta">
+                                    <em>当前进度：<span class="f-ff-ver" id="rec_process2"></span></em>
+                                    <span>剩余可投金额 <strong class="f-ff-ver" id="rec_balance2"></strong> 元</span>
+                                    <a id="rec_aC2" href="" class="u-pbox-btn f-round f-bgc-red2 f-fr"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!--/理财项目-->
+        <!--二维码-->
+        <div class="g-wrap u-seasonFour-recode f-pos-r">
+            <img src="/static/img/landing/seasonFour/seasonFour_recode.png" width="240" height="496"/>
+        </div>
+        <!--/二维码-->
+            <a class="u-investHouse-btn f-fs16" href="/products/list-house-all-1.html">立即投资抢 Apple Watch</a>
+
+    </div>
+</div>
+
+<div class="u-investHouse-rule">
+    <div class="g-wrap">
+        <h5 class="f-fs14 f-fwb">活动规则：</h5>
+
+        <p class="f-fs12">
+            1、活动时间：2015年8月22日——11月16日；
+            <br>2、活动对象：活动期间所有投资用户（各客户端均可参与）；
+            <br>3、活动期间，用户投资房有融项目累计金额排名前50，且不低于20万元，即可获得Apple Watch奖励（若投资额相等，先达到该投资额的用户排名靠前）；
+            <br>4、活动期间，前2000位投资房有融项目累计金额满1万元的用户，将会获得一张100元现金券，每位用户限得一张；
+            <br>5、现金券有效期为领取后30天，仅限投资使用，投资项目期限≥80天；
+            <br>6、如有其他疑问，请拨打客服热线：<strong>400-025-6688</strong>；
+            <br>本活动最终解释权归有融网所有
+        </p>
+    </div>
+</div>
+#CSRFToken('xToken')

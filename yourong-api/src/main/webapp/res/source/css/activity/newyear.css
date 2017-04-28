@@ -1,0 +1,466 @@
+@media screen and (min-width: 390px) {
+  html {
+    font-size: 22px;
+  }
+}
+
+@media screen and (min-width: 360px) and (max-width: 389px) {
+
+  html {
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 359px) {
+  html {
+    font-size: 17px;
+  }
+}
+
+body {
+  background: #d0393f;
+  font-family: "Microsoft Yahei";
+  line-height: normal;
+}
+.f-fc-white{
+  color: white;
+}
+.f-fc-red{
+  color: #de4736;
+}
+.f-fc-yellow{
+  color: #ffec83;
+}
+.f-fc-brown{
+  color: #cc323e;
+}
+.f-fc-da{
+  color: #ffda07;
+}
+.f-fc-bc{
+  color: #ffbc65;
+}
+.f-fc-14{
+  color: #f14532;
+}
+.f-fc-cc{
+  color: #cc323e;
+}
+.f-fc-pink{
+  color: #ff2909;
+}
+.f-fc-3b{
+  color: #943b00;
+  font-weight: 700;
+}
+
+
+/* 头部图片 */
+.u-top-img-wrap img{
+  display: block;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* 内容 */
+.m-con{
+  width: 92.4%;
+  margin: 0 auto;
+}
+.m-tab-wrap{
+  padding-bottom: 7.5rem;
+}
+.m-title-img1{
+  background: url("../../../img/activity/newyear/bg-title-new.png") no-repeat center;
+}
+.m-title-img2{
+  background: url("../../../img/activity/newyear/bg-title2-new.png") no-repeat center;
+}
+.m-title-img3{
+  background: url("../../../img/activity/newyear/bg-title3-new.png") no-repeat center;
+}
+.m-title-img4{
+  background: url("../../../img/activity/newyear/bg-title4.png") no-repeat center;
+}
+.m-main-title{
+  width: 100%;
+  background-size: 100% 100%;
+  height: 3.8rem;
+  line-height: 3.7rem;
+  font-size: 0.9rem;
+  text-indent: 10rem;
+  margin-top: -4.7rem;
+  z-index: 100;
+  position: relative;
+}
+.m-main-content{
+  background: url("../../../img/activity/newyear/whitebox.png") no-repeat center;
+  width: 91.5%;
+  background-size: 100% 100%;
+  margin: 1rem auto 0;
+  position: relative;
+}
+.m-height1{
+  background: url("../../../img/activity/newyear/whitebox-new.png") no-repeat center;
+  background-size: 100% 100%;
+  height: 15.525rem;
+}
+.m-height2{
+  height: 36.35rem;
+}
+/*.m-height3{*/
+  /*height: 31.1rem;*/
+/*}*/
+.m-main-content .m-introduce{
+  padding-top: 1rem;
+  text-align: justify;
+  font-size: 0.7rem;
+  /*font-weight: bold;*/
+  line-height: 1.3rem;
+}
+.m-main-content table{
+  border-collapse: collapse;
+  text-align: center;
+  font-size: 0.7rem;
+  width: 100%;
+  margin-top: 0.5rem;
+}
+.m-main-content table thead{
+  background: #f24e3c;
+}
+.m-main-content table td{
+  height: 1.65rem;
+}
+.m-main-content table tbody tr:nth-child(odd){
+  background: #ff8c7f;
+}
+.m-main-content table tbody tr:nth-child(even){
+  background: #ff6958;
+}
+.m-rule-icon{
+  width: 3.5rem;
+  /*margin-top: 0.2rem;*/
+  position: absolute;
+  right: 0;
+  bottom: -3.2rem;
+}
+.m-my-count img{
+  width: 4.175rem;
+  vertical-align: middle;
+}
+.m-count-num{
+  background: url("../../../img/activity/newyear/box.png") no-repeat center;
+  width: 10.4rem;
+  height: 3.35rem;
+  background-size: 100% 100%;
+  display: inline-block;
+  line-height: 3.35rem;
+  margin-left: 0.4rem;
+  text-indent: 1.3rem;
+}
+.m-count-num em{
+  font-size: 0.7rem;
+}
+.m-count-num a{
+  text-decoration: underline;
+}
+.m-height2 ul li{
+  text-align: center;
+  /*width: 7.75rem;*/
+  width: 49%;
+  margin-top: 0.5rem;
+  font-size: 0.7rem;
+  display: inline-block;
+}
+.m-height2 ul li .m-quan-box{
+  background: url("../../../img/activity/newyear/quan.png") no-repeat center;
+  background-size: 100% 100%;
+  width: 7.725rem;
+  height: 5.125rem;
+}
+.m-height2 .m-quan-box p em{
+  font-family: "dincond";
+  font-size: 1.5rem;
+}
+.m-quan-box p:first-child{
+  padding-top: 0.7rem;
+}
+.m-quan-change{
+  background: #ffda07;
+  width: 4.75rem;
+  height: 1.4rem;
+  display: block;
+  margin: 0.4rem auto 0;
+  border-radius: 15px;
+  line-height: 1.4rem;
+  font-weight: bold;
+}
+.m-gift{
+  background: url("../../../img/activity/newyear/gift.png") no-repeat center;
+  background-size: 100% 100%;
+  width: 100%;
+  height: 5.05rem;
+  text-align: center;
+  font-size: 0.7rem;
+  margin-top: 0.5rem;
+}
+.m-gift-big{
+  background: url("../../../img/activity/newyear/gift-big.png") no-repeat center;
+  background-size: 100% 100%;
+  height: 7.875rem;
+}
+.m-number{
+  background: #c5232f;
+  width: 5rem;
+  height: 2.25rem;
+  border-radius: 5px;
+  margin: 0.5rem auto 0;
+}
+.m-number div{
+  height: 1.125rem;
+  width: 90%;
+  margin: 0 auto;
+}
+.m-number div:first-child{
+  border-bottom: 1px solid #e24548;
+}
+.m-gift p:first-child{
+  margin-bottom: 1.1rem;
+}
+.m-gift p.m-reg-gift{
+  margin-bottom: 1.5rem;
+}
+.m-get-power{
+  background: url("../../../img/activity/newyear/getpower.png") no-repeat center;
+  background-size: 100% 100%;
+  width: 13.8rem;
+  height: 1.875rem;
+  display: block;
+  margin: 5px auto 0;
+  line-height: 1.875rem;
+  text-align: center;
+}
+.m-get-over{
+  background: url("../../../img/activity/newyear/over.png") no-repeat center;
+  background-size: 100% 100%;
+}
+.m-get-invite{
+  margin-top: 1rem;
+}
+.m-main-content .m-power{
+  text-align: center;
+  padding-top: 0.5rem;
+}
+.m-bottom{
+  padding-bottom: 0.5rem;
+}
+.m-redbag{
+  width: 6.675rem;
+  height: 11.275rem;
+  text-align: center;
+  display: inline-block;
+  margin: 0.5rem auto 2rem;
+  font-size: 0.7rem;
+}
+.m-redbag-1{
+  background: url("../../../img/activity/newyear/redbag1.png") no-repeat center;
+  background-size: 100% 100%;
+  margin-bottom: 0.5rem;
+}
+.m-redbag-2{
+  background: url("../../../img/activity/newyear/redbag2.png") no-repeat center;
+  background-size: 100% 100%;
+  margin-bottom: 0.5rem;
+}
+.m-redbag-3{
+  background: url("../../../img/activity/newyear/redbag3.png") no-repeat center;
+  background-size: 100% 100%;
+}
+.m-redbag-4{
+  background: url("../../../img/activity/newyear/redbag4.png") no-repeat center;
+  background-size: 100% 100%;
+}
+.m-redbag p:first-child{
+  padding-top: 5.5rem;
+  margin-bottom: 0.8rem;
+  text-indent: -0.5rem;
+}
+.m-redbag p em{
+  font-family: "dincond";
+  font-size: 1.6rem;
+  letter-spacing: -2px;
+}
+.m-money-get{
+  display: block;
+  width: 4.6rem;
+  height: 1rem;
+  line-height: 1rem;
+  background: #ffda07;
+  margin: 2rem auto 0;
+  border-radius: 15px;
+  font-weight: bold;
+}
+.m-redbag-left{
+  margin-left: 0.5rem;
+  margin-right: 1.1rem;
+}
+
+/* 底部导航 */
+.u-nav-bottom{
+  background: #8f000b;
+  width: 100%;
+  height: 4rem;
+  font-size: 0.7rem;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+.u-nav-bottom li{
+  width: 33.3%;
+  padding: 0.5rem 0;
+  float: left;
+  position: relative;
+  /*-webkit-box-sizing: border-box;*/
+  text-align: center;
+}
+.u-nav-bottom li a{
+  display: block;
+  text-align: center;
+  color: #cc323e;
+}
+.m-nav-icon1{
+  background: url("../../../img/activity/newyear/bottom1.png") no-repeat center;
+}
+.m-nav-icon2{
+  background: url("../../../img/activity/newyear/bottom2.png") no-repeat center;
+}
+.m-nav-icon3{
+  background: url("../../../img/activity/newyear/bottom3.png") no-repeat center;
+}
+.m-nav-icon{
+  background-size: 100% 100%;
+  width: 2.1rem;
+  height: 1.85rem;
+  display: inline-block;
+}
+.u-nav-bottom .z-active a{
+  color: #ffda07;
+  background-position: 0 -0.15rem;
+}
+.u-nav-bottom .z-active .m-nav-icon{
+  width: 2.6rem;
+  height: 2rem;
+  margin-top: -0.15rem;
+}
+[v-cloak] {
+  display: none;
+}
+.m-count-num .m-my-num{
+  font-family: 'dincond';
+  font-size: 1.5rem;
+  text-decoration: underline;
+}
+.z-logined{
+  text-indent: 1.5rem;
+}
+
+/* 弹框 */
+.u-dialog{
+  width: 84%;
+  height: 6rem;
+  background: #fff8e6;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-left: -42%;
+  margin-top: -3rem;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 0.7rem;
+  z-index: 200;
+  /*width: 15.75rem;*/
+  /*margin-left: -7.875rem;*/
+}
+.m-dialog-top{
+  padding-top: 2.4rem;
+}
+.m-alert-top{
+  width: 109%;
+  position: absolute;
+  top: -3.4rem;
+  margin-left: -4.5%;
+  display: block;
+}
+.m-alert-foot{
+  width: 109%;
+  position: absolute;
+  bottom: -0.6rem;
+  margin-left: -4.5%;
+  display: block;
+}
+.m-dialog-touch img{
+  width: 0.9rem;
+  position: absolute;
+  right: 0.5rem;
+  top: 0.5rem;
+  cursor: pointer;
+}
+.u-rule{
+  text-align: left;
+  color: #666666;
+  height: 12.5rem;
+  margin-top: -6.25rem;
+}
+.u-rule p{
+  width: 90%;
+  margin: 0 auto;
+  line-height: 1rem;
+}
+.u-rule .m-rule-top{
+  padding-top: 1rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+/* 蒙层 */
+.u-cover {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  z-index: 198;
+  -moz-opacity: 0.75;
+  opacity: .75;
+  filter: alpha(opacity=75);
+}
+
+
+.z-gray{
+  background: #d9d9d9;
+  color: #888888;
+}
+.z-gray2{
+  background: #d9d9d9;
+  color: #888888;
+}
+
+.m-invite-btn a{
+  display: block;
+}
+
+.m-dialog-touch{
+  width: 2.5rem;
+  height: 2.5rem;
+  position: absolute;
+  right: 0;
+  top: 0;
+  cursor: pointer;
+}
+.f-fc-smallline{
+  line-height: 0.85rem;
+}

@@ -1,0 +1,94 @@
+#set($layout = "/layout/iframe.vm")
+#parse("/sys/webAdmin/head.vm")
+
+<form  class="form-horizontal" id="web-admin-form" method="post">
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 开始时间</label>
+        <div class="col-sm-9">
+         #set($webStartDate = $sysServiceUtil.getDictValue("startDate","web_notice",""))
+           <input type="text" name="startDate" id="startDate" class="input-medium " datatype="*" nullmsg="开始时间不能为空"
+           onclick="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd HH:mm'})"
+           value="$!webStartDate">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 结束时间</label>
+        <div class="col-sm-9">
+            #set($webEndDate =$sysServiceUtil.getDictValue("endDate","web_notice",""))
+            
+            
+           <input type="text" name="endDate" id="endDate" class="input-medium " dateFormat="yyyy-mm-dd HH:mm"  datatype="*" nullmsg="结束时间不能为空"
+           onclick="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd HH:mm'})"
+           value="$!webEndDate"
+           >
+        </div>
+    </div>
+    <div class="form-group web-group">
+        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 客户端</label>
+        <div class="col-sm-3 control-label ">
+            <input type="checkbox" id="webClient" name="webClient" value="1" 
+            #set ($y = "Y")
+			#set ($n = "N")
+           ##set($webCheck = $sysServiceUtil.getDictValue("is_redirect","is_handle_sina_pay",""))
+            ##if ($webCheck == $y)
+            	checked readOnly="true" disabled="true "
+            />web &nbsp;&nbsp;
+			<input type="checkbox" name="mobClient"  id="mobClient" value="1"
+			##set($mobCheck = $sysServiceUtil.getDictValue("head_off_method","app_is_head_off_sina_method",""))
+            ##if ($mobCheck == $y)
+            	checked readOnly="true" disabled="true "
+			 />移动端 &nbsp;&nbsp;
+	    </div>
+
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 跳转链接</label>
+        <div class="col-sm-9">
+         <input type="text" id="href" name="href" class="col-xs-10 col-sm-5" placeholder="" id="form-field-href"  datatype="*" nullmsg="跳转链接不能为空"
+         #set($dict = $sysServiceUtil.getDictByGroupNameAndKey("is_redirect", "is_handle_sina_pay"))
+        ## #set($webHref = $sysServiceUtil.getDictValue("href","web_notice",""))
+         value=$!dict.remarks
+          >
+        </div>
+    </div>
+
+    
+    <div class="form-group clearfix" >
+		<label class="col-sm-3 control-label no-padding-right" for="content"> 顶部公告内容：</label>
+	</div>
+		<div class="form-group clearfix" style="text-align:right">
+			<div class="col-sm-9  ">
+		
+				<textarea id="content" name="content" placeholder="" rows="10" cols="121" id="form-field-shortContent" datatype="*"   nullmsg="公告内容不能为空" maxlength="256"
+				></textarea>
+			</div>
+		</div>
+    
+    <div class="clearfix form-actions">
+        <div class="col-md-offset-3 col-md-9">
+            <button type="button" class="btn btn-info" id="j-save-webInfo">
+                <i class="icon-ok bigger-110"></i>
+                维护
+            </button>
+            &nbsp; &nbsp; &nbsp;
+            <button type="reset" id="j-reset-webInfo" class="btn  btnReset">
+                <i class="icon-undo bigger-110"></i>
+                取消
+            </button>
+        </div>
+    </div>
+
+</form>
+
+
+#set($content = $sysServiceUtil.getDictValue("content","web_notice",""))
+
+
+<script type="text/javascript">
+			 $("#content").val("$!content"); 
+  		</script>
+<style>
+	.web-group>div{
+		padding-right:260px
+		}
+</style>

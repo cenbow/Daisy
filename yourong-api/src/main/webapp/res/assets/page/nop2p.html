@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    <title>直投初体验</title>
+    <style>
+
+        .u-header {
+            z-index: 2;
+            text-align: center;
+            color: #fff;
+            height: 50px;
+            line-height: 50px;
+            margin: 0;
+            padding: 0 1rem;
+            background-color: #d74148;
+            background-size: auto 50%;
+        }
+
+        .u-header a {
+            position: absolute;
+            left: 1rem;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        .u-header a:link,
+        .u-header a :visited,
+        .u-header a :hover {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .u-header span {
+            font-weight: bold;
+        }
+
+        .f-pos-r {
+            position: relative;
+        }
+
+        body {
+            font-size: 16px;
+            background: #fff;
+            margin: 0;
+        }
+        p.u-title{
+            font-size:14px;
+            color: #999;
+            padding: 30px 25px 0px 25px;
+            line-height: 30px;
+        }
+        p.u-notice {
+            font-size:14px;
+            color: #999;
+            line-height: 30px;
+            padding: 0 25px 0 25px;
+            text-indent: 2rem;
+            text-align: justify;
+        }
+        .f-fs18{
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+<h2 class="u-header f-pos-r" id="j-header">
+    <a id="j-goBack" href="javascript:history.go(-1);">返回</a>
+    <span class="f-fs18">
+        直投初体验
+    </span>
+</h2>
+
+<p class="u-title">
+    亲爱的有融网会员：
+</p>
+<p class="u-notice"> 感谢您对有融网的支持！恭喜您成为有融网直投项目的首批投资人。当前，只有PC端支持直投项目的投资和查看功能。我们的程序猿和攻城狮正在火力全开研发移动端（APP、WAP），期待不久之后与大家正式见面！</p>
+
+<script>
+    var referrer = document.referrer || '';
+
+    if(localStorage && referrer == ''){
+        referrer = localStorage.getItem('thisReferrer') || ''
+    }
+
+    if(localStorage && referrer !== ''){
+        localStorage.setItem('thisReferrer', referrer)
+    }
+
+    if(referrer == ''){
+        document.getElementById('j-header').style.display = 'none'
+    }
+</script>
+
+</body>
+</html>

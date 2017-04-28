@@ -1,0 +1,116 @@
+#parse('/common/common.vm')
+#set($layout = "/layout/default.vm")
+
+<div class="m-debt-projects f-pos-r" id="j-debt-projects">
+    <ul class="f-cf">
+        #if($!debtForLenderMember.data && $!debtForLenderMember.data.size()>0)
+            #foreach( $!debtForLenderMember in $!{debtForLenderMember.data} )
+
+                <li class="#if($velocityCount==4||$velocityCount==8||$velocityCount==12||$velocityCount==16) z-4th #end" >
+                    <h4 class="f-fs14 f-fwb f-pos-r">
+                        <a href="/products/detail-$!{debtForLenderMember.projectId}.html">
+                            $!{debtForLenderMember.MarkProjectName}
+                            <span class="f-fs12 f-text-overflow" title="$!{debtForLenderMember.RestMarkProjectName}">$!{debtForLenderMember.RestMarkProjectName}</span>
+                        </a>
+                        #if($!{debtForLenderMember.RestDays}>0)
+                            <i>还有$!{debtForLenderMember.RestDays}天</i>
+                        #end
+                    </h4>
+                    <div class="f-pos-r j-debtdetail-link"
+                         data-total=""
+                         data-rate=""
+                         data-count="$velocityCount"
+                         data-markprojectname="$!{debtForLenderMember.MarkProjectName}"
+                         data-restmarkprojectname="$!{debtForLenderMember.RestMarkProjectName}"
+                         data-totalamount="项目总额：￥$!{debtForLenderMember.totalAmount}"
+                         data-borrowername="借款人：$!{debtForLenderMember.borrowerName}"
+                         data-projectid="$!{debtForLenderMember.projectId}"
+                    >
+			                        <span class="u-project-sum">
+			                            <span class="f-fs18 f-ff-rmb">￥</span>
+			                            <strong class="f-ff-din">$formulaUtil.getIntegerDefaultZero($!{debtForLenderMember.CurAmount})</strong>
+			                            <em class="f-fs24 f-ff-din">$formulaUtil.getDecimalDefaultZero($!{debtForLenderMember.CurAmount})</em><br>
+			                            <i>$!{debtForLenderMember.StrEndDate}&nbsp;&nbsp;
+			           #if($!{debtForLenderMember.PrincipalInterestFlag}==1)
+			           待还利息
+			           #elseif($!{debtForLenderMember.PrincipalInterestFlag}==2)
+			           待还本金
+			           #else
+			           待还本息
+			           #end
+			                            （$!{debtForLenderMember.currentPeriods}/$!{debtForLenderMember.totalPeriods}）</i>
+			                        </span>
+                        <s></s>
+                    </div>
+                </li>
+            #end
+        #end
+    </ul>
+    ##详情
+    <div class="u-debt-detail f-round f-dn j-debt-periods">
+        <div class="u-debt-projectName f-fs14">
+            <strong class="j-MarkProjectName"></strong><span class="j-RestMarkProjectName f-text-overflow"></span><strong class="j-totalAmount"></strong>
+            <strong class="u-debtname j-borrowerName"></strong>
+        </div>
+        <div class="u-periods-wrap">
+            <div class="u-debt-periods f-pos-r" id="j-debt-periods">
+                <span class="u-debtPeriods-gray"></span>
+                <span class="u-debtPeriods-red"></span>
+                <dl>
+                    <dt class="z-finished z-first"></dt>
+                    <dd>
+                        2016-04-08
+                        <br>￥1922.21
+                        <br>待还利息（2/3）
+                    </dd>
+                </dl>
+                <dl>
+                    <dt class="z-finished"></dt>
+                    <dd>
+                        2016-04-08
+                        <br>￥1922.21
+                        <br>待还利息（2/3）
+                    </dd>
+                </dl>
+                <dl>
+                    <dt class="z-finished"></dt>
+                    <dd>
+                        2016-04-08
+                        <br>￥1922.21
+                        <br>待还利息（2/3）
+                    </dd>
+                </dl>
+                <dl>
+                    <dt class="z-finished"></dt>
+                    <dd>
+                        2016-04-08
+                        <br>￥1922.21
+                        <br>待还利息（2/3）
+                    </dd>
+                </dl>
+                <dl>
+                    <dt class="z-finished"></dt>
+                    <dd>
+                        2016-04-08
+                        <br>￥1922.21
+                        <br>待还利息（2/3）
+                    </dd>
+                </dl>
+            </div>
+            <script id="j-debt-periods-tpl" type="text/html">
+                <span class="u-debtPeriods-gray"></span>
+                <span class="u-debtPeriods-red"></span>
+                <dl>
+                    <dt class="z-finished z-first"></dt>
+                    <dd>
+                        2016-04-08
+                        <br>￥1922.21
+                        <br>待还利息（2/3）
+                    </dd>
+                </dl>
+            </script>
+        </div>
+    </div>
+</div>
+
+##ajaxPagePlugin($!debtForLenderMember,"Debt")

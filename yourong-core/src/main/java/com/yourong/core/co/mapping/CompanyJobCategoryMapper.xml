@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.co.dao.CompanyJobCategoryMapper" >
+    <resultMap id="BaseResultMap" type="com.yourong.core.co.model.CompanyJobCategory" >
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="category_name" property="categoryName" jdbcType="VARCHAR" />
+        <result column="sort" property="sort" jdbcType="INTEGER" />
+        <result column="status" property="status" jdbcType="INTEGER" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+        <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+    </resultMap>
+
+    <sql id="select_sql">
+        SELECT id,category_name,sort,status,create_time,update_time,del_flag
+    </sql>
+
+    <select id="queryById" resultMap="BaseResultMap">
+        <include refid="select_sql"/>
+        FROM co_company_job_category WHERE id=#{id} AND del_flag=1
+    </select>
+
+    <select id="queryList" resultMap="BaseResultMap">
+        <include refid="select_sql"/>
+        FROM co_company_job_category WHERE del_flag=1 AND status=2 ORDER BY sort DESC
+    </select>
+
+    <select id="queryPageJobCategory" resultMap="BaseResultMap">
+        <include refid="select_sql"/>
+        FROM co_company_job_category WHERE del_flag=1 ORDER BY sort DESC
+        LIMIT #{query.startRow,jdbcType=INTEGER}, #{query.pageSize,jdbcType=INTEGER}
+    </select>
+
+    <select id="queryPageCount" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM co_company_job_category WHERE del_flag=1
+    </select>
+
+    <update id="updateJobCategory">
+        UPDATE co_company_job_category SET category_name=#{companyJobCategory.categoryName},update_time=#{companyJobCategory.updateTime} WHERE id=#{companyJobCategory.id}
+    </update>
+
+    <insert id="insertJobCategory">
+        INSERT INTO co_company_job_category(category_name,sort,status,create_time,del_flag)
+        VALUES (#{companyJobCategory.categoryName},#{companyJobCategory.sort},#{companyJobCategory.status},#{companyJobCategory.createTime},#{companyJobCategory.delFlag})
+    </insert>
+
+    <update id="deleteJobCategory" >
+        UPDATE co_company_job_category SET del_flag=-1 WHERE id=#{categoryId} AND del_flag=1
+    </update>
+
+    <update id="updateSortById">
+        UPDATE co_company_job_category SET sort=#{sort},update_time=#{date} WHERE id=#{id}
+    </update>
+
+    <update id="updateStatus">
+        UPDATE co_company_job_category SET status=#{status},update_time=#{date} WHERE id=#{id}
+    </update>
+
+    <update id="releaseAll">
+        UPDATE co_company_job_category SET status=2,update_time=#{date} WHERE status=1 AND del_flag=1
+    </update>
+
+    <select id="queryUnReleaseCount" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM co_company_job_category WHERE status=1 AND del_flag=1
+    </select>
+</mapper>

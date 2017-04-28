@@ -1,0 +1,110 @@
+#parse('/common/common.vm')
+
+#set($title="$!{projectInfo.name}-有融网-全透明的互联网理财优选平台")
+#set($keywords="$!{projectInfo.name},有融网")
+#set($description="有融网运用高效的运营管理体系和创新的互联网思维,搭建了一个安全透明的互联网理财服务平台. ")
+##项目详情页
+#set($css_url=["$root_css_url/modules/products.css"])
+#set($js_url=["$root_js_url/modules/products.js"])
+#set($isProductsNavi="z-current")
+#set($debt = ${projectInfo.debtDto})
+#if($debt.isCollateral || $debt.isCreditDebt)
+#set($debtCollateral = ${debt.debtCollateral})
+#else
+#set($debtPledge = ${debt.debtPledge})
+#end
+#set($enterpriseProject=${projectInfo.enterpriseProjectInfoDto})
+
+
+#set($bannerList = $servletUtil.getBannerByAreaSign(0, "projectDetailAd", 0, 1))
+<input type="hidden" name="investType" value="$!{projectInfo.investType}" />
+#*
+#if($!{projectInfo.investType}=='2')
+##p2p项目
+    #parse('/products/p2pDetail.vm')
+#else
+##普通项目详情
+    #parse('/products/generalDetail.vm')
+#end
+*#
+
+#if($!{projectInfo.projectCategory}=='2')
+##转让项目详情
+	#parse('/products/transferDetail.vm')
+#elseif($!{projectInfo.projectCategory}=='1')
+	#if($!{projectInfo.investType}=='2')
+	##p2p项目
+		#parse('/products/p2pDetail.vm')
+	#else
+	##普通项目详情
+		#parse('/products/generalDetail.vm')
+	#end
+#end
+<script>
+var productConfig = {
+#if(${projectInfo.isNoviceProject()})
+	noviceProject:true,
+#end
+	minInvestAmount : $!{projectInfo.minInvestAmount},##起投金额
+	earningsDays    : $!{projectInfo.getEarningsDaysByStatus()},##剩余天数
+	profitType      : '$!{projectInfo.profitType}',##类型
+	category		: $!{projectInfo.projectCategory},##项目分类 1.普通项目 2.转让项目
+	productId       : $!{projectInfo.id},##项目编号
+	transferId      : '$!{projectInfo.transferId}',##转让项目编号
+	incrementAmount : $!{projectInfo.minInvestAmount},##递增单位金额
+	maxInvestAmount : $!{projectInfo.maxInvestAmount}, ##收益封顶
+	totalAmount     : $!{projectInfo.totalAmount},
+	minRate         : $!{projectInfo.minAnnualizedRate},
+	maxRate         : $!{projectInfo.maxAnnualizedRate},
+	incrementAnnualizedRate : $!{projectInfo.incrementAnnualizedRate},
+	firstDebtEarningDays: $!{projectInfo.firstDebtEarningDays},##第一期债权本息收益天数
+	firstRealEarningDays: $!{projectInfo.firstRealEarningDays},##第一期本息实际收益天数
+	earningPeriod: $!{projectInfo.earningPeriod},##目前投资收益期数
+	isDirectProject:  $!{projectInfo.isDirectProject()}##是否为直投项目
+};
+try{
+#if("$!debtCollateral" == "")
+    #if($stringUtil.isBlank($!{debtPledge.pledgeDetails}))
+        productConfig.pledgeBaseInfo = ''
+    #else
+        productConfig.pledgeBaseInfo = $!{debtPledge.pledgeDetails}
+    #end
+#else
+	productConfig.pledgeBaseInfo = $!{debtCollateral.collateralDetails}
+#end
+} catch(error){
+	productConfig.pledgeBaseInfo = ""
+}
+##100元新手投资 滑动提示
+
+window.onload=function(){
+	var p = {
+        isActive:${projectInfo.isActive()},
+		isNovice:${projectInfo.isNoviceProject()},
+		noCheckNovice:${projectInfo.noCheckNovice},
+        hasTransaction:${transactionUtils.hasTransactionByMember(${currentUser.id})}
+	}
+	console.log(p)
+	if(p.isActive&&p.isNovice){
+		if(!p.noCheckNovice&&p.hasTransaction){
+            var newTips=$("#j-new-tips");
+            if(newTips.length===1){
+                setTimeout(function(){
+                    newTips.slideDown("slow");
+                },300);
+            }
+		}
+	}
+
+    var closeBanner=$("#j-banner-close");
+    closeBanner.length && closeBanner.click(function(evt){
+    $(this).parent().remove();
+    return false;
+  });
+
+}
+#if(!$sysServiceUtil.isDev())
+var _py= _py||[];
+_py.push(['p','$!{projectInfo.id}']);
+#end
+</script>

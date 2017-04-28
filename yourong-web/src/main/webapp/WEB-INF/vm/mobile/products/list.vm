@@ -1,0 +1,81 @@
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+##header
+
+<h2 class="u-header f-pos-r">
+    <a href="$m_url">返回</a>
+    <span class="f-fs18">
+        理财项目
+    </span>
+</h2>
+##/header
+
+##projectList
+<ul class="m-project-list" id="j-project-list">
+    #foreach ($_project in $projectList.data)
+        #set($_process=${sysServiceUtil.getProjectNumberProgress($!_project.totalAmount,$!_project.id)})
+        
+        
+        #if(${_project.projectCategory}==2)
+                               ##转让项目
+        #else
+						          ##普通项目          
+						          <li class="u-project-item f-pos-r">
+						            <h3 class="f-fs14">
+						                <em>$!{_project.prefixProjectName}</em>
+						                #if(${_project.isNoviceProject()})
+						                    <span class="u-badge-red">新客专享</span>
+						                #end
+						                #if($_project.joinLease)
+						                    <span class="u-badge-red">租赁分红</span>
+						                #end
+						
+						            </h3>
+						            <div class="u-pl-box f-pos-r">
+						                <div class="u-pl-wrap f-pos-a">
+						                    <div class="u-pl-photo f-pos-r">
+						                        <div class="ui-avatar-one u-project-avatar">
+						                            <span style="background-image:url(#getProjectThumbnail($!{_project.thumbnail}))"></span>
+						                        </div>
+						                        <div class="u-project-circle#if($!{process}==100) z-finished#end">
+						                            <div class="f_pie_left"><div class="z-left"></div></div>
+						                            <div class="f_pie_right"><div class="z-right"></div></div>
+						                            <div class="u-project-mask"><span>0</span></div>
+						                        </div>
+						                    </div>
+						
+						                </div>
+						                <div class="u-pl-info f-fl">
+						                    <div>
+						                        <span>项目总额 &yen; ${_project.formatTotalAmount}</span>
+						                        <span>
+						                            年化收益
+						                            #if(${_project.formatMinAnnualizedRate}==${_project.formatMaxAnnualizedRate})
+						                                ${_project.formatMinAnnualizedRate}%
+						                            #else
+						                                ${_project.formatMinAnnualizedRate}-${_project.formatMaxAnnualizedRate}%
+						                            #end
+						                        </span>
+						                        <span>收益天数 ${_project.getEarningsDaysByStatus()}天</span>
+						                    </div>
+						                </div>
+						            </div>
+						            <div class="u-pl-process">
+						                <i style="width:$!{_process}%" #if($_process==100)class="z-finished"#end></i>
+						                <div>
+						                    当前进度 $!{_process}%
+						                    #set($balance=${sysServiceUtil.getProjectBalance($_project.id)})
+						                    <span>剩余可投金额 $!{formulaUtil.getFormatPrice($balance)} 元</span>
+						                </div>
+						            </div>
+						            <a href="/m/tips" class="u-project-link"></a>
+						        </li>
+                            #end
+        
+        
+        
+    #end
+</ul>
+#set($_searchParam = "/products/m/list-$!{query.projectType}-$!{query.statusCode}")
+#pagePlugin($projectList,$_searchParam)
+##/projectList

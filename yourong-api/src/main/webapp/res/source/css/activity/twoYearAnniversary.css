@@ -1,0 +1,936 @@
+body {
+    background-color: #cce54c;
+}
+
+.u-img-responsive {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+}
+
+.f-mt-15 {
+    margin-top: .9375rem;
+}
+
+.f-fc-red {
+    color: #ee5858;
+}
+
+.f-fc-spring {
+    color: #5f7f00;
+}
+
+.f-fc-summer {
+    color: #3c8f00;
+}
+
+.f-fc-autumn {
+    color: #bf8000;
+}
+
+.f-fc-winter {
+    color: #d5784b;
+}
+
+.f-show {
+    display: block;
+}
+
+.m-main-wrap {
+    margin-bottom: 6.25rem;
+}
+
+.m-main-head .u-head-bg {
+    display: block;
+    width: 19.84375rem;
+    height: 2.125rem;
+    margin: 0 auto;
+}
+
+.m-main-head .spring-bg {
+    background: url(../../../img/activity/twoYearAnniversary/title1.png) no-repeat;
+    background-size: 100%;
+}
+
+.m-main-head .summer-bg {
+    background: url(../../../img/activity/twoYearAnniversary/title2.png) no-repeat;
+    background-size: 100%;
+}
+
+.m-main-head .autumn-bg {
+    background: url(../../../img/activity/twoYearAnniversary/title3.png) no-repeat;
+    background-size: 100%;
+}
+
+.m-main-head .winter-bg {
+    background: url(../../../img/activity/twoYearAnniversary/title4.png) no-repeat;
+    background-size: 100%;
+}
+
+.u-main-text {
+    font-size: .875rem;
+    margin: .75rem 1.5625rem;
+}
+
+.m-activity-status {
+    position: relative;
+    text-align: center;
+}
+
+.m-activity-time,
+.m-activity-start {
+    font-size: .875rem;
+    color: #5f7f00;
+    margin: 1.25rem 0 .4375rem;
+}
+
+.m-activity-countDown {
+    margin: 1.125rem 0 .5rem;
+}
+
+.m-activity-countDown i {
+    color: #5f7f00;
+    font-size: .875rem;
+}
+
+.m-activity-countDown i:first-child {
+    margin-right: .625rem;
+}
+
+.m-activity-countDown .m-calendar-item {
+    display: inline-block;
+    width: 1.96875rem;
+    height: 1.3125rem;
+    color: #fff;
+    font-size: 1rem;
+    text-align: left;
+    letter-spacing: .5rem;
+    text-indent: .1875rem;
+    line-height: 1.3125rem;
+    background: url(../../../img/activity/twoYearAnniversary/calendar.png) no-repeat;
+    background-size: 100%;
+    vertical-align: middle;
+}
+
+.m-blessRed-wrapper {
+    position: relative;
+    color: #fdd926;
+    font-size: .875rem;
+}
+
+.m-blessRed-wrapper img {
+    position: relative;
+    z-index: 1;
+}
+
+.m-blessRed-wrapper .u-blessRed-count {
+    position: absolute;
+    top: .8125rem;
+    left: 0;
+    z-index: 2;
+    font-size: .875rem;
+    color: #fff;
+    width: 100%;
+    text-align: center;
+}
+
+.m-blessRed-wrapper .u-blessRed-count em {
+    color: #fdd926;
+}
+
+.m-blessRed-wrapper .u-blessRed-rule{
+    position: absolute;
+    top: 6.25rem;
+    left: 0;
+    z-index: 2;
+    text-align: center;
+    width: 100%;
+    line-height: 1.5rem;
+}
+
+.u-blessRed-btn {
+    display: block;
+    width: 19.84375rem;
+    height: 2.5rem;
+    color: #ee5858;
+    font-size: 1.0625rem;
+    background-color: #ffee5b;
+    margin: 1.25rem auto 0;
+    border-radius: 3.125rem;
+    text-align: center;
+    line-height: 2.5rem;
+    -webkit-box-shadow:0 0 10px rgba(0, 0, 0, .2);
+    -moz-box-shadow:0 0 10px rgba(0, 0, 0, .2);
+    box-shadow:0 0 10px rgba(0, 0, 0, .2);
+}
+
+.u-blessRed-btn.z-disabled {
+    background-color: #C9C9C9;
+    color: #888;
+}
+
+.u-main-text.f-mt-26 {
+    margin-top: 1.625rem;
+}
+
+.m-redPacket-list li {
+    font-size: .875rem;
+    color: #5f7f00;
+    text-align: center;
+}
+
+.u-point-icon {
+    display: inline-block;
+    width: .4375rem;
+    height: .46875rem;
+    background: url(../../../img/activity/twoYearAnniversary/point.png) no-repeat;
+    background-size: .4375rem auto;
+    margin: 0 .3125rem 0 1.5625rem;
+}
+
+.m-redPacket-list li span {
+    display: block;
+    text-align: center;
+}
+
+.m-redPacket-list {
+    margin-top: 1.125rem;
+}
+
+.m-redPacket-container {
+    display: inline-block;
+}
+
+.m-redPacket-container:before,
+.m-redPacket-container:after {
+    content: " ";
+    display: table;
+}
+
+.m-redPacket-container:after {
+    clear: both;
+}
+
+.u-redPack {
+    position: relative;
+    float: left;
+    width: 6.25rem;
+    height: 7.84375rem;
+    background: url(../../../img/activity/twoYearAnniversary/redPackets.png) no-repeat;
+    background-size: 100% 100%;
+    margin: 0 .625rem;
+}
+
+.u-redPack-value {
+    font-size: 1.875rem;
+    height: 1.875rem;
+    line-height: 1.875rem;
+    color: #fff;
+    margin-top: .25rem;
+}
+
+.u-redPack-value em {
+    font-size: .8125rem;
+    font-family: "dincond","Microsoft Yahei";
+}
+
+.u-redPack-rule {
+    color: #fff;
+    font-size: .75rem;
+    margin-top: .875rem;
+}
+
+.u-redPack-rule.f-mt2 {
+    margin-top: .125rem;
+}
+
+.u-redPack-btn {
+    display: block;
+    width: 4.125rem;
+    height: 1.3755rem;
+    line-height: 1.375rem;
+    text-align: center;
+    background-color: #FFE45B;
+    font-size: .75rem;
+    margin: .4375rem auto 0;
+    border-radius: 3.125rem;
+}
+
+.u-redPack-btn.z-disabled {
+    background: #acacac;
+    color: #fff;
+}
+
+.u-activity-rule-btn {
+    display: block;
+    width:8.0625rem;
+    height: 1.96875rem;
+    line-height: 2rem;
+    font-size: .75rem;
+    color: #869C14;
+    font-weight: bold;
+    text-align: center;
+    border: 1px solid #A6BF25;
+    margin: 1.4375rem auto 1.5625rem;
+    border-radius: 3.125rem;
+}
+
+
+.u-activity-rule-btn.z-autumn{
+    width: 84.7%;
+}
+
+.m-giftPacks-container {
+    text-align: center;
+    margin-top: 1.625rem;
+}
+
+.m-giftPacks-container.z-container-two {
+    margin-top: 2.8125rem;
+}
+
+.m-giftPacks-container .u-giftPacks {
+    display: inline-block;
+    width: 7.2rem;
+    height: 9rem;
+    background: url(../../../img/activity/twoYearAnniversary/rhombus.png) no-repeat;
+    background-size: 100%;
+    text-align: center;
+    color: #d58e00;
+}
+
+.u-giftPacks .u-giftPacks-value {
+    font-size: 0.875rem;
+    margin-top: 1.8rem;
+}
+
+.u-giftPacks .u-giftPacks-rule {
+    font-size: 0.75rem;
+    margin-top: .4rem;
+}
+
+.u-giftPacks .u-giftPacks-btn {
+    display: inline-block;
+    width: 6.25rem;
+    height: 1.875rem;
+    line-height: 1.875rem;
+    margin-top: 2.0625rem;
+    font-size: .875rem;
+    color: #fff;
+    background-color: #ee5858;
+    border-radius: 3.125rem;
+    cursor: pointer;
+    text-align: center;
+}
+
+.u-giftPacks .u-giftPacks-btn.z-disabled {
+    background: #acacac;
+    color: #fff;
+}
+
+#j-tab-summer .u-activity-rule-btn {
+    color: #61b325;
+    border: 1px solid #61B325;
+    margin-top: 2.0625rem;
+}
+
+/* 秋季 */
+
+#j-tab-autumn .u-activity-rule-btn {
+    color: #bf8000;
+    border: 1px solid #EBBC3C;
+}
+
+.m-cards-list {
+    display: block;
+    width: 100%;
+    margin-top:1.5rem;
+    height: 8.8rem;
+    font-size: 0;
+    text-align: center;
+}
+
+.m-cards-list.f-mt-0 {
+    margin-top: 0;
+}
+
+.m-cards-list li {
+    position: relative;
+    display: inline-block;
+    width: 5.75rem;
+    height: 7.9375rem;
+    margin: 0 .625rem;
+}
+
+.m-cards-list .u-cards {
+    color: #eead2a;
+    font-size: 3.375rem;
+    text-align: center;
+    line-height: 7.875rem;
+    background: url(../../../img/activity/twoYearAnniversary/yellowCard.png) no-repeat;
+    background-size: 100%;
+    cursor: pointer;
+}
+.u-reward-list{
+    width: 85%;
+    margin: 1rem auto;
+}
+.u-reward-list .u-list-btn{
+    font-weight: bold;
+    display: inline-block;
+    color:#bf8000;
+    text-align: center;
+    font-size:0.8125rem;
+    line-height:1.5rem;
+    width:46.5%;
+    border:1px solid #bf8000;
+    border-radius:30rem;
+}
+.u-reward-list .u-list-btn:first-child{
+   margin-right:3.5%;
+}
+/* 冬季 */
+.m-tag-wrap {
+    display: inline-block;
+    box-sizing: border-box;
+    width: 48%;
+    text-align: center;
+    margin-bottom: 1.3125rem;
+    margin-top: .25rem;
+}
+
+.m-tag-wrap .u-tag-bg {
+    display: inline-block;
+    width: 9.03125rem;
+    height: 4.125rem;
+    font-size: .875rem;
+    color: #fff;
+}
+
+.m-main-wrap .tag30 {
+    background: url('../../../img/activity/twoYearAnniversary/tag1.png') no-repeat center;
+    background-size: 100%;
+}
+
+.m-main-wrap .tag50 {
+    background: url('../../../img/activity/twoYearAnniversary/tag2.png') no-repeat center;
+    background-size: 100%;
+}
+
+.m-main-wrap .tag100 {
+    background: url('../../../img/activity/twoYearAnniversary/tag3.png') no-repeat center;
+    background-size: 100%;
+}
+
+.m-main-wrap .tag200 {
+    background: url('../../../img/activity/twoYearAnniversary/tag4.png') no-repeat center;
+    background-size: 100%;
+}
+
+.m-tag-wrap .u-tag-rule {
+    color: #d5784b;
+    font-size: .875rem;
+}
+
+#j-tab-winter .u-activity-rule-btn {
+    color: #d5784b;
+    border: 1px solid #EB9C3C;
+}
+
+/* 底部导航 */
+.g-main-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 0;
+    height: 4.6875rem;
+    background-color: #fff;
+    box-shadow: 0px -1px 0px 0px rgba(152, 176, 28, 0.392);
+    z-index: 105;
+    overflow: hidden;
+}
+
+.g-main-footer > li {
+    width: 25%;
+    padding: .75rem 0;
+    float: left;
+    position: relative;
+    -webkit-box-sizing: border-box;
+    text-align: center;
+}
+
+.g-main-footer li a span {
+    display: inline-block;
+    height: 1.875rem;
+    background-color: #00c795;
+    background: url(../../../img/activity/twoYearAnniversary/anniversary-nav.png) no-repeat;
+    background-size: 7.1875rem 4.53125rem;
+}
+
+.u-activity-nav li a {
+    display: block;
+    color: #bfbfbf;
+    font-size: .75rem;
+    text-align: center;
+}
+
+.u-activity-nav .u-spring .u-index {
+    position: relative;
+    top: 0.2rem;
+    width: 1.9375rem;
+    height:2.03125rem;
+    background-position: -5.25rem 0;
+}
+
+.u-activity-nav .u-spring.z-current .u-index {
+    background-position: -5.25rem -2.5rem;
+}
+
+.u-activity-nav .u-spring.z-current a {
+    color: #b1ca31;
+}
+
+.u-activity-nav .u-summer .u-index {
+    width: .875rem;
+    height: 2.03125rem;
+    background-position: 0 0;
+}
+
+.u-activity-nav .u-summer.z-current .u-index {
+    background-position: 0 -2.5rem;
+}
+
+.u-activity-nav .u-summer.z-current a {
+    color: #61b325;
+}
+
+.u-activity-nav .u-autumn .u-index {
+    width: 1.71875rem;
+    height: 2.03125rem;
+    position:relative ;
+    top:0.2rem;
+    background-position:-3.25rem 0;
+}
+
+.u-activity-nav .u-autumn.z-current .u-index {
+    background-position:-3.25rem -2.5rem;
+}
+
+.u-activity-nav .u-autumn.z-current a {
+    color: #eead2a;
+}
+
+.u-activity-nav .u-winter .u-index {
+    width: 1.59375rem;
+    height: 2.03125rem;
+    position:relative ;
+    top:0.2rem;
+    background-position:-1.25rem 0;
+}
+
+.u-activity-nav .u-winter.z-current .u-index {
+    background-position:-1.25rem -2.5rem;
+}
+
+.u-activity-nav .u-winter.z-current a {
+    color: #f3a54e;
+}
+
+/* 活动规则 */
+.m-anniversary-rule {
+    position: fixed;
+    width: 20.8125rem;
+    top: 50%;
+    left: 48%;
+    margin-top: -8.34375rem;
+    margin-left: -9.90625rem;
+    padding: 1.875rem 1.25rem;
+    box-sizing: border-box;
+    background-color: #fff;
+    color: #666;
+    border-radius: 1rem;
+    font-size: .75rem;
+    line-height: 1.125rem;
+    z-index: 999;
+}
+
+.u-rule-title {
+    display: inline-block;
+    width: 100%;
+    font-size: 1.0625rem;
+    text-align: center;
+    line-height: 1.5rem;
+    font-weight: normal;
+    margin-bottom: .5rem;
+    position:relative;
+    top:-0.5rem;
+}
+
+.u-dialog-close {
+    position: absolute;
+    top: 0.45rem;
+    right: 0.5rem;
+    width: 1.5rem;
+    height: 1.9rem;
+    background: url(../../../img/activity/twoYearAnniversary/close-gray.png) no-repeat;
+    background-size:100% ;
+    z-index: 10;
+}
+
+.u-dialog-close i {
+    display: inline-block;
+    width: 1.125rem;
+    height: 1.125rem;
+    font-size: 1.125rem;
+    font-weight: 700;
+    line-height: 1.125rem;
+    color: #999;
+    cursor: pointer;
+    background: 0;
+    border: 2px solid #999;
+    -webkit-appearance: none;
+    border-radius: 50%;
+}
+
+/* 人气值选择 */
+.m-dialog-container {
+    position: fixed;
+    width: 20rem;
+    height: 15.5rem;
+    top: 50%;
+    left: 50%;
+    margin-top: -7.75rem;
+    margin-left: -10rem;
+    padding: 1.875rem 1.25rem;
+    box-sizing: border-box;
+    background-color: #fff;
+    color: #666;
+    border-radius: 1rem;
+    font-size: .75rem;
+    line-height: 1.125rem;
+    z-index: 999;
+    text-align: center;
+    display: none;
+}
+
+.m-dialog-container.z-show {
+    display: block;
+}
+
+.m-pop-content h3 {
+    font-size: 1.0625rem;
+}
+
+.m-pop-content div {
+    width: 15.5625rem;
+    height: 2.4375rem;
+    line-height: 2.5rem;
+    color: #999;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: .5rem;
+    margin: 1.25rem auto;
+}
+
+.m-pop-content div.z-actived {
+    color: #ee5858;
+    border: 1px solid #ee5858;
+    background: url(../../../img/activity/twoYearAnniversary/selectedbtn.png) no-repeat;
+    background-size: 1.53125rem 1.53125rem;
+    background-position: right bottom;
+}
+
+.m-dialog-container .u-confirm-btn {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2.75rem;
+    line-height: 2.75rem;
+    color: #fff;
+    font-size: 1.0625rem;
+    background-color: #EE5858;
+    border-radius: 0 0 1rem 1rem;
+}
+
+.m-dialog-container .u-confirm-btn.z-disabled {
+    background-color: #C9C9C9;
+}
+
+/* 提示弹框 */
+.m-dialog-container.m-received-dialog {
+    height: 8rem;
+    margin-top: -4rem;
+    border-radius: .5rem;
+    padding: 1.875rem .625rem;
+}
+
+.m-dialog-container.m-received-dialog .m-dialog-content {
+    line-height: 4.25rem;
+}
+
+/* 翻牌奖品 */
+.m-main-content {
+    position: relative;
+}
+
+.m-open-cards {
+    position: absolute;
+    width: 6.28165rem;
+    height: 8.625rem;
+    color: #fff;
+    text-align: center;
+    background: url(../../../img/activity/twoYearAnniversary/redCardReward.png) no-repeat center;
+    background-size: 6.28165rem 8.625rem;
+}
+
+.m-open-cards.z-copy {
+    background: url(../../../img/activity/twoYearAnniversary/redCardReward-copy.png) no-repeat center;
+    background-size: 6.28165rem 8.625rem;
+}
+
+.m-open-cards .u-text {
+    font-size: .75rem;
+    margin: 2.5rem 0 0;
+}
+
+.m-open-cards .u-text strong {
+    display: block;
+    font-size: 1.25rem;
+    font-weight: normal;
+}
+
+.m-open-cards .u-text i {
+    font-family: "dincond";
+    font-size: 2.5rem;
+    margin: 0;
+    line-height: 2.5rem;
+}
+
+.z-position1 {
+    position: absolute;
+    top: 3.75rem;
+    left: 5rem;
+}
+
+.z-position2 {
+    position: absolute;
+    top: 3.75rem;
+    left: 12rem;
+}
+
+.z-position3 {
+    position: absolute;
+    top: 12.5625rem;
+    left: 1.5rem;
+}
+
+.z-position4 {
+    position: absolute;
+    top: 12.5625rem;
+    left: 8.5rem;
+}
+
+.z-position5 {
+    position: absolute;
+    top: 12.5625rem;
+    left: 15.5rem;
+}
+
+/* 奖品列表 */
+.m-modal-container {
+    position: fixed;
+    width: 20.375rem;
+    height: 37.1875rem;
+    top: 50%;
+    left: 50%;
+    margin-top: -18.59375rem;
+    margin-left: -10.1875rem;
+    border-radius: .5rem;
+    z-index: 999;
+}
+
+.m-modal-container .m-modal-head {
+    position: relative;
+}
+
+.m-modal-head .m-modal-logo {
+    width: 7.875rem;
+    height: 8.125rem;
+    background: url(../../../img/activity/twoYearAnniversary/dialogTop1.png) no-repeat;
+    background-size: 100%;
+}
+
+.m-modal-logo .u-modal-title {
+    position: absolute;
+    left: 5.9375rem;
+    top: 4.25rem;
+    width: 11.9375rem;
+    height: 2.1875rem;
+}
+
+.m-modal-logo .z-title-ten {
+    background: url(../../../img/activity/twoYearAnniversary/dialogTop2.png) no-repeat;
+    background-size: 100%;
+}
+
+.m-modal-logo .z-title-thirty {
+    background: url(../../../img/activity/twoYearAnniversary/dialogTop3.png) no-repeat;
+    background-size: 100%;
+}
+
+.m-modal-close {
+    position: absolute;
+    top: 2.03rem;
+    right: 0;
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+    background: url(../../../img/activity/twoYearAnniversary/close.png) no-repeat;
+    background-size:100% ;
+    -webkit-appearance: none;
+}
+
+.m-modal-content {
+    position: relative;
+    box-sizing: border-box;
+    top: -1.4375rem;
+    width: 20.375rem;
+    height: 30.5rem;
+    padding: .9375rem;
+    background-color: #F2921B;
+    border-radius: .5rem;
+    box-shadow: inset .78125rem 1.3531875rem 1.215rem .285rem rgba(189, 146, 0, 0.392);
+}
+
+.m-modal-content .m-modal-main {
+    width: 100%;
+    height: 100%;
+    background-color: #FFEA6C;
+}
+
+.m-prizes-card-list {
+    text-align: center;
+    color: #fff;
+}
+
+.m-prizes-card-list li {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    width: 6.5rem;
+    height: 8.5rem;
+    margin: 1.25rem 1rem -0.5rem;
+    color: #fff;
+    background: url(../../../img/activity/twoYearAnniversary/redCard.png) no-repeat;
+    background-size: 100%;
+}
+
+.m-prizes-card-list li.z-copy{
+    position:relative;
+    background: url(../../../img/activity/twoYearAnniversary/redCard-copy.png) no-repeat;
+    background-size: 100%;
+}
+.m-prizes-card-list li .u-text{
+    display: block;
+    width:100%;
+    text-align: center;
+    margin:2rem auto 0;
+    font-size:12px;
+}
+.m-prizes-card-list li .u-text strong{
+    display: block;
+    font-size:1.6rem;
+}
+.m-prizes-card-list li .u-text i{
+    font-family: "dincond";
+    font-size:3rem;
+    line-height:2.6rem;
+}
+.m-prizes-amount em{
+    font-family: "dincond";
+    font-size:3.75rem;
+}
+.m-prizes-amount .f-ff-ver {
+    font-size: .875rem;
+}
+.m-prizes-amount .f-fs24 {
+    font-size: 1.5rem;
+}
+.m-prizes-amount {
+    font-size: 1.875rem;
+    display: block;
+}
+
+.m-prizes-rule {
+    margin-top:-0.5rem;
+    display: block;
+    font-size: 12px;
+}
+.m-prizes-rule em.f-center{
+    line-height:2.5rem;
+}
+.m-prizes-rule em{
+    font-size: 0.75rem;
+    width:100%;
+    text-align: center;
+    display: block;
+}
+.u-myData-total{
+    font-size:0.875rem;
+    width:50%;
+    margin:1.5rem auto 0 ;
+    line-height:2rem;
+    text-align: center;
+}
+.u-myData-total.f-fc-spring{
+    color: #5f7f00;
+}
+.u-myData-total.f-fc-summer{
+    color:#3c8f00;
+}
+.u-myData-total.f-fc-autumn{
+    color: #bf8000;
+}
+.u-myData-total.f-fc-summer em {
+    font-family: Verdana;
+}
+.u-add-invest em {
+    font-family: "dincond","Microsoft Yahei";
+}
+.u-shade{
+    top:0;
+    left:0;
+    background-color:#000;
+    opacity: 0.5;
+    position:fixed;
+    z-index: 106;
+    width:100%;
+    height:100%;
+}
+[v-cloak] {
+    display: none;
+}
+
+@media screen and (min-width: 390px) {
+    html{
+        font-size: 17.6px;
+
+    }
+}
+
+@media screen and (min-width: 360px) and (max-width:389px) {
+    html{
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width:359px) {
+    html{
+        font-size:13.65px;
+    }
+}
+[v-cloak]{
+    display: none;
+}

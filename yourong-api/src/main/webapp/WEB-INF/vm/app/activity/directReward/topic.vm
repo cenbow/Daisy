@@ -1,0 +1,146 @@
+#parse('/mobile/common.vm')
+#set($layout='layout/layout.vm')
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="format-detection" content="telephone=no"/>
+    <title>快投有奖专题 _ 有融网-全透明的互联网理财优选平台！</title>
+    <link rel="stylesheet" href="$res_url/source/css/app/activity/directReward/topic.css">
+</head>
+<body>
+<div id="app" v-cloak>
+    <div class="u-tipBlock" :class="{'f-dn': !isShow}" v-if="initData.quickRewardConfig.flag || (init.quickRewardConfig.popularity > 0) || (init.quickRewardConfig.endDate - curTime > 0)">
+        <div id="tipBlock">
+            <table border="0" align="center" style="width: 100%;text-align: center">
+                <tr>
+                    <td id="marqueText" style="padding-right: 30px;">
+                        <pre class="adv-text">截止{{initData.quickRewardConfig.endDate | formatTime 'yyyy.MM.dd'}}，未中奖额外补贴{{initData.quickRewardConfig.popularity}}点人气值！</pre>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="u-closeBtn" @click="closeTip">
+            <img src="$res_url/img/APP/activity/ico_close.png" alt="" width="80%">
+        </div>
+    </div>
+    <div class="u-banner">
+        <img src="$res_url/img/APP/activity/banner_ktyj.png" alt="" width="100%">
+    </div>
+    <div class="g-introduce">
+        <div class="m-question">升级后新规则：</div>
+        <p>
+            1. 在项目上线一定时间内投资即可获得抽奖机会 <br>
+            2. 奖励皆为现金 <br>
+            3. 现金奖励于项目履约后到账
+        </p>
+        <div class="m-question m-qt-1">1. 什么是快投有奖？</div>
+        <p>借款人为了加快项目募集速度，愿提供资金委托有融网设立抽奖奖项鼓励投资，投资成功即可抽奖，抽中即送现金；奖励将于履约后到账</p>
+        <div class="m-relation">
+            <div class="u-loan left">
+                <div class="u-loan-people">借款人</div>
+                <div class="u-loan-money">抽奖奖池</div>
+            ##              <img src="../../res/img/post/topic/touziren.png" alt="">
+            </div>
+            <div class="u-fast">募集成功</div>
+            <div class="u-jiantou">
+                <img src="../../res/img/post/topic/jiantou.png" alt="">
+            </div>
+            <div class="u-loan right">
+                <div class="u-send-people" style="line-height: 22px">投资人</div>
+                <div class="u-send-money" style="font-size: 10px;line-height: 14px;margin-top: 4px">
+                    利息收益<br>+<br>抽奖奖励
+                </div>
+            </div>
+        </div>
+        <div class="m-agree">借款人与有融网签订《委托协议》</div>
+    </div>
+    <div class="g-method">
+        <div class="m-question m-qt-3">2. 如何抽奖</div>
+        <p class="m-p-titile">投资成功即可抽奖，单笔投资金额越多可获得的抽奖次数也越多，在项目履约前都可进行抽奖。</p>
+        <table class="m-number">
+            <thead>
+            <tr>
+                <th>单笔投资金额（元）</th>
+                <th>抽奖次数</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr v-for="item in initData.lottery">
+                <td>{{item.startAmount}}<span> <i v-if="item.endAmount">- {{item.endAmount}}</i><i
+                        v-else>以上</i></span></td>
+                <td v-if="item.number">X+{{item.number}}</td>
+                <td v-else>X</td>
+            </tr>
+
+            </tbody>
+        </table>
+        <div class="u-bottom-text">X = 投资金额 <i>/</i> 项目起投金额
+        </div>
+    </div>
+    <div class="g-grant">
+        <div class="m-question m-qt-3">3. 奖励发放</div>
+        <p class="m-p-titile">3.1 奖励发放时间</p>
+        <p class="m-p-content">在项目履约当日发放</p>
+        <p class="m-p-titile">3.2 抽奖机会不使用会失效吗?</p>
+        <p class="m-p-content">如果在项目履约前，仍有抽奖机会未使用，将会自动为您抽取！</p>
+        <p class="m-p-titile">3.3 奖励发放方式</p>
+        <p class="m-p-content">履约当日以现金的形式发放至您的存钱罐账户</p>
+    </div>
+    <div class=" u-statementText">
+        以上规则最终解释权归有融网所有
+    </div>
+    <div data='$!{xiaohei}' id="j-data"></div>
+
+    <a class="m-btn-go z-hidden" href="myrw://yrw.app/openwith">前往APP赢得现金</a>
+  <h2 class="f-fix z-hidden">
+    <a href="$siteurl/mIndex">
+      <div class="m-logo">
+        <span>下载有融网APP</span>
+        <span>参与快投赢现金</span>
+      </div>
+    </a>
+    <span class="m-down">
+
+        <a href="$siteurl/static/page/twoCodeRedict.html">立即下载</a>
+    </span>
+  </h2>
+</div>
+</body>
+<script src="$aliyunOss_url/res/lib/vue/v1/vue.min.js"></script>
+<script src='$res_url/lib/vue/vue.extend.js'></script>
+<script src='$res_url/lib/js/sea.js'></script>
+<script src="$aliyunOss_url/res/lib/jquery/v3/jquery.min.js"></script>
+##<script src='$res_url/lib/js/vconsole.min.js'></script>
+<script src='$res_url/source/js/app/activity/directReward/topic.js'></script>
+<script>
+  seajs.config({
+    alias: {
+      'landingRegister': '$m_js_url/landing/register.js?v=${sysServiceUtil.getStaticResourceVersion()}'
+    },
+    preload: ['jquery', 'validform']
+  });
+  seajs.use('landingRegister');
+
+  var footer=getUrlParam('footer')
+  if(footer==1){
+//    $('.g-ft').hide()
+    $('.f-fix').removeClass('z-hidden');
+    $('.m-btn-go').removeClass('z-hidden');
+  }
+
+  // 获取URL参数
+  function getUrlParam(name) {
+    var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)');
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null) {
+      return unescape(r[2]);
+    }
+    return null; // 返回参数值
+  }
+</script>
+</html>

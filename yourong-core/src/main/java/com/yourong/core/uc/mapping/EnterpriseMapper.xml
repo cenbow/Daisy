@@ -1,0 +1,572 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.uc.dao.EnterpriseMapper" >
+  <resultMap id="BaseResultMap" type="com.yourong.core.uc.model.Enterprise" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="full_name" property="fullName" jdbcType="VARCHAR" />
+    <result column="license" property="license" jdbcType="VARCHAR" />
+    <result column="organization_code" property="organizationCode" jdbcType="VARCHAR" />
+    <result column="telephone" property="telephone" jdbcType="VARCHAR" />
+    <result column="period" property="period" jdbcType="INTEGER" />
+    <result column="income" property="income" jdbcType="INTEGER" />
+    <result column="identity" property="identity" jdbcType="VARCHAR" />
+    <result column="legal_id" property="legalId" jdbcType="BIGINT" />
+    <result column="legal_name" property="legalName" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="del_flage" property="delFlage" jdbcType="INTEGER" />
+    <result column="region" property="region" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="regedit_date" property="regeditDate" jdbcType="DATE" />
+    <result column="year_sales" property="yearSales" jdbcType="DECIMAL" />
+    <result column="is_auth" property="isAuth" jdbcType="INTEGER" />
+    <result column="is_stamp" property="isStamp" jdbcType="INTEGER" />
+    <result column="ca_no" property="caNo" jdbcType="VARCHAR" />
+    <result column="regis_no" property="regisNo" jdbcType="VARCHAR" />
+    <result column="organiz_no" property="organizNo" jdbcType="VARCHAR" />
+    <result column="tax_no" property="taxNo" jdbcType="VARCHAR" />
+     <result column="province" property="province" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, full_name,license, organization_code, telephone, period, income, identity, legal_id,
+    legal_name, create_time, update_time, del_flage, region, address, regedit_date ,year_sales,is_auth,
+    is_stamp,ca_no,regis_no,organiz_no,tax_no,province,city,type
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from uc_enterprise
+    where id = #{id,jdbcType=BIGINT} and del_flage >0
+  </select>
+   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    update uc_enterprise set del_flage = -1 
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.yourong.core.uc.model.Enterprise" >
+    insert into uc_enterprise (id, name,full_name, license,
+    organization_code, telephone, period,
+    income, identity, legal_id,
+    legal_name, create_time, update_time,
+    del_flage, region, address,
+    regedit_date)  ,year_sales
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{fullName,jdbcType=VARCHAR}, #{license,jdbcType=VARCHAR},
+    #{organizationCode,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, #{period,jdbcType=INTEGER},
+    #{income,jdbcType=INTEGER}, #{identity,jdbcType=VARCHAR}, #{legalId,jdbcType=BIGINT},
+    #{legalName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP},
+    #{delFlage,jdbcType=INTEGER}, #{region,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR},
+    #{regeditDate,jdbcType=DATE}, #{yearSales,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yourong.core.uc.model.Enterprise" useGeneratedKeys="true" keyProperty="id"  >
+    insert into uc_enterprise
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="fullName != null" >
+        full_name,
+      </if>
+      <if test="license != null" >
+        license,
+      </if>
+      <if test="organizationCode != null" >
+        organization_code,
+      </if>
+      <if test="telephone != null" >
+        telephone,
+      </if>
+      <if test="period != null" >
+        period,
+      </if>
+      <if test="income != null" >
+        income,
+      </if>
+      <if test="identity != null" >
+        identity,
+      </if>
+      <if test="legalId != null" >
+        legal_id,
+      </if>
+      <if test="legalName != null" >
+        legal_name,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="delFlage != null" >
+        del_flage,
+      </if>
+      <if test="region != null" >
+        region,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="regeditDate != null" >
+        regedit_date,
+      </if>
+       <if test="yearSales != null" >
+        year_sales,
+      </if>
+       <if test="isAuth != null" >
+        is_auth ,
+      </if>
+      <if test="isStamp != null" >
+        is_stamp ,
+      </if>
+  	  <if test="caNo != null" >
+        ca_no ,
+      </if>
+	  <if test="regisNo != null" >
+        regis_no ,
+      </if>
+      <if test="organizNo != null" >
+        organiz_no ,
+      </if>
+	  <if test="taxNo != null" >
+        tax_no,
+      </if>
+	  <if test="province != null" >
+        province ,
+      </if>
+	  <if test="city != null" >
+        city ,
+      </if>
+       <if test="type != null" >
+        type ,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+       <if test="fullName != null" >
+        #{fullName,jdbcType=VARCHAR},
+      </if>
+      <if test="license != null" >
+        #{license,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationCode != null" >
+        #{organizationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="period != null" >
+        #{period,jdbcType=INTEGER},
+      </if>
+      <if test="income != null" >
+        #{income,jdbcType=INTEGER},
+      </if>
+      <if test="identity != null" >
+        #{identity,jdbcType=VARCHAR},
+      </if>
+      <if test="legalId != null" >
+        #{legalId,jdbcType=BIGINT},
+      </if>
+      <if test="legalName != null" >
+        #{legalName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlage != null" >
+        #{delFlage,jdbcType=INTEGER},
+      </if>
+      <if test="region != null" >
+        #{region,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="regeditDate != null" >
+        #{regeditDate,jdbcType=DATE},
+      </if>
+      <if test="yearSales != null" >
+        #{yearSales,jdbcType=DECIMAL},
+      </if>
+        <if test="isAuth != null" >
+       #{isAuth,jdbcType=INTEGER},
+      </if>
+      <if test="isStamp != null" >
+        #{isStamp,jdbcType=INTEGER},
+      </if>
+  	  <if test="caNo != null" >
+        #{caNo,jdbcType=VARCHAR},
+      </if>
+	  <if test="regisNo != null" >
+       #{regisNo,jdbcType=VARCHAR},
+      </if>
+      <if test="organizNo != null" >
+        #{organizNo,jdbcType=VARCHAR},
+      </if>
+	  <if test="taxNo != null" >
+         #{taxNo,jdbcType=VARCHAR},
+      </if>
+	  <if test="province != null" >
+        #{province,jdbcType=VARCHAR},
+      </if>
+	  <if test="city != null" >
+       #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+       #{type,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yourong.core.uc.model.Enterprise" >
+    update uc_enterprise
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+       <if test="fullName != null" >
+        full_name= #{fullName,jdbcType=VARCHAR},
+      </if>
+      <if test="license != null" >
+        license = #{license,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationCode != null" >
+        organization_code = #{organizationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="period != null" >
+        period = #{period,jdbcType=INTEGER},
+      </if>
+      <if test="income != null" >
+        income = #{income,jdbcType=INTEGER},
+      </if>
+      <if test="identity != null" >
+        identity = #{identity,jdbcType=VARCHAR},
+      </if>
+      <if test="legalId != null" >
+        legal_id = #{legalId,jdbcType=BIGINT},
+      </if>
+      <if test="legalName != null" >
+        legal_name = #{legalName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlage != null" >
+        del_flage = #{delFlage,jdbcType=INTEGER},
+      </if>
+      <if test="region != null" >
+        region = #{region,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="regeditDate != null" >
+        regedit_date = #{regeditDate,jdbcType=DATE},
+      </if>
+       <if test="yearSales != null" >
+        year_sales = #{yearSales,jdbcType=DECIMAL},
+      </if>
+       <if test="isAuth != null" >
+        is_auth = #{isAuth,jdbcType=INTEGER},
+      </if>
+      <if test="isStamp != null" >
+        is_stamp = #{isStamp,jdbcType=INTEGER},
+      </if>
+  	  <if test="caNo != null" >
+        ca_no = #{caNo,jdbcType=VARCHAR},
+      </if>
+	  <if test="regisNo != null" >
+        regis_no = #{regisNo,jdbcType=VARCHAR},
+      </if>
+      <if test="organizNo != null" >
+        organiz_no = #{organizNo,jdbcType=VARCHAR},
+      </if>
+	  <if test="taxNo != null" >
+        tax_no = #{taxNo,jdbcType=VARCHAR},
+      </if>
+	  <if test="province != null" >
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+	  <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yourong.core.uc.model.Enterprise" >
+    update uc_enterprise
+    set name = #{name,jdbcType=VARCHAR},
+     full_name= #{fullName,jdbcType=VARCHAR},
+    license = #{license,jdbcType=VARCHAR},
+    organization_code = #{organizationCode,jdbcType=VARCHAR},
+    telephone = #{telephone,jdbcType=VARCHAR},
+    period = #{period,jdbcType=INTEGER},
+    income = #{income,jdbcType=INTEGER},
+    identity = #{identity,jdbcType=VARCHAR},
+    legal_id = #{legalId,jdbcType=BIGINT},
+    legal_name = #{legalName,jdbcType=VARCHAR},
+    create_time = #{createTime,jdbcType=TIMESTAMP},
+    update_time = #{updateTime,jdbcType=TIMESTAMP},
+    del_flage = #{delFlage,jdbcType=INTEGER},
+    region = #{region,jdbcType=VARCHAR},
+    address = #{address,jdbcType=VARCHAR},
+    regedit_date = #{regeditDate,jdbcType=DATE},
+    year_sales = #{yearSales,jdbcType=DECIMAL},
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <delete id="batchDelete" parameterType="java.lang.Long" >
+    delete from uc_enterprise
+    where id in  <foreach collection="ids" index="index" item="item" open="(" separator="," close=")"> #{item}  </foreach>
+  </delete>
+  <select id="findByPage" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from uc_enterprise
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = #{map.id}
+        </if>
+        <if test=" map.name != null" >
+          name = #{map.name}
+        </if>
+        <if test=" map.fullName != null" >
+          full_name = #{map.fullName}
+        </if>
+        <if test=" map.license != null" >
+          license = #{map.license}
+        </if>
+        <if test=" map.organizationCode != null" >
+          organization_code = #{map.organizationCode}
+        </if>
+        <if test=" map.telephone != null" >
+          telephone = #{map.telephone}
+        </if>
+        <if test=" map.period != null" >
+          period = #{map.period}
+        </if>
+        <if test=" map.income != null" >
+          income = #{map.income}
+        </if>
+        <if test=" map.identity != null" >
+          identity = #{map.identity}
+        </if>
+        <if test=" map.legalId != null" >
+          legal_id = #{map.legalId}
+        </if>
+        <if test=" map.legalName != null" >
+          legal_name = #{map.legalName}
+        </if>
+        <if test=" map.createTime != null" >
+          create_time = #{map.createTime}
+        </if>
+        <if test=" map.updateTime != null" >
+          update_time = #{map.updateTime}
+        </if>
+        <if test=" map.delFlage != null" >
+          del_flage = #{map.delFlage}
+        </if>
+        <if test=" map.region != null" >
+          region = #{map.region}
+        </if>
+        <if test=" map.address != null" >
+          address = #{map.address}
+        </if>
+        <if test=" map.regeditDate != null" >
+          regedit_date = #{map.regeditDate}
+        </if>
+         <if test=" map.type != null" >
+          type = #{map.type}
+        </if>
+      </where>
+    </if>
+  </select>
+  <sql id="Base_Column_List_Pagin" >
+    t.id  as  id,
+    t.name  as  name,
+    t.full_name  as  fullName,
+    t.license  as  license,
+    t.organization_code  as  organization_code,
+    t.telephone  as  telephone,
+    t.period  as  period,
+    t.income  as  income,
+    t.identity  as  identity,
+    t.legal_id  as  legal_id,
+    t.legal_name  as  legal_name,
+    t.create_time  as  create_time,
+    t.update_time  as  update_time,
+    t.del_flage  as  del_flage,
+    t.region  as  region,
+    t.address  as  address,
+    t.is_auth as isAuth,
+    t.is_stamp as isStamp,
+    t.ca_no as caNo,
+    t.regis_no as regisNo,
+    t.organiz_no as organizNo,
+    t.tax_no as taxNo,
+    t.province as province,
+    t.city as city,
+    t.regedit_date  as  regedit_date
+  </sql>
+  <select id="selectForPagin" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List_Pagin" />
+    from  (SELECT id FROM  uc_enterprise
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = #{map.id}
+        </if>
+        <if test=" map.name != null" >
+          name = #{map.name}
+        </if>
+        <if test=" map.fullNmae != null" >
+          full_name = #{map.fullNmae}
+        </if>
+        <if test=" map.license != null" >
+          license = #{map.license}
+        </if>
+        <if test=" map.organizationCode != null" >
+          organization_code = #{map.organizationCode}
+        </if>
+        <if test=" map.telephone != null" >
+          telephone = #{map.telephone}
+        </if>
+        <if test=" map.period != null" >
+          period = #{map.period}
+        </if>
+        <if test=" map.income != null" >
+          income = #{map.income}
+        </if>
+        <if test=" map.identity != null" >
+          identity = #{map.identity}
+        </if>
+        <if test=" map.legalId != null" >
+          legal_id = #{map.legalId}
+        </if>
+        <if test=" map.legalName != null" >
+          legal_name = #{map.legalName}
+        </if>
+        <if test=" map.createTime != null" >
+          create_time = #{map.createTime}
+        </if>
+        <if test=" map.updateTime != null" >
+          update_time = #{map.updateTime}
+        </if>
+        <if test=" map.delFlage != null" >
+          del_flage = #{map.delFlage}
+        </if>
+        <if test=" map.region != null" >
+          region = #{map.region}
+        </if>
+        <if test=" map.address != null" >
+          address = #{map.address}
+        </if>
+        <if test=" map.regeditDate != null" >
+          regedit_date = #{map.regeditDate}
+        </if>
+         <if test=" map.type != null" >
+         and  type = #{map.type}
+        </if>
+      </where>
+    </if>
+    LIMIT	${map.startRow}, ${map.pageSize}  )  AS a,  uc_enterprise AS t FORCE INDEX(PRIMARY) WHERE a.id = t.id and t.del_flage >0
+  </select>
+  <select id="selectForPaginTotalCount" resultType="java.lang.Integer" >
+    select count(1)
+    from uc_enterprise
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = ${map.id}
+        </if>
+        <if test=" map.name != null" >
+          name = ${map.name}
+        </if>
+        <if test=" map.fullName != null" >
+          full_name = ${map.fullName}
+        </if>
+        <if test=" map.license != null" >
+          license = ${map.license}
+        </if>
+        <if test=" map.organizationCode != null" >
+          organization_code = ${map.organizationCode}
+        </if>
+        <if test=" map.telephone != null" >
+          telephone = ${map.telephone}
+        </if>
+        <if test=" map.period != null" >
+          period = ${map.period}
+        </if>
+        <if test=" map.income != null" >
+          income = ${map.income}
+        </if>
+        <if test=" map.identity != null" >
+          identity = ${map.identity}
+        </if>
+        <if test=" map.legalId != null" >
+          legal_id = ${map.legalId}
+        </if>
+        <if test=" map.legalName != null" >
+          legal_name = ${map.legalName}
+        </if>
+        <if test=" map.createTime != null" >
+          create_time = ${map.createTime}
+        </if>
+        <if test=" map.updateTime != null" >
+          update_time = ${map.updateTime}
+        </if>
+        <if test=" map.delFlage != null" >
+          del_flage = ${map.delFlage}
+        </if>
+        <if test=" map.region != null" >
+          region = ${map.region}
+        </if>
+        <if test=" map.address != null" >
+          address = ${map.address}
+        </if>
+        <if test=" map.type != null" >
+         and  type = ${map.type}
+        </if>
+        <if test=" map.regeditDate != null" >
+          regedit_date = ${map.regeditDate}
+        </if>
+          and del_flage >= 0
+      </where>
+    </if>
+  </select>
+  
+  <select id="getEnterpriseByName" resultMap="BaseResultMap" >
+  	select <include refid="Base_Column_List" />
+  	 from uc_enterprise where name like #{name,jdbcType=VARCHAR}"%" and del_flage >0 and is_auth=1 and type=1 
+  </select>
+  
+  <select id="getEnterpriseByLegalName" resultMap="BaseResultMap" >
+  	select <include refid="Base_Column_List" />
+  	 from uc_enterprise where legal_name like "%"#{legalname,jdbcType=VARCHAR}"%" and del_flage >0
+  </select>
+  
+  
+   <select id="getEnterpriseByRegisNo" resultMap="BaseResultMap" >
+  	select <include refid="Base_Column_List" />
+  	 from uc_enterprise where regis_no like #{regisNo,jdbcType=VARCHAR}"%" and del_flage >0 and is_auth=1 and type=2 
+  </select>
+  
+</mapper>

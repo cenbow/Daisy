@@ -1,0 +1,179 @@
+#parse('/common/common.vm')
+#set($title="名词解释")
+
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    <style>
+		html {
+			background-color: #eee;
+		}
+        body, button, input, select, textarea {
+            font: 12px/1.5 tahoma, arial, "Hiragino Sans GB", "Microsoft Yahei", \5b8b\4f53;
+        }
+        body{
+            padding: 0 3%;
+            margin: 0;
+            color: #666;
+        }
+        .m-help-list ul{
+            margin: 0 0 2rem 0;
+            padding: 0 2%;
+        }
+        .m-help-list li{
+            padding-top: 1.5rem;
+            overflow: hidden;
+        }
+        .m-help-list li strong{
+            display:inline-block;
+            font-size:1rem;
+            color:#666;
+            line-height:1.8rem;
+            float:left;
+        }
+        .m-help-list li p{
+            font-size:1rem;
+            color:#999;
+            float: left;
+            line-height: 1.8rem;
+			margin-bottom:0;
+        }
+    </style>
+</head>
+<body>
+        <div class="m-help-list">
+            <ul>
+
+                <li id="xlzfcqg">
+                    <strong>新浪支付存钱罐</strong>
+                    <p>
+                        新浪支付存钱罐隶属于新浪旗下的第三方资金托管机构。
+                        新浪支付存钱罐是新浪联手汇添富基金合作主推的名为“存钱罐”的安全性极高的第三方资金托管机构，
+                        同时也是一款账户余额增值产品。
+                    </p>
+                </li>
+                <li id="kjzf">
+                    <strong>什么是快捷支付</strong>
+                    <p>
+                        您通过手机或网站进行充值投资时，不需要跳转到银行页面进行支付，直接通过输入卡面信息，即可便捷、快速地完成支付。只需将您的新浪存钱罐关联您的储蓄卡，每次付款时只需输入新浪支付向您手机发送的动态支付码即可完成。
+                    </p>
+                </li>
+                <li id="zqsyq">
+                    <strong>债权收益权</strong>
+                    <p>
+                        是指基础债权的债权人与债务人一致同意赋予基础债权受让方的优先于基础债权债权人受领基础债权债务人
+                        归还借款本金和一定利息款项的权利。
+                    </p>
+                </li>
+                <li id="yq">
+                    <strong>逾期</strong>
+                    <p>
+                        指当借款人没有在约定还款日归还本息的，此笔借款即为逾期款项。
+                    </p>
+                </li>
+                <li id="zqyqsh">
+                    <strong>债权逾期赎回</strong>
+                    <p>
+                        债权项目借款人到期未能偿还借款本息由该项目出借人先行赎回项目债权收益权，并向投资人垫付债权收益权本息。
+                    </p>
+                </li>
+                <li id="zqyqdf">
+                    <strong>债权逾期代付</strong>
+                    <p>
+                        债权项目借款人到期未能偿还借款，出借人对该项目又未进行赎回的，均由合作的第三方资产管理公司
+                        向投资人代付债权收益权本息，以取得项目出借人的债权。
+                    </p>
+                </li>
+                <li id="jtsy">
+                    <strong>阶梯收益</strong>
+                    <p>
+                        即投资者获得的收益与所投入的资金有关，投资金额越大，年化收益越高。
+                    </p>
+                </li>
+                <li id="rqz">
+                    <strong>人气值</strong>
+                    <p>
+                        人气值可通过邀请好友投资获得。人气值积满50、100、500、1000即可兑换相应面额的现金券。
+                    </p>
+                </li>
+                <li id="xjq">
+                    <strong>现金券</strong>
+                    <p>
+                        可替代现金进行投资，例如投资1000元，使用50元现金券，则只需再投950元现金。
+                        现金券只能用于投资，不能提现、转账和找零。
+                    </p>
+                </li>
+                <li id="syq">
+                    <strong>收益券</strong>
+                    <p>
+                        收益券可使您的收益增加。例如，您投资的项目原本年化利率为10%，使用0.5%的收益券之后，利率上涨为10.5%。
+                    </p>
+                </li>
+                <li id="dsbj">
+                    <strong>待收本金</strong>
+                    <p>
+                        指投资人已投资而尚未收回的本金之和。
+                    </p>
+                </li>
+                <li id="dslx">
+                    <strong>待收利息</strong>
+                    <p>
+                        指投资人已投资而尚未收回的利息之和。
+                    </p>
+                </li>
+                <li id="zczj">
+                    <strong>资产总计</strong>
+                    <p>
+                        资产总计=待收本金+待收利息+存钱罐余额。
+                    </p>
+                </li>
+                <li id="cqgye">
+                    <strong>存钱罐余额</strong>
+                    <p>
+                        存钱罐余额=可用余额+提现冻结金额。
+                    </p>
+                </li>
+                <li id="nhsyl">
+                    <strong>年化收益率</strong>
+                    <p>
+                        是把当前收益率（日收益率、周收益率、月收益率）换算成年收益率来计算的，是一种理论收益率。
+                    </p>
+                </li>
+                <li id="djje">
+                    <strong>冻结金额</strong>
+                    <p>
+                        指在申请提现的时候，会将提现金额进行冻结，直至提现成功，在此期间该笔资金不可挪作其他用途。
+                    </p>
+                </li>
+					<li id="xcr">
+			  <strong>新车融：</strong>
+			  <p>
+			  新车融项目是通过对汽车合格证质押借款的债权项目，汽车合格证质押即视为对该汽车合格证对应汽车的质押，此质押借款项目适用于汽车经销商。
+			  </p>
+			</li>
+			<li id="aqk">
+			<strong>安全卡：</strong>
+			<p>
+			用户对接存钱罐版本，在认证绑卡成功后，首次支付成功的卡将会成为安全卡，以后只能用安全卡进行支付和提现，安全卡个数为1张；绑卡的个数没有限制，但安全卡存在后，绑定其他卡将无法进行充值和提现操作。如需要更换安全卡，在账户余额为0且无在途资金的情况下，需要先解绑安全卡，再用其他绑定的卡进行重绑，后用该卡进行付款，付款成功后该卡即为新的安全卡。
+            </p>
+			</li>
+			<li id="znfh">
+   <strong>租赁分红：</strong>
+   <p>
+	租赁分红是指在车辆质押借款项目中，质押车辆经出借人、借款人委托租赁公司出租，所得租金由借款人、出借人、租赁公司和有融网投资用户按比例分配，从而可在降低借款人借款成本的同时，增加投资人的投资收益。
+   </p>		
+			</li>
+			<li id="gqr">
+   <strong>股权融：</strong>
+   <p>
+	股权融是以公司的股份或合伙企业的财产份额作为质押担保向出借人申请借款而形成的债权项目。
+   </p>		
+			</li>
+            </ul>
+    </div>
+</body>
+</html>
+
+

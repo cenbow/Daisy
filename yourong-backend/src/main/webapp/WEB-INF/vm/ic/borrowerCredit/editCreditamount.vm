@@ -1,0 +1,41 @@
+<div tabindex="-1" class="modal fade" id="modal-editCreditamount" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog" >
+        <div class="modal-content">
+            <div class="modal-header no-padding">
+                <div class="table-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+                        <span class="white">×</span>
+                    </button>
+                    <span class="modalFormTitle">修改授信额</span>
+                </div>
+            </div>
+            <div class="modal-body" style="text-align:center">
+                <form role="form" class="form-horizontal" id="editCreditamount_form" method="post">
+        			<input type="hidden" id="id" name=""/>
+    				<div class="form-group">
+    				    <label for="form-field-1" class="col-sm-3 control-label no-padding-right">借款人：</label>
+    				    <div class="col-sm-9">
+                            <div class="clearfix borrower_info" style="text-align:left;">
+                            </div>
+                        </div>
+	    			</div>
+	    			
+	    			<div class="form-group">
+    				    <label for="form-field-1" class="col-sm-3 control-label no-padding-right">授信额：</label>
+    				    <div class="col-sm-9">
+                            <div class="clearfix">
+                            	<input type="text" name="creditAmount" id="borrowercredit_creditAmount" placeholder="" class="col-xs-10 col-sm-5" 
+                            		datatype="/^[1-9]*[1-9][0-9]*(.[0-9]{1,10})?$|^0(.[0-9]{1,10})?$/" errormsg= "授信额必须为大于等于0数字">
+                            </div>
+                        </div>
+	    			</div>
+	    			
+            	</form>
+            </div>
+			<div class="modal-footer">
+                <button type="button" id="btn_editCreditamount" class="btn btn-primary">确定</button> 
+				<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>

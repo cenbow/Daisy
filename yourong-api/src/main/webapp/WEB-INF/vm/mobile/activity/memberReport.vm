@@ -1,0 +1,79 @@
+##周年庆会议邀请
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$m_css_url/modules/login.css","$m_css_url/activity/memberReport.css"])
+##set($js_url=["$m_js_url/landing/memberReport.js"])
+##header
+<h2 class="u-header f-pos-r">
+    <a href="$m_url">返回</a>
+    <span class="f-fs18">
+        有融网一周年庆
+    </span>
+</h2>
+##/header
+##content
+<div class="m-memberReport-body">
+    <h2>报名规则</h2>
+    <h5>1.报名对象：<span>有融网用户；</span></h5>
+    <h5>2.报名方式：<span></span></h5>
+    <div class="m-memberReport-way">
+        <p class="f-pos-r"><i class="u-way-pc"></i><span>网站报名：通过有融网官网活动专题页在线报名;</span></p>
+        <p class="f-pos-r"><i class="u-way-tel"></i><span>电话报名：致电客服热线400-025-6688人工报名;</span></p>
+        <p class="f-pos-r"><i class="u-way-wechat"></i><span>微信报名：搜索微信公众号“有融网”，添加关注，
+            回复“ 我要报名+姓名+手机号+所在省市+出行方式 ”
+            进行报名（如：我要报名+许仙+13800012345+浙江
+            杭州+汽车）;</span></p>
+    </div>
+    <h5>3.报名截止时间：</h5>
+    <span>2015年10月8日23:59:59；</span>
+    <h5>4.受邀人数：<span>50位。</span></h5>
+    <p>
+        温馨提示：报名结果将于2015年10月10日通过官方公告
+        及微信公布，您也可以致电客服查询报名情况。
+    </p>
+    <a>去官网报名</a>
+</div>
+##/content
+
+
+
+
+
+##<section class="g-bd">
+##    <form id="memberReport_form" method="POST" class="m-reg-form j-validform">
+##        #CSRFToken('xToken')
+##        <input type="hidden" id="j-reg-mobile"/>
+##        <div class="u-tips-login f-dn" id="j-sinapay-error">
+##
+##        </div>
+##        <div class="u-ipt-group f-pos-r">
+##            <input type="text" name="trueName" class="f-round u-ipt-text f-w350" placeholder="真实姓名" value=""/>
+##            <span class='m-val-tips'></span>
+##            <div class="f-mob-sha f-dn" id="j-mobile"></div>
+##        </div>
+##        <div class="u-ipt-group">
+##            <input type="text" name="mobile" class="f-round u-ipt-text f-w350 " placeholder="手机号码" value=""/>
+##            <input type="hidden" name="id" value="$!{id}" class="f-round u-ipt-text f-w390" placeholder="手机号码" />
+##        </div>
+##        <div class="u-ipt-group">
+##            <input type="text" name="province" class="f-round u-ipt-text f-w350 " placeholder="所在省份" />
+##            <input type="hidden" name="id" value="$!{id}" class="f-round u-ipt-text f-w390" placeholder="所在省份" />
+##        </div>
+##        <div class="u-ipt-group">
+##            <input type="text" name="travelMode" class="f-round u-ipt-text f-w350 " placeholder="出行方式" />
+##            <input type="hidden" name="id" value="$!{id}" class="f-round u-ipt-text f-w390" placeholder="出行方式" />
+##        </div>
+##        <input id="memberIdentity_form_button"   type="button" value="报名" class="u-reg-btn" />
+##    </form>
+##</section>
+
+###set($pageScript="
+##<script src='$res_url/lib/js/jquery.min.js'></script>
+####<script src='$res_url/lib/js/validform.js'></script>
+##<script>
+##    seajs.config({
+##        preload:['base','validform']
+##    });
+##    seajs.use('$m_js_url/landing/memberReport.js');
+##</script>
+##")

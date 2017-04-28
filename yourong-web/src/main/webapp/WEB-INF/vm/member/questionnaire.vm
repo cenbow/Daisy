@@ -1,0 +1,227 @@
+##风险评估问卷
+#parse("/common/common.vm")
+#set($title="会员投资风险承受能力评估问卷_$!{title_suffix}")
+
+##页面入口标识
+#set($entry=["member","questionnaire"])
+
+#set($css_url=[ "$root_css_url/post/questionnaire.css"])
+<style>
+
+</style>
+
+
+#if($currentUser)
+    #set($logined=true)
+#else
+    #set($logined=false)
+#end
+#CSRFToken('xToken')
+
+<div class="m-questionnaire-bd"></div>
+##上半部分
+<div class="m-questionnaire-up">
+    <div class="g-wrap">
+        <div class="u-questionnaire-text">
+            <h2>尊敬的有融网会员：</h2>
+            <p><strong>为了便于您了解自身的风险承受能力，选择合适的理财产品，</strong>请您填写以下评估问卷，有融网承诺对您的<strong>所有个人资料保密</strong>。下列问题可协助评估您对理财产品及投资目标
+
+                等相关风险的态度。请根据您的实际情况，选择相关选项，我们将根据您的答案评估您的投资风险承受能力，建议您<strong>投资与自己的风险承受能力相匹配的理财产品</strong>。为了及
+
+                时了解您的投资风险承受能力，我们建议您定期评估。</p>
+        </div>
+    </div>
+</div>
+##下半部分
+<div class="m-questionnaire-bottom" id="j-qn-list">
+    <div class="g-wrap f-cf">
+        <div class="u-questionnaire-page">
+            <span class="z-current">1</span>
+            <span>2</span>
+            <span>3</span>
+            <span>4</span>
+        </div>
+        <div class="m-question" id="j-questionnaire-question">
+            <ul>
+                <li class="f-db" id="j-first-li" data-page="1">
+                    <div class="u-questionnaire-No1 u-questionnaire-question">
+                        <h4>
+                            <span>0<em>1</em></span>
+                            <p>您的家庭年收入为<em>（税后折合人民币）</em>？</p>
+                        </h4>
+                        <div>
+
+                                <div class="u-questionnaire-money f-cf">
+                                    <span>100万</span>
+                                    <span>75万</span>
+                                    <span>50万</span>
+                                    <span>25万</span>
+                                </div>
+                                <div class="u-questionnaire-data j-qn-chart">
+                                    <span class="u-data-01"></span>
+                                    <span class="u-data-02"></span>
+                                    <span class="u-data-03"></span>
+                                    <span class="u-data-04"></span>
+                                </div>
+                            </div>
+                        <div class="u-questionnaire-radio j-qn-radio">
+                                <label><input name="box_0" type="radio" value="1" /> <span>10万以下</span></label>
+                                <label><input name="box_0" type="radio" value="2" /> <span>10-50万</span></label>
+                                <label><input name="box_0" type="radio" value="3" /> <span>50-100万</span></label>
+                                <label><input name="box_0" type="radio" value="4" /> <span>100万以上</span></label>
+                            </div>
+
+                    </div><div class="u-questionnaire-No2 u-questionnaire-question">
+                        <h4>
+                            <span>0<em>2</em></span>
+                            <p>在您的家庭年收入中，可用于投资
+                                <br><em>（储蓄存款除外）</em>的比例为？</p>
+                        </h4>
+                        <div class="u-questionnaire-pro">
+                            <div>
+                                <label><input name="box_1" type="radio" value="1" /></label>
+                                <div class="u-pro-01 j-qn-text"><span></span><em>小于10%</em></div>
+                            </div>
+                            <div>
+                                <label><input name="box_1" type="radio" value="2" /></label>
+                                <div class="u-pro-02 j-qn-text"><span></span><em>10%至25%</em></div>
+                            </div>
+                            <div>
+                                <label><input name="box_1" type="radio" value="3" /></label>
+                                <div class="u-pro-03 j-qn-text"><span></span><em>26%至50%</em></div>
+                            </div>
+                            <div>
+                                <label><input name="box_1" type="radio" value="4" /></label>
+                                <div class="u-pro-04 j-qn-text"><span></span><em>大于50%</em></div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li data-page="2">
+                    <div class="u-questionnaire-No3 u-questionnaire-question">
+                        <h4>
+                            <span>0<em>3</em></span>
+                            <p>以下哪项最能说明您的投资经验？</p>
+                        </h4>
+                        <div>
+                            <label><input name="box_2" type="radio" value="1" /><span class="z-current">除存款、国债外，我几乎不投资其他金融产品</span></label>
+                            <label><input name="box_2" type="radio" value="2" /><span>大部分投资于存款、国债等，较少投资于股票、基金等风险产品</span></label>
+                            <label><input name="box_2" type="radio" value="3" /><span>资产均衡地分布于存款、国债、银行理财产品、信托产品、股票、基金等</span></label>
+                            <label><input name="box_2" type="radio" value="4" /><span>大部分投资于股票、基金、外汇等高风险产品，较少投资于存款、国债</span></label>
+                        </div>
+                    </div><div class="u-questionnaire-No4 u-questionnaire-question">
+                        <h4>
+                            <span>0<em>4</em></span>
+                            <p>您有多少年投资股票、基金、外汇、<br>金融衍生产品等风险投资品的经验？</p>
+                        </h4>
+                    <div>
+                        <div>
+                            <div class="u-questionnaire-money f-cf">
+                                <span>8年</span>
+                                <span>6年</span>
+                                <span>4年</span>
+                                <span>2年</span>
+                            </div>
+                            <div class="u-questionnaire-data j-qn-chart">
+                                <span class="u-data-01"></span>
+                                <span class="u-data-02"></span>
+                                <span class="u-data-03"></span>
+                                <span class="u-data-04"></span>
+                                <span class="u-data-05"></span>
+                            </div>
+                        </div>
+                        <div class="u-questionnaire-radio j-qn-radio">
+                            <label><input name="box_3" type="radio" value="1" /> <span>没有经验</span></label>
+                            <label><input name="box_3" type="radio" value="2" /> <span>少于两年</span></label>
+                            <label><input name="box_3" type="radio" value="3" /> <span>2-5年</span></label>
+                            <label><input name="box_3" type="radio" value="4" /> <span>5-8年</span></label>
+                            <label><input name="box_3" type="radio" value="5" /> <span>8年以上</span></label>
+                        </div>
+                    </div>
+                    </div>
+                </li>
+                <li data-page="3">
+                    <div class="u-questionnaire-No3 u-questionnaire-question">
+                        <h4>
+                            <span>0<em>5</em></span>
+                            <p>以下哪项最能说明您的投资经验？</p>
+                        </h4>
+                        <div>
+                            <label><input name="box_4" type="radio" value="1" /><span class="z-current">厌恶风险，不希望本金损失，希望获得稳定回报</span></label>
+                            <label><input name="box_4" type="radio" value="2" /><span>保守投资，不希望本金损失，愿意承担一定幅度的收益波动</span></label>
+                            <label><input name="box_4" type="radio" value="3" /><span>寻求资金的较高收益和成长性，愿意为此承担有限本金损失</span></label>
+                            <label><input name="box_4" type="radio" value="4" /><span>希望赚取高回报，能接受为期较长期间的负面波动，包括本金损失</span></label>
+                        </div>
+                    </div><div class="u-questionnaire-No3 u-questionnaire-question">
+                        <h4>
+                            <span>0<em>6</em></span>
+                            <p>您的投资目的与期望值是？</p>
+                        </h4>
+                        <div>
+                            <label><input name="box_5" type="radio" value="1" /><span class="z-current">资产保值，与银行同期存款利率大体相同</span></label>
+                            <label><input name="box_5" type="radio" value="2" /><span>资产稳健增长，略高于银行定期存款利率</span></label>
+                            <label><input name="box_5" type="radio" value="3" /><span>资产迅速增长，远超银行定期存款利率</span></label>
+                        </div>
+                    </div>
+                </li>
+                <li data-page="4">
+                    <div class="u-questionnaire-No7 u-questionnaire-question u-left">
+                        <h4>
+                            <span>0<em>7</em></span>
+                            <p>您的投资出现何种程度的波动时，<br>您会呈现明显的焦虑？</p>
+                        </h4>
+                        <div class="u-questionnaire-pro">
+                            <div>
+                                <label><input name="box_6" class="z-left" type="radio" value="1" /></label>
+                                <div class="u-pro-01 j-qn-text"><span></span><em>本金无损失，但收益未达预期</em></div>
+                            </div>
+                            <div>
+                                <label><input name="box_6" class="z-left" type="radio" value="2" /></label>
+                                <div class="u-pro-02 j-qn-text"><span></span><em>出现轻微本金损失</em></div>
+                            </div>
+                            <div>
+                                <label><input name="box_6"  class="z-left" type="radio" value="3" /></label>
+                                <div class="u-pro-03 j-qn-text"><span></span><em>本金10%以内的损失</em></div>
+                            </div>
+                            <div>
+                                <label><input name="box_6" class="z-left" type="radio" value="4" /></label>
+                                <div class="u-pro-04 j-qn-text"><span></span><em>本金20%-50%的损失</em></div>
+                            </div>
+                            <div>
+                                <label><input name="box_6" class="z-left" type="radio" value="5" /></label>
+                                <div class="u-pro-05 j-qn-text"><span></span><em>本金50%以上的损失</em></div>
+                            </div>
+                        </div>
+                    </div><div class="u-questionnaire-No3 u-questionnaire-question u-right">
+                    <h4>
+                        <span>0<em>8</em></span>
+                        <p>您期望的投资年收益率？</p>
+                    </h4>
+                    <div>
+                        <label><input name="box_7"  class="z-right" type="radio" value="1" /><span class="z-current">高于同期定期存款</span></label>
+                        <label><input name="box_7" class="z-right"  type="radio" value="2" /><span>5%左右，要求相对风险低</span></label>
+                        <label><input name="box_7"  class="z-right" type="radio" value="3" /><span>5%-15%，可承受中等风险</span></label>
+                        <label><input name="box_7" class="z-right" type="radio" value="4" /><span> 15%以上，可承担较高风险</span></label>
+                    </div>
+                </div>
+                </li>
+            </ul>
+        </div>
+        <a class="u-submit-btn" id="j-submit-gray">提交问卷</a>
+        <a class="u-submit-btn z-current f-dn" id="j-submit-red">提交问卷</a>
+    </div>
+</div>
+##结果
+<div class="m-questionnaire-bottom f-dn" id="j-qn-result">
+    <div class="g-wrap f-cf">
+        <div class="u-questionnaire-result">
+            <h4>投资风险评测结果</h4>
+            <div>
+                <h5 id="j-result-h5"></h5>
+                <p id="j-result-text"></p>
+                <span> 风险提示：投资需承担各类风险，可能遭受资金损失。理财有风险，投资需谨慎。</span>
+                <div class="u-result-btn"><a target="_blank" href="/products/list-all-all-investing-1-createTimeAsc-1.html">立即投资</a><a href="/member/questionnaire">重新测评</a></div>
+            </div>
+        </div>
+    </div>
+</div>

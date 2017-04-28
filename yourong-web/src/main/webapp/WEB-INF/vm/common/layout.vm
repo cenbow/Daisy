@@ -1,0 +1,389 @@
+##外部框架页面
+#parse('/common/common.vm')
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN" xml:lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+    <link rel="shortcut icon" href="$root_url/favicon.ico"/>
+    <title>#if($title) $title #else 有融网-全透明的互联网理财优选平台！  #end</title>
+    <meta name="keywords" content="#if($keywords) $keywords #else 债权转让,债权交易,互联网金融,金融信息服务,有融网   #end"/>
+    <meta name="description"
+          content="#if($description) $description #else 有融网运用高效的运营管理体系和创新的互联网思维搭建了一个专业、安全、透明的债权信息披露媒介。  #end"/>
+    <meta name="baidu-site-verification" content="3Cqhn8z35m"/>
+##微博验证
+    <meta property="wb:webmaster" content="aaa54585555ecccb"/>
+
+##加载模块内的CSS文件
+    #parse('/common/style.vm')
+    #if($!css_url)
+        #foreach($src in $css_url)
+            <link rel="stylesheet" href="$src?v=${sysServiceUtil.getStaticResourceVersion()}"/>
+        #end
+    #end
+##春节对联
+    #set($serverDateTime=${dateUtil.getCurrentDate().getTime()})
+    #set($startTime=1484881726652)
+    #set($endTime=1486742399000)
+    #set($hasSetPayPassword=${servletUtil.synPayPasswordFlag()})
+</head>
+
+<body>
+##新浪紧急通知Banner
+
+    #parse('/modules/common/sinapayNotice.vm')
+<!-- 头部 -->
+<div class="g-hd f-cb">
+    <div class="u-menu-wrap">&nbsp;</div>
+    <!-- 顶部菜单 -->
+    <div class="g-wrap m-menu">
+        <div class="g-grid-row f-pos-r">
+            <div class="g-grid-9 u-hotline">
+              <a href="http://www.zjex.com.cn/view/company.php?func=detail&recid=FABE5A8A-B6FF-4EC2-9BDD-E2624EB46A03&companycode=851716"
+                 target="_blank">企业代码：<span
+                      class="f-fs16 f-fwb">851716</span></a>&nbsp;&nbsp;
+                客服热线：<span class="f-fs16 f-fwb">400-025-6688</span>
+            </div>
+            <div class="g-grid-16 f-tar u-menu">
+
+                <div class="u-menu-mobile g-grid-6 f-tal">
+                        <span class="" >
+							关注我们<a href="http://weibo.com/5248978316/" target="_blank" class="u-mIcon-sina"></a>
+                            <i data-imgurl="/static/img/common/weixin_qrcode.jpg" data-direction="centerbottom" class="u-mIcon-wechat j-app-qrcode" id="j-mIcon-wechat" ></i>
+                        </span>
+                    #if($isDev)
+                        <span class="j-app-qrcode" data-imgurl="/static/img/common/QR_code_test.png" data-direction="centerbottom">
+                        <a href="$root_url/activity/mobilePhoneApp" target="_blank">手机上有融</a>
+						<a href="javascript:void(0)" class="u-mIcon-app" data-direction="centerbottom"></a>
+						</span>
+                    #else
+                        <span class="j-app-qrcode" data-imgurl="/static/img/common/QR_code.png" data-direction="centerbottom">
+                            <a href="$root_url/activity/mobilePhoneApp" target="_blank">手机上有融</a>
+						<a href="javascript:void(0)" class="u-mIcon-app" data-direction="centerbottom"></a>
+						</span>
+                    #end
+
+                </div>
+                您好，
+                #if($currentUser)
+                    <a href="$root_url/memberBalance/home" title="会员中心">
+                        #if($currentUser.username)
+								$currentUser.username
+							#else
+                            $stringUtil.maskMobile($currentUser.mobile)
+                        #end
+                    </a>
+                #end
+                欢迎来到有融网！
+                #if($currentUser)
+                    <a href="$root_url/member/logout" title="退出当前账号">退出</a>
+                #end
+                | <a href="$root_url/post/help/question.html">帮助中心</a>
+                | <a href="$root_url/post/newSixGift/index">新手红包</a>
+
+            </div>
+        </div>
+    </div>
+    <!-- /顶部菜单 -->
+    <div class="u-header-bottom">&nbsp;</div>
+    <div class="g-wrap f-pos-r">
+        <div class="g-grid-row f-pos-r">
+            #if($!{isMobile})
+                #set($home_link=$root_url+"/?fromMobile")
+            #else
+                #set($home_link=$root_url+"/")
+            #end
+
+            <h1 class="g-grid-6">
+            ##节日/活动logo
+                #if($serverDateTime<$endTime&&$serverDateTime>$startTime)
+                ## 国资背景
+                    <span></span>
+                    <a href="$home_link" class="u-fade-hotlink"></a>
+                    <a class="u-nationalDay-logo" href="$root_url/activity/joinPart"><img
+                            src="/static/img/activity/chookYear/chookYearLogo.png" alt="国资背景"/></a>
+                #else
+                ##                    国资背景年后又要上
+                    <span></span>
+                    <a href="$root_url/activity/joinPart" class="u-fade-hotlink"></a>
+                    <a class="u-nationalDay-logo" href="$home_link"><img
+                            src="https://yrstatic.oss-cn-hangzhou.aliyuncs.com/static/img/common/logo.gif" alt="国资背景" style="margin-left: -25px"/></a>
+                ##A轮相关
+                ##                    <span></span>
+                ##                    <a href="$root_url/activity/againReview" class="u-fade-hotlink"></a>
+                ##                    <a class="u-Festival-logo" href="$home_link"><img src="https://yrimg.oss-cn-hangzhou.aliyuncs.com/img/Again-logo.gif" alt=""/></a>
+                #end
+            ##                    原始图片和链接
+            ##                    <a class="u-logo" id="j-link-logo" href="$home_link">有融网</a>
+
+            </h1>
+            <!-- 导航 -->
+            <ul class="g-grid-12 m-nav">
+                <li><a href="$home_link" id="j-link-home">首页</a></li>
+                <li><a class="$!{isProductsNavi} " href="#">理财项目</a>
+                    <ul class="u-subnav f-dn">
+                        <li>
+                            <a #if(${projectUtils.isInvestingProjectByProject()})
+                               href="$root_url/products/list-all-all-investing-1-createTimeDesc-1.html" #else
+                               href="$root_url/products/list-all-all-all-1-createTimeDesc-1.html"#end>理财项目</a>
+                        </li>
+                        <li>
+                            <a #if(${projectUtils.isInvestingProjectByProject()})
+                                href="$root_url/products/list-all-all-investing-1-createTimeDesc-1.html" #else
+                                href="$root_url/products/list-all-all-all-1-createTimeDesc-1.html"#end>理财专区</a></li>
+                        <li>
+                            <a href="$root_url/products/list-all-all-investing-2-createTimeDesc-1.html">转让专区</a></li>
+                    </ul>
+                </li>
+            ##                <li><a class="$!{isSinaPayNavi}  " href="$root_url/activity/sinapay">新浪存钱罐</a></li>
+                <li><a class="$!{isSafetyNavi} " href="$root_url/post/subject/safetyAssurance.html">安全保障</a></li>
+                <li><a class="$!{isAboutNavi} " href="$root_url/about/index.html">关于有融</a></li>
+            </ul>
+            <!-- /导航 -->
+            <!-- 用户菜单 -->
+            #if(!$currentUser)
+                <div class="g-grid-7 f-tar m-login-top">
+                    <a href="$root_url/security/login/" class="u-btn-login f-round">登录</a>
+                    <a href="$root_url/security/register/" class="u-btn-register f-round">注册</a>
+                    <a href="$root_url/security/login/" class="u-circle-12 f-ff-ver u-btn-sign">签到</a>
+                    <span class="u-circle-12 f-ff-ver">送518大礼包</span>
+                </div>
+            #else
+                <div id="j-user-menu" class="m-user-menu f-round">
+                    <a href="$root_url/member/home">
+                        <div class="u-user-photo">
+                            <img src="#getMemberAvatar(${servletUtil.getUserDo.id},"40x40")" alt="photo"/>
+                            <s></s>
+                        </div>
+                    </a>
+                    <a href="$root_url/member/home">
+							<span class="u-user-name f-fs14">
+
+                                #if($currentUser.username && $currentUser.username!="")
+                                    <span id="j-username">$currentUser.username</span>
+                                    #if(!${servletUtil.isChecked()})
+                                        <em class="u-btn-sign u-circle-12" id="j-checkin-btn">签到</em>
+                                    #end
+                                #else
+                                    <span id="j-username">$stringUtil.maskMobile($currentUser.mobile)</span>
+                                    #if(!${servletUtil.isChecked()})
+                                        <em class="u-btn-sign u-circle-12" id="j-checkin-btn">签到</em>
+                                    #end
+                                #end
+
+                            </span>
+
+                    </a>
+
+                    <i></i>
+
+                    <div class="u-user-wrap">
+
+                        #if(${servletUtil.isVerifyTrueName()})
+                            <div class="u-user-amount">
+                                <span>存钱罐可用余额</span>
+                                <em><span class="f-ff-ver f-fs18">￥</span><span
+                                        class="f-ff-din f-fs36">${servletUtil.getPrefixPiggyBalance()}</span><span
+                                        class="f-ff-din f-fs18">${servletUtil.getSuffixPiggyBalance()}</span></em>
+
+                                #if($hasSetPayPassword!=1)
+                                    <a class="j-toSetPassword u-circle-12" href="javascript:void(0);">充值</a>
+                                    <a class="j-toSetPassword u-circle-12 u-user-withdrawBtn" href="javascript:void(0);">提 现</a>
+                                #else
+                                    <a href="$root_url/memberBalance/rechargePage" class="u-circle-12 ">充值</a>
+                                    <a href="$root_url/memberBalance/withdrawPage" class="u-circle-12 u-user-withdrawBtn">提 现</a>
+                                #end
+                            </div>
+                        #else
+                            <div class="u-user-amount u-user-sinapay">
+                                <span>新浪支付存钱罐</span>
+                                <a class="f-round f-fs14 f-btn-m u-btn u-btn-primary u-sinapay-btn"
+                                   href="$root_url/member/sinapay">立即开通</a>
+                            </div>
+                        #end
+                        <ul>
+                            <li><a href="$account_url[0]">账户概览</a></li>
+                            <li><a href="$transaction_url[1]">我的投资</a></li>
+                            <li class="u-user-coupon"><a href="$coupon_url[2]">我的优惠</a>
+                                #if(${servletUtil.getCouponCount()}>0)
+                                    <span class="u-circle-7 f-ff-ver">${servletUtil.getCouponCount()}</span>
+                                #end
+                            </li>
+                            <li><a href="/member/capitalInOutLog">资金记录</a></li>
+                            <li><a href="$root_url/member/logout">安全退出</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+            #end
+            <!-- /用户菜单 -->
+        </div>
+        <!-- 消息提醒 -->
+        #if($isInvestment=='true')
+            <a class="u-umsg-notice f-dn" id="j-umsg-notice" href="$root_url/member/messages">您有&nbsp;<span
+                    id="j-umsg-number"></span>&nbsp;条消息,点击查看</a>
+        #else
+
+            #if($!{servletUtil.getUnsignContractNum()}>0)
+                <a class="u-umsg-notice z-hidden" id="j-umsg-notice" href="$root_url/transaction/investment">您有&nbsp;$!{servletUtil.getUnsignContractNum()}&nbsp;份协议尚未签署</a>
+            #else
+                <a class="u-umsg-notice z-hidden" id="j-umsg-notice" href="$root_url/member/messages">您有&nbsp;<span
+                        id="j-umsg-number"></span>&nbsp;条消息,点击查看</a>
+            #end
+        #end
+
+
+
+
+
+        <!-- /消息提醒 -->
+    </div>
+</div>
+<!-- /头部 -->
+<!-- 内容 -->
+<div class="g-bd f-mh500 f-cf">
+    $screen_content
+</div>
+<!-- /内容 -->
+<!-- 底部 -->
+<div class="g-ft">
+    <!-- 向导 -->
+    <div class="m-guide">
+        <div class="g-wrap g-grid-row">
+            <dl class="g-grid-3">
+                <dt><strong><a href="/about/index.html">关于有融</a></strong></dt>
+                <dd><a href="$root_url/about/cooperator">合作伙伴</a></dd>
+                <dd><a href="$root_url/about/index.html#contactUs">联系有融</a></dd>
+                <dd><a href="$root_url/about/join">加入我们</a></dd>
+                <dd><a href="$root_url/post/help/question.html">帮助中心</a></dd>
+            </dl>
+            <dl class="g-grid-3">
+                <dt><strong><a href="/post/subject/safetyAssurance.html">安全保障</a></strong></dt>
+                <dd><a href="$root_url/post/subject/safetyAssurance.html#mini-nav1">项目安全</a></dd>
+                <dd><a href="$root_url/post/subject/safetyAssurance.html#mini-nav2">资金安全</a></dd>
+                <dd><a href="$root_url/post/subject/safetyAssurance.html#mini-nav3">技术安全</a></dd>
+                <dd><a href="$root_url/post/subject/safetyAssurance.html#mini-nav4">法律保障</a></dd>
+            </dl>
+
+            <dl class="g-grid-4">
+                <dt>有融网微信公众号</dt>
+                <dd><img src="/static/img/v2/homepage/WeChat_twoDimensionCode.png" alt="有融网微信公众号"/></dd>
+            </dl>
+            <dl class="g-grid-4">
+                <dt>有融网APP</dt>
+                <dd><img src="/static/img/v2/homepage/APP_twoDimensionCode20151105.png" alt="有融网APP"/></dd>
+            </dl>
+            <dl class="g-grid-6 m-contact-info">
+                <dt><strong>全国服务热线</strong></dt>
+                <dd>
+                    <span class="f-ff-din f-lh-1em">400<i></i>025<i></i>6688</span>
+                    <br/>
+                    #set($curMonth=$dateUtil.getMonth($dateUtil.getCurrentDate()))
+                    #if($curMonth<5||$curMonth>9)
+                        <em>工作日: 9:00-20:00</em>节假日: <em>9:30-17:30 </em>
+                    #else
+                        <em>工作日: 9:00-20:00</em>节假日: <em>9:30-18:00 </em>
+                    #end
+                </dd>
+                <dd><a class="u-qq-service u-circle-15" href="http://wpa.b.qq.com/cgi/wpa.php?ln=2&uin=4000266688"
+                       target="_blank"><i></i>在线客服</a></dd>
+            </dl>
+        </div>
+    </div>
+    <!-- /向导 -->
+    <div class="m-copyright" style="height:75px">
+        <div class="g-wrap">&copy;&nbsp;2014-2016&nbsp;YRW.COM&nbsp;浙江小融网络科技股份有限公司 版权所有&nbsp;&nbsp;浙ICP备14032974号-3
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ICP经营许可证：浙B2-20150596&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            "国家信息系统安全等级保护”三级认证</div>  <p style="text-align: center;margin-top:-30px;">理财有风险 投资需谨慎</p>
+    </div>
+##信誉认证
+    <div class="m-certification">
+        <div class="g-wrap f-cf">
+            <a class="u-jywzba" href="http://www.zca.gov.cn/query_details-0-16440.html " target="_blank"></a>
+            <a class="u-aqlm"  logo_type="business" href="http://v.pinpaibao.com.cn/authenticate/cert/?site=www.yrw.com&at=business" target="_blank">
+            </a>
+            <a class="u-kxwz" href="https://ss.knet.cn/verifyseal.dll?sn=e15012633010057509kqza000000&comefrom=trust&trustKey=dn&trustValue=www.yrw.com" target="_blank">
+            </a>
+            <a class="u-cxwz" id="___szfw_logo___" href="https://search.szfw.org/cert/l/CX20150126006502006601" target="_blank">
+            </a>
+            <a class="u-hyrz" href="http://si.trustutn.org/info?sn=169150603000188543452"  target="_blank">
+            </a>
+            <a class="u-wxrz" href="http://www.itrust.org.cn/yz/pjwx.asp?wm=1311322832" target="_blank">
+            </a>
+            <a class="u-ntaq" href="https://sealinfo.verisign.com/splash?form_file=fdf/splash.fdf&dn=www.yrw.com&lang=zh_cn" target="_blank">
+            </a>
+        </div>
+    </div>
+
+</div>
+<!-- /底部 -->
+
+##通用签到
+#if($currentUser)
+    #set($popularityValue=$servletUtil.getBirthdayPopularityVaule())##今天签到的点数
+    #set($isBirthday=($currentUser.isBirthday&&${servletUtil.isBirthdayActivity()}))
+    #if(!${servletUtil.isChecked()})
+    <div id="j-checkin-box" class="m-checkin-box #if($isBirthday)z-birthday#end j-floatlayer f-dn">
+        <button id="j-checkin-close"></button>
+        <div class="u-dice-wrap">
+            <div class="u-dice-action f-dice-margin128" id="j-dice-action"></div>
+        </div>
+        <p class="f-fs15 f-dn">恭喜您获得&nbsp;<span class="#if(!$isBirthday)f-fs30 #end j-checkin-point">&nbsp;&nbsp;</span>&nbsp;点人气值
+            <br />
+            #if($isBirthday)
+                超值神秘礼包已发放至您的账户<br/><a href="$root_url/coupon/couponList" class="f-fs12">点此查看</a>
+            #else
+                <a href="$root_url/coupon/reputation" class="f-fs12">查看我的人气值</a>
+            #end
+        </p>
+    </div>
+    #end
+#end
+##/通用签到
+
+##JS加载
+#if($!{entry.size()})
+    #parse('/modules/common/jsload.vm')
+#else
+    #parse('/modules/common/script.vm')
+#end
+
+##Banner倒计时
+<style>
+    .u-anniversaryCountdown{
+        position: absolute;
+        left: 0;
+        font-size: 40px;
+        left: 50%;
+        bottom: 60px;
+        margin-left: 105px;
+        color: #fff;
+    }
+</style>
+<script>
+    (function(){
+        var currentTime = ${dateUtil.getCurrentDate().getTime()},
+                targetTime = +new Date('2016/11/19 00:00:00'),
+                days = Math.ceil((targetTime-currentTime)/8.64E7)
+        $('#j-focus-show').find('[data-effect=anniversaryCountdown]')
+                .append('<em class="u-anniversaryCountdown">'+days+'天</em>')
+    })()
+</script>
+
+##网站统计
+#if(!$isDev)
+    #parse('/modules/common/stats.vm')
+#end
+
+##跳转到设置支付密码弹窗
+#if($currentUser)
+    #parse('/member/paymentCipherBlock.vm')
+#end
+
+
+
+</body>
+
+</html>
+

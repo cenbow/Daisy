@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.mc.dao.ActivityLotteryMapper" >
+  <resultMap id="BaseResultMap" type="ActivityLottery" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="activity_id" property="activityId" jdbcType="BIGINT" />
+    <result column="member_id" property="memberId" jdbcType="BIGINT" />
+    <result column="total_count" property="totalCount" jdbcType="INTEGER" />
+    <result column="real_count" property="realCount" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="cycle_constraint" property="cycleConstraint" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, activity_id, member_id, total_count, real_count, remark, create_time, update_time, cycle_constraint
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from mc_activity_lottery
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from mc_activity_lottery
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="ActivityLottery" >
+    insert into mc_activity_lottery (id, activity_id, member_id, 
+      total_count, real_count, remark, 
+      create_time, update_time)
+    values (#{id,jdbcType=BIGINT}, #{activityId,jdbcType=BIGINT}, #{memberId,jdbcType=BIGINT}, 
+      #{totalCount,jdbcType=INTEGER}, #{realCount,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="ActivityLottery" >
+    insert into mc_activity_lottery
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="activityId != null" >
+        activity_id,
+      </if>
+      <if test="memberId != null" >
+        member_id,
+      </if>
+      <if test="totalCount != null" >
+        total_count,
+      </if>
+      <if test="realCount != null" >
+        real_count,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="cycleConstraint != null">
+      	cycle_constraint,
+      </if>
+        create_time,
+        update_time
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="activityId != null" >
+        #{activityId,jdbcType=BIGINT},
+      </if>
+      <if test="memberId != null" >
+        #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="totalCount != null" >
+        #{totalCount,jdbcType=INTEGER},
+      </if>
+      <if test="realCount != null" >
+        #{realCount,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="cycleConstraint != null">
+      	#{cycleConstraint,jdbcType=VARCHAR},
+      </if>
+		now(), now()
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="ActivityLottery" >
+    update mc_activity_lottery
+    <set >
+      <if test="activityId != null" >
+        activity_id = #{activityId,jdbcType=BIGINT},
+      </if>
+      <if test="memberId != null" >
+        member_id = #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="totalCount != null" >
+        total_count = #{totalCount,jdbcType=INTEGER},
+      </if>
+      <if test="realCount != null" >
+        real_count = #{realCount,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="ActivityLottery" >
+    update mc_activity_lottery
+    set activity_id = #{activityId,jdbcType=BIGINT},
+      member_id = #{memberId,jdbcType=BIGINT},
+      total_count = #{totalCount,jdbcType=INTEGER},
+      real_count = #{realCount,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <delete id="batchDelete" parameterType="java.lang.Long" >
+    delete from mc_activity_lottery
+    where id in  <foreach collection="ids" index="index" item="item" open="(" separator="," close=")"> #{item}  </foreach>  
+  </delete>
+  <select id="findByPage" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from mc_activity_lottery
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = #{map.id}
+        </if>
+        <if test=" map.activityId != null" >
+          activity_id = #{map.activityId}
+        </if>
+        <if test=" map.memberId != null" >
+          member_id = #{map.memberId}
+        </if>
+        <if test=" map.totalCount != null" >
+          total_count = #{map.totalCount}
+        </if>
+        <if test=" map.realCount != null" >
+          real_count = #{map.realCount}
+        </if>
+        <if test=" map.remark != null" >
+          remark = #{map.remark}
+        </if>
+        <if test=" map.createTime != null" >
+          create_time = #{map.createTime}
+        </if>
+        <if test=" map.updateTime != null" >
+          update_time = #{map.updateTime}
+        </if>
+      </where>
+    </if>
+  </select>
+  <sql id="Base_Column_List_Pagin" >
+    t.id  as  id,
+	t.activity_id  as  activity_id,
+	t.member_id  as  member_id,
+	t.total_count  as  total_count,
+	t.real_count  as  real_count,
+	t.remark  as  remark,
+	t.create_time  as  create_time,
+	t.update_time  as  update_time
+  </sql>
+  <select id="selectForPagin" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List_Pagin" />
+    from  (SELECT id FROM  mc_activity_lottery
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = #{map.id}
+        </if>
+        <if test=" map.activityId != null" >
+          activity_id = #{map.activityId}
+        </if>
+        <if test=" map.memberId != null" >
+          member_id = #{map.memberId}
+        </if>
+        <if test=" map.totalCount != null" >
+          total_count = #{map.totalCount}
+        </if>
+        <if test=" map.realCount != null" >
+          real_count = #{map.realCount}
+        </if>
+        <if test=" map.remark != null" >
+          remark = #{map.remark}
+        </if>
+        <if test=" map.createTime != null" >
+          create_time = #{map.createTime}
+        </if>
+        <if test=" map.updateTime != null" >
+          update_time = #{map.updateTime}
+        </if>
+      </where>
+    </if>
+      LIMIT	${map.startRow}, ${map.pageSize}  )  AS a,  mc_activity_lottery AS t FORCE INDEX(PRIMARY) WHERE a.id = t.id   
+  </select>
+  <select id="selectForPaginTotalCount" resultType="java.lang.Integer" >
+    select count(1) 
+    from mc_activity_lottery
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          and id = ${map.id}
+        </if>
+        <if test=" map.activityId != null" >
+          and activity_id = ${map.activityId}
+        </if>
+        <if test=" map.memberId != null" >
+          and member_id = ${map.memberId}
+        </if>
+        <if test=" map.totalCount != null" >
+          and total_count = ${map.totalCount}
+        </if>
+        <if test=" map.realCount != null" >
+          and real_count = ${map.realCount}
+        </if>
+        <if test=" map.remark != null" >
+          and remark = ${map.remark}
+        </if>
+        <if test=" map.createTime != null" >
+          and create_time = ${map.createTime}
+        </if>
+        <if test=" map.updateTime != null" >
+          and update_time = ${map.updateTime}
+        </if>
+      </where>
+    </if>
+  </select>
+  <!-- 更新抽奖次数 -->
+  <update id="updateByActivityAndMember" parameterType="ActivityLottery" >
+    update mc_activity_lottery
+    <set> update_time = now(),
+	    <if test="totalCount != null" >
+	        total_count = total_count + #{totalCount,jdbcType=INTEGER},
+	    </if>
+	    <if test="realCount != null" >
+	        real_count = real_count + #{realCount,jdbcType=INTEGER},
+	    </if>
+	    <if test="remark != null" >
+	        remark = #{remark,jdbcType=VARCHAR},
+	    </if>
+    </set>
+    where activity_id = #{activityId,jdbcType=BIGINT}
+    		and member_id = #{memberId,jdbcType=BIGINT}
+    	<if test="cycleConstraint != null">
+	    	and cycle_constraint = #{cycleConstraint,jdbcType=VARCHAR}
+	    </if>
+  </update>
+  <!-- 查询用户抽奖信息 -->
+  <select id="selectByMemberActivity" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from mc_activity_lottery
+    where  member_id = #{map.memberId} 
+     <if test="map.activityId != null" >
+        and activity_id = #{map.activityId} 
+      </if>
+    <if test=" map.cycleConstraint != null">
+    	and cycle_constraint = #{map.cycleConstraint}
+    </if>
+    <if test=" map.realCount != null">
+    	and real_count = #{map.realCount}
+    </if>
+    <if test=" map.remark != null">
+    	and remark = #{map.remark} 
+    </if> 
+  </select>
+  <!-- 抽奖次数-1 -->
+  <update id="updateRealCount" parameterType="ActivityLottery" >
+    update mc_activity_lottery 
+    set real_count = real_count - 1, update_time = now()
+    where activity_id = #{activityId,jdbcType=BIGINT} and member_id = #{memberId,jdbcType=BIGINT} and  real_count > 0
+    <if test="cycleConstraint != null">
+    	and cycle_constraint = #{cycleConstraint,jdbcType=VARCHAR}
+    </if>
+  </update>
+  <!-- 判断用户是否存在可抽奖记录 -->
+  <select id="checkExistLottery" parameterType="ActivityLottery" resultMap="BaseResultMap">
+  	select 
+    	<include refid="Base_Column_List" />
+    from mc_activity_lottery
+    where activity_id = #{activityId,jdbcType=BIGINT} and member_id = #{memberId,jdbcType=BIGINT}
+    <if test="cycleConstraint != null">
+    	and cycle_constraint = #{cycleConstraint,jdbcType=VARCHAR}
+    </if>
+  </select>
+  <!-- 根据活动ID和会员ID查询抽奖记录 -->
+  <select id="queryLotteryByMemberAndActivity" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from mc_activity_lottery
+    where activity_id = #{map.activityId} and member_id = #{map.memberId}
+  </select>
+  <!-- 锁表-->
+  <select id="getRecordForLock" parameterType="java.lang.Long" resultMap="BaseResultMap">
+  	select 
+    	<include refid="Base_Column_List" />
+    from mc_activity_lottery
+    where id = #{id,jdbcType=BIGINT} for update
+  </select>
+  
+   <select id="countActivityLotteryByActivityId"  resultType="java.lang.Integer" >
+    select count(1) 
+    from mc_activity_lottery 
+     where activity_id = #{activityId,jdbcType=BIGINT} 
+     and cycle_constraint = #{cycleConstraint,jdbcType=VARCHAR}
+  </select>
+  
+   <select id="countActivityLotteryByActivityIdAndCycleConstraint"  resultType="java.lang.Integer" >
+    select count(1) 
+    from mc_activity_lottery 
+     where activity_id = #{activityId,jdbcType=BIGINT} 
+      and member_id = #{memberId,jdbcType=BIGINT} 
+     and cycle_constraint like '%brightOlympic%'
+  </select>
+  
+  <select id="selectActivityLotteryByActivityIdAndCycleConstraint"  resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" /> 
+    from mc_activity_lottery 
+     where activity_id = #{activityId,jdbcType=BIGINT} 
+      and member_id = #{memberId,jdbcType=BIGINT} 
+     and cycle_constraint like '%brightOlympic%'
+  </select>
+  
+  <select id="countActivityLotteryFourByActivityId"  resultType="java.lang.Integer" >
+    select count(1) 
+    from mc_activity_lottery 
+     where activity_id = #{activityId,jdbcType=BIGINT} 
+     and cycle_constraint like '%setOlympic:4%'
+  </select>
+  
+  <select id = "checkCurrentDayFourSet" resultType="java.lang.Integer">
+        select count(1) 
+        from mc_activity_lottery 
+			  where  activity_id = #{activityId,jdbcType=BIGINT}  
+			   and  cycle_constraint like '%setOlympic:4%'
+				 and  create_time <![CDATA[ >= ]]> #{startTime,jdbcType=TIMESTAMP}
+				AND  create_time <![CDATA[ <= ]]> #{endTime,jdbcType=TIMESTAMP}
+    </select >
+    
+    
+     <!-- 统计战队红包领取情况 -->
+  <select id="getLotterRemindCount" parameterType="ActivityLottery" resultMap="BaseResultMap">
+  	select 
+    	sum(l.total_count) as total_count, sum(l.real_count) as real_count 
+    from mc_activity_group as g inner join mc_activity_lottery as l on g.member_id=l.member_id
+    where g.activity_id = #{activityId,jdbcType=BIGINT} and g.group_type = #{groupType,jdbcType=INTEGER}
+    <if test="cycleConstraint != null">
+    	and l.cycle_constraint = #{cycleConstraint,jdbcType=VARCHAR}
+    </if>
+  </select>
+  
+  <select id="countBetTotal"  resultType="java.lang.Integer" >
+    select count(1) 
+    from mc_activity_lottery 
+     where activity_id = #{activityId,jdbcType=BIGINT} 
+     and cycle_constraint = #{cycleConstraint,jdbcType=VARCHAR}
+  </select>
+  
+   <select id="selectActivityLotteryByMemberId"  resultMap="BaseResultMap">
+    select <include refid="M_Column_List" />  
+    from mc_activity_lottery as mc
+    left join ic_project as ic on ic.id=mc.cycle_constraint 
+    
+     where  mc.member_id = #{memberId,jdbcType=BIGINT}  and ic.status in(30,40,50)
+      and  mc.remark = #{remark,jdbcType=VARCHAR}  and  mc.real_count > 0 
+  </select>
+  
+  <sql id="M_Column_List" >
+    mc.id, mc.activity_id, mc.member_id, mc.total_count, mc.real_count, mc.remark, mc.create_time, mc.update_time, mc.cycle_constraint
+  </sql>
+  
+   <select id="sumLotteryNumByMemberId" resultType= "java.lang.Integer">
+  	 select 
+    	sum(real_count) as real_count  
+     from mc_activity_lottery  as mc
+     left join ic_project as ic on ic.id=mc.cycle_constraint 
+     where    ic.status in(30,40,50)
+		<if test="activityId != null">
+	        and mc.activity_id = #{activityId,jdbcType=BIGINT}
+		</if>
+		<if test="memberId != null">
+	        and mc.member_id = #{memberId,jdbcType=BIGINT}
+		</if>
+		<if test="remark != null">
+	        and mc.remark = #{remark,jdbcType=VARCHAR}
+		</if>
+  </select>
+  
+  
+   <!-- 更新抽奖次数 -->
+  <update id="updateByActivityAndMemberAll" parameterType="ActivityLottery" >
+    update mc_activity_lottery
+    <set> update_time = now(),
+	    <if test="totalCount != null" >
+	        total_count = total_count + #{totalCount,jdbcType=INTEGER},
+	    </if>
+	    <if test="realCount != null" >
+	        real_count = 0 ,
+	    </if>
+	    <if test="remark != null" >
+	        remark = #{remark,jdbcType=VARCHAR},
+	    </if>
+    </set>
+    where activity_id = #{activityId,jdbcType=BIGINT}
+    		and member_id = #{memberId,jdbcType=BIGINT}
+    	<if test="cycleConstraint != null">
+	    	and cycle_constraint = #{cycleConstraint,jdbcType=VARCHAR}
+	    </if>
+  </update>
+
+  <select id="queryActivityLotteryByActivityId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List" />
+    FROM mc_activity_lottery WHERE activity_id=#{activityId}
+  </select>
+
+  <select id="queryCountByActivityId" parameterType="java.lang.Long" resultType="java.lang.Integer">
+    SELECT COUNT(1) FROM mc_activity_lottery WHERE activity_id=#{activityId}
+  </select>
+
+  <select id="queryCountMemberReceiveLikeCycle"  resultType="java.lang.Integer" >
+    select count(*)
+    from mc_activity_lottery
+    where activity_id = #{activityId,jdbcType=BIGINT}
+    and member_id = #{memberId,jdbcType=BIGINT}
+    and cycle_constraint like "%"#{cycleConstraint}
+  </select>
+
+  <select id="queryMemberReceiveLikeCycle"  resultMap="BaseResultMap" >
+    select <include refid="Base_Column_List" />
+    from mc_activity_lottery
+    where activity_id = #{activityId,jdbcType=BIGINT}
+    and member_id = #{memberId,jdbcType=BIGINT}
+    and cycle_constraint like "%"#{cycleConstraint}
+  </select>
+</mapper>

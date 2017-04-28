@@ -1,0 +1,218 @@
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$m_css_url/modules/investmentDetail.css"])
+#set($title='投资详情')
+#set($transactionId=$request.getParameter("transactionId"))
+<style>
+    [v-cloak] {
+        display: none;
+    }
+</style>
+<div class="g-wrap" id="j-investmentDetail" v-cloak>
+    <h2 class="u-header f-pos-r">
+        <a href="$siteurl/mCenter/myTransaction">返回</a>
+        <span class="f-fs22" id="j-orderId">
+        投资详情
+    </span>
+    </h2>
+##    项目状态
+    <div v-model="investmentDetailData">
+        <div class="m-contentWrap" v-if="investmentDetailData.investType==2&&investmentDetailData.projectCategory==1">
+            <div class="u-statusNow">
+                <span>当前项目状态：</span>
+                <i v-text="investmentDetailData.directProjectStatus">募集中</i>
+            </div>
+            <div class="m-project-process">
+                <ul class="f-fl">
+                    <li class="u-firstLi"
+                        :class="{'z-complete':investmentDetailData.directProcessStatus=='invested' || investmentDetailData.directProcessStatus=='saleComplated'||investmentDetailData.directProcessStatus=='auditPass'||investmentDetailData.directProcessStatus=='repayed'}">
+                        <img v-if="investmentDetailData.directProcessStatus=='invested' || investmentDetailData.directProcessStatus=='saleComplated'||investmentDetailData.directProcessStatus=='auditPass'||investmentDetailData.directProcessStatus=='repayed' "
+                             src="$res_url/img/member/investmentDetail/order_yes.png" alt="">
+                        <img v-else src="$res_url/img/member/investmentDetail/order_no.png" alt="">
+                        <span :class="{'z-complete':investmentDetailData.directProcessStatus=='invested'}">订单支付</span>
+                    </li>
+
+                    <li class="z-complete j-all"
+                        :class="{'z-complete':investmentDetailData.directProcessStatus=='saleComplated'||investmentDetailData.directProcessStatus=='auditPass' ||investmentDetailData.directProcessStatus=='repayed'}">
+                        <img v-if="investmentDetailData.directProcessStatus=='saleComplated'||investmentDetailData.directProcessStatus=='auditPass' ||investmentDetailData.directProcessStatus=='repayed' "
+                             src="$res_url/img/member/investmentDetail/pepfull_yes.png" alt="">
+                        <img v-else src="$res_url/img/member/investmentDetail/pepfull_no.png" alt="">
+                        <span :class="{'z-complete':investmentDetailData.directProcessStatus=='saleComplated'}">募集满额</span>
+                    </li>
+                    <li :class="{'z-complete':investmentDetailData.directProcessStatus=='auditPass'||investmentDetailData.directProcessStatus=='repayed' }">
+                        <img v-if="investmentDetailData.directProcessStatus=='auditPass'||investmentDetailData.directProcessStatus=='repayed'"
+                             src="$res_url/img/member/investmentDetail/review_yes.png" alt="">
+                        <img v-else src="$res_url/img/member/investmentDetail/review_no.png" alt="">
+                        <span :class="{'z-complete':investmentDetailData.directProcessStatus=='auditPass'}">审核通过</span>
+                    </li>
+                    <li :class="{'z-complete':investmentDetailData.directProcessStatus=='repayed'  }">
+                        <img v-if="investmentDetailData.directProcessStatus=='repayed'"
+                             src="$res_url/img/member/investmentDetail/repayment_yes.png" alt="">
+                        <img v-else src="$res_url/img/member/investmentDetail/repayment_no.png" alt="">
+                        <span :class="{'z-complete':investmentDetailData.directProcessStatus=='repayed'}">还款完成</span>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="m-contentWrap" v-if="investmentDetailData.projectCategory==2">
+            <div class="u-statusNow">
+                <span>当前项目状态：</span>
+                <i v-text="investmentDetailData.directProjectStatus"></i>
+            </div>
+            <div class="m-transaction-process">
+                <ul class="f-fl">
+                    <li class="u-firstLi" :class="{'z-complete':investmentDetailData.directProcessStatus=='transferInvested' || investmentDetailData.directProcessStatus=='transferPerform'||investmentDetailData.directProcessStatus=='transferRepayed'||investmentDetailData.directProcessStatus=='transferFail'}">
+                        <img v-if="investmentDetailData.directProcessStatus=='transferInvested' || investmentDetailData.directProcessStatus=='transferPerform'||investmentDetailData.directProcessStatus=='transferRepayed'||investmentDetailData.directProcessStatus=='transferFail' "
+                                                 src="$res_url/img/member/investmentDetail/order_yes.png" alt="">
+                        <img v-else src="$res_url/img/member/investmentDetail/order_no.png" alt="">
+                        <span :class="{'z-complete':investmentDetailData.directProcessStatus=='transferInvested'}">订单支付</span>
+                    </li>
+
+                    <li :class="{'z-complete':investmentDetailData.directProcessStatus=='transferPerform'||investmentDetailData.directProcessStatus=='transferRepayed' }">
+                        <img v-if="investmentDetailData.directProcessStatus=='transferPerform'||investmentDetailData.directProcessStatus=='transferRepayed' "
+                                                 src="$res_url/img/member/investmentDetail/pepfull_yes.png" alt="">
+                        <img v-else src="$res_url/img/member/investmentDetail/pepfull_no.png" alt="">
+                        <span :class="{'z-complete':investmentDetailData.directProcessStatus=='transferPerform'}">转让成功</span>
+                    </li>
+                    <li :class="{'z-complete':investmentDetailData.directProcessStatus=='transferRepayed'}">
+                        <img v-if="investmentDetailData.directProcessStatus=='transferRepayed'"
+                                                 src="$res_url/img/member/investmentDetail/repayment_yes.png" alt="">
+                        <img v-else  src="$res_url/img/member/investmentDetail/repayment_no.png" alt="">
+                        <span :class="{'z-complete':investmentDetailData.directProcessStatus=='transferRepayed'}">还款完成</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="m-abruptionBlock"></div>
+        <div class="m-contentWrap">
+            <div class="m-investDetail">
+                <span class="u-blockTitle">
+                    投资信息
+                </span>
+                <ul v-if="investmentDetailData.projectCategory==1">
+                    <li>订单编号：<span v-text="investmentDetailData.orderNo"></span></li>
+                    <li>项目名称：<a href="$siteurl/products/detail-{{investmentDetailData.pid}}.html"> <span
+                            v-text="investmentDetailData.name.split('期')[0]"></span>期</a></li>
+                    <li>投资时间：<span
+                            v-text="investmentDetailData.transactionTime | dateFormat 'yyyy-MM-dd hh:mm:ss'"></span>
+                    </li>
+                    <li>年化收益：<span v-text="investmentDetailData.annualizedRate"></span>%</li>
+                    <li v-if="investmentDetailData.extraAnnualizedRate">用收益券：<span
+                            v-text="investmentDetailData.extraAnnualizedRate.toFixed(2)"></span>% <i
+                            v-if="investmentDetailData.extraName">({{investmentDetailData.extraName}})</i></li>
+                    <li v-if="investmentDetailData.investType==2">收益周期：<span
+                            v-text="investmentDetailData.profitPeriod"></span></li>
+                    <li v-if="investmentDetailData.investType==1">收益天数：<span
+                            v-text="investmentDetailData.totalDays"></span>天
+                    </li>
+                    <li>预期收益：&yen; <span v-text="investmentDetailData.totalInterest"></span></li>
+                    <li v-if="investmentDetailData.investType==1">项目到期日：<span v-text="investmentDetailData.endDate | dateFormat 'yyyy-MM-dd'"></span></li>
+                    <li>还款方式：<span v-text="investmentDetailData.profitTypeName"></span></li>
+                    <li v-if="investmentDetailData.usedCouponAmount!=0">使用现金券：&yen; <span
+                            v-text="investmentDetailData.usedCouponAmount"></span></li>
+                ##                    <li v-if="investmentDetailData.extraAnnualizedRate!=0">
+                ##                        使用收益券：<span v-text="investmentDetailData.extraAnnualizedRate"></span>%
+                ##                    </li>
+                </ul>
+                <ul v-if="investmentDetailData.projectCategory==2">
+                    <li>订单编号：<span v-text="investmentDetailData.orderNo"></span></li>
+                    <li>项目名称：<a href="$tips_url">[转让] <span
+                            v-text="investmentDetailData.name.split('期')[0]"></span>期</a></li>
+                    <li>认购时间：<span
+                            v-text="investmentDetailData.transactionTime | dateFormat 'yyyy-MM-dd hh:mm:ss'"></span>
+                    </li>
+                    <li>认购本金：&yen;<span v-text="investmentDetailData.subscriptionAmount"></span></li>
+                    <li>产品价值：&yen;<span v-text="investmentDetailData.projectValue"></span></li>
+                    <li>支付金额：&yen;<span v-text="investmentDetailData.investAmount"></span></li>
+                    <li>预期年化：<span v-text="myAnnualizedRate"></span>%</li>
+                    <li>剩余期限：<span v-text="investmentDetailData.profitPeriod"></span>天</li>
+                    <li>预期赚取：&yen; <span v-text="investmentDetailData.totalInterest"></span></li>
+                    <li v-if="investmentDetailData.investType==1">项目到期日：<span v-text="investmentDetailData.endDate | dateFormat 'yyyy-MM-dd'"></span></li>
+                    <li>还款方式：<span v-text="investmentDetailData.profitTypeName"></span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="m-agreementPart">
+            <ul>
+                <li v-if="investmentDetailData.projectCategory==1&&investmentDetailData.investType==2" @click="requestProtocol">
+                    <a class="j-contract-btn" href="javascript:void(0)" v-text="investmentDetailData.contractTitle"></a>
+                    <div class="j-pviewUrl" data-url="$siteurl/security/transaction/p2pContract/view"></div>
+                </li>
+                <li v-if="investmentDetailData.projectCategory==1&&investmentDetailData.investType==1" @click="requestProtocol">
+                    <a class="j-contract-btn" href="javascript:void(0)" v-text="investmentDetailData.contractTitle"></a>
+                    <div class="j-pviewUrl" data-url="$siteurl/security/transaction/contract/view"></div>
+                </li>
+                <li v-if="investmentDetailData.projectCategory==2&&investmentDetailData.investType==2" @click="requestProtocol">
+                    <a class="j-contract-btn" href="javascript:void(0)" v-text="investmentDetailData.contractTitle"></a>
+                    <div class="j-pviewUrl" data-url="$siteurl/security/transaction/ztTransferContract/view"></div>
+                </li>
+                <li v-if="investmentDetailData.projectCategory==2&&investmentDetailData.investType==1" @click="requestProtocol">
+                    <a class="j-contract-btn" href="javascript:void(0)" v-text="investmentDetailData.contractTitle"></a>
+                    <div class="j-pviewUrl" data-url="$siteurl/security/transaction/transferContract/view"></div>
+                </li>
+                <li><a href="$res_url/page/sinapay-agreement.html">委托协议</a></li>
+            </ul>
+        </div>
+        <div style="background: #f3f3f3;width: 100%;height: 10px;clear: both;">
+
+        </div>
+        <div class="u-transferStatus f-fs16" v-if="investmentDetailData.projectCategory==1&&investmentDetailData.operaType!=1&&(investmentDetailData.status==1||investmentDetailData.status==2||investmentDetailData.status==4||investmentDetailData.status==5)">
+            <a v-else href="{{tipsUrl}}"><span>项目转让</span><span class="f-fr">></span></a>
+        </div>
+
+        <div class="m-profitBlock" v-if="investmentDetailData.transactionInterest">
+            <div class="u-profit">
+                <div class="m-contentWrap">
+                    <div v-if="investmentDetailData.redPackageStatus===1"
+                         class="u-red_packet">
+                        <a href="$siteurl/mstation/post/downloadApp"> <img
+                                src="$res_url/img/member/investmentDetail/red_packet.png" alt="" width="52%"></a>
+                    </div>
+                    <ul class="u-profitBlock">
+                        <li class="u-profitTitle">收益表</li>
+                        <div v-for="item in investmentDetailData.transactionInterest">
+                            <li>
+                                <span v-if="item.payableInterest">利息：<i :class="{'z-red-color':!item.overdueFine&&(item.status==0 || item.status==3||item.status==4)}"> <i
+                                        v-text="item.payableInterest |amountFormat 'split'"></i>元</i></span>
+                                <span v-if="item.payablePrincipal>0">本金：<i :class="{'z-red-color':!item.overdueFine&&(item.status==0 || item.status==3||item.status==4)}"><i
+                                            v-text="item.payablePrincipal |amountFormat 'split'"></i>元</i></span>
+                                <span v-if="item.overdueFine">滞纳金：<i
+                                        :class="{'z-red-color':item.payType==2&&item.status!=1}"><i
+                                        v-text="item.overdueFine |amountFormat 'split'"></i>元</i> </span>
+                                <span v-if="item.payType==1&&item.status==1" class="u-profitTime"><span
+                                        v-text="item.endDate| dateFormat 'yyyy-MM-dd' "></span><i>(提前还款<i
+                                        v-text="item.payTime | dateFormat 'yyyy-MM-dd'"></i>)</i> </span>
+                                <span v-if="item.payType==2&&item.status==1" class="u-profitTime"><span v-text="item.endDate| dateFormat 'yyyy-MM-dd'"></span><i>(逾期还款<i
+                                        v-text="item.payTime | dateFormat 'yyyy-MM-dd'"></i>)</i> </span>
+                                <span v-if="item.payType==2&&item.status!=1" class="u-profitTime"><span
+                                        v-text="item.endDate| dateFormat 'yyyy-MM-dd'"></span><i class="u-color9">(已逾期<i  class="u-color9"
+                                        v-text="item.overDays"></i>天)</i></span>
+                                <span class="u-endDate" v-if="item.payType==0 ||(item.payType==1&&item.status!=1)"
+                                      v-text="item.endDate| dateFormat 'yyyy-MM-dd'"></span>
+                                <span v-if="item.payType!=2&&(item.status==0||item.status==3||item.status==4)"
+                                      class="u-profitStatus z-red-color f-fr">待支付</span>
+                                <span v-if="item.status==1" class="u-profitStatus f-fr">已支付</span>
+                                <span v-if="item.status==2" class="u-profitStatus f-fr">部分支付</span>
+                                <span v-if="item.payType==2&&item.status!=1"
+                                      class="u-profitStatus  f-fr z-red-color">逾期</span>
+                                <span v-if="investmentDetailData.projectCategory==1&&item.status==5" class="u-profitStatus f-fr">已转让</span>
+                            </li>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+##    协议窗口
+<div class="u-contract" id="j-contract"></div>
+<input class="j-transactionId" type="hidden" transactionId='$transactionId'>
+#CSRFToken('xToken')
+#set($pageScript="
+<script>
+
+    seajs.use('$siteurl/res/source/js/modules/investmentDetail.js');
+</script>")

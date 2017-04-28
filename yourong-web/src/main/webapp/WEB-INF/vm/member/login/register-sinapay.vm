@@ -1,0 +1,95 @@
+##开通新浪支付存钱罐 -- 用户注册
+#parse('/common/common.vm')
+#set($title="开通新浪存钱罐_$!{title_suffix}")
+#set($css_url=["$root_css_url/modules/login.css"])
+#set($js_url=["$root_js_url/modules/memberIdentity.js"])
+<div class="m-reg-guide f-login-bg">
+
+	<ul class="g-wrap">
+		<li><i class="u-circle-32 f-fs30">3</i>完成，领取奖励</li>
+		<li><i class="u-circle-32 f-fs30 z-crt">2</i>开通新浪支付存钱罐</li>
+        <li><i class="u-circle-32 f-fs30">1</i>注册会员</li>
+	</ul>
+</div>
+#if($currentUser && $stringUtil.isBlank($!currentUser.trueName) && $stringUtil.isBlank($!currentUser.identityNumber))
+<div class="m-reg-box g-wrap f-round">
+    <div class="u-sinosig-regLogo">
+        <span class="u-reg-ghkj-logo"></span>
+        <span class="u-reg-qhjj-logo"></span>
+    </div>
+	<div class="g-grid-row">
+		<div class="g-grid-10">
+			<div class="u-sinapay-logo">
+				<img src="$root_url/static/img/common/sinapay_logo_s.gif" alt="新浪支付" /><br />
+				<a href="$root_url/post/help/wiki.html" class="u-link-ul f-cur-help" target="_blank">什么是新浪支付存钱罐？</a>
+			</div>
+		</div>
+		<div class="g-grid-15 f-pos-r">
+
+		#if(!$!request.getParameter('register'))
+			<span class="f-fc-red f-w430 f-rem-box">您需开通新浪支付存钱罐资金托管账户，方可进行操作</span>
+		#end
+			<form id="memberIdentity_form" method="POST" class="g-grid-row j-validform">
+			    #CSRFToken()
+				<h3 class="u-form-title">实名认证开通新浪支付存钱罐</h3>
+				<div class="u-ipt-group">
+					<input type="text" id="j-trueName-blank" name="trueName" class="f-round u-ipt-text f-w350 v-rname" placeholder="真实姓名" />
+				</div>
+				<div class="u-ipt-group">
+				<input type="text" name="identityNumber" class="f-round u-ipt-text f-w350 v-idcard" placeholder="身份证号" />
+					<input type="hidden" name="id" value="$!{id}" class="f-round u-ipt-text f-w390" placeholder="身份证号" />
+				</div>
+				<label class="f-clear f-mgl-8"><input type="checkbox" checked="checked" name="agree" id="j-pay-agree" />我已阅读并同意<a href="#" class="f-fc-red" id="j-sinapay-argreement-link" data-target="j-sinapay-argreement" data-url="$root_url/static/sinapay-agreement.html">《新浪支付服务使用协议》</a></label><br />
+				<input id="memberIdentity_form_button"   type="button" value="确认开通" class="f-round f-fs18 f-mgl-8 f-btn-m u-btn u-btn-primary"/>
+            </form>
+		</div>
+	</div>
+</div>
+#else
+<div class="m-reg-box u-page-tips g-wrap f-round u-sinapay-tips">
+    <div class="u-sinosig-regLogo">
+        <span class="u-reg-ghkj-logo"></span>
+        <span class="u-reg-qhjj-logo"></span>
+    </div>
+	<div class="u-tips-box ">
+		<i class="u-icon u-icon-success2 f-icon-35"></i>
+		<p class="f-fs18 f-fwb">您已经开通新浪支付存钱罐,点击查看<a href="$products_url[0]">理财项目</a></p>
+	</div>
+</div>
+#end
+
+<div class="u-agreement-box f-dn" id="j-sinapay-argreement">
+	<h3 class="f-fs18">新浪支付服务使用协议<i></i></h3>
+	<div>
+		<iframe src="" frameborder="0"></iframe>
+	</div>
+</div>
+#if($stringUtil.equalsIgnoreCases($!{currentUser.registerTraceSource},'GGJ',true))
+<img src="https://conversion.pro.cn/arrive/enter?accountID=4ad27d1a01547b3a9e04&conversionID=59968526dacc17f1b0df115484f3500b&info=$!{currentUser.id}"></img>
+#end
+<script>
+		#if($stringUtil.equalsIgnoreCases($!{currentUser.registerTraceSource},'DSPPC',true))
+        !function (w, d, e) {
+            var _orderno = '$!{currentUser.id}';  //替换此处!;
+            var b = location.href, c = d.referrer, f, s, g = d.cookie, h = g.match(/(^|;)\s*ipycookie=([^;]*)/), i = g.match(/(^|;)\s*ipysession=([^;]*)/);
+            if (w.parent != w) {
+                f = b;
+                b = c;
+                c = f;
+            }
+            ;
+            u = '//stats.ipinyou.com/cvt?a=' + e('qJ.jk.EMZ62T8rjc-YGTg3JlVCg_') + '&c=' + e(h ? h[2] : '') + '&s=' + e(i ? i[2].match(/jump\%3D(\d+)/)[1] : '') + '&u=' + e(b) + '&r=' + e(c) + '&rd=' + (new Date()).getTime() + '&OrderNo=' + e(_orderno) + '&e=';
+            function _() {
+                if (!d.body) {
+                    setTimeout(_(), 100);
+                } else {
+                    s = d.createElement('script');
+                    s.src = u;
+                    d.body.insertBefore(s, d.body.firstChild);
+                }
+            }
+
+            _();
+        }(window, document, encodeURIComponent);
+#end
+</script>

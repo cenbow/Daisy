@@ -1,0 +1,111 @@
+#set($layout = "/layout/iframe.vm")
+#parse("/ic/project/head.vm")
+<div class="col-xs-12">
+	<div class="table-responsive">
+		<form id="projectSearchForm">
+			<table id="project-table-search" class="table table-striped table-bordered" cellspacing="0" width="100%">
+				<tr>
+					<td>项目名称：</td>
+					<td><input type="text" name="search_name" class="input-medium search_init"/></td>
+					<td>担保方式：</td>
+					<td>#dictSelect ("search_debtType",${sysServiceUtil.getDictList('debt_type')} ,"请选择")
+					</td>
+					<td>状态：</td>
+					<td>#dictSelect ("search_status",${sysServiceUtil.getDictList('project_status')} ,"请选择")</td>
+					<td>项目出借人：</td>
+					<td><input type="text" name="search_lenderName" class="input-medium search_init"/></td>
+				</tr>
+				<tr>
+					<td>项目编号：</td>
+						<td><input type="text" name="search_id" class="input-medium search_init"/></td>
+					<td>债权编号：</td>
+						<td><input type="text" name="search_serialNumber" class="input-medium search_init"/></td>	
+						
+					<td>原始债权编号：</td>
+						<td><input type="text" name="search_originalDebtNumber" class="input-medium search_init"/></td>	
+						
+					<td>项目类型：</td>
+					<td>#dictSelect ("search_projectType",${sysServiceUtil.getDictList('project_type')} ,"请选择")</td>
+				</tr>
+				<tr>
+					<td>
+						总金额：
+					</td>
+					<td>
+						<input type="text" name="search_totalAmountMin" class="input-medium search_init"/>
+                    	至
+                    	<input type="text" name="search_totalAmountMax" class="input-medium search_init"/>
+					</td>
+					<td>
+						上线时间：
+					</td>
+					<td>
+						<input type="text" name="search_onlineTimeStart" onclick="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd'})"/>
+						至
+						<input type="text" name="search_onlineTimeEnd" onclick="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd'})"/>
+					</td>
+					<td>
+						项目到期日：
+					</td>
+					<td>
+						<input type="text" name="search_endDateStartTime" onclick="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd'})"/>
+						至
+						<input type="text" name="search_endDateEndTime" onclick="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd'})"/>
+					</td>
+					<td>
+						剩余收益天数预估：
+					</td>
+					<td>
+						<input type="text" name="search_incomeDaysMin" class="input-medium search_init"/>
+						至
+						<input type="text" name="search_incomeDaysMax" class="input-medium search_init"/>
+					</td>
+					
+				</tr>
+				<tr>
+					<td>审核人：</td>
+					<td><input type="text" name="search_auditName" class="input-medium search_init"/></td>
+					<td>活动标识：</td>
+					<td>#dictSelect ("search_activitySign",${sysServiceUtil.getDictList('project_activity_sign')} ,"请选择")</td>
+					<td colspan="6" style="text-align:center">
+						<button id = "query_project" type="button" class="btn btn-info btn-sm btn-primary">查询</button>
+						<button id = "reset_project" type="button" class="btn btn-info btn-sm btn-primary resetButton">重置</button>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</div>
+<div class="col-xs-12">
+	<div class="table-responsive">
+		<table id="project-table" class="table table-striped table-bordered" cellspacing="0" width="100%">
+			<thead>
+				<tr>
+					<th>
+						<label>
+							<input class="ace" type="checkbox">
+							<span class="lbl"></span>
+						</label>
+					</th>
+					<th>编号</th>
+					<th width="120">原始债权编号</th>
+					<th>债权编号</th>
+					<th>项目名称</th>
+					<th>担保方式</th>
+					<th>项目类型</th>
+					<th>总金额</th>
+					<th>上线时间</th>
+					<th>项目到期日</th>
+					<th width="90">剩余收益天数预估</th>
+					<th>状态</th>
+					<th>项目出借人</th>
+					<th>审核人</th>
+					<th>活动标志</th>
+					<th>备注</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+</div>
+#parse("/ic/project/addRemarks.vm")

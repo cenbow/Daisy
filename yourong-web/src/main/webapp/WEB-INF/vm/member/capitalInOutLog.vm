@@ -1,0 +1,118 @@
+##充值提现页面
+#parse("/common/common.vm")
+#set($title="资金流水_资金记录_$!{title_suffix}")
+#set($css_url=["$cssv2_url/member/member.css"])
+#set($js_url=["$root_url/static/lib/js/jq/jquery.pagination.js","/static/lib/js/datepicker/WdatePicker.js","$root_js_url/modules/member.js"])
+#set($capitalinOutLog="z-current")
+## 用户中心头部
+#parse("/member/head.vm")
+## 用户中心内容
+<div class="g-wrap">
+    <div class="m-nav-title">
+        <a href="/member/capitalInOutLog" class="z-current">
+            资金流水
+        </a><a href="/memberBalance/rechargeIndex?type=recharge" class="u-title-secondary u-tit-r">
+            充值记录
+        </a><a href="/memberBalance/rechargeIndex?type=withdraw" class="u-title-secondary u-tit-r">
+            提现记录
+        </a>
+    </div>
+    <div class="g-uc-bd f-round u-recordlist-pt">
+        <div class="m-capitalLogs-filter f-round">
+             <!--<div class="u-selector j-selector u-circle-15 f-w150">
+               <button>全部类型</button> <i></i>
+                <ul class="f-round">
+                    <li value="">全部类型</li>
+                    <li value="1">充值</li>
+                    <li value="2">提现</li>
+                    <li value="5">投资</li>
+                    <li value="18">资金回退</li>
+                    <li value="19">垫资还款</li>
+                    <li value="8">利息回款</li>
+                    <li value="9">本金回款</li>
+                    <li value="10">存钱罐收益</li>
+                    <li value="11">项目放款</li>
+                    <li value="12">项目还款</li>
+                    <li value="17">租赁分红</li>
+                    <li value="14">其他</li>
+                    
+                </ul>-->
+                <form id="j-capitalForm">
+                    <input type="hidden" class="j-selected-ipt" name="type" value=""/>
+                    <input type="hidden" name="currentPage"/>
+                    <input type="hidden" name="startTime"/>
+                    <input type="hidden" name="endTime"/>
+                    #CSRFToken()
+                </form>
+			<!--</div>-->
+            <span class="u-filter-datePicker" id="j-filter-datePicker">
+				时间
+                <input id="jStartTime" name="startTime" class="u-circle-15" type="text"
+                       onfocus="WdatePicker({maxDate:'#F{$dp.$D(\'jEndTime\')}',onpicked:function(){startTimePicked();jEndTime.focus()}})"/>
+                到
+                <input id="jEndTime" name="endTime" class="u-circle-15" type="text" value=""
+                       onfocus="WdatePicker({minDate:'#F{$dp.$D(\'jStartTime\')}',onpicked:pickFilterDate})"/>
+            </span>
+			<button class="u-filter-inquire u-circle-15 j-capital-search">查&nbsp;&nbsp;&nbsp;&nbsp;询</button>
+            <span class="u-filter-timeRange" id="j-filter-timeRange">
+                <em data-type="0">全部</em>
+                <em data-type="1">最近七天</em>
+                <em data-type="2">1个月</em>
+                <em data-type="3">3个月</em>
+            </span>
+        </div>
+		<div class="m-recharge-list">
+        	<div class="u-rtable">
+        		<div class="u-rtable-wrap f-round">
+	        		<table id="capitalInOutLogTable" class="u-cOutLog-list">
+		        		<thead>
+		        			<tr>
+		        				<th width="105">时间</th>
+			        			<th width="120">
+									<div class="u-selector j-selector f-w70 j-capital-selector">
+                                        <button>全部类型</button> <i></i>
+                                        <ul class="f-round">
+                                             <li value="0">全部类型</li>
+											 <li value="1">充值</li>
+											 <li value="2">提现</li>
+											 <li value="5">投资</li>
+											 <li value="18">资金回退</li>
+											   #if(${servletUtil.isDisplayLoanRepayment()})
+											  <li value="19">垫资还款</li>
+									          #end
+											 <li value="8">利息回款</li>
+											 <li value="9">本金回款</li>
+                                             <li value="25">转让收款</li>
+											 <li value="10">存钱罐收益</li>
+											  #if(${servletUtil.isDisplayProjectMoney()})
+											  <li value="11">项目放款</li>
+											  <li value="12">项目还款</li>
+									          #end
+											 <li value="14">其他</li>
+											 
+											 
+                                        </ul>
+                                        <input type="hidden" class="j-selected-ipt"  value="">
+                                    </div>
+								</th>
+			        			<th width="162">收入</th>
+			        			<th width="162">支出</th>
+			        			<th width="162">结余</th>
+			        			<th width="213">备注</th>			        			
+		        			</tr>
+		        		</thead>
+		        		<tbody>
+		        			<tr>
+							   	<td colspan="7" class="u-table-empty">
+						  			 暂无资金流水记录
+						   		</td>
+				 			 </tr>
+		        		</tbody>
+		        	</table>
+	        	</div>	        	        				
+				<div id="capitalPagination" class="m-pagenav f-tac" ></div> 
+        	</div>
+		</div>
+	</div>
+	## /用户中心内容
+</div>

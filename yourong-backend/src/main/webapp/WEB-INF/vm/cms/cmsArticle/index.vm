@@ -1,0 +1,87 @@
+#parse("/cms/cmsArticle/head.vm") 
+<style>
+.u-cmsArticle-table-2  td{
+	word-break: break-all;
+}	
+</style>
+<div class="col-xs-12">
+  <p>
+    #if($shiro.hasPermission("cmsArticle:show"))
+    <button id = "new_cmsArticle" type="button" class="btn btn-info btn-sm btn-primary" >新增</button>
+    #end
+    #if($shiro.hasPermission("cmsArticle:save")) 
+    <button id = "edit_cmsArticle" type="button" class="btn  btn-pink btn-sm btn-primary" >修改</button>
+    #end
+    #if($shiro.hasPermission("cmsArticle:delete")) 
+    <button id = "delete_cmsArticle" type="button" class="btn btn-danger btn-sm btn-primary" >删除</button>
+    #end
+  </p>
+  				#if($!{cmsList} && $!{cmsList.size()}>0)
+  					<p>当前APP推送公告信息（推送按权重筛选，数值越大权重越高，相同权重，按创建时间倒序筛选）</p>
+						#foreach($!cms in $!{cmsList} )
+							<p>文章标题：$!{cms.subTitle}，文章权重：$!{cms.weight}，上线时间：$!{cms.onlineTimeStr}，结束时间：$!{cms.endTimeStr},创建时间：$!{cms.createTimeStr}</p>
+						#end
+				#end
+</div>
+<div class="col-xs-12">
+     <div class="table-header">
+     		文章列表
+     </div>
+   <div class="table-responsive">
+     	<table id="cmsArticle-table-2" class="table table-striped table-bordered u-cmsArticle-table-2" cellspacing="0" width="100%">
+     	       <thead> 
+     	           <tr>  
+     	            <th></th>
+ <th ><input type="text" name="search_id"  class="input-small search_init" /></th>
+ <th ><select class="input-small search_init"  type="text" name="search_categoryId"  >
+ 								<option value="">请选择</option>
+								<option value="1">网站公告</option>
+								<option value="2">媒体报道</option>
+								<option value="3">平台动态</option>
+							</select></th>
+ <th ><input type="text" name="search_title"  class="input-small search_init" /></th>
+ <th ><input type="text" name="search_weight"  class="input-small search_init" /></th>
+ <th ><input type="text" name="search_weightTime"  class="input-small search_init" /></th>
+ <th ><input type="text" name="search_hits"  class="input-small search_init" /></th>
+ <th ><input type="text" name="search_copyfrom"  class="input-small search_init" /></th>
+ <th ><input type="text" name="search_relation"  class="input-small search_init" /></th>
+ <th >
+ <select class="input-small search_init"  type="text" name="search_allowComment"  >
+ 								<option value="">请选择</option>
+								<option value="0">否</option>
+								<option value="1">是</option>
+							</select>
+ </th>
+ <th ><input type="text" name="search_createBy"  class="input-small search_init" /></th>
+ <th ><input type="text" name="search_createTime"  class="input-small search_init" /></th>
+ <th ><input type="text" name="search_updateBy"  class="input-small search_init" /></th>
+ <th ><input type="text" name="search_updateTime"  class="input-small search_init" /></th>
+  <th ><input type="text" name="search_onlineTime"  class="input-small search_init" readonly /></th>        
+  <th width="17%"><button id = "query_cmsArticle" type="button" class="btn btn-info btn-sm btn-primary">查询</button></th>
+                    </tr>
+ <tr >
+ <th >
+ <label><input class="ace" type="checkbox"> <span class="lbl"></span></label>
+ </th>
+<th >编号</th>
+<th >栏目编号</th>
+<th >标题</th>
+<th >权重</th>
+<th >权重期限</th>
+<th >点击数</th>
+<th >文章来源</th>
+<th >相关文章</th>
+<th >允许评论</th>
+<th >创建者</th>
+<th >创建时间</th>
+<th >更新者</th>
+<th >更新时间</th>
+<th >上线时间</th>
+<th ></th>
+ </tr>
+ </thead>
+ </table>
+ </div>
+ </div>
+ #parse("/cms/cmsArticle/form.vm")
+ ##parse("/cms/cmsArticle/uploadTest.vm")

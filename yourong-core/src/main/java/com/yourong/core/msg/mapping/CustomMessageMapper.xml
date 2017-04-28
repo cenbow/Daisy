@@ -1,0 +1,506 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.msg.dao.CustomMessageMapper" >
+  <resultMap id="BaseResultMap" type="com.yourong.core.msg.model.CustomMessage" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="msg_type" property="msgType" jdbcType="INTEGER" />
+    <result column="sms_type" property="smsType" jdbcType="INTEGER" />
+    <result column="msg_name" property="msgName" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="send_date" property="sendDate" jdbcType="TIMESTAMP" />
+    <result column="invalid_date" property="invalidDate" jdbcType="TIMESTAMP" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+    <result column="notify_type" property="notifyType" jdbcType="INTEGER" />
+    <result column="user_type" property="userType" jdbcType="INTEGER" />
+    <result column="type_rule" property="typeRule" jdbcType="VARCHAR" />
+    <result column="custom_attr" property="customAttr" jdbcType="VARCHAR" />
+    <result column="custom_file_url" property="customFileUrl" jdbcType="VARCHAR" />
+    <result column="creator_id" property="creatorId" jdbcType="BIGINT" />
+    <result column="audit_id" property="auditId" jdbcType="BIGINT" />
+    <result column="audit_message" property="auditMessage" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="audit_time" property="auditTime" jdbcType="TIMESTAMP" />
+    <result column="register_end_time" property="registerEndTime" jdbcType="TIMESTAMP" />
+    <result column="register_days" property="registerDays" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.yourong.core.msg.model.CustomMessage" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, msg_type, sms_type, status, send_date, invalid_date, del_flag, notify_type, user_type, type_rule,remark,
+    custom_attr, custom_file_url, creator_id, audit_id, create_time, update_time, audit_time,audit_message,msg_name, register_end_time, register_days
+  </sql>
+  <sql id="Blob_Column_List" >
+    content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from msg_custom_message
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <update id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    update msg_custom_message set del_flag = -1 where id = #{id,jdbcType=BIGINT} and status = 1 and del_flag=1
+  </update>
+  <insert id="insert" parameterType="com.yourong.core.msg.model.CustomMessage" >
+    insert into msg_custom_message (id, msg_type,sms_type, status, 
+      send_date, invalid_date, del_flag, 
+      notify_type, user_type, custom_attr, 
+      creator_id, audit_id, create_time, register_end_time, register_days,
+      update_time, audit_time, content,msg_name,remark
+      )
+    values (#{id,jdbcType=BIGINT}, #{msgType,jdbcType=INTEGER},#{smsType,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{sendDate,jdbcType=TIMESTAMP}, #{invalidDate,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=INTEGER}, 
+      #{notifyType,jdbcType=INTEGER}, #{userType,jdbcType=INTEGER}, #{customAttr,jdbcType=VARCHAR}, 
+      #{creatorId,jdbcType=BIGINT}, #{auditId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{registerEndTime,jdbcType=TIMESTAMP}, #{registerDays,jdbcType=INTEGER}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{auditTime,jdbcType=TIMESTAMP}, #{content,jdbcType=LONGVARCHAR},#{msgName,jdbcType=VARCHAR},#{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yourong.core.msg.model.CustomMessage" >
+    insert into msg_custom_message
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="msgType != null" >
+        msg_type,
+      </if>
+      <if test="smsType != null" >
+        sms_type,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="sendDate != null" >
+        send_date,
+      </if>
+      <if test="invalidDate != null" >
+        invalid_date,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+      <if test="notifyType != null" >
+        notify_type,
+      </if>
+      <if test="userType != null" >
+        user_type,
+      </if>
+      <if test="customAttr != null" >
+        custom_attr,
+      </if>
+      <if test="creatorId != null" >
+        creator_id,
+      </if>
+      <if test="auditId != null" >
+        audit_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="auditTime != null" >
+        audit_time,
+      </if>
+      <if test="registerEndTime != null" >
+        register_end_time,
+      </if>
+      <if test="registerDays != null" >
+        register_days,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="msgType != null" >
+        #{msgType,jdbcType=INTEGER},
+      </if>
+      <if test="smsType != null" >
+        #{smsType,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="sendDate != null" >
+        #{sendDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="invalidDate != null" >
+        #{invalidDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=INTEGER},
+      </if>
+      <if test="notifyType != null" >
+        #{notifyType,jdbcType=INTEGER},
+      </if>
+      <if test="userType != null" >
+        #{userType,jdbcType=INTEGER},
+      </if>
+      <if test="customAttr != null" >
+        #{customAttr,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorId != null" >
+        #{creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="auditId != null" >
+        #{auditId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="auditTime != null" >
+        #{auditTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="registerEndTime != null" >
+        #{registerEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="registerDays != null" >
+        #{registerDays,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yourong.core.msg.model.CustomMessage" >
+    update msg_custom_message
+    <set >
+      <if test="msgType != null" >
+        msg_type = #{msgType,jdbcType=INTEGER},
+      </if>
+      <if test="smsType != null" >
+        sms_type = #{smsType,jdbcType=INTEGER},
+      </if>
+      <if test="msgName != null" >
+        msg_name = #{msgName,jdbcType=VARCHAR},
+      </if>
+      <if test="sendDate != null" >
+        send_date = #{sendDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="invalidDate != null" >
+        invalid_date = #{invalidDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="notifyType != null" >
+        notify_type = #{notifyType,jdbcType=INTEGER},
+      </if>
+      <if test="userType != null" >
+        user_type = #{userType,jdbcType=INTEGER},
+      </if>
+      <if test="customAttr != null" >
+        custom_attr = #{customAttr,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorId != null" >
+        creator_id = #{creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="registerEndTime != null" >
+        register_end_time = #{registerEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="registerDays != null" >
+        register_days = #{registerDays,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.yourong.core.msg.model.CustomMessage" >
+    update msg_custom_message
+    set msg_type = #{msgType,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      send_date = #{sendDate,jdbcType=TIMESTAMP},
+      invalid_date = #{invalidDate,jdbcType=TIMESTAMP},
+      del_flag = #{delFlag,jdbcType=INTEGER},
+      notify_type = #{notifyType,jdbcType=INTEGER},
+      user_type = #{userType,jdbcType=INTEGER},
+      custom_attr = #{customAttr,jdbcType=VARCHAR},
+      creator_id = #{creatorId,jdbcType=BIGINT},
+      audit_id = #{auditId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      audit_time = #{auditTime,jdbcType=TIMESTAMP},
+      register_end_time = #{registerEndTime,jdbcType=TIMESTAMP},
+      register_days = #{registerDays,jdbcType=INTEGER},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yourong.core.msg.model.CustomMessage" >
+    update msg_custom_message
+    set msg_type = #{msgType,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      send_date = #{sendDate,jdbcType=TIMESTAMP},
+      invalid_date = #{invalidDate,jdbcType=TIMESTAMP},
+      del_flag = #{delFlag,jdbcType=INTEGER},
+      notify_type = #{notifyType,jdbcType=INTEGER},
+      user_type = #{userType,jdbcType=INTEGER},
+      custom_attr = #{customAttr,jdbcType=VARCHAR},
+      creator_id = #{creatorId,jdbcType=BIGINT},
+      audit_id = #{auditId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      audit_time = #{auditTime,jdbcType=TIMESTAMP},
+      register_end_time = #{registerEndTime,jdbcType=TIMESTAMP},
+      register_days = #{registerDays,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <delete id="batchDelete" parameterType="java.lang.Long" >
+    delete from msg_custom_message
+    where id in  <foreach collection="ids" index="index" item="item" open="(" separator="," close=")"> #{item}  </foreach>  
+  </delete>
+  <select id="findByPage" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from msg_custom_message
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = #{map.id}
+        </if>
+        <if test=" map.msgType != null" >
+          msg_type = #{map.msgType}
+        </if>
+        <if test=" map.status != null" >
+          status = #{map.status}
+        </if>
+        <if test=" map.sendDate != null" >
+          send_date = #{map.sendDate}
+        </if>
+        <if test=" map.invalidDate != null" >
+          invalid_date = #{map.invalidDate}
+        </if>
+        <if test=" map.delFlag != null" >
+          del_flag = #{map.delFlag}
+        </if>
+        <if test=" map.notifyType != null" >
+          notify_type = #{map.notifyType}
+        </if>
+        <if test=" map.userType != null" >
+          user_type = #{map.userType}
+        </if>
+        <if test=" map.customAttr != null" >
+          custom_attr = #{map.customAttr}
+        </if>
+        <if test=" map.creatorId != null" >
+          creator_id = #{map.creatorId}
+        </if>
+        <if test=" map.auditId != null" >
+          audit_id = #{map.auditId}
+        </if>
+        <if test=" map.createTime != null" >
+          create_time = #{map.createTime}
+        </if>
+        <if test=" map.updateTime != null" >
+          update_time = #{map.updateTime}
+        </if>
+        <if test=" map.auditTime != null" >
+          audit_time = #{map.auditTime}
+        </if>
+        <if test=" map.content != null" >
+          content = #{map.content}
+        </if>
+      </where>
+    </if>
+  </select>
+  <sql id="Base_Column_List_Pagin" >
+    t.id  as  id,
+t.msg_type  as  msg_type,
+t.sms_type  as  sms_type,
+t.status  as  status,
+t.send_date  as  send_date,
+t.invalid_date  as  invalid_date,
+t.del_flag  as  del_flag,
+t.notify_type  as  notify_type,
+t.user_type  as  user_type,
+t.custom_attr  as  custom_attr,
+t.creator_id  as  creator_id,
+t.audit_id  as  audit_id,
+t.create_time  as  create_time,
+t.update_time  as  update_time,
+t.audit_time  as  audit_time,
+t.content  as  content,
+t.remark as remark,
+t.msg_name as msg_name,
+t.register_end_time,
+t.register_days
+  </sql>
+  <select id="selectForPagin" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List_Pagin" />
+    from  (SELECT id FROM  msg_custom_message
+    <if test=" map != null" >
+      <where >
+        <if test=" map.msgType != null" >
+          and msg_type = #{map.msgType}
+        </if>
+        <if test=" map.status != null" >
+          and status = #{map.status}
+        </if>
+        <if test=" map.sendDate1 != null" >
+          and send_date <![CDATA[ >= ]]> #{map.sendDate1}
+        </if>
+        <if test=" map.sendDate2 != null" >
+          and send_date <![CDATA[ <= ]]> #{map.sendDate2}
+        </if>
+        <if test=" map.invalidDate != null" >
+          and invalid_date = #{map.invalidDate}
+        </if>
+        <if test=" map.notifyType != null" >
+          and notify_type = #{map.notifyType}
+        </if>
+        <if test=" map.userType != null" >
+          and user_type = #{map.userType}
+        </if>
+         <if test=" map.msgType != null" >
+          and msg_type = #{map.msgType}
+        </if>
+         <if test=" map.msgName != null" >
+          and  msg_name like "%"#{map.msgName}"%"
+        </if>
+        <if test=" map.auditTime != null" >
+          and audit_time = #{map.auditTime}
+        </if>
+        <if test=" map.content != null" >
+          and content = #{map.content}
+        </if>
+          and del_flag = 1
+      </where>
+    </if>
+     <choose>
+		<when test=" map != null">
+			<if test=" map.desc != null">
+				order by ${map.desc} desc
+			</if>
+			<if test=" map.asc != null">
+				order by ${map.asc} asc
+			</if>
+		</when>
+		<otherwise>
+			order by id desc
+		</otherwise>
+	</choose>
+	 LIMIT	${map.startRow}, ${map.pageSize}  )  AS a,  msg_custom_message AS t FORCE INDEX(PRIMARY) WHERE a.id = t.id   
+  </select>
+  <select id="selectForPaginTotalCount" resultType="java.lang.Integer" >
+    select count(1) 
+    from msg_custom_message
+    <if test=" map != null" >
+      <where >
+         <if test=" map.msgType != null" >
+          and msg_type = #{map.msgType}
+        </if>
+        <if test=" map.status != null" >
+          and status = #{map.status}
+        </if>
+        <if test=" map.msgName != null" >
+          and  msg_name like "%"#{map.msgName}"%"
+        </if>
+        <if test=" map.sendDate1 != null" >
+          and send_date <![CDATA[ >= ]]> #{map.sendDate1}
+        </if>
+        <if test=" map.sendDate2 != null" >
+          and send_date <![CDATA[ <= ]]> #{map.sendDate2}
+        </if>
+        <if test=" map.invalidDate != null" >
+          and invalid_date = #{map.invalidDate}
+        </if>
+        <if test=" map.notifyType != null" >
+          and notify_type = #{map.notifyType}
+        </if>
+        <if test=" map.userType != null" >
+          and user_type = #{map.userType}
+        </if>
+        <if test=" map.auditTime != null" >
+          and audit_time = #{map.auditTime}
+        </if>
+        <if test=" map.content != null" >
+          and content = #{map.content}
+        </if>
+          and del_flag = 1
+      </where>
+    </if>
+  </select>
+  
+    <!-- 获取未发送的短信-->
+  <select id="findUnsendMessage" resultMap="ResultMapWithBLOBs" >
+  	select <include refid="Base_Column_List_Pagin" /> 
+  from msg_custom_message t 
+  where t.msg_type in (1,4,5)
+  and t.send_date <![CDATA[ <= ]]> now() 
+  and t.status=3
+  </select>
+  
+  <!-- 发送短信后，把状态置为已发布 -->
+  <update id="updateShortMessageStatusTo4">
+  		update msg_custom_message set status = 4, update_time=now() where status =3 and send_date <![CDATA[ <= ]]> now()  and id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  
+   <!-- 把状态置为已发布 -->
+  <update id="updateMessageStatusTo4">
+  		update msg_custom_message set status = 4, update_time=now() where status =3 and send_date <![CDATA[ <= ]]> now() and msg_type in (2,3)
+  </update>
+  
+  <!-- 提交审核 -->
+  <update id="submitReview" parameterType="java.lang.Long">
+  	 update msg_custom_message set status = 2 where status =1 and id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <!-- 驳回申请 -->
+  <update id="disallowance">
+  	 update msg_custom_message set status = 1, audit_id =#{auditId,jdbcType=BIGINT},audit_message=#{auditMessage,jdbcType=VARCHAR}  where status = 2 and id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <!-- 审核通过 -->
+  <update id="approval">
+  	 update msg_custom_message set status = 3, audit_id =#{auditId,jdbcType=BIGINT},audit_message=#{auditMessage,jdbcType=VARCHAR}  where status = 2 and id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <!-- 查询未读消息 -->
+  <select id="queryUnreadMessages" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long">
+  select mcm.id, mcm.msg_type,mcm.sms_type,mcm.content,mcm.notify_type,mcm.user_type,mcm.custom_attr 
+  from msg_custom_message as mcm 
+  	where mcm.msg_type = 3 and mcm.status= 4 and mcm.send_date <![CDATA[ <= ]]> now() and mcm.del_flag=1 
+  		and (invalid_date is null or invalid_date <![CDATA[ >= ]]> now())
+		and NOT EXISTS (select id from msg_message_log where member_id=#{memberId,jdbcType=BIGINT} and msg_source_id=mcm.id and msg_source=1)
+  </select>
+  
+  
+  
+   <!-- 查询未读指定类别消息，查询出尚未发送的自定义消息，插入 -->
+  <select id="queryUnreadMessagesByType" resultMap="ResultMapWithBLOBs" >
+  select mcm.id, mcm.msg_type,mcm.sms_type,mcm.content,mcm.notify_type,mcm.user_type,mcm.custom_attr ,mcm.msg_name,mcm.remark
+  from msg_custom_message as mcm 
+  	where  mcm.status= 4 and mcm.send_date <![CDATA[ <= ]]> now() and mcm.del_flag=1 
+  		and (invalid_date is null or invalid_date <![CDATA[ >= ]]> now())
+		and NOT EXISTS (select id from msg_message_log where member_id=#{memberId,jdbcType=BIGINT} and msg_source_id=mcm.id and msg_source=1)
+		and mcm.msg_type = #{msgType,jdbcType=INTEGER} 
+  </select>
+  
+  
+  <!-- 取消发布 -->
+  <update id="cancel" parameterType="java.lang.Long">
+  	 update msg_custom_message set status = 0 where status =3 and id = #{id,jdbcType=BIGINT}
+  </update>
+  
+    <!-- 新注册用户发送短信后强制更新状态为待发布 -->
+  <update id="updateWaitStatus">
+  	 update msg_custom_message set status = 3 where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+</mapper>

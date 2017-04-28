@@ -1,0 +1,66 @@
+body{
+    background: #EEEEEE;
+    padding: 10px 0;
+    font-family: PingFangSC-Regular;
+}
+.g-wrap{
+    width: 96%;
+    margin: auto;
+}
+.u-title{
+    width: 100%;
+    color: #333333;
+    font-size: 16px;
+    line-height: 40px;
+    border-bottom: 1px solid #d4d4d4;
+}
+.f-fr{
+    float: right;
+}
+.u-projectProcess{
+    margin: 20px 0 0;
+}
+.u-projectProcess div{
+    display: inline-block;
+    width: 16%;
+    vertical-align: top;
+    font-size: 2.2rem;
+}
+.u-projectProcess div:nth-child(2n){
+    width:7.5%;
+}
+.u-projectProcess div p{
+    color: #999999;
+    font-size: 12px;
+    text-align: center;
+    width: 120%;
+}
+.u-projectDate{
+    color: #999999;
+    font-size: 12px;
+    margin-bottom: 20px;
+}
+.u-projectProcess img{
+    width: 100%;
+    vertical-align: middle;
+}
+.u-title a{
+    font-size: 16px;
+    color: #999999;
+    text-decoration: none;
+}
+.u-projectInfo ul{
+    width: 100%;
+    padding: 0;
+}
+.u-projectInfo ul li{
+    font-size: 14px;
+    color: #999999;
+    list-style-type: none;
+    line-height: 30px;
+}
+.u-projectDescription p{
+    font-size: 14px;
+    color: #999999;
+    line-height: 20px;
+}

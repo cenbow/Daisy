@@ -1,0 +1,1163 @@
+/*订单*/
+/*创建订单*/
+.m-order-info {
+	border: none;
+	margin: 49px auto 30px;
+	background-color: #fff;
+	color: #666;
+}
+
+.m-order-info>div {
+	padding: 0 30px;
+	margin: 0 0 55px;
+}
+
+.m-order-info>p {
+	padding: 0 30px;
+	height: 60px;
+	line-height: 60px;
+	background-color: #fffab0;
+}
+
+.m-order-info h2 {
+	padding: 35px 0 8px;
+	margin: 0 0 35px;
+	border-bottom: 1px solid #dddbd6;
+}
+
+.u-info-table {
+	width: 495px;
+	display: table;
+	border-bottom: 2px solid #cdcdcd;
+}
+
+.u-info-table2 {
+	width: 385px;
+}
+
+.u-info-table th {
+	background-color: #eee;
+	height: 38px;
+	line-height: 38px;
+	text-indent: 20px;
+	border-bottom: 2px solid #cdcdcd;
+}
+
+.u-info-table td {
+	padding: 12px 20px;
+	border-bottom: 1px solid #dddbd6;
+	border-right: 1px solid #dddbd6;
+}
+
+.u-info-table td:last-child {
+	border-right: none;
+}
+
+.u-info-table tr:last-child td {
+	border-bottom: none;
+}
+
+.u-order-btn {
+	margin-left: 30px;
+}
+
+.m-order-info .u-btn-white {
+	margin-right: 0;
+}
+
+.m-order-info .u-coupon-selector {
+	*z-index: 101;
+}
+
+input[type="hidden"] {
+	visibility: hidden;
+	display: none;
+	height: 0;
+	width: 0;
+	overflow: hidden;
+}
+/*订单支付*/
+.m-pay-bank {
+	margin: 0 -1px -1px;
+}
+
+.m-pay-info {
+	border-color: #fff;
+	background-color: #fff;
+	margin: 50px auto 30px;
+	padding: 45px 30px 50px;
+}
+
+.u-pay-now {
+	margin: 0 0 10px;
+	position: relative;
+	padding: 20px 0 20px 70px;
+	color: #464646;
+	border: 1px solid #e0cd74;
+	background-color: #fffab0;
+}
+
+.u-pay-now i {
+	position: absolute;
+	left: 20px;
+	top: 25px;
+}
+
+.u-pay-wrap {
+	border: 1px solid #cdcdcd;
+}
+
+.m-pay-data {
+	padding: 0 20px 10px;
+	border-bottom: 1px solid #cdcdcd;
+}
+
+.u-pay-title {
+	padding: 25px 0 25px;
+	line-height: 14px;
+	position: relative;
+}
+
+.u-pay-title strong {
+	font-weight: normal;
+	margin: 0 45px 0 0;
+	vertical-align: top;
+}
+
+.u-balance-wrap {
+	margin: 0 -20px 20px;
+	background-color: #fff1f1;
+	padding: 20px 0 20px 80px;
+}
+
+.u-select-balance {
+	width: 775px;
+	height: 48px;
+	line-height: 48px;
+	border: 1px dashed #dbbcbc;
+	margin: 0 20px 10px 0;
+	padding: 0 30px 0 20px;
+}
+
+.u-select-balance .u-selector {
+	margin-left: 50px;
+}
+
+.u-select-balance .u-amount-wrap {
+	margin: 0 8px 0 11px;
+	line-height: 30px;
+}
+
+.u-select-balance .u-amount-wrap i {
+	top: 1px;
+}
+
+.u-select-balance .u-ipt-amount {
+	width: 232px;
+	margin: 0;
+}
+.m-coupon-list li{
+    height: auto;
+    line-height: 2em;
+    padding: 5px 24px 10px 19px;
+}
+.m-coupon-list .z-disabled{
+    color: #aaa;
+    cursor: text;
+    height: auto;
+    line-height: 2em;
+    background-color: #eee;
+    border-top: 1px solid #ddd;
+    padding: 5px 24px 10px 5px; 
+}
+.m-coupon-list li span, .m-coupon-list .z-disabled span{
+    display: block;
+    line-height: 1.5em;
+}
+.m-coupon-list .z-disabled:hover{
+    color: #aaa;
+    background-color: #eee;
+}
+.u-pay-checkbox {
+	display: inline-block;
+	height: 25px;
+	width: 25px;
+	overflow: hidden;
+	background: url(/static/img/common/sprites.png) no-repeat -234px 0;
+	cursor: pointer;
+	margin: 0 12px 0 0;
+} 
+
+.u-pay-checkbox.z-checked {
+	background-position: -207px -1px;
+} 
+
+.u-amount-tips {
+	color: #707070;
+}
+
+.u-amount-tips2 {
+	color: #707070;
+	padding: 0 45px 0 0;
+}
+
+.u-pay-title .u-amount-tips2 {
+	line-height: 30px;
+	position: absolute;
+	right: 45px;
+	padding: 0;
+	top: 11px;
+}
+
+.u-sinapay-banner {
+	padding: 18px 0 17px 20px;
+	margin: 0 -20px 0;
+	border-bottom: 1px solid #dddbd6;
+}
+.u-sinapay-banner img:first-child{
+	margin-right:72px;
+	}
+/*银行列表*/
+.m-paybank-wrap {
+	border: 5px solid #f7d3d3;
+	margin: 80px 0 0;
+}
+
+.m-paybank-wrap .u-pay-title {
+	font-weight: bold;
+	color: #de9e9e;
+	margin: -58px 0 0 20px;
+	padding: 0 0 25px;
+	line-height: 14px;
+	position: relative;
+}
+
+.m-paybank-wrap .u-pay-title em {
+	display: inline-block;
+	height: 50px;
+	line-height: 50px;
+	border: 2px solid #f7d3d3;
+	border-bottom: none;
+	background-color: transparent;
+	text-align: center;
+	cursor: pointer;
+	margin: 0 15px 0 0;
+	padding: 3px 0 0;
+	width: 138px;
+}
+
+.m-paybank-wrap .u-pay-title em.z-current {
+	background-color: #fff;
+	border-width: 5px;
+	width: 132px;
+}
+
+.u-quickbank-list {
+	min-height: 550px;
+	padding: 30px 20px 0;
+}
+
+.u-qbank-info {
+	border: 1px solid #cdcdcd;
+	height: 60px;
+	line-height: 60px;
+	padding: 0 0 0 30px;
+	margin: 0 0 20px;
+}
+
+.u-qbank-info.z-disabled {
+	border: 1px solid #e0cd74;
+	height: 78px;
+	line-height: 78px;
+	background-color: #fffab0;
+	color: #464646;
+	margin: 0;
+}
+
+.u-qbank-info.z-disabled a {
+	color: #d74147;
+}
+
+.u-qbank-list {
+	min-height: 75px;
+	padding: 25px 15px 25px 30px;
+	background-color: #fff1f1;
+	position: relative;
+}
+.u-qbank-list .u-qlist-wrap{
+	position: absolute;
+	left:0;
+	top:0;
+	width: 100%;
+	height: 100%;
+	z-index:501;
+}
+.u-qbank-info span {
+	margin: 0 45px 0 0;
+}
+
+.u-bank-list {
+	height: 550px;
+	padding: 30px 10px 0 20px;
+	position: relative;
+}
+
+.u-bank-list h4 {
+	position: absolute;
+	left: 20px;
+	top: 60px;
+	color: #666;
+}
+
+.u-bank-list ul {
+	margin: 0 30px 0 75px;
+}
+
+.u-bank-list li {
+	float: left;
+	margin: 0 42px 20px 0;
+	width: 82px;
+	height: 103px;
+	overflow: hidden;
+}
+
+.u-bank-list li span {
+	display: block;
+	border: solid 1px #dddbd6;
+	width: 80px;
+	height: 80px;
+	cursor: pointer;
+}
+
+.u-bank-list li.z-selected span {
+	border: solid 3px #dddbd6;
+	width: 76px;
+	height: 76px;
+}
+
+.u-bank-list li em {
+	margin: 3px 0 0;
+	display: none;
+	text-align: center;
+	color: #999;
+}
+
+.u-bank-list li.z-selected em {
+	display: block;
+}
+
+.u-bank-list span i {
+	margin: 13px 0 0 13px;
+}
+
+.u-bank-list li.z-selected i {
+	margin: 11px 0 0 11px;
+}
+
+.u-select-other {
+	margin: 0 0 0 97px;
+}
+
+.u-select-other .u-selector {
+	width: 200px;
+}
+
+.u-select-other.z-selected button {
+	color: #e33f4a;
+}
+
+.u-submit-wrap {
+	padding: 13px 0 44px 97px;
+}
+
+.u-submit-wrap.z-last {
+	padding: 13px 0 44px 30px;
+}
+
+.u-recharge-amount {
+	height: 70px;
+	line-height: 70px;
+	margin: 28px 0 0 0;
+	border-top: solid 1px #dddbd6;
+	border-bottom: solid 1px #dddbd6;
+}
+
+.u-recharge-amount2 {
+	border-top: none;
+	border-bottom: none;
+}
+
+.u-recharge-amount .u-amount-span {
+	display: inline-block;
+	width: 88px;
+	text-align: right;
+	padding: 0 1px 0 0;
+}
+
+.u-recharge-amount input {
+	width: 157px;
+}
+
+.u-pay-smscode {
+	padding: 30px 30px 10px;
+}
+.u-pay-smscode p{
+	padding: 0 0 15px;
+}
+.u-recharge-code input {
+	margin: 20px 0 0;
+	font-size: 12px;
+}
+
+.u-recode-tips {
+	display: inline-block;
+	height: 28px;
+	line-height: 28px;
+	width: 170px;
+	background-color: #d74148;
+	border-color: #d74148;
+	text-align: center;
+	color: #fff;
+}
+
+.u-recode-btn {
+	cursor: pointer;
+}
+
+.u-pay-tips {
+	height: 40px;
+	line-height: 40px;
+	background-color: #eee;
+	color: #666;
+	text-indent: 90px;
+}
+
+.u-pay-tips a {
+	border-bottom: 1px solid #666;
+	margin: 0 0 0 17px;
+	text-decoration: none;
+	color: #666;
+}
+
+.u-pay-qbank {
+	width: auto;
+	border: 1px solid #dddbd6;
+	background-color: #fff;
+	line-height: 50px;
+	color: #6b6b6b;
+	padding: 0 20px 0 0;
+	cursor: pointer;
+	margin: 0 17px 20px 0;
+	vertical-align: top;
+}
+
+.u-pay-qbank.z-selected {
+	border-color: #e60012;
+}
+
+.u-pay-qbank img {
+	display: inline-block;
+	margin: 8px 11px 10px 7px;
+}
+
+a.u-qbank-more, .u-qbank-more {
+	background-color: #dddbd6;
+	border-color: #dddbd6;
+	line-height: 50px;
+	text-align: center;
+	font-size: 30px;
+	line-height: 46px;
+	cursor: pointer;
+	color: #fff;
+	margin-bottom: 20px;
+}
+
+a.u-qbank-more:hover {
+	text-decoration: none;
+}
+
+.u-pay-qbank .z-selected {
+	border-color: #e60012;
+}
+/*支付状态*/
+.m-pay-state {
+	height: 368px;
+	width: 738px;
+	position: fixed;
+	z-index: 1001;
+	background-color: #fff;
+	margin: 0 auto;
+	top: 50%;
+	left: 50%;
+	border-radius: 8px;
+	overflow: hidden;
+}
+.u-settings-auto>a{
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 16px;
+	height: 16px;
+	padding: 6px;
+	display: block;
+	background: url("/static/img/v2/member/invest-close.png") no-repeat center;
+	cursor: pointer;
+	font-size: 20px;
+	line-height: 16px;
+}
+.m-pay-state>p{
+	background: #d74148;
+	width: 738px;
+	height: 70px;
+	position: absolute;
+	bottom: 0;
+}
+.m-pay-state>p a{
+	background:#c73d43;
+	border:1px solid #c0343a;
+	border-radius:20px;
+	width:458px;
+	height:38px;
+	margin: 15px auto 15px;
+	font-size:14px;
+	color:#ffffff;
+	display: block;
+	text-align: center;
+	line-height: 38px;
+	outline: none;
+}
+.m-pay-state>p a:link,.m-pay-state>p a:visited,.m-pay-state>p a:hover{
+	text-decoration: none;
+	color: #fff;
+}
+.m-pay-state>p a em{
+	height: 12px;
+	width: 12px;
+	overflow: hidden;
+	display: inline-block;
+	position: relative;
+	margin: 0 0 0 4px;
+}
+.m-pay-state>p a i{
+	transform: rotate(45deg);
+	border: 1px solid #ffffff;
+	width: 10px;
+	height: 10px;
+	display: inline-block;
+	position: absolute;
+	left: -5px;
+}
+.u-state-bank {
+	font-size: 0;
+	width: 660px;
+	padding: 30px 40px 0;
+}
+
+.u-state-bank h3 {
+	font-weight: 100;
+	font-size:20px;
+	color:#737373;
+	margin-bottom: 50px;
+}
+
+.u-state-bank p {
+	text-align: center;
+	font-size:20px;
+	color:#333333;
+	margin-bottom: 70px;
+}
+.u-count-down{
+	color: #0088CC;
+}
+/*color: #999;*/
+/*height: 40px;*/
+/*line-height: 40px;*/
+/*border-top: solid 1px #c3c3c3;*/
+/*border-bottom: solid 1px #c3c3c3;*/
+/*padding: 0 0 0 20px;*/
+/*margin: 0 0 26px;*/
+.u-state-bank span {
+	color: #b9b9b9;
+	display: inline-block;
+	padding: 0 0 0 35px;
+}
+
+.u-state-bank a {
+	color: #d74148;
+	text-decoration: none;
+	border-bottom: solid 1px #d74148;
+}
+
+.u-state-bank div>a {
+	display: inline-block;
+	height: 38px;
+	line-height: 38px;
+	width: 218px;
+	background: none;
+	border-color: #d74148;
+	color: #d74148;
+	font-size: 14px;
+	text-align: center;
+	margin: 0 0 0 100px;
+}
+
+.u-state-bank div>a:last-child {
+	border-color: #e75d5d;
+	color: #e75d5d;
+	margin: 0 0 0 40px;
+}
+
+.u-state-bank>a i {
+	margin: 0 23px 0 20px;
+	vertical-align: middle;
+}
+
+.u-pay-result {
+	padding: 30px 40px 20px;
+	position: relative;
+	font-size: 0;
+}
+
+.u-pay-result>div {
+	padding: 0 0 0 55px;
+}
+
+.u-pay-result h3 {
+	line-height: 36px;
+	color: #737373;
+	font-size: 20px;
+}
+
+.u-pay-result p {
+	line-height: 40px;
+	margin: 50px 0 60px;
+	color: #333;
+	font-size: 20px;
+	text-align: center;
+}
+
+.u-pay-result>i {
+	position: absolute;
+	left: 80px;
+	top: 30px;
+}
+
+.u-pay-result>div>a, .u-pay-result2>div>a {
+	display: inline-block;
+	border-radius:4px;
+	width:218px;
+	height:38px;
+	line-height: 40px;
+	text-align: center;
+	font-size: 14px;
+	text-decoration: none;
+	margin-left: 40px;
+}
+
+/*.u-pay-result>div>a:last-child, .u-pay-result2>div>a:last-child {*/
+	/*margin-left: 40px;*/
+/*}*/
+
+.u-pay-error>div>a {
+	color: #e75d5d;
+	border-color: #e75d5d;
+}
+
+.u-pay-doing>div>a {
+	color: #d74148;
+	border-color: #d74148;
+}
+
+.u-pay-doing p a {
+	color: #f1b136;
+	text-decoration: none;
+	border-bottom: solid 1px #f1b136;
+}
+
+.u-pay-result2 {
+	padding: 30px 40px 0;
+}
+
+.u-pay-result2 table {
+
+}
+
+.u-pay-result2 td {
+	color: #333;
+	height: 30px;
+	line-height: 30px;
+	width: 175px;
+	font-size: 14px;
+}
+
+.u-pay-result2 td:first-child {
+	color: #737373;
+	width: 95px;
+	font-size: 12px;
+}
+
+.u-pay-result2 h3 {
+	color: #737373;
+}
+
+.u-pay-result2 .u-result2-left div{
+    width: 270px;
+	height: 167px;
+	margin-top: 25px;
+}
+.u-pay-result2 .u-result2-left div img{
+	margin: 0 auto;
+	display: block;
+}
+.u-pay-result2 h3 span {
+	color: #333;
+	margin-left: 10px;
+}
+.u-result2-eSignatue h3{
+	text-align: left;
+	color: #333;
+	font-size: 20px;
+	margin-bottom: 10px;
+}
+.u-result2-eSignatue p{
+	font-size: 12px;
+	color: #737373;
+	text-align: left;
+	margin-bottom: 10px;
+}
+.u-result2-eSignatue p a,
+.u-result2-eSignatue p a:link,
+.u-result2-eSignatue p a:visited,
+.u-result2-eSignatue p a:hover{
+	color: #737373;
+	text-decoration: underline;
+}
+.u-result2-eSignatue>div>a{
+	background: #ffffff;
+	border: 1px solid #d74148;
+	border-radius: 4px;
+	width: 118px;
+	height: 30px;
+	display: inline-block;
+	color: #d74148;
+	text-align: center;
+	line-height: 30px;
+	font-size: 14px;
+}
+.u-result2-eSignatue>div>a:link,
+.u-result2-eSignatue>div>a:visited,
+.u-result2-eSignatue>div>a:hover{
+	color: #d74148;
+	text-decoration: none;
+}
+.u-result2-eSignatue{
+	padding: 0 0 5px 30px;
+	border-left: 1px solid #eee;
+	vertical-align: top;
+}
+
+/*.u-pay-result2>div {*/
+	/*margin: 0 0 0 245px;*/
+	/*padding: 0 0 25px 28px;*/
+	/*border-left: solid 1px #c3c3c3;*/
+/*}*/
+.u-pay-result2>div{
+	display: inline-block;
+	font-size: 0;
+}
+.u-result2-left{
+	width: 330px;
+}
+.u-result2-left h5{
+	font-size:12px;
+	color:#737373;
+	text-align:center;
+	margin-top: 10px;
+}
+.u-result2-right div{
+	margin-top: 45px;
+}
+.u-result2-right{
+	padding: 20px 0 5px 30px;
+	border-left: 1px solid #eee;
+	vertical-align: top;
+}
+.u-result2-right div a{
+	background:#ffffff;
+	border:1px solid #d74148;
+	border-radius:4px;
+	width:118px;
+	height:30px;
+	display: inline-block;
+	color: #d74148;
+	text-align: center;
+	line-height: 30px;
+	font-size: 14px;
+	margin-left: 30px;
+}
+.u-result2-right div a:first-child{
+	margin-left: 0;
+}
+.u-result2-right div a:link,
+.u-result2-right div a:visited,
+.u-result2-right div a:hover{
+	color: #d74148;
+	text-decoration: none;
+}
+.u-pay-success>div>a {
+	color: #d74148;
+	border-color: #d74148;
+}
+
+.u-pay-result2 h4 {
+	color: #666;
+	padding: 7px 0 0;
+	height: 46px;
+	line-height: 46px;
+}
+/* 支付页面使用现金券样式  */
+.u-selector button {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	text-align: right;
+	padding-right: 25px;
+	padding-left: 5px;
+}
+
+.u-select-balance .z-disabled {
+	background-position: -389px -200px;
+}
+
+.u-pay-checkbox.z-disabled {
+	cursor: default;
+}
+
+.u-bank-list .u-bank-checkbox {
+	margin: 0 0 0 80px;
+	color: red;
+}
+/* 订单支付页面的项目名称 */
+.u-pay-title .u-project-name {
+	display: inline-block;
+	width: 400px;
+}
+
+.u-amount-sinapay .Validform_checktip {
+	vertical-align: middle;
+}
+/* 余额支付状态页面样式 */
+.u-state-bank a.u-pay-state {
+	margin-bottom: 25px;
+}
+
+.u-order-vam {
+	line-height: 32px;
+}
+
+.u-order-btn3{
+	margin: 30px 0 50px 60px;
+}
+.u-order-btn3.z-disabled{
+	display: none;
+}
+.u-pay-amount{
+	margin: 36px 0 0 30px;
+}
+.u-submit-wrap2{
+	padding: 13px 0 44px 30px;
+}
+.u-submit-wrap2 label{
+	display: inline-block;
+	padding: 15px 0 0;
+}
+.u-submit-wrap2 label a,.u-submit-wrap2 label a:visited{
+	color: #333;
+}
+.u-pay-smscode input{
+	margin: 0;
+}
+/* 安全卡 */
+.u-bank-safecard>span{
+	width: 230px;cursor: default;
+}
+.u-bank-safecard>em{
+	display: inline-block;
+	color: #999;
+	padding: 8px 0 0;
+}
+.u-bank-safecard>em a{
+	color: #999;
+	text-decoration: underline;
+}
+.u-bank-safecard>span i{
+	width: 78px;
+	height: 20px;
+	position: absolute;
+	right: 8px;
+	top: 15px;
+	background-position: -301px -223px;
+}
+/* 隐藏对话框关闭按钮 */
+.ui-dialog-close{display: none;}
+/*项目名称链接去掉下划线*/
+.u-invest-underline:link,
+.u-invest-underline:hover,
+.u-invest-underline:visited{
+	color:#666;
+	text-decoration: none;	
+}
+
+.u-project-name .u-project-name:link,
+.u-project-name .u-project-name:hover,
+.u-project-name .u-project-name:visited{
+	color:#666;
+	text-decoration: none;	
+}
+/**投资支付页快捷支付银行限额表**/
+.u-qbank-list h6 {
+    color: #6b6b6b;
+    margin: 10px 0 12px;
+}
+.u-qbank-list table {
+    color: #6b6b6b;
+    border-left: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+}
+.u-qbank-list table th, .u-qbank-list table td {
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+.u-sina-notice {
+    font-size: 16px;
+    color: #464646;
+    line-height: 2em;
+    margin: 10px 0 0;
+    padding: 30px 30px 35px;
+    border: 1px solid #e0cd74;
+    background: #fffab0;
+}
+/*p2p直投项目-创建订单页新增*/
+.u-new-tShaft>strong{
+	background-color: #eee;
+	height: 38px;
+	line-height: 38px;
+	text-indent: 20px;
+	border-bottom: 2px solid #cdcdcd;
+	display: block;
+}
+.u-new-tShaft .u-info-tShaft{
+	height: 50px;
+	margin-top: 55px;
+	border-top: 4px solid #ccc;
+}
+.u-new-tShaft .u-info-tShaft>span{
+	position: absolute;
+	top:-4px;
+	height: 4px;
+	display: block;
+	z-index: 1;
+	background: #d74147;
+}
+.u-new-tShaft .u-info-tShaft>span.z-current0{
+	width: 13%;
+}
+.u-new-tShaft .u-info-tShaft>span.z-current1{
+	width: 37%;
+}
+.u-new-tShaft .u-info-tShaft>span.z-current2{
+	width: 62%;
+}
+.u-new-tShaft .u-info-tShaft>span.z-current3{
+	width: 85%;
+}
+.u-new-tShaft .u-info-tShaft>span.z-current4{
+	width: 100%;
+}
+.u-new-tShaft .u-info-tShaft dl{
+	position: absolute;
+	top: -17px;
+	z-index: 2;
+	text-align: center;
+	display: inline-block;
+}
+.u-new-tShaft .u-tShaft-dl01{
+	left: 90px;
+}
+.u-new-tShaft .u-tShaft-dl02{
+	left: 315px;
+}
+.u-new-tShaft .u-tShaft-dl03{
+	left: 550px;
+}
+.u-new-tShaft .u-tShaft-dl04{
+	left: 765px;
+}
+.u-new-tShaft .u-info-tShaft dl dt{
+	margin: 0 0 15px;
+	height: 30px;
+	width: 30px;
+	display: inline-block;
+	background: url("/static/img/products/p2p-detail-sprites.png") no-repeat -35px 0;
+}
+.u-new-tShaft .u-info-tShaft dl dt.z-current{
+	background: url("/static/img/products/p2p-detail-sprites.png") no-repeat;
+}
+.u-new-tShaft .u-info-tShaft dl dd{
+	color: #999;
+	font-size: 14px;
+	font-weight: bold;
+}
+/*\p2p直投项目-创建订单页新增*/
+/*p2p直投项目-订单支付页新增*/
+.m-ztPay-state{
+	/*position: fixed;*/
+	/*z-index: 1001;*/
+	/*background-color: #fff;*/
+	/*margin: 0 auto;*/
+	/*top: 50%;*/
+	/*height: 450px;*/
+	/*padding: 37px 50px 36px;*/
+	padding: 10px 20px;
+	position: relative;
+}
+.m-ztPay-state>div{
+	vertical-align: top;
+	display: inline-block;
+}
+.m-ztPay-state .u-state-tipsText{
+	width: 360px;
+	padding: 105px 50px 130px 0;
+	border-right: 1px solid #c3c3c3;
+}
+.m-ztPay-state .u-state-tipsText>p{
+	font-size: 18px;
+	font-weight: bold;
+	color: #464646;
+	padding: 0 0 0 50px;
+	position: relative;
+}
+.m-ztPay-state .u-state-tipsText p i{
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+.m-ztPay-state .u-new-tShaft>strong{
+	background-color: #eee;
+	height: 38px;
+	line-height: 38px;
+	text-indent: 20px;
+	border-bottom: 2px solid #cdcdcd;
+	display: block;
+}
+.m-ztPay-state .u-info-tShaft{
+	height: 50px;
+	margin-top: 100px;
+	border-top: 4px solid #ccc;
+}
+.m-ztPay-state .u-info-tShaft>span{
+	position: absolute;
+	top:-4px;
+	height: 4px;
+	display: block;
+	z-index: 1;
+	background: #d74147;
+}
+.m-ztPay-state .u-info-tShaft>span.z-current0{
+	width: 13%;
+}
+.m-ztPay-state .u-info-tShaft>span.z-current1{
+	width: 38%;
+}
+.m-ztPay-state .u-info-tShaft>span.z-current2{
+	width: 62%;
+}
+.m-ztPay-state .u-info-tShaft>span.z-current3{
+	width: 85%;
+}
+.m-ztPay-state .u-info-tShaft>span.z-current4{
+	width: 100%;
+}
+.m-ztPay-state .u-info-tShaft dl{
+	position: absolute;
+	top: -17px;
+	z-index: 2;
+	text-align: center;
+	display: inline-block;
+	width: 60px;
+}
+.m-ztPay-state .u-tShaft-dl01{
+	left: -25px;
+}
+.m-ztPay-state .u-tShaft-dl02{
+	left: 70px;
+}
+.m-ztPay-state .u-tShaft-dl03{
+	left: 160px;
+}
+.m-ztPay-state .u-tShaft-dl04{
+	left: 245px;
+}
+.m-ztPay-state .u-info-tShaft dl dt{
+	margin: 0 0 15px;
+	height: 30px;
+	width: 30px;
+	display: inline-block;
+	background: url("/static/img/products/p2p-detail-sprites.png") no-repeat -35px 0;
+}
+.m-ztPay-state .u-info-tShaft dl dt.z-current{
+	background: url("/static/img/products/p2p-detail-sprites.png") no-repeat;
+}
+.m-ztPay-state .u-info-tShaft dl dd{
+	color: #999;
+	font-size: 14px;
+	font-weight: bold;
+}
+/**直投项目支付订单右侧表单**/
+.u-state-info{
+	padding: 12px 0 0;
+	margin: 0 0 0 34px;
+}
+.u-state-info tbody{
+	border: 2px solid #cdcdcd;
+}
+.u-state-info thead tr{
+	height: 50px;
+	color: #666;
+	font-weight: bold;
+}
+.u-state-info tbody tr{
+	border-top: 1px solid #cdcdcd;
+}
+.u-state-info tbody tr:first-child{
+	border-top: none;
+}
+.u-state-info tbody td{
+	padding-left: 15px;
+	width: 285px;
+	height: 48px;
+}
+.u-state-info tbody tr td:first-child{
+	width: 95px;
+	border-right: 1px solid #cdcdcd;
+}
+.u-state-info>a{
+	height: 38px;
+	width: 158px;
+	display: inline-block;
+	text-align: center;
+	line-height: 38px;
+	color: #d74148;
+	font-size: 14px;
+	font-weight: bold;
+	border: 1px solid #d74148;
+	margin: 30px 18px 0 0;
+}
+.u-state-info>a:link{
+	text-decoration: none;
+}
+/*\p2p直投项目-订单支付页新增*/

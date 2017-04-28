@@ -1,0 +1,4 @@
+##第三方return 页面
+<script type="text/javascript">
+		window.close();	
+</script>

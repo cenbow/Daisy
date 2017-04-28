@@ -1,0 +1,13 @@
+ #parse("/common/common.vm")
+ #########################################script##################################### 
+ #set($js_config=[ 
+ "'urlMap':{ 
+   'ajax':'$root_url/preservation/ajax?', 
+   'query':'$root_url/preservation/index?', 
+   'save':'$root_url/preservation/save', 
+   'show':'$root_url/preservation/show?id=', 
+   'delet':'$root_url/preservation/delete',
+   'create':'$root_url/preservation/create'}"
+ ]) 
+ #set($js_url=["$root_url/static/js/preservation.js"]) 
+ #########################################DOM##################################### 

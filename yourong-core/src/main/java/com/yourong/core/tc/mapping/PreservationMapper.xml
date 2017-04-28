@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.tc.dao.PreservationMapper" >
+  <resultMap id="BaseResultMap" type="Preservation" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="preservation_id" property="preservationId" jdbcType="BIGINT" />
+    <result column="transaction_id" property="transactionId" jdbcType="BIGINT" />
+    <result column="attachment_id" property="attachmentId" jdbcType="BIGINT" />
+    <result column="preservation_time" property="preservationTime" jdbcType="TIMESTAMP" />
+    <result column="success_flag" property="successFlag" jdbcType="INTEGER" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, preservation_id, transaction_id, attachment_id, preservation_time, success_flag, 
+    remarks, del_flag, create_time, update_time
+  </sql>
+  <insert id="insertSelective" parameterType="Preservation" >
+    insert into tc_preservation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="preservationId != null" >
+        preservation_id,
+      </if>
+      <if test="transactionId != null" >
+        transaction_id,
+      </if>
+      <if test="attachmentId != null" >
+        attachment_id,
+      </if>
+      <if test="preservationTime != null" >
+        preservation_time,
+      </if>
+      <if test="successFlag != null" >
+        success_flag,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+        del_flag,
+        create_time,
+        update_time
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="preservationId != null" >
+        #{preservationId,jdbcType=BIGINT},
+      </if>
+      <if test="transactionId != null" >
+        #{transactionId,jdbcType=BIGINT},
+      </if>
+      <if test="attachmentId != null" >
+        #{attachmentId,jdbcType=BIGINT},
+      </if>
+      <if test="preservationTime != null" >
+        #{preservationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="successFlag != null" >
+        #{successFlag,jdbcType=INTEGER},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      1, now(), now()
+    </trim>
+  </insert>
+  
+  <update id="updateByPreservationIdSelective" parameterType="Preservation" >
+    update tc_preservation
+    <set >
+      <if test="attachmentId != null" >
+      	attachment_id = #{attachmentId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where preservation_id = #{preservationId,jdbcType=BIGINT}
+  </update>
+  
+  <select id="selectByTransactionId" parameterType="java.lang.Long" resultMap="BaseResultMap" >
+  	select 
+  		min(preservation_id) as preservation_id
+	from
+		tc_preservation
+	where 
+		transaction_id = #{transactionId,jdbcType=BIGINT}
+	and del_flag > 0
+  </select>
+</mapper>

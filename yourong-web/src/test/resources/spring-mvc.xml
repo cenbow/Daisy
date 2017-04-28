@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+http://www.springframework.org/schema/beans/spring-beans-3.2.xsd 
+http://www.springframework.org/schema/context 
+http://www.springframework.org/schema/context/spring-context-3.2.xsd 
+http://www.springframework.org/schema/mvc 
+http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
+
+	<!-- 自动扫描controller包下的所有类，使其认为spring mvc的控制器 -->
+	<context:component-scan base-package="com.yourong.web.controller" >
+		<context:include-filter   type="annotation" expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
+	<mvc:annotation-driven>
+        <mvc:message-converters register-defaults="true">
+            <bean class="com.yourong.common.web.MappingFastJsonHttpMessageConverter">
+                <property name="supportedMediaTypes" value="application/json"/>                
+                <property name="serializerFeature">
+                    <array>
+                        <value>WriteMapNullValue</value>
+                        <value>QuoteFieldNames</value>
+                    </array>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+	<!-- 首页  cache-period="31536000"-->
+	<mvc:resources mapping="/robots.txt" location="/robots.txt" order="0"/>
+	<mvc:resources mapping="/favicon.ico" location="/favicon.ico" order="1"/>
+	<mvc:view-controller path="/" view-name="index"/>
+	<mvc:resources mapping="/static/**" location="/static/"  cache-period="31536000" />
+    <mvc:resources mapping="/res/**" location="/res/"  cache-period="31536000" />
+	   <!-- spring提供的bean validator接口配置  -->  
+    <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">  
+        <property name="providerClass"  value="org.hibernate.validator.HibernateValidator"/>
+        <property name="validationMessageSource" ref="messageSource"/>          
+    </bean>
+	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<value>message</value>
+				<value>org/hibernate/validator/ValidationMessages</value>
+			</list>
+		</property>
+		<property name="useCodeAsDefaultMessage" value="false"/>
+		<property name="defaultEncoding" value="UTF-8"/>
+		<property name="cacheSeconds" value="60"/>
+	</bean>
+	<!-- CSRF Interceptor handlers -->
+	<mvc:interceptors>	
+	  <!--<bean class="com.yourong.common.web.CSRFHandlerInterceptor" />-->
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />	
+			<mvc:exclude-mapping path="/static/**" />				
+			<mvc:exclude-mapping path="/res/**" />
+			<bean class="com.yourong.common.web.StopWatchInterceptor" />
+		</mvc:interceptor>
+
+		<mvc:interceptor>
+		  <!-- <mvc:mapping path="/**" />  -->
+			 <mvc:mapping path="/member/**"/>  
+		     <mvc:mapping path="/coupon/**"/>  
+		     <mvc:mapping path="/memberBalance/**"/>
+		     <mvc:mapping path="/memberBankCard/**"/>   
+		     <mvc:mapping path="/order/**"/> 
+		     <mvc:mapping path="/area/**"/> 
+		     <mvc:mapping path="/transaction/**"/>  
+		     <mvc:mapping path="/activity/receive/giftmoney" /> 		   
+		     <mvc:mapping path="/activity/receive/redFriday" /> 		   
+		     <mvc:mapping path="/message/**"/>
+		     <mvc:mapping path="/activity/yiRoad/drawLottery" />
+		     <mvc:mapping path="/activity/yiRoad/share" />
+		     <mvc:mapping path="/activity/olympic/guessMedal" />
+		     <mvc:mapping path="/activity/olympic/guessGold" />
+		     <mvc:mapping path="/activity/olympic/setOlympic" />
+		     <mvc:mapping path="/activity/double/receive" />
+		     <mvc:exclude-mapping path="/" />
+		     <mvc:exclude-mapping path="/mIndex" />
+		     <mvc:exclude-mapping path="/static/**" />		    
+		     <mvc:exclude-mapping path="/res/**" />
+		     <mvc:exclude-mapping path="/security/**" />
+		     <mvc:exclude-mapping path="/post/**" />					
+		     <mvc:exclude-mapping path="/products/**" />			
+		     <mvc:exclude-mapping path="/notify/**" />		    		
+		     <mvc:exclude-mapping path="/avatarUpload/**" />	
+		     <mvc:exclude-mapping path="/landing/**" />
+		     <mvc:exclude-mapping path="/projectTransaction/**" />	
+		     <mvc:exclude-mapping path="/download/**" />
+		     <mvc:exclude-mapping path="/activity/yiRoad/index" />
+		     <mvc:exclude-mapping path="/activity/yiRoad/showList" />
+		     <mvc:exclude-mapping path="/activity/yiRoad/rankList" />
+		     <mvc:exclude-mapping path="/activity/yiRoad/appDownCount" />
+		     <mvc:exclude-mapping path="/activity/yiRoad/shareList" />
+		     <mvc:exclude-mapping path="/products/prop/**" />
+			 <mvc:exclude-mapping path="/activity/olympic/init" />
+			 <mvc:exclude-mapping path="/activity/anniversary/init" />
+			 <mvc:exclude-mapping path="/activity/double/init" />
+			<bean class="com.yourong.web.authority.CheckLoginedHandleInterceptor" />
+		</mvc:interceptor>
+		<!--拦截所有新浪接口-->
+		<mvc:interceptor>
+			<mvc:mapping path="/security/register/saveMember"/>
+			<mvc:mapping path="/security/register/"/>
+			<mvc:mapping path="/member/authIdentity"/>
+			<mvc:mapping path="/member/auditMemberInfos"/>
+			<mvc:mapping path="/memberBalance/rechargePage"/>
+			<mvc:mapping path="/memberBalance/withdrawSubmit"/>
+			<!--<mvc:mapping path="/memberBalance/savingPot"/>-->
+			<mvc:mapping path="/memberBalance/recharge"/>
+			<mvc:mapping path="/memberBalance/rechargeOnBankCard"/>
+			<mvc:mapping path="/memberBalance/rechargeOnBankCardCheck"/>
+			<mvc:mapping path="/memberBalance/withdrawPage"/>
+			<mvc:mapping path="/memberBankCard/sendThirdPayBingBankCard"/>
+			<mvc:mapping path="/memberBankCard/checkCodeFromThirdPay"/>
+			<mvc:mapping path="/memberBankCard/addMemberBankCard"/>
+			<mvc:mapping path="/memberBankCard/bankAdd"/>
+			<mvc:mapping path="/memberBankCard/deleteMemberBankCard"/>
+			<mvc:mapping path="/order/save"/>
+			<mvc:mapping path="/order/new"/>
+			<mvc:mapping path="/order/to/payAjax"/>
+			<mvc:mapping path="/order/to/pay"/>
+			<mvc:mapping path="/transaction/pay/order"/>
+			<mvc:mapping path="/transaction/pay/order/thirdPay"/>
+			<mvc:mapping path="/transaction/pay/order/onthirdPayCarID"/>
+			<mvc:mapping path="/security/m/register"/>
+			<mvc:mapping path="/member/m/sinapay"/>
+			<mvc:mapping path="/member/sinapay"/>
+			<bean class="com.yourong.web.authority.ThirdPayHandleInterceptor" />
+		</mvc:interceptor>
+
+		<!-- 是否实名验证-->
+		<mvc:interceptor>
+		    <mvc:mapping path="/memberBalance/rechargeIndex"/>
+		    <mvc:mapping path="/memberBalance/rechargePage"/>
+		    <mvc:mapping path="/memberBalance/withdrawPage"/>
+		    <mvc:mapping path="/memberBalance/savingPot"/>
+		    <mvc:mapping path="/memberBankCard/bankManage"/>
+		    <mvc:mapping path="/memberBankCard/bankAdd"/>
+		    <mvc:mapping path="/member/registerSucess"/>
+		    <mvc:mapping path="/member/eSignature"/>
+		    <bean class="com.yourong.web.authority.CheckTrueNameHandleInterceptor" />
+		</mvc:interceptor>
+
+
+	</mvc:interceptors> 
+
+	<!-- 避免IE执行AJAX时返回JSON出现下载文件 -->
+	<bean id="mappingJacksonHttpMessageConverter"
+		class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+		<property name="supportedMediaTypes">
+			<list>
+				<value>text/html;charset=UTF-8</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean class="com.yourong.common.web.MappingFastJsonHttpMessageConverter">
+		<property name="supportedMediaTypes" value="application/json" />
+		<property name="serializerFeature">
+			<array>
+				<value>WriteMapNullValue</value>
+				<value>QuoteFieldNames</value>
+			</array>
+		</property>
+	</bean>	
+	<!-- 启动Spring MVC的注解功能，完成请求和注解POJO的映射s -->
+	<bean
+		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<ref bean="mappingJacksonHttpMessageConverter" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- 对模型视图名称的解析，即在模型视图名称添加前后缀 
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/jsp/" />
+		<property name="suffix" value=".jsp" />
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView" />
+	</bean>-->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding">
+			<value>UTF-8</value>
+		</property>
+		<property name="maxUploadSize">
+			<value>32505856</value><!-- 上传文件大小限制31m31*1024*1024s -->
+		</property>
+		<property name="maxInMemorySize">
+			<value>4096</value>
+		</property>
+	</bean>
+	<bean id="restTemplate" class="org.springframework.web.client.RestTemplate" />
+
+	<!-- <bean id="velocityEngine"
+		class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
+		<property name="velocityProperties">
+			<value>
+				resource.loader=class
+				class.resource.loader.class=org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+			</value>
+		</property>
+	</bean> -->
+	<bean id="velocityConfig"
+		class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+		<property name="resourceLoaderPath" value="/WEB-INF/vm/" />
+	    <property name="configLocation" value="classpath:velocity.properties" />
+	</bean>
+		
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver">
+	  	<property name="cache" value="true"></property><!--是否缓存模板-->
+	  	<property name="order" value="10" />
+		<property name="suffix" value=".vm" />
+		<property name="prefix" value="" />
+		<property name="layoutUrl" value="common/layout.vm" />		  
+	    <property name="viewClass" value="com.yourong.common.web.VelocityToolbox20View"/>		
+		<!-- 使用springMacro -->
+		<property name="exposeSpringMacroHelpers" value="true" />		
+		<property name="exposeRequestAttributes" value="true" />
+		<property name="exposeSessionAttributes" value="true" />
+		<property name="requestContextAttribute" value="content"/>
+		<property name="contentType" value="text/html;charset=UTF-8" />			 
+		<!-- velocity toolbox -->
+		<property name="toolboxConfigLocation" value="/WEB-INF/velocityTools.xml" />
+	</bean>	 
+</beans>

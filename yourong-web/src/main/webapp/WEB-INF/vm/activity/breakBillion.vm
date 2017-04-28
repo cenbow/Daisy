@@ -1,0 +1,106 @@
+##破十亿活动
+#parse('/common/common.vm')
+#set($title="破十亿_$!{title_suffix}")
+#set($css_url=["$root_css_url/activity/breakBillion.css"])
+#set($js_url=["/static/lib/js/template.js","$root_js_url/activity/breakBillion.js"])
+
+
+
+<div class="g-content">
+    <div class="g-topbg">
+
+    </div>
+
+    <div class="u-wrap m-progressBar">
+        <div class="g-wrap">
+            <div class="f-progressBar">
+                <div id="j-progressBarFund" class="j-progressBarFund z-position">
+                    <span class="f-fs24  f-fc-yellow">50万</span>
+                    <span class="f-fs20 j-fund u-fund"></span>
+                </div>
+                <div class="f-progressBar-img u-circle-12">
+                    <div class="f-progressBar-bg">
+                    </div>
+                </div>
+            </div>
+
+            <div class="m-inverstRule">
+                <div class="">
+                <div class="m-table">
+                <table class="f-fs14">
+                    <tr>
+                        <td>面额（元）</td>
+                        <td>起投金额（元）</td>
+                        <td>起投期限（天）</td>
+                    </tr>
+                    <tr>
+                        <td>30</td>
+                        <td>1000</td>
+                        <td rowspan="3">25</td></tr>
+                    <tr>
+                        <td>50</td>
+                        <td>2000</td></tr>
+                    <tr>
+                        <td>100</td>
+                        <td>5000</td></tr>
+                </table>
+                </div>
+                <img src="/static/img/activity/breakBillion/redParket.png" alt="" "/>
+                </div>
+                <span class="f-fs14 f-space"> 活动上线后，用户每成功投资1笔，可随机获得 <strong class="f-fc-yellow">30/50/100元现金券</strong> 中的一张，多投多得，共 <strong class="f-fc-yellow"> 50万</strong>，发完即止；</span>
+            </div>
+        </div>
+    </div>
+
+
+##滚动列表
+    <div class="g-wrap m-millionFound-list">
+        <div class="f-list-box">
+            <span class="f-fs20 z-show f-dn f-show">邀您共同见证十亿美好!</span>
+
+            <div class="f-gainList">
+                <ul id="j-gainList" class="u-gainList">
+                </ul>
+            </div>
+            <script id="j-gainList-tp" type="text/html">
+                {{each investList as item}}
+                <li>
+                    <span class="u-user-head">
+                         <img src="{{if item.avatar}}$aliyun_url/{{item.avatar}}{{else}}/static/img/member/avatar_35x35.png{{/if}}"
+                              alt="用户头像">
+                        <i>&nbsp;</i>
+                    </span>
+
+                    <span class="u-user-name">{{item.memberName}}</span>
+                    <span class="u-useTime">{{item.createTime | dateFormat:'yyyy-MM-dd hh:mm:ss'}}</span>
+                    <span class="u-giftText">投资 <b> {{item.chip |
+                        amountFormat:'split'}}元</b>获得<b>{{item.rewardInfo}}</b></span>
+                </li>
+                {{/each}}
+
+            </script>
+        </div>
+    </div>
+##拿现金券按钮
+    <div class="u-investmentBtn f-fs24 g-wrap">
+        <a href="/"><span> 我要现金券</span></a>
+    </div>
+##活动规则
+    <div class="g-ruleWrap ">
+        <div class="u-rule">
+        <h4 class="f-fs18 f-ruleTitle">活动规则</h4>
+            <div class="g-wrap u-rule-text f-fs14">
+                <p>
+                    1、活动时间：活动上线之时至<strong class="f-fc-yellow">50万现金券</strong>送完为止；<br/>
+                    2、活动对象：有融网所有用户；<br/>
+                    3、现金券有效期为领取后5天，请前往<strong class="f-fc-yellow">“我的优惠—我的现金券”</strong>查看；<br/>
+                    4、如有其他疑问，请拨打<strong class="f-fc-yellow">客服热线：400-025-6688</strong>；<br/>
+                    本活动最终解释权归有融网所有
+
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="u-bg"></div>
+</div>
+#CSRFToken('xToken')

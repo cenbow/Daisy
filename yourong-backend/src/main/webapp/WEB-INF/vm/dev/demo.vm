@@ -1,0 +1,7 @@
+#parse("/common/modules/categorySelector.vm")
+选择分类：<input type="text" id="inputCategory"/>
+<script>
+	window.onload=function(){
+		$("#inputCategory").setCategory();
+	}
+</script>

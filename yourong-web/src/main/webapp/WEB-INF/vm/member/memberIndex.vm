@@ -1,0 +1,496 @@
+##用户中心
+#parse("/common/common.vm")
+#set($title="账户概览_$!{title_suffix}")
+#set($css_url=["$cssv2_url/member/member.css","$root_css_url/modules/delegatePay.css"])
+#set($js_url=["/static/lib/js/template.js","$root_js_url/modules/member.js"])
+#set($account="z-current")
+
+##页面入口标识
+#set($entry=["member","memberIndex"])
+
+#set($noTabTitle=true)
+#set($isMemberIndex=true)
+#set($hasSetPayPassword=${servletUtil.synPayPasswordFlag()})
+    ##用户中心头部
+    #parse("/member/head.vm")
+    ##/用户中心头部
+<style>
+    .u-setPayPasswordTips{
+        background:#fffbb0;
+        border:1px solid #e0cd74;
+        width:948px;
+        height: 34px;
+        padding: 0 20px;
+        margin: 10px 0 -15px;
+        color: #333333;
+        line-height: 34px;
+        font-size: 12px;
+        position: relative;
+    }
+    .u-setPayPasswordTips a{
+        display: inline-block;
+        background:#d74148;
+        width:200px;
+        height: 34px;
+        line-height: 34px;
+        color: #ffffff;
+        text-align: center;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    .g-fixed {
+        position: fixed;
+        top: 416px;
+        left: 50%;
+        margin-left: 375px;
+    }
+    .m-direct-prizes {
+        width: 102px;
+        height: 111px;
+        cursor: pointer;
+        background: url(/static/img/products/directActivator/direct_prizes_bg.png) no-repeat;
+        background-size: 100% 100%;
+    }
+    .u-prizes-box {
+        position: absolute;
+        top: 40px;
+        left: 33px;
+        width: 48px;
+        height: 48px;
+        background:  url(/static/img/products/directActivator/prizes_box.png) no-repeat;
+        background-size: 100% 100%;
+    }
+    .u-prizes-box.z-noData {
+        top: 32px;
+        left: 36.5px;
+        width: 39px;
+        height: 39px;
+    }
+    .u-prizes-count {
+        position: absolute;
+        bottom: 13px;
+        right: 19px;
+        width: 52px;
+        height: 20px;
+        border: 1px solid #fff;
+        border-radius: 6px;
+        font-size: 14px;
+        color: #fff;
+        text-align: center;
+    }
+</style>
+    <div class="g-wrap">
+        #if($overduepopularity.show)
+            <div class="u-investment-tips f-count-clear  f-pos-r f-dn" id="j-valueCount-check"
+                 data-userid="$!{currentUser.id}">
+                <i>$!{dateUtil.formatDatetoString(${overduepopularity.incomeTime},"yyyy年MM月dd日")}前过期人气值清零倒计时</i>
+                <a class="f-pos-a" href="$root_url/coupon/reputation">查看详情</a>
+            </div>
+        #end
+    ## 用户中心内容
+    ##尚未付款提示
+    #if(${data.waitingPaymentOrder} > 0)
+        <div class="u-uc-notice">
+            您有&nbsp;$!{data.waitingPaymentOrder}&nbsp;笔投资订单尚未支付&nbsp;&nbsp;<a href="/order/order">立即支付</a>
+        </div>
+    #end
+        #if(${servletUtil.synPayPasswordFlag()}==0)
+            <div class="u-setPayPasswordTips">
+                新浪支付全新升级，设置支付密码后，方可进行投资、充值、提现。<a href="/member/paymentPassword">立即设置</a>
+            </div>
+        #end
+    <div class="g-uc-bd f-round">
+        <div class="g-uc-wrap">
+            ## 账户基本信息
+            #if(${servletUtil.isVerifyTrueName()})
+            <div class="u-asset-stat">
+                <em>
+                    <i class="u-icon u-icon-tips j-user-tips" data-align="top" data-tips="资产总计＝存钱罐余额＋待收本金＋待收收益"></i>
+                    资产总计&nbsp;<span class="f-fs24 f-ff-rmb">￥</span><span class="f-fs42 f-ff-amount f-lh-1em">$formulaUtil.getIntegerDefaultZero($!{data.totalAssets})</span><span class="f-fs24 f-ff-amount">$formulaUtil.getDecimalDefaultZero($!{data.totalAssets})</span>
+                </em>
+                <strong>
+                    存钱罐余额&nbsp;<span id="j-blocking-amount"><span class="f-fs24 f-ff-rmb">￥</span><span class="f-fs42 f-ff-amount f-lh-1em">$formulaUtil.getIntegerDefaultZero($!{data.balance})</span><span class="f-fs24 f-ff-amount">$formulaUtil.getDecimalDefaultZero($!{data.balance})</span></span>
+					#if($!{data.freezeBalance} > 0)
+                    <i class="u-icon u-icon-tips j-user-tips" data-align="top" data-tips="&nbsp;冻结余额：￥$formulaUtil.getFormatPrice($!{data.freezeBalance})&nbsp;"></i>&nbsp;
+					#end
+                </strong>
+                #if($hasSetPayPassword!=1)
+                    <a class="f-round f-fs14 f-btn-m u-btn u-asset-rechargeBtn j-toSetPassword" href="javascript:void(0)">充 值</a>
+                    <a class="f-round f-fs14 f-btn-m u-btn u-asset-withdrawBtn u-btn-primary j-toSetPassword" href="javascript:void(0)">提 现</a>
+                #else
+                    <a class="f-round f-fs14 f-btn-m u-btn u-asset-rechargeBtn" href="$root_url/memberBalance/rechargePage">充 值</a>
+                    <a class="f-round f-fs14 f-btn-m u-btn u-asset-withdrawBtn u-btn-primary" href="$root_url/memberBalance/withdrawPage">提 现</a>
+                #end
+
+            </div> 
+            #else
+            <div class="u-uc-notice2">
+                为了确保您的正常投资和资金安全，请开通 新浪支付存钱罐
+                &nbsp;&nbsp;&nbsp;&nbsp;<a class="f-round f-fs14 f-btn-m u-btn u-btn-primary" href="$root_url/member/sinapay">立即开通</a>
+            </div>
+            #end
+            ## /账户基本信息
+            ## 收益统计
+              <div class="m-profit-stat" id="j-income-statistics">
+                  <h3 class="f-fs14 u-uc-title">收益统计</h3>
+                  <div class="u-statBox u-statBox-a1 f-cf" data-type="principal">
+                      <div class="u-amount-total u-amount f-pos-r j-principal-type"  data-type="transPrincipal">
+                          <div class="f-fs14 ">
+                              <em class="f-fs18 f-ff-amount">￥<span class="f-fs40 f-lh-1em">$formulaUtil.getFormatPrice($!{data.investTotal})</span></em>
+                              累计投资本金#if(${data.totalInvestNum} > 0) (<a href="javascript:void(0)" data-title="累计投资本金" data-url="/transaction/investment" data-type="" class="j-popup-profit">${data.totalInvestNum}笔</a>)#end
+                          </div>
+                      </div>
+                      <div class="u-amount-a1 u-amount j-principal-type" data-type="transInterestPrincipal" style="width:270px;">
+                          <div class="f-fs14">
+                              <em class="f-fs18 f-ff-amount">￥<span class="f-fs40 f-lh-1em">$formulaUtil.getFormatPrice($!{data.receivedPrincipal})</span></em>
+                              已还本金#if(${data.finishedInvestNum} > 0) (<a href="javascript:void(0)" data-title="已还本金" data-url="/transaction/investment" data-type="received" class="j-popup-profit">${data.finishedInvestNum}笔</a>)#end
+                          </div>
+                      </div>
+                      <div class="u-amount-a2 u-amount j-principal-type z-last" data-type="transInterestPrincipal"
+                           style="width:408px;">
+                          <div class="f-fs14">
+                              <em class="f-fs18 f-ff-amount">￥<span class="f-fs40 f-lh-1em">$formulaUtil.getFormatPrice($!{data.receivablePrincipal})</span></em>
+                              待收本金#if(${data.subsistingInvestNum} > 0) (<a href="javascript:void(0)" data-title="待收本金" data-url="/transaction/investment" data-type="unreceived" data-direction="right" class="j-popup-profit">${data.subsistingInvestNum}笔</a>)#end
+                          </div>
+                      </div>
+
+                  </div>
+                  <div class="u-statBox u-statBox-a2 f-cf" data-type="interest">
+                      <div class="u-amount-total u-amount f-pos-r">
+                          <div class="f-fs14">
+                              <em class="f-fs18 f-ff-amount">￥<span class="f-fs40 f-lh-1em">$formulaUtil.getIntegerDefaultZero($!{data.investTotalInterest})</span><span class="f-fs24">$formulaUtil.getDecimalDefaultZero($!{data.investTotalInterest})</span></em>
+                              累计利息收益#if(${data.interestTotalNum} > 0) (<a href="javascript:void(0)" data-title="累计利息收益" data-url="/transaction/investment" data-type="" class="j-popup-profit">${data.interestTotalNum}笔</a>)#end
+                          </div>
+                      </div>
+                      <div class="u-amount-a1 u-amount" style="width:295px;">
+                          <div class="f-fs14">
+                              <em class="f-fs18 f-ff-amount">￥<span class="f-fs40 f-lh-1em">$formulaUtil.getIntegerDefaultZero($!{data.receivedInterest})</span><span class="f-fs24">$formulaUtil.getDecimalDefaultZero($!{data.receivedInterest})</span></em>
+                              已还收益#if(${data.receivedInterestNum} > 0) (<a href="javascript:void(0)" data-title="已还收益" data-url="/transaction/investment" data-type="received" class="j-popup-profit">${data.receivedInterestNum}笔</a>)#end
+                          </div>
+                      </div>
+                      <div class="u-amount-a2 u-amount z-last" style="width:385px;">
+                          <div class="f-fs14">
+                              <em class="f-fs18 f-ff-amount">￥<span class="f-fs40 f-lh-1em">$formulaUtil.getIntegerDefaultZero($!{data.receivableInterest})</span><span class="f-fs24">$formulaUtil.getDecimalDefaultZero($!{data.receivableInterest})</span></em>
+                              待收收益#if(${data.receivableInterestNum} > 0) (<a href="javascript:void(0)" data-title="待收收益" data-url="/transaction/investment" data-type="unreceived" class="j-popup-profit">${data.receivableInterestNum}笔</a>)#end
+                          </div>
+                      </div>
+                  </div>
+                  <div class="u-statBox u-statBox-a3 f-cf">
+                      <div class="u-amount-total u-amount f-pos-r">
+                          <div class="f-fs14">
+                              <em class="f-fs18 f-ff-amount">￥<span class="f-fs40 f-lh-1em">$formulaUtil.getIntegerDefaultZero($!{data.totalEarnings})</span><span class="f-fs24">$formulaUtil.getDecimalDefaultZero($!{data.totalEarnings})</span></em>
+                              总共赚取
+                          </div>
+                      </div>
+                      <div class="u-amount-a1 u-amount" style="width:235px;">
+                          <div class="f-fs14">
+                              <em class="f-fs18 f-ff-amount">￥<span class="f-fs40 f-lh-1em">$formulaUtil.getIntegerDefaultZero($!{data.interestEarning})</span><span class="f-fs24">$formulaUtil.getDecimalDefaultZero($!{data.interestEarning})</span></em>
+                              利息收益#if(${data.totalMemberExtraInterest} > 0) (含收益券￥$formulaUtil.getFormatPrice($!{data.totalMemberExtraInterest}))#end
+                          </div>
+                      </div>
+                      <div class="u-amount-a2 u-amount" style="width:143px;">
+                          <div class="f-fs14">
+                              <em class="f-fs18 f-ff-amount">￥<span class="f-fs40 f-lh-1em">$formulaUtil.getFormatPrice($!{data.totalMemberUsedCouponAmount})</span></em>
+                              使用现金券#if(${data.totalMemberUsedCouponNum} > 0) (<a href="/coupon/couponList#usedCashCoupon" target="_blank" data-title="使用现金券" data-url="/coupon/couponList" data-direction="right">${data.totalMemberUsedCouponNum}张</a>)#end
+                          </div>
+                      </div>
+                      <div class="u-amount-a3 u-amount" style="width:125px;">
+                          <div class="f-fs14">
+                              <em class="f-fs18 f-ff-amount">￥<span class="f-fs40 f-lh-1em">$formulaUtil.getIntegerDefaultZero($!{data.savingPotEarning})</span><span class="f-fs24">$formulaUtil.getDecimalDefaultZero($!{data.savingPotEarning})</span></em>
+                              存钱罐收益
+                          </div>
+                      </div>
+                      <div class="u-amount-a4 u-amount z-last" style="width:135px;">
+                          <div class="f-fs14">
+                              <em class="f-fs18 f-ff-amount">￥<span class="f-fs40 f-lh-1em">$formulaUtil.getIntegerDefaultZero($!{data.otherIncome})</span><span class="f-fs24">$formulaUtil.getDecimalDefaultZero($!{data.otherIncome})</span></em>
+                              其他收益
+                          </div>
+                      </div>
+                  </div>
+                  <div class="u-statBox u-statBox-a4 f-cf" data-type="trPrincipal">
+                      <div class="u-amount-total u-amount f-pos-r j-principal-type"  data-type="trTtransPrincipal">
+                          <div class="f-fs14 ">
+                              <em class="f-fs18 f-ff-amount">￥<span class="f-fs40 f-lh-1em">$formulaUtil.getIntegerDefaultZero($!{data.totalTransferAmount})</span><span class="f-fs24">$formulaUtil.getDecimalDefaultZero($!{data.totalTransferAmount})</span></em>
+                              总计转让收款#if(${data.totalTransferAmountNum} > 0) (<a href="javascript:void(0)"
+                                                                                data-title="总计转让收款"
+                                                                                data-url="/transaction/investment"
+                                                                                data-type="12"
+                                                                                class="j-popup-profit">${data.totalTransferAmountNum}
+                              笔</a>)#end
+                          </div>
+                      </div>
+                      <div class="u-amount-a1 u-amount j-principal-type" data-type="transInterestPrincipal" style="width:270px;">
+                          <div class="f-fs14">
+                              <em class="f-fs18 f-ff-amount">￥<span
+                                      class="f-fs40 f-lh-1em">$formulaUtil.getIntegerDefaultZero($!{data.totalPrincipal})</span><span
+                                      class="f-fs24">$formulaUtil.getDecimalDefaultZero($!{data.totalPrincipal})</span></em>
+                              已转让总本金
+                          </div>
+                      </div>
+                      <div class="u-amount-a2 u-amount j-principal-type" data-type="transInterestPrincipal" style="width:215px;">
+                          <div class="f-fs14">
+                              <em class="f-fs18 f-ff-amount">￥<span class="f-fs40 f-lh-1em">$formulaUtil.getIntegerDefaultZero($!{data.totalDiscount})</span><span class="f-fs24">$formulaUtil.getDecimalDefaultZero($!{data.totalDiscount})</span></em>
+                              总计折价
+                          </div>
+                      </div>
+                      <div class="u-amount-a3 u-amount z-last" style="width:175px;">
+                          <div class="f-fs14">
+                              <em class="f-fs18 f-ff-amount">￥<span class="f-fs40 f-lh-1em">$formulaUtil.getIntegerDefaultZero($!{data.totalTransferFee})</span><span class="f-fs24">$formulaUtil.getDecimalDefaultZero($!{data.totalTransferFee})</span></em>
+##
+                              总计手续费#if(${data.totalTransferFeeNum} > 0) (<a href="javascript:void(0)" data-title="总计手续费"
+                                                                            data-url="/transaction/investment"
+                                                                            data-type="13" data-direction="right"
+                                                                            class="j-popup-profit">${data.totalTransferFeeNum}
+                              笔</a>)#end
+                          </div>
+                      </div>
+                  </div>
+              </div>
+            ## /收益统计
+            ## 收益日历
+            <h3 class="f-fs14 u-uc-title">
+                收益日历
+
+                <div class="u-cal-notice" style="">
+                    <span class="u-cal-notice-1"></span>&nbsp;&nbsp;待还款
+                    <span class="u-cal-notice-2"></span>&nbsp;&nbsp;已还款
+                </div>
+            </h3>
+            <div class="m-profit-cal #if($!{data.investTotal}>0)u-current-cal#end" >
+
+                #if($!{data.investTotal}<=0)
+                    <span>您还没有投资，立刻开启您的有融生活，我们为您记录财富的点滴！</span>
+                    <a class="f-round f-fs14 f-btn-s u-btn u-btn-primary" href="$root_url/products/list-all-all-investing-1-createTimeAsc-1.html">立即投资</a>
+                #end
+
+                <div id="j-profit-cal" >
+                	<div class="u-cal-year u-cal-2015 u-circle-7">2015</div>
+                	<div class="u-cal-year u-cal-2016 u-circle-7">2016</div>
+                    <div class="u-cal-year u-cal-2017 u-circle-7">2017</div>
+                    <table id="j-transaction-tab">
+                        <thead>
+                            <tr>
+                                <th><span class="f-fs36 f-ff-din">11</span>月</th>
+                                <th><span class="f-fs36 f-ff-din">12</span>月</th>
+                                <th class="f-pos-r">
+                                    <span class="f-fs36 f-ff-din">1</span>月
+                                </th>
+                                <th><span class="f-fs36 f-ff-din">2</span>月</th>
+                                <th><span class="f-fs36 f-ff-din">3</span>月</th>
+                                <th><span class="f-fs36 f-ff-din">4</span>月</th>
+                                <th><span class="f-fs36 f-ff-din">5</span>月</th>
+                                <th><span class="f-fs36 f-ff-din">6</span>月</th>
+                                <th><span class="f-fs36 f-ff-din">7</span>月</th>
+                                <th><span class="f-fs36 f-ff-din">8</span>月</th>
+                                <th><span class="f-fs36 f-ff-din">9</span>月</th>
+                                <th><span class="f-fs36 f-ff-din">10</span>月</th>
+                                <th><span class="f-fs36 f-ff-din">11</span>月</th>
+                                <th><span class="f-fs36 f-ff-din">12</span>月</th>
+                                <th class="f-pos-r">
+                                    <span class="f-fs36 f-ff-din">1</span>月
+                                </th>
+                                <th><span class="f-fs36 f-ff-din">2</span>月</th>
+                                <th><span class="f-fs36 f-ff-din">3</span>月</th>
+                                <th><span class="f-fs36 f-ff-din">4</span>月</th>
+                                <th><span class="f-fs36 f-ff-din">5</span>月</th>
+                                <th><span class="f-fs36 f-ff-din">6</span>月</th>
+                                <th><span class="f-fs36 f-ff-din">7</span>月</th>
+                                <th><span class="f-fs36 f-ff-din">8</span>月</th>
+                                <th><span class="f-fs36 f-ff-din">9</span>月</th>
+                                <th><span class="f-fs36 f-ff-din">10</span>月</th>
+                                <th><span class="f-fs36 f-ff-din">11</span>月</th>
+                                <th><span class="f-fs36 f-ff-din">12</span>月</th>
+                                <th class="f-pos-r">
+                                    <span class="f-fs36 f-ff-din">1</span>月
+                                </th>
+                                <th><span class="f-fs36 f-ff-din">2</span>月</th>
+                                <th><span class="f-fs36 f-ff-din">3</span>月</th>
+                                <th><span class="f-fs36 f-ff-din">4</span>月</th>
+                                <th><span class="f-fs36 f-ff-din">5</span>月</th>
+                                <th><span class="f-fs36 f-ff-din">6</span>月</th>
+                                <th><span class="f-fs36 f-ff-din">7</span>月</th>
+                                <th><span class="f-fs36 f-ff-din">8</span>月</th>
+                                <th><span class="f-fs36 f-ff-din">9</span>月</th>
+                                <th><span class="f-fs36 f-ff-din">10</span>月</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="u-first">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="u-home-list"></div>
+
+            </div>
+            ## /收益日历
+        </div>
+    </div>
+
+    ##收益统计弹层
+	<div id="j-transaction-interest-detail" class="f-cf u-popup-wrap"></div>
+	<script id="j-transaction-interest-detail-tpl" type="text/html">
+        <div class="m-popup-details u-profit-details" id="j-profit-stat" data-size="{{result.length}}">
+            <div>
+                <h5><em>{{title}}</em> <span>(显示最新10条，<a href="$root_url/transaction/investment" target="_blank">查看更多</a>)</span>
+                </h5>
+                <ul>
+					{{each result as item i}}
+                    	<li>
+                            {{if reqType=='trPrincipal'}}
+                            <span class="u-project-dtime">{{item.happenTime | dateFormat:'yyyy-MM-dd '}}</span>
+                            {{else}}
+                            <span class="u-project-dtime">{{item.endDate | dateFormat:'yyyy-MM-dd '}}</span>
+                            {{/if}}
+                            <span class="u-project-dname">
+                                <a href="/products/detail-{{item.projectId}}.html" target="_blank">
+                                    {{item.prefixProjectName||item.projectName}}</a>
+                            </span>{{if reqType=='principal'}}
+                            <span class="u-project-dmoney">￥{{item.payablePrincipal}}</span>
+                            {{/if}}{{if reqType == 'trPrincipal'}}
+                            <span class="u-project-dmoney">￥{{item.amount}}</span>
+                            {{/if}}{{if reqType == 'interest'}}
+                            <span class="u-project-dmoney">￥{{item.payableInterest}}</span>{{/if}}{{if item.payType ==
+                            2}}<span class="u-project-isDelay">逾期</span>{{/if}}
+						</li>
+					{{/each}}
+                </ul>
+                <i></i>
+            </div>
+        </div>
+	</script>
+    ##/收益统计弹层
+
+    ##收益日历弹出层
+    <div id="j-cal-detail" class="u-popup-wrap"></div>
+    <script id="j-cal-tpl" type="text/html">
+        <div class="m-popup-details u-calendar-details">
+            <div class="f-cf">
+                <span class="u-details-frame">
+                    <em>{{month}}月</em>
+                    <strong class="f-ff-din">{{day}}</strong>
+                </span>
+
+                <div class="u-calendar-proDetails">
+                    ## 还款项目
+                    {{if calendarTransactionInterestDetailDto.num}}
+                        <h6>
+                            还款项目<em>{{calendarTransactionInterestDetailDto.num}}</em>个
+
+                            {{if calendarTransactionInterestDetailDto.topay > 0 && calendarTransactionInterestDetailDto.paied > 0}}
+                            <span class="u-calender-title-right">
+                                <span class="u-circle-not-paied"></span> 待还款 <span id="j-topay">{{calendarTransactionInterestDetailDto.topay}}</span> 个
+
+                                <span class="u-circle-paied" style="margin-left: 20px;"></span> 已还款 <span id="j-paied">{{calendarTransactionInterestDetailDto.paied}}</span> 个
+                            </span>
+                            {{/if}}
+                        </h6>
+                        <ul>
+                        {{each calendarTransactionInterestDetailDto.transactionInterestList as item i}}
+                            <li>
+                                {{if item.status==1}}
+                                <span class="u-circle-paied"></span>
+                                {{else}}
+                                <span class="u-circle-not-paied"></span>
+                                {{/if}}
+
+                                <span><a class="j-jump-investment" data-day="{{date}}" href="javascript:void(0);" data-url="/transaction/investment"> {{item.prefixProjectName}} </a>（{{item.periods}}）</span>
+
+                                {{if (item.payType==1 && item.status==1)}}
+                                    <span style="color: #333;">提前还款：{{item.payTimeStr}}</span>
+                                {{/if}}
+                                {{if item.payType==2 && item.status!=1}}
+                                    <span style="color: #333;">已逾期：{{item.overDays}}天</span>
+                                {{/if}}
+                                {{if item.payType==2 && item.status==1}}
+                                    <span style="color: #333;">逾期还款：{{item.payTimeStr}}</span>
+                                {{/if}}
+
+                                <em class="u-proDetails-money">
+                                    {{if item.status==1}}
+                                        {{if item.realPayPrincipal!=0}}
+                                            ￥{{item.realPayPrincipal}} + ￥{{item.realPayInterest}}
+                                        {{else}}
+                                            ￥{{item.realPayInterest}}
+                                        {{/if}}
+                                    {{else}}
+                                        {{if item.payablePrincipal!=0}}
+                                            ￥{{item.payablePrincipal}} + ￥{{item.payableInterest}}
+                                        {{else}}
+                                            ￥{{item.payableInterest}}
+                                        {{/if}}
+
+                                    {{/if}}
+                                </em>
+                            </li>
+                        {{/each}}
+                        </ul>
+                        <div class="u-proDetails-count f-cf">还款总计&nbsp;&nbsp;￥<span>{{calendarTransactionInterestDetailDto.totalAmount}}</span></div>
+
+                        {{if calendarTransactionInterestDetailDto.topay > 0 && calendarTransactionInterestDetailDto.paied > 0}}
+                        <div class="u-proDetail-total">
+                            （已还￥{{calendarTransactionInterestDetailDto.repaidTotalAmount || 0}}&nbsp;&nbsp;待还￥{{calendarTransactionInterestDetailDto.topayTotalAmount || 0}}）
+                        </div>
+                        {{/if}}
+                    {{/if}}
+                </div>
+            </div>
+
+            <i></i>
+        </div>
+    </script>
+        #CSRFToken('xToken')
+    ##/收益日历弹出层
+
+    ##抽奖悬浮导航
+    #set($lotteryNumber = ${sysServiceUtil.getQuickLotteryNumber($currentUser.id)})
+    <a class="g-fixed m-direct-prizes" href="/post/directActivator" target="_blank">
+        <div class="u-prizes-box #if(${lotteryNumber} && (${lotteryNumber}>0))z-noData#end"></div>
+        #if(${lotteryNumber} && ${lotteryNumber}>0)
+            <span class="u-prizes-count">${lotteryNumber}次</span>
+        #end
+     </a>
+    ##/抽奖悬浮导航
+
+    ## /用户中心内容
+</div>
+
+##风险评测提示
+<input type="hidden" id="j-evaluated" value="$sysServiceUtil.getEvaluation($currentUser.id)">

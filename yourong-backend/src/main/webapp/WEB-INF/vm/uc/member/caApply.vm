@@ -1,0 +1,138 @@
+#set($layout = "/layout/iframe.vm")
+#parse("/uc/member/head.vm")
+<div tabindex="-1" class="modal fade" id="modal-table-ca-form" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header no-padding">
+                <div class="table-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+                        <span class="white">×</span>
+                    </button>
+         CA认证申请资料
+                </div>
+            </div>
+            <div class="modal-body">
+                <form role="form" class="form-horizontal" id="ca_form" method="post">
+                    <input type="hidden" name="id" />
+                     <input type="hidden" name="enterpriseId" id="enterpriseId" />
+                    <input type="hidden" name="legalId" class="col-xs-10 col-sm-5" placeholder="legalId" id="form-field-legalId-ca">
+                    <input type="hidden"  name="identity" class="col-xs-10 col-sm-5" placeholder="identity" id="form-field-identity-ca">
+                    
+                     <div class="form-group">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 机构名称: </label>
+                        <div class="col-sm-9">
+                            <div class="clearfix">
+                                <input type="text" name="fullName" readonly class="col-xs-10 col-sm-5" placeholder="" id="form-field-fullName-ca" datatype="/^[\x00-\xFF\（\）\《\》\u4e00-\u9fa5-\*]{3,50}$/"  errormsg="公司名称至少3个字，长度必须小于50个字" >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 法人姓名: </label>
+                        <div class="col-sm-9">
+                            <div class="clearfix">
+                                <input type="text" name="legalName"  readonly  class="col-xs-10 col-sm-5" placeholder="" id="form-field-legalName-ca">
+                            </div>
+                        </div>
+                    </div>
+                    
+                       <div class="form-group">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 法人身份证号: </label>
+                        <div class="col-sm-9">
+                            <div class="clearfix">
+                                <input type="text" name="identityNumber"  readonly  class="col-xs-10 col-sm-5" placeholder="" id="form-field-identityNumber-ca">
+                            </div>
+                        </div>
+                    </div>
+                    
+                       <div class="form-group">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 企业注册号: </label>
+                        <div class="col-sm-9">
+                            <div class="clearfix">
+                                <input type="text" name="regisNo" readonly   class="col-xs-10 col-sm-5" placeholder="" id="form-field-regisNo-ca">
+                            </div>
+                        </div>
+                    </div>
+                    
+                       <div class="form-group">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 组织机构代码: </label>
+                        <div class="col-sm-9">
+                            <div class="clearfix">
+                                <input type="text" name="organizNo" readonly  class="col-xs-10 col-sm-5" placeholder="" id="form-field-organizNo-ca">
+                            </div>
+                        </div>
+                    </div>
+                       <div class="form-group">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 税务登记证号: </label>
+                        <div class="col-sm-9">
+                            <div class="clearfix">
+                                <input type="text" name="taxNo" readonly  class="col-xs-10 col-sm-5" placeholder="" id="form-field-taxNo-ca">
+                            </div>
+                        </div>
+                    </div>
+                    
+                     <div class="form-group">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 省份: </label>
+                        <div class="col-sm-9">
+                            <div class="clearfix">
+                                <input type="text" name="province" readonly class="col-xs-10 col-sm-5" placeholder="" id="form-field-province-ca" datatype="*1-64"  errormsg="公司所在地长度必须小于64个字">
+                            </div>
+                        </div>
+                    </div>
+                    
+                     <div class="form-group">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 城市: </label>
+                        <div class="col-sm-9">
+                            <div class="clearfix">
+                                <input type="text" name="city" readonly class="col-xs-10 col-sm-5" placeholder="" id="form-field-city-ca" datatype="*1-64"  errormsg="公司所在地长度必须小于64个字">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 企业具体地址: </label>
+                        <div class="col-sm-9">
+                            <div class="clearfix">
+                                <input type="text" name="address" readonly class="col-xs-10 col-sm-5" placeholder="" id="form-field-address-ca" datatype="*1-255"  errormsg="详细地址长度必须小于255个字" >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 企业手机号码: </label>
+                        <div class="col-sm-9">
+                            <div class="clearfix">
+                                <input type="text" name="mobile" readonly class="col-xs-10 col-sm-5" placeholder="" id="form-field-mobile-ca" datatype="/^(0?1[3578]\d{9})$|^(\d{2,5}-\d{7,8})$/"  errormsg="请输入正确格式的手机号或座机号!">
+                            </div>
+                        </div>
+                    </div>
+	
+					<div class="form-group"  id="is_auth">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 申请状态: </label>
+                        <div class="col-sm-9">
+                            <div class="clearfix">
+                                <input type="text" name="isAuth" readonly class="col-xs-10 col-sm-5" placeholder="" id="form-field-isAuth-ca">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group" id="ca_no">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 证书编号: </label>
+                        <div class="col-sm-9">
+                            <div class="clearfix">
+                                <input type="text" name="caNo" readonly class="col-xs-10 col-sm-9" placeholder="" id="form-field-caNo-ca" >
+                            </div>
+                        </div>
+                    </div>
+
+
+                </form>
+            </div>
+            <div class="modal-footer">
+            	<div id="ca_apply" ><button type="button" id="btn_ca_apply" class="btn btn-primary" >提交申请</button></div>
+           	    
+                <div><button type="button" class="btn btn-default" data-dismiss="modal">关闭</button></div>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>

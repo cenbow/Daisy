@@ -1,0 +1,250 @@
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$res_url/lib/frozenui/kit.css","$m_css_url/modules/member.css"])
+#set($title='个人中心')
+
+<style>
+    [v-cloak] {
+        display: none;
+    }
+</style>
+##header
+<div class="g-wrap" v-model="memberData" id="j-memberHome" v-cloak>
+<h2 class="u-header f-pos-r">
+    <span  class="f-fs18">
+        我&nbsp;的&nbsp;账&nbsp;户
+    </span>
+</h2>
+##/header
+    <div class="g-mainContent">
+        <div class="m-memberInfo g-contentWrap">
+            <div class="u-memberInfo">
+                <a href="$siteurl/mCenter/security#!personal">
+                <i class="u-memberAvatar">
+                    <img v-if="!memberData.avatar" src="$res_url/img/member/login_avatar.png" alt="">
+                    <img v-else :src="memberData.avatar" alt="">
+                </i>
+                </a>
+                <span class="u-memberNickname" v-text="memberData.userName"></span>
+                <span><a class="u-signIn f-fr" href="$siteurl/mCenter/checkin">
+                    <img class="f-fr" src="#if($!{servletUtil.isBirthday()})$res_url/img/member/home/birthdaySign.png
+                                #else   $res_url/img/member/home/sign.png  #end" alt="">
+                </a></span>
+            </div>
+            <div class="u-popularityValue">
+                <span>人气值：<i class="f-red-color" v-text="memberData.popularity"></i>点
+                ##                    <i class="u-getToday">，今日签到+2点</i>
+                </span>
+                <span> <a class="u-exchange  f-fr" href="$siteurl/mCenter/reputationPage">兑换券</a></span>
+            </div>
+        </div>
+        <div class="m-piggyBank g-contentWrap ">
+            <div class="u-piggyBank">
+                <span class="u-iconImg"><img src="$res_url/img/member/home/ico_piggybank .png" alt=""></span>
+                <span>
+                    存钱罐余额：<i class="f-red-color"><i v-text="memberData.balance | amountFormat 'split'"></i>元</i>  <br>
+                    <i class="u-frozenFund" v-if="unableBalance > 0">
+                        冻结金额：<i v-text="unableBalance | amountFormat 'split'"></i>元
+                    </i>
+                </span>
+            </div>
+            <div class="u-withdraw">
+                <ul>
+                    <li>
+                        <div v-if="!memberData.isPayPassword||!memberData.trueName">
+                            <a v-if="!memberData.isPayPassword&&memberData.trueName"
+                               @click="showTipBlock('#j-SetPayPwdTips')" class="f-red-color">充值</a>
+                            <a v-else @click="showTipBlock('#j-sinapayDialog')" class="f-red-color j-show-dialog">充值</a>
+                        </div>
+                        <a v-else class="f-red-color j-show-dialog" href="$siteurl/mCenter/recharge">充值</a>
+
+                    </li>
+                    <li>
+                        <div v-if="!memberData.isPayPassword||!memberData.trueName">
+                            <a v-if="!memberData.isPayPassword&&memberData.trueName"
+                               @click="showTipBlock('#j-SetPayPwdTips')">提现</a>
+                            <a v-else @click="showTipBlock('#j-sinapayDialog')">提现</a>
+                        </div>
+                        <a v-else @click="showTipBlock('#j-sinapay-dialog')" class="j-show-dialog"
+                           href="$siteurl/mCenter/withdraw">提现</a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+        <div class="m-investAmount  g-contentWrap">
+            <div class="u-principal u-investAmountWrap">
+                <i class="u-icon-doller"></i>
+                <span>
+                    待收本金 <i class="f-red-color"> <i v-text="memberData.receivablePrincipal | amountFormat 'split'"></i>元</i>  <br>
+                  <i class="u-cumulative">  累计投资本金：<i v-text="investTotal | amountFormat 'split'"></i>元</i>
+                </span>
+            </div>
+            <div class="u-profit u-investAmountWrap">
+                <i class="u-icon-doller"></i>
+                <span>
+                    待收收益 <i class="f-red-color"> <i v-text="memberData.receivableInterest | amountFormat 'split'"></i>元</i>  <br>
+                  <i class="u-cumulative">  累计利息收益：<i v-text="totalReceivedInterest | amountFormat 'split'"></i>元</i>
+                </span>
+            </div>
+        </div>
+        <div class=" g-contentWrap m-linkList">
+            <ul>
+                <li>
+                    <a href="$siteurl/activity/getEvalua/mine">
+                        <img src="$res_url/img/member/home/ico_safetest.png" alt="">
+                        <span>风险测评</span>
+                        <span class="f-fr u-goBtn"> <i v-text="evaluationName"></i> ></span>
+                    </a>
+                </li>
+                <li>
+                    <a class="j-show-dialog" href="$siteurl/mCenter/myTransaction">
+                        <img src="$res_url/img/member/home/ico_investment.png" alt="">
+                        <span>我的交易</span>
+                        <span class="f-fr u-goBtn"> <i><i v-text="memberData.unSignContracts"></i>份协议未签署</i> ></span>
+                    </a>
+                </li>
+                <li>
+                    <a class="j-show-dialog" href="$siteurl/mCenter/capitalInOutLog">
+                        <img src="$res_url/img/member/home/capital_list.png" alt="">
+                        <span>资金记录</span>
+                        <span class="f-fr u-goBtn"> ></span>
+                    </a>
+                </li>
+                <li>
+                    <a class="j-show-dialog" href="$siteurl/mCenter/bankManage">
+                        <img src="$res_url/img/member/home/ico_bank.png" alt="">
+                        <span>我的银行卡</span>
+                        <span class="f-fr u-goBtn"> ></span>
+                    </a>
+                </li>
+                <li>
+                    <a class="j-show-dialog" href="$siteurl/mCenter/security">
+                        <img src="$res_url/img/member/home/ico_safe.png" alt="">
+                        <span>安全认证</span>
+                        <span class="f-fr u-goBtn"> ></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="$siteurl/mCenter/reputationPage">
+                        <img src="$res_url/img/member/home/ico_discount.png" alt="">
+                        <span>我的优惠</span>
+                        <span class="f-fr u-goBtn"> ></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+##提现去设置支付密码
+    <div class="u-tipsBlock f-dn" id="j-SetPayPwdTips">
+        <p class="f-fs14 f-color6">新浪支付全新升级，设置支付密码后方可进行操作</p>
+        <div class="u-btnBlock">
+            <span @click="closeTipBlock('#j-SetPayPwdTips')">暂不设置</span>
+            <a href="$siteurl/mCenter/setPayPassword"><span>前往设置</span></a>
+        </div>
+    </div>
+    <div class="u-tipsBlock f-dn" id="j-sinapayDialog">
+        <p class="f-fs14 f-color6">为了确保您的正常投资和资金安全，请开通新浪支付存钱罐。</p>
+        <div class="u-btnBlock">
+            <span @click="closeTipBlock('#j-sinapayDialog')">取消</span>
+            <a href="$mCenter_sinapay_url"><span>立即开通</span></a>
+        </div>
+    </div>
+##人气值清零提示框
+    <div class="u-popularityTips" v-if="OverduePopularity.show&&showTips">
+        <div class="u-tipText">
+            <span>{{OverduePopularity.incomeTime | dateFormat 'yyyy年MM月dd日'}}前过期人气值清零倒计时</span>
+        </div>
+        <div class="u-tipBtn">
+            <span @click="tipBtnClick(0)">取消</span>
+            <span @click="tipBtnClick(1)">查看</span>
+        </div>
+    </div>
+    <div class="u-cover j-cover" style="display: block" v-if="OverduePopularity.show&&showTips"></div>
+</div>
+
+#if(!${servletUtil.isVerifyTrueName()})
+<div class="ui-dialog show" id="j-sinapay-dialog">
+    <div class="ui-dialog-cnt">
+        <div class="ui-dialog-bd">
+            <div>为了确保您的正常投资和资金安全，请开通新浪支付存钱罐。</div>
+        </div>
+        <div class="ui-dialog-ft">
+            <button type="button" data-role="button" data-target="cancel">取消</button>
+            <button type="button" data-role="button" data-target="$mCenter_sinapay_url">立即开通</button>
+        </div>
+    </div>
+</div>
+#end
+
+##/home
+
+## navi
+<ul class="ui-grid-trisect u-navi">
+    <li class=" ui-border-b">
+        <a href="$m_url">
+            <span class="u-index"></span>
+            首页
+        </a>
+    </li>
+    <li>
+        <a href="$siteurl/products/m/list-all-all-1.html">
+            <span class="u-list"></span>
+            理财项目
+        </a>
+    </li>
+    <li class="z-current">
+        <a href="#if($currentUser) $siteurl/mCenter/home#else $siteurl/mstation/login#end">
+            <span class="u-home"></span>
+            我的账户
+        </a>
+    </li>
+</ul>
+##/navi
+#CSRFToken('xToken')
+
+#set($pageScript="
+<script>
+    seajs.use('base', function (base) {
+
+        $.fn.greetingTime = function () {
+            var rDate = new Date().getHours(),
+                    rText = '';
+            if (rDate >= 12 && rDate < 18) {
+                rText = '下午好，';
+            } else if (rDate >= 18) {
+                rText = '晚上好，';
+            } else {
+                rText = '上午好，';
+            }
+            $(this).text(rText);
+        };
+        //问候
+        $('#j-greetingTime').greetingTime();
+
+        //开通新浪存钱罐弹窗
+        var jSinapayDialog = $('#j-sinapay-dialog');
+        $('.j-show-dialog').on('click', function () {
+            if (jSinapayDialog.length) {
+                showSinapayDialog();
+                return false;
+            }
+        });
+        jSinapayDialog.on('click', 'button', function () {
+            var target = $(this).data('target');
+            if (target === 'cancel') {
+                jSinapayDialog.removeClass('show');
+            } else {
+                window.location.href = target;
+            }
+        });
+        function showSinapayDialog() {
+            jSinapayDialog.addClass('show');
+        }
+    });
+    seajs.use('$siteurl/res/source/js/modules/member.js');
+</script>
+
+")
+

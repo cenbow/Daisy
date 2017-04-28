@@ -1,0 +1,273 @@
+.g-wrap{
+    width: 100%;
+    background: #ee5951;
+}
+.m-banner img{
+    width: 100%;
+}
+.u-grapBox{
+    width: 90%;
+    margin: 20px auto;
+    background: #fff;
+    padding: 40px 10px;
+    border-radius: 10px;
+    text-align: center;
+    color: #999999;
+    line-height: 24px;
+}
+
+.f-redTitle{
+    font-weight: 700;
+    color: #ee5951;
+}
+.f-progress{
+    width: 100%;
+    margin-top: 30px;
+    height: 35px;
+    position: relative;
+    opacity: 0;
+}
+.f-progress .f-progressBar-bg{
+    width: 98%;
+    height: 15px;
+    background: url(../../../img/activity/fellInLoveFor520/fellInLove-progressBg.png) no-repeat  center  ;
+    background-size: 100% auto;
+    border: 3px solid #f0f0f0;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    margin: 95px 0 0;
+    background-color: #f0f0f0;
+}
+.f-progressBar-yel{
+    background: url(../../../img/activity/fellInLoveFor520/yellow_progressBar.png) no-repeat top left;
+    width: 100%;
+    height: 100%;
+    background-size: 100% 100%;
+    position: absolute;
+}
+.f-progressBar-text{
+    background-size: 100% 100%;
+    height: 50px;
+    padding: 10px 0 0;
+    width: 28%;
+    color: #815800;
+    font-weight: bold;
+    line-height: 20px;
+    background: #fede00;
+    position: absolute;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    top: -76px;
+    left: 72%;
+}
+.f-progress>span{
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    border-radius: 15px;
+    width: 30px;
+    height: 30px;
+    background: #fede00;
+    border: 1px solid #f0f0f0;
+    display: block;
+    position: absolute;
+    top: -6px;
+    z-index: 1;
+    left: 92%;
+}
+.f-progress>span i{
+    position: absolute;
+    color: #fede00;
+    right: 6px;
+    top: -23px;
+    font-size: 20px;
+}
+.m-loveGiftPart img{
+    width: 100%;
+    height: 100%;
+    margin-top: 30px;
+}
+.m-bigGiftPart{
+    padding-bottom: 4px;
+}
+.f-giftTypes{
+    width: 100%;
+    margin-top: 30px;
+}
+
+@media screen and (max-width: 340px)   {
+
+    .u-fellInLove-countdown p{
+        margin-bottom: 20px;
+        display:block;
+    }
+}
+.u-fellInLove-countdown{
+    margin-top: 30px;
+    line-height: 30px;
+}
+.u-fellInLove-countdown p{
+    margin:0 6px 12px 0;
+    display: inline-block;
+    vertical-align: top;
+}
+/*.f-countdown em{*/
+    /*color: #fff;*/
+    /*background: #ffa7a2;*/
+    /*padding: 4px;*/
+    /*border-radius: 6px;*/
+    /*margin-right: 4px;*/
+/*}*/
+.f-remarksText{
+    color: #ee5951;
+    margin-top: 30px;
+}
+.m-loginBtn{
+    background: url(../../../img/activity/fellInLoveFor520/yellow-btn.png);
+    background-size: 100% 100%;
+    width: 95%;
+    height: 60px;
+    margin: 30px auto;
+    text-align: center;
+    line-height: 60px;
+    display: block;
+    color: #815800;
+    font-weight: bold;
+}
+.m-loginBtn.z-unStartBtn{
+    background: url(../../../img/activity/fellInLoveFor520/gray-btn.png);
+    background-size: 100% 100%;
+    color: #999;
+}
+.z-unStartBtn a{
+    color: #999;
+}
+
+.m-myInvestAmount{
+    width: 90%;
+    margin: auto;
+    text-align: center;
+    color: #fff;
+}
+.m-ruleDeclaration{
+    width: 86%;
+    color: #fff;
+    margin: 30px auto 0;
+    padding: 0 0 50px;
+    line-height: 24px;
+    font-size: 0.8rem;
+}
+.f-investList >li{
+    width: 100%;
+    height: 45px;
+    line-height: 45px;
+    margin:10px 0 ;
+    vertical-align:middle;
+}
+.f-investList >li .f-ranking{
+    width: 12%;
+    display: inline-block;
+}
+.f-investList >li .f-userName{
+    width: 38%;
+    display: inline-block;
+    text-align: left;
+    margin-left: 12%;
+    margin-right: 4%;
+}
+.f-investList >li .f-userName .f-avatar{
+    width: 28%;
+    height: 35px;
+    display: inline-block;
+    vertical-align:middle;
+}
+.f-investList >li .f-userName  img{
+    width: 30px;
+    height: 30px;
+    vertical-align:top;
+    border-radius: 50%;
+}
+.f-investList >li .f-userName .f-nickName{
+    width: 37%;
+    margin-left: 0;
+}
+.f-investList >li .f-investAmount{
+    width: 29%;
+    display: inline-block;
+    color: #ee5951;
+}
+.f-color9{
+    color: #999!important;
+}
+.u-list-beforeActive li{
+    height:150px;
+    line-height: 150px;
+}
+/*倒计时样式调整*/
+.u-countdown{
+    text-align: center;
+}
+.flip-clock-label {
+    display: none;
+}
+.u-fellInLove-countdown .u-activity-countdown{
+    width: 210px;
+    display: inline-block;
+    margin: 0 auto;
+    height: 34px;
+}
+.u-fellInLove-countdown .flip-clock-wrapper ul.flip{
+    width: 23px;
+    height: 32px;
+    background: #ffa7a2;
+    margin: 0 1px 0;
+}
+.u-fellInLove-countdown .flip-clock-wrapper .flip {
+    box-shadow: 0 2px 5px rgba(255, 167, 162, 0.7);
+}
+.u-fellInLove-countdown .u-activity-countdown .flip-clock-divider{
+    width: 7px;
+    height: 50px;
+}
+.u-fellInLove-countdown .u-activity-countdown .flip-clock-dot{
+    left: 2px;
+    width: 3px;
+    height: 3px;
+    background: #999;
+    box-shadow: 0 0 5px rgba(153, 153, 153, 0.5);
+}
+.u-fellInLove-countdown .u-activity-countdown .flip-clock-dot.top{
+    top: 22px;
+}
+.u-fellInLove-countdown .u-activity-countdown .flip-clock-dot.bottom{
+    bottom: 36px;
+}
+.u-fellInLove-countdown .u-activity-countdown ul li{
+    line-height: 34px;
+}
+.u-fellInLove-countdown .u-activity-countdown ul li a div div.inn{
+    font-size: 22px;
+    color: #fff;
+    text-shadow: 0 1px 2px #ffa7a2;
+    background-color: #ffa7a2;
+}
+.u-ranking{
+    width: 110%;
+    margin: 0 0 0 -5%;
+}
+.u-ranking>li{
+    display: inline-block;
+    font-size: 0.8rem;
+    width: 31%;
+}
+.u-ranking>li .f-userName{
+    margin: 0 0 0 0;
+    display: inline;
+}
+.u-ranking>li .f-userName .f-avatar{
+    width: 25%;
+    height: 30px;
+}

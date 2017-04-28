@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+#parse('/mobile/common.vm')
+    <meta charset="UTF-8">
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="viewport" content="width=device-width,user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    #if($!{subTitle})
+      <title>$subTitle</title>
+    #else
+        <title>#if($title)$title _ #end 有融网-全透明的互联网理财优选平台！</title>
+    #end
+
+    <meta name="keywords" content="#if($keywords) $keywords #else 债权转让,债权交易,互联网金融,金融信息服务,有融网   #end"/>
+    <meta name="description"
+          content="#if($description) $description #else 有融网运用高效的运营管理体系和创新的互联网思维搭建了一个专业、安全、透明的债权信息披露媒介。  #end"/>
+    <link rel="shortcut icon" href="$res_url/img/favicon.ico">
+    <link rel="stylesheet" href="$m_css_url/common.css"/>
+
+    #set($content = $sysServiceUtil.getDictValue("content","web_notice",""))
+    #set($mobCheck = $sysServiceUtil.getDictValue("head_off_method","app_is_head_off_sina_method",""))
+##加载模块内的CSS文件
+    #if($!css_url)
+        #foreach($src in $css_url)
+            <link rel="stylesheet" href="$src?v=${sysServiceUtil.getStaticResourceVersion()}" />
+        #end
+    #end
+</head>
+<body>
+<!-- banner -->
+#parse('/mobile/common/banner.vm')
+<!-- /banner -->
+<!-- pagecontent -->
+$screen_content
+<!-- /pagecontent -->
+
+#parse('/mobile/common/script.vm')
+##品友统计代码
+<script>
+        #if($stringUtil.equalsIgnoreCases($!{currentUser.registerTraceSource},'PYYD',true))
+        !function (w, d, e) {
+            var _orderno = '$!{currentUser.id}';  //替换此处!;
+            var b = location.href, c = d.referrer, f, s, g = d.cookie, h = g.match(/(^|;)\s*ipycookie=([^;]*)/), i = g.match(/(^|;)\s*ipysession=([^;]*)/);
+            if (w.parent != w) {
+                f = b;
+                b = c;
+                c = f;
+            }
+            ;
+            u = '//stats.ipinyou.com/cvt?a=' + e('qJ.jk.EMZ62T8rjc-YGTg3JlVCg_') + '&c=' + e(h ? h[2] : '') + '&s=' + e(i ? i[2].match(/jump\%3D(\d+)/)[1] : '') + '&u=' + e(b) + '&r=' + e(c) + '&rd=' + (new Date()).getTime() + '&OrderNo=' + e(_orderno) + '&e=';
+            function _() {
+                if (!d.body) {
+                    setTimeout(_(), 100);
+                } else {
+                    s = d.createElement('script');
+                    s.src = u;
+                    d.body.insertBefore(s, d.body.firstChild);
+                }
+            }
+
+            _();
+        }(window, document, encodeURIComponent);
+        #end
+</script>
+
+##访客找回代码
+##    #set($pingyouUserID="0")
+##    #set($pingyouPv="0")
+##    #if($stringUtil.equalsIgnoreCases($!{currentUser.registerTraceSource},'DSPYD',true))
+##        #set($pingyouUserID="$!{currentUser.id}")
+##        #if(${currentUser.isMemberInvested})
+##            #set($pingyouPv="2")
+##        #else
+##            #set($pingyouPv="1")
+##        #end
+##    #end
+<script type="text/javascript">
+    var _py = _py || [];
+    _py.push(['a', 'qJ..OIEiS_boFsG_SD2lEUB5nX']);
+    _py.push(['domain', 'stats.ipinyou.com']);
+    _py.push(['e', '']);
+    -function (d) {
+        var s = d.createElement('script'),
+                e = d.body.getElementsByTagName('script')[0];
+        e.parentNode.insertBefore(s, e),
+                f = 'https:' == location.protocol;
+        s.src = (f ? 'https' : 'http') + '://' + (f ? 'fm.ipinyou.com' : 'fm.p0y.cn') + '/j/adv.js';
+    }(document);
+</script>
+<noscript><img src="//stats.ipinyou.com/adv.gif?a=qJ..OIEiS_boFsG_SD2lEUB5nX&e=" style="display:none;"/></noscript>
+</body>
+</html>

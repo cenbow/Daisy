@@ -1,0 +1,60 @@
+#parse("/cms/cmsCategory/head.vm") 
+<div class="col-xs-12">
+  <p>
+  	#if($shiro.hasPermission("cmsCategory:show"))
+    <button id = "new_cmsCategory" type="button" class="btn btn-info btn-sm btn-primary" >新增</button>
+    #end
+    #if($shiro.hasPermission("cmsCategory:save"))
+    <button id = "edit_cmsCategory" type="button" class="btn  btn-pink btn-sm btn-primary" >修改</button>
+    #end
+    #if($shiro.hasPermission("cmsCategory:delete"))
+    <button id = "delete_cmsCategory" type="button" class="btn btn-danger btn-sm btn-primary" >删除</button>
+    #end
+  </p>
+</div>
+<div class="col-xs-12">
+     <div class="table-header">
+     		栏目列表
+     </div>
+   <div class="table-responsive">
+     	<table id="cmsCategory-table-2" class="table table-striped table-bordered" cellspacing="0" width="100%">
+     	       <thead> 
+     	           <tr>  
+     	            <th></th>
+ <th><input type="text" name="search_id"  class="input-small search_init" /></th>
+ <th><input type="text" name="search_parentId"  class="input-small search_init" readonly/></th>
+ <th><input type="text" name="search_module"  class="input-small search_init" readonly/></th>
+ <th><input type="text" name="search_name"  class="input-small search_init" /></th>
+ <th><input type="text" name="search_href"  class="input-small search_init" /></th>
+ <th><input type="text" name="search_target"  class="input-small search_init" /></th>
+ <th><input type="text" name="search_sort"  class="input-small search_init" /></th>
+ <th><input type="text" name="search_inMenu"  class="input-small search_init" /></th>
+ <th><input type="text" name="search_allowComment"  class="input-small search_init" /></th>
+ <th><input type="text" name="search_isAudit"  class="input-small search_init" /></th>
+ <th><input type="text" name="search_createTime"  class="input-small search_init" /></th>
+ <th><input type="text" name="search_updateTime"  class="input-small search_init" /></th> 
+         <th><button id = "query_cmsCategory" type="button" class="btn btn-info btn-sm btn-primary">查询</button></th>
+                    </tr>
+ <tr >
+ <th >
+ ##<label><input class="ace" type="checkbox"> <span class="lbl"></span></label>
+ </th>
+<th >编号</th>
+<th >父级编号</th>
+<th >栏目模块</th>
+<th >栏目名称</th>
+<th >链接</th>
+<th >目标</th>
+<th >排序</th>
+<th >导航中显示</th>
+<th >允许评论</th>
+<th >需要审核</th>
+<th >创建时间</th>
+<th >更新时间</th>
+<th ></th>
+ </tr>
+ </thead>
+ </table>
+ </div>
+ </div>
+ #parse("/cms/cmsCategory/form.vm")

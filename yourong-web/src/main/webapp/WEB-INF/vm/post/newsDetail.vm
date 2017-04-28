@@ -1,0 +1,59 @@
+#set($title="媒体报道-关于有融-有融网-第三方债权交易金融信息服务平台")
+#parse('/common/common.vm')
+#set($title="$!newsDetail.title -有融网-全透明的互联网理财优选平台")
+#set($keywords="$!newsDetail.title ,有融网")
+#set($description="$!{newsDetail.getFirstSentence()}")
+
+
+##媒体报道 
+
+#set($css_url=["$root_css_url/modules/post.css"])
+
+
+<div class="g-wrap f-clear">
+    <div class="u-head-nav">
+        <a href="$root_url/about/index.html">有融简介</a><a href="$root_url/about/disclosure">信息披露</a><a
+            href="$root_url/about/honor">资质荣誉</a>
+        <a href="$root_url/about/cooperator">合作伙伴</a><a href="$root_url/article/news#notice"
+                                                        class="z-selected">平台动态</a>
+        <a href="$root_url/about/join">加入有融</a>
+    </div>
+</div>
+
+<div class="u-nav-bg">
+    <div class="g-wrap">
+        <a href="$root_url/article/news#notice">官方公告</a>
+        <a href="$root_url/article/news#report" class="z-selected">媒体报道</a>
+    </div>
+</div>
+
+
+<div class="g-wrap">
+		 	<div class="u-newsdetail-body f-round j-news-list">
+            	<ul>
+                <li class="u-newsdetail-head f-fs24">
+                	<strong>$!newsDetail.title</strong>
+                    <p class="u-newsdetail-mhead f-fs12">$!newsDetail.copyfrom&nbsp;$!newsDetail.createDateStr&nbsp;<a
+                            href="$!newsDetail.link" target="_blank" class="u-newsdetail-alink">查看原文链接</a></p>
+                </li>
+                <li class="u-newsdetail-content f-fs14">               	
+ 					$!newsDetail.contentHtml
+                </li>
+                <li class="u-newsdetail-next f-fs14">
+                	<ol>
+                        #if($!preArticle)
+                            <li class="u-newsdetail-page f-round"><strong><a
+                                    href="$root_url/article/detail-$!{preArticle}.html"><span
+                                    class="u-switch-left"></span>上一篇</a></strong></li>#end
+                        #if($!preArticle)
+                            <li class="u-newsdetail-page f-round"><strong>&nbsp;/&nbsp;</strong></li>#end
+                    ##                		<li class="u-newsdetail-close f-round"><strong><a href="javascript:window.opener=null;window.close();">关闭</a></strong></li>
+                        #if($!nextArticle)
+                            <li class="u-newsdetail-page f-round"><strong><a
+                                    href="$root_url/article/detail-$!{nextArticle}.html">下一篇#if($!preArticle)<span
+                                    class="u-switch-right"></span>#end</a></strong></li>#end
+                	</ol>
+                </li>
+                </ul>
+</div>
+</div>

@@ -1,0 +1,64 @@
+#set($layout = "/layout/iframe.vm")
+#parse("/bsc/verify/head.vm")
+
+
+<div class="col-xs-12">
+	<div class="table-responsive">
+	<form id="verify_form">
+		<table id="verify-table-search" class="table table-striped table-bordered " cellspacing="0" width="100%">
+			<thead>
+				<tr>
+					<td>
+						人员ID：
+					</td>
+					<td>
+						<input type="text" id="search_memberID" name="search_memberID" class="input-medium search_init"/>
+					</td>
+					
+					<td>认证类型：</td>
+                    <td id="verify_type">#dictSelect ("verify_type",${sysServiceUtil.getDictList('verify_type')} ,"请选择")</td>
+					     
+				</tr>
+				<tr>
+					<td colspan="10" style="text-align:center">
+						<button id = "query_vefify" type="button" class="btn btn-info btn-sm btn-primary ">查询</button>
+						##permission-$shiro.hasPermission('attachment:query') 
+					</td>
+				</tr>
+			</thead>
+		</table>
+		</form>
+	</div>
+</div>
+
+<div class="col-xs-12">
+	<div class="table-responsive">
+	<form id="verify_form">
+		<table id="verify-table-search" class="table table-striped table-bordered " cellspacing="0" width="100%">
+			<thead>
+				<tr>
+					<td>
+						人员ID：
+					</td>
+					<td>
+						<input type="text" id="search_sinamemberID" name="search_memberID" class="input-medium search_init"/>
+					</td>
+					
+					     
+				</tr>
+				<tr>
+					<td colspan="10" style="text-align:center">
+						<button id = "query_sinavefify" type="button" class="btn btn-info btn-sm btn-primary ">查询</button>
+						##permission-$shiro.hasPermission('attachment:query') 
+					</td>
+					
+				</tr>
+			</thead>
+		</table>
+		</form>
+	</div>
+</div>
+
+#parse("/bsc/verify/sinaverify.vm")
+
+ 

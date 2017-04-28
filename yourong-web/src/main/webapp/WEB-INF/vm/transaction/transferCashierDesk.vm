@@ -1,0 +1,65 @@
+#parse("/common/common.vm")
+#parse("/transaction/layout.vm")
+#set($js_url=["$root_js_url/post/transferCashierDesk.js"])
+#set($tradeNo=$request.getParameter("tradeNo"))
+#set($withdrawNo=$request.getParameter("withdrawNo"))
+#set($orderId=$request.getParameter("orderId"))
+<style>
+    body{
+        background: #ffffff;
+    }
+    .g-ft{
+        display: none;
+    }
+    .g-hd{
+        display: none;
+    }
+    .u-ios-href{
+        width: 30%;
+        height: 200px;
+        text-align: center;
+        color: #333;
+        background: #fff;
+        position: fixed;
+        top:30%;
+        left:40%;
+        z-index: 100;
+    }
+    .u-ios-href a{
+        font-size: 2rem;
+        color: #d74148;
+    }
+    .f-dn{
+        display: none;
+    }
+    .u-transferPage{
+        height: 100%;
+        padding: 80% 0 0;
+        position: relative;
+    }
+    .u-transferPage .u-backText{
+        color: #666666;
+        font-size: 20px;
+        margin-top: 10px;
+    }
+</style>
+<div data-os=${loginSource} data-result=${result} data-type=${type} tradeNo="$tradeNo" withdrawNo="$withdrawNo" orderId="$orderId" id="j-test" data-url="$sysServiceUtil.getMRootURL()"></div>
+<div class=" u-transferPage j-width">
+    <div style="position: absolute;left: 30%;top: 60%;">
+
+    <img src="/static/img/weixin/ico_backhome.png" alt="">
+    <div class="u-backText">
+        正在返回有融网...
+    </div>
+
+    </div>
+</div>
+<script src="https://yrstatic.oss-cn-hangzhou.aliyuncs.com/res/lib/zepto/1.1.6/zepto.min.js"></script>
+<script>
+    $('.j-width').css('width',$('body').width())
+</script>
+
+
+
+
+

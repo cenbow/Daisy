@@ -1,0 +1,100 @@
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$res_url/source/css/post/signUpgrade.css"])
+
+#set($isAPP=$request.getParameter("app"))
+
+
+#if($isAPP)
+<style>
+    .g-ft{
+        display: none;
+    }
+     .m-su-top{
+           margin-top:-4rem;
+     }
+</style>
+#end
+
+
+
+
+
+<div class="m-su-top">
+    <h1><a href="$siteurl/mCenter/bankManage" style="color:#ffffff">返回</a></h1>
+
+
+
+<div class="m-su-largestbox">
+
+       <div class="u-su-hd1">1</div>
+       <div class="u-su-hd2">
+               <h2>签名升级</h2>
+               <h3>有融网：电子签名升级 为投资人保驾护航</h3>
+       </div>
+            <div class="m-su-ct"><p>有融网携手上上签，优化电子合同签名服务，共同守护互联网时代的契约精神。</p></div><br/>
+
+
+
+
+
+           <div class="u-su-hd1">2</div>
+       <div class="u-su-hd2">
+               <h2>电子签名</h2>
+               <h3>可靠的电子签名：四个条件不能少</h3>
+       </div>
+        <div class="m-su-ct">
+           <br/><img src="$res_url/img/post/signUpgrade/p2.png" style="width:100%">
+          <h5>签署可靠的电子签名有什么意义？</h5>
+         <p>可靠的电子签名是保障电子合同具有完整法律效力的前提，对于维护投资者法律权益具有重大意义。</p>
+
+        </div><br/>
+
+
+
+
+        <div class="u-su-hd1">3</div>
+        <div class="u-su-hd2">
+               <h2>核心优势</h2>
+               <h3>上上签的核心优势：三重递进式法律保障</h3>
+         </div>
+         <div class="m-su-ct">
+
+         <ul >
+                 <li > <b>	&#8226</b>  Adobe Acrobat打开直接校验合同真伪 </li>
+                 <li > <b>	&#8226</b>  CA 中心出具业务报告</li>
+                 <li > <b>	&#8226</b>  合作公证处出具公证书</li>
+         </ul><br>
+
+               上上签是一家提供电子合同签名的服务平台，它通过先进的CA认证技术、电子数据碎片式存储技术、防篡改技术，实现投资人、平台及借款人在交易过程中
+               签署可靠的电子签名，形成一份具有司法效力的电子合同，有效保障各方权益。<br/>
+               <a href="https://m.bestsign.cn">了解更多>></a>
+          </div><br/>
+
+
+
+
+
+       <div class="u-su-hd1">4</div>
+       <div class="u-su-hd2">
+               <h2>如何使用</h2>
+               <h3>两种签署方式随心选</h3>
+       </div>
+         <div class="m-su-ct"><h5>两种签署方式（两者具有同等的法律效力）</h5>
+
+             <p>
+             1）手动签署：指用户在完成投资后进行协议签署时，通过手动签名完成签署的方式。</p><br/>
+             <img src="$res_url/img/post/signUpgrade/p4.png" style="width:100%">
+             <p>
+             2）自动签署：指用户在完成投资后进行协议签署时，系统通过默认签名快速完成签署的方式。</p><br>
+             <img src="$res_url/img/post/signUpgrade/p5.png" style="width:100%">
+                <h5>如何设置自动签署</h5>
+             <p>电子签名的初始状态默认为手动签名，<br>
+
+             如果您需要更改为自动签名，请到我的账户-点击头像-电子签名设置。</p>
+
+          </div><br/><br>
+
+</div>
+
+</div>

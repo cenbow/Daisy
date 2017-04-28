@@ -1,0 +1,16 @@
+## Demo
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+loginSource=<div id="show"></div>
+<form id="demo_form" method="post">
+	<input type="hidden" id="loginSource" value="$!{loginSource}">
+	<input type="hidden" id="invoke_method" value="receiveCoupon">
+	<input type="hidden" name="args" data-invoke="args_1_long_activityId" value="151">
+	<input type="hidden" name="args" data-invoke="args_2_long_mobile" value="15172458799">
+</form>
+
+<script src="$res_url/lib/js/sea.js"></script>
+<script>
+    seajs.use('$res_url/source/js/post/dynamicInvoke');
+</script>
+

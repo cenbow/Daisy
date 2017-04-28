@@ -1,0 +1,170 @@
+
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$res_url/source/css/post/cashierDesk.css"])
+#set($title='收银台')
+#if($currentUser)
+    #set($logined=true)
+#else
+    #set($logined=false)
+#end
+#CSRFToken('xToken')
+##  安卓
+#if($loginSource==1)
+    #set($os=1)
+#end
+##  IOS
+#if($loginSource==2)
+    #set($os=2)
+#end
+##
+#if($loginSource==1 || $loginSource==2)
+<style>
+    .g-ft{
+        display: none;
+    }
+</style>
+#else
+##header，安卓ios，不需要头部
+<h2 class="u-header f-pos-r">
+    <a class="f-fs16" href="$m_url"><img src="$res_url/img/post/cashierDesk/goBack.png" alt="">  <strong>返回</strong></a>
+    <span class="f-fs18">
+        收银台专题页
+    </span>
+</h2>
+#end
+<div>
+    <div class="m-banner">
+        <img src="$res_url/img/post/cashierDesk/cashierDesk_banner.png" alt="" width="100%">
+    </div>
+    <div class="u-contentPart01">
+        <div class="g-wrap">
+
+        <div class="u-partTitle f-fs14">
+            &nbsp;有融网携手新浪支付 支付安全再升级
+        </div>
+        <p class="f-color6 f-fs14">
+            为保障用户资产安全，积极配合中国人民银行的最新监管要求，有融网携手新浪支付打造的全新升级版支付方式正式上线啦！
+        </p>
+        <strong class="f-color6 f-fs14" >
+            用户需登录有融网或APP，完成支付密码的设置后，方可进行投资、充值、提现。
+        </strong>
+
+        </div>
+    </div>
+    <div class="u-contentPart02">
+        <div class="g-wrap">
+            <div class="u-partTitle">
+                &nbsp;升级优势
+            </div>
+            <ul>
+                <li>
+                    <strong class="f-fs14 f-color6">账户更安全</strong>
+                    <img class="f-fr j-openMsg01" src="$res_url/img/post/cashierDesk/open.png" alt="">
+                    <img class="f-fr j-closeMsg01 f-dn" src="$res_url/img/post/cashierDesk/close.png" alt="">
+                    <p class="f-fs14 f-color9 j-detailMsg01 f-dn">
+                        投资、充值、提现等账户资金出入，需要用户本人进行支付密码的确认。</p>
+                </li>
+                <li>
+                    <strong class="f-fs14 f-color6">支付更合规</strong>
+                    <img class="f-fr j-openMsg02" src="$res_url/img/post/cashierDesk/open.png" alt="">
+                    <img class="f-fr j-closeMsg02 f-dn" src="$res_url/img/post/cashierDesk/close.png" alt="">
+                    <p class="f-fs14 f-color9 j-detailMsg02 f-dn">
+                        新浪支付隶属新浪旗下，已获得中华人民共和国支付业务许可证、中国支付清算协会会员证、基金销售支付结算牌照等托管资质。有融网携手新浪支付，紧跟监管要求，打造全新升级版支付方式，全力守护用户资产安全。
+                    </p>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+    <div class="u-contentPart03">
+        <div class="g-wrap">
+            <div class="u-partTitle">
+                &nbsp;支付升级投资、充值、提现<br>&nbsp;流程有何变化？
+            </div>
+            <p class="f-fs14 f-color6 ">
+                <strong>用户在投资、充值、提现时，均需跳转至新浪支付平台，进行支付密码的确认</strong>（已开通委托支付功能的情况除外）。
+            </p>
+            <div  class="f-fs14 f-color6 u-progressLink">
+                <strong>投资</strong>
+                <a href="$siteurl/mstation/post/openedInvestProcess?loginSource=$os">已开通委托支付功能 <span class="f-fs12"> &nbsp; &nbsp;点击查看交易流程 >></span></a>
+                <a href="$siteurl/mstation/post/investmentProcess?loginSource=$os">未开通委托支付功能 <span class="f-fs12"> &nbsp; &nbsp;点击查看交易流程 >></span></a>
+            </div>
+            <div class="f-fs14 f-color6 u-funcSteps">
+                <div class="u-litleTips"><strong>充值</strong></div>
+                <div>①输入充值金额 ②支付密码确认 ③充值结果查询</div>
+                <div class="u-litleTips"><strong>提现</strong></div>
+                <div>①输入提现金额 ②支付密码确认 ③提现结果查询</div>
+            </div>
+        </div>
+
+    </div>
+    <div class="u-contentPart04">
+        <div class="g-wrap">
+            <div class="u-partTitle">
+                &nbsp;常见问题
+            </div>
+            <div class="u-questionExample">
+                <div class="u-litleTips f-color6 f-fs14"><strong>1.支付密码是什么？必须设置吗？</strong></div>
+                <p class="f-fs14 f-color9">
+                    支付密码是不同于登录密码的资金安全保护机制，特别用于保护用户的资产安全。每位用户需设置支付密码后，方可进行投资、充值、提现等操作。
+                </p>
+            </div>
+            <div class="u-questionExample">
+                <div class="u-litleTips f-color6 f-fs14"><strong>2.委托支付是什么？</strong></div>
+                <p class="f-fs14 f-color9">
+                    开通委托支付功能，即代表用户授权平台，当投资时自动从用户的新浪支付存钱罐账户扣除相应资金，无需输入支付密码，投资一步到位。
+                </p>
+            </div>
+        </div>
+
+    </div>
+    <div class="u-contentPart05">
+        <div class="g-wrap">
+            <div class="u-partTitle">
+                &nbsp;如何设置
+            </div>
+            <div class="u-questionExample">
+                <div class="u-litleTips f-color6 f-fs14"><strong>手机APP登录</strong></div>
+                <p class="f-fs14 f-color9">
+                    进入“我的账户”-点击头像-“账号与安全”-“支付密码”/“委托支付”，即可设置。
+                </p>
+            </div>
+            <div class="u-questionExample">
+                <div class="u-litleTips f-color6 f-fs14"><strong>手机浏览器登录</strong></div>
+                <p class="f-fs14 f-color9">
+                    进入“我的账户”-“安全认证”-“支付密码”/“委托支付”，即可设置。
+                </p>
+            </div>
+        </div>
+        <div class="f-fs12 f-color9 u-reminder">
+            温馨提示：完成支付密码的设置后， <br>方可进行委托支付功能的开通。
+        </div>
+    </div>
+</div>
+#set($pageScript="
+<script>
+    $('.j-openMsg01').on('click',function () {
+        $('.j-detailMsg01').show()
+        $(this).hide()
+        $('.j-closeMsg01').show()
+    })
+    $('.j-closeMsg01').on('click',function (){
+        $('.j-detailMsg01').hide()
+        $(this).hide()
+        $('.j-openMsg01').show()
+    })
+
+    $('.j-openMsg02').on('click',function () {
+        $('.j-detailMsg02').show()
+        $(this).hide()
+        $('.j-closeMsg02').show()
+    })
+
+    $('.j-closeMsg02').on('click',function () {
+        $('.j-detailMsg02').hide()
+        $(this).hide()
+        $('.j-openMsg02').show()
+    })
+</script>
+")

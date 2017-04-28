@@ -1,0 +1,87 @@
+#set($title="合作伙伴-有融网-全透明的互联网理财优选平台")
+#set($keywords="关于有融,有融网")
+#set($description="有融网运用高效的运营管理体系和创新的互联网思维,搭建了一个安全透明的互联网理财服务平台.")
+
+#parse('/common/common.vm')
+#set($css_url=["$root_css_url/post/cooperator.css"])
+
+
+<div class="g-wrap f-clear">
+    <div class="u-head-nav">
+        <a href="$root_url/about/index.html">有融简介</a><a href="$root_url/about/disclosure">信息披露</a><a
+            href="$root_url/about/honor">资质荣誉</a>
+        <a href="$root_url/about/cooperator" class="z-selected">合作伙伴</a><a
+            href="$root_url/article/news#notice">平台动态</a><a href="$root_url/about/join">加入有融</a>
+    </div>
+</div>
+
+
+<div class="u-banner">
+    <div class="g-wrap">
+        <h1>融合创新</h1>
+        <p>共筑互联网金融生态圈</p>
+    </div>
+</div>
+
+
+<div class="g-partner-wrap m-content">
+    <h1>有融网投资方</h1>
+    <ul>
+        <li>
+            <h2><img src="https://yrstatic.oss-cn-hangzhou.aliyuncs.com/static/img/cooperator/qinhuangdao.png"></h2>
+            <h3>国资战略入股方</h3>
+            <p>秦皇岛市彩虹贸易有限公司，于2006年9月12日在秦皇岛市工商行政管理局核准注册，系内蒙古通辽国家粮食储备库全资子公司，是主要从事粮油储存、粮食收购及项目投资的领导者，注册资金贰亿元人民币。
+                秉承着求真务实，开拓进取的企业文化，公司业务稳步上升，截至2015年底，公司年销售收入达18亿元人民币。</p>
+        </li>
+        <li id="dljt">
+            <h2><img src="https://yrstatic.oss-cn-hangzhou.aliyuncs.com/static/img/cooperator/dingli.png"></h2>
+            <h3>A+轮投资方</h3>
+            <p>鼎立控股集团是一家集实业、置业、医药、金融业为一体的大型现代化企业集团，总资产近百亿元。曾荣获“中华民族品牌奖”、“全国民营企业500强”、“全国十佳诚信单位”、
+                “中国首批信用体系建设先进单位”等百余项国家级荣誉，是有融网A+轮融资的投资方。</p>
+        </li>
+        <li id="ghkj">
+            <h2><img src="https://yrstatic.oss-cn-hangzhou.aliyuncs.com/static/img/cooperator/guanghua.png"></h2>
+            <h3>Pre-A轮战略入股方</h3>
+            <p>中国光华科技基金会成立于1993年，是在民政部登记注册、共青团中央主管的全国性5A公募基金会。早期通过颁发“光华科技奖”，奖励在我国科技领域做出突出成绩的科技人员，为科技事业发展做出了积极贡献，
+                曾获福布斯中国十佳公募慈善公益基金会第一名，于2016年1月13日战略入股有融网。</p>
+        </li>
+    </ul>
+    <h1>优质合作伙伴</h1>
+    <ul>
+        <li id="xhq">
+            <h2><img src="https://yrstatic.oss-cn-hangzhou.aliyuncs.com/static/img/cooperator/xihu.png"></h2>
+            <p>有融网是杭州市西湖区政府重点引进扶持的互联网金融信息服务平台。
+                政府给予有融网在政策等方面的大力支持，是有融网致力于打造多元化、综合性的互联网金融信息服务平台的有力保障。</p>
+        </li>
+        <li>
+            <h2><img src="https://yrstatic.oss-cn-hangzhou.aliyuncs.com/static/img/cooperator/baidu.png"></h2>
+            <p>百度金融大数据风控服务通过多维度挖掘用户特征，帮助定位优质借款方，防范欺诈风险，加强平台整体风控水平及风险识别效率。
+                有融网携手百度金融大数据风控，在贷前、贷中、贷后形成一套严密的风控体系，为平台用户的资金、信息、数据提供全方位保障。</p>
+        </li>
+        <li id="sina">
+            <h2><img src="https://yrstatic.oss-cn-hangzhou.aliyuncs.com/static/img/cooperator/xinlang.png"></h2>
+            <p>新浪支付隶属新浪旗下，拥有中华人民共和国支付业务许可证、中国支付清算协会会员证、基金销售支付结算牌照等托管资质。
+                新浪支付为有融网平台用户全程提供资金托管和支付服务，用户资金与平台完全隔离，真正实现专人专户、专款专用。</p>
+        </li>
+        <li id="zjdx">
+            <h2><img src="https://yrstatic.oss-cn-hangzhou.aliyuncs.com/static/img/cooperator/zheda.png"></h2>
+            <p>浙江大学是一所享誉海内外的综合型、研究型大学，注重精研学术和科技创新，建设了一批开放性、国际化的高端学术平台，汇聚了各学科的学者大师高水平研究团队。
+                浙江大学与有融网在互联网金融领域开展合作，为互联网金融企业打造信息披露标准与风险控制标准规范，带动行业合规化发展。</p>
+        </li>
+        <li id="ssq">
+            <h2><img src="https://yrstatic.oss-cn-hangzhou.aliyuncs.com/static/img/cooperator/shangshangqian.png"></h2>
+            <p>上上签是一家提供电子合同签名的专业服务平台，它通过先进的CA认证技术、电子数据碎片式存储技术、防篡改技术， 保障有融网投资人、
+                借款人在交易过程中签署可靠的电子签名，形成一份具有司法效力的电子合同，有效保障各方权益。</p>
+        </li>
+        <li id="dm">
+            <h2><img src="https://yrstatic.oss-cn-hangzhou.aliyuncs.com/static/img/cooperator/demu.png"></h2>
+            <p>浙江德睦律师事务所资深律师团队对平台业务模式和项目流程进行严格的法律风险把控，
+                全程监督平台风控团队的尽职调查工作，并提供全方位的第三方专业法律服务和保障。</p>
+        </li>
+        <li>
+            <h2><img src="https://yrstatic.oss-cn-hangzhou.aliyuncs.com/static/img/cooperator/zhongcai.png"></h2>
+            <p>杭州仲裁委员会是由杭州市人民政府组建，经浙江省司法行政部门注册登记成立的法定仲裁机构和网络仲裁的优选机构。有融网积极推动上上签与杭州仲裁委员会达成合作，
+                以网络仲裁方便快捷的优势，为用户创造更加安心的理财环境，为每位用户的合法权益再添一道保护墙。</p>
+        </li>
+    </ul>
+</div>

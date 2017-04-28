@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.fin.dao.BalanceFreezeMapper" >
+  <resultMap id="BaseResultMap" type="BalanceFreeze" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="freeze_no" property="freezeNo" jdbcType="VARCHAR" />
+    <result column="unfreeze_no" property="unfreezeNo" jdbcType="VARCHAR" />
+    <result column="member_id" property="memberId" jdbcType="BIGINT" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="amount" property="amount" jdbcType="DECIMAL" />
+    <result column="balance" property="balance" jdbcType="DECIMAL" />
+    <result column="summary" property="summary" jdbcType="VARCHAR" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="freeze_time" property="freezeTime" jdbcType="TIMESTAMP" />
+    <result column="unfreeze_time" property="unfreezeTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, freeze_no, unfreeze_no, member_id, type, amount, balance, summary, remarks, freeze_time, 
+    unfreeze_time
+  </sql>
+  <insert id="insertSelective" parameterType="BalanceFreeze" >
+    insert into fin_balance_freeze
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="freezeNo != null" >
+        freeze_no,
+      </if>
+      <if test="unfreezeNo != null" >
+        unfreeze_no,
+      </if>
+      <if test="memberId != null" >
+        member_id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="balance != null" >
+        balance,
+      </if>
+      <if test="summary != null" >
+        summary,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+      <if test="freezeTime != null" >
+        freeze_time,
+      </if>
+      <if test="unfreezeTime != null" >
+        unfreeze_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="freezeNo != null" >
+        #{freezeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="unfreezeNo != null" >
+        #{unfreezeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="memberId != null" >
+        #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="balance != null" >
+        #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="summary != null" >
+        #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="freezeTime != null" >
+        #{freezeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="unfreezeTime != null" >
+        #{unfreezeTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="BalanceFreeze" >
+    update fin_balance_freeze
+    <set >
+      <if test="freezeNo != null" >
+        freeze_no = #{freezeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="unfreezeNo != null" >
+        unfreeze_no = #{unfreezeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="memberId != null" >
+        member_id = #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="balance != null" >
+        balance = #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="summary != null" >
+        summary = #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="freezeTime != null" >
+        freeze_time = #{freezeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="unfreezeTime != null" >
+        unfreeze_time = #{unfreezeTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <delete id="batchDelete" parameterType="java.lang.Long" >
+    delete from fin_balance_freeze
+    where id in  <foreach collection="ids" index="index" item="item" open="(" separator="," close=")"> #{item}  </foreach>  
+  </delete>
+  <select id="findByPage" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from fin_balance_freeze
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = #{map.id}
+        </if>
+        <if test=" map.freezeNo != null" >
+          freeze_no = #{map.freezeNo}
+        </if>
+        <if test=" map.unfreezeNo != null" >
+          unfreeze_no = #{map.unfreezeNo}
+        </if>
+        <if test=" map.memberId != null" >
+          member_id = #{map.memberId}
+        </if>
+        <if test=" map.type != null" >
+          type = #{map.type}
+        </if>
+        <if test=" map.amount != null" >
+          amount = #{map.amount}
+        </if>
+        <if test=" map.balance != null" >
+          balance = #{map.balance}
+        </if>
+        <if test=" map.summary != null" >
+          summary = #{map.summary}
+        </if>
+        <if test=" map.remarks != null" >
+          remarks = #{map.remarks}
+        </if>
+        <if test=" map.freezeTime != null" >
+          freeze_time = #{map.freezeTime}
+        </if>
+        <if test=" map.unfreezeTime != null" >
+          unfreeze_time = #{map.unfreezeTime}
+        </if>
+      </where>
+    </if>
+  </select>
+  <sql id="Base_Column_List_Pagin" >
+    t.id  as  id,
+t.freeze_no  as  freeze_no,
+t.unfreeze_no  as  unfreeze_no,
+t.member_id  as  member_id,
+t.type  as  type,
+t.amount  as  amount,
+t.balance  as  balance,
+t.summary  as  summary,
+t.remarks  as  remarks,
+t.freeze_time  as  freeze_time,
+t.unfreeze_time  as  unfreeze_time
+  </sql>
+  <select id="selectForPagin" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List_Pagin" />
+    from  (SELECT id FROM  fin_balance_freeze
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = #{map.id}
+        </if>
+        <if test=" map.freezeNo != null" >
+          freeze_no = #{map.freezeNo}
+        </if>
+        <if test=" map.unfreezeNo != null" >
+          unfreeze_no = #{map.unfreezeNo}
+        </if>
+        <if test=" map.memberId != null" >
+          member_id = #{map.memberId}
+        </if>
+        <if test=" map.type != null" >
+          type = #{map.type}
+        </if>
+        <if test=" map.amount != null" >
+          amount = #{map.amount}
+        </if>
+        <if test=" map.balance != null" >
+          balance = #{map.balance}
+        </if>
+        <if test=" map.summary != null" >
+          summary = #{map.summary}
+        </if>
+        <if test=" map.remarks != null" >
+          remarks = #{map.remarks}
+        </if>
+        <if test=" map.freezeTime != null" >
+          freeze_time = #{map.freezeTime}
+        </if>
+        <if test=" map.unfreezeTime != null" >
+          unfreeze_time = #{map.unfreezeTime}
+        </if>
+      </where>
+    </if>
+      LIMIT	${map.startRow}, ${map.pageSize}  )  AS a,  fin_balance_freeze AS t FORCE INDEX(PRIMARY) WHERE a.id = t.id   
+  </select>
+  <select id="selectForPaginTotalCount" resultType="java.lang.Integer" >
+    select count(1) 
+    from fin_balance_freeze
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = ${map.id}
+        </if>
+        <if test=" map.freezeNo != null" >
+          freeze_no = ${map.freezeNo}
+        </if>
+        <if test=" map.unfreezeNo != null" >
+          unfreeze_no = ${map.unfreezeNo}
+        </if>
+        <if test=" map.memberId != null" >
+          member_id = ${map.memberId}
+        </if>
+        <if test=" map.type != null" >
+          type = ${map.type}
+        </if>
+        <if test=" map.amount != null" >
+          amount = ${map.amount}
+        </if>
+        <if test=" map.balance != null" >
+          balance = ${map.balance}
+        </if>
+        <if test=" map.summary != null" >
+          summary = ${map.summary}
+        </if>
+        <if test=" map.remarks != null" >
+          remarks = ${map.remarks}
+        </if>
+        <if test=" map.freezeTime != null" >
+          freeze_time = ${map.freezeTime}
+        </if>
+        <if test=" map.unfreezeTime != null" >
+          unfreeze_time = ${map.unfreezeTime}
+        </if>
+      </where>
+    </if>
+  </select>
+</mapper>

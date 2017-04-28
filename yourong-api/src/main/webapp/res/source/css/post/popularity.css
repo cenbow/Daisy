@@ -1,0 +1,949 @@
+[v-cloak] {
+    display: none;
+}
+
+.f-color3 {
+    color: #333333;
+}
+
+.f-color6 {
+    color: #666666;
+}
+
+.f-color9 {
+    color: #999999;
+}
+
+.f-coloreDC {
+    color: #DC564D;
+}
+
+.f-disInline {
+    display: inline-block;
+}
+
+.u-goBackImg {
+    width: 50%;
+    vertical-align: middle;
+}
+
+body {
+    background: #F3F3F3;
+}
+
+textarea {
+    -webkit-appearance: none;
+}
+
+input {
+    -webkit-appearance: none;
+}
+
+.u-header {
+    background: #ffffff;
+    color: #282828;
+}
+
+.u-header a {
+    color: #282828;
+}
+
+/*会员成长体系*/
+.g-growthSystemWrap {
+    width: 94%;
+    margin: auto;
+}
+
+.g-growthSystemWrap .u-growthSystemBlock {
+    background: #ffffff;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.g-growthSystemWrap .u-growthSystemBlock ol {
+    width: 90%;
+    padding: 10px 0 30px 26px;
+}
+
+.g-growthSystemWrap .u-growthSystemBlock ol li {
+    margin-top: 6px;
+    line-height: 20px;
+    list-style-type: none;
+}
+
+.g-growthSystemWrap .u-growthInfo {
+    padding: 10px 11px 10px 20px;
+    line-height: 20px;
+    /*margin-right: 4px;*/
+    /*text-align: center;*/
+}
+
+.g-growthSystemWrap .u-growthInfo .u-littleTitle {
+    line-height: 40px;
+    font-weight: 700;
+}
+
+.g-growthSystemWrap .u-growthInfo img {
+    margin: 20px 0;
+}
+
+.g-growthSystemWrap .u-growthInfo p {
+    margin-bottom: 20px;
+    /*margin-left: 4px;*/
+}
+
+.g-growthSystemWrap .u-tips {
+    width: 90%;
+    margin: 10px 0;
+    text-align: center;
+}
+
+/*some公共的样式*/
+.m-mainContent {
+    margin-left: 3%;
+}
+
+.m-mainContent .u-contentTitle {
+    border-bottom: 1px solid #E5E5E5;
+    vertical-align: middle;
+    line-height: 40px;
+}
+
+.m-mainContent .u-contentTitle img {
+    width: 4%;
+    vertical-align: middle;
+    margin-top: -5px;
+}
+
+.m-mainContent .u-contentTitle span {
+    margin-left: 1%;
+}
+
+.m-mainContent ul li {
+    margin: 16px 8px 0 8%;
+    line-height: 20px;
+
+}
+
+.m-mainContent ul li p img {
+    width: 80%;
+    margin-top: 20px;
+}
+
+.m-mainContent .u-rulesList {
+    margin: 16px 0 30px 3%;
+}
+
+.m-mainContent .u-rulesList li {
+    list-style-type: decimal;
+    margin: 0 8px 0 8%;
+}
+
+.u-originalPrice {
+    text-decoration: line-through;
+    margin-left: 6px;
+}
+
+/*生日礼包等弹窗样式*/
+.u-tipBlock {
+    width: 90%;
+    position: fixed;
+    top: 20%;
+    left: 5%;
+    z-index: 1000;
+    background: #ffffff;
+    border-radius: 10px;
+    text-align: center;
+    line-height: 20px;
+}
+
+.u-tipBlock p {
+    padding: 10px 20px 0;
+}
+
+.u-tipBlock .u-tipBackground {
+    width: 100%;
+    background: url("../../../img/post/popularity/park_picUpdate.png") no-repeat center;
+    background-size: 100%;
+    height: 150px;
+    line-height: 184px;
+    color: #ffffff;
+    font-size: 24px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+.u-tipBlock .u-sureBtn {
+    width: 80%;
+    margin: 50px auto 20px;
+    color: #D74148;
+    line-height: 40px;
+    border: 1px solid #D74148;
+    border-radius: 8px;
+    text-align: center;
+}
+
+@media screen and (min-width: 360px) {
+    .u-tipBlock .u-tipBackground {
+        height: 190px;
+        line-height: 230px;
+    }
+}
+
+@media screen and (min-width: 400px) {
+    .u-tipBlock .u-tipBackground {
+        height: 216px;
+        line-height: 260px;
+    }
+}
+
+/*成长记录，兑换记录，人气值流水*/
+.m-recordList .u-recordList li {
+    width: 90%;
+    padding: 10px 5%;
+    background: #ffffff;
+    margin-top: 1px;
+}
+
+.m-recordList .u-recordList li .u-rightIcon {
+    /*padding-right: 2%;*/
+    text-align: right;
+    margin-right: -4px;
+}
+
+.m-recordList .u-recordList li .u-recordImg {
+    width: 62px;
+    height: 62px;
+    display: inline-block;
+    border: 1px solid #e5e5e5;
+    vertical-align: middle;
+    overflow: hidden;
+    margin-right: 8px;
+}
+
+.m-recordList .u-recordList li .u-recordImg img {
+    vertical-align: middle;
+    width: 62px;
+    height: 62px;
+    overflow: hidden;
+}
+
+.m-recordList .u-recordList li .u-recordInfo {
+    position: relative;
+    display: inline-block;
+    width: 70%;
+    top: 0;
+    line-height: 24px;
+    vertical-align: middle;
+}
+
+/*.m-recordList .u-recordList li .u-listType{*/
+/*text-align: right;*/
+/*}*/
+/*兑换的订单详情*/
+.m-recordList .u-recordList li .u-orderInfo {
+    top: 0;
+    line-height: 20px;
+}
+
+.u-bgLine {
+    padding: 0 !important;
+    margin-bottom: -14px !important;
+    background: #f3f3f3 !important;
+    width: 100% !important;
+}
+
+.u-remarksBlock {
+    padding-top: 10px !important;
+}
+
+.u-remarksBlock .u-infoList {
+    margin-top: 10px;
+}
+
+.u-remarksBlock .u-infoList:last-child {
+    margin-bottom: 10px;
+}
+
+.u-remarksBlock .u-tipTitle {
+    width: 30%;
+}
+
+.u-remarksBlock .u-mainInfo {
+    width: 60%;
+    vertical-align: top;
+}
+
+/*商品详情和兑换商品*/
+.u-productInfo {
+    background: #ffffff;
+    padding: 10px 0 60px 10px;
+    line-height: 24px;
+    position: relative;
+}
+
+.u-productInfo .u-exchangeValue {
+    border-bottom: 1px solid #F2F2F2;
+    padding: 6px 0;
+    line-height: 30px;
+}
+
+.u-productInfo .u-exchangeValue em {
+    color: #F97B3A;
+}
+
+.u-productInfo .u-exchangeValue span {
+    text-decoration: line-through;
+}
+
+.u-productInfo .u-infoTitle {
+    margin-top: 10px;
+}
+
+.u-phoneNumber {
+    width: 92%;
+    background: #F3F3F3;
+    border: 1px solid #E5E5E5;
+    border-radius: 4px;
+    padding: 10px 0 10px 14px;
+    margin: 4px 0;
+}
+
+.u-changeBtn {
+    width: 96%;
+    height: 44px;
+    border-radius: 4px;
+    background: #d74148;
+    color: #ffffff;
+    line-height: 44px;
+    text-align: center;
+    position: fixed;
+    left: 2%;
+    bottom: 4px;
+}
+
+.z-disabled {
+    background: #dddddd;
+}
+
+.u-checkBox {
+    width: 80%;
+    background: #ffffff;
+    border-radius: 10px;
+    position: fixed;
+    top: 40%;
+    left: 10%;
+    z-index: 1000;
+}
+
+.u-checkBox p {
+    text-align: center;
+    line-height: 64px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.u-checkBox span {
+    display: inline-block;
+    width: 48%;
+    text-align: center;
+    color: #666666;
+    line-height: 40px;
+    border-right: 1px solid #e5e5e5;
+}
+
+.u-checkBox span:last-child {
+    border: none;
+}
+
+.u-checkBox a span {
+    color: #d74148;
+}
+
+.u-addressBox {
+    width: 80%;
+    background: #ffffff;
+    border-radius: 10px;
+    position: fixed;
+    top: 20%;
+    left: 10%;
+    z-index: 1000;
+}
+
+.u-addressBox span {
+    display: inline-block;
+    width: 48%;
+    text-align: center;
+    color: #666666;
+    line-height: 50px;
+    border-right: 1px solid #e5e5e5;
+}
+
+.u-addressBox span:last-child {
+    border: none;
+    color: #666666;
+}
+
+.u-addressBox span.z-filled {
+    color: #D74148 !important;
+}
+.u-addressBox textarea,
+.u-addressBox input {
+    width: 86%;
+    margin-left: 5%;
+    border-bottom: 1px solid #e5e5e5;
+    line-height: 30px;
+    font-size: 16px;
+    color: #999999;
+    margin-bottom: 8px;
+    padding: 2%;
+    overflow: hidden;
+}
+
+.u-addressBox .u-arrow {
+    display: inline-block;
+    margin-left: -6%;
+    width: 10px;
+    height: 10px;
+    overflow: hidden;
+    background: url("../../../img/post/popularity/ico_arrow.png") no-repeat center;
+    background-size: 100% 100%;
+}
+
+.u-addressBox p {
+    text-align: center;
+    line-height: 50px;
+}
+
+.u-addressBox .u-sureBtn {
+    border-top: 1px solid #e5e5e5;
+}
+
+.u-addressBox .z-available {
+    color: #308BFF;
+}
+
+/*人气值乐园首页*/
+.u-topTips {
+    width: 92%;
+    padding: 4px 4%;
+    background: #fff5eb;
+    color: #d74148;
+    font-size: 12px;
+    vertical-align: middle;
+    float: right;
+}
+
+.u-topTips .u-rulesBlock {
+    width: 80%;
+    background: #ffffff;
+    position: fixed;
+    top: 24%;
+    left: 10%;
+    border-radius: 8px;
+    z-index: 1000;
+}
+
+.u-topTips .u-rulesBlock h2 {
+    text-align: center;
+    font-size: 16px;
+    line-height: 24px;
+    margin-top: 16px;
+}
+
+.u-topTips .u-rulesBlock p {
+    line-height: 24px;
+    margin: 12px 18px;
+}
+
+.u-topTips .u-rulesBlock .u-rulesSureBtn {
+    color: #D74148;
+    text-align: center;
+    line-height: 40px;
+    font-size: 17px;
+    border-top: 1px solid #cccccc;
+}
+
+.u-topTips .u-closeBtn {
+    width: 24px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.u-topTips .u-closeBtn img {
+    vertical-align: middle;
+}
+
+.u-topTips span {
+    font-size: 12px;
+    display: inline-block;
+    width: 90%;
+    vertical-align: middle;
+}
+
+.u-topTips .u-popularityRules {
+    display: inline-block;
+    float: right;
+}
+.u-memberInfo{
+    background: url("../../../img/post/popularity/head_parkbg.png") no-repeat center;
+    background-size: 100%;
+    width: 92%;
+    padding: 5% 4%;
+    font-size: 0;
+    color: #ffffff;
+    vertical-align: middle;
+}
+
+.u-memberInfo.z-unLogined {
+    background: #d74148;
+    width: 100%;
+    padding: 2% 0;
+}
+
+.u-memberInfo .u-unLoginTip {
+    width: 86%;
+    margin: auto;
+    background: url("../../../img/post/popularity/bg_notlogged.png") no-repeat center;
+    background-size: 100%;
+    padding: 10% 4%;
+    vertical-align: middle;
+}
+
+.u-activity {
+    font-size: 0;
+}
+.u-memberInfo .u-unLoginTip div {
+    position: relative;
+}
+
+.u-memberInfo .u-unLoginTip span {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.u-memberInfo .u-unLoginTip .u-loginBtn {
+    border: 1px solid #d74148;
+    box-shadow: 0 4px 6px 0 #F4DDDE;
+    border-radius: 4px;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 8%;
+    position: absolute;
+    right: 0;
+    top: 4px;
+}
+
+.u-memberInfo .u-unLoginTip .u-loginBtn a {
+    color: #D74148;
+}
+
+.u-memberInfo .u-memberAvatar {
+    vertical-align: middle;
+    width: 58px;
+    height: 58px;
+    margin-right: 12px;
+    border: 2px solid #FFEDAB;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.u-memberInfo .u-memberName {
+    display: inline-block;
+    vertical-align: middle;
+    color: #ffffff;
+}
+
+@media screen and (max-width: 320px) {
+    .u-memberInfo .u-memberAvatar {
+        width: 40px;
+        height: 40px;
+        margin-right: 10px;
+    }
+}
+
+.u-memberPoint {
+    background: #ffffff;
+    text-align: center;
+    /*height: 50px;*/
+    /*line-height: 50px;*/
+    width: 100%;
+}
+
+.u-memberPoint span {
+    display: inline-block;
+    width: 30%;
+    border-right: 1px solid #f3f3f3;
+    text-align: center;
+    margin: 10px 0;
+}
+
+.u-memberPoint span:last-child {
+    border: none;
+}
+
+.u-memberPoint a img {
+    display: block;
+    margin-left: 40%;
+}
+
+.m-productList {
+    background: #ffffff;
+    width: 96%;
+    padding: 2%;
+}
+
+.m-productList .u-productList li {
+    display: inline-block;
+    width: 49%;
+    margin: 10px 0 20px 0;
+    vertical-align: top;
+}
+
+.m-productList .u-getMore {
+    margin: 4px 5% 0 0;
+}
+
+.m-productList .u-productList li .u-couponImg {
+    border: 1px solid #F2F2F2;
+    width: 160px;
+    height: 160px;
+    position: relative;
+    overflow: hidden;
+}
+
+.m-productList .u-productList li:nth-child(2n) {
+    margin-left: 2% !important;
+}
+
+.m-productList .u-productList li .z-productOver::after {
+    content: '已兑完';
+    width: 80px;
+    height: 80px;
+    background: #000000;
+    opacity: 0.6;
+    color: #ffffff;
+    position: absolute;
+    top: 43px;
+    left: 43px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 80px;
+    font-size: 18px;
+}
+
+.m-productList .u-productList li .u-couponImg .u-redTips {
+    width: 30%;
+    position: absolute;
+    top: 6px;
+    left: 0;
+}
+
+.m-productList .u-productList li .u-couponImg .u-labelRush {
+    width: 40%;
+}
+
+.m-productList .u-productList li .u-couponImg .u-imgBlock {
+    width: 160px;
+    height: 160px;
+    text-align: center;
+    line-height: 150px;
+    overflow: hidden;
+}
+
+.m-productList .u-productList li .u-couponImg .u-imgBlock img {
+    width: 160px;
+    height: 160px;
+}
+
+.m-productList .u-productList li .u-goodsName {
+    margin-top: 8px;
+}
+
+@media screen and (max-width: 320px) {
+    .m-productList .u-productList li .u-couponImg {
+        width: 140px;
+        height: 140px;
+    }
+
+    .m-productList .u-productList li:nth-child(2n) {
+        margin-left: 1% !important;
+    }
+
+    .m-productList .u-productList li .u-couponImg .u-imgBlock {
+        width: 140px;
+        height: 140px;
+        text-align: center;
+        line-height: 140px;
+    }
+
+    .m-productList .u-productList li .z-productOver::after {
+        top: 35px;
+        left: 35px;
+    }
+
+    .m-productList .u-productList li .u-couponImg .u-imgBlock img {
+        width: 140px;
+        height: 140px;
+    }
+}
+
+@media screen and (min-width: 410px) {
+    .m-productList .u-productList li {
+        width: 47%;
+    }
+
+    .m-productList .u-productList li:nth-child(2n) {
+        margin-left: 3% !important;
+    }
+
+    .m-productList .u-productList li .u-couponImg {
+        width: 180px;
+        height: 180px;
+    }
+
+    .m-productList .u-productList li .u-couponImg .u-imgBlock {
+        width: 180px;
+        height: 180px;
+        text-align: center;
+        line-height: 180px;
+    }
+
+    .m-productList .u-productList li:nth-child(2n) {
+        margin-left: 22px;
+    }
+
+    .m-productList .u-productList li .z-productOver::after {
+        top: 53px;
+        left: 53px;
+    }
+
+    .m-productList .u-productList li .u-couponImg .u-imgBlock img {
+        width: 180px;
+        height: 180px;
+    }
+}
+
+/*会员中心*/
+.u-myGradeInfo {
+    width: 100%;
+    height: 200px;
+    background: url("../../../img/post/popularity/bg_member.png") no-repeat center;
+    background-size: 100%;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.u-myGradeInfo .u-myGradeProcess {
+    text-align: left;
+    width: 140px;
+}
+
+.u-myGradeInfo .u-myGradeProcess span {
+    display: inline-block;
+    width: 140px;
+    height: 4px;
+    background: #d74148;
+    position: absolute;
+    top: 28px;
+    left: 0;
+    z-index: 1;
+}
+
+.u-myGradeInfo .z-unactived span {
+    background: #DDDDDD;
+}
+
+.u-myGradeInfo .u-myGradeProcess .u-lastSpan {
+    position: absolute;
+    width: 220px;
+    /*left: 110px;*/
+}
+
+.u-myGradeInfo .u-myGradeProcess .u-imgBlock {
+    width: 24px;
+    height: 24px;
+    border: 1px solid #d74148;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 26px;
+    background: #ffffff;
+    z-index: 2;
+    position: relative;
+    display: inline-block;
+}
+
+.u-myGradeInfo .z-unactived .u-imgBlock {
+    border: 1px solid #B4B1AF;
+}
+
+/*.u-myGradeInfo .z-myGrade .u-lastSpan{*/
+/*left: 130px;*/
+/*}*/
+.u-myGradeInfo .z-myGrade .u-imgBlock {
+    width: 56px;
+    height: 56px;
+    border: 2px solid #ffffff;
+    line-height: 60px;
+}
+
+.u-myGradeInfo .z-myGrade .u-imgBlock .u-avatars {
+    border-radius: 50%;
+    width: 56px;
+    height: 56px;
+}
+
+.u-myGradeInfo .z-myGrade .u-memberGradeImg {
+    width: 100%;
+    position: absolute;
+    top: 40px;
+    left: 0px;
+}
+
+.u-myGradeInfo .u-myGradeDetail {
+    padding-top: -30px;
+}
+
+.u-myGradeInfo .u-myGrade {
+    font-size: 32px;
+    color: #d74148;
+    padding: 4px 0 0 0 !important;
+}
+
+.u-myGradeInfo p {
+    color: #999999;
+}
+
+.u-myGradeInfo p a {
+    font-size: 12px;
+    color: #5D78A5;
+    margin-left: 4px;
+}
+
+.u-gradeGift ul li {
+    width: 86%;
+    margin: 20px auto;
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 20px 10px;
+}
+
+.u-gradeGift ul li img {
+    display: inline-block;
+    width: 44px;
+    height: 44px;
+    vertical-align: top;
+}
+
+.u-gradeGift ul li div {
+    display: inline-block;
+    width: 80%;
+}
+
+.u-wrongTips {
+    width: 76%;
+    background: #323232;
+    opacity: 0.8;
+    color: #ffffff;
+    border-radius: 10px;
+    line-height: 50px;
+    font-size: 16px;
+    position: fixed;
+    left: 12%;
+    top: 50%;
+    z-index: 10000;
+    text-align: center;
+}
+
+.u-reloadMore {
+    width: 90%;
+    margin: 20px 5%;
+    background: #ffffff;
+    font-size: 14px;
+    color: #666666;
+    border-radius: 8px;
+    border: 1px solid #e5e5e5;
+    text-align: center;
+    height: 44px;
+    line-height: 44px;
+}
+
+.z-loading {
+    background: #f3f3f3;
+}
+
+/*淡入*/
+.animated {
+    -webkit-animation-duration: .5s;
+    animation-duration: .5s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+@-webkit-keyframes zoomIn {
+    0% {
+        opacity: 0;
+        -webkit-transform: scale3d(.3, .3, .3);
+        transform: scale3d(.3, .3, .3)
+    }
+
+    50% {
+        opacity: 1
+    }
+}
+
+@keyframes zoomIn {
+    0% {
+        opacity: 0;
+        -webkit-transform: scale3d(.3, .3, .3);
+        transform: scale3d(.3, .3, .3)
+    }
+
+    50% {
+        opacity: 1
+    }
+}
+
+.zoomIn {
+    -webkit-animation-name: zoomIn;
+    animation-name: zoomIn
+}
+
+/*淡出*/
+@-webkit-keyframes zoomOut {
+    0% {
+        opacity: 1
+    }
+
+    50% {
+        opacity: 0;
+        -webkit-transform: scale3d(.3, .3, .3);
+        transform: scale3d(.3, .3, .3)
+    }
+
+    100% {
+        opacity: 0
+    }
+}
+
+@keyframes zoomOut {
+    0% {
+        opacity: 1
+    }
+
+    50% {
+        opacity: 0;
+        -webkit-transform: scale3d(.3, .3, .3);
+        -ms-transform: scale3d(.3, .3, .3);
+        transform: scale3d(.3, .3, .3)
+    }
+
+    100% {
+        opacity: 0
+    }
+}
+
+.zoomOut {
+    -webkit-animation-name: zoomOut;
+    animation-name: zoomOut
+}

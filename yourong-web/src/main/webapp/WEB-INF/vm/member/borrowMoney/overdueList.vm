@@ -1,0 +1,58 @@
+##我的借款-逾期
+#parse("/common/common.vm")
+#set($layout = "/layout/default.vm")
+#set($js_url=["$root_js_url/modules/member/core.js","$root_js_url/modules/borrow.js"])
+<div class="u-rtable-wrap f-round">
+	<table class="">
+		<thead>
+			<tr>
+				<th width="92">项目名称</th>
+				<th width="68">类型</th>
+				<th width="143">借款金额</th>
+				<th width="173">借款期限</th>
+				<th width="92">逾期开始日期</th>
+				<th width="69">逾期天数</th>
+				<th width="70">逾期本金</th>
+				<th width="118">逾期利息</th>
+				<th width="93">操作</th>
+			</tr>
+		</thead>
+		<tbody>
+			#if($!result.data && $!result.data.size()>0)
+				#foreach($popularity in ${result.data})
+				<tr>
+					<td><a target="_blank" href="$root_url/products/detail-$!{popularity.projectId}.html">$!{popularity.prefixProjectName}</a></td>
+					<td>$!{popularity.securityTypeName}</td>
+					<td class="f-fs20">$!{popularity.formatTotalAmount}</td>
+					<td>$!{popularity.formatStartDate}至$!{popularity.formatEndDate}</td>
+					<td>$!{popularity.overdueStartDateStr}</td>
+					<td class="f-fs20">$!{popularity.overdueDays}天</td>
+					<td>$!{popularity.overduePrincipalStr}</td>
+					<td class="f-fs20">$!{popularity.overdueInterestStr}</td>
+					<td>
+						<a href="javascript:void(0)" class="piRecord-link">本息记录</a><br>
+						#if($!popularity.overdueRecord==1)
+							<a href="javascript:void(0)" class="underwrite-record-link " data-action="detail" data-projectId="$!{popularity.projectId}">垫资还款记录</a></br>
+						#end
+						
+						#if($!popularity.overdueUnder==1)
+						<a href="javascript:void(0)" class="underwrite-link " data-action="detail" data-projectId="$!{popularity.projectId}">垫资还款</a></br>
+						#end
+						
+						#if($!popularity.commonRecord==1)
+						<a href="javascript:void(0)" class="overdue-record-link " data-action="detail" data-projectId="$!{popularity.projectId}">逾期还款记录</a></br>
+						#end
+						#if($!popularity.overdueUnder==2)
+						<a href="javascript:void(0)" class="overdue-link " data-action="detail" data-projectId="$!{popularity.projectId}">逾期还款</a></br>
+						#end
+					</td>
+					<input type="hidden" id="overdueProjectId" value="$!{popularity.projectId}">
+				</tr>
+				#end
+			#else
+			<tr><td colspan="12" class="u-table-empty">暂无“获取记录”</td></tr>
+			#end
+		</tbody>
+	</table>
+</div>
+#ajaxPagePlugin($!result,"Overdue")

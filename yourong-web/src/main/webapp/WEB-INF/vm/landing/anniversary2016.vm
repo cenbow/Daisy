@@ -1,0 +1,245 @@
+##周年庆着落页
+#parse('/common/common.vm')
+#set($css_url=["$root_css_url/modules/login.css","$root_css_url/landing/anniversary2016.css"])
+#set($title="周年庆着陆页_$!{title_suffix}")
+#set($js_url=["$root_js_url/modules/register.js","$root_js_url/landing/seasonFour.js"])
+
+#if($currentUser)
+<script type="text/javascript">
+    var login_url = '$root_url' +"/member/home"
+    window.location.href = login_url;
+
+</script>
+#else
+<style>
+    .u-hotline-tips{
+        display:none;
+    }
+</style>
+
+<div class="m-anniversary-bd f-width100">
+    <div class="g-wrap f-pos-r">
+        <form data-action="$root_url/security/register/saveMember" method="POST"
+              class="f-pos-r j-form-xpost j-validform m-regform-land f-fr" data-page="register" id="j-reg-form">
+            #CSRFToken()
+            #onceToken()
+            <input type="hidden" id="j-reg-mobile"/>
+            <div class="u-ipt-group f-pos-r">
+                <input type="text" name="mobile" oncopy="return false;" onpaste="return false;" id="j-cpn"
+                       autocomplete="off" nullmsg="手机号码不能为空" errormsg="请输入正确的手机号码"
+                       class="f-round f-ipt-w430 u-ipt-text u-ipt-str" placeholder="请输入手机号码"/>
+                <span class='m-val-tips'></span>
+                <div class="f-mob-sha f-dn" id="j-mobile"></div>
+            </div>
+            <div class="m-input-vercode f-cf">
+                <span class="u-xtips-wrap">
+				<!--[if (gte IE 7)&(lte IE 9)]>
+                    <em>输入图形码</em>
+                    <![endif]-->
+                    <input type="text" id="j-vercode" autocomplete="off" nullmsg="请输入图形验证码"
+                           class="f-round u-ipt-text f-ipt-w260 j-vercode u-ipt-vercode" placeholder="输入图形码"/>
+			     </span>
+                <img src="$root_url/security/validateCode" alt="验证码" title="点击重新获取验证码" id="j-img-vercode"
+                     class="u-img-vercode"/>
+                <span id="j-phonecode-wrap" class="u-xtips-wrap u-phonecode-wrap z-hide">
+				<!--[if (gte IE 7)&(lte IE 9)]>
+                    <em>输入手机验证码</em>
+                    <![endif]-->
+                    <input type="text" name="phonecode" autocomplete="off" id="j-phonecode" placeholder="输入手机验证码"
+                           class="f-clear f-round u-ipt-text f-ipt-w260 u-ipt-phonecode"/>
+			     </span>
+            ##                <span class="f-round u-tips-vercode f-tips-gray" style="display: none;">
+            ##			获得手机验证码
+            ##			</span>
+                <span class="m-val-tips"> &nbsp; </span>
+                <span class="u-ipt-blank"> &nbsp; </span>
+            </div>
+            <div class="u-ipt-group">
+                <input type="password" name="password" oncopy="return false;" onpaste="return false;"
+                       class="f-round u-ipt-text f-ipt-w430 v-pwd" placeholder="输入密码，长度6-16位，至少包含数字和字母"/>
+                <span class="u-ipt-blank"> &nbsp; </span>
+            </div>
+            <div class="u-ipt-group">
+                <input type="password" name="repassword" oncopy="return false;" onpaste="return false;"
+                       recheck="password" class="f-round f-ipt-w430 u-ipt-text v-pwd-reck" placeholder="再次输入密码"/>
+                <span class="u-ipt-blank"> &nbsp; </span>
+            </div>
+            <input type="hidden" name="tid" value="$!{request.getParameter('tid')}"/>
+            <input type="hidden" name="registerTraceSource" value="$!{session.getAttribute(" register_TraceSource ")}"/>
+            <input type="hidden" name="registerTraceNo" value="$!{session.getAttribute(" register_TraceNo ")}"/>
+            <input type="hidden" name="checkType" id="j-checkType" value="1"/>
+            <input type="hidden" name="pngCode" id="j-pngcode"/>
+            <label class="f-clear f-mgl-8 f-text-color">
+                <input type="checkbox" checked="checked" name="agree" id="j-agree"/>&nbsp;我已阅读并同意<a href="#"
+                                                                                                    class=" f-text-color"
+                                                                                                    id="j-register-argreement-link"
+                                                                                                    data-target="j-register-argreement"
+                                                                                                    data-url="$root_url/static/register-agreement.html">《有融网服务协议》</a>
+            </label>
+            <br/>
+            <input type="submit" value="注册送80元" class="f-round f-fs18 f-btn-m u-btn u-btn-primary f-yellow-color"/>
+        </form>
+    </div>
+    <h1 >  狂欢专属礼</h1>
+</div>
+
+
+<div class="m-register-bd f-width100">
+     <div class="u-register">
+         <div class="u-decorate-one"></div>
+             <h1>注册即送</h1><h1 class="f-right">80元</h1>
+        <div class="u-name f-width-height">
+            <h3> 实名认证</h3>
+            <h4>  送￥<strong>30</strong>现金</h4>
+        </div>
+         <div class="u-weixin f-width-height">
+             <h3> 绑定微信</h3>
+             <h4>  送￥<strong>10</strong>现金</h4>
+         </div>
+         <div class="u-enjoy-app f-width-height">
+             <h3>体验APP</h3>
+             <h4>  送￥<strong>10</strong>现金</h4>
+         </div>
+         <div class="u-finish-information f-width-height">
+             <h3>完善信息</h3>
+             <h4>  送￥<strong>10</strong>现金</h4>
+         </div>
+         <div class="u-attach-email f-width-height">
+             <h3>绑定邮箱</h3>
+             <h4>  送￥<strong>10</strong>现金</h4>
+         </div>
+         <div class="u-first-invest f-width-height">
+             <h3>首次投资</h3>
+             <h4>  送￥<strong>10</strong>现金</h4>
+         </div>
+     </div>
+    <div class="m-vertical-bar">
+    <div class="u-vertical-bar"></div>
+        <div class="u-vertical-bar f-right"></div>
+    </div>
+ </div>
+
+<div class="m-invest-enjoy f-width100">
+     <div class="u-invest-enjoy">
+         <div class="u-decorate-one f-two"></div>
+            <h1>投资分享</h1><h1 class="f-right"> 抢红包</h1>
+         <div class="u-picture  f-first"> </div>
+         <div class="u-text-bottom"> 与好友一起抢红包  即可获得随机现金奖励</div>
+     </div>
+     <div class="m-vertical-bar">
+         <div class="u-vertical-bar"></div>
+         <div class="u-vertical-bar f-right"></div>
+     </div>
+ </div>
+
+<div class="m-same-color f-width100">
+    <div class="u-invest-enjoy">
+        <h1>邀请好友</h1> <h1 class="f-right">赚大奖 </h1>
+           <div class="u-picture f-second" > </div>
+        <div class="u-text-bottom"> 攒里程开宝箱即可获得至少<em>210元</em>现金奖励</div>
+    </div>
+##项目
+    <!--理财项目-->
+    <div class="m-seasonFour-products">
+        <div class="g-wrap f-cf">
+            <!--新手项目-->
+            <div class="u-newCustomer-item" id="j-nc-item">
+                <a id="newC_aA" class="u-pl-wrap u-newCustomer-pic" href="">
+                    <img id="newC_img" src="" alt="">
+                    <span id="newC_round" class="u-ring-bg" style="background-image:url(/static/img/homepage/round/round_finish.png)"></span>
+                    <i></i>
+                    <span class="u-pl-stat circliful" id="j-pl-stat2" data-dimension="160" data-fontsize="14" data-percent="" data-fgcolor="#e33f4a" data-bordersize="5" data-bgcolor="#eee" style="width: 160px;">
+                </span>
+                </a>
+                <div class="u-newCustomer-particulars">
+                    <a id="newC_aB" class="u-newCustomer-itemNm f-fs16" href="/products/detail-989800431.html">
+                        <strong id="newC_prefixProjectName"></strong><em id="newC_suffixProjectName"></em><i id="newC_joinLease" class=""></i>
+                    </a>
+                    <div class="u-newCustomer-info">
+                        <span class="u-newCustomer-data01">项目总额&nbsp;<span class="f-ff-rmb f-fs22">￥</span><em class="f-ff-amount f-fs28" id="newC_totalAmount"></em> </span>
+                        <em class="u-newCustomer-data">年化收益&nbsp;<em class="f-ff-amount f-fs28 f-fc-red2" id="newC_annualizedRate"></em></em>                    <strong class="u-newCustomer-days">
+                        收益天数
+                        <em class="f-ff-amount f-fs28" id="newC_earningsDays"></em><span class="f-fs18">天</span>
+                    </strong>
+                    </div>
+                    <div class="u-newCustomer-process f-clear">
+                        <span id="newC_processBar" style=""></span>
+                    </div>
+                    <div class="u-newCustomer-meta">
+                        <em>当前进度：<strong class="f-ff-ver" id="newC_process"></strong></em><span>剩余可投金额 <strong class="f-ff-ver" id="newC_balance"></strong> 元</span>
+                        <a id="newC_aC" href="" class="u-newCustomer-btn f-round f-fr"></a>
+                    </div>
+                </div>
+                <div class="u-pbox-footer">
+                </div>
+            </div>
+        </div>
+        <!--常规项目-->
+        <div class="g-wrap f-cf">
+            <div class="m-product-box">
+                <div class="m-pbox-wrap">
+                    <h3 class="u-pbox-title u-circle-12 f-text-overflow">
+                        <a id="rec_aA" href="">
+                            <em class="f-fl" id="rec_projectName"></em>
+                            <i id="rec_joinLease" class=""></i>
+                        </a>
+                    </h3>
+                    <div class="u-arrow-down">
+                        <i>◆</i>
+                        <span>◆</span>
+                    </div>
+                    <div class="m-pbox-main f-cf">
+                        <div class="u-pbox-thumbnail f-fl" style="width:120px;height:120px;">
+                            <a id="rec_aB" href="" class="u-thumbnail-wrap"></a>
+                            <img id="rec_img" src="" width="120" height="120" alt="">
+                        </div>
+                        <div class="m-pbox-info f-fr">
+								<span class="u-pbox-data">
+									<span class="f-ff-rmb f-fs22">￥</span><em class="f-ff-amount f-fs38" id="rec_totalAmount"></em>
+									<br>项目总额
+								</span>
+                            <em class="u-pbox-data">
+                                <em id="rec_annualizedRate" class="f-ff-amount f-fs38 f-fc-red2"></em><span class="f-ff-amount f-fs22 f-fc-red2">%</span>
+                                <br>年化收益
+                            </em>
+                            <strong class="u-pbox-data">
+                                <em class="f-ff-amount f-fs38" id="rec_earningsDays"></em><span class="f-fs18">天</span>
+                                <br>收益天数
+                            </strong>
+                            <div class="u-pbox-process f-clear">
+                                <span class="f-bgc-red2" id="rec_processBar" style=""></span>
+                            </div>
+                            <div class="u-pbox-meta">
+                                <em>当前进度：<span class="f-ff-ver" id="rec_process"></span></em>
+                                <span>剩余可投金额 <strong class="f-ff-ver" id="rec_balance"></strong> 元</span>
+                                <a id="rec_aC" href="" class="u-pbox-btn f-round f-bgc-red2 f-fr"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="u-pbox-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/理财项目-->
+    <!--二维码-->
+    <div class="g-wrap u-seasonFour-recode f-pos-r">
+        <img src="/static/img/landing/seasonFour/seasonFour_recode.png" width="240" height="496"/>
+    </div>
+    <!--/二维码-->
+
+
+</div>
+
+<!--有融网服务协议-->
+<div class="u-agreement-box f-dn" id="j-register-argreement">
+    <h3 class="f-fs18">有融网服务协议<i></i></h3>
+    <div>
+        <iframe src="" frameborder="0"></iframe>
+    </div>
+</div>
+<!--/有融网服务协议-->
+#end
+
+

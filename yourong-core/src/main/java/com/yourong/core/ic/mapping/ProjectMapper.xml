@@ -1,0 +1,5489 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.ic.dao.ProjectMapper">
+	<!-- <cache-ref namespace="com.yourong.core.cms.dao.BannerMapper"/>  -->
+	<resultMap id="BaseResultMap" type="Project">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="debt_id" property="debtId" jdbcType="BIGINT" />
+		<result column="project_type" property="projectType" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="keyword" property="keyword" jdbcType="VARCHAR" />
+		<result column="short_desc" property="shortDesc" jdbcType="VARCHAR" />
+		<result column="profit_type" property="profitType" jdbcType="VARCHAR" />
+		<result column="risk_level" property="riskLevel" jdbcType="VARCHAR" />
+		<result column="total_amount" property="totalAmount" jdbcType="DECIMAL" />
+		<result column="min_invest_amount" property="minInvestAmount"
+			jdbcType="DECIMAL" />
+		<result column="increment_amount" property="incrementAmount"
+			jdbcType="DECIMAL" />
+		<result column="annualized_rate_type" property="annualizedRateType"
+			jdbcType="INTEGER" />
+		<result column="min_annualized_rate" property="minAnnualizedRate"
+			jdbcType="DECIMAL" />
+		<result column="max_annualized_rate" property="maxAnnualizedRate"
+			jdbcType="DECIMAL" />
+		<result column="increment_annualized_rate" property="incrementAnnualizedRate"
+			jdbcType="DECIMAL" />
+		<result column="start_date" property="startDate" jdbcType="TIMESTAMP" />
+		<result column="end_date" property="endDate" jdbcType="TIMESTAMP" />
+		<result column="online_time" property="onlineTime" jdbcType="TIMESTAMP" />
+		<result column="sale_end_time" property="saleEndTime" jdbcType="TIMESTAMP" />
+		<result column="interest_from" property="interestFrom"
+			jdbcType="INTEGER" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="publish_id" property="publishId" jdbcType="BIGINT" />
+		<result column="publish_time" property="publishTime" jdbcType="TIMESTAMP" />
+		<result column="audit_id" property="auditId" jdbcType="BIGINT" />
+		<result column="audit_time" property="auditTime" jdbcType="TIMESTAMP" />
+		<result column="audit_message" property="auditMessage"
+			jdbcType="VARCHAR" />
+		<result column="recommend" property="recommend" jdbcType="INTEGER" />
+		<result column="recommend_weight" property="recommendWeight"
+			jdbcType="INTEGER" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+		<result column="remarks" property="remarks" jdbcType="VARCHAR" />
+		<result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+		<result column="max_invest_amount" property="maxInvestAmount"
+			jdbcType="DECIMAL" />
+		<result column="description" property="description"
+			jdbcType="VARCHAR" />
+		<result column="thumbnail" property="thumbnail"
+			jdbcType="VARCHAR" />
+		<result column="is_novice" property="isNovice" jdbcType="INTEGER" />
+		<result column="join_lease" property="joinLease" jdbcType="INTEGER" />
+		<result column="app_recommend" property="appRecommend" jdbcType="INTEGER" />
+		<result column="app_recommend_weight" property="appRecommendWeight" jdbcType="INTEGER" />
+		<result column="online_notice" property="onlineNotice" jdbcType="INTEGER" />
+		<result column="notice_notice" property="noticeNotice" jdbcType="INTEGER" />
+		<result column="lvgou_flag" property="lvgouFlag" jdbcType="INTEGER" />
+		<result column="original_project_number" property="originalProjectNumber" jdbcType="VARCHAR" />
+		<result column="annualized_rate" property="annualizedRate" jdbcType="DECIMAL" />
+		<result column="invest_type" property="investType" jdbcType="INTEGER" />
+		<result column="manage_fee_rate" property="manageFeeRate" jdbcType="DECIMAL" />
+		<result column="overdue_fee_rate" property="overdueFeeRate" jdbcType="DECIMAL" />
+		<result column="borrower_id" property="borrowerId" jdbcType="BIGINT" />
+		<result column="borrower_type" property="borrowerType" jdbcType="INTEGER" />
+		<result column="enterprise_id" property="enterpriseId" jdbcType="BIGINT" />
+		<result column="borrow_period" property="borrowPeriod" jdbcType="INTEGER" />
+		<result column="borrow_period_type" property="borrowPeriodType" jdbcType="INTEGER" />
+		<result column="security_type" property="securityType" jdbcType="VARCHAR" />
+		<result column="instalment" property="instalment" jdbcType="INTEGER" />
+		<result column="sale_complated_time" property="saleComplatedTime" jdbcType="TIMESTAMP" />
+		<result column="borrow_detail" property="borrowDetail" jdbcType="VARCHAR" />
+		<result column="prepayment" property="prepayment" jdbcType="INTEGER" />
+		<result column="prepayment_time" property="prepaymentTime" jdbcType="TIMESTAMP" />
+		<result column="prepayment_remark" property="prepaymentRemark" jdbcType="VARCHAR" />
+		<result column="guarantee_fee_rate" property="guaranteeFeeRate" jdbcType="BIGINT" />
+		<result column="risk_fee_rate" property="riskFeeRate" jdbcType="BIGINT" />
+ 		<result column="late_fee_rate" property="lateFeeRate" jdbcType="BIGINT" /> 
+ 		
+ 		<result column="introducer_fee_rate" property="introducerFeeRate" jdbcType="BIGINT" /> 
+ 			<result column="introducer_id" property="introducerId" jdbcType="BIGINT" />
+ 			
+ 		<result column="transfer_flag" property="transferFlag" jdbcType="INTEGER" />
+ 		<result column="transfer_after_interest" property="transferAfterInterest" jdbcType="INTEGER" />
+ 		
+ 		<result column="open_platform_key" property="openPlatformKey" jdbcType="VARCHAR" />
+ 		<result column="package_flag" property="packageFlag" jdbcType="INTEGER" />	
+ 			
+	</resultMap>
+
+	<resultMap id="ProjectFrontResultMap" type="ProjectForFront">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="debt_id" property="debtId" jdbcType="BIGINT" />
+		<result column="project_type" property="projectType" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="total_amount" property="totalAmount" jdbcType="DECIMAL" />
+		<result column="min_invest_amount" property="minInvestAmount"
+			jdbcType="DECIMAL" />
+		<result column="increment_amount" property="incrementAmount"
+			jdbcType="DECIMAL" />
+		<result column="annualized_rate_type" property="annualizedRateType"
+			jdbcType="INTEGER" />
+		<result column="min_annualized_rate" property="minAnnualizedRate"
+			jdbcType="DECIMAL" />
+		<result column="max_annualized_rate" property="maxAnnualizedRate"
+			jdbcType="DECIMAL" />
+		<result column="increment_annualized_rate" property="incrementAnnualizedRate"
+			jdbcType="DECIMAL" />
+		<result column="start_date" property="startDate" jdbcType="TIMESTAMP" />
+		<result column="end_date" property="endDate" jdbcType="TIMESTAMP" />
+		<result column="online_time" property="onlineTime" jdbcType="TIMESTAMP" />
+		<result column="sale_end_time" property="saleEndTime" jdbcType="TIMESTAMP" />
+		<result column="interest_from" property="interestFrom"
+			jdbcType="INTEGER" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="max_invest_amount" property="maxInvestAmount"
+			jdbcType="DECIMAL" />
+		<result column="serial_number" property="serialNumber"
+			jdbcType="VARCHAR" />
+		<result column="debt_type" property="debtType" jdbcType="VARCHAR" />
+		<result column="description" property="description"
+			jdbcType="VARCHAR" />
+		<result column="thumbnail" property="thumbnail"
+			jdbcType="VARCHAR" />
+		<result column="transfer_flag" property="transferFlag" jdbcType="INTEGER" />	
+		<result column="transfer_after_interest" property="transferAfterInterest" jdbcType="INTEGER" />	
+		<result column="is_novice" property="isNovice" jdbcType="INTEGER" />
+		<result column="available_balance" property="availableBalance" jdbcType="DECIMAL" />
+		<result column="join_lease" property="joinLease" jdbcType="INTEGER" />
+		<result column="profit_type" property="profitType" jdbcType="VARCHAR" />
+		<result column="borrower_id" property="borrowerId" jdbcType="BIGINT" />
+		<result column="invest_type" property="investType" jdbcType="INTEGER" />
+		<result column="borrow_period" property="borrowPeriod" jdbcType="INTEGER" />
+		<result column="borrow_period_type" property="borrowPeriodType" jdbcType="INTEGER" />
+		<result column="activity_sign" property="activitySign" jdbcType="INTEGER" />
+		<result column="sale_complated_time" property="saleComplatedTime" jdbcType="TIMESTAMP" />
+		<result column="annualized_rate" property="annualizedRate" jdbcType="DECIMAL" />
+		<result column="borrow_period" property="borrowPeriod" jdbcType="INTEGER" />
+		<result column="borrow_period_type" property="borrowPeriodType" jdbcType="INTEGER" />
+		<result column="transfer_after_interest" property="transferAfterInterest" jdbcType="INTEGER" />
+		<result column="extra_amount" property="extraAmount" jdbcType="DECIMAL" />
+	</resultMap>
+
+	<resultMap id="BaseInvestingResultMap" type="com.yourong.core.ic.model.biz.ProjectInvestingDto">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="total_amount" property="totalAmount" jdbcType="DECIMAL" />
+		<result column="end_date" property="endDate" jdbcType="TIMESTAMP" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		id, debt_id, project_type, name, keyword, short_desc,
+		profit_type,
+		risk_level, total_amount,
+		min_invest_amount,
+		max_invest_amount,increment_amount, annualized_rate_type,
+		min_annualized_rate, max_annualized_rate,
+		increment_annualized_rate,
+		start_date, end_date, online_time, sale_end_time, interest_from,
+		status, publish_id, publish_time, audit_id, audit_time, audit_message,
+		recommend,
+		recommend_weight, create_time, update_time, remarks,
+		del_flag,description,thumbnail,is_novice,join_lease,app_recommend,app_recommend_weight
+		,online_notice,notice_notice, original_project_number,annualized_rate,invest_type, manage_fee_rate, overdue_fee_rate, borrower_id, borrower_type, 
+    enterprise_id, borrow_period, borrow_period_type, security_type, instalment,sale_complated_time,prepayment,prepayment_time,guarantee_fee_rate,
+    risk_fee_rate,late_fee_rate,borrow_detail,open_platform_key
+	</sql>
+	
+	<insert id="insertSelective" parameterType="Project" useGeneratedKeys="true" keyProperty="id">
+		insert into ic_project
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="debtId != null">
+				debt_id,
+			</if>
+			<if test="projectType != null">
+				project_type,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="keyword != null">
+				keyword,
+			</if>
+			<if test="shortDesc != null">
+				short_desc,
+			</if>
+			<if test="profitType != null">
+				profit_type,
+			</if>
+			<if test="riskLevel != null">
+				risk_level,
+			</if>
+			<if test="totalAmount != null">
+				total_amount,
+			</if>
+			<if test="minInvestAmount != null">
+				min_invest_amount,
+			</if>
+			<if test="maxInvestAmount != null">
+				max_invest_amount,
+			</if>
+			<if test="incrementAmount != null">
+				increment_amount,
+			</if>
+			<if test="annualizedRateType != null">
+				annualized_rate_type,
+			</if>
+			<if test="minAnnualizedRate != null">
+				min_annualized_rate,
+			</if>
+			<if test="maxAnnualizedRate != null">
+				max_annualized_rate,
+			</if>
+			<if test="incrementAnnualizedRate != null">
+				increment_annualized_rate,
+			</if>
+			<if test="startDate != null">
+				start_date,
+			</if>
+			<if test="endDate != null">
+				end_date,
+			</if>
+			<if test="onlineTime != null">
+				online_time,
+			</if>
+			<if test="saleEndTime != null">
+				sale_end_time,
+			</if>
+			<if test="interestFrom != null">
+				interest_from,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="publishId != null">
+				publish_id,
+			</if>
+			<if test="publishTime != null">
+				publish_time,
+			</if>
+			<if test="auditId != null">
+				audit_id,
+			</if>
+			<if test="auditTime != null">
+				audit_time,
+			</if>
+			<if test="auditMessage != null">
+				audit_message,
+			</if>
+			<if test="recommend != null">
+				recommend,
+			</if>
+			<if test="recommendWeight != null">
+				recommend_weight,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="updateTime != null">
+				update_time,
+			</if>
+			<if test="remarks != null">
+				remarks,
+			</if>
+			<if test="delFlag != null">
+				del_flag,
+			</if>
+			<if test="description != null">
+				description,
+			</if>
+			<if test="thumbnail != null">
+				thumbnail,
+			</if>
+			<if test="isNovice != null">
+				is_novice,
+			</if>
+			<if test="joinLease != null">
+				join_lease,
+			</if>
+			<if test="onlineNotice != null">
+				online_notice,
+			</if>
+			<if test="noticeNotice != null">
+				notice_notice,
+			</if>
+			<if test="instalment != null">
+				instalment,
+			</if>
+			<if test="transferFlag != null">
+			transfer_flag,
+			</if>
+			<if test="transferAfterInterest != null">
+			transfer_after_interest,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="debtId != null">
+				#{debtId,jdbcType=BIGINT},
+			</if>
+			<if test="projectType != null">
+				#{projectType,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="keyword != null">
+				#{keyword,jdbcType=VARCHAR},
+			</if>
+			<if test="shortDesc != null">
+				#{shortDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="profitType != null">
+				#{profitType,jdbcType=VARCHAR},
+			</if>
+			<if test="riskLevel != null">
+				#{riskLevel,jdbcType=VARCHAR},
+			</if>
+			<if test="totalAmount != null">
+				#{totalAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="minInvestAmount != null">
+				#{minInvestAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="maxInvestAmount != null">
+				#{maxInvestAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="incrementAmount != null">
+				#{incrementAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="annualizedRateType != null">
+				#{annualizedRateType,jdbcType=INTEGER},
+			</if>
+			<if test="minAnnualizedRate != null">
+				#{minAnnualizedRate,jdbcType=DECIMAL},
+			</if>
+			<if test="maxAnnualizedRate != null">
+				#{maxAnnualizedRate,jdbcType=DECIMAL},
+			</if>
+			<if test="incrementAnnualizedRate != null">
+				#{incrementAnnualizedRate,jdbcType=DECIMAL},
+			</if>
+			<if test="startDate != null">
+				#{startDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="endDate != null">
+				#{endDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="onlineTime != null">
+				#{onlineTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="saleEndTime != null">
+				#{saleEndTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="interestFrom != null">
+				#{interestFrom,jdbcType=INTEGER},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=INTEGER},
+			</if>
+			<if test="publishId != null">
+				#{publishId,jdbcType=BIGINT},
+			</if>
+			<if test="publishTime != null">
+				#{publishTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="auditId != null">
+				#{auditId,jdbcType=BIGINT},
+			</if>
+			<if test="auditTime != null">
+				#{auditTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="auditMessage != null">
+				#{auditMessage,jdbcType=VARCHAR},
+			</if>
+			<if test="recommend != null">
+				#{recommend,jdbcType=INTEGER},
+			</if>
+			<if test="recommendWeight != null">
+				#{recommendWeight,jdbcType=INTEGER},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="remarks != null">
+				#{remarks,jdbcType=VARCHAR},
+			</if>
+			<if test="delFlag != null">
+				#{delFlag,jdbcType=INTEGER},
+			</if>
+			<if test="description != null">
+				#{description,jdbcType=VARCHAR},
+			</if>
+			<if test="thumbnail != null">
+				#{thumbnail,jdbcType=VARCHAR},
+			</if>
+			<if test="isNovice != null">
+				#{isNovice,jdbcType=INTEGER},
+			</if>
+			<if test="joinLease != null">
+				#{joinLease,jdbcType=INTEGER},
+			</if>
+			<if test="onlineNotice != null">
+				#{onlineNotice,jdbcType=INTEGER},
+			</if>
+			<if test="noticeNotice != null">
+				#{noticeNotice,jdbcType=INTEGER},
+			</if>
+			<if test="instalment != null">
+				#{instalment,jdbcType=INTEGER},
+			</if>
+			<if test="transferFlag != null">
+				#{transferFlag,jdbcType=INTEGER},
+			</if>
+			<if test="transferAfterInterest != null">
+			#{transferAfterInterest,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	
+	<update id="updateByPrimaryKeySelective" parameterType="Project">
+		update ic_project
+		<set>
+			<if test="debtId != null">
+				debt_id = #{debtId,jdbcType=BIGINT},
+			</if>
+			<if test="projectType != null">
+				project_type = #{projectType,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="keyword != null">
+				keyword = #{keyword,jdbcType=VARCHAR},
+			</if>
+			<if test="shortDesc != null">
+				short_desc = #{shortDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="profitType != null">
+				profit_type = #{profitType,jdbcType=VARCHAR},
+			</if>
+			<if test="riskLevel != null">
+				risk_level = #{riskLevel,jdbcType=VARCHAR},
+			</if>
+			<if test="totalAmount != null">
+				total_amount = #{totalAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="minInvestAmount != null">
+				min_invest_amount = #{minInvestAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="maxInvestAmount != null">
+				max_invest_amount = #{maxInvestAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="incrementAmount != null">
+				increment_amount = #{incrementAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="annualizedRateType != null">
+				annualized_rate_type =
+				#{annualizedRateType,jdbcType=INTEGER},
+			</if>
+			<if test="minAnnualizedRate != null">
+				min_annualized_rate =
+				#{minAnnualizedRate,jdbcType=DECIMAL},
+			</if>
+			<if test="maxAnnualizedRate != null">
+				max_annualized_rate =
+				#{maxAnnualizedRate,jdbcType=DECIMAL},
+			</if>
+			<if test="incrementAnnualizedRate != null">
+				increment_annualized_rate =
+				#{incrementAnnualizedRate,jdbcType=DECIMAL},
+			</if>
+			<if test="startDate != null">
+				start_date = #{startDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="endDate != null">
+				end_date = #{endDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="onlineTime != null">
+				online_time = #{onlineTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="saleEndTime != null">
+				sale_end_time = #{saleEndTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="interestFrom != null">
+				interest_from = #{interestFrom,jdbcType=INTEGER},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=INTEGER},
+			</if>
+			<if test="publishId != null">
+				publish_id = #{publishId,jdbcType=BIGINT},
+			</if>
+			<if test="publishTime != null">
+				publish_time = #{publishTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="auditId != null">
+				audit_id = #{auditId,jdbcType=BIGINT},
+			</if>
+			<if test="auditTime != null">
+				audit_time = #{auditTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="auditMessage != null">
+				audit_message = #{auditMessage,jdbcType=VARCHAR},
+			</if>
+			<if test="recommend != null">
+				recommend = #{recommend,jdbcType=INTEGER},
+			</if>
+			<if test="recommendWeight != null">
+				recommend_weight = #{recommendWeight,jdbcType=INTEGER},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				update_time = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="remarks != null">
+				remarks = #{remarks,jdbcType=VARCHAR},
+			</if>
+			<if test="delFlag != null">
+				del_flag = #{delFlag,jdbcType=INTEGER},
+			</if>
+			<if test="description != null">
+				description = #{description,jdbcType=VARCHAR},
+			</if>
+			<if test="thumbnail != null">
+				thumbnail = #{thumbnail,jdbcType=VARCHAR},
+			</if>
+			<if test="isNovice != null">
+				is_novice = #{isNovice,jdbcType=INTEGER},
+			</if>
+			<if test="joinLease != null">
+				join_lease = #{joinLease,jdbcType=INTEGER},
+			</if>
+			<if test="onlineNotice != null">
+				online_notice = #{onlineNotice,jdbcType=INTEGER},
+			</if>
+			<if test="noticeNotice != null">
+				notice_notice = #{noticeNotice,jdbcType=INTEGER},
+			</if>
+			<if test="lvgouFlag != null">
+				lvgou_flag = #{lvgouFlag,jdbcType=INTEGER},
+			</if>
+			<if test="saleComplatedTime != null">
+				sale_complated_time = #{saleComplatedTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="instalment != null">
+				instalment = #{instalment,jdbcType=INTEGER},
+			</if>
+			<if test="borrowDetail != null">
+				borrow_detail = #{borrowDetail,jdbcType=VARCHAR},
+			</if>
+			<if test="prepayment != null">
+				prepayment = #{prepayment,jdbcType=INTEGER},
+			</if>
+			<if test="prepaymentTime != null">
+				prepayment_time = #{prepaymentTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="prepaymentRemark != null">
+				prepayment_remark = #{prepaymentRemark,jdbcType=VARCHAR},
+			</if>
+			<if test="transferFlag != null">
+				transfer_flag = #{transferFlag,jdbcType=INTEGER},
+			</if>
+			<if test="transferAfterInterest != null">
+			    transfer_after_interest = #{transferAfterInterest,jdbcType=INTEGER},
+			</if>
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	
+	<!-- 批量删除 -->
+	<delete id="batchDelete" parameterType="java.lang.Long">
+		delete from ic_project
+		where id in
+		<foreach collection="ids" index="index" item="item" open="("
+			separator="," close=")"> #{item}  
+		</foreach>
+	</delete>
+
+	<sql id="Base_Column_List_Pagin">
+		t.id as id, t.debt_id as debt_id, t.project_type as
+		project_type, t.name
+		as name, t.keyword as keyword, t.short_desc as
+		short_desc,
+		t.profit_type as profit_type, t.risk_level as risk_level,
+		t.total_amount as total_amount, t.min_invest_amount as
+		min_invest_amount,
+		t.max_invest_amount as max_invest_amount,
+		t.increment_amount as increment_amount,
+		t.annualized_rate_type as
+		annualized_rate_type, t.min_annualized_rate
+		as min_annualized_rate,
+		t.max_annualized_rate as max_annualized_rate,
+		t.increment_annualized_rate as increment_annualized_rate, t.start_date
+		as start_date, t.end_date as end_date, t.online_time as online_time,
+		t.sale_end_time as sale_end_time, t.interest_from as interest_from,
+		t.status as status, t.publish_id as publish_id, t.publish_time as
+		publish_time, t.audit_id as audit_id, t.audit_time as audit_time,
+		t.audit_message as audit_message, t.recommend as recommend,
+		t.recommend_weight as recommend_weight, t.create_time as create_time,
+		t.update_time as update_time, t.remarks as remarks, t.del_flag as
+		del_flag,
+		debt.serial_number as serial_number,sys.name as audit_name,
+		debt.debt_type as debt_type,debt.lender_id as lender_id,m.true_name,
+		debt.original_debt_number as original_debt_number,is_novice,join_lease,
+		t.invest_type as invest_type
+	</sql>
+
+	<resultMap id="PaginResultMap" type="Project" extends="BaseResultMap">
+		<result column="serial_number" property="serialNumber"
+			jdbcType="VARCHAR" />
+		<result column="debt_type" property="debtType" jdbcType="VARCHAR" />
+		<result column="original_debt_number" property="originalDebtNumber" jdbcType="VARCHAR" />
+		<result column="lender_id" property="lenderId" jdbcType="BIGINT" />
+		<result column="true_name" property="lenderName" jdbcType="BIGINT" />
+		<result column="audit_name" property="auditName" jdbcType="BIGINT" />
+		<result column="income_days" property="incomeDays"	jdbcType="INTEGER" />
+		<result column="activity_sign" property="activitySign" jdbcType="INTEGER" />
+	</resultMap>
+
+	<!-- 后台分页查询 -->
+	<select id="selectForPagin" resultMap="PaginResultMap" parameterType="Map">
+		
+		select * from (
+		select
+		<include refid="Base_Column_List_Pagin" />
+		,(CASE t.status
+			WHEN '1' THEN
+			   -1
+			WHEN '10' THEN
+			   -1
+			WHEN '20' THEN
+			    To_Days(t.end_date)-To_Days(now())+1-t.interest_from 
+			WHEN '30' THEN
+			   -1
+			WHEN '40' THEN
+			    -1
+			WHEN '50' THEN
+				-1
+			WHEN '60' THEN
+			   -1
+			ELSE
+			    -1
+			END ) AS income_days,
+			ex.activity_sign
+		from ic_project as t  
+		left join ic_debt as debt on t.debt_id = debt.id
+		left join uc_member as m on m.id = debt.lender_id
+		left join sys_user as sys on sys.id = t.audit_id
+		left join ic_project_extra as ex on ex.project_id = t.id and ex.del_flag = 1
+		<if test=" map != null">
+			<where>
+				<if test=" map.id != null">
+					and t.id  = #{map.id}
+				</if>
+				<if test=" map.name != null">
+					and t.name like #{map.name}"%"
+				</if>
+				<if test=" map.status != null">
+					and t.status = #{map.status}
+				</if>
+				<if test=" map.projectType != null">
+					and t.project_type = #{map.projectType}
+				</if>
+				<if test=" map.projectStatus != null">
+					and t.status = #{map.projectStatus}
+				</if>
+				<if test=" map.annualizedRateType != null">
+					and t.annualized_rate_type = #{map.annualizedRateType}
+				</if>
+				<if test=" map.debtType != null">
+					and debt.debt_type = #{map.debtType}
+				</if>
+				
+				<if test=" map.serialNumber != null">
+					and debt.serial_number = #{map.serialNumber}
+				</if>
+				
+				<if test="map.originalDebtNumber != null">
+					and debt.original_debt_number = #{map.originalDebtNumber}
+				</if>
+				<if test=" map.onlineTimeStart != null">
+					and t.online_time <![CDATA[>=]]> #{map.onlineTimeStart}
+				</if>
+				<if test=" map.onlineTimeEnd != null">
+					and t.online_time <![CDATA[<=]]> #{map.onlineTimeEnd}
+				</if>
+				
+				<if test=" map.endDateStartTime != null">
+					and t.end_date <![CDATA[>=]]> #{map.endDateStartTime}
+				</if>
+				<if test=" map.endDateEndTime != null">
+					and t.end_date <![CDATA[<=]]> #{map.endDateEndTime}
+				</if>
+				
+				<if test=" map.totalAmountMin != null">
+					and t.total_amount <![CDATA[>=]]> #{map.totalAmountMin}
+				</if>
+				<if test=" map.totalAmountMax != null">
+					and t.total_amount <![CDATA[<=]]> #{map.totalAmountMax}
+				</if>
+				
+				<if test=" map.lenderName != null">
+					and m.true_name like "%"#{map.lenderName}"%"
+				</if>
+				<if test=" map.auditName != null">
+					and sys.name like "%"#{map.auditName}"%"
+				</if>
+				
+				<if test=" map.debtId != null">
+					and t.debt_id in
+					<foreach item="item" index="index" collection="map.debtId" 
+	                    open="(" separator="," close=")">
+	                   #{item}
+	            	</foreach>
+				</if>
+			
+				<if test=" map.projectId != null">
+					and t.id in
+					<foreach item="item" index="index" collection="map.projectId" 
+	                    open="(" separator="," close=")">
+	                   #{item}
+	            	</foreach>
+				</if>
+				<if test="map.activitySign != null">
+					and ex.activity_sign = #{map.activitySign}
+				</if>
+				and t.del_flag > 0 and t.invest_type = 1
+			</where>
+		</if>) as income
+		
+			<if test=" map != null">
+				<where>
+					<if test=" map.incomeDaysMin != null">
+						and income_days <![CDATA[>=]]>   CAST( #{map.incomeDaysMin} AS UNSIGNED)
+						
+					</if>
+					<if test=" map.incomeDaysMax != null">
+						and income_days <![CDATA[<=]]> CAST( #{map.incomeDaysMax} AS UNSIGNED)
+					</if>
+				</where>
+			</if>
+		<choose>
+			<when test=" map != null">
+				<if test=" map.desc != null">
+					order by ${map.desc} desc
+				</if>
+				<if test=" map.asc != null">
+					order by ${map.asc} asc
+				</if>
+			</when>
+			<otherwise>
+				order by id desc
+			</otherwise>
+		</choose>
+		LIMIT ${map.startRow}, ${map.pageSize}
+	</select>
+	<!-- 后台分页查询 -->
+	<select id="selectForPaginTotalCount" resultType="java.lang.Integer">
+		select count(1) from (
+		select
+		<include refid="Base_Column_List_Pagin" />
+		,(CASE t.status
+			WHEN '1' THEN
+			   -1 
+			WHEN '10' THEN
+			  -1
+			WHEN '20' THEN
+			    To_Days(t.end_date)-To_Days(t.online_time)+1-t.interest_from 
+			WHEN '30' THEN
+			  -1
+			WHEN '40' THEN
+			  -1
+			WHEN '50' THEN
+				-1
+			WHEN '60' THEN
+			  -1
+			ELSE
+			   -1
+			END ) AS income_days,
+			ex.activity_sign
+		from ic_project as t  
+		left join ic_debt as debt on t.debt_id = debt.id
+		left join uc_member as m on m.id = debt.lender_id
+		left join sys_user as sys on sys.id = t.audit_id
+		left join ic_project_extra as ex on ex.project_id = t.id and ex.del_flag = 1
+		<if test=" map != null">
+			<where>
+				<if test=" map.id != null">
+					and t.id  = #{map.id}
+				</if>
+				<if test=" map.name != null">
+					and t.name like #{map.name}"%"
+				</if>
+				<if test=" map.status != null">
+					and t.status = #{map.status}
+				</if>
+				<if test=" map.projectType != null">
+					and t.project_type = #{map.projectType}
+				</if>
+				<if test=" map.projectStatus != null">
+					and t.status = #{map.projectStatus}
+				</if>
+				<if test=" map.annualizedRateType != null">
+					and t.annualized_rate_type = #{map.annualizedRateType}
+				</if>
+				<if test=" map.debtType != null">
+					and debt.debt_type = #{map.debtType}
+				</if>
+				
+				<if test=" map.serialNumber != null">
+					and debt.serial_number = #{map.serialNumber}
+				</if>
+				
+				<if test="map.originalDebtNumber != null">
+					and debt.original_debt_number = #{map.originalDebtNumber}
+				</if>
+				<if test=" map.onlineTimeStart != null">
+					and t.online_time <![CDATA[>=]]> #{map.onlineTimeStart}
+				</if>
+				<if test=" map.onlineTimeEnd != null">
+					and t.online_time <![CDATA[<=]]> #{map.onlineTimeEnd}
+				</if>
+				
+				<if test=" map.endDateStartTime != null">
+					and t.end_date <![CDATA[>=]]> #{map.endDateStartTime}
+				</if>
+				<if test=" map.endDateEndTime != null">
+					and t.end_date <![CDATA[<=]]> #{map.endDateEndTime}
+				</if>
+				
+				<if test=" map.totalAmountMin != null">
+					and t.total_amount <![CDATA[>=]]> #{map.totalAmountMin}
+				</if>
+				<if test=" map.totalAmountMax != null">
+					and t.total_amount <![CDATA[<=]]> #{map.totalAmountMax}
+				</if>
+				
+				<if test=" map.lenderName != null">
+					and m.true_name like "%"#{map.lenderName}"%"
+				</if>
+				<if test=" map.auditName != null">
+					and sys.name like "%"#{map.auditName}"%"
+				</if>
+				
+				<if test=" map.debtId != null">
+					and t.debt_id in
+					<foreach item="item" index="index" collection="map.debtId" 
+	                    open="(" separator="," close=")">
+	                   #{item}
+	            	</foreach>
+				</if>
+			
+				<if test=" map.projectId != null">
+					and t.id in
+					<foreach item="item" index="index" collection="map.projectId" 
+	                    open="(" separator="," close=")">
+	                   #{item}
+	            	</foreach>
+				</if>
+				and t.del_flag > 0 and t.invest_type = 1
+				<if test="map.activitySign != null">
+					and ex.activity_sign = #{map.activitySign}
+				</if>
+			</where>
+		</if>) as income
+		
+			<if test=" map != null">
+				<where>
+					<if test=" map.incomeDaysMin != null">
+						and income_days <![CDATA[>=]]>   CAST( #{map.incomeDaysMin} AS UNSIGNED)
+						
+					</if>
+					<if test=" map.incomeDaysMax != null">
+						and income_days <![CDATA[<=]]> CAST( #{map.incomeDaysMax} AS UNSIGNED)
+					</if>
+				</where>
+			</if>
+	</select>
+
+	<!-- 检查项目名称是否存在 -->
+	<select id="checkNameExists" resultMap="BaseResultMap">
+		select id, name from ic_project
+		<where>
+			del_flag = 1
+			<choose>
+				<when test="namePeriod != null and namePeriod != ''">
+					and (name = #{name} or name like '${namePeriod}%')
+				</when>
+				<otherwise>
+					and name = #{name}
+				</otherwise>
+			</choose>
+			<if test=" id >= 0 ">
+				and id != #{id}
+			</if>
+		</where>
+		limit 0,1
+	</select>
+
+	<!-- 推荐项目分页 -->
+	<select id="selectProjectRecommendForPaginTotalCount"
+		resultType="java.lang.Integer">
+		select count(1)
+		from ic_project as p 
+		WHERE  p.status &lt;= 30
+		<choose>
+			<when test="map.recommendType == 2">
+				and p.app_recommend = 1
+			</when>
+			<otherwise>
+				and p.recommend = 1
+			</otherwise>
+		</choose>
+		and p.del_flag > 0
+	</select>
+	<!-- 推荐项目分页 -->
+	<select id="selectProjectRecommendForPagin" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from ic_project AS p
+		WHERE  p.del_flag > 0 and p.status &lt;= 30
+		<choose>
+			<when test="map.recommendType == 2">
+				and p.app_recommend = 1
+				order by p.app_recommend_weight asc limit ${map.startRow}, ${map.pageSize}
+			</when>
+			<otherwise>
+				and p.recommend = 1
+				order by p.recommend_weight asc limit ${map.startRow}, ${map.pageSize}
+			</otherwise>
+		</choose>
+	</select>
+
+	<!-- *****************WEB SQL***************** -->
+
+	<sql id="Front_Base_Column_Pagin">
+		p.id, p.debt_id, p.name, p.profit_type,
+		p.min_annualized_rate, p.max_annualized_rate, p.total_amount,
+		p.status, p.annualized_rate_type,p.min_invest_amount,
+		p.interest_from,p.online_time, p.sale_end_time,p.start_date,p.end_date,p.transfer_flag,
+		debt.debt_type,p.project_type,debt.serial_number,p.thumbnail,p.is_novice,p.join_lease,p.transfer_after_interest,
+		p.invest_type,p.sale_complated_time,p.annualized_rate,debt.borrower_id,borrow_period,borrow_period_type
+	</sql>
+
+	<!-- 前台分页 -->
+	<select id="selectForPaginFront" resultMap="ProjectFrontResultMap"
+		parameterType="ProjectQuery">
+		select
+		<include refid="Front_Base_Column_Pagin" />
+		,fb.available_balance,
+		IF(p.status = 30, 0, 1) as investingFirst
+		from
+		ic_project as p
+		left join ic_debt as debt on p.debt_id = debt.id
+		left join fin_balance as fb on p.id= fb.source_id
+		inner join (select
+		(CASE invest_type
+		 WHEN 1 THEN (to_days(end_date)-to_days(start_date))
+		  WHEN 2 THEN (case borrow_period_type
+				when 1 THEN borrow_period
+				WHEN 2 THEN borrow_period*30
+				WHEN 3 THEN borrow_period*360
+				END )
+				END
+		)  as incomedays,id from ic_project p  where  p.del_flag=1 and p.package_flag = 0
+		
+			<if test="projectQuery != null">
+				<if test="projectQuery.status != null">
+					<choose>
+						<!-- 履约中， 债权：已满额，已截止 ；直投：审核通过，待放款，已放款-->
+						<when test="projectQuery.status == 999">
+							and (((p.status = 50 or p.status = 60) and p.invest_type=1) or 
+							((p.status = 52 or p.status = 51 ) and p.invest_type=2) )
+						</when>
+						<!-- app 投资中、暂停 -->
+						<when test="projectQuery.status == 300">
+							and (p.status = 30 or p.status = 40)
+						</when>
+						<!-- 投资中， 债权：投资中 ；直投：已满额-->
+						<when test="projectQuery.status == 30">
+							and (((p.status = 30 or p.status = 50 or p.status = 81  ) and p.invest_type=2 ) or (p.status = 30 and p.invest_type = 1  ))
+						</when>
+						<otherwise>
+							and p.status = #{projectQuery.status}
+						</otherwise>
+					</choose>
+				</if>
+				<!-- 原本为20,会导致线上能查出所有项目-->
+				<if test="projectQuery.status == null">
+					and p.status >= 30
+				</if>
+				<if test="projectQuery.projectType != null">
+					<choose>
+				        <when test="projectQuery.projectType == 'house'">
+				            and (p.project_type = "house" or p.project_type = "houseRecord")
+				        </when>
+				        <when test="projectQuery.projectType == 'car'">
+				             and 
+				             ((p.project_type = "car"  and  p.instalment = 0 and p.invest_type=1)
+				             or ( p.project_type = "car"  and p.instalment = 0 and p.invest_type=2))
+				        </when>
+				        <when test="projectQuery.projectType == 'buyCar'">
+				             and ((p.project_type = 'car' and debt.instalment = 1 and debt.debt_type = 'collateral' and p.invest_type=1)
+				             or (p.project_type = 'car' and p.instalment = 1 and p.security_type = 'collateral' and p.invest_type=2) )
+				        </when>
+				        <when test="projectQuery.projectType == 'credit'">
+				             and (p.project_type = 'inclusive_financial' or p.project_type = 'personal_credit' or p.project_type = 'sm_lending') 
+				                and p.invest_type=2
+				        </when>
+				        <when test="projectQuery.projectType == 'guarantee'">
+				             and (p.project_type = 'escrow' or p.project_type = 'personal_guarantee' or p.project_type = 'pledge_direct') 
+				                and p.invest_type=2
+				        </when>
+				         <when test="projectQuery.projectType == 'carLeas'">
+				             and (p.project_type = 'car_leas_type_car' ) 
+				                and p.invest_type=2
+				        </when>
+				        <otherwise>
+							and p.project_type = #{projectQuery.projectType,jdbcType=VARCHAR}
+				        </otherwise>
+				    </choose>
+				</if>
+			</if>
+		) as c  on c.id=p.id  
+		<if test="projectQuery != null">
+			<where>
+				
+				<if test="projectQuery.isbuyCarNotShow">
+					and debt.instalment != 1
+				</if>
+				<if test="projectQuery.appQuery == true">
+					and is_novice = 1
+					and join_lease = 0
+				</if>
+				
+				<if test="projectQuery.investType != null">
+					and invest_type = #{projectQuery.investType,jdbcType=INTEGER}
+				</if>
+				
+				<if test="projectQuery.investArea != null">
+					<choose>
+				        <when test="projectQuery.investArea == 'short'">
+				            and c.incomedays  <![CDATA[>=]]>  1  and c.incomedays  <![CDATA[<=]]> 60 
+				        </when>
+				        <when test="projectQuery.investArea == 'middle'">
+				            and c.incomedays  <![CDATA[>=]]>  61  and c.incomedays  <![CDATA[<=]]> 180 
+				        </when>
+				        <when test="projectQuery.investArea == 'long'">
+				            and c.incomedays  <![CDATA[>=]]>  181  
+				        </when>
+				    </choose>
+				</if>
+				
+				and fb.balance_type=4 and p.status>20 and p.package_flag =0
+			</where>
+		</if>
+		order by
+		<if test="projectQuery.querySource == 'mStation'">
+			investingFirst,
+		</if>
+		
+		
+		
+		<if test="projectQuery.status == 30">
+			field(p.status,30,50,81),
+		</if>
+		p.online_time desc
+		LIMIT #{projectQuery.startRow,jdbcType=INTEGER},
+		#{projectQuery.pageSize,jdbcType=INTEGER}
+	</select>
+	<!-- 前台分页 -->
+	<select id="selectForPaginTotalCountFront" resultType="java.lang.Integer">
+		select count(1) from ic_project as p
+		left join ic_debt as debt on
+		p.debt_id = debt.id
+		<if test="projectQuery != null">
+			<where>
+				<if test="projectQuery.status != null">
+					<choose>
+						<when test="projectQuery.status == 999">
+							and (((p.status = 50 or p.status = 60) and p.invest_type=1) or 
+							((p.status = 52 or p.status = 51  ) and p.invest_type=2) )
+						</when>
+						<!-- app 投资中、暂停 -->
+						<when test="projectQuery.status == 300">
+							and (p.status = 30 or p.status = 40)
+						</when>
+						<when test="projectQuery.status == 30">
+							and (((p.status = 30 or p.status = 50 or p.status = 81 ) and p.invest_type=2 ) or (p.status = 30 and p.invest_type = 1  ))
+						</when>
+						<otherwise>
+							and p.status = #{projectQuery.status}
+						</otherwise>
+					</choose>
+				</if>
+				<if test="projectQuery.status == null">
+					and p.status >= 30
+				</if>
+				<if test="projectQuery.projectType != null">
+				    <choose>
+				        <when test="projectQuery.projectType == 'house'">
+				            and (p.project_type = "house" or p.project_type = "houseRecord")
+				        </when>
+				        <when test="projectQuery.projectType == 'car'">
+				             and 
+				             ((p.project_type = "car"  and  debt.instalment = 0 and p.invest_type=1) 
+				             or ( p.project_type = "car"  and p.instalment = 0 and p.invest_type=2))
+				        </when>
+				        <when test="projectQuery.projectType == 'buyCar'">
+				             and ((p.project_type = 'car' and debt.instalment = 1 and debt.debt_type = 'collateral' and p.invest_type=1) 
+				             or (p.project_type = 'car' and p.instalment = 1 and p.security_type = 'collateral' and p.invest_type=2) )
+				        </when>
+				        <when test="projectQuery.projectType == 'credit'">
+				             and (p.project_type = 'inclusive_financial' or p.project_type = 'personal_credit' or p.project_type = 'sm_lending') 
+				                and p.invest_type=2
+				        </when>
+				        <when test="projectQuery.projectType == 'guarantee'">
+				             and (p.project_type = 'escrow' or p.project_type = 'personal_guarantee' or p.project_type = 'pledge_direct') 
+				                and p.invest_type=2
+				        </when>
+				         <when test="projectQuery.projectType == 'carLeas'">
+				             and (p.project_type = 'car_leas_type_car' ) 
+				                and p.invest_type=2
+				        </when>
+				        <otherwise>
+							and p.project_type = #{projectQuery.projectType,jdbcType=VARCHAR}
+				        </otherwise>
+				    </choose>
+				</if>
+				<if test="projectQuery.isbuyCarNotShow">
+					and debt.instalment != 1
+				</if>
+				<if test="projectQuery.appQuery == true">
+					and is_novice = 1
+					and join_lease = 0
+				</if>
+				<if test="projectQuery.investType != null">
+					and invest_type = #{projectQuery.investType,jdbcType=INTEGER}
+				</if>
+				and p.del_flag=1 and p.package_flag=0
+			</where>
+		</if>
+	</select>
+
+	<!--推荐最大权重值  -->
+	<select id="findMaxRecommendWeight" resultType="java.lang.Integer">
+		select
+		max(recommend_weight) from ic_project where recommend > 0 and del_flag
+		> 0
+	</select>
+	
+	<!-- 查询首页投资中的项目列表 -->
+	<select id="findIndexInvestingProjectList" resultMap="ProjectFrontResultMap">
+		SELECT
+		id,
+		name, 
+		profit_type,
+		min_annualized_rate, 
+		max_annualized_rate, 
+		total_amount,
+		status, 
+		min_invest_amount,
+		interest_from, 
+		sale_end_time,
+		start_date,
+		end_date,
+		online_time,
+		thumbnail,
+		is_novice,
+		join_lease,
+		invest_type,
+		transfer_flag,
+		sale_complated_time,
+		annualized_rate,
+		borrow_period,
+		borrow_period_type
+		FROM
+		ic_project 
+		Where status = 30  and recommend  &lt;  1 and del_flag=1 and is_novice = 1 and  package_flag =0
+		<if test="map!=null and map.investType!=null">
+			and invest_type = #{map.investType,jdbcType=INTEGER}
+		</if>
+		ORDER BY
+			online_time desc
+		LIMIT 0, 
+		<choose>
+			<when test="map!=null and map.num != null">
+				#{map.num,jdbcType=INTEGER}
+			</when>
+			<otherwise>
+				8
+			</otherwise>
+		</choose>
+	</select>
+	
+	<!-- 查询非投资中的首页项目列表-->
+	<select id="findIndexNotInvestingProjectList" resultMap="ProjectFrontResultMap">
+		SELECT
+		id,
+		name, 
+		profit_type,
+		min_annualized_rate, 
+		max_annualized_rate, 
+		total_amount,
+		status, 
+		min_invest_amount,
+		interest_from, 
+		sale_end_time,
+		start_date,
+		end_date,
+		online_time,
+		thumbnail,
+		is_novice,
+		join_lease,
+		transfer_flag,
+		invest_type,
+		sale_complated_time,
+		annualized_rate,
+		borrow_period,
+		borrow_period_type
+		FROM
+		ic_project 
+		Where status >30 and del_flag=1  and is_novice = 1 and package_flag =0 
+		<if test="map!=null ">
+			<if test="map.investType != null">
+				<choose>
+					<!-- 直投项目不显示已截止和流标项目在首页推荐项目当中 -->
+					<when test="map.investType == 2">
+					 and status not in (60,80,90)
+					</when>
+				</choose>
+		 		and invest_type = #{map.investType,jdbcType=INTEGER}
+		 	</if> 
+		</if>
+		ORDER BY
+			online_time desc
+		LIMIT 0, 
+		<choose>
+			<when test="map!=null and map.num != null">
+				#{map.num,jdbcType=INTEGER}
+			</when>
+			<otherwise>
+				8
+			</otherwise>
+		</choose>
+	</select>
+	
+	<!-- 前台推荐项目列表 -->
+	<select id="findRecommendProjectList" resultMap="ProjectFrontResultMap">
+		SELECT
+		id,
+		name, 
+		profit_type,
+		min_annualized_rate, 
+		max_annualized_rate, 
+		total_amount,
+		status, 
+		min_invest_amount,
+		interest_from, 
+		sale_end_time,
+		start_date,
+		end_date,
+		online_time,
+		thumbnail,
+		is_novice,
+		join_lease,
+		invest_type,
+		sale_complated_time,
+		annualized_rate,
+		borrow_period,
+		transfer_flag,
+		borrow_period_type
+		FROM
+		ic_project 
+		Where status = 30 and recommend =1 and del_flag=1 and is_novice = 1 and  package_flag =0
+		<if test="map!=null">
+			<if test="map.investType != null">
+		 		and invest_type = #{map.investType,jdbcType=INTEGER}
+		 	</if> 
+		</if>
+		ORDER BY
+			recommend_weight asc
+		LIMIT 0, 
+		<choose>
+			<when test="map!=null and map.num != null">
+				#{map.num,jdbcType=INTEGER}
+			</when>
+			<otherwise>
+				8
+			</otherwise>
+		</choose>
+	</select>
+	
+	<!-- 通过项目id查询ProjectForFront -->
+	<select id="getProjectForFrontByProjectId" resultMap="ProjectFrontResultMap">
+		SELECT
+		id,
+		name, 
+		profit_type,
+		min_annualized_rate, 
+		max_annualized_rate, 
+		total_amount,
+		status, 
+		min_invest_amount,
+		interest_from, 
+		sale_end_time,
+		start_date,
+		online_time,
+		end_date,
+		thumbnail,
+		is_novice,
+		join_lease,
+		invest_type,
+		sale_complated_time,
+		annualized_rate,
+		borrow_period,
+		transfer_flag,
+		borrow_period_type
+		FROM
+		ic_project 
+		Where  id = #{id,jdbcType=BIGINT} and del_flag=1
+	</select>
+	
+	<!-- 查询不同放款状态的项目 -->
+	<select id="findProjectByLoanStatus" resultType="java.lang.Long">
+		select p.id from ic_project as p LEFT JOIN  (
+			select (sum(used_capital) + sum(used_coupon_amount)) as used_capital,
+			t.project_id as project_id from tc_transaction as t 
+			where 
+			t.loan_status in (1,2) group by t.project_id)pt on pt.project_id = p.id
+		<where>
+			<if test="map!=null">
+				<if test="map.loanStatus != null">
+					<choose>
+						<when test="map.loanStatus == 0">
+							IFNULL(pt.used_capital,0) = 0
+						</when>
+						<when test="map.loanStatus == 1">
+							p.total_amount - IFNULL(pt.used_capital,0) >0 and IFNULL(pt.used_capital,0) > 0
+						</when>
+						<otherwise>
+							p.total_amount = pt.used_capital
+						</otherwise>
+					</choose>
+				</if>
+			</if>
+		</where> 
+	</select>
+	
+	<!-- 获取项目个数根据项目状态 -->
+  <select id="findProjectCountByStatus" resultType="java.lang.Integer">
+  	SELECT count(1) 
+  	from ic_project 
+  	<if test="status != null">
+  		<where>
+	  		<choose>
+				<when test="status == 50">
+					and (status = 50 or status = 60)
+				</when>
+				<otherwise>
+					and status = #{status}
+				</otherwise>
+			</choose>
+		</where>
+  	</if>
+  </select>
+  
+	<!-- 获得投资中的新手项目 -->
+	<select id="getNoviceProjectByInvesting" resultMap="ProjectFrontResultMap">
+		SELECT
+		id,
+		name, 
+		profit_type,
+		min_annualized_rate, 
+		max_annualized_rate, 
+		total_amount,
+		status, 
+		min_invest_amount,
+		interest_from, 
+		sale_end_time,
+		start_date,
+		end_date,
+		thumbnail,
+		is_novice,
+		join_lease,
+		online_time,
+		invest_type,
+		borrow_period_type,
+        borrow_period,
+		sale_complated_time,
+		annualized_rate
+		FROM
+		ic_project 
+		Where status = 30  and del_flag=1 and is_novice = 0 and package_flag =0
+		ORDER BY
+			online_time desc
+		LIMIT 0, #{num,jdbcType=INTEGER}
+	</select>
+	
+	<!-- 获得非投资状态的新手项目（已满额、已截止、已还款） -->
+	<select id="getNoviceProjectByNotInvesting" resultMap="ProjectFrontResultMap">
+		SELECT
+		id,
+		name, 
+		profit_type,
+		min_annualized_rate, 
+		max_annualized_rate, 
+		total_amount,
+		status, 
+		min_invest_amount,
+		interest_from, 
+		sale_end_time,
+		start_date,
+		end_date,
+		thumbnail,
+		is_novice,
+		join_lease,
+		online_time,
+		invest_type,
+		borrow_period_type,
+        borrow_period,
+		sale_complated_time,
+		annualized_rate
+		FROM
+		ic_project 
+		Where <![CDATA[status >= 30 ]]> and del_flag=1 and is_novice = 0 and package_flag =0
+		ORDER BY
+			online_time desc
+		LIMIT 0, #{num,jdbcType=INTEGER}
+	</select>
+
+	<select id="findProjectIdByDebtId" resultType="java.lang.Long">
+		SELECT id from ic_project where debt_id = #{debtId} and del_flag = 1 and package_flag =0 limit 1
+	</select>
+	<!-- 获得非投资状态的新手项目（已满额、已截止、已还款） -->
+	<select id="getProjectListToZhongNiu" resultMap="BaseResultMap">
+		SELECT
+			id,
+			name, 		
+			total_amount,
+			status, 
+			online_time,
+			sale_end_time
+		FROM
+			ic_project 
+		Where 
+			status = 30 and del_flag=1  and package_flag =0
+		ORDER BY
+			online_time desc
+	</select>
+	
+	<!-- 获得即将上线的项目 -->
+	<select id="findUpcomingProject" resultMap="BaseResultMap">
+		SELECT
+			id,
+			name, 		
+			total_amount,
+			interest_from, 
+			sale_end_time,
+			online_time,
+			start_date,
+			end_date,
+			online_notice
+		FROM
+			ic_project 
+		Where 
+			status = 20 and del_flag=1 and package_flag =0 and online_time <![CDATA[ <= ]]> now()
+		ORDER BY
+			online_time desc
+	</select>
+	
+	<!--推荐最大权重值  -->
+	<select id="findMaxAppRecommendWeight" resultType="java.lang.Integer">
+		select
+		max(app_recommend_weight) from ic_project where app_recommend > 0 and del_flag
+		> 0
+	</select>
+	
+	<!-- 推荐项目到APP -->
+	<update id="recommendAppProject">
+		update ic_project set app_recommend_weight = #{recommendWeight, jdbcType=INTEGER}, app_recommend = 1 where id=#{projectId,jdbcType=BIGINT}	
+	</update>
+	<!-- 推荐项目到pc -->
+	<update id="recommendProject">
+		update ic_project set recommend_weight = #{recommendWeight, jdbcType=INTEGER}, recommend = 1 where id=#{projectId,jdbcType=BIGINT}	
+	</update>
+	
+	<!-- 重置项目排序权重 -->
+	<update id="resetAppRecommendWeight">
+		update ic_project set app_recommend_weight = app_recommend_weight + 1 where app_recommend = 1 and app_recommend_weight >= #{recommendWeight, jdbcType=INTEGER}
+	</update>
+	
+	<!-- 重置项目排序权重 pc -->
+	<update id="resetRecommendWeight">
+		update ic_project set recommend_weight = recommend_weight + 1 where recommend = 1 and recommend_weight >= #{recommendWeight, jdbcType=INTEGER}
+	</update>
+	
+	<!--  根据项目ID取消推荐 -->
+	<update id="cancelAppRecommendByProjectId">
+		update ic_project set app_recommend=0 where id=#{projectId,jdbcType=BIGINT}
+	</update>
+	
+	<!-- APP推荐项目列表 -->
+	<select id="findAppRecommendProjectList" resultMap="ProjectFrontResultMap">
+		SELECT
+		id,
+		name, 
+		profit_type,
+		min_annualized_rate, 
+		max_annualized_rate, 
+		total_amount,
+		status, 
+		min_invest_amount,
+		interest_from, 
+		sale_end_time,
+		start_date,
+		end_date,
+		thumbnail,
+		is_novice,
+		join_lease,
+		invest_type,
+		sale_complated_time,
+		annualized_rate
+		FROM
+		ic_project 
+		Where status = 30 and app_recommend =1 and del_flag=1 and is_novice = 1 and join_lease = 0
+		ORDER BY
+			app_recommend_weight asc
+		LIMIT 0, #{num,jdbcType=INTEGER}
+	</select>
+	
+	<!-- 查询首页投资中的项目列表 -->
+	<select id="findAppIndexProjectList" resultMap="ProjectFrontResultMap">
+		SELECT
+		id,
+		name, 
+		profit_type,
+		min_annualized_rate, 
+		max_annualized_rate, 
+		total_amount,
+		status, 
+		min_invest_amount,
+		interest_from, 
+		sale_end_time,
+		start_date,
+		end_date,
+		thumbnail,
+		is_novice,
+		join_lease,
+		invest_type,
+		sale_complated_time,
+		annualized_rate
+		FROM
+		ic_project 
+		Where  del_flag=1 and is_novice = 1 and join_lease = 0
+		<choose>
+			<when test="status == 1">
+				and status = 30 and app_recommend  &lt; 1
+			</when>
+			<otherwise>
+				and status > 30
+			</otherwise>
+		</choose>
+		ORDER BY
+			online_time desc
+		LIMIT 0, #{num,jdbcType=INTEGER}
+	</select>
+
+	
+	<!-- 获得正在投资状态的项目 -->
+	<select id="queryInvestingProject" resultMap="ProjectFrontResultMap">
+		select
+			<include refid="Front_Base_Column_Pagin" />
+		from
+		ic_project as p
+		inner join 
+		ic_debt as debt on p.debt_id = debt.id
+		Where 
+			p.status = 30 and p.del_flag=1 
+		ORDER BY
+			p.online_time desc
+	</select>
+	
+	<!-- 获得正在投资状态的项目 -->
+	<select id="isInvestingProjectByProject" resultMap="BaseResultMap">
+		select
+			<include refid="Base_Column_List" />
+		from
+		ic_project 
+		Where 
+			status = 30 and del_flag=1 
+		ORDER BY
+			online_time desc
+	</select>
+	
+	<select id="getProjectBySortIndex" resultMap="BaseResultMap">
+       select
+			<include refid="Base_Column_List" />
+		from ic_project as p
+        where status <![CDATA[ <= ]]> 30 and del_flag=1
+        <choose>
+			<when test="recommendType == 2">
+				and p.app_recommend = 1
+				order by p.app_recommend_weight asc limit #{sort,jdbcType=INTEGER}, 1
+			</when>
+			<otherwise>
+				and p.recommend = 1
+				order by p.recommend_weight asc limit #{sort,jdbcType=INTEGER}, 1
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="queryProjectFromLvGou" resultMap="BaseResultMap">
+		select
+			<include refid="Base_Column_List" />
+		from ic_project as p
+		where IFNULL(p.lvgou_flag, 0) <![CDATA[ < ]]> 1
+		and p.status >= 50
+		<if test="map!=null">
+			<if test="map.id != null">
+				and p.id = #{map.id}
+			</if>
+			<if test="map.id == null">
+				and p.end_date <![CDATA[ > ]]> now()
+			</if>
+		</if>
+		order by p.id desc
+	</select>
+	
+	<!-- 获取着陆页推荐项目 -->
+	<select id="findLandingRecommendProject" resultMap="ProjectFrontResultMap">
+		SELECT
+			id,
+			name,
+			profit_type,
+			min_annualized_rate,
+			max_annualized_rate,
+			total_amount,
+			status,
+			min_invest_amount,
+			interest_from,
+			sale_end_time,
+			online_time,
+			start_date,
+			end_date,
+			thumbnail,
+			is_novice,
+			join_lease,
+			invest_type,
+			sale_complated_time,
+			annualized_rate,
+			borrow_period,
+			borrow_period_type
+			
+		FROM
+			ic_project
+		WHERE
+			status IN (30, 50)
+		AND del_flag = 1
+		AND is_novice = 1
+		ORDER BY
+			status ASC,
+			online_time DESC
+		LIMIT 1
+	</select>
+	
+	<!-- 判断类目下是否存在项目 -->
+	<select id="isExistProjectByType" resultType="java.lang.Integer">
+    	select 1 from ic_project as p inner join ic_debt as d on d.id = p.debt_id where p.status <![CDATA[ >= ]]> 30 and p.del_flag=1 and p.project_type = #{projectType,jdbcType=VARCHAR} and d.instalment = #{instalment,jdbcType=VARCHAR} and d.debt_type = #{debtType,jdbcType=VARCHAR} limit 1
+  	</select>
+  	
+  	<resultMap id="ProjectForLeadingSheepMap" type="com.yourong.core.mc.model.biz.ActivityLeadingSheepProject">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="name" property="name" jdbcType="BIGINT" />
+		<result column="status" property="status" jdbcType="VARCHAR" />
+		<result column="total_amount" property="totalAmount" jdbcType="VARCHAR" />
+		<result column="thumbnail" property="thumbnail" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<!-- 获取投资中且0投资的项目   上线时间倒序-->
+	<select id="findInvestingAndFirstInvestProjects" resultMap="ProjectForLeadingSheepMap">
+		select c.id,
+			 c.NAME,
+			 c.status,
+			 c.total_amount,
+			 c.thumbnail from (
+			SELECT	 p.id,
+					 p.NAME,
+					 p.status,
+					 p.total_amount,
+					 sum(t.invest_amount) as invest_amount,
+			p.online_time,
+			p.thumbnail
+					FROM
+					 ic_project AS p
+					LEFT JOIN 
+					 tc_transaction as t
+					 on t.project_id = p.id
+					WHERE
+		 p.STATUS = 30 and p.del_flag = 1 GROUP by p.id 
+		 )c where ifnull(c.invest_amount,0)=0 ORDER BY
+		 	c.online_time desc  limit #{limitSize,jdbcType=INTEGER};
+	</select>
+	<select id="p2pFindInvestingAndFirstInvestProjects" resultMap="ProjectForLeadingSheepMap">
+		select c.id,
+			 c.NAME,
+			 c.status,
+			 c.total_amount,
+			 c.thumbnail from (
+			SELECT	 p.id,
+					 p.NAME,
+					 p.status,
+					 p.total_amount,
+					 sum(t.invest_amount) as invest_amount,
+			p.online_time,
+			p.thumbnail
+					FROM
+					 ic_project AS p
+					LEFT JOIN 
+					 tc_transaction as t
+					 on t.project_id = p.id
+					WHERE
+		 p.STATUS = 30 and p.del_flag = 1 and p.invest_type=1  GROUP by p.id 
+		 )c where ifnull(c.invest_amount,0)=0 ORDER BY
+		 	c.online_time desc  limit #{limitSize,jdbcType=INTEGER};
+	</select>
+	<!-- 获取可以一鸣惊人的项目 -->
+	<select id="findSupportMostInvestProject" resultMap="ProjectForLeadingSheepMap">
+		select c.id,
+			   c.name,
+			   c.STATUS,
+			   c.total_amount,
+			   c.thumbnail from(
+			SELECT
+				p.id,
+				p. NAME,
+				p. STATUS,
+			  max(invest_amount)as max_invest_amount,
+				sum(t.invest_amount) AS total_invest,
+				p.total_amount - IFNULL(sum(t.invest_amount),0)
+				 AS last_amount,
+				 p.total_amount,
+				 p.thumbnail
+			FROM
+				ic_project AS p
+			LEFT JOIN tc_transaction AS t ON t.project_id = p.id
+			where p.status = 30 and p.del_flag=1 
+			GROUP BY
+				p.id order by p.online_time desc) as c where c.last_amount> ifnull(c.max_invest_amount,0)  limit 4
+	</select>
+	<select id="p2pFindSupportMostInvestProject" resultMap="ProjectForLeadingSheepMap">
+		select c.id,
+			   c.name,
+			   c.STATUS,
+			   c.total_amount,
+			   c.thumbnail from(
+			SELECT
+				p.id,
+				p. NAME,
+				p. STATUS,
+			  max(invest_amount)as max_invest_amount,
+				sum(t.invest_amount) AS total_invest,
+				p.total_amount - IFNULL(sum(t.invest_amount),0)
+				 AS last_amount,
+				 p.total_amount,
+				 p.thumbnail
+			FROM
+				ic_project AS p
+			LEFT JOIN tc_transaction AS t ON t.project_id = p.id
+			where p.status = 30 and p.del_flag=1  and p.invest_type=1  
+			GROUP BY
+				p.id order by p.online_time desc) as c where c.last_amount> ifnull(c.max_invest_amount,0)  limit 4
+	</select>
+	<!-- 获取可以一锤定音、幸运女神的项目 -->
+	<select id="findInvestingProjectForLeadingSheep" resultMap="ProjectForLeadingSheepMap">
+		select p.id,
+			   p.name,
+			   p.status,
+			   p.total_amount,
+			   p.thumbnail
+	    from ic_project as p
+	    where p.status = 30 and p.del_flag=1 order by p.online_time desc limit 4
+	</select>
+	<select id="p2pFindInvestingProjectForLeadingSheep" resultMap="ProjectForLeadingSheepMap">
+		select p.id,
+			   p.name,
+			   p.status,
+			   p.total_amount,
+			   p.thumbnail
+	    from ic_project as p
+	    where p.status = 30 and p.del_flag=1  and p.invest_type=1  order by p.online_time desc limit 4
+	</select>
+	
+	
+	
+	<!-- 获取可以一掷千金的项目   &lt; 小于号转义 -->
+	<select id="findLastAndMostProjectForLeadingSheep" resultMap="ProjectForLeadingSheepMap">
+	select p.id,
+			   p.name,
+			   p.status,
+			   p.total_amount,
+			   p.thumbnail
+	    from ic_project as p
+	    where p.status = 30 and p.del_flag=1 
+		and ifnull((select max(invest_amount) from tc_transaction where project_id =p.id),0) <![CDATA[<]]>(select available_balance from fin_balance where balance_type='4' and source_id=p.id)
+		order by p.online_time desc limit 4
+	</select>
+	
+	<select id="p2pFindLastAndMostProjectForLeadingSheep" resultMap="ProjectForLeadingSheepMap">
+	select p.id,
+			   p.name,
+			   p.status,
+			   p.total_amount,
+			   p.thumbnail
+	    from ic_project as p
+	    where p.status = 30 and p.del_flag=1  and p.invest_type=1 
+		and ifnull((select max(invest_amount) from tc_transaction where project_id =p.id),0) <![CDATA[<]]>(select available_balance from fin_balance where balance_type='4' and source_id=p.id)
+		order by p.online_time desc limit 4
+	</select>
+	
+	
+	
+	<!-- 根据排序规则获得APP推荐的项目 -->
+	<select id="getSortFirstAppRecommendProject" resultMap="BaseResultMap">
+		select
+			<include refid="Base_Column_List" />
+		from ic_project 
+		where app_recommend = 1 and status <![CDATA[ = ]]> 30 and del_flag = 1  and package_flag = 0
+	    order by app_recommend_weight asc limit 1
+	</select>
+	
+	<!-- 获得新上线的项目 -->
+	<select id="getLatestOnLineProject" resultMap="BaseResultMap">
+		select
+			<include refid="Base_Column_List" />
+		from ic_project 
+		where status <![CDATA[ = ]]> 30 and del_flag = 1  and is_novice = 1 and package_flag = 0
+	    order by online_time desc limit 1
+	</select>
+	
+	<!-- 获得非投资状态的项目 -->
+	<select id="getFinishProject" resultMap="BaseResultMap">
+		select
+			<include refid="Base_Column_List" />
+		from ic_project 
+		where status <![CDATA[ > ]]> 40 and del_flag = 1  and package_flag = 0
+	    order by online_time desc limit 1
+	</select>
+	
+	<!-- 获得新客项目 -->
+	<select id="getNoviceProject" resultMap="BaseResultMap">
+		select
+			<include refid="Base_Column_List" />
+		from ic_project
+		where status <![CDATA[ = ]]> 30 and del_flag = 1 and is_novice = 0 and package_flag = 0
+	    order by online_time desc limit 1
+	</select>
+	
+	<!-- 获得新客项目 -->
+	<select id="p2pGetNoviceProject" resultMap="BaseResultMap">
+		select
+			<include refid="Base_Column_List" />
+		from ic_project
+		where status <![CDATA[ = ]]> 30 and del_flag = 1 and is_novice = 0 and invest_type=1 and package_flag = 0
+	    order by online_time desc limit 1
+	</select>
+	
+	<!-- 获得首页新手项目   有推荐的-->
+	<select id="findIndexNoviceProject" resultMap="ProjectFrontResultMap">
+		SELECT
+		id,
+		name, 
+		profit_type,
+		min_annualized_rate, 
+		max_annualized_rate, 
+		total_amount,
+		status, 
+		min_invest_amount,
+		interest_from, 
+		sale_end_time,
+		start_date,
+		end_date,
+		thumbnail,
+		is_novice,
+		join_lease,
+		invest_type,
+		sale_complated_time,
+		annualized_rate,
+		borrow_period,
+		transfer_flag,
+		borrow_period_type
+		FROM
+		ic_project 
+		Where status = 30 and del_flag=1 and is_novice = 0  and recommend  = 1 and package_flag =0
+		ORDER BY 	recommend_weight asc,online_time desc
+		LIMIT 0, #{num,jdbcType=INTEGER}
+	</select>
+
+	<!-- 获得首页新手项目   没有有推荐的-->
+	<select id="findIndexNoviceProjectNoRecommend" resultMap="ProjectFrontResultMap">
+		SELECT
+		id,
+		name,
+		profit_type,
+		min_annualized_rate,
+		max_annualized_rate,
+		total_amount,
+		status,
+		min_invest_amount,
+		interest_from,
+		sale_end_time,
+		start_date,
+		end_date,
+		thumbnail,
+		is_novice,
+		join_lease,
+		invest_type,
+		sale_complated_time,
+		annualized_rate,
+		borrow_period,
+		transfer_flag,
+		borrow_period_type
+		FROM
+		ic_project
+		Where status = 30 and del_flag=1 and is_novice = 0  and package_flag =0 and recommend  &lt;     1
+		ORDER BY  online_time desc
+		LIMIT 0, #{num,jdbcType=INTEGER}
+	</select>
+	
+	<!-- 根据债权类型查询推荐项目 -->
+	<select id="getRecommendProjectByGuaranty" resultMap="ProjectFrontResultMap">
+		SELECT
+			p.id,
+			p.name,
+			p.profit_type,
+			p.min_annualized_rate,
+			p.max_annualized_rate,
+			p.total_amount,
+			p.status,
+			p.min_invest_amount,
+			p.interest_from,
+			p.sale_end_time,
+			p.start_date,
+			p.end_date,
+			p.thumbnail,
+			p.is_novice,
+			p.join_lease,
+			p.invest_type,
+			p.sale_complated_time,
+			p.annualized_rate
+		FROM
+			ic_project as p
+		WHERE
+			p.status IN (30, 50, 60, 70)
+		<if test=" map.guaranties != null">
+			AND p.project_type in <foreach collection="map.guaranties" index="index" item="item" open="(" separator="," close=")"> #{item}  </foreach>    
+		</if>
+		AND p.del_flag = 1
+		AND p.is_novice = 1
+		ORDER BY
+			p.status ASC,
+			p.online_time DESC
+		<if test=" map.queryNum != null">
+			LIMIT #{map.queryNum}
+		</if>
+	</select>
+	
+	<!-- 获得可设置成预告的项目 -->
+	<select id="queryProjectFromNotice" resultMap="BaseResultMap">
+		select
+			<include refid="Base_Column_List" />
+		from ic_project as p
+		where status = 20 and del_flag = 1 and NOT EXISTS(
+			select project_id from ic_project_notice as n where p.id=n.project_id and n.del_flag=1
+		)
+		<if test="projectName != null">
+			and name like '${projectName}%'
+		</if>		
+	</select>
+	
+	<!-- 根据企业id获取履约中的项目 -->
+	<select id="getFullProjectsByEnterpriseId" resultMap="BaseInvestingResultMap">
+		select p.id,p.name,p.end_date,p.total_amount
+		 from ic_project as p LEFT JOIN ic_debt as d on d.id = p.debt_id 
+		 where p.status in (50,60) and p.del_flag>0 and d.enterprise_id = #{enterpriseId,jdbcType=BIGINT}	
+	</select>
+	
+	<!--  -->
+	<select id="getTotalAmountByEnterpriseIdAndStatus" resultType="java.math.BigDecimal">
+		select sum(p.total_amount) as total_amount from ic_project as p 
+			LEFT JOIN ic_debt as d on d.id = p.debt_id where p.status in
+			 <foreach collection="status" index="index" item="item" open="("
+				separator="," close=")"> #{item}  
+		     </foreach> 
+		     and p.del_flag>0 and d.enterprise_id = #{enterpriseId,jdbcType=BIGINT}	
+	</select>
+	
+	<!-- 获取需要还本付息的项目 -->
+	<select id="selectToRepaymentProject" resultMap="BaseResultMap"> 
+		select <include refid="Base_Column_List" /> from ic_project  where status > 20 and status <![CDATA[<]]>  70 and end_date <![CDATA[<=]]> curdate() 
+	</select>
+	<resultMap id="ExtendResultMap" type="Project" extends="BaseResultMap">
+		<result column="borrower_name" property="borrowerName" jdbcType="VARCHAR" />
+		<result column="mobile" property="mobile" jdbcType="BIGINT" />
+		<result column="sale_complated_time" property="saleComplatedTime" jdbcType="TIMESTAMP" />
+		<result column="loan_time" property="loanTime" jdbcType="TIMESTAMP" />
+		<result column="member_id" property="memberId" jdbcType="BIGINT" />
+	</resultMap>
+	<sql id="Loan_Base_Column_List_Pagin">
+		t.id as id,
+		t.project_type as project_type,
+		t.name as name, 
+		t.short_desc as short_desc,
+		t.profit_type as profit_type, 
+		t.risk_level as risk_level,
+		t.total_amount as total_amount, 
+		t.min_invest_amount as min_invest_amount,
+		t.start_date as start_date, 
+		t.end_date as end_date, 
+		t.online_time as online_time,
+		t.sale_end_time as sale_end_time,
+		t.sale_complated_time as sale_complated_time,  
+		t.interest_from as interest_from,
+		t.status as status, 
+		t.publish_id as publish_id, 
+		t.publish_time as publish_time, 
+		t.recommend as recommend,
+		t.recommend_weight as recommend_weight, 
+		t.create_time as create_time,
+		t.update_time as update_time, 
+		t.remarks as remarks, 
+		t.del_flag as del_flag,
+		t.original_project_number as original_project_number,
+		t.annualized_rate as annualized_rate,
+		t.invest_type as invest_type, 
+		t.manage_fee_rate as manage_fee_rate, 
+		t.overdue_fee_rate as overdue_fee_rate, 
+		t.borrower_id as borrower_id, 
+		t.borrower_type as borrower_type, 
+    	t.enterprise_id as enterprise_id,
+		t.borrow_period as borrow_period, 
+		t.borrow_period_type as borrow_period_type, 
+		t.security_type as security_type, 
+		t.instalment as instalment,
+		t.is_novice as isNovice,
+		t.guarantee_fee_rate as guarantee_fee_rate,
+		t.risk_fee_rate as risk_fee_rate,
+		t.introducer_fee_rate as introducer_fee_rate,
+		a.true_name as borrower_name,
+		a.mobile  as mobile,
+		a.id      as member_id,
+		f.loan_time as loan_time,
+		t.open_platform_key as open_platform_key
+	</sql>
+	
+	<select id="selectLoanForPagin" resultMap="ExtendResultMap">
+		select
+		<include refid="Loan_Base_Column_List_Pagin" /> from   ic_project as t FORCE index(ix_status_online_time)
+		LEFT JOIN uc_member as a on a.id = t.borrower_id
+	    left join fin_loan_detail as f on f.project_id=t.id
+		where t.del_flag>0 and t.invest_type = 2 
+		<if test=" map != null">
+			<if test=" map.id != null">
+				and t.id = #{map.id}
+			</if>
+			<if test=" map.securityType != null">
+				and t.security_type = #{map.securityType}
+			</if>
+			<if test=" map.originalProjectNumber != null">
+				and original_project_number = #{map.originalProjectNumber}
+			</if>
+			<if test=" map.mobile != null">
+				and a.mobile = #{map.mobile}
+			</if>
+			<if test=" map.debtType != null">
+				and debt_type = #{map.debtType}
+			</if>
+			<if test=" map.borrowerType != null">
+				and borrower_type = #{map.borrowerType}
+			</if>
+			<if test=" map.guarantyType != null">
+				and guaranty_type = #{map.guarantyType}
+			</if>
+			<if test=" map.amount != null">
+				and amount = #{map.amount}
+			</if>
+			<if test=" map.returnType != null">
+				and return_type = #{map.returnType}
+			</if>
+			<if test=" map.startDate != null">
+				and start_date = #{map.startDate}
+			</if>
+			<if test=" map.endDate != null">
+				and end_date = #{map.endDate}
+			</if>
+			<if test=" map.borrowerId != null">
+				and t.borrower_id = #{map.borrowerId}
+			</if>
+			<if test=" map.annualizedRate != null">
+				and annualized_rate = #{map.annualizedRate}
+			</if>
+			<if test=" map.feeRate != null">
+				and fee_rate = #{map.feeRate}
+			</if>
+			<if test=" map.remarks != null">
+				and remarks = #{map.remarks}
+			</if>
+			<if test=" map.publishId != null">
+				and publish_id = #{map.publishId}
+			</if>
+			<if test=" map.lenderId != null">
+				and lender_id = #{map.lenderId}
+			</if>
+			<if test=" map.status == null">
+				and t.status in  (50,51,52,70)
+				<!-- <foreach collection="map.status" index="index" item="item" open="(" separator="," close=")"> #{item}  </foreach> --> 
+			</if>
+			<if test=" map.status != null">
+				<if test=" map.status == 50">
+					and t.status =50
+				</if>
+				<if test=" map.status == 51">
+					and t.status =51
+				</if>
+				<if test=" map.status == 52">
+					and t.status in (52,70)
+				</if>
+			</if>
+			<if test=" map.interestFrom != null">
+				and interest_from = #{map.interestFrom}
+			</if>
+			<if test=" map.returnSource != null">
+				and return_source = #{map.returnSource}
+			</if>
+			<if test=" map.loanUse != null">
+				and loan_use = #{map.loanUse}
+			</if>
+			<if test=" map.createdStartTime != null">
+				and t.online_time <![CDATA[>=]]> #{map.createdStartTime}
+			</if>
+			<if test=" map.createdEndTime != null">
+				and t.online_time <![CDATA[<=]]> #{map.createdEndTime}
+			</if>
+			<if test="map.borrowerName != null">
+				 and a.true_name = #{map.borrowerName}
+			</if>
+			<if test=" map.name != null">
+				and t.name like  "%" #{map.name} "%"
+			</if>
+			<if test=" map.loanDateStartTime != null">
+				and f.loan_time <![CDATA[>=]]> #{map.loanDateStartTime}
+			</if>
+			<if test=" map.loanDateEndTime != null">
+				and f.loan_time <![CDATA[<=]]> #{map.loanDateEndTime}
+			</if>
+		</if>
+		order by t.id desc
+		LIMIT ${map.startRow}, ${map.pageSize} 
+	</select>
+	<select id="selectLoanForPaginTotalCount" resultType="java.lang.Integer">
+		select count(1)
+		from ic_project as t  FORCE index(ix_status_online_time)
+		left join uc_member as a on a.id = t.borrower_id 
+		left join fin_loan_detail as f on f.project_id=t.id
+		where t.del_flag>0  and t.invest_type = 2 
+		<if test=" map != null">
+			<if test=" map.id != null">
+				and t.id = #{map.id}
+			</if>
+			<if test=" map.securityType != null">
+				and t.security_type = #{map.securityType}
+			</if>
+			<if test=" map.originalProjectNumber != null">
+				and original_project_number = #{map.originalProjectNumber}
+			</if>
+			<if test=" map.mobile != null">
+				and a.mobile = #{map.mobile}
+			</if>
+			<if test=" map.debtType != null">
+				and debt_type = #{map.debtType}
+			</if>
+			<if test=" map.borrowerType != null">
+				and borrower_type = #{map.borrowerType}
+			</if>
+			<if test=" map.guarantyType != null">
+				and guaranty_type = #{map.guarantyType}
+			</if>
+			<if test=" map.amount != null">
+				and amount = #{map.amount}
+			</if>
+			<if test=" map.returnType != null">
+				and return_type = #{map.returnType}
+			</if>
+			<if test=" map.startDate != null">
+				and start_date = #{map.startDate}
+			</if>
+			<if test=" map.endDate != null">
+				and end_date = #{map.endDate}
+			</if>
+			<if test=" map.borrowerId != null">
+				and t.borrower_id = #{map.borrowerId}
+			</if>
+			<if test=" map.annualizedRate != null">
+				and annualized_rate = #{map.annualizedRate}
+			</if>
+			<if test=" map.feeRate != null">
+				and fee_rate = #{map.feeRate}
+			</if>
+			<if test=" map.remarks != null">
+				and remarks = #{map.remarks}
+			</if>
+			<if test=" map.publishId != null">
+				and publish_id = #{map.publishId}
+			</if>
+			<if test=" map.lenderId != null">
+				and lender_id = #{map.lenderId}
+			</if>
+			<if test=" map.lenderId != null">
+				and lender_id = #{map.lenderId}
+				</if>
+			<if test=" map.status == null">
+				and t.status in  (50,51,52,70)
+				<!-- <foreach collection="map.status" index="index" item="item" open="(" separator="," close=")"> #{item}  </foreach> --> 
+			</if>
+			<if test=" map.status != null">
+				<if test=" map.status == 50">
+					and t.status =50
+				</if>
+				<if test=" map.status == 51">
+					and t.status =51
+				</if>
+				<if test=" map.status == 52">
+					and t.status in (52,70)
+				</if>
+			</if>
+			<if test=" map.interestFrom != null">
+				and interest_from = #{map.interestFrom}
+			</if>
+			<if test=" map.returnSource != null">
+				and return_source = #{map.returnSource}
+			</if>
+			<if test=" map.loanUse != null">
+				and loan_use = #{map.loanUse}
+			</if>
+			<if test=" map.createdStartTime != null">
+				and t.online_time <![CDATA[>=]]> #{map.createdStartTime}
+			</if>
+			<if test=" map.createdEndTime != null">
+				and t.online_time <![CDATA[<=]]> #{map.createdEndTime}
+			</if>
+			<if test="map.borrowerName != null">
+				 and a.true_name = #{map.borrowerName}
+			</if>
+			<if test=" map.name != null">
+				and t.name like  "%" #{map.name} "%"
+			</if>
+			<if test=" map.loanDateStartTime != null">
+				and f.loan_time <![CDATA[>=]]> #{map.loanDateStartTime}
+			</if>
+			<if test=" map.loanDateEndTime != null">
+				and f.loan_time <![CDATA[<=]]> #{map.loanDateEndTime}
+			</if>
+		</if>
+	</select>
+	<select id="selectManageFeeForPagin" resultMap="ExtendResultMap">
+		select
+		<include refid="Loan_Base_Column_List_Pagin" />
+		from (SELECT p.id,m.true_name,m.mobile FROM ic_project as p
+		LEFT JOIN uc_member as m on m.id = p.borrower_id
+		where p.del_flag>0 and p.invest_type = 2 
+		<if test=" map != null">
+			<if test=" map.securityType != null">
+				and p.security_type = #{map.securityType}
+			</if>
+			<if test=" map.originalProjectNumber != null">
+				and original_project_number = #{map.originalProjectNumber}
+			</if>
+			<if test=" map.mobile != null">
+				and m.mobile = #{map.mobile}
+			</if>
+			<if test=" map.createdStartTime != null">
+				and p.online_time <![CDATA[>=]]> #{map.createdStartTime}
+			</if>
+			<if test=" map.createdEndTime != null">
+				and p.online_time <![CDATA[<=]]> #{map.createdEndTime}
+			</if>
+			<if test="map.borrowerName != null">
+				 and m.true_name = #{map.borrowerName}
+			</if>
+			<if test=" map.status != null">
+				and p.status in 
+				<foreach collection="map.status" index="index" item="item" open="(" separator="," close=")"> #{item}  </foreach> 
+			</if>
+		</if>
+		order by p.online_time desc
+		LIMIT ${map.startRow}, ${map.pageSize} ) AS a, ic_project AS t FORCE
+		INDEX(PRIMARY) 
+		WHERE a.id = t.id 
+	</select>
+	<select id="selectManageFeeForPaginTotalCount" resultType="java.lang.Integer">
+		select count(1)
+		from ic_project as t 
+		LEFT JOIN uc_member as m on m.id = t.borrower_id where t.del_flag>0  and t.invest_type = 2 
+		<if test=" map != null">
+			<if test=" map.securityType != null">
+				and t.security_type = #{map.securityType}
+			</if>
+			<if test=" map.originalProjectNumber != null">
+				and original_project_number = #{map.originalProjectNumber}
+			</if>
+			<if test=" map.createdStartTime != null">
+				and t.online_time <![CDATA[>=]]> #{map.createdStartTime}
+			</if>
+			<if test=" map.createdEndTime != null">
+				and t.online_time <![CDATA[<=]]> #{map.createdEndTime}
+			</if>
+			<if test=" map.mobile != null">
+				and m.mobile = #{map.mobile}
+			</if>
+			<if test="map.borrowerName != null">
+				 and m.true_name = #{map.borrowerName}
+			</if>
+			<if test=" map.status != null">
+				and t.status in 
+				<foreach collection="map.status" index="index" item="item" open="(" separator="," close=")"> #{item}  </foreach> 
+			</if>
+		</if>
+	</select>
+	 <sql id="NormalOverdue_Column_List_Pagin" >
+		p.id   as  project_id,
+		p.name  as  project_name,
+		p.total_amount  as total_amount,
+		p.annualized_rate as annualized_rate,
+		p.manage_fee_rate as manage_fee_rate,
+		u.true_name as borrower_name,
+		f.repay_date as repay_date,
+		f.interest_periods as interest_periods,
+		f.overdue_start_date as overdue_start_date,
+		f.overdue_principal as overdue_principal,
+		f.overdue_interest as overdue_interest,
+		f.interest_periods as interest_periods,
+		f.repay_status  as repay_status,
+		f.overdue_fine as overdue_fine,
+		f.id as overdue_repay_id,
+		f.repay_time as repay_time,
+		f.type as type,
+		f.overdue_day as overdue_day
+		
+  	</sql>
+  	 <resultMap id="NormalOverdueExtendResultMap" type="com.yourong.core.ic.model.ProjectInterestBiz">
+ 	 	<result column="project_id" property="projectId" jdbcType="BIGINT" />
+ 	    <result column="project_name" property="projectName" jdbcType="VARCHAR" />
+ 	    <result column="project_status" property="projectStatus" jdbcType="INTEGER" />
+ 	    <result column="status" property="status" jdbcType="INTEGER" />
+ 	    <result column="payable_interest" property="payableInterest" jdbcType="DECIMAL" />
+        <result column="payable_principal" property="payablePrincipal" jdbcType="DECIMAL" />
+		<result column="borrower_name" property="borrowerName" jdbcType="VARCHAR" />
+		<result column="end_date" property="endDate" jdbcType="TIMESTAMP" />
+		<result column="start_date" property="startDate" jdbcType="TIMESTAMP" />
+		<result column="mobile" property="mobile" jdbcType="BIGINT" />
+		<result column="original_project_number" property="originalProjectNumber" jdbcType="VARCHAR" />
+		<result column="online_time" property="onlineTime" jdbcType="TIMESTAMP" />
+		<result column="current_dead_line" property="currentDeadline" jdbcType="TIMESTAMP" />
+		<result column="security_type" property="securityType" jdbcType="VARCHAR" />
+		<result column="total_amount" property="totalAmount" jdbcType="DECIMAL" />
+		<result column="overdue_fee_rate" property="overdueFeeRate" jdbcType="DECIMAL" />
+		<result column="sale_end_time" property="saleEndTime" jdbcType="TIMESTAMP" />
+		<result column="manage_fee_rate" property="manageFeeRate" jdbcType="DECIMAL" />
+		<result column="repay_status" property="repayStatus" jdbcType="INTEGER" />
+		<result column="type" property="type" jdbcType="INTEGER" />
+		<result column="interest_periods" property="interestPeriods" jdbcType="VARCHAR" />
+		<result column="overdue_start_date" property="overdueStartDate" jdbcType="TIMESTAMP" />
+		<result column="repay_date" property="repayDate" jdbcType="TIMESTAMP" />
+		<result column="repay_time" property="repayTime" jdbcType="TIMESTAMP" />
+		<result column="overdue_principal" property="overduePrincipal" jdbcType="DECIMAL" />
+		<result column="overdue_interest" property="overdueInterest" jdbcType="DECIMAL" />
+		<result column="overdue_fine" property="overdueFine" jdbcType="DECIMAL" />
+		<result column="overdue_repay_id" property="overdueRepayId" jdbcType="BIGINT" />
+		<result column="overdue_day" property="overdueDays" jdbcType="INTEGER" />
+	</resultMap>
+	<sql id="overdue_Column_List_Pagin" >
+		p.id   as  project_id,
+		p.name  as  project_name,
+		p.security_type as security_type,
+		p.status  as  project_status,
+		p.borrower_id  as  borrower_id,
+		p.total_amount  as total_amount,
+		p.annualized_rate as annualized_rate,
+		p.end_date  as  end_date,
+		p.start_date  as  start_date,
+		p.overdue_fee_rate as overdue_fee_rate,
+		p.original_project_number  as  original_project_number,
+		p.manage_fee_rate as manage_fee_rate,
+		p.online_time  as  online_time,
+		p.sale_end_time as sale_end_time,
+		u.true_name as borrower_name,
+		u.mobile  as mobile,
+		f.status  as status
+  	</sql>
+  	 <resultMap id="OverdueExtendResultMap" type="com.yourong.core.ic.model.ProjectInterestBiz">
+ 	 	<result column="project_id" property="projectId" jdbcType="BIGINT" />
+ 	 	<result column="interest_id" property="interestId" jdbcType="BIGINT" />
+ 	    <result column="project_name" property="projectName" jdbcType="VARCHAR" />
+ 	    <result column="project_status" property="projectStatus" jdbcType="INTEGER" />
+ 	    <result column="interest_status" property="interestStatus" jdbcType="INTEGER" />
+ 	    <result column="status" property="status" jdbcType="INTEGER" />
+ 	    <result column="borrower_id" property="borrowerId" jdbcType="BIGINT" />
+ 	    <result column="payable_interest" property="payableInterest" jdbcType="DECIMAL" />
+        <result column="payable_principal" property="payablePrincipal" jdbcType="DECIMAL" />
+		<result column="borrower_name" property="borrowerName" jdbcType="VARCHAR" />
+		<result column="online_time" property="onlineTime" jdbcType="TIMESTAMP" />
+		<result column="end_date" property="endDate" jdbcType="TIMESTAMP" />
+		<result column="start_date" property="startDate" jdbcType="TIMESTAMP" />
+		<result column="mobile" property="mobile" jdbcType="BIGINT" />
+		<result column="original_project_number" property="originalProjectNumber" jdbcType="VARCHAR" />
+		<result column="online_time" property="onlineTime" jdbcType="TIMESTAMP" />
+		<result column="current_dead_line" property="currentDeadline" jdbcType="TIMESTAMP" />
+		<result column="security_type" property="securityType" jdbcType="VARCHAR" />
+		<result column="total_amount" property="totalAmount" jdbcType="DECIMAL" />
+		<result column="annualized_rate" property="annualizedRate" jdbcType="DECIMAL" />
+		<result column="overdue_fee_rate" property="overdueFeeRate" jdbcType="DECIMAL" />
+		<result column="sale_end_time" property="saleEndTime" jdbcType="TIMESTAMP" />
+		<result column="manage_fee_rate" property="manageFeeRate" jdbcType="DECIMAL" />
+		<result column="borrow_period" property="borrowPeriod" jdbcType="INTEGER" />
+		<result column="borrow_period_type" property="borrowPeriodType" jdbcType="INTEGER" />
+		<result column="remarks" property="remarks" jdbcType="VARCHAR" />
+		<result column="guarantee_fee_rate" property="guaranteeFeeRate" jdbcType="BIGINT" />
+		<result column="risk_fee_rate" property="riskFeeRate" jdbcType="BIGINT" />
+ 		<result column="introducer_fee_rate" property="introducerFeeRate" jdbcType="BIGINT" /> 
+	</resultMap>
+	<!-- 后台  垫资管理列表 -->
+	<select id="selectOverdueForPagin" resultMap="OverdueExtendResultMap">
+		select
+		<include refid="overdue_Column_List_Pagin" /> from 
+		fin_overdue_log as f left join ic_project as p on p.id=f.project_id 
+		left join uc_member as u on u.id=p.borrower_id 
+		left join (select  project_id,min(start_date) start_date from fin_overdue_log  where status=1 GROUP BY project_id ) as t
+		on t.project_id=p.id
+		<if test=" map != null" >
+			 <if test=" map.loanStatus != null" >
+				<if test="map.loanStatus == 2">
+					left  JOIN fin_overdue_log as f1 on p.id = f1.project_id and f1.status=1
+				</if>
+        	</if>
+		</if>
+		where p.invest_type='2'	
+		and f.type=1
+	<if test=" map != null" >
+        <if test=" map.originalProjectNumber != null" >
+          and p.original_project_number = #{map.originalProjectNumber}
+        </if>
+         <if test=" map.projectName != null" >
+          and p.name like  "%" #{map.projectName} "%"
+        </if>
+        <if test=" map.borrowerName != null" >
+          and u.true_name = #{map.borrowerName}
+        </if>
+         <if test=" map.mobile != null" >
+          and u.mobile = #{map.mobile}
+        </if>
+         <if test=" map.securityType != null" >
+          and p.security_type = #{map.securityType}
+        </if>
+         <if test=" map.securityType != null" >
+          and p.security_type = #{map.securityType}
+        </if>
+        <if test=" map.createdStartTime != null">
+			and t.start_date <![CDATA[>=]]> #{map.createdStartTime}
+		</if>
+		<if test=" map.createdEndTime != null">
+			and t.start_date <![CDATA[<=]]> #{map.createdEndTime}
+		</if>
+		<if test=" map.projectId!= null" >
+          	and p.id = #{map.projectId}
+        </if>
+        <if test=" map.loanStatus!= null" >
+        		<if test="map.loanStatus == 1">
+					and	f.status =1
+				</if>
+				<if test="map.loanStatus == 2">
+					and f1.status is null 
+				</if>
+				 GROUP BY f.project_id
+        </if>
+        <if test=" map.loanStatus== null" >
+        	 GROUP BY f.project_id
+        </if>
+    </if>
+    	ORDER BY  p.id  desc 
+      LIMIT	${map.startRow}, ${map.pageSize}  	
+	</select>
+	<!-- 垫资管理列表 统计 -->
+	<select id="selectOverdueForPaginTotalCount" resultType="java.lang.Integer">
+		select count(1) 
+		from (select status,project_id from fin_overdue_log where type=1 group by project_id) as f
+		left join ic_project as p  on p.id=f.project_id 
+		left join uc_member as u on u.id=p.borrower_id 
+		left join (select  project_id,min(start_date) start_date from fin_overdue_log  where status=1 GROUP BY project_id ) as t
+		on t.project_id=p.id
+		<if test=" map != null" >
+			<if test=" map.loanStatus!= null">
+					right join (select status,project_id from fin_overdue_log where status=#{map.loanStatus}  group by project_id) as f1 on f.project_id=f1.project_id
+			</if>
+		</if>
+		where p.invest_type='2'	
+		<if test=" map != null" >
+        <if test=" map.originalProjectNumber != null" >
+          and p.original_project_number = #{map.originalProjectNumber}
+        </if>
+         <if test=" map.projectName != null" >
+          and p.name like  "%" #{map.projectName} "%"
+        </if>
+        <if test=" map.borrowerName != null" >
+          and u.true_name = #{map.borrowerName}
+        </if>
+         <if test=" map.mobile != null" >
+          and u.mobile = #{map.mobile}
+        </if>
+         <if test=" map.securityType != null" >
+          and p.security_type = #{map.securityType}
+        </if>
+         <if test=" map.securityType != null" >
+          and p.security_type = #{map.securityType}
+        </if>
+        <if test=" map.createdStartTime != null">
+			and t.start_date <![CDATA[>=]]> #{map.createdStartTime}
+		</if>
+		<if test=" map.createdEndTime != null">
+			and t.start_date <![CDATA[<=]]> #{map.createdEndTime}
+		</if>
+		<if test=" map.projectId!= null" >
+          	and p.id = #{map.projectId}
+        </if>
+    </if>
+	</select>
+	<!-- 逾期管理列表 统计 -->
+	<select id="selectNormalOverdueForPaginTotalCount" resultType="java.lang.Integer">
+		select count(1) 
+		from fin_overdue_repay_log as f
+		left join ic_project as p  on p.id=f.project_id 
+		left join uc_member as u on u.id=p.borrower_id 
+		where p.invest_type='2'	and f.type=2  and f.del_flag>0  
+		<if test=" map != null" >
+        <if test=" map.originalProjectNumber != null" >
+          and p.original_project_number = #{map.originalProjectNumber}
+        </if>
+         <if test=" map.projectName != null" >
+          and p.name like  #{map.projectName} "%"
+        </if>
+        <if test=" map.borrowerName != null" >
+          and u.true_name = #{map.borrowerName}
+        </if>
+         <if test=" map.mobile != null" >
+          and u.mobile = #{map.mobile}
+        </if>
+         <if test=" map.securityType != null" >
+          and p.security_type = #{map.securityType}
+        </if>
+         <if test=" map.securityType != null" >
+          and p.security_type = #{map.securityType}
+        </if>
+        <if test=" map.overdueStartDateStart != null">
+			and f.overdue_start_date <![CDATA[>=]]> #{map.overdueStartDateStart}
+		</if>
+		<if test=" map.overdueStartDateEnd != null">
+			and f.overdue_start_date <![CDATA[<=]]> #{map.overdueStartDateEnd}
+		</if>
+		<if test=" map.createdStartTime != null">
+			and f.repay_time <![CDATA[>=]]> #{map.createdStartTime}
+		</if>
+		<if test=" map.createdEndTime != null">
+			and f.repay_time <![CDATA[<=]]> #{map.createdEndTime}
+		</if>
+		<if test=" map.projectId!= null" >
+          	and p.id = #{map.projectId}
+        </if>
+        <if test=" map.repayStatus!= null" >
+          	<if test=" map.repayStatus== 1" >
+          		and f.repay_status in (1,2,4) 
+        	</if>
+        	<if test=" map.repayStatus== 3" >
+          		and f.repay_status =3 
+        	</if>
+        </if>
+    </if>
+	</select>
+	<!-- 后台  逾期管理列表 -->
+	<select id="selectNormalOverdueForPagin" resultMap="NormalOverdueExtendResultMap">
+		select
+		<include refid="NormalOverdue_Column_List_Pagin" /> from 
+		fin_overdue_repay_log as f left join ic_project as p on p.id=f.project_id 
+		left join uc_member as u on u.id=p.borrower_id 
+		where p.invest_type=2	and f.type=2 and f.del_flag>0 
+	<if test=" map != null" >
+        <if test=" map.originalProjectNumber != null" >
+          and p.original_project_number = #{map.originalProjectNumber}
+        </if>
+         <if test=" map.projectName != null" >
+          and p.name like  #{map.projectName} "%"
+        </if>
+        <if test=" map.borrowerName != null" >
+          and u.true_name = #{map.borrowerName}
+        </if>
+         <if test=" map.mobile != null" >
+          and u.mobile = #{map.mobile}
+        </if>
+         <if test=" map.securityType != null" >
+          and p.security_type = #{map.securityType}
+        </if>
+         <if test=" map.securityType != null" >
+          and p.security_type = #{map.securityType}
+        </if>
+        <if test=" map.overdueStartDateStart != null">
+			and f.overdue_start_date <![CDATA[>=]]> #{map.overdueStartDateStart}
+		</if>
+		<if test=" map.overdueStartDateEnd != null">
+			and f.overdue_start_date <![CDATA[<=]]> #{map.overdueStartDateEnd}
+		</if>
+		<if test=" map.createdStartTime != null">
+			and f.repay_time <![CDATA[>=]]> #{map.createdStartTime}
+		</if>
+		<if test=" map.createdEndTime != null">
+			and f.repay_time <![CDATA[<=]]> #{map.createdEndTime}
+		</if>
+		<if test=" map.projectId!= null" >
+          	and p.id = #{map.projectId}
+        </if>
+         <if test=" map.repayStatus!= null" >
+          	<if test=" map.repayStatus== 1" >
+          		and f.repay_status in (1,2,4) 
+        	</if>
+        	<if test=" map.repayStatus== 3" >
+          		and f.repay_status =3 
+        	</if>
+        </if>
+    </if>
+    	ORDER BY  p.id  desc 
+      LIMIT	${map.startRow}, ${map.pageSize}  	
+	</select>
+	<!-- 直投项目 -->
+	<resultMap id="DirectBaseResultMap" type="Project">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="project_type" property="projectType" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="short_desc" property="shortDesc" jdbcType="VARCHAR" />
+		<result column="profit_type" property="profitType" jdbcType="VARCHAR" />
+		<result column="risk_level" property="riskLevel" jdbcType="VARCHAR" />
+		<result column="total_amount" property="totalAmount" jdbcType="DECIMAL" />
+		<result column="start_date" property="startDate" jdbcType="TIMESTAMP" />
+		<result column="end_date" property="endDate" jdbcType="TIMESTAMP" />
+		<result column="online_time" property="onlineTime" jdbcType="TIMESTAMP" />
+		<result column="sale_end_time" property="saleEndTime" jdbcType="TIMESTAMP" />
+		<result column="interest_from" property="interestFrom" jdbcType="INTEGER" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="publish_id" property="publishId" jdbcType="BIGINT" />
+		<result column="publish_time" property="publishTime" jdbcType="TIMESTAMP" />
+		<result column="recommend" property="recommend" jdbcType="INTEGER" />
+		<result column="recommend_weight" property="recommendWeight" jdbcType="INTEGER" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+		<result column="remarks" property="remarks" jdbcType="VARCHAR" />
+		<result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+		<result column="description" property="description" jdbcType="VARCHAR" />
+		<result column="thumbnail" property="thumbnail" jdbcType="VARCHAR" />
+		<result column="is_novice" property="isNovice" jdbcType="INTEGER" />
+		<result column="join_lease" property="joinLease" jdbcType="INTEGER" />
+		<result column="app_recommend" property="appRecommend" jdbcType="INTEGER" />
+		<result column="app_recommend_weight" property="appRecommendWeight" jdbcType="INTEGER" />
+		<result column="online_notice" property="onlineNotice" jdbcType="INTEGER" />
+		<result column="notice_notice" property="noticeNotice" jdbcType="INTEGER" />
+		<result column="lvgou_flag" property="lvgouFlag" jdbcType="INTEGER" />
+		<result column="original_project_number" property="originalProjectNumber" jdbcType="VARCHAR" />
+		<result column="annualized_rate" property="annualizedRate" jdbcType="DECIMAL" />
+		<result column="invest_type" property="investType" jdbcType="INTEGER" />
+		<result column="manage_fee_rate" property="manageFeeRate" jdbcType="DECIMAL" />
+		<result column="overdue_fee_rate" property="overdueFeeRate" jdbcType="DECIMAL" />
+		<result column="borrower_id" property="borrowerId" jdbcType="BIGINT" />
+		<result column="borrower_type" property="borrowerType" jdbcType="INTEGER" />
+		<result column="enterprise_id" property="enterpriseId" jdbcType="BIGINT" />
+		<result column="borrow_period" property="borrowPeriod" jdbcType="INTEGER" />
+		<result column="borrow_period_type" property="borrowPeriodType" jdbcType="INTEGER" />
+		<result column="security_type" property="securityType" jdbcType="VARCHAR" />
+		<result column="instalment" property="instalment" jdbcType="INTEGER" />
+		<result column="borrow_detail" property="borrowDetail" jdbcType="VARCHAR" />
+		<result column="sale_complated_time" property="saleComplatedTime" jdbcType="TIMESTAMP" />
+		<result column="auditName" property="auditName" jdbcType="VARCHAR" />
+		<result column="open_platform_key" property="openPlatformKey" jdbcType="VARCHAR" />
+	</resultMap>
+		
+		
+	<sql id="Direct_Base_Column_List_Pagin">
+		t.id as id,
+		t.project_type as project_type,
+		t.name as name, 
+		t.short_desc as short_desc,
+		t.profit_type as profit_type, 
+		t.risk_level as risk_level,
+		t.total_amount as total_amount, 
+		t.min_invest_amount as min_invest_amount,
+		t.start_date as start_date, 
+		t.end_date as end_date, 
+		t.online_time as online_time,
+		t.sale_end_time as sale_end_time, 
+		t.sale_complated_time as sale_complated_time,
+		t.interest_from as interest_from,
+		t.status as status, 
+		t.publish_id as publish_id, 
+		t.publish_time as publish_time, 
+		t.recommend as recommend,
+		t.recommend_weight as recommend_weight, 
+		t.create_time as create_time,
+		t.update_time as update_time, 
+		t.remarks as remarks, 
+		t.del_flag as del_flag,
+		t.original_project_number as original_project_number,
+		t.annualized_rate as annualized_rate,
+		t.invest_type as invest_type, 
+		t.manage_fee_rate as manage_fee_rate, 
+		t.overdue_fee_rate as overdue_fee_rate, 
+		t.borrower_id as borrower_id, 
+		t.borrower_type as borrower_type, 
+    	t.enterprise_id as enterprise_id,
+		t.borrow_period as borrow_period, 
+		t.borrow_period_type as borrow_period_type, 
+		t.security_type as security_type, 
+		t.instalment as instalment,
+		t.open_platform_key as open_platform_key
+	</sql>
+    <!-- 直投后台分页查询 -->
+	<select id="directSelectForPagin" resultMap="DirectBaseResultMap">
+		select u.name as auditName,
+		n.name as publishName,
+		<include refid="Direct_Base_Column_List_Pagin" />
+		from ic_project as t 
+		left join uc_member as m on m.id = t.borrower_id left join (SELECT process_id,audit_id from bsc_audit GROUP BY process_id ORDER BY id) as ba
+		on t.id=ba.process_id
+		left join sys_user as u on ba.audit_id=u.id
+		left join sys_user AS n on t.publish_id = n.id
+		where t.del_flag > 0 and t.invest_type = 2
+		<if test=" map != null">
+			 <if test=" map.borrowerName != null" >
+		          and m.true_name = #{map.borrowerName}
+	         </if>
+	         <if test=" map.id != null" >
+		          and t.id = #{map.id}
+	         </if>
+	         <if test=" map.originalProjectNumber != null" >
+		          and t.original_project_number = #{map.originalProjectNumber}
+	         </if>
+	         <if test=" map.name != null" >
+		          and t.name LIKE CONCAT(#{map.name},'%')
+	         </if>
+	         <if test=" map.totalAmountStart != null" >
+		          and t.total_amount <![CDATA[>=]]> #{map.totalAmountStart}
+	         </if>
+	         <if test=" map.totalAmountEnd != null" >
+		          and t.total_amount <![CDATA[<=]]> #{map.totalAmountEnd}
+	         </if>
+	         <if test=" map.securityType != null" >
+		          and t.security_type = #{map.securityType}
+	         </if>
+	         <if test=" map.status!= null" >
+		          and t.status = #{map.status}
+	         </if>
+	          <if test=" map.borrowPeriod != null" >
+		          and t.borrow_period = #{map.borrowPeriod}
+	         </if>
+	         <if test=" map.borrowPeriodType != null" >
+		          and t.borrow_period_type = #{map.borrowPeriodType}
+	         </if>
+	         <if test=" map.onlineTimeStart != null" >
+		          and t.online_time <![CDATA[>=]]>  #{map.onlineTimeStart}
+	         </if>
+	         <if test=" map.onlineTimeEnd != null" >
+		          and t.online_time <![CDATA[<=]]> #{map.onlineTimeEnd}
+	         </if>
+	         <if test=" map.startSaleTime != null" >
+		          and t.online_time <![CDATA[>=]]> #{map.startSaleTime}
+	         </if>
+	         <if test=" map.endSaleTime != null" >
+		          and t.sale_end_time <![CDATA[<=]]> #{map.endSaleTime}
+	         </if>
+	         
+	         <if test=" map.endDateStartTime != null">
+				and t.end_date <![CDATA[>=]]> #{map.endDateStartTime}
+			 </if>
+			 <if test=" map.endDateEndTime != null">
+				and t.end_date <![CDATA[<=]]> #{map.endDateEndTime}
+			</if>
+			 <if test=" map.createTimeStart != null" >
+		          and t.create_time <![CDATA[>=]]>  #{map.createTimeStart}
+	         </if>
+	         <if test=" map.createTimeEnd != null" >
+		          and t.create_time <![CDATA[<=]]> #{map.createTimeEnd}
+	         </if>
+	          <if test=" map.operateName != null" >
+		          and u.name = #{map.operateName}
+	         </if>
+	         <if test=" map.publishName != null" >
+		          and n.name = #{map.publishName}
+	         </if>
+		</if>
+		<if test=" map != null">
+			<if test=" map.desc != null">
+				order by ${map.desc} desc
+			</if>
+			<if test=" map.asc != null">
+				order by ${map.asc} asc
+			</if>
+		</if>
+		LIMIT ${map.startRow}, ${map.pageSize}
+	</select>
+	<!-- 直投后台分页查询-->
+	<select id="directSelectForPaginTotalCount" resultType="java.lang.Integer">
+		select count(1)
+		from ic_project as t 
+		left join uc_member as m on m.id = t.borrower_id 
+		left join (SELECT process_id,audit_id from bsc_audit GROUP BY process_id ORDER BY id) as ba
+		on t.id=ba.process_id
+		left join sys_user as u on ba.audit_id=u.id 
+		left join sys_user AS n on t.publish_id = n.id
+		where t.del_flag > 0 and t.invest_type= 2
+		<if test=" map != null">
+			<if test=" map.borrowerName != null" >
+		          and m.true_name = #{map.borrowerName}
+	         </if>
+	         <if test=" map.id != null" >
+		          and t.id = #{map.id}
+	         </if>
+	         <if test=" map.originalProjectNumber != null" >
+		          and t.original_project_number = #{map.originalProjectNumber}
+	         </if>
+	         <if test=" map.name != null" >
+				 and t.name LIKE CONCAT(#{map.name},'%')
+	         </if>
+	         <if test=" map.totalAmountStart != null" >
+		          and t.total_amount <![CDATA[>=]]> #{map.totalAmountStart}
+	         </if>
+	         <if test=" map.totalAmountEnd != null" >
+		          and t.total_amount <![CDATA[<=]]> #{map.totalAmountEnd}
+	         </if>
+	         <if test=" map.securityType != null" >
+		          and t.security_type = #{map.securityType}
+	         </if>
+	         <if test=" map.borrowPeriod != null" >
+		          and t.borrow_period = #{map.borrowPeriod}
+	         </if>
+	         <if test=" map.borrowPeriodType != null" >
+		          and t.borrow_period_type = #{map.borrowPeriodType}
+	         </if>
+	         <if test=" map.status!= null" >
+		          and t.status = #{map.status}
+	         </if>
+	         <if test=" map.onlineTimeStart != null" >
+		          and t.online_time <![CDATA[>=]]>  #{map.onlineTimeStart}
+	         </if>
+	         <if test=" map.onlineTimeEnd != null" >
+		          and t.online_time <![CDATA[<=]]> #{map.onlineTimeEnd}
+	         </if>
+	         <if test=" map.startSaleTime != null" >
+		          and t.online_time <![CDATA[>=]]> #{map.startSaleTime}
+	         </if>
+	         <if test=" map.endSaleTime != null" >
+		          and t.sale_end_time <![CDATA[<=]]> #{map.endSaleTime}
+	         </if>
+	         <if test=" map.endDateStartTime != null">
+				and t.end_date <![CDATA[>=]]> #{map.endDateStartTime}
+			 </if>
+			 <if test=" map.endDateEndTime != null">
+				and t.end_date <![CDATA[<=]]> #{map.endDateEndTime}
+			</if>
+			 <if test=" map.createTimeStart != null" >
+		          and t.create_time <![CDATA[>=]]>  #{map.createTimeStart}
+	         </if>
+	         <if test=" map.createTimeEnd != null" >
+		          and t.create_time <![CDATA[<=]]> #{map.createTimeEnd}
+	         </if>
+	          <if test=" map.operateName != null" >
+		          and u.name = #{map.operateName}
+	         </if>
+	         <if test=" map.publishName != null" >
+		          and n.name = #{map.publishName}
+	         </if>
+		</if>
+	</select>
+	
+	<!-- s==添加直投项目 -->
+	<insert id="insertDirectProject" parameterType="Project" useGeneratedKeys="true" keyProperty="id">
+		insert into ic_project
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+				debt_id,
+			<if test="originalProjectNumber != null">
+				original_project_number,
+			</if>
+			<if test="projectType != null">
+				project_type,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="annualizedRate != null">
+				annualized_rate,
+			</if>
+			<if test="annualizedRateType != null">
+				annualized_rate_type,
+			</if>
+			<if test="minAnnualizedRate != null">
+				min_annualized_rate,
+			</if>
+			<if test="maxAnnualizedRate != null">
+				max_annualized_rate,
+			</if>
+			<if test="keyword != null">
+				keyword,
+			</if>
+			<if test="shortDesc != null">
+				short_desc,
+			</if>
+			<if test="profitType != null">
+				profit_type,
+			</if>
+			<if test="riskLevel != null">
+				risk_level,
+			</if>
+			<if test="totalAmount != null">
+				total_amount,
+			</if>
+			<if test="minInvestAmount != null">
+				min_invest_amount,
+			</if>
+			<if test="incrementAmount != null">
+				increment_amount,
+			</if>
+				start_date,
+				end_date,
+			<if test="onlineTime != null">
+				online_time,
+			</if>
+			<if test="saleEndTime != null">
+				sale_end_time,
+			</if>
+			<if test="interestFrom != null">
+				interest_from,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="publishId != null">
+				publish_id,
+			</if>
+				publish_time,
+			<if test="recommend != null">
+				recommend,
+			</if>
+			<if test="recommendWeight != null">
+				recommend_weight,
+			</if>
+				create_time,
+				update_time,
+			<if test="remarks != null">
+				remarks,
+			</if>
+				del_flag,
+			<if test="description != null">
+				description,
+			</if>
+			<if test="thumbnail != null">
+				thumbnail,
+			</if>
+			<if test="isNovice != null">
+				is_novice,
+			</if>
+			<if test="joinLease != null">
+				join_lease,
+			</if>
+			<if test="onlineNotice != null">
+				online_notice,
+			</if>
+			<if test="noticeNotice != null">
+				notice_notice,
+			</if>
+			invest_type,
+			<if test="manageFeeRate != null">
+			manage_fee_rate,
+			</if>
+			<if test="overdueFeeRate != null">
+			overdue_fee_rate,
+			</if>
+			
+			<if test="guaranteeFeeRate != null">
+			guarantee_fee_rate,
+			</if>
+			<if test="riskFeeRate != null">
+			risk_fee_rate,
+			</if>
+			<if test="lateFeeRate != null">
+			late_fee_rate,
+			</if>
+			<if test="introducerFeeRate != null">
+			introducer_fee_rate,
+			</if>
+			<if test="introducerId != null">
+			introducer_id,
+			</if>
+			
+			<if test="borrowerId != null">
+			borrower_id,
+			</if>
+			<if test="borrowerType != null">
+			borrower_type,
+			</if>
+			<if test="enterpriseId != null">
+			enterprise_id,
+			</if>
+			<if test="borrowPeriod != null">
+			borrow_period,
+			</if>
+			<if test="borrowPeriodType != null">
+			borrow_period_type,
+			</if>
+			<if test="securityType != null">
+			security_type,
+			</if>
+			<if test="instalment != null">
+			instalment,
+			</if>
+			<if test="saleComplatedTime != null">
+			sale_complated_time,
+			</if>
+			<if test="borrowDetail != null">
+			borrow_detail,
+			</if>
+			<if test="transferFlag != null">
+			transfer_flag,
+			</if>
+			<if test="transferAfterInterest != null">
+			transfer_after_interest,
+			</if>
+			<if test="openPlatformKey != null">
+			open_platform_key
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+				0,
+			<if test="originalProjectNumber != null">
+				#{originalProjectNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="projectType != null">
+				#{projectType,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="annualizedRate != null">
+				#{annualizedRate,jdbcType=VARCHAR},
+			</if>
+			<if test="annualizedRateType != null">
+				#{annualizedRateType,jdbcType=DECIMAL},
+			</if>
+			<if test="minAnnualizedRate != null">
+				#{minAnnualizedRate,jdbcType=DECIMAL},
+			</if>
+			<if test="maxAnnualizedRate != null">
+				#{maxAnnualizedRate,jdbcType=DECIMAL},
+			</if>
+			<if test="keyword != null">
+				#{keyword,jdbcType=VARCHAR},
+			</if>
+			<if test="shortDesc != null">
+				#{shortDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="profitType != null">
+				#{profitType,jdbcType=VARCHAR},
+			</if>
+			<if test="riskLevel != null">
+				#{riskLevel,jdbcType=VARCHAR},
+			</if>
+			<if test="totalAmount != null">
+				#{totalAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="minInvestAmount != null">
+				#{minInvestAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="incrementAmount != null">
+				#{incrementAmount,jdbcType=DECIMAL},
+			</if>
+			"0000-00-00 00:00:00","0000-00-00 00:00:00",
+			<if test="onlineTime != null">
+				#{onlineTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="saleEndTime != null">
+				#{saleEndTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="interestFrom != null">
+				#{interestFrom,jdbcType=INTEGER},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=INTEGER},
+			</if>
+			<if test="publishId != null">
+				#{publishId,jdbcType=BIGINT},
+			</if>
+				now(),
+			<if test="recommend != null">
+				#{recommend,jdbcType=INTEGER},
+			</if>
+			<if test="recommendWeight != null">
+				#{recommendWeight,jdbcType=INTEGER},
+			</if>
+			now(),now(),
+			<if test="remarks != null">
+				#{remarks,jdbcType=VARCHAR},
+			</if>
+			1,
+			<if test="description != null">
+				#{description,jdbcType=VARCHAR},
+			</if>
+			<if test="thumbnail != null">
+				#{thumbnail,jdbcType=VARCHAR},
+			</if>
+			<if test="isNovice != null">
+				#{isNovice,jdbcType=INTEGER},
+			</if>
+			<if test="joinLease != null">
+				#{joinLease,jdbcType=INTEGER},
+			</if>
+			<if test="onlineNotice != null">
+				#{onlineNotice,jdbcType=INTEGER},
+			</if>
+			<if test="noticeNotice != null">
+				#{noticeNotice,jdbcType=INTEGER},
+			</if>
+			2,
+			<if test="manageFeeRate != null">
+				#{manageFeeRate,jdbcType=INTEGER},
+			</if>
+			<if test="overdueFeeRate != null">
+				#{overdueFeeRate,jdbcType=INTEGER},
+			</if>
+			
+			<if test="guaranteeFeeRate != null">
+			#{guaranteeFeeRate,jdbcType=INTEGER},
+			</if>
+			<if test="riskFeeRate != null">
+			#{riskFeeRate,jdbcType=INTEGER},
+			</if>
+			<if test="lateFeeRate != null">
+			#{lateFeeRate,jdbcType=INTEGER},
+			</if>
+			<if test="introducerFeeRate != null">
+			#{introducerFeeRate,jdbcType=INTEGER},
+			</if>
+			<if test="introducerId != null">
+			#{introducerId,jdbcType=INTEGER},
+			</if>
+			<if test="borrowerId != null">
+				#{borrowerId,jdbcType=INTEGER},
+			</if>
+			<if test="borrowerType != null">
+				#{borrowerType,jdbcType=INTEGER},
+			</if>
+			<if test="enterpriseId != null">
+				#{enterpriseId,jdbcType=INTEGER},
+			</if>
+			<if test="borrowPeriod != null">
+				#{borrowPeriod,jdbcType=INTEGER},
+			</if>
+			<if test="borrowPeriodType != null">
+				#{borrowPeriodType,jdbcType=INTEGER},
+			</if>
+			<if test="securityType != null">
+				#{securityType,jdbcType=INTEGER},
+			</if>
+			<if test="instalment != null">
+				#{instalment,jdbcType=INTEGER},
+			</if>
+			<if test="saleComplatedTime != null">
+				#{saleComplatedTime,jdbcType=INTEGER},
+			</if>
+			<if test="borrowDetail != null">
+				#{borrowDetail,jdbcType=VARCHAR},
+			</if>
+			<if test="transferFlag != null">
+				#{transferFlag,jdbcType=INTEGER},
+			</if>
+			<if test="transferAfterInterest != null">
+			#{transferAfterInterest,jdbcType=INTEGER},
+			</if>
+			<if test="openPlatformKey != null">
+			#{openPlatformKey,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<!-- e==添加直投项目 -->
+	
+	<!-- 项目编号或者名称查询项目 -->
+	<select id="findDirectProjectByProjectNameOrCode" resultType="java.lang.Integer">
+		select count(1) from ic_project where del_flag>0 
+		<if test="map!=null">
+			<choose>
+				<when test="map.namePeriod != null and map.namePeriod != ''">
+					<if test="map.name!=null and map.originalProjectNumber!=null">
+						and( name = #{map.name} or name like '${map.namePeriod}%'
+						or original_project_number = #{map.originalProjectNumber})
+					</if>
+				</when>
+				<otherwise>
+					<if test="map.name!=null and map.originalProjectNumber!=null">
+						and( name = #{map.name} 
+						or original_project_number = #{map.originalProjectNumber})
+					</if>
+				</otherwise>
+			</choose>
+			<if test="map.id!=null">
+				and id != #{map.id}
+			</if>
+		</if>
+	</select>
+	
+	<update id="updateDirectProjectSelective" parameterType="Project">
+		update ic_project
+		<set>
+			<if test="debtId != null">
+				debt_id = 0,
+			</if>
+			<if test="projectType != null">
+				project_type = #{projectType,jdbcType=VARCHAR},
+			</if>
+			<if test="originalProjectNumber != null">
+				original_project_number = #{originalProjectNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="annualizedRate != null">
+				annualized_rate = #{annualizedRate,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="keyword != null">
+				keyword = #{keyword,jdbcType=VARCHAR},
+			</if>
+			<if test="shortDesc != null">
+				short_desc = #{shortDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="profitType != null">
+				profit_type = #{profitType,jdbcType=VARCHAR},
+			</if>
+			<if test="riskLevel != null">
+				risk_level = #{riskLevel,jdbcType=VARCHAR},
+			</if>
+			<if test="totalAmount != null">
+				total_amount = #{totalAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="minInvestAmount != null">
+				min_invest_amount = #{minInvestAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="maxInvestAmount != null">
+				max_invest_amount = #{maxInvestAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="incrementAmount != null">
+				increment_amount = #{incrementAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="annualizedRateType != null">
+				annualized_rate_type =
+				#{annualizedRateType,jdbcType=INTEGER},
+			</if>
+			<if test="minAnnualizedRate != null">
+				min_annualized_rate =
+				#{minAnnualizedRate,jdbcType=DECIMAL},
+			</if>
+			<if test="maxAnnualizedRate != null">
+				max_annualized_rate =
+				#{maxAnnualizedRate,jdbcType=DECIMAL},
+			</if>
+			<if test="incrementAnnualizedRate != null">
+				increment_annualized_rate =
+				#{incrementAnnualizedRate,jdbcType=DECIMAL},
+			</if>
+			<if test="startDate != null">
+				start_date = #{startDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="endDate != null">
+				end_date = #{endDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="onlineTime != null">
+				online_time = #{onlineTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="saleEndTime != null">
+				sale_end_time = #{saleEndTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="interestFrom != null">
+				interest_from = #{interestFrom,jdbcType=INTEGER},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=INTEGER},
+			</if>
+			<if test="publishId != null">
+				publish_id = #{publishId,jdbcType=BIGINT},
+			</if>
+			<if test="publishTime != null">
+				publish_time = #{publishTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="auditId != null">
+				audit_id = #{auditId,jdbcType=BIGINT},
+			</if>
+			<if test="auditTime != null">
+				audit_time = #{auditTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="auditMessage != null">
+				audit_message = #{auditMessage,jdbcType=VARCHAR},
+			</if>
+			<if test="recommend != null">
+				recommend = #{recommend,jdbcType=INTEGER},
+			</if>
+			<if test="recommendWeight != null">
+				recommend_weight = #{recommendWeight,jdbcType=INTEGER},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				update_time = now(),
+			</if>
+			<if test="remarks != null">
+				remarks = #{remarks,jdbcType=VARCHAR},
+			</if>
+			<if test="delFlag != null">
+				del_flag = #{delFlag,jdbcType=INTEGER},
+			</if>
+			<if test="description != null">
+				description = #{description,jdbcType=VARCHAR},
+			</if>
+			<if test="thumbnail != null">
+				thumbnail = #{thumbnail,jdbcType=VARCHAR},
+			</if>
+			<if test="isNovice != null">
+				is_novice = #{isNovice,jdbcType=INTEGER},
+			</if>
+			<if test="joinLease != null">
+				join_lease = #{joinLease,jdbcType=INTEGER},
+			</if>
+			<if test="onlineNotice != null">
+				online_notice = #{onlineNotice,jdbcType=INTEGER},
+			</if>
+			<if test="noticeNotice != null">
+				notice_notice = #{noticeNotice,jdbcType=INTEGER},
+			</if>
+			<if test="lvgouFlag != null">
+				lvgou_flag = #{lvgouFlag,jdbcType=INTEGER},
+			</if>
+			<if test="manageFeeRate != null">
+				manage_fee_rate = #{manageFeeRate,jdbcType=INTEGER},
+			</if>
+			<if test="overdueFeeRate != null">
+				overdue_fee_rate = #{overdueFeeRate,jdbcType=INTEGER},
+			</if>
+			
+			<if test="guaranteeFeeRate != null">
+				guarantee_fee_rate = #{guaranteeFeeRate,jdbcType=INTEGER},
+			</if>
+			<if test="riskFeeRate != null">
+				risk_fee_rate = #{riskFeeRate,jdbcType=INTEGER},
+			</if>
+			
+			<if test="lateFeeRate != null">
+				late_fee_rate = #{lateFeeRate,jdbcType=INTEGER},
+			</if>
+			<if test="isUpdateIntroFlag !=null">
+			introducer_fee_rate = #{introducerFeeRate,jdbcType=INTEGER},
+			introducer_id = #{introducerId,jdbcType=INTEGER},
+			</if>
+			<if test="borrowerId != null">
+				borrower_id = #{borrowerId,jdbcType=INTEGER},
+			</if>
+			<if test="borrowerType != null">
+				borrower_type = #{borrowerType,jdbcType=INTEGER},
+			</if>
+			<if test="enterpriseId != null">
+				enterprise_id = #{enterpriseId,jdbcType=INTEGER},
+			</if>
+			<if test="borrowPeriod != null">
+				borrow_period = #{borrowPeriod,jdbcType=INTEGER},
+			</if>
+			<if test="borrowPeriodType != null">
+				borrow_period_type = #{borrowPeriodType,jdbcType=INTEGER},
+			</if>
+			<if test="securityType != null">
+				security_type = #{securityType,jdbcType=INTEGER},
+			</if>
+			<if test="instalment != null">
+				instalment = #{instalment,jdbcType=INTEGER},
+			</if>
+			<if test="saleComplatedTime != null">
+				sale_complated_time = #{saleComplatedTime,jdbcType=INTEGER},
+			</if>
+			<if test="borrowDetail != null">
+				borrow_detail = #{borrowDetail,jdbcType=VARCHAR},
+			</if>
+			<if test="transferFlag != null">
+				transfer_flag = #{transferFlag,jdbcType=INTEGER},
+			</if>
+			<if test="transferAfterInterest != null">
+			    transfer_after_interest = #{transferAfterInterest,jdbcType=INTEGER},
+			</if>
+			<if test="openPlatformKey != null">
+			    open_platform_key = #{openPlatformKey,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+
+	<update id="updateDirectProjectSelectiveWithNull" parameterType="Project">
+		update ic_project
+		<set>
+			<if test="debtId != null">
+				debt_id = 0,
+			</if>
+			<if test="projectType != null">
+				project_type = #{projectType,jdbcType=VARCHAR},
+			</if>
+			<if test="originalProjectNumber != null">
+				original_project_number = #{originalProjectNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="annualizedRate != null">
+				annualized_rate = #{annualizedRate,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="keyword != null">
+				keyword = #{keyword,jdbcType=VARCHAR},
+			</if>
+			<if test="shortDesc != null">
+				short_desc = #{shortDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="profitType != null">
+				profit_type = #{profitType,jdbcType=VARCHAR},
+			</if>
+			<if test="riskLevel != null">
+				risk_level = #{riskLevel,jdbcType=VARCHAR},
+			</if>
+			<if test="totalAmount != null">
+				total_amount = #{totalAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="minInvestAmount != null">
+				min_invest_amount = #{minInvestAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="maxInvestAmount != null">
+				max_invest_amount = #{maxInvestAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="incrementAmount != null">
+				increment_amount = #{incrementAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="annualizedRateType != null">
+				annualized_rate_type =
+				#{annualizedRateType,jdbcType=INTEGER},
+			</if>
+			<if test="minAnnualizedRate != null">
+				min_annualized_rate =
+				#{minAnnualizedRate,jdbcType=DECIMAL},
+			</if>
+			<if test="maxAnnualizedRate != null">
+				max_annualized_rate =
+				#{maxAnnualizedRate,jdbcType=DECIMAL},
+			</if>
+			<if test="incrementAnnualizedRate != null">
+				increment_annualized_rate =
+				#{incrementAnnualizedRate,jdbcType=DECIMAL},
+			</if>
+			<if test="startDate != null">
+				start_date = #{startDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="endDate != null">
+				end_date = #{endDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="onlineTime != null">
+				online_time = #{onlineTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="saleEndTime != null">
+				sale_end_time = #{saleEndTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="interestFrom != null">
+				interest_from = #{interestFrom,jdbcType=INTEGER},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=INTEGER},
+			</if>
+			<if test="publishId != null">
+				publish_id = #{publishId,jdbcType=BIGINT},
+			</if>
+			<if test="publishTime != null">
+				publish_time = #{publishTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="auditId != null">
+				audit_id = #{auditId,jdbcType=BIGINT},
+			</if>
+			<if test="auditTime != null">
+				audit_time = #{auditTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="auditMessage != null">
+				audit_message = #{auditMessage,jdbcType=VARCHAR},
+			</if>
+			<if test="recommend != null">
+				recommend = #{recommend,jdbcType=INTEGER},
+			</if>
+			<if test="recommendWeight != null">
+				recommend_weight = #{recommendWeight,jdbcType=INTEGER},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				update_time = now(),
+			</if>
+			<if test="remarks != null">
+				remarks = #{remarks,jdbcType=VARCHAR},
+			</if>
+			<if test="delFlag != null">
+				del_flag = #{delFlag,jdbcType=INTEGER},
+			</if>
+			<if test="description != null">
+				description = #{description,jdbcType=VARCHAR},
+			</if>
+			<if test="thumbnail != null">
+				thumbnail = #{thumbnail,jdbcType=VARCHAR},
+			</if>
+			<if test="isNovice != null">
+				is_novice = #{isNovice,jdbcType=INTEGER},
+			</if>
+			<if test="joinLease != null">
+				join_lease = #{joinLease,jdbcType=INTEGER},
+			</if>
+			<if test="onlineNotice != null">
+				online_notice = #{onlineNotice,jdbcType=INTEGER},
+			</if>
+			<if test="noticeNotice != null">
+				notice_notice = #{noticeNotice,jdbcType=INTEGER},
+			</if>
+			<if test="lvgouFlag != null">
+				lvgou_flag = #{lvgouFlag,jdbcType=INTEGER},
+			</if>
+			<if test="manageFeeRate != null">
+				manage_fee_rate = #{manageFeeRate,jdbcType=INTEGER},
+			</if>
+			<if test="overdueFeeRate != null">
+				overdue_fee_rate = #{overdueFeeRate,jdbcType=INTEGER},
+			</if>
+
+			<if test="guaranteeFeeRate != null">
+				guarantee_fee_rate = #{guaranteeFeeRate,jdbcType=INTEGER},
+			</if>
+			<if test="riskFeeRate != null">
+				risk_fee_rate = #{riskFeeRate,jdbcType=INTEGER},
+			</if>
+
+			<if test="lateFeeRate != null">
+				late_fee_rate = #{lateFeeRate,jdbcType=INTEGER},
+			</if>
+			<if test="isUpdateIntroFlag !=null">
+				introducer_fee_rate = #{introducerFeeRate,jdbcType=INTEGER},
+				introducer_id = #{introducerId,jdbcType=INTEGER},
+			</if>
+			<if test="borrowerId != null">
+				borrower_id = #{borrowerId,jdbcType=INTEGER},
+			</if>
+			<if test="borrowerType != null">
+				borrower_type = #{borrowerType,jdbcType=INTEGER},
+			</if>
+			<if test="enterpriseId != null">
+				enterprise_id = #{enterpriseId,jdbcType=INTEGER},
+			</if>
+			<if test="borrowPeriod != null">
+				borrow_period = #{borrowPeriod,jdbcType=INTEGER},
+			</if>
+			<if test="borrowPeriodType != null">
+				borrow_period_type = #{borrowPeriodType,jdbcType=INTEGER},
+			</if>
+			<if test="securityType != null">
+				security_type = #{securityType,jdbcType=INTEGER},
+			</if>
+			<if test="instalment != null">
+				instalment = #{instalment,jdbcType=INTEGER},
+			</if>
+			<if test="saleComplatedTime != null">
+				sale_complated_time = #{saleComplatedTime,jdbcType=INTEGER},
+			</if>
+			<if test="borrowDetail != null">
+				borrow_detail = #{borrowDetail,jdbcType=VARCHAR},
+			</if>
+			<if test="transferFlag != null">
+				transfer_flag = #{transferFlag,jdbcType=INTEGER},
+			</if>
+			<if test="transferAfterInterest != null">
+				transfer_after_interest = #{transferAfterInterest,jdbcType=INTEGER},
+			</if>
+			open_platform_key = #{openPlatformKey,jdbcType=VARCHAR},
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	
+	<!--更新上线和销售截止时间-->
+	<update id="updateOnlineAEndTimeById">
+		update 
+		ic_project set online_time= #{onlineTime,jdbcType=TIMESTAMP}, sale_end_time=#{saleEndTime,jdbcType=TIMESTAMP} 
+		where status in <foreach collection="statuses" index="index" item="item" open="(" separator="," close=")"> #{item} </foreach> and id = #{id,jdbcType=BIGINT}
+	</update>
+	
+	<!-- 更新销售截止时间 -->
+	<update id="updateSaleEndTimeById">
+		update
+		ic_project set sale_end_time=#{saleEndTime,jdbcType=TIMESTAMP} 
+		where status in <foreach collection="statuses" index="index" item="item" open="(" separator="," close=")"> #{item} </foreach> and id = #{id,jdbcType=BIGINT}
+	</update>
+	
+	<!-- 直投项目 -->
+	
+	<!-- 统计还款中的项目个数 -->
+	<select id="selectPayingTotalCount" resultType="java.lang.Integer">
+		SELECT count(1)  from  ic_project where del_flag > 0 and invest_type= 2
+		<if test="map!=null">
+			<if test="map.borrowerId!=null">
+				and  borrower_id = #{map.borrowerId}
+			</if>
+			<if test="map.status!=null">
+				and status = #{map.status}
+			</if>
+		</if>
+	</select>
+ 	 <resultMap id="borrowExtendResultMap" type="com.yourong.core.ic.model.ProjectInterestBiz">
+ 	 	<result column="project_id" property="projectId" jdbcType="BIGINT" />
+ 	    <result column="project_name" property="projectName" jdbcType="VARCHAR" />
+ 	    <result column="security_type" property="securityType" jdbcType="VARCHAR" />
+ 	    <result column="total_amount" property="totalAmount" jdbcType="DECIMAL" />
+ 	    <result column="annualized_rate" property="annualizedRate" jdbcType="DECIMAL" />
+ 	    <result column="manage_fee_rate" property="manageFeeRate" jdbcType="DECIMAL" />
+ 	    <result column="start_date" property="startDate" jdbcType="TIMESTAMP" />
+		<result column="end_date" property="endDate" jdbcType="TIMESTAMP" />
+ 	    <result column="project_status" property="projectStatus" jdbcType="INTEGER" />
+ 	    <result column="interest_status" property="interestStatus" jdbcType="INTEGER" />
+ 	    <result column="overdue_status" property="overdueStatus" jdbcType="INTEGER" />
+ 	    <result column="borrower_id" property="borrowerId" jdbcType="BIGINT" />
+ 	    <result column="payable_interest" property="payableInterest" jdbcType="DECIMAL" />
+        <result column="payable_principal" property="payablePrincipal" jdbcType="DECIMAL" />
+		<result column="borrower_name" property="borrowerName" jdbcType="VARCHAR" />
+		<result column="online_time" property="onlineTime" jdbcType="TIMESTAMP" />
+		<result column="end_date" property="endDate" jdbcType="TIMESTAMP" />
+		<result column="mobile" property="mobile" jdbcType="BIGINT" />
+		<result column="original_project_number" property="originalProjectNumber" jdbcType="VARCHAR" />
+		<result column="online_time" property="onlineTime" jdbcType="TIMESTAMP" />
+		<result column="current_dead_line" property="currentDeadline" jdbcType="TIMESTAMP" />
+		<result column="sale_end_time" property="saleEndTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+	<sql id="select_borrowid_project">
+		SELECT fp.id,fp.name,fp.security_type,fp.status,fp.total_amount,fp.annualized_rate,fp.end_date,fp.start_date,fp.overdue_fee_rate,fp.original_project_number,
+		fp.invest_type,fp.manage_fee_rate,fp.guarantee_fee_rate,fp.risk_fee_rate,fp.introducer_fee_rate,fp.online_time,fp.sale_end_time,fp.borrow_period,fp.borrow_period_type,fp.remarks,
+		fp.sale_complated_time,fp.del_flag,CASE WHEN fp.open_platform_key IS NULL THEN fp.borrower_id ELSE d.`value` END borrower_id FROM ic_project fp LEFT JOIN
+		sys_dict d ON d.group_name='channel_business' AND d.`key`=fp.open_platform_key
+	</sql>
+	
+	<!-- 逾期列表  web -->
+	<select id="selectOverdueList" resultMap="OverdueExtendResultMap" parameterType="ProjectBorrowQuery">
+		select
+		p.id   as  project_id,
+		p.name  as  project_name,
+		p.security_type as security_type,
+		p.status  as  project_status,
+		p.borrower_id  as  borrower_id,
+		p.total_amount  as total_amount,
+		p.annualized_rate as annualized_rate,
+		p.end_date  as  end_date,
+		p.start_date  as  start_date,
+		p.overdue_fee_rate as overdue_fee_rate,
+		p.original_project_number  as  original_project_number,
+		p.manage_fee_rate as manage_fee_rate,
+		p.online_time  as  online_time,
+		p.sale_end_time as sale_end_time,
+		f.status  as status,
+		f.type as type
+		from (<include refid="select_borrowid_project"/>) as p
+		right join 
+		(select status,project_id,type from fin_overdue_log where status in (1,3) GROUP BY project_id) as f 
+		on p.id=f.project_id
+		where p.invest_type=2	
+		<if test="projectQuery != null">
+				<if test="projectQuery.borrowerId != null">
+							 and p.borrower_id = #{projectQuery.borrowerId} 
+				</if>
+				<if test="projectQuery.status != null">
+							 and p.status in (52,70)
+				</if>
+				and p.del_flag=1
+		</if>
+     	order by p.id desc
+		LIMIT #{projectQuery.startRow,jdbcType=INTEGER},
+		#{projectQuery.pageSize,jdbcType=INTEGER}	
+	</select>
+	<!-- 逾期记录数统计 -->
+	<select id="selectCountOverdueList" resultType="java.lang.Integer" parameterType="ProjectBorrowQuery">
+		select
+		count(1)
+		from (<include refid="select_borrowid_project"/>) as p
+		right join 
+		(select status,project_id from fin_overdue_log where status in (1,3) GROUP BY project_id) as f 
+		on p.id=f.project_id
+		where p.invest_type=2	
+		<if test="projectQuery != null">
+				<if test="projectQuery.borrowerId != null">
+							 and p.borrower_id = #{projectQuery.borrowerId} 
+				</if>
+				<if test="projectQuery.status != null">
+							 and p.status in (52,70)
+				</if>
+				and p.del_flag=1
+		</if>
+	</select>
+	<sql id="borrow_Column_List_Pagin" >
+		p.id   as  project_id,
+		p.name  as  project_name,
+		p.security_type as security_type,
+		p.status  as  project_status,
+		p.borrower_id  as  borrower_id,
+		p.total_amount  as total_amount,
+		p.annualized_rate as annualized_rate,
+		p.end_date  as  end_date,
+		p.start_date  as  start_date,
+		p.overdue_fee_rate as overdue_fee_rate,
+		p.original_project_number  as  original_project_number,
+		p.manage_fee_rate as manage_fee_rate,
+		p.guarantee_fee_rate as guarantee_fee_rate,
+		p.risk_fee_rate as risk_fee_rate,
+		p.introducer_fee_rate as introducer_fee_rate,
+		p.online_time  as  online_time,
+		p.sale_end_time as sale_end_time,
+		p.borrow_period as borrow_period,
+		p.borrow_period_type as borrow_period_type,
+		p.remarks as remarks,
+		p.sale_complated_time as sale_complated_time,
+		u.true_name as borrower_name,
+		u.mobile  as mobile
+  	</sql>
+	 <!-- 借款列表  web -->
+	<select id="selectForPaginBorrow" resultMap="OverdueExtendResultMap" parameterType="ProjectBorrowQuery">
+		select
+		<include refid="borrow_Column_List_Pagin" />
+		from  (<include refid="select_borrowid_project"/>) as p  left join uc_member as u on u.id=p.borrower_id where p.invest_type='2'
+     	<if test="projectQuery != null">
+				<if test="projectQuery.type == 1">
+							and (p.status = 30 or p.status = 40 or p.status = 50  or p.status = 80 or p.status = 60 or p.status = 81)
+					<if test="projectQuery.status != null">
+						<if test="projectQuery.status == 30">
+							and p.status = 30
+						</if>
+						<if test="projectQuery.status == 40">
+							and p.status = 40
+						</if>
+						<if test="projectQuery.status == 50">
+							and (p.status =50  or (p.status=80 and p.sale_complated_time is not null) or p.status = 81 ) 
+						</if>
+						<if test="projectQuery.status == 60">
+							and (p.status =60 or (p.status=80 and p.sale_complated_time is  null) )
+						</if>
+					</if>
+				</if>
+				<if test="projectQuery.type == 4">
+					 and p.status = #{projectQuery.status} 
+				</if>			
+				<if test="projectQuery.borrowerId != null">
+							 and p.borrower_id = #{projectQuery.borrowerId} 
+				</if>
+				and p.del_flag=1
+		</if>
+		order by p.online_time desc
+		LIMIT #{projectQuery.startRow,jdbcType=INTEGER},
+		#{projectQuery.pageSize,jdbcType=INTEGER}	
+	</select>
+	<!-- 募集中统计 -->
+	<select id="selectForPaginBorrowCount" resultType="java.lang.Integer" parameterType="ProjectBorrowQuery">
+		select count(1) 
+		from  (<include refid="select_borrowid_project"/>) as p  left join uc_member as u on u.id=p.borrower_id where p.invest_type='2'
+     	<if test="projectQuery != null">
+				<if test="projectQuery.type == 1">
+							and (p.status = 30 or p.status = 40 or p.status = 50 or  p.status = 80 or p.status = 60 or  p.status = 81)
+					<if test="projectQuery.status != null">
+						<if test="projectQuery.status == 30">
+							and p.status = 30
+						</if>
+						<if test="projectQuery.status == 40">
+							and p.status = 40
+						</if>
+						<if test="projectQuery.status == 50">
+							and (p.status =50  or (p.status=80 and p.sale_complated_time is not null) or  p.status = 81 ) 
+						</if>
+						<if test="projectQuery.status == 60">
+							and (p.status =60 or (p.status=80 and p.sale_complated_time is  null) )
+						</if>
+						<if test="projectQuery.status == 81">
+							and p.status = 81
+						</if>
+					</if>
+				</if>
+				<if test="projectQuery.type == 4">
+					 and p.status = #{projectQuery.status} 
+				</if>			
+				<if test="projectQuery.borrowerId != null">
+							 and p.borrower_id = #{projectQuery.borrowerId} 
+				</if>
+				and p.del_flag=1
+		</if>
+	</select>
+	<!-- 借款列表记录统计 -->
+	<select id="selectForPaginTotalCountBorrow" resultType="java.lang.Integer" parameterType="ProjectBorrowQuery">
+		select count(1)
+		from  (<include refid="select_borrowid_project"/>) as p  left join uc_member as u on u.id=p.borrower_id where p.invest_type='2'
+     	<if test="projectQuery != null">
+				<if test="projectQuery.type == 1">
+							and (p.status = 30 or p.status = 40 or p.status = 50 or p.status = 51 or p.status = 80 or p.status = 60)
+					<if test="projectQuery.status != null">
+						<if test="projectQuery.status == 30">
+							and p.status = 30
+						</if>
+						<if test="projectQuery.status == 40">
+							and p.status = 40
+						</if>
+						<if test="projectQuery.status == 50">
+							and (p.status =50 or p.status = 51 or (p.status=80 and p.sale_complated_time is not null) ) 
+						</if>
+						<if test="projectQuery.status == 60">
+							and (p.status =60 or (p.status=80 and p.sale_complated_time is  null) )
+						</if>
+						<if test="projectQuery.status == 81">
+							and p.status = 81
+						</if>
+					</if>
+				</if>
+				<if test="projectQuery.type == 4">
+					 and p.status = #{projectQuery.status} 
+				</if>			
+				<if test="projectQuery.borrowerId != null">
+							 and p.borrower_id = #{projectQuery.borrowerId} 
+				</if>
+				and p.del_flag=1
+		</if>
+	</select>
+	<sql id="paying_Column_List_Pagin" >
+		p.id   as  project_id,
+		p.name  as  project_name,
+		p.security_type as security_type,
+		p.status  as  project_status,
+		p.borrower_id  as  borrower_id,
+		p.total_amount  as total_amount,
+		p.annualized_rate as annualized_rate,
+		p.end_date  as  end_date,
+		p.start_date  as  start_date,
+		p.overdue_fee_rate as overdue_fee_rate,
+		p.original_project_number  as  original_project_number,
+		p.manage_fee_rate as manage_fee_rate,
+		p.guarantee_fee_rate as guarantee_fee_rate,
+		p.risk_fee_rate as risk_fee_rate,
+		p.introducer_fee_rate as introducer_fee_rate,
+		p.online_time  as  online_time,
+		p.sale_end_time as sale_end_time,
+		p.borrow_period as borrow_period,
+		p.borrow_period_type as borrow_period_type,
+		p.remarks as remarks
+  	</sql>
+	<!-- 还款中的借款 -->    
+	<select id="selectForPaginPayingBorrow" resultMap="OverdueExtendResultMap" parameterType="ProjectBorrowQuery">
+		select
+		<include refid="paying_Column_List_Pagin" />
+		from (<include refid="select_borrowid_project"/>) as p LEFT JOIN
+		(
+		SELECT p.id as id,p.status,f.status as overdue_status from ic_project as p LEFT JOIN fin_overdue_log 
+		as f on p.id =f.project_id where p.invest_type = '2' and p.STATUS in (52,70,51) ) as c
+		on c.id=p.id where p.invest_type = '2' and p.del_flag=1 
+		<if test="projectQuery != null">
+				<if test="projectQuery.borrowerId != null">
+							 and p.borrower_id = #{projectQuery.borrowerId} 
+				</if>
+		</if>
+		and p.STATUS in (52,70,51) and (c.status=70 and c.overdue_status in (1,3) or c.status in (52,51))
+		group by p.id desc
+		LIMIT #{projectQuery.startRow,jdbcType=INTEGER},
+		#{projectQuery.pageSize,jdbcType=INTEGER}	
+	</select>
+	<!-- 还款中的借款统计 -->
+	<select id="selectForPaginCountPayingBorrow" resultType="java.lang.Integer" parameterType="ProjectBorrowQuery">
+		select count(1)
+		from (<include refid="select_borrowid_project"/>) as p LEFT JOIN
+		(
+		SELECT p.id as id,p.status,f.status as overdue_status from ic_project as p LEFT JOIN fin_overdue_log 
+		as f on p.id =f.project_id where p.invest_type = '2' and p.STATUS in (52,70,51) group by p.id ) as c
+		on c.id=p.id where p.invest_type = '2' and p.del_flag=1 
+		<if test="projectQuery != null">
+				<if test="projectQuery.borrowerId != null">
+							 and p.borrower_id = #{projectQuery.borrowerId} 
+				</if>
+		</if>
+		and p.STATUS in (52,70,51) and (c.status=70 and c.overdue_status in (1,3) or c.status in (52,51))
+	</select>
+	<sql id="Collect_Project_For_Member_Column_List_pagin" >
+	    t.id as transaction_id, 
+	    t.project_id as project_id, 
+	    t.annualized_rate as annualized_rate, 
+	    t.invest_amount as invest_amount, 
+	    t.used_capital as usedCapital,
+	    t.status as transaction_status, 
+	    t.total_interest as total_interest, 
+	    t.total_principal as total_principal, 
+	    t.member_id as member_id, 
+	    t.order_id as order_id,
+	    t.transaction_time as transaction_time,
+	    t.sign_status as sign_status,
+	    t.transfer_id as transfer_id,
+	    t.transfer_principal as transfer_principal,
+	    t.project_category as project_category,
+	    t.extra_interest_day as extra_interest_day,
+	    t.total_extra_interest as total_extra_interest,
+	    p.name as project_name, 
+	    p.end_date as end_date,
+	    p.profit_type as profitType,
+	    p.status as project_status,
+	    p.borrow_period as borrow_period,
+	    p.borrow_period_type as borrow_period_type,
+	    p.interest_from as interest_from,
+	    p.invest_type as invest_type,
+	    
+	    o.order_no as order_no,
+		o.used_coupon_amount as used_coupon_amount,
+		o.cash_coupon_no as cash_coupon_no,
+		o.profit_coupon_no as profit_coupon_no,
+		o.extra_annualized_rate as extra_annualized_rate,
+		o.extra_project_annualized_rate as extra_project_annualized_rate
+	</sql>
+	
+	<resultMap id="CollectProjectForMemberResultMap" type="ProjectForMember" >
+	    
+	    <result column="transaction_id" property="transactionId" jdbcType="BIGINT" />
+	    <result column="project_id" property="projectId" jdbcType="BIGINT" />
+	    <result column="annualized_rate" property="annualizedRate" jdbcType="DECIMAL" />
+	    <result column="invest_amount" property="investAmount" jdbcType="DECIMAL" />
+	    <result column="transaction_status" property="transactionStatus" jdbcType="INTEGER" />
+	   	<result column="total_interest" property="totalInterest" jdbcType="DECIMAL" />
+	    <result column="total_principal" property="totalPrincipal" jdbcType="DECIMAL" />
+	   	<result column="member_id" property="memberId" jdbcType="BIGINT" />
+	   	<result column="order_id" property="orderId" jdbcType="BIGINT" />
+	   	<result column="transaction_time" property="transactionTime" jdbcType="TIMESTAMP" />
+	   	<result column="used_capital" property="usedCapital" jdbcType="DECIMAL" />
+	   	<result column="sign_status" property="signStatus" jdbcType="INTEGER" />
+	   	<result column="project_category" property="projectCategory" jdbcType="INTEGER" />
+	    <result column="transfer_id" property="transferId" jdbcType="BIGINT" />
+    	<result column="transfer_principal" property="transferPrincipal" jdbcType="DECIMAL" />
+	   
+	   	<result column="project_name" property="projectName" jdbcType="VARCHAR" />
+	   	<result column="end_date" property="endDate" jdbcType="TIMESTAMP" />
+	   	<result column="profit_type" property="profitType" jdbcType="VARCHAR" />
+	   	<result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+	   	<result column="project_status" property="projectStatus" jdbcType="INTEGER" />
+	   	<result column="borrow_period" property="borrowPeriod" jdbcType="INTEGER" />
+		<result column="borrow_period_type" property="borrowPeriodType" jdbcType="INTEGER" />
+		<result column="interest_from" property="interestFrom"	jdbcType="INTEGER" />
+		<result column="invest_type" property="investType" jdbcType="INTEGER" />
+	   
+	    <result column="used_coupon_amount" property="usedCouponAmount" jdbcType="DECIMAL" />
+	  	<result column="cash_coupon_no" property="cashCouponNo" jdbcType="VARCHAR" />
+	  	<result column="profit_coupon_no" property="profitCouponNo" jdbcType="VARCHAR" />
+	    <result column="extra_annualized_rate" property="extraAnnualizedRate" jdbcType="DECIMAL" />
+		<result column="extra_project_annualized_rate" property="extraProjectAnnualizedRate" jdbcType="DECIMAL" />
+		
+		<result column="total_extra_interest" property="totalExtraInterest" jdbcType="DECIMAL" />
+    	<result column="received_extra_interest" property="receivedExtraInterest" jdbcType="DECIMAL" />
+    	<result column="extra_interest_day" property="extraInterestDay" jdbcType="INTEGER" />
+ 	 </resultMap>
+	
+	<!-- 通过条件查询前台会员中心募集中的项目相关信息-->
+  	<select id="selectCollectProjectForMember" resultMap="CollectProjectForMemberResultMap"  parameterType="CollectingProjectQuery" >
+		select
+		<include refid="Collect_Project_For_Member_Column_List_pagin" />
+		from tc_transaction t FORCE INDEX(ix_member_id)
+		inner join ic_project p on t.project_id = p.id
+		inner join tc_order o on t.order_id = o.id
+			<where>
+				<if test=" memberId != null">
+					AND t.member_id = #{memberId,jdbcType=BIGINT}
+				</if>
+				<if test="status != null">
+					AND t.status  in
+					<foreach item="item" index="index" collection="status" 
+	                    open="(" separator="," close=")">
+	                   #{item}
+	            	</foreach>
+				</if>
+					<if test=" signStatus != null">
+						<if test="signStatus == 1">
+							and t.sign_status in (0,1)
+						</if>
+						<if test="signStatus != 1">
+							AND t.sign_status = #{signStatus,jdbcType=INTEGER}
+						</if>
+				  </if>	
+				
+			</where>
+		order by t.id desc
+		LIMIT #{startRow,jdbcType=INTEGER}, #{pageSize,jdbcType=INTEGER}
+	</select>
+	
+	<!-- 通过条件查询前台会员中心募集中的项目相关信息-->
+  	<select id="selectCollectProjectDetail" resultMap="CollectProjectForMemberResultMap"  parameterType="java.lang.Long" >
+		select
+		<include refid="Collect_Project_For_Member_Column_List_pagin" />
+		from tc_transaction t
+		inner join ic_project p on t.project_id = p.id
+		inner join tc_order o on t.order_id = o.id
+		where t.id = #{transactionId,jdbcType=BIGINT}
+		AND t.member_id = #{memberId,jdbcType=BIGINT}
+	</select>
+	
+	
+		<!-- 通过条件查询前台会员中心募集中的项目相关信息-->
+  	<select id="selectCollectProjectForMemberCount" resultType="java.lang.Integer" parameterType="CollectingProjectQuery">
+		select
+		count(0)
+		from tc_transaction t
+		inner join ic_project p on t.project_id = p.id
+		inner join tc_order o on t.order_id = o.id
+			<where>
+				<if test=" memberId != null">
+					AND t.member_id = #{memberId,jdbcType=BIGINT}
+				</if>
+				<if test="status != null">
+					AND t.status  in
+					<foreach item="item" index="index" collection="status" 
+	                    open="(" separator="," close=")">
+	                   #{item}
+	            	</foreach>
+				</if>
+				<if test=" signStatus != null">
+						<if test="signStatus == 1">
+							and t.sign_status in (0,1)
+						</if>
+						<if test="signStatus != 1">
+							AND t.sign_status = #{signStatus,jdbcType=INTEGER}
+						</if>
+				  </if>	
+			</where>
+	</select>
+	
+		<!-- 通过条件查询前台会员中心募集中的项目，对应的交易数量-->
+  	<select id="selectCollectProjectForMemberCounting"  resultMap="CollectProjectForMemberResultMap"  parameterType="CollectingProjectQuery">
+		select
+		distinct t.id
+		from tc_transaction t
+		inner join ic_project p on t.project_id = p.id
+		inner join tc_order o on t.order_id = o.id
+			<where>
+				 <if test=" investType != null">
+					AND p.invest_type = #{investType,jdbcType=INTEGER}
+				</if>
+				<if test=" memberId != null">
+					AND t.member_id = #{memberId,jdbcType=BIGINT}
+				</if>
+				<if test="status != null">
+					AND t.status  in
+					<foreach item="item" index="index" collection="status" 
+	                    open="(" separator="," close=")">
+	                   #{item}
+	            	</foreach>
+				</if>
+			</where>
+	</select>
+	
+		<!-- 通过条件查询前台会员中心募集中的项目，对应的投资总额-->
+  	<select id="selectCollectProjectForMemberInvestAmount"  resultType="java.math.BigDecimal"  parameterType="CollectingProjectQuery">
+		select
+		sum(t.invest_amount)
+		from tc_transaction t
+		inner join ic_project p on t.project_id = p.id
+		inner join tc_order o on t.order_id = o.id
+			<where>
+				 <if test=" investType != null">
+					AND p.invest_type = #{investType,jdbcType=INTEGER}
+				</if>
+				<if test=" memberId != null">
+					AND t.member_id = #{memberId,jdbcType=BIGINT}
+				</if>
+				<if test="status != null">
+					AND t.status  in
+					<foreach item="item" index="index" collection="status" 
+	                    open="(" separator="," close=")">
+	                   #{item}
+	            	</foreach>
+				</if>
+			</where>
+	</select>
+	
+	<!-- 通过条件查询前台会员中心募集中的项目，最近一笔投资-->
+	<select id="selectCollectProjectDescTransactionTime" resultMap="CollectProjectForMemberResultMap"  parameterType="CollectingProjectQuery" >
+		select
+		<include refid="Collect_Project_For_Member_Column_List_pagin" />
+		from tc_transaction t
+		inner join ic_project p on t.project_id = p.id
+		inner join tc_order o on t.order_id = o.id
+			<where>
+				 <if test=" investType != null">
+					AND p.invest_type = #{investType,jdbcType=INTEGER}
+				</if>
+				<if test=" memberId != null">
+					AND t.member_id = #{memberId,jdbcType=BIGINT}
+				</if>
+				<if test="status != null">
+					AND t.status  in
+					<foreach item="item" index="index" collection="status" 
+	                    open="(" separator="," close=")">
+	                   #{item}
+	            	</foreach>
+				</if>
+			</where>
+		order by t.transaction_time desc 
+		limit 1
+	</select>
+	
+	<!-- 获取项目根据项目状态 -->
+  <select id="findProjectsByStatus" resultMap="BaseResultMap">
+  	SELECT <include refid="Base_Column_List"></include> 
+  	from ic_project 
+	where status = #{status,jdbcType=INTEGER}
+  </select>
+  <!-- 已还清的借款 -->
+  <select id="selectForPaginHasPayoffBorrow" resultMap="OverdueExtendResultMap" parameterType="ProjectBorrowQuery">
+		SELECT DISTINCT
+		p.id   as  project_id,
+		p.name  as  project_name,
+		p.security_type as security_type,
+		p.status  as  project_status,
+		p.borrower_id  as  borrower_id,
+		p.total_amount  as total_amount,
+		p.annualized_rate as annualized_rate,
+		p.end_date  as  end_date,
+		p.start_date  as  start_date,
+		p.overdue_fee_rate as overdue_fee_rate,
+		p.original_project_number  as  original_project_number,
+		p.manage_fee_rate as manage_fee_rate,
+		p.guarantee_fee_rate as guarantee_fee_rate,
+		p.risk_fee_rate as risk_fee_rate,
+		p.introducer_fee_rate as introducer_fee_rate,
+		p.online_time  as  online_time,
+		p.sale_end_time as sale_end_time,
+		p.borrow_period as borrow_period,
+		p.borrow_period_type as borrow_period_type,
+		p.remarks as remarks
+		from (<include refid="select_borrowid_project"/>) as p LEFT JOIN (
+		select f.id,min(f.status) as status,f.project_id as project_id from fin_overdue_log as f   group by f.project_id)as c on c.project_id=p.id 
+		 where p.status=70 and 
+		p.invest_type = '2' 
+     	<if test="projectQuery != null">
+				<if test="projectQuery.borrowerId != null">
+							 and p.borrower_id = #{projectQuery.borrowerId} 
+				</if>
+				and p.del_flag=1
+		</if>
+		and (c.status is NULL or c.status = 2)
+		order by p.online_time desc
+		LIMIT #{projectQuery.startRow,jdbcType=INTEGER},
+		#{projectQuery.pageSize,jdbcType=INTEGER}	
+	</select>
+	<!-- 已还清的借款统计 -->
+	 <select id="selectForPaginHasPayoffBorrowCount" resultType="java.lang.Integer" parameterType="ProjectBorrowQuery">
+		SELECT count(1) 
+		from (<include refid="select_borrowid_project"/>) as p LEFT JOIN (
+		select f.id,min(f.status) as status,f.project_id as project_id from fin_overdue_log as f   group by f.project_id)as c on c.project_id=p.id 
+		 where p.status=70 and 
+		p.invest_type = '2' 
+     	<if test="projectQuery != null">
+				<if test="projectQuery.borrowerId != null">
+							 and p.borrower_id = #{projectQuery.borrowerId} 
+				</if>
+				and p.del_flag=1
+		</if>
+		and (c.status is NULL or c.status = 2)
+	</select>
+	<!-- 获取项目状态为30，且可用余额为0的项目 -->
+	<select id="selectPaymentingProject" resultMap="BaseResultMap"> 
+		select 
+		p.id as id,
+		p.name as name
+		from ic_project as p 
+		left join fin_balance as fin on fin.source_id=p.id 
+		where fin.balance_type='4'
+		and  p.status='30' 
+		and  fin.available_balance=0
+	</select>
+	
+	
+	
+	
+	<sql id="ExtraProject_List">
+		p.id,
+		p.name,
+		p.profit_type,
+		p.min_annualized_rate,
+		p.max_annualized_rate,
+		p.total_amount,
+		p.status,
+		p.min_invest_amount,
+		p.interest_from,
+		p.sale_end_time,
+		p.online_time,
+		p.start_date,
+		p.end_date,
+		p.thumbnail,
+		p.is_novice,
+		p.join_lease,
+		p.invest_type
+	</sql>
+	<!-- 查询特殊项目列表 -->
+	<select id="selectExtraProject" resultMap="ProjectFrontResultMap">
+		select t1.* from (
+		select 
+			<include refid="ExtraProject_List" />
+		from ic_project as p 
+		INNER JOIN ic_project_extra AS e ON p.id = e.project_id
+			AND e.activity_sign = 1 
+			AND e.del_flag = 1
+		where p.status = 30
+			AND p.del_flag > 0
+		ORDER BY p.status desc, p.online_time
+		limit 1) as t1
+		UNION ALL
+		select t2.* from (
+		select 
+			<include refid="ExtraProject_List" />
+		from ic_project as p 
+		INNER JOIN ic_project_extra AS e ON p.id = e.project_id
+			AND e.activity_sign = 1 
+			AND e.del_flag = 1
+		INNER JOIN ic_project_notice as n on p.id = n.project_id and n.del_flag = 1
+		where p.status = 20
+			AND p.del_flag > 0
+		ORDER BY p.status desc, p.online_time
+		limit 1) as t2
+		UNION ALL
+		select t3.* from (
+		select 
+			<include refid="ExtraProject_List" />
+		from ic_project as p 
+		INNER JOIN ic_project_extra AS e ON p.id = e.project_id
+			AND e.activity_sign = 1 
+			AND e.del_flag = 1
+		where p.status >= 50
+			AND p.del_flag > 0
+		ORDER BY e.create_time desc 
+		limit 1) as t3
+		limit 1
+	</select>
+	
+	<!-- 首次投资推荐项目 -->
+	<select id="getFirstInvestProject" resultMap="ProjectFrontResultMap">
+		SELECT
+				id,
+				name, 
+				profit_type,
+				min_annualized_rate, 
+				max_annualized_rate, 
+				total_amount,
+				status, 
+				min_invest_amount,
+				interest_from, 
+				sale_end_time,
+				start_date,
+				end_date,
+				thumbnail,
+				is_novice,
+				join_lease,
+				online_time,
+				invest_type,
+				borrow_period_type,
+				borrow_period
+		FROM
+				ic_project 
+		Where status in (30, 50, 70)  and del_flag=1
+		ORDER BY
+					status, is_novice, recommend desc, recommend_weight, online_time desc
+		LIMIT 0, #{num,jdbcType=INTEGER}
+	</select>
+	<!-- 统计用户借款项目数 -->
+	<select id="countCurrentBorrowerByMemberId" resultType="java.lang.Integer">
+		SELECT count(1)  from  (SELECT fp.invest_type,fp.status,fp.del_flag,CASE WHEN fp.open_platform_key IS NULL THEN fp.borrower_id ELSE d.`value` END borrower_id FROM ic_project fp
+		LEFT JOIN sys_dict d ON d.group_name='channel_business' AND d.`key`=fp.open_platform_key) p where p.del_flag > 0 and p.invest_type= 2 and p.status>10
+		  and p.borrower_id = #{borrowerId,jdbcType=BIGINT}
+	</select>
+	
+	<!-- 获取直投项目的个数 -->
+	<select id="getDirectProjectCount" resultType="java.lang.Integer">
+		select count(1) from ic_project where invest_type = 2 and del_flag >0
+	</select>
+	
+	<sql id="Debt_Manager_Column_List">
+		ic.id, ic.debt_id, ic.project_type, ic.name, ic.keyword, ic.short_desc,
+		ic.profit_type,
+		ic.risk_level, ic.total_amount,
+		ic.min_invest_amount,
+		ic.max_invest_amount,ic.increment_amount, ic.annualized_rate_type,
+		ic.min_annualized_rate, ic.max_annualized_rate,
+		ic.increment_annualized_rate,
+		ic.start_date, ic.end_date, ic.online_time, ic.sale_end_time, ic.interest_from,
+		ic.status, ic.publish_id, ic.publish_time, ic.audit_id, ic.audit_time, ic.audit_message,
+		ic.recommend,
+		ic.recommend_weight, ic.create_time, ic.update_time, ic.remarks,
+		ic.del_flag,ic.description,ic.thumbnail,ic.is_novice,ic.join_lease,ic.app_recommend,ic.app_recommend_weight
+		,ic.online_notice,ic.notice_notice, ic.original_project_number,ic.annualized_rate,ic.invest_type, ic.manage_fee_rate, ic.overdue_fee_rate, 
+		ic.borrower_id, ic.borrower_type, 
+    ic.enterprise_id, ic.borrow_period, ic.borrow_period_type, ic.security_type, ic.instalment,ic.sale_complated_time
+	</sql>
+	
+	<!-- 等本等息项目信息 -->
+	<select id="averageCapitalMethod" resultMap="BaseResultMap">
+		select 
+		<include refid="Base_Column_List" /> 
+		from ic_project 
+		where profit_type='avg_principal' 
+		and(((status = 30 or status = 50 or  status = 51) and invest_type=2 ) or (status = 30 and invest_type = 1  )) 
+		and del_flag = 1 
+		order by online_time desc limit 0,1;
+	</select>
+	
+	<!-- 等本等息项目信息 预告中-->
+	<select id="averageCapitalMethodNoticing" resultMap="BaseResultMap">
+		select 
+		<include refid="Debt_Manager_Column_List" /> 
+		from ic_project as ic
+		inner join ic_project_notice  as icn on icn.project_id=ic.id
+		where ic.status=20
+		and ic.profit_type='avg_principal' 
+		and icn.status=10
+		and ic.del_flag=1
+		and icn.del_flag =1 
+		order by ic.online_time asc 
+		limit 0,1;
+	</select>
+	
+	<!-- 等本等息项目信息  履约中-->
+	<select id="averageCapitalMethoding" resultMap="BaseResultMap">
+		select 
+		<include refid="Base_Column_List" /> 
+		from ic_project
+		where profit_type='avg_principal' 
+		and (((status = 50 or status = 60) and invest_type=1) or (status = 52 and invest_type=2) ) 
+		and del_flag = 1 
+		 order by online_time desc limit 0,1;
+	</select>
+	
+	<sql id="Base_Column_List_directSettlement" >
+   	p.id as project_id,
+   	p.name as project_name,
+	p.total_amount as total_amount,
+	p.start_date as start_date,
+	p.end_date as end_date,
+	p.manage_fee_rate as manage_fee_rate,
+	p.guarantee_fee_rate as guarantee_fee_rate,
+	p.risk_fee_rate as risk_fee_rate,
+	p.introducer_fee_rate as introducer_fee_rate,
+	m.true_name as borrower_name,
+	f.loan_time as loan_time,
+	p.status,
+	ti.used_coupon_amount as used_coupon_amount,
+	ti.payable_interest as payable_interest,
+	ti.extra_interest as extra_interest
+  </sql>
+  	<resultMap id="DirectSettlementResultMap" type="com.yourong.core.ic.model.DirectSettlementBiz">
+		<id column="project_id" property="projectId" jdbcType="BIGINT" />
+		<result column="project_name" property="projectName" jdbcType="VARCHAR" />
+		<result column="borrower_name" property="borrowerName" jdbcType="VARCHAR" />
+		<result column="total_amount" property="totalAmount" jdbcType="DECIMAL" />
+		<result column="start_date" property="startDate" jdbcType="TIMESTAMP" />
+		<result column="end_date" property="endDate" jdbcType="TIMESTAMP" />
+		<result column="loan_time" property="loanTime" jdbcType="TIMESTAMP" />
+		<result column="manage_fee_rate" property="manageFeeRate" jdbcType="DECIMAL" />
+		<result column="used_coupon_amount" property="usedCouponAmount" jdbcType="DECIMAL" />
+		<result column="extra_interest" property="extraInterest" jdbcType="DECIMAL" />
+		<result column="guarantee_fee_rate" property="guaranteeFeeRate" jdbcType="BIGINT" />
+		<result column="risk_fee_rate" property="riskFeeRate" jdbcType="BIGINT" />
+ 		<result column="late_fee_rate" property="lateFeeRate" jdbcType="BIGINT" /> 
+ 		<result column="introducer_fee_rate" property="introducerFeeRate" jdbcType="BIGINT" /> 
+	</resultMap>
+	 <select id="selectForPaginInterestSettlement" resultMap="DirectSettlementResultMap" >
+    SELECT
+	<include refid="Base_Column_List_directSettlement"/>
+	from ic_project as p 
+			Left JOIN uc_member as m on m.id = p.borrower_id
+			left join fin_loan_detail as f on f.project_id=p.id  and f.loan_type=2 and f.loan_status=1
+	LEFT JOIN 
+	(select t.project_id,i.status,sum(t.used_coupon_amount) as used_coupon_amount,
+	sum(payable_interest) as payable_interest,
+	sum(extra_interest) as extra_interest 
+	from tc_transaction as t 
+	LEFT JOIN (select transaction_id,status,sum(payable_interest) AS payable_interest,sum(extra_interest) AS extra_interest from tc_transaction_interest GROUP BY transaction_id) as i 
+	on t.id = i.transaction_id group by project_id)ti on ti.project_id = p.id
+	where p.del_flag >0 and  p.invest_type=2 and p.status in (52,70)  and ti.status != 5  
+	<if test="map!=null">
+		<if test="map.projectName != null">
+			and p.name like #{map.projectName}"%"
+		</if>
+		<if test="map.endDate != null">
+			and p.end_date <![CDATA[ = ]]>  #{map.endDate}
+		</if>
+		<if test="map.loanTime != null">
+			and date_format(f.loan_time,'%Y-%m-%d') = #{map.loanTime}
+		</if>
+		<if test=" map.borrowerName != null">
+			and m.true_name =#{map.borrowerName}
+		</if>
+	</if>
+	<choose>
+		<when test=" map != null">
+			<if test=" map.desc != null">
+				order by ${map.desc} desc
+			</if>
+			<if test=" map.asc != null">
+				order by ${map.asc} asc
+			</if>
+		</when>
+		<otherwise>
+			order by p.id desc
+		</otherwise>
+	</choose>
+  	LIMIT ${map.startRow}, ${map.pageSize}   
+  </select>
+  <select id="selectForPaginTotalInterestSettlementCount" resultType="java.lang.Integer" >
+    SELECT count(1)
+	from ic_project as p 
+	Left JOIN uc_member as m on m.id = p.borrower_id 
+	left join fin_loan_detail as f on f.project_id=p.id  and f.loan_type=2 and f.loan_status=1 
+	where p.del_flag >0 and p.invest_type=2 and p.status in (52,70) 
+	<if test="map!=null">
+		<if test="map.projectName != null">
+			and p.name like #{map.projectName}"%"
+		</if>
+		<if test="map.endDate != null">
+			and p.end_date <![CDATA[ = ]]>  #{map.endDate}
+		</if>
+		<if test="map.loanTime != null">
+			and date_format(f.loan_time,'%Y-%m-%d') = #{map.loanTime}
+		</if>
+		<if test=" map.borrowerName != null">
+			and m.true_name =#{map.borrowerName}
+		</if>
+	</if>
+  </select>
+	
+	<!-- 前台分页 -->
+	<select id="p2pSelectForPaginTotalCountFront" resultType="java.lang.Integer">
+		select count(1) from ic_project as p
+		left join ic_debt as debt on
+		p.debt_id = debt.id
+		<if test="projectQuery != null">
+			<where>
+				<if test="projectQuery.status != null">
+					<choose>
+						<when test="projectQuery.status == 999">
+							and (((p.status = 50 or p.status = 60) and p.invest_type=1) or 
+							((p.status = 52 or p.status = 51  ) and p.invest_type=2) )
+						</when>
+						<!-- app 投资中、暂停 -->
+						<when test="projectQuery.status == 300">
+							and (p.status = 30 or p.status = 40)
+						</when>
+						<when test="projectQuery.status == 30">
+							and (((p.status = 30 or p.status = 50 or p.status = 81 ) and p.invest_type=2 ) or (p.status = 30 and p.invest_type = 1  ))
+						</when>
+						<otherwise>
+							and p.status = #{projectQuery.status}
+						</otherwise>
+					</choose>
+				</if>
+				<if test="projectQuery.status == null">
+					and p.status >= 30
+				</if>
+				<if test="projectQuery.projectType != null">
+				    <choose>
+				        <when test="projectQuery.projectType == 'house'">
+				            and (p.project_type = "house" or p.project_type = "houseRecord")
+				        </when>
+				        <when test="projectQuery.projectType == 'car'">
+				             and 
+				             ((p.project_type = "car"  and  debt.instalment = 0 and p.invest_type=1) 
+				             or ( p.project_type = "car"  and p.instalment = 0 and p.invest_type=2))
+				        </when>
+				        <when test="projectQuery.projectType == 'buyCar'">
+				             and ((p.project_type = 'car' and debt.instalment = 1 and debt.debt_type = 'collateral' and p.invest_type=1) 
+				             or (p.project_type = 'car' and p.instalment = 1 and p.security_type = 'collateral' and p.invest_type=2) )
+				        </when>
+				         <when test="projectQuery.projectType == 'credit'">
+				             and (p.project_type = 'inclusive_financial' or p.project_type = 'personal_credit' or p.project_type = 'sm_lending') 
+				                and p.invest_type=2
+				        </when>
+				        <when test="projectQuery.projectType == 'guarantee'">
+				             and (p.project_type = 'escrow' or p.project_type = 'personal_guarantee' or p.project_type = 'pledge_direct') 
+				                and p.invest_type=2
+				        </when>
+				        <otherwise>
+							and p.project_type = #{projectQuery.projectType,jdbcType=VARCHAR}
+				        </otherwise>
+				    </choose>
+				</if>
+				<if test="projectQuery.isbuyCarNotShow">
+					and debt.instalment != 1
+				</if>
+				<if test="projectQuery.appQuery == true">
+					and is_novice = 1
+					and join_lease = 0
+				</if>
+				<if test="projectQuery.investType != null">
+					and invest_type = #{projectQuery.investType,jdbcType=INTEGER}
+				</if>
+				and p.del_flag=1
+				and p.invest_type=1
+			</where>
+		</if>
+	</select>
+	
+	<!-- 前台分页 -->
+	<select id="p2pSelectForPaginFront" resultMap="ProjectFrontResultMap"
+		parameterType="ProjectQuery">
+		select
+		<include refid="Front_Base_Column_Pagin" />
+		,fb.available_balance, ifnull(ex.activity_sign, 0) as activity_sign
+		from
+		ic_project as p
+		left join ic_debt as debt on p.debt_id = debt.id
+		left join fin_balance as fb on p.id= fb.source_id
+		left join ic_project_extra as ex on p.id = ex.project_id and ex.del_flag = 1
+		<if test="projectQuery != null">
+			<where>
+				<if test="projectQuery.status != null">
+					<choose>
+						<!-- 履约中：已满额，已截止 -->
+						<when test="projectQuery.status == 999">
+							and (((p.status = 50 or p.status = 60) and p.invest_type=1) or 
+							((p.status = 52 or p.status = 51  ) and p.invest_type=2) )
+						</when>
+						<!-- app 投资中、暂停 -->
+						<when test="projectQuery.status == 300">
+							and (p.status = 30 or p.status = 40)
+						</when>
+						<when test="projectQuery.status == 30">
+							and (((p.status = 30 or p.status = 50 or p.status = 81 ) and p.invest_type=2 ) or (p.status = 30 and p.invest_type = 1  ))
+						</when>
+						<otherwise>
+							and p.status = #{projectQuery.status}
+						</otherwise>
+					</choose>
+				</if>
+				<if test="projectQuery.status == null">
+					and p.status >= 30
+				</if>
+				<if test="projectQuery.projectType != null">
+					<choose>
+				        <when test="projectQuery.projectType == 'house'">
+				            and (p.project_type = "house" or p.project_type = "houseRecord")
+				        </when>
+				        <when test="projectQuery.projectType == 'car'">
+				             and 
+				             ((p.project_type = "car"  and  debt.instalment = 0 and p.invest_type=1) 
+				             or ( p.project_type = "car"  and p.instalment = 0 and p.invest_type=2))
+				        </when>
+				        <when test="projectQuery.projectType == 'buyCar'">
+				             and ((p.project_type = 'car' and debt.instalment = 1 and debt.debt_type = 'collateral' and p.invest_type=1) 
+				             or (p.project_type = 'car' and p.instalment = 1 and p.security_type = 'collateral' and p.invest_type=2) )
+				        </when>
+				         <when test="projectQuery.projectType == 'credit'">
+				             and (p.project_type = 'inclusive_financial' or p.project_type = 'personal_credit' or p.project_type = 'sm_lending') 
+				                and p.invest_type=2
+				        </when>
+				        <when test="projectQuery.projectType == 'guarantee'">
+				             and (p.project_type = 'escrow' or p.project_type = 'personal_guarantee' or p.project_type = 'pledge_direct') 
+				                and p.invest_type=2
+				        </when>
+				        <otherwise>
+							and p.project_type = #{projectQuery.projectType,jdbcType=VARCHAR}
+				        </otherwise>
+				    </choose>
+				</if>
+				
+				<if test="projectQuery.isbuyCarNotShow">
+					and debt.instalment != 1
+				</if>
+				<if test="projectQuery.appQuery == true">
+					and is_novice = 1
+					and join_lease = 0
+				</if>
+				
+				<if test="projectQuery.investType != null">
+					and invest_type = #{projectQuery.investType,jdbcType=INTEGER}
+				</if>
+				and p.del_flag=1
+				and fb.balance_type=4
+				and p.invest_type=1
+			</where>
+		</if>
+		order by p.online_time desc
+		LIMIT #{projectQuery.startRow,jdbcType=INTEGER},
+		#{projectQuery.pageSize,jdbcType=INTEGER}
+	</select>
+	
+	<!-- 根据排序规则获得APP推荐的项目 -->
+	<select id="p2pGetSortFirstAppRecommendProject" resultMap="BaseResultMap">
+		select
+			<include refid="Base_Column_List" />
+		from ic_project 
+		where app_recommend = 1 and status <![CDATA[ = ]]> 30 and del_flag = 1  and invest_type= 1
+	    order by app_recommend_weight asc limit 1
+	</select>
+	
+	<!-- 获得新上线的项目 -->
+	<select id="p2pGetLatestOnLineProject" resultMap="BaseResultMap">
+		select
+			<include refid="Base_Column_List" />
+		from ic_project 
+		where status <![CDATA[ = ]]> 30 and del_flag = 1  and is_novice = 1  and invest_type= 1
+	    order by online_time desc limit 1
+	</select>
+	
+	<!-- 获得非投资状态的项目 -->
+	<select id="p2pGetFinishProject" resultMap="BaseResultMap">
+		select
+			<include refid="Base_Column_List" />
+		from ic_project 
+		where status <![CDATA[ > ]]> 40 and del_flag = 1  and invest_type= 1
+	    order by online_time desc limit 1
+	</select>
+	<!-- 是否为借款人 -->
+	 <select id="ifBorrower" resultType="java.lang.Integer" >
+	 select 1 from ic_project  as ic
+		left join uc_enterprise as en on ic.enterprise_id=en.id
+		where ic.invest_type=2 and 
+		(( ic.borrower_type=1 and ic.borrower_id=#{memberId,jdbcType=BIGINT}) or (ic.borrower_type=2 and en.legal_id=#{memberId,jdbcType=BIGINT}))
+		limit 1
+	</select>
+	<!-- 根据企业id统计项目 -->
+	<select id="countProjectByEnterpriseId" resultType="java.lang.Integer">
+		select count(1) from ic_project where enterprise_id= #{enterpriseId,jdbcType=BIGINT} and del_flag > 0  
+	</select>
+	
+  <!-- 获得推荐精选项目 -->
+  <select id="getRecommendProject" resultMap="BaseResultMap">
+		select
+		(CASE invest_type
+		 WHEN 1 THEN (to_days(end_date)-to_days(now()))
+		  WHEN 2 THEN (case borrow_period_type
+				when 1 THEN borrow_period
+				WHEN 2 THEN borrow_period*30
+				WHEN 3 THEN borrow_period*360
+				END )
+				END
+		)  as incomedays,<include refid="Recommend_Column_List" /> 
+	    from ic_project as ic 
+		left join fin_balance as fin on fin.source_id=ic.id
+		where fin.balance_type=4 and ic.status=30 and fin.available_balance <![CDATA[ > ]]> 0 and ic.is_novice=1
+		order by incomedays asc ,fin.available_balance asc ,online_time desc  
+		LIMIT 0, #{num,jdbcType=INTEGER}
+  </select>
+  
+  <sql id="Recommend_Column_List" >
+		ic.id   as  id,
+		ic.name  as  name,
+		ic.min_annualized_rate as min_annualized_rate,
+		ic.max_annualized_rate  as  max_annualized_rate,
+		ic.start_date   as  start_date,
+		ic.end_date  as  end_date,
+		ic.interest_from as interest_from,
+		ic.status   as  status,
+		ic.debt_id   as  debt_id,
+		ic.project_type   as  project_type,
+		ic.profit_type   as  profit_type,
+		ic.risk_level   as  risk_level,
+		ic.total_amount   as  total_amount,
+		ic.increment_amount   as  increment_amount,
+		ic.annualized_rate_type   as  annualized_rate_type,
+		ic.increment_annualized_rate   as  increment_annualized_rate,
+		ic.online_time   as  online_time,
+		ic.sale_end_time   as  sale_end_time,
+		ic.interest_from   as  interest_from,
+		ic.publish_id   as  publish_id,
+		ic.publish_time   as  publish_time,
+		ic.audit_id   as  audit_id,
+		ic.audit_time   as  audit_time,
+		ic.audit_message   as  audit_message,
+		ic.recommend   as  recommend,
+		ic.recommend_weight   as  recommend_weight,
+		ic.create_time   as  create_time,
+		ic.update_time   as  update_time,
+		ic.remarks   as  remarks,
+		ic.description   as  description,
+		ic.del_flag   as  del_flag,
+		ic.thumbnail   as  thumbnail,
+		ic.is_novice   as  is_novice,
+		ic.join_lease   as  join_lease,
+		ic.app_recommend_weight   as  app_recommend_weight,
+		ic.app_recommend   as  app_recommend,
+		ic.notice_notice   as  notice_notice,
+		ic.online_notice   as  online_notice,
+		ic.original_project_number   as  original_project_number,
+		ic.annualized_rate   as  annualized_rate,
+		ic.invest_type   as  invest_type,
+		ic.manage_fee_rate   as  manage_fee_rate,
+		ic.overdue_fee_rate   as  overdue_fee_rate,
+		ic.borrower_id   as  borrower_id,
+		ic.borrower_type   as  borrower_type,
+	
+		ic.enterprise_id   as  enterprise_id,
+		ic.borrow_period   as  borrow_period,
+		ic.borrow_period_type   as  borrow_period_type,
+		ic.security_type   as  security_type,
+		ic.instalment   as  instalment,
+		ic.sale_complated_time   as  sale_complated_time
+ 
+		
+  </sql>
+  
+  <!-- 获得投资中的债权项目 -->
+  <select id="findInvestingDebtProject" resultMap="BaseResultMap">
+  	SELECT <include refid="Recommend_Column_List"></include> 
+	from ic_project as ic 
+			left join fin_balance as fin on fin.source_id=ic.id
+			where fin.balance_type=4 and ic.status=30 and ic.invest_type = 1
+	<if test="map!=null">
+		<if test=" map.endDate != null">
+			and ic.end_date =#{map.endDate}
+		</if>
+	</if>
+	and ic.end_date <![CDATA[ <= ]]>  DATE_ADD(date_sub(date_sub(date_format(now(),'%y-%m-%d'),interval extract(  
+   day from now()) day),interval 0 month),INTERVAL 6 MONTH) and ic.end_date <![CDATA[ >= ]]>  CURDATE()
+	and fin.available_balance <![CDATA[ > ]]> 0 
+	order by fin.available_balance asc ,online_time desc 
+	<if test="map!=null">
+		<if test=" map.num != null">
+		LIMIT 0, #{map.num}
+		</if>
+	</if>
+  </select>
+	
+	
+	<resultMap id="RepaymentResultMap" type="Project" extends="BaseResultMap">
+		<result column="borrower_name" property="borrowerName" jdbcType="VARCHAR" />
+		<result column="borrower_mobile" property="borrowerMobile" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	
+	<sql id="EarlyRepayment_Manager_Column_List">
+		ic.id, ic.debt_id, ic.project_type, ic.name, ic.keyword, ic.short_desc,
+		ic.profit_type,
+		ic.risk_level, ic.total_amount,
+		ic.min_invest_amount,
+		ic.max_invest_amount,ic.increment_amount, ic.annualized_rate_type,
+		ic.min_annualized_rate, ic.max_annualized_rate,
+		ic.increment_annualized_rate,
+		ic.start_date, ic.end_date, ic.online_time, ic.sale_end_time, ic.interest_from,
+		ic.status, ic.publish_id, ic.publish_time, ic.audit_id, ic.audit_time, ic.audit_message,
+		ic.recommend,
+		ic.recommend_weight, ic.create_time, ic.update_time, ic.remarks,
+		ic.del_flag,ic.description,ic.thumbnail,ic.is_novice,ic.join_lease,ic.app_recommend,ic.app_recommend_weight
+		,ic.online_notice,ic.notice_notice, ic.original_project_number,ic.annualized_rate,ic.invest_type, ic.manage_fee_rate, ic.overdue_fee_rate, 
+		ic.borrower_id, ic.borrower_type, 
+    ic.enterprise_id, ic.borrow_period, ic.borrow_period_type, ic.security_type, ic.instalment,ic.sale_complated_time,
+    ic.prepayment,ic.prepayment_time,ic.prepayment_remark,ic.guarantee_fee_rate,ic.risk_fee_rate,ic.late_fee_rate
+	</sql>
+	
+		<!-- 获取项目根据项目状态 -->
+  <select id="findEarlyRepaymentProject" resultMap="RepaymentResultMap">
+  	select * from (
+  		SELECT <include refid="EarlyRepayment_Manager_Column_List"></include> 
+	  	,(case ic.borrower_type
+	  	 when 1 then m.true_name
+	  	 when 2 then e.legal_name
+	  	 end
+	  	) as borrower_name,
+	  	(case ic.borrower_type
+	  	 when 1 then m.mobile
+	  	 when 2 then e.telephone
+	  	 end
+	  	) as borrower_mobile
+		from ic_project  as ic 
+		left join uc_member as m on m.id=ic.borrower_id
+		left join uc_enterprise as e on e.id=ic.enterprise_id	
+		where  not exists(select 1 from fin_overdue_log as fin  where fin.project_id=ic.id and fin.status  <![CDATA[ <> ]]> 2 )
+		and not exists(select 1 from fin_underwrite_log as finu inner join ic_debt_interest as idi on idi.id=finu.project_interest_id 
+							where idi.project_id=ic.id and finu.del_flag>0 and idi.del_flag>0 and finu.underwrite_status <![CDATA[ <> ]]> 4)
+		and (( ic.status=52 ) or (ic.status = 70 and ic.prepayment =1 ))
+		and ic.invest_type = 2
+		and ic.del_flag >0
+  	)a
+  	<where>
+		<if test="map!=null">
+			<if test="map.projectId != null">
+				and a.id = #{map.projectId}
+			</if>
+			<if test="map.projectName != null">
+				and a.name like #{map.projectName}"%"
+			</if>
+			<if test="map.borrowerName != null">
+				and a.borrower_name like #{map.borrowerName}"%"
+			</if>
+			<if test=" map.borrowerMobile != null">
+				and a.borrower_mobile = #{map.borrowerMobile}
+			</if>
+			<if test=" map.projectStatus != null">
+				and a.status = #{map.projectStatus}
+			</if>
+			<if test=" map.prepayment != null">
+				and a.prepayment = #{map.prepayment}
+			</if>
+			<if test="map.endDateSelect != null">
+		        <choose>
+		        	<when test="map.endDateSelect == 0">
+		        		<if test="map.endDate == 0">
+			         		and a.prepayment_time <![CDATA[ <= ]]>  DATE_ADD(CURDATE(),INTERVAL 1 DAY) and a.prepayment_time <![CDATA[ >= ]]>  CURDATE()
+			        	</if>
+			        	<if test="map.endDate == 1">
+			         		and a.prepayment_time <![CDATA[ <= ]]>  DATE_ADD(CURDATE(),INTERVAL 3 DAY) and a.prepayment_time <![CDATA[ >= ]]>  CURDATE()
+			        	</if>
+			        	<if test="map.endDate == 2">
+			         		and a.prepayment_time <![CDATA[ <= ]]>  DATE_ADD(CURDATE(),INTERVAL 7 DAY) and a.prepayment_time <![CDATA[ >=]]>  CURDATE()
+			        	</if>
+			        	<if test="map.endDate == 3">
+			         		and a.prepayment_time <![CDATA[ <= ]]>  DATE_ADD(CURDATE(),INTERVAL 15 DAY) and a.prepayment_time <![CDATA[ >= ]]>  CURDATE()
+			        	</if>
+			        	<if test="map.endDate == 4">
+			         		and a.prepayment_time <![CDATA[ <= ]]>  DATE_ADD(CURDATE(),INTERVAL 1 MONTH) and a.prepayment_time <![CDATA[ >= ]]>  CURDATE()
+			        	</if>
+			        	<if test="map.endDate == 5">
+			         		and a.prepayment_time <![CDATA[ <= ]]>  DATE_ADD(CURDATE(),INTERVAL 3 MONTH) and a.prepayment_time <![CDATA[ >= ]]>  CURDATE()
+			        	</if>
+		        	</when>
+		        	<when test="map.endDateSelect == 1">
+		        		<if test="map.endDateStart">
+				        	and a.prepayment_time <![CDATA[ >= ]]>  #{map.endDateStart}
+				        </if>
+				        <if test="map.endDateEnd">
+				        	and a.prepayment_time <![CDATA[ <= ]]>  #{map.endDateEnd}
+				        </if>
+		        	</when>
+		        	<otherwise>
+		        		<if test="map.dueDate">
+				        	and a.prepayment_time <![CDATA[ = ]]>  #{map.dueDate}
+				        </if>
+		        	</otherwise>
+		        </choose>
+        	</if>
+		</if>
+	</where>
+	order by id desc 
+	LIMIT ${map.startRow}, ${map.pageSize}
+  </select>
+  
+  <select id="findEarlyRepaymentProjectCount" resultType="java.lang.Integer">
+  	select count(0) from (
+  		SELECT <include refid="EarlyRepayment_Manager_Column_List"></include> 
+	  	,(case ic.borrower_type
+	  	 when 1 then m.true_name
+	  	 when 2 then e.legal_name
+	  	 end
+	  	) as borrower_name,
+	  	(case ic.borrower_type
+	  	 when 1 then m.mobile
+	  	 when 2 then e.telephone
+	  	 end
+	  	) as borrower_mobile
+		from ic_project  as ic 
+		left join uc_member as m on m.id=ic.borrower_id
+		left join uc_enterprise as e on e.id=ic.enterprise_id	
+		where  not exists(select 1 from fin_overdue_log as fin  where fin.project_id=ic.id and fin.status<![CDATA[ <> ]]>2 )
+		and not exists(select 1 from fin_underwrite_log as finu inner join ic_debt_interest as idi on idi.id=finu.project_interest_id 
+							where idi.project_id=ic.id and finu.del_flag>0 and idi.del_flag>0)
+		and (( ic.status=52 ) or (ic.status = 70 and ic.prepayment =1 ))
+		and ic.invest_type = 2
+		and ic.del_flag >0
+		
+  	)a
+	<where>
+		<if test="map!=null">
+			<if test="map.projectId != null">
+				and a.id = #{map.projectId}
+			</if>
+			<if test="map.projectName != null">
+				and a.name like #{map.projectName}"%"
+			</if>
+			<if test="map.borrowerName != null">
+				and a.borrower_name like #{map.borrowerName}"%"
+			</if>
+			<if test=" map.borrowerMobile != null">
+				and a.borrower_mobile = #{map.borrowerMobile}
+			</if>
+			<if test=" map.projectStatus != null">
+				and a.status = #{map.projectStatus}
+			</if>
+			<if test=" map.prepayment != null">
+				and a.prepayment = #{map.prepayment}
+			</if>
+			<if test="map.endDateSelect != null">
+		        <choose>
+		        	<when test="map.endDateSelect == 0">
+		        		<if test="map.endDate == 0">
+			         		and a.prepayment_time <![CDATA[ <= ]]>  DATE_ADD(CURDATE(),INTERVAL 1 DAY) and a.prepayment_time <![CDATA[ >= ]]>  CURDATE()
+			        	</if>
+			        	<if test="map.endDate == 1">
+			         		and a.prepayment_time <![CDATA[ <= ]]>  DATE_ADD(CURDATE(),INTERVAL 3 DAY) and a.prepayment_time <![CDATA[ >= ]]>  CURDATE()
+			        	</if>
+			        	<if test="map.endDate == 2">
+			         		and a.prepayment_time <![CDATA[ <= ]]>  DATE_ADD(CURDATE(),INTERVAL 7 DAY) and a.prepayment_time <![CDATA[ >=]]>  CURDATE()
+			        	</if>
+			        	<if test="map.endDate == 3">
+			         		and a.prepayment_time <![CDATA[ <= ]]>  DATE_ADD(CURDATE(),INTERVAL 15 DAY) and a.prepayment_time <![CDATA[ >= ]]>  CURDATE()
+			        	</if>
+			        	<if test="map.endDate == 4">
+			         		and a.prepayment_time <![CDATA[ <= ]]>  DATE_ADD(CURDATE(),INTERVAL 1 MONTH) and a.prepayment_time <![CDATA[ >= ]]>  CURDATE()
+			        	</if>
+			        	<if test="map.endDate == 5">
+			         		and a.prepayment_time <![CDATA[ <= ]]>  DATE_ADD(CURDATE(),INTERVAL 3 MONTH) and a.prepayment_time <![CDATA[ >= ]]>  CURDATE()
+			        	</if>
+		        	</when>
+		        	<when test="map.endDateSelect == 1">
+		        		<if test="map.endDateStart">
+				        	and a.prepayment_time <![CDATA[ >= ]]>  #{map.endDateStart}
+				        </if>
+				        <if test="map.endDateEnd">
+				        	and a.prepayment_time <![CDATA[ <= ]]>  #{map.endDateEnd}
+				        </if>
+		        	</when>
+		        	<otherwise>
+		        		<if test="map.dueDate">
+				        	and a.prepayment_time <![CDATA[ = ]]>  #{map.dueDate}
+				        </if>
+		        	</otherwise>
+		        </choose>
+        	</if>
+		</if>
+	</where>
+  </select>
+  
+  <!-- 获得非新手投资项目列表，按上线时间的早晚顺序排列 -->
+  <select id="findNoviceInvestingProject" resultMap="BaseResultMap">
+  	select <include refid="Recommend_Column_List"></include> 
+	from ic_project ic
+	<where>
+		<if test="isNovice != null">
+			and ic.is_novice = #{isNovice,jdbcType=INTEGER}
+		</if>
+		<if test="status != null">
+			and ic.status = #{status,jdbcType=INTEGER}
+		</if>
+	</where>
+	order by ic.online_time asc
+  </select>
+  
+  
+  <!-- 获取快投有奖项目 -->
+	<select id="findQuickInvestRecommendProject" resultMap="ProjectFrontResultMap">
+		SELECT
+			i.id,
+			i.name,
+			i.profit_type,
+			i.min_annualized_rate,
+			i.max_annualized_rate,
+			i.total_amount,
+			i.status,
+			i.min_invest_amount,
+			i.interest_from,
+			i.sale_end_time,
+			i.online_time,
+			i.start_date,
+			i.end_date,
+			i.thumbnail,
+			i.join_lease,
+			i.invest_type,
+			i.sale_complated_time,
+			i.annualized_rate,
+			i.borrow_period,
+			i.borrow_period_type,
+			i.is_novice 
+		FROM
+			ic_project as i inner join ic_project_extra as e on i.id=e.project_id 
+		WHERE
+			i.status IN (30, 51, 52, 70)   and e.activity_sign=2 
+		AND i.del_flag = 1
+		ORDER BY
+			i.status ASC
+		LIMIT 4 
+	</select>
+	
+	
+	<select id="findQuickInvestLotteryProject" resultMap="ProjectFrontResultMap">
+		SELECT
+			i.id,
+			i.name,
+			i.status,
+			i.invest_type,
+			i.sale_complated_time,
+			i.online_time,
+			i.total_amount,
+			max(m.update_time) as up_time,
+			i.status  
+		FROM
+			ic_project as i inner join mc_activity_lottery_result as m on i.id=m.remark 
+		WHERE 
+			i.status IN (30,40, 50, 51, 52, 60, 70 ,80,81,90 )   and i.invest_type=2
+		<if test="activityId != null">
+	        and m.activity_id = #{activityId,jdbcType=BIGINT}
+		</if>
+		<if test="memberId != null">
+	        and m.member_id = #{memberId,jdbcType=BIGINT}
+		</if>
+		<if test="rewardResult != null">
+	        and m.reward_result = #{rewardResult,jdbcType=VARCHAR}
+		</if>
+		group by i.id 
+		ORDER BY
+			up_time desc 
+	</select>
+	
+	<!-- 查询当天还款的借款人项目信息 -->
+	<select id="selectTodayPayBorrowerProject" resultMap="BaseResultMap">
+		select
+		     p.borrower_id,
+		     p.borrower_type,
+		     p.open_platform_key,
+		     p.total_amount,
+		     i.payable_principal as payablePrincipal
+        from ic_debt_interest i
+        left join ic_project p on i.project_id = p.id
+        where 
+             <![CDATA[ i.pay_time < DATE_ADD(CURDATE(),INTERVAL 1 DAY) and i.pay_time > CURDATE() ]]>
+             <if test="investType != null">
+				and p.invest_type = #{investType}
+		     </if>
+	</select>
+
+	<select id="queryAfterHandlePreAuthTrade" resultType="com.yourong.core.ic.model.biz.AfterHandlePreAuthTradeBiz">
+		SELECT p.id projectId,MAX(a.audit_time) auditTime FROM ic_project p LEFT JOIN bsc_audit a ON p.id=a.process_id WHERE p.`status`=81
+		AND a.audit_result=1 AND a.audit_step=50 GROUP BY p.id
+	</select>
+	
+	<!-- 获取推荐快投项目ID -->
+	<select id="getRecommendQuickProjectId" resultType="java.lang.Long">
+		SELECT
+				p.id
+			FROM
+				ic_project AS p
+			INNER JOIN ic_project_extra AS e ON p.id = e.project_id and e.del_flag = 1 AND e.extra_type = 1 AND e.activity_sign = 2
+			LEFT JOIN ic_project_notice AS ICN ON ICN.project_id=p.ID AND ICN.del_flag=1 and ICN.status in (10,20,30)
+			WHERE
+				p.del_flag = 1 and ((p.status=20 and ICN.id is not null) or (p.status!=20)) 
+				
+				order by field(p.status,30,20,50,81,51,52,70,40,60,80,90,1,10),p.online_time desc limit 1
+
+	</select>
+	
+	<!-- 前台分页 -->
+	<select id="getRecommendQuickProject" resultMap="ProjectFrontResultMap">
+		select
+		<include refid="Front_Base_Column_Pagin" />
+		,fb.available_balance, ifnull(ex.activity_sign, 0) as activity_sign,
+		IF(p.status = 30, 0, 1) as investingFirst, p.transfer_after_interest, ex.extra_amount
+		from
+		ic_project as p
+		left join ic_debt as debt on p.debt_id = debt.id
+		left join fin_balance as fb on p.id= fb.source_id
+		left join ic_project_extra as ex on p.id = ex.project_id and ex.del_flag = 1 and ex.activity_sign = 2 and ex.extra_type = 1
+		where p.del_flag = 1 and  p.package_flag =0 and p.id = #{projectId,jdbcType=BIGINT}
+	</select>
+  
+   <!-- 获得推荐精选项目 根据收益天数-->
+  <select id="getRecommendProjectByInvestDay" resultMap="ProjectFrontResultMap">
+		SELECT 
+		i.id,
+		i.name, 
+		i.profit_type,
+		i.min_annualized_rate, 
+		i.max_annualized_rate, 
+		i.total_amount,
+		i.status, 
+		i.min_invest_amount,
+		i.interest_from, 
+		i.sale_end_time,
+		i.start_date,
+		i.end_date,
+		i.thumbnail,
+		i.is_novice,
+		i.join_lease,
+		i.invest_type,
+		i.sale_complated_time,
+		i.annualized_rate,
+		i.borrow_period,
+		i.transfer_flag,
+		i.transfer_after_interest,
+		i.borrow_period_type 
+		from ic_project as i INNER JOIN 
+		(select
+		(CASE invest_type
+		 WHEN 1 THEN (to_days(end_date)-to_days(start_date))
+		  WHEN 2 THEN (case borrow_period_type
+				when 1 THEN borrow_period
+				WHEN 2 THEN borrow_period*30
+				WHEN 3 THEN borrow_period*360
+				END )
+				END
+		)  as incomedays,id from ic_project  where  del_flag >0   
+		
+		<if test="projectQuery != null">
+					<choose>
+						<!-- 履约中， 债权：已满额，已截止 ；直投：审核通过，待放款，已放款-->
+						<when test="projectQuery.status == 1">
+							and (((status = 50 or status = 60) and invest_type=1) or 
+							((status = 52 or status = 51 ) and invest_type=2) )
+						</when>
+						<when test="projectQuery.status == 0">
+							 and  status = 30 
+						</when>
+					</choose>
+				</if>
+		
+		) as c  on c.id=i.id  where i.del_flag >0 
+	    
+	    <if test="projectQuery.investArea != null">
+					<choose>
+				        <when test="projectQuery.investArea == 'short'">
+				            and c.incomedays  <![CDATA[>=]]>  1  and c.incomedays  <![CDATA[<=]]> 60 
+				        </when>
+				        <when test="projectQuery.investArea == 'middle'">
+				            and c.incomedays  <![CDATA[>=]]>  61  and c.incomedays  <![CDATA[<=]]> 180 
+				        </when>
+				        <when test="projectQuery.investArea == 'long'">
+				            and c.incomedays  <![CDATA[>=]]>  181  
+				        </when>
+				    </choose>
+		</if>
+				
+	    	order by i.online_time desc  
+	    <if test="projectQuery !=null and projectQuery.number != 0 ">
+				limit 0,1
+	  </if>
+	  
+  </select>
+  
+  
+  
+  <!-- 前台分页 -->
+	<select id="selectForPaginFrontInvest" resultMap="ProjectFrontResultMap"
+		parameterType="ProjectQuery">
+		select
+		<include refid="Front_Base_Column_Pagin" />
+		,fb.available_balance, ifnull(ex.activity_sign, 0) as activity_sign,c.incomedays 
+		from
+		ic_project as p
+		left join ic_debt as debt on p.debt_id = debt.id
+		left join fin_balance as fb on p.id= fb.source_id
+		left join ic_project_extra as ex on p.id = ex.project_id and ex.del_flag = 1
+		inner join (select
+		(CASE invest_type
+		 WHEN 1 THEN (to_days(end_date)-to_days(start_date))
+		  WHEN 2 THEN (case borrow_period_type
+				when 1 THEN borrow_period
+				WHEN 2 THEN borrow_period*30
+				WHEN 3 THEN borrow_period*360
+				END )
+				END
+		)  as incomedays,id from ic_project ic  where ic.del_flag >0  
+		<if test="projectQuery.status != null">
+		
+					<choose>
+						<!-- 履约中， 债权：已满额，已截止 ；直投：审核通过，待放款，已放款-->
+						<when test="projectQuery.status == 999">
+							and (((ic.status = 50 or ic.status = 60) and ic.invest_type=1) or 
+							((ic.status = 52 or ic.status = 51 ) and ic.invest_type=2) )
+						</when>
+						<!-- app 投资中、暂停 -->
+						<when test="projectQuery.status == 300">
+							and (ic.status = 30 or ic.status = 40)
+						</when>
+						<!-- 投资中， 债权：投资中 ；直投：已满额-->
+						<when test="projectQuery.status == 30">
+							and (((ic.status = 30 or ic.status = 50 or ic.status = 81  ) and ic.invest_type=2 ) or (ic.status = 30 and ic.invest_type = 1  ))
+						</when>
+						<otherwise>
+							and ic.status = #{projectQuery.status}
+						</otherwise>
+					</choose>
+				</if>
+				<if test="projectQuery.status == null">
+					and ic.status >= 20
+				</if>
+		
+		) as c  on c.id=p.id  
+		<if test="projectQuery != null">
+			<where>
+				
+				<if test="projectQuery.projectType != null">
+					<choose>
+				        <when test="projectQuery.projectType == 'house'">
+				            and (p.project_type = "house" or p.project_type = "houseRecord")
+				        </when>
+				        <when test="projectQuery.projectType == 'car'">
+				             and 
+				             ((p.project_type = "car"  and  debt.instalment = 0 and p.invest_type=1) 
+				             or ( p.project_type = "car"  and p.instalment = 0 and p.invest_type=2))
+				        </when>
+				        <when test="projectQuery.projectType == 'buyCar'">
+				             and ((p.project_type = 'car' and debt.instalment = 1 and debt.debt_type = 'collateral' and p.invest_type=1) 
+				             or (p.project_type = 'car' and p.instalment = 1 and p.security_type = 'collateral' and p.invest_type=2) )
+				        </when>
+				        <when test="projectQuery.projectType == 'credit'">
+				             and (p.project_type = 'inclusive_financial' or p.project_type = 'personal_credit' or p.project_type = 'sm_lending') 
+				                and p.invest_type=2
+				        </when>
+				        <when test="projectQuery.projectType == 'guarantee'">
+				             and (p.project_type = 'escrow' or p.project_type = 'personal_guarantee' or p.project_type = 'pledge_direct') 
+				                and p.invest_type=2
+				        </when>
+				        <otherwise>
+							and p.project_type = #{projectQuery.projectType,jdbcType=VARCHAR}
+				        </otherwise>
+				    </choose>
+				</if>
+				
+				<if test="projectQuery.investArea != null">
+					<choose>
+				        <when test="projectQuery.investArea == 'short'">
+				            and c.incomedays  <![CDATA[>=]]>  1  and c.incomedays  <![CDATA[<=]]> 60 
+				        </when>
+				        <when test="projectQuery.investArea == 'middle'">
+				            and c.incomedays  <![CDATA[>=]]>  61  and c.incomedays  <![CDATA[<=]]> 180 
+				        </when>
+				        <when test="projectQuery.investArea == 'long'">
+				            and c.incomedays  <![CDATA[>=]]>  181  
+				        </when>
+				    </choose>
+				</if>
+				
+				<if test="projectQuery.isbuyCarNotShow">
+					and debt.instalment != 1
+				</if>
+				<if test="projectQuery.appQuery == true">
+					and is_novice = 1
+					and join_lease = 0
+				</if>
+				
+				<if test="projectQuery.investType != null">
+					and invest_type = #{projectQuery.investType,jdbcType=INTEGER}
+				</if>
+				and p.del_flag=1
+				and fb.balance_type=4
+			</where>
+		</if>
+		order by
+		<if test="projectQuery.status == 30">
+			field(p.status,30,50,81),
+		</if>
+		p.online_time desc
+		LIMIT #{projectQuery.startRow,jdbcType=INTEGER},
+		#{projectQuery.pageSize,jdbcType=INTEGER}
+	</select>
+	<!-- 前台分页 -->
+	<select id="selectForPaginTotalCountFrontInvest" resultType="java.lang.Integer">
+		select count(1) from ic_project as p
+		left join ic_debt as debt on
+		p.debt_id = debt.id
+		inner join (select
+		(CASE invest_type
+		 WHEN 1 THEN (to_days(end_date)-to_days(start_date))
+		  WHEN 2 THEN (case borrow_period_type
+				when 1 THEN borrow_period
+				WHEN 2 THEN borrow_period*30
+				WHEN 3 THEN borrow_period*360
+				END )
+				END
+		)  as incomedays,id from ic_project ic  where ic.del_flag >0 
+		<if test="projectQuery.status != null">
+		
+					<choose>
+						<!-- 履约中， 债权：已满额，已截止 ；直投：审核通过，待放款，已放款-->
+						<when test="projectQuery.status == 999">
+							and (((ic.status = 50 or ic.status = 60) and ic.invest_type=1) or 
+							((ic.status = 52 or ic.status = 51 ) and ic.invest_type=2) )
+						</when>
+						<!-- app 投资中、暂停 -->
+						<when test="projectQuery.status == 300">
+							and (ic.status = 30 or ic.status = 40)
+						</when>
+						<!-- 投资中， 债权：投资中 ；直投：已满额-->
+						<when test="projectQuery.status == 30">
+							and (((ic.status = 30 or ic.status = 50 or ic.status = 81  ) and ic.invest_type=2 ) or (ic.status = 30 and ic.invest_type = 1  ))
+						</when>
+						<otherwise>
+							and ic.status = #{projectQuery.status}
+						</otherwise>
+					</choose>
+				</if>
+				<if test="projectQuery.status == null">
+					and ic.status >= 20
+				</if>
+		
+		) as c  on c.id=p.id  
+		
+		<if test="projectQuery != null">
+			<where>
+				<if test="projectQuery.projectType != null">
+				    <choose>
+				        <when test="projectQuery.projectType == 'house'">
+				            and (p.project_type = "house" or p.project_type = "houseRecord")
+				        </when>
+				        <when test="projectQuery.projectType == 'car'">
+				             and 
+				             ((p.project_type = "car"  and  debt.instalment = 0 and p.invest_type=1) 
+				             or ( p.project_type = "car"  and p.instalment = 0 and p.invest_type=2))
+				        </when>
+				        <when test="projectQuery.projectType == 'buyCar'">
+				             and ((p.project_type = 'car' and debt.instalment = 1 and debt.debt_type = 'collateral' and p.invest_type=1) 
+				             or (p.project_type = 'car' and p.instalment = 1 and p.security_type = 'collateral' and p.invest_type=2) )
+				        </when>
+				        <when test="projectQuery.projectType == 'credit'">
+				             and (p.project_type = 'inclusive_financial' or p.project_type = 'personal_credit' or p.project_type = 'sm_lending') 
+				                and p.invest_type=2
+				        </when>
+				        <when test="projectQuery.projectType == 'guarantee'">
+				             and (p.project_type = 'escrow' or p.project_type = 'personal_guarantee' or p.project_type = 'pledge_direct') 
+				                and p.invest_type=2
+				        </when>
+				        <otherwise>
+							and p.project_type = #{projectQuery.projectType,jdbcType=VARCHAR}
+				        </otherwise>
+				    </choose>
+				</if>
+				
+				<if test="projectQuery.investArea != null">
+					<choose>
+				        <when test="projectQuery.investArea == 'short'">
+				            and c.incomedays  <![CDATA[>=]]>  1  and c.incomedays  <![CDATA[<=]]> 60 
+				        </when>
+				        <when test="projectQuery.investArea == 'middle'">
+				            and c.incomedays  <![CDATA[>=]]>  61  and c.incomedays  <![CDATA[<=]]> 180 
+				        </when>
+				        <when test="projectQuery.investArea == 'long'">
+				            and c.incomedays  <![CDATA[>=]]>  181  
+				        </when>
+				    </choose>
+				</if>
+				<if test="projectQuery.isbuyCarNotShow">
+					and debt.instalment != 1
+				</if>
+				<if test="projectQuery.appQuery == true">
+					and is_novice = 1
+					and join_lease = 0
+				</if>
+				<if test="projectQuery.investType != null">
+					and invest_type = #{projectQuery.investType,jdbcType=INTEGER}
+				</if>
+				and p.del_flag=1
+			</where>
+		</if>
+	</select>
+	<!-- 查询借款人已还清项目数 -->
+	<select id="queryPayOffCountByBorrowerId" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM (SELECT p.id FROM ic_project p LEFT JOIN ic_debt d ON p.debt_id=d.id WHERE d.lender_id=#{borrowerId} AND p.status=70 AND p.invest_type=1
+		UNION
+		SELECT id FROM ic_project WHERE borrower_id=#{borrowerId} AND status=70 AND invest_type=2) A
+	</select>
+   <select id="getTotalProjectCount" resultType="java.lang.Integer">
+      select count(1) from ic_project where `status` =70  and del_flag =1
+   </select>
+   <select id="getTotalBorrowiMemberCount" resultType="java.lang.Integer">
+      select 
+		(select count(1) person_count from (select count(1),i.borrower_id,i.id from ic_project i where i.borrower_type =1  GROUP BY i.borrower_id) a )  
+		+
+		(select count(1) enterprise_count from (select count(1),t.id from ic_project i,uc_enterprise t where i.borrower_type =2 and i.enterprise_id=t.id  GROUP BY t.id) b) 
+	   from dual
+   </select>
+	<select id="getOverProsCount" resultType="com.yourong.core.os.biz.ProjectsPageOutPut">
+		SELECT
+			count(1) as 'totalCount', IFNULL(sum(p.total_amount), 0) as 'totalAmount'
+		FROM
+			ic_project AS p , bsc_audit as a
+		WHERE  a.process_id = p.id
+		AND	a.audit_time BETWEEN #{map.startTime} AND #{map.endTime}
+		AND p.invest_type = 2
+		AND p.`status` IN (51,52,81)
+		AND p.del_flag = 1
+	</select>
+	
+	<select id="getOverPros" resultType="com.yourong.core.os.biz.ProjectForOpen">
+		SELECT
+			p.id AS 'projectId',
+			p.`name` AS 'title',
+			p.total_amount AS 'amount',
+			'100' AS 'schedule',
+			CONCAT(p.annualized_rate, '%') AS 'interestRate',
+			CASE p.borrow_period_type WHEN 1 THEN p.borrow_period WHEN 2 THEN p.borrow_period * 30 WHEN 3 THEN p.borrow_period * 365 WHEN 4 THEN p.borrow_period * 7 END as 'deadline',
+			'天' as 'deadlineUnit',
+		IFNULL((select ip.extra_amount  from ic_project_extra ip where ip.project_id=p.id and ip.extra_type=2 LIMIT 1),0) as 'reward',
+			CASE p.security_type WHEN 'guarantee' THEN '担保' WHEN 'credit' THEN '信用' ELSE '其他' END as 'type',
+            CASE p.profit_type WHEN 'avg_principal' THEN 2 WHEN 'monthly_paid' THEN 5 WHEN 'once_paid' THEN 1 WHEN 'season_paid' THEN 7 when 'principal_average' then 6 else 3 END as 'repaymentType',
+		MD5(p.borrower_id) as 'userName',
+			CONCAT('https://www.yrw.com/products/detail-', p.id, '.html') as 'loanUrl',
+			date_format(max(a.audit_time),'%Y-%m-%d %H:%i:%s') as 'successTime',
+			date_format(p.online_time,'%Y-%m-%d %H:%i:%s') as 'publishTime'
+		FROM
+			ic_project AS p, bsc_audit as a
+		WHERE
+			p.invest_type = 2
+		AND p.`status` IN (51,52,81)
+		AND p.del_flag = 1
+		AND a.process_id = p.id
+		AND a.audit_step = 50
+		AND a.audit_result = 1
+		AND a.del_flag = 1
+		AND a.audit_time BETWEEN #{map.startTime} AND #{map.endTime}
+		GROUP BY p.id 
+		ORDER BY p.audit_time
+		LIMIT #{map.startRow}, #{map.pageSize}
+	</select>
+	
+	<select id="getInvestingProsCount" resultType="com.yourong.core.os.biz.ProjectsPageOutPut">
+		SELECT
+			count(1) as 'totalCount', IFNULL(sum(p.total_amount), 0) as 'totalAmount'
+		FROM
+			ic_project AS p
+		WHERE
+			p.online_time BETWEEN #{map.startTime} AND #{map.endTime}
+		AND p.invest_type = 2
+		AND p.`status` in (30)
+		AND p.del_flag = 1
+	</select>
+	
+	<select id="getInvestingPros" resultType="com.yourong.core.os.biz.ProjectForOpen">
+		SELECT
+			p.id AS 'projectId',
+			p.`name` AS 'title',
+			p.total_amount AS 'amount',
+			TRUNCATE((p.total_amount - b.balance) * 100 / p.total_amount, 3)  AS 'schedule',
+			CONCAT(p.annualized_rate, '%') AS 'interestRate',
+			CASE p.borrow_period_type WHEN 1 THEN p.borrow_period WHEN 2 THEN p.borrow_period * 30 WHEN 3 THEN p.borrow_period * 365 WHEN 4 THEN p.borrow_period * 7 END AS 'deadline',
+			'天' AS 'deadlineUnit',
+		IFNULL((select ip.extra_amount  from ic_project_extra ip where ip.project_id=p.id and ip.extra_type=2 LIMIT 1),0) as 'reward',
+			CASE p.security_type WHEN 'guarantee' THEN '担保' WHEN 'credit' THEN '信用' ELSE '其他' END AS 'type',
+		  CASE p.profit_type WHEN 'avg_principal' THEN 2 WHEN 'monthly_paid' THEN 5 WHEN 'once_paid' THEN 1 WHEN 'season_paid' THEN 7 when 'principal_average' then 6 else 3 END as 'repaymentType',
+		    MD5(p.borrower_id) AS 'userName',
+			CONCAT('https://www.yrw.com/products/detail-', p.id, '.html') AS 'loanUrl',
+			date_format(p.online_time,'%Y-%m-%d %H:%i:%s') AS 'publishTime',
+			p.min_invest_amount AS 'minInvestAmount'
+		FROM
+			ic_project AS p
+		LEFT JOIN fin_balance AS b ON p.id = b.source_id AND b.balance_type = 4
+		WHERE
+			p.online_time BETWEEN #{map.startTime} AND #{map.endTime}
+		AND p.invest_type = 2
+		AND p.`status` in(30)
+		AND p.del_flag = 1
+		ORDER BY p.sale_complated_time
+		LIMIT #{map.startRow}, #{map.pageSize}
+	</select>
+	<select id="getProsStatus" resultType="com.yourong.core.os.biz.ProjectStatus">
+		SELECT
+		id AS 'projectId',
+		CASE
+		WHEN status=30 THEN 1
+		WHEN status=40 THEN 1
+		WHEN status=50 THEN 2
+		WHEN status=81 THEN 2
+		WHEN status=51 THEN 2
+		WHEN status=52 THEN 2
+		WHEN status=60 THEN 1
+		WHEN status=70 THEN 2
+		when (status=80 and sale_complated_time is not null) then 2
+		WHEN (status=80 and sale_complated_time is  null) THEN 3
+		WHEN status=90 THEN 3
+		ELSE 0 END as status
+		FROM
+		  ic_project
+		WHERE
+			id IN
+		<foreach collection="ids" index="index" item="item" open="("
+			separator="," close=")"> #{item}  
+		</foreach>
+	</select>
+</mapper>

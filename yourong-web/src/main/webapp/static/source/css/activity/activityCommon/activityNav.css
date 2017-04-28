@@ -1,0 +1,111 @@
+/**活动页面右侧悬浮**/
+.u-floating-window {
+    width: 108px;
+    height: 304px;
+    position: fixed;
+    left: 50%;
+    top: 15%;
+    margin-left: 540px;
+
+}
+
+.u-floating-window > a {
+    background-color: #cccccc;
+    margin: 0 16px 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    display: block;
+    background-size: 60%;
+}
+
+.u-floating-window > a:hover {
+    background-color: #d74148;
+}
+
+.u-icon-robot {
+    width: 62px;
+    height: 51px;
+    display: block;
+    background: url("/static/img/v2/common/icon_robot.png") 0 0 no-repeat;
+    position: absolute;
+    z-index: 1;
+    background-size: 100%;
+}
+
+.u-floating-window > a.u-icon-kefu {
+    margin-top: 49px;
+    z-index: 2;
+}
+
+.u-icon-kefu {
+    width: 30px;
+    height: 30px;
+    display: block;
+    background: #ccc url("/static/img/v2/common/yrRobot-floatWin-icon01.png") no-repeat center;
+}
+
+.u-icon-weibo {
+    width: 30px;
+    height: 30px;
+    display: block;
+    background: #ccc url("/static/img/v2/common/yrRobot-floatWin-icon04.png") no-repeat center;
+}
+
+.u-icon-weixin {
+    width: 30px;
+    height: 30px;
+    display: block;
+    background: #ccc url("/static/img/v2/common/yrRobot-floatWin-icon02.png") no-repeat center;
+}
+
+.u-icon-app {
+    width: 30px;
+    height: 30px;
+    display: block;
+    background: #ccc url("/static/img/v2/common/yrRobot-floatWin-icon03.png") no-repeat center;
+    background-size: 40% !important;
+}
+
+.u-icon-top {
+    width: 30px;
+    height: 30px;
+    display: block;
+    background: #ccc url("/static/img/v2/common/yrRobot-floatWin-icon05.png") no-repeat center;
+}
+
+/*.u-weibo-link{*/
+/*!*position: absolute;*!*/
+/*!*top: 0;*!*/
+/*!*left: 0;*!*/
+/*width: 30px;*/
+/*height: 40px;*/
+/**/
+/*}*/
+.u-floating-window > a span {
+    position: absolute;
+    left: -230px;
+    top: 0;
+    height: 220px;
+    width: 220px;
+    background: #ccc;
+    z-index: 3;
+}
+
+.u-floating-window > a span i {
+    color: #ccc;
+    font-size: 30px;
+    height: 11px;
+    width: 6px;
+    display: block;
+    position: absolute;
+    right: -6px;
+    top: 9%;
+    background: url("/static/img/v2/homepage/homepage_icons.png") no-repeat -606px -84px;
+}
+
+.u-floating-window > a span img {
+    width: 200px;
+    height: 200px;
+    margin: 10px 0 0 10px;
+}

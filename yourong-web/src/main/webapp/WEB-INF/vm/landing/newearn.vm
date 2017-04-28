@@ -1,0 +1,467 @@
+##收益着落页 
+#parse('/common/common.vm')
+#set($css_url=["$root_css_url/modules/login.css"])
+#set($title="安全省心拿收益_$!{title_suffix}")
+#set($js_url=["$root_url/static/lib/js/jq/jquery.circliful.min.js","$root_js_url/modules/register.js"])
+
+<style>
+          .g-bd {
+			margin-bottom: 0;
+			}
+		  .u-partner-hd{
+            width: 100%;
+            height: 450px;
+            margin-top: -8px;
+            background: url(/static/img/landing/newearn/newearn_hd.jpg) no-repeat center center;
+	            }
+		/* 滚动新闻和统计 */
+		.m-news-wrap {
+			height: 60px;
+			background-color: #ddd;
+		}
+
+		.u-scroll-news {
+			height: 60px;
+			line-height: 60px;
+			width: 600px;
+		}
+
+		.u-scroll-news ol li {
+			float: left;
+			font-size: 18px;
+			color: #ccc;
+			width: 10px;
+			padding: 0 5px 2px;
+			cursor: pointer;
+			}
+
+		.u-scroll-news ol li.z-current {
+			color: #e33f4a;
+		}
+
+		.u-scroll-news ul {
+			height: 60px;
+			overflow: hidden;
+			padding: 0 0 0 10px;
+			position: relative;
+		}
+
+		.u-scroll-news ul li {
+			color: #666;
+			background: #ddd;
+			position: absolute;
+			z-index: -1;
+			top: 0;
+			left: 10px;
+			width: 100%;
+		}
+
+		.u-scroll-news ul li:first-child {
+			z-index: 51;
+		}
+
+		.u-scroll-news li span {
+			display: inline-block;
+			text-indent: 13px;
+		}
+
+		.u-scroll-news a {
+			display: inline-block;
+			max-width: 460px;
+			color: #666;
+			background: #ddd;
+			margin-right: 10px;
+		}
+
+		.u-site-stat {
+			position: absolute;
+			right: 0;
+			top: 8px;
+			color: #666;
+		}
+
+		/*添加“更多”链接*/
+		.u-scroll-news .u-scroll-more {
+			margin-left: 9px;
+		}
+
+		.u-scroll-news .u-scroll-more:link {
+			text-decoration: underline;
+		}
+
+		.u-scroll-news .u-scroll-more:visited {
+			text-decoration: underline;
+		}
+
+		.u-scroll-news .u-scroll-more:hover {
+			text-decoration: underline;
+		}
+		/*有融的优势*/
+		.g-newearn-bg{ 
+			background-color: #e6e6e6;
+			height: 4329px;
+		}
+		.g-newearn-center{
+			width: 990px;
+			margin: 0 auto;
+		}
+		.g-newearn-advantage{ 
+			height: 577px;
+			color: #4c4c4c;
+		}
+		.g-newearn-advantage h1{ 
+			color: #4c4c4c;
+			font-weight: bold;
+			padding: 77px 0 50px 0;
+			text-align: center;
+		}
+		.g-newearn-advantage dl{ 
+			width: 238px;
+			height: 265px;
+			margin: 0 46px 130px;
+			color: #4c4c4c;
+			font-size: 14px;
+			text-align: center;
+			float: left;
+		}
+		.g-newearn-advantage dt>h2{
+			color:#4c4c4c;
+			font-size: 26px;
+			font-weight: bold;
+			margin: 27px 0 15px;
+		}
+		.g-newearn-advantage dt>i{ 
+			width: 133px;
+			height: 133px;
+			display: block;
+			margin:0 53px 0;
+		}
+		.u-newearn-icons01{ 
+			background: url(/static/img/landing/newearn/newearn.png)  no-repeat 0 0;
+		}
+		.u-newearn-icons02{ 
+			background: url(/static/img/landing/newearn/newearn.png)  no-repeat -138px 0;
+		}
+		.u-newearn-icons03{ 
+			background: url(/static/img/landing/newearn/newearn.png)  no-repeat 0 -138px;
+		}
+		/*活动*/
+		.u-newearn-activity01{ 
+			background: url(/static/img/landing/newearn/activity01.jpg) no-repeat center;
+			height: 467px;
+			width: 990px;
+			display:block;
+		}
+		.u-newearn-activity02{ 
+			background: url(/static/img/landing/newearn/activity02.jpg) no-repeat center;
+			height: 434px;
+			width: 990px;
+			display:block;
+		}
+		.u-newearn-activity03{ 
+			background: url(/static/img/landing/newearn/activity03.jpg) no-repeat center;
+			width: 990px;
+			height: 473px;
+			display:block;
+		}
+		.g-newearn-advantage .m-newearn-tfontcolor{ 
+			color:#4c4c4c;
+			display:block;
+			cursor: pointer;
+			margin: 33px 0 50px;
+		}
+		.g-newearn-advantage .m-newearn-tfontcolor:hover{
+			text-decoration: none;
+			color:#4c4c4c;
+		}
+		.m-newearn-tfontcolor p{ 
+			display: inline;
+		}
+		/*第三方资金托管*/
+		.u-newearn-sinapay{ 
+			background: url(/static/img/landing/newearn/sinapay.jpg) no-repeat center;
+			width: 990px;
+			height: 515px;
+			display:block;
+		}
+		.m-newearn-flow{ 
+			margin-top: 158px;
+			margin-bottom: 75px;
+			color: #000;
+			background:url(/static/img/landing/newearn/newearn.jpg) no-repeat center; 
+			width: 990px;
+			height: 630px;
+		}
+		.m-newearn-flow strong{ 
+			margin-left: 80px;
+			line-height: 2em;
+		}
+		.m-newearn-flow p{ 
+			margin-left: 80px;
+		}
+		.u-newearn-btn{ 
+			background: url(/static/img/landing/newearn/newearn.png)  no-repeat 0 -276px;
+			margin: 25px 368px 99px;
+			width: 257px;
+			height: 54px;
+			text-indent: -9999px;
+			display: block;
+		}
+		/*注册*/
+		 .m-regform-land {
+        width: 360px;
+        margin: 50px 0 0;
+    }
+    .m-regform-land .u-gotop{
+    	height: 15px;line-height: 15px;
+    }
+    .m-regform-land .u-ipt-text {
+        width: 342px;
+    }
+    .m-regform-land .u-ipt-vercode {
+        width: 180px;
+    }
+    .m-regform-land .u-img-vercode {
+        left: 100px;
+    }
+    .m-regform-land .u-ipt-phonecode {
+        width: 177px;
+        margin: 0 0 0 4px;
+    }
+    .m-regform-land .m-voice-box .u-tips-vercode {
+        width: 84px;
+    }
+    .m-regform-land input[type='submit'] {
+        width: 360px;
+        margin: 10px 0 0;
+    }
+    .u-ipt-blank {
+        display: inline-block;
+        height: 30px;
+        line-height: 30px;
+        color: #656565;
+        vertical-align: middle;
+    }
+    .m-regform-land .m-val-tips i {
+        margin-left: 0;
+    }
+    .m-regform-land .Validform_checktip {
+        margin: 0;
+    }
+    .m-input-vercode {
+        min-height: 69px;
+    }
+    .m-regform-land .u-icon-success {
+        display: none;
+    }
+    /*着陆页3黄色按钮*/
+.m-regform-land .u-btn-primary{ 
+	background-color: #f3c739;
+    border-color: #f3c739;
+    outline: none;
+}
+.m-regform-land label,.m-regform-land label a{  
+	color:#fff;
+}
+.m-regform-land .u-btn.z-disabled{ 
+	background-color: #aaa;
+border-color: #aaa;
+cursor: default;
+}
+/*着陆页3白色提示图标*/
+.m-regform-land .m-val-tips{ 
+	color: #fff;
+}
+/*着陆页3白色提示图标*/
+.m-regform-land .Validform_wrong{ 
+	color: #fff;
+	height:20px;
+	line-height: 1.5em;
+	background: url(/static/img/landing/newearn/icons.png) no-repeat -25px 0;
+}
+.m-regform-land .u-icon{ 
+	height:20px;
+	background: url(/static/img/landing/newearn/icons.png) no-repeat -25px 0;
+}
+ /*更改着陆页注册提示的问题*/
+ .m-regform-land .u-hotline-tips{
+ margin:0;
+  color:#fff;
+  line-height:20px;
+   }
+ .m-regform-land  .u-tips-waring{
+    width:360px;
+   }
+</style>
+
+
+ <div class="f-mh500 f-cf">
+    	<div class="u-partner-hd">
+    	<div class="g-wrap">
+        <form data-action="$root_url/security/register/saveMember" method="POST" class="f-pos-r j-form-xpost j-validform m-regform-land f-fr" data-page="register" id="j-reg-form">
+           <div id="top" class="u-gotop"></div>
+            #CSRFToken()
+			#onceToken()
+            <input type="hidden" id="j-reg-mobile" />
+            <div class="u-ipt-group f-pos-r">
+                <input type="text" name="mobile" oncopy="return false;" onpaste="return false;" id="j-cpn" autocomplete="off" nullmsg="手机号码不能为空" errormsg="请输入正确的手机号码" class="f-round f-ipt-w430 u-ipt-text u-ipt-str" placeholder="请输入手机号码" />
+                <span class='m-val-tips'></span>
+                <div class="f-mob-sha f-dn" id="j-mobile"></div>
+            </div>
+            <div class="m-input-vercode f-cf">
+                <span class="u-xtips-wrap">
+				<!--[if (gte IE 7)&(lte IE 9)]>
+				<em>输入图形码</em>
+				<![endif]-->
+				<input type="text" id="j-vercode" autocomplete="off" nullmsg="请输入图形验证码" class="f-round u-ipt-text f-ipt-w260 j-vercode u-ipt-vercode" placeholder="输入图形码" />
+			</span>
+                <img src="$root_url/security/validateCode" alt="验证码" title="点击重新获取验证码" id="j-img-vercode" class="u-img-vercode" />
+                <span id="j-phonecode-wrap" class="u-xtips-wrap u-phonecode-wrap z-hide">
+				<!--[if (gte IE 7)&(lte IE 9)]>
+				<em>输入手机验证码</em>
+				<![endif]-->
+				<input type="text" name="phonecode" autocomplete="off" id="j-phonecode" placeholder="输入手机验证码" class="f-clear f-round u-ipt-text f-ipt-w260 u-ipt-phonecode" />
+			</span>
+                <span class="f-round u-tips-vercode f-tips-gray">
+			获得手机验证码
+			</span>
+                <span class="m-val-tips"> &nbsp; </span>
+                <span class="u-ipt-blank"> &nbsp; </span>
+            </div>
+            <div class="u-ipt-group">
+                <input type="password" name="password" oncopy="return false;" onpaste="return false;" class="f-round u-ipt-text f-ipt-w430 v-pwd" placeholder="输入密码，长度6-16位，至少包含数字和字母" />
+                <span class="u-ipt-blank"> &nbsp; </span>
+            </div>
+            <div class="u-ipt-group">
+                <input type="password" name="repassword" oncopy="return false;" onpaste="return false;" recheck="password" class="f-round f-ipt-w430 u-ipt-text v-pwd-reck" placeholder="再次输入密码" />
+                <span class="u-ipt-blank"> &nbsp; </span>
+            </div>
+
+            <input type="hidden" name="tid"   value="$!{request.getParameter('tid')}" />
+            <input type="hidden" name="registerTraceSource" value="$!{session.getAttribute(" register_TraceSource ")}"/>
+            <input type="hidden" name="registerTraceNo" value="$!{session.getAttribute(" register_TraceNo ")}"/>
+            <input type="hidden" name="checkType" id="j-checkType" value="1" />
+            <input type="hidden" name="pngCode" id="j-pngcode" />
+            <label class="f-clear f-mgl-8">
+                <input type="checkbox" checked="checked" name="agree" id="j-agree" />&nbsp;我已阅读并同意<a href="#"  id="j-register-argreement-link" data-target="j-register-argreement" data-url="$root_url/static/register-agreement.html">《有融网服务协议》</a>
+            </label>
+            <br />
+            <input type="submit" value="注册立送70元现金券" class="f-round f-fs18 f-btn-m u-btn u-btn-primary j-reg-btn" />
+        </form>
+    </div>
+    
+    	</div>
+		<div class="m-news-wrap f-cf">
+	<div class="g-wrap f-pos-r">
+		<div class="u-scroll-news j-scroll-news">
+			<ol>
+				<li class="z-current">●</li>
+				<li>●</li>
+				<li>●</li>
+			</ol>
+			<ul>
+				#if($!articles && $!articles.size()>0)
+					#foreach($!article in $!articles)
+						<li class="z-current">
+							<a href="$root_url/article/news-1-1.html#newsId_$!article.id" target="_blank">$!article.subTitle</a>
+							<span>$!article.createDate2Str</span>
+							<a class="u-scroll-more" href="$root_url/article/news-1-1.html">更多</a>
+						</li>
+					#end
+				#end
+			</ul>
+		</div>
+		<div class="u-site-stat">
+			累计成功投资： 
+			<em class="f-ff-ver f-fs14">￥<span class="f-ff-din f-fs28">$!{paltformCapitalUtils.getPrefixPaltformTotalInvest()}</span><span class="f-ff-din f-fs24">$!{paltformCapitalUtils.getSuffixPaltformTotalInvest()}</span></em>
+			&nbsp;&nbsp;注册人数：<em class="f-ff-din f-fs28">$!{paltformCapitalUtils.getPaltformMembers()}</em>
+		</div>
+	</div>
+</div>
+		<div class="g-newearn-bg">
+			<div class="g-newearn-center">
+				<div class="g-newearn-advantage f-cf">
+					<h1 class="f-fs42">有融网的优势</h1>
+						<dl>
+							<dt>
+								<i class="u-newearn-icons01"></i>
+								<h2 class="f-fs26">收益</h2>
+							</dt>
+							<dd class="f-fs14">安全稳健的收益保障<br/>
+											是银行活期存款利率的40倍<br/>
+											全程享受财富增值的喜悦
+							</dd>
+						</dl>
+						<dl>
+							<dt>
+								<i class="u-newearn-icons02"></i>
+								<h2>专业</h2>
+							</dt>
+							<dd class="f-fs14">
+							专业的技术团队<br/>
+									多重风控措施保障本息安全<br/>
+										投资理财全程无忧
+			
+							</dd>
+						</dl>
+						<dl>
+							<dt>
+								<i class="u-newearn-icons03"></i>
+								<h2>安全</h2>
+							</dt>
+							<dd class="f-fs14">
+							安全透明的投资环境<br/>
+							资金由新浪支付存钱罐托管<br/>
+							体验VIP级完美护航
+								</dd>
+						</dl>
+					<h1 class="f-fs42">我的活动你做主</h1>
+					<a class="u-newearn-activity01" href="/activity/newMemberTheFirst" target="_blank"></a>
+					<a class="m-newearn-title01 m-newearn-tfontcolor" href="/activity/newMemberTheFirst" target="_blank">
+					<strong class="f-fs16">我的第一次从有融开始 : </strong><p class="f-fs14">开通存钱罐送50元，完善信息再送20元</p>
+					</a>
+					<a class="u-newearn-activity02" href="/activity/iamKing" target="_blank"></a>
+					<a class="m-newearn-title02 m-newearn-tfontcolor" href="/activity/iamKing" target="_blank">
+					<strong class="f-fs16">我是王 : </strong><p class="f-fs14">最高奖励188元现金券+1%收益券</p>
+					</a>
+					<a class="u-newearn-activity03" href="/activity/firstInvest" target="_blank"></a>
+					<a class="m-newearn-title03 m-newearn-tfontcolor" href="/activity/firstInvest" target="_blank">
+					<strong class="f-fs16">跨年大礼 五福临门 : </strong><p class="f-fs14">五类奖项任你拿</p>
+					</a>
+					<h1 class="f-fs42">第三方资金托管</h1>
+					<a class="u-newearn-sinapay" href="/post/topics/sinaSavingPot" target="_blank"></a>
+					<div class="m-newearn-flow">
+						<strong class="f-fs20">什么是有融网？</strong>
+						<p class="f-fs14">有融网是一家专业的第三方债权交易<br/>
+							金融信息服务平台。运用高效的<br/>
+							运营管理体系和创新的<br/>
+							互联网思维搭建了一个<br/>
+							专业、安全、透明的<br/>
+							债权信息披露媒介。
+						</p>
+					</div>
+					<h1 class="f-fs42">准备好享受高收益了吗？</h1>
+					<a class="u-newearn-btn" href="/security/register" target="_blank">我已准备好</a>
+				</div>
+			</div>
+		</div>
+    </div>
+<div class="u-agreement-box f-dn" id="j-register-argreement">
+    <h3 class="f-fs18">有融网服务协议<i></i></h3>
+    <div>
+        <iframe src="" frameborder="0"></iframe>
+    </div>
+</div>
+<script>
+	window.onload=function(){
+		$(window).scrollTop(164);
+##		#if($stringUtil.equalsIgnoreCases($!{currentUser.registerTraceSource},'JX',true))
+##		##mediav
+##		var _mvq = window._mvq || [];
+##		window._mvq = _mvq;
+##		_mvq.push(['$setAccount', 'm-135590-0']);
+##		_mvq.push(['$setGeneral', 'register', '', '', '']);
+##		_mvq.push(['$logConversion']);
+##		#end
+	}
+</script>

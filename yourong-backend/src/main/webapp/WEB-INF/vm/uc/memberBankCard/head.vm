@@ -1,0 +1,14 @@
+ #parse("/common/common.vm")
+ #########################################script##################################### 
+ #set($js_config=[ 
+ "'urlMap':{ 
+   'ajax':'$root_url/memberBankCard/ajax?', 
+   'deleteSafeCard':'$root_url/memberBankCard/deleteSafeCard?'},
+   'permission':{
+		'ajax':$shiro.hasPermission('memberBankCard:ajax'),
+		'deleteSafeCard':$shiro.hasPermission('memberBankCard:deleteSafeCard')
+   }"
+ ]) 
+ #set($css_url=["$root_url/static/js/lib/validform/css/style.css"])
+ #set($js_url=["$root_url/static/js/memberBankCard.js"])
+ #########################################DOM##################################### 

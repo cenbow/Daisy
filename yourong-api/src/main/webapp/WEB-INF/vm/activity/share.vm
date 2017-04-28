@@ -1,0 +1,134 @@
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$res_url/source/css/post/shareAndInvite.css"])
+#set($loginSource=$request.getParameter("loginSource"))
+#set($encryptionId=$request.getParameter("encryptionId"))
+##$encryptionId
+#if($currentUser)
+    #set($logined=true)
+#else
+    #set($logined=false)
+#end
+#set($os=3)
+#CSRFToken('xToken')
+##  安卓
+#if($loginSource==1)
+    #set($os=1)
+#end
+##  IOS
+#if($loginSource==2)
+    #set($os=2)
+#end
+#if($loginSource==1||$loginSource==2)
+<style>
+    .g-ft{
+        display: none;
+    }
+</style>
+#end
+##
+<style>
+    .g-ft {
+        display: none;
+    }
+</style>
+#if($loginSource==1 || $loginSource==2)
+#else
+##header，安卓ios，不需要头部
+<h2 class="u-pageTitle f-pos-r">
+    <a href="$siteurl/mIndex">有融网</a>
+        <span class=" f-pos-a f-fs18 f-ff-ver">
+            #if(!$currentUser)
+                <a href="" id="j-login">登录</a>
+                <a href="$siteurl/mstation/register" id="j-register">注册</a>
+            #else
+                <a href="$mCenter_logout_url">退出</a>
+            #end
+        </span>
+</h2>
+#end
+<div id="j-share">
+##    <a href="yrw-skip://invokeMethod=getToken" style="color: #ffffff;background: red;padding: 20px;">IOS点击请求测试</a>
+    <div class="m-share-img">
+        <img src="../../res/img/post/shareAndInvite/share-banner.png" alt="" width="100%">
+    </div>
+    <div class="m-share-steps">
+        <div class="u-share-grawp">
+            <ul>
+                <li><i>1</i><p><span>完成一笔满足条件的投资</span> <br>单笔投资≥1000元 </p></li>
+                <li><i>2</i><p><span>将红包分享给好友</span> <br>获得一个拼手气红包，您和好友皆可打开红包 <br> (红包可在“我的投资”-“投资详情”中查看)</p></li>
+                <li><i>3</i><p><span>得到随机数值的人气值奖励</span> <br>人气值可兑换收益券、现金券 </p></li>
+            </ul>
+        </div>
+    </div>
+    <div class="m-share-amount" id="j-share-amount">
+    </div>
+    <script type="text/html" id="j-share-amount-tpl">
+        <div class="u-share-amount">
+            <p>平台共发出红包<span>{{result.platformTotalSend}}</span>个，已有<span>{{result.platformTotalReceive}}</span>人抢得红包
+        </div>
+        <div class="u-share-myAmount" id="j-share-myAmount">
+            <div class="u-share-avatar">
+                {{if result.avatarImg}}
+                <img src="$!{aliyun_url}{{result.avatarImg}}" alt="头像">
+                {{else}}
+                <img src="$res_url/img/member/login_avatar.png" alt="">
+                {{/if}}
+                <p>我的红包记录</p>
+            </div>
+            <div class="u-share-amountList"><span><i>{{result.receiveTotalPrize}}点</i> <br> 抢得红包</span><span><i>{{result.sendTotalPrize}}点</i> <br> 发出红包</span><span><i>{{result.totalTop}}次</i> <br>手气最佳</span></div>
+        </div>
+    </script>
+    <div class="m-share-rule">
+        <h2>
+            活动规则
+        </h2>
+        <div class="u-share-text">
+            <p>
+                <span>1、</span><em>活动时间：长期有效；</em>
+                <br><span>2、</span><em>活动对象：有融网所有用户；</em>
+                <br><span>3、</span><em>红包有效期为获得后30天，记得及时分享哦；</em>
+                <br><span>4、</span><em>红包所得人气值将于获得后5分钟内发放；</em>
+                <br><span>5、</span><em>未注册用户还可额外获得518礼包，成功注册后方可领取；</em>
+                <br><span>6、</span><em>直投项目履约后才能分享红包哦；</em>
+                <br><span>7、</span><em>有融网禁止任何恶意刷奖及其他手段重复领取奖励的行为，一经发现并证实，将不予发放所获奖励；</em>
+                <br><span>8、</span><em>如有其他疑问，请拨打客服热线：<br> 400-025-6688</em>
+                <br><span>9、</span><em>本活动最终解释权归有融网所有。</em>
+            </p>
+        </div>
+    </div>
+        <div class="m-share-btn" id="j-share-btn" data-os="$os">
+            <a id="j-share-link" href="#if($os==2) yrw-skip://invokeMethod=projectList #elseif($os==3) $siteurl/products/m/list-all-all-1.html #end">投资抢红包</a>
+        </div>
+##    登陆按钮
+    <a class="m-loginBtn f-fs22" data-login="$logined" id="j-login-btn" data-loginSource="$loginSource"></a>
+</div>
+<input type="hidden" id="j-share-data" data-result='$!{data}' >
+##<script src="$res_url/lib/js/vconsole.min.js"></script>
+#set($pageScript="
+<script>
+    (function(){
+        //安卓app跳转
+        var i=$('#j-share-btn').data('os');
+        $('#j-share-link').on('click',function(){
+            if(i==1){
+                Android.ToActivity('projectList', null)
+            }
+
+        })
+        if ($os==1
+        )
+        {
+            Android.UpdateTitle('投资分享红包')
+        }
+
+        window.tokenCallback = function (data) {
+            console.log(JSON.parse(data))
+            return JSON.parse(data)
+            // return appData
+        }
+    })()
+    seajs.use('$m_js_url/post/shareAndInvite.js')
+</script>
+")
+

@@ -1,0 +1,162 @@
+
+/*页头*/
+.m-Again-banner{
+    font-size: 0;
+    width: 100%;
+}
+.m-Again-banner img{
+    width: 100%;
+}
+/*直播*/
+.m-Again-video{
+    background: #030e3d;
+    padding: 0 3%;
+    width: 94%;
+}
+.u-title{
+    width: 100%;
+    margin: 0 auto 20px;
+}
+.u-title img{
+    width: 35%;
+
+}
+.u-title-left{
+    /*background: url(../../../img/activity/Again/Again-title-left.png) no-repeat center;*/
+}
+.u-title-right{
+    /*background: url("/static/img/activity/Again/Again-title-right.png") no-repeat center;*/
+}
+.u-title span{
+    width: 30%;
+    font-size: 16px;
+    color: #fff;
+    text-align: center;
+    display: inline-block;
+    vertical-align: top;
+}
+.u-Again-video iframe{
+    height: 438px;
+}
+
+@media screen and (max-width: 300px) {
+    .m-Again-video{
+        margin-top: -60px ;
+    }
+
+}
+@media screen and (min-width: 320px) {
+    .m-Again-video{
+        margin-top: -70px ;
+    }
+
+
+}
+/*@media screen and (min-width: 350px) {*/
+    /*.m-Again-video{*/
+        /*margin-top: -88px ;*/
+    /*}*/
+/*}*/
+@media screen and (min-width: 400px) {
+    .m-Again-video{
+        margin-top: -88px;
+    }
+
+
+}
+@media screen and (min-width: 450px) {
+    .m-Again-video{
+        margin-top: -95px;
+    }
+
+}
+/*投资方介绍*/
+.m-Again-investor{
+    background: #030e3d;
+    padding: 35px 3% 0;
+    width: 94%;
+}
+.u-Again-investor {
+    padding: 20px 3% 20px;
+    background: #1d2751;
+    color: #fff;
+}
+.u-Again-investor strong{
+    display: block;
+    text-align: center;
+}
+.u-Again-investor p{
+    font-size: 0.8rem;
+    text-indent: 1.6rem;
+    text-align: justify;
+    line-height: 30px;
+}
+.u-Again-investor p a{
+    display: block;
+    color: #fff;
+    text-align: right;
+}
+.u-Again-investor p a:link,
+.u-Again-investor p a:active,
+.u-Again-investor p a:hover{
+    color: #fff;
+    text-decoration: none;
+}
+/*媒体合作*/
+.m-Again-media{
+    background: #030e3d;
+    padding: 35px 3% 0;
+    width: 94%;
+}
+.u-Again-media{
+    background: #fff;
+}
+/*发展历程*/
+.m-Again-development{
+    background: #030e3d;
+    padding: 35px 3% 0;
+    width: 94%;
+}
+.u-Again-development{
+    background: #fff;
+}
+.m-Again-development>p{
+    color: #fff;
+    font-size: 12px;
+    text-align: center;
+    margin: -15px 0 20px;
+}
+/*官微互动*/
+.m-Again-activity{
+    background: #030e3d;
+    padding: 35px 3% 0;
+    width: 94%;
+}
+.u-Again-activity{
+    font-size: 0;
+    height: 400px;
+}
+.u-Again-activity dl{
+    color: #030e3d;
+    display: inline-block;
+    width: 42%;
+    padding: 15px 3% 20px;
+    vertical-align: text-top;
+    background: #fff;
+    font-size: 12px;
+    margin-left: 3%;
+    height: 290px;
+}
+
+.u-Again-activity dl:first-child{
+    margin-left: 0;
+}
+.u-Again-activity dd strong{
+    display: block;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+.u-Again-activity dd span{
+    display: block;
+    font-weight: bold;
+}

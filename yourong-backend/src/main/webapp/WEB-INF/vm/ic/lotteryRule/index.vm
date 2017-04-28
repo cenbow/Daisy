@@ -1,0 +1,134 @@
+#set($layout = "/layout/iframe.vm")
+#parse("/ic/lotteryRule/head.vm")
+ 
+<div class="col-xs-12">
+	<div class="col-xs-9 col-sm-9 widget-container-span ui-sortable">
+		<form id="lottery_rule_form" method="post">
+				
+				1
+				##,设置奖励时间，仅奖励时间内投资可获得抽奖机会
+				##<div  class="form-group clearfix"  id="reward_hour">
+				###	<label class="col-sm-2 control-label no-padding-right" for="rewardHour">自项目上线：</label>
+				##	<div class="col-sm-2">
+				##		<input type="text" id="rewardHour"  name="rewardHour" placeholder="" class="col-xs-12 col-sm-10"  
+				##		 value=""  readonly>
+				##	</div>
+				##	<label class="col-sm-1 control-label no-padding-right" for="rewardHour">小时</label>
+				##</div>			
+				
+				<div  class="form-group clearfix"  id="reward_hour">
+					<label class="col-sm-2 control-label no-padding-right" for="popularity">每次未中奖反人气值(没有请写0)：</label>
+					<div class="col-sm-2">
+						<input type="text" id="popularity"  name="popularity" placeholder="" class="col-xs-12 col-sm-10"  
+						 value=""  readonly>
+					</div>
+				</div>
+				
+				
+				2，奖项设置
+				（默认四个奖项，最少减到3等奖，最多加到6等奖 / 奖项点数四舍五入取整/ 总比例加起来需为100%/请填写小数）
+				<table id="sample-table-2" class="table table-striped table-bordered table-hover">
+					<thead>
+						<tr>
+							<th>奖项</th>
+							<th>占奖池大小比例</th>
+							<th>奖项个数</th>
+
+						</tr> 
+					</thead>
+
+					<tbody>
+						<tr>
+							<td >一等奖 <input type="hidden" name="prizeInPool[0].level" /></td>
+							<td>
+								<input type="text" id="prizeIn_pool_proportion_1" name="prizeInPool[0].proportion" 
+								datatype="/^[1]$|^0.\d{1}/" errormsg= "请输入0-1之间的小数"  readonly/>
+							</td>
+							<td >
+								<input type="text" id="prizeIn_pool_num_1" name="prizeInPool[0].num" readonly/>
+							</td>
+						</tr>
+						<tr>
+							<td >二等奖 <input type="hidden" name="prizeInPool[1].level" /></td>
+							<td>
+								<input type="text" id="prizeIn_pool_proportion_2" name="prizeInPool[1].proportion" 
+								datatype="/^[1]$|^0.\d{1}/" errormsg= "请输入0-1之间的小数" readonly/>
+							</td>
+							<td >
+								<input type="text" id="prizeIn_pool_num_1" name="prizeInPool[1].num" readonly />
+							</td>
+						</tr>
+						<tr>
+							<td >三等奖 <input type="hidden" name="prizeInPool[2].level" /></td>
+							<td>
+								<input type="text" id="prizeIn_pool_proportion_3" name="prizeInPool[2].proportion" 
+								datatype="/^[1]$|^0.\d{1}/" errormsg= "请输入0-1之间的小数" readonly/>
+							</td>
+							<td >
+								<input type="text" id="prizeIn_pool_num_1" name="prizeInPool[2].num" readonly/>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			
+				<div class="form-group clearfix text-center">
+					<div class="col-sm-12">
+						<button class="btn btn-sm" id="add_prizeInPool">
+							<span class="no-text-shadow" >+ 增加奖项</span>
+						</button>
+						<button class="btn btn-sm" id="del_prizeInPool">
+							<span class="no-text-shadow" >- 删除奖项</span>
+						</button>
+					</div>
+				</div>
+				
+				
+					
+				3，抽奖规则
+				（默认1条规则，最多加到5条规则 / 规则间金额不能重叠 /   X=投资金额 / 起投金额 ）
+				<table id="sample-table-3" class="table table-striped table-bordered table-hover">
+					<thead>
+						<tr>
+							<th>序号</th>
+							<th>单笔投资金额</th>
+							<th>抽奖次数</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td >1 <input type="hidden" /></td>
+							<td>
+								<input type="text" id="lottery_proportion_s_1" name="lottery[0].startAmount" class="i_proportion_s" readonly />
+								<span class="input-text">至</span>
+								<input type="text" id="lottery_proportion_e_1" name="lottery[0].endAmount" class="i_proportion_e" readonly/>
+							</td>
+							<td >
+								<span class="input-text">X+</span>
+								<input type="text" id="lottery_num_1" name="lottery[0].number" readonly/>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			
+				<div class="form-group clearfix text-center">
+					<div class="col-sm-12">
+						<button class="btn btn-sm" id="add_lottery">
+							<span class="no-text-shadow" >+ 增加规则</span>
+						</button>
+						<button class="btn btn-sm" id="del_lottery">
+							<span class="no-text-shadow" >- 删除规则</span>
+						</button>
+					</div>
+				</div>
+				
+		</form>
+	</div>
+	<div class="col-xs-9 col-sm-9 widget-container-span ui-sortable">
+		<div class="modal-footer">
+			
+				<button type="button" id = "edit_lottery_rule" class="btn btn-primary">编辑</button>
+				<button type="button" id = "save_lottery_rule" class="btn btn-primary">保存</button>
+				<button type="button" id = "cancle_lottery_rule" class="btn btn-primary">取消</button>
+		</div>
+	</div>
+</div>

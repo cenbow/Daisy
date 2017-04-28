@@ -1,0 +1,144 @@
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#if($currentUser)
+    #set($logined=true)
+#else
+    #set($logined=false)
+#end
+#CSRFToken('xToken')
+##  安卓
+#if($loginSource==1)
+    #set($os=1)
+#end
+##  IOS
+#if($loginSource==2)
+    #set($os=2)
+#end
+#if($loginSource==1||$loginSource==2)
+<style>
+    .g-ft {
+        display: none;
+    }
+
+    body {
+        background: #f3f3f3
+    }
+</style>
+#end
+<style>
+    body{
+        background: #f3f3f3;
+    }
+
+    .m-invistLink {
+        width: 100%;
+        height: 106px;
+        background: #fff;
+        margin-top: 20px;
+        position: relative;
+        border-bottom: 1px solid #dedede;
+        border-top: 1px solid #dedede;
+    }
+    .u-invistImg{
+        width: 40%;
+        height: 100%;
+        float: left;
+    }
+    .u-invistText{
+        width: 57%;
+        float: right;
+        margin: 20px 3% 0 0;
+    }
+    .m-invistLink i{
+        position: absolute;
+        top:32px;
+        right:4px;
+        font-size: 20px;
+        color: #DEDEDE;
+    }
+    .u-invistText .u-firstP{
+        font-size: 18px;
+        color: #333333;
+        line-height: 36px;
+    }
+    .u-invistText .u-lastP{
+        font-size: 12px;
+        color: #999;
+    }
+    .m-share-btn a{
+        margin: auto;
+        width: 96%;
+        display: block;
+        background: #d74148;
+        text-align: center;
+        line-height: 40px;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+        color: #fff;
+        font-size: 18px;
+        position: fixed;
+        bottom:6px;
+        left: 2%;
+        z-index: 10000;
+    }
+</style>
+##
+#if($loginSource==1 || $loginSource==2)
+#else
+##header，安卓ios，不需要头部
+<h2 class="u-header f-pos-r">
+    <a href="$siteurl/mIndex">返回</a>
+    <span class="f-fs18">
+        邀请有礼
+    </span>
+</h2>
+#end
+<div class="g-wrap">
+    <a href="$siteurl/mstation/post/invite?loginSource=$loginSource">
+        <div class="m-invistLink">
+            <div class="u-invistImg"><img src="$res_url/img/post/invite.png" alt="" width="100%" height="100%"></div>
+            <div class="u-invistText">
+                <p class="u-firstP">邀请返人气值</p>
+                <p class="u-lastP">邀请好友投资，享人气值奖励</p>
+            </div>
+            <i class="u-invistArrow"> ></i>
+        </div>
+    </a>
+    <a href="$siteurl/mstation/post/quadrupleGift?loginSource=$loginSource">
+        <div class="m-invistLink">
+            <div class="u-invistImg"><img src="$res_url/img/post/mileage.png" alt="" width="100%"></div>
+            <div class="u-invistText">
+                <p class="u-firstP">友情岁月</p>
+                <p class="u-lastP">邀好友·攒里程·赢壕礼</p>
+            </div>
+            <i class="u-invistArrow"> ></i>
+        </div>
+    </a>
+
+<div class="m-share-btn" id="j-invite-hd" data-os="$os">
+    <a id="j-invite-link" #if($os==2)href="yrw-skip://invokeMethod=inviteFriend"#end>邀请好友</a>
+</div>
+</div>
+<script src="$res_url/lib/js/sea.js"></script>
+<script src="$res_url/lib/js/zepto.min.js"></script>
+<script>
+    (function(){
+        //“意见反馈”区别调用不同app
+        var i=$("#j-invite-hd").data("os");
+//        奖励记录
+//        $("#j-record-link").on("click",function(){
+//            if(i==1){
+//
+//                Android.ToActivity("friendList",  null);
+//            }
+//        })
+//        邀请好友
+        $("#j-invite-link").on("click",function(){
+            if(i==1){
+                Android.ToActivity("inviteFriend",  null);
+            }
+        })
+    })()
+
+</script>

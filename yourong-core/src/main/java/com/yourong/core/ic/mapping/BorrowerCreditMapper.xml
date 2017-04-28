@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.ic.dao.BorrowerCreditMapper" >
+  <resultMap id="BaseResultMap" type="BorrowerCredit" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="borrower_id" property="borrowerId" jdbcType="BIGINT" />
+    <result column="borrower_type" property="borrowerType" jdbcType="INTEGER" />
+    <result column="borrower_true_name" property="borrowerTrueName" jdbcType="VARCHAR" />
+    <result column="borrower_mobile" property="borrowerMobile" jdbcType="BIGINT" />
+    <result column="open_platform_key" property="openPlatformKey" jdbcType="VARCHAR" />
+    <result column="credit_amount" property="creditAmount" jdbcType="DECIMAL" />
+    <result column="payable_principal" property="payablePrincipal" jdbcType="DECIMAL" />
+    <result column="online_flag" property="onlineFlag" jdbcType="INTEGER" />
+    <result column="invest_type" property="investType" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  <!-- 插入信息 -->
+  <insert id="insert" parameterType="BorrowerCredit" >
+    insert into ic_borrower_credit
+    (id,
+	 borrower_id,
+	 borrower_type,
+	 borrower_true_name,
+	 borrower_mobile,
+	 open_platform_key,
+	 payable_principal,
+	 credit_amount,
+	 invest_type,
+	 online_flag,
+	 remark,
+	 create_time,
+	 update_time
+	)
+    values
+    (#{id},
+     #{borrowerId},
+     #{borrowerType},
+     #{borrowerTrueName},
+     #{borrowerMobile},
+     #{openPlatformKey},
+     #{payablePrincipal},
+     #{creditAmount},
+     #{investType},
+     #{onlineFlag},
+     #{remark},
+     now(),
+     now()
+    )
+  </insert>
+  
+    <!-- 修改借款人授信额度信息 -->
+  <update id="updateById" parameterType="BorrowerCredit">
+    update ic_borrower_credit
+    <set >
+      update_time = now()
+      <if test="borrowerType != null" >
+        ,borrower_type = #{borrowerType}
+      </if>
+      <if test="borrowerTrueName != null">
+        ,borrower_true_name = #{borrowerTrueName}
+      </if>
+      <if test="borrowerMobile != null" >
+        ,borrower_mobile = #{borrowerMobile}
+      </if>
+      <if test="openPlatformKey != null" >
+        ,open_platform_key = #{openPlatformKey}
+      </if>
+      <if test="payablePrincipal != null" >
+        ,payable_principal = #{payablePrincipal}
+      </if>
+      <if test="creditAmount != null" >
+        ,credit_amount = #{creditAmount}
+      </if>
+      <if test="onlineFlag != null" >
+        ,online_flag = #{onlineFlag}
+      </if>
+      <if test="investType != null" >
+        ,invest_type = #{investType}
+      </if>
+      <if test="remark != null" >
+        ,remark = #{remark}
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  
+  <!-- 根据借款人信息修改借款人授信额度信息 -->
+  <update id="updateByBorrower" parameterType="BorrowerCredit">
+    update ic_borrower_credit
+    <set >
+      update_time = now()
+      <if test="borrowerType != null" >
+        ,borrower_type = #{borrowerType}
+      </if>
+      <if test="borrowerTrueName != null">
+        ,borrower_true_name = #{borrowerTrueName}
+      </if>
+      <if test="borrowerMobile != null" >
+        ,borrower_mobile = #{borrowerMobile}
+      </if>
+      <if test="openPlatformKey != null" >
+        ,open_platform_key = #{openPlatformKey}
+      </if>
+      <if test="payablePrincipal != null" >
+        ,payable_principal = #{payablePrincipal}
+      </if>
+      <if test="creditAmount != null" >
+        ,credit_amount = #{creditAmount}
+      </if>
+      <if test="onlineFlag != null" >
+        ,online_flag = #{onlineFlag}
+      </if>
+      <if test="investType != null" >
+        ,invest_type = #{investType}
+      </if>
+      <if test="remark != null" >
+        ,remark = #{remark}
+      </if>
+    </set>
+    where borrower_type = #{borrowerType}
+    	  <if test="openPlatformKey != null">
+    		  and open_platform_key = #{openPlatformKey}
+    	  </if>
+    	  <if test="borrowerId != null">
+	   		  and borrower_id = #{borrowerId}
+	   	  </if>
+  </update>
+  
+  <!-- 查询借款人授信额度信息 -->
+  <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Long">
+    select 
+         t.*,if(t.payable_principal>t.credit_amount, 0, 1) as status
+    from(
+	    select id, borrower_id, borrower_type, borrower_mobile, open_platform_key, 
+	           payable_principal, credit_amount, online_flag, invest_type, remark
+        from ic_borrower_credit) t 
+    where t.id = #{id}
+  </select>
+  
+  <!-- 根据借款人信息查询借款人授信额度信息 -->
+  <select id="selectByBorrower" resultMap="BaseResultMap" parameterType="BorrowerCredit">
+    select 
+         t.*,if(t.payable_principal>t.credit_amount, 0, 1) as status
+    from(
+	    select id, borrower_id, borrower_type, borrower_mobile, open_platform_key, 
+	           payable_principal, credit_amount, online_flag, invest_type, remark
+        from ic_borrower_credit) t 
+    <where>
+   		t.borrower_type = #{borrowerType}
+   		<if test="borrowerId != null">
+   			and t.borrower_id = #{borrowerId}
+   		</if>
+    	<if test="openPlatformKey != null">
+    		and t.open_platform_key = #{openPlatformKey}
+    	</if>
+    	<if test="investType != null" >
+            and t.invest_type = #{investType}
+        </if>
+    </where>
+  </select>
+  
+  <!-- 查询借款人授信额度列表 -->
+  <select id="queryBorrowerCredit" resultMap="BaseResultMap">
+   select t.*
+   from (
+	   select bc.id,
+	          bc.borrower_id,
+	          bc.borrower_type,
+	          bc.borrower_mobile,
+	          bc.borrower_true_name,
+	          bc.open_platform_key,
+	          bc.credit_amount,
+	          bc.payable_principal,
+	          bc.online_flag,
+	          bc.invest_type,
+	          bc.remark,
+	          if(bc.payable_principal>bc.credit_amount, 0, 1) as status
+	    from ic_borrower_credit bc 
+	) t
+	<if test="map != null">
+		<where>
+			<if test="map.borrowerTrueName != null">
+				and t.borrower_true_name = #{map.borrowerTrueName}
+			</if>
+			<if test="map.borrowerMobile != null">
+				and t.borrower_mobile = #{map.borrowerMobile}
+			</if>
+			<if test="map.minPayablePrincipal != null">
+				and <![CDATA[t.payable_principal >= #{map.minPayablePrincipal}]]>
+			</if>
+			<if test="map.maxPayablePrincipal != null">
+				and <![CDATA[t.payable_principal <= #{map.maxPayablePrincipal}]]>
+			</if>
+			<if test="map.minCreditAmount != null">
+				and <![CDATA[t.credit_amount >= #{map.minCreditAmount}]]>
+			</if>
+			<if test="map.maxCreditAmount != null">
+				and <![CDATA[t.credit_amount <= #{map.maxCreditAmount}]]>
+			</if>
+			<if test="map.status != null">
+				and t.status = #{map.status}
+			</if>
+            <if test="map.borrowerType != null">
+				<if test="map.borrowerType != 3">
+				    and t.open_platform_key is null
+					and t.borrower_type = #{map.borrowerType}
+				</if>
+				<if test="map.borrowerType == 3">
+					and not t.open_platform_key is null
+				</if>
+			</if>
+		</where>
+		limit ${map.startRow}, ${map.pageSize}
+	</if>
+  </select>
+  
+  <!-- 查询借款人授信额度数量 -->
+  <select id="queryBorrowerCreditCount" resultType="java.lang.Integer">
+   select count(1) 
+   from (
+	   select bc.id,
+	          bc.borrower_id,
+	          bc.borrower_type,
+	          bc.borrower_mobile,
+	          bc.borrower_true_name,
+	          bc.open_platform_key,
+	          bc.credit_amount,
+	          bc.payable_principal,
+	          bc.online_flag,
+	          bc.remark,
+	          bc.invest_type,
+	          if(bc.payable_principal>bc.credit_amount, 0, 1) as status
+	    from ic_borrower_credit bc 
+	) t
+	<if test=" map != null">
+		<where>
+			<if test="map.borrowerTrueName != null">
+				and t.borrower_true_name = #{map.borrowerTrueName}
+			</if>
+			<if test="map.borrowerMobile != null">
+				and t.borrower_mobile = #{map.borrowerMobile}
+			</if>
+			<if test="map.minPayablePrincipal != null">
+				and <![CDATA[t.payable_principal >= #{map.minPayablePrincipal}]]>
+			</if>
+			<if test="map.maxPayablePrincipal != null">
+				and <![CDATA[t.payable_principal <= #{map.maxPayablePrincipal}]]>
+			</if>
+			<if test="map.minCreditAmount != null">
+				and <![CDATA[t.credit_amount >= #{map.minCreditAmount}]]>
+			</if>
+			<if test="map.maxCreditAmount != null">
+				and <![CDATA[t.credit_amount <= #{map.maxCreditAmount}]]>
+			</if>
+			<if test="map.status != null">
+				and t.status = #{map.status}
+			</if>
+            <if test="map.borrowerType != null">
+				<if test="map.borrowerType != 3">
+				    and t.open_platform_key is null
+					and t.borrower_type = #{map.borrowerType}
+				</if>
+				<if test="map.borrowerType == 3">
+					and not t.open_platform_key is null
+				</if>
+			</if>
+		</where>
+	</if>
+  </select>
+  
+  <!-- 根据借款人信息汇总个人用户或企业用户的存续量信息 -->
+  <select id="getMemberOrEnterpriseBorrowerCredit" resultMap="BaseResultMap" parameterType="BorrowerCredit">
+     select 
+           m.invest_type,m.borrower_id,m.borrower_type,m.open_platform_key,
+           (m.payablePrincipalPore1+m.payablePrincipalPore2+m.payablePrincipalPore3+m.payablePrincipal) as payablePrincipal
+     from (
+		  select 
+		    p.borrower_id,p.borrower_type,p.open_platform_key,p.invest_type,
+            (select if(sum(pp.total_amount), sum(pp.total_amount), 0) 
+		    from ic_project pp 
+		    where pp.borrower_id = p.borrower_id
+		        and pp.invest_type = p.invest_type
+		        and pp.open_platform_key is null
+			    and <![CDATA[(pp.status >= 20 and pp.status <= 51)]]>
+		    ) as payablePrincipalPore1,
+            (select if(sum(pp.total_amount), sum(pp.total_amount), 0) 
+			 from ic_project pp 
+			 where pp.borrower_id = p.borrower_id
+			    and pp.invest_type = p.invest_type
+			    and pp.status = 60
+			    and pp.open_platform_key is null
+			 ) as payablePrincipalPore2,
+             (select if(sum(pp.total_amount), sum(pp.total_amount), 0) 
+	   	      from ic_project pp 
+			  where pp.borrower_id = p.borrower_id
+			    and pp.invest_type = p.invest_type
+			    and pp.open_platform_key is null
+			    and <![CDATA[(pp.status >= 80 and pp.status <= 81)]]>
+			 ) as payablePrincipalPore3,
+             (select if(sum(i.payable_principal), sum(i.payable_principal), 0) 
+			  from ic_debt_interest i
+			  left join ic_project pp on i.project_id = pp.id
+			  where (i.status = 0 or i.status = 3)
+		        and pp.status = 52
+			    and pp.borrower_id=p.borrower_id 
+			    and pp.invest_type=p.invest_type
+			    and pp.open_platform_key is null) as payablePrincipal
+		   from ic_project p
+		   where p.del_flag > 0 
+		   	     and p.open_platform_key is null
+                <if test="borrowerId != null">
+				    and p.borrower_id = #{borrowerId}
+                </if>
+	   		    <if test="borrowerType != null">
+		   		    and p.borrower_type = #{borrowerType}
+	   		    </if>
+			    <if test="investType != null">
+			        and p.invest_type = #{investType}
+            	</if>
+           group by p.borrower_id,p.borrower_type
+	   ) m
+  </select>
+  
+  <!-- 根据借款人信息汇总渠道商用户的存续量信息 -->
+  <select id="getChannelBorrowerCredit" resultMap="BaseResultMap" parameterType="BorrowerCredit">
+	  select 
+	       null borrower_id, 3 borrower_type,pm.open_platform_key,pm.invest_type,
+	  	   (pm.payablePrincipalPore1+pm.payablePrincipalPore2+pm.payablePrincipalPore3+pm.payablePrincipal) as payablePrincipal
+      from (
+         select 
+            p.open_platform_key,
+            p.status,
+            p.invest_type,
+            (select if(sum(pp.total_amount), sum(pp.total_amount), 0) 
+			 from ic_project pp 
+			 where pp.invest_type = p.invest_type
+			       and pp.open_platform_key=p.open_platform_key
+				   and <![CDATA[(pp.status >= 20 and pp.status <= 51)]]>
+		    ) as payablePrincipalPore1,
+            (select if(sum(pp.total_amount), sum(pp.total_amount), 0) 
+			 from ic_project pp 
+			 where pp.invest_type = p.invest_type
+			       and pp.open_platform_key=p.open_platform_key
+				   and pp.status = 60
+		    ) as payablePrincipalPore2,
+            (select if(sum(pp.total_amount), sum(pp.total_amount), 0) 
+		     from ic_project pp 
+			 where pp.invest_type = p.invest_type
+			       and pp.open_platform_key=p.open_platform_key
+				   and <![CDATA[(pp.status >= 80 and pp.status <= 81)]]>
+		    ) as payablePrincipalPore3,
+            (select if(sum(i.payable_principal), sum(i.payable_principal), 0) payablePrincipal
+			 from ic_debt_interest i
+			 left join ic_project pp on i.project_id = pp.id
+			 where (i.status = 0 or i.status = 3)
+                   and pp.status = 52
+		           and pp.invest_type=p.invest_type
+		           and pp.open_platform_key=p.open_platform_key) as payablePrincipal
+		  from ic_project p
+		  where p.del_flag > 0 
+            <if test="openPlatformKey == null">
+	            and not p.open_platform_key is null
+            </if>
+            <if test="openPlatformKey != null">
+	            and p.open_platform_key = #{openPlatformKey}
+            </if>
+		    <if test="investType != null">
+		        and p.invest_type = #{investType}
+           	</if>
+          group by p.open_platform_key
+        ) pm
+  </select>
+  
+</mapper>

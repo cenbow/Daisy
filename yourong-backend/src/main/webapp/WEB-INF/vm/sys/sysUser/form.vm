@@ -1,0 +1,145 @@
+<div tabindex="-1" class="modal fade" id="modal-table" style="display: none;" aria-hidden="true">
+     <div class="modal-dialog">
+     <div class="modal-content">
+ <div class="modal-header no-padding">
+             <div class="table-header">
+                  <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+                    <span class="white">×</span>
+              </button>
+    <span class="modalFormTitle">添加用户</span>
+       </div>
+  </div>
+   <div class="modal-body">
+    <form role="form" class="form-horizontal" id="sysUser_form" method="post">
+     <input type="hidden" name="id" />
+#*
+ <div class="form-group">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 归属部门: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+     <input type="text" name="officeId" class="col-xs-10 col-sm-5" placeholder="officeId" id="form-field-officeId">
+    </div>
+  </div>
+</div>
+*#
+ <div class="form-group">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 登录名: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+     <input type="text" name="loginName" class="col-xs-10 col-sm-5" placeholder="loginName" id="form-field-loginName">
+    </div>
+  </div>
+</div>
+ <div class="form-group"  id="j-old-password">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 密码: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+     <input type="password" name="password" class="col-xs-10 col-sm-5" placeholder="password" id="form-field-password">
+      </div>
+  </div>
+</div>
+
+
+        <div class="form-group" id="j-newpassword" >
+            <label for="form-field-1" class="col-sm-3 control-label no-padding-right">新 密码: </label>
+            <div class="col-sm-9">
+                <div class="clearfix">
+                    <input type="password" name="newPassword" class="col-xs-10 col-sm-5" placeholder="新密码" id="form-field-password">
+                </div>
+            </div>
+        </div>
+
+
+ <div class="form-group">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 工号: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+     <input type="text" name="no" class="col-xs-10 col-sm-5" placeholder="no" id="form-field-no">
+    </div>
+  </div>
+</div>
+ <div class="form-group">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 姓名: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+     <input type="text" name="name" class="col-xs-10 col-sm-5" placeholder="name" id="form-field-name">
+    </div>
+  </div>
+</div>
+ <div class="form-group">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 邮箱: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+     <input type="text" name="email" class="col-xs-10 col-sm-5" placeholder="email" id="form-field-email">
+    </div>
+  </div>
+</div>
+ <div class="form-group">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 电话: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+     <input type="text" name="phone" class="col-xs-10 col-sm-5" placeholder="phone" id="form-field-phone">
+    </div>
+  </div>
+</div>
+ <div class="form-group">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 手机: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+     <input type="text" name="mobile" class="col-xs-10 col-sm-5" placeholder="mobile" id="form-field-mobile">
+    </div>
+  </div>
+</div>
+ <div class="form-group">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 状态: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+     #dictSelect ("status",${sysServiceUtil.getDictList('user_status')} ,"请选择")
+    </div>
+  </div>
+</div>
+ <div class="form-group">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 用户类型: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+	#dictSelect ("userType",${sysServiceUtil.getDictList('user_type')} ,"请选择")
+    </div>
+  </div>
+</div>
+#*
+ <div class="form-group">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 头像URL: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+     <input type="text" name="avatars" class="col-xs-10 col-sm-5" placeholder="avatars" id="form-field-avatars">
+    </div>
+  </div>
+</div> 
+*#
+ <div class="form-group">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 备注信息: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+     <input type="text" name="remarks" class="col-xs-10 col-sm-5" placeholder="remarks" id="form-field-remarks">
+    </div>
+  </div>
+</div>
+<div class="form-group">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 分配角色: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+    	#roleCheckBox("roleIds",${sysServiceUtil.getAllSysRole()})
+    </div>
+  </div>
+</div>
+</form>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+<button type="button" id="save_sysUser" class="btn btn-primary">保存</button>
+</div>
+</div>
+<!-- /.modal-content -->
+ </div>
+<!-- /.modal-dialog -->
+</div>

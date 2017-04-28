@@ -1,0 +1,337 @@
+#parse('/mobile/common.vm')
+###set($title="双12狂欢季_$!{title_suffix}")
+#if($encryptionId)
+    #set($subTitle="双12狂欢季")
+#else
+    #set($subTitle="有融网双12狂欢盛宴")
+#end
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$res_url/source/css/activity/October.css"])
+
+#set($loginSource=$request.getHeader("loginSource"))
+#set($encryptionId=$request.getParameter("encryptionId"))
+
+#if($currentUser)
+    #set($logined=true)
+#else
+    #set($logined=false)
+#end
+
+#set($os=3)
+#CSRFToken('xToken')
+##  安卓
+#if($loginSource==1)
+    #set($os=1)
+#end
+##  IOS
+#if($loginSource==2)
+    #set($os=2)
+#end
+##
+#set($debug=$request.getParameter("debug"))
+#set($isApp=$request.getParameter("app"))
+#set($avatar=$servletUtil.getUserDO().avatars)
+
+#if($loginSource==1 || $loginSource==2)
+#else
+##header，安卓ios，不需要头部
+<h2 class="u-header f-pos-r">
+    <a href="$siteurl/mIndex">返回</a>
+    <span class="f-fs18">
+        双12狂欢季
+    </span>
+</h2>
+#end
+<script>
+    var url=window.location.href,title='有融网双12狂欢盛宴';
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        window.shareData = {
+            "timeLineLink": url,
+            "sendFriendLink": url,
+            "weiboLink": url,
+            "tTitle": "有融网双12狂欢盛宴",
+            "tContent": "全场最高加息5%，更有苹果新品全套大放送！",
+            "fTitle": "有融网双12狂欢盛宴",
+            "fContent": "全场最高加息5%，更有苹果新品全套大放送！",
+            "wContent": "有融网双12狂欢盛宴  全场最高加息5%，更有苹果新品全套大放送！"
+        };
+        // 发送给好友
+        if(typeof(WeixinJSBridge)!=='undefined'){
+            WeixinJSBridge.on('menu:share:appmessage', function (argv) {
+                WeixinJSBridge.invoke('sendAppMessage', {
+                    "img_url": "../../static/img/weixin/weixin_october.jpg",
+                    "img_width": "358",
+                    "img_height": "328",
+                    "link": window.shareData.sendFriendLink,
+                    "desc": window.shareData.fContent,
+                    "title": window.shareData.fTitle
+                }, function (res) {
+                    _report('send_msg', res.err_msg);
+                })
+            });
+            // 分享到朋友圈
+            WeixinJSBridge.on('menu:share:timeline', function (argv) {
+                WeixinJSBridge.invoke('shareTimeline', {
+                    "img_url": "../../static/img/weixin/weixin_october.jpg",
+                    "img_width": "358",
+                    "img_height": "328",
+                    "link": window.shareData.timeLineLink,
+                    "desc": window.shareData.tContent,
+                    "title": window.shareData.tTitle
+                }, function (res) {
+                    _report('timeline', res.err_msg);
+                });
+            });
+        }
+    }, false);
+
+
+
+</script>
+<div class="g-wrap" id="j-total" data-logined="$logined">
+##    top bg
+    <div class="u-top-img-wrap">
+        <img src="$res_url/img/activity/October/background1.png" class="u-img-responsive">
+        <img src="$res_url/img/activity/October/background2.png" class="u-img-responsive">
+        <img src="$res_url/img/activity/October/background4.png" class="u-img-responsive">
+    </div>
+##    content
+    <div class="m-activity-main" id="j-october" v-cloak>
+##    笔笔投资享加息
+        <div class="m-activity-container">
+            <h1 class="u-item-title">笔笔投资享加息</h1>
+            <h3 class="u-main-text">活动期间，单笔投资满2000元，即可获得收益券一张，投资期限越长，收益券面额越高哦！</h3>
+            <table class="m-normal-table mt20">
+                <thead>
+                    <tr>
+                        <th width="50%">项目期限（T）</th>
+                        <th width="50%">奖励收益券</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1个月≤T<2个月</td>
+                        <td>1.5%</td>
+                    </tr>
+                    <tr>
+                        <td>2个月≤T<3个月</td>
+                        <td>2%</td>
+                    </tr>
+                    <tr>
+                        <td>3个月≤T<6个月</td>
+                        <td>3%</td>
+                    </tr>
+                    <tr>
+                        <td>6个月≤T</td>
+                        <td>5%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+##    选择直投获返利
+        <div class="m-activity-container mt20">
+        <h1 class="u-item-title">选择直投获返利</h1>
+          <h3 class="u-main-text">活动期间，投资直投项目可获得以下返利：<br>
+            1、投资任意金额可享受不同幅度的人气值返利，等待募集时间越长，返人气值越多；（所获人气值向下取整，当天履约不返利）<br>
+            2、单笔投资满3000元，可获得50元现金券一张；<br>
+            3、单笔投资满4000元，可获得100元现金券一张。</h3>
+        <table class="m-normal-table mt20">
+            <thead>
+            <tr>
+                <th width="50%">履约时间</th>
+                <th width="50%">返人气值比例</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>投资第2天</td>
+                <td>1‰</td>
+            </tr>
+            <tr>
+                <td>投资第3天</td>
+                <td>1.5‰</td>
+            </tr>
+            <tr>
+                <td>投资第4天</td>
+                <td>2‰</td>
+            </tr>
+            <tr>
+                <td>投资第5天</td>
+                <td>2.5‰</td>
+            </tr>
+            <tr>
+                <td>投资第6天</td>
+                <td>3‰</td>
+            </tr>
+            <tr>
+                <td>投资第7天</td>
+                <td>4‰</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+##    土豪榜
+        <div class="m-activity-container mt20">
+        <h1 class="u-item-title">土豪PK赢iPhone7</h1>
+          <h3 class="u-main-text">活动期间，投资期限≥90天的项目，累计投资额最高的用户即可获得iPhone7 ( 128G ) 一部，
+            排名2~10的用户也可获得相应奖励。（直投项目履约后才能计入个人累计投资额；若投资额相等，先达到该投资额的用户排名靠前）。</h3>
+            <div class="f-my-mes" v-if="logined&&activityStatus!=2">
+              <h1 v-if="myInvestAmount">我的累计投资额: ¥{{myInvestAmount}}</h1>
+              <h1 v-else>我的累计投资额: {{myInvestAmount}}</h1>
+            </div>
+            <div class="u-tb-head mt20">土豪榜</div>
+            <div class="u-list-wrap">
+                     <div class="u-title">
+                         <div class="u-title-one">排名</div>
+                         <div class="u-title-two">用户名</div>
+                         <div class="u-title-one">投资额</div>
+                     </div>
+     <div class="f-overflow" v-if="list!=''">
+                <ul class="u-users-rank-list" id="j-usersRankList" v-if="success">
+                    <li v-for="item in list">
+                        <span class="u-rank u-rank-{{$index}}" v-if="$index<3"></span>
+                        <span class="u-rank u-rank-num" v-else>{{$index+1}}</span>
+                        <span class="u-userInfo"><img :src="item.avatars | avatarUrl" alt="用户头像">
+                        <span class="u-name" v-text="item.username"></span></span>
+                        <span class="f-fc-red">¥ {{item.totalInvestFormat}}</span>
+                    </li>
+                </ul>
+             <div class="f-wealthy-come" v-else >
+                 一大波土豪正在赶来</div>
+
+</div>
+              <div class="f-overflow" v-else>
+                <ul class="u-users-rank-list" id="j-usersRankList" v-if="success">
+                  <li>
+                    <span class="u-rank u-rank-0" v-text=" ({{$index}}+1) | number"></span>
+                        <span class="u-userInfo"><img :src="item.avatars | avatarUrl" alt="用户头像">
+                        <span class="u-name">虚位以待</span></span>
+                  </li>
+                </ul>
+                <div class="f-wealthy-come" v-else >
+                  一大波土豪正在赶来</div>
+
+              </div>
+    </div>
+##    奖品单
+        <div class="m-activity-container mt20 m-gift f-clear">
+            <div class="m-gift-item f-fl">
+                <h4>第1名</h4>
+                <div>
+                    <div class="u-gift-bg z-rank1"></div>
+                    <div class="m-gift-bottom">
+                        <p class="u-gift-name">iPhone7（128G）</p>
+                        <p class="u-gift-value">¥6,188</p>
+                    </div>
+                </div>
+            </div>
+            <div class="m-gift-item f-fl">
+                <h4>第2名</h4>
+                <div>
+                    <div class="u-gift-bg z-rank2"></div>
+                    <div class="m-gift-bottom">
+                        <p class="u-gift-name">WATCH SERIES 2</p>
+                        <p class="u-gift-value">¥2,888</p>
+                    </div>
+                </div>
+            </div>
+            <div class="m-gift-item f-fl">
+                <h4>第3名</h4>
+                <div>
+                    <div class="u-gift-bg z-rank3"></div>
+                    <div class="m-gift-bottom">
+                        <p class="u-gift-name">Apple AirPods</p>
+                        <p class="u-gift-value">¥1,399</p>
+                    </div>
+                </div>
+            </div>
+            <div class="m-gift-item f-fl">
+                <h4>第4~6名</h4>
+                <div>
+                    <div class="u-gift-bg z-rank4"></div>
+                    <div class="m-gift-bottom">
+                        <p class="u-gift-name">有融网</p>
+                      <p class="u-gift-value">5%收益券<span>一张</span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="m-gift-item f-fl">
+                <h4>第7~10名</h4>
+                <div>
+                    <div class="u-gift-bg z-rank5"></div>
+                    <div class="m-gift-bottom">
+                        <p class="u-gift-name">有融网</p>
+                      <p class="u-gift-value">3%收益券<span>一张</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+##    活动规则
+        <div class="m-activity-container mt20">
+            <strong class="u-rule-title">活动规则</strong>
+            <table class="m-normal-table m-rule-table">
+                <tr>
+                    <td style="background-color: #ffffff">1、</td>
+                    <td style="background-color: #ffffff">活动对象：有融网所有用户；</td>
+                </tr>
+                <tr>
+                    <td>2、</td>
+                    <td>活动时间：2016年{{startTime | formatTime 'MM月dd日hh:mm'}}~{{endTime | formatTime 'MM月dd日hh:mm'}}；</td>
+                </tr>
+                <tr>
+                    <td style="background-color: #ffffff">3、</td>
+                    <td style="background-color: #ffffff">现金券领取后7天内有效，收益券领取后7天内有效；</br>
+
+                            <table class="m-normal-table" style="margin:1.5rem 0">
+                                <thead>
+                                    <tr>
+                                        <th class="f-adjust" style="padding:0;">现金券面额</th>
+                                      <th class="f-adjust" style="padding:0;">起投金额(元)</th>
+                                        <th class="f-adjust" style="padding:0;">投资期限(天)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="border:1px solid #D9D9D9;">50</td>
+                                        <td style="border:1px solid #D9D9D9;">3000</td>
+                                        <td style="border:1px solid #D9D9D9;">60</td>
+                                    </tr>
+                                    <tr>
+                                      <td style="border:1px solid #D9D9D9;">100</td>
+                                      <td style="border:1px solid #D9D9D9;">4000</td>
+                                      <td style="border:1px solid #D9D9D9;">90</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>4、</td>
+                    <td>实物奖励将于活动结束后3个工作日内与您联系，请保持手机畅通，如错过通知则视为放弃获奖资格；</br>
+                      注：实物奖品也可兑换成人气值，人气值=产品标注价格；</td>
+                </tr>
+                <tr>
+                    <td style="background-color: #ffffff">5、</td>
+                    <td style="background-color: #ffffff">如有其他疑问，请拨打客服热线：</br>400-025-6688；</br>
+                        本活动与苹果公司无关，最终解释权归有融网所有。</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+</div>
+</div>
+#set($pageScript="
+<script src='$res_url/build/js/appHook.js'></script>
+<script src='$aliyunOss_url/res/lib/vue/v1/vue.min.js'></script>
+<script src='$siteurl/res/lib/vue/vue.extend.js'></script>
+<script>
+    var receiveData = $!{data},
+            os = $!{os};
+            log(receiveData)
+    seajs.use('$res_url/source/js/activity/October.js');
+</script>
+")
+#CSRFToken("xToken")
+
+

@@ -1,0 +1,136 @@
+#parse("/common/common.vm")
+#set($layout='/layout/default.vm')
+#set($hasSetPayPassword=${servletUtil.synPayPasswordFlag()})
+#set($hasGetRealnameAuth=${servletUtil.isVerifyTrueName()})
+#set($hasWithholdAuthority=${servletUtil.synWithholdAuthorityFlag()})
+#set($from=${request.getParameter('from')})
+#set($type=${request.getParameter('type')})
+#set($amount=${request.getParameter('amount')})
+#set($withdrawAmount=${request.getParameter('withdrawAmount')})
+#CSRFToken('xToken')
+<iframe class="f-dn" src="" frameborder="0" name="rechargeFrame" id="j-rechargeFrame"></iframe>
+<iframe class="f-dn" src="" frameborder="0" name="withdrawFrame" id="j-withdrawFrame"></iframe>
+##jQuery
+<script src="$root_url/static/lib/js/jq/jquery-1.11.1.min.js"></script>
+<script>
+    $.extend({
+        // Ajax Post Method
+        xPost: function (config) {
+            var type = "POST",
+                    datatype = "json",
+                    async = true;
+            if (typeof config === "object") {
+                type = config.type ? config.type : type;
+                datatype = config.datatype ? config.datatype : datatype;
+                async = config.async ? config.async : async;
+                var xToken = $("#xToken").val(),
+                        xData = config.data;
+
+                if (typeof xToken !== "undefined" && xToken !== "") {
+                    if (config.hasOwnProperty("data")) {
+                        //拼接的JSON(Object)
+                        if ($.isPlainObject(xData)) {
+                            xData.xToken = xToken;
+                        }
+                        //序列化的表单数据(Array)
+                        else if ($.isArray(xData)) {
+                            //add xToken
+                            var hasToken = false;
+                            $.each(xData, function (index, item) {
+                                if (item.name === 'xToken') {
+                                    hasToken = true;
+                                }
+                            });
+                            !hasToken ? xData.push({name: 'xToken', value: xToken}) : null;
+                        }
+
+                    }
+                    else {
+                        xData = {
+                            xToken: xToken
+                        };
+                    }
+                }
+            }
+            else {
+                throw new Error("xPost: config参数为空或不是对象");
+            }
+            $.ajax({
+                type: type,
+                url: config.url,
+                data: xData,
+                dataType: datatype,
+                async: async,
+                success: config.callback,
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                }
+            });
+        }
+    })
+
+    ##    $from--paymentPassword表示支付密码；--delegatePay表示委托支付；--rechargePage表示充值；
+    var urls = {
+                paymentPassword: '/member/handlePayPassword',
+                delegatePay: '/member/handWithholdAuthority',
+                rechargePage: '/memberBalance/recharge',
+                withdrawpage: '/memberBalance/withdraw'
+            },
+            data = {},
+            from = '$from',
+            id = '';
+
+    switch (from) {
+        case 'paymentPassword':
+            data = {handleType:$type}
+            break
+        case 'delegatePay':
+            data = {type:$type}
+            break
+        case 'rechargePage':
+            data = {amount:$amount}
+            id = '#j-rechargeFrame'
+            break
+        case 'withdrawpage':
+            data = {withdrawAmount:$withdrawAmount}
+            id = '#j-withdrawFrame'
+            break
+    }
+
+    function gotoSinapay(from, id) {
+
+        if (!from || !urls[from]) {
+            return false
+        }
+
+        $.xPost({
+            url: urls[from],
+            data: data,
+            callback: function (data) {
+
+                if (data.success) {
+
+                    if (from === 'rechargePage' || from === 'withdrawpage') {
+                        var formHtml =data.result,
+                                urlReg = /https?:\/\/[a-zA-Z0-9.\-\/]{20,100}/,
+                                urlMatch = formHtml.match(urlReg),
+                                ftReg = /[a-zA-Z0-9\-]{20,50}/,
+                                ftMatch = formHtml.match(ftReg)
+
+                        var formUrl = urlMatch ? urlMatch[0] : null
+                        var formFt = ftMatch ? ftMatch[0] : null
+
+                        if (formUrl && formFt) {
+                            window.location.href = formUrl + '?ft=' + formFt
+                        }
+                        $(id).html(data.result)
+                    } else {
+                        location.href = data.result
+                    }
+
+                }
+            }
+        })
+    }
+
+    window.onload = gotoSinapay(from, id)
+</script>

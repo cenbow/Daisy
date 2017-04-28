@@ -1,0 +1,163 @@
+##安全认证
+#parse("/common/common.vm")
+#set($title="我的资料_$!{title_suffix}")
+#set($css_url=["$cssv2_url/member/member.css","$cssv2_url/member/security.css"])
+#set($js_url=["$root_js_url/modules/member.js"])
+#set($profile="z-current")
+
+##页面入口标识
+#set($entry=["member","security"])
+
+## 用户中心头部
+#parse("/member/head.vm")
+## 用户中心内容
+<div class="g-wrap">
+
+    <div class="g-uc-bd f-round">
+
+        <div class="g-uc-wrap">
+            #CSRFToken('xToken')
+        ## 页面内容
+            <div class="m-security-v2">
+                <h3>我的资料</h3>
+                <div class="f-pos-r">
+                <ul class="f-cf">
+                    <li>
+                        <i class="z-actived"></i>
+                        <em>手机号码</em>
+                        <span>${servletUtil.getMemberMaskMobile()}</span>
+                        <a class="z-actived" href="$root_url/member/modifyMobile">修改号码</a>
+                    </li>
+                    <li>
+                        <i class="z-actived"></i>
+                        <em>登录密码</em>
+                        <span>#*密码级别：中级*#</span>
+                        <a class="z-actived" href="$root_url/member/update/password/page">修改登录密码</a>
+                    </li>
+                    <li>
+						#if(${servletUtil.isVerifyTrueName()})
+						<i class="z-actived"></i>
+                        <em>新浪支付存钱罐</em>
+						#set($member=${servletUtil.getMemberSavingPot().result})
+						<span>$!{member.truename} $!{member.sinaMemberId}</span>
+        				<a class="z-actived" target="_blank" href="/member/auditMemberInfos">去新浪支付查询验证</a>
+        				#else
+						<i></i>
+						<em>新浪支付存钱罐</em>
+                        <span></span>
+                        <a href="$root_url/member/sinapay">开通 送30元现金券</a>
+						#end
+                    </li>
+                    <li>
+						#if(${servletUtil.getDefaultBankCard()})
+        					<i class="z-actived"></i>
+							<em>银行卡</em>
+							#set($member=${servletUtil.getDefaultBankCard()})
+							<span>$!{servletUtil.getDefaultBankCard().getSimpleName()} $!{stringUtil.maskBankCodeNumber($!{servletUtil.getDefaultBankCard().getCardNumber()})}</span>
+        				#else
+        					<i></i>
+							<em>银行卡</em>
+							<span></span>
+        				#end
+                        <a class="z-actived" href="/memberBankCard/bankManage">管理银行卡</a>
+                    </li>
+                    <li>
+                        #set($evScore = $sysServiceUtil.getEvaluation($currentUser.id))
+                        #set($evType = '')
+                        #if ($evScore > 7 && $evScore < 13)
+                            #set($evType = '保守型')
+                        #elseif ($evScore > 12 && $evScore < 18)
+                            #set($evType = '稳健型')
+                        #elseif ($evScore > 17 && $evScore < 25)
+                            #set($evType = '平衡型')
+                        #elseif ($evScore > 24 && $evScore < 29)
+                            #set($evType = '进取型')
+                        #elseif ($evScore > 28 && $evScore < 34)
+                            #set($evType = '积极型')
+                        #end
+                        #if($sysServiceUtil.getEvaluation($currentUser.id)!=0)
+                            <i class="z-actived"></i>
+                            <em>风险测评</em>
+                            <span>$evType</span>
+                            <a class="z-actived" href="$root_url/member/questionnaire">重新评估</a>
+                        #else
+                            <i></i>
+                            <em>风险测评</em>
+                            <span></span>
+                            <a href="$root_url/member/questionnaire">风险承受能力评估</a>
+                        #end
+                    </li>
+                    <li>
+						#if(${servletUtil.isReceiveMemberInfoCompleteCoupon()})
+                        <i class="z-actived"></i>
+                        <em>个人资料</em>
+                        <span></span>
+                        <a class="z-actived" href="$root_url/member/profile">修改</a>
+						#else
+						<i></i>
+                        <em>个人资料</em>
+                        <span></span>
+                        <a href="$root_url/member/profile">完善 送10点人气值</a>
+						#end
+                    </li>
+                    <li>
+                        #if(${servletUtil.getUserDO().emailBind})
+                            <i class="z-actived"></i>
+                            <em>电子邮箱</em>
+                            <span id="j-member-email">${servletUtil.getUserDO().email}</span>
+                            <a class="z-actived" href="javascript:void(0)" id="j-email-verify">更换</a>
+
+                        #else
+                            <i></i>
+                            <em>电子邮箱</em>
+                            <span></span>
+                            <a href="javascript:void(0)" id="j-email-verify">绑定 送10点人气值</a>
+                        #end
+                    </li>
+                ##                    上上签
+                    <li>
+                        <i class="#if(${servletUtil.isVerifyTrueName()})z-actived#end"></i>
+                        <em>电子签名</em>
+                        <span>#*密码级别：中级*#</span>
+                            <a class="z-actived" href="$root_url/member/eSignature">设置</a>
+                    </li>
+                    ## 自动投标
+                    <li>
+                        <i class="#if(${servletUtil.isVerifyTrueName()})z-actived#end"></i>
+                        <em>自动投标</em>
+                        <span></span>
+                        <a  class="z-actived" href="$root_url/member/autoInvest">设置</a>
+                    </li>
+                </ul>
+                    <div class="u-security-email f-dn">
+                        <p>
+                            <input type="text" class="f-round u-ipt-text" id="j-email-input" name="email"
+                                #if(${servletUtil.getUserDO().emailBind})
+                                   placeholder="请输入您要更换的邮箱"
+                                #else
+                                   placeholder="请输入您要绑定的邮箱"
+                                #end
+                                    />
+                            <button class="f-round f-fs18 f-w150 f-btn-m2 f-vam u-btn u-btn-primary" id="j-email-btn">确定</button>
+                            <button class="f-round f-fs18 f-w150 f-btn-m2 f-vam u-btn u-btn-primary" id="j-email-cancel">取消</button>
+                        </p>
+                    </div>
+                    <div class="u-email-send f-dn">
+                        <i class="u-icon u-icon-success2 f-icon-35"></i>
+                        <p class="f-fs14 f-fwb">
+                            我们给您的邮箱<em class="f-fwb" id="email">xxxxxxxxxx@126.com</em> 发送了一封验证邮件，<br>
+                            请您及时查看邮箱，根据邮件提示进行确认。
+                        </p>
+                        <div class="u-email-btn f-cf">
+                            <a class="f-round f-w180" href="javascript:void(0)" target="_blank" id="j-goto-email">去邮箱查看</a>
+                            <a class="f-round f-w180" href="#" id="j-resend-email">没收到&nbsp;再次发送</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        ## /页面内容
+        </div>
+    </div>
+## /用户中心内容
+</div>

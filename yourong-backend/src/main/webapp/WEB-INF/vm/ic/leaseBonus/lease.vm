@@ -1,0 +1,98 @@
+<div tabindex="-1" class="modal fade" id="leaseClose-table" style="display: none;" aria-hidden="true">
+  <div class="modal-dialog w700">
+    <div class="modal-content">
+      <div class="modal-header no-padding">
+        <div class="table-header">
+          <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+            <span class="white">×</span>
+          </button>
+          租赁结算
+        </div>
+      </div>
+      <div class="modal-body">
+        <form role="form" class="form-horizontal" id="leaseDetail_form" method="post">
+          <input type="hidden" id="lease_bonus_id" name="leaseBonusId"/> 
+          <input type="hidden" id="project_id" name="projectId">
+          <div class="form-group">
+            <label for="form-field-1" class="col-sm-2 control-label no-padding-right">租赁时间:</label>
+            <div class="col-sm-10">
+              <div class="col-sm-3">
+                <input type="text" name="startDate" datatype="*" id="start-date" class="col-xs-11 col-sm-11 start-date" style="width:120px" onclick="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd',onpicked:autoIntervalDays})"></div>
+              <div class="col-sm-1">
+                <span class="input-text" style="margin-left: 12px;">到</span>
+              </div>
+              <div class="col-sm-3">
+                <input type="text" name="endDate" datatype="*" class="col-xs-11 col-sm-11 end-date" style="width:120px"  onclick="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd',minDate:'#F{$dp.$D(\'start-date\')}',onpicked:autoIntervalDays})"></div>
+              <div class="col-sm-1" style="margin-right:12px">
+                <span class="input-text col-xs-11 col-sm-11" style="width:60px">天数:</span>
+              </div>
+              <div class="col-sm-2"> 
+                <input type="text" name="leaseDays" style="width:90px" placeholder="" id="form-field-leaseDays" datatype="*">
+              </div>  
+              <div class="col-sm-1">
+                <span class="input-text col-xs-11 col-sm-11">天</span>
+              </div>
+            </div>
+
+          </div>
+          <div class="form-group">
+            <label for="form-field-1" class="col-sm-2 control-label no-padding-right">租金总额:</label>
+            <div class="col-sm-10">
+              <div class="col-sm-4">
+                <input type="text" name="totalRental" class="col-xs-12 col-sm-12 totalRental" style="width: 162px;" placeholder="" id="form-field-totalRental" datatype="/^(?!0+(?:\.0+)?$)(?:[1-9]\d*|0)(?:\.\d{1,2})?$/"></div>
+              <div class="col-sm-2" style="width: 40px;padding-left: 10px;padding-right: 0px;">
+                <span class="input-text">元</span>
+              </div>
+              <div class="col-sm-2" style="width: 64px;padding-left: 16px;padding-right: 0px;">
+                <span class="input-text">单价:</span>
+              </div>
+              <div class="col-sm-1" >
+                <input name= "rental" type="hidden">
+                <span class="input-text unitRental" ></span>
+              </div>
+              <div class="col-sm-2">
+                <span class="input-text">元/天</span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="form-field-userBonus" class="col-sm-2 control-label no-padding-right">用户共分红:</label>
+            <div class="col-sm-8">
+              <div class="col-sm-6">
+                <input type="text" name="userBonus" class="col-xs-11 col-sm-11 " placeholder="" id="form-field-userBonus" datatype="/^(?!0+(?:\.0+)?$)(?:[1-9]\d*|0)(?:\.\d{1,2})?$/"><span class="input-text">%</span>
+              </div>
+            </div>
+          </div>
+           <div class="form-group">
+            <label for="form-field-borrowerBonus" class="col-sm-2 control-label no-padding-right">借款人分红:</label>
+            <div class="col-sm-8">
+              <div class="col-sm-6">
+                <input type="text" name="borrowerBonus" class="col-xs-11 col-sm-11 " placeholder="" id="form-field-borrowerBonus" datatype="/^(?!0+(?:\.0+)?$)(?:[1-9]\d*|0)(?:\.\d{1,2})?$/"><span class="input-text">%</span>
+              </div>
+            </div>
+          </div>
+           <div class="form-group">
+            <label for="form-field-lenderBonus" class="col-sm-2 control-label no-padding-right">出借人分红:</label>
+            <div class="col-sm-8">
+              <div class="col-sm-6">
+              <input type="text" name="lenderBonus" class="col-xs-11 col-sm-11 " placeholder="" id="form-field-lenderBonus" datatype="/^(?!0+(?:\.0+)?$)(?:[1-9]\d*|0)(?:\.\d{1,2})?$/"><span class="input-text">%</span>
+              </div>
+            </div>
+          </div>
+           <div class="form-group">
+            <label for="form-field-lessorBonus" class="col-sm-2 control-label no-padding-right">租赁公司分红:</label>
+            <div class="col-sm-8">
+              <div class="col-sm-6">
+                <input type="text" name="lessorBonus" class="col-xs-11 col-sm-11 " placeholder="" id="form-field-lessorBonus" datatype="/^(?!0+(?:\.0+)?$)(?:[1-9]\d*|0)(?:\.\d{1,2})?$/"><span class="input-text">%</span>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer" style="text-align: center;">
+        <button type="button" id="save_closeBonus" class="btn btn-primary" style="width: 112px;padding-top: 0px;padding-bottom: 0px;font-size: 16px;">结算</button>
+      </div>
+    </div>
+    <!-- /.modal-content --> </div>
+  <!-- /.modal-dialog -->
+</div>

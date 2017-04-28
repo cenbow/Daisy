@@ -1,0 +1,1189 @@
+#set($title="有融网-全透明的互联网理财优选平台")
+#set($keywords=" 互联网理财,债权转让,债权交易,有融网 ")
+#set($description=" 有融网运用高效的运营管理体系和创新的互联网思维,搭建了一个安全透明的互联网理财服务平台.")
+
+##网站首页
+#parse("/common/common.vm")
+#set($css_url=["$root_css_url/modules/default.css"])
+###set($js_url=["/static/lib/js/socket/socket.io.min.js","/static/lib/js/jq/jquery.sparkline.min.js","$root_js_url/modules/default.js"])
+
+##当前页面
+#set($isHomeNavi="z-current")
+
+##页面入口标识
+#set($entry=["global","home"])
+
+##春节元素显示时间
+#set($serverDateTime=${dateUtil.getCurrentDate().getTime()})
+#set($startTime=1484881726652)
+#set($endTime=1486742399000)
+#set($hasSetPayPassword=${servletUtil.synPayPasswordFlag()})
+
+<!--[if (gte IE 7)&(lte IE 9)]>
+<style>
+/*首页项目进度环*/
+.u-ring-bg{
+	position: absolute;
+	top: -20px;
+	left: -20px;
+	z-index: 1;
+	background: url(/static/img/homepage/round/round0.png) no-repeat center;
+	height: 160px;
+	width: 160px;
+}
+</style>
+<![endif]-->
+#parse("/common/banner.vm")
+<div class="g-wrap">
+    <div class="m-products-list f-pos-r">
+        #if($!directProjectList.size()>0)
+            <div class="u-category-title" id="j-category-title">
+                <h2 class="f-fs14 f-fwb z-current">推荐项目</h2>
+                <h2 class="f-fs14 f-fwb">直投项目</h2>
+                <h2 class="f-fs14 f-fwb">债权项目</h2>
+                <h2 class="f-fs14 f-fwb f-pos-r">转让专区<span class="u-icon-new"></span></h2>
+            </div>
+        #else
+            <h3 class="f-fs14 f-fwb">推荐项目</h3>
+        #end
+    ##        <div class="u-category-title" id="j-category-title">
+    ##            <h2 class="f-fs14 f-fwb z-current">推荐项目</h2>
+    ##            <h2 class="f-fs14 f-fwb">债权项目</h2>
+    ##            <h2 class="f-fs14 f-fwb">直投项目</h2>
+    ##        </div>
+    ##        推荐项目
+
+    ##区别资产包项目存在与不存在的情况下的一排最后一个
+        #if($!{packageEntity})
+            #set($firstEnd=3)
+            #set($lastEnd=7)
+        #else
+            #set($firstEnd=4)
+            #set($lastEnd=8)
+        #end
+    ##区别资产包项目存在与不存在的情况下的一排最后一个
+        <ul class="f-cf j-product-list">
+            #if($!{packageEntity})
+                <li class="f-round z-actived">
+                    <h4 class="f-fs14">
+                        <a href="$root_url/products/showProjectPackage-$!{packageEntity.id}.html">
+                            $!{packageEntity.name}
+                        </a>
+                    </h4>
+                    <div class="u-pl-photo">
+                        <s></s>
+                        <a class="u-pl-wrap" href="$root_url/products/showProjectPackage-$!{packageEntity.id}.html">
+                            <img src="#getProjectThumbnail($!{packageEntity.imgurl})"
+                                 alt="">
+                            <i></i>
+                            <span class="j-pl-stat u-pl-stat" data-dimension="160" data-fontsize="14"
+                                  data-percent="$!{packageEntity.progress}"
+                                  data-fgcolor="#e33f4a" data-bordersize="5" data-bgcolor="#eee"></span>
+                        </a>
+                        <div class="u-pl-process f-tac f-fs12">当前进度 $!{packageEntity.progress}%</div>
+                        <div class="u-pl-amount f-tac f-fs12">剩余可投金额$!{packageEntity.voteAmount}元</div>
+                        <s></s>
+                    </div>
+
+                    <ul>
+                        <li class="u-pl-total">项目总额&nbsp;
+                            <span class="f-fs14 f-ff-ver">￥</span><span
+                                    class="f-ff-din f-fs28">${formulaUtil.getIntegerDefaultZero($packageEntity.totalAmount)}</span><span
+                                    class="f-ff-din f-fs24">${formulaUtil.getDecimalDefaultZero($packageEntity.totalAmount)}</span>
+                        </li>
+                        <li>年化收益&nbsp;
+
+                            #if($!{packageEntity.minAnnualizedRate} == $!{packageEntity.maxAnnualizedRate})
+                                <span class="f-ff-din f-fs28 f-fc-red2">${formulaUtil.getIntegerDefaultZero($packageEntity.minAnnualizedRate)}</span>
+                                <span class="f-ff-din f-fs24 f-fc-red2">${formulaUtil.getDecimalDefaultZero($packageEntity.minAnnualizedRate)}
+                                    %</span>
+                            #else
+                                <span class="f-ff-din f-fs28 f-fc-red2">${formulaUtil.getIntegerDefaultZero($packageEntity.minAnnualizedRate)}</span>
+                                <span class="f-ff-din f-fs24 f-fc-red2">${formulaUtil.getDecimalDefaultZero($packageEntity.minAnnualizedRate)}</span>
+                                <span class="f-fs20 f-ff-ver f-fc-red2">~</span>
+                                <span class="f-ff-din f-fs28 f-fc-red2">${formulaUtil.getIntegerDefaultZero($packageEntity.maxAnnualizedRate)}</span>
+                                <span class="f-ff-din f-fs24 f-fc-red2">${formulaUtil.getDecimalDefaultZero($packageEntity.maxAnnualizedRate)}
+                                    %</span>
+                            #end
+
+                        </li>
+                        <li class="u-pl-date">收益周期&nbsp;
+                            #if($!{packageEntity.minBorrowPeriod} == $!{packageEntity.maxBorrowPeriod})
+                                <span class="f-ff-din f-fs28">$!{packageEntity.maxBorrowPeriod}</span>
+                            #else
+                                <span class="f-ff-din f-fs28">$!{packageEntity.minBorrowPeriod}
+                                    -$!{packageEntity.maxBorrowPeriod}</span>
+                            #end        
+                                <span class="f-fs14">
+                                #if($!{packageEntity.maxBorrowPeriodType} == 1)
+                                    天
+                                #elseif($!{packageEntity.maxBorrowPeriodType} == 2)
+                                    个月
+                                #elseif($!{packageEntity.maxBorrowPeriodType} == 3)
+                                    年
+                                #elseif($!{packageEntity.maxBorrowPeriodType} == 4)
+                                    周
+                                #end
+                            </span>
+                        </li>
+                    </ul>
+                    <a class="u-pl-btn f-round z-actived"
+                       href="$root_url/products/showProjectPackage-$!{packageEntity.id}.html">立即投资</a>
+                </li>
+            #end
+
+
+
+            #if($!projectList && $!projectList.size()>0)
+                #foreach($project in $!projectList )
+                    #if($project.isNotice())
+                        <li class="f-round #if($velocityCount==$firstEnd||$velocityCount==$lastEnd)z-4th#end">
+                            <h4 class="f-fs14">
+                                <a href="javascript:void(0)" class="j-index-notice">
+                                    $!{project.prefixProjectName}
+                                    #if( $!{projectUtils.isQuickLottery($!{project.id})})<i
+                                            class="u-direct-icon"></i>#end
+                                    #if($project.transferFlag==1)
+                                        <i class="u-transfer-icon"></i>
+                                    #else
+                                        #if($project.joinLease)<i class="u-dividend-leaseicon"></i>#end
+                                        #if($project.noviceProject)<i class="u-icon-newCustomer"></i>#end
+                                    ## cc edit
+                                        #if(${projectUtils.getProjectActivitySign($!{project.id})}==1)
+                                            <i class="u-icon-ruyi j-icon-ruyi"></i>
+                                        #end
+                                    #end
+
+                                    <span class="f-fs12 f-text-overflow">$!{project.suffixProjectName}</span>
+                                </a>
+                            </h4>
+                            <div class="u-pl-photo">
+                                <s></s>
+                                <a class="u-pl-wrap j-index-notice" href="javascript:void(0)">
+
+                                    #if($serverDateTime<$endTime&&$serverDateTime>$startTime)
+                                        <img src="$root_url/static/img/activity/chookYear/chookYearIcon-$!{velocityCount}.png"
+                                             alt="">
+                                    #else
+                                        <img src="#getProjectThumbnail($!{project.thumbnail})"
+                                             alt="$!{project.suffixProjectName}">
+                                    #end
+
+                                    <span class="u-ring-bg"></span>
+                                    <i></i>
+                                    <span class="j-pl-stat u-pl-stat" data-dimension="160" data-fontsize="14"
+                                          data-percent="0" data-fgcolor="#e33f4a" data-bordersize="5"
+                                          data-bgcolor="#eee"></span>
+                                </a>
+                                <div class="u-pl-process f-tac f-fs12">
+                                    上线时间 ${dateUtil.getLongStrFromDate($!project.onlineTime)}</div>
+                                <div class="u-pl-amount f-tac f-fs12">
+                                    上线时间  ${dateUtil.getLongStrFromDate($!project.onlineTime)}</div>
+                                <s></s>
+                            </div>
+
+                            <ul>
+                                <li class="u-pl-total">项目总额&nbsp;
+                                    <span class="f-fs14 f-ff-ver">￥</span><span
+                                            class="f-ff-din f-fs28">${formulaUtil.getIntegerDefaultZero($project.totalAmount)}</span><span
+                                            class="f-ff-din f-fs24">${formulaUtil.getDecimalDefaultZero($project.totalAmount)}</span>
+                                </li>
+                                <li>年化收益&nbsp;
+                                    #if(${project.minAnnualizedRate}==${project.maxAnnualizedRate})
+                                        <span class="f-ff-din f-fs28">${formulaUtil.getIntegerDefaultZero($project.minAnnualizedRate)}</span><span
+                                            class="f-ff-din f-fs24">${formulaUtil.getDecimalDefaultZero($project.minAnnualizedRate)}</span><span
+                                            class="f-ff-din f-fs24">%</span>
+                                        #if($!{project.extraType} == 2)
+                                            <span class="f-ff-din f-fs24 f-ml-5">+<span
+                                                    class="f-ff-din f-fs28">${formulaUtil.getIntegerDefaultZero($project.addRateBigDecimal)}</span>${formulaUtil.getDecimalDefaultZero($project.addRateBigDecimal)}%</span>
+                                        #end
+                                    #else
+                                        <span class="f-ff-din f-fs28">${formulaUtil.getIntegerDefaultZero($project.minAnnualizedRate)}</span><span
+                                            class="f-ff-din f-fs24">${formulaUtil.getDecimalDefaultZero($project.minAnnualizedRate)}</span><span
+                                            class="f-fs20 f-ff-ver">~</span><span
+                                            class="f-ff-din f-fs28">${formulaUtil.getIntegerDefaultZero($project.maxAnnualizedRate)}</span><span
+                                            class="f-ff-din f-fs24">${formulaUtil.getDecimalDefaultZero($project.maxAnnualizedRate)}
+                                        %</span>
+                                    #end
+                                </li>
+                                #if(${project.isDirectProject()})
+                                    <li class="u-pl-date">收益周期&nbsp;
+                                        <span class="f-ff-din f-fs28">${project.getBorrowPeriod()}</span><span
+                                                class="f-fs14">${project.getFormatProfitPeriodType()}</span>
+                                    </li>
+                                #else
+                                    <li class="u-pl-date">收益天数&nbsp;
+                                        <span class="f-ff-din f-fs28">${project.getNoticeProjectEarningsTotalDays()}</span><span
+                                                class="f-fs14">天</span>
+                                    </li>
+                                #end
+                            </ul>
+                            <a href="javascript:void(0)" class="u-pl-btn f-round z-disabled  j-index-notice"
+                               id="j-project-notice" data-url="$root_url/products/detail-$!{project.id}.html">距上线&nbsp;&nbsp;<span
+                                    id="j-project-notice-time" sencond="$!{project.getNoticeEndTime()}"></span></a>
+                        </li>
+                    #elseif($project.isActive())
+                        <li class="f-round z-actived #if($velocityCount==$firstEnd||$velocityCount==$lastEnd)z-4th#end">
+                            <h4 class="f-fs14">
+                                <a href="$root_url/products/detail-$!{project.id}.html">
+                                    $!{project.prefixProjectName}
+                                    #if($!{projectUtils.isQuickLottery($!{project.id})})<i
+                                            class="u-direct-icon"></i>#end
+                                    #if(!$project.isStop() && $project.transferFlag==1)
+                                        <i class="u-transfer-icon"></i>
+                                    #else
+                                        #if($project.joinLease)<i class="u-dividend-leaseicon"></i>#end
+                                        #if($project.noviceProject)<i class="u-icon-newCustomer"></i>#end
+                                    ##cc
+                                        #if(${projectUtils.getProjectActivitySign($project.id)}==1)
+                                            <i class="u-icon-ruyi j-icon-ruyi"></i>
+                                        #end
+                                    #end
+                                    <span class="f-fs12 f-text-overflow">$!{project.suffixProjectName}</span>
+                                </a>
+                            </h4>
+                            <div class="u-pl-photo">
+                                <s></s>
+                                #set($_process=${sysServiceUtil.getProjectNumberProgress($!project.totalAmount,$!project.id)})
+                                <a class="u-pl-wrap" href="$root_url/products/detail-$!{project.id}.html">
+
+                                    #if($serverDateTime<$endTime&&$serverDateTime>$startTime)
+                                        <img src="$root_url/static/img/activity/chookYear/chookYearIcon-$!{velocityCount}.png"
+                                             alt="">
+                                    #else
+                                        <img src="#getProjectThumbnail($!{project.thumbnail})"
+                                             alt="$!{project.suffixProjectName}">
+                                    #end
+
+                                    #set($round=$sysServiceUtil.getProgressCeil($project.totalAmount,$project.id))
+                                    <span class="u-ring-bg"
+                                          style="background-image:url($root_url/static/img/homepage/round/round$!{round}.png)"></span>
+                                    <i></i>
+                                    <span class="j-pl-stat u-pl-stat" data-dimension="160" data-fontsize="14"
+                                          data-percent="$!{_process}" data-fgcolor="#e33f4a" data-bordersize="5"
+                                          data-bgcolor="#ccc"></span>
+                                </a>
+                                #set($balance=${sysServiceUtil.getProjectBalance($project.id)})
+                                <div class="u-pl-process f-tac f-fs12">当前进度$!{_process}%</div>
+                                <div class="u-pl-amount f-tac f-fs12">剩余可投金额$!{balance} 元</div>
+                                <s></s>
+                            </div>
+
+                            <ul>
+                                <li class="u-pl-total">项目总额&nbsp;
+                                    <span class="f-fs14 f-ff-ver">￥</span><span
+                                            class="f-ff-din f-fs28">${formulaUtil.getIntegerDefaultZero($project.totalAmount)}</span><span
+                                            class="f-ff-din f-fs24">${formulaUtil.getDecimalDefaultZero($project.totalAmount)}</span>
+                                </li>
+                                <li>年化收益&nbsp;
+                                    #if(${project.minAnnualizedRate}==${project.maxAnnualizedRate})
+                                        <span class="f-ff-din f-fs28 f-fc-red2">${formulaUtil.getIntegerDefaultZero($project.minAnnualizedRate)}</span><span
+                                            class="f-ff-din f-fs24 f-fc-red2">${formulaUtil.getDecimalDefaultZero($project.minAnnualizedRate)}</span><span
+                                            class="f-ff-din f-fs24 f-fc-red2">%</span>
+                                        #if($!{project.extraType} == 2)
+                                            <span class="f-ff-din f-fs24 f-fc-red2 f-ml-5">+<span
+                                                    class="f-ff-din f-fc-red2 f-fs28">${formulaUtil.getIntegerDefaultZero($project.addRateBigDecimal)}</span>${formulaUtil.getDecimalDefaultZero($project.addRateBigDecimal)}%</span>
+                                        #end
+                                    #else
+                                        <span class="f-ff-din f-fs28 f-fc-red2">${formulaUtil.getIntegerDefaultZero($project.minAnnualizedRate)}</span><span
+                                            class="f-ff-din f-fs24 f-fc-red2">${formulaUtil.getDecimalDefaultZero($project.minAnnualizedRate)}</span><span
+                                            class="f-fs20 f-ff-ver f-fc-red2">~</span><span
+                                            class="f-ff-din f-fs28 f-fc-red2">${formulaUtil.getIntegerDefaultZero($project.maxAnnualizedRate)}</span><span
+                                            class="f-ff-din f-fs24 f-fc-red2">${formulaUtil.getDecimalDefaultZero($project.maxAnnualizedRate)}
+                                        %</span>
+                                    #end
+                                </li>
+                                #if(${project.isDirectProject()})
+                                    <li class="u-pl-date">收益周期&nbsp;
+                                        <span class="f-ff-din f-fs28">${project.getBorrowPeriod()}</span><span
+                                                class="f-fs14">${project.getFormatProfitPeriodType()}</span>
+                                    </li>
+                                #else
+                                    <li class="u-pl-date">收益天数&nbsp;
+                                        <span class="f-ff-din f-fs28">${project.getEarningsDaysByStatus()}</span><span
+                                                class="f-fs14">天</span>
+                                    </li>
+                                #end
+                            </ul>
+                            #if($project.isStop())
+                                <a href="$root_url/products/detail-$!{project.id}.html" class="u-pl-btn f-round z-closed
+##							#if(${project.isDirectProject()})
+##								#if(${project.status}==40)z-closed#end
+##							#else
+##								#if(${project.status}==40) u-bgc-gray #else z-closed#end
+##							#end
+							">${project.getButtonText()}</a>
+                            #else
+                                <a href="$root_url/products/detail-$!{project.id}.html"
+                                   class="u-pl-btn f-round z-actived">#if($balance<=0)
+                                    支付确认中#else${project.getButtonText()}#end</a>
+                            #end
+                        </li>
+                    #else
+                        <li class="f-round #if($velocityCount==$firstEnd||$velocityCount==$lastEnd)z-4th#end">
+                            <h4 class="f-fs14">
+                                <a href="$root_url/products/detail-$!{project.id}.html">
+                                    $!{project.prefixProjectName}
+                                    #if( $!{projectUtils.isQuickLottery($!{project.id})})<i
+                                            class="u-direct-icon"></i>#end
+                                    #if($project.joinLease)<i class="u-dividend-leaseicon"></i>#end
+                                    #if($project.noviceProject)<i class="u-icon-newCustomer"></i>#end
+                                ## cc
+                                    #if(${projectUtils.getProjectActivitySign($!{project.id})}==1)
+                                        <i class="u-icon-ruyi j-icon-ruyi"></i>
+                                    #end
+                                    <span class="f-fs12 f-text-overflow">$!{project.suffixProjectName}</span>
+                                </a>
+                            </h4>
+                            <div class="u-pl-photo">
+                                <s></s>
+                                <a class="u-pl-wrap" href="$root_url/products/detail-$!{project.id}.html">
+
+                                    #if($serverDateTime<$endTime&&$serverDateTime>$startTime)
+                                        <img src="$root_url/static/img/activity/chookYear/chookYearIcon-$!{velocityCount}.png"
+                                             alt="">
+                                    #else
+                                        <img src="#getProjectThumbnail($!{project.thumbnail})"
+                                             alt="$!{project.suffixProjectName}">
+                                    #end
+
+                                    <span class="u-ring-bg"
+                                          style="background-image:url($root_url/static/img/homepage/round/round_finish.png)"></span>
+                                    <i></i>
+                                    <span class="j-pl-stat u-pl-stat" data-dimension="160" data-percent="100"
+                                          data-fgcolor="#f8ada8" data-bordersize="5" data-bgcolor="#f8ada8"></span>
+                                </a>
+                                #set($_process=${sysServiceUtil.getProjectProgress($!project.totalAmount,$!project.id)})
+                                <div class="u-pl-process2 f-tac f-fs12">当前进度${_process}</div>
+                                <s></s>
+                            </div>
+
+                            <ul>
+                                <li class="u-pl-total">项目总额&nbsp;
+                                    <span class="f-fs14 f-ff-ver">￥</span><span
+                                            class="f-ff-din f-fs28">${formulaUtil.getIntegerDefaultZero($project.totalAmount)}</span><span
+                                            class="f-ff-din f-fs24">${formulaUtil.getDecimalDefaultZero($project.totalAmount)}</span>
+                                </li>
+                                <li>年化收益&nbsp;
+                                    #if(${project.minAnnualizedRate}==${project.maxAnnualizedRate})
+                                        <span class="f-ff-din f-fs28">${formulaUtil.getIntegerDefaultZero($project.minAnnualizedRate)}</span><span
+                                            class="f-ff-din f-fs24">${formulaUtil.getDecimalDefaultZero($project.minAnnualizedRate)}</span><span
+                                            class="f-ff-din f-fs24">%</span>
+                                        #if($!{project.extraType} == 2)
+                                            <span class="f-ff-din f-fs24 f-ml-5">+<span
+                                                    class="f-ff-din f-fs28">${formulaUtil.getIntegerDefaultZero($project.addRateBigDecimal)}</span>${formulaUtil.getDecimalDefaultZero($project.addRateBigDecimal)}%</span>
+                                        #end
+                                    #else
+                                        <span class="f-ff-din f-fs28">${formulaUtil.getIntegerDefaultZero($project.minAnnualizedRate)}</span><span
+                                            class="f-ff-din f-fs24">${formulaUtil.getDecimalDefaultZero($project.minAnnualizedRate)}</span><span
+                                            class="f-fs20 f-ff-ver">~</span><span
+                                            class="f-ff-din f-fs28">${formulaUtil.getIntegerDefaultZero($project.maxAnnualizedRate)}</span><span
+                                            class="f-ff-din f-fs24">${formulaUtil.getDecimalDefaultZero($project.maxAnnualizedRate)}
+                                        %</span>
+                                    #end
+                                </li>
+                                #if(${project.isDirectProject()})
+                                    <li class="u-pl-date">收益周期&nbsp;
+                                        <span class="f-ff-din f-fs28">${project.getBorrowPeriod()}</span><span
+                                                class="f-fs14">${project.getFormatProfitPeriodType()}</span>
+                                    </li>
+                                #else
+                                    <li class="u-pl-date">收益天数&nbsp;
+                                        <span class="f-ff-din f-fs28">${project.getEarningsDaysByStatus()}</span><span
+                                                class="f-fs14">天</span>
+                                    </li>
+                                #end
+                            </ul>
+                        ##						区分债权和p2p
+                        ##					#if(${project.isDirectProject()})
+                        ##                        <a href="$root_url/products/detail-$!{project.id}.html" class="u-pl-btn f-round
+                        ##						#if(${project.status}==50||${project.status}==51)
+                        ##                        z-closed
+                        ##						#elseif(${project.status}==52||${project.status}==60||${project.status}==70||${project.status}==90)
+                        ##                        u-bgc-gray
+                        ##                        #elseif(${project.status}==80&&${project.saleComplatedTime})
+                        ##                        z-closed
+                        ##                        #else
+                        ##                        u-bgc-gray
+                        ##						#end
+                        ##						">${project.getButtonText()}</a>
+                        ##					#else
+                        ##                        <a href="$root_url/products/detail-$!{project.id}.html" class="u-pl-btn f-round
+                        ##						#if(${project.status}==50||${project.status}==60||${project.status}==70)
+                        ##                        z-closed
+                        ##						#end
+                        ##						">${project.getButtonText()}</a>
+                        ##					#end
+                            <a href="$root_url/products/detail-$!{project.id}.html"
+                               class="u-pl-btn f-round z-closed">${project.getButtonText()}</a>
+                        </li>
+                    #end
+                #end
+            #end
+        </ul>
+
+    ##        直投项目
+        <ul class="f-dn f-cf j-product-list">
+            #if($!directProjectList && $!directProjectList.size()>0)
+                #foreach($project in $!directProjectList )
+                    #if($project.isNotice())
+                        <li class="f-round #if($velocityCount==4||$velocityCount==8)z-4th#end">
+                            <h4 class="f-fs14">
+                                <a href="javascript:void(0)" class="j-index-notice">
+                                    $!{project.prefixProjectName}
+                                    #if( $!{projectUtils.isQuickLottery($!{project.id})})<i
+                                            class="u-direct-icon"></i>#end
+                                    #if($project.transferFlag==1)
+                                        <i class="u-transfer-icon"></i>
+                                    #else
+                                        #if($project.joinLease)<i class="u-dividend-leaseicon"></i>#end
+                                        #if($project.noviceProject)<i class="u-icon-newCustomer"></i>#end
+                                    #end
+                                    <span class="f-fs12 f-text-overflow">$!{project.suffixProjectName}</span>
+                                </a>
+                            </h4>
+                            <div class="u-pl-photo">
+                                <s></s>
+                                <a class="u-pl-wrap j-index-notice" href="javascript:void(0)">
+                                    <img src="#getProjectThumbnail($!{project.thumbnail})"
+                                         alt="$!{project.suffixProjectName}">
+
+                                    <span class="u-ring-bg"></span>
+                                    <i></i>
+
+                                    <span class="j-pl-stat u-pl-stat" data-dimension="160" data-fontsize="14"
+                                          data-percent="0" data-fgcolor="#e33f4a" data-bordersize="5"
+                                          data-bgcolor="#eee"></span>
+                                </a>
+                                <div class="u-pl-process f-tac f-fs12">
+                                    上线时间 ${dateUtil.getLongStrFromDate($!project.onlineTime)}</div>
+                                <div class="u-pl-amount f-tac f-fs12">
+                                    上线时间  ${dateUtil.getLongStrFromDate($!project.onlineTime)}</div>
+                                <s></s>
+                            </div>
+
+                            <ul>
+                                <li class="u-pl-total">项目总额&nbsp;
+                                    <span class="f-fs14 f-ff-ver">￥</span><span
+                                            class="f-ff-din f-fs28">${formulaUtil.getIntegerDefaultZero($project.totalAmount)}</span><span
+                                            class="f-ff-din f-fs24">${formulaUtil.getDecimalDefaultZero($project.totalAmount)}</span>
+                                </li>
+                                <li>年化收益&nbsp;
+                                    #if(${project.minAnnualizedRate}==${project.maxAnnualizedRate})
+                                        <span class="f-ff-din f-fs28">${formulaUtil.getIntegerDefaultZero($project.minAnnualizedRate)}</span><span
+                                            class="f-ff-din f-fs24">${formulaUtil.getDecimalDefaultZero($project.minAnnualizedRate)}</span><span
+                                            class="f-ff-din f-fs24">%</span>
+                                        #if($!{project.extraType} == 2)
+                                            <span class="f-ff-din f-fs24 f-ml-5">+<span
+                                                    class="f-ff-din f-fs28">${formulaUtil.getIntegerDefaultZero($project.addRateBigDecimal)}</span>${formulaUtil.getDecimalDefaultZero($project.addRateBigDecimal)}%</span>
+                                        #end
+                                    #else
+                                        <span class="f-ff-din f-fs28">${formulaUtil.getIntegerDefaultZero($project.minAnnualizedRate)}</span><span
+                                            class="f-ff-din f-fs24">${formulaUtil.getDecimalDefaultZero($project.minAnnualizedRate)}</span><span
+                                            class="f-fs20 f-ff-ver">~</span><span
+                                            class="f-ff-din f-fs28">${formulaUtil.getIntegerDefaultZero($project.maxAnnualizedRate)}</span><span
+                                            class="f-ff-din f-fs24">${formulaUtil.getDecimalDefaultZero($project.maxAnnualizedRate)}
+                                        %</span>
+                                    #end
+                                </li>
+                                <li class="u-pl-date">收益周期&nbsp;
+                                    <span class="f-ff-din f-fs28">${project.getBorrowPeriod()}</span><span
+                                            class="f-fs14">${project.getFormatProfitPeriodType()}</span>
+                                </li>
+                            </ul>
+                            <a href="javascript:void(0)" class="u-pl-btn f-round z-disabled  j-index-notice"
+                               id="j-project-notice" data-url="$root_url/products/detail-$!{project.id}.html">距上线&nbsp;&nbsp;<span
+                                    id="j-project-notice-time" sencond="$!{project.getNoticeEndTime()}"></span></a>
+                        </li>
+                    #elseif($project.isActive())
+                        <li class="f-round z-actived #if($velocityCount==4||$velocityCount==8)z-4th#end">
+                            <h4 class="f-fs14">
+                                <a href="$root_url/products/detail-$!{project.id}.html">
+                                    $!{project.prefixProjectName}
+                                    #if( $!{projectUtils.isQuickLottery($!{project.id})})<i
+                                            class="u-direct-icon"></i>#end
+                                    #if(!$project.isStop() && $project.transferFlag==1)
+                                        <i class="u-transfer-icon"></i>
+                                    #else
+                                        #if($project.joinLease)<i class="u-dividend-leaseicon"></i>#end
+                                        #if($project.noviceProject)<i class="u-icon-newCustomer"></i>#end
+                                    #end
+                                    <span class="f-fs12 f-text-overflow">$!{project.suffixProjectName}</span>
+                                </a>
+                            </h4>
+                            <div class="u-pl-photo">
+                                <s></s>
+                                #set($_process=${sysServiceUtil.getProjectNumberProgress($!project.totalAmount,$!project.id)})
+                                <a class="u-pl-wrap" href="$root_url/products/detail-$!{project.id}.html">
+                                    <img src="#getProjectThumbnail($!{project.thumbnail})"
+                                         alt="$!{project.suffixProjectName}">
+                                    #set($round=$sysServiceUtil.getProgressCeil($project.totalAmount,$project.id))
+                                    <span class="u-ring-bg"
+                                          style="background-image:url($root_url/static/img/homepage/round/round$!{round}.png)"></span>
+                                    <i></i>
+                                    <span class="j-pl-stat u-pl-stat" data-dimension="160" data-fontsize="14"
+                                          data-percent="$!{_process}" data-fgcolor="#e33f4a" data-bordersize="5"
+                                          data-bgcolor="#ccc"></span>
+                                </a>
+                                #set($balance=${sysServiceUtil.getProjectBalance($project.id)})
+                                <div class="u-pl-process f-tac f-fs12">当前进度$!{_process}%</div>
+                                <div class="u-pl-amount f-tac f-fs12">剩余可投金额$!{balance} 元</div>
+                                <s></s>
+                            </div>
+
+                            <ul>
+                                <li class="u-pl-total">项目总额&nbsp;
+                                    <span class="f-fs14 f-ff-ver">￥</span><span
+                                            class="f-ff-din f-fs28">${formulaUtil.getIntegerDefaultZero($project.totalAmount)}</span><span
+                                            class="f-ff-din f-fs24">${formulaUtil.getDecimalDefaultZero($project.totalAmount)}</span>
+                                </li>
+                                <li>年化收益&nbsp;
+                                    #if(${project.minAnnualizedRate}==${project.maxAnnualizedRate})
+                                        <span class="f-ff-din f-fs28 f-fc-red2">${formulaUtil.getIntegerDefaultZero($project.minAnnualizedRate)}</span><span
+                                            class="f-ff-din f-fs24 f-fc-red2">${formulaUtil.getDecimalDefaultZero($project.minAnnualizedRate)}</span><span
+                                            class="f-ff-din f-fs24 f-fc-red2">%</span>
+                                        #if($!{project.extraType} == 2)
+                                            <span class="f-ff-din f-fs24 f-fc-red2 f-ml-5">+<span
+                                                    class="f-ff-din f-fc-red2 f-fs28">${formulaUtil.getIntegerDefaultZero($project.addRateBigDecimal)}</span>${formulaUtil.getDecimalDefaultZero($project.addRateBigDecimal)}%</span>
+                                        #end
+                                    #else
+                                        <span class="f-ff-din f-fs28 f-fc-red2">${formulaUtil.getIntegerDefaultZero($project.minAnnualizedRate)}</span><span
+                                            class="f-ff-din f-fs24 f-fc-red2">${formulaUtil.getDecimalDefaultZero($project.minAnnualizedRate)}</span><span
+                                            class="f-fs20 f-ff-ver f-fc-red2">~</span><span
+                                            class="f-ff-din f-fs28 f-fc-red2">${formulaUtil.getIntegerDefaultZero($project.maxAnnualizedRate)}</span><span
+                                            class="f-ff-din f-fs24 f-fc-red2">${formulaUtil.getDecimalDefaultZero($project.maxAnnualizedRate)}
+                                        %</span>
+                                    #end
+                                </li>
+                                <li class="u-pl-date">收益周期&nbsp;
+                                    <span class="f-ff-din f-fs28">${project.getBorrowPeriod()}</span><span
+                                            class="f-fs14">${project.getFormatProfitPeriodType()}</span>
+                                </li>
+                            </ul>
+                            #if($project.isStop())
+                                <a href="$root_url/products/detail-$!{project.id}.html"
+                                   class="u-pl-btn f-round z-closed">${project.getButtonText()}</a>
+                            #else
+                                <a href="$root_url/products/detail-$!{project.id}.html"
+                                   class="u-pl-btn f-round z-actived">#if($balance<=0)
+                                    支付确认中#else${project.getButtonText()}#end</a>
+                            #end
+                        </li>
+                    #else
+                        <li class="f-round #if($velocityCount==4||$velocityCount==8)z-4th#end">
+                            <h4 class="f-fs14">
+                                <a href="$root_url/products/detail-$!{project.id}.html">
+                                    $!{project.prefixProjectName}#if($project.joinLease)<i
+                                        class="u-dividend-leaseicon"></i>#end#if($project.noviceProject)<i
+                                        class="u-icon-newCustomer"></i>#end
+                                    <span class="f-fs12 f-text-overflow">$!{project.suffixProjectName}</span>
+                                </a>
+                            </h4>
+                            <div class="u-pl-photo">
+                                <s></s>
+                                <a class="u-pl-wrap" href="$root_url/products/detail-$!{project.id}.html">
+                                    <img src="#getProjectThumbnail($!{project.thumbnail})"
+                                         alt="$!{project.suffixProjectName}">
+                                    <span class="u-ring-bg"
+                                          style="background-image:url($root_url/static/img/homepage/round/round_finish.png)"></span>
+                                    <i></i>
+                                    <span class="j-pl-stat u-pl-stat" data-dimension="160" data-percent="100"
+                                          data-fgcolor="#f8ada8" data-bordersize="5" data-bgcolor="#f8ada8"></span>
+                                </a>
+                                #set($_process=${sysServiceUtil.getProjectProgress($!project.totalAmount,$!project.id)})
+                                <div class="u-pl-process2 f-tac f-fs12">当前进度${_process}</div>
+                                <s></s>
+                            </div>
+
+                            <ul>
+                                <li class="u-pl-total">项目总额&nbsp;
+                                    <span class="f-fs14 f-ff-ver">￥</span><span
+                                            class="f-ff-din f-fs28">${formulaUtil.getIntegerDefaultZero($project.totalAmount)}</span><span
+                                            class="f-ff-din f-fs24">${formulaUtil.getDecimalDefaultZero($project.totalAmount)}</span>
+                                </li>
+                                <li>年化收益&nbsp;
+                                    #if(${project.minAnnualizedRate}==${project.maxAnnualizedRate})
+                                        <span class="f-ff-din f-fs28">${formulaUtil.getIntegerDefaultZero($project.minAnnualizedRate)}</span><span
+                                            class="f-ff-din f-fs24">${formulaUtil.getDecimalDefaultZero($project.minAnnualizedRate)}</span><span
+                                            class="f-ff-din f-fs24">%</span>
+                                        #if($!{project.extraType} == 2)
+                                            <span class="f-ff-din f-fs24 f-ml-5">+<span
+                                                    class="f-ff-din f-fs28">${formulaUtil.getIntegerDefaultZero($project.addRateBigDecimal)}</span>${formulaUtil.getDecimalDefaultZero($project.addRateBigDecimal)}%</span>
+                                        #end
+                                    #else
+                                        <span class="f-ff-din f-fs28">${formulaUtil.getIntegerDefaultZero($project.minAnnualizedRate)}</span><span
+                                            class="f-ff-din f-fs24">${formulaUtil.getDecimalDefaultZero($project.minAnnualizedRate)}</span><span
+                                            class="f-fs20 f-ff-ver">~</span><span
+                                            class="f-ff-din f-fs28">${formulaUtil.getIntegerDefaultZero($project.maxAnnualizedRate)}</span><span
+                                            class="f-ff-din f-fs24">${formulaUtil.getDecimalDefaultZero($project.maxAnnualizedRate)}
+                                        %</span>
+                                    #end
+                                </li>
+                                <li class="u-pl-date">收益周期&nbsp;
+                                    <span class="f-ff-din f-fs28">${project.getBorrowPeriod()}</span><span
+                                            class="f-fs14">${project.getFormatProfitPeriodType()}</span>
+                                </li>
+                            </ul>
+                            <a href="$root_url/products/detail-$!{project.id}.html" class="u-pl-btn f-round z-closed
+##							#if(${project.status}==50||${project.status}==51)
+##                               	z-closed
+##								#elseif(${project.status}==52||${project.status}==60||${project.status}==70||${project.status}==80||${project.status}==90)
+##								u-bgc-gray
+##								#elseif(${project.status}==80&&${project.saleComplatedTime})
+##                                z-closed
+##                                #else
+##                                u-bgc-gray
+##							#end
+							">${project.getButtonText()}</a>
+
+                        </li>
+                    #end
+                #end
+            #end
+        </ul>
+
+    ##        债权项目
+        <ul class="f-dn f-cf j-product-list">
+            #if($!debtProjectList && $!debtProjectList.size()>0)
+                #foreach($project in $!debtProjectList )
+
+                    #if($project.isNotice())
+                        <li class="f-round #if($velocityCount==4||$velocityCount==8)z-4th#end">
+                            <h4 class="f-fs14">
+                                <a href="javascript:void(0)" class="j-index-notice">
+                                    $!{project.prefixProjectName}
+                                    #if($project.transferFlag==1)
+                                        <i class="u-transfer-icon"></i>
+                                    #else
+                                        #if($project.joinLease)<i class="u-dividend-leaseicon"></i>#end
+                                        #if($project.noviceProject)<i class="u-icon-newCustomer"></i>#end
+                                    #end
+                                    <span class="f-fs12 f-text-overflow">$!{project.suffixProjectName}</span>
+                                </a>
+                            </h4>
+                            <div class="u-pl-photo">
+                                <s></s>
+                                <a class="u-pl-wrap j-index-notice" href="javascript:void(0)">
+                                    <img src="#getProjectThumbnail($!{project.thumbnail})"
+                                         alt="$!{project.suffixProjectName}">
+
+                                    <span class="u-ring-bg"></span>
+                                    <i></i>
+
+                                    <span class="j-pl-stat u-pl-stat" data-dimension="160" data-fontsize="14"
+                                          data-percent="0" data-fgcolor="#e33f4a" data-bordersize="5"
+                                          data-bgcolor="#eee"></span>
+                                </a>
+                                <div class="u-pl-process f-tac f-fs12">
+                                    上线时间 ${dateUtil.getLongStrFromDate($!project.onlineTime)}</div>
+                                <div class="u-pl-amount f-tac f-fs12">
+                                    上线时间  ${dateUtil.getLongStrFromDate($!project.onlineTime)}</div>
+                                <s></s>
+                            </div>
+
+                            <ul>
+                                <li class="u-pl-total">项目总额&nbsp;
+                                    <span class="f-fs14 f-ff-ver">￥</span><span
+                                            class="f-ff-din f-fs28">${formulaUtil.getIntegerDefaultZero($project.totalAmount)}</span><span
+                                            class="f-ff-din f-fs24">${formulaUtil.getDecimalDefaultZero($project.totalAmount)}</span>
+                                </li>
+                                <li>年化收益&nbsp;
+                                    #if(${project.minAnnualizedRate}==${project.maxAnnualizedRate})
+                                        <span class="f-ff-din f-fs28">${formulaUtil.getIntegerDefaultZero($project.minAnnualizedRate)}</span><span
+                                            class="f-ff-din f-fs24">${formulaUtil.getDecimalDefaultZero($project.minAnnualizedRate)}</span><span
+                                            class="f-ff-din f-fs24">%</span>
+                                    #else
+                                        <span class="f-ff-din f-fs28">${formulaUtil.getIntegerDefaultZero($project.minAnnualizedRate)}</span><span
+                                            class="f-ff-din f-fs24">${formulaUtil.getDecimalDefaultZero($project.minAnnualizedRate)}</span><span
+                                            class="f-fs20 f-ff-ver">~</span><span
+                                            class="f-ff-din f-fs28">${formulaUtil.getIntegerDefaultZero($project.maxAnnualizedRate)}</span><span
+                                            class="f-ff-din f-fs24">${formulaUtil.getDecimalDefaultZero($project.maxAnnualizedRate)}
+                                        %</span>
+                                    #end
+                                </li>
+                                <li class="u-pl-date">收益天数&nbsp;
+                                    <span class="f-ff-din f-fs28">${project.getNoticeProjectEarningsTotalDays()}</span><span
+                                            class="f-fs14">天</span>
+                                </li>
+                            </ul>
+                            <a href="javascript:void(0)" class="u-pl-btn f-round z-disabled  j-index-notice"
+                               id="j-project-notice" data-url="$root_url/products/detail-$!{project.id}.html">距上线&nbsp;&nbsp;<span
+                                    id="j-project-notice-time" sencond="$!{project.getNoticeEndTime()}"></span></a>
+                        </li>
+                    #elseif($project.isActive())
+                        <li class="f-round z-actived #if($velocityCount==4||$velocityCount==8)z-4th#end">
+                            <h4 class="f-fs14">
+                                <a href="$root_url/products/detail-$!{project.id}.html">
+                                    $!{project.prefixProjectName}
+                                    #if(!$project.isStop() && $project.transferFlag==1)
+                                        <i class="u-transfer-icon"></i>
+                                    #else
+                                        #if($project.joinLease)<i class="u-dividend-leaseicon"></i>#end
+                                        #if($project.noviceProject)<i class="u-icon-newCustomer"></i>#end
+                                    ##cc
+                                        #if(${projectUtils.getProjectActivitySign($project.id)}==1)
+                                            <i class="u-icon-ruyi j-icon-ruyi"></i>
+                                        #end
+                                    #end
+                                    <span class="f-fs12 f-text-overflow">$!{project.suffixProjectName}</span>
+                                </a>
+                            </h4>
+                            <div class="u-pl-photo">
+                                <s></s>
+                                #set($_process=${sysServiceUtil.getProjectNumberProgress($!project.totalAmount,$!project.id)})
+                                <a class="u-pl-wrap" href="$root_url/products/detail-$!{project.id}.html">
+                                    <img src="#getProjectThumbnail($!{project.thumbnail})"
+                                         alt="$!{project.suffixProjectName}">
+                                    #set($round=$sysServiceUtil.getProgressCeil($project.totalAmount,$project.id))
+                                    <span class="u-ring-bg"
+                                          style="background-image:url($root_url/static/img/homepage/round/round$!{round}.png)"></span>
+                                    <i></i>
+                                    <span class="j-pl-stat u-pl-stat" data-dimension="160" data-fontsize="14"
+                                          data-percent="$!{_process}" data-fgcolor="#e33f4a" data-bordersize="5"
+                                          data-bgcolor="#ccc"></span>
+                                </a>
+                                #set($balance=${sysServiceUtil.getProjectBalance($project.id)})
+                                <div class="u-pl-process f-tac f-fs12">当前进度$!{_process}%</div>
+                                <div class="u-pl-amount f-tac f-fs12">剩余可投金额$!{balance} 元</div>
+                                <s></s>
+                            </div>
+
+                            <ul>
+                                <li class="u-pl-total">项目总额&nbsp;
+                                    <span class="f-fs14 f-ff-ver">￥</span><span
+                                            class="f-ff-din f-fs28">${formulaUtil.getIntegerDefaultZero($project.totalAmount)}</span><span
+                                            class="f-ff-din f-fs24">${formulaUtil.getDecimalDefaultZero($project.totalAmount)}</span>
+                                </li>
+                                <li>年化收益&nbsp;
+                                    #if(${project.minAnnualizedRate}==${project.maxAnnualizedRate})
+                                        <span class="f-ff-din f-fs28 f-fc-red2">${formulaUtil.getIntegerDefaultZero($project.minAnnualizedRate)}</span><span
+                                            class="f-ff-din f-fs24 f-fc-red2">${formulaUtil.getDecimalDefaultZero($project.minAnnualizedRate)}</span><span
+                                            class="f-ff-din f-fs24 f-fc-red2">%</span>
+                                    #else
+                                        <span class="f-ff-din f-fs28 f-fc-red2">${formulaUtil.getIntegerDefaultZero($project.minAnnualizedRate)}</span><span
+                                            class="f-ff-din f-fs24 f-fc-red2">${formulaUtil.getDecimalDefaultZero($project.minAnnualizedRate)}</span><span
+                                            class="f-fs20 f-ff-ver f-fc-red2">~</span><span
+                                            class="f-ff-din f-fs28 f-fc-red2">${formulaUtil.getIntegerDefaultZero($project.maxAnnualizedRate)}</span><span
+                                            class="f-ff-din f-fs24 f-fc-red2">${formulaUtil.getDecimalDefaultZero($project.maxAnnualizedRate)}
+                                        %</span>
+                                    #end
+                                </li>
+                                <li class="u-pl-date">收益天数&nbsp;
+                                    <span class="f-ff-din f-fs28">${project.getEarningsDaysByStatus()}</span><span
+                                            class="f-fs14">天</span>
+                                </li>
+                            </ul>
+                            #if($project.isStop())
+                                <a href="$root_url/products/detail-$!{project.id}.html" class="u-pl-btn f-round  z-closed
+##                                #if(${project.status}==40)
+##                                u-bgc-gray
+##                                #else
+##                                z-closed
+##								#end"
+								">${project.getButtonText()}</a>
+                            #else
+                                <a href="$root_url/products/detail-$!{project.id}.html"
+                                   class="u-pl-btn f-round z-actived">#if($balance<=0)
+                                    支付确认中#else${project.getButtonText()}#end</a>
+                            #end
+                        </li>
+                    #else
+                        <li class="f-round #if($velocityCount==4||$velocityCount==8)z-4th#end">
+                            <h4 class="f-fs14">
+                                <a href="$root_url/products/detail-$!{project.id}.html">
+                                    $!{project.prefixProjectName}#if($project.joinLease)<i
+                                        class="u-dividend-leaseicon"></i>#end#if($project.noviceProject)<i
+                                        class="u-icon-newCustomer"></i>#end
+                                    <span class="f-fs12 f-text-overflow">$!{project.suffixProjectName}</span>
+                                </a>
+                            </h4>
+                            <div class="u-pl-photo">
+                                <s></s>
+                                <a class="u-pl-wrap" href="$root_url/products/detail-$!{project.id}.html">
+                                    <img src="#getProjectThumbnail($!{project.thumbnail})"
+                                         alt="$!{project.suffixProjectName}">
+                                    <span class="u-ring-bg"
+                                          style="background-image:url($root_url/static/img/homepage/round/round_finish.png)"></span>
+                                    <i></i>
+                                    <span class="j-pl-stat u-pl-stat" data-dimension="160" data-percent="100"
+                                          data-fgcolor="#f8ada8" data-bordersize="5" data-bgcolor="#f8ada8"></span>
+                                </a>
+                                #set($_process=${sysServiceUtil.getProjectProgress($!project.totalAmount,$!project.id)})
+                                <div class="u-pl-process2 f-tac f-fs12">当前进度${_process}</div>
+                                <s></s>
+                            </div>
+
+                            <ul>
+                                <li class="u-pl-total">项目总额&nbsp;
+                                    <span class="f-fs14 f-ff-ver">￥</span><span
+                                            class="f-ff-din f-fs28">${formulaUtil.getIntegerDefaultZero($project.totalAmount)}</span><span
+                                            class="f-ff-din f-fs24">${formulaUtil.getDecimalDefaultZero($project.totalAmount)}</span>
+                                </li>
+                                <li>年化收益&nbsp;
+                                    #if(${project.minAnnualizedRate}==${project.maxAnnualizedRate})
+                                        <span class="f-ff-din f-fs28">${formulaUtil.getIntegerDefaultZero($project.minAnnualizedRate)}</span><span
+                                            class="f-ff-din f-fs24">${formulaUtil.getDecimalDefaultZero($project.minAnnualizedRate)}</span><span
+                                            class="f-ff-din f-fs24">%</span>
+                                    #else
+                                        <span class="f-ff-din f-fs28">${formulaUtil.getIntegerDefaultZero($project.minAnnualizedRate)}</span><span
+                                            class="f-ff-din f-fs24">${formulaUtil.getDecimalDefaultZero($project.minAnnualizedRate)}</span><span
+                                            class="f-fs20 f-ff-ver">~</span><span
+                                            class="f-ff-din f-fs28">${formulaUtil.getIntegerDefaultZero($project.maxAnnualizedRate)}</span><span
+                                            class="f-ff-din f-fs24">${formulaUtil.getDecimalDefaultZero($project.maxAnnualizedRate)}
+                                        %</span>
+                                    #end
+                                </li>
+                                <li class="u-pl-date">收益天数&nbsp;
+                                    <span class="f-ff-din f-fs28">${project.getEarningsDaysByStatus()}</span><span
+                                            class="f-fs14">天</span>
+                                </li>
+                            </ul>
+                            <a href="$root_url/products/detail-$!{project.id}.html" class="u-pl-btn f-round
+							#if(${project.status}==50||${project.status}==60||${project.status}==70)
+							z-closed
+							#end
+							">${project.getButtonText()}</a>
+                        </li>
+                    #end
+                #end
+            #end
+        </ul>
+
+    ## 		  转让项目
+        <ul class="f-dn f-cf j-product-list">
+            #if($!transferProjectList && $!transferProjectList.size()>0)
+                #foreach($project in $!transferProjectList )
+
+                    #if($project.isNotice())
+                        <li class="f-round #if($velocityCount==4||$velocityCount==8)z-4th#end">
+                            <h4 class="f-fs14">
+                                <a href="javascript:void(0)" class="j-index-notice">
+                                    $!{project.prefixProjectName}#if($project.joinLease)<i
+                                        class="u-dividend-leaseicon"></i>#end#if($project.noviceProject)<i
+                                        class="u-icon-newCustomer"></i>#end
+                                    <span class="f-fs12 f-text-overflow">$!{project.suffixProjectName}</span>
+                                </a>
+                            </h4>
+                            <div class="u-pl-photo">
+                                <s></s>
+                                <a class="u-pl-wrap j-index-notice" href="javascript:void(0)">
+                                    <img src="#getProjectThumbnail($!{project.thumbnail})"
+                                         alt="$!{project.suffixProjectName}">
+
+                                    <span class="u-ring-bg"></span>
+                                    <i></i>
+
+                                    <span class="j-pl-stat u-pl-stat" data-dimension="160" data-fontsize="14"
+                                          data-percent="0" data-fgcolor="#e33f4a" data-bordersize="5"
+                                          data-bgcolor="#eee"></span>
+                                </a>
+                                <div class="u-pl-process f-tac f-fs12">
+                                    上线时间 ${dateUtil.getLongStrFromDate($!project.onlineTime)}</div>
+                                <div class="u-pl-amount f-tac f-fs12">
+                                    上线时间  ${dateUtil.getLongStrFromDate($!project.onlineTime)}</div>
+                                <s></s>
+                            </div>
+
+                            <ul>
+                                <li class="u-pl-total">转让本金&nbsp;
+                                    <span class="f-fs14 f-ff-ver">￥</span>
+                                    <span class="f-ff-din f-fs28">${formulaUtil.getIntegerDefaultZero($project.totalAmount)}</span>
+                                    <span class="f-ff-din f-fs24">${formulaUtil.getDecimalDefaultZero($project.totalAmount)}</span>
+                                </li>
+                                <li>预期年化&nbsp;
+                                    #if(${project.minAnnualizedRate}==${project.maxAnnualizedRate})
+                                        <span class="f-ff-din f-fs28">${formulaUtil.getIntegerDefaultZero($project.minAnnualizedRate)}</span>
+                                        <span class="f-ff-din f-fs24">${formulaUtil.getDecimalDefaultZero($project.minAnnualizedRate)}</span>
+                                        <span class="f-ff-din f-fs24">%</span>
+                                    #else
+                                        <span class="f-ff-din f-fs28">${formulaUtil.getIntegerDefaultZero($project.minAnnualizedRate)}</span>
+                                        <span class="f-ff-din f-fs24">${formulaUtil.getDecimalDefaultZero($project.minAnnualizedRate)}</span>
+                                        <span class="f-fs20 f-ff-ver">~</span>
+                                        <span class="f-ff-din f-fs28">${formulaUtil.getIntegerDefaultZero($project.maxAnnualizedRate)}</span>
+                                        <span class="f-ff-din f-fs24">${formulaUtil.getDecimalDefaultZero($project.maxAnnualizedRate)}
+                                            %</span>
+                                    #end
+                                </li>
+                                <li class="u-pl-date">剩余期限&nbsp;
+                                    <span class="f-ff-din f-fs28">${project.getBorrowPeriod()}</span>
+                                    <span class="f-fs14">${project.getFormatProfitPeriodType()}</span>
+                                </li>
+                            </ul>
+                            <a href="javascript:void(0)" class="u-pl-btn f-round z-disabled  j-index-notice"
+                               id="j-project-notice" data-url="$root_url/products/detail-$!{project.id}.html">距上线&nbsp;&nbsp;<span
+                                    id="j-project-notice-time" sencond="$!{project.getNoticeEndTime()}"></span></a>
+                        </li>
+                    #elseif($project.isActive())
+                        <li class="f-round z-actived #if($velocityCount==4||$velocityCount==8)z-4th#end">
+                            <h4 class="f-fs14">
+                                <a href="$root_url/products/detail-$!{project.id}.html">
+                                    $!{project.prefixProjectName}
+                                    <span class="f-fs12 f-text-overflow">$!{project.suffixProjectName}</span>
+                                </a>
+                            </h4>
+                            <div class="u-pl-photo">
+                                <s></s>
+                                #set($_process=${sysServiceUtil.getProjectNumberProgress($!project.totalAmount,$!project.id)})
+                                #set($round=$sysServiceUtil.getProgressCeil($project.totalAmount,$project.id))
+                                <a class="u-pl-wrap" href="$root_url/products/detail-$!{project.id}.html">
+                                    <img src="#getProjectThumbnail($!{project.thumbnail})"
+                                         alt="$!{project.suffixProjectName}">
+                                    <span class="u-ring-bg"
+                                          style="background-image:url($root_url/static/img/homepage/round/round_finish.png)"></span>
+                                    <i></i>
+                                    <span class="j-pl-stat u-pl-stat" data-dimension="160" data-fontsize="14"
+                                          data-percent="${_process}"
+                                          data-fgcolor="#e33f4a" data-bordersize="5" data-bgcolor="#ccc"></span>
+                                </a>
+                                #set($balance=${sysServiceUtil.getProjectBalance($project.id)})
+                                <div class="u-pl-process f-tac f-fs12">转让进度${_process}%</div>
+                                <div class="u-pl-amount f-tac f-fs12">剩余可认购本金$!{balance} 元</div>
+                                <s></s>
+                            </div>
+
+                            <ul>
+                                <li class="u-pl-total">转让本金&nbsp;
+                                    <span class="f-fs14 f-ff-ver">￥</span>
+                                    <span class="f-ff-din f-fs28">${formulaUtil.getIntegerDefaultZero($project.totalAmount)}</span>
+                                    <span class="f-ff-din f-fs24">${formulaUtil.getDecimalDefaultZero($project.totalAmount)}</span>
+                                </li>
+                                <li>预期年化&nbsp;
+                                    #if(${project.minAnnualizedRate}==${project.maxAnnualizedRate})
+                                        <span class="f-ff-din f-fs28 f-fc-red2">${formulaUtil.getIntegerDefaultZero($project.minAnnualizedRate)}</span>
+                                        <span class="f-ff-din f-fs24 f-fc-red2">${formulaUtil.getDecimalDefaultZero($project.minAnnualizedRate)}</span>
+                                        <span class="f-ff-din f-fs24 f-fc-red2">%</span>
+                                    #else
+                                        <span class="f-ff-din f-fs28 f-fc-red2">${formulaUtil.getIntegerDefaultZero($project.minAnnualizedRate)}</span>
+                                        <span class="f-ff-din f-fs24 f-fc-red2">${formulaUtil.getDecimalDefaultZero($project.minAnnualizedRate)}</span>
+                                        <span class="f-fs20 f-ff-ver f-fc-red2">~</span>
+                                        <span class="f-ff-din f-fs28 f-fc-red2">${formulaUtil.getIntegerDefaultZero($project.maxAnnualizedRate)}</span>
+                                        <span class="f-ff-din f-fs24 f-fc-red2">${formulaUtil.getDecimalDefaultZero($project.maxAnnualizedRate)}
+                                            %</span>
+                                    #end
+                                </li>
+                                <li class="u-pl-date">剩余期限&nbsp;
+                                    <span class="f-ff-din f-fs28">${project.getBorrowPeriod()}</span>
+                                    <span class="f-fs14">${project.getFormatProfitPeriodType()}</span>
+                                </li>
+                            </ul>
+                            #if($project.isStop())
+                                <a href="$root_url/products/detail-$!{project.id}.html"
+                                   class="u-pl-btn f-round z-closed">${project.getButtonText()}</a>
+                            #else
+                                <a href="$root_url/products/detail-$!{project.id}.html"
+                                   class="u-pl-btn f-round z-actived">#if($balance<=0)
+                                    支付确认中#else${project.getButtonText()}#end</a>
+                            #end
+                        </li>
+                    #else
+                        <li class="f-round #if($velocityCount==4||$velocityCount==8)z-4th#end">
+                            <h4 class="f-fs14">
+                                <a href="$root_url/products/detail-$!{project.id}.html">
+                                    $!{project.prefixProjectName}#if($project.joinLease)<i
+                                        class="u-dividend-leaseicon"></i>#end#if($project.noviceProject)<i
+                                        class="u-icon-newCustomer"></i>#end
+                                    <span class="f-fs12 f-text-overflow">$!{project.suffixProjectName}</span>
+                                </a>
+                            </h4>
+                            <div class="u-pl-photo">
+                                <s></s>
+                                #set($_process=${sysServiceUtil.getProjectNumberProgress($!project.totalAmount,$!project.id)})
+                                <a class="u-pl-wrap" href="$root_url/products/detail-$!{project.id}.html">
+                                    <img src="#getProjectThumbnail($!{project.thumbnail})"
+                                         alt="$!{project.suffixProjectName}">
+                                    <span class="u-ring-bg"
+                                          style="background-image:url($root_url/static/img/homepage/round/round_finish.png)"></span>
+                                    <i></i>
+                                    <span class="j-pl-stat u-pl-stat" data-dimension="160" data-percent="100"
+                                          data-fgcolor="#f8ada8" data-bordersize="5" data-bgcolor="#f8ada8"></span>
+                                </a>
+                                <div class="u-pl-process2 f-tac f-fs12">转让进度${_process}%</div>
+                                <s></s>
+                            </div>
+
+                            <ul>
+                                <li class="u-pl-total">转让本金&nbsp;
+                                    <span class="f-fs14 f-ff-ver">￥</span>
+                                    <span class="f-ff-din f-fs28">${formulaUtil.getIntegerDefaultZero($project.totalAmount)}</span>
+                                    <span class="f-ff-din f-fs24">${formulaUtil.getDecimalDefaultZero($project.totalAmount)}</span>
+                                </li>
+                                <li>预期年化&nbsp;
+                                    #if(${project.minAnnualizedRate}==${project.maxAnnualizedRate})
+                                        <span class="f-ff-din f-fs28">${formulaUtil.getIntegerDefaultZero($project.minAnnualizedRate)}</span>
+                                        <span class="f-ff-din f-fs24">${formulaUtil.getDecimalDefaultZero($project.minAnnualizedRate)}</span>
+                                        <span class="f-ff-din f-fs24">%</span>
+                                    #else
+                                        <span class="f-ff-din f-fs28">${formulaUtil.getIntegerDefaultZero($project.minAnnualizedRate)}</span>
+                                        <span class="f-ff-din f-fs24">${formulaUtil.getDecimalDefaultZero($project.minAnnualizedRate)}</span>
+                                        <span class="f-fs20 f-ff-ver">~</span>
+                                        <span class="f-ff-din f-fs28">${formulaUtil.getIntegerDefaultZero($project.maxAnnualizedRate)}</span>
+                                        <span class="f-ff-din f-fs24">${formulaUtil.getDecimalDefaultZero($project.maxAnnualizedRate)}
+                                            %</span>
+                                    #end
+                                </li>
+                                <li class="u-pl-date">剩余期限&nbsp;
+                                    <span class="f-ff-din f-fs28">${project.getBorrowPeriod()}</span>
+                                    <span class="f-fs14">${project.getFormatProfitPeriodType()}</span>
+                                </li>
+                            </ul>
+                            <a href="$root_url/products/detail-$!{project.id}.html"
+                               class="u-pl-btn f-round z-closed">${project.getButtonText()}</a>
+                        </li>
+                    #end
+                #end
+            #else
+                <li class="z-noData-item">
+                    <div class="z-zr-noData">
+                        <div>暂无转让项目</div>
+                    </div>
+                </li>
+            #end
+        </ul>
+
+        #if($serverDateTime<$endTime&&$serverDateTime>$startTime)
+            <img src="/static/img/activity/chookYear/happyYearLeft.png" class="u-sideDecorate u-leftSide">
+            <img src="/static/img/activity/chookYear/happyYearRight.png" class="u-sideDecorate u-rightSide">
+        #end
+
+    </div>
+####		右侧悬浮二维码
+    <div class="u-floating-window" id="j-floating-window">
+        <span class="u-icon-robot"></span>
+        <a href="http://wpa.b.qq.com/cgi/wpa.php?ln=2&amp;uin=4000266688" target="_blank" class="u-icon-kefu f-pos-r"
+           id="j-icon-kefu">
+
+        </a>
+        <a class="u-icon-weibo f-pos-r" href="http://weibo.com/5248978316/" target="_blank" id="j-icon-weibo">
+			<span class="f-dn">
+				<i class="f-fs20"></i>
+				<img src="/static/img/common/new-weibo-qrcode.png">
+			</span>
+        </a>
+        <a class="u-icon-weixin f-pos-r" id="j-icon-app">
+			<span class="f-dn">
+				<i class="f-fs20"></i>
+				<img src="/static/img/common/new-weixin-qrcode.png">
+			</span>
+        </a>
+        <a class="u-icon-app f-pos-r" id="j-icon-weixin">
+			<span class="f-dn">
+				<i class="f-fs20"></i>
+				<img src="/static/img/common/new-app-qrcode.png">
+			</span>
+        </a>
+        <a class="u-icon-top f-pos-r" id="j-icon-gotop"></a>
+    </div>
+</div>
+##A轮活动首页弹框展示
+<div class="m-home-Again f-dn" id="j-home-Again">
+    <span></span>
+    <a href="/activity/againReview"></a>
+</div>
+<div class="u-shade f-dn">
+
+</div>
+
+<!--活动专题-->
+#set($bannerList = $servletUtil.getBannerByAreaSign(0, "homeActivity", 0, 4))
+#if($bannerList.success && $!{bannerList.resultList})
+<div class="m-activity">
+    <div class="g-wrap">
+        <h5 class="f-fs14">活动专题<a href="/banner/activityList" target="_blank">更多</a></h5>
+        <ul class="f-cf">
+            #foreach($banner in ${bannerList.resultList})
+                <li>
+                    <a
+                        #if($banner.activityStatus <= 4 && $banner.href.length() > 0)
+                                href="$!{banner.href}" #if($banner.targetBlank == 1) target="_blank" #else
+                                target="_self" #end
+                        #elseif($banner.activityStatus <= 4)
+                        #else
+                                href="$root_url/banner/activityList" target="_blank"
+                        #end
+                    ><img src="$aliyun_url$!{banner.image}" width="100%" height="100%"></a>
+                </li>
+            #end
+        </ul>
+    </div>
+</div>
+#end
+<!-- 信息 -->
+<div class="m-info">
+    <div class="g-wrap">
+        <ul>
+            <li class="u-info-a">
+                <s class="u-circle-65"><i></i></s>
+                <dl>
+                    <dt>信息透明</dt>
+                    <dd>债权项目借贷信息公开、透明<br/>证据资料真实、有效，打造真实<br/>透明的投资理财环境</dd>
+                </dl>
+            </li>
+            <li class="u-info-b">
+                <s class="u-circle-65"><i></i></s>
+                <dl>
+                    <dt>资金安全</dt>
+                    <dd>投资资金由新浪支付进行资金托管<br/>实行专人专户、专款专用<br/>实现实时监管，资金零挪用</dd>
+                </dl>
+            </li>
+            <li class="u-info-c">
+                <s class="u-circle-65"><i></i></s>
+                <dl>
+                    <dt>足额担保</dt>
+                    <dd>平台债权项目低风险、高收益<br/>安全有保障，项目均有高额物权担保<br/>严格控制借款金额</dd>
+                </dl>
+            </li>
+            <li class="u-info-d">
+                <s class="u-circle-65"><i></i></s>
+                <dl>
+                    <dt>法律保障</dt>
+                    <dd>律所专业律师对平台模式及<br/>债权形成流程进行严格<br/>法律风险把控，并提供法律保障</dd>
+                </dl>
+            </li>
+        </ul>
+    </div>
+
+</div>
+##合作伙伴
+<div class="m-partner f-cf g-wrap">
+    <div class="u-partner-title" id="j-partner-title">
+        <span class="z-current">合作伙伴</span>
+        <span>媒体报道</span>
+    </div>
+    <ul class="u-partner-list j-partner-list">
+        <li class="u-partner-dljt" title="鼎立集团"><a href="$root_url/about/cooperator#dljt"
+                                                   target="_blank">鼎立集团</a></li>
+        <li class="u-partner-ghkj" title="中国光华科技基金会"><a href="$root_url/about/cooperator#ghkj"
+                                                        target="_blank">中国光华科技基金会</a>
+        </li>
+        <li class="u-partner-xhq" title="杭州市西湖区政府"><a href="$root_url/about/cooperator#xhq" target="_blank">杭州市西湖区政府</a>
+        </li>
+        <li class="u-partner-zjdx" title="浙江大学"><a href="$root_url/about/cooperator#zjdx"
+                                                   target="_blank">浙江大学</a></li>
+        <li class="u-partner-sina" title="新浪支付存钱罐"><a href="$root_url/about/cooperator#sina" target="_blank">新浪支付存钱罐</a>
+        </li>
+        <li class="u-partner-ssq" title="上上签"><a href="$root_url/about/cooperator#ssq" target="_blank">上上签</a>
+        </li>
+        <li class="u-partner-dm" title="浙江德睦律师事务所"><a href="$root_url/about/cooperator#dm"
+                                                      target="_blank">浙江德睦律师事务所</a></li>
+    </ul>
+    <ul class="f-dn j-partner-list">
+        <li title="CCTV证券财经"><a href="$root_url/article/detail-195.html" target="_blank"><img
+                src="/static/img/v2/post/media/mediaReport_zqzx.jpg"></a></li>
+        <li title="西湖区政府官网"><a href="$root_url/article/detail-166.html" target="_blank"><img
+                src="/static/img/v2/post/media/mediaReport_xhq.jpg"></a></li>
+        <li title="和讯网"><a href="$root_url/article/detail-15.html" target="_blank"><img
+                src="/static/img/v2/post/media/mediaReport_hx.jpg"></a></li>
+        <li title="凤凰资讯"><a href="$root_url/article/detail-158.html" target="_blank"><img
+                src="/static/img/v2/post/media/mediaReport_fhzx.jpg"></a></li>
+        <li title="证券之星财经"><a href="$root_url/article/detail-37.html" target="_blank"><img
+                src="/static/img/v2/post/media/mediaReport_zqstar.jpg"></a></li>
+        <li title="今日头条"><a href="$root_url/article/detail-159.html" target="_blank"><img
+                src="/static/img/v2/post/media/mediaReport_jrtt.jpg"></a></li>
+        <li title="东方财富网"><a href="$root_url/article/detail-16.html" target="_blank"><img
+                src="/static/img/v2/post/media/mediaReport_dfcf.jpg"></a></li>
+        <li title="中国日报网"><a href="$root_url/article/detail-143.html" target="_blank"><img
+                src="/static/img/v2/post/media/mediaReport_zgrb.jpg"></a></li>
+    </ul>
+</div>
+##/合作伙伴
+

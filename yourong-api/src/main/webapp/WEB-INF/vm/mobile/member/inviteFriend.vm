@@ -1,0 +1,81 @@
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$siteurl/res/lib/fullpage/zepto.fullpage.css","$!m_css_url/modules/member.css"])
+#set($title='邀请好友列表')
+
+<h2 class="u-header f-pos-r">
+    <a href="$siteurl/mCenter/reputationPage">返回</a>
+    <span class="f-fs18">
+        邀请好友列表
+    </span>
+</h2>
+<a class="u-inviteFriend-rule" id="j-inviteFriend-rule" href="javascript:void(0)">邀请好友规则</a>
+<div class="u-inviteFriend-record" id="j-inviteFriend">
+</div>
+
+<script type="text/html" id="j-inviteFriend-tpl">
+    <table>
+        <thead>
+        <tr>
+            <th width="30%">注册时间</th>
+            <th width="40%">被推荐用户</th>
+            <th width="30%">贡献人气值</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{each data as item i}}
+            <tr>
+                <td>{{item.referralRegisterTime | dateFormat:'yyyy-MM-dd hh:mm:ss'}}</td>
+                <td>{{item.maskUsername}}</td>
+                <td>{{item.contributePopularityValue}}点</td>
+            </tr>
+        {{/each}}
+        </tbody>
+    </table>
+    <div class="m-pagenav f-tar">
+        {{if pageNo==1}}
+        <span class="u-pnav-prev u-circle-12">上一页</span>
+        {{else}}
+        <a href="javascript:void(0)" class="u-pnav-prev u-circle-12" data-pageno="{{pageNo-1}}">上一页</a>
+        {{/if}}
+        {{each countArray as item i}}
+        {{if item.index==pageNo}}
+        <span class="u-pnav-crt u-circle-12">{{item.index}}</span>
+        {{else}}
+        <a href="javascript:void(0)" class="u-pnav-link u-circle-12" data-pageno="{{item.index}}">{{item.index}}</a>
+        {{/if}}
+        {{/each}}
+        {{if pageNo==totalPageCount}}
+        <span class="u-pnav-prev u-circle-12">下一页</span>
+        {{else}}
+        <a href="javascript:void(0)" class="u-pnav-prev u-circle-12" data-pageno="{{pageNo+1}}">下一页</a>
+        {{/if}}
+    </div>
+</script>
+<div class="ui-actionsheet" id="j-invite-rules">
+    <div class="ui-actionsheet-cnt">
+        <div class="ui-actionsheet-rule">
+            <h5>邀请好友规则：</h5>
+            <p>
+                1、每一位成功注册的用户，均可通过链接或手机号邀请好友；<br>
+##                2、推荐奖励是以人气值方式累计：邀请好友注册并投资（单笔投资额≥￥500），您可获得好友投资额2‰的人气值。
+                2、好友注册并投资，您可获得好友投资额*（收益天数/30）*0.3‰人气值奖励，所获人气值向下取整。<br>
+                3、好友投资直投项目履约后才会有推荐奖励哦！
+            </p>
+        </div>
+        <button id="">关闭</button>
+    </div>
+</div>
+#set($pageScript="
+<script>
+    seajs.config({
+        'alias':{
+            'template':'$siteurl/res/lib/js/template'
+        },
+        'preload': ['zepto','base']
+    });
+    seajs.use('$m_js_url/modules/coupon');
+</script>
+")
+
+#CSRFToken("xToken")

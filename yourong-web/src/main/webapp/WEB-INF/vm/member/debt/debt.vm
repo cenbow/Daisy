@@ -1,0 +1,225 @@
+##债权管理
+#parse("/common/common.vm")
+#set($title="我的借款_$!{title_suffix}")
+#set($css_url=["$cssv2_url/member/member.css"])
+#set($js_url=[
+    "$root_js_url/modules/member.js",
+    "/static/lib/js/datepicker/WdatePicker.js",
+    "/static/lib/js/template.js",
+    "$root_js_url/modules/debt.js"
+])
+#set($debt="z-current")
+
+#set($isBorrowMoney=true)
+#CSRFToken('xToken')
+##用户中心头部
+
+#parse("/member/head.vm")
+##/用户中心头部
+
+
+<div class="g-wrap">
+##    黄条提示
+    ##前三天
+    <div id="j-notice-threeDay" class="j-uc-notice"></div>
+    <script type="text/html" id="j-notice-threeDay-tpl">
+        {{if projectNum}}
+        <div class="u-uc-notice">还款到期日为最近3天的项目共有{{projectNum}}个，共需还款的金额为{{sum}}元。</div>
+        {{/if}}
+    </script>
+    ##查询之后的黄条
+    <div id="j-notice" class="j-uc-notice"></div>
+    <script type="text/html" id="j-notice-tpl">
+        {{if projectNum}}
+        <div class="u-uc-notice ">
+            {{if debtTime}}还款到期日为{{debtTime}}的项目共有{{projectNum}}个，共需还款的金额为{{sum}}元。{{else}}您查询的{{if startDate&&endDate}}还款到期日为 {{startDate}} 到 {{endDate}}{{/if}}{{if startDate&&!endDate}}在还款到期日{{startDate}}及之后时间内{{/if}}{{if !startDate&&endDate}}在还款到期日{{endDate}}及之前时间内{{/if}}{{if startDate&&endDate&&borrowerName}},{{/if}}{{if borrowerName}}借款人姓名为{{borrowerName}}{{/if}}的项目共有{{projectNum}}个，共需还款的金额为{{sum}}元。{{/if}}
+        </div>
+        {{/if}}
+    </script>
+    <div class="g-uc-bd f-round m-debt-wrap">
+        <div class="g-uc-wrap">
+            ##金额计算
+            <h3 class="u-uc-lineTitle">债权管理</h3>
+            <div class="m-borrowMoney-aggregate m-debt-aggregate" id="j-stats">
+
+            </div>
+        </div>
+        <script id="j-stats-tpl" type="text/html">
+            <span class="u-project-sum">
+                <strong class="f-ff-din f-fs48">{{projectNum}}</strong>
+                <em>个</em><br>
+                <i class="f-fs14">还款中项目 <span class="u-selector j-selector f-round">
+                <button>全部</button> <i></i>
+                <ul class="f-round">
+                    <li value="0">全部</li>
+                    <li value="1">最近1天</li>
+                    <li value="2">最近3天</li>
+                    <li value="3">最近7天</li>
+                    <li value="4">最近15天</li>
+                    <li value="5">最近1个月</li>
+                    <li value="6">最近3个月</li>
+                </ul>
+                <input type="hidden" class="j-selected-ipt" id="j-debtTime" value="">
+                </span></i>
+                </span>
+                <span class="u-project-sum">
+                <span class="f-fs18 f-ff-rmb">￥</span>
+                <strong class="f-ff-din f-fs48">{{sum | splitAmount:0}}</strong>
+                <em class="f-fs24 f-ff-din">{{sum | splitAmount:1}}</em><br>
+                <i class="f-fs14">待还本息总计</i>
+                </span>
+                <em class="f-ff-din">=</em>
+                <span class="u-project-sum">
+                <span class="f-fs18 f-ff-rmb">￥</span>
+                <strong class="f-ff-din f-fs48">{{totalPrincipal | splitAmount:0}}</strong>
+                <em class="f-fs24 f-ff-din">{{totalPrincipal | splitAmount:1}}</em><br>
+                <i class="f-fs14">待还本金总计</i>
+                </span>
+                <em class="f-ff-din">+</em>
+                <span class="u-project-sum">
+                <span class="f-fs18 f-ff-rmb">￥</span>
+                <strong class="f-ff-din f-fs48">{{totalInterest | splitAmount:0}}</strong>
+                <em class="f-fs24 f-ff-din">{{totalInterest | splitAmount:1}}</em><br>
+                <i class="f-fs14">待还利息总计</i>
+            </span>
+        </script>
+    ##查询
+        <div class="m-capitalLogs-filter f-round" id="j-filterBox">
+            回款到期日
+                    <span class="u-filter-datePicker" id="j-filter-datePicker">
+                <input id="jStartTime" data-index="0" name="startDate" class="u-circle-15" type="text" value="#if($!{searDate})${searDate}#end"
+                       onfocus="WdatePicker({maxDate:'{%y+5}-%M-%d',onpicked:function(){startTimePicked();jEndTime.focus()}})"/>
+                到
+                <input id="jEndTime" name="endDate" data-index="1" class="u-circle-15" type="text" value="#if($!{searDate})${searDate}#end"
+                       onfocus="WdatePicker({minDate:'#F{$dp.$D(\'jStartTime\')}',maxDate:'{%y+5}-%M-%d',
+                               onpicked:pickFilterDate})"/>
+                </span>
+            <span class="u-borrow-name">借款人姓名
+                <input class="u-filter-inquire u-circle-15" data-index="2" type="text" id="jBorrowerName" >
+            </span>
+            <button class="u-filter-inquire u-circle-15 j-debt-search">查&nbsp;&nbsp;&nbsp;&nbsp;询</button>
+        </div>
+        <form id="debt_form" class="f-pos-r" data-selectedPeriod="0">
+            <input type="hidden" name='startDate'/>
+            <input type="hidden" name='endDate'/>
+            <input type="hidden" name='borrowerName'/>
+            <input type="hidden" name='currentPage' value="1" id="j-currentPage"/>
+            <div class="m-debt-projects f-cf" id="j-projects-list"></div>
+            <div id="j-detail" class="u-debt-detail f-round f-dn"></div>
+        </form>
+        <div id="j-pagenav" class="m-pagenav f-tac"></div>
+    </div>
+</div>
+##详情
+<script type="text/html" id="j-detail-tpl">
+    <div class="u-debt-projectName f-fs14">
+        <strong class="j-MarkProjectName">{{info.markProjectName}}</strong><span class="j-RestMarkProjectName f-text-overflow">{{info.restMarkProjectName}}</span><strong class="j-totalAmount">{{info.totalAmount}}</strong>
+        <strong class="u-debtname j-borrowerName">{{info.borrowerName}}</strong>
+    </div>
+    <div class="u-periods-wrap">
+        <div class="u-debt-periods f-pos-r" id="j-debt-periods" style="width:{{info.width.overall}}px;">
+            <span class="u-debtPeriods-gray"></span>
+            <span class="u-debtPeriods-red" style="width:{{info.width.progress}}px;"></span>
+            {{each transactionInterests as item i}}
+            <dl style="{{if info.total>1&&!i}}margin-left:{{info.width.side}}{{else}}margin-left:{{info.width.gap-5}}{{/if}}px;">
+                <dt class="
+                {{if info.status==1}}
+                z-finished
+                {{else}}
+                    {{if i+1<=info.rate-1}}
+                        z-finished
+                    {{else}}
+                        z-unfinished
+                    {{/if}}
+                {{/if}}"></dt>
+                <dd class="f-fs12">
+                    {{item.endDateStr}}
+                    <br>￥{{item.formatSum}}
+                    <br>{{if item.remarks==1}}待还利息{{else if item.remarks==2}}待还本金{{else}}待还本息{{/if}}（{{i+1}}/{{transactionInterests.length}}）
+                </dd>
+            </dl>
+            {{/each}}
+        </div>
+    </div>
+</script>
+##列表
+<script type="text/html" id="j-projects-tpl">
+    {{if data && data.length}}
+    <ul class="f-fc">
+        {{each data as item i}}
+        <li {{if !((i+1)%4)}} class="z-4th" {{/if}}>
+        <h4 class="f-fs14 f-fwb f-pos-r">
+            <a href="/products/detail-{{item.projectId}}.html">
+                {{item.markProjectName}}
+                    <span class="f-fs12 f-text-overflow" title="{{item.markProjectName}}">
+                        {{item.restMarkProjectName}}
+                    </span>
+            </a>
+            {{if item.restDays>0&&item.restDays<4&&item.status!=1}}
+            <i>还有$!{debtForLenderMember.RestDays}{{item.restDays}}天</i>
+            {{/if}}
+        </h4>
+        <div class="f-pos-r j-debtdetail-link"
+             data-count="{{i}}"
+             data-total="{{item.totalPeriods}}"
+             data-rate="{{item.currentPeriods}}"
+             data-markprojectname="{{item.markProjectName}}"
+             data-restmarkprojectname="{{item.restMarkProjectName}}"
+             data-totalamount="项目总额：￥{{item.totalAmount}}"
+             data-borrowername="借款人：{{item.borrowerName}}"
+             data-projectid="{{item.projectId}}"
+             data-status="{{item.status}}">
+                <span class="u-project-sum">
+
+
+                    {{if item.status==1}}
+                    <strong class="f-fs36 z-finished">已还款</strong><br>
+                    <i>{{item.strEndDate}}</i>
+                    {{else}}
+                      <span class="f-fs18 f-ff-rmb">￥</span>
+                    <strong class="f-ff-din f-fs48">{{item.curAmount | splitAmount:0}}</strong><em class="f-fs24 f-ff-din">{{item.curAmount | splitAmount:1}}</em><br>
+                    <i>{{item.strEndDate}}&nbsp;&nbsp;
+                        {{if item.principalInterestFlag===1}}
+                        待还利息
+                        {{else if item.principalInterestFlag===2}}
+                        待还本金
+                        {{else}}
+                        待还本息
+                        {{/if}}
+                        （{{item.currentPeriods}}/{{item.totalPeriods}}）</i>
+                    {{/if}}
+
+                </span>
+            <s></s>
+        </div>
+        </li>
+        {{/each}}
+    </ul>
+    {{else}}
+    <ul>
+        <li class="z-isEmpty">没有找到符合您查询条件的项目</li>
+    </ul>
+    {{/if}}
+</script>
+##分页
+<script id="j-pagenav-tpl" type="text/html">
+    {{if totalPageCount>=1}}
+    {{if pageNo===1}}
+    <span class="u-pnav-crt u-circle-12 u-pnav-prev">上一页</span>
+    {{else}}
+    <a class="u-pnav-link u-circle-12 u-pnav-prev" data-pn="{{pageNo-1}}" href="javascript:;">上一页</a>
+    {{/if}}
+    {{each list as item i}}
+        {{if i+1!==pageNo}}
+        <a class="u-pnav-link u-circle-12" href="javascript:;" data-pn="{{i+1}}">{{i+1}}</a>
+        {{else}}
+        <span class="u-pnav-crt u-circle-12">{{pageNo}}</span>
+        {{/if}}
+    {{/each}}
+    {{if pageNo===totalPageCount}}
+    <span class="u-pnav-crt u-circle-12 u-pnav-prev">下一页</span>
+    {{else}}
+    <a class="u-pnav-link u-circle-12 u-pnav-prev" href="javascript:;" data-pn="{{pageNo+1}}">下一页</a>
+    {{/if}}
+    {{/if}}
+</script>

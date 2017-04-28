@@ -1,0 +1,417 @@
+.g-bd110 {
+    margin-bottom: 120px;
+}
+.u-hd-bg {
+    width: 100%;
+    height: 380px;
+    background: url(/static/img/post/payUpgrade/pay_hdbg.jpg) no-repeat center top;
+    margin-top: -10px;
+}
+.g-pay-wrap {
+    width: 990px;
+    margin: 0 auto;
+}
+.m-pu-content .u-art-tt {
+    padding-left: 10px;
+    margin: 60px 0 20px 0;
+    font-size: 22px;
+    color: #D74148;
+    line-height: 24px;
+    border-left: 3px solid #D74148;
+}
+.m-pu-content .u-pm {
+    margin-top: -20px;
+    margin-bottom: 30px;
+}
+.m-pu-content .u-pm .u-fs {
+    padding-left: 13px;
+}
+.m-pu-content p {
+    color: #999;
+    font-size: 14px;
+    line-height: 30px;
+}
+.m-pu-content .u-fs {
+    color: #666;
+    font-size: 14px;
+    line-height: 30px;
+}
+.m-pu-content .z-mb13 {
+    margin-bottom: 13px;
+}
+.m-pu-content .z-mb10 {
+    margin-bottom: 10px;
+}
+.m-pu-content .u-fs .u-ug-advantage {
+    position: relative;
+    display: inline-block;
+    top: 8px;
+    width: 21px;
+    height: 25px;
+    padding-left: 7px;
+    background: url(/static/img/post/payUpgrade/payUgIcon.png) no-repeat;
+}
+.m-pu-content .u-fs .u-ug-advantage.u-ug-advantage1 {
+    background-position: 0 -48px;
+}
+.m-pu-content .u-fs .u-ug-advantage.u-ug-advantage2 {
+    background-position: -32px -47px;
+}
+.u-nav-item {
+    display: block;
+}
+.m-fr-nav {
+    position: fixed;
+    left: 50%;
+    top: 542px;
+    margin-left: 515px;
+    width: 108px;
+    height: 334px;
+    z-index: 103;
+}
+.m-fr-nav .u-icon-robot {
+    display: block;
+    width: 100px;
+    height: 64px;
+    background: url(/static/img/post/payUpgrade/pay_robot.png) no-repeat;
+    background-position: center center;
+}
+.m-pu-content .u-tip {
+    color: #999;
+    font-size: 12px;
+    line-height: 30px;
+}
+.m-fr-nav .u-nav-item {
+    position: relative;
+    margin-bottom: 5px;
+    width: 98px;
+    height: 38px;
+    text-align: center;
+    border: 1px solid #E6E6E6;
+    background-color: #fff;
+    cursor: pointer;
+}
+.m-fr-nav .u-nav-item span {
+    display: inline-block;
+    padding-top: 7px;
+}
+.m-fr-nav .u-nav-item .u-nav-icon {
+    display: inline-block;
+    position: relative;
+    top: 4px;
+    width: 16px;
+    height: 16px;
+    margin-right:5px;
+    background: url(/static/img/post/payUpgrade/payUgIcon.png) no-repeat;
+}
+.m-fr-nav .u-nav-item .u-nav-icon.u-nav-icon1 {
+    background-position: 0 0;
+}
+.m-fr-nav .u-nav-item .u-nav-icon.u-nav-icon2 {
+    background-position: -24px 0
+}
+.m-fr-nav .u-nav-item .u-nav-icon.u-nav-icon3 {
+    background-position: -48px 0;
+}
+.m-fr-nav .u-nav-item .u-nav-icon.u-nav-icon4 {
+    background-position: -72px 0;
+}
+.m-fr-nav .u-nav-item .u-nav-icon.u-nav-icon5 {
+    background-position: -95px 0;
+}
+.m-fr-nav .u-nav-item .u-nav-icon.u-nav-icon6 {
+    background-position: -116px 6px;
+}
+.m-fr-nav .u-nav-item.z-current .u-nav-icon.u-nav-icon1,.m-fr-nav .u-nav-item:hover .u-nav-icon.u-nav-icon1 {
+    background-position: 0 -24px;
+}
+.m-fr-nav .u-nav-item.z-current .u-nav-icon.u-nav-icon2, .m-fr-nav .u-nav-item:hover .u-nav-icon.u-nav-icon2 {
+    background-position: -24px -24px;
+}
+.m-fr-nav .u-nav-item.z-current .u-nav-icon.u-nav-icon3, .m-fr-nav .u-nav-item:hover .u-nav-icon.u-nav-icon3 {
+    background-position: -48px -24px;
+}
+.m-fr-nav .u-nav-item.z-current .u-nav-icon.u-nav-icon4, .m-fr-nav .u-nav-item:hover .u-nav-icon.u-nav-icon4 {
+    background-position: -71px -24px;
+}
+.m-fr-nav .u-nav-item.z-current .u-nav-icon.u-nav-icon5, .m-fr-nav .u-nav-item:hover .u-nav-icon.u-nav-icon5 {
+    background-position: -95px -24px;
+}
+.m-fr-nav .u-nav-item.z-current .u-nav-icon.u-nav-icon6, .m-fr-nav .u-nav-item:hover .u-nav-icon.u-nav-icon6 {
+    background-position: -115px -18px;
+}
+.m-fr-nav .u-nav-item.z-current,.m-fr-nav .u-nav-item:hover {
+    color: #fff;
+    border-color: #D74249;
+    background-color: #D74249;
+}
+.m-pu-content .u-set-btn {
+    font-size: 14px;
+    color: #d74148;
+    text-decoration: none;
+}
+.m-subc-process {
+    position: relative;
+    width: 990px;
+    height: 490px;
+    border: 1px solid #E6E6E6;
+    background-color: #FBFBFB;
+}
+.m-subc-process .g-subc-left {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 160px;
+    height: 100%;
+    border-right: 1px solid #E6E6E6;
+}
+.m-subc-process .g-subc-right {
+    position: relative;
+    float: right;
+    width: 749px;
+    height: 100%;
+    padding: 20px 40px;
+}
+.m-flexible-wrap {
+    width: 160px;
+    margin: 0;
+    padding: 0;
+}
+li.u-menu {
+    padding: 0;
+    width: 100%;
+    margin-bottom: 20px;
+}
+li.u-menu-btn a {
+    display: block;
+    font-size: 14px;
+    height: 34px;
+    overflow: hidden;
+    padding: 10px 0 0 30px;
+    position: relative;
+    width: 130px;
+    text-decoration: none;
+}
+li.u-menu-btn .u-menu-hd {
+    color: #666;
+    background-color: #F3F3F3;
+}
+li.u-menu-btn .u-menu-hd.z-current,.u-menu-btn:hover>a {
+    color: #fff;
+    background-color: #D74249;
+}
+.u-menu-dropdown li {
+    color: #999;
+    font-size: 12px;
+    margin: 15px 18px;
+    padding: 0 5px;
+    cursor: pointer;
+}
+.u-menu-dropdown li.z-current,.u-menu-dropdown li:hover {
+    color: #D74148;
+    border-left: 2px solid #D74249;
+}
+.m-subc-wrap {
+    display: none;
+}
+.m-subc-wrap.z-ds {
+    display: block;
+}
+.m-subc-wrap .m-step-hd {
+    width: 509px;
+    height: 40px;
+}
+.m-subc-wrap .m-step-contc {
+    display: block;
+    height: 40px;
+    width: 100%;
+}
+.m-subc-wrap .m-step-contc li {
+    display: none;
+    float: left;
+    background-color: #D74249;
+}
+.m-subc-wrap .m-step-contc li.z-ds {
+    display: block;
+}
+.m-subc-wrap .m-step-contc .u-step-item {
+    background: url(/static/img/post/payUpgrade/payStepHdImg.png) no-repeat;
+}
+.m-subc-wrap .m-step-contc .u-step-item.u-step-item1 {
+    height:40px;width:504px;background-position: 0 0;
+}
+.m-subc-wrap .m-step-contc .u-step-item.u-step-item2 {
+    height:40px;width:504px;background-position: 0 -48px;
+}
+.m-subc-wrap .m-step-contc .u-step-item.u-step-item3 {
+    height:40px;width:504px;background-position: 0 -96px;
+}
+.m-subc-wrap .m-step-contc .u-step-item.u-step-item4 {
+    height:40px;width:504px;background-position: 0 -144px;
+}
+.m-subc-wrap .m-step-contc .u-step-item.u-step-item5 {
+    height:40px;width:509px;background-position: 0 -192px;
+}
+.m-subc-wrap .m-step-contc .u-step-item.u-step-item6 {
+    height:40px;width:509px;background-position: 0 -240px;
+}
+.m-subc-wrap .m-step-contc .u-step-item.u-step-item7 {
+    height:40px;width:509px;background-position: 0 -288px;
+}
+.m-subc-wrap .m-step-contc .u-step-item.u-step-item8 {
+    height:40px;width:428px;background-position: 0 -335px;
+}
+.m-subc-wrap .m-step-contc .u-step-item.u-step-item9 {
+    height:40px;width:428px;background-position: 0 -384px;
+}
+.m-subc-wrap .m-step-contc .u-step-item.u-step-item10 {
+    height:40px;width:428px;background-position: 0 -432px;
+}
+.m-subc-wrap .m-step-contc .u-step-item .u-step-btn {
+    float: left;
+    height: 40px;
+}
+.m-subc-wrap .m-step-contc .u-step-item1 .u-step-btn.u-step-btn1,
+.m-subc-wrap .m-step-contc .u-step-item2 .u-step-btn.u-step-btn1,
+.m-subc-wrap .m-step-contc .u-step-item3 .u-step-btn.u-step-btn1,
+.m-subc-wrap .m-step-contc .u-step-item4 .u-step-btn.u-step-btn1 {
+    width: 100px;
+}
+.m-subc-wrap .m-step-contc .u-step-item1 .u-step-btn.u-step-btn2,
+.m-subc-wrap .m-step-contc .u-step-item2 .u-step-btn.u-step-btn2,
+.m-subc-wrap .m-step-contc .u-step-item3 .u-step-btn.u-step-btn2,
+.m-subc-wrap .m-step-contc .u-step-item4 .u-step-btn.u-step-btn2 {
+    width: 124px;
+}
+.m-subc-wrap .m-step-contc .u-step-item1 .u-step-btn.u-step-btn3,
+.m-subc-wrap .m-step-contc .u-step-item2 .u-step-btn.u-step-btn3,
+.m-subc-wrap .m-step-contc .u-step-item3 .u-step-btn.u-step-btn3,
+.m-subc-wrap .m-step-contc .u-step-item4 .u-step-btn.u-step-btn3 {
+    width: 150px;
+}
+.m-subc-wrap .m-step-contc .u-step-item1 .u-step-btn.u-step-btn4,
+.m-subc-wrap .m-step-contc .u-step-item2 .u-step-btn.u-step-btn4,
+.m-subc-wrap .m-step-contc .u-step-item3 .u-step-btn.u-step-btn4,
+.m-subc-wrap .m-step-contc .u-step-item4 .u-step-btn.u-step-btn4 {
+    width: 130px;
+}
+.m-subc-wrap .m-step-contc .u-step-item5 .u-step-btn.u-step-btn1,
+.m-subc-wrap .m-step-contc .u-step-item6 .u-step-btn.u-step-btn1,
+.m-subc-wrap .m-step-contc .u-step-item7 .u-step-btn.u-step-btn1 {
+    width: 148px;
+}
+.m-subc-wrap .m-step-contc .u-step-item5 .u-step-btn.u-step-btn2,
+.m-subc-wrap .m-step-contc .u-step-item6 .u-step-btn.u-step-btn2,
+.m-subc-wrap .m-step-contc .u-step-item7 .u-step-btn.u-step-btn2 {
+    width: 230px;
+}
+.m-subc-wrap .m-step-contc .u-step-item5 .u-step-btn.u-step-btn3,
+.m-subc-wrap .m-step-contc .u-step-item6 .u-step-btn.u-step-btn3,
+.m-subc-wrap .m-step-contc .u-step-item7 .u-step-btn.u-step-btn3 {
+    width: 131px;
+}
+.m-subc-wrap .m-step-contc .u-step-item8 .u-step-btn.u-step-btn1,
+.m-subc-wrap .m-step-contc .u-step-item9 .u-step-btn.u-step-btn1,
+.m-subc-wrap .m-step-contc .u-step-item10 .u-step-btn.u-step-btn1 {
+    width: 148px;
+}
+.m-subc-wrap .m-step-contc .u-step-item8 .u-step-btn.u-step-btn2,
+.m-subc-wrap .m-step-contc .u-step-item9 .u-step-btn.u-step-btn2,
+.m-subc-wrap .m-step-contc .u-step-item10 .u-step-btn.u-step-btn2 {
+    width: 148px;
+}
+.m-subc-wrap .m-step-contc .u-step-item8 .u-step-btn.u-step-btn3,
+.m-subc-wrap .m-step-contc .u-step-item9 .u-step-btn.u-step-btn3,
+.m-subc-wrap .m-step-contc .u-step-item10 .u-step-btn.u-step-btn3 {
+    width: 132px;
+}
+.u-carousel-main .u-itme-bg {
+    height: 372px;
+    width: 100%;
+    position: absolute;
+    left: 40PX;
+    top: 80px;
+    cursor: pointer;
+}
+.u-carousel-main .z-dn {
+    display: none;
+}
+.u-carousel-main .u-itme-bg1 {
+    background: url(/static/img/post/payUpgrade/pay_step_bg1.jpg)no-repeat;
+}
+.u-carousel-main .u-itme-bg2 {
+    background: url(/static/img/post/payUpgrade/pay_step_bg2.jpg)no-repeat;
+}
+.u-carousel-main .u-itme-bg3 {
+    background: url(/static/img/post/payUpgrade/pay_step_bg3.jpg)no-repeat;
+}
+.u-carousel-main .u-itme-bg4 {
+    background: url(/static/img/post/payUpgrade/pay_step_bg4.jpg)no-repeat;
+}
+.u-carousel-main .u-itme-bg5 {
+    background: url(/static/img/post/payUpgrade/pay_step_bg6.jpg)no-repeat;
+}
+.u-carousel-main .u-itme-bg6 {
+    background: url(/static/img/post/payUpgrade/pay_step_bg5.jpg)no-repeat;
+}
+.u-carousel-main .u-itme-bg7 {
+    background: url(/static/img/post/payUpgrade/pay_step_bg7.jpg)no-repeat;
+}
+.u-carousel-main .u-itme-bg8 {
+    background: url(/static/img/post/payUpgrade/pay_step_bg4.jpg)no-repeat;
+}
+.u-carousel-main .u-itme-bg9 {
+    background: url(/static/img/post/payUpgrade/pay_step_bg14.jpg)no-repeat;
+}
+.u-carousel-main .u-itme-bg10 {
+    background: url(/static/img/post/payUpgrade/pay_step_bg13.jpg)no-repeat;
+}
+.u-carousel-main .u-itme-bg11 {
+    background: url(/static/img/post/payUpgrade/pay_step_bg8.jpg)no-repeat;
+}
+.u-carousel-main .u-itme-bg12 {
+    background: url(/static/img/post/payUpgrade/pay_step_bg9.jpg)no-repeat;
+}
+.u-carousel-main .u-itme-bg13 {
+    background: url(/static/img/post/payUpgrade/pay_step_bg10.jpg)no-repeat;
+}
+.u-carousel-main .u-itme-bg14 {
+    background: url(/static/img/post/payUpgrade/pay_step_bg11.jpg)no-repeat;
+}
+.u-carousel-foot {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    margin: 0 0 0 -80px;
+    z-index: 510;
+}
+#payPage3 .u-carousel-foot,#payPage4 .u-carousel-foot {
+    margin: 0 0 0 -60px;
+}
+.u-carousel-foot li {
+    cursor: pointer;
+    float: left;
+    padding: 10px;
+    margin: 0 5px;
+    z-index: 55;
+}
+.u-carousel-foot li span {
+    display: inline-block;
+    height: 8px;
+    width: 8px;
+}
+.u-carousel-foot .f-sel {
+    background: url(/static/img/post/payUpgrade/pay_point_btn.png) no-repeat;
+    background-position: 0 0;
+}
+.u-carousel-foot li.z-current span {
+    background-position: -16px 0;
+}
+.m-pu-content .u-arrow {
+    display: inline-block;
+    width: 25px;
+    height: 12px;
+    margin: 0 5px;
+    background: url(/static/img/post/payUpgrade/payUgIcon.png) no-repeat;
+    background-position: 0 -75px;
+}

@@ -1,0 +1,72 @@
+
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>托管还本付息邮件通知</title>
+	<style>
+table {
+	font-size: 12px;
+	background-color: #eee;
+}
+
+.ff-border{
+	border:1px solid #333333
+}
+table
+{
+border-collapse:collapse;
+border:none;
+}
+td,th
+{
+
+border:solid #7E7C7C 1px;
+border-color:"#7E7C7C";
+text-align: center;
+}
+th{
+	font-size:14px;
+	background-color:#FFFF66
+}
+</style>
+</head>
+
+<body>
+
+	<table>
+		<thead>
+			<tr >
+				<th width="240" >项目名称</th>
+				<th width="70" >期数</th>
+				<th width="100" >出借人手机</th>
+				<th width="100" >出借人姓名</th>
+				<th width="100" >出借人昵称</th>
+				<th width="140" >新浪存钱罐账号</th>
+				<th width="120" >支付本金</th>
+				<th width="120">总支付利息</th>
+				<th width="120" >还款到期日</th>
+				<th width="100" >距离到期</th>
+			</tr>
+		</thead>
+		#if($!payPrincipalInterests && $!payPrincipalInterests.size()>0)
+			#foreach( $!payPrincipalInterest in $!{payPrincipalInterests} )
+				<tr>
+					<td>$!{payPrincipalInterest.projectName}</td>
+					<td>$!{payPrincipalInterest.currentPeriods}/$!{payPrincipalInterest.totalPeriods}</td>
+					<td>$!{payPrincipalInterest.lenderMember.mobile}</td>
+					<td>$!{payPrincipalInterest.lenderMember.trueName}</td>
+					<td>$!{payPrincipalInterest.lenderMember.username}</td>
+					<td>YRUC$!{payPrincipalInterest.lenderMember.id}</td>
+					<td>￥$!{payPrincipalInterest.payablePrincipalStr}</td>
+					<td>￥$!{payPrincipalInterest.payableInterestStr}</td>
+					<td>$!{payPrincipalInterest.endDateStr}</td>
+					<td>$!{payPrincipalInterest.expireDays}天</td>
+				</tr>
+		#end
+		#end
+	</table>
+
+</body>
+
+</html>

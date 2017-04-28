@@ -1,0 +1,41 @@
+<div tabindex="-1" class="j-modal modal fade" id="print-table" style="display: none;" aria-hidden="true" >
+	<div class="modal-dialog w500">
+		<div class="modal-content">
+			<div class="modal-header no-padding">
+				<div class="table-header">
+					<button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+						<span class="white">×</span>
+					</button>
+					<span class="modalFormTitle">印刷</span>
+				</div>
+			</div>
+			<div class="modal-body">
+				<form role="form" class="form-horizontal" name="printCouponTemplateForm" id="print_couponTemplate_form" method="post" action="" >
+					<div class="form-group">
+						<input type="hidden" name="couponTemplateId" id="coupon_template_id">
+						<label for="form-field-printNum" class="col-sm-3 control-label no-padding-right">印刷数量:</label>
+						<div class="col-sm-9">
+							<div class="clearfix">
+								<input type="text" name="printNum" id="form-field-printNum" class="col-xs-6	 col-sm-6" dataType="/^[0-9]*[1-9][0-9]*$/" errormsg="请填写非零正数！"><span class="col-xs-2 col-sm-2 input-text">&nbsp;张</span>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="form-field-remarks" class="col-sm-3 control-label no-padding-right">备注:</label>
+						<div class="col-sm-9">
+							<div class="clearfix">
+								<textarea name="remarks" class="col-xs-10 col-sm-10"  rows="5" id="form-field-remarks"></textarea>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" id="cancel_print_couponTemplate" class="btn btn-default" data-dismiss="modal">关闭</button>
+				<button type="button" id="print_couponTemplate" class="btn btn-primary" data-loading-text="印刷中...">印刷</button>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>

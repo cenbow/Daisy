@@ -1,0 +1,288 @@
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($loginSource=$request.getParameter("loginSource"))
+#if($currentUser)
+    #set($logined=true)
+#else
+    #set($logined=false)
+#end
+#set($os=3)
+#CSRFToken('xToken')
+##  安卓
+#if($loginSource==1)
+    #set($os=1)
+#end
+##  IOS
+#if($loginSource==2)
+    #set($os=2)
+#end
+#if($loginSource==1||$loginSource==2)
+<style>
+    .g-ft {
+        display: none;
+    }
+
+    body {
+        background: #f3f3f3
+    }
+</style>
+#end
+<style>
+    body {
+        background: #f3f3f3
+    }
+   .m-quadrupleBanner{
+       width: 100%;
+   }
+   .m-mainContent{
+       padding-bottom: 60px;
+   }
+    .u-listBlock{
+        width: 100%;
+        background: #fff;
+        text-align: center;
+        margin:-7px 0 20px;
+        color: #666666;
+        padding: 26px 0;
+    }
+   .u-listBlock .u-categoryTitle div{
+       display: inline-block;
+       width: 40px;
+       height: 40px;
+       background: #d74148;
+       border-radius: 50%;
+       position: relative;
+       z-index: 1000;
+       margin-right: -30px;
+       box-shadow: 2px 0px 0px #c52b33;
+   }
+   .u-listBlock .u-categoryTitle i{
+       display: inline-block;
+       width: 30px;
+       height: 30px;
+       background: #fff;
+       margin-top: 5px;
+       line-height: 30px;
+       border-radius: 50%;
+       color: #d74148;
+   }
+   .u-listBlock .u-categoryTitle span{
+       display: inline-block;
+       font-size: 18px;
+       background: #d74148;
+       padding: 0 40px;
+       color: #fff;
+       height: 30px;
+       line-height: 30px;
+       border-radius: 15px;
+   }
+   .u-listBlock .u-mainText{
+       font-size: 13px;
+       line-height: 24px;
+       margin-top: 12px;
+   }
+   .u-listBlock .u-mainText i{
+       color: #d74148;
+   }
+    .u-rewardInterval{
+        width: 96%;
+        margin:12px auto;
+        border: 1px solid #cccccc;
+        border-radius: 5px;
+    }
+    .u-rewardInterval table{
+        margin: 2px;
+        width: 99%;
+    }
+    .u-rewardInterval table tr th,
+    .u-rewardInterval table tr td{
+        width: 20%;
+        height: 30px;
+        background: #eeeeee;
+        border: 1px solid #fff;
+        font-size: 12px;
+        font-weight: 400;
+    }
+    .z-redColor{
+        color: #d74148;
+    }
+    .m-activityRules{
+        width: 96%;
+        margin: auto;
+        font-size: 13px;
+        color: #666666;
+        line-height: 24px;
+    }
+    .m-activityRules span{
+        color: #333333;
+    }
+    .m-activityRules em{
+        margin-bottom: -13px;
+        display: block;
+    }
+    .m-share-btn a{
+        width: 100%;
+        display: block;
+        background: #d74148;
+        text-align: center;
+        line-height: 50px;
+        -moz-border-radius: 5px;
+        color: #fff;
+        font-size: 22px;
+        position: fixed;
+        bottom: 0;
+        z-index: 10000;
+    }
+</style>
+##
+
+#if($loginSource==1 || $loginSource==2)
+#else
+##header，安卓ios，不需要头部
+<h2 class="u-header f-pos-r">
+    <a href="$siteurl/mIndex">返回</a>
+    <span class="f-fs18">
+        抢标五重礼
+    </span>
+</h2>
+#end
+<div class="g-wrap">
+    <div class="m-quadrupleBanner">
+        <img src="$res_url/img/post/quadrupleGift/quadrupleBanner.jpg" alt="" width="100%">
+    </div>
+    <div class="m-mainContent">
+        <div class="u-listBlock">
+            <div class="u-categoryTitle"> <div><i class="u-identifier">01</i></div>  <span>一羊领头</span> </div>
+            <div class="u-mainText">每个理财项目，第一位成功投资的用户, <br>
+                将获得 <i class="z-redColor">8点人气值</i> 的奖励。</div>
+        </div>
+        <div class="u-listBlock">
+            <div class="u-categoryTitle"> <div><i class="u-identifier">02</i></div>  <span>一鸣惊人</span> </div>
+            <div class="u-mainText">每个理财项目，单笔投资金额最高的用户， <br>
+                将获得 <i class="z-redColor">18—58点人气值</i>的奖励。<br>
+                （若有多个最高投资者，则先投资的用户获得奖励）
+            </div>
+            <div class="u-rewardInterval">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>投资期限T(天)</th>
+                        <th>10≤T<60</th>
+                        <th>60≤T<120</th>
+                        <th>120≤T<180</th>
+                        <th>180≤T</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>人气值（点）</td>
+                        <td class="z-redColor">18</td>
+                        <td class="z-redColor">28</td>
+                        <td class="z-redColor">38</td>
+                        <td class="z-redColor">58</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="u-listBlock">
+            <div class="u-categoryTitle"> <div><i class="u-identifier">03</i></div>  <span>一锤定音</span> </div>
+            <div class="u-mainText">每个理财项目，最后一位成功投资的用户，<br>
+                将获得<i class="z-redColor">10—28点人气值</i>的奖励。
+            </div>
+            <div class="u-rewardInterval">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>投资期限T(天)</th>
+                        <th>10≤T<60</th>
+                        <th>60≤T<120</th>
+                        <th>120≤T<180</th>
+                        <th>180≤T</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>人气值（点）</td>
+                        <td class="z-redColor">10</td>
+                        <td class="z-redColor">15</td>
+                        <td class="z-redColor">20</td>
+                        <td class="z-redColor">28</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="u-listBlock">
+            <div class="u-categoryTitle"> <div><i class="u-identifier">04</i></div>  <span>一掷千金</span> </div>
+            <div class="u-mainText">每个理财项目，如用户同时获得一鸣惊人和 <br>
+                一锤定音，将额外获得 <i class="z-redColor">15—48点人气值</i> 的奖励。
+            </div>
+            <div class="u-rewardInterval">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>投资期限T(天)</th>
+                        <th>10≤T<60</th>
+                        <th>60≤T<120</th>
+                        <th>120≤T<180</th>
+                        <th>180≤T</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>人气值（点）</td>
+                        <td class="z-redColor">15</td>
+                        <td class="z-redColor">20</td>
+                        <td class="z-redColor">30</td>
+                        <td class="z-redColor">48</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="u-listBlock">
+            <div class="u-categoryTitle"> <div><i class="u-identifier">05</i></div>  <span>幸运女神</span> </div>
+            <div class="u-mainText">每个理财项目，项目满额后，系统将随机抽取一位 <br>
+                该项目投资人，抽中者将获得 <i class="z-redColor">8点人气值</i> 的奖励。
+            </div>
+        </div>
+        <div class="m-activityRules">
+            <p>
+                <span>活动规则:</span> <br>
+                <em>1、活动时间：长期有效；</em><br>
+                <em>2、活动对象：有融网所有投资用户<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(各客户端均可参与)；</em><br>
+                <em>3、转让专区项目不参与本活动；</em><br>
+                <em>4、募集金额2W以上项目参与活动，履约后才能获得奖励；</em><br>
+                <em>5、活动期间获得的人气值奖励， <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;系统即时发放到您的账户，
+                <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;人气值可兑换优惠券，<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;优惠券仅限投资时使用；</em><br>
+                <em>6、若有其他疑问请拨打客服热线：<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;400-025-6688；</em><br>
+                <em>7、本次活动最终解释权归有融网所有。</em>
+            </p>
+        </div>
+    </div>
+
+    <div class="m-share-btn" id="j-share-btn" data-os="$os">
+        <a id="j-share-link" href="#if($os==2) yrw-skip://invokeMethod=projectList #elseif($os==3) $siteurl/products/m/list-all-all-1.html #end">立即抢标</a>
+    </div>
+</div>
+<script src="$res_url/lib/js/sea.js"></script>
+<script src="$res_url/lib/js/zepto.min.js"></script>
+<script>
+    (function(){
+        //安卓app跳转
+        var i=$("#j-share-btn").data("os");
+        $("#j-share-link").on("click",function(){
+            if(i==1){
+                Android.ToActivity("projectList",  null);
+            }
+        })
+        if ($os==1
+        )
+        {
+            Android.UpdateTitle('抢标五重礼')
+        }
+
+    })()
+</script>

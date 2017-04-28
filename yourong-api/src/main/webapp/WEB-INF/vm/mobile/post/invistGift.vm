@@ -1,0 +1,120 @@
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#if($currentUser)
+    #set($logined=true)
+#else
+    #set($logined=false)
+#end
+#CSRFToken('xToken')
+#set($encryptionId=$request.getParameter("encryptionId"))
+$encryptionId
+##  安卓
+#if($loginSource==1)
+    #set($os=1)
+#end
+##  IOS
+#if($loginSource==2)
+    #set($os=2)
+#end
+#if($loginSource==1||$loginSource==2)
+<style>
+    .g-ft {
+        display: none;
+    }
+
+    body {
+        background: #f3f3f3
+    }
+</style>
+#end
+<style>
+    body{
+        background: #f3f3f3;
+    }
+
+    .m-invistLink {
+        width: 100%;
+        height: 106px;
+        background: #fff;
+        margin-top: 20px;
+        position: relative;
+        border-bottom: 1px solid #dedede;
+        border-top: 1px solid #dedede;
+    }
+    .u-invistImg{
+        width: 40%;
+        height: 100%;
+        float: left;
+    }
+    .u-invistText{
+        width: 57%;
+        float: right;
+        margin: 20px 3% 0 0;
+    }
+    .m-invistLink i{
+        position: absolute;
+        top:32px;
+        right:4px;
+        font-size: 20px;
+        color: #DEDEDE;
+    }
+    .u-invistText .u-firstP{
+        font-size: 18px;
+        color: #333333;
+        line-height: 36px;
+    }
+    .u-invistText .u-lastP{
+        font-size: 12px;
+        color: #999;
+    }
+</style>
+##
+#if($loginSource==1 || $loginSource==2)
+#else
+##header，安卓ios，不需要头部
+<h2 class="u-header f-pos-r">
+    <a href="$siteurl/mIndex">返回</a>
+    <span class="f-fs18">
+        投资有礼
+    </span>
+</h2>
+#end
+<div class="g-wrap">
+##    http://192.168.0.15:8082/yourong-api/activity/popRedPackage/mine?isNeedYRWtoken=Y&encryptionId=$encryptionId&fromSource=h5
+    <a id="j-redPackageLink" href="">
+        <div class="m-invistLink">
+            <div class="u-invistImg"><img src="$res_url/img/post/investment.png" alt="" width="100%" height="100%"></div>
+            <div class="u-invistText">
+                <p class="u-firstP">投资享红包</p>
+                <p class="u-lastP">投资红包天天抢，人人分享当土豪</p>
+            </div>
+            <i class="u-invistArrow"> ></i>
+        </div>
+    </a>
+    <a href="$siteurl/mstation/post/quadrupleGift?loginSource=$loginSource">
+        <div class="m-invistLink">
+            <div class="u-invistImg"><img src="$res_url/img/post/wucli.png" alt="" width="100%"></div>
+            <div class="u-invistText">
+                <p class="u-firstP">抢标五重礼</p>
+                <p class="u-lastP">投资有惊喜，乐享人气值</p>
+            </div>
+            <i class="u-invistArrow"> ></i>
+        </div>
+    </a>
+    <input type="hidden" id="j-encryptionId">
+</div>
+<input type='hidden' id="j-encryptionId" memberId="$encryptionId">
+<div>
+    测试
+</div>
+<script src="$res_url/lib/js/sea.js"></script>
+<script src="$res_url/lib/js/zepto.min.js"></script>
+<script>
+    (function(){
+        var encryptionId='$encryptionId';
+        alert('$encryptionId')
+        var encryptionId2=encodeURI(encryptionId);
+        alert(encryptionId2)
+        $('#j-redPackageLink').attr('href','$siteurl/activity/popRedPackage/mine?fromSource=h5&encryptionId='+encryptionId2+'&isNeedYRWtoken=Y&loginSource=$loginSource')
+    })()
+</script>

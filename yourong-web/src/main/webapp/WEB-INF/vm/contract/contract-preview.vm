@@ -1,0 +1,739 @@
+#parse('/common/common.vm')
+#set($layout = "/layout/default.vm")
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <title>有融网债权转让协议</title>
+    <style>
+    html {
+    color:#000;background:#fff;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+
+/* 内外边距通常让各个浏览器样式的表现位置不同 */
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td,hr,button,article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section {
+    margin:0;padding:0;
+}
+
+/* 重设 HTML5 标签, IE 需要在 js 中 createElement(TAG) */
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section { 
+    display:block;
+}
+
+/* HTML5 媒体文件跟 img 保持一致 */
+audio,canvas,video {
+    display: inline-block;*display: inline;*zoom: 1;
+}
+
+/* 要注意表单元素并不继承父级 font 的问题 */
+body,button,input,select,textarea {
+    font:12px/1.5 tahoma,arial,"Hiragino Sans GB","Microsoft Yahei",\5b8b\4f53;
+}
+input,select,textarea {
+    font-size:100%;
+}
+
+/* 去掉各Table  cell 的边距并让其边重合 */
+table {border-collapse:collapse;border-spacing:0;}
+
+/* IE bug fixed: th 不继承 text-align*/
+th {text-align:inherit;}
+
+/* 去除默认边框 */
+fieldset,img {border:0;}
+
+/* ie6 7 8(q) bug 显示为行内表现 */
+iframe {display:block;}
+
+/* 去掉 firefox 下此元素的边框 */
+abbr,acronym {border:0;font-variant:normal;}
+
+/* 一致的 del 样式 */
+del {text-decoration:line-through;}
+
+address,caption,cite,code,dfn,em,th,var {
+    font-style:normal;
+    font-weight:500;
+}
+
+/* 去掉列表前的标识, li 会继承 */
+ol,ul {
+    list-style:none;
+}
+
+/* 对齐是排版最重要的因素, 别让什么都居中 */
+caption,th {
+    text-align:left;
+}
+
+/* 来自yahoo, 让标题都自定义, 适应多个系统应用 */
+h1,h2,h3,h4,h5,h6 {
+    font-size:100%;
+    font-weight:500;
+}
+
+q:before,q:after {
+    content:'';
+}
+
+/* 统一上标和下标 */
+sub, sup {
+    font-size: 75%; line-height: 0; position: relative; vertical-align: baseline;
+}
+sup { top: -0.5em; }
+sub { bottom: -0.25em; }
+
+/* 正常链接 未访问 */
+a:link {
+    color: #08c;
+}
+
+/* 鼠标悬停 */
+a:hover {
+    color: #08c;
+    text-decoration: underline;
+}
+
+/* 默认不显示下划线，保持页面简洁 */
+ins,a {
+    text-decoration:none;
+}
+i{font-style: normal;}
+/* 代码字体 */
+code,
+kbd,
+pre,
+samp {
+    font-family: monospace, serif;
+    font-size: 1em;
+}
+
+    body {
+        font-family: "Microsoft Yahei", Arial;
+        font-size: 12px;
+        color: #666;
+        position:relative;
+    }
+    .m-contract-box {
+        width: 970px;
+        padding: 10px;
+        margin: 0 auto;
+    }
+    .u-con-t {
+        height: 35px;
+        background: url($root_url/static/img/contract/contract_page_tbg.png) no-repeat;
+        overflow: hidden;
+    }
+    .u-con-c {
+		position: relative;
+        min-height: 100px;
+        background: url($root_url/static/img/contract/contract_page_cbg.png) repeat-y;
+        padding: 0 65px 60px;
+        overflow: hidden;
+    }
+    .u-con-b {
+        height: 37px;
+        background: url($root_url/static/img/contract/contract_page_bbg.png) no-repeat;
+        overflow: hidden;
+    }
+    .u-con-num {
+        color: #666;
+        text-align: right;
+    }
+    .u-con-title {
+        font-family: "Simsun";
+        text-align: center;
+        font-size: 30px;
+        height: 205px;
+        line-height: 205px;
+        background: url($root_url/static/img/contract/contract_title_bg.gif) no-repeat center center;
+    }
+    .u-info-table {
+        font-size: 14px;
+        width: 100%;
+        margin: 20px 0 70px;
+    }
+    .u-info-table td {
+        border-bottom: 1px solid #cdcdcd;
+        padding: 10px 0 0;
+    }
+    .u-info-table .u-itable-t {
+        text-align: right;
+        border-bottom: none;
+    }
+    .u-con-content {
+        line-height: 2em;
+        font-size: 14px;
+    }
+    .u-con-content h3 {
+        font-size: 14px;
+        font-weight: bold;
+    }
+    .u-con-content p {
+        padding: 0 0 36px;
+    }
+    .u-con-content p strong {
+        color: #d74148;
+        font-style: normal;
+    }
+    .u-data-table {
+        border-top: 2px solid #cdcdcd;
+        border-bottom: 2px solid #cdcdcd;
+        width: 100%;
+        margin: -20px 0 20px;
+    }
+    .u-data-table td,.u-data-table th {
+        padding: 0 0 0 20px;
+        border-left: 1px solid #cdcdcd;
+        border-bottom: 1px solid #cdcdcd;
+    }
+    .u-data-table td{height: 28px;line-height: 28px;}
+    .u-data-table th{height: 40px;line-height: 40px;text-align: center;color: #464646;}
+    .u-data-table td:first-child,.u-data-table th:first-child{
+        border-left: 0;
+    }
+    .f-tac{
+        text-align: center;
+    }
+    .f-tar {
+        text-align: right;
+    }
+    .f-dn{
+        display: none;
+    }
+    .u-stable-even td {
+        padding: 55px 0 0;
+    }
+    .u-sign-table{
+        position: relative;
+        padding: 75px 0 165px;
+    }
+    .u-sign-table .u-mask{
+        position: absolute;
+        right: 10px;
+        top: 0;
+    }
+	/**数据保全按钮**/
+	  .u-con-icon{ 
+		font-weight:bold;
+    	width:319px;
+    	height:50px;
+    	background:url(/static/img/contract/eDataSecurity_icon.jpg) no-repeat left;
+    	position:absolute;
+    	top: 13px;
+		left: 50px;
+    }
+     .u-con-icon a{
+		font-size: 14px;
+    	float: right;
+		text-align: center;
+		line-height: 50px;
+     	width:169px;
+     	height:50px;
+     	display:block;
+         background-color: #70b544;
+     	color:#fff;
+     }
+	.u-con-icon a:link{
+     	color:#fff;
+		text-decoration:none;     	
+     }
+	.u-con-icon a:visited{
+		color:#fff;
+		text-decoration:none; 
+	} 
+
+	　　.u-con-icon a:hover {
+		color:#fff;
+		text-decoration:none; 
+	}
+    .u-eSignature-icon{
+        width: 58px;
+        height: 18px;
+        text-align: center;
+        font-size: 12px;
+        line-height: 18px;
+        color: #d74148;
+        border-radius: 4px;
+        border: 1px solid #d74148;
+        display: inline-block;
+        margin-left: 20px;
+    }
+    .u-eSignature-drain{
+        width: 58px;
+        height: 18px;
+        text-align: center;
+        font-size: 12px;
+        line-height: 18px;
+        color: #999;
+        border-radius: 4px;
+        border: 1px solid #999;
+        display: inline-block;
+        margin-left: 20px;
+    }
+    .u-sign-table td a.z-unfinished{
+        width: 198px;
+        height: 58px;
+        display: inline-block;
+        background: #d74148;
+        color: #fff;
+        text-align: center;
+        line-height: 58px;
+        font-size: 20px;
+        border-radius: 8px;
+        padding-top: 0;
+        vertical-align: text-bottom;
+        cursor: pointer;
+    }
+    .u-sign-table td a.z-unfinished:link,
+    .u-sign-table td a.z-unfinished:visited,
+    .u-sign-table td a.z-unfinished:hover{
+        text-decoration: none;
+        color: #fff;
+    }
+    .u-sign-table td a i{
+        display: inline-block;
+        width:26px;
+        height:26px;
+        background: url("/static/img/contract/contract-eSignature-pen.png") no-repeat center;
+        vertical-align: sub;
+        margin-left: 7px;
+    }
+    /*合同下载*/
+        .u-contract-download{
+            width: 35px;
+            height: 35px;
+            display: block;
+            position: fixed;
+            top: 85%;
+            right: 5%;
+            background: url("/static/img/contract/contract-download.png") no-repeat center;
+            cursor: pointer;
+            border: 1px solid #666;
+            border-radius: 20px;
+        }
+
+    .u-download-box{
+        background: #ffffff;
+        border: 1px solid #979797;
+        border-radius: 8px;
+        width: 358px;
+        height: 150px;
+        padding-top: 49px;
+        position: fixed;
+        top: 36%;
+        left: 40%;
+        z-index: 1000;
+    }
+    .u-download-box p{
+        font-size:14px;
+        color:#737373;
+        line-height:24px;
+        text-align:center;
+    }
+    .u-download-box span{
+        background:#d74148;
+        border:1px solid #d74148;
+        border-radius:4px;
+        width:198px;
+        height:28px;
+        line-height: 28px;
+        margin: 43px auto 0;
+        display: block;
+        font-size:14px;
+        color:#ffffff;
+        text-align:center;
+        cursor: pointer;
+    }
+    .u-download-box i{
+        width: 15px;
+        height: 15px;
+        display: block;
+        position: absolute;
+        right: 0;
+        top: 0;
+        padding: 10px;
+        cursor: pointer;
+        font-size: 26px;
+        line-height: 10px;
+    }
+    .u-download-box a{
+        background:#d74148;
+        border:1px solid #d74148;
+        border-radius:4px;
+        width:198px;
+        height:28px;
+        line-height: 28px;
+        margin: 43px auto 0;
+        display: block;
+        font-size:14px;
+        color:#ffffff;
+        text-align:center;
+        cursor: pointer;
+    }
+    .u-download-box a:link,.u-download-box a:visited,.u-download-box a:hover{
+        text-decoration: none;
+        color: #fff;
+    }
+    .u-shade {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 999;
+        background-color: #000;
+        filter: alpha(opacity=50);
+        -moz-opacity: 0.5;
+        opacity: 0.5;
+        filter: progid:DXImageTransform.Microsoft.Alpha(opacity=50);
+    }
+    </style>
+</head>
+
+<body>
+    <div class="m-contract-box j-contract-box" data-transationid="$!{contract.transactionId}">
+        <div class="u-con-t"></div>
+        <div class="u-con-c">
+        #if($!{contract.transactionId})
+           <div class="u-con-num">编号：$!{contract.transactionId}</div>
+        #end
+            <h1 class="u-con-title">债权收益权转让协议</h1>
+
+            <span class="u-con-icon f-cf">
+				#if($!contract.preservationLink)
+					<a target="_blank" href="$!{contract.preservationLink}">查看数据保全证书</a>
+				#end
+			</span>
+
+            <table class="u-info-table">
+                <thead></thead>
+                <tbody>
+                    <tr>
+                        <td width="175" class="u-itable-t">甲方(出让方)：</td>
+                         #if(${contract.isLenderEnterprise()})
+                    	 	 <td width="305">$!{contract.companyName}</td>
+                    	 #else
+                    	 	 <td width="305">$!{contract.originalCreditorName}</td>
+                    	 #end
+                        
+                        <td width="175" class="u-itable-t">乙方 ( 受让方 )：</td>
+                        <td>$!{contract.name}</td>
+                    </tr>
+                    <tr>
+                    	 #if(${contract.isLenderEnterprise()})
+                    	 	 <td class="u-itable-t">法定代表人：</td>
+                        	 <td>$!{contract.legalName}</td>
+                    	 #else
+                    	 	 <td class="u-itable-t">身份证号：</td>
+                     	     <td>$!{contract.originalCreditorIdentityNumber}</td>
+                    	 #end
+                        <td class="u-itable-t">身份证号：</td>
+                        <td>$!{contract.identity}</td>
+                    </tr>
+                    <tr>
+						<td class="u-itable-t"></td>
+                    	<td class="u-itable-t"></td>
+                        <td class="u-itable-t">电话：</td>
+                        <td>$!{contract.mobile}</td>
+                    </tr>
+                    <tr>
+                        <td class="u-itable-t"></td>
+                    </tr>
+                    <tr class="u-stable-even">
+                        <td class="u-itable-t">丙方（第三方服务机构）：</td>
+                        <td>浙江小融网络科技股份有限公司</td>
+                        <td class="u-itable-t">网站：</td>
+                        <td>www.yrw.com</td>
+                    </tr>
+                    <tr>
+                        <td class="u-itable-t">法定代表人：</td>
+                        <td>吴建</td>
+                        <td class="u-itable-t">电话：</td>
+                        <td>400-025-6688</td>
+                    </tr>
+                    <tr>
+                        <td class="u-itable-t">地址：</td>
+                        <td>浙江省杭州市西湖区古墩路87号浙商财富中心3号楼12F</td>
+                        <td colspan="2" class="u-itable-t"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="u-con-content">
+                鉴于：
+                <p>
+                    1、有融网（域名：www.yrw.com）由丙方运营管理。甲乙双方均系有融网的注册会员。
+                    <br>2、甲方与基础债权债务人通过丙方合作线下投融资服务平台的居间服务达成了借款合意，并在丙方法务和风控人员的全程监管和见证下， 形成了本协议项下的基础债权。丙方法务和风控人员就该基础债权的真实性、合法性、有效性向丙方出具了法律风控意见。根据《中华人民共和国合同法》、《中华人民共和国民法通则》等有关法律规定，甲乙丙三方本着诚实信用的基本原则，经平等友好协商，自愿就甲方通过有融网平台向乙方转让债权收益权的相关事宜达成如下协议：
+                </p>
+                <h3>第一条 本协议名词释义</h3>
+                <p>
+                    1、“基础债权”是指本协议甲方作为出借人，通过丙方合作线下投融资服务平台的居间服务与借款人达成借款合意，在丙方法务和风控人员的全程监管和见证下形成并在本协议中转让的原合同债权。
+                    <br>2、“原合同”是指本协议甲方作为出借人，通过丙方合作线下投融资服务平台的居间服务与借款人达成借款合意后，就借款、担保等事项约定双方权利与义务的借款合同。
+                    <br>3、“债权收益权”是指基础债权的债权人与债务人一致同意赋予基础债权受让方的优先于基础债权债权人受领基础债权债务人归还借款本金和一定利息款项的权利。
+                    <br>4、“资金监管账户”是指甲方通过丙方平台在丙方合作的第三方支付机构或银行开立的资金管理账户，该账户由丙方与甲方共同监管。
+                </p>
+                <h3>第二条 基础债权信息</h3>
+                <p>1、甲方自愿将其所拥有的下列基础债权的全部或部分债权收益权对乙方进行转让：</p>
+                <table class="u-data-table">
+                    <thead></thead>
+                    <tbody>
+                        <tr>
+                            <td width="140">原合同编号</td>
+                            <td>$!{contract.originalDebtNumber}</td>
+                            <td width="140">债权本金</td>
+                            <td width="140">$!{contract.debtAmount}元</td>
+                        </tr>
+                        <tr>
+                            <td>债权形成时间</td>
+                            <td>$!{contract.debtStartTime}</td>
+                            <td>年化利率</td>
+                            <td>$!{contract.debtAnnualizedRate}%</td>
+                        </tr>
+                        <tr>
+                            <td>原合同期限</td>
+                            <td>$!{contract.debtStartTime}-$!{contract.debtEndTime}</td>
+                            <td>剩余合同期限</td>
+                            <td>$!{contract.remainDays}天</td>
+                        </tr>
+                        <tr>
+                            <td>
+								$!{contract.tdTitleOfBaseInfo}
+                            </td>
+                            <td colspan="3">$!{contract.collateralDetails}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p>
+                    ##if($!contract.getGuarantyType() == 'carPayIn' || $!contract.getGuarantyType() == 'carBusiness' )
+					##2、一次性还本付息
+					##else
+                    ##2、上述债权按日计息，按月付息， 一年按360天计息。
+					##end
+					$!{contract.profitTypeTextOfBaseInfo}
+                    <br>3、基础债权的形成过程由丙方法务和风控人员全程监督和见证，并由丙方法务和风控人员对基础债权的真实性、合法性、有效性出具专业的法律风控意见。
+                    <br>4、基础债权形成的原始凭证在债权收益权获得全部实现之前，由丙方法务中心负责保管。
+                </p>
+                <h3>第三条 债权收益权的价值和转让价格</h3>
+                <p>
+                    1、甲方转让的债权收益权的价值为人民币
+                    <strong>$!{contract.userDebtAmountStr}</strong>元（包含债权收益权本金
+                    <strong>$!{contract.userInvestAmountStr}</strong>元和预期利息收益
+                    <strong>$!{contract.userInterestTotalStr}</strong>元，其中预期利息收益以基础债权合同剩余合同期限为计息天数，按年化
+                    <strong>#if(${contract.IsExtraAnnualiz}=='Y')$!{contract.annualizedRate}%(原始)+$!{contract.extraAnnualizedRate}%(收益券)#else$!{contract.totalAnnualizedRate}%#end</strong>的利率计算）。 
+                    <br>2、甲方自愿将上述价值的债权收益权以人民币
+                    <strong>$!{contract.priceStr}</strong>的价格转让给乙方。 
+                    <br>3、乙方同意按本条第二款约定的价格受让甲方上述转让的债权收益权。
+                </p>
+                <h3>第四条 债权收益权转让款的支付</h3>
+                <p>1、甲乙丙三方均一致同意乙方将债权收益权转让款支付至甲方通过丙方平台在第三方支付机构或银行开立的资金监管账户，该账户由丙方与甲方共同监管。
+                    <br>2、乙方按照有融网的规则将债权转让款支付至甲方通过丙方平台在第三方支付机构或银行开立的资金监管账户中，即视为乙方完成了该笔债权收益权转让的付款行为。
+                </p>
+                <h3>第五条 债权收益权的取得</h3>
+                <p>乙方自本协议生效之日即取得本协议项下的债权收益权，有权按照本协议约定的条件受领基础债权的债务人归还的借款本金及相应利息。</p>
+                <h3>第六条 债权收益权利息收益的支付</h3>
+
+                <p>1、基础债权债务人根据其与甲方签订的原合同向指定账户支付利息后，甲方应将不少于本协议已转让债权收益权对应的利息支付到资金监管账户绑定账号（基础债权债务人已直接到资金监管账户绑定账号的除外），并向乙方支付相应债权收益权利息。
+                    <br>2、基础债权债务人提前归还借款本息的，债权收益权利息收益实际计息天数应计算到基础债权债务人提前还款日，甲方应向乙方额外支付相当于五日（债权剩余期限不足五日的，以剩余期限为准）利息的提前还款补偿金。
+                    <br>3、基础债权债务人未按照原合同履行期限按时支付利息的，甲方应当代基础债权债务人向乙方支付相应债权收益权利息。
+                    <br>4、丙方对甲方向乙方支付相应债权收益权利息的行为负有监管的权利和义务，并对甲方的上述行为予以配合。
+                </p>
+
+                <h3>第七条 债权收益权的实现</h3>
+                <p>基础债权清偿期届满之日，基础债权债务人根据其与甲方签订的原合同向指定账户支付本金和剩余利息后，甲方应将不少于本协议已转让债权收益权对应的本金和剩余利息支付到资金监管账户绑定账号（基础债权债务人已直接到资金监管账户绑定账号的除外），并向乙方支付相应债权收益权本金和剩余利息。</p>
+
+                <h3>第八条 债权收益权的赎回</h3>
+                <p>基础债权清偿期届满之日，基础债权债务人无力归还借款本息，则甲方应自行将不少于本协议已转让债权收益权对应本金和剩余利息的自有资金支付到资金监管账户绑定账号，并向乙方支付相应债权收益权本金和剩余利息，以赎回债权收益权。甲方向乙方支付债权收益权本金和剩余利息之日，乙方在本协议项下购买的债权收益权转归甲方所有。</p>
+                <h3>第九条 其他权利义务</h3>
+                <p>1、标的债权收益权的价值可能并非甲方对原债务人享有的全部基础债权价值，乙方对此充分理解和认可。而且乙方已经充分了解基础债权的全部情况，并且同意从甲方处受让债权收益权。
+                    <br>2、甲方保证本协议项下转让给乙方的债权收益权真实有效，并为甲方合法拥有，甲方对其拥有完全、有效的处分权。
+                    <br>3、乙方声明与保证其所用于受让标的债权收益权的资金来源合法，乙方是该资金的合法所有人，如果第三方对资金归属、合法性问题发生争议，由乙方自行负责解决。
+                    <br>4、因战争、动乱、自然灾害等不可抗力或国家法律政策变动、电信网络服务终止、黑客攻击等客观因素出现，导致协议内容延迟履行或不能履行，甲、乙、丙三方互不追究责任。
+                    <br>5、甲乙丙三方确认，本协议的签订 、生效和履行以不违反中国的法律法规为前提。如果本协议中的任何一条或多条违反现行的法律法规，则该条将被视为无效，但该无效条款并不影响本协议其他条款的效力。
+                </p>
+                <h3>第十条 协议的变更</h3>
+                <p>本协议的任何修改、补充均须以有融网平台电子文本形式做出。</p>
+
+                <h3>第十一条 争议解决</h3>
+                <p>如果甲乙丙三方在本协议履行过程中发生任何争议，应友好协商解决；如协商不成，则须提交丙方所在地人民法院进行诉讼。</p>
+                <h3>第十二条 协议的保管</h3>
+                <p>甲乙双方一致同意委托丙方保管所有与本协议有关的书面文件或电子信息。</p>
+                <h3>第十三条 协议的解释</h3>
+                <p>本协议中所使用的定义，除在上下文中另有定义外，以有融网公布的《有融网网站定义与释义规则》中的定义及内容为准。</p>
+                <h3>第十四条 本协议的成立与生效</h3>
+                <p>乙方按照“有融网”的规则，通过甲方的债权收益权（“标的债权收益权”）转让需求界面，点击 “立即投资”按钮，进入投资理财详细信息界面，填写完成乙方的投资理财信息，点击同意《债权收益权转让协议范本》，形成相应订单，并在线完成债权收益权转让款支付且本协议甲、乙、丙三方均完成电子签名或者电子签章本协议即成立并立即生效。 </p>
+                <div class="u-sign-table" id="bottom">
+
+                    <table>
+                        <thead></thead>
+                        <tbody>
+
+                            #if($!{preview})
+                            <tr>
+                                <td width="45" style="vertical-align: top;">甲方：</td>
+
+                                    <td width="440">电子签名／签章</td>
+
+                                <td width="130" style="vertical-align: top;" class="f-tar">第三方服务机构：</td>
+                                <td>   电子签章 <br></td>
+                            </tr>
+                            <tr>
+                                <td>日期：</td>
+                                <td></td>
+                                <td class="f-tar">日期：</td>
+                                <td></td>
+                            </tr>
+                            <tr class="u-stable-even">
+                                <td style="vertical-align: bottom;">乙方：</td>
+                                <td colspan="3">电子签名</td>
+                            </tr>
+                            <tr>
+                                <td>日期：</td>
+                                <td></td>
+                            </tr>
+                            #else
+                            <tr>
+                                <td width="45" style="vertical-align: top;">甲方：</td>
+
+                                #if(${contract.isLenderEnterprise()})
+                                    <td width="440">$!{contract.companyName}#if($!{contract.firstIsSign}==1)
+                                        <span class="u-eSignature-icon">已签署</span> #end <br>
+
+                                    </td>
+                                #else
+                                    <td width="440">$!{contract.originalCreditorName} #if($!{contract.firstIsSign}==1)<span class="u-eSignature-icon">已签署</span>#end<br>
+
+                                    </td>
+                                #end
+                                <td width="130" style="vertical-align: top;" class="f-tar">第三方服务机构：</td>
+                                <td>  #if($!{contract.investDate})浙江小融网络科技股份有限公司 #else 电子签章 #end<br></td>
+                            </tr>
+                            <tr>
+                                <td>日期：</td>
+                                <td>$!{contract.investDate}</td>
+                                <td class="f-tar">日期：</td>
+                                <td>$!{contract.investDate}</td>
+                            </tr>
+                            <tr class="u-stable-even">
+                                <td style="vertical-align: bottom;">乙方：</td>
+
+                                #if($!{contract.secondIsSign}==1)
+                                ## 已签署
+                                    <td colspan="3">$!{contract.name} <span class="u-eSignature-icon z-eSignature-drain">已签署</span><br></td>
+
+                                #else
+                                    #if($!{contract.signStatus}==3)
+                                    ## 过期未签署
+                                        <td colspan="3">$!{contract.name} <span class="u-eSignature-drain">未签署</span></td>
+                                    #else
+                                    ##暂未签署
+                                        <td colspan="3"><a id="j-eSignature" href="javascript:viud(0)" class="z-unfinished">前往签署<i></i></a></td>
+                                    #end
+
+                                #end
+                            </tr>
+                            <tr>
+                                <td>日期：</td>
+                                <td>$!{contract.investDate}</td>
+                            </tr>
+                            #end
+
+                        </tbody>
+                    </table>
+                    #if($!{preview})
+                        <div class="u-mask"></div>
+                    #else
+                            <div class="u-mask"><img src="$root_url/static/img/contract/mask.png?20151210" width="210" height="210" alt=""></div>
+                    #end
+
+                </div>
+                <p>附件一<br>转让债权收益权付息时间金额表：</p>
+                <table class="u-data-table">
+                    <thead>
+                        <tr class="f-tac">
+                            <th width="140">付息序次数</th>
+                            <th width="200">付息时间</th>
+                            <th>付息金额</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                     #foreach($!{transactionInterest} in $!{contract.transactionInterestList})
+                        <tr class="f-tac">
+                            <td>$!{velocityCount}</td>
+                            <td>$!{transactionInterest.payTime}</td>
+                            <td>$!{transactionInterest.payableInterestAndPrincipal}元</td>
+                        </tr>
+                        #end
+                    </tbody>
+                </table>
+                <p>
+					##if($!contract.getGuarantyType() == 'carPayIn' || $!contract.getGuarantyType() == 'carBusiness')
+						##一次性还本付息
+					##else
+						##本金包含在最后一次付息金额中，并于最后一次付息时一起支付与乙方。
+					##end
+				$!{contract.profitTypeName}
+				</p>
+            </div>
+        </div>
+        <div class="u-con-b"></div>
+    </div>
+    <div class="u-contract-download" id="j-contract-download"></div>
+
+    <div class="u-download-box f-dn" id="j-download-box">
+        <p>网页预览与实际下载内容一致
+            <br>样式有所不同，具有同样法律效应</p>
+        <span>下载</span>
+        <i>×</i>
+    </div>
+    <div id="j-shade-contract" class="u-shade f-dn">
+
+    </div>
+    <div class="u-download-box f-dn" id="j-contract-tips">
+        <p></p>
+        <a id="j-contract-tips-ok">确定</a>
+        <i>×</i>
+    </div>
+
+        #CSRFToken('xToken')
+
+</body>
+
+<script type="text/javascript">
+    var environment = env = {
+        globalPath: '',
+        globalDomain: 'http://dev.yourong.cn:8081',
+        mGlobalDomain: 'http://m.dev.yourong.cn:8081/yourong-api',
+        serverDate:  1469091965214,
+        aliyunPath: 'https://oss-cn-hangzhou.aliyuncs.com'
+    };
+    window.log=function(){};
+    window.chrome&&(window.log=console.log.bind(console));
+    //余额支付倒计时
+    var inverst_wait_time = 10;
+
+</script>
+<script src="/static/lib/js/base/lodash.js?v=compat1451287261500"></script>
+
+<script src="/static/lib/js/jq/jquery-1.11.1.min.js"></script>
+
+<script src="/static/lib/js/dialog-min.js"></script>
+
+<script src="/static/lib/js/validform.js"></script>
+
+
+<script src="/static/source/js/common.js?v="></script>
+
+
+<script type="text/javascript" src="/static/source/js/modules/contract.js"></script>
+
+
+
+</html>
+

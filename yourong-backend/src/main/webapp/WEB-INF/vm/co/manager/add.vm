@@ -1,0 +1,114 @@
+#set($layout = "/layout/iframe.vm")
+#parse("/co/manager/head.vm")
+#set($manager ={"title":"头像图片", "category":"manager_href","dzId":"dropzone_manager_href"})
+<div tabindex="-1" class="modal fade" id="add-manager-modal-table" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog w1100">
+        <div class="modal-content">
+            <div class="modal-header no-padding">
+                <div class="table-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+                        <span class="white">×</span>
+                    </button>
+                    <span class="modalFormTitle" id="managerTitle">添加管理层</span>
+                </div>
+            </div>
+
+            <div class="modal-body">
+                <form  class="form-horizontal" id="managerForm">
+                    <input type="hidden" id="j-json-dropzone_manager_href" name="managerAttachmentsData"/>
+                    <div id="num_1">
+                        <div class="form-group">
+                            <label for="form-field-parentId" class="col-sm-2 control-label no-padding-right">姓名:</label>
+                            <div class="col-sm-6">
+                                <div class="clearfix">
+                                    <input type="text" name="manageName" id="manageName" class="col-xs-8 col-sm-8 exclude valid-other" placeholder="" dataType="*" >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" id="articlechosen_group">
+                            <label for="form-field-image" class="col-sm-2 control-label no-padding-right"> 头像图片: </label>
+                            <div class="col-sm-10">
+                                <div>
+                                    <div class="widget-box">
+                                        <div class="widget-header">
+                                            <h5>${manager.title}</h5>
+                                        </div>
+                                        <div class="widget-body">
+                                            <div class="widget-main">
+                                                <div class="form-group clearfix">
+                                                ###添加文件按钮
+                                                    <span class="btn btn-success fileinput-button ${manager.dzId} dz-upload-btn">
+                                    <i class="glyphicon glyphicon-plus"></i>
+                                    <span>添加文件</span>
+                                </span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="btn btn-primary delImage" id="del-${manager.dzId}">一键删除</span>
+                                                ###图片控件容器
+                                                    <div class="dropzoneImage dropzone dropzoneSort" id="${manager.dzId}" data-category="${manager.category}">
+                                                        <div class="fallback">
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="form-field-parentId" class="col-sm-2 control-label no-padding-right">职位:</label>
+                            <div class="col-sm-6">
+                                <div class="clearfix">
+                                    <input type="text" name="manageJob" id="manageJob" class="col-xs-8 col-sm-8 exclude valid-other" placeholder="" dataType="*" >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="form-field-parentId" class="col-sm-2 control-label no-padding-right">事件内容:</label>
+                            <div class="col-sm-6">
+                                <div class="clearfix">
+                                    <textarea name="manageContent" id="manageContent"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" id="id" name="id" >
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" id="submit_manager" data-page="1" class="btn btn-primary">保存</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div tabindex="-1" class="modal fade" id="add-manager-info-table" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog w1100">
+        <div class="modal-content">
+            <div class="modal-header no-padding">
+                <div class="table-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+                        <span class="white">×</span>
+                    </button>
+                    <span class="modalFormTitle" id="couponTemplateTitle">简介信息</span>
+                </div>
+            </div>
+
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-12 ">
+                        <div class="table-responsive ">
+                            <div id="manageinfo">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+

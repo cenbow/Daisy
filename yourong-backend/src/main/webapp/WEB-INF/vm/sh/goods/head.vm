@@ -1,0 +1,29 @@
+#parse("/common/common.vm")
+#########################################script#####################################
+#set($js_config=[
+    "'urlMap':{
+    'uploadURL':'$root_url/commonUpload/uploadFile',
+    'ajax':'$root_url/shopgoods/ajax?',
+    'query':'$root_url/order/index?',
+    'save':'$root_url/shopgoods/savegoods',
+    'savesort':'$root_url/shopgoods/savesort',
+    'upper':'$root_url/shopgoods/upper',
+    'lower':'$root_url/shopgoods/lower',
+    'edit':'$root_url/shopgoods/edit',
+    'findattachment':'$root_url/shopgoods/findattachment',
+    'deleted':'$root_url/shopgoods/deleted'
+    },
+    'permission':{
+    'addGoods':$shiro.hasPermission('shoporder:addGoods'),
+    'sort':$shiro.hasPermission('shoporder:sort'),
+    'lower':$shiro.hasPermission('shopgoods:lower'),
+    'upper':$shiro.hasPermission('shopgoods:upper'),
+    'edit':$shiro.hasPermission('shopgoods:edit'),
+    'deleted':$shiro.hasPermission('shopgoods:deleted')
+    },
+    'status':#buildDictJson('order_standard_status'),
+    'orderSource':#buildDictJson('source_sys')
+    "])
+#set($css_url=["$root_url/static/js/lib/My97DatePicker/skin/WdatePicker.css","$root_url/static/assets/css/dropzone.css","$root_url/static/js/lib/jcrop/jquery.Jcrop.min.css","$root_url/static/js/lib/colorbox/colorbox.css","$root_url/static/js/lib/colorbox/colorbox.css"])
+#set($js_url=["$root_url/static/js/shopgoods.js","$root_url/static/js/lib/My97DatePicker/WdatePicker.js","$root_url/static/assets/js/dropzone.min.js","$root_url/static/js/dz-upload.js","$root_url/static/js/lib/jcrop/jquery.Jcrop.min.js","$root_url/static/js/lib/colorbox/jquery.colorbox-min.js"])
+#########################################DOM#####################################

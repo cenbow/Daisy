@@ -1,0 +1,230 @@
+#parse('/mobile/common.vm')
+## 我把zepto.fullpage.css的代码放到 sinaSavingPot.css 里了，这样少一次请求
+#set($css_url=["$res_url/source/css/post/operateReport2016.css"])
+#set($title='有融网2016下半年运营报告')
+<style>
+    .u-foot {
+        width: 100%;
+        text-align: center;
+        background: url("$res_url/img/post/reportLatter2016/bg.png") no-repeat center;
+    }
+
+    .u-foot img {
+        display: block;
+        margin: 0 auto;
+    }
+</style>
+
+<div class="wp  id=" j-wp">
+<div class="wp-inner">
+## page1
+    <div class="page page1" id="page" style="background-color: #fafafa">
+
+        <div>
+            <div class="u-section-content" style="opacity: 1;transition: none">
+                <img class="img-responsive  " src="$res_url/img/post/reportLatter2016/head.png"/>
+            </div>
+        </div>
+    </div>
+
+## page2
+    <div class="page page2" style="background-color: #ffffff">
+        <div>
+            <img class="img-responsive" src="$res_url/img/post/reportLatter2016/data_1_1.png"/>
+            <div class="u-section-content">
+                <img class="img-responsive " src="$res_url/img/post/reportLatter2016/data_1_2.png"/>
+            </div>
+        </div>
+    </div>
+
+## page3
+    <div class="page page3" style="background-color: #ffffff">
+        <div>
+            <img class="img-responsive" src="$res_url/img/post/reportLatter2016/data_2_1.png"/>
+            <div class="u-section-content">
+                <img class="img-responsive " src="$res_url/img/post/reportLatter2016/data_2_2.png"/>
+            </div>
+        </div>
+    </div>
+
+## page4
+    <div class="page page4" style="background-color: #f7f7f7">
+        <div>
+            <img class="img-responsive" src="$res_url/img/post/reportLatter2016/data_3_1.png"/>
+            <div class="u-section-content">
+                <img class="img-responsive" src="$res_url/img/post/reportLatter2016/data_3_2.png"/>
+            </div>
+        </div>
+    </div>
+
+## page5
+    <div class="page page5" style="background-color: #efefef">
+        <div>
+            <img class="img-responsive" src="$res_url/img/post/reportLatter2016/data_4_1.png"/>
+            <div class="u-section-content">
+                <img class="img-responsive" src="$res_url/img/post/reportLatter2016/data_4_2.png"
+                     style="margin-top:-20px;"/>
+            </div>
+        </div>
+    </div>
+
+## page6
+    <div class="page page6" style="background-color: #efefef">
+        <div class="u-section-content">
+            <img class="img-responsive" src="$res_url/img/post/reportLatter2016/data_5.png" style="margin-top:30px;"/>
+        </div>
+
+    </div>
+
+## page7
+    <div class="page page7" style="background-color: #ffffff">
+        <div>
+            <img class="img-responsive" src="$res_url/img/post/reportLatter2016/data_6_1.png"/>
+            <div class="u-section-content">
+                <img class="img-responsive" src="$res_url/img/post/reportLatter2016/data_6_2.png"/>
+            </div>
+        </div>
+    </div>
+## page8
+    <div class="page page8" style="background-color: #ffffff">
+        <div>
+            <img class="img-responsive" src="$res_url/img/post/reportLatter2016/data_7_1.png" style="margin-top:15px;"/>
+            <div class="u-section-content">
+                <img class="img-responsive" src="$res_url/img/post/reportLatter2016/data_7_2.png"/>
+            </div>
+        </div>
+    </div>
+## page9
+    <div class="page page9" style="background-color: #f8f8f8">
+        <div>
+            <img class="img-responsive" src="$res_url/img/post/reportLatter2016/data_8_1.png"/>
+            <div class="u-section-content">
+                <img class="img-responsive " src="$res_url/img/post/reportLatter2016/data_8_2.png"/>
+            </div>
+        </div>
+    </div>
+## page10
+    <div class="page page10" style="background-color: #ffffff">
+        <div>
+            <img class="img-responsive" src="$res_url/img/post/reportLatter2016/data_9_1.png"
+                 style="margin-top:-10px;"/>
+            <div class="u-section-content">
+                <img class="img-responsive " src="$res_url/img/post/reportLatter2016/data_9_2.png"
+                     style="margin-top:-30px;"/>
+            </div>
+        </div>
+    </div>
+## page11
+    <div class="page page11" style="background-color: #f8f8f8">
+        <div>
+            <img class="img-responsive" src="$res_url/img/post/reportLatter2016/data_10_1.png"/>
+            <div class="u-section-content">
+                <img class="img-responsive" src="$res_url/img/post/reportLatter2016/data_10_2.png"
+                     style="width:90%;margin-top:-10px;"/>
+            </div>
+        </div>
+    </div>
+## page12
+    <div class="page page12" style="background-color: #ffffff">
+        <div>
+            <img class="img-responsive" src="$res_url/img/post/reportLatter2016/data_11_1.png"/>
+            <div class="u-section-content">
+                <img class="img-responsive" src="$res_url/img/post/reportLatter2016/data_11_2.png"
+                     style="margin-top:-30px;"/>
+            </div>
+        </div>
+    </div>
+## page13
+    <div class="page page13" style="background-color: #f9f9f9">
+        <div>
+            <img class="img-responsive" src="$res_url/img/post/reportLatter2016/data_12_1.png"/>
+            <div class="u-section-content">
+                <img class="img-responsive " src="$res_url/img/post/reportLatter2016/data_12_2.png"
+                     style="margin-top:-30px;"/>
+            </div>
+        </div>
+    </div>
+## page14
+    <div class="page page14 u-foot">
+
+        <div class="u-section-content">
+            <img style="width:40%;margin:60px auto;" src="$res_url/img/post/reportLatter2016/text.png"/>
+        </div>
+
+        <img style="width:60%;margin:0 auto;" src="$res_url/img/post/reportLatter2016/code.png"/>
+
+    </div>
+</div>
+</div>
+
+<span class="start  id=" j-backToTop">
+<img src="$res_url/img/post/operateReport2016/chevron.png"/>
+</span>
+
+<div class="landscape">
+    <img src="$res_url/img/post/sinaSavingPot/landscape.png">
+    <p>为了更好的体验，请将手机/平板竖过来</p>
+</div>
+
+#set($isZepto=true)
+<script src="$aliyunOss_url/res/lib/zepto/1.1.6/zepto.min.js"></script>
+<script src='$res_url/lib/fullpage/zepto.fullpage.js'></script>
+<script>
+    $('.wp-inner').fullpage({
+        page: '.page',
+        start: 0,
+        duration: 500,
+
+        // 为了兼容app中的头部所以drag这里设为false
+        drag: true,
+        loop: false,
+        dir: 'v',
+        change: function (e) {
+            $('.u-section-content').eq(e.cur).addClass('z-enter');
+            if (e.cur === 13) {
+                $('.start').hide();
+            }
+            else {
+                $('.start').show();
+            }
+        },
+        beforeChange: function (e) {
+        },
+        afterChange: function (e) {
+        },
+        orientationchange: function (e) {
+            /* 如果出现自动横屏就提示竖屏的体验更好 */
+            if (e === 'landscape') {
+                $('.landscape').show();
+            } else {
+                $('.landscape').hide();
+            }
+        }
+    });
+
+    $('#j-backToTop').click(function () {
+        $.fn.fullpage.moveTo(0, true);
+    });
+
+    var section3Height = $('#j-section3').height(),
+// ipad 下的 window高度和 page 高度一样，安卓不一样
+            bodyHeight = window.innerHeight,
+// 这是容器的高度，不包括浏览器自带的head和 foot
+            pageHeight = $('#page').height(),
+            marginBottomNum;
+
+    /* 这里微调第三块的图片，在ipod touch下，$('#page')的高度会高于bodyHeight，
+     所以在这里特别做一下兼容，其他手机都正常
+     因为在上下都有导航情况下，图片会顶头
+     */
+    if (bodyHeight == pageHeight) {
+        marginBottomNum = (pageHeight - section3Height) / 2 + (pageHeight - bodyHeight);
+    } else {
+        marginBottomNum = (pageHeight - section3Height) / 2 + 25;
+    }
+    $('.u-section').css({
+        'bottom': marginBottomNum
+    });
+
+
+</script>

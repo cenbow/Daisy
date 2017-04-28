@@ -1,0 +1,26 @@
+#parse("/tc/preservation/head.vm") 
+<div class="col-xs-12">
+  <p>
+    ##<button id = "new_preservation" type="button" class="btn btn-info btn-sm btn-primary" >新增</button>
+    ##<button id = "edit_preservation" type="button" class="btn  btn-pink btn-sm btn-primary" >修改</button>
+    ##<button id = "delete_preservation" type="button" class="btn btn-danger btn-sm btn-primary" >删除</button>
+  </p>
+</div>
+<div class="col-xs-12">
+	<div class="table-header">
+     		创建数据保全
+	</div>
+	<div class="table-responsive">
+		<form id="preservation_form">
+		<table id="preservation-table-2" class="table table-striped table-bordered" cellspacing="0" width="100%">
+			<thead> 
+				<tr>  
+                 <td width="100">交易号：</td>
+                 <td><input type="text" id="search_transactionId" name="search_transactionId" class="input-large search_init"/></td>
+                 <th><button id = "create_preservation" type="button" class="btn btn-info btn-sm btn-primary">创建数据保全</button></th>
+				</tr>
+            </thead>
+		</table>
+		</form>
+	</div>
+</div>

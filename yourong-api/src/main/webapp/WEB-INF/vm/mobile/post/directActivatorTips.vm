@@ -1,0 +1,210 @@
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($title='快投有奖')
+
+#if($currentUser)
+    #set($logined=true)
+#else
+    #set($logined=false)
+#end
+#CSRFToken('xToken')
+##  安卓
+#if($loginSource==1)
+    #set($os=1)
+#end
+##  IOS
+#if($loginSource==2)
+    #set($os=2)
+#end
+##
+#if($loginSource==1 || $loginSource==2)
+<style>
+    .g-ft {
+        display: none;
+    }
+</style>
+#else
+##header，安卓ios，不需要头部
+<h2 class="u-pageTitle f-pos-r">
+    <a href="$siteurl/mIndex">有融网</a>
+    <span class=" f-pos-a f-fs18 f-ff-ver">
+        #if(!$currentUser)
+            <a href="$siteurl/mstation/login" id="j-login">登录</a>
+                <a href="$siteurl/mstation/register" id="j-register">注册</a>
+        #else
+            <a href="$mCenter_logout_url">退出</a>
+        #end
+        </span>
+</h2>
+#end
+<style>
+    .m-direct-head img {
+        width: 100%;
+        position: relative;
+    }
+
+    .m-direct-head h1 {
+        color: #fff;
+        font-size: 1.25rem;
+        position: absolute;
+        font-weight: bold;
+        margin-top: -6rem;
+        margin-left: 1.2rem;
+    }
+
+    .m-direct-head h2 {
+        color: #fff;
+        font-size: 0.9rem;
+        position: absolute;
+        margin-top: -4rem;
+        margin-left: 1.2rem;
+    }
+
+    .m-direct-head h2 i {
+        color: #fff000;
+    }
+
+    .m-content p {
+        width: 91%;
+        margin: 1rem auto;
+        font-size: 0.875rem;
+        color: #666;
+        line-height: 1.75rem;
+    }
+
+    .m-content p i {
+        color: #d74148;
+    }
+
+    .m-content h1 {
+        color: #d74148;
+        font-size: 1.05rem;
+        text-indent: 4.5%;
+    }
+
+    .m-content h1 img {
+        display: inline-block;
+        width: 1.1rem;
+        height: 1.1rem;
+        top: 0.12rem;
+        position: relative;
+    }
+
+    .m-content .u-award-bag {
+        width: 95%;
+        margin: 1rem auto 1.2rem;
+    }
+
+    .m-content .u-award-bag img {
+        margin-left: 0.8rem;
+        display: inline-block;
+        width: 4.1875rem;
+    }
+
+    .m-content .u-award-bag h3 {
+        margin-top: -3.7rem;
+    }
+
+    .u-award-bag h3 p {
+        color: #fff;
+        font-size: 0.75rem;
+        width: 3.1rem;
+        text-align: left;
+        margin-left: 2.2rem;
+        display: inline-block;
+        position: relative;
+    }
+
+    .u-award-bag h3 p.f-two-win{
+        margin-left: 1.8rem;
+    }
+    .u-award-bag h3 p.f-third-win{
+        margin-left: 1.8rem;
+    }
+    .u-award-bag h3 p.f-four-win{
+        margin-left: 2rem;
+    }
+    .u-award-bag h3 p em {
+        color: #fff000;
+    }
+
+    .u-bottom-tips {
+        color: #e33f4a;
+        margin: 0 auto;
+        width: 100%;
+        text-align: center;
+        font-size: 1rem;
+        line-height: 2rem;
+        top: -0.8rem;
+        position: relative;
+    }
+
+    .u-bottom-button {
+        width: 36%;
+        height: 2.2rem;
+        border: 1px solid #d74148;
+        background: #d74148;
+        color: #fff;
+        font-size: 1rem;
+        line-height: 2.3rem;
+        margin: 0 auto;
+        border-radius: 30px;
+        position: relative;
+        left: -0.5rem;
+        text-align: center;
+        margin-bottom: 4rem;
+    }
+
+    @media screen and (min-width: 390px) {
+        html {
+            font-size: 18px;
+        }
+
+        .m-content .u-award-bag h3 {
+            margin-top: -3.6rem;
+        }
+    }
+
+    @media screen and (min-width: 360px) and (max-width: 389px) {
+        html {
+            font-size: 16px;
+        }
+    }
+
+    @media screen and (max-width: 359px) {
+        html {
+            font-size: 14px;
+        }
+
+        .m-content .u-award-bag h3 {
+            margin-top: -3.75rem;
+        }
+    }
+</style>
+
+<div class="m-direct-head">
+    <img src="$res_url/img/post/directActivatorTips/direct-head.png">
+    <h1>超值奖励·等你来抽</h1>
+    <h2> 有融网<i>“快投有奖”</i>上线 </h2>
+</div>
+<div class="m-content">
+    <p>借款人为了加快项目募集速度，愿提供资金委托有融网设立抽奖奖项鼓励投资，
+        越<i>早</i>募集成功借款人提供的奖励越<i>多</i>，超过借款人奖励期限不提供奖励。 </p>
+    <h1><img src="$res_url/img/post/directActivatorTips/direct-title.png"> 奖品设置</h1>
+    <div class="u-award-bag">
+        <img src="$res_url/img/post/directActivatorTips/award.png">
+        <img src="$res_url/img/post/directActivatorTips/award.png">
+        <img src="$res_url/img/post/directActivatorTips/award.png">
+        <img src="$res_url/img/post/directActivatorTips/award.png">
+        <h3><p><em>一</em>等奖</p>
+            <p class="f-two-win"><em>二</em>等奖</p>
+            <p class="f-third-win"><em>三</em>等奖</p>
+            <p class="f-four-win"><em>四</em>等奖</p></h3>
+    </div>
+    <h1><img src="$res_url/img/post/directActivatorTips/direct-title.png"> 如何获得抽奖机会</h1>
+    <p>投资成功即可抽奖，单笔投资金额越多可获得的抽奖次数越多。</p>
+</div>
+<div class="u-bottom-tips"> 欲知详情，赶快下载APP投资抽奖，<br>赢取千元豪礼！</div>
+<a href="/yourong-api/static/page/twoCodeRedict.html">
+    <div class="u-bottom-button">点此下载</div>
+</a>

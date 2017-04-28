@@ -1,0 +1,129 @@
+<div tabindex="-1" class="modal fade" id="modal-take" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog" >
+        <div class="modal-content">
+            <div class="modal-header no-padding">
+                <div class="table-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+                        <span class="white">×</span>
+                    </button>
+                    <span class="modalFormTitle">发货信息</span>
+                </div>
+            </div>
+            <div class="modal-body" style="text-align:center">
+                <form id="controlRemarks_form">
+                    <thead>
+                        <table>
+                            <tr>
+                                <td>
+                                    <label>发货信息</label>
+                                    <input type="hidden" name="orderid"  id="orderid"/>
+                                    <textarea id="sendremark" name="sendremark" rows="5" cols="60" maxlength=1000></textarea>
+                                    <br/>
+                                    <font size=2>提示：虚拟卡券，请填写对应激活码；超值实物，请填写对应快递单号。</font>
+                                </td>
+                            <tr>
+                        </table>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btn_add_sendremarks" class="btn btn-primary">提交</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div tabindex="-1" class="modal fade" id="modal-balance" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog" >
+        <div class="modal-content">
+            <div class="modal-header no-padding">
+                <div class="table-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+                        <span class="white">×</span>
+                    </button>
+                    <span class="modalFormTitle">多贝余额</span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-12 ">
+                        <div class="table-responsive ">
+                            <label>余额:<span id="duobei_balance">500</span></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div tabindex="-1" class="modal fade" id="modal-orderRemark" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog" >
+        <div class="modal-content">
+            <div class="modal-header no-padding">
+                <div class="table-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+                        <span class="white">×</span>
+                    </button>
+                    <span class="modalFormTitle">添加备注</span>
+                </div>
+            </div>
+            <div class="modal-body" style="text-align:center">
+                <form id="controlRemarks_form">
+                    <table>
+                        <tr>
+                            <td>
+                                <input type="hidden" name="orderRemarkId"  id="orderRemarkId"/>
+                                <textarea id="orderRemark" name="orderRemark" rows="5" cols="60" maxlength=150 placeholder="添加备注"></textarea>
+                                <br/>
+                                <font size=2><font id="fontMax" size=2 color=red>150</font>字以内</font>
+                            </td>
+                        <tr>
+                    </table>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btn_add_orderremarks" class="btn btn-primary">确定</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div tabindex="-1" class="modal fade" id="modal-failtake" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog" >
+        <div class="modal-content">
+            <div class="modal-header no-padding">
+                <div class="table-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+                        <span class="white">×</span>
+                    </button>
+                    <span class="modalFormTitle">发货信息</span>
+                </div>
+            </div>
+            <div class="modal-body" style="text-align:center">
+                <form id="controlRemarks_form">
+                    <thead>
+                    <table>
+                        <tr>
+                            <td>
+                                <label>发货信息</label>
+                                <input type="hidden" name="failorderid"  id="failorderid"/>
+                                <textarea id="failsendremark" name="failsendremark" rows="5" cols="60" maxlength=1000></textarea>
+                                <br/>
+                                <font size=2>提示：虚拟卡券，请填写对应激活码；超值实物，请填写对应快递单号。</font>
+                            </td>
+                        <tr>
+                    </table>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btn_add_failsendremarks" class="btn btn-primary">提交</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>

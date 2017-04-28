@@ -1,0 +1,183 @@
+## 支付中转
+#parse("/common/common.vm")
+#set($layout='/layout/default.vm')
+#set($orderNo=${request.getParameter('orderNo')})
+#set($usedCapital=${request.getParameter('usedCapital')})
+#set($payType=${request.getParameter('payType')})
+#set($cashCouponNo=${request.getParameter('cashCouponNo')})
+#set($usedCouponAmount=${request.getParameter('usedCouponAmount')})
+#set($payAmount=${request.getParameter('payAmount')})
+#set($isFirstCreaterOrder=${request.getParameter('isFirstCreaterOrder')})
+#CSRFToken('xToken')
+<style>
+    body{
+        background: url('/static/img/member/replay_loading.gif') no-repeat center center;
+    }
+</style>
+<script src="$root_url/static/lib/js/jq/jquery-1.11.1.min.js"></script>
+<script>
+    $.extend({
+        // Ajax Post Method
+        xPost: function (config) {
+            var type = "POST",
+                    datatype = "json",
+                    async = true;
+            if (typeof config === "object") {
+                type = config.type ? config.type : type;
+                datatype = config.datatype ? config.datatype : datatype;
+                async = config.async ? config.async : async;
+                var xToken = $("#xToken").val(),
+                        xData = config.data;
+
+                if (typeof xToken !== "undefined" && xToken !== "") {
+                    if (config.hasOwnProperty("data")) {
+                        //拼接的JSON(Object)
+                        if ($.isPlainObject(xData)) {
+                            xData.xToken = xToken;
+                        }
+                        //序列化的表单数据(Array)
+                        else if ($.isArray(xData)) {
+                            //add xToken
+                            var hasToken = false;
+                            $.each(xData, function (index, item) {
+                                if (item.name === 'xToken') {
+                                    hasToken = true;
+                                }
+                            });
+                            !hasToken ? xData.push({name: 'xToken', value: xToken}) : null;
+                        }
+
+                    }
+                    else {
+                        xData = {
+                            xToken: xToken
+                        };
+                    }
+                }
+            }
+            else {
+                throw new Error("xPost: config参数为空或不是对象");
+            }
+            $.ajax({
+                type: type,
+                url: config.url,
+                data: xData,
+                dataType: datatype,
+                async: async,
+                success: config.callback,
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                }
+            });
+        },
+        /*
+     * 本地存储封装,所有键值对存在localStorage.xStorage下
+     * @param name {string} key name
+     * @param value {string｜number} key value
+     * @return get => {string|number}, set|del => {object},没有参数 => undefined
+     */
+        xStorage: function (name, value) {
+            var sessionData = {},
+                    xStorageValue = localStorage.getItem('xStorage');
+            if (xStorageValue) {
+                sessionData = $.parseJSON(xStorageValue);
+            } else {
+                localStorage.setItem('xStorage', '{}');
+            }
+
+            var action = typeof(arguments[1]) === 'undefined' ? 'get' : (arguments[1] !== null ? 'set' : 'del');
+            switch (action) {
+                case 'get':
+                    return $.type(name) === 'string' ? sessionData[name] : undefined;
+                    break;
+
+                case 'set':
+                    sessionData[name] = value;
+                    localStorage.setItem('xStorage', JSON.stringify(sessionData));
+                    break;
+
+                case 'del':
+                    delete sessionData[name];
+                    name ? localStorage.setItem('xStorage', JSON.stringify(sessionData)) : throwError('name');
+                    break;
+
+                default:
+                    return sessionData;
+            }
+
+            function throwError(name) {
+                throw new ReferenceError('xStorage: ' + name + ' is not defined');
+            }
+
+            return sessionData;
+        }
+    })
+
+    var ORDER_INFO = {
+        orderNo: '$!{orderNo}',
+        usedCapital: '$!{usedCapital}',
+        payType: '${payType}',
+        cashCouponNo: '$!{cashCouponNo}',
+        usedCouponAmount: '$!{usedCouponAmount}',
+        payAmount: '$!{payAmount}'
+    }
+
+    window.onload = function () {
+        var orderNo = ORDER_INFO.orderNo,
+                usedCapital = ORDER_INFO.usedCapital,
+                cashCouponNo = ORDER_INFO.cashCouponNo || 0,
+                usedCouponAmount = ORDER_INFO.usedCouponAmount || 0,
+                payAmount = ORDER_INFO.payAmount || 0,
+                payType = ORDER_INFO.payType
+
+        var data = {
+            orderNo: orderNo,
+            usedCapital: usedCapital
+        }
+
+        if (cashCouponNo) {
+            data.cashCouponNo = cashCouponNo
+            data.usedCouponAmount = usedCouponAmount
+        }
+
+        switch (payType) {
+            case 'balance':
+                gotoPay('/transaction/pay/order/cashDesk', 0)
+                break
+            case 'recharge':
+                data.payAmount = payAmount
+                data.isFirstCreaterOrder =$!{isFirstCreaterOrder}
+                        gotoPay('/transaction/pay/order/recharge', 1)
+                break
+            default:
+                alert('非法请求,请重新提交支付.')
+        }
+        function gotoPay(url, type) {
+            $.xPost({
+                url: url,
+                data: data,
+                callback: function (data) {
+
+                    if (data.success) {
+                        var formHtml = type ? data.result : data.result.redirectUrl,
+                                urlReg = /https?:\/\/[a-zA-Z0-9.\-\/]{20,100}/,
+                                urlMatch = formHtml.match(urlReg)
+
+                        var formUrl = urlMatch ? urlMatch[0] : null
+
+                        if (formUrl) {
+                            $('body').html(formHtml)
+                        }
+                    } else {
+                        var error = data.resultCodeEum
+                        if (error && error[0]) {
+                            var opener=window.opener
+                            opener.vm.layer = 60
+                            opener.vm.relayCallback(error[0])
+                            window.close()
+                        }
+                    }
+                }
+            })
+        }
+    }
+</script>

@@ -1,0 +1,221 @@
+
+/* zepto.fullpage.css */
+.fullPage-wp{
+    -webkit-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+}
+.fullPage-wp:after {
+    display: block;
+    content: ' ';
+    height: 0;
+    clear: both;
+}
+.fullPage-wp.anim{
+    -webkit-transition: all 600ms ease-in-out 0s;
+    transition: all 600ms ease-in-out 0s;
+}
+.fullPage-page{
+    display: block;
+    overflow: hidden;
+}
+
+.fullPage-dir-h {
+    float: left;
+}
+
+/* 这里防止用户高频率刷新带来的图片重叠问题，在fullpage执行完了之后再显示，js里有控制 */
+
+body {
+    background: #ffffff;
+    /* 禁止横屏文字缩放 */
+    -webkit-text-size-adjust: none;
+    -ms-text-size-adjust: none;
+    text-size-adjust: none;
+}
+
+.wp {
+    overflow: hidden;
+    position: absolute;
+    top: 0;  left: 0;  right: 0;  bottom: 0;
+    height: 100%;
+}
+
+.u-section1-title{
+    border-bottom: 1px solid #ffffff;
+}
+/* 页面加载时隐藏footer */
+
+.g-ft {
+    display: none;
+}
+
+/* header和body的颜色一样了有点难看 */
+
+.u-pageTitle>a{
+    margin-left: -150px;
+}
+
+.u-section-content {
+    opacity: 0;
+    transition: opacity 0.3s ease-out 0.5s;
+}
+
+.u-section-content.z-enter {
+    opacity: 1;
+}
+.u-section-content h2 {
+    font-size: 1.6rem;
+    margin-bottom: 5px;
+}
+
+.u-section-content p {
+    font-size: 15px;
+}
+
+.page {
+    position: relative;
+    text-align: center;
+}
+
+.img-responsive {
+    display: inline-block;
+    width: 100%;
+    height: auto;
+    position:relative;
+    text-align: center;
+}
+    /* 这里的bottom距离由js根据第三屏幕的高度来定 */
+
+.u-section {
+    display: block;
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+    padding-left: 15px;
+    padding-right: 15px;
+    position: absolute;
+    box-sizing: border-box;
+    bottom: 100px;
+}
+
+
+/* 第五块的按钮 */
+
+.u-section5-btn {
+    border: 1px solid #fff;
+    color: #fff;
+    padding-left: 3.1rem;
+    padding-right: 3.1rem;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    display: inline-block;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 100px;
+}
+
+/* 回到顶部按钮 */
+.start {
+    position: fixed;
+    left: 50%;
+    margin-left: -17px;
+    bottom: 0px;
+    margin-top: -34px;
+    width: 34px;
+    height: 34px;
+}
+
+.start img {
+    position: absolute;
+    left: 50%;
+    top: 10px;
+    margin-left: -9px;
+    margin-top:-10px;
+    width: 19px;
+    height: 12px;
+    background-size: 100% 100%;
+    -webkit-animation: start 1.5s infinite ease-in-out;
+    animation: start 1.5s infinite ease-in-out;
+}
+
+/* 向上的动画 */
+@-webkit-keyframes start {
+    0% {
+        -webkit-transform: translate(0, 5px);
+    }
+    100% {
+        -webkit-transform: translate(0, -10px);
+    }
+}
+
+@keyframes start {
+    0% {
+        transform: translate(0, 5px);
+    }
+    100% {
+        transform: translate(0, -10px);
+    }
+}
+
+/* 在手机自动横屏时出现，提示竖屏体验更好 */
+.landscape {
+    display: none;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: #ffd40a;
+    font-size: 22px;
+    background: #32373b;
+}
+
+.landscape img {
+    width: 128px;
+    height: 194px;
+    margin-top: 20px;
+    -webkit-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+    -webkit-animation: landscape 2s infinite;
+    animation: landscape 2s infinite;
+}
+
+@-webkit-keyframes landscape {
+    0% {
+        -webkit-transform: rotate(-90deg);
+    }
+    50% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(-90deg);
+    }
+}
+
+@keyframes landscape {
+    0% {
+        -webkit-transform: rotate(-90deg);
+        transform: rotate(-90deg);
+    }
+    50% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(-90deg);
+        transform: rotate(-90deg);
+    }
+}
+
+.u-foot{
+    background: url('../../../img/post/operateReport2016/date-14bg.png') no-repeat;
+    background-size:100% 100%;
+    height:100%;
+}
+
+
+
+
+

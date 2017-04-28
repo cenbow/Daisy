@@ -1,0 +1,319 @@
+#parse('/common/common.vm')
+#set($title="$!{project.name}")
+#if(!$sysServiceUtil.isDev())
+    #set($siteurl='')
+#else
+    #set($siteurl='/yourong-api')
+#end
+#set($css_url=["$siteurl/static/source/css/detail.css"])
+#set($debt = ${project.debtDto})
+#if($debt.isCollateral  || $debt.isCreditDebt)
+	#set($debtCollateral = ${debt.debtCollateral})
+#else
+	#set($debtPledge = ${debt.debtPledge})
+#end
+#set($enterpriseProject=${project.enterpriseProjectInfoDto})
+<style>
+	html{
+		font-size: 62.5%;
+	}
+</style>
+    <article class="g-wrap m-project-info">
+        <section>
+            <header>项目介绍</header>
+            <div>${project.shortDesc} </div>
+        </section>
+        <section>
+			#if(${debt.isEnterprise()})
+            	<header>借款企业信息</header>
+            #else
+            	<header>借款人基本信息</header>
+            #end
+            <div>
+    			#foreach($_attach in $project.borrowMemberAttachments)
+				<div class="u-mark-info">                   
+					<img src="#getImagePath($!{_attach.fileUrl},'425')" title="$!{_attach.fileName}">
+                   	<p>$!{_attach.fileName}</p>
+				</div>
+    			#end
+				#if(${debt.isEnterprise()})
+					#set($bEnterprise = $!{debt.borrowMemberBaseBiz.getEnterprise()})
+                    <table class="u-info-table">
+                        <tr>
+                            <td>公司名称：${bEnterprise.name}</td>
+                        </tr>
+                        <tr>
+                            <td>注册时间：$!{dateUtil.formatDatetoString(${bEnterprise.regeditDate},"yyyy年MM月")}</td>
+                        </tr>
+                        <tr>
+                            <td>注册资本：${bEnterprise.income}万</td>
+                        </tr>
+                        <tr>
+                            <td>公司所在地：${bEnterprise.region}</td>
+                        </tr>
+                    </table>
+				#else
+					#set($bMember = $!{debt.borrowMemberBaseBiz.member})
+                    #set($bMemberInfo = $!{debt.borrowMemberBaseBiz.memberInfo})
+					<table class="u-info-table">
+                        <tr>
+							<td>性别：${sysServiceUtil.getDictLabelByValue("$!{bMember.sex}","sex","")}</td>
+						</tr>
+                        <tr>	
+							<td>年龄：$!{bMember.getAge()}</td>
+						</tr>
+                        <tr>
+							<td>婚否：${sysServiceUtil.getDictLabelByValue("$!{bMemberInfo.marriage}","marriage","")}</td>
+						</tr>
+                        <tr>
+							<td>学历：${sysServiceUtil.getDictLabelByValue("$!{bMemberInfo.highEdu}","education","")}</td>
+						</tr>
+                        <tr>
+                            <td colspan="2">户籍地：$!{bMemberInfo.censusRegisterName}</td>
+						</tr>
+						<tr>
+                            <td colspan="2">身份证号：$!{bMember.maskIdentityNumber()}</td>
+                        </tr>
+               		</table> 
+				#end
+            </div>
+        </section>
+        <section>
+            #if(${debt.isLenderEnterprise()})
+            	<header>出借企业信息（原始债权人）</header>
+            #else
+            	<header>出借人基本信息（原始债权人）</header>
+            #end           
+            <div>
+                #foreach($_attach in $project.lenderMemberAttachments)
+                <div class="u-mark-info"> 
+                   <img src="#getImagePath($!{_attach.fileUrl},'425')" title="$!{_attach.fileName}">
+					<p>$!{_attach.fileName}</p>
+				</div>
+				#end
+				
+				#if(${debt.isLenderEnterprise()})
+					#set($lEnterprise = $!{debt.lenderMemberBaseBiz.getEnterprise()})
+                    <table class="u-info-table">
+                        <tr>
+                            <td>公司名称：${lEnterprise.name}</td>
+                        </tr>
+                        <tr>
+                            <td>注册时间：$!{dateUtil.formatDatetoString(${lEnterprise.regeditDate},"yyyy年MM月")}</td>
+                        </tr>
+                        <tr>
+                            <td>注册资本：${lEnterprise.income}万</td>
+                        </tr>
+                        <tr>
+                            <td>公司所在地：${lEnterprise.region}</td>
+                        </tr>
+                    </table>
+				#else
+					#set($lenderMember = $!debt.lenderMember)
+					#set($lMemberInfo = $!debt.lenderMember.memberInfo)
+	                <table class="u-info-table">
+	                    <tr>
+							<td>性别：${sysServiceUtil.getDictLabelByValue("$!{lenderMember.sex}","sex","")}</td>
+						</tr>
+	                    <tr>	
+							<td>年龄：$!{lenderMember.getAge()}</td>
+						</tr>
+	                    <tr>
+							<td>婚否：${sysServiceUtil.getDictLabelByValue("$!{lMemberInfo.marriage}","marriage","")}</td>
+						</tr>
+	                    <tr>
+							<td>学历：${sysServiceUtil.getDictLabelByValue("$!{lMemberInfo.highEdu}","education","")}</td>
+						</tr>
+	                    <tr>
+	                        <td colspan="2">户籍地：$!{lMemberInfo.censusRegisterName}</td>
+						</tr>
+						<tr>
+	                        <td colspan="2">身份证号：$!{lenderMember.maskIdentityNumber()}</td>
+	                    </tr>
+	           		</table> 
+				#end
+            </div>
+        </section>
+        <section>
+			#if($debt.isCreditDebt)
+				#if($debt.isCarPayInDebt)
+					<header>车贷垫资基本信息</header>
+				#elseif($!debt.isCarBusinessDebt)
+					<header>财产保障信息</header>
+				#elseif($debt.isRunCompany)
+					<header>授信情况说明</header>
+				#else
+					<header>借款人财产保障信息</header>
+				#end
+			#else
+    			#if($debt.isCollateral)
+					#if(${debt.guarantyType}=="car" && ${debt.instalment}==1)
+						<header>购车分期基本信息</header>
+					#else
+						<header>抵押物基本信息</header>	
+					#end
+                #else
+                	<header>质押物基本信息</header>
+    			#end
+			#end
+            <div>
+				#foreach($_attach in $project.collateralAttachments)
+				<div class="u-mark-info"> 
+                  <img src="#getImagePath($!{_attach.fileUrl},'425')" title="$!{_attach.fileName}">
+					<p>$!{_attach.fileName}</p>
+				</div>
+				#end
+				
+				##车
+				 #if($debt.isCar || $debt.guarantyType == "equity" || $debt.isCreditDebt)
+					#if($debt.isNewCar() || $debt.guarantyType == "equity" || $debt.isCreditDebt)
+						##新车
+						#if($debt.isCarPayInDebt)
+        					<p id="carPayIn_info"></p>
+        				#elseif($debt.isCarBusinessDebt || $debt.isBuyCarDebt || $debt.isRunCompany)
+							<p id="base_info"></p>
+						#else	
+        					<p id="car_ms"></p>
+        				#end
+					#elseif(${debt.guarantyType}=="car" && ${debt.instalment}==1)
+						<p id="base_info"></p>
+					#else
+						<table class="u-info-table">
+                            <tr>
+                                <td>车型：<span id="car_cx"></span></td>
+							</tr>
+                            <tr>
+                                <td>登记日期：<span id="car_djrq"></span></td>
+                            </tr>
+                            <tr>
+                            	<td>行驶里程：<span id="car_xsgl"></span>公里</td>
+							</tr>
+                            <tr>	
+                                <td>市场估值：<strong class="f-fc-red"><span id="car_gz"></span></strong>万</td>
+                            </tr>
+						</table>
+					#end
+				#else
+    				##房子
+    				<table class="u-info-table">
+    					<tr>
+                            <td>房屋类型：<span id="house_fwlx"></span></td>
+						</tr>
+                            <tr>	
+                            <td>产权证号：<span id="house_cqzh"></span></td>
+                        </tr>
+                        <tr>
+                            <td>登记机构：<span id="house_djjg"></span></td>
+                        </tr>
+                            <tr>
+							<td>登记日期：<span id="house_djrq"></span></td>
+                        </tr>
+                        <tr>
+                            <td>建筑面积：<span id="house_jzmj"></span></td>
+                           </tr>
+                            <tr> 
+							<td>土地取得方式：<span id="house_tdqdfs"></span></td>
+                        </tr>
+                        <tr>
+                            <td>房屋坐落：<span id="house_fwzl"></span></td>
+                           </tr>
+                            <tr> 
+							<td>评估价格：<span id="house_gj"></span>万</td>
+                        </tr>
+                     </table>
+				#end
+            </div>
+        </section>
+		#if($debt.isRunCompany && $debt.enterprise)
+		<section>
+            <header>车商借贷金额</header>
+				<table class="u-info-table u-info-RunCompany">
+    					<tr>
+                            <td>授信额度：<span>${enterpriseProject.creditAmount}万</span></td>
+						</tr>
+                        <tr> 
+							<td>已使用额度：<span>${enterpriseProject.usedCreditAmount}万</span></td>
+                        </tr>
+                        <tr>
+                            <td>已借款金额：<span>${enterpriseProject.currentTotalAmount}万</span></td>
+						</tr>
+						<tr>
+                            <td>已还款总额：<span>$!{enterpriseProject.repaymentTotalAmount}万</span></td>
+						</tr>
+						 <tr>
+                            <td>历史借款总额：<span>${enterpriseProject.historyTotalAmount}万</span></td>
+						</tr>
+						 <tr style="display:none" class="f-dn j-db-company">
+                            <td>授信额度内由：<span id="db_company"></span>提供全额本息担保</td>
+						</tr>
+                     </table>
+        </section>
+		#end
+		#if($debt.isRunCompany && $debt.enterprise && $!{enterpriseProject.projectInvestingDtos})
+		<section>
+            <header>该企业履约中的项目</header>
+				#foreach($item in ${enterpriseProject.projectInvestingDtos})
+        			 <div>
+						预计${item.endDate}还本付息
+        			 <br>
+						<span>${item.name}</span>￥${item.formatTotalAmount}
+					 </div>
+				#end
+        </section>
+		#end
+        <section>
+            <header>还款来源</header>
+            <div>
+				$!{debt.loanUse}
+			</div>
+        </section>
+        <section>
+            <header>保障措施</header>
+            <div>
+                ${project.description}
+            </div>
+        </section>
+    </article>
+    ##<script src="${aliyun_url}/yrstatic/static/js/jquery-1.11.1.min.js"></script>
+<script src="https://yrstatic.oss-cn-hangzhou.aliyuncs.com/res/lib/zepto/1.1.6/zepto.min.js"></script>
+    <script>
+    	var productConfig = {}
+        try{
+            #if("$!debtCollateral" == "")
+            	productConfig.pledgeBaseInfo = $!{debtPledge.pledgeDetails}
+            #else
+            	productConfig.pledgeBaseInfo = $!{debtCollateral.collateralDetails}
+            #end
+        } catch(error){
+        	productConfig.pledgeBaseInfo = ""
+        }
+    	
+
+    	$(function(){
+    		renderPledgeBaseInfo(productConfig.pledgeBaseInfo);
+    	})
+    	
+    	function renderPledgeBaseInfo(dataJson) {
+            $.each(dataJson, function(n, v) {
+    			if(n=="houseRecord_info"){
+            		$("#car_ms").text(v);
+            	}else if(n=="db_company"){
+            		if(typeof v !="undefined" && v!=null && v!=""){
+            			$(".j-db-company").css("display","block");
+            		}
+        			$("#" + n).text(v);	
+        	    }else{
+            		$("#" + n).text(v);
+            		$("#" + n + "_title").attr("title", v);
+            	}
+            });
+    	}
+        //控制iframe高度
+        window.onload=function(){
+            if(window!==window.top&&window.frames.name==="detailFrame"){
+                window.top.$('#j-detail-frame')
+                        .removeAttr('style')
+                        .height(document.body.scrollHeight);
+            }
+        };
+    </script>

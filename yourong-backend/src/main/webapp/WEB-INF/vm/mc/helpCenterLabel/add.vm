@@ -1,0 +1,70 @@
+#set($layout = "/layout/iframe.vm")
+#parse("/mc/helpCenterLabel/head.vm")
+
+<div tabindex="-1" class="modal fade" id="add-modal-table" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog w1100">
+        <div class="modal-content">
+        
+            <div class="modal-header no-padding">
+                <div class="table-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+                        <span class="white">×</span>
+                    </button>
+                    <span class="modalFormTitle" id="HelpCenterLabelTitle">添加标签</span>
+                </div>
+            </div>
+
+            <div class="modal-body">
+                <form  class="form-horizontal" id="labelForm">
+                    <input type="hidden" id="j-json-dropzone_goods" name="goodsAttachmentsData"/>
+                    <div id="num_1">
+					<input type="hidden" id="id" name="id"/>
+                        <div class="form-group">
+                            <label for="form-field-parentId" class="col-sm-2 control-label no-padding-right">类别:</label>
+                                                        <div class="col-sm-6">
+                                <div class="clearfix">
+                                    <select name="category" id="category">
+                                        <option value="资金类">资金类</option>
+                                        <option value="账户类">账户类</option>
+                                        <option value="投资类">投资类</option>
+                                        <option value="功能类">功能类</option>
+                                        <option value="活动类">活动类</option>
+                                    </select>
+                                    </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="source_group">
+                                    <input name="sort" type="hidden" class="col-xs-8 col-sm-8 exclude valid-other" placeholder="" id="sort" >
+                        </div>
+                        
+            			<div class="form-group">
+                            <label for="form-field-parentId" class="col-sm-2 control-label no-padding-right">标签名称:</label>
+                               <div class="col-sm-6">
+                                	<div class="clearfix">
+                                    	<input type="text" name="labelName" id="labelName" class="col-xs-8 col-sm-8 exclude valid-other" placeholder="" dataType="*" >
+                                    </div>
+                            	</div>
+                       	</div>
+                   </div>
+                </form>     
+			</div>
+
+            <div class="modal-footer">
+                <button type="button" id="submit_label" data-page="1" class="btn btn-primary">保存</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    jQuery(function($){
+        var id = $("#borrowid").val();
+        if(!!id){
+            findContractById(id);
+        }
+    });
+</script>
+
+
+

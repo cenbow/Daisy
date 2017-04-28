@@ -1,0 +1,127 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: #ee2533;
+    text-align: center;
+    height: 500px;
+}
+
+/*取消手机浏览器蓝色框*/
+* {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-appearance: none;
+}
+
+.u-title {
+    color: #fffd01;
+    font-size: 2rem;
+    margin-top: 30px;
+    text-align: center;
+}
+
+.u-circle {
+    width: 12rem;
+    height: 12rem;
+    line-height: 9rem;
+    margin: 0 auto;
+    border: 1px solid white;
+    border-radius: 50%;
+    text-align: center;
+}
+
+.u-circle-content {
+    color: white;
+    font-size: 2rem;
+}
+
+.u-circle-num {
+    font-size: 8rem;
+}
+
+.u-circle-unit {
+    font-size: 1rem;
+}
+
+/* 领取的红包列表 */
+.u-list-title {
+    color: #fff;
+    text-align: center;
+    margin-top: 2.5rem;
+}
+
+.u-list {
+    margin: 0;
+    padding: 0 0 2rem 0;
+    color: #fff;
+    text-align: center;
+    width: 70%;
+    margin: 0 auto;
+    list-style: none;
+}
+
+.u-list>li{
+    border-bottom: 1px solid #f36a72;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    overflow: hidden;
+}
+.u-list-phone {
+    float: left;
+    padding-left: 1rem;
+    letter-spacing: 2px;
+}
+
+.u-list-num {
+    float: right;
+    padding-right: 1rem;
+}
+
+.u-notify {
+    color: #fffd01;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+img {
+    display: block;
+}
+.u-title {
+    color: #fffd01;font-size: 1.8rem; margin-top: 50px;
+}
+
+.u-share-btn {
+    background: #fffd01;
+    color: #906703;
+    display: inline-block;
+    text-align: center;
+    width: 60%;
+    font-size: 1.3rem;
+    font-weight: bold;
+    padding: 0.6rem 1rem;
+    border-radius: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+.u-phoneNum {
+    display: block;
+    border: none;
+    height: 30px;
+    line-height: 30px;
+    font-size: 16px;
+    box-shadow: none;
+    outline: none;
+    border-radius: 4px;
+    width: 60%;
+    margin: -2rem auto 1rem auto;
+    padding: 0.4rem 1rem;
+    text-align: center;
+}
+
+/* 已经抢完了 */
+.u-grapTwo {
+    display: none;
+}
+/* 抢人气值返回的列表和样式 */
+.g-result {
+    display: none;
+}

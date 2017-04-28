@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.2.xsd 
+http://www.springframework.org/schema/context 
+http://www.springframework.org/schema/context/spring-context-3.2.xsd 
+http://www.springframework.org/schema/mvc 
+http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
+
+    <mvc:annotation-driven conversion-service="conversionService">
+        <mvc:message-converters register-defaults="true">
+            <bean class="com.yourong.common.web.MappingFastJsonHttpMessageConverter">
+                <property name="supportedMediaTypes" value="application/json"/>
+                <property name="simplePropertyPreFilter" ref="simplePropertyPreFilter">
+                </property>
+                <property name="serializerFeature">
+                    <array>
+                        <value>WriteMapNullValue</value>
+                        <value>QuoteFieldNames</value>
+                      <!--  <value>WriteDateUseDateFormat</value>-->
+                    </array>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+    <!---自定义某些类的属性，不需要JSON化 -->
+    <bean id="simplePropertyPreFilter" class="com.yourong.common.serializeFilter.SimplePropertyPreFilter">
+        <property name="filterClassFileds">
+            <set>
+                <ref bean="filterPageClassFiled"/>
+            </set>
+        </property>
+        <property name="formatValueEnum">
+            <array>
+                <value>TRUE_NAME</value>
+                <value>BANK_CARD</value>
+                <value>IDENTITYNUMBER</value>
+                <value>MOBILE</value>
+                <value>MINANNUALIZEDRATE</value>
+                <value>MAXANNUALIZEDRATE</value>
+                <value>AVAILABLEBALANCE</value>
+                <value>EXECTAMOUNT</value>
+                <value>INVESTAMOUNT</value>
+                <value>AMOUNT</value>
+                <value>TOTALINTEREST</value>
+                <value>PAYABLEINTEREST</value>
+                <value>PAYABLEPRINCIPAL</value>
+                <value>ANNUALIZEDRATE</value>
+                <value>BANK_MOBILE</value>
+                <value>WITHDRAWAMOUNT</value>
+                <value>TOTALTRANSACTIONINTEREST</value>
+            </array>
+        </property>
+    </bean>
+    <bean id="filterPageClassFiled" class="com.yourong.common.serializeFilter.FilterClassFiled">
+        <property name="classzz" value="com.yourong.common.pageable.Page"></property>
+        <property name="excludes">
+            <set>
+                <value>maxPager</value>
+                <value>minPager</value>
+                <value>numberOfElements</value>
+            </set>
+        </property>
+    </bean>
+
+
+    <!-- spring提供的bean validator接口配置  -->
+    <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+        <property name="providerClass" value="org.hibernate.validator.HibernateValidator"/>
+        <property name="validationMessageSource" ref="messageSource"/>
+    </bean>
+    <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="basenames">
+            <list>
+                <!-- 在web环境中一定要定位到classpath 否则默认到当前web应用下找    -->
+                <value>classpath:message</value>
+                <value>classpath:org/hibernate/validator/ValidationMessages</value>
+            </list>
+        </property>
+        <property name="useCodeAsDefaultMessage" value="false"/>
+        <property name="defaultEncoding" value="UTF-8"/>
+        <property name="cacheSeconds" value="60"/>
+    </bean>
+
+    <mvc:interceptors>
+        <!--是否已经登陆-->
+        <mvc:interceptor>
+            <mvc:mapping path="/security/**"/>
+            <bean class="com.yourong.api.authentication.LoginedHandleInterceptor"/>
+        </mvc:interceptor>
+        <!--是否已经实名认证-->
+        <mvc:interceptor>
+            <mvc:mapping path="/security/bankCard/**"/>
+            <mvc:mapping path="/security/transaction/**"/>
+            <mvc:mapping path="/security/banlance/**"/>
+            <mvc:mapping path="/security/order/**"/>
+            <mvc:exclude-mapping path="/security/banlance/queryMemberBalance"/>
+            <mvc:exclude-mapping path="/security/order/queryOrderForMember"/>
+            <mvc:exclude-mapping path="/security/transaction/queryTransactionList"/>
+            <bean class="com.yourong.api.authentication.AuthTrueNameHandlerInterceptor"/>
+        </mvc:interceptor>
+
+         <!--首页接口拦截，用于获取用户ID-->
+        <mvc:interceptor>
+            <mvc:mapping path="/queryIndexData"/>
+            <mvc:mapping path="/project/queryProjectById"/>
+            <bean class="com.yourong.api.authentication.IndexHandlerInterceptor"/>
+        </mvc:interceptor>
+
+        <!--拦截新浪接口-->
+        <mvc:interceptor>
+           <mvc:mapping path="/register/**"/>
+           <mvc:mapping path="/security/banlance/**"/>
+           <mvc:mapping path="/security/bankCard/**"/>
+           <mvc:mapping path="/security/transaction/**"/>
+           <mvc:mapping path="/security/order/**"/>
+           <bean class="com.yourong.api.authentication.SinaPayHandlerInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+    <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="formatters">
+            <set>
+                <bean class="com.yourong.common.converter.EncrptionAnnotationFormatterFactory"/>
+            </set>
+        </property>
+    </bean>
+    <!-- 避免IE执行AJAX时返回JSON出现下载文件 -->
+    <bean id="mappingJacksonHttpMessageConverter"
+          class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+        <property name="supportedMediaTypes">
+            <list>
+                <value>text/html;charset=UTF-8</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding">
+            <value>UTF-8</value>
+        </property>
+        <property name="maxUploadSize">
+            <value>2097152</value>
+            <!-- 上传文件大小限制2m2*1024*1024s -->
+        </property>
+        <property name="maxInMemorySize">
+            <value>4096</value>
+        </property>
+    </bean>
+    <bean id="velocityEngine"
+          class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
+        <property name="velocityProperties">
+            <value>
+                resource.loader=class
+                class.resource.loader.class=org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+            </value>
+        </property>
+    </bean>
+    <bean id="velocityConfig"
+          class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+        <property name="resourceLoaderPath" value="/WEB-INF/vm/"/>
+        <property name="configLocation" value="classpath:velocity.properties"/>
+    </bean>
+
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver">
+        <property name="cache" value="true"></property>
+        <!--是否缓存模板-->
+        <property name="order" value="10"/>
+        <property name="suffix" value=".vm"/>
+        <property name="prefix" value=""/>
+        <property name="layoutUrl" value="common/layout.vm"/>
+        <property name="viewClass" value="com.yourong.common.web.VelocityToolbox20View"/>
+        <!-- 使用springMacro -->
+        <property name="exposeSpringMacroHelpers" value="true"/>
+        <property name="exposeRequestAttributes" value="true"/>
+        <property name="exposeSessionAttributes" value="true"/>
+        <property name="requestContextAttribute" value="content"/>
+        <property name="contentType" value="text/html;charset=UTF-8"/>
+        <!-- velocity toolbox -->
+        <property name="toolboxConfigLocation" value="/WEB-INF/velocityTools.xml"/>
+    </bean>
+</beans>

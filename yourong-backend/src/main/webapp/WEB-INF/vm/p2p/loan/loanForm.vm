@@ -1,0 +1,125 @@
+<div tabindex="-1" class="modal fade" id="modal-table_loan_form" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header no-padding">
+                <div class="table-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+                        <span class="white">×</span>
+                    </button>
+                    放款基本信息
+                </div>
+            </div>
+            <div class="modal-body">
+                <form role="form" class="form-horizontal" id="loan_info_form" method="post">
+                    <input type="hidden" name="id" />
+                    <input type="hidden" name="legalId" class="col-xs-10 col-sm-5" placeholder="legalId" id="form-field-legalId">
+                    <input type="hidden"  name="identity" class="col-xs-10 col-sm-5" placeholder="identity" id="form-field-identity">
+                    <div class="form-group">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 项目编号: </label>
+                        <div class="col-sm-9">
+                            <div class="clearfix">
+                                <input type="text" name="id" class="col-xs-10 col-sm-5" readonly id="form-field-id" >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 项目名称: </label>
+                        <div class="col-sm-9">
+                            <div class="clearfix">
+                                <input type="text" name="projectName"  readonly  class="col-xs-10 col-sm-5"  id="form-field-projectName">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 借款人姓名: </label>
+                        <div class="col-sm-9">
+                            <div class="clearfix">
+                                <input type="text" name="borrowerName" readonly class="col-xs-10 col-sm-5" placeholder="" id="form-field-borrowerName" >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 借款人手机号: </label>
+                        <div class="col-sm-9">
+                            <div class="clearfix">
+                                <input type="text" name="mobile" class="col-xs-10 col-sm-5"  readonly id="form-field-mobile" >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 借款人存钱罐账号: </label>
+                        <div class="col-sm-9">
+                            <div class="clearfix">
+                                <input type="text" name="sinaAccount" readonly class="col-xs-10 col-sm-5" >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right">借款金额: </label>
+                        <div class="col-sm-9">
+                            <div class="clearfix">
+                                <input type="text" name="formatTotalAmount" readonly class="col-xs-10 col-sm-5" placeholder="" id="form-field-formatTotalAmount">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 借款人实际到账: </label>
+                        <div class="col-sm-9">
+                            <div class="clearfix">
+                                <input type="text" name="availableAmount" class="col-xs-10 col-sm-5" readonly placeholder="" id="form-field-availableAmount" >
+                            </div>
+                        </div>
+                    </div>
+					
+					 <div class="form-group">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 管理费：</label>
+                        <div class="col-sm-9">
+                            <div class="clearfix">
+                                <input type="text" name="formatManageFee" class="col-xs-10 col-sm-5" readonly placeholder="" id="form-field-formatManageFee"  >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 保证金：</label>
+                        <div class="col-sm-9">
+                            <div class="clearfix">
+                                <input type="text" name="guaranteeFee" class="col-xs-10 col-sm-5" readonly placeholder="" id="form-field-guaranteeFee"  >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right">风险金：</label>
+                        <div class="col-sm-9">
+                            <div class="clearfix">
+                                <input type="text" name="riskFee" class="col-xs-10 col-sm-5" readonly placeholder="" id="form-field-riskFee"  >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 线下介绍费：</label>
+                        <div class="col-sm-9">
+                            <div class="clearfix">
+                                <input type="text" name="introducerFee" class="col-xs-10 col-sm-5" readonly placeholder="" id="form-field-introducerFee"  >
+                            </div>
+                        </div>
+                    </div>
+                ##     <div class="form-group">
+                ##        <label for="form-field-1" class="col-sm-3 control-label no-padding-right">备注：</label>
+                ##        <div class="col-sm-9">
+                ##            <div class="clearfix">
+                ##               <textarea id="remarks" name="remarks" rows="5" cols="30" maxlength=1000 placeholder="添加备注"></textarea>
+                ##            </div>
+                ##        </div>
+                ##    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" id="btn_save_loan" class="btn btn-primary">确定</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>

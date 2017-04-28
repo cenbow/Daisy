@@ -1,0 +1,100 @@
+#set($layout = "/layout/iframe.vm")
+#parse("/co/profile/head.vm")
+
+<div tabindex="-1" class="modal fade" id="add-profile-modal-table" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog w1100">
+        <div class="modal-content">
+            <div class="modal-header no-padding">
+                <div class="table-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+                        <span class="white">×</span>
+                    </button>
+                    <span class="modalFormTitle" id="profileTitle">添加简介</span>
+                </div>
+            </div>
+
+            <div class="modal-body">
+                <form  class="form-horizontal" id="profileForm">
+                    <div id="num_1">
+                        <div class="form-group">
+                            <label for="form-field-parentId" class="col-sm-2 control-label no-padding-right">年份:</label>
+                            <div class="col-sm-6">
+                                <div class="clearfix">
+                                    <input type="text" name="eventYear" id="eventYear" class="col-xs-8 col-sm-8 exclude valid-other" placeholder="" dataType="*" >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="form-field-parentId" class="col-sm-2 control-label no-padding-right">月份:</label>
+                            <div class="col-sm-6">
+                                <div class="clearfix">
+                                    <input type="text" name="eventMonth" id="eventMonth" class="col-xs-8 col-sm-8 exclude valid-other" placeholder="" dataType="*" >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" id="rechargeAmount_group">
+                            <label for="form-field-parentId" class="col-sm-2 control-label no-padding-right">日期:</label>
+                            <div class="col-sm-6">
+                                <div class="clearfix">
+                                    <input type="text" name="eventDate" dataType="/^\d+$/" errormsg="请输入正整数！" id="eventDate" >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="form-field-parentId" class="col-sm-2 control-label no-padding-right">事件内容:</label>
+                            <div class="col-sm-6">
+                                <div class="clearfix">
+                                    <textarea name="eventContent" id="eventContent"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="form-field-parentId" class="col-sm-2 control-label no-padding-right">链接:</label>
+                            <div class="col-sm-6">
+                                <div class="clearfix">
+                                    <input type="text" name="link" " id="link" >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" id="id" name="id" >
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" id="submit_profile" data-page="1" class="btn btn-primary">保存</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div tabindex="-1" class="modal fade" id="add-profile-info-table" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog w1100">
+        <div class="modal-content">
+            <div class="modal-header no-padding">
+                <div class="table-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+                        <span class="white">×</span>
+                    </button>
+                    <span class="modalFormTitle" id="couponTemplateTitle">简介信息</span>
+                </div>
+            </div>
+
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-12 ">
+                        <div class="table-responsive ">
+                            <div id="profileinfo">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+

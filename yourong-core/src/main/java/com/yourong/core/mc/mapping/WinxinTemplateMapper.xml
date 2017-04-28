@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.mc.dao.WinxinTemplateMapper" >
+<!-- <cache-ref namespace="com.yourong.core.cms.dao.BannerMapper"/> -->
+  <resultMap id="BaseResultMap" type="com.yourong.core.mc.model.WinxinTemplate" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="template_type" property="templateType" jdbcType="INTEGER" />
+    <result column="text_describe" property="textDescribe" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="keyword1" property="keyword1" jdbcType="VARCHAR" />
+    <result column="keyword2" property="keyword2" jdbcType="VARCHAR" />
+    <result column="keyword3" property="keyword3" jdbcType="VARCHAR" />
+    <result column="keyword4" property="keyword4" jdbcType="VARCHAR" />
+    <result column="keyword5" property="keyword5" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="com.yourong.core.mc.model.WinxinTemplate" flushCache="true">
+    insert into mc_weixin_template (id, name, type,template_type, text_describe,
+      title, url,keyword1,keyword2,keyword3,keyword4,keyword5,status,remarks, create_time, update_time,  del_flag)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{templateType,jdbcType=INTEGER}, #{textDescribe,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR},
+      #{url,jdbcType=VARCHAR}, #{keyword1,jdbcType=VARCHAR}, #{keyword2,jdbcType=VARCHAR}, #{keyword3,jdbcType=VARCHAR}, #{keyword4,jdbcType=VARCHAR}, #{keyword5,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER},#{remarks,jdbcType=VARCHAR},now(),null,1)
+  </insert>
+  <sql id="Base_Column_List" >
+    id, name, type, template_type,text_describe, title, 
+    url, keyword1,keyword2,keyword3,keyword4,keyword5, status, remarks, create_time, update_time,del_flag
+  </sql>
+  <select id="getWeixininfo" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from mc_weixin_template where del_flag >= 0 and type='1'
+  </select>
+   <select id="queryWeixinAtten" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from mc_weixin_template where del_flag >= 0 and type='2' and status='1'
+  </select>
+  <select id="findByPage" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from mc_weixin_template 
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          and id = #{map.id}
+        </if>
+         <if test=" map.type != null" >
+          and type = #{map.type}
+        </if>
+        <if test=" map.name != null" >
+          and name = #{map.name}
+        </if>
+        <if test=" map.textDescribe != null" >
+          and text_describe = #{map.textDescribe}
+        </if>
+        <if test=" map.title != null" >
+          and title = #{map.title}
+        </if>
+        <if test=" map.url != null" >
+          and url = #{map.url}
+        </if>
+        <if test=" map.keyword1 != null" >
+          and keyword1 = #{map.keyword1}
+        </if>
+        <if test=" map.keyword2 != null" >
+          and keyword2 = #{map.keyword2}
+        </if>
+        <if test=" map.keyword3 != null" >
+          and keyword3 = #{map.keyword3}
+        </if>
+        <if test=" map.keyword4 != null" >
+          and keyword4 = #{map.keyword4}
+        </if>
+        <if test=" map.keyword5 != null" >
+          and keyword5 = #{map.keyword5}
+        </if>
+        <if test=" map.status != null" >
+          and status = #{map.status}
+        </if>
+        <if test=" map.createTime != null" >
+          and date_format(create_time,'%Y-%m-%d') = #{map.createTime}
+        </if>
+        <if test=" map.updateTime != null" >
+          and update_time = #{map.updateTime}
+        </if>
+        <if test=" map.remarks != null" >
+          and remarks = #{map.remarks}
+        </if>
+        <choose>
+        	<when test=" map.delFlag != null">
+        		and del_flag = #{map.delFlag}
+        	</when>
+        	<otherwise>
+        		and del_flag >= 0
+        	</otherwise>
+        </choose>
+      </where> 
+      order by id desc    
+    </if>
+  </select>
+  <select id="getAllWeixinMenu" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from mc_weixin_template where del_flag >= 0
+  </select>
+  <select id="getParentMenu" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from mc_weixin_template where del_flag >= 0 and menu_id="1" group by id
+  </select>
+   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from mc_weixin_template
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+   <update id="updateByPrimaryKeySelective" parameterType="com.yourong.core.mc.model.WinxinTemplate" >
+    update mc_weixin_template
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+       <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+       <if test="templateType != null" >
+        template_type = #{templateType,jdbcType=VARCHAR},
+      </if>
+       <if test="textDescribe != null" >
+        text_describe = #{textDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="keyword1 != null" >
+        keyword1 = #{keyword1,jdbcType=VARCHAR},
+      </if>
+       <if test="keyword2 != null" >
+        keyword2 = #{keyword2,jdbcType=VARCHAR},
+      </if>
+       <if test="keyword3 != null" >
+        keyword3 = #{keyword3,jdbcType=VARCHAR},
+      </if>
+       <if test="keyword4 != null" >
+        keyword4 = #{keyword4,jdbcType=VARCHAR},
+      </if>
+       <if test="keyword5 != null" >
+        keyword5 = #{keyword5,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = now(),
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <insert id="insertSelective" parameterType="com.yourong.core.mc.model.WinxinTemplate"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into mc_weixin_template
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="name != null">
+				name,
+			</if>
+			<if test="type != null">
+				type,
+			</if>
+			<if test="templateType != null">
+				template_type,
+			</if>
+			<if test="textDescribe != null">
+				text_describe,
+			</if>
+			<if test="title != null">
+				title,
+			</if>
+			<if test="url != null">
+				url,
+			</if>
+			<if test="keyword1 != null">
+				keyword1,
+			</if>
+			<if test="keyword2 != null">
+				keyword2,
+			</if>
+			<if test="keyword3 != null">
+				keyword3,
+			</if>
+			<if test="keyword4 != null">
+				keyword4,
+			</if>
+			<if test="keyword5 != null">
+				keyword5,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="remarks != null">
+				remarks,
+			</if>
+			create_time,
+			update_time,
+			<if test="delFlag != null">
+				del_flag
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=INTEGER},
+			</if>
+			<if test="templateType != null">
+				#{templateType,jdbcType=INTEGER},
+			</if>
+			<if test="textDescribe != null">
+				#{textDescribe,jdbcType=VARCHAR},
+			</if>
+			<if test="title != null">
+				#{title,jdbcType=VARCHAR},
+			</if>
+			<if test="url != null">
+				#{url,jdbcType=VARCHAR},
+			</if>
+			<if test="keyword1 != null">
+				#{keyword1,jdbcType=VARCHAR},
+			</if>
+			<if test="keyword2 != null">
+				#{keyword2,jdbcType=VARCHAR},
+			</if>
+			<if test="keyword3 != null">
+				#{keyword3,jdbcType=VARCHAR},
+			</if>
+			<if test="keyword4 != null">
+				#{keyword4,jdbcType=VARCHAR},
+			</if>
+			<if test="keyword5 != null">
+				#{keyword5,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=INTEGER},
+			</if>
+			<if test="remarks != null">
+				#{remarks,jdbcType=VARCHAR},
+			</if>
+			now(),
+			now(),
+			<if test="delFlag != null">
+				#{delFlag,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+ <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    update mc_weixin_template set del_flag = -1 
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteBymenuId" parameterType="java.lang.Long" >
+    update mc_weixin_template set del_flag = -1 
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+   <delete id="batchDelete" parameterType="java.lang.Long" >
+    update mc_weixin_template set del_flag = -1 
+    where id in  <foreach collection="ids" index="index" item="item" open="(" separator="," close=")"> #{item}  </foreach>  
+  </delete>
+  <update id="updateWeixin">
+  	update mc_weixin_template set status=0  where type=2 and del_flag >= 0
+  </update>
+</mapper>

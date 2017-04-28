@@ -1,0 +1,521 @@
+.u-monthlyRank-hd {
+    width: 100%;
+    height: 433px;
+    background: url(/static/img/activity/monthlyRank/banner.jpg) no-repeat center;
+    margin-top: -8px;
+    position: relative;
+}
+
+.g-bd {
+    margin-bottom: 0;
+}
+
+.g-montylyRank-wrap {
+    padding: 28px 0;
+    background: #fde384;
+}
+
+.g-montylyRank-wrap h2 {
+    color: #765112;
+}
+
+.f-fs34 {
+    font-size: 34px;
+    color: #765112;
+    font-weight: bold;
+}
+
+.m-monthlyRank-amount {
+    padding: 28px 0 60px 0;
+}
+
+.m-monthlyRank-amount h2 {
+    padding-left: 20px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid #e6e6e6;
+    color: #666;
+
+}
+
+.m-monthlyRank-amount h2 i {
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    color: #fff;
+    line-height: 30px;
+    text-align: center;
+    font-weight: bold;
+    margin: 0 10px 0 0;
+    background: url(/static/img/activity/monthlyRank/quadrupleGift_point1.png) no-repeat center;
+
+}
+
+.m-monthlyRank-amount h2 em {
+    color: #d74148;
+    font-weight: bold;
+}
+
+.m-monthlyRank-amount > div {
+    float: left;
+    width: 318px;
+    background: #fff;
+    border: 2px solid #f0d77c;
+}
+.u-montylyRank-80w{height: 514px;}
+.u-montylyRank-80w, .u-montylyRank-40w {
+    padding-top: 25px;
+    margin-top: 40px;
+}
+
+.u-montylyRank-150w {
+    margin-left: 12px;
+    margin-right: 12px;
+    padding-top: 25px;
+
+}
+
+.u-monthlyRank-photo {
+    margin-left: 80px;
+    margin-top: 37px;
+}
+
+.m-monthlyRank-price {
+    margin-top: 20px;
+    margin-left: 30px;
+}
+
+.m-monthlyRank-price strong {
+    color: #d74148;
+}
+
+.m-monthlyRank-price span {
+    display: block;
+    color: #999;
+}
+
+.m-monthlyRank-here {
+    color: #999;
+    text-align: center;
+    padding: 70px 0;
+}
+
+/**排行**/
+.m-heavyInvestment-box {
+
+    height: 170px;
+    position: relative;
+   /* overflow-y: auto;*/
+    overflow: hidden;
+    margin: 20px 0 0 0;
+}
+
+/**头像**/
+.u-heavyInvestment-user {
+    margin: 20px 23px 0 21px;
+    overflow: hidden;
+    text-align: left;
+    color: #999;
+    /*width: 275px;*/
+}
+
+.u-heavyInvestment-user.z-even {
+    margin: 20px 70px 0 40px;
+}
+
+.u-candidate-wrap {
+    margin: 0 0 20px;
+}
+
+.u-heavyInvestment-user strong {
+    color: #d74148;
+}
+
+.u-user-head {
+    display: inline-block;
+    height: 35px;
+    width: 35px;
+    overflow: hidden;
+    vertical-align: middle;
+    position: relative;
+    margin-right: 15px;
+
+}
+/**限制头像大小**/
+.u-user-head img{
+    width: 35px;
+    height: 35px;
+}
+/**\限制头像大小**/
+.u-heavyInvestment-user img {
+    display: inline-block;
+    height: 35px;
+    width: 35px;
+    overflow: hidden;
+
+}
+
+.u-user-head i {
+    display: inline-block;
+    height: 35px;
+    width: 35px;
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 2;
+    background: url(/static/img/common/sprites.png) no-repeat -75px -21px;
+}
+
+.u-heavyInvestment-user .u-user-name {
+
+    width: 72px;
+    display: inline-block;
+}
+
+.m-heavyInvestment-box {
+    text-align: center;
+
+
+}
+
+.m-heavyInvestment-box a {
+    line-height: 140px;
+}
+
+/*查看我的排名*/
+.m-monthlyRank-ranking {
+    background: url(/static/img/activity/monthlyRank/mRanking.png) no-repeat;
+    height: 50px;
+
+    margin-top: 60px;
+    display: block;
+    width: 991px;
+
+}
+
+/*.g-wrap a {
+    color: #fff;
+}*/
+
+/*
+.g-wrap a:hover {
+    text-decoration: none;
+}
+*/
+
+.m-mRank-candidate-list {
+    background: #fff;
+    border: 2px solid #f0d77c;
+    margin-top: 28px;
+    padding: 20px 0 40px 0;
+}
+
+.m-mRank-candidate-list li {
+    width: 261px;
+    float: left;
+}
+
+.z-even {
+    margin: 0 95px 0 95px;
+}
+
+.m-mRank-candidate-33 {
+    margin-right: 39px;
+}
+
+.m-mRank-candidate-70 {
+    margin-right: 70px;
+    margin-left: 54px;
+
+}
+
+.u-heavyInvestment-user em {
+    margin-right: 20px;
+}
+
+.m-mRank-candidate-title {
+    width: 268px;
+}
+
+.m-mRank-candidate-title span {
+    margin-left: 22px;
+    margin-right: 30px;
+    color: #666;
+    font-weight: bold;
+}
+
+.m-mRank-candidate-title em {
+    margin: 0 4px 0 30px;
+    color: #666;
+    font-weight: bold;
+}
+
+.m-mRank-line {
+    background: url("/static/img/activity/monthlyRank/line.jpg") no-repeat center;
+    height: 35px;
+}
+
+/*奇偶排行*/
+.m-monthlyRank-odd-even {
+    width: 100%;
+    background: #fff8d8;
+    padding-top: 48px;
+
+}
+
+.m-mRank-odd-even-list {
+    color: #999;
+}
+
+.m-monthlyRank-odd-even strong {
+    color: #765112;
+
+}
+
+.m-monthlyRank-odd-even em {
+    color: #d74148;
+    font-weight: bold;
+}
+.m-monthlyRank-odd-even span{
+    color: #765112;
+}
+.u-num {
+    color: #999;
+    width: 72px;
+    line-height: 35px;
+
+}
+/*
+.g-wrap h2 {
+    color: #765112;
+}*/
+
+.u-heavyInvestment-rule {
+    margin-top: 47px;
+    padding-bottom: 88px;
+    color: #765112;
+}
+
+.u-heavyInvestment-rule span {
+    display: block;
+    text-indent: 20px;
+}
+
+.u-heavyInvestment-rule span a {
+    color: #765112;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.u-heavyInvestment-rule strong {
+    color: #765112;
+}
+
+.u-heavyInvestment-rule p {
+    margin-top: 20px;
+    line-height: 25px;
+}
+
+.u-heavyInvestment-rule a {
+    text-decoration: underline;
+    color: #765112;
+    font-weight: bold;
+}
+
+.u-heavyInvestment-rule em {
+    color: #765112;
+    font-weight: bold;
+}
+
+.m-mRank-odd-even-list {
+    background: #fff;
+    border: 2px solid #f1eaca;
+    padding-bottom: 40px;
+    margin-top: 4px;
+}
+
+.m-mRank-odd-even-list li {
+
+    margin-top: 21px;
+}
+
+.m-mRank-oeven-title {
+    margin-top: 40px;
+    text-align: left;
+}
+
+.m-mRank-oeven-title span {
+    color: #666;
+    margin: 0 69px 0 36px;
+    font-weight: bold;
+
+}
+
+.m-mRank-oeven-title em {
+    margin-right: 94px;
+    margin-left: 10px;
+    color: #666;
+}
+
+.u-mRank-user em {
+    float: left;
+    width: 55px;
+    color: #999;
+    line-height: 35px;
+}
+
+.u-mRank-user b {
+    /*float: right;*/
+    margin-left: 57px;
+    color: #999;
+    line-height: 35px;
+
+}
+
+.u-mRank-user span {
+    margin-left: 45px;
+    color: #d74148;
+    font-size: 12px;
+}
+
+.g-gl {
+    margin-left: 85px;
+}
+
+.g-gr-30 {
+    margin-right: 98px;
+}
+
+.g-gl-110 {
+    margin-left: 103px;
+}
+
+/*4个top1*/
+.m-monthlyRank-top1 {
+    margin-top: 60px;
+}
+
+.m-monthlyRank-top1 ul li {
+    width: 196px;
+    border: 2px solid #f1eaca;
+    background: #fff;
+    padding: 40px 20px;
+    float: left;
+    /*margin-left: 6px;*/
+    height: 112px;
+}
+
+.m-monthlyRank-top1-title {
+    text-align: left;
+    margin-bottom: 21px;
+}
+
+.m-monthlyRank-top1-title strong {
+    color: #d74148;
+
+}
+
+.m-monthlyRank-top1-title span {
+    color: #999;
+    display: block;
+}
+
+.u-quadrupleGift-prize {
+    padding-left: 55px;
+    margin-top: -4px;
+    line-height: 1.3em;
+    color: #999;
+}
+
+.u-quadrupleGift-prize em {
+    color: #d74148;
+}
+
+.g-gl-10 {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.g-gl-10l {
+    margin-left: 10px;
+}
+
+.m-monthlyRank-190 {
+    width: 199px;
+    margin-left: 35px;
+}
+
+.m-monthlyRank-244 {
+    width: 244px;
+    margin-left: 70px;
+    line-height: 35px;
+
+}
+
+.m-monthlyRank-244 span {
+    line-height: 35px;
+}
+
+.u-user-wrap-28 {
+    padding: 12px 0 12px 0;
+    text-align: center;
+}
+
+.u-user-wrap {
+    color: #999;
+
+}
+
+.m-monthlyRank-hidden {
+    position: relative;
+    min-height: 560px;
+
+}
+
+.m-monthlyRank-hidden li {
+    height: 35px;
+    overflow: hidden;
+}
+
+.m-monthlyRank-list {
+    position: relative;
+    overflow: hidden;
+    clear: both;
+    height: 170px;
+
+}
+
+.f-xuwei {
+    text-align: center;
+    margin-top: 30px;
+
+}
+
+.f-gainList-01 .f-mt-330 {
+    text-align: center;
+    font-size: 14px;
+    margin-top: 330px;
+
+}
+.f-left-82{
+    margin: 0 87px 0 20px;
+
+
+}
+.m-mRank-odd-even-list strong{
+    color: #666;
+}
+
+/*2015-8-4新增*/
+.f-mar-4{margin-right: 10px;}
+.f-mal-1{margin-left: 1px;}
+.f-mt-30{margin-top: 30px;}
+.f-mt-10{margin-top: 10px;display: block}
+.f-mr-60{margin-right: 60px;}
+.f-mr-160{margin-right: 330px;}
+.f-cor{color: #765112;}
+/*2015-8-17新增 榜上有名样式*/
+.f-mar-head{margin-right: 4px !important;}
+.f-mar-name{width: 70px !important;}
+.f-mar-user{margin: 0 0 23px 20px;}
+

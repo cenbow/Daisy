@@ -1,0 +1,66 @@
+#set($layout = "/layout/iframe.vm")
+#parse("/sh/goods/head.vm")
+#set($goods ={"title":"商品图片", "category":"goods","dzId":"dropzone_goods"})
+<div class="col-xs-12">
+</div>
+<div class="col-xs-12">
+    #if($shiro.hasPermission("shoporder:addGoods"))
+        <button type="button" class="btn btn-info btn-sm btn-primary" id="add_goods">添加商品</button>
+    #end
+    <div class="table-header">商品列表</div>
+    <div class="table-responsive">
+        <form id="interest_form">
+            <table id="debt-table-search" class="table table-striped table-bordered " cellspacing="0" width="100%">
+                <thead>
+                <tr>
+                    <input type="hidden" name="goodstype" id="goodstype" value="1">
+                </tr>
+                    <td colspan="10" style="text-align:center">
+                        <ul id="myTab4" class="nav nav-tabs padding-12 tab-color-blue background-blue activityTab">
+                            <li class="active" data-target="start">
+                                <a href="#start-sales" id="invest" data-toggle="tab">投资专享</a>
+                            </li>
+                            <li class="" data-target="end">
+                                <a href="#j-end-sales" id="dummy" data-toggle="tab">虚拟卡券</a>
+                            </li>
+                            <li class="" data-target="member">
+                                <a href="#j-sales-member" id="entity" data-toggle="tab">超值实物</a>
+                            </li>
+                            <li class="" data-target="member">
+                                <a href="#j-sales-member" id="double" data-toggle="tab">新品特惠</a>
+                            </li>
+                        </ul>
+                    </td>
+                </thead>
+            </table>
+        </form>
+    </div>
+    </br>
+    #if($shiro.hasPermission("shoporder:sort"))
+        <button type="button" class="btn btn-info btn-sm btn-primary" id="goods_sort">排序</button>
+        <button type="button" class="btn btn-info btn-sm btn-primary" style="display: none" id="submit_sort">保存</button>
+    #end
+    <div class="table-responsive">
+        <table id="goods-table" class="table table-striped table-bordered" cellspacing="0" width="100%">
+            <thead>
+            <tr>
+                <th>商品编号</th>
+                <th>排序</th>
+                <th>商品名称</th>
+                <th>类型</th>
+                <th>状态</th>
+                <th>标签</th>
+                <th>人气值</th>
+                <th id="thsource_id">优惠券id</th>
+                <th>添加时间</th>
+                <th>上线时间</th>
+                <th>已兑换数量</th>
+                <th>剩余数量</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+#parse("/sh/goods/add.vm")

@@ -1,0 +1,17 @@
+ #parse("/common/common.vm")
+ #########################################script##################################### 
+ #set($js_config=[ 
+ "'urlMap':{ 
+   'ajax':'$root_url/sysUser/ajax?', 
+   'query':'$root_url/sysUser/index?', 
+   'save':'$root_url/sysUser/save', 
+   'show':'$root_url/sysUser/show?id=', 
+   'delet':'$root_url/sysUser/delete'
+   },
+   'userType':#buildDictJson('user_type'),
+   'userStatus':#buildDictJson('user_status')
+  "
+ ]) 
+ #set($css_url=["$root_url/static/js/lib/validform/css/style.css","$root_url/static/js/lib/My97DatePicker/skin/WdatePicker.css"])
+ #set($js_url=["$root_url/static/js/sysUser.js","$root_url/static/js/lib/My97DatePicker/WdatePicker.js","$root_url/static/js/selectMember.js"]) 
+ #########################################DOM##################################### 

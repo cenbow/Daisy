@@ -1,0 +1,54 @@
+<div tabindex="-1" class="modal fade" id="modal-table" style="display: none;" aria-hidden="true">
+     <div class="modal-dialog">
+     <div class="modal-content">
+ <div class="modal-header no-padding">
+             <div class="table-header">
+                  <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+                    <span class="white">×</span>
+              </button>
+    <span class="modalFormTitle">编辑监控参数</span>
+       </div>
+  </div>
+  
+   <div class="modal-body">
+    <form role="form" class="form-horizontal" id="monitor_form" method="post">
+     <input type="hidden" name="id" />
+     
+##     <div class="form-group">
+##  <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 标签名: </label>
+##  <div class="col-sm-9">
+##   <div class="clearfix">
+##     <input type="text" name="label" class="col-xs-10 col-sm-5" placeholder="label" id="form-field-label">
+##   </div>
+## </div>
+##</div>
+     
+     
+     
+ <div class="form-group">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 数据值: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+     <input type="text" name="value" class="col-xs-100 col-sm-50" placeholder="value"  size="50"   style="width:350px;" id="form-field-value">
+     <br/>
+	<font size=2><font id="fontMax" size=2 color=red>格式：优惠券模板ID1-对应警戒数量;优惠券模板ID2-对应警戒数量;...</font></font>
+	  <br/>
+	<font size=2><font id="fontMax" size=2 color=red>格式：手机号1;手机号2;...</font></font>
+	  <br/>
+	
+    </div>
+  </div>
+</div>
+ 
+ 
+</form>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+<button type="button" id="save_monitor" class="btn btn-primary">保存</button>
+</div>
+</div>
+<!-- /.modal-content -->
+ </div>
+<!-- /.modal-dialog -->
+</div>

@@ -1,0 +1,108 @@
+<div tabindex="-1" class="modal fade" id="overdueRemark-modal-table" style="display: none;" aria-hidden="true">
+	<div class="modal-dialog" style="width:900px;">
+		<div class="modal-content">
+			<div class="modal-header no-padding">
+				<div class="table-header">
+					<button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+						<span class="white">×</span>
+					</button>
+					<span class="modalFormTitle">垫资还款标记</span>
+				</div>
+			</div>
+			<div class="modal-body">
+    			<table id="overdueRemark-table" class="table table-striped table-bordered" cellspacing="0" width="100%">
+									<thead>
+										<tr>
+			        						<th width="10%">期数</th>
+				        					<th width="20%">还款时间</th>
+				        					<th width="20%">还款类型</th>
+				        					<th width="20%">还款金额</th>
+				        					<th width="10%">还款状态</th>
+				        					<th width="10%">备注</th>
+        								</tr>
+									</thead>
+				</table>
+				<br/>
+				<table id="overdueRemark-table-1" class="table table-striped table-bordered" cellspacing="0" width="100%">
+				<tr>
+				
+					<th>
+				<form role="form" class="form-horizontal" id="repay_flag_info_form" method="post">
+                    <input type="hidden" name="projectId" id="projectId"/>
+                     <input type="hidden" name="unreturnPrincipal"  id="form-field-unreturnPrincipal" >
+                     <input type="hidden" name="overdueDays"  id="form-field-overdueDays" >
+                     <div class="form-group">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 还款日期:</label>
+                        <div class="col-sm-9">
+                            <div class="clearfix">
+                                <input type="text" id="interest_e_date_1" name="refundTime" class="i_e_date col-xs-10 col-sm-5" datatype="*" nullmsg="请输入还款日期"/>
+                                ##<input type="text" name="dataTime"  onclick="WdatePicker({isShowClear:true,readOnly:false,dateFmt:'yyyy-MM-dd HH:mm:ss'})"  datatype="*" nullmsg="请输入还款时间" class="col-xs-10 col-sm-5"  id="form-field-dataTime" >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 垫资本金: </label>
+                        <div class="col-sm-9">
+                            <div class="clearfix">
+                                <input type="text" name="overduePrincipal"  readonly  class="col-xs-10 col-sm-5" placeholder="" id="form-field-overduePrincipal">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right">垫资利息: </label>
+                        <div class="col-sm-9">
+                            <div class="clearfix">
+                                <input type="text" name="overdueInterest"  readonly class="col-xs-10 col-sm-5" placeholder="" id="form-field-overdueInterest">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 滞纳金:</label>
+                        <div class="col-sm-9">
+                            <div class="clearfix">
+                                <input type="text" name="lateFees" readonly class="col-xs-10 col-sm-5" placeholder="" id="form-field-lateFees" >
+                            </div>
+                        </div>
+                    </div>
+					 <div class="form-group">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 违约金:</label>
+                        <div class="col-sm-9">
+                            <div class="clearfix">
+                                <input type="text" name="breachAmount"  class="col-xs-10 col-sm-5" placeholder="" id="form-field-breachAmount"  datatype="n" ignore="ignore" errormsg="请填写数字">
+                            </div>
+                        </div>
+                    </div>
+                     <div class="form-group">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 共需还款:</label>
+                        <div class="col-sm-9">
+                            <div class="clearfix">
+                                <input type="text" name="payableAmount" readonly class="col-xs-10 col-sm-5" placeholder="" id="form-field-payableAmount" >
+                            </div>
+                        </div>
+                    </div>
+                     <div class="form-group">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 实际还款:</label>
+                        <div class="col-sm-9">
+                            <div class="clearfix">
+                                <input type="text" name="realPayAmount"  datatype="*" class="col-xs-10 col-sm-5" placeholder="" id="form-field-realPayAmount" >
+                            </div>
+                        </div>
+                    </div>
+                </form>
+					</th>
+				</tr></table>
+				
+    				
+    		</div>
+    		 <div class="modal-footer">
+            <button type="button" id="btn_save_flag_interest" class="btn btn-primary">确定</button>
+                <button type="button" class="btn btn-default" id="cancel_overdue" data-dismiss="modal">取消</button>
+            </div>
+					<div style="clear:both"></div>
+    		</div>
+		</div>
+	<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>

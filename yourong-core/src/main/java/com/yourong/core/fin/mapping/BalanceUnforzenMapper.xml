@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.fin.dao.BalanceUnforzenMapper" >
+  <resultMap id="BaseResultMap" type="com.yourong.core.fin.model.BalanceUnforzen" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="unforzen_no" property="unforzenNo" jdbcType="VARCHAR" />
+    <result column="forzen_no" property="forzenNo" jdbcType="VARCHAR" />
+    <result column="member_id" property="memberId" jdbcType="BIGINT" />
+    <result column="amount" property="amount" jdbcType="DECIMAL" />
+    <result column="summary" property="summary" jdbcType="VARCHAR" />
+    <result column="unforzen_status" property="unforzenStatus" jdbcType="VARCHAR" />
+    <result column="unforzen_reason" property="unforzenReason" jdbcType="VARCHAR" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="client_ip" property="clientIp" jdbcType="VARCHAR" />
+    <result column="unforzen_time" property="unforzenTime" jdbcType="TIMESTAMP" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, unforzen_no, forzen_no, member_id,  amount, summary, unforzen_status, unforzen_reason, remarks, client_ip, unforzen_time,  
+    create_time, update_time
+  </sql>
+  <insert id="insertSelective" parameterType="BalanceUnforzen" useGeneratedKeys="true" keyProperty="id">
+    insert into fin_balance_unforzen
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+       <if test="unforzenNo != null" >
+        unforzen_no,
+      </if>
+      <if test="forzenNo != null" >
+        forzen_no,
+      </if>
+      <if test="memberId != null" >
+        member_id,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="summary != null" >
+        summary,
+      </if>
+      <if test="unforzenStatus != null" >
+        unforzen_status,
+      </if>
+       <if test="unforzenReason != null" >
+        unforzen_reason,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+       <if test="clientIp != null" >
+        client_ip,
+      </if>
+      <if test="unforzenTime != null" >
+        unforzen_time,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+       <if test="unforzenNo != null" >
+        #{unforzenNo,jdbcType=VARCHAR},
+      </if>
+      <if test="forzenNo != null" >
+        #{forzenNo,jdbcType=VARCHAR},
+      </if>
+      <if test="memberId != null" >
+        #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="summary != null" >
+        #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="unforzenStatus != null" >
+        #{unforzenStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="unforzenReason != null" >
+        #{unforzenReason,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+       <if test="clientIp != null" >
+        #{clientIp,jdbcType=VARCHAR},
+      </if>
+      <if test="unforzenTime != null" >
+        #{unforzenTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="BalanceUnforzen" >
+    update fin_balance_unforzen
+    <set >
+    	<if test="unforzenNo != null" >
+        unforzen_no = #{unforzenNo,jdbcType=VARCHAR},
+      </if>
+      <if test="forzenNo != null" >
+        forzen_no = #{forzenNo,jdbcType=VARCHAR},
+      </if>
+      <if test="memberId != null" >
+        member_id = #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="summary != null" >
+        summary = #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="unforzenStatus != null" >
+        unforzen_status = #{unforzenStatus,jdbcType=VARCHAR},
+      </if>
+       <if test="unforzenReason != null" >
+        unforzen_reason = #{unforzenReason,jdbcType=VARCHAR},
+      </if>
+       <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="unforzenTime != null" >
+        unforzen_time = #{unforzenTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <select id="selectBalanceForzenByForzenNo" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from fin_balance_unforzen
+    where forzen_no = #{forzenNo,jdbcType=VARCHAR}
+  </select>
+  
+  <update id="updateByUnforzenNoSelective" parameterType="BalanceUnforzen" >
+    update fin_balance_unforzen
+    <set >
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="balance != null" >
+        balance = #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="unforzenStatus != null" >
+        unforzen_status = #{unforzenStatus,jdbcType=VARCHAR},
+      </if>
+       <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where unforzen_no = #{unforzenNo,jdbcType=VARCHAR}
+  </update>
+  
+   <select id="selectUnforzenListByForzenNo"  resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from fin_balance_unforzen
+    where forzen_no = #{forzenNo,jdbcType=VARCHAR}
+  </select>
+  
+   <select id="selectUnforzenListByForzenNoAndProcessing"  resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from fin_balance_unforzen
+    where forzen_no = #{forzenNo,jdbcType=VARCHAR} and unforzen_status='PROCESSING'
+  </select>
+  
+</mapper>

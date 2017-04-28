@@ -1,0 +1,80 @@
+#parse("/sys/sysMenu/head.vm")
+<div class="col-xs-12">
+    <p>
+    ##if($shiro.hasPermission("sysMenu:new"))
+        <button id="new_sysMenu" type="button" class="btn btn-info btn-sm btn-primary">新增</button>
+    ##end
+        #if($shiro.hasPermission("sysMenu:save"))
+            <button id="edit_sysMenu" type="button" class="btn  btn-pink btn-sm btn-primary">修改</button>
+        #end
+        #if($shiro.hasPermission("sysMenu:delete"))
+            <button id="delete_sysMenu" type="button" class="btn btn-danger btn-sm btn-primary">删除</button>
+        #end
+        #if($shiro.hasPermission("sysMenu:delete"))
+            <button id="clean_sysMenu_1" type="button" class="btn btn-info btn-sm btn-primary">清空redis前台数据缓存</button>
+            <button id="clean_sysMenu_2" type="button" class="btn btn-info btn-sm btn-primary">清空redis后台数据缓存</button>
+			<button id="clean_sysMenu_3" type="button" class="btn btn-info btn-sm btn-primary">清空redis对象级数据缓存</button>
+		#end
+
+    </p>
+</div>
+<div class="col-xs-12">
+	<div class="table-header">
+		表头信息
+	</div>
+    <div class="table-responsive">
+	<form>
+		<table class="table table-striped table-bordered">
+			<thead>
+				<tr>
+					<td>父级编号</td>
+					<td><input type="text" name="search_parentId" class="input-small search_init"/></td>
+					<td>类型</td>
+					<td>#dictSelect ("search_type",${sysServiceUtil.getDictList('menu_type')} ,"请选择")</td>
+					<td>菜单名称</td>
+					<td><input type="text" name="search_name" class="input-small search_init"/></td>
+					<td>排序</td>
+					<td><input type="text" name="search_sort" class="input-small search_init"/></td>
+					<td>状态</td>
+					<td>
+						<select name="search_status">
+							<option value="">请选择</option>
+							<option value="1">启用</option>
+							<option value="0">停用</option>
+						</select>
+					</td>
+					<td>权限标识</td>
+					<td><input type="text" name="search_permission" class="input-small search_init"/></td>
+					<td>备注信息</td>
+					<td><input type="text" name="search_remarks" class="input-small search_init"/></td>
+					<td>
+						<button id="query_sysMenu" type="button" class="btn btn-info btn-sm btn-primary">查询</button>
+						<button id = "reset_loan" type="button" class="btn btn-info btn-sm btn-primary resetButton">重置</button>
+					</td>
+				</tr>
+			</thead>
+		</table>
+	</form>       
+<table id="sysMenu-table-2" class="table table-striped table-bordered" cellspacing="0" width="100%">
+	<thead>
+            <tr>
+                <th><label><input class="ace" type="checkbox"> <span class="lbl"></span></label></th>
+                <th>编号</th>
+                <th>父级编号</th>
+                <th>类型</th>
+                <th>菜单名称</th>
+                <th>链接</th>
+                <th>目标</th>
+                <th>图标</th>
+                <th>排序</th>
+                <th width=60>状态</th>
+                <th>权限标识</th>
+                <th>创建时间</th>
+                <th>更新时间</th>
+                <th>备注信息</th>
+            </tr>
+	</thead>
+</table>
+</div>
+</div>
+#parse("/sys/sysMenu/form.vm")

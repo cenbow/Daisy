@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<settings>
+		<!-- changes from the defaults -->
+		<setting name="lazyLoadingEnabled" value="false" />
+		 <setting name="cacheEnabled" value="true" />
+	</settings>
+	
+	<typeAliases>
+		<!-- common -->
+		<typeAlias alias="BaseQueryParam" type="com.yourong.common.domain.BaseQueryParam" />
+		<!-- bsc -->
+	    <typeAlias alias="AttachmentIndex" type="com.yourong.core.bsc.model.AttachmentIndex" />
+	    <typeAlias alias="BscAttachment" type="com.yourong.core.bsc.model.BscAttachment" />
+	    <typeAlias alias="BscBank" type="com.yourong.core.bsc.model.BscBank" />
+	    <!-- cms -->
+		<typeAlias alias="CmsArticle" type="com.yourong.core.cms.model.CmsArticle" />
+		<typeAlias alias="CmsCategory" type="com.yourong.core.cms.model.CmsCategory" />
+		<typeAlias alias="CmsComment" type="com.yourong.core.cms.model.CmsComment" />
+		<typeAlias alias="CmsLink" type="com.yourong.core.cms.model.CmsLink" />
+		<typeAlias alias="CmsArticleQuery" type="com.yourong.core.cms.model.query.CmsArticleQuery" />
+	    <!-- fin -->
+	   <typeAlias alias="Balance" type="com.yourong.core.fin.model.Balance" />
+	   <typeAlias alias="BalanceQuery" type="com.yourong.core.fin.model.query.BalanceQuery" />
+	   <typeAlias alias="BalanceFreeze" type="com.yourong.core.fin.model.BalanceFreeze" />
+	   <typeAlias alias="CapitalInOutLog" type="com.yourong.core.fin.model.CapitalInOutLog" />
+	   <typeAlias alias="PopularityInOutLog" type="com.yourong.core.fin.model.PopularityInOutLog" />
+	   <typeAlias alias="RechargeLog" type="com.yourong.core.fin.model.RechargeLog" />
+	   <typeAlias alias="WithdrawLog" type="com.yourong.core.fin.model.WithdrawLog" />
+	   <typeAlias alias="CapitalInOutLogQuery" type="com.yourong.core.fin.model.query.CapitalInOutLogQuery" />
+	   <typeAlias alias="PopularityInOutLogQuery" type="com.yourong.core.fin.model.query.PopularityInOutLogQuery" />
+	   <typeAlias alias="BonusBiz" type="com.yourong.core.fin.model.biz.BonusBiz" />
+	    <!-- ic -->
+	   <typeAlias alias="Debt" type="com.yourong.core.ic.model.Debt" />
+	   <typeAlias alias="DebtBiz" type="com.yourong.core.ic.model.DebtBiz" />
+	   <typeAlias alias="DebtCollateral" type="com.yourong.core.ic.model.DebtCollateral" />
+	   <typeAlias alias="DebtInterest" type="com.yourong.core.ic.model.DebtInterest" />
+	   <typeAlias alias="DebtPledge" type="com.yourong.core.ic.model.DebtPledge" />
+	   <typeAlias alias="DebtTransfer" type="com.yourong.core.ic.model.DebtTransfer" />
+	   <typeAlias alias="Project" type="com.yourong.core.ic.model.Project" />
+	   <typeAlias alias="ProjectBiz" type="com.yourong.core.ic.model.ProjectBiz" />
+	   <typeAlias alias="ProjectInterest" type="com.yourong.core.ic.model.ProjectInterest" />
+	   <typeAlias alias="ProjectNotice" type="com.yourong.core.ic.model.ProjectNotice" />
+	   <typeAlias alias="ProjectQuery" type="com.yourong.core.ic.model.query.ProjectQuery" />
+	   <typeAlias alias="ProjectForFront" type="com.yourong.core.ic.model.biz.ProjectForFront" />
+	   <typeAlias alias="ProjectNoticeForFront" type="com.yourong.core.ic.model.biz.ProjectNoticeForFront" />
+	   <typeAlias alias="TransferProject" type="com.yourong.core.ic.model.TransferProject" />
+	   
+	    <!-- mc -->
+		<typeAlias alias="Activity" type="com.yourong.core.mc.model.Activity" />
+		<typeAlias alias="ActivityRule" type="com.yourong.core.mc.model.ActivityRule" />
+		<typeAlias alias="Coupon" type="com.yourong.core.mc.model.Coupon" />
+		<typeAlias alias="CouponTemplate" type="com.yourong.core.mc.model.CouponTemplate" />
+		<typeAlias alias="CouponTemplateRelation" type="com.yourong.core.mc.model.CouponTemplateRelation" />
+		<typeAlias alias="CouponTemplatePrint" type="com.yourong.core.mc.model.CouponTemplatePrint" />
+		<typeAlias alias="CouponQuery" type="com.yourong.core.mc.model.query.CouponQuery" />
+		<typeAlias alias="ActivityForKing" type="com.yourong.core.mc.model.biz.ActivityForKing" />
+		<typeAlias alias="ActivityForFirstInvest" type="com.yourong.core.mc.model.biz.ActivityForFirstInvest" />
+		<typeAlias alias="ActivityForSingleInvest" type="com.yourong.core.mc.model.biz.ActivityForSingleInvest" />
+		<typeAlias alias="ActivityForRedFriday" type="com.yourong.core.mc.model.biz.ActivityForRedFriday" />
+
+		<typeAlias alias="ActivityBiz" type="com.yourong.core.mc.model.biz.ActivityBiz" />
+		<typeAlias alias="ActivityHistory" type="com.yourong.core.mc.model.ActivityHistory" />
+		<typeAlias alias="ActivityHistoryBiz" type="com.yourong.core.mc.model.biz.ActivityHistoryBiz" />
+	    <typeAlias alias="ActivityHistoryDetail" type="com.yourong.core.mc.model.biz.ActivityHistoryDetail" />
+	    
+	    <typeAlias alias="HelpCenterQuestion" type="com.yourong.core.mc.model.HelpCenterQuestion" />
+	    <typeAlias alias="HelpCenterLabel" type="com.yourong.core.mc.model.HelpCenterLabel" />
+	    <typeAlias alias="HelpCenterQuestionShow" type="com.yourong.core.mc.model.HelpCenterQuestionShow" />
+	    
+	    <!-- sys -->
+		<typeAlias alias="SysArea" type="com.yourong.core.sys.model.SysArea" />
+		<typeAlias alias="SysDict" type="com.yourong.core.sys.model.SysDict" />
+		<typeAlias alias="SysLog" type="com.yourong.core.sys.model.SysLog" />
+		<typeAlias alias="SysLogWithBLOBs" type="com.yourong.core.sys.model.SysLogWithBLOBs" />
+		<typeAlias alias="SysMenu" type="com.yourong.core.sys.model.SysMenu" />
+		<typeAlias alias="SysRole" type="com.yourong.core.sys.model.SysRole" />
+		<typeAlias alias="SysRoleMenu" type="com.yourong.core.sys.model.SysRoleMenu" />
+		<typeAlias alias="SysUser" type="com.yourong.core.sys.model.SysUser" />
+		<typeAlias alias="SysUserRole" type="com.yourong.core.sys.model.SysUserRole" />
+
+	    <!-- tc start-->
+	    	<!-- tc model -->
+		   <typeAlias alias="HostingCollectTrade" type="com.yourong.core.tc.model.HostingCollectTrade" />
+		   <typeAlias alias="HostingPayTrade" type="com.yourong.core.tc.model.HostingPayTrade" />
+		   <typeAlias alias="Order" type="com.yourong.core.tc.model.Order" />
+		   <typeAlias alias="Transaction" type="com.yourong.core.tc.model.Transaction" />
+		   <typeAlias alias="TransactionInterest" type="com.yourong.core.tc.model.TransactionInterest" />
+		   <!-- tc biz -->
+		   <typeAlias alias="TransactionForProject" type="com.yourong.core.tc.model.biz.TransactionForProject" />
+		   <typeAlias alias="OrderForMember" type="com.yourong.core.tc.model.biz.OrderForMember" />
+		   <typeAlias alias="MemberTransactionCapital" type="com.yourong.core.tc.model.biz.MemberTransactionCapital" />
+		   <typeAlias alias="TransactionForMemberCenter" type="com.yourong.core.tc.model.biz.TransactionForMemberCenter" />
+		   <typeAlias alias="TransactionInterestForPay" type="com.yourong.core.tc.model.biz.TransactionInterestForPay" />
+		   <typeAlias alias="TransactionForFirstInvestAct" type="com.yourong.core.tc.model.biz.TransactionForFirstInvestAct" />
+		   <typeAlias alias="DebtForLenderMember" type="com.yourong.core.tc.model.biz.DebtForLenderMember" />
+		   <typeAlias alias="CalenderTransactionInterestDetail" type="com.yourong.core.tc.model.biz.CalenderTransactionInterestDetail" />
+		   <!-- tc query -->
+		   <typeAlias alias="TransactionQuery" type="com.yourong.core.tc.model.query.TransactionQuery" />
+		   <typeAlias alias="TransactionInterestQuery" type="com.yourong.core.tc.model.query.TransactionInterestQuery" />
+		   <typeAlias alias="OrderQuery" type="com.yourong.core.tc.model.query.OrderQuery" />
+		   <typeAlias alias="BorrowRepayInterestBiz" type="com.yourong.core.tc.model.biz.BorrowRepayInterestBiz" />
+	   <!-- tc end-->
+	    <!-- uc -->
+		<typeAlias alias="Enterprise" type="com.yourong.core.uc.model.Enterprise" />
+		<typeAlias alias="Member" type="com.yourong.core.uc.model.Member" />
+		<typeAlias alias="MemberVip" type="com.yourong.core.uc.model.MemberVip" />
+		<typeAlias alias="MemberBehaviorLog" type="com.yourong.core.uc.model.MemberBehaviorLog" />
+		<typeAlias alias="MemberBankCard" type="com.yourong.core.uc.model.MemberBankCard" />
+		<typeAlias alias="MemberBaseBiz" type="com.yourong.core.uc.model.MemberBaseBiz" />
+		<typeAlias alias="MemberInfo" type="com.yourong.core.uc.model.MemberInfo" />
+		<typeAlias alias="MemberLogin" type="com.yourong.core.uc.model.MemberLogin" />
+		<typeAlias alias="MemberCheck" type="com.yourong.core.uc.model.MemberCheck" />
+		<typeAlias alias="MemberCheckQuery" type="com.yourong.core.uc.model.query.MemberCheckQuery" />
+		<typeAlias alias="MemberNotifySettings" type="com.yourong.core.uc.model.MemberNotifySettings" />
+		<typeAlias alias="MemberRefer" type="com.yourong.core.uc.model.MemberRefer" />
+		<typeAlias alias="MemberVerify" type="com.yourong.core.uc.model.MemberVerify" />
+	    <typeAlias alias="MemberForLottery" type="com.yourong.core.uc.model.biz.MemberForLottery" />
+	    <typeAlias alias="VipDiscount" type="com.yourong.core.uc.model.VipDiscount" />
+	    <package name="com.yourong.core"></package>
+	</typeAliases>
+	
+</configuration>

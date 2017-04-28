@@ -1,0 +1,193 @@
+/*
+生日月banner*/
+body{width: 100%;background: #fff4ec;}
+.g-wrap-795{
+    width: 795px;
+    margin: 0 auto;
+}
+.g-wrap-1023{
+    width: 1023px;
+    margin: 122px auto 0 auto;
+    background: url(/static/img/activity/birthdayGift/rule-bg.png) no-repeat top center;
+}
+.g-birthdayGift-banner{
+    background: url(/static/img/activity/birthdayGift/banner.jpg) no-repeat top center;
+    width: 100%;
+    height: 754px;
+    margin-top: -8px;
+    position: relative;
+}
+.g-birthdayGift-banner1{
+    background: url(/static/img/activity/birthdayGift/banner-1.jpg) no-repeat top center;
+    width: 100%;
+    height: 250px;
+
+}
+
+/*签到特权1*/
+.f-fl-4{margin-left:4px;}
+
+.f-mar-top-right{
+    margin: -307px 133px 0 0;
+}
+.f-login-guide{
+    position: relative;
+    background: url(/static/img/activity/birthdayGift/login.png) no-repeat;
+    width: 386px;
+    height: 391px;
+}
+.f-login-guide.z-normal{
+    background: url(/static/img/activity/birthdayGift/login_03.png) no-repeat;
+}
+.f-login-guide span{
+    background: #d74148;
+    width: 235px;
+    height: 55px;
+    display: block;
+    margin: 20px 0 0 90px;
+    color: #fff;
+    font-size: 18px;
+    text-align: center;
+    font-family: "Microsoft YaHei";
+
+}
+.f-login-guide span i{
+    font-weight: bold;
+}
+.f-login-guide1{
+    position: relative;
+    /*background: url(/static/img/activity/birthdayGift/login-02.png) no-repeat;*/
+   /* width: 385px;
+    height: 390px;*/
+}
+.f-login-guide2{
+    position: relative;
+    background: url(/static/img/activity/birthdayGift/login-03.png) no-repeat;
+    width: 385px;
+    height: 390px;
+}
+.f-login-guide img {
+    display: inline-block;
+    margin: 154px 0 0 154px;
+}
+.f-login-guide button {
+    width: 170px;
+    height: 40px;
+    background: 0;
+    border: 0;
+    position: absolute;
+    bottom: 75px;
+    left: 118px;
+   /* text-indent: -9999em;*/
+    cursor: pointer;
+    outline: 0;
+    color:#fff;
+    font-size: 18px;
+   /* line-height: 40px;*/
+}
+.f-login-guide1 button {
+    width: 240px;
+    background: #d74148;
+    border: 0;
+    position: absolute;
+    bottom: 75px;
+    left: 82px;
+    /* text-indent: -9999em;*/
+    cursor: pointer;
+    outline: 0;
+    color:#fff;
+    font-size: 18px;
+    height:50px;
+}
+.m-birthday-checkin .u-dice-action {
+    width: 100px;
+    height: 100px;
+    margin: 150px 130px 0 auto;
+    background: url(/static/img/common/signIn/dice.jpg) no-repeat 0 7px;
+}
+
+.m-birthday-checkin .u-dice-a1 {
+    background-position: 0 7px;
+}
+
+.m-birthday-checkin .u-dice-a2 {
+    background-position: 0 -89px;
+}
+
+.m-birthday-checkin .u-dice-a3 {
+    background-position: 0 -185px;
+}
+
+.m-birthday-checkin .u-dice-a4 {
+    background-position: 0 -282px;
+}
+
+.m-birthday-checkin .u-dice-a5 {
+    background-position: 0 -378px;
+}
+
+.m-birthday-checkin .u-dice-a6 {
+    background-position: 0 -474px;
+}
+
+.m-birthday-checkin .u-dice-b1 {
+    background-position: 0 -570px;
+}
+
+.m-birthday-checkin .u-dice-b2 {
+    background-position: 0 -668px;
+}
+
+.m-birthday-checkin .u-dice-b3 {
+    background-position: 0 -763px;
+}
+
+.m-birthday-checkin .u-dice-b4 {
+    background-position: 0 -859px;
+}
+/*签到特权2*/
+.f-mar-top-118{margin: 118px 0 0 0;}
+.f-mar-left-10{margin: 0 0 0 10px;}
+.f-mar-right-82{margin: 35px 82px 0 0;}
+
+/*签到特权3*/
+.f-mar-left-73{margin: -35px 0 0 73px;}
+.f-mar-top-130{margin: 130px 0 0 0;}
+
+ /*规则*/
+.u-birthdayGift-rule{
+    height: 488px;
+    color: #a11717;
+    padding: 100px 0 50px 66px;
+    line-height: 30px;
+
+}
+.u-birthdayGift-rule span{
+    text-indent: 20px;
+    display: block;
+}
+.u-birthdayGift-rule em{
+    font-weight: bold;
+}
+ /*按钮*/
+.u-receive-btn-1{
+    width: 141px;
+    margin: 20px 0 0 145px;
+
+}
+.u-receive-btn-2{
+    width: 141px;
+    margin: 20px 0 0 505px;
+}
+.g-bd {
+    margin-bottom: 0;
+}
+/*
+.u-birthdayGift-productsList{
+    text-decoration: underline;
+}*/
+.u-birthdayGift-productsList,
+.u-birthdayGift-productsList:hover{
+    color: #08c;
+    text-decoration: underline;
+}

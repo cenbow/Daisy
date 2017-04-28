@@ -1,0 +1,502 @@
+body {
+    -moz-user-select: none; /*火狐*/
+    -webkit-user-select: none; /*webkit浏览器*/
+    -ms-user-select: none; /*IE10*/
+    user-select: none;
+}
+.f-hidden{
+    display: none;
+}
+.m-head-background{
+    width:100%;
+    height:469px;
+    margin-top:-10px;
+    background: url(/static/img/post/popularityPark/head-bg.png) no-repeat center ;
+}
+.m-head-background .u-title{
+    width:888px;
+    height:337px;
+    background: url(/static/img/post/popularityPark/head-title.png) no-repeat center ;
+    position:relative;
+    margin: 0 auto;
+    top:80px;
+    left:-150px;
+    animation: big 1s;
+    -webkit-animation: big  1s ;
+    -moz-animation: big  1s; /*火狐*/
+    transform: scale(0);
+    -webkit-transform: scale(0);
+    -moz-transform: scale(0);
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+    -moz-animation-fill-mode: forwards;
+}
+.m-head-background .u-title.z-ie10{
+    -ms-animation: big  1s; /*IE10*/
+    -ms-transform: scale(0);
+    -ms-animation-fill-mode: forwards;
+}
+@keyframes  big {
+    0% {
+        -moz-transform:scale(0);
+        -ms-transform: scale(0);
+        transform: scale(0);
+    }
+
+    40% {
+        -moz-transform:scale(1.2);
+        -ms-transform: scale(1.2);
+        transform: scale(1.2);
+    }
+   75% {
+        -moz-transform: scale(0.8);
+        -ms-transform: scale(0.8);
+        transform: scale(0.8);
+    }
+    100% {
+        -moz-transform:scale(1);
+        -ms-transform: scale(1);
+        transform: scale(1);
+    }
+}
+@-ms-keyframes  big {
+    0% {
+        -ms-transform: scale(0);
+    }
+
+    40% {
+        -ms-transform: scale(1.2);
+    }
+    75% {
+        -ms-transform: scale(0.8);
+    }
+    100% {
+        -ms-transform: scale(1);
+    }
+}
+@-webkit-keyframes  big {
+    0% {
+        -webkit-transform: scale(0);
+    }
+
+    40% {
+        -webkit-transform: scale(1.2);
+    }
+    75% {
+        -webkit-transform: scale(0.8);
+    }
+    100% {
+        -webkit-transform: scale(1);
+    }
+}
+.m-head-background .u-balloon{
+    position:relative;
+    width:434px;
+    height:231px;
+    margin: 0 auto;
+    background: url(/static/img/post/popularityPark/balloon.png) no-repeat center ;
+    transform: translate(-1200px,-300px);
+    -webkit-transform: translate( -1200px,-300px);
+    -moz-transform: translate( -1200px,-300px);
+    animation: fly  2s  cubic-bezier(0.1,0.1,0.5,0.5);
+    -webkit-animation: fly 2s  cubic-bezier(0.1,0.1,0.5,0.5);
+    -moz-animation: fly 2s  cubic-bezier(0.1,0.1,0.5,0.5);
+    animation-delay: 1s;
+    -webkit-animation-delay: 1s;
+    -moz-animation-delay: 1s;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+    -moz-animation-fill-mode: forwards;
+}
+.m-head-background .u-balloon.f-adjust{
+    top:-146px;
+    left:263px;
+}
+.m-head-background .u-balloon.z-ie10{
+    -ms-transform: translate( -1200px,-300px);
+    -ms-animation: fly 2s  cubic-bezier(0.1,0.1,0.5,0.5);
+    -ms-animation-delay: 1s;
+    -ms-animation-fill-mode: forwards;
+}
+@-webkit-keyframes fly {
+    0% {
+        -webkit-transform: translate( -900px,-300px);
+    }
+   25% {
+        -webkit-transform: translate(-600px,-150px );
+    }
+    50% {
+        -webkit-transform: translate(-300px,-70px );
+    }
+    100% {
+        -webkit-transform: translate(265px,-150px );
+    }
+}
+
+@-ms-keyframes fly {
+    0% {
+        -ms-transform: translate( -900px,-300px);
+    }
+    25% {
+        -ms-transform: translate(-600px,-150px );
+    }
+    50% {
+        -ms-transform: translate(-300px,-70px );
+    }
+    100% {
+        -ms-transform: translate(265px,-150px );
+    }
+}
+@-moz-keyframes  fly {
+    0% {
+        -moz-transform:translate(-900px,-300px);
+    }
+    25% {
+        -moz-transform: translate(-600px,-150px);
+    }
+    50% {
+        -moz-transform: translate(-300px,-70px);
+    }
+    100% {
+        -moz-transform: translate(265px,-150px);
+    }
+}
+@keyframes  fly {
+    0% {
+        transform: translate(-900px,-300px);
+    }
+    25% {
+        transform: translate(-600px,-150px);
+    }
+    50% {
+        transform: translate(-300px,-70px);
+    }
+    100% {
+        transform: translate(265px,-150px);
+    }
+}
+.m-background-one{
+    width:100%;
+    height:300px;
+    background: url(/static/img/post/popularityPark/bg-1.png) no-repeat center ;
+}
+.m-background-two{
+    width:100%;
+    height:1159px;
+    background: url(https://yrimg.oss-cn-hangzhou.aliyuncs.com/img/bg-2.png) no-repeat center ;
+    margin-bottom:-100px;
+}
+
+.m-iphone{
+    width:363px;
+    height:753px;
+    position:relative;
+    margin:0 auto;
+    top:-568px;
+    background: url(/static/img/post/popularityPark/iphone.png) no-repeat center ;
+}
+
+.m-iphone .u-iphone{
+    width: 327px;
+    height: 580px;
+    position: absolute;
+    top: 82px;
+    left: 16px;
+}
+.m-iphone img{
+    width: 327px;
+    height: 580px;
+    position: absolute;
+    top: 82px;
+    left: 16px;
+    display: none;
+}
+.m-iphone img.f-show{
+    display: block;
+}
+.u-ticket{
+    width:61px;
+    height:43px;
+    background: url(/static/img/post/popularityPark/ticket.png) no-repeat center ;
+    position: relative;
+    margin: 0 auto;
+    -webkit-animation: start 2.5s infinite ease-in-out;
+    -moz-animation: start 2.5s infinite ease-in-out;
+    -ms-animation:  start 2.5s infinite ease-in-out;
+    animation: start 2.5s infinite ease-in-out;
+}
+.u-ticket.z-one{
+    top:55px;
+     left:-600px;
+}
+.u-ticket.z-two{
+    top:120px;
+    left:-676px;
+}
+.u-talk-frame{
+    width:418px;
+    height:218px;
+    margin:-1240px auto;
+    left:350px;
+    opacity: 0;
+    background: url(/static/img/post/popularityPark/talkFrame.png) no-repeat center ;
+    position:relative;
+    -webkit-animation: towardsLeft 0.5s  cubic-bezier(0.1,0.1,0.5,0.5);
+    -moz-animation: towardsLeft 0.5s  cubic-bezier(0.1,0.1,0.5,0.5);
+    -ms-animation: towardsLeft 0.5s  cubic-bezier(0.1,0.1,0.5,0.5);
+    animation: towardsLeft 0.5s  cubic-bezier(0.1,0.1,0.5,0.5);
+    -webkit-animation-fill-mode: forwards;
+    -moz-animation-fill-mode: forwards;
+    -ms-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+}
+@keyframes towardsLeft {
+    0% {
+        -ms-transform:translate(20px,0) ;
+        -moz-transform: translate(20px,0);
+        transform: translate(20px,0) ;
+        opacity: 0;
+    }
+    100% {
+        -ms-transform:translate(0,0) ;
+        -moz-transform: translate(0,0);
+        transform: translate(0,0) ;
+        opacity: 1;
+    }
+}
+@-ms-keyframes towardsLeft {
+    0% {
+        -ms-transform:translate(20px,0) ;
+        opacity: 0;
+    }
+    100% {
+        -ms-transform:translate(0,0) ;
+        opacity: 1;
+    }
+}
+@-webkit-keyframes towardsLeft {
+    0% {
+        -webkit-transform: translate(20px,0);
+        opacity: 0;
+    }
+    100% {
+        -webkit-transform: translate(0,0);
+        opacity: 1;
+    }
+}
+@-moz-keyframes towardsLeft {
+    0% {
+        -moz-transform: translate(20px,0);
+        opacity: 0;
+    }
+    100% {
+        -moz-transform: translate(0,0);
+        opacity: 1;
+    }
+}
+
+.u-talk-frame img{
+    margin: 65px;
+}
+
+.u-balloon-gift{
+    width:74px;
+    height:176px;
+    background: url(/static/img/post/popularityPark/balloon-gift.png) no-repeat center ;
+    margin:0 auto;
+    position:relative;
+    z-index: 100;
+    top:1100px;
+   left:705px;
+    -webkit-animation: start 2.5s infinite ease-in-out;
+    -moz-animation: start 2.5s infinite ease-in-out;
+    -ms-animation:  start 2.5s infinite ease-in-out;
+    animation: start 2.5s infinite ease-in-out;
+}
+/*上下浮动的动画效果*/
+@keyframes start{
+    0% {
+        transform: translate(0,0);
+        -ms-transform:translate(0,0) ;
+        -moz-transform: translate(0,0);
+    }
+
+    50% {
+        transform: translate( 0,30px);
+        -ms-transform:translate(0,30px) ;
+        -moz-transform: translate(0,30px);
+    }
+
+    100% {
+        transform: translate(0,0);
+        -ms-transform:translate(0,0) ;
+        -moz-transform: translate(0,0);
+    }
+}
+@-moz-keyframes start{
+    0% {
+        -moz-transform: translate(0,0);
+    }
+
+    50% {
+        -moz-transform: translate(0,30px);
+    }
+
+    100% {
+        -moz-transform: translate(0,0);
+    }
+}
+@-ms-keyframes start{
+    0% {
+        -ms-transform:translate(0,0) ;
+    }
+
+    50% {
+        -ms-transform:translate(0,30px) ;
+    }
+
+    100% {
+        -ms-transform:translate(0,0) ;
+    }
+}
+@-webkit-keyframes start{
+    0% {
+        -webkit-transform: translate( 0,0);
+    }
+    50% {
+        -webkit-transform: translate( 0,30px);
+    }
+    100% {
+        -webkit-transform: translate(0,0);
+    }
+}
+.u-switch{
+    top:200px;
+    width:67px;
+    height:92px;
+    position:relative;
+    margin:0 auto;
+    cursor: pointer;
+}
+.u-switch.z-left{
+    top:-45px;
+    left:-245px;
+    background: url(/static/img/post/popularityPark/left.png) no-repeat center ;
+    -webkit-animation: left 1.5s infinite ease-in-out;
+    -moz-animation: left 1.5s infinite ease-in-out;
+    -ms-animation:  left 1.5s infinite ease-in-out;
+    animation: left 1.5s infinite ease-in-out;
+}
+.u-switch.z-right{
+    top:-137px;
+    left:255px;
+    background: url(/static/img/post/popularityPark/right.png) no-repeat center ;
+    -webkit-animation: right 1.5s infinite ease-in-out;
+    -moz-animation: right 1.5s infinite ease-in-out;
+    -ms-animation:  right 1.5s infinite ease-in-out;
+    animation: right 1.5s infinite ease-in-out;
+}
+/*左右浮动的动画效果*/
+@keyframes  left {
+    0% {
+        transform: translate(0,0);
+        -ms-transform:translate(0,0) ;
+        -moz-transform: translate(0,0);
+    }
+    50% {
+        transform: translate(10px,0);
+        -ms-transform:translate(10px,0) ;
+        -moz-transform: translate(10px,0);
+    }
+    100% {
+        transform: translate(0,0);
+        -ms-transform:translate(0,0) ;
+        -moz-transform: translate(0,0);
+    }
+}
+@-moz-keyframes  left {
+    0% {
+        -moz-transform: translate(0,0);
+    }
+    50% {
+        -moz-transform: translate(10px,0);
+    }
+    100% {
+        -moz-transform: translate(0,0);
+    }
+}
+@-ms-keyframes  left {
+    0% {
+        -ms-transform:translate(0,0) ;
+    }
+    50% {
+        -ms-transform:translate(10px,0) ;
+    }
+    100% {
+        -ms-transform:translate(0,0) ;
+    }
+}
+@-webkit-keyframes  left {
+    0% {
+        -webkit-transform: translate(0,0);
+    }
+    50% {
+        -webkit-transform: translate(10px,0);
+    }
+    100% {
+        -webkit-transform: translate(0,0);
+    }
+}
+@keyframes  right {
+    0% {
+        transform: translate(0,0);
+        -ms-transform:translate(0,0) ;
+        -moz-transform: translate(0,0);
+    }
+    50% {
+        transform: translate(-10px,0 );
+        -ms-transform:translate(-10px,0) ;
+        -moz-transform: translate(-10px,0);
+    }
+    100% {
+        transform: translate(0,0);
+        -ms-transform:translate(0,0) ;
+        -moz-transform: translate(0,0);
+    }
+}
+@-ms-keyframes  right {
+    0% {
+        -ms-transform:translate(0,0) ;
+    }
+    50% {
+        -ms-transform:translate(-10px,0) ;
+    }
+    100% {
+        -ms-transform:translate(0,0) ;
+    }
+}
+@-moz-keyframes  right {
+    0% {
+        -moz-transform: translate(0,0);
+    }
+    50% {
+        -moz-transform: translate(-10px,0);
+    }
+    100% {
+        -moz-transform: translate(0,0);
+    }
+}
+@-webkit-keyframes  right {
+    0% {
+        -webkit-transform: translate(0,0);
+    }
+    50% {
+        -webkit-transform: translate(-10px,0);
+    }
+    100% {
+        -webkit-transform: translate(0,0);
+    }
+}
+[v-cloak]{
+    display: none;
+}

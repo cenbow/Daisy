@@ -1,0 +1,60 @@
+.u-grid-transaction{
+    line-height: 42px;
+    padding: 0;
+    height: 46px;
+    background-color: #fff;
+    width: 100%;
+}
+
+.u-grid-transaction li {
+    width: 21%;
+    float: left;
+    color: #999;
+    margin:0 6%;
+    font-size: 16px;
+    text-align: center;
+}
+.f-red-color {
+    border-bottom: 2px solid #d74148;
+    color: #da404a !important;
+}
+.u-grayBlock{
+    width: 100%;
+    height: 10px;
+    background: #EEEEEE;
+}
+.m-mainContentWrap{
+    width: 96%;
+    margin: auto;
+}
+.f-color3{
+    color: #333333;
+}
+.f-color6{
+    color: #666666;
+}
+.f-color9{
+    color: #999999;
+}
+.f-colorRed{
+    color: #d74148;
+}
+.u-withdrawalsRecord,
+.u-rechargeRecord,
+.u-capitalFlowList{
+    width: 100%;
+}
+.u-withdrawalsRecord li,
+.u-rechargeRecord li,
+.u-capitalFlowList li{
+    width: 100%;
+    padding: 12px 0;
+    position: relative;
+    border-bottom: 1px solid #f0f0f0;
+    line-height:24px;
+}
+.u-capitalFlowList li .u-expenditure{
+    position: absolute;
+    top:28%;
+    right: 4px;
+}

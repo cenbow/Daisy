@@ -1,0 +1,696 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.tc.dao.HostingCollectTradeMapper" >
+  <resultMap id="BaseResultMap" type="HostingCollectTrade" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="trade_no" property="tradeNo" jdbcType="VARCHAR" />
+    <result column="out_trade_no" property="outTradeNo" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="source_id" property="sourceId" jdbcType="BIGINT" />
+    <result column="project_id" property="projectId" jdbcType="BIGINT" />
+    <result column="amount" property="amount" jdbcType="DECIMAL" />
+    <result column="platform_amount" property="platformAmount" jdbcType="DECIMAL" />
+    <result column="payer_id" property="payerId" jdbcType="BIGINT" />
+    <result column="payer_ip" property="payerIp" jdbcType="VARCHAR" />
+    <result column="pay_method" property="payMethod" jdbcType="VARCHAR" />
+    <result column="bank_code" property="bankCode" jdbcType="VARCHAR" />
+    <result column="summary" property="summary" jdbcType="VARCHAR" />
+    <result column="trade_close_time" property="tradeCloseTime" jdbcType="VARCHAR" />
+    <result column="trade_status" property="tradeStatus" jdbcType="VARCHAR" />
+    <result column="pay_status" property="payStatus" jdbcType="VARCHAR" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="transaction_interest_ids" property="transactionInterestIds" jdbcType="VARCHAR" />
+    <result column="trade_time" property="tradeTime" jdbcType="TIMESTAMP" />
+    <result column="pay_time" property="payTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="is_pre_auth" property="isPreAuth" jdbcType="INTEGER" />
+    <result column="is_withhold_authority" property="isWithholdAuthority" jdbcType="INTEGER" />
+    <result column="project_category" property="projectCategory" jdbcType="INTEGER" />
+    <result column="transfer_id" property="transferId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, trade_no, out_trade_no, type, source_id, project_id, amount, platform_amount, payer_id, payer_ip, pay_method, bank_code, 
+    summary, trade_close_time, trade_status, pay_status, remarks, transaction_interest_ids, trade_time, pay_time, 
+    update_time, is_pre_auth, is_withhold_authority,  transfer_id, project_category
+  </sql>
+  <!-- 插入代收交易 -->
+  <insert id="insertSelective" parameterType="HostingCollectTrade" keyProperty="id" useGeneratedKeys="true">
+    insert into tc_hosting_collect_trade
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="tradeNo != null" >
+        trade_no,
+      </if>
+       <if test="outTradeNo != null" >
+        out_trade_no,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="sourceId != null" >
+        source_id,
+      </if>
+      <if test="projectId != null" >
+        project_id,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="platformAmount != null" >
+        platform_amount,
+      </if>
+      <if test="payerId != null" >
+        payer_id,
+      </if>
+      <if test="payerIp != null" >
+        payer_ip,
+      </if>
+      <if test="payMethod != null" >
+        pay_method,
+      </if>
+      <if test="bankCode != null" >
+        bank_code,
+      </if>
+      <if test="summary != null" >
+        summary,
+      </if>
+      <if test="tradeCloseTime != null" >
+        trade_close_time,
+      </if>
+      <if test="tradeStatus != null" >
+        trade_status,
+      </if>
+      <if test="payStatus != null" >
+        pay_status,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+      <if test="transactionInterestIds != null" >
+        transaction_interest_ids,
+      </if>
+      <if test="tradeTime != null" >
+        trade_time,
+      </if>
+      <if test="payTime != null" >
+        pay_time,
+      </if>
+      <if test="isPreAuth != null" >
+        is_pre_auth,
+      </if>
+      <if test="isWithholdAuthority != null" >
+        is_withhold_authority,
+      </if>
+      <if test="projectCategory != null" >
+        project_category,
+      </if>
+      <if test="transferId != null" >
+        transfer_id,
+      </if>
+        update_time
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="tradeNo != null" >
+        #{tradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="outTradeNo != null" >
+        #{outTradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="sourceId != null" >
+        #{sourceId,jdbcType=BIGINT},
+      </if>
+      <if test="projectId != null" >
+        #{projectId,jdbcType=BIGINT},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="platformAmount != null" >
+        #{platformAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="payerId != null" >
+        #{payerId,jdbcType=BIGINT},
+      </if>
+      <if test="payerIp != null" >
+        #{payerIp,jdbcType=VARCHAR},
+      </if>
+      <if test="payMethod != null" >
+        #{payMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCode != null" >
+        #{bankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null" >
+        #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeCloseTime != null" >
+        #{tradeCloseTime,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeStatus != null" >
+        #{tradeStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="payStatus != null" >
+        #{payStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="transactionInterestIds != null" >
+        #{transactionInterestIds,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeTime != null" >
+        #{tradeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payTime != null" >
+        #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isPreAuth != null" >
+        #{isPreAuth,jdbcType=INTEGER},
+      </if>
+      <if test="isWithholdAuthority != null" >
+        #{isWithholdAuthority,jdbcType=INTEGER},
+      </if>
+      <if test="projectCategory != null" >
+        #{projectCategory,jdbcType=INTEGER},
+      </if>
+      <if test="transferId != null" >
+        #{transferId,jdbcType=BIGINT},
+      </if>
+      now()
+    </trim>
+  </insert>
+  
+   <!-- 更新代收交易 -->
+  <update id="updateByPrimaryKeySelective" parameterType="HostingCollectTrade" >
+    update tc_hosting_collect_trade
+    <set >
+      <if test="tradeNo != null" >
+        trade_no = #{tradeNo,jdbcType=VARCHAR},
+      </if>
+       <if test="outTradeNo != null" >
+        out_trade_no = #{outTradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="sourceId != null" >
+        source_id = #{sourceId,jdbcType=BIGINT},
+      </if>
+      <if test="projectId != null" >
+        project_id = #{projectId,jdbcType=BIGINT},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="platformAmount != null" >
+        platform_amount = #{platformAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="payerId != null" >
+        payer_id = #{payerId,jdbcType=BIGINT},
+      </if>
+      <if test="payerIp != null" >
+        payer_ip = #{payerIp,jdbcType=VARCHAR},
+      </if>
+      <if test="payMethod != null" >
+        pay_method = #{payMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCode != null" >
+        bank_code = #{bankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null" >
+        summary = #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeCloseTime != null" >
+        trade_close_time = #{tradeCloseTime,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeStatus != null" >
+        trade_status = #{tradeStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="payStatus != null" >
+        pay_status = #{payStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="transactionInterestIds != null" >
+        transaction_interest_ids = #{transactionInterestIds,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeTime != null" >
+        trade_time = #{tradeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payTime != null" >
+        pay_time = #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = now(),
+      </if>
+      <if test="projectCategory != null" >
+    	project_category = #{projectCategory,jdbcType=INTEGER},
+      </if>
+      <if test="transferId != null" >
+    	transfer_id = #{transferId,jdbcType=BIGINT}, 
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+   <!-- 查询代收交易 -->
+  <select id="selectHostingCollectTradeByParams" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+  	SELECT 
+  		<include refid="Base_Column_List"/> 
+  	FROM 
+  		tc_hosting_collect_trade
+  	<where>
+		<if test="tradeNo != null" >
+			trade_no = #{tradeNo,jdbcType=VARCHAR}
+		</if>
+		<if test="type != null" >
+			AND type = #{type,jdbcType=INTEGER}
+		</if>
+		<if test="sourceId != null" >
+			AND source_id = #{sourceId,jdbcType=BIGINT}
+		</if>
+		<if test="tradeStatus != null" >
+			AND trade_status = #{tradeStatus,jdbcType=VARCHAR}
+		</if>
+	  limit 1
+	</where>
+  </select>
+  
+  <!-- 通过id查询代收交易 -->
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+	  SELECT 
+			<include refid="Base_Column_List"/>
+	  FROM 
+	  		tc_hosting_collect_trade
+	  WHERE 
+	  		id=#{id,jdbcType=BIGINT}
+  </select>
+  <select id="getByIdForLock" resultMap="BaseResultMap">
+	  SELECT 
+			<include refid="Base_Column_List"/>
+	  FROM 
+	  		tc_hosting_collect_trade
+	  WHERE 
+	  		id=#{id,jdbcType=BIGINT}
+	  FOR UPDATE
+  </select>
+  
+  <select id="selectSynchronizedHostingCollectTrades" resultMap="BaseResultMap" >
+  	
+	  SELECT 
+			<include refid="Base_Column_List"/>
+	  FROM 
+	  		tc_hosting_collect_trade
+	  WHERE 
+	  		trade_status='WAIT_PAY'
+  </select>
+
+  <select id="selectSynchronizedHostingCollectTradesForPayerAndPlaform" resultMap="BaseResultMap" >
+
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM
+    tc_hosting_collect_trade
+    WHERE
+    trade_status='WAIT_PAY' and TYPE  in ( 2,3,4,6)
+  </select>
+
+
+  <select id="selectSynchronizedHostingCollectTradesForPayerAndReplayment" resultMap="BaseResultMap" >
+
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM
+    tc_hosting_collect_trade
+    WHERE
+    trade_status='WAIT_PAY' and TYPE  in ( 2,4)
+  </select>
+
+
+
+  
+  <select id="selectHostingCollectTradeForLender" resultMap="BaseResultMap" >
+  	
+	  SELECT 
+			<include refid="Base_Column_List"/>
+	  FROM 
+	  		tc_hosting_collect_trade
+	  WHERE 
+	  		(trade_status='WAIT_PAY' or trade_status='TRADE_FINISHED')
+	  AND source_id = #{sourceId,jdbcType=BIGINT}
+	  AND type = #{type,jdbcType=INTEGER}
+	  AND transaction_interest_ids = #{transactionInterestIds,jdbcType=VARCHAR}
+  </select>
+  <select id="selectHostingCollectTradeForLeaseBonus" resultMap="BaseResultMap" >
+  	
+	  SELECT 
+			<include refid="Base_Column_List"/>
+	  FROM 
+	  		tc_hosting_collect_trade
+	  WHERE 
+	  		(trade_status='WAIT_PAY' or trade_status='TRADE_FINISHED')
+	  AND source_id = #{sourceId,jdbcType=BIGINT}
+	  AND type = #{type,jdbcType=INTEGER}
+	  AND project_id = #{projectId,jdbcType=BIGINT}
+  </select>
+  
+  <!-- 查询类型为用户投资、交易状态是待支付或完成的代收交易 -->
+  <select id="selectWaitPayOrFinishedHostingCollectTrade" resultMap="BaseResultMap" >
+	  SELECT 
+			<include refid="Base_Column_List"/>
+	  FROM 
+	  		tc_hosting_collect_trade
+	  WHERE 
+	  		(trade_status='WAIT_PAY' or trade_status='TRADE_FINISHED')
+	  AND source_id = #{sourceId,jdbcType=BIGINT}
+	  AND type = #{type,jdbcType=INTEGER}
+	  limit 1
+  </select>
+  
+  <select id="findByPage" resultMap="BaseResultMap">
+  	  SELECT 
+			<include refid="Base_Column_List"/>
+	  FROM 
+	  		tc_hosting_collect_trade
+	  <if test="map != null">
+	  	<where>
+	  		<if test="map.tradeNo != null" >
+	  			and trade_no = #{map.tradeNo}
+	  		</if>
+	  		<if test="map.payerId != null" >
+	  			and payer_id = #{map.payerId}
+	  		</if>
+	  		<if test="map.sourceId != null" >
+	  			and source_id = #{map.sourceId}
+	  		</if>
+	  		<if test="map.tradeTimeStart != null" >
+	  			and trade_time is not null and trade_time <![CDATA[ >= ]]> #{map.tradeTimeStart}
+	  		</if>
+	  		<if test="map.tradeTimeEnd != null" >
+	  			and trade_time is not null and trade_time <![CDATA[ <= ]]> #{map.tradeTimeEnd}
+	  		</if>
+	  		<if test="map.payTimeStart != null" >
+	  			and pay_time is not null and pay_time <![CDATA[ >= ]]> #{map.payTimeStart}
+	  		</if>
+	  		<if test="map.payTimeEnd != null" >
+	  			and pay_time is not null and pay_time <![CDATA[ <= ]]> #{map.payTimeEnd}
+	  		</if>
+	  		<if test="map.amountStart != null" >
+	  			and amount <![CDATA[ >= ]]> #{map.amountStart}
+	  		</if>
+	  		<if test="map.amountEnd != null" >
+	  			and amount <![CDATA[ <= ]]> #{map.amountEnd}
+	  		</if>
+	  		<if test="map.tradeStatus != null" >
+	  			and trade_status = #{map.tradeStatus}
+	  		</if>
+	  		<if test="map.type != null" >
+	  			and type = #{map.type}
+	  		</if>
+	  	</where>
+	  </if> 
+	  <choose>
+		<when test=" map != null">
+			<if test=" map.desc != null">
+				order by ${map.desc} desc
+			</if>
+			<if test=" map.asc != null">
+				order by ${map.asc} asc
+			</if>
+		</when>
+		<otherwise>
+			order by id desc
+		</otherwise>
+	  </choose>
+  </select>
+  
+  <!-- 根据项目id获取等待付款的交易号 -->
+  <select id="getWaitPayTradeNoByProjectId" resultMap="BaseResultMap">
+  	SELECT
+		c.trade_no
+	FROM
+		tc_hosting_collect_trade AS c
+	LEFT JOIN tc_order AS o ON o.id = c.source_id
+	WHERE
+		c.trade_status = 'WAIT_PAY'
+	AND o.project_id = #{projectId,jdbcType=BIGINT}
+	AND c.type = 1
+  </select>
+
+  <select id="queryHostingCollectTradeForLender" resultMap="BaseResultMap" >
+
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM
+    tc_hosting_collect_trade
+    WHERE
+    (trade_status='WAIT_PAY' or trade_status='TRADE_FINISHED')
+    AND source_id = #{sourceId,jdbcType=BIGINT}
+    AND type = #{type,jdbcType=INTEGER}
+  </select>
+
+
+
+  <select id="queryAlreadyHostingCollectTradeForLender" resultMap="BaseResultMap" >
+
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM
+    tc_hosting_collect_trade
+    WHERE
+     trade_status='WAIT_PAY'
+    AND source_id = #{sourceId,jdbcType=BIGINT}
+    AND type = #{type,jdbcType=INTEGER}  and transaction_interest_ids = #{transactionInterestIds,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectHostingCollectTradesBySourceIdAndTypes" resultMap="BaseResultMap" >
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM
+    tc_hosting_collect_trade
+    WHERE  source_id = #{sourceId,jdbcType=BIGINT}
+    AND type in
+    <foreach collection="types" item="type"  open="(" separator="," close=")">
+          #{type}
+  </foreach>
+
+  </select>
+  
+  <sql id="Column_List_For_Refund" >
+    c.id, 
+    c.trade_no, 
+    c.out_trade_no,
+    c.type, 
+    c.source_id, 
+    c.project_id, 
+    c.amount, 
+    c.platform_amount, 
+    c.payer_id, 
+    c.payer_ip, 
+    c.pay_method, 
+    c.bank_code, 
+    c.summary, 
+    c.trade_close_time, 
+    c.trade_status, 
+    c.pay_status, 
+    c.remarks, 
+    c.transaction_interest_ids, 
+    c.trade_time, 
+    c.pay_time, 
+    c.update_time
+  </sql>
+  
+  <!-- 根据项目id查询投资的代收记录 -->
+  <select id="selectHostCollectByProjectIdAndType" resultMap="BaseResultMap" >
+  	SELECT
+		<include refid="Column_List_For_Refund"/>
+	FROM
+		tc_hosting_collect_trade as c 
+	WHERE
+		c.project_id = #{projectId,jdbcType=BIGINT}
+	AND c.type = #{type,jdbcType=INTEGER}
+	AND c.trade_status = 'TRADE_FINISHED'
+  </select>
+
+  <select id="queryAlreadyHostingCollectTradeForPalform" resultMap="BaseResultMap" >
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM
+    tc_hosting_collect_trade
+    WHERE
+    trade_status in ('WAIT_PAY' ,'TRADE_FINISHED')
+    AND source_id = #{sourceId,jdbcType=BIGINT}
+    AND type = #{type,jdbcType=INTEGER}  and transaction_interest_ids = #{transactionInterestIds,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectHostingCollectTradeList" resultMap="BaseResultMap" >
+  	SELECT 
+			<include refid="Base_Column_List"/>
+	  FROM 
+	  		tc_hosting_collect_trade
+	  <if test="map != null">
+	  	<where>
+	  		<if test="map.tradeNo != null" >
+	  			and trade_no = #{map.tradeNo}
+	  		</if>
+	  		<if test="map.payerId != null" >
+	  			and payer_id = #{map.payerId}
+	  		</if>
+	  		<if test="map.sourceId != null" >
+	  			and source_id = #{map.sourceId}
+	  		</if>
+	  		<if test="map.tradeTimeStart != null" >
+	  			and trade_time is not null and trade_time <![CDATA[ >= ]]> #{map.tradeTimeStart}
+	  		</if>
+	  		<if test="map.tradeTimeEnd != null" >
+	  			and trade_time is not null and trade_time <![CDATA[ <= ]]> #{map.tradeTimeEnd}
+	  		</if>
+	  		<if test="map.payTimeStart != null" >
+	  			and pay_time is not null and pay_time <![CDATA[ >= ]]> #{map.payTimeStart}
+	  		</if>
+	  		<if test="map.payTimeEnd != null" >
+	  			and pay_time is not null and pay_time <![CDATA[ <= ]]> #{map.payTimeEnd}
+	  		</if>
+	  		<if test="map.amountStart != null" >
+	  			and amount <![CDATA[ >= ]]> #{map.amountStart}
+	  		</if>
+	  		<if test="map.amountEnd != null" >
+	  			and amount <![CDATA[ <= ]]> #{map.amountEnd}
+	  		</if>
+	  		<if test="map.tradeStatus != null" >
+	  			and trade_status = #{map.tradeStatus}
+	  		</if>
+	  		<if test="map.type != null" >
+	  			and type = #{map.type}
+	  		</if>
+	  	</where>
+	  </if> 
+	  <choose>
+		<when test=" map != null">
+			<if test=" map.desc != null">
+				order by ${map.desc} desc
+			</if>
+			<if test=" map.asc != null">
+				order by ${map.asc} asc
+			</if>
+		</when>
+		<otherwise>
+			order by id desc
+		</otherwise>
+	  </choose>
+	  LIMIT ${map.startRow}, ${map.pageSize}
+  </select>
+  	
+  	<select id="selectHostingCollectTradeListCount" resultType="java.lang.Integer">
+  	select 
+ 		count(0)
+    FROM 
+	  		tc_hosting_collect_trade
+	  <if test="map != null">
+	  	<where>
+	  		<if test="map.tradeNo != null" >
+	  			and trade_no = #{map.tradeNo}
+	  		</if>
+	  		<if test="map.payerId != null" >
+	  			and payer_id = #{map.payerId}
+	  		</if>
+	  		<if test="map.sourceId != null" >
+	  			and source_id = #{map.sourceId}
+	  		</if>
+	  		<if test="map.tradeTimeStart != null" >
+	  			and trade_time is not null and trade_time <![CDATA[ >= ]]> #{map.tradeTimeStart}
+	  		</if>
+	  		<if test="map.tradeTimeEnd != null" >
+	  			and trade_time is not null and trade_time <![CDATA[ <= ]]> #{map.tradeTimeEnd}
+	  		</if>
+	  		<if test="map.payTimeStart != null" >
+	  			and pay_time is not null and pay_time <![CDATA[ >= ]]> #{map.payTimeStart}
+	  		</if>
+	  		<if test="map.payTimeEnd != null" >
+	  			and pay_time is not null and pay_time <![CDATA[ <= ]]> #{map.payTimeEnd}
+	  		</if>
+	  		<if test="map.amountStart != null" >
+	  			and amount <![CDATA[ >= ]]> #{map.amountStart}
+	  		</if>
+	  		<if test="map.amountEnd != null" >
+	  			and amount <![CDATA[ <= ]]> #{map.amountEnd}
+	  		</if>
+	  		<if test="map.tradeStatus != null" >
+	  			and trade_status = #{map.tradeStatus}
+	  		</if>
+	  		<if test="map.type != null" >
+	  			and type = #{map.type}
+	  		</if>
+	  	</where>
+	  </if> 
+  </select>
+  
+  <select id="selectSynchronizedHostingCollectTradesByProjectId" resultMap="BaseResultMap" >
+	  SELECT 
+			<include refid="Column_List_For_Refund"/>
+	  from tc_hosting_collect_trade as c 
+		left join tc_order as tco  on tco.id=c.source_id
+		where c.trade_status='WAIT_PAY'
+		and tco.project_id=  #{projectId,jdbcType=BIGINT}
+		order by c.trade_time desc
+  </select>
+  	
+  <select id="selectPreAuthApplySuccessByProjectId" resultMap="BaseResultMap" >
+  	SELECT 
+  		<include refid="Base_Column_List"/>
+  	FROM tc_hosting_collect_trade
+  	WHERE
+		project_id = #{projectId,jdbcType=BIGINT}
+	AND trade_status = 'PRE_AUTH_APPLY_SUCCESS'
+	AND type = 1 
+	AND exists(select 1 from tc_order as o where o.id = source_id and o.status = 3);
+  </select>
+  
+  <!-- 更新代收交易 -->
+  <update id="updateHostingCollectTradeByIdAndTradeStatus" parameterType="HostingCollectTrade" >
+    update tc_hosting_collect_trade
+    <set >
+      <if test="tradeStatus != null" >
+        trade_status = #{tradeStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id, jdbcType=BIGINT} and trade_status = 'PRE_AUTH_APPLY_SUCCESS'
+  </update>
+  <!-- 更新委托支付状态 -->
+  <update id="updateHostingCollectTradeWithholdAuthority" parameterType="HostingCollectTrade" >
+    update tc_hosting_collect_trade
+    <set >
+      <if test="isWithholdAuthority != null" >
+        is_withhold_authority = #{isWithholdAuthority,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id, jdbcType=BIGINT} and trade_status = 'WAIT_PAY'
+  </update>
+  
+  <!--统计待支付订单 -->
+  	<select id="countWaitOrderCollectTrade" resultType="java.lang.Integer">
+  	select count(1) from tc_hosting_collect_trade as t, tc_order as o where o.id = t.source_id and t.type = 1 and o.project_id = #{projectId, jdbcType=BIGINT} and o.status = 1 
+	</select>
+
+  <select id="selectPreAuthApplySuccessByTransferId" resultMap="BaseResultMap" >
+  	SELECT 
+  		<include refid="Base_Column_List"/>
+  	FROM tc_hosting_collect_trade
+  	WHERE
+		transfer_id = #{transferId,jdbcType=BIGINT}
+	AND trade_status = 'PRE_AUTH_APPLY_SUCCESS'
+	AND exists(select 1 from tc_order as o where o.id = source_id and o.status = 3);
+  </select>
+
+    <!--查询收益总和-->
+    <select id="queryTotalAmountBySourceIdAndType" resultType="java.math.BigDecimal">
+        SELECT SUM(amount) FROM tc_hosting_pay_trade WHERE source_id=#{sourceid} AND type=#{type}
+    </select>
+  
+</mapper>

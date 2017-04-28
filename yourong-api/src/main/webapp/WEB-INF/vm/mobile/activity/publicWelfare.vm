@@ -1,0 +1,226 @@
+#parse('/mobile/common.vm')
+###set($title="有融网2周年$!{title_suffix}")
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$res_url/source/css/activity/publicWelfare.css"])
+
+#set($encryptionId=$request.getParameter("encryptionId"))
+#set($loginSource=$request.getHeader("loginSource"))
+
+#if($currentUser)
+  #set($logined=true)
+#else
+  #set($logined=false)
+#end
+#set($os=3)
+##  安卓
+#if($loginSource==1)
+  #set($os=1)
+#end
+##  IOS
+#if($loginSource==2)
+  #set($os=2)
+#end
+##
+<div id="public" data-logined="$logined" v-cloak>
+#if($loginSource==1 || $loginSource==2)
+<style>
+  .g-ft {
+    display: none;
+  }
+</style>
+#else
+##header，安卓ios，不需要头部
+<h2 class="u-pageTitle f-pos-r">
+  <a href="$siteurl/mIndex">有融网</a>
+        <span class=" f-pos-a f-fs18 f-ff-ver">
+          #if(!$currentUser)
+              <a href="{{loginUrl}}" id="j-login">登录</a>
+                <a href="$siteurl/mstation/register" id="j-register">注册</a>
+          #else
+            <a href="$mCenter_logout_url">退出</a>
+          #end
+        </span>
+</h2>
+#end
+#set($debug=$request.getParameter("debug"))
+#set($isApp=$request.getParameter("app"))
+#set($avatar=$servletUtil.getUserDO().avatars)
+
+  <div id="g-look" class="g-welfare">
+      <div class="m-know-apple j-know-school">
+          <div class="u-school-logo">
+              <img src="$res_url/img/activity/publicWelfare/school_logo.png" alt="" width="100%">
+          </div>
+          <img class="u-closeBtn" @click="close" src="$res_url/img/activity/publicWelfare/close.png" alt="">
+      <p>
+        浙江省儿童教育康复中心（青苹果学园）最早成立于1996年3月5日，为浙江省残疾人康复指导中心内设业务部门之一。<br>
+        是国家人工耳蜗救助项目定点机构、是国内数所特殊教育学院教学实践基地、言语听觉科学教育部实验室实验基地、十一五第一批智力残疾儿童康复养护试点机构、全国第一批孤独症儿童康复试点机构。<br>
+        中心座落于浙江省杭州市滨江区，树立“以病人为中心，以质量为核心”的观念，充分运用现代康复医学理念和技术，对残疾儿童进行检测评估、物理治疗、语言训练、特殊教育等综合手段，还有专门用于脑性瘫痪、脑外伤后遗症、偏瘫等康复训练器材，使许多残疾儿童达到康复或者减轻残疾程度，增强生活自理能力，预防了残疾儿童生长发育过程中的二次损害，为回归社会，参与正常的生活、学习和工作打下良好的基础。
+      </p>
+    </div>
+    <div class="g-title">
+      <img src="$res_url/img/activity/publicWelfare/title.png" alt="">
+      <img src="$res_url/img/activity/publicWelfare/title2.png" alt="">
+        <a href="#abc" id="f-join" @click="start($event)">
+
+            <img src="$res_url/img/activity/publicWelfare/join.png" alt="">
+        </a>
+      <div class="m-know">
+        <img src="$res_url/img/activity/publicWelfare/warm.png" alt="">
+        <a href="javascript:;" @click="know">了解青苹果学园</a>
+      </div>
+    </div>
+    <div class="g-content">
+        <div id="f-love" @click="traggleBtn(1)">
+        <p>情系玉树 有融网平安夜助力爱心公益</p>
+            <div>
+
+                <img v-if="current==1" class="f-love-img" src="$res_url/img/activity/publicWelfare/up_coin.png" alt="">
+                <img v-else class="f-love-img" src="$res_url/img/activity/publicWelfare/jts.png" alt="">
+            </div>
+      </div>
+        <div class="m-love-con" v-if="current==1">
+        <img src="$res_url/img/activity/publicWelfare/news1.png" alt="">
+        <p>有融网获“爱心企业”称号</p>
+        <div class="u-love-text">
+          2015年12月24日，一场由腾讯大浙网主办的“向阳格桑花”爱心公益演唱会在杭州体育馆温情上演。来自社会各界的爱心人士、爱心企业代表欢聚一堂，为青海玉树第二民族高级中学的师生送上了一个温暖的平安夜。<br>在本次“向阳格桑花”爱心公益演唱会上，主办方腾讯大浙网表彰了2015年来自社会各界的十大爱心人士，同时授予了有融网等企业“爱心企业”的荣誉称号。
+        </div>
+        <div class="u-love-news">
+          <img class="left" src="$res_url/img/activity/publicWelfare/caixin.png" alt="">
+            <a class="left" href="http://api.yrw.com//article/detail-260.html">查看相关报道></a>
+        </div>
+      </div>
+        <div id="f-love" @click="traggleBtn(2)">
+        <p>有融网走进山区学校送温暖 用爱助力梦想起航</p>
+            <div>
+                <img v-if="current==2" class="f-love-img" src="$res_url/img/activity/publicWelfare/up_coin.png" alt="">
+                <img v-else class="f-love-img" src="$res_url/img/activity/publicWelfare/jts.png" alt="">
+            </div>
+      </div>
+        <div class="m-love-con" v-if="current==2">
+        <img src="$res_url/img/activity/publicWelfare/news2.png" alt="">
+        <p>有融网走进丽水新处小学送温暖</p>
+        <div class="u-love-text">
+          10月12日，有融网团队一行九人，一路颠簸驱车前往丽水市松阳县新兴乡新处小学，为那里的孩子送去书包、文具盒、书本、体育用品等礼物，并与孩子们共同游戏，送去有融网对山区学校孩子们的关怀与温暖。
+        </div>
+        <div class="u-love-news">
+          <img class="left" src="$res_url/img/activity/publicWelfare/shanghai.png" alt="">
+            <a class="left" href="http://api.yrw.com//article/detail-509.html">查看相关报道></a>
+        </div>
+      </div>
+        <div id="f-love" @click="traggleBtn(3)">
+        <p>有融网走进青苹果学园 拥抱”来自星星的孩子”</p>
+            <div>
+                <img v-if="current==3" class="f-love-img" src="$res_url/img/activity/publicWelfare/up_coin.png" alt="">
+                <img v-else class="f-love-img" src="$res_url/img/activity/publicWelfare/jts.png" alt="">
+            </div>
+      </div>
+        <div class="m-love-con" v-if="current==3">
+        <img src="$res_url/img/activity/publicWelfare/news3.png" alt="">
+        <p>有融网走访浙江省青苹果学园</p>
+        <div class="u-love-text">
+          他们不聋，却听而不闻；他们不瞎，却视而不见。他们有个好听的名字——星星的孩子，而另一个名字却让他们的父母在梦中都能哭醒，那就是“自闭症儿童”。<br>为让更多人关注这些孩子，有融网作为爱心企业，进行了一系列公益活动，去拥抱这群“来自星星的孩子”。10月19日上午，有融网的小伙伴走进浙江省残疾人康复指导中心青苹果学园，仔细去聆听他们的心声。
+        </div>
+        <div class="u-love-news">
+          <img class="left" src="$res_url/img/activity/publicWelfare/wangyi.png" alt="">
+            <a class="left" href="http://api.yrw.com//article/detail-510.html">查看相关报道></a>
+        </div>
+      </div>
+        <div id="f-love" @click="traggleBtn(4)">
+        <p>有融网用爱融化孤独 携手关注儿童心理健康</p>
+            <div>
+                <img v-if="current==4" class="f-love-img" src="$res_url/img/activity/publicWelfare/up_coin.png" alt="">
+                <img v-else class="f-love-img" src="$res_url/img/activity/publicWelfare/jts.png" alt="">
+            </div>
+      </div>
+        <div class="m-love-con" v-if="current==4">
+        <img src="$res_url/img/activity/publicWelfare/news4.png" alt="">
+        <p>小朋友与迪士尼大明星合影</p>
+        <p>（为保护小朋友隐私，故照片做模糊处理）</p>
+        <div class="u-love-text">
+          2016年10月21日,“冰上迪士尼•奇幻之境”2016世界巡演梦幻登陆杭城。演出现场，洋溢着小朋友们的欢声笑语，这其中，就有来自浙江省残疾人康复指导中心青苹果学园的孩子。有融网作为爱心企业，参与此次公益行动，邀请青苹果学园的儿童们一起观看迪士尼冰上舞台剧表演，让孩子们真实的触摸童话梦幻世界。
+        </div>
+        <div class="u-love-news">
+          <img class="left" src="$res_url/img/activity/publicWelfare/caijing.png" alt="">
+          <a class="left" href="http://api.yrw.com//article/detail-511.html#abc">查看相关报道></a>
+        </div>
+      </div>
+    </div>
+  </div>
+    <div class="g-activity-wait" id="g-activity">
+    <div class="m-alert-d">
+      <p>爱心支持未送达，请重新点击支持</p>
+      <div class="u-button" @click="hide">确定</div>
+    </div>
+    <div class="m-alert-s">
+      <p>感谢您的爱心支持<br>5点人气值已经发放至您账户</p>
+      <div class="u-button" @click="hide">确定</div>
+    </div>
+      <div class="m-alert-l">
+        <p>感谢您的爱心支持<br>爱心接力活动已结束</p>
+        <div class="u-button" @click="hidel">确定</div>
+      </div>
+    <div class="g-title">
+      <img src="$res_url/img/activity/publicWelfare/heart.png" alt="">
+    </div>
+    <div id="g-wait" class="g-content">
+      <img src="$res_url/img/activity/publicWelfare/love.gif" alt="">
+      <div class="m-wait">
+        活动将于<span class="f-time" v-text="initData.startTime | formatTime 'M月d日h点'"></span>开始
+      </div>
+    </div>
+    <div id="g-stop" class="g-content">
+      <div class="m-heart">
+        <div>
+          爱心支持用户<br>
+          <span class="f-people">{{point}}</span>人
+        </div>
+      </div>
+      <div class="m-wait">
+        活动圆满结束
+      </div>
+    </div>
+    <div id="g-sup" class="g-content">
+      <div class="m-over">
+        <ul id="j-winnerList">
+            <li v-for="item in memberList" style="color: #ff4343">
+            <img src="$aliyun_url/{{item.avatars}}" alt="用户头像" v-if="item.avatars">
+            <img src="$res_url/img/member/avatar.png" alt="用户头像" v-else>
+              <span style="width:3.5rem;display: inline-block">{{timeAgo(item.dateTime)}}前</span> 送出了爱心
+          </li>
+        </ul>
+      </div>
+      <img class="m-fly" src="$res_url/img/activity/publicWelfare/fly.gif" alt="">
+      <div>
+        <img v-if="clicked" class="m-thank" src="$res_url/img/activity/publicWelfare/thank.png" alt="">
+        <a v-else class="m-support" @click="support($event)">支持</a>
+      </div>
+      <div class="m-sup-peo">
+        已有<span class="f-people">{{point}}</span>位爱心用户参与
+      </div>
+    </div>
+    <p class="m-introduce">
+      <span style="font-size: 1rem">活动说明:</span><br>
+        1. 活动时间：<span class="f-time">{{initData.startTime | formatTime 'M月d日h:00'}}-{{initData.endTime | formatTime 'M月d日h:00'}}</span><br>
+      2. 点击“支持”按钮即可为有融网此次公益活动积攒爱心，成功参与的用户将获得5点人气值奖励，每人仅限参与一次。<br>
+      3. 有融网此次公益活动将为浙江省青苹果学园捐赠一万元爱心慈善基金。
+    </p>
+  </div>
+  <div style="height: 4rem"></div>
+</div>
+#set($pageScript="
+<script src='$res_url/build/js/appHook.js'></script>
+<script src='$aliyunOss_url/res/lib/vue/v1/vue.min.js'></script>
+##<script src='$res_url/lib/js/vconsole.min.js'></script>
+<script src='$siteurl/res/lib/vue/vue.extend.js'></script>
+##<script src='$siteurl/res/lib/js/vconsole.min.js'></script>
+<script>
+  var receiveData = $!{data},
+          os = $!{os};
+  log(receiveData)
+  $('.j-know-school').height(window.screen.availHeight * 0.8)
+  console.log($('.j-know-school').height())
+  seajs.use('$res_url/source/js/activity/publicWelfare.js');
+</script>
+")
+#CSRFToken("xToken")

@@ -1,0 +1,20 @@
+ #parse("/common/common.vm")
+ #########################################script##################################### 
+ #set($js_config=[ 
+ "'urlMap':{ 
+   'ajax':'$root_url/hostingCollectTrade/ajax?',
+   'showTradeRecord':'$root_url/hostingCollectTrade/tradeDetail?id=',
+   'synHosting':'$root_url/hostingCollectTrade/syn/host/collect',
+   'hostingCollectTrade':'$root_url/hostingCollectTrade/rebuild',
+   
+   },
+   'permission':{
+   'queryTrade':$shiro.hasPermission('hostingCollectTrade:queryTrade'),
+   'synTrade':$shiro.hasPermission('hostingCollectTrade:synTrade')
+   },
+   'type':#buildDictJson('hosting_collect_trade_type'),
+   'status':#buildDictJson('hosting_pay_trade_status')
+   "]) 
+ #set($css_url=["$root_url/static/js/lib/validform/css/style.css","$root_url/static/js/lib/My97DatePicker/skin/WdatePicker.css"])
+ #set($js_url=["$root_url/static/js/hostingCollectTrade.js","$root_url/static/js/lib/My97DatePicker/WdatePicker.js"]) 
+ #########################################DOM##################################### 

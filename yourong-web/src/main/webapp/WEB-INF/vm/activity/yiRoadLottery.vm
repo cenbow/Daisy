@@ -1,0 +1,219 @@
+##土豪排行第二季
+#parse('/common/common.vm')
+#set($title="亿路上有你_$!{title_suffix}")
+#set($css_url=["/static/lib/js/flipclock/flipclock.css","$root_css_url/activity/yiRoad.css"])
+#set($js_url=["/static/lib/js/jq/jquery.rotate.min.js","/static/lib/js/flipclock/flipclock.min.js","$root_js_url/activity/yiRoadLottery.js"])
+
+<div class="f-mh500 f-cf">
+    <div class="m-yl-lottery f-pos-r">
+        <div class="u-yl-tips g-wrap" >
+            <span class="f-fs14 u-tips-day">第<em class="f-fs20">$!{paltformCapitalUtils.getYiRoadformDays()}</em>天</span>
+            <div class="f-fs12 u-tips-money f-dn">
+                <div class="f-ff-din f-fs12" id="j-totalInvest"
+                   data-amount="$!{paltformCapitalUtils.getPrefixPaltformTotalInvest()}">
+                    <em>当前投资总额为</em><br>￥<em class="f-fs18">$!{paltformCapitalUtils.getPrefixPaltformTotalInvest()}</em></div>
+                <div class="u-time-end" id="j-time-end">2015年6月29日17时0分<br>
+                    <em class="f-fs16">交易额突破<i class="f-fs20">1</i>亿</em></div>
+                #if($!{paltformCapitalUtils.getYiRoadformTotalInvest()})
+                    <div id="j-tips-text">距1亿还有</div>
+                    <div id="j-tips-amount">￥<i class="f-ff-din f-fs24">$!{paltformCapitalUtils.getYiRoadformTotalInvest()}</i></div>
+                #end
+            </div>
+        </div>
+        <div class="m-lottery-box" >
+            <div id="j-lottery-rotate" class="u-lottery-rotate" style="background: url(/static/img/activity/yiRoadLottery/lottery_rotate_bg20150629.png) no-repeat center top;"></div>
+            #if($currentUser)
+                #set($logined=1)
+            #else
+                #set($logined=0)
+            #end
+            <div class="u-lotter-arrow" id="j-lottery-arrow" data-logined="$logined" data-status="0" data-count="0">
+                #if($logined==1)
+                    <span>您还有<strong>0</strong>次抽奖机会</span>
+                #else
+                    <span>请登录后抽奖</span>
+                #end
+            </div>
+            <div class="u-yl-right u-lottery-list">
+                <h4 class="f-fs16">获奖列表 <span class="f-fs12">(每5分钟更新一次)</span></h4>
+                <div>
+                    <ul class="u-yl-list" id="j-luckly-list">
+                        <li class="u-yl-empty">亿起抽吧！</li>
+                    </ul>
+                </div>
+            </div>
+            <p class="f-fs14">活动期间，单笔投资满5000元，即可获得一次抽奖机会。
+                <br>例：A用户单笔投资1万元，则获得2次抽奖机会。
+                <br>B用户单笔投资10万元，则获得20次抽奖机会。</p>
+        </div>
+    </div>
+    <div class="g-wrap">
+        <div class="m-yl-gift02 u-yl-box u-circle-15">
+            <h3 class="f-fs18"><span title="二重礼 亿举夺魁"></span></h3>
+            <div class="f-cf">
+                <div class="f-fs14 u-activity-rules">活动期间，每日17:00—次日17:00，
+                    <br>投资额累计排名前三的用户将分别
+                    <br>获得<span>208点</span>、<span>158点</span>及<span>118点</span>人气值，
+                    <br>4—10名用户则按奇偶数排名规则，
+                    <br>获得与其排名相应的奖励（若投资额相等，
+                    <br>则按投资时间先后排序，先投资的用户排名靠前）。
+                </div>
+                    <span class="u-yl-countdown f-fs12">距本轮结束仅剩</span>
+                <div class="u-activity-countdown f-cf" id="j-activity-countdown">
+
+                </div>
+                <table>
+                    <thead>
+                    <tr>
+                        <td>日投资风云榜</td>
+                        <td>奖励内容</td>
+                        <td width="175">本轮实时排名</td>
+                        <td width="175">上一轮战况</td>
+                    </tr>
+                    </thead>
+                    <tbody id="j-rank-list">
+                    <tr class="u-yl-dark">
+                        <td>1</td>
+                        <td><em>208点人气值</em></td>
+                        <td name="today"><span>亿路上有你</span></td>
+                        <td name="yesday"><span>亿路上有你</span></td>
+                    </tr>
+                    <tr class="u-yl-dark">
+                        <td>2</td>
+                        <td><em>158点人气值</em></td>
+                        <td name="today"><span>亿路上有你</span></td>
+                        <td name="yesday"><span>亿路上有你</span></td>
+                    </tr>
+                    <tr class="u-yl-dark">
+                        <td>3</td>
+                        <td><em>118点人气值</em></td>
+                        <td name="today"><span>亿路上有你</span></td>
+                        <td name="yesday"><span>亿路上有你</span></td>
+                    </tr>
+                    <tr class="u-yl-tint">
+                        <td>4</td>
+                        <td><em>28点人气值</em></td>
+                        <td name="today"><span>亿路上有你</span></td>
+                        <td name="yesday"><span>亿路上有你</span></td>
+                    </tr>
+                    <tr class="u-yl-tint">
+                        <td>5</td>
+                        <td><em>98点人气值</em></td>
+                        <td name="today"><span>亿路上有你</span></td>
+                        <td name="yesday"><span>亿路上有你</span></td>
+                    </tr>
+                    <tr class="u-yl-tint">
+                        <td>6</td>
+                        <td><em>28点人气值</em></td>
+                        <td name="today"><span>亿路上有你</span></td>
+                        <td name="yesday"><span>亿路上有你</span></td>
+                    </tr>
+                    <tr class="u-yl-tint">
+                        <td>7</td>
+                        <td><em>98点人气值</em></td>
+                        <td name="today"><span>亿路上有你</span></td>
+                        <td name="yesday"><span>亿路上有你</span></td>
+                    </tr>
+                    <tr class="u-yl-tint">
+                        <td>8</td>
+                        <td><em>28点人气值</em></td>
+                        <td name="today"><span>亿路上有你</span></td>
+                        <td name="yesday"><span>亿路上有你</span></td>
+                    </tr>
+                    <tr class="u-yl-tint">
+                        <td>9</td>
+                        <td><em>98点人气值</em></td>
+                        <td name="today"><span>亿路上有你</span></td>
+                        <td name="yesday"><span>亿路上有你</span></td>
+                    </tr>
+                    <tr class="u-yl-tint">
+                        <td>10</td>
+                        <td><em>28点人气值</em></td>
+                        <td name="today"><span>亿路上有你</span></td>
+                        <td name="yesday"><span>亿路上有你</span></td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="m-yl-gift03 u-yl-box u-circle-15">
+            <h3 class="f-fs18"><span class="三重礼 亿起分享"></span></h3>
+            <div class="f-cf">
+                <div class="u-yl-left">
+                    <p class="f-fs14">
+                        活动期间，用户每日登录并分享活动页面后，
+                        <br>均可免费抢一次红包，红包为<span>1—30点人气值</span>不等。
+                        <br>新用户注册成功后即可参与抢人气值活动。
+                    </p>
+
+                    <div class="u-share-box jiathis_style_32x32" id="j-share-box">
+                        <span>分享到：</span>
+                        <a class="jiathis_button_qzone"></a>
+                        <a class="jiathis_button_tsina"></a>
+                        <a class="jiathis_button_weixin"></a>
+                    </div>
+                    <script>
+                        var jiathis_config={
+                            url:"http://www.yrw.com/activity/yiRoad/index",
+                            summary:"说好亿起到白头，你却偷偷焗了油；朋友亿生亿起走，红包我有你也有！喏，拿去！",
+                            title:"亿起分享抢红包 - 有融网 ",
+                            shortUrl:true,
+                            hideMore:true
+                        };
+                    </script>
+                    <script src="http://v3.jiathis.com/code/jia.js"></script>
+                    <img src="/static/img/activity/yiRoadLottery/yiRoad_red.png">
+                </div>
+                <div class="u-yl-right">
+                    <h4 class="f-fs20">人气值达人榜 <span class="f-fs12">(每5分钟更新一次)</span></h4>
+                    <div>
+                        <ul class="u-yl-list" id="j-yl-pValues">
+                            <li class="u-yl-empty">亿起分享！</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="m-yl-gift04 u-yl-box u-circle-15 f-cf">
+            <h3 class="f-fs18"><span class="四重礼 亿路有你"></span></h3>
+            <div>
+                <h5 class="f-fs20">破亿大礼包：投资额的百分之1人气值+神秘礼包</h5>
+                <p class="f-fs14">投资额破亿的用户，将获得其投资额百分之一的人气值奖励+神秘礼包；
+                    <br>人气值及神秘礼包将在投资额破亿后三日内发放。
+                   <br>（如A用户投资10万元，平台总交易额突破1亿元，则A用户将获得
+                    <br>1000点人气值奖励）。
+                </p>
+            </div>
+            <img src="/static/img/activity/yiRoadLottery/yiRoad_gift.png">
+        </div>
+        <div class="m-yl-gift05 u-yl-box u-circle-15">
+            <h3 class="f-fs18"><span class="五重礼 手当其充"></span></h3>
+            <p class="f-fs14">
+                活动期间，首次使用手机APP绑卡并充值满100元及以上的用户，<span>奖励8点人气值</span>。
+                例：A用户首次使用APP绑卡，并成功充值100元，则A用户将获得8点人气值。
+                <br>B用户首次使用APP绑卡，充值1元后，又充值100元，则B用户不能奖励。
+            </p>
+            <div>
+                <img src="/static/img/activity/yiRoadLottery/yiRoad_recode.png"><br/>
+                <em>下载手机APP，码上享好礼</em><br/>
+                <span class="f-fs18">已有<em id="j-download-count">88888</em>人下载</span>
+            </div>
+        </div>
+    </div>
+    <div class="m-yl-rule g-wrap">
+        <h5 class="f-fs16">活动规则</h5>
+        <p class="f-fs14">
+            1、活动对象：有融网所有会员用户(<span>APP、WAP</span>等投资用户均可参与)；
+            <br>2、活动时间：上线之日起至平台交易总额破亿后<span>七天</span>；
+            <br>3、现金券、收益券及人气值奖励即时发放，请用户前往我的账户-我的优惠-我的现金券-我的优惠券-我的人气值查看(亿举夺魁人气值将于次日<span>18:00</span>前发放);
+            <br>4、现金券、收益券自领取之日起<span>15天内有效</span>，仅限于投资，不可直接提现，每次投资仅限使用1张，现金券和收益券可以叠加使用；
+            <br>5、人气值可用于兑换现金券，人气值满50/100/500/1000时即可兑换；<a href="/coupon/reputation" target="_blank">查看我的人气值</a>
+            <br>6、实物奖励将在活动结束后<span>三天内</span>与您确认，请保持手机畅通，以免错过客服通知；
+            <br>7、有融网禁止任何恶意刷奖及其他手段重复领取奖励的行为，一经发现并证实，将取消获奖资格;
+            <br>8、如有其它疑问，请拨打客服热线：<em>400-025-6688</em>；
+            <br>本活动最终解释权归有融网所有
+        </p>
+    </div>
+</div>
+#CSRFToken()

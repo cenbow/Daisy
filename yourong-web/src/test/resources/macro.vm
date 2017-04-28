@@ -1,0 +1,102 @@
+##CSRF验证
+#macro( CSRFToken $id)
+	#if(!$id || $id == "")
+	#set($id="xToken")
+	#end
+	<input type="hidden" id="$id" name="xToken" value="$csrfTool.getToken($request)"/>
+#end
+##分页函数   分页url  总记录	
+#macro(pager $__uri $page )
+    ## 总的记录数
+    #set($__obj_count =  $page.getiTotalRecords() )
+    ##当前页的条数
+    #set($__page_size =  $page.getSize() )
+    ##当前页
+    #set($__p =  $page.getNumber() )
+    ##总页数
+    #set($PAGE_COUNT =  $page.getTotalPages()  )
+	
+	<div class="row">
+    <div class="col-sm-4">
+        <div class="dataTables_info" id="sample-table-2_info">总 $__obj_count 条数 ，当前页$__p</div>
+    </div>
+    <div class="col-sm-4">
+		<label>Display <select id="page_size_core" size="1" name="sample-table-2_length" >
+				<option value="10" selected="selected">10</option>
+				<option value="25">25</option>
+				<option value="50">50</option>
+				<option value="100">100</option>
+			</select> 条数
+		</label>
+    </div>
+	 <div class="col-sm-4">
+        <div class="dataTables_paginate paging_bootstrap">
+			
+    #if($__obj_count > $__page_size)
+        #if($__uri.indexOf("?")>=0)
+            #set($param_char='&')
+            #else
+                #set($param_char='?')
+        #end
+        #if(!$__uri.endsWith("?") && !$__uri.endsWith("&"))
+            #set($__p_uri = "${__uri}${param_char}")
+            #else
+                #set($__p_uri = $__uri)
+        #end
+        #if($__p <= $PAGE_COUNT)
+                #set($pre_page = $__p - 1)
+                #set($next_page = $__p + 1)
+                #if($__p > 3)
+                    #set($begin_idx = $__p - 3)
+                    #else
+                        #set($begin_idx = 1)
+                #end	
+                #set($end_idx = $begin_idx + 9)
+                #if($end_idx > $PAGE_COUNT)
+                    #set($end_idx = $PAGE_COUNT)
+                #end    	
+                <ul class="pagination">
+                    #if($__p > 1)                      
+						
+        				<li class="prev disabled">
+                           <a href="${__p_uri}p=$pre_page&size=15">
+                                <i class="icon-double-angle-left"></i>
+                            </a>
+                        </li>				
+                    #end       
+                    #foreach($idx in $page.getSlider() )
+                        #if($idx != $__p)
+                            <li data-value="${__p_uri}p=$idx" >
+                                <a href="${__p_uri}p=$idx&size=15">$idx</a>
+                            </li>
+                            #else
+                                <li  data-value="${__p_uri}p=$idx"  class="active"  >
+                                    <a href="${__p_uri}p=$idx&size=15">$idx</a>
+                                </li>
+                        #end
+                    #end
+                    #if($__p < $PAGE_COUNT)        
+							
+        				<li class="next">
+                            <a href="${__p_uri}p=$next_page&size=15">
+                                <i class="icon-double-angle-right"></i>
+                            </a>
+                        </li>
+                    #end
+</ul>
+        #end
+    #end
+#end
+
+##数据字典select box#
+#macro (dictSelect $name $list  $hint)
+
+<select name="$name">
+  <option value="">$hint</option>
+
+#foreach ($_dict in $list)
+  <option value="$_dict.value" #if ($_dict.value == $_selected) selected #end>$_dict.label</option>
+#end
+
+</select>
+#end

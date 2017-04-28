@@ -1,0 +1,541 @@
+body {
+    padding-top: 1rem;
+    background: #F3F3F3;
+}
+
+[v-cloak] {
+    display: none;
+}
+
+.f-colorD7 {
+    color: #d74148;
+}
+
+.f-color6 {
+    color: #666666;
+}
+
+.f-color9 {
+    color: #999999 !important;
+}
+/*html,body{height:100%;overflow:scroll;}*/
+
+.u-cover {
+    display: block;
+}
+.u-none-award {
+    width: 100%;
+    text-align: center;
+    font-size: 1.3rem;
+    position: absolute;
+    top: 50%;
+    color: #999;
+}
+
+.u-border-red {
+    width: 83.7%;
+    height: 0.7rem;
+    background: #FFCAC5;
+    margin: 0 auto;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    position: absolute;
+    top: 0.5rem;
+    left: 8.15%;
+}
+
+.u-border-red.f-longer {
+    width: 88%;
+    background: #FCA6A9;
+    top: 1.2rem;
+    left: 6%;
+    /*margin-top: -0.1rem;*/
+}
+
+.m-award-wrap {
+    width: 100%;
+    height: 192px;
+    overflow: hidden;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.m-award-head {
+    z-index: 2;
+    position: absolute;
+    left: 0;
+    top: 1.9rem;
+    width: 100%;
+    height: 195px;
+    -webkit-transform-origin: 50% 100%;
+    -ms-transform-origin: 50% 100%;
+    transform-origin: 50% 100%;
+}
+
+.m-award-head.reset {
+    -webkit-transition: -webkit-transform 0.3s;
+    transition: transform 0.3s;
+    -webkit-transform: translateX(0) !important;
+    -ms-transform: translateX(0) !important;
+    transform: translateX(0) !important;
+}
+
+.m-award-head.reset .u-award-choice {
+    -webkit-transition: opacity 0.3s;
+    transition: opacity 0.3s;
+    opacity: 0 !important;
+}
+
+.m-award-head.inactive {
+    -webkit-transition: -webkit-transform 0.3s;
+    transition: transform 0.3s;
+}
+
+.m-award-head.to-left {
+    -webkit-transform: translateX(-30rem) rotate(-30deg) !important;
+    -ms-transform: translateX(-30rem) rotate(-30deg) !important;
+    transform: translateX(-30rem) rotate(-30deg) !important;
+}
+
+/*.m-award-head.to-right {*/
+/*-webkit-transform: translate(30rem) rotate(30deg) !important;*/
+/*-ms-transform: translate(30rem) rotate(30deg) !important;*/
+/*transform: translate(30rem) rotate(30deg) !important;*/
+/*}*/
+.m-award-head.below {
+    z-index: 1;
+}
+
+.u-award-choice {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+}
+
+.u-award-choice:before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 2rem;
+    height: 2rem;
+    margin-left: -1rem;
+    border-radius: 50%;
+}
+
+.u-award-choice:after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 4rem;
+    height: 1.5rem;
+    margin-left: -2rem;
+    border-bottom: none;
+    border-top-left-radius: 1.5rem;
+    border-top-right-radius: 1.5rem;
+}
+
+/*.u-award-choice.m--reject {*/
+/*background: #FF945A;*/
+/*}*/
+/*.u-award-choice.m--like {*/
+/*background: #B1DA96;*/
+/*}*/
+.u-award-choice.m--like:after {
+    -webkit-transform: scaleY(-1);
+    -ms-transform: scaleY(-1);
+    transform: scaleY(-1);
+}
+
+.u-award-drag {
+    z-index: 5;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    cursor: -webkit-grab;
+    cursor: grab;
+}
+.m-award-head .u-head-bg {
+    width: 91%;
+    height: 8rem;
+    background: url(../../../../../img/APP/lottery/luck-bg.png) no-repeat;
+    background-size: 100%;
+    margin: 0 auto;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    margin-top: -0.1rem;
+    margin-bottom: -0.3rem;
+
+}
+
+.m-award-head .u-head-bg .u-product {
+    margin-left: 2rem;
+    position: relative;
+    top: 1rem;
+}
+
+.m-award-head .u-head-bg .u-product i {
+    color: #fff;
+    font-size: 0.75rem;
+    position: relative;
+    top: -1rem;
+}
+
+.m-award-head .u-head-bg .u-product img {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 30px;
+}
+
+.m-award-head .u-head-bg h1 {
+    font-size: 1.2rem;
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    top: 4rem;
+    left: -0.5rem;
+    font-weight: bold;
+    position: absolute;
+}
+
+/*.m-award-head .u-head-bg h1.f-adjust {*/
+/*margin-top: 1.5rem;*/
+/*}*/
+
+.m-award-head .u-head-bg h1 strong {
+    font-size: 1.5rem;
+}
+
+.m-award-head .u-bottom {
+    width: 91%;
+    padding: 1.2rem 0;
+    margin: 0 auto;
+    background: #fff;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.m-award-head .u-bottom .u-button {
+    width: 70%;
+    height: 2.125rem;
+    font-size: 1rem;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.m-award-head .u-bottom .u-button a {
+    width: 65%;
+    background: #ED6067;
+    color: #fff;
+    border: 1px solid #ED6067;
+    border-radius: 4px;
+    text-align: center;
+    display: inline-block;
+    line-height: 2rem;
+}
+
+.m-award-head .u-bottom .u-button.u-lotteryBtn a {
+    width: 35%;
+}
+.m-award-head .u-bottom .u-button a.f-left {
+    margin-right: 0.8rem;
+    background-color: #fff;
+    color: #ED6067;
+}
+
+.m-award-head .u-bottom .u-linkBlock {
+    text-align: center;
+    color: #999999;
+}
+
+.m-award-head .u-bottom .u-linkBlock div:first-child {
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 24px;
+}
+
+.m-award-head .u-bottom .u-linkBlock div:last-child {
+    font-size: 0.75rem;
+    font-weight: 300;
+    line-height: 20px;
+}
+
+.m-award-head .u-bottom .u-linkBlock a {
+    color: #5D78A5;
+}
+.m-title {
+    width: 16.5rem;
+    margin: 0.625rem auto;
+    color: #999;
+    font-size: 0.875rem;
+    line-height: 2rem;
+    font-weight: bold;
+}
+
+@media screen and (min-width: 360px) {
+    .m-title {
+        margin-top: 2.0rem;
+    }
+}
+
+@media screen and (min-width: 400px) {
+    .m-title {
+        margin-top: 2.925rem;
+    }
+}
+.m-title i {
+    display: inline-block;
+    width: 5.6rem;
+    height: 1px;
+    background: #e5e5e5;
+    position: relative;
+    top: -4px;
+    margin: 0 0.3rem;
+}
+
+.m-product li {
+    border-radius: 9px;
+    background: #fff;
+    width: 90.7%;
+    height: 8.5rem;
+    margin: 0 auto 0.8rem;
+    position: relative;
+}
+
+.m-product li h2 {
+    font-size: 0.875rem;
+    width: 88%;
+    margin: 0 5% 0.4rem;
+    padding-top: 1.2rem;
+    position: relative;
+    float: left;
+}
+
+.m-product li h2 strong {
+    width: 50%;
+    position: relative;
+    color: #333333;
+    text-align: left;
+    font-weight: 300;
+}
+
+.m-product li h2 em {
+    width: 9.68rem;
+    float: right;
+    text-align: right;
+    color: #666666;
+    font-weight: 300;
+}
+
+.m-product li p {
+    width: 88%;
+    font-size: 0.82rem;
+    margin: 0.8rem 5% 0;
+    color: #999999;
+    position: relative;
+    text-align: center;
+    border-top: 1px solid #F5F5F5;
+    padding-top: 0.6rem;
+    line-height: 20px;
+    clear: both;
+}
+
+.m-product li div {
+    width: 88%;
+    font-size: 0.82rem;
+    margin: 0.4rem 5% 0;
+    color: #ED6067;
+    position: relative;
+    text-align: center;
+}
+
+.m-product li p.f-color999,
+.m-product li h2 em.f-color999, .m-product li h2 strong.f-color999 {
+    color: #999 !important;
+}
+
+.m-tips-frame {
+    z-index: 200;
+    position: fixed;
+    top: 30%;
+    width: 100%;
+}
+
+.m-tips-frame > div {
+    margin: 0 auto;
+}
+
+.m-tips-frame .u-result {
+    width: 17.375rem;
+}
+.m-tips-frame.f-show {
+    display: block;
+    animation: show 1.5s cubic-bezier(0.1, 0.1, 0.5, 0.5);
+    animation-fill-mode: forwards;
+}
+
+@keyframes show {
+    0% {
+        top: -250px;
+    }
+    100% {
+        top: 30%;
+    }
+}
+
+.m-tips-frame.f-disappear {
+    display: block;
+    animation: disappear 1.5s cubic-bezier(0.1, 0.1, 0.5, 0.5);
+    transform: scale(1);
+    animation-fill-mode: forwards;
+    top: 30%;
+}
+
+@keyframes disappear {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(0);
+        opacity: 0;
+    }
+}
+
+.m-tips-frame .u-draw-on {
+    left: 25%;
+    top: 35%;
+    border-radius: 12px;
+    width: 11rem;
+    height: 11rem;
+    background: #fff;
+}
+
+.m-tips-frame .u-draw-on .u-sign {
+    width: 5.2rem;
+    height: 5.2rem;
+    position: relative;
+    top: 1.3rem;
+    margin: 1.3rem auto 1rem;
+    background: url(../../../../../img/APP/lottery/lottery-ing.png) no-repeat;
+    background-size: 100%;
+}
+
+.u-progress-bar {
+    background-color: #FFE6E6;
+    border-radius: 5px;
+    height: 4px;
+    width: 80%;
+    margin: 0 auto;
+    position: relative;
+    top: 1.5rem;
+}
+
+.u-progress-bar .u-red-bar {
+    border-radius: 5px;
+    display: block;
+    height: 4px;
+    left: 0;
+    width: 0;
+    background: #ED6067;
+    position: absolute;
+    top: 0;
+}
+
+.u-progress-bar .z-finished {
+    transition: width 3s linear;
+    width: 100%;
+}
+.m-tips-frame .u-now-lottery {
+    text-align: center;
+    color: #666;
+    font-size: 0.75rem;
+    position: relative;
+    top: 2.5rem;
+}
+
+.m-tips-frame .u-result-head {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    width: 17.375rem;
+    height: 4.5rem;
+    background: url(../../../../../img/APP/lottery/box_results.png) no-repeat;
+    background-size: 100%;
+}
+
+.m-tips-frame .u-result-head p {
+    text-align: center;
+    color: #fff;
+    font-size: 1rem;
+    position: relative;
+    font-weight: bold;
+    top: 35%;
+}
+
+.m-tips-frame .u-result-text {
+    width: 17.375rem;
+    background: #fff;
+    padding: 1rem 0;
+    text-align: center;
+    color: #ED6067;
+    font-size: 1rem;
+}
+
+.m-tips-frame .u-result-text.f-effort-again {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    color: #333;
+    font-size: 1.1rem;
+}
+
+.m-tips-frame .u-result-text.f-text-gray {
+    color: #666666;
+}
+
+.m-tips-frame .u-result-text.f-text-won {
+    color: #ED6067;
+}
+.m-tips-frame .u-know-button {
+    width: 17.375rem;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    color: #666666;
+    font-size: 1rem;
+    text-align: center;
+    padding: 0.8rem 0;
+    border-top: 1px solid #E5E5E5;
+    margin-top: -0.1rem;
+    background: #fff;
+    display: block;
+}
+
+.m-tips-frame .u-know-button.f-text-blue {
+    color: #0076FF;
+}
+
+@media screen and (min-width: 390px) {
+    html {
+        font-size: 17.6px;
+    }
+}
+
+@media screen and (min-width: 360px) and (max-width: 389px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 359px) {
+    html {
+        font-size: 14px;
+    }
+}
+

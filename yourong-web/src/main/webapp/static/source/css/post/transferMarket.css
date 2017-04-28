@@ -1,0 +1,193 @@
+body {
+    background: #f4f4f4;
+}
+.f-transfer-center{
+    margin:0 auto;
+}
+.u-transfer-hd{
+    width:990px;
+    height:58px;
+    margin-top:95px;
+}
+.u-transfer-hd .u-hd-line{
+    display: inline-block;
+    width:334px;
+    height:28px;
+    border-bottom: 2px solid #d74148;
+    position:relative;
+    top:-10px;
+}
+.u-transfer-hd h1{
+    height:56px;
+    width:312px;
+    border:1px solid #d74148;
+    border-radius: 28px;
+    display: inline-block;
+    margin:0 -4px;
+    background:#d74148;
+    color:#fff;
+    font-size:26px;
+    text-align: center;
+    line-height:52px;
+}
+.u-transfer-content{
+    width:990px;
+    margin-top:50px;
+    color:#777777;
+    font-size:14px;
+    line-height:28px;
+}
+
+.u-transfer-content h2{
+    color:#d74148;
+    font-size:18px;
+    text-align:center;
+    margin:-25px 0 25px;
+}
+.u-transfer-content h3{
+    color:#d74148;
+    font-size:16px;
+    line-height:16px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.u-transfer-content .u-title{
+    width:18px;
+    height:18px;
+    position:relative;
+    top:3px;
+    margin-right:5px;
+    background: url(/static/img/post/transferMarket/sign.png) center;
+    background-position: -233px -2px;
+    display: inline-block;
+}
+
+.u-transfer-picture{
+    width:990px;
+    height:200px;
+    background: url(/static/img/post/transferMarket/picture.png) center;
+}
+.u-transfer-content h4{
+     width:440px;
+    text-align: center;
+    font-size:18px;
+    color:#555555;
+    margin:30px  50px 0 0;
+    display: inline-block;
+}
+.u-transfer-content h5{
+    width:495px;
+    text-indent: 170px;
+    font-size:18px;
+    color:#555555;
+    margin:30px 0 0 0;
+    display: inline-block;
+}
+.u-transfer-content p{
+    margin: 25px 0;
+}
+
+.u-transfer-content .u-deadline{
+    color:#777777;
+    font-size:14px;
+    text-align: center;
+    margin:45px 0 45px 0;
+}
+.u-transfer-content img{
+    margin-top:30px;
+}
+
+.u-transfer-content .u-title2{
+    width:22px;
+    height:18px;
+    background: url(/static/img/post/transferMarket/sign.png) center;
+    background-position: -278px -2px;
+    position:relative;
+    top:3px;
+    margin-right:5px;
+    display: inline-block;
+}
+.u-transfer-content h6 {
+    color: #666666;
+    font-size: 16px;
+    font-weight: bold;
+    display: inline-block;
+}
+.u-transfer-content .f-space{
+    margin:15px 0 45px;
+}
+.u-product-value{
+margin:40px 0 0 55px;
+display: inline-block;
+
+}
+.u-product-value h1{
+    color:#777777;
+    font-size:18px;
+    font-weight: bold;
+    margin-bottom:30px;
+}
+.u-fund{
+    color:#555555;
+    font-size:16px;
+    margin-left:10px;
+}
+.u-fund.f-adjust{
+    position:relative;
+    top:-52px;
+    left:190px;
+}
+.u-multiply{
+    width:150px;
+    height:17px;
+    background: url(/static/img/post/transferMarket/sign.png) center;
+    background-position:-316px 0 ;
+}
+.u-product-value.u-transfer-price{
+    margin-left:360px;
+}
+p.f-block-adjust{
+    margin-top:-10px;
+    margin-bottom: 60px;
+}
+.u-transfer-content.f-adjust{
+    padding-bottom:75px;
+}
+
+.u-transfer-content table {
+    margin-left: 5px;
+    color: #fff;
+    font-size: 14px;
+}
+
+.u-transfer-content table th {
+    text-align: center;
+    background: #e65b5e;
+    width: 215px;
+    height: 40px;
+    border-right: 1px solid #cb4c4e;
+}
+
+.u-transfer-content table th:last-child {
+    border: 0;
+}
+
+.u-transfer-content table td {
+    text-align: center;
+    background: #ff7d80;
+    width: 215px;
+    height: 40px;
+    border-right: 1px solid #cb4c4e;
+}
+
+.u-transfer-content table td:last-child {
+    border: 0;
+}
+
+.u-transfer-content a, .u-transfer-content a:link, .u-transfer-content a:hover, .u-transfer-content a:visited {
+    color: #d74148;
+    font-size: 16px;
+    display: block;
+    text-decoration: none;
+}

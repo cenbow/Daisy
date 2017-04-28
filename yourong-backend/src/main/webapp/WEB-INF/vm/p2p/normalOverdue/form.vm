@@ -1,0 +1,105 @@
+<div tabindex="-1" class="modal fade" id="modal-table" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog w800">
+        <div class="modal-content">
+            <div class="modal-header no-padding">
+                <div class="table-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+                        <span class="white">×</span>
+                    </button>
+                    <span class="modalFormTitle">催收历程添加</span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <form role="form" class="form-horizontal" id="collect_form" method="post">
+                    <input type="hidden" name="overdueRepayId" id="overdueRepayId"/>
+                    <input type="hidden" name="id" id="id"/>
+					##start
+					<div id="edit1">
+                    <div class="form-group">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 催收日期: </label>
+
+                        <div class="col-sm-9">
+                            <div class="clearfix">
+                                <input type="text" id="collectTime" name="collectTime" class="col-xs-10 col-sm-5" datatype="*" onclick="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd'})"/>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="form-group">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 催收形式: </label>
+
+                        <div class="col-sm-9">
+                            <div class="clearfix">
+                                <input type="text" id="collectForm" name="collectForm" class="col-xs-10 col-sm-5" datatype="*" placeholder="" >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right">催收结果: </label>
+
+                        <div class="col-sm-9">
+                            <div class="clearfix">
+                                #dictSelect ("collectStatus",${sysServiceUtil.getDictList('collect_status')} ,"请选择","collectStatus","*")
+                            </div>
+                        </div>
+                    </div>
+                    、 		 ##set($collectDropzone = [
+					##    {"title":"催收历程相关图片", "category":"collect_image","dzId":"dropzone-collect-image"}
+				 ##])
+				 ##end
+				 </div>
+                    <div class="form-group">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 详细信息: </label>
+
+                        <div class="col-sm-9">
+                            <div class="clearfix">
+                                <textarea id="collectDetail" name="collectDetail" datatype="*" rows="5" cols="60" maxlength=1000 placeholder="此处添加文字(必须填)"></textarea>
+                            </div>
+                                     ###添加文件按钮
+						<span class="btn btn-success fileinput-button dropzone-collect-image dz-upload-btn">
+					        <i class="glyphicon glyphicon-plus"></i>
+					        <span>添加图片</span>
+					    </span>
+					    ###图片控件容器
+						<div class="dropzoneImage dropzone dropzoneSort" id="dropzone-collect-image" data-category="collect_image">
+						</div>
+						<div class="fallback"> 
+						</div>
+                        </div>
+                    </div>
+						
+						
+                    <div id="next_collect">
+                     <div class="form-group" style="margin-left:100px;">
+                                     	请添加预计下次催收的日期 :
+                     </div>
+                    <div class="form-group">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 催收日期: </label>
+
+                        <div class="col-sm-9">
+                            <div class="clearfix">
+                                <input type="text" name="nextCollectTime" id="nextCollectTime"  class="col-xs-10 col-sm-5" datatype="*" onclick="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd'})"/>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="form-group">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 催收形式: </label>
+
+                        <div class="col-sm-9">
+                            <div class="clearfix">
+                                <input type="text" id="nextCollectForm" name="nextCollectForm"  class="col-xs-10 col-sm-5" datatype="*" placeholder="" id="form-field-name">
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    <input type="hidden" id="j-json-dropzone-collect-image" name="collectAttachmentsData"/>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" id="save_Collection" class="btn btn-primary">保存</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>

@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.msg.dao.MessageBodyMapper" >
+  <resultMap id="BaseResultMap" type="com.yourong.core.msg.model.MessageBody" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="msg_id" property="msgId" jdbcType="BIGINT" />
+    <result column="msg_source" property="msgSource" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.yourong.core.msg.model.MessageBody" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, msg_id, msg_source
+  </sql>
+  <sql id="Blob_Column_List" >
+    content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from msg_message_body
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from msg_message_body
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.yourong.core.msg.model.MessageBody" useGeneratedKeys="true" keyProperty="id">
+    insert into msg_message_body (msg_id, msg_source, 
+      content)
+    values (#{msgId,jdbcType=BIGINT}, #{msgSource,jdbcType=INTEGER}, 
+      #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yourong.core.msg.model.MessageBody">
+    insert into msg_message_body
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="msgId != null" >
+        msg_id,
+      </if>
+      <if test="msgSource != null" >
+        msg_source,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="msgId != null" >
+        #{msgId,jdbcType=BIGINT},
+      </if>
+      <if test="msgSource != null" >
+        #{msgSource,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yourong.core.msg.model.MessageBody" >
+    update msg_message_body
+    <set >
+      <if test="msgId != null" >
+        msg_id = #{msgId,jdbcType=BIGINT},
+      </if>
+      <if test="msgSource != null" >
+        msg_source = #{msgSource,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.yourong.core.msg.model.MessageBody" >
+    update msg_message_body
+    set msg_id = #{msgId,jdbcType=BIGINT},
+      msg_source = #{msgSource,jdbcType=INTEGER},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yourong.core.msg.model.MessageBody" >
+    update msg_message_body
+    set msg_id = #{msgId,jdbcType=BIGINT},
+      msg_source = #{msgSource,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <delete id="batchDelete" parameterType="java.lang.Long" >
+    delete from msg_message_body
+    where id in  <foreach collection="ids" index="index" item="item" open="(" separator="," close=")"> #{item}  </foreach>  
+  </delete>
+  <select id="findByPage" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from msg_message_body
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = #{map.id}
+        </if>
+        <if test=" map.msgId != null" >
+          msg_id = #{map.msgId}
+        </if>
+        <if test=" map.msgSource != null" >
+          msg_source = #{map.msgSource}
+        </if>
+        <if test=" map.content != null" >
+          content = #{map.content}
+        </if>
+      </where>
+    </if>
+  </select>
+  <sql id="Base_Column_List_Pagin" >
+    t.id  as  id,
+t.msg_id  as  msg_id,
+t.msg_source  as  msg_source,
+t.content  as  content
+  </sql>
+  <select id="selectForPagin" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List_Pagin" />
+    from  (SELECT id FROM  msg_message_body
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = #{map.id}
+        </if>
+        <if test=" map.msgId != null" >
+          msg_id = #{map.msgId}
+        </if>
+        <if test=" map.msgSource != null" >
+          msg_source = #{map.msgSource}
+        </if>
+        <if test=" map.content != null" >
+          content = #{map.content}
+        </if>
+      </where>
+    </if>
+      LIMIT	${map.startRow}, ${map.pageSize}  )  AS a,  msg_message_body AS t FORCE INDEX(PRIMARY) WHERE a.id = t.id   
+  </select>
+  
+  <select id="selectForPaginTotalCount" resultType="java.lang.Integer" >
+    select count(1) 
+    from msg_message_body
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = ${map.id}
+        </if>
+        <if test=" map.msgId != null" >
+          msg_id = ${map.msgId}
+        </if>
+        <if test=" map.msgSource != null" >
+          msg_source = ${map.msgSource}
+        </if>
+        <if test=" map.content != null" >
+          content = ${map.content}
+        </if>
+      </where>
+    </if>
+  </select>
+  
+  
+  <select id="getMessageBody" resultMap="BaseResultMap">
+  	 select 
+    	<include refid="Base_Column_List" />
+    from msg_message_body where msg_id = #{msgId,jdbcType=BIGINT} and msg_source = #{msgSource,jdbcType=INTEGER} limit 1
+  </select>
+  
+  
+</mapper>

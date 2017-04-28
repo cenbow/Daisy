@@ -1,0 +1,148 @@
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$m_css_url/modules/aboutYR.css","$res_url/source/css/swiper-3.4.0.min.css"])
+#set($title='关于有融')
+#set($aliyun='https://oss-cn-hangzhou.aliyuncs.com/yrstatic/res')
+#set($loginSource=$request.getHeader("loginSource"))
+#set($os=3)
+##  安卓
+#if($loginSource==1)
+    #set($os=1)
+#end
+##  IOS
+#if($loginSource==2)
+    #set($os=2)
+#end
+<style>
+    .swiper-pagination-bullet {
+        background: #fff;
+        opacity: 1;
+    }
+
+    .swiper-pagination-bullet.swiper-pagination-bullet-active {
+        background: #d74148;
+    }
+</style>
+<div id="j-about">
+    <ul class="u-nav">
+        <li><a :href="'$siteurl/mstation/aboutYR?title='+aboutYRTitle" class="z-selected">关于有融</a></li>
+        <li><a :href="'$siteurl/mstation/safetyAssurance?title='+safeTitle"> 安全保障</a></li>
+        <li><a :href="'$siteurl/mstation/cooperator?title='+cooperatorTitle">合作伙伴</a></li>
+        <li><a :href="'$siteurl/mstation/honor?title='+honorTitle">资质荣誉</a></li>
+    </ul>
+    <div class="m-aboutYR">
+        <div class="u-head-img f-pos-r">
+            <img src="$res_url/img/post/about/head.png">
+            <img src="$res_url/img/post/about/head_logo.png" class="u-logo f-pos-a">
+            <p class="f-pos-a">理财，就享自在</p>
+        </div>
+        <p class="u-introduce">有融网，一家全透明的互联网理财优选平台，中国互联网金融协会首批会员单位。<br>
+            平台由浙江小融网络科技股份有限公司研发运营，隶属杭州信有诚互联网金融服务有限公司（注册资金2亿2千万元整），
+            是杭州市西湖区政府重点支持的互联网金融企业。</p>
+        <h1 class="f-color-red">为什么选择我们</h1>
+        <em class="f-bg-red"></em>
+        <ul class="u-select-us">
+            <li><img src="$res_url/img/post/about/iconOne.png">
+                <h2>4道风控关卡&nbsp;&nbsp;&nbsp;甄选优质项目</h2></li>
+            <li><img src="$res_url/img/post/about/iconTwo.png">
+                <h2>项目公开透明&nbsp;&nbsp;&nbsp;信息真实0隐藏</h2></li>
+            <li><img src="$res_url/img/post/about/iconThree.png">
+                <h2>第3方资金托管&nbsp;&nbsp;&nbsp;资金流向清晰可控</h2></li>
+            <li><img src="$res_url/img/post/about/iconFour.png">
+                <h2>1键查询资金明细&nbsp;&nbsp;&nbsp;轻松自在享收益</h2></li>
+        </ul>
+        <div class="m-grow-up f-pos-r">
+            <img src="$res_url/img/post/about/growUp_bg.png">
+            <div class="u-grow-up f-pos-a">
+                <h1 class="f-color-white">为什么选择我们</h1>
+                <em class="f-bg-white"></em>
+                <div class="u-turn-around swiper-container j-swiper-events">
+                    <div class="swiper-wrapper">
+                        <ul class="swiper-slide" v-for="(key,list) in historyLine">
+                        <li>
+                            <h1>{{key}}</h1>
+                            <div>
+                                <table>
+                                    <tbody>
+                                    <tr v-for="item in list">
+                                        <td>{{item.eventYear}}.{{item.eventMonth}}.{{item.eventDate}}</td>
+                                        <td>{{{item.eventContent}}}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </li>
+                        </ul>
+                    </div>
+                    <div class="swiper-pagination swiper-pagination-h1"></div>
+                </div>
+            </div>
+        </div>
+        <div class="m-leader">
+            <h1 class="f-color-red">管理团队</h1>
+            <em class="f-bg-red"></em>
+            <div v-for="(index,leader) in leaders" v-if="leaderNo===index">
+                <h2>{{leader.manageName}}<br>{{leader.manageJob}}</h2>
+                        {{{leader.manageContent}}}
+            </div>
+            <ul>
+                <li v-for="(index,leader) in leaders" @click="leaderNo=index"><img
+                        src="$aliyun_url/{{leader.manageHref}}"></li>
+            </ul>
+        </div>
+        <div class="m-call-us f-pos-r">
+            <img src="$res_url/img/post/about/bottom.png">
+            <div class="u-bottom-text f-pos-a">
+                <h1 class="f-color-white">联系我们</h1>
+                <em class="f-bg-white"></em>
+
+                <table>
+                    <tbody>
+                    <tr>
+                        <td width="60">公司总部：</td>
+                        <td>浙江省杭州市西湖区古墩路87号浙商财富中心3号楼12F</td>
+                    </tr>
+                    <tr>
+                        <td>业务合作：</td>
+                        <td>business@yrw.com</td>
+                    </tr>
+                    <tr>
+                        <td>媒体合作：</td>
+                        <td>media@yrw.com</td>
+                    </tr>
+                    <tr>
+                        <td>人力资源：</td>
+                        <td>hr@yrw.com</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table>
+                    <tbody>
+                    <tr>
+                        <td width="100">官方微信服务号：</td>
+                        <td>有融网(yourong_weixin)</td>
+                    </tr>
+                    <tr>
+                        <td>官方微信订阅号：</td>
+                        <td>有融范(yrwlc001)</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+#set($pageScript="
+<script src='$aliyun/lib/vue/vue.min.js'></script>
+<script src='$res_url/lib/js/swiper-3.4.0.min.js'></script>
+<script src='$res_url/assets/js/common/appHookES5.js'></script>
+##<script src='$siteurl/res/lib/js/vconsole.min.js'></script>
+<script>
+    var os =$!{os}
+    if (os === 1) {
+        Android.UpdateTitle('关于有融');
+    }
+    seajs.use('$res_url/source/js/modules/aboutYR.js');
+</script>
+")
+#CSRFToken('xToken')

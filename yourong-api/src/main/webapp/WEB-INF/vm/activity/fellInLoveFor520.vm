@@ -1,0 +1,207 @@
+##520活动
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$res_url/source/css/activity/fellInLoveFor520.css","$res_url/lib/flipclock/flipclock.css"])
+
+#if($currentUser)
+    #set($logined=true)
+#else
+    #set($logined=false)
+#end
+#CSRFToken('xToken')
+##  安卓
+#if($loginSource==1)
+    #set($os=1)
+#end
+##  IOS
+#if($loginSource==2)
+    #set($os=2)
+#end
+##
+#if($loginSource==1 || $loginSource==2)
+#else
+##header，安卓ios，不需要头部
+<h2 class="u-pageTitle f-pos-r">
+    <a href="$siteurl/mIndex">有融网</a>
+        <span class=" f-pos-a f-fs18 f-ff-ver">
+            #if(!$currentUser)
+                <a href="$siteurl/mstation/login" id="j-login">登录</a>
+                <a href="$siteurl/mstation/register" id="j-register">注册</a>
+            #else
+                <a href="$mCenter_logout_url">退出</a>
+            #end
+        </span>
+</h2>
+#end
+
+
+<div class="g-wrap">
+    <div class="m-banner">
+        <img src="$res_url/img/activity/fellInLoveFor520/fellInLove-banner.gif" alt=""/>
+    </div>
+    <div class="m-reikinPart u-grapBox">
+        <span class="f-redTitle f-fs20">一、礼金天天送 </span>
+
+        <p class="f-fs14">5月20日至22日，每日上午10:00开始发放5200张现金券，单笔投资满2000元即可随机获得面额为50/100元现金券中的一张，发完即止。</p>
+        <div class="f-progress" id="j-progress">
+            <div class="f-progressBar-text f-fs14" id="j-progressBar-text">
+                5200张 <br/>
+                还剩<span id="j-coupon-val"></span>张
+            </div>
+            <span id="j-progress-point">
+                <i>◆</i>
+            </span>
+            <div class="f-progressBar-bg">
+                <div class="f-progressBar-yel" id="j-progressBar-yel">
+                </div>
+            </div>
+        </div>
+    </div>
+##    真爱礼包
+    <div class="m-loveGiftPart u-grapBox">
+        <span class="f-redTitle f-fs20">二、真爱大礼包 </span>
+
+        <p class="f-fs14">
+            活动期间 <strong>（5月20日10：00~5月22日17：00）</strong>累计投资每满52000元即可直接获得520真爱大礼包，多投多得哦；礼包包含 <strong> 2张200元现金券、1张100元现金券、20点人气值</strong>
+        </p>
+        <img src="$res_url/img/activity/fellInLoveFor520/giftBox.jpg" alt=""/>
+    </div>
+##    巅峰豪礼
+    <div class="m-bigGiftPart u-grapBox">
+        <span class="f-redTitle f-fs20">三、巅峰献壕礼 </span>
+
+        <p class="f-fs14">
+            <strong> 5月20日10：00 ~ 5月22日17：00，</strong> <br/>
+            累计投资额排名前三的用户可获得以下实物大奖；四到十名用户可获得52点人气值（若投资额相等，先达到该投资额的用户排名靠前）
+        </p>
+
+        <div class="f-giftTypes">
+            <img src="$res_url/img/activity/fellInLoveFor520/fellInLove-rank.png" alt="" width="100%"/>
+
+        </div>
+##        <div class="f-countdown f-fs22">
+##            <span>距离巅峰揭晓还剩</span>
+##            <em>1</em><em>4</em>:<em>1</em><em>1</em>:<em>4</em><em>2</em>
+##        </div>
+        <div class="u-fellInLove-countdown f-fs22">
+        ##  活动开始前
+            <div class="u-content f-dn" id="j-countdown-content">虚位以待</div>
+        ##  活动中
+            <div class="u-countdown f-dn" id="j-countdown-countdown">
+                <p class="">距离巅峰揭晓还剩</p>
+                <div class="u-activity-countdown" id="j-activity-countdown">
+                </div>
+            </div>
+        ##  活动后
+            <ul class="u-ranking f-investList f-dn" id="j-countdown-ranking">
+
+            </ul>
+            <script type="text/html" id="j-countdown-ranking-tpl">
+                {{if rankList&&rankList.length>0}}
+                {{each rankList as item i}}
+                {{if i>-1&&i<3}}
+                <li>
+                    <span class="f-userName">
+                        <em class="f-avatar">
+                            {{if item.avatar}}
+                            <img src="https://oss-cn-hangzhou.aliyuncs.com/{{item.avatar}}" alt="用户头像">
+                            {{else}}
+                            <img src="$res_url/img/member/avatar.png" alt=""/>
+                            {{/if}}
+                        </em>
+                        <em class="f-nickName">
+                            {{item.lastUsername}}
+                        </em>
+                    </span>
+                </li>
+                {{/if}}
+                {{/each}}
+                {{/if}}
+            </script>
+        </div>
+
+        <div class="f-remarksText">
+            <span class="f-fs12">备注:奖品也可兑换成人气值,人气值=奖品标注价格</span>
+        </div>
+    </div>
+##    登陆按钮
+
+        <a class="m-loginBtn f-fs22" data-login="$logined" id="j-fellInLove-btn" ></a>
+
+##    href="$siteurl/mstation/login"
+##    巅峰榜
+    <div class="m-investList u-grapBox" class="f-dn">
+
+        <span class="f-redTitle f-fs20">巅峰榜 </span>
+        <ul id="j-list-beforeActive" class="u-list-beforeActive f-dn">
+            <li>—敬请期待—</li>
+        </ul>
+        <ul class="f-investList f-dn" id="j-fellInLove-list"></ul>
+            <script type="text/html" id="j-fellInLove-list-tpl">
+                <li>
+                    <strong class="f-ranking">排名</strong>
+                    <strong class="f-userName">用户名</strong>
+                    <strong class="f-investAmount f-color9">投资额</strong>
+                </li>
+                {{if rankList&&rankList.length>0}}
+                {{each rankList as item i}}
+                <li>
+                    <span class="f-ranking">{{i+1}}</span>
+                <span class="f-userName">
+                    <em class="f-avatar">
+                        {{if item.lastTotalInvest}}
+                            {{if item.avatar}}
+                            <img src="https://oss-cn-hangzhou.aliyuncs.com/{{item.avatar}}" alt="用户头像">
+                            {{else}}
+                            <img src="$res_url/img/member/avatar.png" alt=""/>
+                            {{/if}}
+                        {{else}}
+                        <img src="$res_url/img/member/avatar.png" alt=""/>
+                        {{/if}}
+                    </em>
+                    <em class="f-nickName">
+                        {{item.lastUsername}}
+                    </em>
+                </span>
+                <span class="f-investAmount">
+                     {{if item.lastTotalInvest}}￥{{item.lastTotalInvest}}{{else}} {{/if}}
+                </span>
+                </li>
+                {{/each}}
+                {{/if}}
+            </script>
+    </div>
+
+
+
+##    活动规则
+    <div class="m-ruleDeclaration f-fs14" >
+        <strong class="f-fs24">四、活动规则：</strong> <br/>
+        1、活动对象：有融网所有用户；<br/>
+        2、活动时间：<strong> 2016年5月20日10：00~2016年5月22日17：00；</strong><br/>
+        3、现金券领取后
+        <trong> 7天</trong>
+        内有效；<br/>
+        &nbsp; 现金券使用规则：<br/>
+        &nbsp;面额为50元的现金券，起投金额2000元，起投期限30天 <br/>
+        &nbsp;面额为100元的现金券，起投金额4000元，起投期限60天 <br/>
+        &nbsp;面额为200元的现金券，起投金额8000元，起投期限90天 <br/>
+        4、巅峰献壕礼活动奖励发放说明：<br/>
+        &nbsp;(1)人气值于活动结束后3个工作日内发放；<br/>
+        &nbsp;(2)实物奖励将于活动结束后3个工作日内与您联系，<br/>
+        &nbsp;请保持手机畅通，如错过通知则视为放弃获奖资格；<br/>
+        5、如有其他疑问，请拨打客服热线：400-025-6688；<br/>
+        本活动最终解释权归有融网所有 <br/>
+
+    </div>
+</div>
+
+
+<input type="hidden" id="j-fellInLove-data" data-result='$!{data}'>
+<input type="hidden" id="j-fellInLove-os" data-os="$os">
+#set($pageScript="
+<script>
+    seajs.use('$m_js_url/activity/fellInLoveFor520.js')
+    seajs.use('$res_url/lib/flipclock/flipclock.min.js')
+</script>
+")

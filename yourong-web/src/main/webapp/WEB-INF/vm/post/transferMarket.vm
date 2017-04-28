@@ -1,0 +1,110 @@
+#set($title="转让市场$!{title_suffix}")
+#parse('/common/common.vm')
+#set($css_url=["$root_css_url/post/transferMarket.css"])
+#set($yrimg_url='https://yrimg.oss-cn-hangzhou.aliyuncs.com')
+<style>
+.m-transfer-hbd{
+width:100%;
+height:586px;
+margin:-10px auto 0;
+background: url($yrimg_url/banner/banner/transfer-hbd.jpg) no-repeat center;
+}
+</style>
+<div class="m-transfer-hbd"></div>
+
+<div class="u-transfer-hd f-transfer-center">
+    <div class="u-hd-line"></div>
+    <h1>什么是项目转让</h1>
+    <div class="u-hd-line"></div>
+</div>
+<div class="u-transfer-content f-transfer-center">
+    项目转让是指，已投资的用户（转让人）因个人需求通过有融网平台，将符合条件的投资项目转让给其他投资人（受让人），并与受让人签订项目转让协议，收回本金及利息的操作。
+</div>
+
+
+
+<div class="u-transfer-hd f-transfer-center">
+    <div class="u-hd-line"></div>
+    <h1>项目转让的优势</h1>
+    <div class="u-hd-line"></div>
+</div>
+<div class="u-transfer-content f-transfer-center">
+     <h2> 量身定制，只为特别的你</h2>
+     <div class="u-transfer-picture u-transferor"></div>
+    <h4>急用钱 · 自由变现 · 资金动起来</h4><h5> 转让标 · 利率高 · 收益多多</h5>
+</div>
+
+
+<div class="u-transfer-hd f-transfer-center">
+    <div class="u-hd-line"></div>
+    <h1 >如何转让项目</h1>
+    <div class="u-hd-line"></div>
+</div>
+<div class="u-transfer-content f-transfer-center">
+    <div class="u-title"></div>
+    <h3>转让须知</h3><br>
+    <p>1、项目转让人自定义转让价格，只能折价或平价转让，价格以待还本金为上限在区间内浮动；<br>
+        2、转让期限为72小时，如遇提前还款，还本付息日，则转让提前终止；发起转让后，用户自己亦可提前终止转让；<br>
+        3、转让手续费梯度收取，用户持有项目时间越长，费率越低，详细可参考页面下方常见问题。
+    </p>
+    <div class="u-title"></div>
+    <h3>转让流程</h3>
+    <img src="/static/img/post/transferMarket/process.png">
+</div>
+
+
+<div class="u-transfer-hd f-transfer-center">
+    <div class="u-hd-line"></div>
+    <h1 >常见问题</h1>
+    <div class="u-hd-line"></div>
+</div>
+<div class="u-transfer-content f-adjust f-transfer-center">
+<div class="u-title2"></div> <h6> 项目转让的条件与限制？</h6><br>
+    <div class="f-space">
+    1) 转让项目需为可转让项目类型（具体参见项目详情页说明）；<br>
+    2) 逾期项目不允许发起转让；<br>
+    3) 转让项目不支持二次转让；<br>
+    4) 单个项目必须全额发起转让，不可拆分转让。
+    </div>
+    <div class="u-title2"></div> <h6> 转让的期限是多久？</h6><br>
+    <div class="f-space">
+        转让期限为发起转让起72小时，超过期限后转让项目会被撤销，且每个项目每天只能提交一次转让申请。
+    </div>
+    <div class="u-title2"></div> <h6> 项目转让手续费是多少？</h6><br>
+    <div class="f-space">
+        转让手续费采取梯度收取方式，持有时间越长，手续费越低，具体费率如下：
+        <table>
+            <thead>
+            <th>起息日起(天)</th>
+            <th>0 - 30</th>
+            <th>31 - 90</th>
+            <th>91 - 180</th>
+            <th>180以上</th>
+            </thead>
+            <tbody>
+            <td>手续费率(%)</td>
+            <td>2</td>
+            <td>1.8</td>
+            <td>1.5</td>
+            <td>0.8</td>
+            </tbody>
+        </table>
+    </div>
+    <div class="u-title2"></div> <h6> 可以撤销项目转让申请吗？</h6><br>
+    <div class="f-space">
+        可以申请撤销，撤销后当天不能重新发起转让。
+    </div>
+    <div class="u-title2"></div> <h6> 投资转让项目是否可以使用现金券或收益券？</h6><br>
+    <div class="f-space">
+        转让项目不支持优惠券。
+    </div>
+    <div class="u-title2"></div> <h6> 投资转让项目可以参与优惠活动吗？</h6><br>
+    <div class="f-space">
+        转让项目不支持投资分享红包、抢标五重礼优惠活动。但是首次投资送人气值，友情岁月，邀请好友投资返人气值活动，投资转让项目仍然参与。<br>
+        （详细请参考活动具体规则）
+        <a href="http://wpa.b.qq.com/cgi/wpa.php?ln=2&amp;uin=4000266688" target="_blank">
+            更多问题请咨询客服>> </a>
+    </div>
+
+
+</div>

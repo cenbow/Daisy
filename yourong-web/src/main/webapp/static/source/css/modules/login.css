@@ -1,0 +1,585 @@
+/** 注册引导 **/
+
+.m-reg-guide {
+    height: 205px;
+}
+.m-reg-guide li {
+    float: right;
+    margin: 65px 0 0;
+    width: 120px;
+    text-align: center;
+    color: #333;
+}
+.m-reg-guide li i {
+    background-color: #fff;
+    border: 1px solid #d74147;
+    color: #d74147;
+    line-height: 64px;
+    margin: 0 0 9px 26px;
+    font-family: Verdana;
+    font-style: normal;
+    font-style: normal;
+    font-family: Verdana;
+}
+.m-reg-guide li .z-crt {
+    background-color: #d74147;
+    color: #fff;
+}
+.m-reg-guide li .u-circle-32 {
+    display: block;
+}
+/**  注册表单 **/
+
+.m-reg-box {
+    min-height: 340px;
+    border-color: #fff;
+    background: #fff;
+    padding-bottom: 25px;
+}
+.m-reg-box form {
+    padding: 45px 0 0 50px;
+}
+.m-reg-box input {
+    display: inline-block;
+    margin-bottom: 20px;
+}
+.m-reg-box label {
+    height: 50px;
+    line-height: 50px;
+}
+.m-reg-box .u-form-title {
+    margin: 14px 0 0;
+}
+.m-reg-box label input {
+    display: inline-block;
+    margin: 0 5px 0 0;
+    vertical-align: middle;
+}
+.m-reg-box .u-tips-box a {
+    margin: 0;
+    text-align: left;
+    color: #d74147;
+}
+.m-login-box input {
+    margin: 0 0 20px;
+}
+.m-login-box form {
+    margin: 0 auto;
+}
+.m-login-box .u-img-vercode {
+    left: 325px;
+}
+.m-login-box .u-img-vercode2 {
+    left: 307px;
+}
+.m-login-box2 .u-img-vercode {
+    left: 170px;
+}
+.m-login-box2 .u-img-vercode2 {
+    left: 332px;
+}
+.m-input-vercode {
+    position: relative;
+}
+.m-input-vercode input {
+    position: relative;
+    vertical-align: top;
+}
+.u-xtips-wrap {
+    position: relative;
+}
+.u-xtips-wrap em {
+    position: absolute;
+    left: 10px;
+    top: 0;
+    z-index: 101;
+    color: #ACA899;
+}
+.u-hotline-tips {
+	display: block;
+    line-height: 1.25em;
+    color: #aaa;
+    margin: -15px 0 0;
+}
+.u-phonecode-wrap em {
+    /*left: auto;*/
+    /*right: 20px;*/
+    display: inline-block;
+    position: absolute;
+    left: 17px;
+    width: 150px;
+}
+/*.u-phonecode-wrap span{
+	padding: 0;	
+}*/
+.m-input-vercode .z-hide, .m-input-vercode.z-hide {
+    display: none;
+}
+.m-input-vercode img {
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    width: 90px;
+    position: absolute;
+    top: 3px;
+    left: 170px;
+    padding: 0 0 0 5px;
+    background-color: #fff;
+    border-left: 1px solid #ccc;
+    text-align: center;
+}
+.u-reward-tips {
+    clear: both;
+    color: #999;
+    width: 430px;
+    text-align: center;
+}
+.u-reward-tips .u-link-a {
+    color: #08c;
+    text-decoration: underline;
+}
+.m-reward-wrap {
+    padding: 48px 0 0;
+}
+.m-reward-wrap p {
+    width: 460px;
+    padding: 15px 0 0;
+    text-align: center;
+}
+.m-reward-wrap p a {
+    text-decoration: none;
+    width: 198px;
+}
+.m-reward-wrap p a:first-child {
+    margin-right: 25px;
+    border: 1px solid #D74147;;
+}
+.u-reward-btn a {
+    line-height: 40px;
+    background-color: #fff;
+}
+.u-reward-btn .u-btn-primary {
+    color: #d74147;
+}
+.u-reward-btn .u-btn-info {
+    color: #6BABF1;
+}
+.m-voice-box {
+    display: inline-block;
+}
+.m-voice-box span {
+    margin-bottom: 8px;
+}
+.m-voice-box .u-tips-voice {
+    margin-bottom: 20px;
+}
+.u-ipt-phonecode {
+    margin: 0 0 0 4px;
+}
+form.m-login-form {
+    margin: 20px 0 0 280px;
+}
+.u-tips-vercode {
+    display: inline-block;
+    width: 155px;
+    height: 33px;
+    line-height: 33px;
+    text-align: center;
+}
+.u-btn-recode {
+    margin: 0;
+}
+.u-tips-sms {
+    padding: 10px;
+}
+.u-tips-voice {
+    background-color: #FFFAAF;
+    border-color: #E0CD74;
+    width: 250px;
+    padding: 7px;
+    margin-right: 7px;
+    line-height:27px;
+}
+.u-tips-voice2 {
+    padding: 11px 7px;
+}
+.u-tips-waring {
+    background-color: #FFFAAF;
+    border-color: #E0CD74;
+    height: 35px;
+    line-height: 35px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.u-tips-login {
+    height: 30px;
+    line-height: 30px;
+    margin: 17px 0 10px;
+    background-color: #fffaaf;
+    border-color: #fffaaf;
+}
+.u-tips-login i {
+    vertical-align: middle;
+}
+.u-tips-pwd {
+    height: 30px;
+    line-height: 30px;
+    margin: 17px 0 10px;
+    color: #c3c3c3;
+}
+.u-img-vercode {
+    left: 175px;
+    cursor: pointer;
+}
+.u-sinapay-logo {
+    height: 65px;
+    width: 270px;
+    margin: 45px 0 0 68px;
+    padding: 90px 66px 120px 0;
+    text-align: right;
+    border-right: 1px solid #c3c3c3;
+}
+.u-reg-success {
+    width: 322px;
+    height: 176px;
+    margin: 48px 0 0 82px;
+    padding: 104px 0 0 0;
+    border-right: 1px solid #c3c3c3;
+}
+.u-reg-success span {
+    display: block;
+}
+.u-reg-success span i {
+    margin: 12px 0 0 12px;
+}
+.u-reg-success dl {
+    height: 60px;
+    padding: 0 0 0 18px;
+}
+.u-login-title {
+    padding: 100px 0 0;
+    background-position: 0 bottom;
+}
+.u-login-title h2 {
+    width: 430px;
+    margin: 0 auto;
+    padding: 0 0 15px;
+    text-indent: 8px;
+}
+.u-login-title h3 {
+    width: 430px;
+    margin: 0 auto;
+    padding: 0 0 15px;
+    text-indent: 8px;
+}
+.u-links-help a {
+    border-bottom: 1px solid #656565;
+}
+.u-links-help a:hover {
+    text-decoration: none;
+}
+.u-repwd-tips {
+    text-align: center;
+    margin: 30px auto 0;
+    color: #666;
+}
+.u-repwd-tips p {
+    padding: 12px 0 25px;
+}
+.u-repwd-tips a {
+    height: 38px;
+    line-height: 38px;
+    width: 260px;
+    text-decoration: none;
+}
+/*注册优惠券*/
+
+.m-reg-box .u-reward-box {
+    display: inline-block;
+    width: 430px;
+    height: 210px;
+    margin: 0 18px 10px 0;
+    float: left;
+    position: relative;
+}
+.m-reg-box .z-actived .u-reward-box {
+    background: url(/static/img/member/coupon_bg_518.png) no-repeat;
+}
+.z-actived .u-coupon-date {
+    color: #8d0f17;
+}
+.m-reg-box .u-coupon-number {
+    position: absolute;
+    right: 20px;
+    top: 13px;
+    color: #fecdd0;
+    font-weight: normal;
+    line-height: 1;
+    font-size: 9px;
+}
+.m-reg-box .u-coupon-date {
+    position: absolute;
+    left: 235px;
+    top: 143px;
+}
+.m-reg-box .u-coupon-link{
+  display: inline-block;
+  width: 165px;
+  height: 42px;
+  line-height: 40px;
+  text-align: center;
+  color: #F5FFBC;
+  font-size: 14px;
+  text-decoration: none;
+}
+.u-coupon-date em {
+    display: block;
+}
+.u-coupon-number {
+    color: #fecdd0;
+}
+.u-coupon-title {
+    display: inline-block;
+    width: 165px;
+    padding: 10px 0 0 20px;
+    color: #f9b9bd;
+}
+.u-coupon-amount {
+    color: #fff;
+    line-height: 1;
+    position: absolute;
+    display: inline-block;
+    left: 20px;
+    top: 65px;
+    width: 165px;
+    text-align: center;
+}
+.m-reg-box .u-coupon-limit {
+    position: absolute;
+    display: inline-block;
+    top: 167px;
+    left: 20px;
+    height: 20px;
+    line-height: 20px;
+    width: 156px;
+    text-align: center;
+    color: #f9b9bd;
+    border-top: 1px solid #f9b9bd;
+    border-bottom: 1px solid #f9b9bd;
+}
+.m-reg-box .u-cnum-a {
+    display: inline-block;
+    height: 95px;
+    width: 45px;
+    background: url(/static/img/member/coupon_number_bg.png) no-repeat 0 0;
+    overflow: hidden;
+}
+.m-reg-box .u-cnum-b {
+    display: inline-block;
+    height: 38px;
+    width: 26px;
+    background: url(/static/img/member/coupon_number_bg.png) no-repeat 0 -105px;
+    overflow: hidden;
+}
+.m-reg-box .u-cnum-s1 {
+    background-position: 0 0;
+}
+.m-reg-box .u-cnum-s2 {
+    background-position: -45px 0;
+    width: 49px;
+}
+.m-reg-box .u-cnum-s3 {
+    background-position: -94px 0;
+    width: 45px;
+}
+.m-reg-box .u-cnum-s4 {
+    background-position: -139px 0;
+    width: 53px;
+}
+.m-reg-box .u-cnum-s5 {
+    background-position: -191px 0;
+    width: 48px;
+}
+.m-reg-box .u-cnum-s6 {
+    background-position: -239px 0;
+    width: 48px;
+}
+.m-reg-box .u-cnum-s7 {
+    background-position: -287px 0;
+    width: 49px;
+}
+.m-reg-box .u-cnum-s8 {
+    background-position: -336px 0;
+    width: 48px;
+}
+.m-reg-box .u-cnum-s9 {
+    background-position: -384px 0;
+    width: 48px;
+}
+.m-reg-box .u-cnum-s0 {
+    background-position: -432px 0;
+    width: 45px;
+}
+.m-reg-box .u-cnum-mp {
+    background-position: -292px -105px;
+    width: 7px;
+}
+.m-reg-box .u-cnum-m1 {
+    background-position: 0 -105px;
+    width: 25px;
+}
+.m-reg-box .u-cnum-m2 {
+    background-position: -25px -105px;
+    width: 27px;
+}
+.m-reg-box .u-cnum-m3 {
+    background-position: -52px -105px;
+    width: 25px;
+}
+.m-reg-box .u-cnum-m4 {
+    background-position: -78px -105px;
+    width: 25px;
+}
+.m-reg-box .u-cnum-m5 {
+    background-position: -106px -105px;
+    width: 25px;
+}
+.m-reg-box .u-cnum-m6 {
+    background-position: -132px -105px;
+    width: 25px;
+}
+.m-reg-box .u-cnum-m7 {
+    background-position: -161px -105px;
+    width: 25px;
+}
+.m-reg-box .u-cnum-m8 {
+    background-position: -187px -105px;
+    width: 25px;
+}
+.m-reg-box .u-cnum-m9 {
+    background-position: -214px -105px;
+    width: 25px;
+}
+.m-reg-box .u-cnum-m0 {
+    background-position: -241px -105px;
+    width: 25px;
+}
+.m-reg-box .u-cnum-mb {
+    background-position: -266px -105px;
+    width: 25px;
+}
+/*验证样式*/
+
+.m-reg-box .Validform_checktip {
+    margin-left: 12px;
+}
+.m-login-box .u-ipt-phonecode {
+    margin: 0 0 20px 4px;
+}
+.f-rem-box {
+    position: absolute;
+    left: 40px;
+    top: 12px;
+    height: 28px;
+    text-align: center;
+    align-content: center;
+    line-height: 28px;
+    font-size: 14px;
+    background-color: #eee
+}
+.f-mob-sha {
+    position: absolute;
+    width: 430px;
+    height: 35px;
+    top: 0;
+    left: 0;
+}
+.u-sinapay-tips {
+    margin-top: 0
+}
+
+
+/**登录页光华科技和千和基金logo**/
+.u-partner-logos {
+    width: 432px;
+    margin: 70px auto 0;
+}
+.u-partner-logos>span{
+    display: inline-block;
+
+}
+.u-ghkj-logo{
+    width: 150px;
+    height: 42px;
+    padding-left: 82px;
+    background: url("/static/img/common/logo_ghkj_20160411.png") no-repeat center;
+}
+.u-qhjj-logo{
+    width: 130px;
+    height: 42px;
+    padding-left: 15px;
+    background: url("/static/img/common/logo_qhjj_20160411.png") no-repeat center;
+}
+
+/**注册页光华科技和千和基金logo**/
+.m-reg-box {
+	position: relative;
+}
+
+.u-reg-ghkj-logo{
+    width: 150px;
+    height: 42px;
+    background: url("/static/img/common/logo_ghkj_20160411.png") no-repeat center;
+    display: inline-block;
+    position: absolute;
+    top: -85px;
+    left: -4px;
+}
+.u-reg-qhjj-logo{
+    width: 130px;
+    height: 42px;
+    background: url("/static/img/common/logo_qhjj_20160411.png") no-repeat center;
+    display: inline-block;
+    position: absolute;
+    top: -85px;
+    left: 170px;
+}
+
+
+/*注册banner*/
+.m-reg-box .u-register-banner {
+    width:240px;
+    height:360px;
+    position: absolute;
+    right: 40px;
+    top: 40px;
+    text-align: center;
+}
+.u-register-banner ul li{
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.u-register-banner ol{
+    position: relative;
+    margin: 334px 0 0;
+    z-index: 61;
+    display: inline-block;
+
+}
+.u-register-banner ol li{
+    float:left;
+    font-size: 18px;
+    color: #666;
+    width: 18px;
+    margin: 0 5px;
+    cursor: pointer;
+    text-align: center;
+}
+.u-register-banner ul .z-current{
+    z-index:50;
+}
+.u-register-banner ol .z-current{
+    color: #d74147;
+
+}

@@ -1,0 +1,71 @@
+#set($layout = "/layout/iframe.vm")
+#parse("/ic/projectopen/head.vm")
+<div class="col-xs-12">
+</div>
+<div class="col-xs-12">
+    <div class="table-header">订单列表</div>
+    <div class="table-responsive">
+        <form id="directProjectSearchForm">
+            <table id="direct-project-table-search" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                <thead>
+                <tr>
+                    <td>订单时间：</td>
+                    <td>
+                        <input type="text" name="startTime" onclick="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})"/>
+                        至
+                        <input type="text" name="endTime" onclick="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})"/>
+                    </td>
+                    <td>商家线下合同编号：</td>
+                    <td><input type="text" name="outbizNo" class="input-medium search_init"/></td>
+                    ##<td>有融项目编号：</td>
+                    ##<td><input type="text" name="projectId" class="input-medium search_init"/></td>
+                    <td>借款人姓名：</td>
+                    <td><input type="text" name="borrowerName" class="input-medium search_init"/></td>
+                    <td>项目生成状态：</td>
+                    <td>
+                        <select name="status">
+                            <option value="">请选择</option>
+                            <option value="3">待审核</option>
+                            <option value="4">已生成</option>
+                            <option value="5">待生成</option>
+                            <option value="6">拒绝上线</option>
+                        </select>
+                    </td>
+                    <td>渠道商：</td>
+                    <td><input type="text" name="openPlatformKey" id="openPlatformKey" class="input-medium search_init"/></td>
+                </tr>
+                <tr>
+                    <td colspan="11" style="text-align:center">
+                        <button id = "query_projectOpen" type="button" class="btn btn-info btn-sm btn-primary">查询</button>
+                        <button id = "reset_direct_project" type="button" class="btn btn-info btn-sm btn-primary resetButton">重置</button>
+                    </td>
+                </tr>
+            </table>
+            </thead>
+        </form>
+    </div>
+    </br>
+    <div class="table-responsive">
+        <table id="projectOpen-table" class="table table-striped table-bordered" cellspacing="0" width="100%">
+            <thead>
+            <tr>
+                <th>序号</th>
+                <th>订单时间</th>
+                <th>渠道商</th>
+                <th>商家线下合同编号</th>
+                ##<th>有融项目编号</th>
+                <th>借款金额</th>
+                <th>年化利率</th>
+                <th>借款周期</th>
+                <th>借款人姓名</th>
+                <th>机型</th>
+                <th>项目生成状态</th>
+                <th>操作</th>
+                <th width="20%">备注</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+#parse("/ic/projectopen/remark.vm")

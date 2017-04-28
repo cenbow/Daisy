@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.cms.dao.CmsCategoryMapper">
+	<resultMap id="BaseResultMap" type="CmsCategory">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="parent_id" property="parentId" jdbcType="VARCHAR" />
+		<result column="module" property="module" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="image" property="image" jdbcType="VARCHAR" />
+		<result column="href" property="href" jdbcType="VARCHAR" />
+		<result column="target" property="target" jdbcType="VARCHAR" />
+		<result column="description" property="description" jdbcType="VARCHAR" />
+		<result column="keywords" property="keywords" jdbcType="VARCHAR" />
+		<result column="sort" property="sort" jdbcType="INTEGER" />
+		<result column="in_menu" property="inMenu" jdbcType="INTEGER" />
+		<result column="in_list" property="inList" jdbcType="INTEGER" />
+		<result column="allow_comment" property="allowComment" jdbcType="INTEGER" />
+		<result column="is_audit" property="isAudit" jdbcType="BIGINT" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+		<result column="remarks" property="remarks" jdbcType="VARCHAR" />
+		<result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+		<association property="parentName" column="parent_id"
+			javaType="java.lang.String"
+			select="com.yourong.core.cms.dao.CmsCategoryMapper.selectNameById"></association>
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		id, parent_id, module, name, image, href, target,
+		description, keywords,
+		sort, in_menu,
+		in_list, allow_comment, is_audit,
+		create_time, update_time, remarks, del_flag
+	</sql>
+	
+	<!-- 按ID查询名称 2013-05-10 12:24:16. -->
+	<select id="selectNameById" resultType="java.lang.String" parameterType="java.lang.Long" >
+		select name
+		from cms_category
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	
+	<insert id="insertSelective" parameterType="CmsCategory">
+		insert into cms_category
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="parentId != null">
+				parent_id,
+			</if>
+			<if test="module != null">
+				module,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="image != null">
+				image,
+			</if>
+			<if test="href != null">
+				href,
+			</if>
+			<if test="target != null">
+				target,
+			</if>
+			<if test="description != null">
+				description,
+			</if>
+			<if test="keywords != null">
+				keywords,
+			</if>
+			<if test="sort != null">
+				sort,
+			</if>
+			<if test="inMenu != null">
+				in_menu,
+			</if>
+			<if test="inList != null">
+				in_list,
+			</if>
+			<if test="allowComment != null">
+				allow_comment,
+			</if>
+			<if test="isAudit != null">
+				is_audit,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="updateTime != null">
+				update_time,
+			</if>
+			<if test="remarks != null">
+				remarks,
+			</if>
+			<if test="delFlag != null">
+				del_flag,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="parentId != null">
+				#{parentId,jdbcType=VARCHAR},
+			</if>
+			<if test="module != null">
+				#{module,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="image != null">
+				#{image,jdbcType=VARCHAR},
+			</if>
+			<if test="href != null">
+				#{href,jdbcType=VARCHAR},
+			</if>
+			<if test="target != null">
+				#{target,jdbcType=VARCHAR},
+			</if>
+			<if test="description != null">
+				#{description,jdbcType=VARCHAR},
+			</if>
+			<if test="keywords != null">
+				#{keywords,jdbcType=VARCHAR},
+			</if>
+			<if test="sort != null">
+				#{sort,jdbcType=INTEGER},
+			</if>
+			<if test="inMenu != null">
+				#{inMenu,jdbcType=INTEGER},
+			</if>
+			<if test="inList != null">
+				#{inList,jdbcType=INTEGER},
+			</if>
+			<if test="allowComment != null">
+				#{allowComment,jdbcType=INTEGER},
+			</if>
+			<if test="isAudit != null">
+				#{isAudit,jdbcType=BIGINT},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="remarks != null">
+				#{remarks,jdbcType=VARCHAR},
+			</if>
+			<if test="delFlag != null">
+				#{delFlag,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="CmsCategory">
+		update cms_category
+		<set>
+			<if test="parentId != null">
+				parent_id = #{parentId,jdbcType=VARCHAR},
+			</if>
+			<if test="module != null">
+				module = #{module,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="image != null">
+				image = #{image,jdbcType=VARCHAR},
+			</if>
+			<if test="href != null">
+				href = #{href,jdbcType=VARCHAR},
+			</if>
+			<if test="target != null">
+				target = #{target,jdbcType=VARCHAR},
+			</if>
+			<if test="description != null">
+				description = #{description,jdbcType=VARCHAR},
+			</if>
+			<if test="keywords != null">
+				keywords = #{keywords,jdbcType=VARCHAR},
+			</if>
+			<if test="sort != null">
+				sort = #{sort,jdbcType=INTEGER},
+			</if>
+			<if test="inMenu != null">
+				in_menu = #{inMenu,jdbcType=INTEGER},
+			</if>
+			<if test="inList != null">
+				in_list = #{inList,jdbcType=INTEGER},
+			</if>
+			<if test="allowComment != null">
+				allow_comment = #{allowComment,jdbcType=INTEGER},
+			</if>
+			<if test="isAudit != null">
+				is_audit = #{isAudit,jdbcType=INTEGER},
+			</if>
+			<if test="remarks != null">
+				remarks = #{remarks,jdbcType=VARCHAR},
+			</if>
+			<if test="delFlag != null">
+				del_flag = #{delFlag,jdbcType=INTEGER},
+			</if>
+			update_time = now()
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<delete id="batchDelete" parameterType="java.lang.Long">
+		update cms_category set del_flag = -1 
+		where id in
+		<foreach collection="ids" index="index" item="item" open="("
+			separator="," close=")"> #{item}  </foreach>
+	</delete>
+	<select id="findByPage" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from cms_category where del_flag > 0
+		<if test=" map != null">
+			<if test=" map.id != null">
+				and id = #{map.id}
+			</if>
+			<if test=" map.parentId != null">
+				and parent_id = #{map.parentId}
+			</if>
+			<if test=" map.module != null">
+				and module = #{map.module}
+			</if>
+			<if test=" map.name != null">
+				and name = #{map.name}
+			</if>
+			<if test=" map.image != null">
+				and image = #{map.image}
+			</if>
+			<if test=" map.href != null">
+				and href = #{map.href}
+			</if>
+			<if test=" map.target != null">
+				and target = #{map.target} 
+			</if>
+			<if test=" map.description != null">
+				and description = #{map.description}
+			</if>
+			<if test=" map.keywords != null">
+				and keywords = #{map.keywords}
+			</if>
+			<if test=" map.sort != null">
+				and sort = #{map.sort}
+			</if>
+			<if test=" map.inMenu != null">
+				and in_menu = #{map.inMenu}
+			</if>
+			<if test=" map.inList != null">
+				and in_list = #{map.inList}
+			</if>
+			<if test=" map.allowComment != null">
+				and allow_comment = #{map.allowComment}
+			</if>
+			<if test=" map.isAudit != null">
+				and is_audit = #{map.isAudit}
+			</if>
+			<if test=" map.createTime != null">
+				and create_time = #{map.createTime}
+			</if>
+			<if test=" map.updateTime != null">
+				and update_time = #{map.updateTime}
+			</if>
+			<if test=" map.remarks != null">
+				and remarks = #{map.remarks}
+			</if>
+			<if test=" map.delFlag != null">
+				and del_flag = #{map.delFlag}
+			</if>
+			<if test=" map.desc != null" >
+         		 order by  ${map.desc}  desc
+      		</if>      	
+      		<if test=" map.asc != null" >
+          		 order by ${map.asc}  asc
+       		</if>
+		</if>
+	</select>
+	<select id="selectAllCmsCategory" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from cms_category where del_flag = 1
+	</select>
+	
+	<select id="selectIdByName" resultType="java.lang.Long" parameterType="java.lang.String" >
+		select id 
+		from cms_category
+		where name = #{name,jdbcType=VARCHAR} and del_flag>0  limit 1 
+	</select>
+</mapper>

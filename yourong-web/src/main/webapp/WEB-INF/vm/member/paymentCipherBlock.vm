@@ -1,0 +1,28 @@
+<div class="u-paymentCipherBlock f-dn" id="j-paymentCipherBlock">
+    <div class="f-fs20 u-paymentCipherBlock-tipTitle">
+        设置支付密码提示
+    </div>
+    <img id="j-paymentCipherBlock-close" src="/static/img/member/closeBtn.png" alt="关闭">
+    <p class="f-fs20">
+        新浪支付全新升级，设置支付密码后方可进行操作
+    </p>
+    <a href="/member/paymentPassword">
+        <button class="f-fs14">
+            前往设置
+        </button>
+    </a>
+</div>
+<div class="u-paymentCipherBlock-cover f-dn" id="j-paymentCipherBlock-cover"></div>
+<script type="text/javascript">
+    (function(){
+        var $cover = $('#j-paymentCipherBlock-cover')
+        $('.j-toSetPassword').on('click', function () {
+            $('#j-paymentCipherBlock').show()
+            $cover.show()
+        })
+        $('#j-paymentCipherBlock-close').on('click', function () {
+            $(this).parent().hide()
+            $cover.hide()
+        })
+    })()
+</script>

@@ -1,0 +1,17 @@
+ #parse("/common/common.vm")
+ #########################################script##################################### 
+ #set($js_config=[ 
+ "'urlMap':{ 
+   'ajax':'$root_url/interestSettlement/ajax?', 
+   'query':'$root_url/interestSettlement/index?',
+   'detail':'$root_url/interestSettlement/detail?'
+   },   
+   'status':#buildDictJson('pay_status'),
+   'permission':{
+	  'excelExport':$shiro.hasPermission('interestSettlement:excelExport')
+   }
+   "
+ ]) 
+ #set($js_url=["$root_url/static/js/interestSettlement.js","$root_url/static/js/lib/My97DatePicker/WdatePicker.js"])
+ #set($css_url=["$root_url/static/js/lib/My97DatePicker/skin/WdatePicker.css"])
+ #########################################DOM##################################### 

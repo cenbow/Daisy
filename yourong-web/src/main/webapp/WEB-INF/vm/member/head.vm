@@ -1,0 +1,268 @@
+## 用户中心头部
+
+#set($isMember=true)
+#set($hasSetPayPassword=${servletUtil.synPayPasswordFlag()})
+#set($memberVip = ${sysServiceUtil.getMemberVip($currentUser.id)})
+
+<div class="g-uc-hd">
+    <div class="g-wrap f-cf f-pos-r">
+        <div class="m-user-info f-fl">
+            <a href="$root_url/member/profile"><i>
+                <div class="u-rank-sign #if($memberVip==0)z-v0#elseif($memberVip==1)z-v1
+                 #elseif($memberVip==2)z-v2#elseif($memberVip==3)z-v3#elseif($memberVip==4)z-v4#elseif($memberVip==5)z-v5#end"></div>
+            </i><img src="#getMemberAvatar()" alt="userhead">
+            </a>
+            <em class="f-fs18"><span id="j-regards"
+                                     class="u-user-regards"></span>#if($currentUser)#if($currentUser.username && $currentUser.username!=
+                "")<span>$currentUser.username</span>#else<span>$stringUtil.maskMobile($currentUser.mobile)</span><a
+                    href="$profile_url[1]#changeNickname">设置昵称</a>#end#end
+            </em>
+            <strong>
+                <a href="$root_url/member/security" class="j-user-tips" data-tips="手机已验证" data-align="bottom"><i
+                        class="u-icon-v2 f-icon-s u-icon-phone2"></i></a>
+
+                #if(${servletUtil.isVerifyTrueName()})
+                    <a href="$root_url/member/security" data-tips="身份证已认证" data-align="bottom" class="j-user-tips"><i
+                            class="u-icon-v2 f-icon-s u-icon-idcard2"></i></a>
+                #else
+                    <a href="$root_url/member/sinapay" data-tips="身份证未认证" data-align="bottom" class="j-user-tips"><i
+                            class="u-icon-v2 f-icon-s u-icon-idcard2 z-disabled"></i></a>
+                #end
+
+                #if(${servletUtil.getUserDO().emailBind})
+                    <a href="$root_url/member/security" data-tips="邮箱已绑定" data-align="bottom" class="j-user-tips"><i
+                            class="u-icon-v2 f-icon-s u-icon-mail2"></i></a>
+                #else
+                    <a href="$root_url/member/security" data-tips="邮箱未绑定" data-align="bottom" class="j-user-tips"><i
+                            class="u-icon-v2 f-icon-s u-icon-mail2  z-disabled"></i></a>
+                #end
+                #if(${servletUtil.getDefaultBankCard()})
+                    <a href="$root_url/memberBankCard/bankManage" data-tips="银行卡已绑定" data-align="bottom"
+                       class="j-user-tips"><i class="u-icon-v2 f-icon-s u-icon-bankcard2"></i></a>
+                #else
+                    <a href="$root_url/memberBankCard/bankManage" data-tips="银行卡未绑定" data-align="bottom"
+                       class="j-user-tips"><i class="u-icon-v2 f-icon-s u-icon-bankcard2 z-disabled"></i></a>
+                #end
+            </strong>
+        ##            会员特权
+            <div class="u-privilege">特权：生日礼包#if($memberVip>0)、升级礼包#end #if($memberVip>1)、优惠兑换现金券#end
+                <div class="u-symbol">?
+                    <div class="u-vip-tooltip">
+                        <div class="u-text-position #if($memberVip== 0 ||$memberVip== 1  )z-position-v01 #else z-position-v2345 #end">
+                            #if($memberVip==0)
+                                <div class="u-title">生日礼包:</div>
+                                生日当天签到人气值翻10倍，享有50元现金券、0.5%收益券。<br>
+                            #elseif($memberVip==1)
+                                <div class="u-title">升级礼包:</div>
+                                享有50元现金券。<br>
+                                <div class="u-title">生日礼包:</div>
+                                生日当天签到人气值翻10倍，享有50元现金券、0.5%收益券。<br>
+                            #elseif($memberVip>1)
+                                <div class="u-title">优惠兑换现金券:</div>
+                                人气值兑换现金券 #if($memberVip==2)9.6 #elseif($memberVip==3)9.4#elseif($memberVip==4)
+                                9.2 #elseif($memberVip==5)9.0#end 折。（app专享）<br>
+                                <div class="u-title">升级礼包:</div>
+                                享有 #if($memberVip==5)100 #else 50 #end 元现金券 #if($memberVip>3), #if($memberVip==4)
+                                0.5 #elseif($memberVip==5)1.5#end%收益券#end 。<br>
+                                <div class="u-title">生日礼包:</div>
+                                生日当天签到人气值翻10倍, 享有50元现金券,#if($memberVip==4 ||$memberVip==5)1.5 #else 1 #end%收益券。
+                            #end
+                            <a href="$root_url/post/popularityPark" class="#if($memberVip==0)z-position-v0#end"
+                               target="_blank">点此下载有融网APP，在人气值乐园玩转会员特权 >> </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="m-head-info f-fr f-pos-r">
+            <!--头部banner-->
+            #set($bannerList = $servletUtil.getBannerByAreaSign(0, "memberCenterHead", 0, 1))
+            #if($bannerList.success)
+                <div class="#if(!$isMemberIndex)f-dn#end">
+                    <div class="u-uc-banner f-dn" id="j-uc-banner">
+                        #foreach($banner in ${bannerList.resultList})
+                            <a
+                                #if($banner.href.length() > 0)
+                                        href="$!{banner.href}"
+                                    #if($banner.targetBlank == 1)
+                                        target="_blank"
+                                    #else
+                                        target="_self"
+                                    #end
+                                #else
+                                        href="javascript:void(0);" target="_self"
+                                #end
+                            ><img src="$aliyun_url$!{banner.image}" alt="$!{banner.name}"/>
+                            </a>
+                        #end
+                    </div>
+                </div>
+            #end
+            <!--/头部banner-->
+            <!--优惠券、人气值统计-->
+            <div class="u-uc-coupon #if(!$isMemberIndex)f-dn#end">
+                <dl>
+                    <dt>我的人气值</dt>
+                    <dd><span class="f-ff-din"><a
+                            href="/coupon/reputation">$!servletUtil.getPopularityBalanceValue()</a></span>点
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>邀请好友</dt>
+                    <dd><span class="f-ff-din"><a
+                            href="/coupon/reputation?type=friendList#inviteFriends">$!servletUtil.getReferralMemberByIdCount()</a></span>个
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>可用现金券</dt>
+                    <dd><span class="f-ff-din"><a
+                            href="/coupon/couponList"> $!servletUtil.getActivedCouponCountByType(1)</a></span>张
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>可用收益券</dt>
+                    <dd><span class="f-ff-din"><a
+                            href="/coupon/profitCouponList">$!servletUtil.getActivedCouponCountByType(2)</a></span>张
+                    </dd>
+                </dl>
+            </div>
+            <div class="u-uc-coupon u-uc-couponNew #if($isMemberIndex||$isBorrowMoney)f-dn#end">
+                <dl class="u-couponHead-balance" id="j-couponHead-balance">
+                    <dt>存钱罐余额（元）</dt>
+                    <dd class="f-cf"><span class="f-ff-din"><a
+                            href="/memberBalance/savingPot">${servletUtil.getPrefixPiggyTotalBalance()}<i
+                            class="f-fs30">${servletUtil.getSuffixPiggyTotalBalance()}</i></a></span>
+                        <em class="j-couponHead-btn z-btn-disabled">
+                            #if($hasSetPayPassword!=1&&${servletUtil.isVerifyTrueName()})
+                                <a class="j-toSetPassword" target="_blank">充值</a>
+                                <a class="j-toSetPassword" target="_blank">提现</a>
+                            #else
+                                <a href="/memberBalance/rechargePage" target="_blank">充值</a>
+                                <a href="/memberBalance/withdrawPage" target="_blank">提现</a>
+                            #end
+                        </em></dd>
+                </dl>
+                <dl>
+                    <dt>我的人气值</dt>
+                    <dd><span class="f-ff-din"><a
+                            href="/coupon/reputation">$!servletUtil.getPopularityBalanceValue()</a></span>点
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>邀请好友</dt>
+                    <dd><span class="f-ff-din"><a
+                            href="/coupon/reputation?type=friendList#inviteFriends">$!servletUtil.getReferralMemberByIdCount()</a></span>个
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>我的优惠券</dt>
+                    <dd><span class="f-ff-din"><a
+                            href="#if($!{servletUtil.getActivedCouponCountByType(1)}<=0 && $!{servletUtil.getActivedCouponCountByType(2)}>0)/coupon/profitCouponList#else/coupon/couponList#end">$!servletUtil.getCouponCount()</a></span>张
+                    </dd>
+                </dl>
+            </div>
+        ##            p2p个人中心专属页头
+            <div class="u-uc-coupon #if(!$isBorrowMoney)f-dn#end">
+                <dl class="u-borrowMoneyHead-balance">
+                    <dt>存钱罐余额（元）</dt>
+                    <dd class="f-cf"><span class="f-ff-din"><a
+                            href="/memberBalance/savingPot">${servletUtil.getPrefixPiggyTotalBalance()}<i
+                            class="f-fs30">${servletUtil.getSuffixPiggyTotalBalance()}</i></a></span>
+                        <em class="j-couponHead-btn z-btn-disabled">
+                            #if($hasSetPayPassword!=1)
+                                <a class="j-toSetPassword" href="javascript:void(0)" target="_blank">充值</a>
+                                <a class="j-toSetPassword" href="javascript:void(0)" target="_blank">提现</a>
+                            #else
+                                <a href="/memberBalance/rechargePage" target="_blank">充值</a>
+                                <a href="/memberBalance/withdrawPage" target="_blank">提现</a>
+                            #end
+                        </em></dd>
+                </dl>
+            </div>
+            <!--/优惠券、人气值统计-->
+        </div>
+    </div>
+</div>
+##用户菜单 
+<div class="g-wrap">
+    <div class="u-uc-navi">
+        <ul class="#if(!$noTabTitle)z-tabTitle#end">
+        ##        		#if(${servletUtil.isDisplayDebt()} )
+            <li class="$!account"><a href="/member/home" class="u-icon-v2">账户概览</a></li>
+            <li class="$!transaction"><a href="/transaction/investment" class="u-icon-v2">我的投资</a></li>
+            <li class="$!transferProject"><a href="/transaction/transferproject" class="u-icon-v2">债权转让</a></li>
+            <li class="$!isSinaPayNavi"><a href="/memberBalance/savingPot" class="u-icon-v2">我的存钱罐</a></li>
+            <li class="$!bankManage"><a href="/memberBankCard/bankManage" class="u-icon-v2">我的银行卡</a></li>
+            <li class="$!coupon"><a href="/coupon/reputation" class="u-icon-v2">我的优惠</a></li>
+            <li class="$!capitalinOutLog"><a
+                #if(${servletUtil.isVerifyTrueName()})href="/member/capitalInOutLog"#else href="/member/sinapay"#end
+                class="u-icon-v2">资金记录</a></li>
+            <li class="$!profile"><a href="/member/security" class="u-icon-v2">我的资料</a></li>
+            <li class="$!messages"><a href="/member/messages" class="u-icon-v2">我的消息</a></li>
+            #if(${projectUtils.getBorrowerCount(${servletUtil.getUserDO().id})} > 0)
+                <li class="$!borrowMoney"><a href="/myBorrow/borrowMoney" class="u-icon-v2">我的借款</a></li>
+            #end
+            #if(${servletUtil.isDisplayDebt()})
+                <li class="$!debt"><a href="/transaction/debt" class="u-icon-v2">债权管理</a></li>
+            #end
+
+        </ul>
+    </div>
+</div>
+##/用户菜单
+##签到引导
+##    #if(!${servletUtil.isChecked()})
+##    <div class="u-checkin-guide f-dn" id="j-checkin-guide" data-isBirthday="$isBirthday">
+##        <div>
+##            <span>x</span>
+##            <img src="/static/img/homepage/dice_animate.gif" alt="签到骰子"/>
+##            <button #if(${currentUser})data-logined="true"#else data-logined="false"#end>试试今天的手气</button>
+##        </div>
+##    </div>
+##    #end
+#set($isActivityStart=${servletUtil.isBirthdayActivity()})
+#if(!${servletUtil.isChecked()})
+    #set($isVerifyTrueName = ${isVerifyTrueName})##是否实名
+
+    #if($isVerifyTrueName)
+    ##未实名 普通签到
+    <div class="u-checkin-guide f-dn" id="j-checkin-guide" data-isBirthday="$currentUser.isBirthday">
+        <div>
+            <span>x</span>
+            <img src="/static/img/homepage/dice_animate.gif" alt="签到骰子"/>
+            <button data-logined="true">试试今天的手气</button>
+            #if($isActivityStart)
+                <a href="javascript:" class="z-birthday-guide">生日签到即享神秘礼包</a>
+            #end
+        </div>
+    </div>
+    #else
+    ##已实名 生日签到
+        #if($currentUser.isBirthday&&${servletUtil.isBirthdayActivity()})
+        ##显示生日签到背景
+        <div class="u-checkin-guide z-birthday f-dn" id="j-checkin-guide" data-start="$isActivityStart">
+            <div>
+                <span>x</span>
+                <img src="/static/img/homepage/dice_animate.gif" alt="签到骰子"/>
+                <button data-logined="true">试试寿星的手气</button>
+                #if($isActivityStart)
+                    <a href="javascript:" class="z-birthday-guide">生日签到即享神秘礼包</a>
+                #end
+            </div>
+        </div>
+        #else
+        ##显示普通签到背景
+        <div class="u-checkin-guide f-dn" id="j-checkin-guide" data-start="$isActivityStart">
+            <div>
+                <span>x</span>
+                <img src="/static/img/homepage/dice_animate.gif" alt="签到骰子"/>
+                <button data-logined="true">试试今天的手气</button>
+                #if($isActivityStart)
+                    <a href="javascript:">生日签到即享神秘礼包</a>
+                #end
+            </div>
+        </div>
+        #end
+    #end
+
+#end

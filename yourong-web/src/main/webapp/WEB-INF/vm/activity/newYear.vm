@@ -1,0 +1,238 @@
+##2016新年活动
+#parse("/common/common.vm")
+#set($title="约惠新春$!{title_suffix}")
+#set($css_url=["$root_css_url/activity/newYear.css"])
+#set($js_url=[
+  "/static/lib/js/jq/snowfall.jquery.min.js",
+  "$root_url/static/lib/js/vue/vue.js",
+  "$root_url/static/lib/js/vue/vue.extend.js",
+  "$root_url/static/lib/js/moment.min.js",
+  "$root_url/static/lib/js/clipboard.min.js",
+  "$root_js_url/activity/newYear.js"
+])
+
+#if($currentUser)
+  #set($logined=true)
+#else
+  #set($logined=false)
+#end
+#CSRFToken('xToken')
+
+<div class="m-top" data-logined="$logined" id="j-top">
+  <div class="u-top"></div>
+  <img src="/static/img/activity/newYear/xiaorong.png" class="u-activity-ren">
+  <img src="/static/img/activity/newYear/text.png" class="u-activity-theme">
+##  <img src="/static/img/activity/twoYearAnniversary/activity_ren.png" class="u-activity-theme">
+</div>
+
+## 主体
+<div class="m-main-wrap" id="j-newyear" v-cloak>
+    <div class="u-get">
+    <div class="g-wrap j-main-wrapper">
+##      <img class="m-left-img" src="/static/img/activity/newYear/left2.png" alt="">
+      <div class="m-get-title m-fu-title m-fu-new">新春领红包</div>
+      <div class="m-get-con">
+        <p class="m-introduce">活动期间，用户登录即可领取新春红包，数量不限哦~(注：同一种面额的现金券只有使用后才能再次领取哦！)</p>
+        <ul>
+          <li class="m-money-2017">
+            <p class="m-get-money f-fc-red">￥<em>2017</em></p>
+##            <p class="m-get-rule f-fc-white">起投金额≥42000元 起投期限≥180天</p>
+            <div class="m-get-click" @click="getmoney(initData.luckyMoney2017)" :class="{'z-gray':gray2}">领 取</div>
+          </li>
+          <li class="m-money-888">
+            <p class="m-get-money f-fc-red">￥<em>888</em></p>
+##            <p class="m-get-rule f-fc-white">起投金额≥32000元 起投期限≥80天</p>
+            <div class="m-get-click" @click="getmoney(initData.luckyMoney888)" :class="{'z-gray':gray2}">领 取</div>
+          </li>
+          <li class="m-money-88">
+            <p class="m-get-money f-fc-red">￥<em>88</em></p>
+##            <p class="m-get-rule f-fc-white">起投金额≥4000元 起投期限≥50天</p>
+            <div class="m-get-click" @click="getmoney(initData.luckyMoney88)" :class="{'z-gray':gray2}">领 取</div>
+          </li>
+          <li class="m-money-28">
+            <p class="m-get-money f-fc-red">￥<em>28</em></p>
+##            <p class="m-get-rule f-fc-white">起投金额≥3000元 起投期限≥25天</p>
+            <div class="m-get-click" @click="getmoney(initData.luckyMoney28)" :class="{'z-gray':gray2}">领 取</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+    <div class="u-add">
+      <div class="g-wrap j-main-wrapper">
+        <div class="m-add-title m-fu-title">登录送福袋</div>
+        <div class="m-add-con">
+          <p class="m-introduce">活动期间，用户首次登录即送新年福袋一个，福袋包含<em class="f-fc-16 f-fc-3b">0.5%、1%、2%、3%、5%收益券</em>各一张，收益券使用一张就补上一张！</p>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="u-return">
+      <div class="g-wrap j-main-wrapper">
+        <img class="m-right-img" src="/static/img/activity/newYear/right.png" alt="">
+        <div class="m-return-title m-fu-title m-fu-new">投资返人气</div>
+        <div class="m-return-con" v-if="show">
+          <p class="m-introduce">活动期间，满足一定条件的用户可获得投资返人气值特权，人气值=单笔投资额*1‰*收益周期(月)。(人气值于履约后发放且向下取整) </p>
+          <ul>
+            <li>
+              <p class="f-fc-yellow">注册礼</p>
+              <em class="f-fc-orange">活动期间</em>
+              <p class="f-fc-white">新注册用户</p>
+            </li>
+            <li>
+              <p class="f-fc-yellow">回归礼</p>
+              <em class="f-fc-orange">2016年10月1日后<br>至活动开始前</em>
+              <p class="f-fc-white f-size-middle">未在有融网投资的用户</p>
+            </li>
+            <li>
+              <p class="f-fc-yellow">邀友礼</p>
+              <em class="f-fc-orange">活动期间成功邀请</em>
+              <p class="f-fc-white f-size-small">5位及以上好友注册并完成首投的用户</p>
+            </li>
+          </ul>
+          <p class="m-introduce f-fc-centre">满足任意一个条件即可获得特权！</p>
+          <div @click="getpower" class="m-return-power" v-if="!activityOver">我要<em class="f-fc-yellow">投资返人气值特权</em></div>
+          <div class="m-return-power m-return-over" v-else>活动已结束</div>
+          <p class="m-introduce">例：活动期间，A用户完成注册并投资6个月项目10000元，可获得人气值返利=10000*1‰*6=60点</p>
+        </div>
+      ## 新用户
+        <div class="m-return-con m-short" v-if="newMan">
+          <p class="m-introduce">活动期间，满足一定条件的用户可获得投资返人气值特权，人气值=单笔投资额*1‰*收益周期(月)。(人气值于履约后发放且向下取整) </p>
+          <div class="m-return-show">
+            <p>注册礼</p>
+            <p>欢迎加入有融网,</p>
+            <p>您已获得<em class="f-fc-yellow">投资返人气值特权</em></p>
+          </div>
+          <p class="m-introduce">例：活动期间，A用户完成注册并投资6个月项目10000元，可获得人气值返利=10000*1‰*6=60点</p>
+        </div>
+      ## 回归用户
+        <div class="m-return-con m-short" v-if="backMan">
+          <p class="m-introduce">活动期间，满足一定条件的用户可获得投资返人气值特权，人气值=单笔投资额*1‰*收益周期(月)。(人气值于履约后发放且向下取整) </p>
+          <div class="m-return-show">
+            <p>回归礼</p>
+            <p>欢迎再次回到有融网,</p>
+            <p>您已获得<em class="f-fc-yellow">投资返人气值特权</em></p>
+          </div>
+          <p class="m-introduce">例：活动期间，A用户完成注册并投资6个月项目10000元，可获得人气值返利=10000*1‰*6=60点</p>
+        </div>
+      ## 正常用户未完成
+        <div class="m-return-con m-tall" v-if="defeatMan">
+          <p class="m-introduce">活动期间，满足一定条件的用户可获得投资返人气值特权，人气值=单笔投资额*1‰*收益周期(月)。(人气值于履约后发放且向下取整) </p>
+          <div class="m-return-show">
+            <p>邀友礼</p>
+            <p>邀请5位好友完成首次投资，</p>
+            <p>可获得<em class="f-fc-yellow">投资返人气值特权</em></p>
+            <div class="m-number">
+              <div>当前邀请数: <em>{{initData.referralCount}}</em></div>
+              <div>完成首投数: <em>{{initData.referralTransactionCount}}</em></div>
+            </div>
+          </div>
+          <div @click="invite" class="m-return-power" :class="{'z-gray':gray}">邀请好友</em></div>
+          <p class="m-introduce">例：活动期间，A用户完成注册并投资6个月项目10000元，可获得人气值返利=10000*1‰*6=60点</p>
+        </div>
+      ## 正常用户完成
+        <div class="m-return-con m-tall" v-if="finishMan">
+          <p class="m-introduce">活动期间，满足一定条件的用户可获得投资返人气值特权，人气值=单笔投资额*1‰*收益周期(月)。(人气值于履约后发放且向下取整) </p>
+          <div class="m-return-show">
+            <p>邀友礼</p>
+            <p>已有5位好友完成首次投资，</p>
+            <p>您已获得<em class="f-fc-yellow">投资返人气值特权</em></p>
+            <div class="m-number">
+              <div>当前邀请数: <em>{{initData.referralCount}}</em></div>
+              <div>完成首投数: <em>{{initData.referralTransactionCount}}</em></div>
+            </div>
+          </div>
+          <div @click="invite" class="m-return-power" :class="{'z-gray':gray}">邀请好友</em></div>
+          <p class="m-introduce">例：活动期间，A用户完成注册并投资6个月项目10000元，可获得人气值返利=10000*1‰*6=60点</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="u-rule f-fc-f2">
+      <img class="m-right-img" src="/static/img/activity/newYear/right2.png" alt="">
+      <div class="g-wrap">
+        <h2>活动规则   </h2>
+        <p>1、活动对象：有融网所有用户;</p>
+        <p>2、活动时间：2017年{{initData.startTime | formatTime 'MM月dd日hh:mm'}}~{{initData.endTime | formatTime 'MM月dd日hh:mm'}};</p>
+        <p>3、现金券、收益券仅活动期间有效，使用条件详见券面;</p>
+        <p>4、转让专区项目不参与本活动;</p>
+        <p>5、如有其他疑问，请拨打客服热线:400-025-6688;</p>
+        <p>本活动最终解释权归有融网所有。</p>
+        <div></div>
+      </div>
+    </div>
+
+
+  ##弹框
+  <div class="u-dialog" v-if="dialog">
+    <img class="m-alert-top" src="/static/img/activity/newYear/alert-top.png" alt="">
+    <img class="m-alert-foot" src="/static/img/activity/newYear/alert-foot.png" alt="">
+    <p class="m-dialog-top">{{dialogTips}}</p>
+    <img class="m-close-icon" @click="close" src="/static/img/activity/newYear/close-new.png" alt="">
+  </div>
+  <div class="u-dialog" v-if="dialog2">
+    <img class="m-alert-top" src="/static/img/activity/newYear/alert-top.png" alt="">
+    <img class="m-alert-foot" src="/static/img/activity/newYear/alert-foot.png" alt="">
+    <p class="m-dialog-top f-fc-pink">恭喜发财大吉大利!</p>
+    <p><span class="f-fc-pink">{{dialogTips}}元</span>红包已发至您的账户</p>
+    <img class="m-close-icon" @click="close" src="/static/img/activity/newYear/close-new.png" alt="">
+  </div>
+  <div class="u-dialog" v-if="dialog1">
+    <img class="m-alert-top" src="/static/img/activity/newYear/alert-top.png" alt="">
+    <img class="m-alert-foot" src="/static/img/activity/newYear/alert-foot.png" alt="">
+    <p class="m-dialog-top">恭喜发财!</p>
+    <p>获得一张<span>{{dialogTips}}元</span>现金券</p>
+    <img class="m-close-icon" @click="close" src="/static/img/activity/newYear/close-new.png" alt="">
+  </div>
+  <div class="u-qrcode-wrap z-hide" id="j-qrcode-wrap" v-if="friend">
+  ##                    <div class="u-qrcode"></div>
+  ##                    <p class="u-qrcode-text">请用微信扫码参与分享哦</p>
+  ##                    <div class="u-qrcode-close" id="j-qrcode-close">关闭</div>
+    <div class="u-qrcode-close" id="j-qrcode-close" @click="close">×</div>
+  ## TODO 点击复制链接，这里是我没来的及做微信分享
+    <div class="u-myinvite-link">
+      <p id="j-invite-url" class="u-invite-url"
+         data-url="$domain_url/${servletUtil.getUserDO().shortUrl}"
+         data-clipboard-text="$domain_url/${servletUtil.getUserDO().shortUrl}">
+        邀请好友链接：www.yrw.com/${servletUtil.getUserDO().shortUrl}
+      </p>
+      <button class="f-round u-myinvite-btn" id="j-copy-invite"
+              data-clipboard-text="$domain_url/${servletUtil.getUserDO().shortUrl}">
+        点击复制
+      </button>
+    </div>
+  </div>
+
+  ##蒙层
+  <div class="u-cover j-cover" v-if="door"></div>
+
+##右侧灯笼
+  <div class="u-fr-nav" id="j-nav-toTop">
+    <div class="m-nav-btn">
+      <p>阖家欢乐</p>
+      <p v-if="text1" class="m-new-text f-dn">新春领红包</p>
+    </div>
+    <div class="m-nav-btn">
+      <p>恭贺新禧</p>
+      <p v-if="text2" class="m-new-text f-dn">登录送福袋</p>
+    </div>
+##    <div class="m-nav-btn">
+##      <p>财源滚滚</p>
+##      <p v-if="text3" class="m-new-text f-dn">投资返人气</p>
+##    </div>
+    <div class="m-nav-btn">
+      <p>财源滚滚</p>
+      <p v-if="text4" class="m-new-text f-dn">投资返人气</p>
+    </div>
+    <div class="m-nav-back">
+      <span>回顶部</span>
+      <img src="/static/img/activity/newYear/top.png" alt="">
+    </div>
+  </div>
+</div>
+
+
+
+

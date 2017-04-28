@@ -1,0 +1,314 @@
+[v-cloak] {
+    display: none;
+}
+
+#box{
+    width: 25rem;
+    height: 12.5rem;
+}
+body{
+    background-color: #fff;
+}
+.u-top-banner{
+    height: 23.75rem;
+    background: url("/static/img/post/safetyAssurance/banner_safe.png") no-repeat center;
+    overflow: hidden;
+    color: #FFF;
+    clear: both;
+}
+.u-top-banner p:nth-child(1) {
+    font-size: 1.75rem;
+    margin: 8.81rem 0 0 0;
+}
+.u-top-banner p:nth-child(2) {
+    font-size: 2.25rem;
+}
+.u-title {
+    width: 100%;
+    height: 6.65rem;
+    margin: 5rem 0 8.37rem 0;
+    text-align: center;
+}
+.u-title h2 {
+    color: #333;
+    font-size: 2.25rem;
+}
+.u-title p {
+    color: #151515;
+    font-size: 1.75rem;
+}
+.flexbox{
+    display: flex;
+}
+.u-content {
+    width: 100%;
+    min-height:29.68rem;
+}
+.u-content .u-content-1 {
+    width: 100%;
+    height: 29.68rem;
+    margin-bottom: 7rem;
+}
+.u-content .u-content-1 img {
+    display: block;
+    width: 50%;
+}
+.u-content .u-content-1 .intro-box{
+    position: relative;
+    width: 32.81rem;
+    height: 23.2rem;
+    z-index: 99;
+    margin: 6rem 0 0 6.43rem;
+}
+.u-content .u-content-1 .order01 {
+    font-size: 9rem;
+    position: absolute;
+    color: #f3f3f3;
+    top: -8.125rem;
+    left: -5rem;
+}
+.u-content .u-content-1 .intro-title{
+    font-size: 1.75rem;
+    color: #333;
+    position: relative;
+    z-index: 99;
+    margin-bottom: 2.2rem;
+}
+.u-content .u-content-1 .text {
+    width: 100%;
+    position: absolute;
+    flex-flow: column;
+}
+.marginBottom{
+    margin-bottom: 2rem;
+}
+.common_p {
+    font-size: 0.875rem;
+    color: #2A2A2A;
+}
+.common-t{
+    font-weight: 600;
+    margin-bottom: 5px;
+    font-size: 1.25rem;
+    color: #333;
+}
+.u-content-2 {
+    width: 100%;
+    height: 29.68rem;
+    justify-content: space-between;
+    margin-bottom: 7rem;
+}
+.u-content-2 img {
+    display: block;
+    width: 50%;
+    /*height: 29.68rem;*/
+}
+.u-content-2 .intro-box2{
+    position: relative;
+    width: 32.81rem;
+    height: 23.2rem;
+    z-index: 99;
+    margin: 6.5rem 2rem 0 12%;
+}
+.u-content-2 .order02 {
+    font-size: 9rem;
+    position: absolute;
+    color: #f3f3f3;
+    top: -8.125rem;
+    left: -6.25rem;
+}
+.u-content-2 .intro-title-2{
+    font-size: 1.75rem;
+    color: #333;
+    position: relative;
+    z-index: 99;
+    margin-bottom: 2.2rem;
+}
+.u-content-2 .text-2{
+    width: 32.81rem;
+    height: 14rem;
+    flex-flow: column;
+    line-height: 1.75rem;
+}
+.u-sinapay{
+    width: 100%;
+    height: 61.875rem;
+    background: #F7F7F7;
+    text-align: center;
+    padding-top: 3%;
+}
+.u-sinapay h2 {
+    color: #333;
+    font-size: 2.25rem;
+}
+.u-sinapay h4 {
+    font-size: 1.75rem;
+    margin-bottom: 3rem;
+    color: #151515;
+}
+.u-sinapay img{
+    width: 65.125rem;
+    height: 38.125rem;
+}
+.u-sinapay .description {
+    width:65.125rem;
+    height: 8.75rem;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+}
+.u-sinapay .description .desc-left {
+    width: 28.625rem;
+    text-align: left;
+    line-height: 1.75rem;
+}
+.description .desc-left p:nth-child(1) {
+    color: #333;
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+}
+.f-size14{
+    font-size: 0.875rem;
+    color: #151515;
+}
+.u-sinapay .description .desc-right {
+    width: 31.45rem;
+    text-align: left;
+    line-height: 1.75rem;
+}
+.description .desc-right p:nth-child(1) {
+    color: #333;
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+}
+.u-safePlatform {
+    width: 100%;
+    height: 19rem;
+    background: url('/static/img/post/safetyAssurance/img_6.png') no-repeat center;
+    color: #FFF;
+    padding-top: 11rem;
+}
+.u-safePlatform-text{
+    width: 75rem;
+    margin: 0 auto;
+}
+.u-safePlatform h2{
+    font-size: 2.25rem;
+    margin-bottom: 1.5rem;
+}
+.u-safePlatform p{
+    font-size: 1.25rem;
+}
+.u-safe-details {
+    width: 75rem;
+    height: 21.13rem;
+    padding-top: 5rem;
+    margin: 0 auto;
+}
+.u-safe-details li{
+    width: 22%;
+    height: 100%;
+    margin-right:4%
+}
+.u-safe-details li .title{
+    width: 100%;
+    height: 6.75rem;
+    line-height: 2.4;
+    text-align: center;
+}
+.u-safe-details li .title img{
+    width: 4rem;
+    height: 4rem;
+}
+.u-safe-details li .title p{
+    font-size: 1.25rem;
+    color: #333;
+}
+.u-safe-details li .title-desc{
+    font-size: 0.875rem;
+    color: #666;
+    margin-top: 1.625rem;
+}
+.margin0{
+    margin-right:0 !important;
+}
+.u-lawyer-protect{
+    width: 100%;
+    height: 15rem;
+    text-align: center;
+    padding-top: 5rem;
+}
+.u-lawyer-protect h2{
+    font-size: 2.25rem;
+    color: #333333;
+    margin-bottom: 1.5rem;
+}
+.u-lawyer-protect p{
+    font-size: 1.25rem;
+    color: #666666;
+}
+.u-protect-details {
+    width:65rem;
+    height: 32.625rem;
+    margin: 0 auto;
+}
+.u-protect-details li {
+    width: 22.68rem;
+    height: 13rem;
+    color: #FFF;
+    padding-top: 14rem;
+    padding-left: 1.5rem;
+    margin-right:2.56rem;
+}
+.u-protect-details li p:nth-child(1){
+    font-size: 1.25rem;
+    width: 15.12rem;
+    margin-bottom: 1rem;
+}
+.u-protect-details li p:nth-child(2){
+    font-size: 0.875rem;
+    width: 15.12rem;
+}
+.u-protect-details li:nth-child(1){
+    background: url('/static/img/post/safetyAssurance/img_7.png') no-repeat center;
+}
+.u-protect-details li:nth-child(2){
+    background: url('/static/img/post/safetyAssurance/img_8.png') no-repeat center;
+}
+.u-protect-details li:nth-child(3){
+    background: url('/static/img/post/safetyAssurance/img_9.png') no-repeat center;
+}
+.u-safe-reason{
+    background: white;
+}
+
+/*适配1024、1152和1280*/
+@media screen and (max-width: 63.99em) {
+    html {
+        font-size: 80%;
+    }
+
+    body {
+        width: 1024px;
+        overflow: scroll;
+    }
+
+}
+
+@media screen and (min-width: 64em) and (max-width: 71.99em) {
+    html {
+        font-size: 80%;
+    }
+
+}
+
+@media screen and (min-width: 71.99em) and (max-width: 79.99em) {
+    html {
+        font-size: 90%;
+    }
+}
+
+@media screen and  (min-width: 80em) {
+
+}

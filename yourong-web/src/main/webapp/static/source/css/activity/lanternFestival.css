@@ -1,0 +1,259 @@
+.g-bd {
+  margin-bottom: 0;
+}
+.g-wrap-lan {
+  width: 1340px;
+  margin: 0 auto;
+  position: relative;
+}
+.f-fc-pink{
+  color: #ff7489;
+}
+.f-fc-brown{
+  color: #92482e;
+}
+.f-fc-yellow{
+  color: #f6ff00;
+}
+
+.u-top {
+  background: url('/static/img/activity/lanternFestival/top.png') no-repeat center;
+  /*background-size: 100% 100%;*/
+  height: 644px;
+  position: relative;
+  margin-top: -7px;
+}
+
+.u-body{
+  overflow: hidden;
+  font-family: Microsoft Yahei;
+}
+.u-body-1{
+  background: url('/static/img/activity/lanternFestival/body1.png') no-repeat center;
+  height: 1008px;
+}
+.u-body-2{
+  background: url('/static/img/activity/lanternFestival/body2.png') no-repeat center;
+  height: 814px;
+}
+.u-body-3{
+  background: url('/static/img/activity/lanternFestival/body3.png') no-repeat center;
+  height: 745px;
+}
+.u-body-4{
+  background: url('/static/img/activity/lanternFestival/body5.png') no-repeat center;
+  height: 398px;
+}
+.m-box{
+  overflow: hidden;
+}
+.m-box1{
+  background: url('/static/img/activity/lanternFestival/box1.png') no-repeat center;
+  background-size: 100% 100%;
+  height: 910px;
+  margin-top: 40px;
+}
+.m-box2{
+  background: url('/static/img/activity/lanternFestival/box2.png') no-repeat center;
+  background-size: 100% 100%;
+  height: 712px;
+  margin-top: 40px;
+}
+.m-box3{
+  background: url('/static/img/activity/lanternFestival/box3.png') no-repeat center;
+  background-size: 100% 100%;
+  height: 633px;
+  margin-top: 40px;
+}
+.m-box-title{
+  width: 310px;
+  height: 60px;
+  margin: 32px auto 0;
+  font-size: 30px;
+  line-height: 60px;
+}
+.m-box-title span{
+  margin-left: 10px;
+  margin-right: 27px;
+}
+.m-box-title span:last-child{
+  margin-right: 0;
+}
+.m-box1 .m-box-introduce{
+  width: 740px;
+  margin: 100px auto 0;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+}
+.m-box-sale{
+  width: 920px;
+  height: 550px;
+  margin: 25px auto 0;
+}
+.m-box-sale .m-box-qiqiu1{
+  background: url('/static/img/activity/lanternFestival/qiqiu.png') no-repeat center;
+  width: 258px;
+  height: 251px;
+  float: left;
+  margin-right: 70px;
+  margin-bottom: 27px;
+}
+.m-box-sale .m-box-qiqiu2{
+  background: url('/static/img/activity/lanternFestival/qiqiu2.png') no-repeat center;
+  width: 258px;
+  height: 251px;
+  float: left;
+  margin-right: 70px;
+  margin-bottom: 27px;
+}
+.m-box-sale .m-right-none{
+  margin-right: 0;
+}
+.m-box-num{
+  width: 50%;
+  margin: 47px auto 0;
+  text-indent: 25px;
+  font-size: 20px;
+}
+.m-box-num em{
+  font-size: 50px;
+  font-family: "dincond";
+}
+.m-box-pop{
+  width: 70%;
+  height: 30px;
+  line-height: 30px;
+  margin: 5px auto;
+  text-align: center;
+  background: #ff7489;
+  border-radius: 5px;
+  color: white;
+}
+.m-box-pop em{
+  font-size: 16px;
+}
+.m-box-pop i{
+  text-decoration:line-through
+}
+.m-down-app{
+  clear: both;
+  text-align: center;
+  width: 550px;
+  height: 57px;
+  line-height: 57px;
+  font-size: 20px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 40px;
+  box-shadow:0 9px 0 #fdb9a3;
+}
+.m-box2 .m-box-introduce{
+  width: 740px;
+  text-align: center;
+  margin: 100px auto 0;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+}
+.m-box2 .m-box-table{
+  width: 960px;
+  margin: 44px auto 0;
+  background: white;
+  text-align: center;
+  font-size: 16px;
+}
+.m-box2 .m-box-table td{
+  height: 40px;
+  border-right: 1px solid #ff7489;
+}
+.m-box2 .m-box-table thead{
+  background: #ffebf0;
+}
+
+.m-box3 .m-box-introduce{
+  width: 740px;
+  text-align: center;
+  margin: 100px auto 0;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+}
+.m-box3 .m-box-love{
+  background: url('/static/img/activity/lanternFestival/love.png') no-repeat center;
+  width: 303px;
+  height: 272px;
+  display: inline-block;
+  margin-top: 60px;
+  margin-left: 300px;
+  overflow: hidden;
+}
+.m-box3 .m-box-love:last-child{
+  margin-left: 116px;
+}
+.m-box3 .m-box-quan{
+  width: 30px;
+  height: 75px;
+  font-size: 18px;
+  border: 2px #ffb2bf solid;
+  border-radius: 5px;
+  text-align: center;
+  line-height: 25px;
+  margin-left: 35px;
+  margin-top: 50px;
+  font-weight: bold;
+  display: inline-block;
+  overflow: hidden;
+}
+.m-box3 .m-box-quan-num{
+  display: inline-block;
+  width: 160px;
+  height: 80px;
+  font-size: 108px;
+  margin-top: 50px;
+  font-family: "dincond";
+  line-height: 80px;
+  margin-left: 20px;
+}
+.m-box3 .m-box-quan-num em{
+  font-size: 30px;
+}
+.m-box3 .f-left-small{
+  margin-left: 5px;
+}
+.m-box-rule{
+  margin-left: 200px;
+  color: #e2183c;
+  font-size: 14px;
+  margin-top: 40px;
+  letter-spacing: 1px;
+}
+.m-box-rule h2{
+  font-size: 16px;
+  font-weight: bold;
+}
+.m-box-rule p{
+  line-height: 30px;
+}
+.m-top-text{
+  text-align: center;
+  width: 700px;
+  /*margin: 356px auto 0;*/
+  font-size: 36px;
+  position: absolute;
+  top: 356px;
+  left: 50%;
+  margin-left: -350px;
+}
+.u-app{
+  position: absolute;
+  bottom: -40px;
+  left: 50%;
+  margin-left: 280px;
+  display: none;
+}
+.snowfall-flakes:before,
+.snowfall-flakes:after {
+  width: 65px;
+  height: 28px;
+}

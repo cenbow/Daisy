@@ -1,0 +1,331 @@
+#parse('/mobile/common.vm')
+#set($spa=$request.getParameter("spa"))
+
+#if($spa)
+<link rel="stylesheet" href="$siteurl/res/assets/css/common.css">
+<style>
+
+    .g-wrap {
+        min-height: 20em;
+    }
+</style>
+<div id="app" logined="$!{currentUser.id}" siteurl="$siteurl" openIdisBind="$!{openIdIsBind}">
+    #CSRFToken('xToken')
+    <app-header></app-header>
+
+##路由外链
+    <div class="g-wrap">
+        <router-view></router-view>
+    </div>
+    <app-navi></app-navi>
+</div>
+<script src="$siteurl/res/assets/lib/vue.js"></script>
+<script src="$siteurl/res/assets/lib/zepto.js"></script>
+<script src="$siteurl/res/assets/lib/vue-router.js"></script>
+    #set($isDev=$sysServiceUtil.isDev())
+<script>
+    var env = {
+        siteurl: '$siteurl',
+        debug:$sysServiceUtil.isDev()
+    }
+    var url = location.href
+    if (env.siteurl && url.split('').reverse()[0] !== '/' && url.indexOf('#!/') === -1) {
+        location.href = url + '/#!/'
+    }
+    var log = console.log.bind(console)
+</script>
+    #if($isDev)
+    <script src="http://localhost:8080/build/app.js"></script>
+    #else
+    <script src="$siteurl/res/build/app.js"></script>
+    #end
+##---------------------------------------------------------------
+#else
+    #set($layout = "/mobile/layout.vm")
+    #set($isZepto = true)
+<style>
+    body {
+        background: #eee !important;
+    }
+
+    .z-directProject:after {
+        content: '直投';
+        width: 100%;
+        height: 40%;
+        background: #d74148;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        text-align: center;
+        color: #fff;
+        opacity: 0.7;
+        overflow: hidden;
+    }
+    .u-imgTips{
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        line-height: 12px;
+        text-align: center;
+        border: 1px solid #999999;
+        border-radius: 50%;
+        margin-right: 4px;
+    }
+    [v-cloak]{
+        display: none;
+    }
+</style>
+##header
+<h2 class="u-pageTitle f-pos-r">
+    <a href="$m_url">有融网</a>
+    <span class="u-login-link f-pos-a">
+        #if(!$currentUser)
+            <a href="$siteurl/mstation/login">登录</a><a href="$siteurl/mstation/register">注册</a>
+        #else
+            <a href="$mCenter_logout_url">退出</a>
+        #end
+    </span>
+</h2>
+##/header
+
+##banner
+##aliyun
+<div class="ui-slider">
+    <ul class="ui-slider-content">
+        #if($!banners && $!banners.size()>0)
+            #foreach($!banner in $!banners)
+                <li><a href="$!{banner.href}"><span
+                        style="background-image:url($!aliyun_url$!{banner.image})"></span></a></li>
+            #end
+        #end
+    </ul>
+</div>
+##/banner
+##status
+<div class="u-status-amount f-fs14 f-cf">
+    <em class="f-ff-ver u-amount-money f-fl">累计投资:￥<span
+            class="f-ff-din f-fs22">$!{paltformCapitalUtils.getPrefixPaltformTotalInvest()}</span></em>
+    <em class="f-ff-ver f-fr">注册人数:<span
+            class="f-ff-din f-fs22">$!{paltformCapitalUtils.getPaltformMembers()}</span></em>
+</div>
+##/status
+##projectList
+    #if($!projectList && $!projectList.size()>0)
+    <ul class="m-project-list" id="j-project-list">
+        #if("$!{noviceProject}" != "")
+            #set($process=${sysServiceUtil.getProjectNumberProgress($!noviceProject.totalAmount,$!noviceProject.id)})
+            <li class="f-pos-r">
+                <a href="$siteurl/products/detail-${noviceProject.id}.html" class="u-project-link">
+                    <h3 class="f-fs14">
+                        <em>$!{noviceProject.prefixProjectName}</em>
+                        #if($noviceProject.isNotice())
+                            <strong>
+                            ##                                项目预告
+                                距上线<i class="j-project-noticeTime" data-time="$!{noviceProject.getNoticeEndTime()}"></i>
+                            </strong>
+                            #if($project.quickRewardFlag==1)<span class="u-badge-red">快投有奖</span>#end
+                            #if(${noviceProject.isNoviceProject()})<span class="u-badge-red f-dn">新客专享</span>#end
+                            #if($noviceProject.joinLease)<span class="u-badge-red f-dn">租赁分红</span>#end
+                        #else
+                            #if($project.quickRewardFlag==1)<span class="u-badge-red">快投有奖</span>#end
+                            #if(${noviceProject.isNoviceProject()})<span class="u-badge-red">新客专享</span>#end
+                            #if($noviceProject.joinLease)<span class="u-badge-red">租赁分红</span>#end
+                            #if(${projectUtils.getProjectActivitySign($noviceProject.id)}==1)<i class="u-badge-ruyi">如意</i>#end
+                        #end
+                    </h3>
+                    <div class="u-pl-box f-pos-r">
+                        <div class="u-pl-wrap f-pos-a">
+                            <div class="u-pl-photo f-pos-r">
+                                <div class="ui-avatar-one u-project-avatar">
+                                    #if($noviceProject.investType==2)
+                                        <span class="z-directProject">
+                                            <img src="#getProjectThumbnail($!{noviceProject.thumbnail})" alt='项目缩略图'>
+                                        </span>
+                                    #else
+                                        <span >
+                                            <img src="#getProjectThumbnail($!{noviceProject.thumbnail})" alt="">
+                                        </span>
+                                    #end
+                                </div>
+                                <div class="u-project-circle#if($!{process}==100) z-finished#end">
+                                    <div class="f_pie_left"><div class="z-left"></div></div>
+                                    <div class="f_pie_right"><div class="z-right"></div></div>
+                                    <div class="u-project-mask"><span>$!{process}</span></div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="u-pl-info f-fl">
+                            <div>
+                                <span>项目总额 &yen; ${noviceProject.formatTotalAmount}</span>
+                    <span>
+                        年化收益
+                        #if(${noviceProject.formatMinAnnualizedRate}==${noviceProject.formatMaxAnnualizedRate})
+                            ${noviceProject.formatMinAnnualizedRate}%
+                        #else
+                            ${noviceProject.formatMinAnnualizedRate}-${noviceProject.formatMaxAnnualizedRate}%
+                        #end
+                        #if($project.extraType==2)
+                            <em style="color: #d74148">+${project.addRate}%</em>
+                        #end
+                    </span>
+                                #if($noviceProject.investType==2)
+                                    <span>收益周期 ${noviceProject.borrowPeriod}${noviceProject.FormatProfitPeriodType}</span>
+                                #else
+                                    <span>收益天数 #if($!{noviceProject.isNotice()})${noviceProject.getNoticeProjectEarningsTotalDays()}#else${noviceProject.getEarningsDaysByStatus()}#end 天</span>
+                                #end
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </li>
+        #end
+
+        #foreach($project in $!projectList)
+            #set($process=${sysServiceUtil.getProjectNumberProgress($!project.totalAmount,$!project.id)})
+            <li class="f-pos-r">
+                <a href="$siteurl/products/detail-${project.id}.html" class="u-project-link">
+                    <h3 class="f-fs14">
+                        <em>$!{project.prefixProjectName}</em>
+                        #if($project.isNotice())
+                            <strong>
+                            ##                              项目预告
+                                距上线<i class="j-project-noticeTime" data-time="$!{project.getNoticeEndTime()}"></i></strong>
+                            #if($project.quickRewardFlag==1)<span class="u-badge-red">快投有奖</span>#end
+                            #if(${project.isNoviceProject()})<span class="u-badge-red f-dn">新客专享</span>#end
+                            #if($project.joinLease)<span class="u-badge-red f-dn">租赁分红</span>#end
+                        #else
+                            #if($project.quickRewardFlag==1)<span class="u-badge-red">快投有奖</span>#end
+                            #if(${project.isNoviceProject()})<span class="u-badge-red">新客专享</span>#end
+                            #if($project.joinLease)<span class="u-badge-red">租赁分红</span>#end
+                            #if(${projectUtils.getProjectActivitySign($project.id)}==1)<i class="u-badge-ruyi">如意</i>#end
+                        #end
+
+                    </h3>
+                    <div class="u-pl-box f-pos-r">
+                        <div class="u-pl-wrap f-pos-a">
+                            <div class="u-pl-photo f-pos-r">
+                                <div class="ui-avatar-one u-project-avatar">
+                                    #if($project.investType==2)
+                                        <span class="z-directProject">
+                                            <img src="#getProjectThumbnail($!{project.thumbnail})" alt='项目缩略图'>
+                                        </span>
+                                    #else
+                                        <span >
+                                            <img src="#getProjectThumbnail($!{project.thumbnail})" alt="">
+                                        </span>
+                                    #end
+
+                                </div>
+                                <div class="u-project-circle#if($!{process}==100) z-finished#end">
+                                    <div class="f_pie_left"><div class="z-left"></div></div>
+                                    <div class="f_pie_right"><div class="z-right"></div></div>
+
+                                    <div class="u-project-mask">
+                                        <span>$!{process}</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="u-pl-info f-fl">
+                            <div>
+                                <span>项目总额 &yen; $!{project.formatTotalAmount}</span>
+                    <span>
+                        年化收益
+                        #if(${project.formatMinAnnualizedRate}==${project.formatMaxAnnualizedRate})
+                            ${project.formatMinAnnualizedRate}%
+                        #else
+                            ${project.formatMinAnnualizedRate}-${project.formatMaxAnnualizedRate}%
+                        #end
+                        #if($project.extraType==2)
+                            <em style="color: #d74148">+${project.addRate}%</em>
+                        #end
+                    </span>
+                                #if($project.investType==2)
+                                    <span>收益周期 ${project.borrowPeriod}${project.FormatProfitPeriodType}</span>
+                                #else
+                                    <span>收益天数 #if($!{project.isNotice()})${project.getNoticeProjectEarningsTotalDays()}#else${project.getEarningsDaysByStatus()}#end 天</span>
+                                #end
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </li>
+        #end
+    </ul>
+    #end
+<!-- public footer -->
+<div class="g-ft">
+    <div class="u-guide-link">
+        <a href="$siteurl/mstation/aboutYR">
+            <div>
+                <img src="$res_url/img/common/aboutYR.png" alt="">
+                <span>认识有融</span>
+            </div>
+        </a>
+        <a href="$tips_url">
+            <div>
+                <img src="$res_url/img/common/security.png" alt="">
+                <span>安全保障</span>
+            </div>
+
+        </a>
+        <a href="$siteurl/static/page/twoCodeRedict.html" target="_blank">
+            <div>
+                <img src="$res_url/img/common/downLoad.png" alt="">
+                <span>下载APP</span>
+            </div>
+
+        </a>
+    </div>
+    <span class="m-aboutSina f-fs12">
+        <span class="u-imgTips">!</span>
+        理财有风险，投资需谨慎</span>
+</div>
+<!-- /public footer -->
+<ul class="ui-grid-trisect u-navi">
+    <li class="z-current ui-border-b">
+        <a href="$m_url">
+            <span class="u-index"></span>
+            首页
+        </a>
+    </li>
+    <li>
+        <a href="$siteurl/products/m/list-all-all-1.html">
+            <span class="u-list"></span>
+            理财项目
+        </a>
+    </li>
+    <li>
+        <a href="#if($currentUser) $siteurl/mCenter/home#else $siteurl/mstation/login#end">
+            <span class="u-home"></span>
+            我的账户
+        </a>
+    </li>
+</ul>
+##/navi
+    #CSRFToken('xToken')
+    #set($pageScript="
+    <script>
+        seajs.config({
+            preload:['frozen']
+        })
+
+        seajs.use(['xjs/modules/effects','frozen'],function(effects){
+        ##Banner
+            var bannerSlider = new fz.Scroll('.ui-slider',{
+                role: 'slider',
+                indicator: true,
+                autoplay: true,
+                interval: 3000
+            })
+        ##项目环形图
+            effects.processCircle('.u-project-circle')
+
+        ##倒计时
+            effects.projectCountdown()
+        })
+    </script>
+    ")
+#end

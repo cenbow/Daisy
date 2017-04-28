@@ -1,0 +1,340 @@
+#parse('/common/common.vm')
+#set($title="$!{project.name}")
+#if(!$sysServiceUtil.isDev())
+    #set($siteurl='')
+#else
+    #set($siteurl='/yourong-api')
+#end
+#set($loginSource=$request.getParameter("isMsite"))
+#set($css_url=["$siteurl/static/source/css/detail.css"])
+<style>
+    html{
+        font-size: 62.5%;
+    }
+</style>
+<div class="m-risk-win f-dn #if($loginSource)u-msite-style#end">
+    <div class="u-main-content">有融风控结合百度金融云评定，仅供参考</div>
+    <div class="u-know-btn" id="j-close-win">我知道了</div>
+</div>
+<div class="u-cover j-cover"></div>
+<article class="g-wrap m-project-info">
+    #if(${project.openPlatformKey}=='taizilong')
+    ##    业务模式介绍
+        <section>
+            <header>业务模式介绍</header>
+            <div>
+                <img src="https://yrstatic.oss-cn-hangzhou.aliyuncs.com/static/img/supply_chain/mode_tzl_m@2x.png"
+                     alt="业务模式介绍" width="100%">
+            </div>
+        </section>
+    #end
+    #if(${project.openPlatformKey}=='jimistore')
+    ##    业务模式介绍
+        <section>
+            <header>业务模式介绍</header>
+            <div>
+                <img src="https://yrimg.oss-cn-hangzhou.aliyuncs.com/img/model_jm%402x.png" alt="业务模式介绍" width="100%">
+            </div>
+        </section>
+    #end
+    #if(${project.projectType}=='car_leas_type_car')
+    ##    业务模式介绍
+      <section>
+        <header>业务模式介绍</header>
+        <div>
+          <img src="https://yrstatic.oss-cn-hangzhou.aliyuncs.com/res/img/supply_chain/model_zc.png" alt="业务模式介绍" width="100%">
+        </div>
+      </section>
+    #end
+##    项目介绍
+    <section>
+        <header>项目介绍</header>
+        <div>${project.shortDesc} </div>
+    </section>
+##    借款人/借款企业信息
+    <section>
+        #if($!{project.borrowerType}==1)
+            <header>借款人信息</header>
+        #elseif($!{project.borrowerType}==2)
+            <header>借款企业信息</header>
+        #elseif($!{project.borrowerType}==4)
+            <header>借款主体信息</header>
+        #end
+        <div>
+##            车企融只显示担保物图片
+            #foreach($_attach in $project.borrowMemberAttachments)
+                <div class="u-mark-info">
+                    <img src="#getImagePath($!{_attach.fileUrl},'425')" title="$!{_attach.fileName}">
+                    <em>$!{_attach.fileName}</em>
+                </div>
+            #end
+            #if($!{project.borrowerType}==1)
+                #set($bMember = $!{project.borrowMemberBiz.member})
+                #set($bMemberInfo = $!{project.borrowMemberBiz.memberInfo})
+                <table class="u-info-table">
+                    #if($!{project.borrowerCreditLevel})
+                        <tr>
+                            <td class="u-risk-level">
+                                <span class="f-db f-fl">借款人评级：</span>
+                                <span class="f-db f-of-h">
+                                    <span class="f-db"><em class="f-fc-red">$!{project.borrowerCreditLevel}</em>$!{project.borrowerCreditLevelDes}<span class="u-imgTips" id="j-risk-tips">!</span></span>
+                                </span>
+                            </td>
+                        </tr>
+                    #end
+                    <tr>
+                        <td>姓名：$!{bMember.getMaskTrueName()}</td>
+                    </tr>
+                    <tr>
+                        <td>性别：${sysServiceUtil.getDictLabelByValue("$!{bMember.sex}","sex","")}</td>
+                    </tr>
+                    <tr>
+                        <td>年龄：$!{bMember.getAge()}</td>
+                    </tr>
+                    <tr>
+                        <td>婚否：${sysServiceUtil.getDictLabelByValue("$!{bMemberInfo.marriage}","marriage","")}</td>
+                    </tr>
+                    <tr>
+                        <td>学历：${sysServiceUtil.getDictLabelByValue("$!{bMemberInfo.highEdu}","education","")}</td>
+                    </tr>
+                    <tr>
+                        <td>户口性质：${sysServiceUtil.getDictLabelByValue("$!{bMemberInfo.registerType}","register_type","")}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">身份证号：$!{bMember.maskIdentityNumber()}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">户籍地：$!{bMemberInfo.censusRegisterName}</td>
+                    </tr>
+                    <tr>
+                        <td>收入：${sysServiceUtil.getDictLabelByValue("$!{bMemberInfo.income}","income","")}</td>
+                    </tr>
+                    <tr>
+                        <td>职业：$!{bMemberInfo.detailInfo}</td>
+                    </tr>
+                </table>
+            #elseif($!{project.borrowerType}==2)
+                #set($bEnterprise = $!{project.enterprise})
+                <table class="u-info-table">
+                    #if($!{project.borrowerCreditLevel})
+                        <tr>##项目评级
+                            <td class="u-risk-level">
+                                <span class="f-db f-fl">企业法人评级：</span>
+                                <span class="f-db f-of-h">
+                                    <span class="f-db"><em class="f-fc-red">$!{project.borrowerCreditLevel}</em>$!{project.borrowerCreditLevelDes}<span class="u-imgTips" id="j-risk-tips">!</span></span>
+                                </span>
+                            </td>
+                        </tr>
+                    #end
+                    <tr>##公司名称
+                        <td>$!{project.borrowerCreditLevel}公司名称:$!{bEnterprise.name}</td>
+                    </tr>
+                    <tr>##法人
+                        <td>法人:$!{bEnterprise.MaskLegalName}</td>
+                    </tr>
+                    #if($!{bEnterprise.region})
+                        <tr>##地区
+                            <td>公司所在地:$!{bEnterprise.region}</td>
+                        </tr>
+                    #end
+                    <tr>##社会统一代码
+                        <td>社会统一代码:$!{bEnterprise.MaskOrganizationCode}</td>
+                    </tr>
+                    <tr>
+                        <td>注册时间：$!{dateUtil.formatDatetoString(${bEnterprise.regeditDate},"yyyy年MM月")}</td>
+                    </tr>
+                    #if($!{bEnterprise.income})
+                        <tr>
+                            <td>注册资本：$!{bEnterprise.income}万</td>
+                        </tr>
+                    #end
+                    <tr>
+                        <td>年均销售额：$!{bEnterprise.yearSales}万</td>
+                    </tr>
+                </table>
+            #elseif($!{project.borrowerType}==4)
+                #set($bEnterprise = $!{project.enterprise})
+                <table class="u-info-table">
+                    #if($!{project.borrowerCreditLevel})
+                        <tr>##项目评级
+                            <td class="u-risk-level">
+                                <span class="f-db f-fl">企业法人评级：</span>
+                                <span class="f-db f-of-h">
+                                    <span class="f-db"><em class="f-fc-red">$!{project.borrowerCreditLevel}</em>$!{project.borrowerCreditLevelDes}<span class="u-imgTips" id="j-risk-tips">!</span></span>
+                                </span>
+                            </td>
+                        </tr>
+                    #end
+                    <tr>##名称
+                        <td>名称:$!{bEnterprise.name}</td>
+                    </tr>
+                    <tr>##负责人
+                        <td>负责人:$!{bEnterprise.MaskLegalName}</td>
+                    </tr>
+                    <tr>##地区
+                        <td>所在地:$!{bEnterprise.region}</td>
+                    </tr>
+                    <tr>
+                        <td>注册时间：$!{dateUtil.formatDatetoString(${bEnterprise.regeditDate},"yyyy年MM月")}</td>
+                    </tr>
+                    <tr>##社会统一代码
+                        <td>社会统一代码:$!{bEnterprise.MaskOrganizationCode}</td>
+                    </tr>
+                </table>
+            #end
+        </div>
+    </section>
+##    借款信息
+##    <section>
+##        <header>借款记录</header>
+##        <div>
+##            <table>
+##                <tr>
+##                    <td>已还清项目：$!{project.payOffCount}个</td>
+##                </tr>
+##                <tr>
+##                    <td>逾期未还期数：$!{project.overdueCount}期</td>
+##                </tr>
+##                <tr>
+##                    <td>逾期未还金额：$!{project.overdueAmount}元</td>
+##                </tr>
+##            </table>
+##        </div>
+##    </section>
+
+##    担保物信息  （车辆信息/房屋信息）
+    <section>
+        <div>
+        #if(${project.projectTypeGroupName}!=999)
+            <header id="j-messageTitle">${project.projectTypeGroupName}信息</header>
+					#set($debtCollateral = $!{project.debtCollateral})
+            <table id="j-collateral-detailSwrap" style="width: 100%;">
+                <tbody class="u-collateral-detail" id="j-collateral-detail">
+                </tbody>
+            </table>
+        #else
+        		<header>车企融</header>
+    	#end
+        </div>
+        <input type="hidden" id="j-collateralImg" data-size="$!project.collateralAttachments.size()">
+##        车辆信息/房屋信息/车企融图片
+        <div class="u-carPic-info">
+           		 #foreach($_attach in $!project.collateralAttachments)
+                    <img src="$!{aliyun_url}/$!{_attach.fileUrl}" data-img="" alt="$!{_attach.fileName}">
+                    <em>$!{_attach.fileName}</em>
+				#end
+        </div>
+    </section>
+##    担保方式
+    <section>
+        <div>
+        <header>担保方式：$!{sysServiceUtil.getDictLabelByValue("$!{project.securityType}","debt_type","")}</header>
+        	<div>
+                <h3>保证措施</h3>
+                <p id="fk_bzcs"></p>
+                <h3>还款来源</h3>
+                <p id="fk_hkly"></p>
+                <h3>风控审核</h3>
+                <p id="fk_fksh"></p>
+                <h3>监管保障</h3>
+                <p id="fk_jgbz"></p>
+                <h3>法律监管</h3>
+                <p id="fk_fljg"></p>
+                <h3>资金管理</h3>
+                <p id="fk_zjgl"></p>
+                <h3>其他风控信息</h3>
+                <p id="fk_qtfkxx"></p>
+            </div>
+        </div>
+    </section>
+</article>
+##<script src="${aliyun_url}/yrstatic/static/js/jquery-1.11.1.min.js"></script>
+<script src="https://yrstatic.oss-cn-hangzhou.aliyuncs.com/res/lib/zepto/1.1.6/zepto.min.js"></script>
+<script>
+    var productConfig = {}
+    try{
+        #if("$!debtCollateral" == "")
+                productConfig.pledgeBaseInfo = $!{debtPledge.pledgeDetails}
+        #else
+                productConfig.pledgeBaseInfo = $!{debtCollateral.collateralDetails}
+        #end
+    } catch(error){
+        productConfig.pledgeBaseInfo = ""
+    }
+
+
+    $(function(){
+        renderPledgeBaseInfo(productConfig.pledgeBaseInfo);
+    })
+
+    function renderPledgeBaseInfo(dataJson) {
+        $.each(dataJson, function(n, v) {
+            if(n=="houseRecord_info"){
+                $("#car_ms").text(v);
+            }else if(n=="db_company"){
+                if(typeof v !="undefined" && v!=null && v!=""){
+                    $(".j-db-company").css("display","block");
+                }
+                $("#" + n).text(v);
+            }else{
+                $("#" + n).text(v);
+                $("#" + n + "_title").attr("title", v);
+            }
+        });
+    }
+    //控制iframe高度
+    window.onload=function(){
+        if(window!==window.top&&window.frames.name==="detailFrame"){
+            window.top.$('#j-detail-frame')
+                    .removeAttr('style')
+                    .height(document.body.scrollHeight);
+        }
+    };
+    
+ /**直投项目风控信息显示*/
+    if("undefined" != typeof  $!{project.getP2pDescription()}){
+    	$.each($!{project.getP2pDescription()},function(n,v){
+    		if("undefined" == typeof v || v==null || v==""){
+    			$("#"+n).parent("tr").hide();
+    		}
+    		$("#"+n).html(v);
+    	});
+    }    
+    
+      /**直投项目担保物详细信息显示*/
+    if("undefined" != typeof $!{debtCollateral.collateralDetails}){
+    	var	colTrObj = $("<tr>"),i=0;
+    	$.each($!{debtCollateral.collateralDetails},function(n,v){
+            if (v != '') {
+                if (!!v) {
+                    colTrObj.append("<td width='120' class='f-fwb'>" + n + "</td><td>" + v + "</td>");
+                    i = i + 1;
+                    $("#j-collateral-detail").append(colTrObj);
+                    colTrObj = $("<tr>");
+                }
+            } else {
+                $('#j-collateral-detailSwrap').hide()
+                if ($('#j-collateralImg').data('size') == 0) {
+                    $('#j-messageTitle').hide()
+                }
+            }
+    	});
+
+    }
+
+    var os = '$!{loginSource}'
+
+    $('#j-risk-tips').on('click',function () {
+        $('.m-risk-win').removeClass('f-dn')
+        if('Y'!=os) {
+            $('.j-cover').show()
+        }
+    })
+
+    $('#j-close-win').on('click',function () {
+        $('.m-risk-win').addClass('f-dn')
+        if('Y'!=os) {
+            $('.j-cover').hide()
+        }
+    })
+</script>

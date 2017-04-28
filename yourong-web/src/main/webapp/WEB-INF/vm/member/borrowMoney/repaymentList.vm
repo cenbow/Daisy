@@ -1,0 +1,39 @@
+##我的借款-还款中的借款
+#parse("/common/common.vm")
+#set($layout = "/layout/default.vm")
+<div class="u-rtable-wrap f-round">
+    <table class="">
+        <thead>
+
+        <tr>
+            <th>项目名称</th>
+            <th>还款类型</th>
+            <th>借款金额</th>
+            <th>年化利率</th>
+            <th>管理费</th>
+            <th>借款期限</th>
+            <th>待还本息</th>
+            <th>最近一期还款时间</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+            #if($!result.data && $!result.data.size()>0)
+            <tr>
+                <td><a href="javascript:void(0)">车有融ZT001</a></td>
+                <td>抵押</td>
+                <td>50万</td>
+                <td>18.26%</td>
+                <td>￥1000</td>
+                <td>2015-12-30至2015-12-30</td>
+                <td>￥13,900.87</td>
+                <td>2015-12-30</td>
+                <td><a href="javascript:void(0)">查看详情</a></td>
+            </tr>
+            #else
+            <tr><td colspan="9" class="u-table-empty">暂无“获取记录”</td></tr>
+            #end
+        </tbody>
+    </table>
+</div>
+#ajaxPagePlugin($!result,"Gain")

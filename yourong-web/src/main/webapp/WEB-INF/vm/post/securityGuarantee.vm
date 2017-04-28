@@ -1,0 +1,400 @@
+##新版安全保障页
+#parse('/common/common.vm')
+#set($title="安全保障_$!{title_suffix}")
+#set($isSafetyNavi="z-current")
+#set($css_url=["$root_css_url/post/securityGuarantee.css"])
+#set($js_url=[
+    "$root_js_url/post/securityGuarantee.js"
+])
+
+
+<div>
+##    banner
+    <div class="m-topBanner">
+    </div>
+##    导航栏
+    <div class="m-navBar">
+        <div class="g-wrap">
+            <ul class="j-navBar">
+                <li class="z-clicked"><a href="#technologySecurity"> 项目安全</a></li>
+                <li><a href="#fundSecurity"> 资金安全</a></li>
+                <li><a href="#technologySafety">技术安全</a> </li>
+                <li><a href="#lawSecurity">法律保障</a></li>
+            </ul>
+        </div>
+    </div>
+##    主要内容
+    <div class="g-wrap">
+    ##        项目安全
+        <div id="technologySecurity">
+            <div class="m-technologySecurity">
+                <div class="u-technologyText">
+                    <strong>项目安全</strong> <br>
+                <span>平台每个项目的诞生，都经过多重风控环节严格审核 <br>
+确保项目的真实性、安全性</span>
+                </div>
+                <div class="u-technologyImg">
+                    <img src="$root_url/static/img/post/securityGuarantee/mascot01.png" alt="">
+                </div>
+            </div>
+            <div class="m-creditorProcess">
+                <div class="m-processWrap" id="j-processWrap">
+                    <div class="u-creditorProcess u-firstCreditor j-creditorProcess z-clicked">
+                        <div class="u-outsideRound">
+                            <div class="u-insideRound z-clicked">
+                                <img src="$root_url/static/img/post/securityGuarantee/icon1-active.png" class="u-icon" alt="">
+                            </div>
+                        </div>
+                        <div class="z-clicked">债权甄选</div>
+                    </div>
+                    <div class="u-creditorProcess j-creditorProcess">
+                        <div class="u-outsideRound">
+                            <div class="u-insideRound z-clicked">
+                                <img src="$root_url/static/img/post/securityGuarantee/icon2.png" class="u-icon" alt="">
+                            </div>
+                        </div>
+                        <div>债权复审</div>
+                    </div>
+                    <div class="u-creditorProcess j-creditorProcess">
+                        <div class="u-outsideRound">
+                            <div class="u-insideRound z-clicked">
+                                <img src="$root_url/static/img/post/securityGuarantee/icon3.png" class="u-icon" alt="">
+                            </div>
+                        </div>
+                        <div>债权披露</div>
+                    </div>
+                    <div class="u-creditorProcess j-creditorProcess">
+                        <div class="u-outsideRound">
+                            <div class="u-insideRound z-clicked">
+                                <img src="$root_url/static/img/post/securityGuarantee/icon4.png" class="u-icon" alt="">
+                            </div>
+                        </div>
+                        <div>贷后管理</div>
+                    </div>
+                    <div class="u-creditorProcess u-lastCreditor j-creditorProcess">
+                        <div class="u-outsideRound">
+                            <div class="u-insideRound z-clicked">
+                                <img src="$root_url/static/img/post/securityGuarantee/icon5.png" class="u-icon" alt="">
+                            </div>
+                        </div>
+                        <div>逾期保障</div>
+                    </div>
+                </div>
+            ##                回路图
+                <div class="u-processArrow">
+                    <img src="$root_url/static/img/post/securityGuarantee/arrow.png" alt="">
+                </div>
+                <div style="text-align: center" id="j-seeDetialWrap">
+                    <div class="u-seeDetail">
+                        <ul>
+                            <li class="j-hoverBlock">出借人准入标准<i></i>
+                                <div class="u-toolTip j-toolTip" >
+                                    <p class="u-toolTip-text">专业的风控团队制定严密的风控审核系统，对出借人进行严格的尽职调查、风险评级和资质审核，通过评审后方可作为有融网合作的出借人。</p>
+
+                                    <span class="u-toolTip-arrow"></span>
+                                </div>
+                            </li>
+                            <li class="j-hoverBlock">借款人尽调信息<i></i>
+                                <div class="u-toolTip j-toolTip" >
+                                    <p class="u-toolTip-text">线下风控团队对借款人进行严格的信息尽调，尽调内容包括但不限于借款人身份信息、工作收入、抵质押物价值等。</p>
+
+                                    <span class="u-toolTip-arrow"></span>
+                                </div>
+                            </li>
+                            <li class="j-hoverBlock">足额物权担保<i></i>
+                                <div class="u-toolTip j-toolTip" >
+                                    <p class="u-toolTip-text">第三方评估机构对出借人的担保物进行价值评估，并根据担保物评估价值，严控借款金额。</p>
+
+                                    <span class="u-toolTip-arrow"></span>
+                                </div>
+                            </li>
+                            <li class="j-hoverBlock">专业法律监控<i></i>
+                                <div class="u-toolTip j-toolTip" >
+                                    <p class="u-toolTip-text">浙江德睦律师事务所资深律师全程见证债权项目形成，并就债权的真实性与有效性出具专业法律意见书；同时对线下公司法律团队进行业务指导，全方位提供法律保障。</p>
+
+                                    <span class="u-toolTip-arrow"></span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="u-seeDetail f-dn">
+                        <ul>
+                            <li class="j-hoverBlock">债权推荐<i></i>
+                                <div class="u-toolTip j-toolTip" >
+                                    <p class="u-toolTip-text">第三方投资管理公司将符合准入标准的优质债权项目推荐给平台。</p>
+
+                                    <span class="u-toolTip-arrow"></span>
+                                </div>
+                            </li>
+                            <li class="j-hoverBlock">准入复审<i></i>
+                                <div class="u-toolTip j-toolTip" >
+                                    <p class="u-toolTip-text">专业的风控团队对提交的项目进行严格的资料复审、核查。</p>
+
+                                    <span class="u-toolTip-arrow"></span>
+                                </div>
+                            </li>
+                            <li class="j-hoverBlock">法律监控<i></i>
+                                <div class="u-toolTip j-toolTip" >
+                                    <p class="u-toolTip-text">律所资深律师对推荐的项目真实性与有效性进行审核。</p>
+
+                                    <span class="u-toolTip-arrow"></span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="u-seeDetail  f-dn">
+                        <ul>
+                            <li class="j-hoverBlock">优质债权披露<i></i>
+                                <div class="u-toolTip j-toolTip" >
+                                    <p class="u-toolTip-text">上线项目均有详细的信息披露，包括但不限于项目信息、抵质押物信息、合同文件等。</p>
+
+                                    <span class="u-toolTip-arrow"></span>
+                                </div>
+                            </li>
+                            <li class="j-hoverBlock">第三方数据保全<i></i>
+                                <div class="u-toolTip j-toolTip" >
+                                    <p class="u-toolTip-text">用户在平台投资交易过程中产生的电子合同等电子数据均由第三方电子数据保全中心提供交易凭证保全服务，为用户投资理财的事前防范及事后维权提供切实保障。</p>
+
+                                    <span class="u-toolTip-arrow"></span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="u-seeDetail  f-dn">
+                        <ul>
+                            <li class="j-hoverBlock">资产监管<i></i>
+                                <div class="u-toolTip j-toolTip" >
+                                    <p class="u-toolTip-text">风控中心对借款人资产进行跟踪、复核与监督，及时掌握其最新情况。</p>
+
+                                    <span class="u-toolTip-arrow"></span>
+                                </div>
+                            </li>
+                            <li class="j-hoverBlock">资金跟踪<i></i>
+                                <div class="u-toolTip j-toolTip" >
+                                    <p class="u-toolTip-text">发放贷款后，平台定期调查借款人经营与财务状况，实时掌握其资金流向。</p>
+
+                                    <span class="u-toolTip-arrow"></span>
+                                </div>
+                            </li>
+                            <li class="j-hoverBlock">风险预警<i></i>
+                                <div class="u-toolTip j-toolTip" >
+                                    <p class="u-toolTip-text">风控中心通过专业贷后管理流程，在约定还款之日前就发出还款预警提醒。</p>
+
+                                    <span class="u-toolTip-arrow"></span>
+                                </div>
+
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="u-seeDetail  f-dn">
+                        <ul>
+                            <li class="j-hoverBlock">项目逾期赎回<i></i>
+                                <div class="u-toolTip j-toolTip" >
+                                    <p class="u-toolTip-text">债权项目借款人到期未能偿还借款均由该项目出借人先行赎回项目债权，并向投资人垫付债权收益权本息。</p>
+
+                                    <span class="u-toolTip-arrow"></span>
+                                </div>
+                            </li>
+                            <li class="j-hoverBlock">项目逾期代付<i></i>
+                                <div class="u-toolTip j-toolTip" >
+                                    <p class="u-toolTip-text">债权项目借款人到期未能偿还借款，出借人对该项目又未进行赎回的，均由合作的第三方资产管理公司向投资人代付债权收益权本息，以取得项目出借人的债权。</p>
+
+                                    <span class="u-toolTip-arrow"></span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="u-littleTips f-fs14">
+                鼠标移至 <i></i>可查看更多内容
+            </div>
+##            直投项目流程图
+            <div class="m-directProcessBlock">
+            <div class="m-directProcess">
+                <div class="u-qualificationCertification u-hoverBlock j-hoverBlock">
+                    <div class="u-toolTip j-toolTip" style="top:-70px;">
+                        <h2 class="u-toolTip-title">资质认证：</h2>
+                        <p class="u-toolTip-text">专业第三方信用机构对项目借款人进行信用审核，并调查分析借款人的人行信用报告。</p>
+
+                        <span class="u-toolTip-arrow"></span>
+                    </div>
+                </div>
+                <div class="u-tipMsg02">
+                    <div class="u-tipText"><i></i>借款方基本信息核实</div>
+                </div>
+                <div class="u-tipText1"><i></i>借款方财务状况分析</div>
+                <div class="u-tipMsg01">
+                    <div class="u-tipText"><i></i>借款方动产审查</div>
+                <div class="u-tipText"><i></i>借款方不动产审查</div>
+                </div>
+            </div>
+                <div class="u-detailTips f-fs14">
+                    <ul>
+                        <li class="j-hoverBlock">
+                            <span><i></i></span>资金流向跟踪
+
+                            <div class="u-toolTip j-toolTip" style="top:-80px;">
+                                <h2 class="u-toolTip-title">资金流向跟踪：</h2>
+                                <p class="u-toolTip-text">项目履约后，平台实时跟踪掌握借款人资金流向。</p>
+
+                                <span class="u-toolTip-arrow"></span>
+                            </div>
+                        </li>
+                        <li class="j-hoverBlock"><span><i></i></span>风险评估预警
+                            <div class="u-toolTip j-toolTip" style="top:-140px;">
+                                <h2 class="u-toolTip-title">风险评估预警：</h2>
+                                <p class="u-toolTip-text">平台建立健全的风险评估预警机制，在贷后跟踪过程中针对每个项目进行多维度的贷后风险分析和跟踪，实现实时数据更新和风险评估预警报告。</p>
+
+                                <span class="u-toolTip-arrow"></span>
+                            </div>
+                        </li>
+                        <li class="j-hoverBlock"><span><i></i></span>督促到期还款
+                            <div class="u-toolTip j-toolTip" style="top:-80px;">
+                                <h2 class="u-toolTip-title">督促到期还款：</h2>
+                                <p class="u-toolTip-text">约定还款前7个工作日，平台督促借款人按计划归还贷款本息。</p>
+
+                                <span class="u-toolTip-arrow"></span>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li class="j-hoverBlock"> <span><i></i></span> 逾期信息披露
+                            <div class="u-toolTip j-toolTip" style="top:-80px;">
+                                <h2 class="u-toolTip-title">逾期信息披露：</h2>
+                                <p class="u-toolTip-text">平台及时披露逾期项目的跟踪催收情况，确保信息公开透明。</p>
+
+                                <span class="u-toolTip-arrow"></span>
+                            </div>
+                        </li>
+
+                        <li class="j-hoverBlock"><span><i></i></span>专业催收管理
+                            <div class="u-toolTip j-toolTip" style="top:-80px;">
+                                <h2 class="u-toolTip-title">专业催收管理：</h2>
+                                <p class="u-toolTip-text">贷后管理团队对逾期项目借款人进行专业催收管理。</p>
+
+                                <span class="u-toolTip-arrow"></span>
+                            </div>
+                        </li>
+                        <li class="j-hoverBlock"><span><i></i></span>担保物处理
+                            <div class="u-toolTip j-toolTip" style="top:-110px;">
+                                <h2 class="u-toolTip-title">担保物处理：</h2>
+                                <p class="u-toolTip-text">贷后管理团队针对逾期项目的担保物进行处理，担保物处理所得资金优先偿还投资人本息。</p>
+
+                                <span class="u-toolTip-arrow"></span>
+                            </div>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+##    资金安全
+    <div id="fundSecurity" class="m-fundSecurity">
+        <div class="g-wrap">
+        <img src="$root_url/static/img/post/securityGuarantee/fundSecurity.png" alt="">
+        </div>
+    </div>
+
+##    技术安全
+    <div id="technologySafety" class="m-technologySafety">
+        <div class="g-wrap">
+            <div style="position: relative">
+                <div class="u-imgBlock">
+##                <img src="$root_url/static/img/post/securityGuarantee/technologySecurity.png" alt="">
+                </div>
+                    <div class="u-privacyProtection u-hoverBlock j-hoverBlock">
+                    <div class="u-toolTip j-toolTip" style="top:-228px;">
+                        <h2 class="u-toolTip-title">信息隐私保障制度：</h2>
+                        <p class="u-toolTip-text">
+                            平台制定了严谨规范的数据管理和使用制度，数据工作人员需签订数据安全保密协议，一旦发生数据泄露将追究其法律责任，严格限制数据服务器的访问权限，杜绝数据人为及网络泄露的风险。
+                        </p>
+                        <h2 class="u-toolTip-title">多重技术加密措施：</h2>
+                        <p class="u-toolTip-text">
+                            平台采用HTTPS传输加密协议及对隐私数据进行MD5加密保护，双重保障网站隐私数据传输的安全性和私密性。
+                        </p>
+
+                        <span class="u-toolTip-arrow"></span>
+                    </div>
+                </div>
+                <div class="u-technicalSupport u-hoverBlock j-hoverBlock">
+                    <div class="u-toolTip j-toolTip" style="top: -416px;">
+                        <h2 class="u-toolTip-title">网络技术保障：</h2>
+                        <p class="u-toolTip-text">
+                            平台拥有安全稳定的高防服务器以及应对ddos攻击、黑客攻击等其他网络恶意攻击的丰富经验；同时技术团队对网站系统进行全天候实时监控，全年不宕机率99.999%，若发生宕机则系统自动切换至备用服务器，保障交易环境的安全性、稳定性。
+                        </p>
+                        <h2 class="u-toolTip-title">数据信息保障：</h2>
+                        <p class="u-toolTip-text">
+                            平台实行数据库主从分布，保证数据库高效、稳定，可扩展性；同时实时对平台数据进行归档备份，确保数据零丢失，并有效保障历史数据有据可查。
+                        </p>
+                        <h2 class="u-toolTip-title">第三方技术合作：</h2>
+                        <p class="u-toolTip-text">
+                            有融网与新浪支付技术团队在网站资金托管管理及支付管理等技术方面进行合作，以保障用户资金在交易过程中的安全性及用户资金还本付息的及时性。
+                        </p>
+
+                        <span class="u-toolTip-arrow"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+##法律保障
+    <div id="lawSecurity" class="m-lawSecurity">
+        <div class="g-wrap">
+            <div class="u-lawSecurity">
+                <div class="u-mainContent">
+                    <div class="u-navBar" id="j-navBar">
+                        <ul id="j-navBar-tab">
+                            <li class="z-clicked">平台运营有法可依</li>
+                            <li>业务形成合法合规</li>
+                            <li>专业律所全程监控</li>
+                        </ul>
+                    </div>
+                    <div id="j-textBlock-wrap">
+                        <div class="u-textBlock ">
+                            <p class="f-fs14">
+                                根据《合同法》关于"居间合同"的规定，有融网及其线下合作机构，为民间借贷双方提供撮合借贷并形成借贷关系的居间服务，以及有融网为债权收益权转让双方提供信息并实现转让的居间服务有着明确的法律依据。
+                            </p>
+                            <div class="u-detailMsgBlock">
+                            <div class="u-detailMsg">
+                                <span>关于有融网及其线下合作机构提供居间撮合服务的合法性：明确合法</span>
+                                <span>根据《合同法》第二十三章关于"居间合同"的规定，特别是第424条的规定“居间合同是居间人向委托人报告订立合同的机会或者提供订立合同的媒介服务，委托人支付报酬的合同。”</span>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="u-textBlock f-dn">
+                            <p class="f-fs14">
+                                有融网及其线下合作机构严格按照相关法律法规开展业务。依据《合同法》、《电子签名法》、《关于人民法院审理借贷案件的若干意见》等法律规定，有融网提供的电子合同合法并具合同效力，投资人通过有融网获得的投资收益为合法收益并受法律保护。
+                            </p>
+                            <div class="u-detailMsgBlock">
+                            <div class="u-detailMsg">
+                                <span> <i>1</i>关于债权收益权转让的合法性：明确合法</span>
+                                <span>根据《合同法》第七十九条规定“债权人可以将合同的权利全部或者部分转让给第三人”，明确债权人可将债权收益权进行转让的合法依据。</span>
+                            </div>
+                            <div class="u-detailMsg">
+                                <span> <i>2</i>关于投资人及借款人双方民间借贷的合法性：明确合法</span>
+                                <span>根据《合同法》第一百九十六条规定"借款合同是借款人向贷款人借款，到期返还借款并支付利息的合同"，《合同法》允许普通民事主体之间发生借贷关系，并允许出借方到期可以收回本金和符合法律规定的利息。</span>
+                            </div>
+                            <div class="u-detailMsg">
+                                <span> <i>3</i>关于电子合同的合法性及可执行性：现行法律明确了其合同效力</span>
+                                <span>通过有融网平台的电子签名与手写签名或盖章具有同等的效力，生成的电子文本具有法律效力。《电子签名法》第三条规定，“民事活动中的合同或者其他文件、单证等文书，当事人可以约定使用电子签名、数据电文，不能因为合同采用电子签名、数据电文就否定其法律效力。”同时，《电子签名法》中第十四条规定，“可靠的电子签名与手写签名或者盖章具有同等的法律效力。”</span>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="u-textBlock f-dn ">
+                            <p class="f-fs14">
+                                有融网与浙江德睦律师事务所合作，由专业第三方律所全程监督审核有融网的平台模式及项目的尽职调查工作，并进行法律风险把控，为平台投资者的合法权益提供专业法律保障。
+                            </p>
+                            <div class="u-detailMsgBlock">
+                                <a href="http://www.zjdml.com" class="u-linkToDml"> <span class="f-fs14"> 前往 <strong class="f-fs16">浙江德睦律师事务所</strong></span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

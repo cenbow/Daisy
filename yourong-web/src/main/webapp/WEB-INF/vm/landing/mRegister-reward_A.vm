@@ -1,0 +1,62 @@
+
+<!--
+##移动端注册页3（第二个着陆页）
+#parse('/common/common.vm')
+#set($layout = "/layout/default.vm")
+-->
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <title>注册成功 - 有融网</title>
+    <link rel="stylesheet" href="$root_css_url/modules/mLandingRegister.css?v=${sysServiceUtil.getStaticResourceVersion()}" />
+</head>
+
+<body>
+    <header id="g-hd" class="u-mobile-head">
+        <h1>注册-有融网</h1>
+        <p>注册就送<strong>50</strong>元</p>
+    </header>
+    <div class="u-mobile-guide3">
+    	<span></span>
+    	<ul>
+    		<li>1</li>
+    		<li>2</li>
+    		<li>3</li>
+    	</ul>
+    </div>
+	<div class="u-regMobile-success">
+				<img src="/static/img/landing/wap/yourongLogo.png" />
+				<dl class="f-fl">
+					<dt class="f-fs18 f-fc-red f-fwb">${servletUtil.getUserDO().mobile} 恭喜您！</dt>
+					<dd class="f-fs14 f-fc-gray">成功开通了新浪支付存钱罐</dd>
+				</dl>
+	</div>
+    <div class="u-mobReward-box" >
+    	<a href="/coupon/couponList">
+  			  <img src="/static/img/landing/wap/register_coupon_30.png" width="80%" height="80%"/>
+		</a>	
+	</div>
+	<p class="u-mobReward-tips">现金券将于5分钟内发送到您的账户,<br/>请点击我的账户查看现金券。</p>
+	<div class="u-mobile-btn">
+	<a href="/member/m/home">查看我的账户</a>
+	<a href="#">下载APP</a>
+	</div>
+    <footer id="g-ft">
+        &copy;2015 浙江小融网络科技股份有限公司 版权所有<br />新浪支付全程提供账户托管和支付服务
+    </footer>
+    <a target="_blank" class="u-wap-app"  href="/static/page/twoCodeRedict.html">
+        <span class="u-wap-h2">有融网APP</span>
+        <span class="u-wap-h3">下载有融网APP，让财富更自由</span>
+        <em>立即下载</em>
+    </a>
+  		<script type="text/javascript">
+			 var environment = {		
+				globalPath : '',
+				serverDate :  '${dateUtil.getCurrentDate().getTime()}'
+			 };
+  		</script>
+ 		
+</body>
+</html>

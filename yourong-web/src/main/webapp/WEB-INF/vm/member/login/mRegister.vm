@@ -1,0 +1,92 @@
+<!--
+##移动端注册页
+#parse('/common/common.vm')
+#set($layout = "/layout/default.vm")
+-->
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <title>注册 - 有融网</title>
+    <link rel="stylesheet" href="$root_css_url/modules/mLogin.css?v=${sysServiceUtil.getStaticResourceVersion()}" />
+</head>
+<body>
+    <header id="g-hd" class="u-mobile-head">
+        <h1>注册-有融网</h1>
+    </header>
+    <section id="g-bd">
+    	<form data-action="$root_url/security/register/saveMember" method="POST" class="m-reg-form j-form-xpost j-validform" data-page="register" id="j-reg-form">
+    		#CSRFToken()
+            #onceToken()
+    		<input type="hidden" id="j-reg-mobile"/>
+        <div class="u-ipt-group f-pos-r">
+			<input type="tel" name="mobile" oncopy="return false;" onpaste="return false;" id="j-cpn" autocomplete="off" nullmsg="手机号码不能为空" errormsg="请输入正确的手机号码" class="f-round f-ipt-w430 u-ipt-text u-ipt-str" placeholder="请输入手机号码" />
+		<span class='m-val-tips'></span>
+		<div class="f-mob-sha f-dn" id="j-mobile"></div>
+        </div>
+		<div class="m-input-vercode f-cf f-pos-r">
+			<span class="u-xtips-wrap">
+				<input type="text" id="j-vercode" autocomplete="off" nullmsg="请输入图形验证码" class="u-ipt-text u-ipt-vercode j-vercode" placeholder="输入图形码" />
+			</span>
+			<img src="$root_url/security/validateCode" alt="验证码" title="点击重新获取验证码" id="j-img-vercode" class="u-img-vercode" />
+			<span id="j-phonecode-wrap" class="u-xtips-wrap u-phonecode-wrap z-hide">
+				<input type="text" name="phonecode" autocomplete="off" id="j-phonecode" placeholder="输入手机验证码" class="f-clear f-round u-ipt-text f-ipt-w248 u-ipt-phonecode" />
+			</span>
+			<span class="f-round u-tips-vercode f-tips-gray f-dn">
+			获得手机验证码
+			</span>
+			<span class="m-val-tips"></span>
+		</div>
+		<div class="u-ipt-group">
+			<input type="password" name="password" oncopy="return false;" onpaste="return false;" class="f-round u-ipt-text f-ipt-w430 v-pwd" placeholder="输入密码，6-16位，至少包含数字和字母" />
+		</div>
+		<div class="u-ipt-group">
+			<input type="password" name="repassword" oncopy="return false;" onpaste="return false;" recheck="password" class="f-round f-ipt-w430 u-ipt-text v-pwd-reck" placeholder="再次输入密码" />
+		</div>
+		<div class="u-ipt-group f-pos-r">
+			<input type="tel" id="j-refercode" autocomplete="off" value="$!{mobile}" $!{disabled} ignore="ignore" class="f-round f-ipt-w430 u-ipt-text" placeholder="推荐人手机号码，选填   $!{tureName}"/>
+			<span class="m-val-tips">
+			#if($!{tureName})
+				您的推荐人：$!{tureName}  
+			#end
+			</span>  
+		</div> 
+		##推荐人ID
+		<input type="hidden" name="referCode" id="j-refercode-val" value="$!{shortUrl}" >
+        <input type="hidden" name="tid"   value="$!{request.getParameter('tid')}" >
+		<input type="hidden" name="registerTraceSource" value='$!{session.getAttribute("register_TraceSource")}'/>
+		<input type="hidden" name="registerTraceNo"  value='$!{session.getAttribute("register_TraceNo")}'/>
+		<input type="hidden" name="referSource"  value="$!{referSource}"/>	
+		<input type="hidden" name="checkType" id="j-checkType" value="1"/>
+		<input type="hidden" name="pngCode" id="j-pngcode"/>
+		<input type="hidden" name="loginSource" value="0"/>
+		<input type="hidden" name="openId" id="j-openId" value="" />
+		<label class="f-clear f-mgl-8">
+		<input type="checkbox" checked="checked" name="agree" id="j-agree" />&nbsp;我已阅读并同意
+		<a class="f-fc-red" target="_blank" href="$root_url/static/register-agreement.html">《有融网服务协议》</a>
+		</label>
+		<button type="submit" class="u-reg-btn" >注册并绑定微信</button>
+    	</form>
+ 		<div class="u-reg-tips">
+			已有账号？<a href="$root_url/security/mLogin" class="f-fc-gray j-weixin-url">登录</a>
+		</div>
+        <div id="j-bind-success" class="u-bind-success f-dn">
+            <i class="u-icon-success"></i>&nbsp;&nbsp;恭喜您绑定成功！
+        </div>
+    </section>
+    <footer id="g-ft">
+        &copy;2015 浙江小融网络科技股份有限公司 版权所有<br />新浪支付全程提供账户托管和支付服务
+    </footer>
+  		<script type="text/javascript">
+			 var environment = {		
+				globalPath : '',
+				serverDate :  '${dateUtil.getCurrentDate().getTime()}'
+			 };
+  		</script>
+    <script src="/static/lib/js/jq/jquery-1.11.1.min.js"></script>
+    <script src="/static/lib/js/validform.js"></script>
+ 		##<script src="$root_js_url/common.js"></script>
+        <script src="$root_js_url/modules/mLogin.js?v=${sysServiceUtil.getStaticResourceVersion()}"></script>
+</body>
+</html>

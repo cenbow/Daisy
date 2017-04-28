@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>有融网债权转让协议</title>
+</head>
+<style>
+    .g-warp{
+        width: 990px;
+        margin: 0 auto;
+    }
+    .u-text-red{color: #d74148;}
+    .u-text-underline{text-decoration: underline;}
+    .u-head-title{
+        font-size: 24px;
+        margin: 10px 0 30px;
+        text-align: center;
+    }
+    .u-info-table {
+        width: 700px;
+        border-collapse: collapse;
+        border: none;
+    }
+    .u-info-table .u-itable-t {
+        text-align: right;
+        border-bottom: none;
+    }
+    .u-info-table td {
+        padding: 10px 0 0;
+    }
+    .u-text-content p{
+        font-size: 16px;
+        line-height: 2em;
+    }
+    .u-contract-table {
+        width: 700px;
+        margin: 0 auto;
+        border-collapse: collapse;
+    }
+    .u-contract-table td{
+        height: 24px;
+    }
+    .u-contract-table03{
+        width: 700px;
+        margin: 0 auto;
+        border-collapse: collapse;
+    }
+    .u-contract-table03 td {
+        height: 24px;
+    }
+    /*附件2表*/
+    .u-table-annex2 td{
+        padding: 3px 0;
+        word-break: break-all;
+    }
+    .u-table-annex2{
+        border-collapse: collapse;
+        width: 700px;
+    }
+</style>
+<body class="g-warp">
+<h2 class="u-head-title">债权收益权转让协议</h2>
+<table class="u-info-table">
+    <thead></thead>
+    <tbody>
+    <tr>
+        <td width="140" class="u-itable-t">甲方（出让方）：</td>
+        <td width="300">$!{contract.originalCreditorName}</td>
+    </tr>
+    <tr>
+        <td width="140" class="u-itable-t">身份证号：</td>
+        <td width="300">$!{contract.originalCreditorIdentityNumber}</td>
+    </tr>
+    <tr>
+        <td width="140" class="u-itable-t"></td>
+        <td width="300" class="u-itable-t"></td>
+    </tr>
+    <tr>
+        <td width="140" class="u-itable-t">乙方（受让方）：</td>
+        <td width="300">有融网投资人（X）</td>
+    </tr>
+    <tr>
+        <td width="140" class="u-itable-t">身份证号：</td>
+        <td width="300">身份证号码（A）</td>
+    </tr>
+    <tr>
+        <td width="140" class="u-itable-t">电话：</td>
+        <td width="300">联系电话（B）</td>
+    </tr>
+    <tr>
+        <td width="140" class="u-itable-t">丙方（第三方服务机构）：</td>
+        <td width="300">浙江小融网络科技股份有限公司</td>
+    </tr>
+    <tr>
+        <td width="140" class="u-itable-t">法定代表人：</td>
+        <td width="300">吴建</td>
+    </tr>
+    <tr>
+        <td width="140" class="u-itable-t">网站：</td>
+        <td width="300">www.yrw.com</td>
+    </tr>
+    <tr>
+        <td width="140" class="u-itable-t">电话：</td>
+        <td width="300">400-025-6688</td>
+    </tr>
+    <tr>
+        <td width="140" class="u-itable-t">地址：</td>
+        <td width="300">浙江省杭州市西湖区古墩路87号浙商财富中心3号楼12F</td>
+    </tr>
+    </tbody>
+</table>
+<div class="u-text-content">
+    <p>
+        鉴于：<br/>
+        1、有融网（域名：www.yrw.com）由丙方运营管理。甲乙双方均系有融网的注册会员。<br/>
+        2、甲方与基础债权债务人通过丙方合作线下投融资服务平台的居间服务达成了借款合意，并在<span class="u-text-red u-text-underline">丙方法务和风控人员</span>的全程监管和见证下，形成了本协议项下的基础债权。<span class="u-text-red u-text-underline">丙方法务和风控人员</span>就该基础债权的真实性、合法性、有效性向丙方出具了<span class="u-text-red u-text-underline">法律风控意见</span>。<br/>
+        根据《中华人民共和国合同法》、《中华人民共和国民法通则》等有关法律规定，甲乙丙三方本着诚实信用的基本原则，经平等友好协商，自愿就甲方通过有融网平台向乙方转让债权收益权的相关事宜达成如下协议：<br/>
+        第一条 本协议名词释义<br/>
+        1、“基础债权”是指本协议甲方作为出借人，通过<span class="u-text-underline">丙方合作线下投融资服务平台</span>的居间服务与借款人达成借款合意，在<span class="u-text-red u-text-underline">丙方法务和风控人员</span>的全程监管和见证下形成并在本协议中转让的原合同债权。<br/>
+        2、“原合同”是指本协议甲方作为出借人，通过<span class="u-text-underline">丙方合作线下投融资服务平台</span>的居间服务与借款人达成借款合意后，就借款、担保等事项约定双方权利与义务的借款合同。<br/>
+        3、“债权收益权”是指基础债权的债权人与债务人一致同意赋予基础债权受让方的优先于基础债权债权人受领基础债权债务人归还借款本金和一定利息款项的权利。<br/>
+        4、“资金监管账户”是指甲方通过丙方平台在丙方合作的第三方支付机构或银行开立的资金管理账户，该账户由丙方与甲方共同监管。<br/>
+        第二条 基础债权信息<br/>
+        1、甲方自愿将其所拥有的下列基础债权的全部或部分债权收益权对乙方进行转让：
+    </p>
+    <table class="u-contract-table" border="1">
+        <thead></thead>
+        <tbody>
+        <tr>
+            <td width="150">
+                原合同编号：
+            </td>
+            <td width="200">$!{contract.originalDebtNumber}</td>
+            <td width="150">
+                债权本金：
+            </td>
+            <td width="200">$!{contract.debtAmount}元</td>
+        </tr>
+        <tr>
+            <td>债权形成时间：</td>
+            <td>$!{contract.debtStartTime}</td>
+            <td>年化利率：</td>
+            <td>$!{contract.debtAnnualizedRate}%</td>
+        </tr>
+        <tr>
+            <td>合同期限：</td>
+            <td>$!{contract.debtStartTime}-$!{contract.debtEndTime}</td>
+            <td>剩余合同期限：</td>
+            <td>D(天)</td>
+        </tr>
+        <tr>
+            <td>债权担保物信息：</td>
+            <td colspan="3">$!{contract.collateralDetails}</td>
+        </tr>
+        </tbody>
+    </table>
+    <p>
+        2、上述债权按日计息，按月付息， <span class="u-text-red">一年按360天计息。</span>
+        <br/>3、基础债权的形成过程由<span class="u-text-red u-text-underline">丙方法务和风控人员</span>全程监督和见证，并由<span class="u-text-red u-text-underline">丙方法务和风控人员</span>对基础债权的真实性、合法性、有效性出具<span class="u-text-red u-text-underline">法律风控意见</span>。
+        <br/>4、基础债权形成的原始凭证在债权收益权获得全部实现之前，由<span class="u-text-red u-text-underline">丙方法务中心</span>负责保管。
+        <br/>第三条 债权收益权的价值和转让价格
+        <br/>0、甲方转让的债权收益权的价值为人民币 <span class="u-text-underline"> M </span> 元（包含债权收益权本金 <span class="u-text-underline"> m1 </span>元和预期利息收益 <span class="u-text-underline"> m2 </span> 元，其中预期利息收益以基础债权合同剩余合同期限为计息天数，按年化 <span class="u-text-underline"> r% </span> 的利率计算）。
+        <br/>2、甲方自愿将上述价值的债权收益权以人民币 <span class="u-text-underline"> m </span> 的价格转让给乙方。
+        <br/>2、乙方同意按本条第二款约定的价格受让甲方上述转让的债权收益权。
+        <br/>第四条 债权收益权转让款的支付
+        <br/>1、甲乙丙三方均一致同意乙方将债权收益权转让款支付至甲方通过丙方平台在第三方支付机构或银行开立的资金监管账户，该账户由丙方与甲方共同监管。
+        <br/>2、乙方按照有融网的规则将债权转让款支付至甲方通过丙方平台在第三方支付机构或银行开立的资金监管账户中，即视为乙方完成了该笔债权收益权转让的付款行为。
+        <br/>第五条 债权收益权的<span class="u-text-red">取得</span>
+        <br/>乙方自本协议生效之日即取得本协议项下的债权收益权，有权按照本协议约定的条件受领基础债权的债务人归还的借款本金及相应利息。
+        <br/>第六条 债权收益权利息收益的支付
+        <br/>1、基础债权债务人根据其与甲方签订的原合同向指定账户支付利息后，甲方应将不少于本协议已转让债权收益权对应的利息支付到资金监管账户绑定账号（基础债权债务人已直接到资金监管账户绑定账号的除外），并向乙方支付相应债权收益权利息。
+        <br/>2、基础债权债务人提前归还借款本息的，债权收益权利息收益实际计息天数应计算到基础债权债务人提前还款日，甲方应向乙方额外支付相当于七日（债权剩余期限不足七日的，以剩余期限为准）利息的提前还款补偿金。
+        <br/>3、基础债权债务人未按照原合同履行期限按时支付利息的，甲方应当代基础债权债务人向乙方支付相应债权收益权利息。
+        <br/>4、丙方对甲方向乙方支付相应债权收益权利息的行为负有监管的权利和义务，并对甲方的上述行为予以配合。
+        <br/>第七条 债权收益权的实现
+        <br/>基础债权清偿期届满之日，基础债权债务人根据其与甲方签订的原合同向指定账户支付本金和剩余利息后，甲方应将不少于本协议已转让债权收益权对应的本金和剩余利息支付到资金监管账户绑定账号（基础债权债务人已直接到资金监管账户绑定账号的除外），并向乙方支付相应债权收益权本金和剩余利息。
+        <br/>第八条 债权收益权的赎回
+        <br/>基础债权清偿期届满之日，基础债权债务人无力归还借款本息，则甲方应自行将不少于本协议已转让债权收益权对应本金和剩余利息的自有资金支付到资金监管账户绑定账号，并向乙方支付相应债权收益权本金和剩余利息，以赎回债权收益权。甲方向乙方支付债权收益权本金和剩余利息之日，乙方在本协议项下购买的债权收益权转归甲方所有。
+        <br/>第九条 其他权利义务
+        <br/>1、标的债权收益权的价值可能并非甲方对原债务人享有的全部基础债权价值，乙方对此充分理解和认可。而且乙方已经充分了解基础债权的全部情况，并且同意从甲方处受让债权收益权。
+        <br/>2、甲方保证本协议项下转让给乙方的债权收益权真实有效，并为甲方合法拥有，甲方对其拥有完全、有效的处分权。
+        <br/>3、乙方声明与保证其所用于受让标的债权收益权的资金来源合法，乙方是该资金的合法所有人，如果第三方对资金归属、合法性问题发生争议，由乙方自行负责解决。
+        <br/>4、因战争、动乱、自然灾害等不可抗力或国家法律政策变动、电信网络服务终止、黑客攻击等客观因素出现，导致协议内容延迟履行或不能履行，甲、乙、丙三方互不追究责任。
+        <br/>5、甲乙丙三方确认，本协议的签订 、生效和履行以不违反中国的法律法规为前提。如果本协议中的任何一条或多条违反现行的法律法规，则该条将被视为无效，但该无效条款并不影响本协议其他条
+        款的效力。
+        <br/>第十条 协议的变更
+        <br/>本协议的任何修改、补充均须以有融网平台电子文本形式做出。
+        <br/>第十一条 争议解决
+        <br/>如果甲乙丙三方在本协议履行过程中发生任何争议，应友好协商解决；如协商不成，则须提交丙方所在地人民法院进行诉讼。
+        <br/>第十二条 协议的保管
+        <br/>甲乙双方一致同意委托丙方保管所有与本协议有关的书面文件或电子信息。
+        <br/>第十三条 协议的解释
+        <br/>本协议中所使用的定义，除在上下文中另有定义外，以有融网公布的《有融网网站定义与释义规则》中的定义及内容为准。
+        <br/>第十四条 本协议的成立与生效
+        <br/>乙方按照“有融网”的规则，通过甲方的债权收益权（“标的债权收益权”）转让需求界面，点击“立即投资”按钮，进入投资理财详细信息界面，填写完成乙方的投资理财信息，点击同意《债权收益权转让协议范本》，形成相应订单，并在线完成债权收益权转让款支付后本协议即成立并立即生效。
+        <br/>第十五条 本协议乙方（受让人）名单及其投资详情详见《附件二乙方（受让人）清单详情》<br/>
+    </p>
+    <table class="u-contract-table">
+        <thead></thead>
+        <tbody>
+        <tr>
+            <td width="200">甲方：$!{contract.originalCreditorName}</td>
+            <td>乙方：</td>
+        </tr>
+        <tr>
+            <td>日期：$!{contract.investDate}</td>
+            <td>日期：$!{contract.investDate}</td>
+        </tr>
+        <tr>
+            <td style="vertical-align: bottom">
+                <span>第三方服务机构：</span>
+            </td>
+            <td>浙江小融网络科技股份有限公司<img src="$!{contract.sealUrl}img/mask.png" width="210" height="210" alt="" />（盖章）</td>
+        </tr>
+        <tr>
+            <td>日期：</td>
+            <td>$!{contract.investDate}</td>
+        </tr>
+        </tbody>
+    </table>
+    <p>
+        <br/>附件一
+        <br/>转让债权收益权付息时间金额表：
+    </p>
+    <table class="u-contract-table" border="1">
+        <thead>
+        <tr>
+            <td>付息序次数</td>
+            <td>付息时间</td>
+            <td>付息金额</td>
+        </tr>
+        </thead>
+        <tbody>
+        #foreach($!{transactionInterest} in $!{contract.transInterestList})
+        <tr class="f-tac">
+            <td>$!{velocityCount}</td>
+            <td>$!{transactionInterest.payTimeStr}</td>
+            <td>$!{transactionInterest.payableInterest}元</td>
+        </tr>
+        #end
+        </tbody>
+    </table>
+    <p>本金包含在最后一次付息金额中，并于最后一次付息时一起支付与乙方。</p>
+    <p>
+        <br/>附件二
+        <br/>乙方（受让人）清单详情：
+			#foreach($!{memberList} in $!{contract.memberList})
+            <br/>-------------------------------------------------------------------
+			<br/>有融网投资人（X）：$!{memberList.trueName}
+			<br/>身份证号码（A）：$!{memberList.identityNumber}
+			<br/>联系电话（B）：$!{memberList.trueName}
+			<br/>债权收益权价值（M）=本金（m1）+利息（m2）：¥$!{memberList.price} = ¥$!{memberList.investAmount} + ¥$!{memberList.totalInterest}
+			<br/>债权收益权年化利率（r%）:$!{memberList.annualizedRate}%
+			<br/>债权收益权转让价格（m）:¥$!{memberList.investAmount}
+			<br/>剩余合同期限（D）:$!{memberList.totalDays}天
+			#end
+    </p>
+</div>
+</body>

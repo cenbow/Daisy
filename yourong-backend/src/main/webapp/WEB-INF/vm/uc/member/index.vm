@@ -1,0 +1,95 @@
+#set($layout = "/layout/iframe.vm")
+#parse("/uc/member/head.vm")
+
+<div class="col-xs-12">
+    <p>
+	##<button id="delete_member" type="button" class="btn btn-danger btn-sm btn-primary">删除</button>
+		##<button id="new_member" type="button" class="btn btn-danger btn-sm btn-primary">新增</button>
+       ## <button id="query_memberID_balance" type="button" class="btn btn-danger btn-sm btn-primary">同步新浪存钱罐</button>
+    </p>
+</div>
+<div class="col-xs-12">
+##<div class="table-header">搜索区域</div>
+    <div class="table-responsive">
+        <form>
+            <table id="member-table-search" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                <thead>
+                <tr>
+                    #if($searchPermission)<td>用户名：</td>
+                    <td><input type="text" name="search_username" class="input-medium search_init"/></td>
+                    <td>性别：</td>
+                    <td>#dictSelect ("search_sex",${sysServiceUtil.getDictList('sex')} ,"请选择")</td>
+                    <td>邮箱：</td>
+                    <td><input type="text" name="search_email" class="input-medium search_init"/></td>#end
+                    <td>会员类型：</td>
+                    <td>#dictSelect ("search_memberType",${sysServiceUtil.getDictList('member_type')} ,"请选择")</td>
+                    <td>注册来源：</td>
+                    <td><input type="text" name="search_registerTraceSource" class="input-medium search_init"/></td>
+                    <td>会员等级</td>
+                    <td>#dictSelect ("search_vipLevel",${sysServiceUtil.getDictList('member_vipLevel')} ,"请选择")</td>
+                    <td>来源编号：</td>
+                    <td><input type="text" name="search_registerTraceNo" class="input-medium search_init"/></td>
+                </tr>
+              
+                <tr>
+                	#if($searchPermission)
+                	<td>会员ID：</td>
+                	<td><input type="text" name="search_id" class="input-medium search_init"/></td>
+                	<td>姓名：</td>
+                	<td><input type="text" name="search_trueName" class="input-medium search_init"/></td>
+                	<td>手机号：</td>
+                	<td><input type="text" name="search_mobile" class="input-medium search_init"/></td>
+                	<td>状态：</td>
+                	<td>#dictSelect ("search_status",${sysServiceUtil.getDictList('user_status')} ,"请选择")</td>#end
+                	<td>注册时间：</td>
+                	<td><input type="text" name="search_registerTimeStart" class="input-medium search_init" onclick="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd'})"/>
+                	至<input type="text" name="search_registerTimeEnd" class="input-medium search_init"/ onclick="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd'})"></td>
+                    <td colspan="12" style="text-align:center">
+                        <button id = "query_member" type="button" class="btn btn-info btn-sm btn-primary">查询</button>
+                        <button id = "reset_member" type="button" class="btn btn-info btn-sm btn-primary resetButton">重置</button>
+                    </td>
+                </tr>
+                </thead>
+            </table>
+        </form>
+    </div>
+</div>
+<div class="col-xs-12">
+##<div class="table-header">客户数据</div>
+    <div class="table-responsive">
+        <table id="member-table" class="table table-striped table-bordered" cellspacing="0" width="100%">
+            <thead>
+            <tr>
+                <th>
+                    <label>
+                        <input class="ace" type="checkbox">
+                        <span class="lbl"></span>
+                    </label>
+                </th>
+                <th>会员ID</th>
+                <th>用户名</th>
+                <th >性别</th>
+                <th>会员类型</th>
+                <th>会员等级</th>
+                <th>成长积分</th>
+                <th>真实姓名</th>
+                <th>手机号</th>
+                <th>邮箱</th>
+                <th>状态</th>
+                <th>注册来源</th>
+                <th>来源编号</th>
+                <th>注册时间</th>
+                <th style="width:330px;"></th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+#parse("/uc/member/form.vm")
+#parse("/uc/member/member.vm")
+#parse("/uc/member/updateMobile.vm")
+#parse("/uc/member/ucEnterpriseForm.vm")
+#parse("/uc/member/addReferral.vm")
+#parse("/uc/member/updateMemberInfoForm.vm")
+#parse("/uc/member/forzenForm.vm")
+#parse("/uc/member/ucOtherOrgForm.vm")

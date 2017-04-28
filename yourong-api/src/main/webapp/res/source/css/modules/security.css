@@ -1,0 +1,517 @@
+body{
+    background: #F0F0F0;
+}
+.m-safety-grap ul {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.m-safety-grap .f-securityList li {
+    width: 90%;
+    padding: 10px 5%;
+    background: #fff;
+    border-bottom: 1px solid #f0f0f0;
+    color: #333333;
+    font-size: 16px;
+    position: relative;
+}
+.u-bindEmail,
+.u-delegatePay{
+    margin-bottom: 20px;
+}
+.u-selfInfo{
+    margin-top: 20px;
+}
+.m-safety-grap .f-securityList .u-phoneNum .u-floatRight{
+    color: #666666;
+}
+.m-safety-grap .f-securityList li .u-floatRight{
+    position: absolute;
+    right: 5%;
+    color: #999999;
+    top: 20%;
+}
+.m-safety-grap .f-securityList li .u-titleLine{
+    color: #333333;
+}
+.m-safety-grap .f-checked {
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+}
+
+
+.m-safety-grap ul li em {
+    color: #fff;
+}
+
+.m-safety-grap ul li em a {
+
+    color: #fff;
+}
+
+.f-round {
+    border-radius: 13px;
+}
+
+
+.f-safety-key {
+
+    color: #fff;
+    background: #999;
+    width: 100px;
+    display: block;
+    float: right;
+
+    text-align: center;
+}
+
+.f-safety-key a {
+    color: #fff;
+    display: block;
+}
+
+.f-immediately-reputation {
+    width: 182px;
+    float: right;
+    background: #d74248;
+    text-align: center;
+
+}
+
+.f-immediately-reputation a {
+    color: #fff;
+}
+
+.f-immediately-open {
+    width: 100px;
+    float: right;
+    background: #d74147;
+    text-align: center;
+    color: #fff;
+}
+
+.f-immediately-open a {
+    color: #fff;
+}
+
+.f-immediately-reputation10 {
+    width: 198px;
+    float: right;
+    background: #d74147;
+    text-align: center;
+}
+.z-clicked{
+    background: #999;
+}
+.f-immediately-reputation10 a {
+    color: #fff;
+}
+
+.f-safety-card {
+    width: 90%;
+    position: fixed;
+    top: 20%;
+    left: 5%;
+    z-index: 300;
+}
+
+.f-toolTip {
+    background: #fffab0;
+    display: block;
+    text-align: center;
+    line-height: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 20px 0 20px 0;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.f-safety-step {
+    padding: 20px 0 0 0;
+    background: #fff;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.f-safety-step > ul > li {
+    margin: 0 0 0 10px;
+    padding: 0 !important;
+    line-height: 35px;
+    border: none !important;
+    color: #333;
+}
+
+.u-openQuickPayBtn {
+    background: #d74147;
+    color: #fff;
+    line-height: 40px;
+    width: 80%;
+    border-radius: 6px;
+    margin: 20px 10%;
+    font-weight: bold;
+}
+
+.u-bankMsg {
+    width: 90%;
+    background: #eeeeee;
+    border-radius: 8px;
+    position: fixed;
+    top: 20%;
+    left: 5%;
+    z-index: 200;
+}
+
+.u-bankMsg .f-choiceTip {
+    line-height: 34px;
+    color: #333;
+}
+
+.u-bankMsg .f-bankCard-list li {
+    width: 100%;
+    background: #fff;
+    padding: 20px 0;
+}
+
+.u-bankMsg .f-bankCard-list .z-clicked {
+    background: #eeeeee;
+}
+
+.u-bankMsg .f-backCardMsg {
+    display: inline-block;
+    margin-left: 10%;
+}
+
+/*快捷卡标志*/
+.u-bankMsg .u-shortcut {
+    background: #999;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    width: 84px;
+    height: 23px;
+    margin-top: 15px;
+    color: #fff;
+    font-size: 14px;
+    text-align: center;
+    line-height: 24px;
+    font-style: italic;
+    font-weight: bold;
+}
+
+.u-bankMsg .f-bankLogo {
+    width: 45px;
+    height: 45px;
+}
+
+.f-marginLeft20 {
+    margin-left: 20px;
+}
+
+.f-marginRight10 {
+    margin-right: 10px;
+}
+
+/*修改密码页面*/
+.u-password{
+    width: 90%;
+    margin: auto;
+    background: #eeeeee;
+    padding: 20px 0 0;
+    text-align: center;
+}
+.u-password .f-inputPassword{
+    width: 100%;
+    height: 60px;
+    line-height: 80px;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 20px;
+}
+.u-password .f-inputPassword span{
+    width: 80px;
+    text-align: left;
+}
+.u-password span{
+    color: #666;
+
+}
+.u-password .f-reminder{
+    color: #666;
+}
+.u-password .u-saveNewPasswordBtn{
+    background: #d74147;
+    color: #fff;
+    line-height: 40px;
+    width: 100%;
+    border-radius: 4px;
+    margin: 20px 0;
+    font-weight: bold;
+}
+.z-colorRed{
+    color: #d74147;
+}
+.f-errorTip{
+
+}
+/*绑定邮箱*/
+.u-inputEmail {
+    width: 90%;
+    background: #fff;
+    border-radius: 5px;
+    text-align: center;
+    position: fixed;
+    top: 40%;
+    left: 5%;
+    padding: 10px 0 0;
+    z-index: 200;
+}
+
+.u-inputEmail .f-inputEmail {
+    padding: 0 8px;
+    color: #9c9c9c;
+    width: 80%;
+    margin: 10px 0 20px;
+    line-height: 30px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+}
+
+.u-inputEmail .f-clickBtn {
+    border-top: 1px solid #ccc;
+    line-height: 40px;
+}
+
+.u-inputEmail .f-clickBtn span {
+    display: inline-block;
+    width: 48%;
+    height: 40px;
+    border-right: 1px solid #ccc;
+}
+
+.z-noBorder{
+    border: none!important;
+}
+/*个人资料*/
+.f-round a {
+    color: #fff;
+}
+
+.f-personalDataList li {
+    width: 90%;
+    margin: 0 5%;
+    line-height: 20px;
+    padding: 30px 0;
+    border-bottom: 1px solid #ccc;
+}
+
+.f-personalDataList .f-avatar {
+    line-height: 70px;
+}
+
+.f-personalDataList .f-avatar img {
+    width: 70px;
+    height: 70px;
+    border-radius: 35px;
+}
+
+.f-nickname {
+    color: #666;
+}
+
+/*昵称*/
+.u-popup {
+    width: 90%;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    position: absolute;
+    top: 40%;
+    left: 5%;
+    text-align: center;
+    background: #fff;
+    line-height: 40px;
+    z-index: 200;
+    color: #999;
+    padding-top: 20px;
+}
+
+.f-setNickname input {
+    width: 80%;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    padding: 6px 8px;
+    color: #999;
+}
+@media screen and (max-width:320px) {
+    .f-firstLi{
+        font-size: 14px;
+    }
+    .f-selectName{
+        font-size: 16px;
+    }
+}
+.u-popup .f-secondLi {
+    margin-top: 30px;
+    border-top: 1px solid #ccc;
+}
+
+
+.u-popup .f-secondLi a {
+    width: 48%;
+    color: #000;
+    display: inline-block;
+    border-right: 1px solid #ccc;
+    padding: 5px 0;
+}
+
+.u-popup .f-secondLi .f-secondA {
+    border: none;
+    color: #da404a;
+}
+
+.z-nicknameActived {
+    color: #666;
+    background: none;
+    font-size: 18px;
+}
+.f-popup{
+    color: #000;
+}
+.f-popup .f-secondLi{
+    margin: 0;
+}
+.u-cover {
+    display: none;
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    z-index: 198;
+    -moz-opacity: 0.5;
+    opacity: .50;
+    filter: alpha(opacity=50);
+}
+
+/*详细信息页样式*/
+.u-detailInformation {
+    background: #eeeeee;
+}
+
+.u-detailInformation li {
+    width: 90%;
+    margin: 0 5%;
+    border-bottom: 1px solid #ccc;
+    padding: 20px 0;
+    float: right;
+}
+.u-detailInformation li .u-select{
+    width: 80%;
+    text-align: right;
+}
+.u-detailInformation li .u-select .f-choiceBtn{
+    background: #9c9c9c;
+    color: #fff;
+    padding: 2px 30px;
+    border-radius: 12px;
+}
+
+.u-detailInformation li select {
+    -webkit-appearance: none;
+    /*border: 0;*/
+    padding-right: 14px;
+    color: #999;
+    width: 100%;
+    padding-left: 20px;
+    /*direction: rtl;*/
+}
+
+.f-color9 {
+    color: #999;
+}
+
+
+
+.u-preservationBtn {
+    background: #d74147;
+    color: #fff;
+    line-height: 40px;
+    width: 80%;
+    border-radius: 6px;
+    margin: 20px 10%;
+    font-weight: bold;
+}
+
+
+.u-contract-back{
+    width: 100%;
+    display: block;
+    background: #d74147;
+    line-height: 60px;
+    position: fixed;
+    bottom: 0;
+    text-align: center;
+    color: #fff;
+}
+iframe{
+    width: 100%;
+    height: 100%;
+}
+/*地区选择框*/
+.f-selectArea{
+    position: fixed;
+    bottom:0;
+    left: 5%;
+    overflow: scroll;
+    z-index: 2000;
+    width: 90%;
+    height:78%;
+    background: #fff;
+    color: #666;
+    border-radius: 10px;
+    margin-bottom: 40px;
+
+}
+.u-region-city {
+    text-indent: 2em;
+
+}
+
+.u-region-area {
+    text-indent: 4em;
+}
+.u-region-province{
+    margin:0 5%;
+    border-bottom: 1px solid #ccc;
+    line-height: 40px;
+}
+.u-region-city:before,
+.u-region-province:before{
+    content:'>';
+    font-weight: bold;
+    margin-right: 5px;
+    font-size: 16px;
+}
+
+.z-expanded:before{
+    content:'v';
+}
+.f-backBtn{
+    text-align: center;
+    color: #fff;
+    line-height: 30px;
+    background: #d74147;
+    position: fixed;
+    bottom:2px;
+    left: 5%;
+    z-index: 2000;
+    width: 90%;
+    border-radius:5px;
+}
+.f-detailAddress {
+    color: #fff;
+    background: #999;
+    width: 100px;
+    text-align: center;
+}

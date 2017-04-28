@@ -1,0 +1,114 @@
+<div tabindex="-1" class="modal fade" id="modal-creditGradeInfo" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog w700">
+        <div class="modal-content">
+            <div class="modal-header no-padding">
+                <div class="table-header header-color-dark">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+                        <span class="white">×</span>
+                    </button>
+                    <span class="modalFormTitle">百度大数据黑名单查询</span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-12 ">
+                        <div class="table-responsive ">
+                            <table id="coupon-table" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+                                <tr>
+                                    <td>查询用户</td>
+                                    <td id="borrowerTrueName"></td>
+                                </tr>
+                                <tr>
+                                    <td>手机号</td>
+                                    <td id="borrowerMobile"></td>
+                                </tr>
+                                <tr>
+                                    <td>身份证</td>
+                                    <td id="identityNumber"></td>
+                                </tr>
+                                <tr>
+                                    <td>查询结果</td>
+                                    <td id="blackLevel"></td>
+                                </tr>
+                                <tr>
+                                    <td>黑名单原因</td>
+                                    <td id="blackReason"></td>
+                                </tr>
+                                <tr>
+                                    <td>查询时间</td>
+                                    <td id="blackQueryTime"></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="close_creditGradeInfo" data-page="1" class="btn btn-primary">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div tabindex="-1" class="modal fade" id="modal-creditGrade-Error" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog w700">
+        <div class="modal-content">
+            <div class="modal-header no-padding">
+                <div class="table-header header-color-dark">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+                        <span class="white">×</span>
+                    </button>
+                    <span class="modalFormTitle">百度大数据黑名单查询</span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-12 ">
+                        <div class="table-responsive ">
+                            查询失败，请重新查询
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="close_creditGradeInfoError" data-page="1" class="btn btn-primary">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div tabindex="-1" class="modal fade" id="modal-creditGradeInfo_create" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header no-padding">
+                <div class="table-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+                        <span class="white">×</span>
+                    </button>
+                    <span class="modalFormTitle" id="couponTemplateTitle">添加名单</span>
+                </div>
+            </div>
+
+            <div class="modal-body">
+                <form  class="form-horizontal" id="creditGradeInfoForm">
+                    <input type="hidden" id="j-json-dropzone_goods" name="goodsAttachmentsData"/>
+                    <div id="num_1">
+                        <div class="form-group">
+                            <label for="form-field-parentId" class="col-sm-2 control-label no-padding-right">会员ID:</label>
+                            <div class="col-sm-6">
+                                <div class="clearfix">
+                                    <input type="text" name="borrowerId" id="borrowerId" class="col-xs-8 col-sm-8 exclude valid-other" placeholder="" dataType="*" >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" id="submit_creditGradeInfo" data-page="1" class="btn btn-primary">保存</button>
+            </div>
+
+        </div>
+    </div>
+</div>

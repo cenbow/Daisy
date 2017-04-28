@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.sh.dao.OrderMainMapper" >
+    <resultMap id="BaseResultMap" type="com.yourong.core.sh.model.OrderMain" >
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="member_id" property="memberId" jdbcType="BIGINT" />
+        <result column="total_amount" property="totalAmount" jdbcType="DECIMAL" />
+        <result column="delivery_id" property="deliveryId" jdbcType="BIGINT" />
+        <result column="receiver" property="receiver" jdbcType="VARCHAR" />
+        <result column="mobile" property="mobile" jdbcType="VARCHAR"/>
+        <result column="area_full_name" property="areaFullName" jdbcType="VARCHAR"/>
+        <result column="address" property="address" jdbcType="VARCHAR" />
+        <result column="send_remark" property="sendRemark" jdbcType="VARCHAR" />
+        <result column="send_time" property="sendTime" jdbcType="TIMESTAMP" />
+        <result column="remark" property="remark" jdbcType="VARCHAR" />
+        <result column="status" property="status" jdbcType="INTEGER" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+        <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+    </resultMap>
+
+	<sql id="Base_Column_List">
+		id, member_id,total_amount,delivery_id,receiver,mobile,area_full_name,address,send_remark,send_time,remark,status,create_time,update_time,del_flag
+	</sql>
+
+
+    <select id="queryPageOrderInfo" resultType="com.yourong.core.sh.model.biz.OrderBiz">
+        SELECT U.true_name trueName,U.mobile memberMobile,S.id id,S.order_id orderId,S.recharge_type rechargeType,S.recharge_card rechargeCard,S.create_time createTime,
+        M.receiver receiver,M.mobile takeMobile,CONCAT(M.area_full_name," ",M.address) address,M.send_remark sendRemark,M.remark remark,M.status status,M.send_time sendTime,G.goods_name goodsName,G.goods_type goodsType FROM
+        sh_order_main M LEFT JOIN
+        sh_order_sub S ON S.order_id=M.id LEFT JOIN sh_goods G ON S.goods_id=G.id LEFT JOIN uc_member U ON M.member_id=U.id
+        WHERE M.del_flag=1
+        <if test="query.trueName!=null">
+            AND U.true_name=#{query.trueName}
+        </if>
+        <if test="query.mobile!=null">
+            AND U.mobile=#{query.mobile}
+        </if>
+        <if test="query.goodsType!=null">
+            AND G.goods_type=#{query.goodsType}
+        </if>
+        <if test="query.goodName!=null">
+            AND G.goods_name=#{query.goodName}
+        </if>
+        <if test="query.takeMobile!=null">
+            AND (M.mobile=#{query.takeMobile} OR S.recharge_card=#{query.takeMobile})
+        </if>
+        <if test="query.startTime!=null">
+            AND S.create_time <![CDATA[>=]]> #{query.startTime}
+        </if>
+        <if test="query.endTime!=null">
+            AND S.create_time <![CDATA[<=]]> #{query.endTime}
+        </if>
+        <if test="query.status!=null">
+            AND M.`status`=#{query.status}
+        </if>
+        LIMIT #{query.startRow,jdbcType=INTEGER}, #{query.pageSize,jdbcType=INTEGER}
+    </select>
+
+    <select id="queryPageCountOrderInfo" resultType="java.lang.Integer">
+        SELECT COUNT(1) FROM (SELECT S.id FROM sh_order_main M LEFT JOIN
+        sh_order_sub S ON S.order_id=M.id LEFT JOIN sh_goods G ON S.goods_id=G.id LEFT JOIN uc_member U ON M.member_id=U.id
+        WHERE M.del_flag=1
+        <if test="query.trueName!=null">
+            AND U.true_name=#{query.trueName}
+        </if>
+        <if test="query.mobile!=null">
+            AND U.mobile=#{query.mobile}
+        </if>
+        <if test="query.goodsType!=null">
+            AND G.goods_type=#{query.goodsType}
+        </if>
+        <if test="query.goodName!=null">
+            AND G.goods_name=#{query.goodName}
+        </if>
+        <if test="query.takeMobile!=null">
+            AND (M.mobile=#{query.takeMobile} OR S.recharge_card=#{query.takeMobile})
+        </if>
+        <if test="query.startTime!=null">
+            AND S.create_time <![CDATA[>=]]> #{query.startTime}
+        </if>
+        <if test="query.endTime!=null">
+            AND S.create_time <![CDATA[<=]]> #{query.endTime}
+        </if>
+        <if test="query.status!=null">
+            AND M.`status`=#{query.status}
+        </if>) A
+    </select>
+
+    <update id="saveSend">
+        UPDATE sh_order_main SET send_remark=#{sendremark},status=2,send_time=#{sendtime} WHERE id=#{orderid}
+    </update>
+
+    <update id="updateSendRemarkById">
+        UPDATE sh_order_main SET send_remark=#{sendremark} WHERE id=#{orderid}
+    </update>
+
+    <update id="updateRemarkById">
+        UPDATE sh_order_main SET remark=#{remark} WHERE id=#{orderid}
+    </update>
+
+    <update id="rechargeOrder">
+        UPDATE sh_order_main SET status=4,send_time=#{updatetime} WHERE id=#{orderid}
+    </update>
+
+    <update id="rechargeResult">
+        UPDATE sh_order_main SET status=#{resultstatus},send_time=#{updatetime} WHERE id=#{orderid}
+    </update>
+
+    <insert id="insertOrderMain" parameterType="com.yourong.core.sh.model.OrderMain" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO sh_order_main (`member_id`,`total_amount`,`delivery_id`,`receiver`,`mobile`,`area_full_name`,`address`,`remark`,`status`,`create_time`,`update_time`,`del_flag`)
+        VALUES(#{memberId},#{totalAmount},#{deliveryId},#{receiver},#{mobile},#{areaFullName},#{address},#{remark},#{status},#{createTime},#{updateTime},1)
+    </insert>
+    
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap">
+		select 
+			<include refid="Base_Column_List" />
+			from sh_order_main
+		where id=#{id}
+	</select>
+
+    <select id="queryOrderRechargeInfo" parameterType="java.lang.Long" resultType="com.yourong.core.sh.model.biz.OrderRechargeBiz">
+        SELECT M.id orderId,M.`status` status,S.recharge_card rechargeCard,S.recharge_amount rechargeAmount,S.recharge_type rechargeType,S.goods_count goodsCount
+        FROM sh_order_main M LEFT JOIN sh_order_sub S ON S.order_id=M.id WHERE M.id=#{orderid}
+    </select>
+
+	<select id="getOrderMainList" resultMap="BaseResultMap">
+		select
+			<include refid="Base_Column_List" />
+			from sh_order_main
+		where member_id=#{memberId}
+	</select>
+
+	<select id="getOrderMainListByQuery" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+			from sh_order_main
+       <where>
+	        <if test="query.memberId!=null">
+	            member_id=#{query.memberId}
+	        </if>
+        </where>
+        order by create_time desc
+        LIMIT #{query.startRow,jdbcType=INTEGER}, #{query.pageSize,jdbcType=INTEGER}
+    </select>
+
+	   <select id="getOrderMainListCountByQuery" resultType="java.lang.Integer">
+         SELECT
+       		count(0)
+			from sh_order_main
+       	<where>
+	        <if test="query.memberId!=null">
+	            member_id=#{query.memberId}
+	        </if>
+        </where>
+    </select>
+
+    <select id="queryRemarkById" resultType="java.lang.String">
+        SELECT remark FROM sh_order_main WHERE id=#{id}
+    </select>
+
+
+
+</mapper>

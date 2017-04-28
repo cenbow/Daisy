@@ -1,0 +1,61 @@
+#parse("/mobile/common.vm")
+#set($title='有融网分享抢红包')
+#CSRFToken("xToken")
+
+<style>
+
+    .u-circle{
+        width: 180px;
+        height: 180px;
+        line-height: 180px;
+        border-radius: 100px;
+        border: 1px solid #d74148;
+        color: #d74148;
+        margin: 30px auto 8px;
+        text-align: center;
+        box-sizing: border-box;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin-left: -90px;
+        margin-top: -130px;
+    }
+    .u-circle .u-notNew {
+        font-size: 36px;
+        font-weight: normal;
+    }
+
+
+    /* 底部的注册按钮 */
+    .u-register-btn{
+        padding-top: 15px;
+        padding-bottom: 15px;
+        display: block;
+        background: #d74148;
+        text-align: center;
+        color: #fff;
+        text-decoration: none;
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        font-weight: bold;
+    }
+    .u-register-btn:hover{
+        text-decoration: none;
+        color: #fff;
+        cursor: pointer;
+    }
+
+</style>
+## 展示领取结果的部分
+<div class="g-show-result" id="j-show-result">
+    <div class="u-circle" id="j-circle">
+        <div class="u-get-num" id="j-get-num">
+            <div id="j-timeout" class="u-notNew">已过期</div>
+        </div>
+
+    </div>
+</div>
+
+<a class="u-register-btn" id="j-register-btn" href="$siteurl/mstation/register">注册再得80元礼包</a>

@@ -1,0 +1,46 @@
+ #parse("/common/common.vm")
+ #########################################script##################################### 
+  #set($js_config=[ 
+ "'urlMap':{ 
+   'ajaxOverdue':'$root_url/overdueManager/ajaxOverdue?', 
+   'query':'$root_url/debt/index?', 
+   'getThirdAccountMoney':'$root_url/loanManager/getThirdAccountMoney',
+   'payInterest':'$root_url/loanManager/payInterest', 
+   'getInterestInfo':'$root_url/loanManager/getInterestInfo?id=',
+   'getRepayFlagInfo':'$root_url/overdueManager/getFlagInfo?id=',
+   'getOverdueInfo':'$root_url/overdueManager/getOverdueInfo',
+   'getPayRecord':'$root_url/overdueManager/getPayRecord',
+   'saveRepayFlagInterest':'$root_url/overdueManager/saveRepayFlagInterest',
+   'detail':'$root_url/debt/detail?id=',
+   'del':'$root_url/debt/delete?id=',
+   'getOverdueRecord':'$root_url/overdueManager/getOverdueRecord',
+   'getOverdueAmount':'$root_url/overdueManager/getOverdueAmount',
+   'getPayableAmount':'$root_url/overdueManager/getPayableAmount',
+   'searchEnterprise':'$root_url/debt/searchEnterprise?',
+   'uploadURL':'$root_url/commonUpload/uploadFile',
+   'infoAjax':'$root_url/debt/infoAjax?',
+   'showInterest':'$root_url/debt/showInterest?debtId=',
+   'addRemarks':'$root_url/debt/addRemarks?',
+   'addControlRemarks':'$root_url/debt/addControlRemarks?',
+   'debtStatus':'$root_url/debt/debtStatus'
+   },
+   'securityType':#buildDictJson('direct_type'),##担保方式
+   'borrowPeriodType':#buildDictJson('borrow_period_type'),##借款周期类型
+   'projectStatus':#buildDictJson('project_status'),##项目状态   
+   'guarantyType':#buildDictJson('guaranty_type'),
+   'sex':#buildDictJson('sex'),##性别
+   'marriage':#buildDictJson('marriage'),##婚姻
+   'education':#buildDictJson('education'),##学历
+   'interestStatus':#buildDictJson('debt_interest_status'),  ##债权本息状态
+   'status':#buildDictJson('pay_status'),
+   'permission':{
+   		'getPayRecord':$shiro.hasPermission('overdueManager:getPayRecord'),##本息记录
+   		'getOverdueRecord':$shiro.hasPermission('overdueManager:getOverdueRecord'),##逾期还款记录
+   		'saveRepayFlagInterest':$shiro.hasPermission('overdueManager:saveRepayFlagInterest'),##逾期还款标记
+   		'overdueExcel':$shiro.hasPermission('overdueManager:overdueExcel')##逾期还款标记
+   },
+   'aliyuncsUrl':'https://oss-cn-hangzhou.aliyuncs.com'
+   "])
+#set($css_url=["$root_url/static/js/lib/My97DatePicker/skin/WdatePicker.css"])
+#set($js_url=["$root_url/static/js/overdue.js","$root_url/static/js/lib/My97DatePicker/WdatePicker.js"]) 
+#########################################DOM##################################### 

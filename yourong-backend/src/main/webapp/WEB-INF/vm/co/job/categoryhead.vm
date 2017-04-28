@@ -1,0 +1,23 @@
+#parse("/common/common.vm")
+#########################################script#####################################
+#set($js_config=[
+    "'urlMap':{
+    'uploadURL':'$root_url/commonUpload/uploadFile',
+    'categoryajax':'$root_url/companyjob/categoryajax?',
+    'query':'$root_url/companyjob/index?',
+    'savecategory':'$root_url/companyjob/savecategory',
+    'editcategory':'$root_url/companyjob/editcategory',
+    'deletecategory':'$root_url/companyjob/deletecategory',
+    'queryCompanyJobCategory':'$root_url/companyjob/queryCompanyJobCategory',
+    'updatestatus':'$root_url/companyjob/updatecategorystatus',
+    'releaseall':'$root_url/companyjob/releaseAllCategory',
+    'savecategorysort':'$root_url/companyjob/savecategorysort'
+    },
+    'permission':{
+    },
+    'status':#buildDictJson('order_standard_status'),
+    'orderSource':#buildDictJson('source_sys')
+    "])
+#set($css_url=["$root_url/static/js/lib/My97DatePicker/skin/WdatePicker.css","$root_url/static/assets/css/dropzone.css","$root_url/static/js/lib/jcrop/jquery.Jcrop.min.css","$root_url/static/js/lib/colorbox/colorbox.css","$root_url/static/js/lib/colorbox/colorbox.css"])
+#set($js_url=["$root_url/static/js/companyjobcategory.js","$root_url/static/js/lib/My97DatePicker/WdatePicker.js","$root_url/static/assets/js/dropzone.min.js","$root_url/static/js/dz-upload.js","$root_url/static/js/lib/jcrop/jquery.Jcrop.min.js","$root_url/static/js/lib/colorbox/jquery.colorbox-min.js"])
+#########################################DOM#####################################

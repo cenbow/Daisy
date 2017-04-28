@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.mc.dao.ActivityMapper" >
+  <resultMap id="BaseResultMap" type="Activity" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="activity_name" property="activityName" jdbcType="VARCHAR" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="release_reason" property="releaseReason" jdbcType="VARCHAR" />
+    <result column="activity_desc" property="activityDesc" jdbcType="VARCHAR" />
+    <result column="ad_desc" property="adDesc" jdbcType="VARCHAR" />
+    <result column="obtain_conditions_json" property="obtainConditionsJson" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="total_budget" property="totalBudget" jdbcType="DECIMAL" />
+    <result column="activity_status" property="activityStatus" jdbcType="INTEGER" />
+    <result column="audit_status" property="auditStatus" jdbcType="INTEGER" />
+    <result column="grant_type" property="grantType" jdbcType="INTEGER" />
+    <result column="grant_number" property="grantNumber" jdbcType="INTEGER" />
+    <result column="user_number" property="userNumber" jdbcType="INTEGER" />
+    <result column="is_release" property="isRelease" jdbcType="INTEGER" />
+    <result column="create_id" property="createId" jdbcType="BIGINT" />
+    <result column="audit_id" property="auditId" jdbcType="BIGINT" />
+    <result column="audit_time" property="auditTime" jdbcType="TIMESTAMP" />
+    <result column="audit_message" property="auditMessage" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  <resultMap id="ActivityBizResultMap" type="ActivityBiz">
+	  	<id column="id" property="id" jdbcType="BIGINT" />
+	    <result column="activity_name" property="name" jdbcType="VARCHAR" />
+	    <result column="obtain_conditions_json" property="obtainConditionsJson" jdbcType="VARCHAR" />
+	    <result column="type" property="type" jdbcType="INTEGER" />
+	    <result column="rule_type" property="ruleType" jdbcType="VARCHAR" />
+	    <result column="description" property="description" jdbcType="VARCHAR" />
+	    <result column="biz_type" property="bizType" jdbcType="INTEGER" />
+	    <result column="rule_parameter" property="ruleParameterJson" jdbcType="VARCHAR" />
+	    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+	    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    id, activity_name, start_time, end_time, release_reason, activity_desc, ad_desc, obtain_conditions_json,type,
+    total_budget, activity_status, audit_status, grant_type, grant_number, user_number, 
+    is_release, create_id, audit_id, audit_time, audit_message, create_time, update_time
+  </sql>
+  <insert id="insertSelective" parameterType="Activity" useGeneratedKeys="true" keyProperty="id">
+    insert into mc_activity
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="activityName != null" >
+        activity_name,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="releaseReason != null" >
+        release_reason,
+      </if>
+      <if test="activityDesc != null" >
+        activity_desc,
+      </if>
+      <if test="adDesc != null" >
+        ad_desc,
+      </if>
+      <if test="obtainConditionsJson != null" >
+        obtain_conditions_json,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="totalBudget != null" >
+        total_budget,
+      </if>
+      <if test="activityStatus != null" >
+        activity_status,
+      </if>
+      <if test="auditStatus != null" >
+        audit_status,
+      </if>
+      <if test="grantType != null" >
+        grant_type,
+      </if>
+      <if test="grantNumber != null" >
+        grant_number,
+      </if>
+      <if test="userNumber != null" >
+        user_number,
+      </if>
+      <if test="isRelease != null" >
+        is_release,
+      </if>
+      <if test="createId != null" >
+        create_id,
+      </if>
+      <if test="auditId != null" >
+        audit_id,
+      </if>
+      <if test="auditTime != null" >
+        audit_time,
+      </if>
+      <if test="auditMessage != null" >
+        audit_message,
+      </if>
+       create_time,
+       update_time,
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="activityName != null" >
+        #{activityName,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="releaseReason != null" >
+        #{releaseReason,jdbcType=VARCHAR},
+      </if>
+      <if test="activityDesc != null" >
+        #{activityDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="adDesc != null" >
+        #{adDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="obtainConditionsJson != null" >
+        #{obtainConditionsJson,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="totalBudget != null" >
+        #{totalBudget,jdbcType=DECIMAL},
+      </if>
+      <if test="activityStatus != null" >
+        #{activityStatus,jdbcType=INTEGER},
+      </if>
+      <if test="auditStatus != null" >
+        #{auditStatus,jdbcType=INTEGER},
+      </if>
+      <if test="grantType != null" >
+        #{grantType,jdbcType=INTEGER},
+      </if>
+      <if test="grantNumber != null" >
+        #{grantNumber,jdbcType=INTEGER},
+      </if>
+      <if test="userNumber != null" >
+        #{userNumber,jdbcType=INTEGER},
+      </if>
+      <if test="isRelease != null" >
+        #{isRelease,jdbcType=INTEGER},
+      </if>
+      <if test="createId != null" >
+        #{createId,jdbcType=BIGINT},
+      </if>
+      <if test="auditId != null" >
+        #{auditId,jdbcType=BIGINT},
+      </if>
+      <if test="auditTime != null" >
+        #{auditTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="auditMessage != null" >
+        #{auditMessage,jdbcType=VARCHAR},
+      </if>
+      now(),
+      now()
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="Activity" >
+    update mc_activity
+    <set >
+      <if test="activityName != null" >
+        activity_name = #{activityName,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="releaseReason != null" >
+        release_reason = #{releaseReason,jdbcType=VARCHAR},
+      </if>
+      <if test="activityDesc != null" >
+        activity_desc = #{activityDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="adDesc != null" >
+        ad_desc = #{adDesc,jdbcType=VARCHAR},
+      </if>
+       <if test="obtainConditionsJson != null" >
+        obtain_conditions_json = #{obtainConditionsJson,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="totalBudget != null" >
+        total_budget = #{totalBudget,jdbcType=DECIMAL},
+      </if>
+      <if test="activityStatus != null" >
+        activity_status = #{activityStatus,jdbcType=INTEGER},
+      </if>
+      <if test="auditStatus != null" >
+        audit_status = #{auditStatus,jdbcType=INTEGER},
+      </if>
+      <if test="grantType != null" >
+        grant_type = #{grantType,jdbcType=INTEGER},
+      </if>
+      <if test="grantNumber != null" >
+        grant_number = #{grantNumber,jdbcType=INTEGER},
+      </if>
+      <if test="userNumber != null" >
+        user_number = #{userNumber,jdbcType=INTEGER},
+      </if>
+      <if test="isRelease != null" >
+        is_release = #{isRelease,jdbcType=INTEGER},
+      </if>
+      <if test="createId != null" >
+        create_id = #{createId,jdbcType=BIGINT},
+      </if>
+      <if test="auditId != null" >
+        audit_id = #{auditId,jdbcType=BIGINT},
+      </if>
+      <if test="auditTime != null" >
+        audit_time = #{auditTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="auditMessage != null" >
+        audit_message = #{auditMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+        update_time = now(),
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <delete id="batchDelete" parameterType="java.lang.Long" >
+    delete from mc_activity
+    where id in  <foreach collection="ids" index="index" item="item" open="(" separator="," close=")"> #{item}  </foreach>  
+  </delete>
+  <select id="findByPage" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from mc_activity
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = #{map.id}
+        </if>
+        <if test=" map.activityName != null" >
+          activity_name = #{map.activityName}
+        </if>
+        <if test=" map.startTime != null" >
+          start_time = #{map.startTime}
+        </if>
+        <if test=" map.endTime != null" >
+          end_time = #{map.endTime}
+        </if>
+        <if test=" map.activityStatus != null" >
+          activity_status = #{map.activityStatus}
+        </if>
+        <if test=" map.auditStatus != null" >
+          audit_status = #{map.auditStatus}
+        </if>
+        <if test=" map.grantType != null" >
+          grant_type = #{map.grantType}
+        </if>
+      </where>
+    </if>
+    order by id desc
+  </select>
+  <sql id="Base_Column_List_Pagin" >
+    t.id  as  id,
+t.activity_name  as  activity_name,
+t.start_time  as  start_time,
+t.end_time  as  end_time,
+t.type as type,
+t.release_reason  as  release_reason,
+t.activity_desc  as  activity_desc,
+t.ad_desc  as  ad_desc,
+t.total_budget  as  total_budget,
+t.activity_status  as  activity_status,
+t.audit_status  as  audit_status,
+t.grant_type  as  grant_type,
+t.grant_number  as  grant_number,
+t.user_number  as  user_number,
+t.is_release  as  is_release,
+t.create_id  as  create_id,
+t.audit_id  as  audit_id,
+t.audit_time  as  audit_time,
+t.audit_message  as  audit_message,
+t.create_time  as  create_time,
+t.update_time  as  update_time
+  </sql>
+  <select id="selectForPagin" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List_Pagin" />
+   FROM  mc_activity as t
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = #{map.id}
+        </if>
+        <if test=" map.activityName != null" >
+          activity_name = #{map.activityName}
+        </if>
+        <if test=" map.startTime != null" >
+          start_time = #{map.startTime}
+        </if>
+        <if test=" map.endTime != null" >
+          end_time = #{map.endTime}
+        </if>
+        <if test=" map.activityStatus != null" >
+          activity_status = #{map.activityStatus}
+        </if>
+        <if test=" map.auditStatus != null" >
+          audit_status = #{map.auditStatus}
+        </if>
+        <if test=" map.grantType != null" >
+          grant_type = #{map.grantType}
+        </if>
+        <choose>
+			<when test="map.selectType == 6">
+				and activity_status = 6
+			</when>
+			<otherwise>
+				and activity_status <![CDATA[ < ]]> 6
+			</otherwise>
+		</choose>
+        and type > 0
+      </where>
+    </if>
+     order by id desc  LIMIT ${map.startRow}, ${map.pageSize}  
+  </select>
+  <select id="selectForPaginTotalCount" resultType="java.lang.Integer" >
+    select count(1) 
+    from mc_activity
+    <if test=" map != null" >
+      <where >
+       <if test=" map.id != null" >
+          id = #{map.id}
+        </if>
+        <if test=" map.activityName != null" >
+          activity_name = #{map.activityName}
+        </if>
+        <if test=" map.startTime != null" >
+          start_time = #{map.startTime}
+        </if>
+        <if test=" map.endTime != null" >
+          end_time = #{map.endTime}
+        </if>
+        <if test=" map.activityStatus != null" >
+          activity_status = #{map.activityStatus}
+        </if>
+        <if test=" map.auditStatus != null" >
+          audit_status = #{map.auditStatus}
+        </if>
+        <if test=" map.grantType != null" >
+          grant_type = #{map.grantType}
+        </if>
+        <choose>
+			<when test="map.selectType == 6">
+				and activity_status = 6
+			</when>
+			<otherwise>
+				and activity_status <![CDATA[ < ]]> 6
+			</otherwise>
+		</choose>
+        and type > 0
+      </where>
+    </if>
+  </select>
+  
+  
+   <!-- 进行的活动 -->
+  <select id="findInProgressActivity" resultMap="ActivityBizResultMap">
+  	select act.id,act.activity_name ,act.obtain_conditions_json, act.type, actr.rule_parameter, 
+  		   act.start_time, act.end_time, actr.rule_type
+  	from mc_activity as act
+  	inner join 
+  		mc_activity_rule as actr on act.id = actr.activity_id 
+  	where act.type > 0 and act.activity_status=4 order by act.id desc
+  </select>
+  
+  <!-- 根据ID查询活动 -->
+  <select id="findActivityById" resultMap="ActivityBizResultMap">
+  	select act.id,act.activity_name ,act.obtain_conditions_json, act.type, actr.rule_parameter, 
+  		   act.start_time, act.end_time from mc_activity as act 
+  	inner join 
+  		mc_activity_rule as actr on act.id = actr.activity_id 
+  	where act.id=#{id, jdbcType=BIGINT}  order by act.id desc
+  </select>
+  
+  <!-- 定时更改活动上线状态 -->
+  <update id="autoStartActivityJob">
+  		update mc_activity set activity_status=4 where activity_status=2 and start_time <![CDATA[ <=  ]]> now()
+  </update>
+  
+  <!-- 定时更改活动结束状态 -->
+  <update id="autoEndActivityJob">
+  		update mc_activity set activity_status=6 where activity_status=4 and end_time <![CDATA[ <= ]]> now()
+  </update>
+  
+  <!-- 活动审核 -->
+  <update id="reviewActivityById" parameterType="Activity">
+  	update mc_activity set activity_status=2, audit_id=#{auditId,jdbcType=BIGINT},audit_time=now() ,update_time=now()
+  		where id=#{id,jdbcType=BIGINT} and activity_status <![CDATA[ = ]]> 1
+  </update>
+  
+  <!-- 提交审核 -->
+  <update id="submittedForReview" parameterType="java.lang.Long">
+  	update mc_activity set activity_status=1, audit_time=now(),update_time=now()
+  		where id=#{id,jdbcType=BIGINT} and activity_status <![CDATA[ = ]]> 0
+  </update>
+  
+  <select id="showNotFinishActivityList" resultMap="ActivityBizResultMap">
+  	select id, activity_name from mc_activity order by id desc
+  </select>
+  <!-- 根据父级活动查询子活动 -->
+  <select id="selectByParentId" resultMap="BaseResultMap" >
+  	select 
+    <include refid="Base_Column_List" />
+    from mc_activity where parent_id = #{parentId,jdbcType=BIGINT} and child_group = #{childGroup,jdbcType=INTEGER}
+    order by activity_name
+  </select>
+
+  <!-- 后台定制活动查询  -->
+  <select id="showCustomActivityPages" resultMap="ActivityBizResultMap">
+  	SELECT
+		c.id, c.activity_name, c.start_time, c.end_time, r.rule_parameter
+	FROM
+		mc_activity AS c
+	LEFT JOIN mc_activity_rule AS r ON c.id = r.activity_id
+	WHERE
+		c.type = 0
+		<if test=" map != null" >
+	       	<if test=" map.activityName != null" >
+	          AND c.activity_name like "%"#{activityName}"%"
+	        </if>
+	    </if>
+	ORDER BY
+		c.id DESC
+  </select>
+  
+  <select id="getActivityBySelective" resultMap="BaseResultMap" >
+  	select
+  	<include refid="Base_Column_List" />
+  	from mc_activity
+  	<where >
+  		<if test="activityName != null">
+  			and activity_name = #{activityName,jdbcType=VARCHAR}
+  		</if>
+  		<if test="activityDesc != null">
+  			and activity_desc = #{activityDesc,jdbcType=VARCHAR}
+  		</if>
+  		<if test="activityStatus != null">
+  			and activity_status = #{activityStatus,jdbcType=INTEGER}
+  		</if>
+  	</where>
+  </select>
+
+  <select id="findInProgressActivityByBizType" resultMap="ActivityBizResultMap">
+  	select act.id,act.activity_name ,act.obtain_conditions_json, act.type, actr.rule_parameter, 
+  		   act.start_time, act.end_time, actr.rule_type, actr.biz_type, actr.description
+  	from mc_activity as act
+  	inner join 
+  		mc_activity_rule as actr on act.id = actr.activity_id 
+	  	<if test="bizType != null">
+			and actr.biz_type = #{bizType,jdbcType=INTEGER}
+		</if>
+  		<if test="ruleType != null">
+			and actr.rule_type = #{ruleType,jdbcType=VARCHAR}
+		</if>
+  	where act.type = 0 and act.activity_status = 4
+  	order by act.id desc
+  </select>
+  
+  
+   <select id="getNewActivityByActivityName" resultMap="BaseResultMap">
+  	SELECT
+		<include refid="Base_Column_List" />  
+	FROM
+		mc_activity  
+	WHERE 
+	       	<if test=" activityName != null" >  
+	           activity_name like  #{activityName}"%"
+	        </if>
+	ORDER BY
+		id  DESC limit 1 
+  </select>
+</mapper>

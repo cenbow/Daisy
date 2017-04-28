@@ -1,0 +1,48 @@
+##2017第一季度运营报告
+#set($aliyun='https://yrstatic.oss-cn-hangzhou.aliyuncs.com')
+<style>
+    body {
+        min-width: 1200px;
+    }
+
+    .g-operate-wrap {
+        width: 1200px;
+        margin: 0 auto;
+    }
+
+    .u-img-12 {
+        width: 476px;
+        margin: 0 auto;
+        display: block;
+    }
+
+    .g-ft {
+        display: none;
+    }
+
+    .g-bd {
+        margin-top: -10px;
+        background: #201b43;
+        margin-bottom: 0;
+    }
+
+    .g-bd img {
+        display: block;
+    }
+
+</style>
+
+<div class="g-operate-wrap">
+    <img src="$aliyun/static/img/operate2017First/img1.png">
+    <img src="$aliyun/static/img/operate2017First/img2.png">
+    <img src="$aliyun/static/img/operate2017First/img3.png">
+    <img src="$aliyun/static/img/operate2017First/img4.png">
+    <img src="$aliyun/static/img/operate2017First/img5.png">
+    <img src="$aliyun/static/img/operate2017First/img6.png">
+    <img src="$aliyun/static/img/operate2017First/img7.png">
+    <img src="$aliyun/static/img/operate2017First/img8.png">
+    <img src="$aliyun/static/img/operate2017First/img9.png">
+    <img src="$aliyun/static/img/operate2017First/img10.png">
+    <img src="$aliyun/static/img/operate2017First/img11.png">
+    <img src="$aliyun/static/img/operate2017First/img12.png">
+</div>

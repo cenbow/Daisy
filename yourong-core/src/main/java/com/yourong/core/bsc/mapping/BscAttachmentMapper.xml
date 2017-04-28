@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.bsc.dao.BscAttachmentMapper" >
+  <resultMap id="BaseResultMap" type="BscAttachment" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="module" property="module" jdbcType="VARCHAR" />
+    <result column="cat_id" property="catId" jdbcType="INTEGER" />
+    <result column="file_name" property="fileName" jdbcType="VARCHAR" />
+    <result column="file_url" property="fileUrl" jdbcType="VARCHAR" />
+    <result column="file_size" property="fileSize" jdbcType="BIGINT" />
+    <result column="file_ext" property="fileExt" jdbcType="VARCHAR" />
+    <result column="upload_time" property="uploadTime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="list_order" property="listOrder" jdbcType="INTEGER" />
+    <result column="file_desc" property="fileDesc" jdbcType="VARCHAR" />
+    <result column="storage_way" property="storageWay" jdbcType="VARCHAR" />
+    <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, module, cat_id, file_name, file_url, file_size, file_ext, upload_time, status, 
+    list_order, file_desc, storage_way, del_flag
+  </sql>
+  <insert id="insertSelective" parameterType="BscAttachment" useGeneratedKeys="true" keyProperty="id">
+    insert into bsc_attachment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="module != null" >
+        module,
+      </if>
+      <if test="catId != null" >
+        cat_id,
+      </if>
+      <if test="fileName != null" >
+        file_name,
+      </if>
+      <if test="fileUrl != null" >
+        file_url,
+      </if>
+      <if test="fileSize != null" >
+        file_size,
+      </if>
+      <if test="fileExt != null" >
+        file_ext,
+      </if>
+        upload_time,
+        status,
+      <if test="listOrder != null" >
+        list_order,
+      </if>
+      <if test="fileDesc != null" >
+        file_desc,
+      </if>
+      <if test="storageWay != null" >
+        storage_way,
+      </if>
+        del_flag
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="module != null" >
+        #{module,jdbcType=VARCHAR},
+      </if>
+      <if test="catId != null" >
+        #{catId,jdbcType=INTEGER},
+      </if>
+      <if test="fileName != null" >
+        #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="fileUrl != null" >
+        #{fileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="fileSize != null" >
+        #{fileSize,jdbcType=BIGINT},
+      </if>
+      <if test="fileExt != null" >
+        #{fileExt,jdbcType=VARCHAR},
+      </if>
+        now(),
+        1,
+      <if test="listOrder != null" >
+        #{listOrder,jdbcType=INTEGER},
+      </if>
+      <if test="fileDesc != null" >
+        #{fileDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="storageWay != null" >
+        #{storageWay,jdbcType=VARCHAR},
+      </if>
+      1
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="BscAttachment" >
+    update bsc_attachment
+    <set >
+      <if test="module != null" >
+        module = #{module,jdbcType=VARCHAR},
+      </if>
+      <if test="catId != null" >
+        cat_id = #{catId,jdbcType=INTEGER},
+      </if>
+      <if test="fileName != null" >
+        file_name = #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="fileUrl != null" >
+        file_url = #{fileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="fileSize != null" >
+        file_size = #{fileSize,jdbcType=BIGINT},
+      </if>
+      <if test="fileExt != null" >
+        file_ext = #{fileExt,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadTime != null" >
+        upload_time = #{uploadTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="listOrder != null" >
+        list_order = #{listOrder,jdbcType=INTEGER},
+      </if>
+      <if test="fileDesc != null" >
+        file_desc = #{fileDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="storageWay != null" >
+        storage_way = #{storageWay,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <delete id="batchDelete" parameterType="java.lang.Long" >
+    delete from bsc_attachment
+    where id in  <foreach collection="ids" index="index" item="item" open="(" separator="," close=")"> #{item}  </foreach>  
+  </delete>
+  <select id="findByPage" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from bsc_attachment
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = #{map.id}
+        </if>
+        <if test=" map.module != null" >
+          module = #{map.module}
+        </if>
+        <if test=" map.catId != null" >
+          cat_id = #{map.catId}
+        </if>
+        <if test=" map.fileName != null" >
+          file_name = #{map.fileName}
+        </if>
+        <if test=" map.fileUrl != null" >
+          file_url = #{map.fileUrl}
+        </if>
+        <if test=" map.fileSize != null" >
+          file_size = #{map.fileSize}
+        </if>
+        <if test=" map.fileExt != null" >
+          file_ext = #{map.fileExt}
+        </if>
+        <if test=" map.uploadTime != null" >
+          upload_time = #{map.uploadTime}
+        </if>
+        <if test=" map.status != null" >
+          status = #{map.status}
+        </if>
+        <if test=" map.listOrder != null" >
+          list_order = #{map.listOrder}
+        </if>
+        <if test=" map.fileDesc != null" >
+          file_desc = #{map.fileDesc}
+        </if>
+        <if test=" map.storageWay != null" >
+          storage_way = #{map.storageWay}
+        </if>
+        <if test=" map.delFlag != null" >
+          del_flag = #{map.delFlag}
+        </if>
+      </where>
+    </if>
+  </select>
+  <sql id="Base_Column_List_Pagin" >
+    t.id  as  id,
+t.module  as  module,
+t.cat_id  as  cat_id,
+t.file_name  as  file_name,
+t.file_url  as  file_url,
+t.file_size  as  file_size,
+t.file_ext  as  file_ext,
+t.upload_time  as  upload_time,
+t.status  as  status,
+t.list_order  as  list_order,
+t.file_desc  as  file_desc,
+t.storage_way  as  storage_way,
+t.del_flag  as  del_flag
+  </sql>
+  <select id="selectForPagin" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List_Pagin" />
+    from  (SELECT id FROM  bsc_attachment
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = #{map.id}
+        </if>
+        <if test=" map.module != null" >
+          module = #{map.module}
+        </if>
+        <if test=" map.catId != null" >
+          cat_id = #{map.catId}
+        </if>
+        <if test=" map.fileName != null" >
+          file_name = #{map.fileName}
+        </if>
+        <if test=" map.fileUrl != null" >
+          file_url = #{map.fileUrl}
+        </if>
+        <if test=" map.fileSize != null" >
+          file_size = #{map.fileSize}
+        </if>
+        <if test=" map.fileExt != null" >
+          file_ext = #{map.fileExt}
+        </if>
+        <if test=" map.uploadTime != null" >
+          upload_time = #{map.uploadTime}
+        </if>
+        <if test=" map.status != null" >
+          status = #{map.status}
+        </if>
+        <if test=" map.listOrder != null" >
+          list_order = #{map.listOrder}
+        </if>
+        <if test=" map.fileDesc != null" >
+          file_desc = #{map.fileDesc}
+        </if>
+        <if test=" map.storageWay != null" >
+          storage_way = #{map.storageWay}
+        </if>
+        <if test=" map.delFlag != null" >
+          del_flag = #{map.delFlag}
+        </if>
+      </where>
+    </if>
+      LIMIT	${map.startRow}, ${map.pageSize}  )  AS a,  bsc_attachment AS t FORCE INDEX(PRIMARY) WHERE a.id = t.id   
+  </select>
+  <select id="selectForPaginTotalCount" resultType="java.lang.Long" >
+    select count(1) 
+    from bsc_attachment
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = ${map.id}
+        </if>
+        <if test=" map.module != null" >
+          module = ${map.module}
+        </if>
+        <if test=" map.catId != null" >
+          cat_id = ${map.catId}
+        </if>
+        <if test=" map.fileName != null" >
+          file_name = ${map.fileName}
+        </if>
+        <if test=" map.fileUrl != null" >
+          file_url = ${map.fileUrl}
+        </if>
+        <if test=" map.fileSize != null" >
+          file_size = ${map.fileSize}
+        </if>
+        <if test=" map.fileExt != null" >
+          file_ext = ${map.fileExt}
+        </if>
+        <if test=" map.uploadTime != null" >
+          upload_time = ${map.uploadTime}
+        </if>
+        <if test=" map.status != null" >
+          status = ${map.status}
+        </if>
+        <if test=" map.listOrder != null" >
+          list_order = ${map.listOrder}
+        </if>
+        <if test=" map.fileDesc != null" >
+          file_desc = ${map.fileDesc}
+        </if>
+        <if test=" map.storageWay != null" >
+          storage_way = ${map.storageWay}
+        </if>
+        <if test=" map.delFlag != null" >
+          del_flag = ${map.delFlag}
+        </if>
+      </where>
+    </if>
+  </select>
+  
+  <resultMap id="AttrachmentHasIndexResultMap" type="BscAttachment" extends="BaseResultMap" >
+  	<result column="create_time" property="createTime" jdbcType="VARCHAR" />
+    <result column="attachment_index_id" property="attachmentIndexId" jdbcType="INTEGER" />
+    <result column="key_id" property="keyId" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <select id="findAttachmentsByKeyId" resultMap="AttrachmentHasIndexResultMap">
+	select 
+	attr.*,ind.create_time as create_time,ind.id as attachment_index_id,ind.key_id as key_id 
+	from bsc_attachment as attr 
+	RIGHT JOIN bsc_attachment_index as ind  on ind.attachment_id = attr.id 
+	where ind.key_id = #{keyId,jdbcType=VARCHAR} and attr.del_flag>0 order by ind.id
+  </select>
+  
+   <select id="findAttachmentsByKeyIdAndModule" resultMap="AttrachmentHasIndexResultMap">
+	select 
+	attr.*,ind.create_time as create_time,ind.id as attachment_index_id,ind.key_id as key_id 
+	from bsc_attachment as attr 
+	RIGHT JOIN bsc_attachment_index as ind  on ind.attachment_id = attr.id 
+	where ind.key_id = #{keyId,jdbcType=VARCHAR} and attr.module=#{module, jdbcType=VARCHAR} and attr.del_flag>0
+	 order by ind.id asc 
+	<if test="num > 0">
+		 limit 0, #{num, jdbcType=INTEGER}
+	</if>
+  </select>
+  
+</mapper>

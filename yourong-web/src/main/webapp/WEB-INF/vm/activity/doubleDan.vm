@@ -1,0 +1,147 @@
+##周年活动
+#parse("/common/common.vm")
+#set($title="双旦迎新，提钱跨年_$!{title_suffix}")
+#set($css_url=["$root_css_url/activity/doubleDan.css"])
+#set($js_url=["$root_js_url/activity/ChristmasNewyear.js"])
+##页头
+
+#if($currentUser)
+    #set($logined=1)
+#else
+    #set($logined=0)
+#end
+#CSRFToken('xToken')
+
+#set($yrimg_url='https://yrimg.oss-cn-hangzhou.aliyuncs.com/')
+## 页头
+<div class="m-doubleDan-hd"></div>
+## 元旦活动
+<div class="m-doubleDan-NewYear">
+    <div class="g-wrap">
+        <div class="u-NewYear-bg f-pos-r">
+            <h2 class="f-fs38">跨年现金周</h2>
+            <h3 class="f-fs14">活动期间，登录领取现金券，只有使用完前一张现金券后，才能领取后一张现金券</h3>
+            <div class="u-NewYear-lottery f-cf" id="j-NewYear-lottery">
+                <div>
+                    <h4>12月26日 第一关</h4>
+                    <div class="u-newyear-gift u-newyear-gift-1"></div>
+                    <span class="u-newyear-btn" data-thisBtnMission="" data-prevBtnMission="" data-nextBtnMission="" data-giftValue="10" data-nextValue="30">热情等候中</span>
+                </div><div>
+                <h4>12月27日 第二关</h4>
+                <div class="u-newyear-gift u-newyear-gift-2"></div>
+                <span class="u-newyear-btn" data-thisBtnMission="" data-prevBtnMission="" data-nextBtnMission="" data-giftValue="30" data-nextValue="50" data-notUsed="">热情等候中</span>
+            </div><div>
+                <h4>12月28日 第三关</h4>
+                <div class="u-newyear-gift u-newyear-gift-3"></div>
+                <span class="u-newyear-btn" data-thisBtnMission="" data-prevBtnMission="" data-nextBtnMission="" data-giftValue="50" data-nextValue="88" data-notUsed="">热情等候中</span>
+            </div><div class="z-4ml">
+                <h4>12月29日 第四关</h4>
+                <div class="u-newyear-gift u-newyear-gift-4"></div>
+                <span class="u-newyear-btn" data-thisBtnMission="" data-prevBtnMission="" data-nextBtnMission="" data-giftValue="88" data-nextValue="100" data-notUsed="">热情等候中</span>
+            </div><div>
+                <h4>12月30日 第五关</h4>
+                <div class="u-newyear-gift u-newyear-gift-5"></div>
+                <span class="u-newyear-btn" data-thisBtnMission="" data-prevBtnMission="" data-nextBtnMission="" data-giftValue="100" data-nextValue="" data-notUsed="">热情等候中</span>
+            </div><div id="j-secret-gift">
+                <h4>12月31日 神秘新年礼</h4>
+                <div class="u-GiftPacks u-newyear-gift u-newyear-gift-6"></div>
+                <span class="u-newyear-btn" style="position:relative; top: -6px;" data-secretStatus="" data-thisBtnMission="" data-prevBtnMission="" data-notUsed="">热情等候中</span>
+            </div>
+            </div>
+
+            <i id="j-example-arrows"></i>
+
+            <div class="u-doubleDan-example f-cf" id="j-doubleDan-example" style="display: none;">
+                <div class="u-example-left f-fl"></div><div class="u-example-center f-pos-r f-fl">
+                <dl>
+                    <dt>用户A</dt>
+                    <dd>
+                        在12月26日领取10元现金券，
+                        <br>但现金券在有效期内未使用，
+                        <br>将止步第一关，
+                        <br>即不能继续闯关；
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>用户B</dt>
+                    <dd>
+                        成功闯过5关，
+                        <br>且12月26日-12月30日
+                        <br>每天准时领取现金券，
+                        <br>最终可获300*5/5=300元神秘新年礼；
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>用户C</dt>
+                    <dd>
+                        在12月31日
+                        <br>一次性闯过5关，
+                        <br>是没有神秘新年礼的哦！
+                    </dd>
+                </dl>
+                <i id="j-example-close"></i>
+            </div><div class="u-example-right f-fl">
+            </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+    ## 圣诞活动
+<div class="m-doubleDan-Christmas">
+    <div class="g-wrap">
+        <div class="u-Christmas-bg">
+            <h2 class="f-fs38">神秘圣诞礼</h2>
+            <h3 class="f-fs14">12月24日、25日，用户共有两次机会领取圣诞礼物</h3>
+            <div class="u-Christmas-lottery f-cf" id="j-Christmas-lottery" data-logined="$logined">
+                <div>
+                    <i class="z-initial"></i>
+                    <span>领取礼物</span>
+                </div><div>
+                    <i class="z-initial"></i>
+                    <span>领取礼物</span>
+                </div><div>
+                    <i class="z-initial"></i>
+                    <span>领取礼物</span>
+                </div><div>
+                    <i class="z-initial"></i>
+                    <span>领取礼物</span>
+                </div><div>
+                    <i class="z-initial"></i>
+                    <span>领取礼物</span>
+                </div><div>
+                    <i class="z-initial"></i>
+                    <span>领取礼物</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+##活动规则
+<div class="m-doubleDan-rule">
+    <div class="g-wrap">
+        <h2 class="f-fs14">活动规则：</h2>
+        <p>
+           1、活动对象：有融网所有用户；
+
+            <br>2、活动时间：2015年12月24日—2015年12月31日；
+
+            <br>3、神秘圣诞礼：2015年12月24日—2015年12月25日，用户共有两次机会领取圣诞礼物;
+
+            <br>4、跨年现金周：2015年12月26日—2015年12月31日；
+
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;12月26日—12月30日每天解锁一关（共5关），用户领取并使用现金券视为闯关成功，完成前一关才能闯下一关；
+
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;现金券领取后1天有效，若现金券在有效期内未使用，将不能继续闯关；
+
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;12月31日神秘新年礼的正确打开方式：成功闯过5关，且每天准时领取现金券，准时领取的天数越多新年礼就越大，
+
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;领取后3天有效（温馨提醒：在12月31日一次性闯过5关，是没有神秘新年礼的哦！）；
+
+            <br>5、如有其它疑问，请拨打客服热线：400-025-6688；
+
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;本活动最终解释权归有融网所有
+        </p>
+    </div>
+</div>

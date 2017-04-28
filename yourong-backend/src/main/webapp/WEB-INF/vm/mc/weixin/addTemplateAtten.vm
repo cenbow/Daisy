@@ -1,0 +1,136 @@
+#set($layout = "/layout/iframe.vm")
+#parse("/mc/weixin/head.vm")
+<style>
+	#form-field-textDescribe{
+		width:400px;
+		height:200px
+		}
+</style>
+<form id="weixin_atten_from">
+				<div class="row">
+					<div class="col-xs-9 col-sm-9 widget-container-span ui-sortable">
+						<div class="widget-box">
+							<div class="widget-header">
+								<h5>首次关注模板基本信息</h5>
+							</div>
+						<div class="widget-body">
+							<div class="widget-main">
+								<div class="well">
+									<div class="form-group clearfix">
+										<label class="col-sm-1 control-label no-padding-right" for="l_member_type" >模板类型</label>
+											<div class="col-sm-5">
+											<select id="templateType_atten" name="templateType" >
+												<option value="1">文字</option>
+												<option value="2">图文</option>
+												##<option value="3">视频</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div id="ifhide">
+								<div class="well">
+									<div class="form-group clearfix">
+										<label class="col-sm-1 control-label no-padding-right" for="l_member_type" >标题</label>
+											<div class="col-sm-5">
+											<input type="text" name="title" datatype="*" id="form-field-title" class="col-xs-12 col-sm-12" />
+										</div>
+									</div>
+								</div>
+							<div class="well " >
+									<div class="form-group clearfix">
+										<label class="col-sm-1 control-label no-padding-right" for="l_member_url" >链接</label>
+											<div class="col-sm-5">
+											<input type="text"  datatype="*" name="url" id="form-field-url" placeholder="" class="col-xs-12 col-sm-12" >
+										</div>
+									</div>
+								</div>
+							
+							</div>
+						  <div class="well" id="s_text">
+							 <div class="form-group clearfix">
+								<label class="col-sm-1 control-label no-padding-right" for="form-field-debtPerson">内容</label>
+									<div class="col-sm-3">
+										<textarea type="text" datatype="*" name="textDescribe" id="form-field-textDescribe" ></textarea>
+									</div>
+								</div>
+							</div>
+						<div  >
+						<div class="well " >
+									<div class="form-group clearfix">
+										<label class="col-sm-3 control-label no-padding-right" for="l_member_url" >状态</label>
+											<div class="col-sm-5">
+											<select id="status" name="status">
+												<option value="1">启用</option>
+												<option value="0">停用</option>
+											</select>
+										</div>
+									</div>
+								</div></div>
+						##<div class="well">
+							##<div class="form-group clearfix">
+  							###添加文件按钮
+						  	##<span class="btn btn-success fileinput-button image dz-upload-btn">
+						       ## <i class="glyphicon glyphicon-plus"></i>
+						       ## <span>添加文件</span>
+						   	## </span>
+     						###图片控件容器
+  							##<div class="dropzoneImage dropzone dropzoneSort" id="image" data-maxfiles="1" data-category="debt_base">
+								  ##  <div class="fallback"> 
+								   ## </div>
+  							##</div>  
+						##</div>
+				  		##</div>
+				  		
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+			<input type="hidden" id="j-json-dropzone-weixin-lender" name="lenderAttachmentsData"/>
+	<input type="hidden" name="id" value="$!id"/><!--id-->
+		</form>
+		#set($debtDropzone = [
+	    {"title":"关键字回复相关图片", "category":"weixin_lender","dzId":"dropzone-weixin-lender"}
+ ])
+ 
+<div class="row">
+	<div class="col-xs-9 col-sm-9 widget-container-span ui-sortable" id="detail_weixin_atten">
+		<div class="widget-box">
+			<div class="widget-header">
+			</div>
+			<div class="widget-body">
+				<div class="widget-main">
+					<div class="form-group clearfix">
+					
+						###添加文件按钮
+						<span class="btn btn-success fileinput-button dropzone-weixin-lender dz-upload-btn">
+					        <i class="glyphicon glyphicon-plus"></i>
+					        <span>添加文件</span>
+					    </span>
+					    ###图片控件容器
+						<div class="dropzoneImage dropzone dropzoneSort" id="dropzone-weixin-lender" data-category="weixin-lender">
+						</div>	
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+					<div class="row">
+					<div class="col-xs-9 col-sm-9 widget-container-span ui-sortable">
+						<div class="modal-footer">
+							<button type="button" id="save_weixin_atten" class="btn btn-primary">保存</button>
+						</div>
+					</div>
+					</div>
+<script type="text/javascript">
+	jQuery(function($){
+		#if($action)
+			#if($action=="show")
+				showAttenContent();
+			#end
+		#end
+	});
+</script>
+

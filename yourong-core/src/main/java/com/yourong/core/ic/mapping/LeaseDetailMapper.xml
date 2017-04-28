@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.ic.dao.LeaseDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.yourong.core.ic.model.LeaseDetail" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="lease_bonus_id" property="leaseBonusId" jdbcType="BIGINT" />
+    <result column="start_date" property="startDate" jdbcType="TIMESTAMP" />
+    <result column="end_date" property="endDate" jdbcType="TIMESTAMP" />
+    <result column="lease_days" property="leaseDays" jdbcType="INTEGER" />
+    <result column="rental" property="rental" jdbcType="DECIMAL" />
+    <result column="total_rental" property="totalRental" jdbcType="DECIMAL" />
+    <result column="user_bonus" property="userBonus" jdbcType="DECIMAL" />
+    <result column="borrower_bonus" property="borrowerBonus" jdbcType="DECIMAL" />
+    <result column="lender_bonus" property="lenderBonus" jdbcType="DECIMAL" />
+    <result column="lessor_bonus" property="lessorBonus" jdbcType="DECIMAL" />
+    <result column="bonus_status" property="bonusStatus" jdbcType="INTEGER" />
+    <result column="bonus_date" property="bonusDate" jdbcType="TIMESTAMP" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, lease_bonus_id, start_date, end_date,lease_days, rental, total_rental,
+     user_bonus, borrower_bonus, lender_bonus, lessor_bonus, bonus_status, bonus_date,
+      create_time, update_time, remark, del_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from ic_lease_detail
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <update id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    update ic_lease_detail set del_flag = -1 ,update_time = now()
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <insert id="insert" parameterType="com.yourong.core.ic.model.LeaseDetail" >
+    insert into ic_lease_detail (id, lease_bonus_id, start_date, end_date,lease_days, rental, total_rental,
+     user_bonus, borrower_bonus, lender_bonus, lessor_bonus, bonus_status, bonus_date,
+      create_time, update_time, remark, del_flag)
+    values (#{id,jdbcType=BIGINT}, #{leaseBonusId,jdbcType=BIGINT}, #{startDate,jdbcType=TIMESTAMP}, 
+      #{endDate,jdbcType=TIMESTAMP}, #{leaseDays,jdbcType=INTEGER}, #{rental,jdbcType=DECIMAL}, #{totalRental,jdbcType=DECIMAL}, 
+      #{userBonus,jdbcType=DECIMAL}, #{borrowerBonus,jdbcType=DECIMAL},#{lenderBonus,jdbcType=DECIMAL},#{lessorBonus,jdbcType=DECIMAL},
+      #{bonusStatus,jdbcType=INTEGER},#{bonusDate,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}, #{del_flag,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yourong.core.ic.model.LeaseDetail" useGeneratedKeys="true" keyProperty="id">
+    insert into ic_lease_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="leaseBonusId != null" >
+        lease_bonus_id,
+      </if>
+      <if test="startDate != null" >
+        start_date,
+      </if>
+      <if test="endDate != null" >
+        end_date,
+      </if>
+      <if test="leaseDays != null" >
+        lease_days,
+      </if>
+      <if test="rental != null" >
+        rental,
+      </if>
+      <if test="totalRental != null" >
+        total_rental,
+      </if>
+      <if test="userBonus != null" >
+        user_bonus,
+      </if>
+      <if test="borrowerBonus != null" >
+        borrower_bonus,
+      </if>
+      <if test="lenderBonus != null" >
+        lender_bonus,
+      </if>
+      <if test="lessorBonus != null" >
+        lessor_bonus,
+      </if>
+      <if test="bonusStatus != null" >
+        bonus_status,
+      </if>
+      <if test="bonusDate != null" >
+        bonus_date,
+      </if>
+        create_time,
+        update_time,
+      <if test="remark != null" >
+        remark,
+      </if>
+        del_flag,
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="leaseBonusId != null" >
+        #{leaseBonusId,jdbcType=BIGINT},
+      </if>
+      <if test="startDate != null" >
+        #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null" >
+        #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="leaseDays != null" >
+        #{leaseDays,jdbcType=INTEGER},
+      </if>
+      <if test="rental != null" >
+        #{rental,jdbcType=DECIMAL},
+      </if>
+      <if test="totalRental != null" >
+        #{totalRental,jdbcType=DECIMAL},
+      </if>
+      <if test="userBonus != null" >
+        #{userBonus,jdbcType=DECIMAL},
+      </if>
+      <if test="borrowerBonus != null" >
+        #{borrowerBonus,jdbcType=DECIMAL},
+      </if>
+      <if test="lenderBonus != null" >
+        #{lenderBonus,jdbcType=DECIMAL},
+      </if>
+      <if test="lessorBonus != null" >
+        #{lessorBonus,jdbcType=DECIMAL},
+      </if>
+      <if test="bonusStatus != null" >
+        #{bonusStatus,jdbcType=INTEGER},
+      </if>
+      <if test="bonusDate != null" >
+        #{bonusDate,jdbcType=TIMESTAMP},
+      </if>
+        now(),
+        now(),
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+        1,
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yourong.core.ic.model.LeaseDetail" >
+    update ic_lease_detail
+    <set >
+      <if test="leaseBonusId != null" >
+        lease_bonus_id = #{leaseBonusId,jdbcType=BIGINT},
+      </if>
+      <if test="startDate != null" >
+        start_date = #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null" >
+        end_date = #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="leaseDays != null" >
+        lease_days = #{leaseDays,jdbcType=INTEGER},
+      </if>
+      <if test="rental != null" >
+        rental = #{rental,jdbcType=DECIMAL},
+      </if>
+      <if test="totalRental != null" >
+        total_rental = #{totalRental,jdbcType=DECIMAL},
+      </if>
+      <if test="userBonus != null" >
+        user_bonus = #{userBonus,jdbcType=DECIMAL},
+      </if>
+      <if test="borrowerBonus != null" >
+        borrower_bonus = #{borrowerBonus,jdbcType=DECIMAL},
+      </if>
+      <if test="lenderBonus != null" >
+        lender_bonus = #{lenderBonus,jdbcType=DECIMAL},
+      </if>
+      <if test="lessorBonus != null" >
+        lessor_bonus = #{lessorBonus,jdbcType=DECIMAL},
+      </if>
+      <if test="bonusStatus != null" >
+        bonus_status = #{bonusStatus,jdbcType=DECIMAL},
+      </if>
+      <if test="bonusDate != null" >
+        bonus_date = #{bonusDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+        update_time = now(),
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yourong.core.ic.model.LeaseDetail" >
+    update ic_lease_detail
+    set lease_bonus_id = #{leaseBonusId,jdbcType=BIGINT},
+      start_date = #{startDate,jdbcType=TIMESTAMP},
+      end_date = #{endDate,jdbcType=TIMESTAMP},
+      lease_days = #{leaseDays,jdbcType=INTEGER},
+      rental = #{rental,jdbcType=DECIMAL},
+      total_rental = #{totalRental,jdbcType=DECIMAL},
+      user_bonus = #{userBonus,jdbcType=DECIMAL},
+      borrower_bonus = #{borrowerBonus,jdbcType=DECIMAL},
+      lender_bonus = #{lenderBonus,jdbcType=DECIMAL},
+      lessor_bonus = #{lessorBonus,jdbcType=DECIMAL},
+      bonus_status = #{bonusStatus,jdbcType=INTEGER},
+      bonus_date = #{bonusDate,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR}
+      del_flag = #{delFlag,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <delete id="batchDelete" parameterType="java.lang.Long" >
+    delete from ic_lease_detail
+    where id in  <foreach collection="ids" index="index" item="item" open="(" separator="," close=")"> #{item}  </foreach>  
+  </delete>
+  <select id="findByPage" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from ic_lease_detail where del_flag > 0
+    <if test=" map != null" >
+        <if test=" map.id != null" >
+          and id = #{map.id}
+        </if>
+        <if test=" map.leaseBonusId != null" >
+          and lease_bonus_id = #{map.leaseBonusId}
+        </if>
+        <if test=" map.startDate != null" >
+          and start_date = #{map.startDate}
+        </if>
+        <if test=" map.endDate != null" >
+          and end_date = #{map.endDate}
+        </if>
+        <if test=" map.leaseDays != null" >
+          and lease_days = #{map.leaseDays}
+        </if>
+        <if test=" map.rental != null" >
+          and rental = #{map.rental}
+        </if>
+        <if test=" map.totalRental != null" >
+          and total_rental = #{map.totalRental}
+        </if>
+        <if test=" map.userBonus != null" >
+          and user_bonus = #{map.userBonus}
+        </if>
+        <if test=" map.borrowerBonus != null" >
+          and borrower_bonus = #{map.borrower_bonus}
+        </if>
+        <if test=" map.lenderBonus != null" >
+          and lender_bonus = #{map.lenderBonus}
+        </if>
+        <if test=" map.lessorBonus != null" >
+          and lessor_bonus = #{map.lessorBonus}
+        </if>
+        <if test=" map.bonusStatus != null" >
+          and bonus_status = #{map.bonusStatus}
+        </if>
+        <if test=" map.bonusDate != null" >
+          and bonus_date = #{map.bonusDate}
+        </if>
+        <if test=" map.createTime != null" >
+          and create_time = #{map.createTime}
+        </if>
+        <if test=" map.updateTime != null" >
+          and update_time = #{map.updateTime}
+        </if>
+        <if test=" map.remark != null" >
+          and remark = #{map.remark}
+        </if>
+    </if>
+  </select>
+  <sql id="Base_Column_List_Pagin" >
+    t.id  as  id,
+t.lease_bonus_id  as  lease_bonus_id,
+t.start_date  as  start_date,
+t.end_date  as  end_date,
+t.lease_days  as  lease_days,
+t.rental  as  rental,
+t.total_rental  as  total_rental,
+t.user_bonus  as  user_bonus,
+t.borrower_bonus  as  borrower_bonus,
+t.lender_bonus  as  lender_bonus,
+t.lessor_bonus  as  lessor_bonus,
+t.bonus_status  as  bonus_status,
+t.bonus_date  as  bonus_date,
+t.create_time  as  create_time,
+t.update_time  as  update_time,
+t.remark  as  remark,
+t.del_flag  as  del_flag
+  </sql>
+  <select id="selectForPagin" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List_Pagin" />
+    from  (SELECT id FROM  ic_lease_detail where del_flag > 0
+    <if test=" map != null" >
+        <if test=" map.id != null" >
+          and id = #{map.id}
+        </if>
+        <if test=" map.leaseBonusId != null" >
+          and lease_bonus_id = #{map.leaseBonusId}
+        </if>
+        <if test=" map.startDate != null" >
+          and start_date = #{map.startDate}
+        </if>
+        <if test=" map.endDate != null" >
+          and end_date = #{map.endDate}
+        </if>
+        <if test=" map.leaseDays != null" >
+          and lease_days = #{map.leaseDays}
+        </if>
+        <if test=" map.rental != null" >
+          and rental = #{map.rental}
+        </if>
+        <if test=" map.totalRental != null" >
+          and total_rental = #{map.totalRental}
+        </if>
+        <if test=" map.userBonus != null" >
+          and user_bonus = #{map.userBonus}
+        </if>
+        <if test=" map.borrowerBonus != null" >
+          and borrower_bonus = #{map.borrowerBonus}
+        </if>
+        <if test=" map.lenderBonus != null" >
+          and lender_bonus = #{map.lenderBonus}
+        </if>
+        <if test=" map.lessorBonus != null" >
+          and lessor_bonus = #{map.lessorBonus}
+        </if>
+        <if test=" map.bonusStatus != null" >
+          and bonus_status = #{map.bonusStatus}
+        </if>
+        <if test=" map.bonusDate != null" >
+          and bonus_date = #{map.bonusDate}
+        </if>
+        <if test=" map.createTime != null" >
+          and create_time = #{map.createTime}
+        </if>
+        <if test=" map.updateTime != null" >
+          and update_time = #{map.updateTime}
+        </if>
+        <if test=" map.remark != null" >
+          and remark = #{map.remark}
+        </if>
+    </if>
+      LIMIT	${map.startRow}, ${map.pageSize}  )  AS a,  ic_lease_detail AS t FORCE INDEX(PRIMARY) WHERE a.id = t.id   
+  </select>
+  <select id="selectForPaginTotalCount" resultType="java.lang.Integer" >
+    select count(1) 
+    from ic_lease_detail where del_flag > 0
+    <if test=" map != null" >
+        <if test=" map.id != null" >
+          and id = #{map.id}
+        </if>
+        <if test=" map.leaseBonusId != null" >
+          and lease_bonus_id = #{map.leaseBonusId}
+        </if>
+        <if test=" map.startDate != null" >
+          and start_date = #{map.startDate}
+        </if>
+        <if test=" map.endDate != null" >
+          and end_date = #{map.endDate}
+        </if>
+        <if test=" map.leaseDays != null" >
+          and lease_days = #{map.leaseDays}
+        </if>
+        <if test=" map.rental != null" >
+          and rental = #{map.rental}
+        </if>
+        <if test=" map.totalRental != null" >
+          and total_rental = #{map.totalRental}
+        </if>
+        <if test=" map.userBonus != null" >
+          and user_bonus = #{map.userBonus}
+        </if>
+        <if test=" map.borrowerBonus != null" >
+          and borrower_bonus = #{map.borrowerBonus}
+        </if>
+        <if test=" map.lenderBonus != null" >
+          and lender_bonus = #{map.lenderBonus}
+        </if>
+        <if test=" map.lessorBonus != null" >
+          and lessor_bonus = #{map.lessorBonus}
+        </if>
+        <if test=" map.bonusStatus != null" >
+          and bonus_status = #{map.bonusStatus}
+        </if>
+        <if test=" map.bonusDate != null" >
+          and bonus_date = #{map.bonusDate}
+        </if>
+        <if test=" map.createTime != null" >
+          and create_time = #{map.createTime}
+        </if>
+        <if test=" map.updateTime != null" >
+          and update_time = #{map.updateTime}
+        </if>
+        <if test=" map.remark != null" >
+          and remark = #{map.remark}
+        </if>
+    </if>
+  </select>
+  
+  <!-- 根据租赁分红id查询租赁记录的条数 -->
+  <select id="selectCountByLeaseBonusId" resultType="java.lang.Integer" >
+	  	SELECT
+		COUNT(0)
+	FROM
+		ic_lease_detail
+	WHERE
+		lease_bonus_id = #{leaseBonusId,jdbcType=BIGINT} and del_flag > 0
+  </select>
+  
+   <!-- 根据租赁分红id查询已分红的租赁记录 -->
+  <select id="selectListByLeaseBonusId" resultMap="BaseResultMap" >
+	  	SELECT
+		<include refid="Base_Column_List" />
+	FROM
+		ic_lease_detail
+	WHERE
+		lease_bonus_id = #{leaseBonusId,jdbcType=BIGINT} and del_flag > 0 and bonus_status = 2
+  </select>
+  
+  
+   <sql id="Column_List_FOR_FRONT" >
+    d.id  as  id,
+d.lease_bonus_id  as  lease_bonus_id,
+d.start_date  as  start_date,
+d.end_date  as  end_date,
+d.lease_days  as  lease_days,
+d.rental  as  rental,
+d.total_rental  as  total_rental,
+d.user_bonus  as  user_bonus,
+d.bonus_status  as  bonus_status,
+d.bonus_date  as  bonus_date
+  </sql>
+  
+  <!-- 根据项目id查询租赁记录 -->
+  <select id="findListByProjectId" resultMap="BaseResultMap">
+  	SELECT
+		<include refid="Column_List_FOR_FRONT" />
+	FROM
+		ic_lease_detail AS d
+	LEFT JOIN ic_lease_bonus AS b ON d.lease_bonus_id = b.id
+	WHERE
+		b.project_id = #{projectId,jdbcType=BIGINT} and d.del_flag > 0 and d.bonus_status = 2
+  </select>
+  
+  <!-- 获取一个分红项目中用户已分红的总额 -->
+  <select id="getTotalUserBonusByLeaseBonusId"  resultType="java.math.BigDecimal">
+  	SELECT
+		sum(
+			total_rental * user_bonus / 100
+		) AS total_user_rental
+		FROM
+			ic_lease_detail
+		WHERE
+			lease_bonus_id = #{leaseBonusId,jdbcType=BIGINT} 
+		AND bonus_status = 2
+		AND del_flag > 0
+  </select>
+  
+  <!-- 根据状态获取项目分红期数 -->
+  <select id="getLeaseDetailCountByStatus" resultType="java.lang.Integer" >
+  	SELECT
+		count(1)
+	FROM
+		ic_lease_detail
+	<if test="map != null">
+		<where>
+			<if test="map.leaseBonusId != null">
+				lease_bonus_id = #{map.leaseBonusId} 
+			</if>
+			<if test="map.bonusStatus != null">
+				and bonus_status = #{map.bonusStatus} 
+			</if>
+		</where>
+	</if>		
+  </select>
+</mapper>

@@ -1,0 +1,113 @@
+##A轮活动
+#parse("/common/common.vm")
+#set($title="融光焕发_$!{title_suffix}")
+#set($css_url=["$root_css_url/activity/celebrationA.css"])
+#set($js_url=["$root_url/static/lib/js/vue/vue.js","$root_js_url/activity/celebrationA.js"])
+##页头
+
+#if($currentUser)
+    #set($logined=1)
+#else
+    #set($logined=0)
+#end
+#CSRFToken('xToken')
+
+<div class="m-celebrationA-hd01"></div>
+<div class="m-celebrationA-hd02">
+    <div class="g-wrap f-pos-r">
+        <a href="/activity/Again" target="_blank">
+            前往A <sup class="u-icon-plus">+</sup>轮发布会>>  ##TODO 此处需要合并之后再测试
+        </a>
+    </div>
+</div>
+
+<div  id="j-celebration">
+
+<div class="m-celebrationA-redPacket">
+    <div class="g-wrap f-pos-r">
+        <div class="u-celebrationA-redPacket">
+            <h2>感恩红包雨</h2>
+            <p> <i v-text="startTime"></i>-<i v-text="endTime"></i>，每日均有感恩红包雨，登录即可领取红包，每人每天只能领取一个红包哦。</p>
+            <a :class="{'z-finish':received||notDuringActive}" @click="getRewards" v-text="rewardsBtnText">领取红包</a>
+        </div>
+    </div>
+</div>
+
+<div class="m-celebrationA-revelry">
+    <div class="u-celebrationA-revelry">
+        <div>
+            <h3>感恩齐狂欢</h3>
+            <p>活动期间，单笔投资任意项目满足以下条件即可获得对应的现金券一张，多投多得哦。</p>
+            <table>
+                <tbody>
+                <tr>
+                    <td >单笔投资</td>
+                    <td >现金券</td>
+                </tr>
+
+                <tr>
+                    <td>3000~3999</td>
+                    <td>50</td>
+                </tr>
+                <tr>
+                    <td>4000~4999</td>
+                    <td>100</td>
+                </tr>
+                <tr>
+                    <td>≥5000</td>
+                    <td>200</td>
+                </tr>
+                </tbody>
+            </table>
+            <a href="/products/list-all-all-investing-1-createTimeAsc-1.html" target="_blank">立即投资</a>
+        </div>
+        <div>
+            <h3>感恩高收益</h3>
+            <p>活动期间，单笔投资房有融或房租融项目满8000元，即可获得收益券一张，乐享高收益。</p>
+            <table>
+                <tbody>
+                <tr>
+                    <td >收益天数</td>
+                    <td >收益券</td>
+                </tr>
+
+                <tr>
+                    <td>N<100</td>
+                    <td>0.5%</td>
+                </tr>
+                <tr>
+                    <td>N≥100</td>
+                    <td>1.5%</td>
+                </tr>
+                </tbody>
+            </table>
+            <a href="/products/list-all-house-investing-1.html" target="_blank">立即投资</a>
+        </div>
+    </div>
+</div>
+##规则
+<div class="m-celebrationA-rule">
+    <div class="u-celebrationA-rule">
+        <div>
+            <h4>活动规则</h4>
+            <p>
+                1、活动对象：有融网所有用户；
+                <br>2、活动时间：
+                <i v-text="fullStartTime"></i>~<i v-text="fullEndTime"></i>
+##                2016年7月1日00:00~7月3日23:59；
+                <br>3、现金券领取后7天内有效，收益券领取后10天内有效；
+                <span>现金券使用规则:
+                <br>面额为50元的现金券，起投金额3000元，起投期限30天
+                <br>面额为66元的现金券，起投金额3000元，起投期限40天
+                <br>面额为88元的现金券，起投金额4000元，起投期限60天
+                <br>面额为100元的现金券，起投金额5000元，起投期限60天
+                <br>面额为200元的现金券，起投金额8000元，起投期限90天
+                    </span>
+                4、如有其他疑问，请拨打客服热线：400-025-6688；
+                <br>本活动最终解释权归有融网所有
+            </p>
+        </div>
+    </div>
+</div>
+
+</div>

@@ -1,0 +1,48 @@
+#parse("/preservation/head.vm") 
+<div class="col-xs-12">
+  <p>
+    <button id = "new_preservation" type="button" class="btn btn-info btn-sm btn-primary" >新增</button>
+    <button id = "edit_preservation" type="button" class="btn  btn-pink btn-sm btn-primary" >修改</button>
+    <button id = "delete_preservation" type="button" class="btn btn-danger btn-sm btn-primary" >删除</button>
+  </p>
+</div>
+<div class="col-xs-12">
+     <div class="table-header">
+     		表头信息
+     </div>
+   <div class="table-responsive">
+     	<table id="preservation-table-2" class="table table-striped table-bordered" cellspacing="0" width="100%">
+     	       <thead> 
+     	           <tr>  
+     	            <th></th>
+ <th><input type="text" name="search_id"  class="input-small search_init" /></th>
+ <th><input type="text" name="search_preservationId"  class="input-small search_init" /></th>
+ <th><input type="text" name="search_transactionId"  class="input-small search_init" /></th>
+ <th><input type="text" name="search_attachmentId"  class="input-small search_init" /></th>
+ <th><input type="text" name="search_preservationTime"  class="input-small search_init" /></th>
+ <th><input type="text" name="search_successFlag"  class="input-small search_init" /></th>
+ <th><input type="text" name="search_remarks"  class="input-small search_init" /></th>
+ <th><input type="text" name="search_delFlag"  class="input-small search_init" /></th>
+ <th><input type="text" name="search_createTime"  class="input-small search_init" /></th>
+ <th><input type="text" name="search_updateTime"  class="input-small search_init" /></th>
+         <th><button id = "query_preservation" type="button" class="btn btn-info btn-sm btn-primary">查询</button></th>
+                    </tr>
+ <tr >
+ <th ><label><input class="ace" type="checkbox"> <span class="lbl"></span></label></th>
+<th >ID</th>
+<th >数据保全id</th>
+<th >交易号</th>
+<th >附件id</th>
+<th >保全时间</th>
+<th >保全状态， -1-失败，1-成功</th>
+<th >备注</th>
+<th >删除标记</th>
+<th >创建时间</th>
+<th >更新时间</th>
+<th ></th>
+ </tr>
+ </thead>
+ </table>
+ </div>
+ </div>
+ #parse("/preservation/form.vm")

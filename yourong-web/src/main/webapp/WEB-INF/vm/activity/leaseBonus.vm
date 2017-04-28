@@ -1,0 +1,689 @@
+<!--
+##投资分红 
+#parse('/common/common.vm') 
+#set($css_url=["$root_css_url/common.css"])
+#set($js_url=["$root_js_url/activity/leaseBonus.js"])
+#set($title="一份投资，双重收益_$!{title_suffix}")
+-->
+
+<style>
+    .g-bd {
+        margin-bottom: 0;
+    }
+    
+    .g-wrap {
+        width: 990px;
+        margin: 0 auto;
+    }
+    /**页头**/
+    
+    .u-dividend-hd {
+        width: 100%;
+        height: 536px;
+        margin-top: -8px;
+        text-indent: -9999px;
+        position: relative;
+        background: url($root_url/static/img/activity/leaseBonus/dividend_hd.jpg) no-repeat center;
+    }
+    /**什么是质押车辆租赁分红？**/
+    
+    .m-dividend-question {
+        background-color: #f5e65b;
+        height: 435px;
+    }
+    
+    .u-dividend-content {
+        margin-top: -45px;
+        position: relative;
+        z-index: 99;
+    }
+    
+    .m-dividend-question strong {
+        height: 38px;
+        width: 990px;
+        color: #806600;
+        display: block;
+        line-height: 2em;
+        border-top: 1px solid #c6a832;
+        border-bottom: 1px solid #c6a832;
+    }
+    
+    .m-dividend-question p {
+        color: #957f27;
+        margin-top: 15px;
+        margin-bottom: 40px;
+    }
+    
+    .u-dividend-car {
+        background: url($root_url/static/img/activity/leaseBonus/dividend_icon.png) no-repeat 0px 0px;
+        display: block;
+        height: 180px;
+        width: 494px;
+        position: absolute;
+        float: left;
+        color: #fff;
+    }
+    
+    .u-dividend-car em {
+        position: relative;
+        top: 135px;
+        left: 70px;
+        font-weight: bold;
+    }
+    
+    .u-dividend-car i {
+        position: relative;
+        top: 135px;
+        left: 200px;
+        font-weight: bold;
+    }
+    
+    .u-dividend-accrual {
+        display: block;
+        height: 120px;
+        width: 406px;
+        float: right;
+        background-color: #fff;
+        padding: 60px 42px 0 42px;
+    }
+    
+    .u-dividend-accrual .u-dividend-money {
+        background: url($root_url/static/img/activity/leaseBonus/dividend_icon.png) no-repeat 0px -203px;
+        width: 101px;
+        height: 51px;
+        float: left;
+        display: block;
+    }
+    
+    .u-dividend-accrual .u-dividend-coin {
+        background: url($root_url/static/img/activity/leaseBonus/dividend_icon.png) no-repeat -108px -203px;
+        width: 46px;
+        height: 52px;
+        margin-left: 9px;
+        float: left;
+        display: block;
+    }
+    
+    .u-dividend-accrual dd {
+        float: left;
+        line-height: 50px;
+        font-weight: bold;
+        color: #ff5951;
+        margin-left: 10px;
+    }
+    
+    .u-dividend-accrual p {
+        color: #4f4f4f;
+        margin-top: 27px;
+    }
+    
+    .u-dividend-notice {
+        color: #4f4f4f;
+        margin-top: 240px;
+        display: block;
+    }
+    /**项目表**/
+    
+    .m-dividend-plist {
+        min-height: 300px;
+        background-color: #eee;
+        position: relative;
+        padding-bottom: 100px;
+    }
+    
+    .m-dividend-plist h3 {
+        color: #4f4f4f;
+        font-weight: bold;
+        padding-top: 46px;
+        margin-bottom: 34px;
+    }
+    
+    .m-dividend-plist .u-lease-list>li {
+        width: 238px;
+        height: 385px;
+        border-color: #fff;
+        background-color: #fff;
+        margin: 0 10px 20px 0;
+        float: left;
+    }
+    
+    .m-dividend-plist .u-lease-list>.z-nth4n {
+        margin-right: 0;
+    }
+    
+    .m-dividend-plist h2 {
+        height: 58px;
+        line-height: 58px;
+        color: #444;
+        font-weight: bold;
+        clear: both;
+    }
+    
+    .m-dividend-plist h4 {
+        font-weight: bold;
+        color: #666;
+        padding: 25px 10px 12px 20px;
+    }
+    
+    .m-dividend-plist h4 a {
+        color: #666;
+        display: block;
+        height: 40px;
+    }
+    
+    .m-dividend-plist h4 a:hover {
+        text-decoration: none;
+    }
+    
+    .m-dividend-plist h4 a span {
+        color: #999;
+    }
+    
+    .m-dividend-plist h4 span {
+        display: block;
+        color: #999;
+    }
+    
+    .m-dividend-plist li ul {
+        color: #666;
+        margin: 0 11px 20px;
+    }
+    
+    .m-dividend-plist li li {
+        height: 130px;
+        line-height: 5em;
+        overflow: hidden;
+        position: relative;
+        padding: 0 0 0 10px;
+    }
+    
+
+    .m-dividend-plist li li span {
+        margin-top: 15px;
+		display: block;
+		line-height: 1em;
+    }
+    
+    .u-pl-photo s {
+        display: block;
+        height: 3px;
+        background: url($root_url/static/img/common/sprites.png) repeat-x -213px -166px;
+        overflow: hidden;
+    }
+    
+    .u-pl-wrap {
+        margin: 25px auto 25px;
+        position: relative;
+        display: block;
+        outline: none;
+    }
+    
+    .u-pl-wrap,
+    .u-pl-wrap i {
+        display: block;
+        height: 120px;
+        width: 120px;
+    }
+    
+    .u-pl-wrap i {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: url($root_url/static/img/common/sprites.png) repeat-x -73px -190px;
+    }
+    
+    .u-pl-wrap img {
+        height: 120px;
+        width: 120px;
+        overflow: hidden;
+    }
+    
+    .u-pl-wrap .u-pl-stat {
+        display: block;
+    }
+    
+    .u-pl-wrap .u-pl-stat {
+        position: absolute;
+        top: -20px;
+        left: -20px;
+    }
+    
+    .u-pl-process,
+    .u-pl-amount,
+    .u-pl-process2 {
+        color: #999;
+        height: 40px;
+        line-height: 40px;
+    }
+    
+    .u-pl-amount {
+        display: none;
+    }
+    
+    .m-dividend-plist li:hover .u-pl-amount {
+        display: block;
+    }
+    
+    .m-dividend-plist li:hover .u-pl-process {
+        display: none;
+    }
+    
+    .z-actived:hover .u-pl-total span,
+    .z-actived:hover .u-pl-date span {
+        color: #333;
+    }
+    
+    .u-pl-btn {
+        display: inline-block;
+        width: 138px;
+        height: 28px;
+        line-height: 28px;
+        border-color: #999;
+        text-align: center;
+        color: #999;
+        margin: 0 0 0 76px;
+        outline: none;
+    }
+    
+    .u-pl-btn.z-disabled {
+        color: #999;
+    }
+    
+    .u-pl-btn.z-actived {
+        color: #fff;
+        background-color: #e33f4a;
+        border-color: #e33f4a;
+    }
+    
+    .u-pl-btn.z-closed {
+        color: #fff;
+        background-color: #f8ada8;
+        border-color: #f8ada8;
+    }
+    
+    .u-pl-btn:link {
+        color: #fff;
+    }
+    
+    .u-pl-btn.z-disabled {
+        color: #999;
+    }
+    
+    .u-pl-btn:hover {
+        color: #fff;
+        text-decoration: none;
+    }
+    
+    .u-pl-btn.z-disabled:hover {
+        color: #999;
+    }
+    /*圆环进度条*/
+    
+    .circliful {
+        position: relative;
+    }
+    
+    .circle-text,
+    .circle-info,
+    .circle-text-half,
+    .circle-info-half {
+        width: 100%;
+        position: absolute;
+        text-align: center;
+        display: inline-block;
+    }
+    
+    .circle-info,
+    .circle-info-half {
+        color: #999;
+    }
+    
+    .circliful .fa {
+        margin: -10px 3px 0 3px;
+        position: relative;
+        bottom: 4px;
+    }
+    
+	.u-dividend-lease i{
+		color:#d74148;
+	}
+    
+    .u-dividend-lease a{
+        width: 60px;
+        letter-spacing: 4px;
+        background-color: #eee;
+        color: #999;
+        cursor: pointer;
+        padding-left: 4px;
+        line-height: 20px;
+        text-align: center;
+        height: 20px;
+      	position: absolute;
+		bottom: 13px;
+    }
+    
+    .u-dividend-bonus a {
+        position: absolute;
+        top: 8px;
+        right: 16px;
+    }
+    
+    .u-dividend-lease a:link {
+        color: #999;
+        text-decoration: none;
+    }
+    
+    .u-dividend-lease a:visited {
+        color: #999;
+        text-decoration: none;
+    }
+    
+    .u-dividend-lease a:hover {
+        color: #999;
+        text-decoration: none;
+    }
+    
+    .u-dividend-bonus a:link {
+        color: #999;
+        text-decoration: none;
+    }
+    
+    .u-dividend-bonus a:visited {
+        color: #999;
+        text-decoration: none;
+    }
+    
+    .u-dividend-bonus a:hover {
+        color: #999;
+        text-decoration: none;
+    }
+    .u-dividend-lease>em{ 
+    	color:#666;
+    	margin-left:25px;
+    }
+    /**规则说明**/
+    
+    .m-dividend-rule {
+        height: 470px;
+        padding-top: 58px;
+        background-color: #f5e65b;
+    }
+    
+    .m-dividend-rule strong {
+        height: 38px;
+        width: 990px;
+        color: #806600;
+        padding-left: 10px;
+        display: block;
+        line-height: 2em;
+        border-top: 1px solid #c6a832;
+        border-bottom: 1px solid #c6a832;
+    }
+    
+    .m-dividend-rule p {
+        color: #59490b;
+        line-height: 3em;
+        margin-top: 30px;
+        padding-left: 10px;
+    }
+    
+    .m-dividend-pagenav {
+        text-align: center;
+        margin-top: 48px;
+    }
+    
+    .m-lease-box .u-floatbox-content {
+        width: 700px;
+        height: 230px;
+    }
+    
+    .m-lease-box .u-lease-head {
+        height: 41px;
+        border-top:2px solid #dddbd6;
+    }
+    
+    .m-lease-box .u-lease-body {
+        max-height: 186px;
+        overflow-y: auto;
+        border-bottom:2px solid #dddbd6;
+    }
+    .m-lease-box table {
+        width: 700px;
+    }
+    
+    .m-lease-box th {
+        height: 40px;
+        line-height: 40px;
+        font-weight: bold;
+        color: #464646;
+        border-bottom: 1px solid #dddbd5;
+    }
+    
+    .m-lease-box td {
+        height: 30px;
+        line-height: 30px;
+        color: #656565;
+        border-top: 1px solid #dddbd5;
+    }
+    
+    .u-lease-body tr:first-child td {
+        border-top: none;
+    }
+    
+    .m-lease-box th,
+    .m-lease-box td {
+        text-align: center;
+        border-left: 1px solid #dddbd5;
+    }
+    
+    .m-lease-box th:first-child,
+    .m-lease-box td:first-child {
+        border-left: none;
+    }
+    
+    .m-bonus-box .u-floatbox-content {
+        width: 940px;
+        height: 350px;
+    }
+    
+    .u-bonus-stat {
+        border: 1px solid #d74147;
+    }
+    
+    .u-bonus-stat div {
+        background-color: #d74147;
+        height: 44px;
+        line-height: 44px;
+        color: #fff;
+        font-size:13px;
+        padding: 0 0 0 22px;
+    }
+    
+    .u-bonus-stat div em {
+        margin: 0 20px 0 0;
+    }
+    
+    .u-bonus-stat p {
+        height: 44px;
+        line-height: 44px;
+        color: #656565;
+        font-size:13px;
+        padding: 0 0 0 22px;
+    }
+    
+    .u-floatbox-content>span {
+        width: 920px;
+        height: 59px;
+        border-bottom: 1px solid #dddbd6;
+        display: block;
+        padding-left: 20px;
+        line-height: 59px;
+        color: #666;
+    }
+    
+    .m-lease-listBox {
+        height: 245px;
+        width: 920px;
+        position: relative;
+        overflow-y: auto;
+        margin-top: 12px;
+    }
+    
+    .m-lease-listBox li {
+        height: 35px;
+        width: 175px;
+        color: #707070;
+        float: left;
+        position: relative;
+        margin: 25px 50px 0 0;
+    }
+    
+    .m-lease-listBox li .u-user-wrap {
+        width: 115px;
+        display: inline-block;
+    }
+    
+    .u-user-head {
+        position: relative;
+        padding: 0 10px 0 0;
+        vertical-align: middle;
+    }
+    
+    .u-user-head,
+    .u-user-head>span,
+    .u-user-head img {
+        display: inline-block;
+        height: 35px;
+        width: 35px;
+        overflow: hidden;
+    }
+    
+    .u-user-head>span {
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 2;
+        background: url($root_url/static/img/common/sprites.png) no-repeat -75px -21px;
+    }
+    
+    .m-lease-listBox li>span {
+        position: absolute;
+        top: 7px;
+        right: 0px;
+    }
+    .m-pagenav{ 
+    	padding: 20px 30px 50px;
+    }
+    /*无项目时候显示的文字*/
+    .u-project-none{
+		padding-top: 200px;
+		display: block;
+		color: #666;
+		text-align: center;
+		letter-spacing:8px
+    }
+    /*首页项目进度环*/
+    .u-ring-bg{ 
+	position: absolute;
+	top: -20px;
+	left: -20px;
+	z-index: 1;
+	background: url(/static/img/homepage/round/round0.png) no-repeat center;
+	height: 160px; 
+	width: 160px;
+}
+</style>
+<div class="f-mh500 f-cf ">
+    <!--head-->
+    <div class="u-dividend-hd"></div>
+    <!--什么是质押车辆租赁分红？-->
+    <div class="m-dividend-question">
+        <div class="g-wrap u-dividend-content f-cf">
+            <strong class="f-fs18"> 什么是质押车辆租赁分红？ </strong>
+            <P class="f-fs14">
+                指在车辆质押借款项目中，质押车辆经出借人、借款人委托租赁公司出租，所得租金由借款人、出借人、租赁公司和有融网用户按比例分配，
+                <br> 从而可在降低借款人借款成本的同时，增加投资人的投资收益。
+            </P>
+            <span class="u-dividend-car f-fs14"> <em>债权车辆质押</em> <i>车辆委托租赁</i>
+			</span> <span class="u-dividend-accrual u-circle-7">
+				<dl class="f-cf f-fs24 f-fl">
+					<dt class="u-dividend-money"></dt>
+					<dd>利息收益</dd>
+					<dd>+</dd>
+				</dl>
+				<dl class="f-cf f-fs24">
+					<dt class="u-dividend-coin"></dt>
+					<dd>租赁分红</dd>
+				</dl>
+				<P class="f-fs12">投资该项目不仅可获得债权利息收益，若车辆出租还可获得租金分红收益。</P>
+			</span> <i class="f-fs12 u-dividend-notice">借款人、出借人与租赁公司签订了《委托租赁协议》，租赁公司出具《车辆使用保证函》</i>
+        </div>
+    </div>
+    <!--项目表-->
+
+    <form id="leasebonus_form">
+        <div class="g-wrap m-dividend-plist">
+            <div id="j-leaseBonus-table"></div>
+            <!-- floatbox -->
+            <div class="u-floatbox f-clear m-lease-box" id="j-lease-box">
+                <i></i>
+                <div class="u-floatbox-content f-round">
+                    <div class="u-lease-head">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th width="70">期数</th>
+                                    <th width="208">期限</th>
+                                    <th width="88">天数</th>
+                                    <th width="153">单价</th>
+                                    <th>租金</th>
+                                </tr>
+
+                            </thead>
+                        </table>
+                    </div>
+                    <div class="u-lease-body">
+                        <table>
+                            <tbody id="j-lease-body">
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+            <div class="u-floatbox f-clear m-bonus-box" id="j-bonus-box">
+                <i></i>
+                <div class="u-floatbox-content f-round">
+                    <div class="u-bonus-stat">
+                        <div class="f-fs14">
+                        租赁总收益：￥<em class="f-fs24 f-ff-din" name="totalIncomeStr"></em>该项目投资用户享受<span name="userBonus"></span>%的租赁收益分红：￥
+                            <em class="f-fs24 f-ff-din" name="userBonusStr"></em> (分红按投资额占比进行划分)
+                        </div>
+                        <p class="f-fs14">出借人享受<span name="lenderBonus"></span>%的租赁收益分红（￥<span name="lenderBonusStr"></span>）&nbsp;&nbsp;借款人享受<span name="borrowerBonus"></span>%的租赁收益分红（￥<span name="borrowerBonusStr"></span>）&nbsp;&nbsp;租赁公司享受<span name="lessorBonus"></span>%的租赁收益分红（￥<span name="lessorBonusStr"></span>）</p>
+                    </div>
+
+                    <ul class="m-lease-listBox f-cf" id="j-bonus-users">
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+</div>
+<!--规则说明-->
+<div class="m-dividend-rule">
+    <div class="g-wrap">
+        <strong class="f-fs18">规则说明</strong>
+        <p class="f-fs14">
+            	 1、租赁分红只针对车有融汽车质押债权项目；
+            <br> 2、出借方、借款方与租赁公司协议规定汽车租赁价格及租金的分配比例，投资者按一定比例分红；
+            <br> 3、项目还款后车辆尚未出租的，不适用分红规则；
+            <br> 4、出借人和借款人共同委托租赁公司向承租人出租质押车辆，租赁公司对质押车辆的毁损承担连带赔偿责任；
+            <br> 5、租赁公司对质押车辆对应的债权承担无限担保责任。
+        </p>
+    </div>
+</div>
+</div>

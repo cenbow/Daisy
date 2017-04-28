@@ -1,0 +1,306 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Microsoft Yahei';
+}
+
+[v-cloak] {
+  display: none;
+}
+.left {
+  float: left;
+}
+
+.g-title, .g-content {
+  text-align: center;
+}
+
+.g-title img {
+  display: block;
+  width: 100%;
+}
+
+.g-title #f-join {
+  width: 93.75%;
+  margin: 0 auto;
+}
+
+#f-love {
+  width: 93.75%;
+  margin: 20px auto 0;
+  height: 50px;
+  background-color: #ff4343;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+#f-love p {
+  font-size: 14px;
+  line-height: 30px;
+  color: white;
+}
+
+#f-love img {
+  display: block;
+  width: 5.7%;
+  margin: 0 auto;
+}
+
+.m-love-con {
+  width: 93.75%;
+  margin: 20px auto 0;
+  overflow: hidden;
+}
+.m-love-con img {
+  display: block;
+  width: 100%;
+}
+
+.m-love-con p {
+  color: #ff4343;
+  font-size: 12px;
+}
+
+.m-love-con .u-love-text {
+  font-size: 13px;
+  color: #919191;
+  text-align: left;
+  margin-top: 5px;
+}
+
+.m-love-con .u-love-news img {
+  width: 33.33%;
+  margin-left: 12.3%;
+}
+
+.m-love-con .u-love-news a {
+  font-size: 15px;
+  color: #ff4343;
+  margin-left: 12%;
+  margin-top: 0.6rem;
+}
+
+.g-foot {
+  margin-top: 100px;
+  background-color: #eeeeee;
+  color: #999999;
+  overflow: hidden;
+}
+
+.g-foot button {
+  width: 43.75%;
+  height: 37px;
+  border-radius: 5px;
+  border: 1px solid #999999;
+  margin-left: 4.17%;
+  display: inline-block;
+  margin-top: 2.5rem;
+}
+
+.g-foot button a {
+  color: #999999;
+}
+
+.g-foot ul {
+  height: 1rem;
+  width: 80%;
+  margin: 10px auto;
+}
+
+.g-foot li {
+  float: left;
+  font-size: 13px;
+  margin-left: 6%;
+}
+
+.g-foot p {
+  font-size: 13px;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/*未开始页面*/
+.g-activity-wait .g-content img {
+  width: 39%;
+}
+
+.g-activity-wait .g-content .m-wait {
+  width: 70%;
+  margin: 1rem auto 0;
+  border-radius: 20px;
+  background-color: #d2d2d2;
+  line-height: 2.5rem;
+  color: #828282;
+}
+
+.g-activity-wait .m-introduce {
+  text-align: left;
+  font-size: 14px;
+  color: #828282;
+  line-height: 30px;
+  width: 90%;
+  margin: 1rem auto 0;
+}
+
+.m-heart {
+  background: url("../../../img/activity/publicWelfare/love-stop.png");
+  width: 41%;
+  height: 6.875rem;
+  background-size: 100% 100%;
+  text-align: center;
+  margin: 10px auto;
+}
+
+.m-heart div {
+  color: white;
+  padding-top: 25px;
+}
+
+.m-support {
+  color: white;
+  background-color: #ff3e47;
+  width: 59.3%;
+  margin: 1rem auto 0;
+  border-radius: 20px;
+  line-height: 2.5rem;
+  display: block;
+}
+
+.m-sup-peo {
+  color: #ff3e47;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+/*#g-wait,#g-stop,#g-sup{*/
+/*display: none;*/
+/*}*/
+.g-activity-wait {
+  display: none;
+  position: relative;
+}
+
+.m-alert-d, .m-alert-s, .m-alert-l {
+  background: url("../../../img/activity/publicWelfare/alert.png");
+  width: 93.75%;
+  height: 12.5rem;
+  background-size: 100% 100%;
+  position: absolute;
+  left: 3.125%;
+  top: 13.125rem;
+  border-radius: 5px;
+  display: none;
+  z-index: 900;
+}
+
+.m-alert-d p {
+  text-align: center;
+  color: #999999;
+  margin-top: 5rem;
+}
+
+.m-alert-s p {
+  text-align: center;
+  color: #999999;
+  margin-top: 5rem;
+}
+
+.m-alert-l p {
+  text-align: center;
+  color: #999999;
+  margin-top: 5rem;
+}
+
+.u-button {
+  background-color: #ff4343;
+  color: white;
+  border-radius: 5px;
+  margin: 2rem auto 0;
+  width: 30%;
+  text-align: center;
+}
+
+/*.m-fly {*/
+/*margin-left: 40%;*/
+/*}*/
+
+.g-activity-wait .g-content .m-thank {
+  width: 51%;
+  margin-bottom: -10px;
+  margin-top: 1rem;
+}
+
+.m-know {
+  position: relative;
+}
+
+.m-know a {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  text-decoration: underline;
+}
+
+#g-look {
+  position: relative;
+}
+
+.m-know-apple {
+  position: fixed;
+  top: 2.5rem;
+  left: 3%;
+  background: #FFFFFF;
+  width: 94%;
+  border-radius: 5px;
+  z-index: 300;
+  display: none;
+  overflow-y: scroll;
+  padding-top: 20px;
+}
+
+.m-know-apple .u-school-logo {
+  width: 100%;
+  margin-bottom: 16px;
+}
+.m-know-apple p {
+  color: #bcbcbc;
+  font-size: 13px;
+  line-height: 22px;
+  width: 90%;
+  margin-left: 5%;
+}
+
+.m-know-apple .u-closeBtn {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  width: 10%;
+}
+
+.m-over {
+  overflow: hidden;
+  height: 200px;
+  width: 50%;
+  font-size: 12px;
+}
+
+.m-over li {
+  margin-top: 10px;
+  text-align: left;
+}
+
+.g-activity-wait .g-content .m-over li img {
+  width: 30px;
+  vertical-align: middle;
+  border-radius: 50%;
+}
+
+#g-sup {
+  position: relative;
+}
+
+.m-fly {
+  position: absolute;
+  right: 2rem;
+  top: 10px;
+}

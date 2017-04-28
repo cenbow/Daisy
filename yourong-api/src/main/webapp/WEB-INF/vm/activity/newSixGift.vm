@@ -1,0 +1,290 @@
+##新手六重礼活动
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($title="新手六重礼")
+#set($css_url=["$res_url/source/css/activity/newSixGift/newSixGift.css"])
+#set($yrimg_url='https://yrimg.oss-cn-hangzhou.aliyuncs.com')
+#set($encryptionId=$request.getParameter("encryptionId"))
+#set($isNeedYRWtoken=$request.getParameter("isNeedYRWtoken"))
+#set($loginSource=$request.getHeader("loginSource"))
+#if($currentUser)
+    #set($logined=true)
+#else
+    #set($logined=false)
+#end
+#set($os=3)
+##  安卓
+#if($loginSource==1)
+    #set($os=1)
+#end
+##  IOS
+#if($loginSource==2)
+    #set($os=2)
+#end
+
+<div class="g-main" id="newSixGift" os="$!{os}" v-cloak>
+##头部按钮和banner
+    #if($os>2)
+        <h2 class="u-pageTitle f-pos-r u-section1-title" id="j-title">
+            <a href="$m_url">有融网</a>
+            <span class="u-login-link f-pos-a">
+                #if(!$currentUser)
+                    <a href="{{loginUrl}}">登录</a>
+                <a href="$siteurl/mstation/register">注册</a>
+                #else
+                    <a href="$mCenter_logout_url">退出</a>
+                #end
+        </span>
+        </h2>
+    #else
+        <style>
+            .g-ft {
+                display: none;
+            }
+        </style>
+    #end
+
+## top bg
+    <div class="u-top-img-wrap">
+        <img src="$res_url/img/activity/newSixGift/banner-518.png" class="u-img-responsive">
+    </div>
+    <div class="u-topTitle">
+        <span><i class="u-icon u-left-icon"></i>新手任务<i class="u-icon u-right-icon"></i></span>
+    </div>
+    <div class="m-newcomer-task-main">
+        <div class="m-task-list">
+            <div class="m-task-item" :class="{'z-finished':initData.isverifyTrueName}"
+                 @click="MemberBehavior('A1','$HtmlToken')">
+                <div class="m-task-item-wrap">
+                    <i class="u-task-icon u-task-bgi u-task-bgi1">
+                        <img src="$res_url/img/activity/newSixGift/security.png" alt="实名认证" width="100%">
+                    </i>
+                    <div class="m-item-content">
+                        <div class="m-task-conc">
+                            <h2 :class="{'f-fcolor9B':initData.isverifyTrueName}">实名认证</h2>
+                            <span>完成实名认证，送 <em :class="{'f-fc-red':!initData.isverifyTrueName}">518</em>大礼包</span>
+                        </div>
+
+                        <a class="u-task-btn z-disabled" v-if="initData.isverifyTrueName">
+                            <span>已完成<i class="u-space-icon"></i></span>
+                        </a>
+                        <template v-else>
+                            #if($os==1)
+                                <a class="u-task-btn" @click="gotoLogin(event)"
+                                   onclick='Android.ToActivity("realName",  null)'>
+                                    <span>去完成<i class="u-space-icon u-left-arrow"></i></span>
+                                </a>
+                            #elseif($os==2)
+                                <a class="u-task-btn j-show-dialog" @click="gotoLogin(event)"
+                                   href="yrw-skip://invokeMethod=realName">
+                                    <span>去完成<i class="u-space-icon u-left-arrow"></i></span>
+                                </a>
+                            #else
+                                <a class="u-task-btn j-show-dialog"
+                                   href="#if(!$currentUser){{loginUrl}} #else{{sinapayUrl}} #end">
+                                    <span>去完成<i class="u-space-icon u-left-arrow"></i></span>
+                                </a>
+                            #end
+                        </template>
+                    </div>
+                </div>
+            </div>
+            <div class="m-task-item" :class="{'z-finished':initData.isInvestment}"
+                 @click="MemberBehavior('A2','$HtmlToken')">
+                <div class="m-task-item-wrap">
+                    <i class="u-task-icon">
+                        <img src="$res_url/img/activity/newSixGift/qiandai.png" alt="首次投资" width="100%">
+                    </i>
+                    <div class="m-item-content">
+                        <div class="m-task-conc">
+                            <h2 :class="{'f-fcolor9B':initData.isInvestment}">首次投资</h2>
+                            <span>任意投资一笔，送 <em :class="{'f-fc-red': !initData.isInvestment}">10点</em>人气值</span>
+                        </div>
+                        <a v-if="initData.isInvestment" class="u-task-btn z-disabled">
+                            <span>已完成<i class="u-space-icon"></i></span>
+                        </a>
+                        <template v-else>
+                            #if($os==1)
+                                <a @click="gotoLogin(event)" class="u-task-btn"
+                                   onclick='Android.ToActivity("projectList",  null)'>
+                                    <span>去完成<i class="u-space-icon u-left-arrow"></i></span>
+                                </a>
+                            #elseif($os==2)
+                                <a @click="gotoLogin(event)" class="u-task-btn j-show-dialog"
+                                   href="yrw-skip://invokeMethod=projectList">
+                                    <span>去完成<i class="u-space-icon u-left-arrow"></i></span>
+                                </a>
+                            #else
+                                <a id="j-share-link" class="u-task-btn j-show-dialog"
+                                   href="$siteurl/products/m/list-all-all-1.html">
+                                    <span>去完成<i class="u-space-icon u-left-arrow"></i></span>
+                                </a>
+                            #end
+                        </template>
+                    </div>
+                </div>
+            </div>
+            <div class="m-task-item" :class="{'z-finished':initData.isBindEmail}"
+                 @click="MemberBehavior('A3','$HtmlToken')">
+                <div class="m-task-item-wrap">
+                    <i class="u-task-icon">
+                        <img src="$res_url/img/activity/newSixGift/envelope.png" alt="绑定邮箱" width="100%">
+                    </i>
+                    <div class="m-item-content">
+                        <div class="m-task-conc">
+                            <h2 :class="{'f-fcolor9B':initData.isBindEmail}">绑定邮箱</h2>
+                            <span>成功绑定邮箱，送 <em :class="{'f-fc-red': !initData.isBindEmail}">10点</em>人气值</span>
+                        </div>
+                        <a v-if="initData.isBindEmail" class="u-task-btn z-disabled">
+                            <span>已完成<i class="u-space-icon"></i></span>
+                        </a>
+                        <template v-else>
+                            #if($os==1)
+                                <a @click="gotoLogin(event)" class="u-task-btn"
+                                   onclick='Android.ToActivity("bindemail",  null)'>
+                                    <span>去完成<i class="u-space-icon u-left-arrow"></i></span>
+                                </a>
+                            #elseif($os==2)
+                                <a @click="gotoLogin(event)" class="u-task-btn j-show-dialog"
+                                   href="yrw-skip://invokeMethod=bindemail">
+                                    <span>去完成<i class="u-space-icon u-left-arrow"></i></span>
+                                </a>
+                            #else
+                                <a class="u-task-btn j-show-dialog"
+                                   href="#if(!$currentUser){{loginUrl}} #else{{bindEmailUrl}}#end">
+                                    <span>去完成<i class="u-space-icon u-left-arrow"></i></span>
+                                </a>
+                            #end
+                        </template>
+                    </div>
+                </div>
+            </div>
+            <div class="m-task-item" :class="{'z-finished':initData.isCompletedInfo}"
+                 @click="MemberBehavior('A4','$HtmlToken')">
+                <div class="m-task-item-wrap">
+                    <i class="u-task-icon">
+                        <img src="$res_url/img/activity/newSixGift/file.png" alt="完善信息" width="100%">
+                    </i>
+                    <div class="m-item-content">
+                        <div class="m-task-conc">
+                            <h2 :class="{'f-fcolor9B':initData.isCompletedInfo }">完善信息</h2>
+                            <span>完善个人资料，送 <em :class="{'f-fc-red': !initData.isCompletedInfo}">10点</em>人气值</span>
+                        </div>
+                        <a v-if="initData.isCompletedInfo" class="u-task-btn z-disabled">
+                            <span>已完成<i class="u-space-icon"></i></span>
+                        </a>
+                        <template v-else>
+                            #if($os==1)
+                                <a @click="gotoLogin(event)" class="u-task-btn"
+                                   onclick='Android.ToActivity("userInfo",  null)'>
+                                    <span>去完成<i class="u-space-icon u-left-arrow"></i></span>
+                                </a>
+                            #elseif($os==2)
+                                <a @click="gotoLogin(event)" class="u-task-btn j-show-dialog"
+                                   href="yrw-skip://invokeMethod=userInfo">
+                                    <span>去完成<i class="u-space-icon u-left-arrow"></i></span>
+                                </a>
+                            #else
+                                <a class="u-task-btn j-show-dialog"
+                                   href="#if(!$currentUser){{loginUrl}} #else$siteurl/mCenter/security#!personal#end">
+                                    <span>去完成<i class="u-space-icon u-left-arrow"></i></span>
+                                </a>
+                            #end
+                        </template>
+                    </div>
+                </div>
+            </div>
+            <div class="m-task-item" :class="{'z-finished':initData.isUseApp||os!=3}"
+                 @click="MemberBehavior('A5','$HtmlToken')">
+                <div class="m-task-item-wrap">
+                    <i class="u-task-icon">
+                        <img src="$res_url/img/activity/newSixGift/phone.png" alt="体验APP" width="100%">
+                    </i>
+                    <div class="m-item-content">
+                        <div class="m-task-conc">
+                            <h2 :class="{'f-fcolor9B':initData.isUseApp||os!=3}">体验APP</h2>
+                            <span>下载体验有融网APP，送 <em
+                                    :class="{'f-fc-red': !initData.isUseApp && os == 3}">10点</em>人气值</span>
+                        </div>
+                        #if($currentUser||$encryptionId)
+                            <a v-if="initData.isUseApp||os!=3 " class="u-task-btn z-disabled">
+                                <span>已完成<i class="u-space-icon"></i></span>
+                            </a>
+                            <a v-else class="u-task-btn j-show-dialog" href="$siteurl/static/page/twoCodeRedict.html">
+                                <span>去完成<i class="u-space-icon u-left-arrow"></i></span>
+                            </a>
+                        #else
+                            <a v-if="initData.isUseApp||os!=3" class="u-task-btn z-disabled">
+                                <span>已完成<i class="u-space-icon"></i></span>
+                            </a>
+                            <a v-else class="u-task-btn j-show-dialog" href="{{loginUrl}}">
+                                <span>去完成<i class="u-space-icon u-left-arrow"></i></span>
+                            </a>
+                        #end
+                    </div>
+                </div>
+            </div>
+            <div class="m-task-item" :class="{'z-finished':initData.isFollowWeiXin}"
+                 @click="MemberBehavior('A6','$HtmlToken')">
+                <div class="m-task-item-wrap">
+                    <i class="u-task-icon">
+                        <img src="$res_url/img/activity/newSixGift/weixin.png" alt="实名认证" width="100%">
+                    </i>
+                    <div class="m-item-content">
+                        <div class="m-task-conc">
+                            <h2 :class="{'f-fcolor9B':initData.isFollowWeiXin}">绑定微信</h2>
+                            <span>关注有融网微信 <i>(yourong_weixin)</i><br>绑定账号，送 <em
+                                    :class="{'f-fc-red': !initData.isFollowWeiXin}">10点</em>人气值</span>
+                        </div>
+                        <a v-if="initData.isFollowWeiXin" class="u-task-btn z-disabled">
+                            <span>已完成<i class="u-space-icon"></i></span>
+                        </a>
+                        <a v-else class="u-task-btn j-show-dialog" href="{{weixinLeadUrl}}">
+                            <span>去完成<i class="u-space-icon u-left-arrow"></i></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div data="$!{data}"></div>
+</div>
+
+#if($debug)
+<div id="j-console" style="width: 100%; overflow: hidden"></div>
+#end
+<div id="j-logined" class="u-loginedBlock f-dn">
+    <p>请先登录哦！</p>
+    <button data-target="cancel">确定</button>
+</div>
+<div class="u-cover j-cover"></div>
+#set($pageScript="
+<script src='$aliyunOss_url/res/lib/vue/v1/vue.min.js'></script>
+<script src='$res_url/lib/vue/vue.extend.js'></script>
+<script src='$res_url/assets/js/common/appHookES5.js'></script>
+<script>
+    (function () {
+        window.hook = new AppHook($!{os})
+        //安卓app跳转
+        $('#j-share-link').on('click', function () {
+            if ($!{os}==1
+            )
+            {
+                Android.ToActivity('projectList', null);
+            }
+        })
+        if ($!{os}==1
+        )
+        {
+            Android.UpdateTitle('新手六重礼')
+        }
+    })()
+    var receiveData = $!{data},
+            logined =$logined,
+            os =$!{os},
+            isNeedYRWtoken = '$!{isNeedYRWtoken}'
+    encryptionId = '$!{encryptionId}'
+    seajs.use('$res_url/source/js/activity/newSixGift.js');
+</script>
+")
+#CSRFToken("xToken")

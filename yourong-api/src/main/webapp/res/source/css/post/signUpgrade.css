@@ -1,0 +1,140 @@
+@media screen and (min-width: 390px) {
+    html {
+        font-size: 62.5%;
+    }
+    .m-su-largestbox{
+        margin-top:33rem!important;
+    }
+
+}
+@media screen and (min-width: 360px) and (max-width:389px) {
+    html {
+        font-size: 54.3%;
+    }
+    .m-su-largestbox{
+        margin-top:33rem!important;
+    }
+}
+@media screen and (max-width:359px) {
+    html {
+        font-size:48.3%;
+    }
+    .m-su-largestbox{
+        margin-top:30rem!important;
+    }
+}
+
+.m-su-top{
+    background:url("../../../img/post/signUpgrade/sg-header.png") no-repeat center top;
+    background-size:100% ;
+
+}
+
+.m-su-top h1{
+        position: relative;
+         color:#ffffff;
+         font-size:2rem;
+          top:0.6rem;
+         padding-left:1rem;
+
+}
+
+.m-su-largestbox{
+    margin:27rem auto 0;
+    width:90%;
+
+
+}
+
+
+.u-su-hd1{
+      border-bottom:1px solid;
+       width: 4rem;
+      height:3.5rem;
+      border-color:#d74148;
+      color:#d74148;
+      font-size:4rem;
+       line-height:87%;
+      text-align: center;
+      display: inline-block;
+      position:absolute;
+}
+
+
+.u-su-hd2{
+       border-bottom: 1px solid;
+    border-color: #dddddd;
+
+       margin-left: 5rem;
+
+}
+.u-su-hd2 h2{
+       font-size:1.8rem;
+       color:#d74148;
+       font-weight:bold;
+}
+.u-su-hd2 h3{
+       font-size:1.4rem;
+       color:#989898;
+        font-weight:bold;
+}
+
+.m-su-ct{
+        font-size:1.4rem;
+         color: #a1a1a1;
+         margin-left:5rem;
+        position: relative;
+        line-height:3rem;
+}
+
+.m-su-hd-ct{
+
+        border-bottom:0.1rem;
+        border:solid;
+        border-color:#ffffff;
+
+}
+.f-su-photo{
+    width:100%;
+     display:inline-block;
+}
+
+.m-su-ct ul{
+     border-bottom: 1px solid #dddddd;
+
+     font-size:1.4rem;
+     line-height:3.5rem;
+     padding-bottom:1.3rem;
+
+}
+.m-su-ct b{
+
+     font-weight:bold;
+     color: #999999;
+      font-size:1.4rem;
+
+}
+
+.m-su-ct h5{
+        background:url("../../../img/post/signUpgrade/p3.png") no-repeat;
+         padding-left:3.5rem;
+         line-height:2.8rem;
+         font-size: 1.4rem;
+         color:#666666;
+         margin-top:1rem;
+}
+
+.m-su-ct h4{
+    font-size:62.5%;
+    color:#666666;
+    text-indent:20%;
+
+}
+.m-su-ct p{
+      margin-top:2rem ;
+      margin-buttom:1rem;
+
+}
+.m-su-ct a{
+    color:#d74148;
+}

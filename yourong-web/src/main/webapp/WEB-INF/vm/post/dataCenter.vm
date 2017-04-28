@@ -1,0 +1,178 @@
+#set($title="有融网-全透明的互联网理财优选平台")
+#parse('/common/common.vm')
+#set($css_url=["$root_css_url/post/dataCenter.css"])
+#set($js_url=[
+    "$root_url/static/lib/js/countUp.min.js",
+    "$root_url/static/lib/js/vue/vue.js",
+    "$root_url/static/lib/js/vue/vue.extend.js",
+    "$root_url/static/lib/js/echarts/echarts.min.js",
+    "$root_url/static/lib/js/echarts/bmap.min.js",
+    "$root_url/static/lib/js/echarts/china.js",
+    "$root_url/static/lib/js/echarts/dataTool.min.js",
+    "$root_js_url/post/dataCenter.js"
+])
+
+<script type="text/javascript" src="//api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
+
+
+#CSRFToken('xToken')
+<div class="g-bd g-bd110 f-mh500 f-cf">
+    <div class="m-top-bg">
+        <img src="/static/img/post/dataCenter/banner.png" class="u-responsive-img">
+    </div>
+    <div class="m-dc-body" id="dataCenter">
+    ## 模块一：数据总览
+        <div class="m-dc-conc-one">
+        <div class="g-dc-wrap">
+                <h1 class="u-data-title">数据总览</h1>
+                <div class="m-overviews-list">
+                    <div class="m-data-item">
+                        <p class="u-data-val"><strong id="j-invest-total"
+                                                      v-text="allInvestData.registerCount | amountSplit"></strong>元</p>
+                        <p class="u-data-name">累计投资金额</p>
+                    </div>
+                    <div class="m-data-item">
+                        <p class="u-data-val"><strong id="j-register-total"
+                                                      v-text="allInvestData.investAmount | amountSplit"></strong>人</p>
+                        <p class="u-data-name">累计注册用户</p>
+                    </div>
+                    <div class="m-data-item">
+                        <p class="u-data-val"><strong id="j-profit-total"
+                                                      v-text="allInvestData.profitTotal | amountSplit '' true"></strong>元
+                        </p>
+                        <p class="u-data-name">累计为用户赚取收益</p>
+                    </div>
+                    <div class="m-data-item">
+                        <p class="u-data-val"><strong id="j-trade-total"
+                                                      v-text="allInvestData.tradeCount | amountSplit"></strong>笔</p>
+                        <p class="u-data-name">累计交易笔数</p>
+                    </div>
+                </div>
+                <div class="u-dc-tip">以下数据截止至<i>{{d}}</i></div>
+            </div>
+        </div>
+    ## 模块二：累计投资金额
+        <div class="m-dc-conc-two">
+        <div class="g-dc-wrap">
+            <h1 class="u-data-title">累计投资金额</h1>
+            <!--累计投资金额区域图-->
+            <div id="investment"></div>
+        </div>
+         </div>
+    ## 模块三：项目数据
+     <div class="m-dc-conc-three">
+        <div class="g-dc-wrap">
+            <h1 class="u-data-title">项目数据</h1>
+            <!--项目数据饼状图-->
+            <div class="m-dc-charts-container f-clear">
+                <div id="projectType" class="m-dc-single"></div>
+                <div id="projectTime" class="m-dc-single"></div>
+                <div id="investTerminal" class="m-dc-single"></div>
+                <div id="projectPayments" class="m-dc-single"></div>
+            </div>
+        </div>
+            </div>
+    ## 模块四：用户数据
+        <div class="m-dc-conc-four">
+            <div class="g-dc-wrap">
+            <h1 class="u-data-title">用户数据</h1>
+            <div class="m-userdata-container f-clear">
+                <div class="m-userdata-left">
+                    <h3 class="u-uc-top">用户性别分布</h3>
+                    <div class="m-scale-wrap">
+                        <span class="u-scale-btn left" :class="{'z-active': investType==0}" @click="getSexRate(0)">投资人数占比</span>
+                        <span class="u-scale-btn right" :class="{'z-active': investType==1}" @click="getSexRate(1)">投资额度占比</span>
+                    </div>
+                    <div id="userSex"></div>
+                </div>
+                <div class="m-userdata-right">
+                    <h3 class="u-uc-top">用户年龄分布</h3>
+                    <div id="userAge"></div>
+                </div>
+            </div>
+        </div>
+            </div>
+    ## 模块五：地域分布
+        <div class="m-dc-conc-five">
+            <div class="g-dc-wrap">
+            <div id="region" class="u-data-map" ></div>
+            <div class="g-region-rank">
+                <h1 class="u-data-title">地域分布</h1>
+                <div class="m-region-wrap">
+                    <span class="u-region-btn left" :class="{'z-active': regionDistribute==0}"
+                          @click="getTopRegionRate(0)">注册人数</span>
+                    <span class="u-region-btn right" :class="{'z-active': regionDistribute==1}"
+                          @click="getTopRegionRate(1)">投资金额</span>
+                </div>
+                <div id="topRegion"></div>
+            </div>
+        </div>
+            </div>
+    ## 模块六：风险控制
+        <div class="m-dc-conc-six">
+            <div class="g-dc-wrap">
+            <h1 class="u-data-title">风险控制</h1>
+            <div class="m-rm-container f-clear">
+                <div class="m-rm-left">
+                    <h3 class="u-rm-top">平台历史兑付率</h3>
+                    <p class="u-rm-icon left"></p>
+                    <div class="m-rm-bottom"><span v-text="initData.projectInfo.payRate*100"></span>%兑付</div>
+                </div>
+                <div class="m-rm-right">
+                    <h3 class="u-rm-top">逾期信息披露</h3>
+                    <p class="u-rm-icon right"></p>
+                    <div class="m-rm-bottom">
+                        <ul class="m-rm-msg-list">
+                            <li><p class="m-item-p">逾期项目数量：<span class="u-numer"
+                                                                 v-text="initData.projectInfo.projectCountOverdue*100"></span><span
+                                    class="u-us">个</span></p></li>
+                            <li><p class="m-item-p">项目逾期率：<span class="u-numer"
+                                                                v-text="initData.projectInfo.projectCountOverdueRate*100"></span><span
+                                    class="u-us">%</span></p></li>
+                            <li><p class="m-item-p">累计逾期金额：<span class="u-numer"
+                                                                 v-text="initData.projectInfo.overduePrincipalRate*100"></span><span
+                                    class="u-us">元</span></p></li>
+                            <li><p class="m-item-p">金额逾期率：<span class="u-numer"
+                                                                v-text="initData.projectInfo.overduePrincipal*100"></span><span
+                                    class="u-us">%</span></p></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+            </div>
+    ## 模块七：运营报告
+        <div class="m-dc-conc-seven">
+        <div class="g-dc-wrap">
+            <h1 class="u-data-title">运营报告</h1>
+            <p class="u-data-subhead">未来有无限可能，邀您与我们一起期待</p>
+            <div class="m-operation-report-list">
+                <div class="m-operation-report-item three">
+                    <p class="u-report-container"><a href="$root_url/post/operate2017/firstQuarter" target="_blank ">
+                        <img src="/static/img/post/dataCenter/first2017.png" class="u-report-bg"></a></p>
+                    <p class="u-report-head"><a href="$root_url/post/operate2017/firstQuarter" target="_blank ">2017第一季度运营报告</a>
+                    </p>
+                </div>
+
+                <div class="m-operation-report-item two">
+                    <p class="u-report-container"><a href="$root_url/post/reportLatter2016" target="_blank ">
+                        <img src="/static/img/post/dataCenter/nexthalf_2016.png" class="u-report-bg"></a></p>
+                    <p class="u-report-head"><a href="$root_url/post/reportLatter2016" target="_blank ">2016下半年运营报告</a>
+                    </p>
+                </div>
+                <div class="m-operation-report-item one">
+                    <p class="u-report-container"><a href="$root_url/post/operateReport2016" target="_blank ">
+                        <img  src="/static/img/post/dataCenter/operation_report_1.png" class="u-report-bg"></a></p>
+                    <p class="u-report-head"><a href="$root_url/post/operateReport2016" target="_blank ">2016上半年运营报告</a></p>
+                </div>
+            ##                <div class="m-operation-report-item three">
+            ##                    <p class="u-report-container"><img src="/static/img/post/dataCenter/operation_report_2.png"
+            ##                                                       class="u-report-bg z-noData"></p>
+            ##                    <p class="u-report-head">敬请期待</p>
+            ##                </div>
+            </div>
+        </div>
+            </div>
+    </div>
+</div>
+

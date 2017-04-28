@@ -1,0 +1,78 @@
+
+#parse("/common/common.vm")
+#set($layout = "/layout/default.vm")
+#set($js_url=["$root_js_url/modules/member/core.js","$root_js_url/modules/borrow.js"])
+
+<style>
+
+</style>
+<div class="u-rtable-wrap f-round j-rtable-wrap">
+	<table class="">
+		<thead>
+			<tr>
+				<th width="92">项目名称</th>
+				<th width="68">借款类型</th>
+				<th width="84">借款金额</th>
+				<th width="60">年化利率</th>
+				<th width="104">项目费用</th>
+				<th width="173">借款期限</th>
+				<th width="132"><span id="waitBx" class="z-hide">待还本息</span></th>
+				<th width="112">最近一期还款时间</th>
+				<th width="98">操作</th>
+			</tr>
+		</thead>
+		<tbody>
+			#if($!result.data && $!result.data.size()>0)
+				#foreach($popularity in ${result.data})
+				<tr>
+					<td><a target="_blank" href="$root_url/products/detail-$!{popularity.projectId}.html">$!{popularity.prefixProjectName}</a></td>
+					<td>$!{popularity.securityTypeName}</td>
+					<td>$!{popularity.formatTotalAmount}</td>
+					<td>$!{popularity.annualizedRate}%</td>
+					<td class="u-project-cost j-projectcost-detail">$!{popularity.projectFeeStr}
+						<em>明细</em>
+						<div class="u-projectcost-detail j-projectcost-box f-dn">
+							<em class="u-projectcost-arrow"></em>
+							<div>
+								<h3>项目费用</h3>
+								<ul>
+                                    <li><span>项目管理费</span><span>#if($!{popularity.formatManageFee})$!{popularity.formatManageFee}#else 0 #end</span></li>
+                                    <li><span>保证金</span><span>#if($!{popularity.guaranteeFee})$!{popularity.guaranteeFee}#else 0 #end</span></li>
+                                    <li><span>风险金</span><span>#if($!{popularity.riskFee})$!{popularity.riskFee}#else 0 #end</span></li>
+                                    <li><span>线下介绍费</span><span>#if($!{popularity.introducerFee})$!{popularity.introducerFee}#else 0 #end</span></li>
+								</ul>
+								<span>总计 <em>#if($!{popularity.projectFeeStr})$!{popularity.projectFeeStr}#else 0 #end</em></span>
+							</div>
+						</div>
+					</td>
+					#if(${popularity.formatEndDate})
+                        <td>$!{popularity.formatStartDate}&nbsp;至&nbsp;$!{popularity.formatEndDate}</td>
+						#else
+                         <td></td>
+					#end
+
+					<td class="f-fs20">$!{popularity.waitTotalPayAmountStr}</td>
+					<td>$!{popularity.formatRefundTime}</td>
+					<td>
+						<a href="javascript:void(0)" class="piRecord-link j-box-pos" data-action="detail" data-projectId="$!{popularity.projectId}">本息记录</a></br>
+						#if($!popularity.overdueUnder==1)
+							<a href="javascript:void(0)" class="underwrite-record-link j-box-pos" data-action="detail" data-projectId="$!{popularity.projectId}">垫资还款记录</a></br>
+						#end
+						
+						#if($!popularity.overdueRecord==1)
+							<a href="javascript:void(0)" class="overdue-record-link j-box-pos" data-action="detail" data-projectId="$!{popularity.projectId}">逾期还款记录</a>
+						#end
+						
+					</td>
+
+					<input type="hidden" id="projectId" value="$!{popularity.projectId}"> 
+				</tr>
+				#end
+			#else
+			<tr><td colspan="9" class="u-table-empty">暂无“获取记录”</td></tr>
+			#end
+		</tbody>
+	</table>
+</div>
+#ajaxPagePlugin($!result,"Gain")
+

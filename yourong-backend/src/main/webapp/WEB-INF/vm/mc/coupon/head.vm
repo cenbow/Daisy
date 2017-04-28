@@ -1,0 +1,31 @@
+#parse("/common/common.vm")
+################################script###################################
+ #set($js_config=[ 
+ "'urlMap':{ 
+   'ajax':'$root_url/coupon/ajax?', 
+   'detail':'$root_url/coupon/detail?',
+   'toGiveCoupon':'$root_url/coupon/toGiveCoupon?',
+   'getParam':'$root_url/coupon/getParam?', 
+   'showMoParam':'$root_url/coupon/showMoParam?id=', 
+   'saveMoParam':'$root_url/coupon/saveMoParam?', 
+   'unlockQuery':'$root_url/coupon/unlockQuery?', 
+   
+   'unlockedCoupon':'$root_url/coupon/unlocked?', 
+   'toGivePopularity':'$root_url/coupon/toGivePopularity?'
+   },
+   'status':#buildDictJson('coupon_status'),  ##状态
+   'type':#buildDictJson('coupon_type'),  ##优惠券类型
+   
+   
+   'permission':{
+   		'detail':$shiro.hasPermission('coupon:detail'),
+   		'unlock':$shiro.hasPermission('coupon:unlock'),
+   		'edit':$shiro.hasPermission('coupon:edit'),##修改按钮
+   		'unlocked':$shiro.hasPermission('coupon:unlocked'),##优惠券列表解锁权限
+   }
+   "
+ ])
+#set($css_url=["$root_url/static/js/lib/My97DatePicker/skin/WdatePicker.css"])
+#set($js_url=["$root_url/static/js/coupon.js","$root_url/static/js/lib/My97DatePicker/WdatePicker.js"]) 
+##################################DOM######################################
+

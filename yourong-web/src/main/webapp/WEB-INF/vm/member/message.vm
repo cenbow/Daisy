@@ -1,0 +1,87 @@
+##我的消息
+#parse("/common/common.vm")
+#set($title="我的消息_$!{title_suffix}")
+#set($css_url=["$cssv2_url/member/member.css"])
+###set($js_url=["$root_js_url/modules/member.js"])
+#set($messages="z-current")
+
+##页面入口标识
+#set($entry=["member","messages"])
+
+## 用户中心头部
+#parse("/member/head.vm")
+## 用户中心内容
+<div class="g-wrap">
+    <div class="m-nav-title">
+        <a class="z-current" href="/member/messages">
+            我的消息
+        </a>
+        <a class="u-title-secondary u-tit-r" href="/member/msgfeed">
+            消息订阅
+        </a>
+    </div>
+    <div class="g-uc-bd f-round">
+##        <div class="u-uc-menu f-round f-cf">
+##            <ul class="f-fr">
+##                <li><a href="${profile_url[0]}">安全认证</a></li>
+##                <li><a href="${profile_url[1]}">个人资料</a></li>
+##                <li><a href="${profile_url[2]}">消息订阅</a></li>
+##                <li class="z-current"><a href="${profile_url[3]}">我的消息</a></li>
+##            </ul>
+##            <i class="u-arrow-i0"></i>
+##        </div>
+        <div class="g-uc-wrap">
+            ## 页面内容
+##            <h3 class="u-round-title">
+##                <em class="u-circle-12">我的消息</em>
+##				<span class="u-arrow-down">
+##                	<i>◆</i>
+##                	<span>◆</span>
+##            	</span>
+##            </h3>
+            <form class="m-umsg-filter" id="j-umsg-filter">
+                <span class="m-umsg-dateSelect">
+                    <div class="u-selector j-selector f-tal" id="j-umsg-dataSelect">
+                        <button value="0">全部</button>
+                        <i></i>
+                        <ul>
+                            <li value="0" class="z-first"></li>
+                            <li value="0" class="z-hidden">全部</li>
+                            <li value="1">最近七天</li>
+                            <li value="2">最近三个月</li>
+                            <li value="3">最近一年</li>
+                            <li value="4">一年前</li>
+                        </ul>
+                        <input type="hidden" class="j-selected-ipt" name="filterDate" value="0">
+                    </div>
+                </span>
+                <span class="u-umsg-filterGroup" id="j-filter-check">
+                	<label class="z-checked" for="j-notifyTypeIds1">
+                        <i class="u-umsg-icon"></i>
+                        <span class="u-checkbox-wrap"><input type="checkbox" checked="checked" name="notifyTypeIds"  id="j-notifyTypeIds1" value="1"/></span>系统公告
+                    </label>
+                	<label class="z-checked" for="j-notifyTypeIds3">
+                        <i class="u-umsg-icon"></i>
+                        <span class="u-checkbox-wrap"><input type="checkbox" id="j-notifyTypeIds3" checked="checked" name="notifyTypeIds" value="3"/></span>收益通知
+                    </label>
+                	<label class="z-checked" for="j-notifyTypeIds2">
+                        <i class="u-umsg-icon"></i>
+                        <span class="u-checkbox-wrap"><input type="checkbox" checked="checked" name="notifyTypeIds" id="j-notifyTypeIds2" value="2"/></span>操作通知
+                    </label>
+                	<label class="z-checked" for="j-notifyTypeIds4">
+                        <i class="u-umsg-icon"></i>
+                        <span class="u-checkbox-wrap"><input type="checkbox" checked="checked" name="notifyTypeIds" id="j-notifyTypeIds4" value="4"/></span>活动通知
+                    </label>
+                </span>
+                <em id="j-umsg-markRead">全部标为已读</em>
+            </form>
+            <div class="m-umsg-list">
+                <ul id="j-umsg-list">
+
+                </ul>
+            </div>
+            ## /页面内容
+        </div>
+    </div>
+    ## /用户中心内容
+</div>

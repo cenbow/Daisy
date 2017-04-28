@@ -1,0 +1,536 @@
+##2016春节活动
+#parse("/common/common.vm")
+#set($title="玩转奥运_$!{title_suffix}")
+#set($css_url=["$root_css_url/activity/playOlympic.css"])
+#set($js_url=[
+    "$root_url/static/lib/js/vue/vue.js",
+    "$root_url/static/lib/js/vue/vue.extend.js",
+    "$root_js_url/activity/playOlympic.js"
+])
+
+#if($currentUser)
+    #set($logined=true)
+#else
+    #set($logined=false)
+#end
+#CSRFToken('xToken')
+
+<div class="m-top" data-logined="$logined" id="j-top">
+    <div class="u-top1"></div>
+    <div class="u-top2"></div>
+    <div class="u-top3"></div>
+    <div class="u-top4"></div>
+</div>
+
+## 主体
+##<div class="g-wrap f-dn" id="j-julyTeam" :class="{'f-db':initData.activityStatus}">
+<div class="g-body g-wrap  {{selectTab}}" id="j-playOlympic" >
+##<div class="g-body g-wrap  z-tab-4" id="j-playOlympic" >
+
+##    <button style="width:80px;height:30px;" @click="guessMedal(Math.random()>0.5?2:1)">猜奖牌</button>
+##    <button style="width:80px;height:30px;" @click="guessGold(33,2)">猜金牌</button>
+##    <button style="width:80px;height:30px;" @click="collectOlympic([1,3,4])">集奥运</button>
+    <div class="m-nav-wrap g-wrap">
+        <div class="u-light u-light-left">
+            <span class="u-light-1"></span>
+            <span class="u-light-2"></span>
+            <span class="u-light-3"></span>
+        </div>
+        <div class="u-light u-light-right">
+            <span class="u-light-1"></span>
+            <span class="u-light-2"></span>
+            <span class="u-light-3"></span>
+        </div>
+
+        <ul class="u-nav">
+            <li class="u-tab-1" @click="goSelectTab('z-tab-1')">
+                <span></span><em class="u-golds"></em>
+            </li>
+            <li class="u-tab-2" @click="goSelectTab('z-tab-2')">
+                <span></span><em class="u-golds"></em>
+            </li>
+            <li class="u-tab-3" @click="goSelectTab('z-tab-3')">
+                <span></span><em class="u-golds"></em>
+            </li>
+            <li class="u-tab-4" @click="goSelectTab('z-tab-4')">
+                <span></span><em class="u-golds"></em>
+            </li>
+            <li class="u-tab-5" @click="goSelectTab('z-tab-5')">
+                <span></span><em class="u-golds"></em>
+            </li>
+        </ul>
+
+        ## 右边杠杆
+        <div class="u-lever">
+            <div class="u-stick-outter">
+                <div class="u-lever-stick"></div>
+                <div class="u-lever-ball"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="u-main-wrap">
+        <div class="u-main-header">
+            <div class="u-line"></div>
+        </div>
+
+        <div class="m-main g-wrap">
+
+            <div class="m-content m-content-cal">
+                <div class="m-links-wrap">
+                    <span class="u-icon-hot"></span>
+
+                    <ul class="u-links">
+                        <li @click="goSelectTab('z-tab-1')">
+                            <span class="u-mark u-mark-1">亮奥运</span>
+                            <span>点亮奥运徽章，现金券人气值壕气送</span>
+                            <span class="u-link-go">&gt;&gt;立刻参与</span>
+                        </li>
+                        <li @click="goSelectTab('z-tab-2')">
+                            <span class="u-mark u-mark-2">猜奥运</span>
+                            <span>竞猜中国奥运奖牌，乐享人气值翻倍</span>
+                            <span class="u-link-go">&gt;&gt;立刻参与</span>
+                        </li>
+                        <li @click="goSelectTab('z-tab-3')">
+                            <span class="u-mark u-mark-3">集奥运</span>
+                            <span>收集奥运吉祥物，赢取荣耀手环zero</span>
+                            <span class="u-link-go">&gt;&gt;立刻参与</span>
+                        </li>
+                        <li @click="goSelectTab('z-tab-4')">
+                            <span class="u-mark u-mark-4">竞奥运</span>
+                            <span>每日竞赛一小时，激情奥运有我相伴</span>
+                            <span class="u-link-go">&gt;&gt;立刻参与</span>
+                        </li>
+                        <li @click="goSelectTab('z-tab-5')">
+                            <span class="u-mark u-mark-5">赛奥运</span>
+                            <span>陪伴奥运长跑赛，加油奥运助力中国</span>
+                            <span class="u-link-go">&gt;&gt;立刻参与</span>
+                        </li>
+                    </ul>
+                </div>
+
+                ## 奥运日历
+                <div class="g-oly-cal-wrap oly-match-plan">
+                    <span class="u-cal-icon u-cal-icon1"></span>
+                    <span class="u-cal-icon u-cal-icon2"></span>
+                    <span class="u-title-line u-title-line-1"></span>
+                    <span class="u-title-line u-title-line-2"></span>
+                    <div class="u-oly-cal-title">奥运日历</div>
+                    #parse("/activity/playOlympic-table.vm")
+                </div>
+            </div>
+
+
+            <div class="m-content m-content-1">
+                <h1 class="u-content-title u-lightOlympic">亮奥运</h1>
+
+                <div class="u-light-table-wrap">
+
+                    <div class="u-light-table-title">
+                        <div class="u-three-icons u-three-icons-left">
+                            <i class="u-icons-line"></i>
+                            <i class="u-icons-line"></i>
+                            <i class="u-icons-line"></i>
+                        </div>
+                        <span class="u-light-table-year">2016-8</span>
+                        <div class="u-three-icons u-three-icons-right">
+                            <i class="u-icons-line"></i>
+                            <i class="u-icons-line"></i>
+                            <i class="u-icons-line"></i>
+                        </div>
+                    </div>
+
+                    <div class="u-light-table">
+                        <span v-for="(index,item) in lightList" :class="{'z-noGold':item.tag===-1,'z-active':item.tag===1&&index>4&&index<23,'z-today':index===today}">
+                            <i v-if="index!==0&&index<32" v-text="index"></i>
+                            <em v-if="index>=5&&index<=22"></em>
+                        </span>
+                    </div>
+                </div>
+
+                <p class="u-light-text">
+                    8月5日00:00~8月22日23:59，当天累计投资满2000元即可点亮当日奥运徽章，累计点亮徽章数满足以下条件可获得奖励。
+                </p>
+
+
+                <div class="m-cash-wrap">
+                    <div class="u-cash u-cash-50" :class="{'z-active':initData.couponAmount50}">
+                        <i class="u-tip" v-if="showLightCoupon(50)"></i>
+                    </div>
+                    <div class="u-cash u-cash-100" :class="{'z-active':initData.couponAmount100}">
+                        <i class="u-tip" v-if="showLightCoupon(100)"></i>
+                    </div>
+                    <div class="u-cash u-cash-200" :class="{'z-active':initData.couponAmount200}">
+                        <i class="u-tip" v-if="showLightCoupon(200)"></i>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="m-content m-content-2">
+                <h1 class="u-content-title">猜奥运</h1>
+
+                <h2 class="u-content-tip">激情猜奖牌</h2>
+                <p class="u-light-text">
+                    {{initData.guessMedalStartTime | formatTime 'M月d日'}}~{{initData.guessMedalEndTime | formatTime 'M月d日'}}，每日对中国战队下个奥运比赛日所获奖牌数量是奇数还是偶数进行竞猜（每人每日仅一次竞猜机会），花费10点人气值参与竞猜，竞猜正确的用户都可以获得50元现金券一张。
+                </p>
+
+                <div class="m-guessMedal-wrap">
+
+                    <div class="u-odd">
+                        <span class="u-btn u-btn-odd z-disabled" v-if="guessMedalStatus===2">
+                            未开始
+                        </span>
+                        <span class="u-btn u-btn-odd" :class="{'z-disabled':initData.ifGuessMedal&&initData.guessMedalNumber===1}" v-if="guessMedalStatus===4" @click="guessMedal(1)" v-text="initData.ifGuessMedal&&initData.guessMedalNumber===1?'已选择':'选择TA'"></span>
+                        <span class="u-btn u-btn-odd z-disabled" v-if="guessMedalStatus===6">已结束</span>
+                    </div>
+
+                    <div class="u-bet-body">
+                        <span class="u-vs">VS</span><br>
+                        <span class="u-count-text">竞猜总人数</span><br>
+                        <span class="u-count-num" v-text="initData.guessTotalNumber || 0"></span><br>
+
+                        <span class="u-count-intro">
+                            竞猜起止时间：每日{{initData.guessStartTime}}:00~{{initData.guessEndTime}}:00<br>
+                            比赛时间：{{initData.matchStartTime}}:00~次日{{initData.matchEndTime}}:00<br>
+                            公布结果时间：次日{{initData.publishTime}}:00（北京时间）
+                        </span>
+                    </div>
+
+                    <div class="u-even">
+                        <span class="u-btn u-btn-even z-disabled" v-if="guessMedalStatus===2">
+                            未开始
+                        </span>
+                        <span class="u-btn u-btn-even" :class="{'z-disabled':initData.ifGuessMedal&&initData.guessMedalNumber===2}" v-if="guessMedalStatus===4" @click="guessMedal(2)" v-text="initData.ifGuessMedal&&initData.guessMedalNumber===2?'已选择':'选择TA'"></span>
+                        <span class="u-btn u-btn-even z-disabled" v-if="guessMedalStatus===6">已结束</span>
+                    </div>
+
+                </div>
+
+                <div class="u-bet-wrap">
+                    <span class="u-special-title">竞猜记录</span>
+                    <div class="u-bet-table">
+                        <span v-for="(index,item) in parityList"
+                              v-text="index<16?index+6+ '号':''"
+                              :class="{'z-passed': item.passed,'z-odd':item.parity===1,'z-even':item.parity===0,
+'z-active':item.guessed&&item.correct}"
+                        ></span>
+                    </div>
+                </div>
+
+                <h2 class="u-content-tip">限时猜金牌</h2>
+                <p class="u-light-text mb-40">
+                    {{initData.guessGoldStartTime | formatTime 'M月d日hh:mm'}}~{{initData.guessGoldEndTime | formatTime 'M月d日hh:mm'}}，每位用户可消耗任意人气值对中国战队奥运会 <br>
+                    所获金牌数量进行竞猜，猜对人气值翻倍，猜错人气值不返还，每人每天限猜一次。<br>
+                    (1)8月5日00:00~{{initData.sixEndTime | formatTime 'M月d日hh:mm'}} 竞猜的用户，人气值翻5倍；<br>
+                    (2){{initData.sevenStartTime | formatTime 'M月d日hh:mm'}}~{{initData.eightEndTime | formatTime 'M月d日hh:mm'}} 竞猜的用户，人气值翻3倍；<br>
+                    (3){{initData.nineStartTime | formatTime 'M月d日hh:mm'}}~{{initData.guessGoldEndTime | formatTime 'M月d日hh:mm'}} 竞猜的用户，人气值翻2倍；
+                </p>
+
+                <div class="m-guessGold-wrap">
+
+                    <div class="m-input-wrap">
+                        <div class="u-input u-input-left">
+                            <i class="u-icon u-icon-gold"></i>
+                            <em>金牌数量</em>
+                            <input type="text" v-if="logined && guessGoldStatus===4" v-model="goldNumber | int" @keyup="updateValues($event,'goldNumber',1)">
+                            <input type="text" v-else>
+                            <span class="u-error-msg" v-text="tips.guessGoldNumberError"></span>
+                        </div>
+                        <div class="u-input u-input-right">
+                            <i class="u-icon u-icon-point"></i>
+                            <em>消耗人气值</em>
+                            <input type="text" v-if="logined && guessGoldStatus===4" @keyup="updateValues($event,'popularityValue',2)" v-model="popularityValue | pInt" placeholder="当前拥有人气值{{initData.remindPopularityVaule||0}}点">
+                            <input type="text" v-else>
+
+                            <span class="u-error-msg" v-text="tips.guessGoldValueError"></span>
+                        </div>
+                    </div>
+                    <span class="u-guess-btn z-disabled" v-if="guessGoldStatus===2">未开始</span>
+                    <span class="u-guess-btn z-disabled" v-if="guessGoldStatus===6">已结束</span>
+                    <span class="u-guess-btn" :class="{'z-disabled':initData.ifGuessGold}" v-if="guessGoldStatus===4" @click="guessGold(goldNumber,popularityValue)">参与竞猜</span>
+                    <p class="u-guess-text">公布结果时间：8月22日15:00（北京时间）</p>
+
+                    <span class="u-special-title">竞猜记录</span>
+
+                    <ul class="m-guess-list">
+                        <li v-if="initData.guessGoldRecord" v-for="(index,item) in initData.guessGoldRecord">
+                            {{index+1}}、<i>{{item.guessTime | formatTime 'yyyy-MM-dd hh:mm:ss'}}</i> 竞猜金牌数量：<i class="u-goldNumber">{{item.goldNumber}}</i> 消耗人气值：<i class="u-popularityValue">{{item.popularityValue}}</i> 倍数：<i>{{item.type}}</i>
+                        </li>
+                        <li  v-if="!initData.guessGoldRecord||!initData.guessGoldRecord.length" class="z-noData">快来竞猜金牌，获得奖励吧~</li>
+                    </ul>
+                </div>
+
+            </div>
+
+
+            <div class="m-content m-content-3">
+                <h1 class="u-content-title u-gatherOlympic">集奥运</h1>
+                <p class="u-light-text mb-40">
+                    活动期间，用户投资符合以下条件即可获得奥运吉祥物拼图（一个吉祥物是4个拼图），
+                    拼图可兑换实物及现金券等大礼；<br>
+                    （1）单笔投资≥2000，可随机获得1个奥运吉祥物拼图；<br>
+                    （2）单笔投资≥5000，可随机获得3个奥运吉祥物拼图；<br>
+                    （3）单笔投资≥10000，可随机获得5个奥运吉祥物拼图；
+                </p>
+
+
+                <div class="m-puzzle-wrap">
+                    <div class="m-puzzle-left">
+                        <div class="u-puzzle-1" :class="{'z-actived':puzzle1}" @click="selectPuzzle('puzzle1',initData.puzzle1||0)" v-model="puzzle1">
+                            <span>x<em v-text="initData.puzzle1||0"></em></span>
+                        </div>
+                        <div class="u-puzzle-2" :class="{'z-actived':puzzle2}" @click="selectPuzzle('puzzle2',initData.puzzle2||0)" v-model="puzzle2">
+                            <span>x<em v-text="initData.puzzle2||0"></em></span>
+                        </div>
+                        <div class="u-puzzle-3" :class="{'z-actived':puzzle3}" @click="selectPuzzle('puzzle3',initData.puzzle3||0)" v-model="puzzle3">
+                            <span>x<em v-text="initData.puzzle3||0"></em></span>
+                        </div>
+                        <div class="u-puzzle-4" :class="{'z-actived':puzzle4}" @click="selectPuzzle('puzzle4',initData.puzzle4||0)" v-model="puzzle4">
+                            <span>x<em v-text="initData.puzzle4||0"></em></span>
+                        </div>
+                    </div>
+                    <div class="m-puzzle-right">
+                        <div class="u-puzzle-right-title">奥运吉祥物拼图预览</div>
+
+                        <div class="m-puzzle-preview">
+                            <div class="u-puzzle-1" v-if="!puzzle1"></div>
+                            <div class="u-puzzle-2" v-if="!puzzle2"></div>
+                            <div class="u-puzzle-3" v-if="!puzzle3"></div>
+                            <div class="u-puzzle-4" v-if="!puzzle4"></div>
+                        </div>
+                        <p class="u-puzzle-tip">您已选中 <i v-text="selectedPuzzleSize||0"></i> 块拼图</p>
+
+                        <div class="u-puzzle-btn z-disabled" v-if="initData.activityStatus!==4" v-text="initData.activityStatus===2?'未开始':'已结束'">
+                        </div>
+                        <div v-else class="u-puzzle-btn" @click="collectOlympic([puzzle1,puzzle2,puzzle3,puzzle4])" :class="{'z-disabled':!selectedPuzzleSize}">我要兑换</div>
+                        <p class="u-puzzle-notice" v-if="tips.collectAward">恭喜您,获得{{tips.collectAward}}</p>
+                        <div v-else>
+                            <p class="f-fs12 u-puzzle-notice" v-if="initData.puzzle1&&initData.puzzle2&&initData.puzzle3&&initData.puzzle4">
+                                恭喜您,已经集齐4张完整奥运吉祥物拼图，赶快选中兑换实物大奖吧！
+                            </p>
+                            <p class="u-puzzle-notice" v-else>提示：选中持有的吉祥物拼图，<br>
+                                兑换相应的奖品哦！</p>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="m-puzzle-gift">
+
+                    <div class="u-watch"></div>
+
+                    <div class="u-gift-rule-wrap">
+                        <div class="u-gift-rule">
+                            <strong>吉祥物拼图兑换规则：</strong><br>
+                            (1）任意1个奥运吉祥物拼图，可兑换30元现金券一张；<br>
+                            (2）任意2个不同奥运吉祥物拼图，可兑换100元现金券一张；<br>
+                            (3）任意3个不同奥运吉祥物拼图，可兑换200元现金券一张；<br>
+                            (4）一套4个完整奥运吉祥物拼图，可兑换荣耀手环zero一个。<br>
+                            注：吉祥物拼图仅限活动期间兑换，活动结束后即失效，请各位会员及时兑换哦~
+                        </div>
+                        <div class="m-lucky-user" v-if="initData.luckyList">
+                            <span>幸运儿：</span>
+                            <ul class="m-lucky-list" id="j-juckyList" v-if="initData.luckyList.length">
+                                <li v-for="item in initData.luckyList" v-if="initData.luckyList">
+                                    <span class="u-user">
+                                        <img v-if="item.avatars" :src="item.avatars | avatarUrl">
+                                        <img v-else src="$root_url/static/img/member/avatar_35x35.png">
+                                    </span>
+                                    恭喜 <i v-text="item.username"></i> 获得实物大奖一份
+                                </li>
+                            </ul>
+                            <span v-else>
+                                虚位以待
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="m-content m-content-4">
+                <h1 class="u-content-title u-playOlympic">竞奥运</h1>
+                <p class="u-light-text">
+                    活动期间，每日{{initData.raceStartTime | raceHours}}~{{initData.raceEndTime | raceHours}}，累计投资额排名前8的用户，可获得现金券一张（若投资额相等，先达到该投资额的用户排名靠前）；<br>
+                    第1名：200元现金券一张；<br>
+                    第2~3名：100元现金券一张；<br>
+                    第4~8名：50元现金券一张；
+                </p>
+                <div class="u-myInvestAmount" v-if="logined">
+                   <p class="u-todayMyInvestAmount">我的投资额:{{initData.todayMyInvestAmount | amountSplit '￥' true}}</p>
+                    <span class="u-refreshIcon" @click="initialiseData"> 刷新</span>
+                </div>
+                <div class="m-track j-active">
+                    <div v-for="(index, item) in everydayTrackList">
+                        <span class="u-runner-{{index + 1}} j-runner" data-invested="{{item.totalInvest}}">
+                            <em class="u-runner-intro" v-if="item.totalInvest">
+                                <i class="u-runner-name">{{item.username}}</i>
+                                <i class="u-runner-count">￥{{item.totalInvest |amountSplit}}</i>
+                            </em>
+                        </span>
+                    </div>
+                </div>
+
+
+                <div class="m-win-list-wrap">
+                    <div class="u-win-list-top"></div>
+
+                    <div class="m-win-list-outter">
+                        <div class="u-win-list-mask" v-if="showRaceMask" v-text="maskText"></div>
+
+                        <div class="u-win-container">
+                            <div class="u-filter-wrapper-left">
+                                <table class="u-finalList u-finalList-left">
+                                    <tr>
+                                        <th width="100">排名</th>
+                                        <th width="190">用户名</th>
+                                        <th width="130">投资额</th>
+                                    </tr>
+                                    <tr v-for="(index,item) in everydayTotalAmountListLeft">
+                                        <td class="u-rank u-rank{{index+1}}" v-if="index<3">{{index + 1}}</td>
+                                        <td class="u-rank" v-else>{{index + 1}}</td>
+                                        <td class="u-user-head">
+                                            <img v-if="item.avatars" :src="item.avatars | avatarUrl" alt="用户头像">
+                                            <img v-else src="/static/img/member/avatar_35x35.png" alt="用户头像">
+                                            {{item.username || '虚位以待'}}</td>
+                                        <td class="f-fc-red">{{item.totalInvest | amountSplit '￥'}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <div class="u-list-divider"></div>
+
+                            <div class="u-filter-wrapper-right">
+                                <table class="u-finalList u-finalList-left">
+                                    <tr>
+                                        <th width="100">排名</th>
+                                        <th width="190">用户名</th>
+                                        <th width="130">投资额</th>
+                                    </tr>
+                                    <tr v-for="(index,item) in everydayTotalAmountListRight">
+                                        <td class="u-rank">{{index + 5}}</td>
+                                        <td class="u-user-head">
+                                            <img  :src="item.avatars | avatarUrl" alt="用户头像" v-if="item.avatars">
+                                            <img src="/static/img/member/avatar_35x35.png" alt="用户头像" v-else>
+                                            {{item.username || '虚位以待'}}</td>
+                                        <td class="f-fc-red">{{item.totalInvest | amountSplit '￥'}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="m-content m-content-5">
+                <h1 class="u-content-title u-saiOlympic">赛奥运</h1>
+                <p class="u-light-text mb-40">
+                    活动期间，累计投资额排名前10 的用户可以获得中石化加油卡一张（若投资额相等，先达到该投资额的用户排名靠前）；<br>
+                    第1名：价值1000元的中石化加油卡；<br>
+                    第2~3名：价值800元的中石化加油卡；<br>
+                    第4~6名：价值500元的中石化加油卡；<br>
+                    第7~10名：价值300元的中石化加油卡；
+                </p>
+                <div v-if="logined">
+                    <span class="u-refreshIcon" @click="initialiseData"> 刷新</span>
+                </div>
+                <div class="m-final-wrap">
+                    <div class="m-final-left">
+
+                        <div class="u-final-mask" v-if="showTotalMask" v-text="maskText"></div>
+
+                        <div class="m-final-list-top"></div>
+                        <div class="u-final-fixed">
+                            <span class="u-rank">排名</span>
+                            <span class="u-user">用户名</span>
+                            <span class="u-amount">投资额</span>
+                        </div>
+                        <ul v-if="initData.activityStatus !== 2" class="m-final-list">
+                            <li v-for="(index,item) in totalAmountList">
+                                <div class="u-rank{{index+1}}" v-if="index<3">
+                                    <span class="u-rank">{{index + 1}}</span>
+                                <span class="u-user">
+                                    <img :src="item.avatars | avatarUrl" alt="用户头像" v-if="item.avatars">
+                                    <img src="/static/img/member/avatar_35x35.png" alt="用户头像" v-else>
+                                    <i>{{item.username || '虚位以待'}}</i>
+                                </span>
+                                    <span class="u-amount">{{item.totalInvestFormat | amountSplit '￥'}}</span>
+                                </div>
+                                <div v-else>
+                                    <span class="u-rank">{{index + 1}}</span>
+                                <span class="u-user">
+                                    <img :src="item.avatars | avatarUrl" alt="用户头像" v-if="item.avatars">
+                                    <img src="/static/img/member/avatar_35x35.png" alt="用户头像" v-else>
+                                    <i>{{item.username || '虚位以待'}}</i>
+                                </span>
+                                    <span class="u-amount">{{item.totalInvestFormat | amountSplit '￥'}}</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="m-final-right">
+                        <div class="m-final-img"></div>
+                        <div class="u-my-num" v-if="logined">
+                            <i class="u-comma u-comma-1">,</i>
+                            <i class="u-comma u-comma-2">,</i>
+                            <span>我的投资额:</span>
+                            <ul>
+                                <li v-for="item in myCount">{{item.tag}}</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            ## 规则
+            <div class="g-rule">
+                <strong class="f-fs16" >活动规则：</strong>
+                <table class="g-rule-table">
+                    <tr>
+                        <td width="16px">1、</td><td>活动对象：有融网所有用户；</td>
+                    </tr>
+                    <tr>
+                        <td>2、</td><td>活动时间：2016年8月5日00:00—8月22日23：59；</td>
+                    </tr>
+                    <tr>
+                        <td>3、</td>
+                        <td>
+                            现金券领取后7天内有效；<br>
+                            现金券使用规则:<br>
+                            面额为30元的现金券，起投金额2000元，起投期限90天<br>
+                            面额为50元的现金券，起投金额3000元，起投期限60天<br>
+                            面额为100元的现金券，起投金额6000元，起投期限50天<br>
+                            面额为200元的现金券，起投金额12000元，起投期限40天<br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>4、</td>
+                        <td>
+                            实物奖励将于活动结束后3个工作日内与您联系，请保持手机畅通，如错过通知则视为放弃获奖资格；<br>
+                            注：实物奖品也可兑换成人气值，人气值=奖品标注价格；
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>5、</td><td>如有其他疑问，请拨打客服热线：400-025-6688。</td>
+                    </tr>
+                </table>
+                <p>本活动最终解释权归有融网所有</p>
+            </div>
+        </div>
+
+#CSRFToken("xToken")
+
+    </div>
+
+</div>
+
+<div class="m-bg-bottom g-wrap"></div>
+

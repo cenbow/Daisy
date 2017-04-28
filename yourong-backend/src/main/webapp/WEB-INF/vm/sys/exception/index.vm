@@ -1,0 +1,252 @@
+#set($layout = "/layout/iframe.vm")
+#parse("/sys/exception/head.vm")
+
+###if($shiro.hasPermission('sysException:unlockedCoupon'))
+##<form role="form" class="form-horizontal" id="coupon_unlocked_form" method="post">
+##	优惠券编号：<input name="couponId" id="couponId" datatype="*" nullmsg="请输入优惠券编号">
+##	<button id="coupon_unlocked" type="button" class="btn btn-info btn-sm btn-primary " >解锁</button>
+##</form>
+###end
+#if($shiro.hasPermission('sysException:delProjectRedis'))
+<hr>
+<form role="form" class="form-horizontal" id="delete_project_redis_form" method="post">
+    	项目ID：<input name="id" id="project_id" datatype="n" nullmsg="请输入项目id"/>
+	<button id="delete_project_id" type="button" class="btn btn-warn btn-sm btn-primary" >清除项目缓存</button>
+</form>	
+#end
+<hr>
+#if($shiro.hasPermission("sysException:deleteBankCard"))	
+<form role="form" class="form-horizontal" id="delete_bankcard_form" method="post">
+	用户手机号码：<input name="mobile" id="bankcard_mobile" datatype="n" nullmsg="请输入用户绑定的银行卡"/>
+	<button id="delete_bankcard_id" type="button" class="btn btn-warn btn-sm btn-primary" >删除安全卡</button>
+</form>
+#end
+<hr>
+
+##if($shiro.hasPermission("transaction:synHostingCollectTrade"))	
+##<form role="form" class="form-horizontal" id="pay_tradeno_form" method="post">
+	##根据代收交易号处理还本付息代付：<input name="tradeNo" id="pay_tradeNo"  datatype="*" nullmsg="请输入交易号"/>
+	##<button id="pay_tradeno_id" type="button" class="btn btn-warn btn-sm btn-primary" >处理还本付息代付</button>
+##</form>
+##end
+##<hr>
+##if($shiro.hasPermission("transaction:processPayInterestAndPrincipal"))	
+##<form role="form" class="form-horizontal" id="syn_hosting_form" method="post">
+	##同步单笔代收交易状态：<input name="tradeNo" id="syn_tradeNo"  datatype="*" nullmsg="请输入交易号"/>
+	##<button id="syn_hosting_id" type="button" class="btn btn-warn btn-sm btn-primary" >同步单笔代收交易</button>
+##</form>
+##end
+<hr>
+#if($shiro.hasPermission("sysException:createPreservation"))	
+<form role="form" class="form-horizontal" id="create_prevervation" method="post">
+	创建数据保全：<input name="tradeNo" id="preservation_tradeNo"  datatype="*" nullmsg="请输入交易号"/>
+	<button id="create_prevervation_id" type="button" class="btn btn-warn btn-sm btn-primary" >创建数据保全</button>
+</form>
+#end
+<hr>
+#if($shiro.hasPermission("sysException:cancleMobile"))	
+<form role="form" class="form-horizontal" id="cancle_mobile" method="post">
+	会员ID：<input name="memberId" id="cancle_mobile_member_id"  datatype="*" nullmsg="请输入会员ID"/>
+	<button id="cancle_mobile_id" type="button" class="btn btn-warn btn-sm btn-primary" >新浪存钱罐取消手机号</button>
+</form>
+#end
+<hr>
+###if($shiro.hasPermission("transaction:directHostPay"))
+##<form role="form" class="form-horizontal" id="direct_host_pay" method="post">
+##	会员ID：<input name="memberId"  datatype="*" nullmsg="请输入会员ID"/>
+##	金额：<input name="amount"  datatype="*" nullmsg=""/>
+##	类型：<input name="type"  datatype="*" nullmsg=""/>
+##	<button id="direct_host_pay_btn" type="button" class="btn btn-warn btn-sm btn-primary" >直接代付</button>
+##</form>
+###end
+##<hr>
+###if($shiro.hasPermission("transaction:directHostCollect"))
+##<form role="form" class="form-horizontal" id="direct_host_collect" method="post">
+##                  会员ID：<input name="memberId"  datatype="*" nullmsg="请输入会员ID"/>
+##	      金额：<input name="amount"  datatype="*" nullmsg="请输入金额"/>
+##	      类型：<input name="type"  datatype="*" nullmsg="请输入类型"/>
+##	  <button id="direct_host_collect_btn" type="button" class="btn btn-warn btn-sm btn-primary" >直接代收</button>
+##</form>
+###end
+<hr>
+#if($shiro.hasPermission("transaction:addSinaHostPay"))	
+<form role="form" class="form-horizontal" id="add_sina_host_pay" method="post">
+                  交易号：<input name="tradeNo"  datatype="*" nullmsg="请输入交易号"/>
+	  <button id="add_sina_host_pay_btn" type="button" class="btn btn-warn btn-sm btn-primary" >保存代付到新浪</button><span style="color:red"></span>
+</form>
+#end
+<hr>
+#if($shiro.hasPermission("transaction:synProjectHostCollect"))	
+<form role="form" class="form-horizontal" id="syn_project_host_collect" method="post">
+                  项目ID：<input name="projectId"  datatype="*" nullmsg="请输入项目ID"/>
+	  <button id="syn_project_host_collect_btn" type="button" class="btn btn-warn btn-sm btn-primary" >同步项目代收交易状态</button>
+</form>
+#end
+<hr>
+#if($shiro.hasPermission("sysException:bindingVerify"))	
+<form role="form" class="form-horizontal" id="binding_sina_verify" method="post">
+                 会员ID：<input name="memberId"  datatype="n" nullmsg="请输入会员ID"/>
+                 手机号：<input name="mobile"  datatype="n" nullmsg="请输入手机号"/>
+	  <button id="binding_sina_verify_btn" type="button" class="btn btn-warn btn-sm btn-primary" >绑定新浪认证信息</button>
+</form>
+#end
+<hr>
+#if($shiro.hasPermission("sysException:cancellation"))	
+<form role="form" class="form-horizontal" id="cancellation_member" method="post">
+                 手机号：<input name="mobile"  datatype="n" nullmsg="请输入手机号"/>
+                 ##会员ID：<input name="memberId"  datatype="n" nullmsg="请输入会员ID"/>
+	  <button id="cancellation_member_btn" type="button" class="btn btn-warn btn-sm btn-primary" >冻结用户不使用的账户</button>
+</form>
+#end
+
+<hr>
+#if($shiro.hasPermission("sysException:synBalance"))	
+<form role="form" class="form-horizontal" id="syn_balance" method="post">
+                开始时间：
+      <input type="text" name="startTime"  onclick="WdatePicker({isShowClear:true,readOnly:false,dateFmt:'yyyy-MM-dd HH:mm:ss'})"  datatype="*" nullmsg="请输入时间" >
+      
+            结束时间：
+      <input type="text" name="endTime"  onclick="WdatePicker({isShowClear:true,readOnly:false,dateFmt:'yyyy-MM-dd HH:mm:ss'})"  datatype="*" nullmsg="请输入时间" >
+	  <button id="syn_balance_btn" type="button" class="btn btn-warn btn-sm btn-primary" >同步存钱罐收益</button>
+</form>
+#end
+<hr>
+#if($shiro.hasPermission("sysException:createRedPackage"))	
+<form role="form" class="form-horizontal" id="create_redPackage_verify" method="post">
+                交易号：<input name="transactionId"  datatype="*" nullmsg="请输入交易号"/>
+	  <button id="create_redPackage_btn" type="button" class="btn btn-warn btn-sm btn-primary" >人工生成红包</button><span style="color:red"></span>
+</form>
+#end
+#if($shiro.hasPermission("transaction:synBatchHostingPayTrade"))	
+<hr>
+<form role="form" class="form-horizontal" id="syn_batch_host_pay" method="post">
+                批量代付号：<input name="batchPayNo"  datatype="*" nullmsg="请输入交易号"/>
+	  <button id="syn_batch_host_pay_btn" type="button" class="btn btn-warn btn-sm btn-primary" >根据批付号同步代付</button><span style="color:red"></span>
+</form>
+#end
+<hr>
+#if($shiro.hasPermission("sysException:handleDirectPorjectCollect"))	
+<form role="form" class="form-horizontal" id="auth_directPorject_collectTrade" method="post">
+                项目ID：<input name="projectId"  datatype="*" nullmsg="请输入项目ID"/>
+	  <button id="auth_directPorject_collectTrade_btn" type="button" class="btn btn-warn btn-sm btn-primary" >直投项目发起代收完成/撤销</button><span style="color:red"></span>
+</form>
+#end 
+
+<hr>
+#if($shiro.hasPermission("sysException:handleTransferPorjectCollect"))	
+<form role="form" class="form-horizontal" id="auth_transferPorject_collectTrade" method="post">
+                转让交易批付号：<input name="batchNo"  datatype="*" nullmsg="请输入转让交易批付号"/>
+	  <button id="auth_transferPorject_collectTrade_btn" type="button" class="btn btn-warn btn-sm btn-primary" >转让交易创建批付</button><span style="color:red"></span>
+</form>
+#end
+ 
+<hr>
+#if($shiro.hasPermission("directProject:createCollectTradeGuaranteeFee"))	
+<form role="form" class="form-horizontal" id="create_collectTrade_guaranteeFee" method="post">
+               项目ID：<input name="projectId"  datatype="*" nullmsg="请输入项目ID"/>
+	  <button id="create_collectTrade_guaranteeFee_btn" type="button" class="btn btn-warn btn-sm btn-primary" >根据项目id归还项目保证金</button><span style="color:red"></span>
+</form>
+#end
+<hr>
+#if($shiro.hasPermission("sysException:findTransactionId"))
+<form role="form" class="form-horizontal" id="redBagCode_transactionId" method="post">
+                红包加密串：<input name="redBagCode"  id="redBagCode" datatype="*" nullmsg="请输入红包加密串"/>
+	  <button id="redBagCode_transactionId_btn" type="button" class="btn btn-warn btn-sm btn-primary" >根据红包加密串查询交易号</button><span style="color:red"></span>
+</form>
+#end
+</hr>
+<hr>
+#if($shiro.hasPermission("sysException:contractReInit"))	
+<form role="form" class="form-horizontal" id="contract_re_init" method="post">
+                交易ID：<input name="transactionId"  datatype="*" nullmsg="请输入交易ID"/>
+	  <button id="contract_re_init_btn" type="button" class="btn btn-warn btn-sm btn-primary" >根据交易ID重新初始化合同数据</button><span style="color:red"></span>
+</form>
+#end
+</hr>
+
+<hr>
+#if($shiro.hasPermission("sysException:contractReInit"))	
+<form role="form" class="form-horizontal" id="contract_history_init" method="post">
+	  <button id="contract_history_init_btn" type="button" class="btn btn-warn btn-sm btn-primary" >线上历史数据处理</button><span style="color:red"></span>
+</form>
+#end
+</hr>
+<hr>
+#if($shiro.hasPermission("sysException:contractReInit"))	
+<form role="form" class="form-horizontal" id="contract_synchro" method="post">
+                交易ID：<input name="transactionId"  datatype="*" nullmsg="请输入交易ID"/>
+	  <button id="contract_synchro_btn" type="button" class="btn btn-warn btn-sm btn-primary" >同步合同签署信息</button><span style="color:red"></span>
+</form>
+#end
+</hr>
+
+<hr>
+#if($shiro.hasPermission("sysException:contractReInit"))	
+<form role="form" class="form-horizontal" id="contract_autoSignSecond" method="post">
+                交易ID：<input name="transactionId"  datatype="*" nullmsg="请输入交易ID"/>
+	  <button id="contract_autoSignSecond_btn" type="button" class="btn btn-warn btn-sm btn-primary" >乙方自动签署</button><span style="color:red"></span>
+</form>
+#end
+</hr>
+
+<hr>
+##退款失败的异常处理：根据代收交易单号退款/解冻
+#if($shiro.hasPermission("sysException:hostingRefundUnfrozen"))
+<form role="form" class="form-horizontal" id="collectTrade_refund_unfrozen" method="post">
+                交易号：<input name="tradeNo" datatype="*" nullmsg="请输入交易号"/>
+	    类型： <select name="type">
+                  <option value = "1">项目余额不足</option>
+          </select>
+	  <button id="collectTrade_refund_unfrozen_btn" type="button" class="btn btn-warn btn-sm btn-primary" >根据代收交易单号退款/解冻</button><span style="color:red"></span>
+</form>
+#end
+</hr>
+
+<hr>
+#if($shiro.hasPermission("sysException:sendFiveRites"))	
+<form role="form" class="form-horizontal" id="send_fiveRites_form" method="post">
+                项目ID：<input name="projectId"  datatype="*" nullmsg="请输入项目ID"/>
+	  <button id="send_fiveRites_btn" type="button" class="btn btn-warn btn-sm btn-primary" >补发五重礼人气值</button><span style="color:red"></span>
+</form>
+#end
+</hr>
+
+<hr>
+##同步的异常处理：同步充值记录
+#if($shiro.hasPermission("sysException:sysRechargeLog"))
+<form role="form" class="form-horizontal" id="sys_recharge_log" method="post">
+                充值订单号：<input name="rechargeNo"/>
+                开始时间：
+      <input type="text" name="startTime"  onclick="WdatePicker({isShowClear:true,readOnly:false,dateFmt:'yyyy-MM-dd'})" >
+               结束时间：
+      <input type="text" name="endTime"  onclick="WdatePicker({isShowClear:true,readOnly:false,dateFmt:'yyyy-MM-dd'})" >
+	  <button id="sys_recharge_log_btn" type="button" class="btn btn-warn btn-sm btn-primary" >同步充值记录</button><span style="color:red"></span>
+</form>
+#end
+</hr>
+
+<hr>
+#if($shiro.hasPermission("sysException:getContractDownUrl"))	
+<form role="form" class="form-horizontal" id="contract_down" method="post">
+                交易ID：<input name="transactionId"  datatype="*" nullmsg="请输入交易ID"/>
+	  <button id="contract_down_btn" type="button" class="btn btn-warn btn-sm btn-primary" >根据交易ID下载合同数据</button><span style="color:red"></span>
+</form>
+#end
+</hr>
+
+<hr>
+#if($shiro.hasPermission("sysException:memberLevelUpHandle"))	
+<form role="form" class="form-horizontal" id="member_level_up_init" method="post">
+	  <button id="member_level_up_btn" type="button" class="btn btn-warn btn-sm btn-primary" >会员升级礼包发送</button><span style="color:red"></span>
+</form>
+#end
+
+<hr>
+#if($shiro.hasPermission("sysException:sendFiveRites"))	
+<form role="form" class="form-horizontal" id="quick_lottery_form" method="post">
+               项目ID：<input name="projectId"  datatype="*" nullmsg="请输入项目ID"/>
+	  <button id="quick_lottery_btn" type="button" class="btn btn-warn btn-sm btn-primary" >快投有奖补发奖励</button><span style="color:red"></span>
+</form>
+#end
+</hr>
+

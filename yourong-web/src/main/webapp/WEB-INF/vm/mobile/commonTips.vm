@@ -1,0 +1,18 @@
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+##header
+<h2 class="u-header f-pos-r">
+    <a href="$m_url">返回</a>
+    <span class="f-fs18">
+        提&nbsp;示
+    </span>
+</h2>
+##/header
+##content
+<div class="m-Tips-content">
+    <p>您好，功能已经全面升级，<br>您可以下载有融网APP客户端<br>进行体验全新服务。</p>
+    <img src="/static/img/common/QR_code.png" width="90%">
+    <a href="https://itunes.apple.com/cn/app/you-rong-wang/id996844386?mt=8">有融网 for iPhone下载</a>
+    <a class="u-download-android" href="http://www.yrw.com/download/apk">有融网 for Android下载</a>
+</div>
+##/content

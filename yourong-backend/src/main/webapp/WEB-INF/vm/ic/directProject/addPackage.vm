@@ -1,0 +1,73 @@
+<div tabindex="-1" class="modal fade" id="projectPackage-add-remark" style="display: none;" aria-hidden="true">
+        <input type="hidden" id="projectPackageId" name="projectPackageId"/>
+         <input type="hidden" id="projectPackagestatus" name="projectPackagestatus"/>
+        <input type="hidden" id="defaultImg"  value="${root_url}/static/img/default-project-img.jpg"/>
+        
+        <div class="modal-dialog" >
+        <div class="modal-content">
+            <div class="modal-header no-padding">
+                <div class="table-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+                        <span class="white">×</span>
+                    </button>
+                      <span class="modalFormTitle">新增集合项目</span>
+                </div>
+            </div>
+            <div class="modal-body" style="text-align:center">
+                <form id="controlRemarks_form">
+                    <table>
+                       <tr>
+                            <td >集合项目名称：</td>
+                            <td colspan="2" style=" float:left">
+                                <input style="width:260px" placeholder="请输入集合项目名称" type="text" name="projectPackageName" value="$!{model.name}"  id="projectPackageName"/>                             
+                            </td>
+                        <tr>
+	                        <tr class="addProjectTr">
+	                            <td>添加项目：</td>
+	                            <td>
+	                                <input style="width:260px" placeholder="请输入项目编号" type="text" name="originalProjectNumber"  id="originalProjectNumber"/>                             
+	                            </td>
+	                            <td><a href="#" class="addProject">继续添加</a>&nbsp;<a href="#" style="display:none" class="deleteProject">删除</a></td>
+	                        <tr>
+                        <tr clase="uploadPackageImg">
+                           <td>项目缩略图：</td>
+                           <td><input type="button" id="upload-thumbnail-btn" class="u-btn-bg fileinput-button" value="上传图片" style="margin-top:0;margin-bottom:10px;"/></td>
+                           <td>
+							      <div class="upload-file-upload-item" id="previews">
+									    <div id="template">
+											 <div id="upload-project-thumbnail" >
+												<div id="upload-pane" style="display:none">
+													<img src="${root_url}/static/img/upload-file-default.png" id="upload-thumbnail" data-dz-thumbnail/>
+												</div>
+												<div id="thumbnail-pane">
+													<div style="width:120px;height:120px;overflow: hidden;">
+													    <img src="${root_url}/static/img/default-project-img.jpg" id="thumbnail-120"/>
+													</div>
+												</div>														
+												<div style="clear:both"></div>
+											  </div>
+										</div>
+										<div id="project-thumbnail-pane" style="display:none">	
+											<img src="${root_url}/static/img/default-project-img.jpg" id="project-thumbnail" style="width:120px;height:120px;display:block"/>
+											<input type="button" value="修改图像" class="u-btn-bg j-modify-img"/>
+										</div>
+										
+										<input type="hidden" id="x" name="x"/>
+										<input type="hidden" id="y" name="y"/>
+										<input type="hidden" id="w" name="w"/>
+										<input type="hidden" id="h" name="h"/>
+										<input type="hidden" id="thumbnail"  name="thumbnail"/>
+								</div>
+                           </td> 
+                        </tr>
+                    </table>
+                     
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btn_add_projectPackage" class="btn btn-primary">确定</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>

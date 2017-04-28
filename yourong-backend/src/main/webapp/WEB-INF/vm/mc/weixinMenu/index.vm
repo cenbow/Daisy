@@ -1,0 +1,30 @@
+#parse("/mc/weixinMenu/head.vm")
+<style type="text/css">
+div#rMenu {position:absolute; visibility:hidden; top:0; background-color: #255;text-align: left;}
+div#rMenu ul li{
+	margin: 1px 0;
+	padding: 0 5px;
+	cursor: pointer;
+	list-style: none outside none;
+	background-color: #DFDFDF;
+}
+	</style>
+	 <div class="col-sm-2">
+			<button id="getTree" class="btn btn-info btn-sm ">获取微信菜单</button>
+			<div class="zTreeDemoBackground left">
+		            <ul id="roleTree" class="ztree"></ul>
+			</div>
+		 	<button id="publish" class="btn btn-info btn-sm ">发布</button>
+		
+		<div id="rMenu">
+		<ul>
+		<li id="wx_add">增加节点</li>
+		<li id="wx_edit" >修改节点</li>
+		<li id="wx_del" >删除节点</li>
+		</ul>
+		</div>
+	</div>	
+ #parse("/mc/weixinMenu/form.vm")	
+	
+	
+	

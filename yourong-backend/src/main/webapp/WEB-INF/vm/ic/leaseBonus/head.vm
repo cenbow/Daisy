@@ -1,0 +1,24 @@
+ #parse("/common/common.vm")
+ #########################################script##################################### 
+ #set($js_config=[ 
+ "'urlMap':{ 
+   'ajax':'$root_url/leaseBonus/ajax?', 
+   'query':'$root_url/leaseBonus/index?',
+   'show':'$root_url/leaseBonus/show?id=', 
+   'delet':'$root_url/leaseDetail/delete',
+   'leaseDetailSave':'$root_url/leaseDetail/save',
+   'leaseDetailAjax':'$root_url/leaseDetail/ajax?',
+   'saveLeaseDetail':'$root_url/leaseDetail/save',
+   'showLeaseDetail':'$root_url/leaseDetail/show?id=',
+   'toLeaseBonus':'$root_url/leaseBonus/bonus'
+   },
+   'leaseStatus':#buildDictJson('lease_status'),  ##租赁状态
+   'bonusStatus':#buildDictJson('bonus_status'),  ##分红状态
+   'permission':{
+         'leaseDetailSave':$shiro.hasPermission('leaseDetail:save'),
+         'leaseDetailAjax':$shiro.hasPermission('leaseDetail:ajax'),
+   }
+ "]) 
+ #set($css_url=["$root_url/static/js/lib/My97DatePicker/skin/WdatePicker.css"])
+ #set($js_url=["$root_url/static/js/leaseBonus.js","$root_url/static/js/lib/My97DatePicker/WdatePicker.js"]) 
+ #########################################DOM##################################### 

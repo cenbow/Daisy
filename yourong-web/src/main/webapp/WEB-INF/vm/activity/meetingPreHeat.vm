@@ -1,0 +1,142 @@
+#parse('/common/common.vm')
+#set($title="融未来 行致远_$!{title_suffix}")
+#set($css_url=["$root_css_url/activity/meetingPreHeat.css"])
+#set($js_url=["$root_js_url/activity/meetingPreHeat.js"])
+<div class="m-meetingPreHeat-head"></div>
+<div class="m-meetingPreHeat-body">
+    <div class="g-wrap">
+        ##计划行程
+        <div class="u-meetingPreHeat-schedule" id="j-meeting-schedule">
+            <span></span>
+            <i class="f-fs30 u-meetingPreHeat-dot01">●</i>
+            <i class="f-fs30 u-meetingPreHeat-dot02">●</i>
+            <i class="f-fs30 u-meetingPreHeat-dot03">●</i>
+            <i class="f-fs30 u-meetingPreHeat-dot04">●</i>
+            <i class="f-fs30 u-meetingPreHeat-dot05">●</i>
+            <dl class="u-meetingPreHeat-plan01">
+                <dt class="f-fs14">11月18号</dt>
+                <dd>抵杭 酒店入住</dd>
+            </dl>
+            <dl class="u-meetingPreHeat-plan02">
+                <dt class="f-fs14">11月19号上午</dt>
+                <dd>游览景点/参观公司</dd>
+            </dl>
+            <dl class="u-meetingPreHeat-plan03">
+                <dt class="f-fs14">11月19号下午</dt>
+                <dd>签到入场 庆典开始</dd>
+            </dl>
+            <dl class="u-meetingPreHeat-plan04">
+                <dt class="f-fs14">11月19号晚上</dt>
+                <dd>晚宴</dd>
+            </dl>
+            <dl class="u-meetingPreHeat-plan05">
+                <dt class="f-fs14">11月20号</dt>
+                <dd>结束返程</dd>
+            </dl>
+        </div>
+        ##计划行程
+            ##周年视频
+        <h3 class="f-fs24" id="j-live-text">先睹为快</h3>
+            <div class="u-meetingPreHeat-video" id="j-live-video">
+                <iframe id="j-meetingPreHeat-youku" height=530 width=100% src="http://player.youku.com/embed/XMTM3MDA2MDcwMA==" frameborder=0 allowFullScreen></iframe>
+            </div>
+        ##周年视频
+        ##平台互动
+            <div class="u-meetingPreHeat-interaction f-cf">
+                <div class="u-meetingPreHeat-weibo">
+                    <img src="/static/img/activity/meetingPreHeat/meetingPreHeat_weibo.png">
+                    <div>
+                        <strong class="f-fs24">微博互动</strong>
+                        <p>关注有融网新浪官方微博，
+                            <br>参与话题互动，
+                            <br>将有机会获得丰厚大礼。</p>
+                    </div>
+                </div>
+                <span></span>
+                <div class="u-meetingPreHeat-weixin">
+                    <img src="/static/img/activity/meetingPreHeat/meetingPreHeat_weixin.png">
+                    <div>
+                        <strong class="f-fs24">微信互动</strong>
+                        <p>关注有融网公众号，
+                            <br>时刻掌握一周年
+                            <br>答谢会专场最新动态。</p>
+                    </div>
+                </div>
+            </div>
+        ##平台互动
+        <a class="u-meetingPreHeat-btn f-fs20" id="j-btn-text">11.17引爆周年庆理财分会场 &nbsp;7天狂欢趴敬请期待！</a>
+        <div class="u-meetingPreHeat-style f-cf">
+            <h3 class="f-fs24">您可以这么到酒店</h3>
+            <span class="f-fs14">杭州海外海皇冠假日酒店（杭州市拱墅区上塘路333号）</span>
+            <div class="u-meetingPreHeat-eastStation">
+                <strong>杭州火车东站：</strong>
+                <p>公交33路（在火车东站西上车，至石灰坝下车）；
+                    <br>地铁1号线（在火车东站地铁站，选乘地铁1号线湘湖方向至西湖文化广场下车，
+                    <br>B出口出站，步行至市交警支队公交站，换乘公交316路等至石灰坝下车）；</p>
+            </div>
+            <div class="u-meetingPreHeat-airport">
+                <strong>萧山机场：</strong>
+                <p>机场大巴 → 公交3路（乘坐机场大巴，至城站火车站下车，
+                    <br>换乘公交3路等至石灰坝下车）；</p>
+            </div>
+            <div class="u-meetingPreHeat-HZStation">
+                <strong>杭州城站：</strong>
+                <p>公交3路（在城站火车站上车，至石灰坝下车）；
+                    <br>公交90路（在城站火车站上车，至德胜路东粮泊巷口下车）；
+                    <br>地铁1号线 → 公交316/46/6/58路（在城站地铁站，选乘地铁1号线湘湖方向至西湖文化广场下车，
+                    <br>B出口出站，步行至市交警支队公交站，换乘公交316路等至石灰坝下车）；</p>
+            </div>
+            <em>最新出行信息以杭州市公交公司及地铁集团提供的线路信息为准，请注意首末班车时间。</em>
+        </div>
+        <h3 class="f-fs24">杭州旅游攻略</h3>
+        <div class="u-meetingPreHeat-strategy">
+            <strong class="f-fs14">西湖景区：</strong>
+            <div class="f-cf">
+                <dl>
+                    <dt><img src="/static/img/activity/meetingPreHeat/meetingPreHeat_phqy.jpg"></dt>
+                    <dd>平湖秋月</dd>
+                </dl>
+                <dl>
+                    <dt><img src="/static/img/activity/meetingPreHeat/meetingPreHeat_styy.jpg"></dt>
+                    <dd>三潭印月</dd>
+                </dl>
+                <dl>
+                    <dt><img src="/static/img/activity/meetingPreHeat/meetingPreHeat_lfxz.jpg"></dt>
+                    <dd>雷峰夕照</dd>
+                </dl>
+            </div>
+            <strong class="f-fs14">运河景区：</strong>
+
+                <div class="f-cf">
+                    <dl>
+                        <dt><img src="/static/img/activity/meetingPreHeat/meetingPreHeat_xhzj.jpg"></dt>
+                        <dd>小河直街</dd>
+                    </dl>
+                    <dl>
+                        <dt><img src="/static/img/activity/meetingPreHeat/meetingPreHeat_djjbwg.jpg"></dt>
+                        <dd>刀剪剑博物馆</dd>
+                    </dl>
+                    <dl>
+                        <dt><img src="/static/img/activity/meetingPreHeat/meetingPreHeat_gcq.jpg"></dt>
+                        <dd>拱宸桥</dd>
+                    </dl>
+                </div>
+
+            <strong class="f-fs14">其他景区：</strong>
+                <div class="f-cf">
+                    <dl>
+                        <dt><img src="/static/img/activity/meetingPreHeat/meetingPreHeat_xxsd.jpg"></dt>
+                        <dd>西溪湿地</dd>
+                    </dl>
+                    <dl>
+                        <dt><img src="/static/img/activity/meetingPreHeat/meetingPreHeat_hfj.jpg"></dt>
+                        <dd>河坊街</dd>
+                    </dl>
+                    <dl>
+                        <dt><img src="/static/img/activity/meetingPreHeat/meetingPreHeat_yxzj.jpg"></dt>
+                        <dd>云栖竹径</dd>
+                    </dl>
+            </div>
+        </div>
+    </div>
+</div>

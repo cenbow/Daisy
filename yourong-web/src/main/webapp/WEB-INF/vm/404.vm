@@ -1,0 +1,27 @@
+#parse("/common/common.vm")
+###set($title="_$!{title_suffix}")
+#set($css_url=["$root_css_url/error.css"])
+
+<div class="m-error-page f-pos-r">
+##<img src="$root_url/static/img/common/error_bg.jpg" alt="无法找到此页面" />
+    <div class="u-tips-wrap">
+        <h2>
+            温馨提示: <br>
+            <em class="f-fs45">404</em><br>
+            未找到该页面
+        </h2>
+        <a href="/" class="u-tips-homepage">回到首页<i>▶</i></a>
+        <a onclick="window.history.go(-1)" class="u-tips-pre" id="j-goback">返回上一页<i>▶</i></a>
+        <div class="u-tips-recode">
+            <dl>
+                <dt>APP投资</dt>
+                <dd><img src="/static/img/common/QR_code.png" alt="APP投资"></dd>
+            </dl>
+            <dl>
+                <dt>微信投资</dt>
+                <dd><img src="/static/img/common/weixin_qrcode.jpg" alt="微信投资"></dd>
+            </dl>
+        </div>
+    </div>
+</div>
+##common里相关的样式要移除

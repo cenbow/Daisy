@@ -1,0 +1,44 @@
+#parse("/common/common.vm")
+<form role="form" class="form-horizontal" id="memberNotifySettings_form" method="post" action="$root_url/member/updateMemberNotifySettings">
+#CSRFToken()
+	<table>
+		<tr>
+			<td></td>
+			<td>系统通知</td>
+			<td>邮件通知</td>
+			<td>短信通知</td>
+		</tr>
+		<tr>
+			<td>充值操作</td>
+			<td><input type="checkbox" name="recharge_system" value="1" checked/></td>
+			<td><input type="checkbox" name="recharge_email" value="1"/></td>
+			<td><input type="checkbox" name="recharge_phone" value="1"/></td>
+		</tr>
+		<tr>
+			<td>提现操作</td>
+			<td><input type="checkbox" name="withdraw_system" value="1"/></td>
+			<td><input type="checkbox" name="withdraw_email" value="1"/></td>
+			<td><input type="checkbox" name="withdraw_phone" value="1"/></td>
+		</tr>
+		<tr>
+			<td>奖励兑付</td>
+			<td><input type="checkbox" name="award_system" value="1"/></td>
+			<td><input type="checkbox" name="award_email" value="1"/></td>
+			<td><input type="checkbox" name="award_phone" value="1"/></td>
+		</tr>
+		<tr>
+			<td>投资成功</td>
+			<td><input type="checkbox" name="loan_success_system" value="1"/></td>
+			<td><input type="checkbox" name="loan_success_email" value="1"/></td>
+			<td><input type="checkbox" name="loan_success_phone" value="1"/></td>
+		</tr>
+		<tr>
+			<td>还本付息</td>
+			<td><input type="checkbox" name="loan_pay_system" value="1"/></td>
+			<td><input type="checkbox" name="loan_pay_email" value="1"/></td>
+			<td><input type="checkbox" name="loan_pay_phone" value="1"/></td>
+		</tr>
+	</table>
+	<input type="submit" value="Submit" />
+</form>
+$!{message}

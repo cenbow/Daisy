@@ -1,0 +1,29 @@
+#parse("/common/common.vm")
+################################script###################################
+ #set($js_config=[ 
+ "'urlMap':{ 
+   	'add':'$root_url/salesPromotion/add',
+   	'update':'$root_url/salesPromotion/update',
+   	'del':'$root_url/salesPromotion/del',
+   	'review':'$root_url/salesPromotion/review',
+   	'submittedForReview':'$root_url/salesPromotion/submittedForReview',
+   	'ajax':'$root_url/salesPromotion/ajax',
+   	'history':'$root_url/salesPromotion/history',
+   	'historyDetail':'$root_url/salesPromotion/historyDetail',
+   	'select':'$root_url/salesPromotion/select'
+   },
+   'permission':{
+         'printAjax':$shiro.hasPermission('couponTemplate:printAjax'),
+         'show':$shiro.hasPermission('couponTemplate:show'),
+         'del':$shiro.hasPermission('couponTemplate:delete'),
+         'print':$shiro.hasPermission('couponTemplate:print')
+   },
+   'activityType':#buildDictJson('activity_type'),##活动类型
+   'activityStatus':#buildDictJson('activity_status')##活动状态
+   "
+ ])
+ 
+#set($css_url=["$root_url/static/js/lib/My97DatePicker/skin/WdatePicker.css"])
+#set($js_url=["$root_url/static/js/sales.js","$root_url/static/js/lib/My97DatePicker/WdatePicker.js"]) 
+##################################DOM######################################
+

@@ -1,0 +1,74 @@
+#set($layout = "/layout/iframe.vm")
+#parse("/sys/sysTime/head.vm")
+
+
+
+
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover" id="sample-table-1">
+                <thead>
+                <tr>
+                    <th> 定时任务名称</th>
+                    <th class="hidden-480">task</th>
+                    <th class="hidden-480">生产环境执行时间</th>
+                   <th> button</th>
+                </tr>
+                </thead>
+           
+                <tbody>
+                
+                ##buildTimeTask("定时任务名称","task","生产环境执行时间")  buildTimeTask宏根据入参生成对应行内容
+                
+                #buildTimeTask("定时发布项目<br/>定时关闭订单<br/>同步代收交易<br/>定时banner过期<br/>定时活动上线&结束<br/>定时处理消息<br/>定时刷新支付管理平台状态<br/>定时监控支付确认中的项目","minuteTaskDetail","每分钟执行一次")
+              	##buildTimeTask("banner下线","bannerAutoExpireJobDetail","每分钟执行一次")
+              	##buildTimeTask("关闭订单","closeOrderJobDetail","每分钟执行一次")
+              	#buildTimeTask("同步提现","synchronizedWithdrawTaskJobDetail","每天晚上11点执行一次")
+              	#buildTimeTask("同步代付","synchronizedHostingPayTradeJobDetail","每分钟执行一次")
+              	#buildTimeTask("同步代收","synchronizedHostingCollectTradeJobDetail","每分钟执行一次")
+              	#buildTimeTask("发通知","customMessageAutoStartJobDetail","每分钟执行一次")
+              	#buildTimeTask("项目定时任务","projectAutoStartJobDetail","每分钟执行一次")
+              	#buildTimeTask("项目置为已还款","projectAutoRepaymentJobDetail","每天14点执行")
+              	#buildTimeTask("同步存钱罐","createpiggyBankEaringsTaskPrincipalJobDetail","每天凌晨1点执行")
+              	#buildTimeTask("还本付息到期通知","noticeForPayPrincipalAndInterestJobDetail","每天上午10点执行一次")
+              	#buildTimeTask("还本付息","createHostingCollectTradeForPayInterestAndPrincipalJobDetail","每天14点执行一次")
+              	#buildTimeTask("优惠券过期","couponAutoExpireJobDetail","每天凌晨0点执行")
+              	##buildTimeTask("活动上线&结束","activityTaskJobDetail","每分钟执行一次")
+              	#buildTimeTask("生日券","birthdayJobDetail","每天上午9点执行")
+              	#buildTimeTask("数据保全","regularPreservationJobDetail","每天凌晨3点执行一次")
+              	##buildTimeTask("支付管理平台状态","paymentPlatformStatusAutoFlushJobDetail","每分钟执行一次 ")
+                #buildTimeTask("同步redis值","synchronizedRedisValueJobDetail","每天凌晨1点执行（后台要打开开关）")
+                 
+                #buildTimeTask("优惠券监控","couponInforJobDetail","每1小时执行一次") 
+                
+                #buildTimeTask("发布文章定时任务","publishCmsArticleDetail","每10分钟执行一次")
+                ##buildTimeTask("监控项目状态定时任务","projectMonitorDetail","每5分钟执行一次")
+                #buildTimeTask("监控网站公告开关定时任务","webMaintenAnnounceDetail","每5分钟执行一次")
+                #buildTimeTask("发送短信定时任务","sendMessageDetail","每分钟执行一次")
+                
+                
+                 
+				##buildTimeTask("流标定时任务","directProjectLoseDetail","每1分钟执行一次") 
+				#buildTimeTask("短信预警提醒定时任务","sendSmsRemindTaskDetail","每天10点执行一次") 
+				#buildTimeTask("生成逾期定时任务","generateOverdueTaskDetail","每天0点执行一次") 
+				
+				#buildTimeTask("还本付息监控定时任务","repaymentMonitorTaskDetail","每天14-16点每隔5分钟执行一次") 
+				
+				#buildTimeTask("未签署合同提醒定时任务","contractUnsignTaskDetail","每天12点执行一次") 
+				
+				#buildTimeTask("自动投标定时任务","memberAutoIntestDetail","每隔30分钟执行一次")
+				#buildTimeTask("优惠券短信提醒任务","templateSMSDetail","每天12点执行一次")    
+				
+				#buildTimeTask("转让项目定时流标任务","transferProjectFailDetail","每天凌晨执行一次")  
+				#buildTimeTask("优惠券到期提醒发送app消息任务","couponExpirationReminderDetail","每天凌晨执行一次")
+				
+				#buildTimeTask("减少直投项目借款人的存续量任务","reduceBorrowerCreditDetail","每天0点执行一次")  
+				#buildTimeTask("人气值商品自动增加库存","shopGoodsAutoInventoryDetail","每天10点执行一次")
+				#buildTimeTask("除夕抢人气值发放人气值任务","newYearGrabDetail","1月27号8点10分执行一次")
+                </tbody>
+            </table>
+        </div><!-- /.table-responsive -->
+    </div><!-- /span -->
+</div>

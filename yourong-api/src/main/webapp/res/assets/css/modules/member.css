@@ -1,0 +1,1063 @@
+/*优惠券*/
+.u-header {
+    z-index: 2;
+    text-align: center;
+    color: #fff;
+    height: 50px;
+    line-height: 50px;
+    margin: 0;
+    padding: 0 1rem;
+    background-color: #d74148;
+    background-size: auto 50%;
+}
+
+.u-header a {
+    position: absolute;
+    left: 1rem;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.u-header a:link,
+.u-header a :visited,
+.u-header a :hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+.u-header span {
+    font-weight: bold;
+}
+
+.f-pos-r {
+    position: relative;
+}
+
+body {
+    font-size: 16px;
+    background: #eee;
+    margin: 0;
+}
+
+/**公共**/
+.u-cashCoupon-tab,.u-reputation-tab {
+    width: 100%;
+}
+
+.u-cashCoupon-tab span ,.u-reputation-tab span{
+    width: 33.3%;
+    height: 55px;
+    float: left;
+    color: #999;
+    display: block;
+    line-height: 55px;
+    text-align: center;
+    background-color: #fff;
+    border-bottom:3px solid #fff ;
+}
+.u-reputation-tab span{
+    width: 50%;
+}
+.u-cashCoupon-tab span a,.u-reputation-tab span a{
+    color: #999;
+}
+.u-cashCoupon-tab .z-current,.u-reputation-tab .z-current{
+    color: #d74148;
+    border-bottom: 3px solid #d74148;
+}
+
+.m-cashCoupon-list, .m-profitCoupon-list {
+    /*height: 365px;*/
+    overflow: hidden;
+    /*margin: 52px 0 15px;*/
+    background-color: #eee;
+}
+
+.m-cashCoupon-list .u-coupon-wrap, .m-profitCoupon-list .u-coupon-wrap {
+    padding: 0;
+    margin: 0;
+}
+
+.m-cashCoupon-list .u-coupon-inner, .m-profitCoupon-list .u-coupon-inner {
+    margin: 0 16%;
+    background-color: #fff;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    padding: 1.5rem 0;
+    height: 320px;
+    overflow: hidden;
+}
+
+.m-cashCoupon-list .u-coupon-box, .m-profitCoupon-list .u-coupon-box {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    float: left;
+    padding: 2.5rem 0 1.5rem;
+}
+
+.u-cashCoupon-money {
+    color: #de3c47;
+    font-size: 1.5rem;
+    letter-spacing: -6px;
+    text-align: center;
+    padding: 0 0 0.5rem;
+}
+
+.u-cashCoupon-money span {
+    font-size: 8rem;
+}
+
+.u-cashCoupon-bg {
+    height: 19px;
+    width: 100%;
+    background: url("../../../img/reputation_bg01.png") repeat-x;
+    background-size: 68%;
+    margin-top: -3rem;
+    position: relative;
+}
+
+.u-cashCoupon-bg s {
+    height: 19px;
+    width: 41px;
+    display: block;
+    background: url("../../../img/reputation_bg02.png") no-repeat center;
+    background-size: 68%;
+    margin: 0 auto;
+    position: absolute;
+    left: 41%;
+    top: -3px;
+}
+
+.m-cashCoupon-list p, .m-profitCoupon-list p {
+    text-align: center;
+    color: #999;
+    font-size: 0.8rem;
+    line-height: 1.7em;
+}
+
+.m-cashCoupon-list p em, .m-profitCoupon-list p em {
+    color: #ccc;
+    display: block;
+}
+
+.m-cashCoupon-list p span, .m-profitCoupon-list p span {
+    display: block;
+    font-size: 1rem;
+    font-weight: bold;
+}
+.m-cashCoupon-list p strong, .m-profitCoupon-list p strong{
+    display: block;
+    text-align: center;
+    color: #999;
+    font-weight: normal;
+}
+.m-cashCoupon-point {
+    height: 100px;
+}
+
+.m-cashCoupon-point ol {
+   margin: 0 auto;
+}
+
+.m-cashCoupon-point li {
+    float: left;
+    margin: 0 5px;
+    font-size: 1.5rem;
+    color: #999;
+}
+
+.m-cashCoupon-point .z-current {
+    color: #d74148;
+}
+/**优惠券使用中锁定**/
+.u-coupon-shade{
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 320px;
+    margin: 0 16%;
+    line-height: 2em;
+    width: 68%;
+    text-align: center;
+    color: #d74147;
+    background: #fff;
+    opacity: 0.90;
+    font-size: 0.8rem;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    z-index: 99;
+}
+.u-coupon-shade span{
+    display: block;
+    height: 40px;
+    width: 100%;
+    margin-top: 132px;
+}
+.u-coupon-shade em{
+    height: 22px;
+    width: 25%;
+    line-height: 23px;
+    display: block;
+    margin: 0 auto;
+    color: #fff;
+    font-size: 1rem;
+    background: #d74147;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+/**收益券**/
+.u-profitCoupon-money {
+    color: #de3c47;
+    font-size: 8rem;
+    text-align: center;
+    padding-top: 1.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.u-profitCoupon-money span {
+    font-size: 3rem;
+    margin-left: -15px;
+}
+
+.m-Coupon,.m-reRecord {
+    display: none;
+}
+
+.m-Coupon.z-current ,.m-reRecord.z-current{
+    display: block;
+}
+.ui-badge-cornernum{
+    background: #de3c47;
+    height: 20px;
+    min-width: 10px;
+    top: 5px;
+    right: 2px;
+    line-height: 21px;
+    text-align: center;
+    font-size: 1rem;
+    display: none;
+
+}
+.z-current .ui-badge-cornernum{
+    display: inline-block;
+}
+
+/*人气值首页*/
+/**项目图片圆环**/
+.u-reputation-avatar {
+    width: 156px;
+    height: 156px;
+    position: absolute;
+    z-index: 101;
+    left: 10px;
+    top: 10px;
+}
+
+.u-reputation-circle {
+    width: 180px;
+    height: 180px;
+    position: relative;
+    border-radius: 50%;
+    background: #DF4251;
+    left: 0;
+    top: 0;
+}
+
+.u-reputation-circle.z-finished {
+    background-color: #f8ada8;
+}
+
+.u-reputation-circle.z-finished .z-left, .u-reputation-circle.z-finished .z-right {
+    background: #F8ADA8;
+}
+
+.u-reputation-item .u-reputation-circle {
+    background: none;
+}
+
+.f_pie_left, .f_pie_right {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.z-left, .z-right {
+    width: 100%;
+    height: 100%;
+    background: #C9CACB;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.f_pie_right, .z-right {
+    clip: rect(0, auto, auto, 90px);
+}
+
+.f_pie_left, .z-left {
+    clip: rect(0, 90px, auto, 0);
+}
+
+.u-reputation-mask {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    left: 5px;
+    top: 5px;
+    background: #eee;
+    position: absolute;
+    text-align: center;
+    line-height: 150px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #00aacc;
+}
+
+.u-reputation-mask span {
+    display: none;
+}
+
+.u-reputation-link {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+/*屏幕适配*/
+@media screen and (min-width: 391px) {
+    .m-reputation-list li {
+        min-height: 190px;
+    }
+
+    .m-reputation-list .u-reputation-item {
+        min-height: 233px;
+    }
+
+    .u-pl-info {
+        margin: 25px 0 0 175px;
+    }
+
+    /**圆环**/
+    .u-reputation-circle {
+        width: 278px;
+        height: 278px;
+        position: relative;
+    }
+
+    .f_pie_left, .z-left {
+        clip: rect(0px 139px auto 0px);
+    }
+
+    .f_pie_right, .z-right {
+        clip: rect(0px auto auto 139px);
+    }
+
+    .u-reputation-mask {
+        height: 268px;
+        width: 268px;
+        left: 5px;
+        top: 5px;
+    }
+
+    .u-reputation-avatar {
+        width: 96px;
+        height: 96px;
+    }
+
+    .u-reputation-total {
+        position: absolute;
+        top: 25%;
+        left: 28%;
+    }
+}
+
+@media screen and (min-width: 330px) and (max-width: 390px) {
+    .m-reputation-list li {
+        min-height: 176px;
+    }
+
+    .m-reputation-list .u-reputation-item {
+        min-height: 217px;
+    }
+
+    .u-pl-process {
+        height: 37px;
+        line-height: 37px;
+    }
+
+    .u-pl-info {
+        margin: 17.5px 0 0 158px;
+    }
+
+    .u-pnav-crt, .u-pnav-link {
+        height: 20px;
+        width: 20px;
+        line-height: 20px;
+    }
+
+    /*圆环*/
+    .u-reputation-circle {
+        width: 250px;
+        height: 250px;
+        position: relative;
+    }
+
+    .f_pie_left, .z-left {
+        clip: rect(0px 125px auto 0px);
+    }
+
+    .f_pie_right, .z-right {
+        clip: rect(0px auto auto 125px);
+    }
+
+    .u-reputation-mask {
+        height: 240px;
+        width: 240px;
+        left: 5px;
+        top: 5px;
+    }
+
+    .u-reputation-avatar {
+        width: 85px;
+        height: 85px;
+    }
+
+    .u-reputation-total {
+        position: absolute;
+        top: 20%;
+        left: 25%;
+    }
+}
+
+@media screen and (max-width: 321px) {
+    .m-reputation-list li {
+        min-height: 151px;
+    }
+
+    .m-reputation-list .u-reputation-item {
+        min-height: 187px;
+    }
+
+    .u-pl-process div {
+        padding: 0;
+        text-align: center;
+    }
+
+    .u-pl-process {
+        height: 33px;
+        line-height: 33px;
+        border-top: 3px solid #ccc;
+    }
+
+    .u-pl-process i {
+        height: 3px;
+        line-height: 3px;
+        top: -3px;
+    }
+
+    .u-pl-process span {
+        padding: 0 0 0 0.5em;
+    }
+
+    .u-pl-info span {
+        font-size: 14px;
+    }
+
+    .u-pl-info {
+        margin: 14px 0 0 135px;
+    }
+
+    .m-reputation-list h3 {
+        height: 35px;
+        line-height: 35px;
+    }
+
+    .m-reputation-list .u-badge-red {
+        margin-top: 9px;
+    }
+
+    .u-pnav-crt, .u-pnav-link {
+        height: 16px;
+        width: 16px;
+        line-height: 16px;
+    }
+
+    .m-pagenav .u-pnav-prev {
+        height: 16px;
+        line-height: 16px;
+    }
+
+    /**圆环**/
+    .u-reputation-circle {
+        width: 212px;
+        height: 212px;
+        position: relative;
+    }
+
+    .f_pie_left, .z-left {
+        clip: rect(0px 106px auto 0px);
+    }
+
+    .f_pie_right, .z-right {
+        clip: rect(0px auto auto 106px);
+    }
+
+    .u-reputation-mask {
+        height: 202px;
+        width: 202px;
+        left: 5px;
+        top: 5px;
+    }
+
+    .u-reputation-avatar {
+        width: 70px;
+        height: 70px;
+    }
+
+    .u-reputation-total {
+        visibility: hidden;
+        position: absolute;
+        top: 16%;
+        left: 20%;
+    }
+}
+
+.u-reputation-circle {
+    margin: 0 auto;
+}
+
+.m-reputation-circle {
+    padding-top: 74px;
+}
+.u-reputation-total{
+    visibility: hidden;
+}
+.u-reputation-total em {
+    font-size: 6rem;
+    display: block;
+    text-align: center;
+    color: #d74248;
+}
+
+.u-reputation-total a {
+    height: 30px;
+    width: 125px;
+    background-color: #d74248;
+    color: #fff;
+    display: block;
+    line-height: 30px;
+    text-align: center;
+    font-weight: bold;
+    margin-top: -25px;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    border-radius: 15px;
+}
+.u-reputation-total a.z-disabled{
+    background-color: #bbb;
+}
+.m-reputation-tips {
+    text-align: center;
+    color: #999;
+    margin-top: 20px;
+}
+
+.m-reputation-btn {
+    margin: 70px 0 20px;
+}
+
+.m-reputation-btn a {
+    height: 40px;
+    width: 39%;
+    margin: 0 5%;
+    line-height: 40px;
+    text-align: center;
+    border: 1px solid #999;
+    color: #999;
+    font-size: 1rem;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    display: block;
+    float: left;
+}
+
+/*弹出菜单*/
+.ui-actionsheet {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    display: -webkit-box;
+    -webkit-box-orient: horizontal;
+    -webkit-box-pack: center;
+    -webkit-box-align: end;
+    background: rgba(0, 0, 0, .4)
+}
+
+.ui-actionsheet.show {
+    pointer-events: inherit;
+    opacity: 1
+}
+
+.ui-actionsheet.show .ui-actionsheet-cnt {
+    -webkit-transform: translateY(0);
+    -webkit-transition-delay: .3s
+}
+
+.ui-actionsheet-cnt {
+    font-size: 21px;
+    position: fixed;
+    bottom: 0;
+    padding: 0 8px;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    -webkit-transform: translateY(100%);
+    -webkit-transition-property: all;
+    -webkit-transition-timing-function: ease-out;
+    -webkit-transition-duration: .3s
+}
+
+.ui-actionsheet button, .ui-actionsheet h4 {
+    background: #fff;
+    display: block;
+    width: 100%;
+    color: #999;
+    font-size: 1rem;
+    box-sizing: border-box
+}
+
+.ui-actionsheet button {
+    line-height: 44px;
+    height: 44px
+}
+
+.ui-actionsheet h4 {
+    line-height: 24px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px
+}
+
+.ui-actionsheet button:not(:last-child) {
+    border-top: 1px #e0e0e0 solid
+}
+
+.ui-actionsheet button:last-child {
+    margin: 8px 0;
+    border-radius: 3px
+}
+
+.ui-actionsheet button:nth-last-child(2) {
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px
+}
+
+.ui-actionsheet button:active {
+    opacity: .84
+}
+
+.ui-actionsheet h4 {
+    font-size: 13px;
+    color: #8a8a8a
+}
+
+.ui-actionsheet .ui-actionsheet-del {
+    color: #fd472b
+}
+.ui-actionsheet-cnt .ui-actionsheet-rule{
+    background-color: #fff;
+    height: 180px;
+    color: #999;
+    padding: 32px 5%;
+    font-size: 1rem;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+}
+.ui-actionsheet-rule h5{
+    text-align: left;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+.ui-actionsheet-rule p{
+    font-size: 0.9rem;
+    text-align: left;
+    line-height: 2em;
+}
+@media screen and (-webkit-min-device-pixel-ratio: 2) {
+    .ui-actionsheet button:not(:last-child) {
+        border: 0;
+        background-position: left top;
+        background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.5, transparent), color-stop(0.5, #e0e0e0), to(#e0e0e0));
+        background-repeat: repeat-x;
+        -webkit-background-size: 100% 1px
+    }
+}
+
+
+
+/*人气值列表页*/
+.m-reRecord-table {
+    padding: 0 3%;
+}
+
+.m-reRecord-table table {
+    width: 100%;
+    margin: 23px 0 30px;
+}
+
+.m-reRecord-table thead {
+    height: 37px;
+    line-height: 37px;
+    text-align: center;
+    color: #666;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+.m-reRecord-table tbody {
+    color: #999;
+    font-size: 0.8rem;
+}
+
+.m-reRecord-table table th {
+    font-size: 0.8rem;
+    border-left: 1px solid #ccc;
+}
+
+.m-reRecord-table table th:first-child {
+    border-left: none;
+}
+.m-reRecord-table tbody td{
+    height: 37px;
+    line-height: 24px;
+    text-align: center;
+    border-left: 1px solid #ccc;
+    border-bottom:1px solid #ccc ;
+}
+.m-reRecord-table tbody td:first-child{
+    border-left: none;
+}
+
+/*人气值兑换页*/
+.ui-actionsheet-choise{
+    background-color: #fff;
+    color: #999;
+    font-size: 1rem;
+    padding-top: 10px;
+}
+.ui-actionsheet-choise span{
+    font-size: 0.8rem;
+    padding: 10px 5%;
+    border-top: 1px solid #999;
+    text-align: left;
+    line-height: 1.5em;
+    display: block;
+}
+.ui-actionsheet-choise span:first-child{
+    border-top: none;
+}
+.ui-actionsheet-choise em{
+    font-size: 0.9rem;
+    display: block;
+    color: #d64147;
+    font-weight: bold;
+}
+.ui-actionsheet-choise .z-disabled{
+    background-color: #ccc;
+}
+.ui-actionsheet-choise .z-disabled em{
+    color: #999;
+}
+
+
+
+/*签到页*/
+.u-checkin-title {
+    text-align: center;
+    padding: 2em 0 0;
+}
+
+.u-checkin-title h3 {
+    color: #D84148;
+    font-size: 28px;
+    line-height: 2em;
+    font-weight: bold;
+
+}
+
+.u-checkin-title p {
+    color: #9c9c9c;
+}
+
+/**签到面板**/
+.m-checkin-plane {
+    width: 50%;
+    margin: 3em auto 6em;
+}
+
+.m-checkin-plane.z-disabled {
+    display: none;
+}
+
+.u-checkin-circle {
+    width: 100%;
+    height: 320px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border: 3px solid #d74147;
+    position: relative;
+    display: none;
+}
+
+.u-checkin-circle .z-uncheck {
+    display: none;
+}
+
+.u-checkin-circle .z-uncheck img {
+    display: block;
+    width: 46.25%;
+    margin: 9.5% auto 0;
+}
+
+.u-checkin-circle .z-uncheck p {
+    text-align: center;
+    color: #d74147;
+    font-weight: bold;
+    padding: 0.35em 0;
+    font-size: 16px;
+}
+
+.u-checkin-circle .z-uncheck span {
+    display: block;
+    width: 81.25%;
+    height: 15%;
+    line-height: 50px;
+    margin: 0 auto;
+    border-radius: 25px;
+    -webkit-border-radius: 25px;
+    background-color: #d74147;
+    position: absolute;
+    bottom: -5.5%;
+    left: 9.38%;
+    text-align: center;
+    color: #fff;
+    font-weight: bold;
+}
+.u-link-button a{
+    display: block;
+    width: 40%;
+    height: 32px;
+    line-height: 32px;
+    margin: -4.5em auto 4.5em;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    background-color: #d74147;
+    text-align: center;
+    color: #fff;
+}
+.u-link-button.z-disabled{
+    display: none;
+}
+.u-checkin-circle .z-checked {
+    display: block;
+    color: #d74147;
+}
+
+.u-checkin-circle .z-checked span {
+    display: block;
+    text-align: center;
+    line-height: 1;
+    padding: 15% 0 0;
+    margin: 0 0 -5%;
+}
+
+.u-checkin-circle .z-checked i {
+    font-size: 50px;
+    vertical-align: text-bottom;
+}
+
+.u-checkin-circle .z-checked em {
+    font-size: 120px;
+    line-height: 1em;
+    color: #d74147;
+}
+
+.u-checkin-circle .z-checked strong {
+    display: block;
+    text-align: center;
+}
+.u-checkin-circle .z-checked strong a{color: #d74147;}
+@media screen and (max-width: 321px) {
+    .u-checkin-circle .z-checked em {
+        font-size: 100px;
+    }
+
+    .u-checkin-circle .z-checked i {
+        font-size: 35px;
+    }
+    .u-checkin-circle .z-checked strong{
+        font-size: 14px;
+    }
+    .u-checkin-circle .z-checked span{
+        padding: 10% 0 0;
+    }
+    .u-checkin-circle .z-uncheck p{
+        font-size: 14px;
+    }
+}
+.u-checkin-circle .f-dn{
+    display: none;
+}
+
+/**摇骰子**/
+.m-checkin-dice {
+    width: 65.64%;
+    margin: 3em auto 6em;
+    background-color: #d74147;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    overflow: hidden;
+    color: #fff;
+}
+
+.m-checkin-dice img {
+    width: 25%;
+    height: 25%;
+    display: block;
+    margin: 30% auto 0;
+}
+
+.m-checkin-dice p{
+    display: none;
+}
+
+.m-checkin-dice span, .m-checkin-dice strong {
+    display: block;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.m-checkin-dice span em {
+    /*font-size: 30px;*/
+    color: #fff;
+}
+
+.m-checkin-dice.z-disabled {
+    display: none;
+}
+
+.m-checkin-dice strong {
+    color: #FFD3D4;
+}
+
+@media screen and (max-width: 321px) {
+    .m-checkin-dice span, .m-checkin-dice strong {
+        font-size: 14px;
+    }
+}
+.u-birthday-x10{
+    text-align: center;
+    font-size: 14px;
+    padding: 15px 0 0;
+    color: #D74147;
+}
+/**当数据为空时**/
+.u-data-empty{
+    height: 270px;
+    width: 100%;
+    text-align: center;
+    font-size: 1rem;
+    color: #999;
+    padding: 115px 0 0;
+}
+/**邀请好友页**/
+.u-inviteFriend-rule{
+    width: 90%;
+    margin: 20px 4% 10px 0;
+    padding: 0 5%;
+    text-align: right;
+    display: block;
+    font-size: 0.8rem;
+    color: #d74147;
+    text-decoration: underline;
+}
+.u-inviteFriend-record{
+    padding: 0 3%;
+}
+.u-inviteFriend-record table th {
+    font-size: 0.8rem;
+    border-left: 1px solid #ccc;
+}
+.u-inviteFriend-record table th:first-child {
+    border-left: none;
+}
+.u-inviteFriend-record thead {
+    height: 37px;
+    line-height: 37px;
+    text-align: center;
+    color: #666;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+.u-inviteFriend-record tbody td {
+    height: 37px;
+    line-height: 24px;
+    text-align: center;
+    color: #999;
+    border-left: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    font-size: 0.8rem;
+}
+.u-inviteFriend-record tbody td:first-child {
+    border-left: none;
+}
+
+/* P2P不支持的话会显示这个提示，链接到对应提示页面 */
+.u-notice-nop2p{
+    display: inline-block;
+    width: 100%;
+    box-sizing: border-box;
+    height: 35px;
+    line-height: 35px;
+    font-size: 12px;
+    padding-left:15px;
+    padding-right: 15px;
+    color: #666!important;
+    background: #fffab0;
+    position: relative;
+}
+.u-notice-nop2p:hover,
+.u-notice-nop2p:active{
+    color: #666!important;
+}
+
+.u-notice-nop2p .u-arrow-right{
+    float:right;
+    display: inline-block;
+    width: 30px;
+    height: 35px;
+    background: url("../../../img/right_detail_2x.png") no-repeat center;
+    background-size: 50%;
+}
+

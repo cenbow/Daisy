@@ -1,0 +1,149 @@
+<div tabindex="-1" class="modal fade" id="modal-table" style="display: none;" aria-hidden="true">
+     <div class="modal-dialog ">
+     <div class="modal-content">
+ <div class="modal-header no-padding">
+             <div class="table-header">
+                  <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+                    <span class="white">×</span>
+              </button>
+    增加banner
+       </div>
+  </div>
+   <div class="modal-body">
+    <form role="form" class="form-horizontal" id="banner_form" method="post" enctype="multipart/form-data" action="$root_url/banner/save">
+     <input type="hidden" name="id" />
+ <div class="form-group">
+	<label for="form-field-2" class="col-sm-3 control-label no-padding-right"> 投放渠道 </label>
+    <div class="col-sm-3">
+		<select class="input-small search_init"  type="text" name="type" id="form-field-name" >
+								<option value="2">M站</option>
+							</select>
+		
+		##<input type="text" name="type" class="col-xs-10 col-sm-8" placeholder="" id="form-field-name"  value="M站" readonly>
+    </div>
+</div>
+ <div class="form-group">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> banner标题*: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+     <input type="text" name="name" class="col-xs-10 col-sm-8" placeholder="" id="form-field-name">
+    </div>
+  </div>
+</div>
+ <div class="form-group">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> banner*: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+     <input type="file" name="file" class="col-xs-10 col-sm-8" placeholder="" id="form-field-image" datatype="*">
+    </div>
+  </div>
+</div>
+
+
+<!--<input type="text" id="j-json-image" name="image"/>
+<div class="form-group clearfix">
+  ###添加文件按钮
+  <span class="btn btn-success fileinput-button image dz-upload-btn">
+        <i class="glyphicon glyphicon-plus"></i>
+        <span>添加文件</span>
+    </span>
+     ###图片控件容器
+  <div class="dropzoneImage dropzone dropzoneSort" id="image" data-maxfiles="1" data-category="banner">
+    <div class="fallback"> 
+    </div>
+  </div>  
+</div>-->
+
+<div class="form-group j-img-box" style="display:none">
+  <div class="col-sm-6">
+    <div class="clearfix">
+    <img src="" name="image" style="height: 70px;margin-left: 70px; max-width:450px; "/>
+    </div>
+  </div>
+</div>
+
+
+
+ <div class="form-group">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 添加链接: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+     <input type="text" name="href" class="col-xs-10 col-sm-8" placeholder="" id="form-field-href" >
+    </div>
+  </div>
+</div>
+ <div class="form-group">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 开始时间*: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+     <input type="text" name="startTime" class="col-xs-10 col-sm-8" placeholder="" onclick="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd HH:mm'})" id="form-field-startTime" datatype="*">
+    </div>
+  </div>
+</div>
+ <div class="form-group">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 结束时间: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+     <input type="text" name="endTime" class="col-xs-10 col-sm-8" placeholder="此项不填即为长期有效" onclick="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd HH:mm'})" id="form-field-endTime">
+    </div>
+  </div>
+</div>
+
+<div class="form-group">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 底图: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+     <input type="file" name="file" class="col-xs-10 col-sm-8" title="非动态banner,该项不需要填写！"  id="form-field-imageBg">
+    </div>
+  </div>
+</div>
+
+<div class="form-group j-imgBg-box" style="display:none">
+  <div class="col-sm-6">
+    <div class="clearfix">
+    <img src="" name="imageBg" style="height: 70px;margin-left: 70px;"/>
+    </div>
+  </div>
+</div>
+
+<div class="form-group">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 效果: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+     <input type="text" name="effect" class="col-xs-10 col-sm-8" placeholder="非动态banner,该项不需要填写！"  id="form-field-effect">
+    </div>
+  </div>
+</div>
+
+</form>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+<button type="button" id="save_banner" class="btn btn-primary">保存</button>
+</div>
+</div>
+<!-- /.modal-content -->
+ </div>
+<!-- /.modal-dialog -->
+</div>
+
+<style>
+
+ .dz-size,.dz-input-data{
+  display:none;
+ }
+ .dz-success-mark{
+  display:none;
+ }
+ .dz-error-mark{
+  display:none;
+ }
+ .dropzone .dz-preview .dz-details, .dropzone-previews .dz-preview .dz-details{
+  width:400px;
+  height: 60px;
+ }
+ .dropzone .dz-preview .dz-details img, .dropzone-previews .dz-preview .dz-details img{
+  width:400px;
+  height: auto;
+ }
+</style>

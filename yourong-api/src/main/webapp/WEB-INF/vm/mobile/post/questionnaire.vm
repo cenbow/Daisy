@@ -1,0 +1,287 @@
+#parse('/mobile/common.vm')
+#set($title='会员投资风险承受能力评估问卷')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$res_url/source/css/post/questionnaire.css"])
+
+#if($currentUser)
+    #set($logined=true)
+#else
+    #set($logined=false)
+#end
+#CSRFToken('xToken')
+
+#set($encryptionId=$request.getParameter("encryptionId"))
+#set($loginSource=$request.getHeader("loginSource"))
+
+##  安卓
+#if($loginSource==1)
+    #set($os=1)
+#end
+##  IOS
+#if($loginSource==2)
+    #set($os=2)
+#end
+
+#if($loginSource==1||$loginSource==2)
+<style>
+    .g-ft{
+        display: none;
+    }
+    body{
+        background:#f3f3f3
+    }
+
+</style>
+    #else
+    <style>
+        .u-pageTitle{
+            background: #d74148!important;
+        }
+        .u-pageTitle .u-goBack{
+            text-indent: 0rem;
+            color: #ffffff;
+        }
+    </style>
+#end
+
+#if($loginSource==1 || $loginSource==2)
+#else
+##header，安卓ios，不需要头部
+<h2 class="u-pageTitle f-pos-r">
+    <a class="u-goBack" href="$siteurl/mCenter/home">返回</a>
+    <span class=" f-pos-a f-fs18 f-ff-ver">
+        #if(!$currentUser)
+            <a href="$siteurl/mstation/login" id="j-login">登录</a>
+            <a href="$siteurl/mstation/register" id="j-register">注册</a>
+        #else
+            <a href="$mCenter_logout_url">退出</a>
+        #end
+    </span>
+</h2>
+#end
+
+##初始页
+<div class="m-questionnaire-init f-dn" id="j-question-init" data-loginSource="$loginSource" data-result="$!{data}">
+    <img src="$siteurl/res/img/post/questionnaire/questionnaire-init.png" width="80%">
+    <p>您的风险承受能力如何？<br>快来测一测，让您的投资聪明起来!</p>
+    <a id="j-begin-test">开始测评</a>
+</div>
+
+## 1-8页问题
+<div class="m-question-process-wrap f-dn" id="j-question-process-wrap">
+    <div class="u-question-process z-step1" id="j-question-process"></div>
+    <span class="u-question-page">
+        <i class="u-current-page" id="j-current-page">1</i>/8
+    </span>
+</div>
+<ul class="m-question-list f-dn" id="j-question-list">
+    <li data-page="1" class="z-active">
+        <h1 class="u-question-title">01 您的家庭年收入为？<br><small>（税后折合人民币）</small></h1>
+
+        <div class="u-img-wrap">
+            <img class="u-img-responsive" src="$res_url/img/post/questionnaire/question01.png">
+        </div>
+
+        <div class="m-btns-group">
+            <div class="u-question-btn" data-val="1">A.10万以下</div>
+            <div class="u-question-btn" data-val="2">B.10-50万</div>
+            <div class="u-question-btn" data-val="3">C.50-100万</div>
+            <div class="u-question-btn" data-val="4">D.100万以上</div>
+        </div>
+    </li>
+
+    <li data-page="2">
+        <h1 class="u-question-title">02 在您每年的家庭收入中，<br>可用于投资？<small>（储蓄存款除外）</small></h1>
+
+        <div class="u-img-wrap">
+            <img class="u-img-responsive" src="$res_url/img/post/questionnaire/question02.png">
+        </div>
+
+        <div class="m-btns-group">
+            <div class="u-question-btn" data-val="1">A.小于10%</div>
+            <div class="u-question-btn" data-val="2">B.10%至25%</div>
+            <div class="u-question-btn" data-val="3">C.26%至50%</div>
+            <div class="u-question-btn" data-val="4">D.大于50%</div>
+        </div>
+    </li>
+
+    <li data-page="3">
+        <h1 class="u-question-title">03 以下哪项最能说明您的<br>投资经验？</h1>
+
+        <div class="u-questions-text-wrap">
+            <div class="u-question-text">
+                <span>A</span>
+                <p>除存款、国债外，我几乎不投资其他金融产品</p>
+            </div>
+            <div class="u-question-text">
+                <span>B</span>
+                <p>大部分投资于存款、国债等，较少投资于股票、基金等风险产品</p>
+            </div>
+            <div class="u-question-text">
+                <span>C</span>
+                <p>资产均衡地分布于存款、国债、银行理财产品、信托产品、股票、基金等</p>
+            </div>
+            <div class="u-question-text">
+                <span>D</span>
+                <p>大部分投资于股票、基金、外汇等高风险产品，较少投资于存款、国债</p>
+            </div>
+        </div>
+
+        <div class="m-btns-group">
+            <div class="u-question-btn" data-val="1">A</div>
+            <div class="u-question-btn" data-val="2">B</div>
+            <div class="u-question-btn" data-val="3">C</div>
+            <div class="u-question-btn" data-val="4">D</div>
+        </div>
+    </li>
+
+    <li data-page="4">
+        <h1 class="u-question-title">04 您有多少年投资股票、基金、外汇、金融衍生产品等风险投资品的经验？</h1>
+
+        <div class="u-img-wrap">
+            <img class="u-img-responsive" src="$res_url/img/post/questionnaire/question04.png">
+        </div>
+
+        <div class="m-btns-group">
+            <div class="u-question-btn" data-val="1">A.没有经验</div>
+            <div class="u-question-btn" data-val="2">B.少于两年</div>
+            <div class="u-question-btn" data-val="3">C.2-5年</div>
+            <div class="u-question-btn" data-val="4">D.5-8年</div>
+            <div class="u-question-btn" data-val="5">E.8年以上</div>
+        </div>
+    </li>
+
+    <li data-page="5">
+        <h1 class="u-question-title">05 以下哪项最能说明您的<br>投资态度？</h1>
+
+        <div class="u-questions-text-wrap">
+            <div class="u-question-text">
+                <span>A</span>
+                <p>厌恶风险，不希望本金损失，希望获得稳定回报</p>
+            </div>
+            <div class="u-question-text">
+                <span>B</span>
+                <p>保守投资，不希望本金损失，愿意承担一定幅度的收益波动</p>
+            </div>
+            <div class="u-question-text">
+                <span>C</span>
+                <p>寻求资金的较高收益和成长性，愿意为此承担有限本金损失</p>
+            </div>
+            <div class="u-question-text">
+                <span>D</span>
+                <p>希望赚取高回报，能接受为期较长期间的负面波动，包括本金损失</p>
+            </div>
+        </div>
+
+        <div class="m-btns-group">
+            <div class="u-question-btn" data-val="1">A</div>
+            <div class="u-question-btn" data-val="2">B</div>
+            <div class="u-question-btn" data-val="3">C</div>
+            <div class="u-question-btn" data-val="4">D</div>
+        </div>
+    </li>
+
+    <li data-page="6">
+        <h1 class="u-question-title">06 您的投资目的与期望值是？</h1>
+
+        <div class="u-questions-text-wrap">
+            <div class="u-question-text">
+                <span>A</span>
+                <p>资产保值，与银行同期存款利率大体相同</p>
+            </div>
+            <div class="u-question-text">
+                <span>B</span>
+                <p>资产稳健增长，略高于银行定期存款利率</p>
+            </div>
+            <div class="u-question-text">
+                <span>C</span>
+                <p>资产迅速增长，远超银行定期存款利率</p>
+            </div>
+        </div>
+
+        <div class="m-btns-group">
+            <div class="u-question-btn" data-val="1">A</div>
+            <div class="u-question-btn" data-val="2">B</div>
+            <div class="u-question-btn" data-val="3">C</div>
+        </div>
+    </li>
+
+    <li data-page="7">
+        <h1 class="u-question-title">07 您的投资出现何种程度的<br>波动时，您会呈现明显的焦虑？</h1>
+
+        <div class="u-img-wrap">
+            <img class="u-img-responsive" src="$res_url/img/post/questionnaire/question07.png">
+        </div>
+
+        <div class="m-btns-group">
+            <div class="u-question-btn" data-val="1">A</div>
+            <div class="u-question-btn" data-val="2">B</div>
+            <div class="u-question-btn" data-val="3">C</div>
+            <div class="u-question-btn" data-val="4">D</div>
+            <div class="u-question-btn" data-val="5">E</div>
+        </div>
+    </li>
+
+    <li data-page="8">
+        <h1 class="u-question-title">08 您期望的投资年收益率？</h1>
+
+        <div class="u-questions-text-wrap">
+            <div class="u-question-text">
+                <span>A</span>
+                <p>高于同期定期存款</p>
+            </div>
+            <div class="u-question-text">
+                <span>B</span>
+                <p>5%左右，要求相对风险低</p>
+            </div>
+            <div class="u-question-text">
+                <span>C</span>
+                <p>5%-15%，可承受中等风险</p>
+            </div>
+            <div class="u-question-text">
+                <span>D</span>
+                <p>15%以上，可承担较高风险</p>
+            </div>
+        </div>
+
+        <div class="m-btns-group">
+            <div class="u-question-btn" data-val="1">A</div>
+            <div class="u-question-btn" data-val="2">B</div>
+            <div class="u-question-btn" data-val="3">C</div>
+            <div class="u-question-btn" data-val="4">D</div>
+        </div>
+    </li>
+</ul>
+
+##结果页
+<div class="m-questionnaire-result f-dn" id="j-questionnaire-result" data-logined="$logined" data-os="$os"  data-result='$!{data}'>
+    <div>
+        <div class="u-result-user">
+            <em class="f-avatar">
+
+                <img class="u-result-avatar" id="j-result-avatar" src="$res_url/img/post/questionnaire/avatar.png" alt="用户头像">
+                <br>
+                <span id="j-result-username"></span>
+
+            </em>
+        </div>
+
+        <img src="$siteurl/res/img/post/questionnaire/questionnaire-result.jpg" alt="" width="100%">
+        <div class="u-result-type">
+            <h3 id="j-result-h3">保守型</h3>
+            <p id="j-result-text">宁走十步远，不走一步险</p>
+            <a id="j-reTest" href="javascript:;">重新测评</a>
+            <a href="" id="test" style="display: none;"></a>
+        </div>
+    </div>
+</div>
+
+
+<input type="hidden" id="j-result-mKey" data-mkey="$mKey">
+
+#set($pageScript="
+<script>
+    ##    seajs.use('$res_url/lib/js/vconsole.min.js')
+    seajs.use('$m_js_url/post/questionnaire.js')
+</script>
+")

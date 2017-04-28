@@ -1,0 +1,174 @@
+#parse('/common/common.vm')
+#set($title="财务自由，触手可及_$!{title_suffix}")
+
+<style>
+
+          	.g-bd {
+				margin-bottom: 0;
+				}
+			.g-wrap {
+				width: 990px;
+				margin: 0 auto;
+			}
+			.f-fs32{
+				font-size: 32px;
+			}
+			.po-r{
+				position: relative;
+			}
+			/**页头**/
+		  	.u-APP-hd{
+            	width: 100%;
+            	height: 581px;
+            	margin-top: -8px;
+            	position: relative;
+            	color: #fff;
+            	background: url(/static/img/activity/mobilePhoneApp/App_head.jpg) no-repeat center;
+	        }
+	        .u-APP-hd a{
+	        	width: 190px;
+	        	height: 50px;
+	        	display: block;
+				position: absolute;
+				top: 435px;
+                outline: none;
+	        }
+	        .u-APP-iosIcon{
+				background: url(/static/img/activity/mobilePhoneApp/APP_icon20151105.png) no-repeat 0px 0px;
+				left: 0;
+	        }
+	        .u-APP-androidIcon{
+				background: url(/static/img/activity/mobilePhoneApp/APP_icon20151105.png) no-repeat -193px 0px;
+				left: 210px;
+	        }
+	        .u-APP-iosIcon:hover{
+				background: url(/static/img/activity/mobilePhoneApp/APP_icon20151105.png) no-repeat 0px -53px;
+	        }
+	        .u-APP-androidIcon:hover{
+				background: url(/static/img/activity/mobilePhoneApp/APP_icon20151105.png) no-repeat -193px -53px;
+	        }
+	        .u-APP-hd span{
+	        	width: 92px;
+	        	height: 116px;
+	        	display: block;
+				position: absolute;
+				top: 465px;
+				left: 465px;
+	        	background: url(/static/img/activity/mobilePhoneApp/APP_icon20151105.png) no-repeat 0px -104px;
+	        }
+			.u-APP-hd img{
+	        	display: none;
+				position: absolute;
+				top: 440px;
+				left: 50%;
+                margin: 0 0 0 -100px;
+                width: 200px;
+                height: 200px;
+			}
+	        /**内容**/
+	      	.m-APP-body{
+				height: 230px;
+				background-color: #eee;
+	      	}
+	      	.u-APP-activity{
+				padding-top: 67px;
+	      	}
+	      	.u-APP-activity div{
+				width: 485px;
+				height: 230px;
+				float: left;
+	      	}
+	      	.u-APP-activity01{
+				background:  url(/static/img/activity/mobilePhoneApp/App_box01.png) no-repeat center;
+	      	}
+	      	.u-APP-activity02{
+				background:  url(/static/img/activity/mobilePhoneApp/App_box02.png) no-repeat center;
+	      		margin-left: 20px;
+	      	}
+	      	.u-APP-activity div h2{
+	      		margin-left: 42px;
+	      		margin-top: 45px;
+				font-size: 36px;
+				color: #d74148;
+	      	}
+	      	.u-APP-activity div span{
+	      		margin:7px 0 30px 42px;
+	      		display: block;
+				font-size: 12px;
+				color: #666;
+	      	}
+	      	.u-APP-activity div p{
+	      		margin-left: 42px;
+				font-size: 14px;
+				color: #999;
+	      	}
+            /***专题页隐藏banner***/
+            .u-app-banner{
+                display: none;
+            }
+
+	      </style>
+	     <div class="f-mh500 f-cf">
+    <!--head-->
+    	<div class="u-APP-hd">
+    		<div class="g-wrap po-r">
+                ##有链接后把j-user-tips和提示内容去掉
+    			<a target="_blank" href="https://itunes.apple.com/cn/app/you-rong-wang/id996844386?mt=8" class="u-APP-iosIcon"></a>
+    			<a target="_blank" href="$root_url/download/apk" class="u-APP-androidIcon"></a>
+    			<span id="j-app-QRcodeS"></span>
+    			#if($sysServiceUtil.isDev())	
+				<img id="j-app-QRcodeB" src="/static/img/common/QR_code_test.png" />
+				#else
+				<img id="j-app-QRcodeB" src="/static/img/common/QR_code20151105.png" />
+				#end
+			</div>
+		</div>
+	<!--body-->
+		<div class="m-APP-body">
+##			<div class="u-APP-activity g-wrap f-cf">
+##				<div class="u-APP-activity01">
+##					<h2>APP首投  奖30元</h2>
+##					<span>活动时间：2015年6月2日-2015年6月19日</span>
+##					<p>活动期间，首次用APP进行投资的用户，
+##						<br/>投资任一项目，只要投资额满1000立奖30元现金券
+##					</p>
+##				</div>
+##				<div class="u-APP-activity02">
+##					<h2>APP签到  翻2倍</h2>
+##					<span>活动时间：2015年6月2日-2015年6月19日</span>
+##					<p>活动期间，用户使用APP登录签到，
+##						<br/>所获人气值将翻2倍发放，1点人气值=1元现金券
+##					</p>
+##				</div>
+##			</div>
+		</div>
+    </div>
+
+
+    <script type="text/javascript">
+
+	window.onload=function(){
+        var qrCodeSmall=$("#j-app-QRcodeS"),
+            qrCodeBig=$("#j-app-QRcodeB");
+        qrCodeSmall.on('mouseenter',function(){
+            qrCodeBig.show();
+		});
+        qrCodeBig.on("mouseleave", function () {
+            $(this).hide();
+        });
+        $(".j-appdownload-link").on("mouseenter", function () {
+            var url=$(this).prop("href");
+            if(url.indexOf('javascript')!==-1){
+                var d = dialog({
+                    content: 'Hello World!',
+                    align: 'bottom'
+                });
+                d.show(this);
+
+            }
+        }).on("mouseleave", function () {
+            dialog.getCurrent().close().remove();
+        });;
+
+	}
+	</script>

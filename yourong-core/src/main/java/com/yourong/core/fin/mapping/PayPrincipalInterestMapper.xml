@@ -1,0 +1,674 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.fin.dao.PayPrincipalInterestMapper" >
+  <resultMap id="BaseResultMap" type="com.yourong.core.fin.model.biz.PayPrincipalInterestBiz" >
+    <result column="project_id" property="projectId" jdbcType="BIGINT" />
+    <result column="project_name" property="projectName" jdbcType="VARCHAR" />
+    <result column="debt_id" property="debtId" jdbcType="BIGINT" />
+    <result column="online_time" property="onlineTime" jdbcType="TIMESTAMP" />
+    <result column="end_date" property="endDate" jdbcType="TIMESTAMP" />
+    <result column="payable_principal" property="payablePrincipal" jdbcType="DECIMAL" />
+    <result column="payable_interest" property="payableInterest" jdbcType="DECIMAL" />
+    <result column="extra_interest" property="extraInterest" jdbcType="DECIMAL" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+   	ti.project_id as project_id,
+	p.`name` as project_name,
+	p.debt_id as debt_id,
+	p.project_type  as project_type,
+	p.online_time as online_time,
+	ti.status as status,
+	ti.end_date as end_date,
+	ti.payable_principal as payable_principal,
+	ti.payable_interest as payable_interest,
+	ti.extra_interest as extra_interest
+  </sql>
+  
+  <resultMap id="ExtendResultMap" type="com.yourong.core.fin.model.biz.PayPrincipalInterestBiz" extends="BaseResultMap">
+		<result column="project_type" property="projectType" jdbcType="VARCHAR" />
+		<result column="interest_id" property="interestId" jdbcType="BIGINT" />
+	</resultMap>
+  
+  
+  <select id="selectForPagin" resultMap="ExtendResultMap" >
+    
+    select 
+ 	t.project_id as project_id,
+ 	p.debt_id as debt_id,
+ 	p.`name` as project_name,
+ 	p.project_type  as project_type,
+	i.end_date as end_date,
+	p.online_time as online_time,
+	i.status as status,
+	sum(i.payable_interest) as payable_interest,
+	sum(i.payable_principal) as payable_principal,
+	if(sum(i.extra_interest) is null,0,sum(i.extra_interest)) as extra_interest, 
+	i.interest_id as interest_id
+	from tc_transaction as t 
+	LEFT JOIN tc_transaction_interest as i 	on t.id = i.transaction_id 
+	LEFT JOIN  ic_project as p on p.id = t.project_id 
+	LEFT JOIN ic_debt as d on d.id=p.debt_id
+	
+	LEFT JOIN uc_member as ucl on ucl.id=d.lender_id
+	LEFT JOIN uc_member as ucb on ucb.id=d.borrower_id
+	where p.invest_type=1 and i.status != 5
+	<if test=" map != null" >
+		
+		<if test="map.mobile != null">
+		  and ucl.mobile = #{map.mobile}
+		</if>
+		<if test="map.trueName != null">
+		  and ucl.true_name = #{map.trueName}
+		</if>
+		<if test="map.borrowerName != null">
+		  and ucb.true_name = #{map.borrowerName}
+		</if>
+		<if test="map.status == 0">
+		  and i.status in (0,4)
+		</if>
+		<if test="map.status == 1">
+	  	  and i.status in (1,3)
+		</if>	       
+        <if test=" map.projectId != null" >
+       	  and  t.project_id = #{map.projectId}
+        </if>
+        <if test=" map.projectType != null" >
+          and p.project_type = #{map.projectType}
+        </if>
+        <if test=" map.projectName != null" >
+          and p.name like #{map.projectName}"%"
+        </if>
+        <if test=" map.onlineTimeStart != null" >
+          and p.online_time <![CDATA[ >= ]]>  #{map.onlineTimeStart}
+        </if>
+        <if test=" map.onlineTimeEnd != null" >
+          and p.online_time <![CDATA[ < ]]>  DATE_ADD(#{map.onlineTimeEnd},INTERVAL 1 DAY)
+        </if>
+        <if test="map.endDateSelect != null">
+	        <choose>
+	        	<when test="map.endDateSelect == 0">
+	        		<if test="map.endDate == 0">
+		         		and i.end_date <![CDATA[ <= ]]>  DATE_ADD(CURDATE(),INTERVAL 1 DAY) and i.end_date <![CDATA[ >= ]]>  CURDATE()
+		        	</if>
+		        	<if test="map.endDate == 1">
+		         		and i.end_date <![CDATA[ <= ]]>  DATE_ADD(CURDATE(),INTERVAL 3 DAY) and i.end_date <![CDATA[ >= ]]>  CURDATE()
+		        	</if>
+		        	<if test="map.endDate == 2">
+		         		and i.end_date <![CDATA[ <= ]]>  DATE_ADD(CURDATE(),INTERVAL 7 DAY) and i.end_date <![CDATA[ >=]]>  CURDATE()
+		        	</if>
+		        	<if test="map.endDate == 3">
+		         		and i.end_date <![CDATA[ <= ]]>  DATE_ADD(CURDATE(),INTERVAL 15 DAY) and i.end_date <![CDATA[ >= ]]>  CURDATE()
+		        	</if>
+		        	<if test="map.endDate == 4">
+		         		and i.end_date <![CDATA[ <= ]]>  DATE_ADD(CURDATE(),INTERVAL 1 MONTH) and i.end_date <![CDATA[ >= ]]>  CURDATE()
+		        	</if>
+		        	<if test="map.endDate == 5">
+		         		and i.end_date <![CDATA[ <= ]]>  DATE_ADD(CURDATE(),INTERVAL 3 MONTH) and i.end_date <![CDATA[ >= ]]>  CURDATE()
+		        	</if>
+	        	</when>
+	        	<when test="map.endDateSelect == 1">
+	        		<if test="map.endDateStart">
+			        	and i.end_date <![CDATA[ >= ]]>  #{map.endDateStart}
+			        </if>
+			        <if test="map.endDateEnd">
+			        	and i.end_date <![CDATA[ <= ]]>  #{map.endDateEnd}
+			        </if>
+	        	</when>
+	        	<otherwise>
+	        		<if test="map.dueDate">
+			        	and i.end_date <![CDATA[ = ]]>  #{map.dueDate}
+			        </if>
+	        	</otherwise>
+	        </choose>
+        </if>
+        <if test=" map.platformPay != null" >
+          and payable_principal = #{map.payablePrincipal}
+        </if>
+        <if test=" map.remarks != null" >
+          and extra_interest = #{map.extraInterest}
+        </if>
+    </if>
+	group by project_id,end_date 
+	
+	<if test=" map != null" >
+	<if test=" map.desc != null">
+	    	<choose>
+	    		<when test="map.desc == 'end_date'">
+	    			order by i.end_date desc
+	    		</when>
+	    		<otherwise>
+	    			order by ${map.desc} desc
+	    		</otherwise>
+	    	</choose> 
+		</if>
+		<if test=" map.asc != null">
+			<choose>
+	    		<when test="map.desc == 'end_date'">
+	    			order by i.end_date asc
+	    		</when>
+	    		<otherwise>
+	    			order by ${map.asc} asc
+	    		</otherwise>
+	    	</choose> 	
+		</if>
+	</if>
+    LIMIT	${map.startRow}, ${map.pageSize}   
+  </select>
+  <select id="selectForPaginTotalCount" resultType="java.lang.Integer" >
+    SELECT count(1)
+	from
+	( select 
+ 	t.project_id as project_id,
+ 	p.debt_id as debt_id,
+ 	p.`name` as project_name,
+ 	p.project_type  as project_type,
+	i.end_date as end_date,
+	p.online_time as online_time,
+	i.status as status,
+	sum(i.payable_interest) as payable_interest,
+	sum(i.payable_principal) as payable_principal,
+	if(sum(i.extra_interest) is null,0,sum(i.extra_interest)) as extra_interest 
+	
+	from tc_transaction as t 
+	LEFT JOIN tc_transaction_interest as i 	on t.id = i.transaction_id 
+	LEFT JOIN  ic_project as p on p.id = t.project_id 
+	LEFT JOIN ic_debt as d on d.id=p.debt_id
+	
+	LEFT JOIN uc_member as ucl on ucl.id=d.lender_id
+	LEFT JOIN uc_member as ucb on ucb.id=d.borrower_id
+	where p.invest_type=1 and i.status != 5
+	<if test=" map != null" >
+		<if test="map.mobile != null">
+		  and ucl.mobile = #{map.mobile}
+		</if>
+		<if test="map.trueName != null">
+		  and ucl.true_name = #{map.trueName}
+		</if>
+		<if test="map.borrowerName != null">
+		  and ucb.true_name = #{map.borrowerName}
+		</if>
+		<if test="map.status == 0">
+		  and i.status in (0,4)
+		</if>
+		<if test="map.status == 1">
+	  	  and i.status in (1,3)
+		</if>	       
+        <if test=" map.projectId != null" >
+       	  and  t.project_id = #{map.projectId}
+        </if>
+        <if test=" map.projectType != null" >
+          and p.project_type = #{map.projectType}
+        </if>
+        <if test=" map.projectName != null" >
+          and p.name like #{map.projectName}"%"
+        </if>
+        <if test=" map.onlineTimeStart != null" >
+          and p.online_time <![CDATA[ >= ]]>  #{map.onlineTimeStart}
+        </if>
+        <if test=" map.onlineTimeEnd != null" >
+          and p.online_time <![CDATA[ < ]]>  DATE_ADD(#{map.onlineTimeEnd},INTERVAL 1 DAY)
+        </if>
+        <if test="map.endDateSelect != null">
+	        <choose>
+	        	<when test="map.endDateSelect == 0">
+	        		<if test="map.endDate == 0">
+		         		and i.end_date <![CDATA[ <= ]]>  DATE_ADD(CURDATE(),INTERVAL 1 DAY) and i.end_date <![CDATA[ >= ]]>  CURDATE()
+		        	</if>
+		        	<if test="map.endDate == 1">
+		         		and i.end_date <![CDATA[ <= ]]>  DATE_ADD(CURDATE(),INTERVAL 3 DAY) and i.end_date <![CDATA[ >= ]]>  CURDATE()
+		        	</if>
+		        	<if test="map.endDate == 2">
+		         		and i.end_date <![CDATA[ <= ]]>  DATE_ADD(CURDATE(),INTERVAL 7 DAY) and i.end_date <![CDATA[ >=]]>  CURDATE()
+		        	</if>
+		        	<if test="map.endDate == 3">
+		         		and i.end_date <![CDATA[ <= ]]>  DATE_ADD(CURDATE(),INTERVAL 15 DAY) and i.end_date <![CDATA[ >= ]]>  CURDATE()
+		        	</if>
+		        	<if test="map.endDate == 4">
+		         		and i.end_date <![CDATA[ <= ]]>  DATE_ADD(CURDATE(),INTERVAL 1 MONTH) and i.end_date <![CDATA[ >= ]]>  CURDATE()
+		        	</if>
+		        	<if test="map.endDate == 5">
+		         		and i.end_date <![CDATA[ <= ]]>  DATE_ADD(CURDATE(),INTERVAL 3 MONTH) and i.end_date <![CDATA[ >= ]]>  CURDATE()
+		        	</if>
+	        	</when>
+	        	<when test="map.endDateSelect == 1">
+	        		<if test="map.endDateStart">
+			        	and i.end_date <![CDATA[ >= ]]>  #{map.endDateStart}
+			        </if>
+			        <if test="map.endDateEnd">
+			        	and i.end_date <![CDATA[ <= ]]>  #{map.endDateEnd}
+			        </if>
+	        	</when>
+	        	<otherwise>
+	        		<if test="map.dueDate">
+			        	and i.end_date <![CDATA[ = ]]>  #{map.dueDate}
+			        </if>
+	        	</otherwise>
+	        </choose>
+        </if>
+        <if test=" map.platformPay != null" >
+          and payable_principal = #{map.payablePrincipal}
+        </if>
+        <if test=" map.remarks != null" >
+          and extra_interest = #{map.extraInterest}
+        </if>
+    </if>
+	group by project_id,end_date 
+	) a 
+  </select>
+  
+  <select id="findStatusByProjectAndEndDate" resultType="java.lang.Integer">
+  	SELECT i.status 
+  	from tc_transaction as t 
+  	LEFT JOIN tc_transaction_interest as i on i.transaction_id = t.id
+  	where 
+  		project_id = #{projectId,jdbcType=BIGINT} 
+  	and 
+  		end_date = #{endDate,jdbcType=TIMESTAMP} 
+	LIMIT 1
+  </select>
+  
+  <!-- 还款本息数据统计根据还款状态 -->
+  <select id="findTotalPrincipalAndInterestByStatus" resultMap="BaseResultMap">
+  	SELECT 
+	  	sum(payable_principal) as payable_principal,
+	  	sum(payable_interest) as payable_interest,
+	  	sum(extra_interest) as extra_interest 
+  	from  
+  		tc_transaction_interest 
+  	<if test="map != null">
+  		<if test="map.status != null">
+	  		<where>
+	  			<choose>
+		  			<when test="map.status == 0">
+		  				and (status = 0 or status = 4)
+		  			</when>
+		  			<otherwise>
+		  				and (status = 1 or status = 3) 
+		  			</otherwise>
+	  			</choose>
+	  		</where>
+  		</if>
+  	</if>
+  </select>
+  
+  <!-- 直投项目还本付息短信 -->
+   <resultMap id="DirecctMessageBaseResultMap" type="com.yourong.core.fin.model.biz.PrincipalInterestForDirectMessageMember">
+    <result column="principal" property="principal" jdbcType="DECIMAL" />
+    <result column="interest" property="interest" jdbcType="DECIMAL" />
+    <result column="member_id" property="memberId" jdbcType="BIGINT" />
+    <result column="project_num" property="projectNum" jdbcType="INTEGER" />
+  </resultMap>
+  
+  
+  <!--距离到期日n天的直投项目对应的借款人 -->
+  <select id="findN2EndDateDirectProject" resultMap="DirecctMessageBaseResultMap">
+ 	select count(distinct t.project_id) as project_num, 
+ 	ic.borrower_id as member_id,
+ 	sum(t.payable_principal) as principal,
+ 	sum(t.payable_interest) as interest
+ 	from ic_debt_interest  as t
+	left join ic_project as ic on ic.id=t.project_id 
+	where t.end_date = DATE_ADD(CURDATE(),INTERVAL #{map.n2endDate} DAY)
+	and ic.invest_type=2 
+	and t.status = 0
+	group by ic.borrower_id
+  </select>
+  
+   <!--距离到期日n天的项目 -->
+  <select id="findN2EndDateProjectForMsg" resultMap="BaseResultMap">
+ 	SELECT
+	<include refid="Base_Column_List"/>
+	from
+	(
+	SELECT 
+	 t.project_id as project_id,
+	i.end_date as end_date,
+	i.status as status,
+	sum(i.payable_interest) as payable_interest,
+	sum(i.payable_principal) as payable_principal,
+	if(sum(i.extra_interest) is null,0,sum(i.extra_interest)) as extra_interest 
+	from tc_transaction as t 
+	LEFT JOIN tc_transaction_interest as i 
+	on t.id = i.transaction_id 
+	where i.status in (0,4)
+	group by project_id,end_date
+	 )ti 
+	LEFT JOIN ic_project as p 
+	on p.id = ti.project_id
+	<if test=" map != null" >
+		<where>
+			<if test=" map.n2endDate != null" >
+	         	and ti.end_date = DATE_ADD(CURDATE(),INTERVAL #{map.n2endDate} DAY)
+	       	</if>
+	     </where>
+	</if>
+  </select>
+  
+   <!--距离到期日n天的债权项目 -->
+  <select id="findN2EndDateProject" resultMap="BaseResultMap">
+ 	SELECT
+	<include refid="Base_Column_List"/>
+	from
+	(
+	SELECT 
+	 t.project_id as project_id,
+	i.end_date as end_date,
+	i.status as status,
+	sum(i.payable_interest) as payable_interest,
+	sum(i.payable_principal) as payable_principal,
+	if(sum(i.extra_interest) is null,0,sum(i.extra_interest)) as extra_interest 
+	from tc_transaction as t 
+	LEFT JOIN tc_transaction_interest as i 
+	on t.id = i.transaction_id 
+	where i.status in (0,4)
+	group by project_id,end_date
+	 )ti 
+	LEFT JOIN ic_project as p 
+	on p.id = ti.project_id
+	where p.invest_type=1
+	<if test=" map != null" >
+			<if test=" map.n2endDate != null" >
+	         	and ti.end_date = DATE_ADD(CURDATE(),INTERVAL #{map.n2endDate} DAY)
+	       	</if>
+	</if>
+  </select>
+  
+  <!--距离到期日n天的直投项目 -->
+  <select id="findN2EndDateMailDirectProject" resultMap="BaseResultMap">
+ 	SELECT
+	<include refid="Base_Column_List"/>
+	from
+	(
+	SELECT 
+	 t.project_id as project_id,
+	i.end_date as end_date,
+	i.status as status,
+	sum(i.payable_interest) as payable_interest,
+	sum(i.payable_principal) as payable_principal,
+	if(sum(i.extra_interest) is null,0,sum(i.extra_interest)) as extra_interest 
+	from tc_transaction as t 
+	LEFT JOIN tc_transaction_interest as i 
+	on t.id = i.transaction_id 
+	where i.status in (0,4)
+	group by project_id,end_date
+	 )ti 
+	LEFT JOIN ic_project as p 
+	on p.id = ti.project_id
+	where p.invest_type=2
+	<if test=" map != null" >
+			<if test=" map.n2endDate != null" >
+	         	and ti.end_date = DATE_ADD(CURDATE(),INTERVAL #{map.n2endDate} DAY)
+	       	</if>
+	</if>
+  </select>
+  
+  <!-- 直投项目还本付息 -->
+  <resultMap id="DirecctBaseResultMap" type="com.yourong.core.ic.model.ProjectInterestBiz" >
+    <result column="project_id" property="projectId" jdbcType="BIGINT" />
+    <result column="project_name" property="projectName" jdbcType="VARCHAR" />
+    <result column="original_project_number" property="originalProjectNumber" jdbcType="VARCHAR" />
+    <result column="online_time" property="onlineTime" jdbcType="TIMESTAMP" />
+    <result column="end_date" property="endDate" jdbcType="TIMESTAMP" />
+    <result column="payable_principal" property="payablePrincipal" jdbcType="DECIMAL" />
+    <result column="payable_interest" property="payableInterest" jdbcType="DECIMAL" />
+    <result column="real_pay_interest" property="realPayInterest" jdbcType="DECIMAL" />
+    <result column="extra_interest" property="extraInterest" jdbcType="DECIMAL" />
+    <result column="real_extra_interest" property="realExtraInterest" jdbcType="DECIMAL" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="borrower_name" property="borrowerName" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="BIGINT" />
+    <result column="borrower_id" property="borrowerId" jdbcType="BIGINT" />
+    <result column="interest_id" property="interestId" jdbcType="BIGINT" />
+    <result column="total_amount" property="totalAmount" jdbcType="DECIMAL" />
+    <result column="guarantee_fee_rate" property="guaranteeFeeRate" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Direct_Base_Column_List" >
+   	ti.project_id as project_id,
+	ti.project_name,
+	ti.original_project_number,
+	ti.online_time,
+	ti.borrower_id,
+	ti.status as status,
+	ti.end_date as end_date,
+	ti.payable_principal as payable_principal,
+	ti.payable_interest as payable_interest,
+	ti.extra_interest as extra_interest,
+	ti.real_extra_interest as real_extra_interest,
+	ti.real_pay_interest as real_pay_interest,
+	d.id   as  interest_id,
+	ti.borrower_name,
+	ti.mobile,
+	ti.guarantee_fee_rate as guarantee_fee_rate,
+	ti.total_amount as total_amount
+  </sql>
+  <select id="selectDirectForPagin" resultMap="DirecctBaseResultMap" >
+    SELECT
+	<include refid="Direct_Base_Column_List"/>
+	from
+	(
+	SELECT 
+	p.`name` as project_name,
+	p.original_project_number as original_project_number,
+	p.online_time as online_time,
+	p.borrower_id  as  borrower_id,
+	p.total_amount as total_amount,
+	p.guarantee_fee_rate as guarantee_fee_rate,
+	i.project_id as project_id,
+	i.end_date as end_date,
+	i.start_date as start_date,
+	sum(if(i.status = 1, 0, 1)) as status,
+	sum(i.real_pay_interest) as payable_interest,
+	sum(i.real_pay_interest) as real_pay_interest,
+	sum(i.real_pay_principal) as payable_principal,
+	sum(i.real_pay_extra_interest)+sum(i.real_pay_extra_project_interest)  as extra_interest ,
+	sum(i.real_pay_extra_interest)+sum(i.real_pay_extra_project_interest)  as real_extra_interest ,
+	u.true_name as borrower_name,
+	u.mobile  as mobile
+	from tc_transaction_interest as i
+	left join ic_project as p on i.project_id=p.id
+	left join uc_member as u on 	u.id=p.borrower_id
+	where p.invest_type=2  and p.status in(52,70)
+		<if test=" map != null" >
+	        <if test=" map.projectId!= null" >
+	         		and  p.id = #{map.projectId}
+	        </if>
+			<if test=" map.createdStartTime != null">
+					and p.online_time <![CDATA[>=]]> #{map.createdStartTime}
+			</if>
+			<if test=" map.createdEndTime != null">
+					and p.online_time <![CDATA[<=]]> #{map.createdEndTime}
+			</if>
+	        <if test=" map.projectName != null" >
+	        		and  p.name like  "%" #{map.projectName} "%"
+	        </if>
+	        <if test=" map.onlineTimeStart != null" >
+	          		and  p.online_time <![CDATA[ >= ]]>  #{map.onlineTimeStart}
+	        </if>
+	        <if test=" map.onlineTimeEnd != null" >
+	         		and  p.online_time <![CDATA[ < ]]>  DATE_ADD(#{map.onlineTimeEnd},INTERVAL 1 DAY)
+	        </if>
+	         <if test=" map.mobile != null">
+					and u.mobile = #{map.mobile}
+			</if>
+			<if test="map.borrowerName != null">
+					 and u.true_name = #{map.borrowerName}
+			</if>
+			<if test=" map.loanStatus != null">
+					and i.status = #{map.loanStatus}
+			</if>
+  		</if>
+	group by project_id,end_date 
+	)ti 
+	left join ic_debt_interest as d ON ti.project_id=d.project_id and ti.end_date=d.end_date
+	left join fin_underwrite_log as l on d.id=l.project_interest_id
+    <if test=" map != null" >
+    	<where>
+	        <if test=" map.borrowerId!= null" >
+	         		and  l.underwrite_member_id = #{map.borrowerId}
+	        </if>
+	        <if test="map.endDateSelect != null">
+		        <choose>
+		        	<when test="map.endDateSelect == 0">
+		        		<if test="map.endDate == 0">
+			         		and d.end_date <![CDATA[ <= ]]>  DATE_ADD(CURDATE(),INTERVAL 1 DAY) and d.end_date <![CDATA[ >= ]]>  CURDATE()
+			        	</if>
+			        	<if test="map.endDate == 1">
+			         		and d.end_date <![CDATA[ <= ]]>  DATE_ADD(CURDATE(),INTERVAL 3 DAY) and d.end_date <![CDATA[ >= ]]>  CURDATE()
+			        	</if>
+			        	<if test="map.endDate == 2">
+			         		and d.end_date <![CDATA[ <= ]]>  DATE_ADD(CURDATE(),INTERVAL 7 DAY) and d.end_date <![CDATA[ >=]]>  CURDATE()
+			        	</if>
+			        	<if test="map.endDate == 3">
+			         		and d.end_date <![CDATA[ <= ]]>  DATE_ADD(CURDATE(),INTERVAL 15 DAY) and d.end_date <![CDATA[ >= ]]>  CURDATE()
+			        	</if>
+			        	<if test="map.endDate == 4">
+			         		and d.end_date <![CDATA[ <= ]]>  DATE_ADD(CURDATE(),INTERVAL 1 MONTH) and d.end_date <![CDATA[ >= ]]>  CURDATE()
+			        	</if>
+			        	<if test="map.endDate == 5">
+			         		and d.end_date <![CDATA[ <= ]]>  DATE_ADD(CURDATE(),INTERVAL 3 MONTH) and d.end_date <![CDATA[ >= ]]>  CURDATE()
+			        	</if>
+		        	</when>
+		        	<when test="map.endDateSelect == 1">
+		        		<if test="map.endDateStart">
+				        	and d.end_date <![CDATA[ >= ]]>  #{map.endDateStart}
+				        </if>
+				        <if test="map.endDateEnd">
+				        	and d.end_date <![CDATA[ <= ]]>  #{map.endDateEnd}
+				        </if>
+		        	</when>
+		        	<otherwise>
+		        		<if test="map.dueDate">
+				        	and d.end_date <![CDATA[ = ]]>  #{map.dueDate}
+				        </if>
+		        	</otherwise>
+		        </choose>
+	        </if>
+        </where>
+    </if>
+    <if test=" map != null" >
+		<if test=" map.desc != null">
+	    	<choose>
+	    		<when test="map.desc == 'end_date'">
+	    			order by ti.end_date desc
+	    		</when>
+	    		<otherwise>
+	    			order by ti.project_id  desc,ti.end_date asc
+	    		</otherwise>
+	    	</choose> 
+		</if>
+		<if test=" map.asc != null">
+			<choose>
+	    		<when test="map.desc == 'end_date'">
+	    			order by ti.end_date asc
+	    		</when>
+	    		<otherwise>
+	    			order by ti.project_id asc ,ti.end_date desc
+	    		</otherwise>
+	    	</choose> 	
+		</if>
+	</if>
+      LIMIT	${map.startRow}, ${map.pageSize}   
+  </select>
+  <select id="selectDirectForPaginTotalCount" resultType="java.lang.Integer" >
+    SELECT count(1)
+	from
+	(
+	SELECT 
+	p.`name` as project_name,
+	p.original_project_number as original_project_number,
+	p.online_time as online_time,
+	p.borrower_id  as  borrower_id,
+	i.project_id as project_id,
+	i.end_date as end_date,
+	i.start_date as start_date,
+	i.status as status,
+	sum(i.payable_interest) as payable_interest,
+	sum(i.payable_principal) as payable_principal,
+	sum(i.extra_interest)  as extra_interest ,
+	u.true_name as borrower_name,
+	u.mobile  as mobile
+	from tc_transaction_interest as i
+	left join ic_project as p on i.project_id=p.id
+	left join uc_member as u on 	u.id=p.borrower_id 
+	where p.invest_type=2  and p.status in(52,70) and i.status != 5 
+		<if test=" map != null" >
+	        <if test=" map.projectId!= null" >
+	         		and  p.id = #{map.projectId}
+	        </if>
+			<if test=" map.createdStartTime != null">
+					and p.online_time <![CDATA[>=]]> #{map.createdStartTime}
+			</if>
+			<if test=" map.createdEndTime != null">
+					and p.online_time <![CDATA[<=]]> #{map.createdEndTime}
+			</if>
+	        <if test=" map.projectName != null" >
+	        		and  p.name like  "%" #{map.projectName} "%"
+	        </if>
+	        <if test=" map.onlineTimeStart != null" >
+	          		and  p.online_time <![CDATA[ >= ]]>  #{map.onlineTimeStart}
+	        </if>
+	        <if test=" map.onlineTimeEnd != null" >
+	         		and  p.online_time <![CDATA[ < ]]>  DATE_ADD(#{map.onlineTimeEnd},INTERVAL 1 DAY)
+	        </if>
+	         <if test=" map.mobile != null">
+					and u.mobile = #{map.mobile}
+			</if>
+			<if test="map.borrowerName != null">
+					 and u.true_name = #{map.borrowerName}
+			</if>
+			<if test=" map.loanStatus != null">
+					and i.status = #{map.loanStatus}
+			</if>
+  		</if>
+	group by project_id,end_date 
+	)ti 
+	left join ic_debt_interest as d ON ti.project_id=d.project_id and ti.end_date=d.end_date
+	left join fin_underwrite_log as l on d.id=l.project_interest_id
+    <if test=" map != null" >
+    	<where>
+	         <if test=" map.borrowerId!= null" >
+	         		and  l.underwrite_member_id = #{map.borrowerId}
+	        </if>
+			
+	        <if test="map.endDateSelect != null">
+		        <choose>
+		        	<when test="map.endDateSelect == 0">
+		        		<if test="map.endDate == 0">
+			         		and d.end_date <![CDATA[ <= ]]>  DATE_ADD(CURDATE(),INTERVAL 1 DAY) and d.end_date <![CDATA[ >= ]]>  CURDATE()
+			        	</if>
+			        	<if test="map.endDate == 1">
+			         		and d.end_date <![CDATA[ <= ]]>  DATE_ADD(CURDATE(),INTERVAL 3 DAY) and d.end_date <![CDATA[ >= ]]>  CURDATE()
+			        	</if>
+			        	<if test="map.endDate == 2">
+			         		and d.end_date <![CDATA[ <= ]]>  DATE_ADD(CURDATE(),INTERVAL 7 DAY) and d.end_date <![CDATA[ >=]]>  CURDATE()
+			        	</if>
+			        	<if test="map.endDate == 3">
+			         		and d.end_date <![CDATA[ <= ]]>  DATE_ADD(CURDATE(),INTERVAL 15 DAY) and d.end_date <![CDATA[ >= ]]>  CURDATE()
+			        	</if>
+			        	<if test="map.endDate == 4">
+			         		and d.end_date <![CDATA[ <= ]]>  DATE_ADD(CURDATE(),INTERVAL 1 MONTH) and d.end_date <![CDATA[ >= ]]>  CURDATE()
+			        	</if>
+			        	<if test="map.endDate == 5">
+			         		and d.end_date <![CDATA[ <= ]]>  DATE_ADD(CURDATE(),INTERVAL 3 MONTH) and d.end_date <![CDATA[ >= ]]>  CURDATE()
+			        	</if>
+		        	</when>
+		        	<when test="map.endDateSelect == 1">
+		        		<if test="map.endDateStart">
+				        	and d.end_date <![CDATA[ >= ]]>  #{map.endDateStart}
+				        </if>
+				        <if test="map.endDateEnd">
+				        	and d.end_date <![CDATA[ <= ]]>  #{map.endDateEnd}
+				        </if>
+		        	</when>
+		        	<otherwise>
+		        		<if test="map.dueDate">
+				        	and d.end_date <![CDATA[ = ]]>  #{map.dueDate}
+				        </if>
+		        	</otherwise>
+		        </choose>
+	        </if>
+        </where>
+    </if>
+  </select>
+</mapper>

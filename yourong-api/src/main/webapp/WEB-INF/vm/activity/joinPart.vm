@@ -1,0 +1,122 @@
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$res_url/source/css/activity/Again/joinPart.css"])
+
+#set($isNeedYRWtoken=$request.getParameter("isNeedYRWtoken"))
+
+#if($currentUser)
+  #set($logined=true)
+#else
+  #set($logined=false)
+#end
+
+###set($os=3)
+####  安卓
+###if($loginSource==1)
+##    #set($os=1)
+###end
+####  IOS
+###if($loginSource==2)
+##    #set($os=2)
+###end
+##
+#if($isNeedYRWtoken)
+<style>
+  .g-ft{
+    display: none;
+  }
+</style>
+#else
+##header，安卓ios，不需要头部
+<h2 class="u-pageTitle f-pos-r">
+  <a href="$siteurl/mIndex">有融网</a>
+  <span class=" f-pos-a f-fs18 f-ff-ver">
+    #if(!$currentUser)
+      <a href="$siteurl/mstation/login" id="j-login">登录</a>
+                <a href="$siteurl/mstation/register" id="j-register">注册</a>
+    #else
+      <a href="$mCenter_logout_url">退出</a>
+    #end
+        </span>
+</h2>
+#end
+<div class="g-wrap" id="j-os" data-os="$os">
+  <div class="m-joinPart-banner">
+    <img src="$res_url/img/activity/joinPart/app1.png" alt="" width="100%"/>
+    <img src="$res_url/img/activity/joinPart/app2.png" alt="" width="100%"/>
+    <img src="$res_url/img/activity/joinPart/app3.png" alt="" width="100%"/>
+    <img src="$res_url/img/activity/joinPart/app4.png" alt="" width="100%"/>
+    <img src="$res_url/img/activity/joinPart/app5.png" alt="" width="100%"/>
+    <img src="$res_url/img/activity/joinPart/app6.png" alt="" width="100%"/>
+  </div>
+
+  <div class="m-picture-return">
+    <div class="g-wrap">
+      <div class="u-title">
+        <img src="$res_url/img/activity/joinPart/pic-title.png" alt="" width="100%"/>
+      </div>
+      <div class="u-joinPart-picture" id="j-joinPart-picture">
+        <ul>
+          <li class="z-active " id="j-first-page"><img src="$res_url/img/activity/joinPart/pic-app1.png"></li>
+          <li><img src="$res_url/img/activity/joinPart/pic-app2.png"></li>
+          <li><img src="$res_url/img/activity/joinPart/pic-app3.png"></li>
+          <li><img src="$res_url/img/activity/joinPart/pic-app4.png"></li>
+          <li><img src="$res_url/img/activity/joinPart/pic-app5.png"></li>
+        </ul>
+        <span class="left" data-click="left"><img src="$res_url/img/activity/Again/pageturning-left.png" alt="" width="100%"/></span>
+        <span class="right" data-click="right"><img src="$res_url/img/activity/Again/pageturning-right.png" alt="" width="100%"/></span>
+        <div>
+          <em><strong class="f-fs36" id="j-mun">1</strong></em>
+          <div >
+            <p id="j-title"></p>
+            <p id="j-text"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="m-picture-return">
+    <div class="g-wrap">
+      <div class="u-title">
+        <img src="$res_url/img/activity/joinPart/pic-title2.png" alt="" width="100%"/>
+      </div>
+      <div class="u-joinPart-meiti">
+        <div>
+          <a href="http://news.xinhuanet.com/itown/2017-01/09/c_135965862.htm"><img src="$res_url/img/activity/joinPart/meiti1.png"></a>
+          <p>国资战略入股 有融网组成多重“安全牌”</p>
+        </div>
+        <div>
+          <a href="http://news.dichan.sina.com.cn/2017/01/10/1201029.html"><img src="$res_url/img/activity/joinPart/meiti2.png"></a>
+          <p>资本寒冬下 有融网何以获得国有资本青睐?</p>
+        </div>
+        <div>
+          <a href="http://finance.jrj.com.cn/biz/2017/01/09171721944386.shtml"><img src="$res_url/img/activity/joinPart/meiti3.png"></a>
+          <p>有融网获国资战略入股 平台发展迈入新征程</p>
+        </div>
+        <div>
+          <a href="http://finance.caijing.com.cn/20170109/4221799.shtml"><img src="$res_url/img/activity/joinPart/meiti4.png"></a>
+          <p>国资战略入股 有融网组成多重“安全牌”</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+#set($pageScript="
+<script src='$res_url/build/js/appHook.js'></script>
+##<script src='$res_url/lib/js/vconsole.min.js'></script>
+<script>
+  seajs.use('$m_js_url/activity/joinPart.js')
+</script>
+")
+##<script>
+##    (function(){
+##        //“意见反馈”区别调用不同app
+##        var i=$("#j-os").data("os");
+##        alert(i)
+##    })()
+##
+##</script>
+#CSRFToken('xToken')

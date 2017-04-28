@@ -1,0 +1,216 @@
+<div tabindex="-1" class="modal fade" id="modal-table" style="display: none;" aria-hidden="true">
+	<div class="modal-dialog ">
+		<div class="modal-content">
+			<div class="modal-header no-padding">
+		    	<div class="table-header">
+		        	<button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+		            	<span class="white">×</span>
+		        	</button>
+		   			 增加banner
+		    	</div>
+			</div>
+			<div class="modal-body">
+		    <form role="form" class="form-horizontal" id="banner_form" method="post" enctype="multipart/form-data" action="$root_url/banner/save">
+				<input type="hidden" name="id" />
+			 	<div class="form-group">
+					<label for="form-field-2" class="col-sm-3 control-label no-padding-right"> 投放渠道 </label>
+				    <div class="col-sm-3">
+				    		#dictSelect("type",$!{sysServiceUtil.getDictList("banner_type")},"","banner_type")
+				    </div>
+				</div>
+				<div class="form-group">
+				  <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> banner标题*: </label>
+				  <div class="col-sm-9">
+				    <div class="clearfix">
+				     <input type="text" name="name" class="col-xs-10 col-sm-8" placeholder="" id="form-field-name">
+				    </div>
+				  </div>
+				</div>
+				<div class="form-group">
+				  <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> banner*: </label>
+				  <div class="col-sm-9">
+				    <div class="clearfix">
+				     <input type="file" name="file" class="col-xs-10 col-sm-8" placeholder="" id="form-field-image" datatype="*">
+				    </div>
+				  </div>
+				</div>
+				
+				
+				<!--<input type="text" id="j-json-image" name="image"/>
+				<div class="form-group clearfix">
+				  ###添加文件按钮
+				  <span class="btn btn-success fileinput-button image dz-upload-btn">
+				        <i class="glyphicon glyphicon-plus"></i>
+				        <span>添加文件</span>
+				    </span>
+				     ###图片控件容器
+				  <div class="dropzoneImage dropzone dropzoneSort" id="image" data-maxfiles="1" data-category="banner">
+				    <div class="fallback"> 
+				    </div>
+				  </div>  
+				</div>-->
+				
+				<div class="form-group j-img-box" style="display:none">
+				<div class="col-sm-6">
+				  <div class="clearfix">
+				  <img src="" name="image" style="height: 70px;margin-left: 70px; max-width:450px; "/>
+				    </div>
+				  </div>
+				</div>
+				
+				
+				
+				<div class="form-group">
+				  <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 添加链接: </label>
+				  <div class="col-sm-9">
+				    <div class="clearfix">
+				     <input type="text" name="href" class="col-xs-10 col-sm-8" placeholder="" id="form-field-href" >
+				    </div>
+				  </div>
+				</div>
+				
+				<div class="form-group">
+				  <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 开始时间*: </label>
+				  <div class="col-sm-9">
+				    <div class="clearfix">
+				     <input type="text" name="startTime" class="col-xs-10 col-sm-8" placeholder="" onclick="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd HH:mm'})" id="form-field-startTime" datatype="*">
+				    </div>
+				  </div>
+				</div>
+				
+				<div class="form-group">
+				  <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 结束时间: </label>
+				  <div class="col-sm-9">
+				    <div class="clearfix">
+				     <input type="text" name="endTime" class="col-xs-10 col-sm-8" placeholder="此项不填即为长期有效" onclick="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd HH:mm'})" id="form-field-endTime">
+				    </div>
+				  </div>
+				</div>
+				<div class="form-group" id="d-areaSign">
+				  <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 显示位置*: </label>
+				  <div class="col-sm-9">
+				    <div class="clearfix">
+				     #dictSelect("areaSign",${sysServiceUtil.getDictList('banner_area_sign')},"请选择")
+				    </div>
+				  </div>
+				</div>
+				
+				<div class="form-group" id="d-versionSign">
+				  <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 显示版本*: </label>
+				  <div class="col-sm-9">
+				    <div class="clearfix">
+				     #dictSelect("versionSign",${sysServiceUtil.getDictList('banner_area_version')},"请选择")
+				    </div>
+				  </div>
+				</div>
+				
+				<div class="form-group" id="d-activity">
+				  <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 关联活动: </label>
+				  <div class="col-sm-9">
+				    <div class="clearfix">
+				      <select id="activityId" name="activityId">
+						<option value="">请选择</option>
+						#foreach($!{activity} in $!{activityList})
+							<option value=$!{activity.id}>$!{activity.name}</option>
+				        #end
+					  </select>
+				    </div>
+				  </div>
+				</div>
+				<div class="form-group" id="new-windows-open" >
+				 	<label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 新窗口打开: </label>
+				  	<div class="col-sm-9">
+				  	    <div class="clearfix">
+				  	    	<input type="checkbox" class="ace ace-switch ace-switch-5 col-xs-10 col-sm-12" placeholder="0:否 1:是" id="form-field-targetBlank" value="0">
+				          <span class="lbl"></span>
+				          <input type="hidden" id="target_blank" name="targetBlank" class="switchInput" value="0"/>
+				    	</div>
+				    </div>
+				</div>
+				
+				<div class="form-group" id="d-share-flag" style="display:none">
+				 	<label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 是否可以分享: </label>
+				  	<div class="col-sm-9">
+				  	    <div class="clearfix">
+				  	    	<input type="checkbox" class="ace ace-switch ace-switch-5 col-xs-10 col-sm-12" placeholder="0:否 1:是" id="form-field-shareFlag" value="0">
+				          <span class="lbl"></span>
+				          <input type="hidden" id="share_flag" name="shareFlag" class="switchInput" value="0"/>
+				    	</div>
+				    </div>
+				</div>
+				
+				<div class="form-group" id="d-share-title" style="display:none">
+				  <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 分享标题: </label>
+				  <div class="col-sm-9">
+				    <div class="clearfix">
+				     <input type="text" name="shareTitle" class="col-xs-10 col-sm-8" placeholder="" id="form-field-shareTitle" >
+				    </div>
+				  </div>
+				</div>
+				<div class="form-group" id="d-share-word" style="display:none">
+				  <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 分享文案: </label>
+				  <div class="col-sm-9">
+				    <div class="clearfix">
+				     <input type="text" name="shareWord" class="col-xs-10 col-sm-8" placeholder="" id="form-field-shareWord" >
+				    </div>
+				  </div>
+				</div>
+				
+				<div class="form-group">
+				  <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 底图: </label>
+				  <div class="col-sm-9">
+				    <div class="clearfix">
+				     <input type="file" name="file" class="col-xs-10 col-sm-8" title="非动态banner,该项不需要填写！"  id="form-field-imageBg">
+				    </div>
+				  </div>
+				</div>
+				
+				<div class="form-group j-imgBg-box" style="display:none">
+				<div class="col-sm-6">
+				  <div class="clearfix">
+				  <img src="" name="imageBg" style="height: 70px;margin-left: 70px;"/>
+				    </div>
+				  </div>
+				</div>
+				
+				<div class="form-group">
+				  <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 效果: </label>
+				  <div class="col-sm-9">
+				    <div class="clearfix">
+				     <input type="text" name="effect" class="col-xs-10 col-sm-8" placeholder="非动态banner,该项不需要填写！"  id="form-field-effect">
+				    </div>
+				  </div>
+				</div>
+		
+			</form>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+			<button type="button" id="save_banner" class="btn btn-primary">保存</button>
+		</div>
+	</div>
+<!-- /.modal-content -->
+ </div>
+<!-- /.modal-dialog -->
+</div>
+
+<style>
+
+ .dz-size,.dz-input-data{
+  display:none;
+ }
+ .dz-success-mark{
+  display:none;
+ }
+ .dz-error-mark{
+  display:none;
+ }
+ .dropzone .dz-preview .dz-details, .dropzone-previews .dz-preview .dz-details{
+  width:400px;
+  height: 60px;
+ }
+ .dropzone .dz-preview .dz-details img, .dropzone-previews .dz-preview .dz-details img{
+  width:400px;
+  height: auto;
+ }
+</style>

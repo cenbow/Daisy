@@ -1,0 +1,554 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.fin.dao.RechargeLogMapper" >
+  <resultMap id="BaseResultMap" type="RechargeLog" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="amount" property="amount" jdbcType="DECIMAL" />
+    <result column="fee" property="fee" jdbcType="DECIMAL" />    
+    <result column="recharge_time" property="rechargeTime" jdbcType="TIMESTAMP" />
+    <result column="member_id" property="memberId" jdbcType="BIGINT" />
+    <result column="pay_method" property="payMethod" jdbcType="INTEGER" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="bank_code" property="bankCode" jdbcType="VARCHAR" />
+    <result column="recharge_no" property="rechargeNo" jdbcType="VARCHAR" />
+    <result column="outer_recharge_no" property="outerRechargeNo" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+    <result column="bank_card_id" property="bankCardId" jdbcType="BIGINT" />
+    <result column="recharge_source" property="rechargeSource" jdbcType="INTEGER" />
+    <result column="true_name" property="trueName" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="BIGINT" />
+    <result column="payer_ip" property="payerIp" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, amount,fee, recharge_time, member_id, pay_method, remarks, bank_code, recharge_no, outer_recharge_no, 
+    status, update_time,type, order_no,bank_card_id,recharge_source
+  </sql>
+  <insert id="insertSelective" parameterType="RechargeLog" >
+    insert into fin_recharge_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="fee != null" >
+        fee,
+      </if>
+        recharge_time,
+      <if test="memberId != null" >
+        member_id,
+      </if>
+      <if test="payMethod != null" >
+        pay_method,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+      <if test="bankCode != null" >
+        bank_code,
+      </if>
+      <if test="rechargeNo != null" >
+        recharge_no,
+      </if>
+      <if test="outerRechargeNo != null" >
+        outer_recharge_no,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="orderNo != null" >
+        order_no,
+      </if>
+      <if test="bankCardId != null" >
+        bank_card_id,
+      </if>
+      <if test="rechargeSource != null" >
+        recharge_source,
+      </if>
+      <if test="payerIp != null" >
+        payer_ip
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="fee != null" >
+        #{fee,jdbcType=DECIMAL},
+      </if>
+      now(),
+      <if test="memberId != null" >
+        #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="payMethod != null" >
+        #{payMethod,jdbcType=INTEGER},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCode != null" >
+        #{bankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="rechargeNo != null" >
+        #{rechargeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="outerRechargeNo != null" >
+        #{outerRechargeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCardId != null" >
+        #{bankCardId,jdbcType=BIGINT},
+      </if>
+      <if test="rechargeSource != null" >
+        #{rechargeSource,jdbcType=INTEGER},
+      </if>
+      <if test="payerIp != null" >
+        #{payerIp,jdbcType=VARCHAR}
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="RechargeLog" >
+    update fin_recharge_log
+    <set >
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="fee != null" >
+        fee = #{fee,jdbcType=DECIMAL},
+      </if>
+      <if test="rechargeTime != null" >
+        recharge_time = #{rechargeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memberId != null" >
+        member_id = #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="payMethod != null" >
+        pay_method = #{payMethod,jdbcType=INTEGER},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCode != null" >
+        bank_code = #{bankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="rechargeNo != null" >
+        recharge_no = #{rechargeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="outerRechargeNo != null" >
+        outer_recharge_no = #{outerRechargeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="orderNo != null" >
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCardId != null" >
+        bank_card_id = #{bankCardId,jdbcType=BIGINT},
+      </if>
+      <if test="rechargeSource != null" >
+        recharge_source = #{rechargeSource,jdbcType=INTEGER},
+      </if>
+        update_time = now()
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="findByPage" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from fin_recharge_log
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = #{map.id}
+        </if>
+        <if test=" map.amount != null" >
+          amount = #{map.amount}
+        </if>
+        <if test=" map.rechargeTime != null" >
+          recharge_time = #{map.rechargeTime}
+        </if>
+        <if test=" map.memberId != null" >
+          member_id = #{map.memberId}
+        </if>
+        <if test=" map.payMethod != null" >
+          pay_method = #{map.payMethod}
+        </if>
+        <if test=" map.remarks != null" >
+          remarks = #{map.remarks}
+        </if>
+        <if test=" map.bankCode != null" >
+          bank_code = #{map.bankCode}
+        </if>
+        <if test=" map.rechargeNo != null" >
+          recharge_no = #{map.rechargeNo}
+        </if>
+        <if test=" map.outerRechargeNo != null" >
+          outer_recharge_no = #{map.outerRechargeNo}
+        </if>
+        <if test=" map.status != null" >
+          status = #{map.status}
+        </if>
+        <if test=" map.updateTime != null" >
+          update_time = #{map.updateTime}
+        </if>
+      </where>
+    </if>
+  </select>
+  <select id="queryLogByPage" resultMap="BaseResultMap" >
+    select 
+	    r.id, r.amount,fee, r.recharge_time, r.member_id, r.pay_method, r.remarks, r.bank_code, r.recharge_no, r.outer_recharge_no, 
+	    r.status, r.update_time,type, r.order_no,bank_card_id, r.recharge_source, m.true_name, m.mobile 
+    from fin_recharge_log as r left join uc_member as m on r.member_id = m.id
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          and r.id = #{map.id}
+        </if>
+        <if test=" map.type != null" >
+          and r.type = #{map.type}
+        </if>
+        <if test=" map.amount != null" >
+          and r.amount = #{map.amount}
+        </if>
+         <if test=" map.amountStart != null" >
+          and r.amount <![CDATA[ >= ]]> #{map.amountStart}
+        </if>
+        <if test=" map.amountEnd != null" >
+          and r.amount <![CDATA[ <= ]]> #{map.amountEnd}
+        </if>
+        <if test=" map.rechargeTime != null" >
+          and r.recharge_time = #{map.rechargeTime}
+        </if>
+        <if test=" map.rechargeTimeStart != null" >
+          and r.recharge_time <![CDATA[ >= ]]> #{map.rechargeTimeStart}
+        </if>
+        <if test=" map.rechargeTimeEnd != null" >
+          and r.recharge_time <![CDATA[ <= ]]> #{map.rechargeTimeEnd}
+        </if>
+        <if test=" map.memberId != null" >
+          and r.member_id = #{map.memberId}
+        </if>
+        <if test=" map.payMethod != null" >
+          and r.pay_method = #{map.payMethod}
+        </if>
+        <if test=" map.remarks != null" >
+          and r.remarks = #{map.remarks}
+        </if>
+        <if test=" map.bankCode != null" >
+          and r.bank_code = #{map.bankCode}
+        </if>
+        <if test=" map.rechargeNo != null" >
+          and r.recharge_no = #{map.rechargeNo}
+        </if>
+        <if test=" map.outerRechargeNo != null" >
+          and r.outer_recharge_no = #{map.outerRechargeNo}
+        </if>
+        <if test=" map.status != null" >
+          and r.status = #{map.status}
+        </if>
+        <if test=" map.updateTime != null" >
+          and r.update_time = #{map.updateTime}
+        </if>
+        <if test=" map.trueName != null" >
+          and m.true_name = #{map.trueName}
+        </if>
+        <if test=" map.mobile != null" >
+          and m.mobile = #{map.mobile}
+        </if>
+        <if test=" map.sourceSys != null" >
+          and ifnull(r.recharge_source, 0) = #{map.sourceSys}
+        </if>
+        <if test=" map.updateTimeStart != null" >
+          and r.update_time <![CDATA[ >= ]]> #{map.updateTimeStart,jdbcType=TIMESTAMP}
+        </if>
+        <if test=" map.updateTimeEnd != null" >
+          and r.update_time <![CDATA[ <= ]]> #{map.updateTimeEnd,jdbcType=TIMESTAMP}
+        </if>
+      </where>
+    </if>
+    order by r.id desc
+    LIMIT ${map.startRow}, ${map.pageSize}	
+  </select>
+  <sql id="Base_Column_List_Pagin" >
+		t.id  as  id,
+		t.amount  as  amount,
+		t.fee  as  fee,		
+		t.recharge_time  as  recharge_time,
+		t.member_id  as  member_id,
+		t.pay_method  as  pay_method,
+		t.remarks  as  remarks,
+		t.bank_code  as  bank_code,
+		t.recharge_no  as  recharge_no,
+		t.outer_recharge_no  as  outer_recharge_no,
+        t.bank_card_id  as  bank_card_id,
+		t.status  as  status,
+		t.type  as  type,
+		t.update_time  as  update_time,
+		t.recharge_source as recharge_Source
+  </sql>
+  <select id="selectForPagin" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List_Pagin" />
+    from  (SELECT id FROM  fin_recharge_log
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = #{map.id}
+        </if>
+        <if test=" map.amount != null" >
+         and  amount = #{map.amount}
+        </if>
+        <if test=" map.rechargeTime != null" >
+         and recharge_time = #{map.rechargeTime}
+        </if>
+        <if test=" map.memberId != null" >
+        and  member_id = #{map.memberId}
+        </if>
+        <if test=" map.payMethod != null" >
+       	 and   pay_method = #{map.payMethod}
+        </if>
+        <if test=" map.remarks != null" >
+          and  remarks = #{map.remarks}
+        </if>
+        <if test=" map.bankCode != null" >
+         and bank_code = #{map.bankCode}
+        </if>
+        <if test=" map.rechargeNo != null" >
+         and recharge_no = #{map.rechargeNo}
+        </if>
+        <if test=" map.outerRechargeNo != null" >
+          and  outer_recharge_no = #{map.outerRechargeNo}
+        </if>
+      
+        <!-- -2-失败 -1-拒绝 0-冻结 1-处理中 5-操作成功 -->   
+         and status  in (-2,-1,0,5)        
+        <if test=" map.updateTime != null" >
+        	and  update_time = #{map.updateTime}
+        </if>
+      </where>
+    </if>
+   	  order by recharge_time  desc 
+      LIMIT	${map.startRow}, ${map.pageSize}   )  AS a,  fin_recharge_log AS t FORCE INDEX(PRIMARY)
+       WHERE a.id = t.id    
+  </select>
+  <select id="selectForPaginTotalCount" resultType="java.lang.Integer" >
+    select count(1) 
+    from fin_recharge_log
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = ${map.id}
+        </if>
+        <if test=" map.amount != null" >
+         	and amount = ${map.amount}
+        </if>
+        <if test=" map.rechargeTime != null" >
+         	and recharge_time = ${map.rechargeTime}
+        </if>
+        <if test=" map.memberId != null" >
+       		and   member_id = ${map.memberId}
+        </if>
+        <if test=" map.payMethod != null" >
+         	and pay_method = ${map.payMethod}
+        </if>
+        <if test=" map.remarks != null" >
+         	and remarks = ${map.remarks}
+        </if>
+        <if test=" map.bankCode != null" >
+        	 and bank_code = ${map.bankCode}
+        </if>
+        <if test=" map.rechargeNo != null" >
+          	and recharge_no = ${map.rechargeNo}
+        </if>
+        <if test=" map.outerRechargeNo != null" >
+          	and outer_recharge_no = ${map.outerRechargeNo}
+        </if>  
+        <!-- -2-失败 -1-拒绝 0-冻结 1-处理中 5-操作成功 -->     
+         	and status  in (-2,-1,0,5)       
+        <if test=" map.updateTime != null" >
+          	and update_time = ${map.updateTime}
+        </if>
+      </where>
+    </if>
+  </select>
+  <select id="selectRechargeByMap" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from fin_recharge_log
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+            id = #{map.id}
+        </if>
+        <if test=" map.amount != null" >
+          and amount = #{map.amount}
+        </if>
+        <if test=" map.rechargeTime != null" >
+          and recharge_time = #{map.rechargeTime}
+        </if>
+        <if test=" map.memberId != null" >
+          and member_id = #{map.memberId}
+        </if>
+        <if test=" map.payMethod != null" >
+          and pay_method = #{map.payMethod}
+        </if>
+        <if test=" map.remarks != null" >
+          and remarks = #{map.remarks}
+        </if>
+        <if test=" map.bankCode != null" >
+          and bank_code = #{map.bankCode}
+        </if>
+        <if test=" map.rechargeNo != null" >
+          and recharge_no = #{map.rechargeNo}
+        </if>
+        <if test=" map.outerRechargeNo != null" >
+          and  outer_recharge_no = #{map.outerRechargeNo}
+        </if>
+        <if test=" map.status != null" >
+          and  status = #{map.status}
+        </if>
+        <if test=" map.updateTime != null" >
+          and update_time = #{map.updateTime}
+        </if>
+      </where>
+    </if>
+    order by recharge_time  desc
+    LIMIT	${map.startRow}, ${map.pageSize}
+  </select>
+  
+  <!-- 查询用户首次在APP直接充值记录 -->
+  <select id="queryAppFirstRechargeAmount" resultMap="BaseResultMap">
+  	 select
+    <include refid="Base_Column_List" />
+    from fin_recharge_log
+    where member_id = #{memberId,jdbcType=BIGINT} and status = 5
+     and type = 1
+     and recharge_source <![CDATA[ > ]]> 0 
+     <if test=" startDate != null" >
+		 <![CDATA[ AND recharge_time >= #{startDate,jdbcType=VARCHAR} ]]>
+	 </if>
+	 <if test=" endDate != null" >
+		 <![CDATA[ AND recharge_time <= #{endDate,jdbcType=VARCHAR} ]]>
+	 </if>
+     ORDER BY recharge_time asc limit 1;
+  </select>
+  
+  <!--查询充值记录-->
+  <select id="selectSynchronizedRecharge" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from fin_recharge_log
+    where status = #{status,jdbcType=INTEGER}
+    	  <if test="rechargeNo != null and rechargeNo != ''">
+    	  	 and recharge_no = #{rechargeNo,jdbcType=VARCHAR}
+    	  </if>
+    	  <if test="startTime != null and startTime != ''">
+			 <![CDATA[ AND recharge_time >= #{startTime,jdbcType=VARCHAR} ]]>
+		  </if>
+		  <if test="endTime != null and endTime != ''">
+			 <![CDATA[ AND recharge_time <= #{endTime,jdbcType=VARCHAR} ]]>
+		  </if>
+   </select>
+    
+  <select id="queryLogByPageCount" resultType="java.lang.Integer" >
+     select 
+	    count(1) 
+    from fin_recharge_log as r left join uc_member as m on r.member_id = m.id
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          and r.id = #{map.id}
+        </if>
+        <if test=" map.type != null" >
+          and r.type = #{map.type}
+        </if>
+        <if test=" map.amount != null" >
+          and r.amount = #{map.amount}
+        </if>
+         <if test=" map.amountStart != null" >
+          and r.amount <![CDATA[ >= ]]> #{map.amountStart}
+        </if>
+        <if test=" map.amountEnd != null" >
+          and r.amount <![CDATA[ <= ]]> #{map.amountEnd}
+        </if>
+        <if test=" map.rechargeTime != null" >
+          and r.recharge_time = #{map.rechargeTime}
+        </if>
+        <if test=" map.rechargeTimeStart != null" >
+          and r.recharge_time <![CDATA[ >= ]]> #{map.rechargeTimeStart}
+        </if>
+        <if test=" map.rechargeTimeEnd != null" >
+          and r.recharge_time <![CDATA[ <= ]]> #{map.rechargeTimeEnd}
+        </if>
+        <if test=" map.memberId != null" >
+          and r.member_id = #{map.memberId}
+        </if>
+        <if test=" map.payMethod != null" >
+          and r.pay_method = #{map.payMethod}
+        </if>
+        <if test=" map.remarks != null" >
+          and r.remarks = #{map.remarks}
+        </if>
+        <if test=" map.bankCode != null" >
+          and r.bank_code = #{map.bankCode}
+        </if>
+        <if test=" map.rechargeNo != null" >
+          and r.recharge_no = #{map.rechargeNo}
+        </if>
+        <if test=" map.outerRechargeNo != null" >
+          and r.outer_recharge_no = #{map.outerRechargeNo}
+        </if>
+        <if test=" map.status != null" >
+          and r.status = #{map.status}
+        </if>
+        <if test=" map.updateTime != null" >
+          and r.update_time = #{map.updateTime}
+        </if>
+        <if test=" map.trueName != null" >
+          and m.true_name = #{map.trueName}
+        </if>
+        <if test=" map.mobile != null" >
+          and m.mobile = #{map.mobile}
+        </if>
+        <if test=" map.sourceSys != null" >
+          and ifnull(r.recharge_source, 0) = #{map.sourceSys}
+        </if>
+        <if test=" map.updateTimeStart != null" >
+          and r.update_time <![CDATA[ >= ]]> #{map.updateTimeStart,jdbcType=TIMESTAMP}
+        </if>
+        <if test=" map.updateTimeEnd != null" >
+          and r.update_time <![CDATA[ <= ]]> #{map.updateTimeEnd,jdbcType=TIMESTAMP}
+        </if>
+      </where>
+    </if>
+  </select>
+    
+</mapper>

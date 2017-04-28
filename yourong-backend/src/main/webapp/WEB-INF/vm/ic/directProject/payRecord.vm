@@ -1,0 +1,47 @@
+<div tabindex="-1" class="modal fade" id="pay-modal-table" style="display: none;" aria-hidden="true">
+	<div class="modal-dialog" style="width:900px;">
+		<div class="modal-content">
+			<div class="modal-header no-padding">
+				<div class="table-header">
+					<button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+						<span class="white">×</span>
+					</button>
+					<span class="modalFormTitle">还款记录</span>
+				</div>
+			</div>
+			<div class="modal-body">
+    			<table id="sample-table-1" class="table table-striped table-bordered">
+					<tbody>
+						<tr>
+							<td>项目编号：<span id="project_number"></span></td>
+							<td>借款人：<span id="project_borrow"></span></td>
+							<td>借款总额：<span id="project_amount"></span></td>
+							<td>借款周期：<span id="project_time"></span></td>
+							<td>借款利率：<span id="project_annualizedRate"></span>%</td>
+						</tr>
+					</tbody>
+				</table>
+    			<table id="record-table-1" class="table table-striped table-bordered" cellspacing="0" width="100%">
+									<thead>
+										<tr>
+			        						<th width="10%">期数</th>
+				        					<th width="20%">计息周期</th>
+				        					<th width="20%">还款日</th>
+				        					<th width="20%">利息</th>
+				        					<th width="20%">本金</th>
+				        					<th width="10%">状态</th>
+        								</tr>
+									</thead>
+								</table>
+			<div>
+				本项目还本付息方式：<span id="pay_type"></span>
+			</div>
+    				
+    		</div>
+					<div style="clear:both"></div>
+    		</div>
+		</div>
+	<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>

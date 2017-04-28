@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.ic.dao.LeaseBonusMapper" >
+  <resultMap id="BaseResultMap" type="com.yourong.core.ic.model.LeaseBonus" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="project_id" property="projectId" jdbcType="BIGINT" />
+    <result column="lease_status" property="leaseStatus" jdbcType="INTEGER" />
+    <result column="total_income" property="totalIncome" jdbcType="DECIMAL" />
+    <result column="periods" property="periods" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+    <result column="project_name" property="projectName" jdbcType="VARCHAR" />
+    <result column="total_amount" property="totalAmount" jdbcType="DECIMAL" />
+    <result column="project_status" property="projectStatus" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    id, project_id, lease_status, total_income, periods, create_time, update_time, del_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from ic_lease_bonus
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  
+  <select id="getByProject" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from ic_lease_bonus
+    where project_id = #{projectId,jdbcType=BIGINT}
+    and del_flag=1
+  </select>
+  <update id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    update ic_lease_bonus set del_flag = -1, update_time = now()
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <insert id="insert" parameterType="com.yourong.core.ic.model.LeaseBonus" >
+    insert into ic_lease_bonus (id, project_id, lease_status, 
+      total_income, periods, create_time, update_time, 
+      del_flag)
+    values (#{id,jdbcType=BIGINT}, #{projectId,jdbcType=BIGINT}, #{leaseStatus,jdbcType=INTEGER}, 
+      #{totalIncome,jdbcType=DECIMAL}, #{periods,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP},
+      #{updateTime,jdbcType=TIMESTAMP},#{delFlag,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yourong.core.ic.model.LeaseBonus" useGeneratedKeys="true" keyProperty="id" >
+    insert into ic_lease_bonus
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="projectId != null" >
+        project_id,
+      </if>
+      <if test="leaseStatus != null" >
+        lease_status,
+      </if>
+      <if test="totalIncome != null" >
+        total_income,
+      </if>
+      <if test="periods != null" >
+        periods,
+      </if>
+        create_time,
+        update_time,
+        del_flag,
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="projectId != null" >
+        #{projectId,jdbcType=BIGINT},
+      </if>
+      <if test="leaseStatus != null" >
+        #{leaseStatus,jdbcType=INTEGER},
+      </if>
+      <if test="totalIncome != null" >
+        #{totalIncome,jdbcType=DECIMAL},
+      </if>
+      <if test="periods != null" >
+        #{periods,jdbcType=INTEGER},
+      </if>
+        now(),
+        now(),
+        1,
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yourong.core.ic.model.LeaseBonus" >
+    update ic_lease_bonus
+    <set >
+      <if test="projectId != null" >
+        project_id = #{projectId,jdbcType=BIGINT},
+      </if>
+      <if test="leaseStatus != null" >
+        lease_status = #{leaseStatus,jdbcType=INTEGER},
+      </if>
+      <if test="totalIncome != null" >
+        total_income = #{totalIncome,jdbcType=DECIMAL},
+      </if>
+      <if test="periods != null" >
+        periods = #{periods,jdbcType=INTEGER},
+      </if>
+        update_time = now(),
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yourong.core.ic.model.LeaseBonus" >
+    update ic_lease_bonus
+    set project_id = #{projectId,jdbcType=BIGINT},
+      lease_status = #{leaseStatus,jdbcType=INTEGER},
+      total_income = #{totalIncome,jdbcType=DECIMAL},
+      periods = #{periods,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      del_flag = #{delFlag,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <delete id="batchDelete" parameterType="java.lang.Long" >
+    delete from ic_lease_bonus
+    where id in  <foreach collection="ids" index="index" item="item" open="(" separator="," close=")"> #{item}  </foreach>  
+  </delete>
+  <select id="findByPage" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from ic_lease_bonus
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = #{map.id}
+        </if>
+        <if test=" map.projectId != null" >
+          project_id = #{map.projectId}
+        </if>
+        <if test=" map.leaseStatus != null" >
+          lease_status = #{map.leaseStatus}
+        </if>
+        <if test=" map.totalIncome != null" >
+          total_income = #{map.totalIncome}
+        </if>
+        <if test=" map.periods != null" >
+          periods = #{map.periods}
+        </if>
+        <if test=" map.createTime != null" >
+          create_time = #{map.createTime}
+        </if>
+        <if test=" map.updateTime != null" >
+          update_time = #{map.updateTime}
+        </if>
+        <if test=" map.delFlag != null" >
+          del_flag = #{map.delFlag}
+        </if>
+      </where>
+    </if>
+  </select>
+  <sql id="Base_Column_List_Pagin" >
+    t.id  as  id,
+t.project_id  as  project_id,
+t.lease_status  as  lease_status,
+t.total_income  as  total_income,
+t.create_time  as  create_time,
+t.update_time  as  update_time,
+t.periods as periods,
+t.del_flag  as  del_flag,
+a.project_name as project_name,
+a.project_status as project_status
+  </sql>
+  
+  
+  <select id="selectForPagin" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List_Pagin" />
+    from  (SELECT b.id,p.name as project_name,p.status as project_status FROM ic_lease_bonus as b 
+    LEFT JOIN ic_project as p on b.project_id = p.id where b.del_flag > 0 and p.del_flag>0
+    <if test=" map != null" >
+        <if test=" map.id != null" >
+          and b.id = #{map.id}
+        </if>
+        <if test=" map.projectId != null" >
+          and b.project_id = #{map.projectId}
+        </if>
+        <if test=" map.projectName != null">
+          and p.name like #{map.projectName}"%"
+        </if>
+        <if test=" map.leaseStatus != null" >
+          and b.lease_status = #{map.leaseStatus}
+        </if>
+        <if test=" map.totalIncome != null" >
+          and b.total_income = #{map.totalIncome}
+        </if>
+        <if test=" map.periods != null" >
+          and b.periods = #{map.periods}
+        </if>
+        <if test=" map.createTime != null" >
+          and b.create_time = #{map.createTime}
+        </if>
+        <if test=" map.updateTime != null" >
+          and b.update_time = #{map.updateTime}
+        </if>
+        order by b.id desc
+    </if>
+      LIMIT	${map.startRow}, ${map.pageSize}  )  AS a,  ic_lease_bonus AS t FORCE INDEX(PRIMARY) WHERE a.id = t.id   
+  </select>
+  <select id="selectForPaginTotalCount" resultType="java.lang.Integer" >
+    select count(1) 
+    FROM ic_lease_bonus as b LEFT JOIN ic_project as p on b.project_id = p.id where b.del_flag > 0
+    <if test=" map != null" >
+        <if test=" map.id != null" >
+          and b.id = ${map.id}
+        </if>
+        <if test=" map.projectId != null" >
+          and b.project_id = ${map.projectId}
+        </if>
+        <if test=" map.projectName != null">
+          and p.name like #{map.projectName}"%"
+        </if>
+        <if test=" map.leaseStatus != null" >
+          and b.lease_status = ${map.leaseStatus}
+        </if>
+        <if test=" map.totalIncome != null" >
+          and b.total_income = ${map.totalIncome}
+        </if>
+        <if test=" map.periods != null" >
+          and b.periods = ${map.periods}
+        </if>
+        <if test=" map.createTime != null" >
+          and b.create_time = ${map.createTime}
+        </if>
+        <if test=" map.updateTime != null" >
+          and b.update_time = ${map.updateTime}
+        </if>
+    </if>
+  </select>
+  
+  <!-- 根据项目查询租赁分红记录 -->
+  <select id="findLeaseBonusByProjectId" resultMap="BaseResultMap">
+  	SELECT
+		id
+	FROM
+		ic_lease_bonus
+	WHERE
+		project_id = #{projectId,jdbcType=BIGINT} and del_flag > 0
+  </select>
+  
+  <!-- 添加租赁结算,更新租赁分红数据 -->
+  <update id="updateForLeaseSettlement" parameterType="com.yourong.core.ic.model.LeaseBonus"  >
+	  UPDATE ic_lease_bonus
+		SET lease_status = #{leaseStatus,jdbcType=INTEGER},
+		total_income = ifnull(total_income,0) + #{totalIncome,jdbcType=DECIMAL}, 
+		periods = ifnull(periods,0) + 1,
+	 	update_time = NOW()
+	  WHERE
+		id = #{id,jdbcType=BIGINT}	
+  </update>
+ 
+  <!-- 清空租赁记录时 更新租赁分红状态 -->
+  <update id="updateStatusByLeaseBonusId" parameterType="java.lang.Long">
+	  	UPDATE ic_lease_bonus
+	SET lease_status = 0,
+	 bonus_status = 0,
+	 update_time = now(),
+	 total_income = 0
+	WHERE
+		id = #{id,jdbcType=BIGINT}			
+  </update>
+  
+  <!-- 删除租赁记录时更新租赁分红总额 -->
+  <update id="updateTotalIncomeByLeaseBonusId" parameterType="com.yourong.core.ic.model.LeaseBonus" >
+  	UPDATE ic_lease_bonus
+		SET total_income = total_income - #{totalIncome,jdbcType=DECIMAL}
+	WHERE
+		id = #{id,jdbcType=BIGINT}	
+  </update>
+  
+  <!-- 编辑租赁记录时更新租赁分红总额 -->
+  <update id="updateTotalIncomeForEditLeaseDetail" parameterType="java.util.Map" >
+  	UPDATE ic_lease_bonus
+		SET total_income = total_income-#{map.oldTotalRental,jdbcType=DECIMAL}+#{map.newTotalRental,jdbcType=DECIMAL}
+	WHERE
+	id = #{map.id,jdbcType=BIGINT}
+  </update>
+  
+  
+   <!-- 前台分页    start -->
+   <resultMap type="com.yourong.core.ic.model.biz.LeaseBonusForFront" id="ForFrontResultMap">
+   		 <id column="id" property="id" jdbcType="BIGINT" />
+    	<result column="lease_status" property="leaseStatus" jdbcType="INTEGER" />
+    	<result column="total_income" property="totalIncome" jdbcType="DECIMAL" />
+	    <result column="project_name" property="projectName" jdbcType="VARCHAR" />
+	    <result column="project_id" property="projectId" jdbcType="BIGINT" />
+	    <result column="thumbnail" property="thumbnail" jdbcType="VARCHAR" />
+	    <result column="project_status" property="projectStatus" jdbcType="INTEGER" />
+   </resultMap>
+  <sql id="Front_Column_List_Pagin">
+  	t.id  as  id,
+	t.lease_status  as  lease_status,
+	t.total_income as total_income,
+	a.project_name as project_name,
+	a.project_id as project_id,
+	a.thumbnail as thumbnail, 
+	a.project_status as project_status
+  </sql>
+  <select id="selectForFrontPagin" resultMap="ForFrontResultMap" >
+    select 
+    <include refid="Front_Column_List_Pagin" />
+    from  (SELECT b.id,p.id as project_id,p.name as project_name,p.thumbnail as thumbnail, 
+    	p.status as project_status FROM ic_lease_bonus as b 
+    	LEFT JOIN ic_project as p on b.project_id = p.id 
+    	where b.del_flag > 0 and p.status >= 30 order by b.id desc
+    LIMIT #{baseQueryParam.startRow,jdbcType=INTEGER}, #{baseQueryParam.pageSize,jdbcType=INTEGER}  )  AS a,  ic_lease_bonus AS t FORCE INDEX(PRIMARY) WHERE a.id = t.id   
+  </select>
+  <select id="selectForFrontPaginTotalCount" resultType="java.lang.Integer" >
+    select count(1) 
+    FROM ic_lease_bonus as b LEFT JOIN ic_project as p on b.project_id = p.id where b.del_flag > 0 and p.status >= 30
+  </select>
+  <!-- 前台分页  end -->
+</mapper>

@@ -1,0 +1,150 @@
+##百万现金券活动
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$m_css_url/activity/millionFund.css"])
+##header
+<h2 class="u-pageTitle f-pos-r">
+    <a href="$siteurl/mIndex">
+        有融网
+    </a>
+    <span class=" f-pos-a f-fs18 f-ff-ver">
+        #if(!$currentUser)
+            <a href="$siteurl/mstation/login">登录</a>
+        <a href="$siteurl/mstation/register">注册</a>
+        #else
+            <a href="$mCenter_logout_url">退出</a>
+        #end
+    </span>
+</h2>
+##content
+<div class="g-content">
+    <div class="m-topBanner">
+        <div class="g-wrap">
+            <div class="f-progressBar">
+                <div id="j-progressBarFund" class="j-progressBarFund">
+                    <div class="f-text-ps f-fs12">还剩&yen;
+                        <span class="f-fs12 j-fund" id="j-fund" data-fund='$fund'></span>
+                    </div>
+                </div>
+                <div class="f-progressBar-img u-circle-12">
+                    <span class="f-fs14 f-dis-block f-fc-yellow">100万</span>
+
+                    <div class="f-progressBar-bg ">
+                        <div class="f-dis-block f-progressBar-yel"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="f-text">
+                <p class="f-fs12"><b class="f-fc-yellow"> 1月19日10:00~1月26日10:00</b>，用户每成 <br/>功投资1笔，都可获得
+                    <b class="f-fc-yellow"> 一张随机金额的现金券</b>，<br/>
+                    随机区间由单笔投资额决定。<br/>现金券共 <b class="f-fc-yellow">100万元</b> ，送完即止。</p>
+            </div>
+            <div class="u-investmentBtn f-fs18 ">
+                <a href="$siteurl/static/page/twoCodeRedict.html" class="j-reg-btn"><p> 下载APP去投资</p></a>
+            </div>
+        </div>
+    </div>
+    <div class="m-table1">
+        <div class="g-wrap">
+            <table class=" f-fs12">
+                <tr>
+                    <td>单笔投资<b class="f-fs12">（元）</b></td>
+                    <td>随机区间<b class="f-fs12">（元）</b></td>
+                </tr>
+                <tr>
+                    <td>0~1,999</td>
+                    <td class="f-fc-yellow">&yen;10/&yen;30/&yen;50</td>
+                </tr>
+                <tr>
+                    <td>2,000~2,999</td>
+                    <td class="f-fc-yellow">&yen;10/&yen;30/&yen;50/&yen;100</td>
+                </tr>
+                <tr>
+                    <td>3,000~3,999</td>
+                    <td class="f-fc-yellow">&yen;30/&yen;50/&yen;100/&yen;200</td>
+                </tr>
+                <tr>
+                    <td>4,000~9,999</td>
+                    <td class="f-fc-yellow">&yen;50/&yen;100/&yen;200</td>
+                </tr>
+                <tr>
+                    <td>10,000~99,999</td>
+                    <td class="f-fc-yellow">&yen;100/&yen;200/&yen;500</td>
+                </tr>
+                <tr>
+                    <td>≥100,000</td>
+                    <td class="f-fc-yellow">&yen;200/&yen;500/&yen;1000</td>
+                </tr>
+            </table>
+
+        </div>
+    </div>
+    <div class="m-table2">
+        <div class="g-wrap">
+            <table class=" f-fs12">
+                <tr>
+                    <td>现金券面值<b class="f-fs12">（元）</b></td>
+                    <td>起投金额<b class="f-fs12">（元）</b></td>
+                    <td>起投期限<b class="f-fs12">（元）</b></td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>500</td>
+                    <td>无限制</td>
+                </tr>
+                <tr>
+                    <td>30</td>
+                    <td rowspan="2">1000</td>
+                    <td rowspan="6" class="f-fs16">≥25天</td>
+                </tr>
+                <tr>
+                    <td>50</td>
+
+                </tr>
+                <tr>
+                    <td>100</td>
+                    <td>2,000</td>
+
+                </tr>
+                <tr>
+                    <td>200</td>
+                    <td>4,000</td>
+
+                </tr>
+                <tr>
+                    <td>500</td>
+                    <td>10,000</td>
+
+                </tr>
+                <tr>
+                    <td>1000</td>
+                    <td>20,000</td>
+
+                </tr>
+            </table>
+            <span class="f-fs12">例如：小明单笔投资100,000元，可随机得到现金券&yen;200/&yen;500/&yen;1000中的一张。</span>
+        </div>
+    </div>
+    <div class="m-rule">
+        <div class="g-wrap ">
+            <h4 class="f-fs20 f-ruleTitle">活动规则</h4>
+
+            <div class="u-rule-text f-fs12">
+                <p>
+                    1、开始时间：<b class="f-fc-yellow"> 1月19日10:00</b>；<br/>
+                    2、结束时间：<b class="f-fc-yellow"> 1月26日10:00或100万现金券送完</b>；<br/>
+                    3、活动对象：有融网所有用户（各客户端均可参与）；<br/>
+                    4、用户投资成功后，方可获得现金券，所获 <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;现金券可 前往“我的优惠-我的现金券”查收；<br/>
+                    5、用户投资所得现金券 <b class="f-fc-yellow"> 5天</b>内有效。<br/>
+                </p>
+            </div>
+            <span class="f-fs12">本活动最终解释权归有融网所有</span>
+        </div>
+    </div>
+</div>
+#CSRFToken('xToken')
+#set($pageScript="
+<script>
+    seajs.use('$m_js_url/activity/millionFund.js?v=${sysServiceUtil.getStaticResourceVersion()}');
+</script>
+")

@@ -1,0 +1,90 @@
+##个人资料
+#parse("/common/common.vm")
+#set($title="个人资料_我的资料_$!{title_suffix}")
+#set($css_url=["$cssv2_url/member/member.css"])
+#set($js_url=["$root_js_url/modules/eSignature.js"])
+#set($profile="z-current")
+#CSRFToken('xToken')
+## 用户中心头部
+#parse("/member/head.vm")
+## /用户中心头部
+<div class="g-wrap">
+## 用户中心内容
+    <div class="g-uc-bd f-round" id="changeNickname">
+        <div class="g-uc-wrap">
+        ## 页面内容
+            <h3 class="u-uc-eSignature f-fs14">
+                <div>
+                    <a href="/member/security">我的资料</a>&nbsp;>&nbsp;<span>电子签名</span>
+                </div>
+            </h3>
+            <div class="u-eSignatue-introduce">
+                <span>专业的CA认证技术，保障电子合同具有完整的司法效力</span>
+                <p>有融网引进上上签电子签名服务
+                    <br>保证投资者在交易合同中电子签名的有效性，为用户合法权益保驾护航。<a href="/post/signUpgrade" target="_blank">了解更多</a></p>
+            </div>
+            <h4 class="u-eSignatue-type">
+                自动签署
+            </h4>
+            <div class="m-eSignatue-type" id="j-eSignatue-choice">
+                <p>开启自动签署协议在具有同等法律效应的前提下，为您提供便捷的操作流程，节省您的宝贵时间。</p>
+                <div class="j-choice">
+                    <div class="u-eSignatue-common u-eSignatue-open " id="j-eSignatue-autoClose">
+                        <div class="u-eSignatue-title">
+                            <span class="f-pos-r">开启自动签署</span>
+                        </div>
+                        <p>开启自动签署后，您之后投资生成的每份协议，都将自动使用默认签名完成签署。</p>
+                        <ul>
+                            <li><i class="u-eSignatue-icon01"></i><span>1.投资完成，同时自动完成协议签署</span></li>
+                        </ul>
+                    </div>
+                    <div class="u-eSignatue-common u-eSignatue-open z-current f-dn" id="j-eSignatue-autoOpen">
+                        <div class="u-eSignatue-title z-current">
+                            <span class="f-pos-r z-current">开启自动签署<i></i></span>
+                        </div>
+                        <p>您已开启自动签署，您之后投资生成的每份协议，都将自动使用默认签名完成签署。</p>
+                        <ul>
+                            <li><i class="u-eSignatue-icon01"></i><span>1.投资完成，同时自动完成协议签署</span></li>
+                        </ul>
+                        <div class="u-eSignatue-name">
+                            <div>
+                                ${servletUtil.getMemberTrueName()}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="j-choice">
+                    <div class="u-eSignatue-common u-eSignatue-close f-dn" id="j-eSignatue-handClose">
+                        <div class="u-eSignatue-title">
+                            <span class="f-pos-r">关闭自动签署</span>
+                        </div>
+                        <p>关闭自动签署，投资生成的每份协议，都需要手动操作完成签署。</p>
+                        <ul>
+                            <li><i class="u-eSignatue-icon01"></i><span>1.投资完成，进行协议签署</span></li>
+                            <li><i class="u-eSignatue-icon02"></i><span>2.手动签署协议</span></li>
+                            <li><i class="u-eSignatue-icon03"></i><span>3.通过短信验证，完成协议签署</span></li>
+                        </ul>
+                    </div>
+                    <div class="u-eSignatue-common u-eSignatue-close z-current " id="j-eSignatue-handOpen">
+                        <div class="u-eSignatue-title z-current">
+                            <span class="f-pos-r z-current">关闭自动签署<i></i></span>
+                        </div>
+                        <p>您已关闭自动签署，投资生成的每份协议，都需要手动操作完成签署。</p>
+                        <ul>
+                            <li><i class="u-eSignatue-icon01"></i><span>1.投资完成，进行协议签署</span></li>
+                            <li><i class="u-eSignatue-icon02"></i><span>2.手动签署协议</span></li>
+                            <li><i class="u-eSignatue-icon03"></i><span>3.通过短信验证，完成协议签署</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+            <span class="u-eSignatue-sub" id="j-eSignatue-sub">保&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;存</span>
+            <input type="hidden" id="j-signWay" data-signway=${servletUtil.getMemberSignWay()}>
+        ## /页面内容
+        </div>
+    </div>
+## /用户中心内容
+</div>

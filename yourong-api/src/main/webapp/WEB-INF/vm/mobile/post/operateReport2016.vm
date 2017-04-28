@@ -1,0 +1,205 @@
+#parse('/mobile/common.vm')
+## 我把zepto.fullpage.css的代码放到 sinaSavingPot.css 里了，这样少一次请求
+#set($css_url=["$res_url/source/css/post/operateReport2016.css"])
+#set($title='有融网2016上半年运营报告')
+
+<script>
+    var url=window.location.href,title='有融网2016上半年运营报告';
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        window.shareData = {
+            "timeLineLink": url,
+            "sendFriendLink": url,
+            "weiboLink": url,
+            "tTitle": "有融网2016上半年运营报告",
+            "tContent": "有融网，全透明的互联网理财优选平台。",
+            "fTitle": "有融网2016上半年运营报告",
+            "fContent": "有融网，全透明的互联网理财优选平台。",
+            "wContent": "有融网2016上半年运营报告  有融网，全透明的互联网理财优选平台。"
+        };
+        // 发送给好友
+        if(typeof(WeixinJSBridge)!=='undefined'){
+            WeixinJSBridge.on('menu:share:appmessage', function (argv) {
+                WeixinJSBridge.invoke('sendAppMessage', {
+                    "img_url": "../../static/img/weixin/weixin_report2016.png",
+                    "img_width": "358",
+                    "img_height": "328",
+                    "link": window.shareData.sendFriendLink,
+                    "desc": window.shareData.fContent,
+                    "title": window.shareData.fTitle
+                }, function (res) {
+                    _report('send_msg', res.err_msg);
+                })
+            });
+            // 分享到朋友圈
+            WeixinJSBridge.on('menu:share:timeline', function (argv) {
+                WeixinJSBridge.invoke('shareTimeline', {
+                    "img_url": "../../static/img/weixin/weixin_report2016.png",
+                    "img_width": "358",
+                    "img_height": "328",
+                    "link": window.shareData.timeLineLink,
+                    "desc": window.shareData.tContent,
+                    "title": window.shareData.tTitle
+                }, function (res) {
+                    _report('timeline', res.err_msg);
+                });
+            });
+        }
+    }, false);
+</script>
+
+<div class="wp  id="j-wp">
+    <div class="wp-inner">
+    ## page1
+        <div class="page page1" id="page"  style="background-color: #51a9ed">
+
+                <div >
+                    <div class="u-section-content"style="opacity: 1;transition: none">
+                    <img class="img-responsive  " src="$res_url/img/post/operateReport2016/cover.png" />
+                     </div>
+                </div>
+        </div>
+
+    ## page2
+        <div class="page page2">
+            <div>
+                <img class="img-responsive" src="$res_url/img/post/operateReport2016/date-1_01.png" />
+                <div class="u-section-content">
+                    <img class="img-responsive " src="$res_url/img/post/operateReport2016/date-1_02.png"  />
+                </div>
+            </div>
+        </div>
+
+    ## page3
+        <div class="page page3">
+            <div>
+                <img class="img-responsive" src="$res_url/img/post/operateReport2016/date-2_01.png" />
+               <div  class="u-section-content">
+                   <img class="img-responsive " src="$res_url/img/post/operateReport2016/date-2_02.png" />
+               </div>
+            </div>
+        </div>
+
+    ## page4
+        <div class="page page4">
+            <div>
+                <img class="img-responsive" src="$res_url/img/post/operateReport2016/date-3_01.png" />
+                <div  class="u-section-content">
+                <img class="img-responsive" src="$res_url/img/post/operateReport2016/date-3_02.png" />
+                 </div>
+            </div>
+        </div>
+
+    ## page5
+        <div class="page page5">
+            <div>
+                <img class="img-responsive" src="$res_url/img/post/operateReport2016/date-4_01.png"  />
+                <div  class="u-section-content">
+                <img class="img-responsive" src="$res_url/img/post/operateReport2016/date-4_02.png" />
+                </div>
+            </div>
+        </div>
+
+    ## page6
+        <div class="page page6">
+            <div>
+                <img class="img-responsive" src="$res_url/img/post/operateReport2016/date-5_01.png" />
+                <div  class="u-section-content">
+                <img class="img-responsive " src="$res_url/img/post/operateReport2016/date-5_02.png" >
+                </div>
+            </div>
+        </div>
+    ## page7
+        <div class="page page7">
+            <div>
+                <div  class="u-section-content">
+                <img class="img-responsive" src="$res_url/img/post/operateReport2016/date-6.png" />
+                </div>
+            </div>
+        </div>
+    ## page8
+        <div class="page page8">
+            <div>
+                <img class="img-responsive" src="$res_url/img/post/operateReport2016/date-7_01.png" />
+                <div  class="u-section-content">
+                <img class="img-responsive" src="$res_url/img/post/operateReport2016/date-7_02.png" />
+                </div>
+            </div>
+        </div>
+    ## page9
+        <div class="page page9">
+            <div>
+                <img class="img-responsive" src="$res_url/img/post/operateReport2016/date-8_01.png" />
+                <div  class="u-section-content">
+                <img class="img-responsive " src="$res_url/img/post/operateReport2016/date-8_02.png" />
+                 </div>
+            </div>
+        </div>
+    ## page10
+        <div class="page page10">
+            <div>
+                <img class="img-responsive" src="$res_url/img/post/operateReport2016/date-9_01.png" />
+                <div  class="u-section-content">
+                <img class="img-responsive " src="$res_url/img/post/operateReport2016/date-9_02.png" />
+                </div>
+            </div>
+        </div>
+    ## page11
+        <div class="page page11">
+            <div>
+                <img class="img-responsive" src="$res_url/img/post/operateReport2016/date-10_01.png"/>
+                <div  class="u-section-content">
+                <img class="img-responsive" src="$res_url/img/post/operateReport2016/date-10_02.png" />
+                </div>
+            </div>
+        </div>
+    ## page12
+        <div class="page page12">
+            <div>
+                <img class="img-responsive" src="$res_url/img/post/operateReport2016/date-11_01.png" />
+                <div  class="u-section-content">
+                <img class="img-responsive" src="$res_url/img/post/operateReport2016/date-11_02.png" style="margin-top:-10px;"/>
+                </div>
+            </div>
+        </div>
+    ## page13
+        <div class="page page13">
+            <div>
+                <img class="img-responsive" src="$res_url/img/post/operateReport2016/date-12_01.png" />
+                <div  class="u-section-content">
+                <img class="img-responsive " src="$res_url/img/post/operateReport2016/date-12_02.png" />
+                </div>
+            </div>
+        </div>
+    ## page14
+        <div class="page page14">
+            <div>
+                <img class="img-responsive" src="$res_url/img/post/operateReport2016/date-13_01.png" />
+                <div  class="u-section-content">
+                <img class="img-responsive" src="$res_url/img/post/operateReport2016/date-13_02.png" />
+                </div>
+            </div>
+        </div>
+    ## page15
+        <div class="page page15">
+            <div class="u-foot">
+                <div  class="u-section-content">
+                <img class="img-responsive" src="$res_url/img/post/operateReport2016/date-14.png" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<span class="start  id="j-backToTop">
+    <img src="$res_url/img/post/operateReport2016/chevron.png"/>
+</span>
+
+<div class="landscape">
+    <img src="$res_url/img/post/sinaSavingPot/landscape.png">
+    <p>为了更好的体验，请将手机/平板竖过来</p>
+</div>
+
+#set($isZepto=true)
+<script src="$aliyunOss_url/res/lib/zepto/1.1.6/zepto.min.js"></script>
+<script src='$res_url/lib/fullpage/zepto.fullpage.js'></script>
+<script src='$res_url/source/js/post/operateReport2016.js'></script>

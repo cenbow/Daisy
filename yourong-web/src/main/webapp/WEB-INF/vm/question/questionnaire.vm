@@ -1,0 +1,16 @@
+#parse('/common/common.vm')
+<style>
+.m-questionnaire-layout{
+	width:990px;
+	height: 2250px;
+	border:none;
+}
+.g-wrap{
+	width: 990px;
+  margin: 0 auto;
+}
+</style>
+<div class="g-wrap">
+<iframe class="m-questionnaire-layout" src="${requestUrl}" >
+</div>
+</iframe>

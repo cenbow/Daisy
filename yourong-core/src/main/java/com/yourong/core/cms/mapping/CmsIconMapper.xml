@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.cms.dao.CmsIconMapper" >
+  <cache eviction="LRU" readOnly="false" type="com.yourong.common.cache.MybatisRedisCache"/> 
+  <resultMap id="BaseResultMap" type="com.yourong.core.cms.model.CmsIcon" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="image" property="image" jdbcType="VARCHAR" />
+    <result column="href" property="href" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="weight" property="weight" jdbcType="VARCHAR" />
+    <result column="icon_status" property="iconStatus" jdbcType="INTEGER"/>
+    <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+    <result column="update_by" property="updateBy" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+<!--    <resultMap id="BannerForAreaMap" type="com.yourong.core.cms.model.biz.BannerFroAreaBiz" -->
+<!-- 		extends="BaseResultMap"> -->
+<!-- 	<result column="activityStartTime" property="activityStartTime" jdbcType="VARCHAR" /> -->
+<!-- 	<result column="activityEndTime" property="activityEndTime" jdbcType="BIGINT" /> -->
+<!-- 	<result column="activity_status" property="activityStatus" jdbcType="INTEGER" /> -->
+<!--   </resultMap> -->
+  
+  <sql id="Base_Column_List" >
+    id, name, image, href, remark, weight, icon_status, del_flag, update_by, update_time    
+  </sql>
+  
+  <!-- 获取显示在首页的icon -->
+  <select id="findOnlineIcon" resultMap="BaseResultMap" flushCache="false" useCache="false">
+  	select 
+  		<include refid="Base_Column_List"/>
+  	from cms_icon
+  	where del_flag > 0  and icon_status = 1
+  	order by weight desc
+  </select>
+  
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long"  flushCache="false" useCache="true">
+    select 
+    <include refid="Base_Column_List" />
+    from cms_icon
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long"  flushCache="true">
+    delete from cms_icon
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  
+  <insert id="insert" parameterType="com.yourong.core.cms.model.CmsIcon" flushCache="true">
+    insert into cms_icon (
+	    id, 
+	    name, 
+	    image, 
+	    href, 
+	    remark,
+	    weight, 
+	    icon_status, 
+	    del_flag, 
+	    update_by, 
+	    update_time)
+    values (
+    	#{id,jdbcType=BIGINT}, 
+    	#{name,jdbcType=VARCHAR}, 
+    	#{image,jdbcType=VARCHAR}, 
+    	#{href,jdbcType=VARCHAR}, 
+    	#{remark,jdbcType=VARCHAR}, 
+    	#{weight,jdbcType=INTEGER},
+        #{iconStatus,jdbcType=INTEGER},
+        1,
+        #{updateBy,jdbcType=VARCHAR}, 
+        now())
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.yourong.core.cms.model.CmsIcon" flushCache="true">
+    update cms_icon
+    <set >
+    
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      
+      <if test="image != null" >
+        image = #{image,jdbcType=VARCHAR},
+      </if>
+      
+      <if test="href != null" >
+        href = #{href,jdbcType=VARCHAR},
+      </if>
+      
+      <if test="href == null" >
+        href = null,
+      </if>
+      
+      <if test="weight != null" >
+        weight = #{weight,jdbcType=INTEGER},
+      </if>
+      
+      <if test="updateBy != null" >
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      
+        update_time = now(),
+        
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      
+      <if test="iconStatus != null" >
+        icon_status = #{iconStatus,jdbcType=INTEGER},
+      </if>
+      
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+<!--   <update id="updateByPrimaryKey" parameterType="com.yourong.core.cms.model.CmsIcon" flushCache="true"> -->
+<!--     update cms_icon -->
+<!--     set name = #{name,jdbcType=VARCHAR}, -->
+<!--       image = #{image,jdbcType=VARCHAR}, -->
+<!--       href = #{href,jdbcType=VARCHAR}, -->
+<!--       weight = #{weight,jdbcType=INTEGER}, -->
+<!--       remark = #{remark,jdbcType=VARCHAR}, -->
+<!--       icon_status = #{iconStatus,jdbcType=INTEGER}, -->
+<!--       del_flag = #{delFlag,jdbcType=INTEGER}, -->
+<!--       update_by = #{updateBy,jdbcType=VARCHAR}, -->
+<!--       update_time = #{updateTime,jdbcType=TIMESTAMP}, -->
+<!--     where id = #{id,jdbcType=BIGINT} -->
+<!--   </update> -->
+  
+  <update id="batchDelete" parameterType="java.lang.Long" flushCache="true">
+    update cms_icon set del_flag = -1 , update_time = now()
+    where id in  <foreach collection="ids" index="index" item="item" open="(" separator="," close=")"> #{item}  </foreach>  
+  </update>
+  
+  <!-- 分页条数 -->
+  <select id="selectForPaginTotalCount" resultType="java.lang.Integer" >
+    select count(1) 
+    from cms_icon where del_flag > 0 
+    <if test=" map != null" >
+        <if test=" map.id != null" >
+          and id = ${map.id}
+        </if>
+        
+        <if test=" map.name != null" >
+          and name = ${map.name}
+        </if>
+        
+        <if test=" map.image != null" >
+          and image = ${map.image}
+        </if>
+        
+        <if test=" map.href != null" >
+          and href = ${map.href}
+        </if>
+        
+        <if test=" map.weight != null" >
+          and weight = ${map.weight}
+        </if>
+        
+        <if test=" map.remark != null" >
+          and remark = ${map.remark}
+        </if>
+
+        <if test=" map.updateBy != null" >
+          and update_by = ${map.updateBy}
+        </if>
+        
+        <if test=" map.updateTime != null" >
+          and update_time = ${map.updateTime}
+        </if>
+        
+    </if>
+  </select>
+  
+  
+  <sql id="Base_Column_List_Pagin" >
+    t.id  as  id,
+	t.name  as  name,
+	t.image  as  image,
+	t.href  as  href,
+	t.weight  as  weight,
+	t.remark  as  remark,
+	t.icon_status as icon_status,
+	t.del_flag  as  del_flag,
+	t.update_by  as  update_by,
+	t.update_time  as  update_time
+  </sql>
+  
+  <!-- 分页总条数 -->
+  <select id="selectForPagin" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List_Pagin" />
+    from  (SELECT id FROM  cms_icon where del_flag >0 
+    <if test=" map != null" >
+        <if test=" map.id != null" >
+          and id = #{map.id}
+        </if>
+        
+        <if test=" map.name != null" >
+          and name = #{map.name}
+        </if>
+        
+        <if test=" map.image != null" >
+          and image = #{map.image}
+        </if>
+
+        <if test=" map.href != null" >
+          and href = #{map.href}
+        </if>
+       
+        <if test=" map.weight != null" >
+          and weight = #{map.weight}
+        </if>
+        
+        <if test=" map.remark != null" >
+          and remark = #{map.remark}
+        </if>
+        
+        <if test=" map.updateBy != null" >
+          and update_by = #{map.updateBy}
+        </if>
+        
+        <if test=" map.updateTime != null" >
+          and update_time = #{map.updateTime}
+        </if>
+        
+    </if>
+    order by weight desc
+      LIMIT	#{map.startRow}, #{map.pageSize}  )  AS a,  cms_icon AS t FORCE INDEX(PRIMARY) WHERE a.id = t.id   
+  </select>
+  
+  
+   <!-- 获取权重最大值 -->
+  <select id="findMaxWeight" resultType="java.lang.Integer" >
+	select max(weight) from cms_icon where del_flag > 0
+  </select>
+
+
+
+  <!-- 获取该位置icon的权重 -->
+  <select id="findPositionIconWeight" resultType="java.lang.Integer" >
+	select weight from cms_icon where del_flag>0  order by weight desc limit #{position},1 
+  </select>
+  
+  <!-- 向上移动时重置的icon -->
+  <update id="resetIconWeightWhenUp" parameterType="java.lang.Integer" flushCache="true">
+  	update cms_icon set weight = weight - 1 where weight > #{iconWeight} and weight <![CDATA[ <= ]]> #{positionWeight}
+  </update>
+  
+  <!-- 向下移动时重置的icon -->
+  <update id="resetIconWeightWhenDown" parameterType="java.lang.Integer" flushCache="true">
+  	update cms_icon set weight = weight + 1 where weight <![CDATA[<]]> #{iconWeight} and weight <![CDATA[ >= ]]> #{positionWeight}
+  </update>
+  
+</mapper>

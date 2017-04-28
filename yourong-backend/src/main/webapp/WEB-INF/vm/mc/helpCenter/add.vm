@@ -1,0 +1,99 @@
+#set($layout = "/layout/iframe.vm")
+#parse("/mc/helpCenter/head.vm")
+
+<div tabindex="-1" class="modal fade" id="add-modal-table" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog w1100">
+        <div class="modal-content">
+        
+            <div class="modal-header no-padding">
+                <div class="table-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+                        <span class="white">×</span>
+                    </button>
+                    <span class="modalFormTitle" id="HelpCenterQuestionTitle">添加问题</span>
+                </div>
+            </div>
+
+            <div class="modal-body">
+                <form  class="form-horizontal" id="questionForm">
+                    ##<input type="hidden" id="j-json-dropzone_goods" name="goodsAttachmentsData"/>
+                    <div id="num_1">
+                    <input type="hidden" id="id" name="id"/>
+                    <input type="hidden" id="terminal" name="terminal"/>
+                    <input type="hidden" id="isHot" name="isHot"/>
+                    
+                        <div class="form-group" id="source_group">
+                            <label for="form-field-parentId" class="col-sm-2 control-label no-padding-right">问题类型:</label>
+                            <div class="col-sm-6">
+                                <div class="clearfix">
+                                    <input onfocus=this.blur() style="border-style:none" type="text" name="isHotShow" id="isHotShow" class="col-xs-8 col-sm-8 exclude valid-other" placeholder="" >
+                                </div>
+                            </div>
+                        </div>
+                      
+                        <div class="form-group" id="addLabel-form">
+                            <label for="form-field-parentId" class="col-sm-2 control-label no-padding-right">添加标签:</label>
+                                                        <div class="col-sm-6">
+                                <div class="clearfix">
+                                    <select name="labelId" id="labelId">
+                                    </select>
+                                    </div>
+                            </div>
+                        </div>
+                        
+
+
+                        <div class="form-group" id="source_group">
+                                <div class="clearfix">
+                                    <input type="hidden" name="sort" class="col-xs-8 col-sm-8 exclude valid-other" placeholder="" id="sort" >
+                                </div>
+                        </div>
+                        
+                        <div class="form-group" id="source_group">
+                            <label for="form-field-parentId" class="col-sm-2 control-label no-padding-right">问题序号:</label>
+                            <div class="col-sm-6">
+                                <div class="clearfix">
+                                    <input type="text" name="questionOrder" class="col-xs-8 col-sm-8 exclude valid-other" placeholder="" id="questionOrder" >
+                                </div>
+                            </div>
+                        </div>
+                        
+            			<div class="form-group">
+                            <label for="form-field-parentId" class="col-sm-2 control-label no-padding-right">问题内容:</label>
+                               <div class="col-sm-6">
+                                	<div class="clearfix">
+                                		<input type="text" name="content" id="content" class="col-xs-8 col-sm-8 exclude valid-other" placeholder="">
+                                    </div>
+                            	</div>
+                       	</div>
+                        
+                        <div class="form-group">
+                            <label for="form-field-parentId" class="col-sm-2 control-label no-padding-right">问题答案:</label>
+                                <div class="col-sm-6">
+                                	<div class="clearfix">
+                                    	<textarea name="answer" id="form-field-content" placeholder=""></textarea>
+                                    </div>
+                            	</div>
+                        </div>
+                   </div>
+                </form>     
+			</div>
+
+            <div class="modal-footer">
+                <button type="button" id="submit_question" data-page="1" class="btn btn-primary">保存</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    jQuery(function($){
+        var id = $("#borrowid").val();
+        if(!!id){
+            findContractById(id);
+        }
+    });
+</script>
+
+
+

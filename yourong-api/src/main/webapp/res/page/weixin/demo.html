@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="width=device-width,user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <title>有融网微信接口调试</title>
+</head>
+
+<body>
+<!--  js safe domain:3s.net579.com:16802-->
+<button type="button" name="button">分享给好友</button>
+<!-- <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js" charset="utf-8"></script> -->
+<script src="https://yrstatic.oss-cn-hangzhou.aliyuncs.com/res/lib/seajs/3.0.2/sea.js"></script>
+<script type="text/javascript">
+    //已在layout配置,无需重新处理
+    seajs.config({
+        alias:{
+            'zepto': 'https://yrstatic.oss-cn-hangzhou.aliyuncs.com/res/lib/zepto/1.1.6/zepto.min.js',
+            'wxSDK':'http://res.wx.qq.com/open/js/jweixin-1.0.0.js',
+            'wxShare':'../../source/js/common/wxShare'
+        }
+    });
+
+    //wxShare实例初始化
+    seajs.use(['wxShare'],function(wxShare){
+        wxShare.init({
+            debug:true,
+            appId:'wxded01b64a081b72b',
+            reqUrl:'http://jnnhjn.vicp.cc/yourong-api/wechat/js/share?callback=?',
+            shareUrl:location.href,
+            title:'有融网活动分享',
+            desc: '我就是来分享一下有融网的活动，快来给我发红包！',
+//            link: 'https://www.yrw.com/activity/quadrupleGift',
+            link: 'https://www.baidu.com',
+            imgUrl: 'https://www.yrw.com/static/img/v2/common/logoAndslogan.png',
+            success:function(res){
+                console.log(res);
+//                alert(JSON.stringify(res))
+            },
+            cancel:function(res){
+                console.log(res);
+//                alert(JSON.stringify(res))
+            }
+        });
+    });
+</script>
+</body>
+
+</html>

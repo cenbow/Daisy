@@ -1,0 +1,127 @@
+<div tabindex="-1" class="modal fade" id="modal-openRemarks" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog" >
+        <div class="modal-content">
+            <div class="modal-header no-padding">
+                <div class="table-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+                        <span class="white">×</span>
+                    </button>
+                    <span class="modalFormTitle">添加备注</span>
+                </div>
+            </div>
+            <div class="modal-body" style="text-align:center">
+                <form id="controlRemarks_form">
+                    <table>
+                        <tr>
+                            <td>
+                                <input type="hidden" name="openRemarkId"  id="openRemarkId"/>
+                                <textarea id="remark" name="remark" rows="5" cols="60" maxlength=150 placeholder="添加备注"></textarea>
+                                <br/>
+                                <font size=2><font id="fontMax" size=2 color=red>150</font>字以内</font>
+                            </td>
+                        <tr>
+                    </table>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btn_add_remarks" class="btn btn-primary">确定</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div tabindex="-1" class="modal fade" id="modal-openAuditing" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog" >
+        <div class="modal-content">
+            <div class="modal-header no-padding">
+                <div class="table-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+                        <span class="white">×</span>
+                    </button>
+                    <span class="modalFormTitle">金融产品中心审核</span>
+                </div>
+            </div>
+            <div class="modal-body" style="text-align:center">
+                <form id="controlRemarks_form">
+                    <table>
+                        <tr>
+                            <td>审核结果</td>
+                            <td>
+                                <select id="auditing_result">
+                                    <option value="5">通过</option>
+                                    <option value="6">拒绝上线</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr id="refuse_tr" style="display: none">
+                            <td>拒绝原因</td>
+                            <td>
+                                <textarea id="refuse" name="refuse" rows="5" cols="60" maxlength=150></textarea>
+                            </td>
+                        <tr>
+                        <tr id="shortDesc_tr">
+                            <td>项目介绍</td>
+                            <td>
+                                <textarea id="shortDesc" name="shortDesc" rows="5" cols="60" maxlength=300></textarea>
+                            </td>
+                        <tr>
+                        <tr id="borrowDetail_tr">
+                            <td>借款用途</td>
+                            <td>
+                                <textarea id="borrowDetail" name="borrowDetail" rows="5" cols="60" maxlength=300></textarea>
+                            </td>
+                        <tr>
+                        <input type="hidden" name="openAuditingId"  id="openAuditingId"/>
+                    </table>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btn_add_auditing" class="btn btn-primary">确定</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div tabindex="-1" class="modal fade" id="modal-openAuditingDetail" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog" >
+        <div class="modal-content">
+            <div class="modal-header no-padding">
+                <div class="table-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+                        <span class="white">×</span>
+                    </button>
+                    <span class="modalFormTitle">查看审核信息</span>
+                </div>
+            </div>
+            <div class="modal-body" style="text-align:center">
+                <form id="controlRemarks_form">
+                    <table>
+                        <tr id="checkrefuse_tr" style="display: none">
+                            <td>拒绝原因</td>
+                            <td>
+                                <textarea id="checkrefuse" name="checkrefuse" rows="5" cols="60" maxlength=150></textarea>
+                            </td>
+                        <tr>
+                        <tr id="checkShortDesc_tr">
+                            <td>项目介绍</td>
+                            <td>
+                                <textarea id="checkShortDesc" name="checkShortDesc" rows="5" cols="60" maxlength=300></textarea>
+                            </td>
+                        <tr>
+                        <tr id="checkBorrowDetail_tr">
+                            <td>借款用途</td>
+                            <td>
+                                <textarea id="checkBorrowDetail" name="checkBorrowDetail" rows="5" cols="60" maxlength=300></textarea>
+                            </td>
+                        <tr>
+                    </table>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">知道了</button>
+            </div>
+        </div>
+    </div>
+</div>

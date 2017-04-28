@@ -1,0 +1,41 @@
+#set($layout = "/layout/iframe.vm")
+#parse("/msg/feedback/head.vm")
+
+
+<div tabindex="-1" class="modal fade" id="modal-table-reply" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header no-padding">
+                <div class="table-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+                        <span class="white">×</span>
+                    </button>
+         	回复
+                </div>
+            </div>
+            <div class="modal-body">
+                <form role="form" class="form-horizontal" id="feedback_form" method="post">
+                    <input type="hidden" name="id" id="feed_back_id"  />
+                    
+                       <div class="form-group">
+					     <label for="form-field-remarks" class="col-sm-2 control-label no-padding-right"> 回复内容: </label>
+					   <div class="col-sm-9">
+					     <div class="clearfix">
+					      <textarea name="reply" class="col-xs-12 col-sm-12" placeholder=""  datatype="*" id="form-field-reply"></textarea>
+					     </div>
+					   </div>
+					  </div>
+
+
+                </form>
+            </div>
+            <div class="modal-footer" id="feedback_button">
+           		<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            	<button type="button" id="btn_ca_reply" class="btn btn-primary" >回复</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+

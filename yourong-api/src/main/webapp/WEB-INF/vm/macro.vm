@@ -1,0 +1,157 @@
+##CSRF验证
+#macro( CSRFToken $id)
+	#if(!$id || $id == "")
+		#set($id="xToken")
+	#end
+##<input type="hidden" id="$id" name="xToken" value="$tokenHelper.generateRequestAndAddToken($request)"/>
+<input type="hidden" id="$id" name="xToken" value="$csrfTool.getToken($request)"/>
+#end
+
+##防止重复提交
+#macro( onceToken )
+<input type="hidden" id="onceToken" name="onceToken" value="$tokenHelper.generateRequestAndAddToken($request)"/>
+#end
+
+###获得图像
+#macro (getImagePath $path $type)
+#if(!$type)
+#set($type ="default")
+#end
+$!{aliyun_url}/$!{stringUtil.getFilePath($path, $type)}
+#end
+
+##分页插件，整页刷新，SEO友好。缺点，需要手动组装请求条件
+#macro(pagePlugin $page $_searchParam)
+	## 总页数
+	#set($_totalPageCount =  $page.getTotalPageCount() )
+	##当前页的条数
+	#set($__pageSize =  $page.getiDisplayLength() )
+	##当前页
+	#set($_pageNo =  $page.getPageNo())
+	#if($_totalPageCount - $_pageNo >= 3)
+		#if($_pageNo >= 4)
+			#set($_minPager =$_pageNo - 3)
+		#else
+			#set($_minPager = 1)
+		#end
+   #else
+    	#if($_pageNo >= (5 - $_totalPageCount + $_pageNo))
+    		#set($_minPager = $_pageNo - 4 + $_totalPageCount - $_pageNo)
+    	#else
+    		#set($_minPager = 1)
+    	#end
+   #end
+   
+   #if($_minPager+4 > $_totalPageCount)
+		#set($_maxPager = $_totalPageCount)
+   #else
+		#set($_maxPager = $_minPager+4)
+   #end
+  
+	#if($_totalPageCount > 1)
+		<div class="m-turn-over">
+		<div class="m-pagenav f-tar">
+			#if($_pageNo <=1 )
+				<span class="u-pnav-prev u-circle-12 u-pnav-gary">&lt;&lt;</span>
+			#else
+				#set($test_page = $_pageNo - 1)				
+				<a href="${root_url}${_searchParam}-${test_page}.html" class="u-pnav-prev u-circle-12">&lt;&lt;</a>
+			#end
+			
+			#foreach ($_idx in [$_minPager .. $_maxPager])
+				#if($_pageNo == $_idx)
+					<span class="u-pnav-crt u-circle-12">${_idx}</span>
+				#else
+					<a href="${root_url}${_searchParam}-${_idx}.html" class="u-pnav-link u-circle-12">${_idx}</a>
+				#end
+			#end
+			
+			#if($_pageNo ==$_totalPageCount)
+				<span class="u-pnav-prev u-circle-12 u-pnav-gary">&gt;&gt;</span>
+			#else
+				#set($_next_page = $_pageNo+1)
+				<a href="${root_url}${_searchParam}-$!{_next_page}.html" class="u-pnav-prev u-circle-12">&gt;&gt;</a>
+			#end
+		</div>
+        </div>
+	#end
+#end
+
+#macro (getMemberUserName $id)
+	$!{sysServiceUtil.getMemberUserName($id)}
+#end
+
+###获得项目缩略图
+#macro (getProjectThumbnail $thumbnail)
+    #if(!$thumbnail || $thumbnail == "")
+        ${res_url}/img/common/icon_product_default.jpg
+    #else
+        $!{aliyun_url}/$thumbnail
+    #end
+#end
+
+##地区插件
+##$areaCode地区CODE
+##level级别 1:省份 2:省份、市 3:省份、市、区
+##暂不支持一个页面多次引用
+#macro ( regionPlugin $areaCode $level $areaId)
+	#if(!$areaCode || $areaCode == "")
+		#set($areaCode = 1)
+	#end
+	#if(!$level || $level == "" || $level >=3)
+		#set($level = 3)
+	#end
+	#if(!$areaId || $areaId == "")
+		#set($areaId = "region")
+	#end
+	#set($parentIds = ${sysServiceUtil.getParentIdsByCode("$!areaCode")})
+	#set($areaName = ["area-province", "area-city", "area-area"])
+	#set($defaultName = ["选择省", "选择市", "选择区"])
+<script type="text/javascript">
+    if(typeof(regionArray) === "undefined"){
+        regionArray = new Array();
+    }
+    var ${areaId}loadRegionArray = new Array();
+		#foreach($pid in $parentIds)
+			${areaId}loadRegionArray.push($pid);
+		#end
+    var arrayLength = ${areaId}loadRegionArray.length-1;
+    if(arrayLength >= $level){
+        for(len=$level;len<arrayLength;len++){
+				${areaId}loadRegionArray.splice(len);
+        }
+    }
+
+    function ${areaId}LoadAreaByParentIdCallback(data){
+        loadAreaByParentIdCallback(data, '$areaId',${areaId}LoadAreaByParentIdCallback);
+    }
+    var regionData ={
+        array : ${areaId}loadRegionArray,
+        callBack : ${areaId}LoadAreaByParentIdCallback
+    }
+    regionArray.push(regionData);
+</script>
+	#foreach($num in [1 ..$level ])
+		#set($areaSelect="area-select")
+	###set($areaSelect=$areaId)
+		#set($areaType=$num+1)
+		#if($velocityCount == $level || $level == 1)
+			#set($areaSelect="")
+		#end
+##        <div class="u-selector u-scroll-selector j-selector f-round f-w150 f-tal $!{areaSelect}" data-id="${areaId}" id="${areaId}area_data_$areaType" value="$areaType">
+##			#set($n = $num - 1)
+##            <button>${defaultName.get($n)}</button>
+##            <i></i>
+##            <ul class="f-round itemData" id="${areaId}area_select_list_$areaType"></ul>
+##            <input type="hidden" class="j-selected-ipt areaValue" name="${areaName.get($n)}" id="${areaId}-${areaName.get($n)}"/>
+##        </div>
+        #set($n = $num - 1)
+        <div class="ui-select u-${areaName.get($n)} $!{areaSelect}" data-id="${areaId}" id="${areaId}area_data_$areaType" value="$areaType">
+            <select id="${areaId}area_select_list_$areaType" class="j-area-selector" data-areaName="${areaName.get($n)}">
+                <option>${defaultName.get($n)}</option>
+            </select>
+            <input type="hidden" class="j-selected-ipt j-validate areaValue" name="${areaName.get($n)}" id="${areaId}-${areaName.get($n)}" data-errtips="请选择开户省市！"/>
+        </div>
+
+	#end
+#end

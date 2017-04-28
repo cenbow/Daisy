@@ -1,0 +1,79 @@
+#parse('/common/common.vm')
+#set($layout = "/layout/default.vm")
+#if($!couponPage.data.size() > 0)
+<div class="f-cf">
+	<div class="u-total"> <em class="f-ff-din f-fs36">$!couponPage.iTotalRecords</em>
+		<span class="f-fs12">张</span> <strong>#if($!query.status==1)可使用#elseif($!query.status==2)已使用#else已过期#end</strong>
+	</div>
+	##if($!query.status==1&&$!query.couponType==1)<div class="u-total-amount f-fr">当前可用现金券总额&nbsp;&nbsp;$!uableTotalAmount</div>##end
+</div>
+
+<ul class="f-cf">
+	#foreach($_coupon in $!couponPage.data)
+	<li class="#if("$!{_coupon.couponPrivileges}" !="" && $!{_coupon.extraInterestType} == 1 && "$!{_coupon.couponAmountScope}" !="" && "$!{_coupon.couponDaysScope}" !="")
+    z-high-coupon#end">
+		<span class="u-coupon-title f-text-overflow" title="$!_coupon.name">$!_coupon.name</span>
+		<span class="u-coupon-number">$!_coupon.couponCode</span>
+		<span class="u-coupon-amount">
+			#if($!_coupon.couponType==1)
+			<span class="f-ff-ver f-fs24">¥</span>
+			<input type="hidden" class="j-cash-amount-num" value="$!_coupon.amount">					
+			#else
+			<input type="hidden" class="j-profit-amount-num" value="$!_coupon.amount">
+			#end			
+		</span>
+		<span class="u-coupon-limit f-text-overflow">
+			#if("$!{_coupon.useCondition}" == "全网通用")
+				<em><i>●</i>$!{_coupon.useCondition}</em>
+			#else
+    			#if("$!{_coupon.couponPrivileges}" !="")
+    				<em><i>●</i>$!{_coupon.couponPrivileges}</em>
+    			#end
+				#if("$!{_coupon.couponPrivileges}" !="" && "$!{_coupon.couponAmountScope}" !="" && "$!{_coupon.couponDaysScope}" !="")
+
+				#else
+                    #if($!{_coupon.extraInterestType} == 1 && $!{_coupon.extraInterestDay}>0)
+                        <em><i>●</i>起息日起，加息$!{_coupon.extraInterestDay}天</em>
+                    #end
+				#end
+    			#if("$!{_coupon.couponAmountScope}" !="")
+    				<em><i>●</i>$!{_coupon.couponAmountScope}</em>
+    			#end
+    			#if("$!{_coupon.couponDaysScope}" !="")
+    				<em><i>●</i>$!{_coupon.couponDaysScope}</em>
+    			#end
+			#end
+		</span>
+		<span class="u-coupon-date">
+			#if($!_coupon.status == 1 || $!_coupon.status == 5)
+				<em class="f-fs12">有效时间：</em> 
+				<strong class="f-ff-din f-fs18">
+					$!{_coupon.couponValidity}
+				</strong>
+			#end
+			#if($!_coupon.status == 2)
+				<em>使用时间：</em>
+				<strong class="f-ff-din f-fs18">$!_coupon.usedTimeStr</strong>
+			#end
+			#if($!_coupon.status == 4)
+				<em>过期时间：</em>
+				<strong class="f-ff-din f-fs18">$!_coupon.endDateStr</strong>
+			#end
+		</span>
+
+		## 使用规则有四条时
+		#if("$!{_coupon.couponPrivileges}" !="" && $!{_coupon.extraInterestType} == 1 && "$!{_coupon.couponAmountScope}" !="" && "$!{_coupon.couponDaysScope}" !="")
+			<span class="u-coupon-high">起息日起，加息$!{_coupon.extraInterestDay}天</span>
+		#end
+
+		#if($!_coupon.status == 1 || $!_coupon.status == 5)
+			#if($!_coupon.status == 5)
+				<div class="u-coupon-locked f-fs14"><em class="f-fs22">锁定中</em><br/>您有一笔<a href="$root_url/order/order">待支付</a>的订单已使用该券</div>
+			#end
+		#end
+	</li>
+#end
+</ul>
+#ajaxPagePlugin($!couponPage,$!couponStatusID)
+#end
+

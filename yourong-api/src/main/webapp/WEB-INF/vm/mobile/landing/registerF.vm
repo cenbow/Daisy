@@ -1,0 +1,288 @@
+##手机登陆页F
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$m_css_url/common.css","$m_css_url/landing/season1.css"])
+#set($title="注册送大礼包")
+#set($loadJQ=true)
+<input type="hidden" id="pageTag" value="landingF"/>
+<script>
+        #if($currentUser)
+        window.location.href = '$siteurl/mCenter/home';
+        #end
+</script>
+<style>
+    a {
+        text-decoration: none;
+    }
+    .u-status-amount{
+        height: 46px!important;
+        line-height: 46px !important;
+    }
+    .f-remind{
+        text-align: center;
+        color: #666666;
+        margin-top: 10px;
+    }
+    .f-remind b{
+        color: #d74148;
+    }
+
+    .m-reg-form .u-reg-btn1 {
+        margin: 0;
+    }
+    .u-wrap {
+        width: 98%;
+        margin: auto;
+        background: #fff;
+    }
+    .s-bg{
+        padding-bottom: 20px;
+        background: #fff;
+    }
+    .s-bg img {
+        width: 100%;
+    }
+    .m-reg-form .u-ipt-text{
+        background: #fff;
+    }
+    .m-input-vercode .u-img-vercode{
+        border-left: 1px solid #d6d6d6;
+    }
+    .u-wrap .f-thline {
+        border-bottom: 1px solid #666666;
+        width: 18%;
+        height: 0;
+        display: inline-block;
+        margin-top: 40px;
+    }
+    .u-wrap span {
+        display: inline-block;
+        color: #666666;
+        text-align: center;
+        font-weight: 700;
+        width: 60%;
+        margin-top: 30px;
+    }
+    .u-wrap  b{
+        color: #d74148;
+    }
+    .u-safety-logo {
+        background: #fff;
+        width: 100%;
+        margin: 0;
+        margin-top: -8px;
+        margin-bottom: 20px;
+        padding: 0 5px 10px;
+    }
+
+    .u-safety-logo span {
+        display: block;
+        color: #666666;
+        font-weight: 700;
+        margin: 20px;
+    }
+    .u-safety-logo .f-safe-tip{
+        color: #b3b3b3;
+        margin: 20px 0 0 0;
+        font-weight: 500;
+    }
+    .u-safety-logo img:first-child {
+        margin: 6px;
+    }
+
+    .u-safety-logo img {
+        width: 30%;
+        height: 30px;
+        margin: 6px;
+        border: 1px solid #dbdbdb;
+        border-radius: 3px;
+        padding: 4px 12px;
+    }
+
+    .u-download-btn {
+        height: 30px;
+        margin: 0;
+    }
+
+    .u-download-btn a {
+        height: 30px;
+        line-height: 30px;
+    }
+
+    .g-ft {
+        background-color: #eeeeee;
+        height: 406px;
+    }
+    .u-status-logo{
+        width: 100%;
+        position: absolute;
+        bottom: 80px;
+    }
+    .u-status-logo div{
+        width: 28%;
+        float: left;
+        margin: 2.5%;
+        text-align: center;
+    }
+    .u-status-logo img{
+        width: 100%;
+        background: #fff;
+        height:30px;
+        padding:0.3rem;
+    }
+    .u-status-logo span{
+        display: block;
+        color: #fff;
+        font-size: 12px;
+    }
+</style>
+##header
+<h2 class="u-pageTitle ">
+    <a href="$siteurl/mIndex">
+        有融网
+    </a>
+    <span class=" f-pos-a f-fs18 f-ff-ver">
+        <a href="$siteurl/mstation/login">登录</a>
+        <a href="$siteurl/mstation/register">注册</a>
+    </span>
+</h2>
+##main-banner
+<div class="m-banner" style="position: relative;">
+    <img src="$siteurl/res/img/bannerF.png"/>
+    <div class="u-status-logo">
+        <div>
+        <img src="$siteurl/res/img/logo_xihu.png" alt=""/>
+        <span>西湖区政府支持</span>
+        </div>
+        <div>
+        <img src="$siteurl/res/img/logo_ICBC.png" alt=""/>
+        <span>工商银行监管</span>
+        </div>
+        <div>
+        <img src="$siteurl/res/img/sinaPay_logo20151118.png" alt=""/>
+        <span>新浪支付托管</span>
+        </div>
+    </div>
+    <div class="u-status-amount f-fs14 f-cf">
+        <em class="f-ff-ver u-amount-money f-fl">
+            累计成功投资:￥
+        <span class="f-ff-din f-fs22">
+            $!{paltformCapitalUtils.getPrefixPaltformTotalInvest()}
+        </span>
+        </em>
+        <em class="f-ff-ver f-fr">
+            注册人数:
+        <span class="f-ff-din f-fs22">
+            $!{paltformCapitalUtils.getPaltformMembers()}
+        </span>
+        </em>
+    </div>
+</div>
+##注册
+<section class="g-bd">
+    <form data-action="$siteurl/mstation/register/saveMember" method="POST" class="m-reg-form j-form-xpost j-validform"
+          data-page="register" id="j-reg-form">
+        #CSRFToken('xToken')
+        #onceToken()
+        <input type="hidden" id="j-reg-mobile"/>
+
+        <div class="u-ipt-group f-pos-r">
+            <input type="tel" name="mobile" oncopy="return false;" onpaste="return false;" id="j-cpn" autocomplete="off"
+                   nullmsg="手机号码不能为空" errormsg="请输入正确的手机号码" class="f-round f-ipt-w430 u-ipt-text  u-ipt-str f-fs10"
+                   placeholder="请输入手机号码"/>
+            <span class='m-val-tips'></span>
+
+            <div class="f-mob-sha f-dn" id="j-mobile"></div>
+        </div>
+        <div class="m-input-vercode f-cf f-pos-r">
+			<span class="u-xtips-wrap ">
+				<input type="text" id="j-vercode" autocomplete="off" nullmsg="请输入图形验证码"
+                       class="u-ipt-text u-ipt-vercode j-vercode" placeholder="输入图形码"/>
+            </span>
+            <img src="$siteurl/mstation/validateCode" alt="验证码" title="点击重新获取验证码" id="j-img-vercode"
+                 class="u-img-vercode"/>
+			<span id="j-phonecode-wrap" class="u-xtips-wrap u-phonecode-wrap z-hide">
+				<input type="text" name="phonecode" autocomplete="off" id="j-phonecode" placeholder="输入手机验证码"
+                       class="f-clear f-round u-ipt-text f-ipt-w248 u-ipt-phonecode"/>
+			</span>
+			<span class="f-round u-tips-vercode f-tips-gray f-fr  f-dn">
+			获得短信验证码
+			</span>
+            <span class="m-val-tips"></span>
+        </div>
+        <div class="u-ipt-group f-pos-r">
+            <input type="password" name="password" oncopy="return false;" onpaste="return false;"
+                   class="f-round u-ipt-text f-ipt-w430 v-pwd" placeholder="输入密码，长度6-16位，至少包含数字和字母"/>
+        </div>
+    #*  <div class="u-ipt-group">
+            <input type="password" name="repassword" oncopy="return false;" onpaste="return false;" recheck="password" class="f-round f-ipt-w430 u-ipt-text v-pwd-reck" placeholder="再次输入密码" />
+        </div>*#
+    ##		<div class="u-ipt-group f-pos-r">
+    ##			<input type="tel" id="j-refercode" autocomplete="off" value="$!{mobile}" $!{disabled} ignore="ignore" class="f-round f-ipt-w430 u-ipt-text" placeholder="推荐人手机号码，选填   $!{tureName}"/>
+    ##			<span class="m-val-tips">
+    ##			#if($!{tureName})
+    ##				您的推荐人：$!{tureName}
+    ##			#end
+    ##			</span>
+    ##		</div>
+    ##推荐人ID
+        <input type="hidden" name="referCode" id="j-refercode-val" value="$!{shortUrl}">
+        <input type="hidden" name="tid" value="$!{request.getParameter('tid')}">
+        <input type="hidden" name="registerTraceSource" value='$!{session.getAttribute("register_TraceSource")}'/>
+        <input type="hidden" name="registerTraceNo" value='$!{session.getAttribute("register_TraceNo")}'/>
+        <input type="hidden" name="referSource" value="$!{referSource}"/>
+        <input type="hidden" name="checkType" id="j-checkType" value="1"/>
+        <input type="hidden" name="pngCode" id="j-pngcode"/>
+        <input type="hidden" name="loginSource" value="0"/>
+        <label class="f-clear f-mgl-8 f-fc-black">
+            <input type="checkbox" checked="checked" name="agree" id="j-agree"/>&nbsp;我已阅读并同意
+            <a target="_blank" href="$res_url/page/register-agreement.html">《有融网服务协议》</a>
+        </label>
+        <button type="submit" class="u-reg-btn1 j-reg-btn">注册即送80元大礼包</button>
+        <p class="f-remind">
+            您正在享受银行级的安全保障 <br/>
+            已有<b>30</b>万名投资者选择有融网，重复投资率超 <b>90%</b>
+        </p>
+    </form>
+##        <div id="j-bind-success" class="u-bind-success f-dn">
+##            <i class="u-icon-success"></i>&nbsp;&nbsp;恭喜您绑定成功！
+##        </div>
+</section>
+##main-content
+<div class="g-bd s-bg">
+    <div class="u-wrap">
+        <div class="f-thline f-fl"></div>
+        <span class="f-fs18" >有融网特有<b>安全代码4031</b></span>
+        <div class="f-thline f-fr"></div>
+    </div>
+    <img src="$res_url/img/bgF.png" alt=""/>
+</div>
+
+##footer
+
+<div class="u-safety-logo rep-text" style="display: none;">
+    <div class="u-wrap" style="margin-bottom: 30px;">
+        <div class="f-thline f-fl" style="margin-top: 12px;"></div>
+        <p class="f-fs20 " style="display: inline-block;width: 60%;font-weight: 700;color: #666666;">有融网<b>安全保障计划</b></p>
+
+        <div class="f-thline f-fr" style="margin-top:12px;"></div>
+    </div>
+    <img src="$res_url/img/logo_xihu.png" alt=""/>
+    <img src="$res_url/img/logo_ghkj_landing.png" alt=""/>
+    <img src="$res_url/img/logo_lvgou.png" alt=""/>
+    <img src="$res_url/img/ele-logo.png" alt=""/>
+    <span class="f-fs14 f-safe-tip">多重安全保障措施，让您投资更放心</span>
+</div>
+#set($pageScript="
+<script>
+    seajs.config({
+        alias: {
+            'landingRegister': '$m_js_url/landing/register.js?v=${sysServiceUtil.getStaticResourceVersion()}'
+        },
+        preload: ['jquery', 'validform']
+    });
+    seajs.use('landingRegister', function () {
+        $('.u-safety-logo').html($('.rep-text').html());
+    });
+</script>
+")

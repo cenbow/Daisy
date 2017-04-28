@@ -1,0 +1,190 @@
+.g-ft {
+    display: none;
+}
+
+a {
+    color: #ff4d55;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #ff4d55;
+    text-decoration: none;
+}
+
+.m-topBanner {
+    width: 100%;
+    background: url(../../../img/activity/millionFund/millionFound_m_bg1.png) no-repeat top center;
+    background-size: 100% auto;
+
+}
+
+@media screen and (max-width: 321px ) {
+    .m-topBanner{
+        padding-top:144px;
+    }
+    .f-text {
+        margin-top:34px;
+    }
+}
+@media screen and (min-width:330px) and (max-width: 360px){
+    .m-topBanner{
+        padding-top:170px;
+    }
+    .u-investmentBtn {
+        padding: 14px 0 10px ;
+    }
+    .f-text {
+        margin-top:24px;
+    }
+}
+@media screen and (min-width:361px) and (max-width: 390px){
+    .m-topBanner{
+        padding-top:180px;
+    }
+    .u-investmentBtn {
+        padding: 14px 0 6px ;
+    }
+    .f-text {
+        margin-top:34px;
+    }
+}
+
+@media screen and (min-width: 391px) {
+    .m-topBanner{
+        padding-top:204px;
+    }
+    .u-investmentBtn {
+        padding: 14px 0 10px ;
+    }
+    .f-text {
+        margin-top:34px;
+    }
+}
+.g-wrap {
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    color: #fff;
+}
+
+
+.u-investmentBtn p {
+    font-weight: 700;
+    background: url("../../../img/activity/millionFund/btn_yellow.png") no-repeat top center;
+    background-size: 100% 100%;
+}
+
+.j-progressBarFund {
+    width: 100%;
+    position: relative;
+    height: 30px;
+}
+
+.f-progressBar {
+    /*padding-bottom: 10px;*/
+}
+
+.f-dis-block {
+    display: inline-block;
+}
+
+.f-text-ps {
+    background: url(../../../img/activity/millionFund/yellow_block.png) no-repeat top center;
+    background-size: 100% 100%;
+    color: #cc6e00;
+    height: 30px;
+    line-height: 24px;
+    position: absolute;
+    top: 0;
+    right: 58%;
+    padding: 0 4px;
+}
+
+.f-progressBar-img {
+    width: 100%;
+}
+
+.f-progressBar-bg {
+    background: #f0343c;
+    vertical-align: middle;
+    width: 64%;
+    height: 20px;
+    margin: auto;
+    display: inline-block;
+    text-align: left;
+    border-radius: 10px;
+    padding: 0 4px;
+}
+
+.f-progressBar-yel {
+    background: url(../../../img/activity/millionFund/progressBar.png) no-repeat top left;
+    width: 100%;
+    height: 16px;
+    background-size: 100% 100%;
+    border-radius: 8px;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -o-border-radius: 8px;
+    margin-top: 2px;
+}
+
+
+
+.m-table1 {
+    width: 100%;
+    background: url(../../../img/activity/millionFund/millionFound_m_bg2.png) no-repeat top center;
+    background-size: 100% 100%;
+    padding: 10px 0;
+}
+
+.m-table2 {
+    width: 100%;
+    background: url(../../../img/activity/millionFund/millionFound_m_bg3.png) no-repeat top center;
+    background-size: 100% 100%;
+    padding: 10px 0;
+}
+
+table tr,
+table td {
+    border: 1px solid #fff;
+    height: 36px;
+    color: #fff;
+}
+
+table {
+    width: 100%;
+}
+
+.m-table1 td {
+    width: 50%;
+}
+
+.m-table2 td {
+    width: 30%;
+}
+
+.m-table2 span {
+    padding: 10px 0 20px 0;
+    display: block;
+}
+
+.f-fc-yellow {
+    color: #fff25e;
+    font-weight: 500;
+}
+
+.m-rule {
+    width: 100%;
+    background: url(../../../img/activity/millionFund/millionFound_m_bg4.png) no-repeat top center;
+    background-size: 100% 100%;
+    padding-bottom: 40px;
+}
+
+.u-rule-text {
+    text-align: left;
+}
+
+.f-dis-none {
+    display: none;
+}

@@ -1,0 +1,758 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.tc.dao.OrderMapper" >
+  <resultMap id="BaseResultMap" type="Order" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+    <result column="out_order_no" property="outOrderNo" jdbcType="VARCHAR" />
+    <result column="member_id" property="memberId" jdbcType="BIGINT" />
+    <result column="project_id" property="projectId" jdbcType="BIGINT" />
+    <result column="project_name" property="projectName" jdbcType="VARCHAR" />
+    <result column="bank_code" property="bankCode" jdbcType="VARCHAR" />
+    <result column="invest_amount" property="investAmount" jdbcType="DECIMAL" />
+    <result column="used_capital" property="usedCapital" jdbcType="DECIMAL" />
+    <result column="used_coupon_amount" property="usedCouponAmount" jdbcType="DECIMAL" />
+    <result column="annualized_rate" property="annualizedRate" jdbcType="DECIMAL" />
+    <result column="extra_annualized_rate" property="extraAnnualizedRate" jdbcType="DECIMAL" />
+    <result column="extra_project_annualized_rate" property="extraProjectAnnualizedRate" jdbcType="DECIMAL" />
+    <result column="pay_amount" property="payAmount" jdbcType="DECIMAL" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="pay_method" property="payMethod" jdbcType="INTEGER" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="cash_coupon_no" property="cashCouponNo" jdbcType="VARCHAR" />
+    <result column="profit_coupon_no" property="profitCouponNo" jdbcType="VARCHAR" />
+    <result column="order_source" property="orderSource" jdbcType="INTEGER" />
+    <result column="order_time" property="orderTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="invest_flag" property="investFlag" jdbcType="INTEGER" />
+    <result column="project_category" property="projectCategory" jdbcType="INTEGER" />
+    <result column="transfer_id" property="transferId" jdbcType="BIGINT" />
+    <result column="transfer_principal" property="transferPrincipal" jdbcType="DECIMAL" />
+    <result column="extra_interest_day" property="extraInterestDay" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="OrderForMemberResultMap" type="OrderForMember" >
+    <result column="order_id" property="orderId" jdbcType="BIGINT" />
+    <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+    <result column="member_id" property="memberId" jdbcType="BIGINT" />
+    <result column="true_name" property="trueName" jdbcType="VARCHAR" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="BIGINT" />
+    <result column="identity_number" property="identityNumber" jdbcType="VARCHAR" />
+    <result column="bank_code" property="bankCode" jdbcType="VARCHAR" />
+    <result column="card_number" property="cardNumber" jdbcType="VARCHAR" />
+    <result column="project_id" property="projectId" jdbcType="BIGINT" />
+    <result column="project_name" property="projectName" jdbcType="VARCHAR" />
+    <result column="expect_amount" property="expectAmount" jdbcType="DECIMAL" />
+    <result column="invest_amount" property="investAmount" jdbcType="DECIMAL" />
+    <result column="used_capital" property="usedCapital" jdbcType="DECIMAL" />
+    <result column="used_coupon_amount" property="usedCouponAmount" jdbcType="DECIMAL" />
+    <result column="pay_amount" property="payAmount" jdbcType="DECIMAL" />
+    <result column="pay_method" property="payMethod" jdbcType="INTEGER" />
+    <result column="annualized_rate" property="annualizedRate" jdbcType="DECIMAL" />
+    <result column="extra_annualized_rate" property="extraAnnualizedRate" jdbcType="DECIMAL" />
+     <result column="extra_project_annualized_rate" property="extraProjectAnnualizedRate" jdbcType="DECIMAL" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="profit_days" property="profitDays" jdbcType="INTEGER" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="cash_coupon_no" property="cashCouponNo" jdbcType="VARCHAR" />
+    <result column="profit_coupon_no" property="profitCouponNo" jdbcType="VARCHAR" />
+    <result column="order_time" property="orderTime" jdbcType="TIMESTAMP" />
+    <result column="order_source" property="orderSource" jdbcType="INTEGER" />
+    <result column="end_date" property="endDate" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="project_category" property="projectCategory" jdbcType="INTEGER" />
+    <result column="transfer_id" property="transferId" jdbcType="BIGINT" />
+    <result column="transfer_principal" property="transferPrincipal" jdbcType="DECIMAL" />
+    <result column="extra_interest_day" property="extraInterestDay" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, order_no, out_order_no, member_id, project_id, project_name,bank_code, invest_amount, used_capital, 
+    used_coupon_amount, annualized_rate, extra_annualized_rate, pay_amount, status, pay_method, 
+     remarks, cash_coupon_no, profit_coupon_no,order_source,
+    order_time, update_time, invest_flag, transfer_id, project_category, transfer_principal,extra_project_annualized_rate,extra_interest_day 
+  </sql>
+  <sql id="Alias_Column_List" >
+    o.id, o.order_no, o.out_order_no, o.member_id, o.project_id, o.project_name,o.bank_code, o.invest_amount, o.used_capital, 
+    o.used_coupon_amount, o.annualized_rate, o.extra_annualized_rate, o.pay_amount, o.status, o.pay_method, 
+     o.remarks, o.cash_coupon_no, o.profit_coupon_no,
+    o.order_time, o.update_time, o.transfer_id, o.project_category, o.transfer_principal
+  </sql>
+  
+  <sql id="Order_For_Member_Column_List_pagin" >
+    o.id as order_id, 
+    o.order_no as order_no, 
+    o.project_id as project_id, 
+    p.name as project_name, 
+    o.invest_amount as invest_amount, 
+    o.annualized_rate as annualized_rate, 
+    o.extra_annualized_rate as extra_annualized_rate, 
+    o.extra_project_annualized_rate as extra_project_annualized_rate, 
+    o.status as status, 
+    o.remarks as remarks, 
+    o.cash_coupon_no as cash_coupon_no, 
+    o.profit_coupon_no as profit_coupon_no,
+    o.order_time as order_time, 
+    o.transfer_id, 
+    o.project_category,
+    o.transfer_principal,
+    p.end_date as end_date,
+    o.extra_interest_day as extra_interest_day
+  </sql>
+  <!-- 插入订单 -->
+  <insert id="insert" parameterType="Order" useGeneratedKeys="true" keyProperty="id">
+    insert into tc_order (
+    order_no, 
+    member_id, 
+    project_id, 
+    project_name, 
+    bank_code, 
+    invest_amount, 
+    used_capital, 
+    used_coupon_amount, 
+    annualized_rate, 
+    extra_annualized_rate,
+    pay_amount, 
+    status, 
+    pay_method, 
+    remarks, 
+    cash_coupon_no, 
+    profit_coupon_no,
+    order_source,
+    <if test="investFlag != null">
+	    invest_flag,
+    </if>
+    <if test="projectCategory != null" >
+    	project_category,
+    </if>
+    <if test="transferId != null" >
+    	transfer_id,
+    </if>
+    <if test="transferPrincipal != null" >
+    	transfer_principal,
+    </if>
+    <if test="extraInterestDay != null" >
+    	extra_interest_day,
+    </if>
+     <if test="extraProjectAnnualizedRate != null" >
+    	extra_project_annualized_rate,
+    </if>
+    order_time, 
+    update_time
+    )
+    values (
+    #{orderNo,jdbcType=VARCHAR}, 
+    #{memberId,jdbcType=BIGINT}, 
+    #{projectId,jdbcType=BIGINT}, 
+    #{projectName,jdbcType=VARCHAR}, 
+    #{bankCode,jdbcType=VARCHAR}, 
+    #{investAmount,jdbcType=DECIMAL}, 
+    #{usedCapital,jdbcType=DECIMAL}, 
+    #{usedCouponAmount,jdbcType=DECIMAL}, 
+    #{annualizedRate,jdbcType=DECIMAL}, 
+    #{extraAnnualizedRate,jdbcType=DECIMAL}, 
+    #{payAmount,jdbcType=DECIMAL}, 
+    #{status,jdbcType=INTEGER},
+    #{payMethod,jdbcType=INTEGER},
+    #{remarks,jdbcType=VARCHAR}, 
+    #{cashCouponNo,jdbcType=VARCHAR},
+    #{profitCouponNo,jdbcType=VARCHAR},
+    #{orderSource,jdbcType=INTEGER},
+    <if test="investFlag != null">
+	    #{investFlag,jdbcType=INTEGER},
+    </if>
+    <if test="projectCategory != null" >
+    	#{projectCategory,jdbcType=INTEGER},
+    </if>
+    <if test="transferId != null" >
+    	#{transferId,jdbcType=BIGINT}, 
+    </if>
+    <if test="transferPrincipal != null" >
+    	#{transferPrincipal,jdbcType=DECIMAL}, 
+    </if>
+     <if test="extraInterestDay != null" >
+    	#{extraInterestDay,jdbcType=INTEGER},
+    </if>
+     <if test="extraProjectAnnualizedRate != null" >
+    	#{extraProjectAnnualizedRate,jdbcType=DECIMAL}, 
+    </if>
+    now(), 
+    now()
+    )
+  </insert>
+  <!-- 更新订单 -->
+  <update id="updateByPrimaryKeySelective" parameterType="Order" >
+    UPDATE tc_order
+    <set >
+     <if test="bankCode != null" >
+        bank_code = #{bankCode,jdbcType=VARCHAR},
+      </if>
+       <if test="usedCapital != null" >
+        used_capital = #{usedCapital,jdbcType=DECIMAL},
+      </if>
+       <if test="usedCouponAmount != null" >
+        used_coupon_amount = #{usedCouponAmount,jdbcType=DECIMAL},
+      </if>
+       <if test="payAmount != null" >
+        pay_amount = #{payAmount,jdbcType=DECIMAL},
+      </if>
+       <if test="cashCouponNo != null" >
+        cash_coupon_no = #{cashCouponNo,jdbcType=VARCHAR},
+      </if>
+      <if test="outOrderNo != null" >
+        out_order_no = #{outOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      
+      <if test="payMethod != null" >
+        pay_Method = #{payMethod,jdbcType=INTEGER},
+      </if>
+      
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+        update_time = now()
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <!-- 通过id查询订单 -->
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM tc_order
+    WHERE id = #{id,jdbcType=BIGINT}
+  </select>
+  
+   <!-- 通过id查询订单（加锁） -->
+  <select id="getOrderByIdForLock" resultMap="BaseResultMap" parameterType="java.lang.Long">
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM tc_order
+    WHERE id = #{id,jdbcType=BIGINT}
+    FOR UPDATE
+  </select>
+
+<!-- 获取当日订单总数 -->  
+  <select id="getOrderCountCurrentDay" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+  	SELECT 
+  		count(0) 
+  	FROM 
+  		tc_order 
+  	WHERE 
+  		member_id = #{memberId,jdbcType=BIGINT} 
+  	AND 
+  		status=0
+  	AND 
+  		project_id = #{projectId,jdbcType=INTEGER}
+  	AND 
+  		date(order_time)=curdate()
+  </select>
+  
+  <!-- 通过订单号号查询订单信息 -->
+  <select id="getOrderByOrderNo" parameterType="java.lang.String" resultMap="BaseResultMap">
+  SELECT 
+  	<include refid="Base_Column_List"/>
+  FROM 
+  	tc_order
+  WHERE 
+  	order_no = #{orderNo,jdbcType=VARCHAR} 
+  </select>
+  
+   <!-- 通过订单号号查询订单信息 -->
+  <select id="getOrderByTradeNo" parameterType="java.lang.String" resultMap="BaseResultMap">
+  SELECT 
+  	<include refid="Alias_Column_List"/>
+  FROM 
+  	tc_order o 
+  INNER JOIN 
+  	tc_hosting_collect_trade t 
+  ON 
+  	t.source_id=o.id
+  WHERE 
+  	t.trade_no = #{tradeNo,jdbcType=VARCHAR} 
+  </select>
+  
+  <!-- 定时关闭订单 -->
+  <update id="schedueCloseOrder" >
+	UPDATE 
+		tc_order
+	SET 
+		status=#{afterStatus,jdbcType=INTEGER}
+	WHERE 
+		id = #{orderId,jdbcType=BIGINT}
+	AND status= #{beforeStatus,jdbcType=INTEGER}
+  <![CDATA[ AND now() > DATE_ADD(order_time, INTERVAL 30 MINUTE) ]]>
+  
+  </update>
+  
+  <select id="selectSchedueCloseOrder" resultMap="BaseResultMap">
+  	 SELECT 
+  	<include refid="Base_Column_List"/>
+  	FROM 
+  	tc_order 
+  	WHERE 
+	status= #{status,jdbcType=INTEGER}
+  <![CDATA[ AND now() > DATE_ADD(order_time, INTERVAL 30 MINUTE) ]]>
+  </select>
+  
+  <!-- 通过条件查询前台会员中心订单记录 -->
+  	<select id="selectAllOrderForMember" resultMap="OrderForMemberResultMap" parameterType="OrderQuery">
+		select
+		<include refid="Order_For_Member_Column_List_pagin" />
+		from tc_order o
+		inner join ic_project p on o.project_id = p.id
+			<where>
+				<if test=" memberId != null">
+					o.member_id = #{memberId,jdbcType=BIGINT}
+				</if>
+				<if test=" status != null">
+					<choose>
+						<when test="status ==4" >
+							 AND o.status in (2, 4)
+						</when>
+						<when test="status == 99"><!-- APP端不显示取消的订单 -->
+							AND o.status <![CDATA[ < ]]> 9
+						</when>
+						<otherwise>
+							 AND o.status = #{status,jdbcType=INTEGER}
+						</otherwise>
+					</choose>
+				</if>
+				<if test=" investType != null">
+					AND p.invest_type = #{investType,jdbcType=INTEGER}
+				</if>	
+			</where>
+		order by o.id desc
+		LIMIT #{startRow,jdbcType=INTEGER}, #{pageSize,jdbcType=INTEGER}
+		
+	</select>
+	<!-- 通过条件查询前台会员中心订单记录总数，剔除 p2p数据 start -->
+	<select id="p2pSelectAllOrderForMember" resultMap="OrderForMemberResultMap" parameterType="OrderQuery">
+		select
+		<include refid="Order_For_Member_Column_List_pagin" />
+		from tc_order o
+		inner join ic_project p on o.project_id = p.id and p.invest_type=1
+			<where>
+				<if test=" memberId != null">
+					o.member_id = #{memberId,jdbcType=BIGINT}
+				</if>
+				<if test=" status != null">
+					<choose>
+						<when test="status ==4" >
+							 AND o.status in (2, 4)
+						</when>
+						<when test="status == 99"><!-- APP端不显示取消的订单 -->
+							AND o.status <![CDATA[ < ]]> 9
+						</when>
+						<otherwise>
+							 AND o.status = #{status,jdbcType=INTEGER}
+						</otherwise>
+					</choose>
+				</if>
+				
+			</where>
+		order by o.id desc
+		LIMIT #{startRow,jdbcType=INTEGER}, #{pageSize,jdbcType=INTEGER}
+		
+	</select>
+	<select id="p2pSelectAllOrderForMemberCount" resultType="java.lang.Long"  parameterType="OrderQuery">
+		select count(1)
+		from tc_order o
+		inner join ic_project p on o.project_id = p.id  and p.invest_type=1
+			<where>
+				<if test=" memberId != null">
+					member_id = #{memberId,jdbcType=BIGINT}
+				</if>
+				<if test=" status != null">
+					<choose>
+						<when test="status ==4" >
+							 AND o.status in (2, 4)
+						</when>
+						<when test="status == 99"><!-- APP端不显示取消的订单 -->
+							AND o.status <![CDATA[ < ]]> 9
+						</when>
+						<otherwise>
+							 AND o.status = #{status,jdbcType=INTEGER}
+						</otherwise>
+					</choose>
+				</if>
+			</where>
+	</select>
+	<!-- 通过条件查询前台会员中心订单记录总数，剔除P2P项目数据，end -->
+	
+	<!-- 通过条件查询前台会员中心订单记录总数 -->
+	<select id="selectAllOrderForMemberCount" resultType="java.lang.Long"  parameterType="OrderQuery">
+		select count(1)
+		from tc_order o
+		inner join ic_project p on o.project_id = p.id
+			<where>
+				<if test=" memberId != null">
+					member_id = #{memberId,jdbcType=BIGINT}
+				</if>
+				<if test=" status != null">
+					<choose>
+						<when test="status ==4" >
+							 AND o.status in (2, 4)
+						</when>
+						<when test="status == 99"><!-- APP端不显示取消的订单 -->
+							AND o.status <![CDATA[ < ]]> 9
+						</when>
+						<otherwise>
+							 AND o.status = #{status,jdbcType=INTEGER}
+						</otherwise>
+					</choose>
+				</if>
+				<if test=" investType != null">
+					AND p.invest_type = #{investType,jdbcType=INTEGER}
+				</if>	
+			</where>
+	</select>
+	
+	<!-- 获取当前用户 还未支付的订单 -->
+	<select id="getNoPayOrdeCount" resultType="java.lang.Integer">
+	SELECT 
+		count(0)
+	FROM 
+		tc_order
+	WHERE 
+		member_id=#{memberId,jdbcType=BIGINT} 
+	AND 
+		status in (0, 8)
+	</select>
+	<!-- 未支付订单  过滤p2p -->
+	<select id="getNoPayOrdeCountFilterP2p" resultType="java.lang.Integer">
+	SELECT 
+		count(0)
+	FROM 
+		tc_order as t left join ic_project as p on p.id=t.project_id
+	WHERE 
+		t.member_id=#{memberId,jdbcType=BIGINT} 
+	AND 
+		t.status in (0, 8)
+	AND p.invest_type=1
+	</select>
+	<!-- 取消订单 -->
+	<update id="cancelOrder">
+		UPDATE 
+			tc_order
+		SET 
+			`status`=#{afterStatus,jdbcType=INTEGER},
+			remarks = #{remarks,jdbcType=VARCHAR},
+			update_time = NOW()
+		WHERE
+			id=#{orderId,jdbcType=BIGINT}
+		AND 
+			`status`=#{beforeStatus,jdbcType=INTEGER}
+		
+	</update>
+	
+	<select id="getOrderForMemberByOrderId" resultMap="OrderForMemberResultMap" >
+		select
+		<include refid="Order_For_Member_Column_List_pagin" />,
+		m.true_name as true_name, 
+		m.mobile as mobile, 
+		m.identity_number as identity_number
+		from tc_order o
+		inner join ic_project p on o.project_id = p.id
+		inner join uc_member m on o.member_id = m.id
+		where o.id = #{orderId,jdbcType=BIGINT}
+		and o.member_id = #{memberId,jdbcType=BIGINT}
+		
+	</select>
+	
+	<!--  通过项目id和状态查询订单记录 -->
+	<select id="getOrderCountByProject" resultType="java.lang.Integer">
+	SELECT 
+		count(0)
+	FROM 
+		tc_order
+	WHERE 
+		project_id=#{projectId,jdbcType=BIGINT} 
+	AND 
+		status = #{status,jdbcType=INTEGER}
+	</select>
+	
+	<!--  通过项目id和状态查询转让项目订单记录 -->
+	<select id="getTransferOrderCountByProject" resultType="java.lang.Integer">
+	SELECT 
+		count(0)
+	FROM 
+		tc_order
+	WHERE 
+		transfer_id=#{transferId,jdbcType=BIGINT} 
+	AND 
+		status = #{status,jdbcType=INTEGER}
+	</select>
+	
+	<!-- 通过项目id和订单状态查询总金额 -->
+	<select id="getOrderSumAmountByProject" resultType="java.math.BigDecimal">
+	SELECT 
+		SUM(invest_amount)
+	FROM 
+		tc_order
+	WHERE 
+		project_id=#{projectId,jdbcType=BIGINT} 
+	AND 
+		status = #{status,jdbcType=INTEGER}
+	</select>
+	
+	<!-- 通过转让项目id和订单状态查询总金额 -->
+	<select id="getTransferPayingAmountByProject" resultType="java.math.BigDecimal">
+	SELECT 
+		SUM(transfer_principal)
+	FROM 
+		tc_order
+	WHERE 
+		transfer_id=#{transferId,jdbcType=BIGINT} 
+	AND 
+		status = #{status,jdbcType=INTEGER}
+	</select>
+	
+	<!-- 后台订单查询 -->
+	<select id="findByPage" resultMap="OrderForMemberResultMap">
+		SELECT
+			o.id AS order_id,
+			o.order_no,
+			o.project_name,
+			o.invest_amount,
+			o.used_capital,
+			o.used_coupon_amount,
+			o.pay_amount,
+			o.annualized_rate,
+			o.extra_annualized_rate,
+			o.member_id,
+			m.mobile,
+			o.order_time,
+			o.`status`,
+			o.update_time,
+			o.remarks,
+			o.pay_method,
+			o.order_source
+		FROM
+			tc_order AS o
+			left join ic_project as p on p.id=o.project_id and  p.invest_type = 1
+		<choose>
+		   	<when test="map != null and map.memberSel == 'INNER JOIN'">
+		   	 	 INNER JOIN uc_member AS m ON o.member_id = m.id AND m.del_flag > 0
+		   	 	 <if test="map.memberId != null">
+		   		 	and m.id = #{map.memberId,jdbcType=BIGINT}
+				 </if>
+				 <if test="map.mobile != null">
+		   		 	and m.mobile = #{map.mobile,jdbcType=VARCHAR}
+				 </if>
+		   	</when>
+		   	<otherwise>
+		   		 LEFT JOIN uc_member AS m ON o.member_id = m.id AND m.del_flag > 0
+		   	</otherwise>
+	   	</choose>
+		<if test=" map != null" >
+			<where>
+				<if test="map.orderId != null">
+					and o.id = #{map.orderId}
+				</if>
+				<if test="map.orderNo != null">
+					and o.order_no = #{map.orderNo}
+				</if>
+				<if test="map.projectName != null">
+					and o.project_name like CONCAT(CONCAT(#{map.projectName,jdbcType=VARCHAR}),'%')
+				</if>
+				<if test="map.investAmountStart != null">
+					and o.invest_amount <![CDATA[ >= ]]> #{map.investAmountStart}
+				</if>
+				<if test="map.investAmountEnd != null">
+					and o.invest_amount <![CDATA[ <= ]]> #{map.investAmountEnd}
+				</if>
+				<if test="map.payMethod != null">
+					and ${map.payMethod}
+				</if>
+				<if test="map.annualizedSelect != null and map.annualizedSelect == 0">
+					and IFNULL(o.profit_coupon_no,'') = ''
+				</if>
+				<if test="map.annualizedSelect != null and map.annualizedSelect == 1">
+					and IFNULL(o.profit_coupon_no,'') != ''
+				</if>
+				<if test=" map.orderTimeStart != null" >
+		            and o.order_time <![CDATA[ >= ]]> #{map.orderTimeStart}
+		        </if>
+		        <if test=" map.orderTimeEnd != null" >
+		            and o.order_time <![CDATA[ <= ]]> #{map.orderTimeEnd}
+		        </if>
+		        <if test=" map.updateTimeStart != null" >
+		            and o.update_time <![CDATA[ >= ]]> #{map.updateTimeStart} 
+		            and o.status > 1
+		        </if>
+		        <if test=" map.updateTimeEnd != null" >
+		            and o.update_time <![CDATA[ <= ]]> #{map.updateTimeEnd}
+		            and o.status > 1
+		        </if>
+		        <if test=" map.status != null" >
+		            and o.status = #{map.status}
+		        </if>
+		        <if test=" map.sourceSys != null" >
+		            and o.order_source = #{map.sourceSys}
+		        </if>
+			</where>
+		</if>	
+		ORDER BY
+			order_id DESC
+		LIMIT ${map.startRow}, ${map.pageSize}	
+	</select>
+	
+	<!-- 查询投资人信息 -->
+	<select id="selectTransPersonByOrderNo" resultType="java.util.Map" parameterType="java.lang.String">
+	  SELECT
+			od.member_id,
+			od.pay_method,
+			IFNULL(od.pay_amount, 0) pay_amount,
+			mb.username,
+			mb.true_name,
+			mb.mobile,
+			mb.identity_number,
+			bk.bank_code,
+			bk.card_number
+		FROM
+			tc_order od
+		LEFT JOIN (
+			SELECT
+				r.order_no,
+				b.card_number,
+				b.bank_code
+			FROM
+				fin_recharge_log r,
+				uc_member_bank_card b
+			WHERE
+				r.bank_card_id = b.id
+				and r.status = 5
+		) AS bk ON od.order_no = bk.order_no
+		LEFT JOIN uc_member mb ON od.member_id = mb.id
+	  WHERE od.order_no = #{id,jdbcType=VARCHAR}
+	</select>
+	
+	
+	<!-- 查询订单状态 -->							
+	<select id="selectOrderByCoupon" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		 <include refid="Base_Column_List" />
+		from tc_order
+		where cash_coupon_no = #{couponCode,jdbcType=VARCHAR}
+			or profit_coupon_no = #{couponCode,jdbcType=VARCHAR}
+	</select>
+	
+	<!-- 全额现金券投资的订单 根据项目id -->
+	<select id="selectAllAmountUseCouponForInvest" resultMap="BaseResultMap">
+		select 
+		<include refid="Base_Column_List"/>
+		from tc_order
+		where invest_amount = used_coupon_amount and status = 3 and project_id=#{projectId,jdbcType=BIGINT} 
+	</select>
+	
+	<!-- 全额现金券投资的订单 根据转让项目id -->
+	<select id="selectAllAmountUseCouponForInvestTransfer" resultMap="BaseResultMap">
+		select 
+		<include refid="Base_Column_List"/>
+		from tc_order
+		where invest_amount = used_coupon_amount and status = 3 and transfer_id=#{transferId,jdbcType=BIGINT} 
+	</select>
+	
+	
+	<!-- 不是全额现金券投资的订单 根据转让项目id -->
+	<select id="selectUseAmountForInvestTransfer" resultMap="BaseResultMap">
+		select 
+		<include refid="Base_Column_List"/>
+		from tc_order
+		where invest_amount <![CDATA[ <> ]]>  IFNULL(used_coupon_amount,0) and status = 3 and transfer_id=#{transferId,jdbcType=BIGINT} 
+	</select>
+	
+	
+	<!-- 订单分页查询数量-->
+	<select id="findByPageCount" resultType="java.lang.Integer">
+		SELECT
+			count(1)
+		FROM
+			tc_order AS o
+			left join ic_project as p on p.id=o.project_id and  p.invest_type = 1
+		<choose>
+		   	<when test="map != null and map.memberSel == 'INNER JOIN'">
+		   	 	 INNER JOIN uc_member AS m ON o.member_id = m.id AND m.del_flag > 0
+		   	 	 <if test="map.memberId != null">
+		   		 	and m.id = #{map.memberId,jdbcType=BIGINT}
+				 </if>
+				 <if test="map.mobile != null">
+		   		 	and m.mobile = #{map.mobile,jdbcType=VARCHAR}
+				 </if>
+		   	</when>
+		   	<otherwise>
+		   		 LEFT JOIN uc_member AS m ON o.member_id = m.id AND m.del_flag > 0
+		   	</otherwise>
+	   	</choose>
+		<if test=" map != null" >
+			<where>
+				<if test="map.orderId != null">
+					and o.id = #{map.orderId}
+				</if>
+				<if test="map.orderNo != null">
+					and o.order_no = #{map.orderNo}
+				</if>
+				<if test="map.projectName != null">
+					and o.project_name like CONCAT(CONCAT(#{map.projectName,jdbcType=VARCHAR}),'%')
+				</if>
+				<if test="map.investAmountStart != null">
+					and o.invest_amount <![CDATA[ >= ]]> #{map.investAmountStart}
+				</if>
+				<if test="map.investAmountEnd != null">
+					and o.invest_amount <![CDATA[ <= ]]> #{map.investAmountEnd}
+				</if>
+				<if test="map.payMethod != null">
+					and ${map.payMethod}
+				</if>
+				<if test="map.annualizedSelect != null and map.annualizedSelect == 0">
+					and IFNULL(o.profit_coupon_no,'') = ''
+				</if>
+				<if test="map.annualizedSelect != null and map.annualizedSelect == 1">
+					and IFNULL(o.profit_coupon_no,'') != ''
+				</if>
+				<if test=" map.orderTimeStart != null" >
+		            and o.order_time <![CDATA[ >= ]]> #{map.orderTimeStart}
+		        </if>
+		        <if test=" map.orderTimeEnd != null" >
+		            and o.order_time <![CDATA[ <= ]]> #{map.orderTimeEnd}
+		        </if>
+		        <if test=" map.updateTimeStart != null" >
+		            and o.update_time <![CDATA[ >= ]]> #{map.updateTimeStart} 
+		            and o.status > 1
+		        </if>
+		        <if test=" map.updateTimeEnd != null" >
+		            and o.update_time <![CDATA[ <= ]]> #{map.updateTimeEnd}
+		            and o.status > 1
+		        </if>
+		        <if test=" map.status != null" >
+		            and o.status = #{map.status}
+		        </if>
+		        <if test=" map.sourceSys != null" >
+		            and o.order_source = #{map.sourceSys}
+		        </if>
+			</where>
+		</if>	
+	</select>
+	
+	<!-- 获取用户是否有处理中或待处理的订单 -->
+	<select id="getHandleingOrderCount" resultType="java.lang.Integer">
+		SELECT count(0) FROM
+		(SELECT id
+		FROM tc_order
+		WHERE 
+			member_id = #{memberId,jdbcType=BIGINT} 
+			AND invest_flag = #{investFlag,jdbcType=INTEGER}
+		    AND status in (0,1,8)
+		LIMIT 1
+		) t
+	</select>
+	<select id="selectAllOrderList" resultMap="BaseResultMap">
+	   	select 
+		<include refid="Base_Column_List"/>
+		from tc_order
+		where  status = 3 and project_id=#{projectId,jdbcType=BIGINT} 
+	</select>
+</mapper>

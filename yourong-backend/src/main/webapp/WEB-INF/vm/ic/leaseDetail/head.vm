@@ -1,0 +1,12 @@
+ #parse("/common/common.vm")
+ #########################################script##################################### 
+ #set($js_config=[ 
+ "'urlMap':{ 
+   'ajax':'$root_url/leaseDetail/ajax?', 
+   'query':'$root_url/leaseDetail/index?', 
+   'save':'$root_url/leaseDetail/save', 
+   'show':'$root_url/leaseDetail/show?id=', 
+   'delet':'$root_url/leaseDetail/delete'}"
+ ]) 
+ #set($js_url=["$root_url/static/js/leaseDetail.js"]) 
+ #########################################DOM##################################### 

@@ -1,0 +1,12 @@
+ #parse("/common/common.vm")
+ #########################################script##################################### 
+ #set($js_config=[ 
+ "'urlMap':{ 
+   'ajax':'$root_url/cmsComment/ajax?', 
+   'query':'$root_url/cmsComment/index?', 
+   'save':'$root_url/cmsComment/save', 
+   'show':'$root_url/cmsComment/show?id=', 
+   'delet':'$root_url/cmsComment/delete'}"
+ ]) 
+ #set($js_url=["$root_url/static/js/cmsComment.js"]) 
+ #########################################DOM##################################### 

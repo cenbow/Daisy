@@ -1,0 +1,58 @@
+##帮助中心
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$res_url/source/css/post/help.css","$res_url/lib/frozenui/1.2.1/css/frozen.css",
+    "$m_css_url/common.css"])
+
+##
+##
+##<h2 class="u-header f-pos-r">
+##    <a href="$siteurl/mCenter/bankManage">返回</a>
+##        <span class="f-fs18">
+##            帮助中心
+##        </span>
+##</h2>
+<style>
+    body {
+        background: #f3f3f3;
+    }
+</style>
+##第三层
+<div class="m-QA">
+    <ul id="j-help-answer">
+        #foreach($quesAnswer in $quesAnswerList)
+            <li data-answerno="$!{quesAnswer.id}">
+                <h1>$!{quesAnswer.content}</h1>
+					<div class="u-help-answer">
+                        <div>$!{quesAnswer.answer}</div>
+					</div>
+			</li>
+        #end
+	</ul> 
+    <div class="u-help-more-wrapper j-help-more-wrapper">
+        <a class="j-help-more" data-os="$os">仍有疑问？</a>
+    </div>
+</div>
+<script src="$res_url/lib/js/sea.js"></script>
+<script src="$res_url/lib/js/zepto.min.js"></script>
+<script>
+    seajs.use('$res_url/source/js/post/help');
+</script>
+<script>
+    (function () {
+        //“意见反馈”区别调用不同app
+        var u = navigator.userAgent;
+        var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+        var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+        $(".j-help-more").on("click", function () {
+            if (isAndroid) {
+                Android.ToActivity("feedback", null);
+            } else if (isiOS) {
+                $(event.currentTarget).attr('href', 'yrw-skip://invokeMethod=feedback')
+            } else {
+                location.href = 'javascript:'
+            }
+        })
+    })()
+
+</script>

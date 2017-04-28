@@ -1,0 +1,18 @@
+ #parse("/common/common.vm")
+ #########################################script##################################### 
+ #set($js_config=[ 
+ "'urlMap':{ 
+   'ajax':'$root_url/contractSign/ajax?', 
+   },
+   'permission':{
+   
+   
+   	},
+   	'sign_status':#buildDictJson('sign_status'),
+   	'second_status':#buildDictJson('second_status'),
+   	
+   "
+ ]) 
+ #set($css_url=["$root_url/static/assets/css/dropzone.css","$root_url/static/js/lib/My97DatePicker/skin/WdatePicker.css"])
+ #set($js_url=["$root_url/static/assets/js/dropzone.min.js","$root_url/static/js/dz-upload.js","$root_url/static/js/contractSign.js","$root_url/static/js/lib/My97DatePicker/WdatePicker.js"]) 
+ #########################################DOM##################################### 

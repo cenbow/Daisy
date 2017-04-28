@@ -1,0 +1,54 @@
+<div tabindex="-1" class="modal fade" id="modal-orderPerson" style="display: none;" aria-hidden="true">
+	<div class="modal-dialog w700">
+		<div class="modal-content">
+			<div class="modal-header no-padding">
+				<div class="table-header header-color-dark">
+					<button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+						<span class="white">×</span>
+					</button>
+					<span class="modalFormTitle">投资人信息</span>
+				</div>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-xs-12 ">
+						<div class="table-responsive ">
+							<table id="coupon-table" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+								<tr><td>姓名</td><td id="orderPersonTrueName"></td><td>昵称</td><td id="orderPersonUsername"></td></tr>
+								<tr><td>电话</td><td id="orderPersonMobile"></td><td>身份证</td><td id="orderPersonIdentityNumber"></td></tr>
+								<tr><td>新浪存钱罐账号</td><td id="orderPersonSinaAccount"></td><td>银行卡支付方式</td><td id="orderPersonPayMethod"></td></tr>
+								<tr><td>银行名称</td><td id="orderPersonBankName"></td><td>银行卡号</td><td id="orderPersonCardNumber"></td></tr>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+
+<div tabindex="-1" class="modal fade" id="modal-returnOrderStatus" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog w700">
+        <div class="modal-content">
+            <div class="modal-header no-padding">
+                <div class="table-header header-color-dark">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+                        <span class="white">×</span>
+                    </button>
+                    <span class="modalFormTitle">退款订单状态</span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-12 ">
+                        <div class="table-responsive " id="returnorderstatus"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>

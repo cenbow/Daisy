@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body {
+            display: block;
+            margin: 0;
+            height: 500px;
+        }
+        .u-fullimg{
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+<img src="../../img/weixin/androidDownload.jpg" class="u-fullimg" id="j-fullimg">
+<script>
+    if(navigator.userAgent.indexOf('MicroMessenger')===-1){
+        document.getElementById('j-fullimg').style.display='none';
+        location.href='http://tuiguang-app.oss-cn-hangzhou.aliyuncs.com/yourongwang_kuhua.apk';
+    }
+</script>
+</body>
+</html>

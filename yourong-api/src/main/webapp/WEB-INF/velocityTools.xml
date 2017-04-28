@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tools>
+		
+	 <toolbox scope="request">
+        <!-- <tool key="toytool" class="ToyTool" restrictTo="index*"/> -->          
+    </toolbox>
+    
+    <toolbox scope="session">
+         <tool key="servletUtil" class="com.yourong.api.utils.ServletUtil" />
+         <tool key="tokenHelper" class="com.yourong.common.web.TokenHelper" />
+    </toolbox>
+    
+      <toolbox scope="application">
+     	 <tool key="stringUtil" class="com.yourong.common.util.StringUtil" />
+     	 <tool key="dateUtil" class="com.yourong.common.util.DateUtils" />     	 
+         <tool key="sysServiceUtil" class="com.yourong.api.utils.SysServiceUtils"/>
+       <tool key="paltformCapitalUtils" class="com.yourong.api.utils.PaltformCapitalUtils"/>-
+         <tool key="transactionUtils" class="com.yourong.api.utils.TransactionUtils"/>
+         <tool key="projectUtils" class="com.yourong.api.utils.ProjectUtils"/>
+		 <tool key="csrfTool" class="com.yourong.common.web.CSRFTool" />
+		 <tool key="formulaUtil" class="com.yourong.common.util.FormulaUtil" />
+		 <tool key="numberFormatUtil" class="com.yourong.common.util.NumberFormatUtil" />		
+		 <tool key="collections3" class="com.yourong.common.util.Collections3" />
+    </toolbox>
+	
+	
+</tools>

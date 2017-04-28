@@ -1,0 +1,48 @@
+#parse("/leaseBonusDetail/head.vm") 
+<div class="col-xs-12">
+  <p>
+    <button id = "new_leaseBonusDetail" type="button" class="btn btn-info btn-sm btn-primary" >新增</button>
+    <button id = "edit_leaseBonusDetail" type="button" class="btn  btn-pink btn-sm btn-primary" >修改</button>
+    <button id = "delete_leaseBonusDetail" type="button" class="btn btn-danger btn-sm btn-primary" >删除</button>
+  </p>
+</div>
+<div class="col-xs-12">
+     <div class="table-header">
+     		表头信息
+     </div>
+   <div class="table-responsive">
+     	<table id="leaseBonusDetail-table-2" class="table table-striped table-bordered" cellspacing="0" width="100%">
+     	       <thead> 
+     	           <tr>  
+     	            <th></th>
+ <th><input type="text" name="search_id"  class="input-small search_init" /></th>
+ <th><input type="text" name="search_leaseBonusId"  class="input-small search_init" /></th>
+ <th><input type="text" name="search_projectId"  class="input-small search_init" /></th>
+ <th><input type="text" name="search_memberId"  class="input-small search_init" /></th>
+ <th><input type="text" name="search_transactionId"  class="input-small search_init" /></th>
+ <th><input type="text" name="search_sinaCollectNo"  class="input-small search_init" /></th>
+ <th><input type="text" name="search_sinaPayNo"  class="input-small search_init" /></th>
+ <th><input type="text" name="search_bonusAmount"  class="input-small search_init" /></th>
+ <th><input type="text" name="search_createTime"  class="input-small search_init" /></th>
+ <th><input type="text" name="search_updateTime"  class="input-small search_init" /></th>
+         <th><button id = "query_leaseBonusDetail" type="button" class="btn btn-info btn-sm btn-primary">查询</button></th>
+                    </tr>
+ <tr >
+ <th ><label><input class="ace" type="checkbox"> <span class="lbl"></span></label></th>
+<th >主键</th>
+<th >租赁分红id</th>
+<th >项目id</th>
+<th >用户id</th>
+<th >交易id</th>
+<th >新浪代收交易号</th>
+<th >新浪代付交易号</th>
+<th >分红值</th>
+<th >创建时间</th>
+<th >更新时间</th>
+<th ></th>
+ </tr>
+ </thead>
+ </table>
+ </div>
+ </div>
+ #parse("/leaseBonusDetail/form.vm")

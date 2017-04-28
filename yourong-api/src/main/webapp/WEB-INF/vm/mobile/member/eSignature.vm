@@ -1,0 +1,178 @@
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($title='电子签名')
+<style>
+    body{
+        width: 100%;
+        height: 100%;
+        background: #eeeeee;
+    }
+    [v-cloak]{
+        display: none;
+    }
+    .u-aboutSign a{
+        position: absolute;
+        left: 80%;
+        font-size: 14px;
+    }
+    .u-siteSign{
+        width: 100%;
+        height: 50px;
+        line-height: 50px;
+        background: #fff;
+        margin-top: 22px;
+        color: #333333;
+        position: relative;
+    }
+    .u-siteSign span{
+        margin-left: 8px;
+    }
+    .u-outerCirle{
+        width: 50px;
+        height: 30px;
+        border: 1px solid #ccc;
+        border-radius: 15px;
+        position: absolute;
+        right: 8px;
+        top:10px;
+        background: #ffffff;
+    }
+    .u-insideCirle{
+        width: 28px;
+        height: 28px;
+        border: 1px solid #ccc;
+        border-radius: 50%;
+        position: absolute;
+        right: 20px;
+        top: 0px;
+        background: #ffffff;
+        z-index: 200;
+        box-shadow: 0px 1px 3px #cccccc;
+    }
+    .u-tipText{
+        margin: 9px 8px;
+        color: #999999;
+        font-size: 12px;
+        line-height: 20px;
+    }
+    .z-outerChoiced{
+        background: #d74148;
+        border: none;
+    }
+    .z-insideChoiced{
+        top: 1px;
+        right: 1px;
+        box-shadow: 0px 1px 3px #d74148;
+        border: none;
+    }
+    .u-splitters{
+        border-bottom: 1px solid #EFEFEF;
+        width: 90%;
+        margin-left: 10%;
+    }
+    .u-isSign{
+        width: 100%;
+        height: 50px;
+        line-height: 50px;
+        background: #fff;
+        font-size: 16px;
+    }
+    .u-isSign span{
+        margin-left: 8px;
+        color: #333333;
+    }
+    .u-isSign span i{
+        color: #999999;
+        margin-left: 4px;
+    }
+    .u-abouteSignature{
+        width: 90%;
+        position: fixed;
+        top: 25%;
+        left: 5%;
+        z-index: 10000;
+        border-radius: 5px;
+    }
+    .u-closeBtn{
+        width: 36px;
+        height: 36px;
+        margin: 25px 0 0 42%;
+    }
+    .u-abouteSignature p:first-child{
+        width: 100%;
+        height: 50px;
+        line-height: 50px;
+        background: #d74148;
+        color: #ffffff;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+    .u-abouteSignature p:first-child img{
+        width: 68px;
+        height: 80px;
+        margin: -56px 0 0 10px;
+        vertical-align: middle;
+    }
+    .u-abouteSignature .u-functionTip{
+        text-align: center;
+        line-height: 30px;
+        color: #262626;
+        padding: 20px 0 40px;
+        background: #ffffff;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+</style>
+<div id="j-setEsignature" v-cloak>
+<!--header-->
+<h2 class="u-header f-pos-r">
+    <a href="$siteurl/mCenter/security" id="j-backUrl">返回</a>
+    <span class="f-fs20" id="j-title">电&nbsp;子&nbsp;签&nbsp;名</span>
+    <span class="f-fr u-aboutSign"><a href="">了解签名</a></span>
+</h2>
+<!--/header-->
+##body
+<div class="u-siteSign">
+    <span class="f-fs16">自动签署</span>
+    <span :class="{'z-signed':signWay==0}" @click="setSign" style="position: absolute;width: 75%;height: 100%">
+        <div class="u-outerCirle " :class="{'z-outerChoiced':signWay==1}">
+            <div class="u-insideCirle " :class="{'z-insideChoiced':signWay==1}"></div>
+        </div>
+
+    </span>
+</div>
+
+<div class="u-isSign" v-if="signWay==1">
+    <div class="u-splitters"></div>
+<span>默认签名 <i v-text="name"></i></span>
+</div>
+<div class="u-tipText">
+    关闭自动签署后，您之后投资生成的每份协议，都需要手动操作完成签署。
+</div>
+##关于电子签名的介绍弹窗
+<div>
+<div class="u-abouteSignature f-dn">
+    <p class="f-fs20">
+        <img src="$res_url/img/member/eSignatureLogo.png" alt="">
+        电子签名，全新上线
+    </p>
+    <p class="f-fs14 u-functionTip">
+        专注您的资金安全 <br>
+        引进专业的CA认证技术 <br>
+        保障电子合同具有完整的司法效力 <br>
+        打造顶级安全防护体系 <br>
+        为您的合法权益保驾护航
+    </p>
+    <img class="u-closeBtn" src="$res_url/img/member/closeBtn.png" alt="">
+</div>
+
+</div>
+</div>
+##遮罩层
+<div class="u-cover j-cover"></div>
+#CSRFToken("xToken")
+#set($pageScript="
+<script>
+
+    seajs.use('$siteurl/res/source/js/modules/eSignature.js');
+</script>")

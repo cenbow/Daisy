@@ -1,0 +1,21 @@
+##用户中心－页面模板
+#parse("/common/common.vm")
+#set($title="邮箱绑定成功_我的信息_$!{title_suffix}")
+#set($css_url=["$cssv2_url/member/member.css"])
+#set($js_url=["$root_js_url/modules/member.js"])
+
+<div class="g-wrap u-page-tips f-round u-page-t1">
+	<div class="u-tips-box">
+		#if(${email})
+		<i class="u-icon u-icon-success2 f-icon-35"></i>
+		<p class="f-fs18 f-fwb">
+			您的<em class="f-fwb">$!{email}</em>邮箱已经绑定成功了。
+		</p>
+		#else
+		<i class="u-icon u-icon-error2 f-icon-35"></i>
+		<p class="f-fs18 f-fwb">
+			您的绑定邮箱链接已经失效。
+		</p>
+		#end
+	</div>
+</div>

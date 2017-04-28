@@ -1,0 +1,494 @@
+##50亿活动
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$res_url/source/css/activity/fiveBillion.css"])
+#set($title="福临50亿$!{title_suffix}")
+#set($aliyun='https://yrstatic.oss-cn-hangzhou.aliyuncs.com')
+<script>
+    var url = window.location.href, title = '福临50亿';
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        window.shareData = {
+            "timeLineLink": url,
+            "sendFriendLink": url,
+            "weiboLink": url,
+            "tTitle": "福临50亿",
+            "tContent": "",
+            "fTitle": "福临50亿",
+            "fContent": "",
+            "wContent": "福临50亿"
+        };
+        // 发送给好友
+        if (typeof(WeixinJSBridge) !== 'undefined') {
+            WeixinJSBridge.on('menu:share:appmessage', function (argv) {
+                WeixinJSBridge.invoke('sendAppMessage', {
+                    "img_url": "../../static/img/weixin/weixin_fiveBillion.png",
+                    "img_width": "358",
+                    "img_height": "328",
+                    "link": window.shareData.sendFriendLink,
+                    "desc": window.shareData.fContent,
+                    "title": window.shareData.fTitle
+                }, function (res) {
+                    _report('send_msg', res.err_msg);
+                })
+            });
+            // 分享到朋友圈
+            WeixinJSBridge.on('menu:share:timeline', function (argv) {
+                WeixinJSBridge.invoke('shareTimeline', {
+                    "img_url": "../../static/img/weixin/weixin_fiveBillion.png",
+                    "img_width": "358",
+                    "img_height": "328",
+                    "link": window.shareData.timeLineLink,
+                    "desc": window.shareData.tContent,
+                    "title": window.shareData.tTitle
+                }, function (res) {
+                    _report('timeline', res.err_msg);
+                });
+            });
+        }
+    }, false);
+</script>
+
+#set($debug=$request.getParameter("debug"))
+#set($encryptionId=$request.getParameter("encryptionId"))
+#set($loginSource=$request.getHeader("loginSource"))
+
+#if($currentUser)
+    #set($logined=true)
+#else
+    #set($logined=false)
+#end
+#set($os=3)
+##  安卓
+#if($loginSource==1)
+    #set($os=1)
+#end
+##  IOS
+#if($loginSource==2)
+    #set($os=2)
+#end
+<div class="g-main" id="j-fiveBillion" v-cloak>
+    #if($loginSource==1 || $loginSource==2)
+        <style>
+            .g-ft {
+                display: none;
+            }
+        </style>
+    #else
+    ##header，安卓ios，不需要头部
+        <h2 class="u-pageTitle f-pos-r u-section1-title" id="j-title">
+            <a href="$m_url">有融网</a>
+            <span class="u-login-link f-pos-a">
+                #if(!$currentUser)
+                    <a href="{{loginUrl}}">登录</a>
+            <a href="$siteurl/mstation/register">注册</a>
+                #else
+                    <a href="$mCenter_logout_url">退出</a>
+                #end
+            </span>
+        </h2>
+    #end
+
+##  底部导航
+    <div class="u-nav">
+        <ul class="f-pos-r">
+            <li @click="switchPage(1)">
+                <img src="$aliyun/res/img/activity/fiveBillion/title1_button.png" v-show="gamePage!=1">
+                <img src="$aliyun/res/img/activity/fiveBillion/title1_actived.png" class="f-active"
+                     v-show="gamePage==1">
+            </li>
+            <li @click="switchPage(2)">
+                <img src="$aliyun/res/img/activity/fiveBillion/title2_button.png" v-show="gamePage!=2">
+                <img src="$aliyun/res/img/activity/fiveBillion/title2_activited.png" class="f-active"
+                     v-show="gamePage==2">
+            </li>
+            <li @click="switchPage(3)">
+                <img src="$aliyun/res/img/activity/fiveBillion/title3_button.png" v-show="gamePage!=3">
+                <img src="$aliyun/res/img/activity/fiveBillion/title3_activited.png" class="f-active"
+                     v-show="gamePage==3">
+            </li>
+        </ul>
+    </div>
+##    非正常模式弹框
+    <div class="u-abnormal-tips" v-show="tipsShow">
+        <p>{{tipsTextList[tipsType]}}</p>
+    </div>
+
+##  阴影层
+    <div class="u-shade-cover" v-show="coverShow"></div>
+    <div class="u-shade-cover z-white" v-show="whiteCoverShow"></div>
+
+##  实物奖品
+    <div class="m-tips-box f-object animated zoomIn" v-show="sign=='entity'">
+        <div class="u-disappear-buttton f-pos-a" @click="closeDialog()"><img src="$res_url/img/activity/fiveBillion/cancel.png"></div>
+        <div class="u-big-award">
+            <h1>好手气！获得</h1>
+            <img src="$aliyun/res/img/activity/fiveBillion/kindle.png" v-if="myLotteryObj.rewardIndex==7">
+            <img src="$aliyun/res/img/activity/fiveBillion/iphone7.png" v-if="myLotteryObj.rewardIndex==0">
+            <img src="$aliyun/res/img/activity/fiveBillion/watch.png" v-if="myLotteryObj.rewardIndex==2">
+            <img src="$aliyun/res/img/activity/fiveBillion/jd-card.png" v-if="myLotteryObj.rewardIndex==5">
+            <h2>{{myLotteryObj.rewardText}}</h2>
+            <p>活动结束后我们将在<br>3个工作日内与您联系~</p>
+        </div>
+    </div>
+
+##  人气值奖品提示
+    <div class="m-tips-box f-fixed-width animated zoomIn" v-show="sign=='popularity'">
+        <div class="u-disappear-buttton f-pos-a" @click="closeDialog()"><img src="$res_url/img/activity/fiveBillion/cancel.png"></div>
+        <div class="u-ticket-award">
+            <p>客官，奉上<br/>
+                <strong>
+                    <i>{{myLotteryObj.rewardValue}}</i>点人气值
+                </strong>
+                <br/>以表诚意~
+            </p>
+        </div>
+    </div>
+
+##  优惠券奖品提示
+    <div class="m-tips-box f-fixed-width animated zoomIn" v-show="sign=='coupon'">
+        <div class="u-disappear-buttton f-pos-a" @click="closeDialog()"><img
+                src="$aliyun/res/img/activity/fiveBillion/cancel.png"></div>
+        <div class="u-ticket-award">
+            <p>恭喜您获得<br>
+                <strong>{{myLotteryObj.rewardText}}</i>一张</strong>
+            </p>
+        </div>
+    </div>
+
+    <div class="m-tips-box animated zoomIn" v-show="sign == 'selectLotteryType'">
+        <div class="u-disappear-buttton f-pos-a" @click="closeDialog()"><img
+                src="$aliyun/res/img/activity/fiveBillion/cancel.png"></div>
+        <div class="u-confirm-lottery">
+            <p>确认消耗<i v-if="lotteryType===1">1</i><i v-else>{{init.number}}</i>张抽奖券抽奖吗？</p>
+            <a href="javascript:" @click="lottery('.gift', $event)" v-show="lotteryType===1">确认并抽奖</a>
+            <a href="javascript:" @click="lottery('.bigGift', $event)" v-show="lotteryType===2">确认并抽奖</a>
+        </div>
+    </div>
+
+##文案提示
+    <div class="m-tips-box animated zoomIn" v-show="sign=='luckyBagWin'">
+        <div class="u-disappear-buttton f-pos-a" @click="closeDialog()"><img src="$res_url/img/activity/fiveBillion/cancel.png"></div>
+        <div class="u-text-tips">哇咔咔，福袋已是您的囊中之物啦，<br>赶紧去使用吧~</div>
+    </div>
+
+    <div class="m-tips-box animated zoomIn" v-show="sign=='noLotteryCount'">
+        <div class="u-disappear-buttton f-pos-a" @click="closeDialog()"><img src="$res_url/img/activity/fiveBillion/cancel.png"></div>
+        <div class="u-text-tips">客官，您的抽奖券不足</div>
+    </div>
+
+##  确认领取福袋提示
+    <div class="m-tips-box f-fudai animated zoomIn" v-show="sign=='getBagWin'">
+        <div class="u-disappear-buttton f-pos-a" @click="closeDialog()"><img src="$res_url/img/activity/fiveBillion/cancel.png"></div>
+        <div class="u-confirm-lottery">
+            <p>活动期间只能领一个哦，确认领取？</p>
+            <a @click="sureGetLuckyBag($event)">确认</a>
+        </div>
+    </div>
+
+##  现金券收益券使用规则
+    <div class="m-tips-box f-tickets-regular animated zoomIn" v-show="sign=='useRegular'">
+        <div class="u-disappear-buttton f-pos-a" @click="closeDialog()"><img
+                src="$res_url/img/activity/fiveBillion/cancel.png"></div>
+        <p>收益券无限制，现金券使用规则如下：</p>
+        <table>
+            <thead>
+            <tr>
+                <th>现金券</th>
+                <th>起投金额（元）</th>
+                <th>起投期限（天）</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>28</td>
+                <td>2000</td>
+                <td>50</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>288</td>
+                <td>6000</td>
+                <td>180</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>1288</td>
+                <td>50000</td>
+                <td>80</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+##  抽奖活动抽奖券提示框
+    <div class="m-tips-box f-tickets-regular animated zoomIn" v-show="sign=='howtoget'">
+        <div class="u-disappear-buttton f-pos-a" @click="closeDialog()"><img
+                src="$res_url/img/activity/fiveBillion/cancel.png"></div>
+        <p>活动期间注册的用户，单笔投资2个月及以上的项目，每满1000元可获一张抽奖券，其余用户单笔投资2个月及以上的项目，
+            每满2000元可获一张抽奖券，多投多得哦~</p>
+    </div>
+
+
+##  中奖纪录弹框
+    <div class="u-award-record" v-show="sign=='awardHistory'">
+        #if($os > 2)
+            <h1>我的中奖纪录
+                <div class="u-goback" @click="closeDialog()">返回</div>
+            </h1>
+        #end
+        <div v-if="lotteryRecord.length>0" class="u-record-wrapper #if($os==1||$os==2)f-mt#end">
+            #if($os==1||$os==2)
+                <h3 class="u-inner-title">我的中奖记录</h3>
+            #end
+            <ul>
+                <li v-for="list in lotteryRecord">{{list.rewardInfo}}<i>{{list.happenTime | formatTime 'yyyy.MM.dd hh:mm'}}</i></li>
+            </ul>
+            <a href="javascript:void(0)" @click="loadMoreData($event)" v-if="pages.pageNo<pages.totalPageCount">
+                <div class="u-reloadMore" :class="{'z-loading':isLoad}">
+                    <span v-if="isLoad">加载中...</span>
+                    <span v-else>加载更多</span>
+                </div>
+            </a>
+        </div>
+        <div class="u-no-history" v-else>
+            <img src="$aliyun/res/img/activity/fiveBillion/nohistory.png">
+            <strong>暂无中奖纪录</strong>
+        </div>
+    </div>
+
+##  抢福袋
+    <div class="m-head f-pos-r" v-show="gamePage==1">
+        <img src="$aliyun/res/img/activity/fiveBillion/head.png">
+        <div class="u-time"> 活动时间：2017.02.20~{{init.endTime | formatTime
+            'yyyy.MM.dd'}}
+        </div>
+        <div class="u-luck-bags">
+            <div class="u-position-center">
+                <a href="javascript:" @click="getLuckyBag(1, $event)">
+                    <p>28元现金券<br>＋1.5%收益券<br>各一张</p>
+                    <div class="u-get-button" :class="{'f-disabled':init.reward===1}">
+                        <template v-if="init.reward!==1">立即领取</template>
+                        <template v-else>已领取</template>
+                    </div>
+                </a>
+                <a href="javascript:" @click="getLuckyBag(2, $event)">
+                    <p>288元现金券<br>＋1.5%收益券<br>各一张</p>
+                    <div class="u-get-button" :class="{'f-disabled':init.reward===2}">
+                        <template v-if="init.reward!==2">立即领取</template>
+                        <template v-else>已领取</template>
+                    </div>
+                </a>
+                <a href="javascript:" class="f-no-margin" @click="getLuckyBag(3, $event)">
+                    <p>1288元现金券<br>＋1.5%收益券<br>各一张</p>
+                    <div class="u-get-button" :class="{'f-disabled':init.reward===3}">
+                        <template v-if="init.reward!==3">立即领取</template>
+                        <template v-else>已领取</template>
+                    </div>
+                </a>
+            </div>
+            <div class="f-use-regular" @click="openDialog('useRegular')">查看优惠券使用规则 >></div>
+        </div>
+    </div>
+
+##  福禄双全
+    <div class="m-lottery-body f-pos-r" v-show="gamePage==2">
+        <img src="$aliyun/res/img/activity/fiveBillion/body-bg.png" style="width:100%;height:64.6rem;">
+        <div class="m-lottery-game f-pos-a">
+            <h1><img src="$aliyun/res/img/activity/fiveBillion/game2-title.png"></h1>
+            <h2>我的抽奖券<br><strong>{{init.countLuckBoth}}</strong>
+                张<em @click="openDialog('howtoget')">如何获得?</em></h2>
+            <h3>抽奖机会：{{init.countLuckBoth}}次</h3>
+            <h4>每次抽奖消耗<em>1张</em>抽奖券</h4>
+
+            <table class="u-lottery">
+                <tr>
+                    <td><img src="$aliyun/res/img/activity/fiveBillion/fistgame_1.png" class="gift gift0"></td>
+                    <td><img src="$aliyun/res/img/activity/fiveBillion/fistgame_2.png" class="gift gift1"></td>
+                    <td><img src="$aliyun/res/img/activity/fiveBillion/fistgame_3.png" class="gift gift2"></td>
+                </tr>
+                <tr>
+                    <td><img src="$aliyun/res/img/activity/fiveBillion/fistgame_4.png" class="gift  gift7"></td>
+                    <td class="f-button">
+                        <a href="javascript:" @click="ableTolottery(1,$event)">
+                            <img :class="{'f-press' : sign=='selectLotteryType' }"
+                                 src="$aliyun/res/img/activity/fiveBillion/button.png"></a>
+                    </td>
+                    <td><img src="$aliyun/res/img/activity/fiveBillion/fistgame_5.png" class="gift gift3"></td>
+                </tr>
+                <tr>
+                    <td><img src="$aliyun/res/img/activity/fiveBillion/fistgame_6.png" class="gift gift6"></td>
+                    <td><img src="$aliyun/res/img/activity/fiveBillion/fistgame_7.png" class="gift gift5"></td>
+                    <td><img src="$aliyun/res/img/activity/fiveBillion/fistgame_8.png" class="gift gift4"></td>
+                </tr>
+            </table>
+            <a href="javascript:;" @click="awardRecord('awardHistory',$event)" class="u-award-history">我的中奖纪录>></a>
+            <div class="u-award-userlist f-pos-r">
+                <img src="$aliyun/res/img/activity/fiveBillion/userlist-bg.png">
+                <h6 class="f-pos-a"><img src="$aliyun/res/img/activity/fiveBillion/list2_title.png"></h6>
+                <div class="u-userlist">
+                    <ul class="j-usersRankList">
+                        <li v-for="item in init.doubleRecord" class="f-pos-r">
+                            <img :src="item.avatars | avatarUrl" alt="用户头像">
+                            <div class="u-user-message" v-if="item.rewardInfo">
+                                    恭喜{{ item.usernames | item.username }} 获得<strong>{{item.rewardInfo}} </strong>
+                                    <em class="u-award-time">{{item.happenTime | formatTime 'yyyy.MM.dd hh:mm'}}</em>
+                            </div>
+                            <div class="u-no-luckperson" v-else>虚位以待</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <a href="#activityRule" class="u-regular-button" @click="sign='activityRegular'">活动规则</a>
+        </div>
+    </div>
+
+##  福与天齐
+    <div class="m-lottery-body f-pos-r" v-show="gamePage==3">
+        <img src="$aliyun/res/img/activity/fiveBillion/body-bg.png" style="width:100%;height:64.6rem;">
+        <div class="m-lottery-game f-pos-a">
+            <h1><img src="$aliyun/res/img/activity/fiveBillion/game3-title.png"></h1>
+            <h2>我的抽奖券<br><strong>{{init.countLuckBoth}}</strong>
+                张<em @click="openDialog('howtoget')">如何获得?</em></h2>
+            <h3>抽奖机会：{{init.countLuckMonkey}}次</h3>
+            <h4>每次抽奖消耗<em>{{init.number}}张</em>抽奖券</h4>
+
+            <table class="u-lottery">
+                <tr>
+                    <td><img src="$aliyun/res/img/activity/fiveBillion/secondgame0.png" class="bigGift bigGift0"></td>
+                    <td><img src="$aliyun/res/img/activity/fiveBillion/secondgame1.png" class="bigGift bigGift1"></td>
+                    <td><img src="$aliyun/res/img/activity/fiveBillion/secondgame2.png" class="bigGift bigGift2"></td>
+                </tr>
+                <tr>
+                    <td><img src="$aliyun/res/img/activity/fiveBillion/secondgame7.png" class="bigGift  bigGift7"></td>
+                    <td class="f-button">
+                        <a href="javascript:" @click="ableTolottery(2,$event)">
+                        <img :class="{'f-press' : sign=='selectLotteryType'}"
+                             src="$aliyun/res/img/activity/fiveBillion/button.png"></a></td>
+                    <td><img src="$aliyun/res/img/activity/fiveBillion/secondgame3.png" class="bigGift bigGift3"></td>
+                </tr>
+                <tr>
+                    <td><img src="$aliyun/res/img/activity/fiveBillion/secondgame6.png" class="bigGift bigGift6"></td>
+                    <td><img src="$aliyun/res/img/activity/fiveBillion/secondgame5.png" class="bigGift bigGift5"></td>
+                    <td><img src="$aliyun/res/img/activity/fiveBillion/secondgame4.png" class="bigGift bigGift4"></td>
+                </tr>
+            </table>
+            <a href="#monkeyRecord" @click="awardRecord('awardHistory',$event)" class="u-award-history">我的中奖纪录>></a>
+            <div class="u-award-userlist f-pos-r">
+                <img src="$aliyun/res/img/activity/fiveBillion/userlist-bg.png">
+                <h6 class="f-pos-a"><img src="$aliyun/res/img/activity/fiveBillion/list3_title.png"></h6>
+                <div class="u-userlist">
+                    <ul class="j-usersRankList">
+                        <li v-for="item in init.monkeyRecord" class="f-pos-r">
+                            <img :src="item.avatars | avatarUrl" alt="用户头像">
+                            <div class="u-user-message" v-if="item.rewardInfo">
+                                    恭喜{{ item.usernames | item.username }} 获得<strong>{{item.rewardInfo}} </strong>
+                                    <em class="u-award-time">{{item.happenTime | formatTime 'yyyy.MM.dd hh:mm'}}</em>
+                            </div>
+                            <div class="u-no-luckperson" v-else>虚位以待</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <a href="javascript:" class="u-regular-button" @click="sign='activityRegular'">活动规则</a>
+        </div>
+    </div>
+
+##  活动规则
+    <div class="u-regular-content" v-show="sign=='activityRegular'">
+        #if($os > 2)
+            <h1 class="f-pos-r">活动规则
+                <div class="u-goback" @click="sign=''">返回</div>
+            </h1>
+        #else
+            <h3 class="u-inner-title">活动规则</h3>
+        #end
+        <div class="u-content-list #if($os==1||$os==2)f-mt#end">
+            1. 活动对象：有融网所有用户；<br>
+            2. 活动时间：{{init.startTime | formatTime 'yyyy年M月d日 hh:mm'}}~{{init.endTime | formatTime 'M月d日 hh:mm'}}；<br>
+            3. 现金券领取后5天内有效，使用规则如下：<br>
+        <table>
+            <thead>
+            <tr>
+                <th>现金券</th>
+                <th>起投金额（元）</th>
+                <th>起投期限（天）</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>20</td>
+                <td>2000</td>
+                <td>25</td>
+            </tr>
+            <tr>
+                <td>28</td>
+                <td>2000</td>
+                <td>50</td>
+            </tr>
+            <tr>
+                <td>80</td>
+                <td>4000</td>
+                <td>50</td>
+            </tr>
+            <tr>
+                <td>158</td>
+                <td>6000</td>
+                <td>80</td>
+            </tr>
+            <tr>
+                <td>288</td>
+                <td>6000</td>
+                <td>180</td>
+            </tr>
+            <tr>
+                <td>588</td>
+                <td>28000</td>
+                <td>50</td>
+            </tr>
+            <tr>
+                <td>1288</td>
+                <td>50000</td>
+                <td>80</td>
+            </tr>
+            <tr>
+                <td>1328</td>
+                <td>50000</td>
+                <td>80</td>
+            </tr>
+            </tbody>
+        </table>
+            4. 转让项目不参与本活动；<br>
+            5. 发放说明：实物奖励将于活动结束后3个工作日内与您联系，请保持手机畅通，
+            如错过通知则视为放弃获奖资格（实物奖励可兑换成人气值，人气值=奖品标注价格。
+            其中：kindle入门版价值￥558，200元京东购物卡价值￥200，DW手表价值￥1188，iPhone7
+            128G价值￥5588）；<br>
+            6. 如有其他疑问，请拨打客服热线：400-025-6688；<br>
+            7. 本活动与苹果公司无关，最终解释权归有融网所有。<br>
+        </div>
+    </div>
+
+</div>
+
+#set($pageScript="
+<script src='$res_url/build/js/appHook.js'></script>
+<script src='$res_url/lib/vue/vue.min.js'></script>
+<script src='$res_url/lib/vue/vue.extend.js'></script>
+##<script src='$siteurl/res/lib/js/vconsole.min.js'></script>
+<script>
+    var receiveData = $!{data},
+            os = $!{os},
+            logined = $!{logined},
+            debug = $debug
+    console.log(receiveData)
+    seajs.use('$res_url/source/js/activity/fiveBillion.js');
+</script>
+")
+#CSRFToken("xToken")

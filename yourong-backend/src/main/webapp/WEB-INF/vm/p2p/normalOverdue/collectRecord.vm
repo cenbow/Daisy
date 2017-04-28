@@ -1,0 +1,38 @@
+<div tabindex="-1" class="modal fade" id="process-modal-table" style="display: none;" aria-hidden="true">
+	<div class="modal-dialog" style="width:600px;">
+		<div class="modal-content">
+			<div class="modal-header no-padding">
+				<div class="table-header">
+					<button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+						<span class="white">×</span>
+					</button>
+					<span class="modalFormTitle">催收历程</span>
+				</div>
+			</div>
+			<div class="modal-body">
+    			<table id="collectRecord-table" class="table table-striped table-bordered" cellspacing="0" width="100%">
+									<thead>
+										<tr>
+			        						<th width="10%">序号</th>
+				        					<th width="15%">催收日期</th>
+				        					<th width="9%">催收形式</th>
+				        					<th width="9%">催收结果</th>
+				        					<th width="9%">结果详情</th>
+				        					<th width="15%">下次催收日期</th>
+				        					<th width="15%">下次催收形式</th>
+				        					<th width="9%">操作</th>
+        								</tr>
+									</thead>
+			  </table>
+			  
+			<div>
+			</div>
+    				
+    		</div>
+					##<div style="clear:both"></div>
+    		</div>
+		</div>
+	<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>

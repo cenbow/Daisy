@@ -1,0 +1,110 @@
+##帮助中心
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($encryptionId=$request.getParameter("encryptionId"))
+#set($css_url=["$res_url/source/css/post/help.css","$res_url/lib/frozenui/1.2.1/css/frozen.css","$m_css_url/common.css"])
+#if($link.getContextPath() == '')
+    #set($siteurl='')
+#else
+    #set($siteurl=$link.getContextPath() )
+#end
+
+##<h2 class="u-header f-pos-r">
+##    <a href="$siteurl/mCenter/bankManage">返回</a>
+##        <span class="f-fs18">
+##            帮助中心
+##        </span>
+##</h2>
+<style>
+    body{
+        background: #f3f3f3;
+    }
+</style>
+    ##第一层（首屏）
+    <div class="m-homepage">
+        <input class="j-siteurl-link" hidden="hidden" data-siteurl="$siteurl" data-encryptionId="$encryptionId">
+        <div class="u-homepage-interlayer"></div>
+        <div class="u-help-type">
+            <div class="f-center">
+                <span class="u-icon-account" data-url="account">
+                    <a href="$siteurl/mstation/post/helpQuestionTypes?type=account&osnum=$os"><img
+                            src="../../res/img/post/help/ico_account.png" width="32px" height="32px"><em>账户类</em></a>
+                </span><span class="u-icon-fund" data-url="fund">
+                    <a href="$siteurl/mstation/post/helpQuestionTypes?type=fund&osnum=$os"><img
+                            src="../../res/img/post/help/ico_fund.png" width="32px" height="32px"><em>资金类</em></a>
+
+                </span><span class="u-icon-invest" data-url="invest">
+                    <a href="$siteurl/mstation/post/helpQuestionTypes?type=invest&osnum=$os"><img
+                            src="../../res/img/post/help/ico_investment.png" width="32px" height="32px"><em>投资类</em></a>
+
+                </span><span class="u-icon-function" data-url="function">
+                    <a href="$siteurl/mstation/post/helpQuestionTypes?type=function&osnum=$os"><img
+                            src="../../res/img/post/help/ico_function.png" width="32px" height="32px"><em>功能类</em></a>
+                </span>
+            </div>
+            <span class="u-icon-activity" data-url="activity">
+                    <a href="$siteurl/mstation/post/helpQuestionTypes?type=activity&osnum=$os"><img
+                            src="../../res/img/post/help/ico_activity.png" width="32px" height="32px"><em>活动类</em></a>
+        </div>
+
+        <h4><em></em>热门问题</h4>
+        <div class="u-help-hot">
+            <table>
+                <tbody id="j-help-hot">
+                	#foreach($hotQuestion in $hotQuestionList)
+                    <tr data-answerno="$!{hotQuestion.id}">
+                        <td width="97%"><span>$!{hotQuestion.content}</span></td>
+                        <td width="3%"><em></em></td>
+                    </tr>
+                    #end
+                </tbody>
+            </table>
+        </div>
+        <div class="u-help-more-wrapper">
+            <a class="j-help-more">没有你想要找的问题？</a>
+        </div>
+    </div>
+
+
+
+<script src="$res_url/lib/js/sea.js"></script>
+<script src="$res_url/lib/js/zepto.min.js"></script>
+##<script src='$siteurl/res/lib/js/vconsole.min.js'></script>
+<script>
+    var loginSource = '$loginSource'
+    seajs.config({
+        paths: {
+            'lib':'$res_url/lib',
+            'xjs':'$res_url/source/js',
+            'xcss':'$res_url/source/css'
+        },
+        alias: {
+            'zepto': 'lib/js/zepto.min',
+            'jquery': '$aliyunOss_url/res/lib/jquery/v1/jquery.min.js',
+            'frozen': '$aliyunOss_url/res/lib/FrozenUI/1.3.0/js/frozen.js',
+            'lodash': '$aliyunOss_url/res/lib/lodash/3.10.1/lodash.min.js',
+            'wxShare':'xjs/common/wxShare',
+            'validform':'lib/js/validform',
+            'template':'lib/js/template',
+            'base': 'xjs/base'
+        }
+    });
+    seajs.use('$res_url/source/js/post/help');
+</script>
+<script>
+    (function(){
+        var u = navigator.userAgent;
+        var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+        var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+        //“意见反馈”区别调用不同app
+        $(".j-help-more").on("click",function(){
+            if (isAndroid) {
+                Android.ToActivity("feedback",  null);
+            } else if (isiOS) {
+                $(event.currentTarget).attr('href', 'yrw-skip://invokeMethod=feedback')
+            } else {
+                location.href = 'javascript:'
+            }
+        })
+    })()
+</script>

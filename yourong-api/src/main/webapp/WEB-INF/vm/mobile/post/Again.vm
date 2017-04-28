@@ -1,0 +1,135 @@
+
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$res_url/source/css/activity/Again/Again.css"])
+
+#if($currentUser)
+    #set($logined=true)
+#else
+    #set($logined=false)
+#end
+#CSRFToken('xToken')
+##  安卓
+#if($loginSource==1)
+    #set($os=1)
+#end
+##  IOS
+#if($loginSource==2)
+    #set($os=2)
+#end
+##
+#if($loginSource==1 || $loginSource==2)
+<style>
+    .g-ft{
+        display: none;
+    }
+</style>
+#else
+##header，安卓ios，不需要头部
+<h2 class="u-pageTitle f-pos-r">
+    <a href="$siteurl/mIndex">有融网</a>
+        <span class=" f-pos-a f-fs18 f-ff-ver">
+            #if(!$currentUser)
+                <a href="$siteurl/mstation/login" id="j-login">登录</a>
+                <a href="$siteurl/mstation/register" id="j-register">注册</a>
+            #else
+                <a href="$mCenter_logout_url">退出</a>
+            #end
+        </span>
+</h2>
+#end
+<style>
+
+</style>
+##页头
+<div class="g-wrap" id="j-os" data-os="$os">
+    <div class="m-Again-banner">
+        <img src="$res_url/img/activity/Again/Again-hd01.jpg" alt="" width="100%"/>
+        <img src="$res_url/img/activity/Again/Again-hd02.jpg" alt="" width="100%"/>
+        <img src="$res_url/img/activity/Again/Again-hd03.jpg" alt="" width="100%"/>
+    </div>
+##    直播
+    <div class="m-Again-video">
+        <div class="u-title">
+            <img src="$res_url/img/activity/Again/Again-title-left.png" alt="" width="100%"/><span>现场直播</span><img src="$res_url/img/activity/Again/Again-title-right.png" alt=""/>
+        </div>
+        <div class="u-Again-video">
+##            <video src="http://player.youku.com/embed/XMTM3MDA2MDcwMA==" controls="controls">
+            <iframe id="j-meetingPreHeat-youku" height="300px" width=100% src="http://yunxi.tv/livestream/b04af2990abd46b6828ed8434c8a1ac7?utm_source=backend&utm_medium=frame&utm_campaign=yunxi&frame=1" frameborder=0 allowFullScreen></iframe>
+        </div>
+    </div>
+##    投资方介绍
+    <div class="m-Again-investor">
+        <div class="u-title">
+            <img src="$res_url/img/activity/Again/Again-title-left.png" alt="" width="100%"/><span>投资方介绍</span><img src="$res_url/img/activity/Again/Again-title-right.png" alt="" width="100%"/>
+        </div>
+        <div class="u-Again-investor">
+            <strong>鼎立控股集团 </strong>
+            <p>
+                鼎立控股集团是一家集矿产、制造、房地产开发、医药、建筑、旅游、金融等于一体的大型现代化企业集团，总资产近百亿元。下辖实业、置业、医药、建设四大集团、拥有一家上市公司——上海鼎立科技发展(集团)股份有限公司(A股代码600614、B股代码900907)。曾荣获“全国守合同重信用企业”、“中华民族品牌奖”、“全国民营企业500强”、“全国十佳诚信单位”、“中国首批信用体系建设先进单位”等百余项国家级荣誉。近几年来，鼎立控股在金融业领域不断拓展，相继参股湖州银行、上海浦东新区长江鼎立小额贷款有限公司，在加快产业升级以及发展金融业方面不断迈出坚实的步伐。
+                <a href="http://www.dingligroup.com/">了解更多 >></a>
+            </p>
+        </div>
+    </div>
+##    媒体合作
+    <div class="m-Again-media">
+        <div class="u-title">
+            <img src="$res_url/img/activity/Again/Again-title-left.png" alt="" width="100%"/><span>媒体合作</span><img src="$res_url/img/activity/Again/Again-title-right.png" alt="" width="100%"/>
+        </div>
+        <div class="u-Again-media">
+            <img src="$res_url/img/activity/Again/Again-media.png" width="100%">
+        </div>
+    </div>
+##    发展历程
+    <div class="m-Again-development">
+        <div class="u-title">
+            <img src="$res_url/img/activity/Again/Again-title-left.png" alt="" width="100%"/><span>发展历程</span><img src="$res_url/img/activity/Again/Again-title-right.png" alt="" width="100%"/>
+        </div>
+        <p>感恩有你一路同行，相携相伴。未来还有无限可能，邀您见证！</p>
+        <div class="u-Again-development">
+            <img src="$res_url/img/activity/Again/Again-development.png" width="100%">
+        </div>
+    </div>
+##    官微互动
+    <div class="m-Again-activity">
+        <div class="u-title">
+            <img src="$res_url/img/activity/Again/Again-title-left.png" alt="" width="100%"/><span>官微互动</span><img src="$res_url/img/activity/Again/Again-title-right.png" alt="" width="100%"/>
+        </div>
+        <div class="u-Again-activity">
+            <dl>
+                <dt><img src="$res_url/img/activity/Again/Again-weibo.jpg" alt="" width="100%"/></dt>
+                <dd>
+                    <strong>微博互动</strong>
+
+                    关注有融网新浪官方微博，
+
+                    参与话题互动，
+
+                    更多惊喜好礼等着你。
+
+                    <span>官方微博：有融网</span>
+
+                </dd>
+
+            </dl>
+            <dl>
+                <dt><img src="$res_url/img/activity/Again/Again-weixin.jpg" alt="" width="100%"/></dt>
+                <dd>
+                    <strong>微信互动</strong>
+
+                    关注有融网微信公众号，
+
+                    平台最新活动资讯一手掌握，
+
+                    发布会现场精彩内容不容错过。
+
+                    <span>官方微信：yourong_weixin</span>
+                </dd>
+
+
+            </dl>
+        </div>
+    </div>
+</div>
+
+

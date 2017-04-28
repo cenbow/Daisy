@@ -1,0 +1,128 @@
+#set($title="信息披露-有融网-全透明的互联网理财优选平台")
+#set($keywords="关于有融,有融网")
+#set($description="有融网运用高效的运营管理体系和创新的互联网思维,搭建了一个安全透明的互联网理财服务平台.")
+
+#parse('/common/common.vm')
+#set($css_url=["$root_css_url/post/disclosure.css"])
+
+<div class="g-wrap f-clear">
+    <div class="u-head-nav">
+        <a href="$root_url/about/index.html">有融简介</a><a href="$root_url/about/disclosure"
+                                                        class="z-selected">信息披露</a><a
+            href="$root_url/about/honor">资质荣誉</a>
+        <a href="$root_url/about/cooperator">合作伙伴</a><a href="$root_url/article/news#notice">平台动态</a><a
+            href="$root_url/about/join">加入有融</a>
+    </div>
+</div>
+
+
+<div class="u-banner">
+    <div class="g-wrap f-clear">
+        <h1>信息披露</h1>
+        <p>拥抱监管&nbsp;合规运营</p>
+    </div>
+</div>
+
+<div class="g-about-wrap m-content">
+    <h1>机构信息披露</h1>
+    <table>
+        <tbody>
+        <tr>
+            <td>全称及简称</td>
+            <td>浙江小融网络科技股份有限公司</td>
+        </tr>
+        <tr>
+            <td>注册/实缴资本</td>
+            <td>5000万元整</td>
+        </tr>
+        <tr>
+            <td>注册地址</td>
+            <td>杭州市西湖区浙商财富中心3幢1207室</td>
+        </tr>
+        <tr>
+            <td>成立时间</td>
+            <td>2014年8月</td>
+        </tr>
+        <tr>
+            <td>法定代表人</td>
+            <td>吴建</td>
+        </tr>
+        <tr>
+            <td>经营范围</td>
+            <td>服务：计算机网络技术、计算机软硬件、计算机信息技术的技术开发、技术咨询、技术服务，网页设计，
+                经济信息咨询，投资管理，投资咨询（除证券、期货），增值电信业务（仅限互联网信息服务）；
+                （未经金融等监管部门批准，不得从事向公众融资存款、融资担保、代客理财等金融服务）
+            </td>
+        </tr>
+        <tr>
+            <td>经营场所</td>
+            <td>浙江省杭州市西湖区古墩路87号浙商财富中心3号楼12F</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="f-bg-gray">
+    <div class="g-about-wrap m-content">
+        <h1>组织架构</h1>
+        <img src="$root_url/static/img/post/newAbout/img_structure.png" class="u-img-structure">
+        <h1>股权结构 <i>(截至2017年2月)</i></h1>
+        <img src="$root_url/static/img/post/newAbout/img_structure2.png" class="u-img-structure2">
+    </div>
+</div>
+<div class="g-about-wrap m-content">
+    <h1>平台信息披露</h1>
+    <table>
+        <tbody>
+        <tr>
+            <td>网站地址</td>
+            <td>www.yrw.com</td>
+        </tr>
+        <tr>
+            <td>平台名称</td>
+            <td>有融网</td>
+        </tr>
+        <tr>
+            <td>上线时间</td>
+            <td>2014年11月</td>
+        </tr>
+        <tr>
+            <td>客户资金存管情况</td>
+            <td>新浪支付第三方托管</td>
+        </tr>
+        <tr>
+            <td>移动APP应用</td>
+            <td class="f-pos-r "><a href="javascript:" class="f-yourong">有融网
+                <div class="u-img-erweima">
+                    <img src="$root_url/static/img/common/new-app-qrcode.png">
+                </div>
+            </a>
+            </td>
+        </tr>
+        <tr>
+            <td>官方微信服务号</td>
+            <td class="f-pos-r "><a href="javascript:" class="f-yourong">有融网
+                <div class="u-img-erweima">
+                    <img src="$root_url/static/img/common/new-weixin-qrcode.png">
+                </div>
+            </a>
+            </td>
+        </tr>
+        <tr>
+            <td>官方微信订阅号</td>
+            <td class="f-pos-r "><a href="javascript:" class="f-yourong">有融范
+                <div class="u-img-erweima">
+                    <img src="$root_url/static/img/common/yourongfan.jpg">
+                </div>
+            </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+

@@ -1,0 +1,770 @@
+##土豪排行第二季
+#parse('/common/common.vm')
+#set($title="土豪排行第二季_$!{title_suffix}")
+
+<style>
+	 	.g-bd {
+				margin-bottom: 0;
+				}
+			.g-wrap {
+				width: 990px;
+				margin: 0 auto;
+			}
+			/**页头**/
+		  	.u-rL2nd-hd{
+            	width: 100%;
+            	height: 435px;
+            	margin-top: -8px;
+            	position: relative;
+            	color: #fff;
+            	background: url(/static/img/activity/rankingList2nd/rankingList2nd_hd.jpg) no-repeat center;
+	        }
+	        .u-rL2nd-hd p{ 
+				margin: 0 auto;
+            	position: absolute;
+				top: 263px;
+				left: 325px;
+	        }
+	        .u-rL2nd-hdText{ 
+				height: 435px;
+	        }
+	        /**内容**/
+	        /**排行榜状态1**/
+			.u-rL2nd-nobody {
+				height: 40px;
+				width: 210px;	
+				display: block;
+				padding: 66px 50px;
+				background: url(/static/img/activity/rankingList2nd/rankingList2nd_nobody.png) no-repeat center;
+			}
+	        /**排行榜状态2/3**/
+	        .m-rL2nd-centerbg{ 
+				height: 5252px;
+				background-color: #2a6aaa;
+	        }
+	      	.m-rL2nd-prize{ 
+				height: 2664px;
+				display: block;
+				background-color: #fff;
+	      	}
+	      	.m-rL2nd-prize h2{
+	      		color:#ff5951;
+	      		font-weight: bold;
+	      		text-align: center;
+				padding-top: 40px;
+				margin-bottom: 10px;
+	      	}
+	      	.m-rL2nd-prize>ul{ 
+				padding: 0 10px;	
+	      	}
+	      	.m-rL2nd-prize>ul>li{ 
+	      		margin-bottom: 4px;
+	      		float: left;
+	      		padding-top: 26px;
+				height:596px; 
+				width:311px;
+	      	}
+	      	.m-rL2nd-rbg{ 
+	      	background: url(/static/img/activity/rankingList2nd/rankingList2nd_rbg.jpg) no-repeat center;
+	      	}
+	      	.m-rL2nd-rbg>i{ 
+				color: #e5190e;
+	      	}
+	      	.m-rL2nd-gbg{ 
+				background: url(/static/img/activity/rankingList2nd/rankingList2nd_gbg.jpg) no-repeat center;
+	      	}
+	      	.m-rL2nd-gbg>i{ 
+				color: #969696;
+	      	}
+	      	.m-rL2nd-rmgin{ 
+				margin-right: 18px;
+	      	}
+	      	.m-rL2nd-prize li>i{
+				width: 29px;
+				height: 29px;
+				vertical-align: top;
+				margin: 0 17px 0 42px;
+				text-align: center;
+				display: inline-block;
+				font-size: 24px;	
+				font-weight: bold;
+	      	}
+	      	.m-rL2nd-prize li>h3{
+	      		font-size: 20px;
+				color: #fff;
+				display: inline;
+			}
+			.m-rL2nd-prize li>h3>em{ 
+				font-weight: bold;
+			}
+			.m-rL2nd-prize li>div{ 
+				margin: 50px 25px;
+				width: 260px;
+				height: 232px;
+			}
+			.u-rL2nd-prize01{
+				background: url(/static/img/activity/rankingList2nd/rankingList2nd_prize01.png) no-repeat center;
+			}
+			.u-rL2nd-prize02{
+				background: url(/static/img/activity/rankingList2nd/rankingList2nd_prize02.png) no-repeat center;
+			}
+			.u-rL2nd-prize03{
+				background: url(/static/img/activity/rankingList2nd/rankingList2nd_prize03.png) no-repeat center;
+			}
+			.u-rL2nd-prize04{
+				background: url(/static/img/activity/rankingList2nd/rankingList2nd_prize04.png) no-repeat center;
+			}
+			.u-rL2nd-prize05{
+				background: url(/static/img/activity/rankingList2nd/rankingList2nd_prize05.png) no-repeat center;
+			}
+			.u-rL2nd-prize06{
+				background: url(/static/img/activity/rankingList2nd/rankingList2nd_prize06.png) no-repeat center;
+			}
+			.u-rL2nd-prize07{
+				background: url(/static/img/activity/rankingList2nd/rankingList2nd_prize07.png) no-repeat center;
+			}
+			.u-rL2nd-prize08{
+				background: url(/static/img/activity/rankingList2nd/rankingList2nd_prize08.png) no-repeat center;
+			}
+			.u-rL2nd-prize09{
+				background: url(/static/img/activity/rankingList2nd/rankingList2nd_prize09.png) no-repeat center;
+			}
+			.u-rL2nd-prize10{
+				background: url(/static/img/activity/rankingList2nd/rankingList2nd_prize10.png) no-repeat center;
+			}
+			.u-rL2nd-prize11{
+				background: url(/static/img/activity/rankingList2nd/rankingList2nd_prize11.jpg) no-repeat center;
+			}
+			.u-rL2nd-prize12{
+				background: url(/static/img/activity/rankingList2nd/rankingList2nd_prize12.jpg) no-repeat center;
+			}
+			.m-rL2nd-prize li ul{ 
+				color: #666;
+				height: 154px;
+				position: relative;
+				overflow: auto;
+				padding-top: 8px;
+				padding-bottom: 9px;
+			}
+			.m-rL2nd-list li{ 
+				margin-bottom: 12px;
+			}
+			.u-user-head{ 
+				display: inline-block;
+				height: 35px;
+				width: 35px;
+				overflow: hidden;
+				padding: 0 2px 0 0;
+				vertical-align: middle;
+				position: relative;
+				margin-right: 5px;
+			}
+			.u-rL2nd-user{
+				padding-left: 10px;
+				text-align: left;
+			}
+			.u-rL2nd-user img{
+				display: inline-block;
+				height: 35px;
+				width: 35px;
+				overflow: hidden;		
+			}
+			.u-user-head i{
+				display: inline-block;
+				height: 35px;
+				width: 35px;
+				overflow: hidden;
+				position: absolute;
+				left: 0;
+				top: 0;
+				z-index: 2;
+				background: url(/static/img/common/sprites.png) no-repeat -75px -21px;
+			}
+			.u-rL2nd-user .u-user-name{ 
+				margin-right: 0px;
+			}
+			.m-rL2nd-prize .u-rL2nd-aggregate{
+				color: #666;
+				border-top: 1px solid #e6e6e6;
+				display: block;
+				text-align: center;
+				line-height: 4em;
+				margin: 0 3px;
+			}
+			/**有人气值的时候状态3**/
+			.u-user-congrats{
+				display: inline-block;
+			}
+			.u-user-congratsHead{
+				margin-top: -18px;
+			}
+			/**一羊领头**/
+			.m-rL2nd-box{
+				margin-top: 50px; 
+				width: 878px;
+				height: 351px;
+				padding: 50px 47px 69px 65px;
+				background-color: #fff;
+			}
+			.m-rL2nd-text{ 
+				width: 267px;
+				height: 354px;
+				float: left;
+				font-size: 14px;
+				color: #666;
+			}
+			.m-rL2nd-text h4{
+				color: #ff5951;
+				width: 143px;
+				height: 34px;
+				margin: 58px 115px 47px 0;
+			}
+			.u-rL2nd-h101{ 
+				background: url(/static/img/activity/rankingList2nd/beyond_title01.jpg) no-repeat center;
+			}
+			.u-rL2nd-h102{ 
+				background: url(/static/img/activity/rankingList2nd/beyond_title02.jpg) no-repeat center;
+			}
+			.u-rL2nd-h103{ 
+				background: url(/static/img/activity/rankingList2nd/beyond_title03.jpg) no-repeat center;
+			}
+			.u-rL2nd-h104{ 
+				background: url(/static/img/activity/rankingList2nd/beyond_title04.jpg) no-repeat center;
+			}
+			.u-rL2nd-btn{ 
+				width: 220px;
+				height: 50px;
+				display: block;
+				margin-top: 87px;
+				background: url(/static/img/activity/rankingList2nd/rankingList2nd_btn.jpg) no-repeat center;
+			}
+			.m-rL2nd-text span>a:link{ 
+				color: #666;
+				text-decoration:underline;
+			}
+			.m-rL2nd-text span>a:visited{ 
+				color: #666;
+				text-decoration:underline;
+			}
+　　		.m-rL2nd-text span>a:hover{ 
+				color: #666;
+				text-decoration:underline;
+			} 
+			.m-rL2nd-over{ 
+				float: right;
+				width: 495px;
+				height: 394px;
+			}
+			.m-rL2nd-over h5{
+				color:#666;
+				font-size:14px;
+				text-align: center;
+				margin-bottom: 10px;
+				font-weight: bold;
+			} 
+			.m-rL2nd-wrap{ 
+				border: 2px solid #cebfab;
+				height: 306px;
+				overflow-x: hidden;
+				overflow-y: auto;
+				position: relative;
+			}
+			.u-rL2nd-table{ 
+				border: none;	
+				color: #666;
+				position: relative;
+				font-size: 12px;
+			}
+			.u-rL2nd-table tbody{ 
+				width: 491px;
+				display: block;
+			}
+			.u-rL2nd-table tbody tr {
+				border-bottom: 1px solid #ebe5dd;
+				display: block;
+				padding-left: 10px;
+			}
+			.u-rL2nd-table tbody td{ 
+				border: hidden;
+				height: 50px;
+				position: relative;
+				overflow: hidden;
+			}
+			.u-rL2nd-lUser{
+				padding-left: 27px;
+				text-align: left;
+			}
+			/**活动规则**/
+			.m-rL2nd-rule{ 
+				height: 410px;
+				margin-top: 67px;
+				margin-bottom: 72px;
+				color: #fff;
+			} 
+			.m-rL2nd-rule h1{
+				margin-bottom: 30px; 
+				font-weight: bold;
+			}
+			.m-rL2nd-rule a{
+				display:inline-block;
+			}
+			.m-rL2nd-rule a:link{ 
+				color: #fff;
+				text-decoration:underline;
+			}
+			.m-rL2nd-rule a:visited{ 
+				color: #fff;
+				text-decoration:underline;
+			}
+　　			.m-rL2nd-rule a:hover{ 
+				color: #fff;
+				text-decoration:underline;
+			} 
+			/**无人投资时排行榜情况**/
+			.m-rL2nd-wrap>p{ 
+				color: #666;
+				font-size: 14px;
+				margin: 135px 0;
+				text-align: center;
+		   }
+		   .u-rL2nd-user .u-rL2nd-fix{ 
+		        width:95px;
+				display:inline-block;
+		   }
+		   .u-rL2nd-hint{ 
+			    color: red;
+				text-align: center;
+		   }
+		   .u-rL2nd-num01{ 
+				background: url(/static/img/activity/rankingList2nd/rankingList2nd_icon.png) no-repeat 0px 0px;
+			}
+			.u-rL2nd-num02{ 
+				background: url(/static/img/activity/rankingList2nd/rankingList2nd_icon.png) no-repeat -34px 0px;
+			}
+			.u-rL2nd-num03{ 
+				background: url(/static/img/activity/rankingList2nd/rankingList2nd_icon.png) no-repeat -68px 0px;
+			}
+			.u-rL2nd-num04{ 
+				background: url(/static/img/activity/rankingList2nd/rankingList2nd_icon.png) no-repeat -102px 0px;
+			}
+			.u-rL2nd-num05{ 
+				background: url(/static/img/activity/rankingList2nd/rankingList2nd_icon.png) no-repeat -136px 0px;
+			}
+			.u-rL2nd-num06{ 
+				background: url(/static/img/activity/rankingList2nd/rankingList2nd_icon.png) no-repeat -170px 0px;
+			}
+			.u-rL2nd-num07{ 
+				background: url(/static/img/activity/rankingList2nd/rankingList2nd_icon.png) no-repeat 0px -34px;
+			}
+			.u-rL2nd-num08{ 
+				background: url(/static/img/activity/rankingList2nd/rankingList2nd_icon.png) no-repeat -34px -34px;
+			}
+			.u-rL2nd-num09{ 
+				background: url(/static/img/activity/rankingList2nd/rankingList2nd_icon.png) no-repeat -68px -34px;
+			}
+			.u-rL2nd-num10{ 
+				background: url(/static/img/activity/rankingList2nd/rankingList2nd_icon.png) no-repeat -102px -34px;
+			}
+			.u-rL2nd-num11{ 
+				background: url(/static/img/activity/rankingList2nd/rankingList2nd_icon.png) no-repeat -136px -34px;
+			}
+			.u-rL2nd-num12{ 
+				background: url(/static/img/activity/rankingList2nd/rankingList2nd_icon.png) no-repeat -170px -34px;
+			}
+			
+			.u-rL2nd-table td>a{
+				color:#666;
+			}
+			.u-rL2nd-table td>a:link{
+				color: #666;
+				text-decoration: underline;
+			}
+　　			.u-rL2nd-table td>a:visited{
+				color: #666;
+				text-decoration: underline;
+			}
+　　			.u-rL2nd-table td>a:hover{
+				color: #666;
+				text-decoration: underline;
+			}               		
+</style>
+			
+			
+			
+			  <div class="f-mh500 f-cf">
+    <!--head-->
+    	<div class="u-rL2nd-hd f-fs14">
+    		<div class="u-rL2nd-hdText g-wrap f-pos-r">
+    			<p>自2015年4月1日——2015年6月30日止，
+ 				<br/>活动期间内，累计投资额达到下列条件的用户，
+				<br/>可获得相应的奖励。
+				</p>
+			</div>
+		</div>
+	<!--body-->
+		<div class="m-rL2nd-centerbg">
+		<!--奖品-->
+			<div class="m-rL2nd-prize g-wrap u-circle-3">
+				<h2 class="f-fs36">土豪排行</h2>
+				<ul class="f-cf">
+					<li class="m-rL2nd-rmgin m-rL2nd-rbg j-rL2nd-prize1">
+						<i class="f-fs16 f-ff-din u-rL2nd-num01"></i>
+						<h3>累计投资额满<em>200</em>万</h3>
+						<div class="u-rL2nd-prize01"></div>
+						<input type="hidden" value="$!endFlag" id="j-end-flag">
+					</li>
+					<li class="m-rL2nd-rmgin m-rL2nd-rbg j-rL2nd-prize2">
+						<i class="f-fs16 f-ff-din u-rL2nd-num02"></i>
+						<h3>累计投资额满<em>150</em>万</h3>
+						<div class="u-rL2nd-prize02"></div>
+					</li>
+					<li class="m-rL2nd-rbg j-rL2nd-prize3">
+						<i class="f-fs16 f-ff-din u-rL2nd-num03"></i>
+						<h3>累计投资额满<em>100</em>万</h3>
+						<div class="u-rL2nd-prize03"></div>
+					</li>
+					<li class="m-rL2nd-rmgin m-rL2nd-rbg j-rL2nd-prize4">
+						<i class="f-fs16 f-ff-din u-rL2nd-num04"></i>
+						<h3>累计投资额满<em>60</em>万</h3>
+						<div class="u-rL2nd-prize04"></div>
+					</li>
+					<li class="m-rL2nd-rmgin m-rL2nd-rbg j-rL2nd-prize5">
+						<i class="f-fs16 f-ff-din u-rL2nd-num05"></i>
+						<h3>累计投资额满<em>45</em>万</h3>
+						<div class="u-rL2nd-prize05"></div>
+					</li>
+					<li class="m-rL2nd-rbg j-rL2nd-prize6">
+						<i class="f-fs16 f-ff-din u-rL2nd-num06"></i>
+						<h3>累计投资额满<em>35</em>万</h3>
+						<div class="u-rL2nd-prize06"></div>
+					</li>
+					<li class="m-rL2nd-rmgin m-rL2nd-rbg j-rL2nd-prize7">
+						<i class="f-fs16 f-ff-din u-rL2nd-num07"></i>
+						<h3>累计投资额满<em>25</em>万</h3>
+						<div class="u-rL2nd-prize07"></div>
+					</li>
+					<li class="m-rL2nd-rmgin m-rL2nd-rbg j-rL2nd-prize8">
+						<i class="f-fs16 f-ff-din u-rL2nd-num08"></i>
+						<h3>累计投资额满<em>15</em>万</h3>
+						<div class="u-rL2nd-prize08"></div>
+					</li>
+					<li class="m-rL2nd-rbg j-rL2nd-prize9">
+						<i class="f-fs16 f-ff-din u-rL2nd-num09"></i>
+						<h3>累计投资额满<em>10</em>万</h3>
+						<div class="u-rL2nd-prize09"></div>
+					</li>
+					<li class="m-rL2nd-rmgin m-rL2nd-rbg j-rL2nd-prize10">
+						<i class="f-fs16 f-ff-din u-rL2nd-num10"></i>
+						<h3>累计投资额满<em>8</em>万</h3>
+						<div class="u-rL2nd-prize10"></div>
+					</li>
+					<li class="m-rL2nd-rmgin m-rL2nd-gbg j-rL2nd-prize11">
+						<i class="f-fs16 f-ff-din u-rL2nd-num11"></i>
+						<h3>累计投资额满<em>5</em>万</h3>
+						<div class="u-rL2nd-prize11"></div>
+					</li>
+					<li class=" m-rL2nd-gbg j-rL2nd-prize12">
+						<i class="f-fs16 f-ff-din u-rL2nd-num12"></i>
+						<h3>累计投资额<em>5</em>万以下</h3>
+						<div class="u-rL2nd-prize12"></div>
+					</li>
+				</ul>
+
+			</div>
+		<!--/奖品-->	
+		<!--一羊领头-->	
+		<div class="m-rL2nd-box g-wrap f-cf">
+			<div class="m-rL2nd-text">
+				<h4 class="u-rL2nd-h101"></h4>
+				<span>每个理财项目中，第一位成功投资的用户，<br/>
+				将获得28点人气值的奖励, <a target="_blank" href="$root_url/activity/popularityValues">关于人气值</a></span>
+                <a class="u-rL2nd-btn" href="$root_url/products/list-all-all-all-1-createTimeDesc-1.html"></a>
+			</div>
+			<div class="m-rL2nd-over">
+				<h5>获奖名单</h5>
+			<div class="m-rL2nd-wrap">
+				#if("$!firstList" == "" || $!firstList.size() == 0)
+						<p>虚位以待，赶紧去抢楼主宝座！</p>
+						
+							#else
+				<table class="u-rL2nd-table">
+					<tbody>
+						#foreach($!{first} in $!{firstList})
+						<tr>
+							<td width="178" class="u-rL2nd-user">
+								<span class="u-user-head">
+	                                	<img src="#getMemberAvatar35($!{first.memberId},"40x40")" alt="用户头像">
+	                                	<i>&nbsp;</i>
+	                           	</span>
+	                           	<span class="u-user-name">$!{first.username}</span>
+							</td>
+							<td width="143">获得28点人气值</td>
+							<td width="160"><a target="_blanck" href="$root_url/products/detail-${first.projectId}.html">$!{first.projectName}</a></td>
+						</tr>
+						#end
+					</tbody>
+				</table>
+				#end
+				</div>
+			</div>
+		</div>
+		<!--/一羊领头-->
+		<!--一锤定音-->	
+			<div class="m-rL2nd-box g-wrap f-cf">
+			<div class="m-rL2nd-text">
+				<h4 class="u-rL2nd-h102"></h4>
+				<span>每个理财项目，最后一位成功投资的用户，<br/>
+将获得38点人气值的奖励， <a target="_blank" href="$root_url/activity/popularityValues">关于人气值</a></span>
+                <a class="u-rL2nd-btn" href="$root_url/products/list-all-all-all-1-createTimeDesc-1.html"></a>
+			</div>
+			<div class="m-rL2nd-over">
+				<h5>获奖名单</h5>
+			<div class="m-rL2nd-wrap">
+				#if("$!lastList" == "" || $!lastList.size() == 0)
+						<p>虚位以待，赶紧去抢楼主宝座！</p>
+						#else
+				<table class="u-rL2nd-table">
+					<tbody>
+						#foreach($!{last} in $!{lastList})
+						<tr>
+							<td width="178" class="u-rL2nd-user">
+								<span class="u-user-head">
+	                                	<img src="#getMemberAvatar35($!{last.memberId},"40x40")" alt="用户头像">
+	                                	<i>&nbsp;</i>
+	                           	</span>
+	                           	<span class="u-user-name">$!{last.username}</span>
+							</td>
+							<td width="143">获得38点人气值</td>
+							<td width="160"><a target="_blanck" href="$root_url/products/detail-${last.projectId}.html">$!{last.projectName}</a></td>
+						</tr>
+						#end
+					</tbody>
+				</table>
+				#end
+				</div>
+			</div>
+		</div>
+		<!--/一锤定音-->	
+		<!--一鸣惊人-->	
+				<div class="m-rL2nd-box g-wrap f-cf">
+			<div class="m-rL2nd-text">
+				<h4 class="u-rL2nd-h103"></h4>
+				<span>每个理财项目，单笔投资金额最高的用户，<br/>
+将获得68点人气值的奖励，<a target="_blank" href="$root_url/activity/popularityValues">关于人气值</a></span>
+                <a class="u-rL2nd-btn" href="$root_url/products/list-all-all-all-1-createTimeDesc-1.html"></a>
+			</div>
+			<div class="m-rL2nd-over">
+				<h5>获奖名单</h5>
+			<div class="m-rL2nd-wrap">
+				#if("$!mostList" == "" || $!mostList.size() == 0)
+						<p>虚位以待，赶紧去抢楼主宝座！</p>
+						#else
+				<table class="u-rL2nd-table">
+					<tbody>
+						#foreach($!{most} in $!{mostList})
+						<tr>
+							<td width="178" class="u-rL2nd-user">
+								<span class="u-user-head">
+	                                	<img src="#getMemberAvatar35($!{most.memberId},"40x40")" alt="用户头像">
+	                                	<i>&nbsp;</i>
+	                           	</span>
+	                           	<span class="u-user-name">$!{most.username}</span>
+							</td>
+							<td width="143">获得68点人气值</td>
+							<td width="160"><a target="_blanck" href="$root_url/products/detail-${most.projectId}.html">$!{most.projectName}</a></td>
+						</tr>
+						#end
+					</tbody>
+				</table>
+				#end
+				</div>
+			</div>
+		</div>
+		<!--/一鸣惊人-->
+		<!--幸运女神-->	
+			<div class="m-rL2nd-box g-wrap f-cf">
+			<div class="m-rL2nd-text">
+				<h4 class="u-rL2nd-h104"></h4>
+				<span>每个理财项目，项目满额后，<br/>
+系统将随机抽取一位该项目投资人，<br/>
+抽中者将获得8点人气值的奖励，<br/> <a target="_blank" href="$root_url/activity/popularityValues">关于人气值</a></span>
+                <a class="u-rL2nd-btn" href="$root_url/products/list-all-all-all-1-createTimeDesc-1.html"></a>
+			</div>
+			<div class="m-rL2nd-over">
+				<h5>获奖名单</h5>
+			<div class="m-rL2nd-wrap">
+				#if("$!luckList" == "" || $!luckList.size() == 0)
+							<p>虚位以待，赶紧去抢楼主宝座！</p>
+					#else
+				<table class="u-rL2nd-table">
+					<tbody>
+						#foreach($!{luck} in $!{luckList})
+						<tr>
+							<td width="178" class="u-rL2nd-user">
+								<span class="u-user-head">
+	                                	<img src="#getMemberAvatar35($!{luck.memberId},"40x40")" alt="用户头像">
+	                                	<i>&nbsp;</i>
+	                           	</span>
+	                           	<span class="u-user-name">$!{luck.username}</span>
+							</td>
+							<td width="143">获得8点人气值</td>
+							<td width="160"><a target="_blanck" href="$root_url/products/detail-${luck.projectId}.html">$!{luck.projectName}</a></td>
+						</tr>
+						#end
+					</tbody>
+				</table>
+				#end
+				</div>
+			</div>
+		</div>
+		<!--/幸运女神-->							
+			<div class="m-rL2nd-rule g-wrap ">
+				<h1 class="f-fs18">活动规则</h1>
+				<p class="f-fs14">
+					1、活动时间：2015年4月1日0点-2015年6月30日23:59:59；
+<br/>2、活动对象：活动期间所有投资用户；
+<br/>3、一羊领头：活动期间，每个理财项目，第一位成功投资的用户，将获得28点人气值的奖励；
+<br/>4、一锤定音：活动期间，每个理财项目，最后一位成功投资的用户，将获得38点人气值的奖励；
+<br/>5、一鸣惊人：活动期间，每个理财项目，单笔投资金额最高的用户，将获得68点人气值的奖励（若有多个最高投资者，则先投资的用户获得奖励）;
+<br/>6、幸运女神：活动期间，每个理财项目，项目满额后，系统将随机抽取一位该项目投资人，抽中者将获得8点人气值的奖励；
+<br/>7、人气值可兑换现金券，1点人气值等于1元现金券，现金券不可直接提现，<a target="_blank" href="$root_url/activity/popularityValues">关于人气值</a>;
+<br/>8、土豪排名：活动自2015年4月1日起至2015年6月30日结束，将对用户在活动期间内的累计总投资额进行统计，凡满足条件的用户均将获得有融网提供的奖品
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;及其他奖励；
+<br/>9、活动奖励发放说明：
+<br/>①、一羊领头、一锤定音、一鸣惊人及幸运女神四项活动中所获得的人气值，系统将于5分钟之内发放到您的账户。请前往“我的账户”>“我的优惠“>“我的<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;人气值”查看；
+<br/>②、“土豪排行第二季”的奖品将于活动结束后3个工作日内发放（客服人员会先与获奖用户电话沟通确认获奖名单，请保持手机畅通）；
+<br/>10、若有其他疑问请拨打客服热线：400-025-6688；
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本次活动最终解释权归有融网所有。
+				</p>
+			</div>
+		</div>
+
+    </div>
+
+<script>
+	window.onload=function(){
+		var endFlag = $("#j-end-flag").val();
+		var giftName = "";//礼物名称
+		var lineShows = true;//礼物名字过长时换行显示，boolean类型,默认换行显示
+		for(var i=1;i<13;i++){
+			switch(i){
+			case 1:
+				giftName = " Apple Watch ";
+				lineShows = false;
+				break;
+			case 2:
+				giftName = " 空气净化器 ";
+				lineShows = false;
+				break;
+			case 3:
+				giftName = "智能清扫机器人";
+				lineShows = false;
+				break;
+			case 4:
+				giftName = " 388人气值，小米移动电源  ";
+				lineShows = true;
+				break;
+			case 5:
+				giftName = " 288人气值，小米移动电源  ";
+				lineShows = true;
+				break;
+			case 6:
+				giftName = " 188人气值，小米移动电源  ";
+				lineShows = true;
+				break;
+			case 7:
+				giftName = " 108人气值，小米智能手环 ";
+				lineShows = true;
+				break;
+			case 8:
+				giftName = " 98人气值，小米智能手环 ";
+				lineShows = true;
+				break;
+			case 9:
+				giftName = " 78人气值，小米智能手环  ";
+				lineShows = true;
+				break;
+			case 10:
+				giftName = " 68人气值，小米智能手环  ";
+				lineShows = true;
+				break;
+			case 11:
+				endFlag = false;
+				break;
+			case 12:
+				endFlag = false;
+				break;
+			default:
+				break;
+			}
+			getRLForRange(i,".j-rL2nd-prize"+i,endFlag,giftName,lineShows);
+		}
+	}
+	/**
+	 * 获取某一投资总额范围内的土豪列表
+	 **/
+	function getRLForRange(range,divId,activityEndFlag,giftName,lineShows) {
+		$.getJSON(environment.globalPath + "/activity/investRanking2nd?range=" + range,
+			function(data){
+				if(data.rankingList!=null && data.rankingList.length!==0 && activityEndFlag==="true"){
+					var classHead = "",congratsStr1 = "", congratsStr2 = "";
+					if(lineShows){
+						classHead = "u-user-congratsHead";
+						congratsStr1 = "<span class='u-user-name u-user-congrats'>恭喜 &nbsp;"
+							congratsStr2 = "<br/>获得"
+					}else{
+						congratsStr1 = "<span class='u-user-name u-rL2nd-fix'>恭喜 &nbsp;"
+							congratsStr2 = "</span><span>获得"
+					}
+					$(divId).append("<ul class='m-rL2nd-list'></ul>");
+					var items = [];
+					$.each(data.rankingList, function (i, item) {
+						var avatars = "";
+		                if (item.avatars) {
+		                    avatars = "$aliyun_url" + item.avatars;
+		                } else {
+		                    avatars = "/static/img/member/avatar_35x35.png";
+		                }
+						items.push("<li width='188' class='u-rL2nd-user'>"+
+								"<span class='u-user-head "+classHead+"'>"+
+								"<img src='"+avatars+"' alt='用户头像'>" +
+								"<i>&nbsp;</i>" +
+								"</span>" +
+								congratsStr1+item.username+congratsStr2+giftName+"一只</span>" +
+								"</li>");
+					});
+					if(data.memberCount>50){
+						items.push("<li width='188' class='u-rL2nd-user u-rL2nd-hint'>（此处仅显示前50名）</li>");
+					}
+					$(divId).find(".m-rL2nd-list").prepend(items.join(""));
+				}else if(data.rankingList!=null && data.rankingList.length!==0){
+					$(divId).append("<ul class='m-rL2nd-list'></ul>");
+					var items = [];
+					$.each(data.rankingList, function (i, item) {
+							var avatars = "";
+			                if (item.avatars) {
+			                    avatars = "$aliyun_url" + item.avatars;
+			                } else {
+			                    avatars = "/static/img/member/avatar_35x35.png";
+			                }
+							items.push("<li width='188' class='u-rL2nd-user'>"+
+									"<span class='u-user-head'>"+
+									"<img src='"+avatars+"' alt='用户头像'>" +
+									"<i>&nbsp;</i>" +
+									"</span>" +
+									"<span class='u-user-name u-rL2nd-fix'>恭喜 &nbsp;"+item.username+"</span>"+
+	                           		"<span> 累计投资"+item.totalInvestFormat+"元</span>"+
+									"</li>");
+					});
+					if(data.memberCount>50){
+						items.push("<li width='188' class='u-rL2nd-user u-rL2nd-hint'>（此处仅显示前50名）</li>");
+					}
+					$(divId).find(".m-rL2nd-list").prepend(items.join(""));
+				}else{
+					$(divId).append("<em class='u-rL2nd-nobody'></em>");
+				}
+				$(divId).append("<span class='u-rL2nd-aggregate'>总计："+data.memberCount+"</span>")
+			}
+		);
+	}
+</script>

@@ -1,0 +1,225 @@
+#parse('/mobile/common.vm')
+###set($title="有融网2周年$!{title_suffix}")
+#if($encryptionId)
+  #set($subTitle="有融岁月2周年")
+#else
+  #set($subTitle="我在有融网的2周年投资机密档案，喊你来围观！")
+#end
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$res_url/source/css/activity/anniversarySpecial.css","$res_url/source/css/swiper-3.4.0.min.css"])
+
+<script>
+  var url = window.location.href, title = '我的投资机密档案';
+  var array = ["投资小鲜肉", "赚钱小达人", "掘金小能手", "理财老司机", "理财界神壕", "理财界神壕"];
+  document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+    window.shareData = {
+      "timeLineLink": url,
+      "sendFriendLink": url,
+      "weiboLink": url,
+      "tTitle": "我在有融网的2周年投资机密档案，喊你来围观！",
+//      "tContent": "我在有融网累计投资XX次，荣获【{{initData.myVipLevel}}】称号！",
+      "fTitle": "我在有融网的2周年投资机密档案，喊你来围观！",
+      "fContent": "有融岁月2周年",
+      "wContent": "我在有融网的2周年投资机密档案，喊你来围观！   有融岁月2周年"
+    };
+    // 发送给好友
+    if (typeof(WeixinJSBridge) !== 'undefined') {
+      WeixinJSBridge.on('menu:share:appmessage', function (argv) {
+        WeixinJSBridge.invoke('sendAppMessage', {
+          "img_url": "../../static/img/weixin/weixin-special.jpg",
+          "img_width": "358",
+          "img_height": "328",
+          "link": window.shareData.sendFriendLink,
+          "desc": window.shareData.fContent,
+          "title": window.shareData.fTitle
+        }, function (res) {
+          _report('send_msg', res.err_msg);
+        })
+      });
+      // 分享到朋友圈
+      WeixinJSBridge.on('menu:share:timeline', function (argv) {
+        WeixinJSBridge.invoke('shareTimeline', {
+          "img_url": "../../static/img/weixin/weixin-special.jpg",
+          "img_width": "358",
+          "img_height": "328",
+          "link": window.shareData.timeLineLink,
+          "desc": window.shareData.tTitle,
+          "title": window.shareData.tTitle
+        }, function (res) {
+          _report('timeline', res.err_msg);
+        });
+      });
+    }
+  }, false);
+</script>
+
+#set($encryptionId=$request.getParameter("encryptionId"))
+#set($loginSource=$request.getHeader("loginSource"))
+
+#if($currentUser)
+  #set($logined=true)
+#else
+  #set($logined=false)
+#end
+#set($os=3)
+##  安卓
+#if($loginSource==1)
+  #set($os=1)
+#end
+##  IOS
+#if($loginSource==2)
+  #set($os=2)
+#end
+
+#set($debug=$request.getParameter("debug"))
+#set($isApp=$request.getParameter("app"))
+#set($avatar=$servletUtil.getUserDO().avatars)
+
+<div class="swiper-container" id="j-special" data-logined="$logined">
+  <div class="swiper-wrapper">
+    <div class="swiper-slide">
+      <div class="g-load">
+        <div class="m-down">
+          <div class="m-2-year" id="m-load"></div>
+        </div>
+        <a href="javascript:void(0);" class="m-start" id="start" @click="start">
+          开启我的2周年理财日记 <span>>></span>
+        </a>
+      </div>
+    </div>
+    <div class="swiper-slide">
+      <div class="g-con-bg">
+        <div class="m-bookbg m-bookbg-img1"></div>
+        <div class="m-meet"></div>
+        <div class="m-content m-content-1">
+          <p class="u-red"><span class="f-time" style="font-size: 1.2rem"></span>年<span class="f-time"
+                                                                                        v-text="initData.startTime | formatTime 'M月d日'"></p>
+          <p>我与有融网相遇</p>
+          <p>并成为有融网的</p>
+          <p>第<span id="value"></span>位会员</p>
+        </div>
+      </div>
+    </div>
+    <div class="swiper-slide" v-if="initData.myFirstInvestDate!=''">
+      <div class="g-con-bg ">
+        <div class="m-bookbg m-bookbg-img2"></div>
+        <div class="m-award"></div>
+        <div class="m-content m-content-2">
+          <p class="u-red" style="font-size: 1.2rem"><span class="f-time"
+                                                           v-text="initData.myFirstInvestDate | formatTime 'yyyy'"></span>年<span
+                  class="f-time"
+                  v-text="initData.myFirstInvestDate | formatTime 'M月d日'"></span>
+          </p>
+          <p>我投资了第一个理财项目</p>
+          <p class="u-red u-font">{{initData.myProjectName}}</p>
+          <p>带来了<span id="value1"></span>元收益</p>
+      </div>
+    </div>
+  </div>
+    <div class="swiper-slide" v-if="initData.myFirstInvestDate!=''">
+    <div class="g-con-bg">
+      <div class="m-bookbg m-bookbg-img3"></div>
+      <div class="m-icecream"></div>
+      <div class="m-content m-content-3">
+        <p>在与有融网相守的<span>{{initData.myTotalDays}}</span>天里</p>
+        <p>我累计投资<span>{{initData.myTransactionCount}}</span>次</p>
+        <p>总共赚取收益<span id="value2" style="width: 4.6rem"></span>元</p>
+        <p>能请<span>{{initData.myNumber}}</span>人吃冰激凌</p>
+      </div>
+    </div>
+  </div>
+    <div class="swiper-slide" v-if="initData.myFirstInvestDate!=''">
+    <div class="g-con-bg">
+      <div class="m-bookbg m-bookbg-img4"></div>
+      <div class="m-diary"></div>
+      <div class="m-content m-content-4">
+        <p>《我的理财日记》</p>
+        <p>击败了全国<span id="percent">86%</span>的小伙伴</p>
+        <p>获得<span id="name">{{initData.myVipLevel}}</span>称号</p>
+      </div>
+    </div>
+  </div>
+    <div class="swiper-slide">
+    <div class="g-con-bg">
+      <div class="m-bookbg m-bookbg-img5">
+        <div class="u-el">
+          <div id="f-show">
+            <img src="$res_url/img/post/transmission/element1.png" alt="">
+          </div>
+          <div id="f-show">
+            <img src="$res_url/img/post/transmission/element2.png" alt="">
+          </div>
+          <div id="f-show">
+            <img src="$res_url/img/post/transmission/element3.png" alt="">
+          </div>
+          <div id="f-show">
+            <img src="$res_url/img/post/transmission/element4.png" alt="">
+          </div>
+          <div id="f-show">
+            <img src="$res_url/img/post/transmission/element5.png" alt="">
+          </div>
+          <div id="f-show">
+            <img src="$res_url/img/post/transmission/element6.png" alt="">
+          </div>
+          <div id="f-show">
+            <img src="$res_url/img/post/transmission/element7.png" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    <div class="swiper-slide">
+    <div class="g-con-bg">
+      <div class="m-bookbg m-bookbg-img6"></div>
+      <div class="m-thanks"></div>
+      <div class="m-content m-content-6">
+      ##          <p>我们于星辰瀚海中相遇<br>由陌生到了解，由支持到陪伴<br>愿不忘初心，携手同行<br>通往财富自由之路征程漫漫<br>有融岁月，感恩有你相伴。</p>
+        <div class="u-last">
+          <div id="f-last">
+            <img src="$res_url/img/post/transmission/last1.png" alt="">
+          </div>
+          <div id="f-last">
+            <img src="$res_url/img/post/transmission/last2.png" alt="">
+          </div>
+          <div id="f-last">
+            <img src="$res_url/img/post/transmission/last3.png" alt="">
+          </div>
+          <div id="f-last">
+            <img src="$res_url/img/post/transmission/last4.png" alt="">
+          </div>
+          <div id="f-last">
+            <img src="$res_url/img/post/transmission/last5.png" alt="">
+          </div>
+        </div>
+        <a href="$siteurl/activity/twoYearAnniversary/init?isNeedYRWtoken=Y">
+          <img src="$res_url/img/post/transmission/click.png" alt="">
+        </a>
+        <div class="u-catch">赢取四重壕礼</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+#set($pageScript="
+<script src='$res_url/build/js/appHook.js'></script>
+<script src='$aliyunOss_url/res/lib/vue/v1/vue.min.js'></script>
+<script src='$siteurl/res/lib/vue/vue.extend.js'></script>
+<script src='$res_url/lib/js/swiper-3.4.0.min.js'></script>
+<script src='$res_url/lib/js/countUp.min.js'></script>
+##<script src='$siteurl/res/lib/js/vconsole.min.js'></script>
+<script>
+  var receiveData = $!{data},
+          os = $!{os};
+
+  ## TODO to delete
+  log(receiveData)
+  //    $('#j-console').html('初始化数据' + JSON.stringify(receiveData, '', 4))
+
+  ##    #if($debug)
+  ##    var debug = true
+  ##    #end
+  seajs.use('$res_url/source/js/activity/ifload.js');
+</script>
+")
+#CSRFToken("xToken")

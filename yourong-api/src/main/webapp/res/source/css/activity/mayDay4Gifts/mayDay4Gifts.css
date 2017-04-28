@@ -1,0 +1,422 @@
+.z-hide{
+    display: none!important;
+}
+
+.u-img-responsive{
+    display: block;
+    width: 100%;
+    height: auto;
+    font-size: 0;
+}
+
+.g-container{
+    min-height: 1000px;
+    background: #53b8e9;
+}
+
+.g-main{
+    padding: 0 10px 50px 10px;
+    background: #53b8e9;
+    box-sizing: border-box;
+}
+.g-main.z-fadeOut{
+    opacity: 0;
+}
+
+/* 模拟dialog */
+.u-dialog-mini{
+    display: inline-block;
+    width: 80%;
+    box-sizing: border-box;
+    padding:1rem;
+    background: #fff;
+    position: fixed;
+    z-index: 1000;
+    top: 50%;
+    left: 50%;
+    font-size: 14px;
+    line-height: 20px;
+    border-radius: 10px;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+    overflow: hidden;
+}
+.u-dialog-mini.z-fadeOut{
+    opacity: 0;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+}
+.u-dialog-btn{
+    margin-top: 20px;
+    display: inline-block;
+    padding: 5px 20px;
+    background: #d74148;
+    color: #fff;
+    border-radius: 4px;
+    font-size: 14px;
+    text-align: center;
+}
+
+/* 红包雨 */
+.g-redbag-wrapper{
+    background: #fff;
+    margin-bottom: 40px;
+    overflow: hidden;
+    border-radius: 10px;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 99;
+}
+.g-redbag-wrapper.z-onBottom{
+    margin-top: 40px;
+    margin-bottom: 0;
+}
+
+.u-rain-area-mask{
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: #000;
+    opacity: 0.6;
+    z-index:100000;
+    border-radius: 8px;
+}
+
+/* dialog的z-index要大于红包的 */
+.ui-popup{
+    z-index: 100000
+}
+
+.u-mask-title{
+    color: #fff;
+    font-size: 20px;
+    text-align: center;
+    margin-top: 150px;
+}
+/* 红包雨外框 */
+.g-redbag-rain {
+    border-radius: 10px;
+    box-sizing: border-box;
+    background: #fff;
+    overflow: hidden;
+    position: relative;
+    z-index: 90;
+}
+.m-rain-area{
+    padding-left: 50px;
+    padding-right: 50px;
+    position: relative;
+    min-height: 260px;
+    border-radius: 10px;
+}
+
+/* 红包以及飘落动画 */
+.u-redbag-flakes {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    padding-left: 40px;
+    padding-bottom: 40px;
+    cursor: pointer;
+    top: -150px;
+    left: -200px; /* 初始化时红包不在界面内显示，left值由js计算 */
+    position: absolute;
+    z-index: 80;
+    -webkit-animation: redbag-snow 6s ease-in infinite;
+    animation: redbag-snow 6s ease-in infinite;
+    background: url('../../../../img/activity/mayDay4Gifts/red.png') no-repeat center;
+    background-size: 50%;
+}
+
+.flakes-1 {
+    -webkit-animation-delay: 0.6s;
+    animation-delay: 0.6s;
+}
+
+.flakes-2 {
+    -webkit-animation-delay: 1s;
+    animation-delay: 1s;
+}
+
+.flakes-3 {
+    -webkit-animation-delay: 1.5s;
+    animation-delay: 1.5s;
+}
+
+.flakes-4 {
+    -webkit-animation-delay: 2s;
+    animation-delay: 2s;
+}
+
+.flakes-5 {
+    -webkit-animation-delay: 2.5s;
+    animation-delay: 2.5s;
+}
+
+.flakes-6 {
+    -webkit-animation-delay: 2.9s;
+    animation-delay: 2.9s;
+}
+
+.flakes-7 {
+    -webkit-animation-delay: 3.6s;
+    animation-delay: 3.6s;
+}
+
+.flakes-8 {
+    -webkit-animation-delay: 4.8s;
+    animation-delay: 4.8s;
+}
+
+.flakes-9 {
+    -webkit-animation-delay: 5.2s;
+    animation-delay: 5.2s;
+}
+
+.flakes-10 {
+    -webkit-animation-delay: 4.5s;
+    animation-delay: 4.5s;
+}
+
+@-webkit-keyframes redbag-snow {
+    from {
+        -webkit-transform: translate(0); transform: translate(0)
+    }
+    to {
+        -webkit-transform: translate(-300px, 550px);
+        transform: translate(-300px, 550px)
+    }
+}
+
+@keyframes redbag-snow {
+    from {
+        -webkit-transform: translate(0); transform: translate(0)
+    }
+    to {
+        -webkit-transform: translate(-300px, 550px);
+        transform: translate(-300px, 550px)
+    }
+}
+
+/* 波浪与规则 */
+.m-rule-wrapper{
+    width: 100%;
+    position: relative;
+    z-index: 90;
+}
+
+.m-rule-30{
+    box-sizing: border-box;
+    background: #9adeff;
+    color: #035a84;
+    padding: 0 15px 5px 15px;
+    line-height: 20px;
+    font-size: 10px;
+    border-radius: 0 0 10px 10px;
+}
+
+/* 全屏遮罩 */
+.u-shade{
+    background: #000;
+    opacity: 0.5;
+    width: 100%;
+    height: 1000px;
+    z-index: 100;
+    position: fixed;
+    top: 0;
+    left: 0;
+    -webkit-transition: opacity 0.5s ease-out;
+    transition: opacity 0.5s ease-out;
+}
+
+.u-shade.z-fadeOut,
+.m-redbag-open.z-fadeOut{
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+/* 红包打开层 */
+.m-redbag-open {
+    position: fixed;
+    z-index: 1000;
+    display: inline-block;
+    width: 80%;
+    top: 25%;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    text-align: center;
+    -webkit-transition: all 0.5s ease-out;
+    transition: all 0.5s ease-out;
+}
+
+.u-redbag-close{
+    display: inline-block;
+    background: url('../../../../img/activity/mayDay4Gifts/icon_close.png') no-repeat center;
+    background-size: 100%;
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    right: -3px;
+    top: 15px;
+    cursor: pointer;
+}
+.u-redbag-open-btn{
+    display: inline-block;
+    height: 40px;
+    line-height: 40px;
+    width: 80%;
+    background: #fe4d3d;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 50px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+/* 红包雨的标题 */
+.u-title-1{
+    text-align: center;
+    font-size: 24px;
+    color: #ff9a18;
+    margin-top: 15px;
+    font-weight: 500;
+    position: absolute;
+    width: 220px;
+    left: 50%;
+    margin-left: -110px;
+    z-index: 90;
+}
+
+.u-title-icon{
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    position: relative;
+    left: -5px;
+    top: 2px;
+}
+.u-icon-clock{
+    background: url('../../../../img/activity/mayDay4Gifts/icon_clock.png') no-repeat center;
+    background-size: 100%;
+}
+.u-icon-doller{
+    background: url('../../../../img/activity/mayDay4Gifts/icon_doller.png') no-repeat center;
+    background-size: 100%;
+}
+
+
+/* 三重礼 */
+.u-title-2{
+    margin-top: 15px;
+    text-align: center;
+    font-size: 24px;
+    color: #ff9a18;
+    font-weight: 500;
+}
+
+.u-total-count-wrapper{
+    width: 100%;
+    display: inline-block;
+    height: 20px;
+}
+.u-total-count{
+    font-size: 12px;
+    text-align: center;
+}
+
+/* 三重礼外框 */
+.g-three-gifts{
+    border-radius: 10px;
+    box-sizing: border-box;
+    background: #fff;
+    overflow: hidden;
+    padding-bottom: 40px;
+}
+.g-three-gifts.z-onTop{
+
+}
+
+/* 三个礼物 */
+.g-gifts-wrapper{
+    text-align: center;
+}
+.m-gift{
+    display: inline-block;
+    text-align: center;
+    margin-top: 30px;
+    width: 85%;
+}
+.m-gift.m-gift-first{
+    margin-top: 0;
+}
+.u-redbag{
+    min-height: 100px;
+}
+.u-redbag-88{
+    background: url('../../../../img/activity/mayDay4Gifts/redbag88.png') no-repeat center;
+}
+.u-redbag-88.z-active{
+    background: url('../../../../img/activity/mayDay4Gifts/redbag88_open.png') no-repeat center;
+}
+
+.u-redbag-188{
+    background: url('../../../../img/activity/mayDay4Gifts/redbag188.png') no-repeat center;
+}
+.u-redbag-188.z-active{
+    background: url('../../../../img/activity/mayDay4Gifts/redbag188_open.png') no-repeat center;
+}
+
+.u-redbag-500{
+    background: url('../../../../img/activity/mayDay4Gifts/redbag500.png') no-repeat center;
+}
+.u-redbag-500.z-active{
+    background: url('../../../../img/activity/mayDay4Gifts/redbag500_open.png') no-repeat center;
+}
+
+.u-rule-three{
+    color: #666;
+    line-height: 18px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    text-align: left;
+    font-size: 12px;
+    padding-left: 15%;
+}
+.u-red-btn{
+    display: inline-block;
+    width: 75%;
+    height: 40px;
+    line-height: 40px;
+    color: #fff;
+    text-align: center;
+    border-radius: 50px;
+    background: #fe4d3d;
+    font-size: 16px;
+    cursor: pointer;
+}
+.u-red-btn.z-disable{
+    background: #bdbdbd;
+    color: #fff;
+    cursor: default;
+}
+
+/* 底部规则 */
+.g-rule{
+    background: #1a95d1;
+    color: #fff;
+    padding: 3rem 1rem;
+    font-size: 12px;
+    line-height: 20px;
+}
+
+.g-rule p{
+    margin-bottom: 4px;
+}
+.g-rule p.u-indent-rule{
+    padding-left: 1rem;
+}

@@ -1,0 +1,509 @@
+##小明和小刚的故事
+#parse('/common/common.vm')
+#set($title="1%收益券投者有送_$!{title_suffix}")
+        <style>
+
+          	.g-bd {
+				margin-bottom: 0;
+			}
+			.g-wrap {
+				width: 990px;
+				margin: 0 auto;
+			}
+		  	.u-story-hd{
+            	width: 100%;
+            	height: 505px;
+            	margin-top: -8px;
+            	text-indent: -9999px;
+            	background: url($root_url/static/img/activity/story/story_hd.jpg) no-repeat center;
+	        }
+	        /*同样投资100万*/
+    		.m-story-million{ 
+				background-color: #ffbc53;
+				height:747px;
+    		}    		
+			.m-story-millioncenter{ 
+				width: 990px;
+				height: 620px;
+				display: block;
+				background-color: #fff;
+				border: 1px solid #fff;
+			}
+			.m-story-millioncenter h2{ 
+				color: #995d00;
+				font-weight: bold;
+				text-align: center;
+				margin-top: 50px;
+				margin-bottom: 32px;
+			}
+			.m-story-xiaoming{ 
+				width: 333px;
+				height: 430px;
+				float: left;
+				margin: 0 152px 69px 127px;
+			}
+			.m-story-xiaoming dt{ 
+				color: #ccc;
+			}
+    		.m-story-xiaoming .u-story-cash{ 
+				width: 120px;
+				height: 110px;
+				display: block;
+				float: left;
+				background: url($root_url/static/img/activity/story/story_icon.png) no-repeat -160px 0;
+    		}
+    		.u-story-ticket{ 
+				width: 151px;
+				height: 81px;
+				float: left;
+				margin-top: -105px;
+				margin-left: 175px;
+				background: url($root_url/static/img/activity/story/story_icon.png) no-repeat 0 0;
+    		}
+    		.m-story-xiaoming dt p{ 
+				padding-top: 15px;
+				margin-left: 130px;
+    		}
+    		.m-story-xiaoming dd p{ 
+				padding-top: 80px;
+				text-align: center;
+				color: #999;
+    		}
+    		.m-story-xiaoming dd>i{ 
+    			display: block;
+				margin: 36px 0 0 20px;
+				width: 267px;
+				height: 203px;
+				background: url($root_url/static/img/activity/story/story_icon.png) no-repeat -349px -213px;
+    		}
+    		.m-story-xiaogang{ 
+				width: 266px;
+				height: 432px;
+				float: left;
+    		}
+    		.m-story-xiaogang .u-story-cash{ 
+				width: 120px;
+				height: 110px;
+				margin-left: 70px;
+				display: block;
+				background: url($root_url/static/img/activity/story/story_icon.png) no-repeat -160px 0;
+			}
+			.m-story-xiaogang dd p{ 
+				padding-top: 30px;
+				text-align: center;
+				color: #999;
+			}
+			.m-story-xiaogang dd>i{ 
+    			display: block;
+				margin: 36px 0 0 0;
+				width: 267px;
+				height: 209px;
+				background: url($root_url/static/img/activity/story/story_icon.png) no-repeat -300px 0;
+    		}
+    	/*新老用户活动*/
+    		.m-story-activity{ 
+				background-color: #2eb6aa;
+				height: 972px;
+    		}
+    		.m-story-activitycenter{
+    			width: 990px;
+				height: 747px;
+				display: block;
+				padding-top: 110px;
+			}
+			.m-story-newclient,.m-story-oldclient{ 
+				color: #fff;
+				margin-bottom: 103px;
+			}
+			.m-story-newclient dl{ 
+				width: 300px;
+				height: 300px;
+				margin-right: 120px;
+				float: left;
+				margin-left: 165px;
+			}
+			.m-story-activitycenter span,.m-story-activitycenter h3{ 
+				font-weight: bold;
+			}
+			.m-story-oldclient p,.m-story-newclient p{ 
+				margin-top:35px; 
+			}
+			.m-story-newclient dd>a,.m-story-oldclient dd>a{ 
+				width: 228px;
+				height: 47px;
+				display: block;
+				margin-top: 45px;
+				text-align: center;
+				color: #fff;
+				line-height: 1.8em;
+				border: 1px solid #ffbc53;
+				background-color: #ffbc53;
+			}
+			.m-story-newclient dd>a,.m-story-oldclient dd>a,.u-story-giftmoney a:link{ 
+				text-decoration:none;
+				color: #fff;
+			}
+			.m-story-newclient dd>a,.m-story-oldclient dd>a,.u-story-giftmoney a:visited{ 
+				color: #fff;
+				text-decoration:none;				
+			}
+			.m-story-newclient dd>a,.m-story-oldclient dd>a,.u-story-giftmoney a:hover{ 
+				color: #fff;
+				text-decoration:none;				
+			}
+			.m-story-newclient>i{ 
+				width: 236px;
+				height: 301px;
+				display: block;
+				float: left;
+				background: url($root_url/static/img/activity/story/story_icon.png) no-repeat -620px 0;
+			}
+			.m-story-oldclient>i{ 
+				width: 345px;
+				height: 343px;
+				display: block;
+				float: left;
+				margin: 0 73px 0 115px;
+				background: url($root_url/static/img/activity/story/story_icon.png) no-repeat 0 -137px;
+			}
+			.m-story-oldclient dl{ 
+				width: 313px;
+				height: 226px;
+				float: left;
+			}
+			.m-story-oldclient dt{ 
+				display: inline;
+			}
+			.m-story-activitycenter h3{ 
+				display: inherit;
+			}
+    	/*活动名单*/
+    		 .m-story-list{ 
+				background-color: #ffbc53;
+				height: 590px;
+    		}
+    		.m-story-listcenter{ 
+				width: 990px;
+				height: 515px;
+				display: block;
+				padding-top: 65px;
+				position: relative;	
+    		}	
+
+    		.m-story-listbox{ 
+    			width:940px;
+				height: 346px;
+				padding: 81px 0 0 50px;
+				color: #ffd986;
+				position: absolute;
+				top:101px;
+				background-color: #ff655d;
+    		}
+    		.m-story-listcenter i{ 
+				width: 527px;
+				height: 64px;
+				display: block;
+				margin: 0 auto;
+				position: absolute;
+				left: 232px;
+				z-index: 99;
+				font-weight: bold;
+				text-align: center;
+				color: #f43732;
+				line-height: 2.5em;
+				background: url($root_url/static/img/activity/story/story_icon.png) no-repeat 0 -483px;
+    		}
+    		.m-story-listbox .m-story-box1{ 
+				width: 925px;
+				height: auto;
+    		}
+    		.m-story-listbox .m-story-box2{ 
+				float: left;
+				width: 396px;
+				height: 275px;
+				margin-top: 81px;
+    		}
+    		.m-story-listbox ul li{ 
+				padding-right: 30px;
+				margin-bottom: 10px;
+				display: inline-block;
+				width: 430px;
+				float: left;
+			}
+    		.m-story-listbox li em{ 
+				display: inline;
+    		}
+    		.u-user-listtime{ 
+				display: inline;
+				margin-left: 10px;
+    		}
+
+    		.u-story-giftmoney{ 
+				margin-top: 493px;
+    			*margin-top: 558px;
+				
+				display: inherit;
+    		}
+    		.u-story-giftmoney span{
+				font-weight: bold;
+				color: #ff655d;
+				margin-left:87px; 
+    		}
+    		.u-story-giftmoney a{ 
+				width: 155px;
+				height: 32px;
+				margin-left: 80px;
+				text-align: center;
+				color: #fff;
+				line-height: 1.8em;
+				border: 1px solid #ff655d;
+				background-color: #ff655d;
+    		}
+    		/*头像*/
+    		.u-user-head {
+				position: relative;
+				padding: 0 10px 0 0;
+				vertical-align: middle;
+				display: inline-block;
+				height: 35px;
+				width: 35px;
+				overflow: hidden;
+			}
+			.u-user-head img {
+				display: inline-block;
+				height: 35px;
+				width: 35px;
+				overflow: hidden;
+			}
+			.u-user-head i {
+				position: absolute;
+				left: 0;
+				top: 0;
+				z-index: 2;
+				background: url($root_url/static/img/activity/story/story_icon.png) no-repeat 0 -87px;
+				display: inline-block;
+				height: 35px;
+				width: 35px;
+				overflow: hidden;
+			}
+    	/*活动规则*/
+			.m-story-rule{ 
+				background-color: #ff831f;
+				height: 503px;
+			}
+	      	.m-story-rulecenter{ 
+				width: 990px;
+				height: 438px;
+				display: block;
+				color: #fff;
+				padding-top: 65px;
+				position: relative;		
+	      	}
+	      	.m-story-rulecenter h1{ 
+				font-weight: bold;
+				
+	      	}
+	      	.m-story-rulecenter span{
+	      		line-height: 2.5em;
+	      		margin:10px 0 45px 0; 
+	      		display:block;
+	      	}
+	      	.m-story-rulecenter>p{ 
+				margin-left: 390px;
+				margin-top: 47px;
+	      	}
+	      	.m-story-rulecenter span,.m-story-rulecenter h1{ 
+				margin-left: 90px;
+	      	}
+	      	.u-user-earnticket{
+	      		width:210px;
+	      		display: inline-block;
+	      	}
+	      	/*用户列表外框*/
+	      	.u-story-list{
+	      		width:940px;
+	      		height:305px;
+	      		position: relative;
+	      		overflow:hidden;
+	      	}
+	      	.u-story-remind{ 
+	      		margin-bottom: -36px;
+				font-weight: bold;
+	      		color:#D74147;
+	      	}
+	      	.u-gm-success:link{
+	      		color:#d74148;
+	      		text-decoration:underline;
+	      	}
+	       	.u-gm-success:visited{
+	       		text-decoration:underline;
+	      		color:#d74148;
+	      	}
+	       	.u-gm-success:hover{
+	      		color:#d74148;
+	      		text-decoration:underline;
+	      	}
+</style>
+
+ <div class="f-mh500 f-cf ">
+    	<div class="u-story-hd">
+    	</div>
+    	<!--同样投资100万-->
+    	<div class="m-story-million">
+    		<div class="m-story-millioncenter g-wrap u-circle-15 f-cf">
+    			<h2 class="f-fs30">同样投资100万，利率12.98%，一年后会发生什么呢？</h2>
+    			<dl class="m-story-xiaoming f-cf">
+    				<dt class="f-fs34">
+    					<i class="u-story-cash"></i><p class="f-fs36">+</p><i class="u-story-ticket"></i>
+    				</dt>
+    				<dd><p class="f-fs24">小明投资100万+1%收益券</p></dd>
+    				<dd>
+    					<i></i>
+    				</dd>
+    			</dl>
+    			<dl class="m-story-xiaogang f-cf">
+    				<dt>
+    					<i class="u-story-cash"></i>
+    				</dt>
+    				<dd><p class="f-fs24">小刚投资100万</p></dd>
+    				<dd>
+    					<i></i>
+    				</dd>
+    			</dl>
+    		</div>
+    	</div>
+    	<!--新老用户活动-->
+    	<div class="m-story-activity">
+    		<div class="g-wrap m-story-activitycenter">
+    			<div class="m-story-newclient f-cf">
+    				<dl>
+    					<dt>
+    						<h3 class="f-fs30">我是首次投资的用户，</h3>
+    					</dt>
+    					<dt>
+    						<span class="f-fs16">我要和小明一样</span>
+    					</dt>
+    					<dt>
+    						<p class="f-fs16">
+    							活动期间，首次投资的用户，只要在<br>
+								新客专享项目中单笔投资100元即可<br>
+								跟小明一样获得1%收益券哦。
+    						</p>
+    					</dt>
+    					<dd>
+    						<a class="u-circle-7 f-fs24" target="_blank" href="$root_url/products/detail-$!{newProjectId}.html">立刻投资</a>
+    					</dd>
+    				</dl>
+    				<i></i>
+    			</div>
+				<div class="m-story-oldclient f-cf">
+					<i></i>
+					<dl>
+						<dt><h3 class="f-fs30">我是老用户，</h3><span class="f-fs16">我也要和小明一样</span></dt>
+						<dt>
+							<p class="f-fs16">
+								自平台上线以来，至2015年3月31日24:00<br>
+								之前，凡累计投资额达1万元的老用户，<br>
+								即可免费领取1%收益券哦。
+							</p>
+						</dt>
+						<dd>
+							<a class="u-circle-7 f-fs24 j-want-receive" data-logined="$!logined" href="javascript:void(0);" data-url="$root_url/activity/receive">我要领取</a>
+						</dd>
+					</dl>
+				</div>
+    		</div>
+    	</div>
+    	<!--活动名单-->
+			#if($coupons && $coupons.size()>0)
+	    	<div class="m-story-list">
+	    		<div class="g-wrap m-story-listcenter">
+	    			<i class="f-fs24">获奖名单</i>
+	    			<div class="m-story-listbox f-fs14 f-cf u-circle-15">
+	    				<div class="u-story-list">
+	    				<ul class="m-story-box1 " id="j-story-list">
+	    					#foreach($!couponBiz in  $!coupons)
+	    					<li>
+	    						
+	    							<span class="u-user-head">
+	    							#if($!couponBiz.avatars)<img src="$aliyun_url/$!{couponBiz.avatars}" alt="用户头像"><i>&nbsp;</i>#else<img src="http://www.yrw.com/static/img/member/avatar_35x35.png" alt="用户头像"><i>&nbsp;</i>#end</span>
+			                		<span class="u-user-earnticket">恭喜 <em> $!couponBiz.maskUserName </em> 获得1%收益券</span>
+			                		<span class="u-user-listtime">$!couponBiz.receiveTimeStr</span>
+			                </li>
+			                #end	
+	    				</ul>
+	    				</div>
+	    			</div>
+	    			#*<div class="u-story-giftmoney">
+	    				<span class="f-fs30 f-vam">领完收益券，除夕夜还有压岁钱可以领哦！</span><a class="f-fs16 u-circle-15" target="_blank" href="/activity/giftmoney">领压岁钱</a>
+	 				</div>*#
+	    		</div>
+	    	</div>
+			#end
+    	<!--活动规则-->
+    	<div class="m-story-rule">
+    		<div class="g-wrap m-story-rulecenter">
+				<h1 class="f-fs20">活动规则</h1>
+				<span class="f-fs14">
+					1、活动时间：2015年2月10日-3月31日；<br>
+					2、活动对象：有融网新老用户；<br>
+					3、活动期间，首次投资的用户，只要在“新客专享”项目中投资100元，即可获得一张1%收益券；<br>
+					4、活动期间，自平台上线之日起，至2015年3月31日24:00之前，凡累计投资额满1万元的老用户，均可获得一张1%收益券；<br>
+					<p class="u-story-remind">5、满足条件的用户，只能获得一张1%收益券。即：在新客专享项目中已获得1%收益券的用户，投资满1万元后不再重复获得1%收益券；</p><br>
+					6、本次活动中，收益券的有效期为领取之日起的15天内；<br>
+					7、收益券可在投资时使用，每次限用一张。收益券将在领取后5分钟内发放到您的账户，请前往“我的账户>我的优惠>我的收益券”中查看；<br>
+					8、什么是收益券：收益券可使您的收益增加。例如，您投资的项目原本年化利率为10%，使用1%的收益券之后，利率上涨为11%；<br />
+					9、若有其他疑问，请拨打客服热线:400-025-6688。
+				</span>
+				<p class="f-fs14">本次活动最终解释权归有融网所有</p>
+    		</div>
+    	</div>
+
+<script type="text/javascript" >
+	window.onload=function(){
+		$(".j-want-receive").on('click',function(){
+			var _this=$(this),
+				  url=_this.data("url"),
+				  logined=Number(_this.data("logined"));
+			if(!logined){
+				location.href="$root_url/security/login/";
+				return false;
+			}
+			$.getJSON(url,function(data){
+				if(data.success){
+					$.xDialog({
+                        content:"恭喜您，领取成功！点击<a class='u-gm-success' href='$root_url/coupon/profitCouponList'"+
+                            " target='_blank'>查看收益券</a>",
+                            callback:function(){
+                            	window.location.reload();
+                            }
+                    });
+				}else{
+					if(data.resultCodeEum[0].code == 90721){
+                        $.xDialog({
+                            content: "活动还未开始呢，先去看看<a class='u-gm-success' href='$root_url/products/list-all-all-all-1-createTimeDesc-1.html'" +
+                            " target='_blank'>投资项目</a>吧！" });
+					}else{
+						$.xDialog({content:data.resultCodeEum[0].msg});
+					}
+				}
+			});			
+		})
+		//列表滚动
+		var scrollList=$("#j-story-list"),scrollSize=scrollList.find("li").length;
+		if(scrollSize>14){
+			setInterval(function(){
+				var scrollItems=scrollList.find("li:visible");
+				scrollList.animate({marginTop:-45},700,function(){
+				scrollItems.eq(0).appendTo(scrollList);
+				scrollItems.eq(1).appendTo(scrollList);
+				$(this).css("margin-top",0);
+			});
+			},1500);
+		}
+	}
+
+
+
+
+</script>

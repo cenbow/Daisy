@@ -1,0 +1,47 @@
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$m_css_url/modules/setPayPassword.css"])
+#set($title='设置委托支付')
+<style>
+    [v-cloak]{
+        display: none;
+    }
+</style>
+<div id="setPayPassword">
+    <!--header-->
+    <h2 class="u-header f-pos-r">
+        <a href="$siteurl/mCenter/security" id="j-backUrl">返回</a>
+        <span class="f-fs20" id="j-title">委托支付</span>
+    </h2>
+    <!--/header-->
+    <ul class="u-setPayPassword">
+        <li>
+            <span class="f-color3">委托支付</span>
+            <span v-if="isPaymentCipher" class="f-fr f-color9">已开通</span>
+            <span v-else class="f-fr f-color9">未开通</span>
+        </li>
+    </ul>
+    <p class="u-setTips">
+        开通委托支付功能后，您投资时将自动从您的新浪支付存钱罐账户扣除相应资金，轻松享受便捷支付体验。
+    </p>
+    <div class="u-setBtn" v-if="isPaymentCipher" @click="gotoSetPaymentCipher(2,1)">
+        <span class="f-fs16">关闭委托</span>
+    </div>
+    <div class="u-setBtn" v-else @click="gotoSetPaymentCipher(1,1)">
+        <span class="f-fs16">开通委托</span>
+    </div>
+    <div class="u-tipsBlock f-dn" id="j-SetPayPwdTips">
+        <p class="f-fs14 f-color6">新浪支付全新升级，设置支付密码后方可进行操作</p>
+        <div class="u-btnBlock">
+            <span @click="closeBlock('#j-SetPayPwdTips')">暂不设置</span>
+            <a href="$siteurl/mCenter/setPayPassword"><span>前往设置</span></a>
+        </div>
+    </div>
+</div>
+#set($pageScript="
+<script src='$aliyunOss_url/res/lib/vue/v1/vue.min.js'></script>
+<script>
+    seajs.use('$siteurl/res/source/js/modules/setPayPassword.js')
+</script>
+")
+#CSRFToken("xToken")

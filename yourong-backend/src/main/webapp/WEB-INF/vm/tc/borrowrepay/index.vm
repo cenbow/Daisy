@@ -1,0 +1,97 @@
+#set($layout = "/layout/iframe.vm")
+#parse("/tc/borrowrepay/head.vm")
+<div class="col-xs-12">
+    <p>
+    </p>
+</div>
+<div class="col-xs-12">
+    <div class="table-responsive">
+        <form id="interest_form">
+            <table id="debt-table-search" class="table table-striped table-bordered " cellspacing="0" width="100%">
+                <thead>
+                <tr>
+                    <td>
+                        借款人姓名：
+                    </td>
+                    <td>
+                        <input type="text" name="borrowName" class="input-medium search_init"/>
+                    </td>
+                    <td>
+                        借款人手机：
+                    </td>
+                    <td>
+                        <input type="text" name="borrowMobile" class="input-medium search_init"/>
+                    </td>
+                    <td>
+                        会员ID：
+                    </td>
+                    <td>
+                        <input type="text" name="borrowId" class="input-medium search_init"/>
+                    </td>
+                    <td>
+                        还款日期：
+                    </td>
+                    <td>
+                        <input type="text" id="endDate" name="endDate" value="$!{enddate}" onclick="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd'})"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="10" style="text-align:center">
+                        <button id = "query_interest" type="button" class="btn btn-info btn-sm btn-primary">查询</button>
+                        <button id = "reset_interest" type="button" class="btn btn-info btn-sm btn-primary resetButton">重置</button>
+                    </td>
+                </tr>
+                </thead>
+            </table>
+        </form>
+    </div>
+</div>
+<div class="col-xs-12">
+    <div class="table-header">借款人还本付息列表</div>
+    <div class="table-responsive">
+        <table id="repayInterest-table" class="table table-striped table-bordered" cellspacing="0" width="100%">
+            <thead>
+            <tr>
+                <th>
+                    <label>
+                        <input class="ace" type="checkbox">
+                        <span class="lbl"></span>
+                    </label>
+                </th>
+                <th>会员ID</th>
+                <th>借款人姓名<button id = "query_borrowerPlatformKey" type="button" class="btn btn-info btn-sm btn-primary">渠道</button></th>
+                <th>借款人手机号</th>
+                <th>还款日期</th>
+                <th>账户余额</th>
+                <th>待还款项目</th>
+                <th>已还款项目</th>
+                <th>需还金额</th>
+                <th>需还本金</th>
+                <th>借款人实际支付利息</th>
+                <th>平台贴息</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+<div style="margin-left: 10px" >
+    <span style="font-size: 15px;">还款项目:</span><span style="font-size: 20px;" id="waitRepayNum">0</span>个
+</div>
+<div class="col-xs-5">
+    <table class="table table-striped table-bordered">
+        <tr>
+            <td>需还金额</td>
+            <td id="payabletotal">0</td>
+            <td>需还本金</td>
+            <td id="payablePrincipal">0</td>
+            <td>需还利息</td>
+            <td id="payableInterest">0</td>
+            <td>平台贴息</td>
+            <td id="extraInterest">0</td>
+        </tr>
+    </table>
+</div>
+
+#parse("/tc/borrowrepay/repayDetail.vm")

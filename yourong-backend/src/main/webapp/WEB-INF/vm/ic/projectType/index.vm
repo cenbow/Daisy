@@ -1,0 +1,43 @@
+#parse("/ic/projectType/head.vm") 
+<div class="col-xs-12">
+  <p>
+    <button id = "new_projectType" type="button" class="btn btn-info btn-sm btn-primary" >新增</button>
+    <button id = "edit_projectType" type="button" class="btn  btn-pink btn-sm btn-primary" >修改</button>
+    <button id = "delete_projectType" type="button" class="btn btn-danger btn-sm btn-primary" >删除</button>
+	<button id = "show_projectType" type="button" class="btn btn-danger btn-sm btn-primary" >显示项目类型详细信息</button>
+  </p>
+</div>
+<div class="col-xs-12">
+     <div class="table-header">
+     		表头信息
+     </div>
+   <div class="table-responsive">
+     	<table id="projectType-table-2" class="table table-striped table-bordered" cellspacing="0" width="100%">
+     	       <thead> 
+     	          <!-- <tr>  
+     	            <th></th>
+ <th><input type="text" name="search_id"  class="input-small search_init" /></th>
+ <th><input type="text" name="search_projectTypeName"  class="input-small search_init" /></th>
+ <th><input type="text" name="search_projectTypeCode"  class="input-small search_init" /></th>
+ <th><input type="text" name="search_guarantyType"  class="input-small search_init" /></th>
+ <th><input type="text" name="search_guarantyThingType"  class="input-small search_init" /></th>
+ <th><input type="text" name="search_instalment"  class="input-small search_init" /></th>
+         <th><button id = "query_projectType" type="button" class="btn btn-info btn-sm btn-primary">查询</button></th>
+				  </tr>-->
+ <tr >
+ <th ><label><input class="ace" type="checkbox"> <span class="lbl"></span></label></th>
+<th >主键</th>
+<th >项目类型名称</th>
+<th >项目类型编码</th>
+<th >担保方式</th>
+<th >担保物类型</th>
+<th >是否分期</th>
+ </tr>
+ </thead>
+ </table>
+ </div>
+ </div>
+ <div id="guaranty_form">
+ #parse("/ic/projectType/form.vm")
+ #parse("/ic/projectType/parseForm.vm")
+ <div>

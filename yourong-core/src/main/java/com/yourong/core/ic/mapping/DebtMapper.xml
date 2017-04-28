@@ -1,0 +1,1255 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.ic.dao.DebtMapper">
+	<resultMap id="BaseResultMap" type="Debt">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="serial_number" property="serialNumber"
+			jdbcType="VARCHAR" />
+		<result column="original_debt_number" property="originalDebtNumber"
+			jdbcType="VARCHAR" />
+		<result column="debt_type" property="debtType" jdbcType="VARCHAR" />
+		<result column="borrower_type" property="borrowerType" jdbcType="VARCHAR" />
+		<result column="guaranty_type" property="guarantyType" jdbcType="INTEGER" />
+		<result column="amount" property="amount" jdbcType="DECIMAL" />
+		<result column="return_type" property="returnType" jdbcType="VARCHAR" />
+		<result column="start_date" property="startDate" jdbcType="DATE" />
+		<result column="end_date" property="endDate" jdbcType="DATE" />
+		<result column="borrower_id" property="borrowerId" jdbcType="BIGINT" />
+		<result column="annualized_rate" property="annualizedRate"
+			jdbcType="DECIMAL" />
+		<result column="offline_annualized_rate" property="offlineAnnualizedRate"
+		jdbcType="DECIMAL" />
+		<result column="fee_rate" property="feeRate" jdbcType="DECIMAL" />
+		<result column="remarks" property="remarks" jdbcType="VARCHAR" />
+		<result column="publish_id" property="publishId" jdbcType="BIGINT" />
+		<result column="lender_id" property="lenderId" jdbcType="BIGINT" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="interest_from" property="interestFrom"
+			jdbcType="INTEGER" />
+		<result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+		<result column="return_source" property="returnSource"
+			jdbcType="VARCHAR" />
+		<result column="loan_use" property="loanUse" jdbcType="VARCHAR" />
+		<result column="safeguards" property="safeguards" jdbcType="VARCHAR" />
+		<result column="audit_id" property="auditId" jdbcType="TIMESTAMP" />
+		<result column="audit_time" property="auditTime" jdbcType="TIMESTAMP" />
+		<result column="audit_message" property="auditMessage"
+			jdbcType="VARCHAR" />
+		<result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
+		<result column="updated_time" property="updatedTime" jdbcType="TIMESTAMP" />
+		<result column="control_remarks" property="controlRemarks" jdbcType="VARCHAR" />
+		<result column="end_flag" property="endFlag" jdbcType="BIGINT" />
+		<result column="instalment" property="instalment" jdbcType="INTEGER" />
+		<result column="enterprise_id" property="enterpriseId" jdbcType="BIGINT" />
+		<result column="lender_type" property="lenderType" jdbcType="VARCHAR" />
+		<result column="lender_enterprise_id" property="lenderEnterpriseId" jdbcType="BIGINT" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, serial_number, original_debt_number, debt_type, borrower_type, guaranty_type, amount, return_type,
+		start_date, end_date, borrower_id, annualized_rate, offline_annualized_rate, fee_rate, remarks,
+		publish_id,
+		lender_id, status, interest_from, del_flag, return_source, loan_use, safeguards,
+		audit_id, audit_time, audit_message, created_time, updated_time, instalment,lender_type, enterprise_id ,lender_enterprise_id
+	</sql>
+	<insert id="insertSelective" parameterType="Debt"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into ic_debt
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="serialNumber != null">
+				serial_number,
+			</if>
+			<if test="originalDebtNumber != null">
+				original_debt_number,
+			</if>
+			<if test="debtType != null">
+				debt_type,
+			</if>
+			<if test="borrowerType != null">
+				borrower_type,
+			</if>
+			<if test="lenderType != null">
+				lender_type,
+			</if>
+			<if test="guarantyType != null">
+				guaranty_type,
+			</if>
+			<if test="amount != null">
+				amount,
+			</if>
+			<if test="returnType != null">
+				return_type,
+			</if>
+			<if test="startDate != null">
+				start_date,
+			</if>
+			<if test="endDate != null">
+				end_date,
+			</if>
+			<if test="borrowerId != null">
+				borrower_id,
+			</if>
+			<if test="annualizedRate != null">
+				annualized_rate,
+			</if>
+			<if test="offlineAnnualizedRate != null">
+				offline_annualized_rate,
+			</if>
+			<if test="feeRate != null">
+				fee_rate,
+			</if>
+			<if test="remarks != null">
+				remarks,
+			</if>
+			<if test="publishId != null">
+				publish_id,
+			</if>
+			<if test="lenderId != null">
+				lender_id,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="interestFrom != null">
+				interest_from,
+			</if>
+			del_flag,
+			<if test="returnSource != null">
+				return_source,
+			</if>
+			<if test="loanUse != null">
+				loan_use,
+			</if>
+			<if test="safeguards != null">
+				safeguards,
+			</if>
+			<if test="auditId != null">
+				audit_id,
+			</if>
+			<if test="auditTime != null">
+				audit_time,
+			</if>
+			<if test="auditMessage != null">
+				audit_message,
+			</if>
+			created_time,
+			updated_time,
+			<if test="instalment != null">
+				instalment,
+			</if>
+			<if test="enterpriseId != null">
+				enterprise_id,
+			</if>
+			<if test="lenderEnterpriseId != null">
+				lender_enterprise_id
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="serialNumber != null">
+				#{serialNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="originalDebtNumber != null">
+				#{originalDebtNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="debtType != null">
+				#{debtType,jdbcType=VARCHAR},
+			</if>
+			<if test="borrowerType != null">
+				#{borrowerType,jdbcType=INTEGER},
+			</if>
+			<if test="lenderType != null">
+				#{lenderType,jdbcType=INTEGER},	
+			</if>
+			<if test="guarantyType != null">
+				#{guarantyType,jdbcType=VARCHAR},
+			</if>
+			<if test="amount != null">
+				#{amount,jdbcType=DECIMAL},
+			</if>
+			<if test="returnType != null">
+				#{returnType,jdbcType=VARCHAR},
+			</if>
+			<if test="startDate != null">
+				#{startDate,jdbcType=DATE},
+			</if>
+			<if test="endDate != null">
+				#{endDate,jdbcType=DATE},
+			</if>
+			<if test="borrowerId != null">
+				#{borrowerId,jdbcType=BIGINT},
+			</if>
+			<if test="annualizedRate != null">
+				#{annualizedRate,jdbcType=DECIMAL},
+			</if>
+			<if test="offlineAnnualizedRate != null">
+				#{offlineAnnualizedRate,jdbcType=DECIMAL},
+			</if>
+			<if test="feeRate != null">
+				#{feeRate,jdbcType=DECIMAL},
+			</if>
+			<if test="remarks != null">
+				#{remarks,jdbcType=VARCHAR},
+			</if>
+			<if test="publishId != null">
+				#{publishId,jdbcType=BIGINT},
+			</if>
+			<if test="lenderId != null">
+				#{lenderId,jdbcType=BIGINT},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=INTEGER},
+			</if>
+			<if test="interestFrom != null">
+				#{interestFrom,jdbcType=INTEGER},
+			</if>
+			1,
+			<if test="returnSource != null">
+				#{returnSource,jdbcType=VARCHAR},
+			</if>
+			<if test="loanUse != null">
+				#{loanUse,jdbcType=VARCHAR},
+			</if>
+			<if test="safeguards != null">
+				#{safeguards,jdbcType=VARCHAR},
+			</if>
+			<if test="auditId != null">
+				#{auditId,jdbcType=TIMESTAMP},
+			</if>
+			<if test="auditTime != null">
+				#{auditTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="auditMessage != null">
+				#{auditMessage,jdbcType=VARCHAR},
+			</if>
+			now(),
+			now(),
+			<if test="instalment != null">
+				#{instalment,jdbcType=INTEGER},
+			</if>
+			<if test="enterpriseId != null">
+				#{enterpriseId,jdbcType=BIGINT},
+			</if>
+			<if test="lenderEnterpriseId != null">
+				#{lenderEnterpriseId,jdbcType=BIGINT},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="Debt">
+		update ic_debt
+		<set>
+			<if test="serialNumber != null">
+				serial_number = #{serialNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="originalDebtNumber != null">
+				original_debt_number = #{originalDebtNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="debtType != null">
+				debt_type = #{debtType,jdbcType=VARCHAR},
+			</if>
+			<if test="borrowerType != null">
+				borrower_type = #{borrowerType,jdbcType=INTEGER},
+			</if>
+			<if test="lenderType != null">
+				lender_type = #{lenderType,jdbcType=INTEGER},
+			</if>
+			<if test="guarantyType != null">
+				guaranty_type = #{guarantyType,jdbcType=VARCHAR},
+			</if>
+			<if test="amount != null">
+				amount = #{amount,jdbcType=DECIMAL},
+			</if>
+			<if test="returnType != null">
+				return_type = #{returnType,jdbcType=VARCHAR},
+			</if>
+			<if test="startDate != null">
+				start_date = #{startDate,jdbcType=DATE},
+			</if>
+			<if test="endDate != null">
+				end_date = #{endDate,jdbcType=DATE},
+			</if>
+				borrower_id = #{borrowerId,jdbcType=BIGINT},
+			<if test="annualizedRate != null">
+				annualized_rate = #{annualizedRate,jdbcType=DECIMAL},
+			</if>
+			<if test="offlineAnnualizedRate != null">
+				offline_annualized_rate = #{offlineAnnualizedRate,jdbcType=DECIMAL},
+			</if>
+			<if test="feeRate != null">
+				fee_rate = #{feeRate,jdbcType=DECIMAL},
+			</if>
+			<if test="remarks != null">
+				remarks = #{remarks,jdbcType=VARCHAR},
+			</if>
+			<if test="publishId != null">
+				publish_id = #{publishId,jdbcType=BIGINT},
+			</if>
+				lender_id = #{lenderId,jdbcType=BIGINT},
+			<if test="status != null">
+				status = #{status,jdbcType=INTEGER},
+			</if>
+			<if test="interestFrom != null">
+				interest_from = #{interestFrom,jdbcType=INTEGER},
+			</if>
+			<if test="delFlag != null">
+				del_flag = #{delFlag,jdbcType=INTEGER},
+			</if>
+			<if test="returnSource != null">
+				return_source = #{returnSource,jdbcType=VARCHAR},
+			</if>
+			<if test="loanUse != null">
+				loan_use = #{loanUse,jdbcType=VARCHAR},
+			</if>
+			<if test="safeguards != null">
+				safeguards = #{safeguards,jdbcType=VARCHAR},
+			</if>
+			<if test="auditId != null">
+				audit_id = #{auditId,jdbcType=TIMESTAMP},
+			</if>
+			<if test="auditTime != null">
+				audit_time = #{auditTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="auditMessage != null">
+				audit_message = #{auditMessage,jdbcType=VARCHAR},
+			</if>
+			<if test="updatedTime != null">
+				updated_time = now(),
+			</if>
+			<if test="instalment != null">
+				instalment = #{instalment,jdbcType=BIGINT},
+			</if>
+			updated_time=now(),
+			lender_enterprise_id = #{lenderEnterpriseId,jdbcType=INTEGER},
+			enterprise_id = #{enterpriseId,jdbcType=BIGINT},
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	
+	<!-- 紧急修改更新字段 -->
+	<update id="emergencyUpdateByPrimaryKeySelective" parameterType="Debt">
+		update ic_debt
+		<set>
+			<if test="serialNumber != null">
+				serial_number = #{serialNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="originalDebtNumber != null">
+				original_debt_number = #{originalDebtNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="debtType != null">
+				debt_type = #{debtType,jdbcType=VARCHAR},
+			</if>
+			<if test="borrowerType != null">
+				borrower_type = #{borrowerType,jdbcType=INTEGER},
+			</if>
+			<if test="lenderType != null">
+				lender_type = #{lenderType,jdbcType=INTEGER},
+			</if>
+			<if test="guarantyType != null">
+				guaranty_type = #{guarantyType,jdbcType=VARCHAR},
+			</if>
+				<!-- 债权总额 -->
+<!-- 			<if test="amount != null"> -->
+<!-- 				amount = #{amount,jdbcType=DECIMAL}, -->
+<!-- 			</if> -->
+				<!-- 还款方式 -->
+<!-- 			<if test="returnType != null"> -->
+<!-- 				return_type = #{returnType,jdbcType=VARCHAR}, -->
+<!-- 			</if> -->
+				<!-- 开始时间 -->
+<!-- 			<if test="startDate != null"> -->
+<!-- 				start_date = #{startDate,jdbcType=DATE}, -->
+<!-- 			</if> -->
+				<!-- 结束时间 -->
+<!-- 			<if test="endDate != null"> -->
+<!-- 				end_date = #{endDate,jdbcType=DATE}, -->
+<!-- 			</if> -->
+				borrower_id = #{borrowerId,jdbcType=BIGINT},
+				<!-- 年化利率 -->
+<!-- 			<if test="annualizedRate != null"> -->
+<!-- 				annualized_rate = #{annualizedRate,jdbcType=DECIMAL}, -->
+<!-- 			</if> -->
+			<if test="offlineAnnualizedRate != null">
+				offline_annualized_rate = #{offlineAnnualizedRate,jdbcType=DECIMAL},
+			</if>
+			<if test="feeRate != null">
+				fee_rate = #{feeRate,jdbcType=DECIMAL},
+			</if>
+			<if test="remarks != null">
+				remarks = #{remarks,jdbcType=VARCHAR},
+			</if>
+			<if test="publishId != null">
+				publish_id = #{publishId,jdbcType=BIGINT},
+			</if>
+				lender_id = #{lenderId,jdbcType=BIGINT},
+			<if test="status != null">
+				status = #{status,jdbcType=INTEGER},
+			</if>
+				<!-- 起息日 -->
+<!-- 			<if test="interestFrom != null"> -->
+<!-- 				interest_from = #{interestFrom,jdbcType=INTEGER}, -->
+<!-- 			</if> -->
+			<if test="delFlag != null">
+				del_flag = #{delFlag,jdbcType=INTEGER},
+			</if>
+			<if test="returnSource != null">
+				return_source = #{returnSource,jdbcType=VARCHAR},
+			</if>
+			<if test="loanUse != null">
+				loan_use = #{loanUse,jdbcType=VARCHAR},
+			</if>
+			<if test="safeguards != null">
+				safeguards = #{safeguards,jdbcType=VARCHAR},
+			</if>
+			<if test="auditId != null">
+				audit_id = #{auditId,jdbcType=TIMESTAMP},
+			</if>
+			<if test="auditTime != null">
+				audit_time = #{auditTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="auditMessage != null">
+				audit_message = #{auditMessage,jdbcType=VARCHAR},
+			</if>
+			<if test="updatedTime != null">
+				updated_time = now(),
+			</if>
+			<if test="instalment != null">
+				instalment = #{instalment,jdbcType=INTEGER},
+			</if>
+				lender_enterprise_id = #{lenderEnterpriseId,jdbcType=INTEGER},
+				enterprise_id = #{enterpriseId,jdbcType=BIGINT}
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	
+	
+	
+	<delete id="batchDelete" parameterType="java.lang.Long">
+		delete from ic_debt
+		where id in
+		<foreach collection="ids" index="index" item="item" open="("
+			separator="," close=")"> #{item}  </foreach>
+	</delete>
+	<select id="findByPage" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from ic_debt
+		<if test=" map != null">
+			<where>
+				<if test=" map.id != null">
+					id = #{map.id}
+				</if>
+				<if test=" map.serialNumber != null">
+					serial_number = #{map.serialNumber}
+				</if>
+				<if test=" map.originalDebtNumber != null">
+					original_debt_number = #{map.originalDebtNumber}
+				</if>
+				<if test=" map.debtType != null">
+					debt_type = #{map.debtType}
+				</if>
+				<if test=" map.borrowerType != null">
+					borrower_type = #{map.borrowerType}
+				</if>
+				<if test=" map.lenderType != null">
+					lender_type = #{map.lenderType}
+				</if>
+				<if test=" map.guarantyType != null">
+					guaranty_type = #{map.guarantyType}
+				</if>
+				<if test=" map.amount != null">
+					amount = #{map.amount}
+				</if>
+				<if test=" map.returnType != null">
+					return_type = #{map.returnType}
+				</if>
+				<if test=" map.startDate != null">
+					start_date = #{map.startDate}
+				</if>
+				<if test=" map.endDate != null">
+					end_date = #{map.endDate}
+				</if>
+				<if test=" map.borrowerId != null">
+					borrower_id = #{map.borrowerId}
+				</if>
+				<if test=" map.annualizedRate != null">
+					annualized_rate = #{map.annualizedRate}
+				</if>
+				<if test=" map.feeRate != null">
+					fee_rate = #{map.feeRate}
+				</if>
+				<if test=" map.remarks != null">
+					remarks = #{map.remarks}
+				</if>
+				<if test=" map.publishId != null">
+					publish_id = #{map.publishId}
+				</if>
+				<if test=" map.lenderId != null">
+					lender_id = #{map.lenderId}
+				</if>
+				<if test=" map.status != null">
+					status = #{map.status}
+				</if>
+				<if test=" map.interestFrom != null">
+					interest_from = #{map.interestFrom}
+				</if>
+				<if test=" map.delFlag != null">
+					del_flag = #{map.delFlag}
+				</if>
+				<if test=" map.returnSource != null">
+					return_source = #{map.returnSource}
+				</if>
+				<if test=" map.loanUse != null">
+					loan_use = #{map.loanUse}
+				</if>
+				<if test=" map.safeguards != null">
+					safeguards = #{map.safeguards}
+				</if>
+				<if test=" map.auditId != null">
+					audit_id = #{map.auditId}
+				</if>
+				<if test=" map.auditTime != null">
+					audit_time = #{map.auditTime}
+				</if>
+				<if test=" map.auditMessage != null">
+					audit_message = #{map.auditMessage}
+				</if>
+				<if test=" map.createdTime != null">
+					created_time = #{map.createdTime}
+				</if>
+				<if test=" map.updatedTime != null">
+					updated_time = #{map.updatedTime}
+				</if>
+				<if test=" map.instalment != null">
+					instalment = #{map.instalment}
+				</if>
+				<if test=" map.enterpriseId != null">
+					enterprise_id = #{map.enterpriseId}
+				</if>
+			</where>
+		</if>
+	</select>
+	<sql id="Base_Column_List_Pagin">
+		t.id as id, t.serial_number as serial_number, t.original_debt_number as
+		original_debt_number, t.debt_type as debt_type, t.borrower_type as borrower_type, t.lender_type as lender_type, t.guaranty_type as guaranty_type, t.amount as amount,
+		t.return_type as return_type, t.start_date as start_date, t.end_date
+		as end_date, t.borrower_id as borrower_id, t.annualized_rate as
+		annualized_rate, t.fee_rate as fee_rate, t.remarks as remarks,
+		t.publish_id as publish_id, t.lender_id as lender_id, t.status as
+		status, t.interest_from as interest_from, t.del_flag as del_flag,
+		t.return_source as return_source, t.loan_use as loan_use, t.safeguards
+		as safeguards, t.audit_id as audit_id, t.audit_time as audit_time,
+		t.audit_message as audit_message, t.created_time as created_time,
+		t.updated_time as updated_time,a.project_name as project_name,t.enterprise_id,
+		a.project_status as project_status,a.publish_name as publish_name,
+		a.lender_name as lender_name, a.borrower_name as borrower_name
+	</sql>
+	
+	<resultMap id="ExtendResultMap" type="Debt" extends="BaseResultMap">
+		<result column="project_id" property="projectId" jdbcType="BIGINT" />
+		<result column="project_name" property="projectName" jdbcType="VARCHAR" />
+		<result column="project_status" property="projectStatus" jdbcType="INTEGER" />
+		<result column="lender_name" property="lenderName" jdbcType="VARCHAR" />
+		<result column="borrower_name" property="borrowerName" jdbcType="VARCHAR" />
+		<result column="repayment" property="repayment" jdbcType="VARCHAR" />
+		<result column="online_time" property="onlineTime" jdbcType="TIMESTAMP" />
+		<result column="publish_name" property="publishName" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<select id="selectForPagin" resultMap="ExtendResultMap">
+		select
+		<include refid="Base_Column_List_Pagin" />
+		from (SELECT d.id,p.name as project_name,p.invest_type as invest_type,p.status as project_status,lm.true_name as lender_name,bm.true_name as borrower_name,sys.name as publish_name FROM ic_debt as d
+		LEFT JOIN (select id,debt_id,name,status,invest_type from ic_project where del_flag>0 ) as p on p.debt_id = d.id
+		LEFT JOIN uc_member as lm on lm.id = d.lender_id 
+		LEFT JOIN uc_member as bm on bm.id = d.borrower_id
+		LEFT JOIN sys_user as sys on sys.id = d.publish_id
+		where d.del_flag>0 
+		<if test=" map != null">
+			<if test=" map.id != null">
+				and id = #{map.id}
+			</if>
+			<if test=" map.serialNumber != null">
+				and serial_number = #{map.serialNumber}
+			</if>
+			<if test=" map.originalDebtNumber != null">
+				and original_debt_number = #{map.originalDebtNumber}
+			</if>
+			<if test=" map.debtType != null">
+				and debt_type = #{map.debtType}
+			</if>
+			<if test=" map.borrowerType != null">
+				and borrower_type = #{map.borrowerType}
+			</if>
+			<if test=" map.lenderType != null">
+				and lender_type = #{map.lenderType}
+			</if>
+			<if test=" map.guarantyType != null">
+				and guaranty_type = #{map.guarantyType}
+			</if>
+			<if test=" map.amount != null">
+				and amount = #{map.amount}
+			</if>
+			<if test=" map.returnType != null">
+				and return_type = #{map.returnType}
+			</if>
+			<!-- <if test=" map.startDate != null">
+				and start_date = #{map.startDate}
+			</if>
+			<if test=" map.endDate != null">
+				and end_date = #{map.endDate}
+			</if> -->
+			<if test=" map.borrowerId != null">
+				and borrower_id = #{map.borrowerId}
+			</if>
+			<if test=" map.annualizedRate != null">
+				and annualized_rate = #{map.annualizedRate}
+			</if>
+			<if test=" map.feeRate != null">
+				and fee_rate = #{map.feeRate}
+			</if>
+			<if test=" map.remarks != null">
+				and remarks = #{map.remarks}
+			</if>
+			<if test=" map.publishId != null">
+				and publish_id = #{map.publishId}
+			</if>
+			<if test=" map.lenderId != null">
+				and lender_id = #{map.lenderId}
+			</if>
+			<if test=" map.status != null">
+				and d.status = #{map.status}
+			</if>
+			<if test=" map.interestFrom != null">
+				and interest_from = #{map.interestFrom}
+			</if>
+			<if test=" map.returnSource != null">
+				and return_source = #{map.returnSource}
+			</if>
+			<if test=" map.loanUse != null">
+				and loan_use = #{map.loanUse}
+			</if>
+			<if test=" map.safeguards != null">
+				and safeguards = #{map.safeguards}
+			</if>
+			<if test=" map.auditId != null">
+				and audit_id = #{map.auditId}
+			</if>
+			<if test=" map.auditTime != null">
+				and audit_time = #{map.auditTime}
+			</if>
+			<if test=" map.auditMessage != null">
+				and audit_message = #{map.auditMessage}
+			</if>
+			<if test=" map.createdStartTime != null">
+				and created_time <![CDATA[>=]]> #{map.createdStartTime}
+			</if>
+			<if test=" map.createdEndTime != null">
+				and created_time <![CDATA[<=]]> #{map.createdEndTime}
+			</if>
+			
+			<if test=" map.annualizedRateMin != null">
+				and d.annualized_rate <![CDATA[>=]]> #{map.annualizedRateMin}
+			</if>
+			<if test=" map.annualizedRateMax != null">
+				and d.annualized_rate <![CDATA[<=]]> #{map.annualizedRateMax}
+			</if>
+			<if test=" map.updatedTime != null">
+				and updated_time = #{map.updatedTime}
+			</if>
+			<if test="map.lenderName != null">
+				 and lm.true_name = #{map.lenderName}
+			</if>
+			<if test="map.borrowerName != null">
+				 and bm.true_name = #{map.borrowerName}
+			</if>
+			<if test="map.publishName != null">
+				 and sys.name = #{map.publishName}
+			</if>
+			<if test="map.projectName != null">
+		        and  p.name like #{map.projectName}"%"
+		    </if>
+		    <if test="map.endDateSelect != null">
+	        <choose>
+	        	<when test="map.endDateSelect == 0">
+	        		<if test="map.endDate == 0">
+		         		and d.end_date <![CDATA[ <= ]]>  DATE_ADD(CURDATE(),INTERVAL 1 DAY) and d.end_date <![CDATA[ >= ]]>  CURDATE()
+		        	</if>
+		        	<if test="map.endDate == 1">
+		         		and d.end_date <![CDATA[ <= ]]>  DATE_ADD(CURDATE(),INTERVAL 3 DAY) and d.end_date <![CDATA[ >= ]]>  CURDATE()
+		        	</if>
+		        	<if test="map.endDate == 2">
+		         		and d.end_date <![CDATA[ <= ]]>  DATE_ADD(CURDATE(),INTERVAL 7 DAY) and d.end_date <![CDATA[ >=]]>  CURDATE()
+		        	</if>
+		        	<if test="map.endDate == 3">
+		         		and d.end_date <![CDATA[ <= ]]>  DATE_ADD(CURDATE(),INTERVAL 15 DAY) and d.end_date <![CDATA[ >= ]]>  CURDATE()
+		        	</if>
+		        	<if test="map.endDate == 4">
+		         		and d.end_date <![CDATA[ <= ]]>  DATE_ADD(CURDATE(),INTERVAL 1 MONTH) and d.end_date <![CDATA[ >= ]]>  CURDATE()
+		        	</if>
+		        	<if test="map.endDate == 5">
+		         		and d.end_date <![CDATA[ <= ]]>  DATE_ADD(CURDATE(),INTERVAL 3 MONTH) and d.end_date <![CDATA[ >= ]]>  CURDATE()
+		        	</if>
+	        	</when>
+	        	<when test="map.endDateSelect == 1">
+	        		<if test="map.endDateStart">
+			        	and d.end_date <![CDATA[ >= ]]>  #{map.endDateStart}
+			        </if>
+			        <if test="map.endDateEnd">
+			        	and d.end_date <![CDATA[ <= ]]>  #{map.endDateEnd}
+			        </if>
+	        	</when>
+	        	<otherwise>
+	        		<if test="map.dueDate">
+			        	and d.end_date <![CDATA[ = ]]>  #{map.dueDate}
+			        </if>
+	        	</otherwise>
+	        </choose>
+        </if>
+		</if>
+		<choose>
+				<when test="map.desc!=null">
+			   	 	 order by ${map.desc} desc
+			   	</when>
+			   	<when test="map.asc!=null">
+			   	 	 order by ${map.asc} asc
+			   	</when>
+			   	<otherwise>
+			   			order by created_time desc
+			   	</otherwise>
+		</choose>
+		LIMIT ${map.startRow}, ${map.pageSize} ) AS a, ic_debt AS t FORCE
+		INDEX(PRIMARY) 
+		WHERE a.id = t.id
+	</select>
+	<select id="selectForPaginTotalCount" resultType="java.lang.Integer">
+		select count(1)
+		from ic_debt as t LEFT JOIN ic_project as p on t.id = p.debt_id 
+		LEFT JOIN uc_member as lm on lm.id = t.lender_id 
+		LEFT JOIN sys_user as sys on sys.id = t.publish_id
+		LEFT JOIN uc_member as bm on bm.id = t.borrower_id where t.del_flag>0  and ifnull(p.del_flag,1) !=-1
+		
+		
+		<if test=" map != null">
+			<if test=" map.id != null">
+				and id = #{map.id}
+			</if>
+			<if test=" map.serialNumber != null">
+				and serial_number = #{map.serialNumber}
+			</if>
+			<if test=" map.originalDebtNumber != null">
+				and original_debt_number = #{map.originalDebtNumber}
+			</if>
+			<if test=" map.debtType != null">
+				and debt_type = #{map.debtType}
+			</if>
+			<if test=" map.borrowerType != null">
+				and borrower_type = #{map.borrowerType}
+			</if>
+			<if test=" map.lenderType != null">
+				and lender_type = #{map.lenderType}
+			</if>
+			<if test=" map.guarantyType != null">
+				and guaranty_type = #{map.guarantyType}
+			</if>
+			<if test=" map.amount != null">
+				and amount = #{map.amount}
+			</if>
+			<if test=" map.returnType != null">
+				and return_type = #{map.returnType}
+			</if>
+			<!-- <if test=" map.startDate != null">
+				and start_date = #{map.startDate}
+			</if>
+			<if test=" map.endDate != null">
+				and end_date = #{map.endDate}
+			</if> -->
+			<if test=" map.borrowerId != null">
+				and borrower_id = #{map.borrowerId}
+			</if>
+			<if test=" map.annualizedRate != null">
+				and annualized_rate = #{map.annualizedRate}
+			</if>
+			<if test=" map.feeRate != null">
+				and fee_rate = #{map.feeRate}
+			</if>
+			<if test=" map.remarks != null">
+				and remarks = #{map.remarks}
+			</if>
+			<if test=" map.publishId != null">
+				and publish_id = #{map.publishId}
+			</if>
+			<if test=" map.lenderId != null">
+				and lender_id = #{map.lenderId}
+			</if>
+			<if test=" map.status != null">
+				and t.status = #{map.status}
+			</if>
+			<if test=" map.interestFrom != null">
+				and interest_from = #{map.interestFrom}
+			</if>
+			<if test=" map.delFlag != null">
+				and del_flag = #{map.delFlag}
+			</if>
+			<if test=" map.returnSource != null">
+				and return_source = #{map.returnSource}
+			</if>
+			<if test=" map.loanUse != null">
+				and loan_use = #{map.loanUse}
+			</if>
+			<if test=" map.safeguards != null">
+				and safeguards = #{map.safeguards}
+			</if>
+			<if test=" map.auditId != null">
+				and audit_id = #{map.auditId}
+			</if>
+			<if test=" map.auditTime != null">
+				and audit_time = #{map.auditTime}
+			</if>
+			<if test=" map.auditMessage != null">
+				and audit_message = #{map.auditMessage}
+			</if>
+			<if test=" map.createdStartTime != null">
+				and created_time <![CDATA[>=]]> #{map.createdStartTime}
+			</if>
+			<if test=" map.createdEndTime != null">
+				and created_time <![CDATA[<=]]> #{map.createdEndTime}
+			</if>
+			<if test=" map.annualizedRateMin != null">
+				and t.annualized_rate <![CDATA[>=]]> #{map.annualizedRateMin}
+			</if>
+			<if test=" map.annualizedRateMax != null">
+				and t.annualized_rate <![CDATA[<=]]> #{map.annualizedRateMax}
+			</if>
+			<if test=" map.updatedTime != null">
+				and updated_time = #{map.updatedTime}
+			</if>
+			<if test="map.publishName != null">
+				 and sys.name = #{map.publishName}
+			</if>
+			<if test="map.projectName != null">
+		        and  p.name like #{map.projectName}"%"
+		    </if>
+		    <if test="map.endDateSelect != null">
+	        <choose>
+	        	<when test="map.endDateSelect == 0">
+	        		<if test="map.endDate == 0">
+		         		and t.end_date <![CDATA[ <= ]]>  DATE_ADD(CURDATE(),INTERVAL 1 DAY) and t.end_date <![CDATA[ >= ]]>  CURDATE()
+		        	</if>
+		        	<if test="map.endDate == 1">
+		         		and t.end_date <![CDATA[ <= ]]>  DATE_ADD(CURDATE(),INTERVAL 3 DAY) and t.end_date <![CDATA[ >= ]]>  CURDATE()
+		        	</if>
+		        	<if test="map.endDate == 2">
+		         		and t.end_date <![CDATA[ <= ]]>  DATE_ADD(CURDATE(),INTERVAL 7 DAY) and t.end_date <![CDATA[ >=]]>  CURDATE()
+		        	</if>
+		        	<if test="map.endDate == 3">
+		         		and t.end_date <![CDATA[ <= ]]>  DATE_ADD(CURDATE(),INTERVAL 15 DAY) and t.end_date <![CDATA[ >= ]]>  CURDATE()
+		        	</if>
+		        	<if test="map.endDate == 4">
+		         		and t.end_date <![CDATA[ <= ]]>  DATE_ADD(CURDATE(),INTERVAL 1 MONTH) and t.end_date <![CDATA[ >= ]]>  CURDATE()
+		        	</if>
+		        	<if test="map.endDate == 5">
+		         		and t.end_date <![CDATA[ <= ]]>  DATE_ADD(CURDATE(),INTERVAL 3 MONTH) and t.end_date <![CDATA[ >= ]]>  CURDATE()
+		        	</if>
+	        	</when>
+	        	<when test="map.endDateSelect == 1">
+	        		<if test="map.endDateStart">
+			        	and t.end_date <![CDATA[ >= ]]>  #{map.endDateStart}
+			        </if>
+			        <if test="map.endDateEnd">
+			        	and t.end_date <![CDATA[ <= ]]>  #{map.endDateEnd}
+			        </if>
+	        	</when>
+	        	<otherwise>
+	        		<if test="map.dueDate">
+			        	and t.end_date <![CDATA[ = ]]>  #{map.dueDate}
+			        </if>
+	        	</otherwise>
+	        </choose>
+        </if>
+			<if test=" map != null">
+				<if test="map.lenderName != null">
+					and lm.true_name = #{map.lenderName}
+				</if>
+				<if test="map.borrowerName != null">
+					and bm.true_name = #{map.borrowerName}
+				</if>
+			</if>
+		</if>
+	</select>
+	
+	<!-- 根据公司债权编号查询债权信息 -->
+	<select id="findDebtBySerialNumber" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from ic_debt
+		where del_flag > 0 and serial_number = #{serialNumber,jdbcType=VARCHAR}
+		limit 1
+	</select>
+
+	<select id="findSerialNumberAndMemberName" resultType="java.util.Map">
+		select debt.serial_number as serialNumber, m.true_name as
+		memberTrueName from ic_debt debt inner join uc_member m on
+		debt.borrower_id = m.id
+		<where>
+			debt.del_flag >=0 and debt.status = 0
+			<if test=" serialNumber != null">
+				and debt.serial_number like '${serialNumber}%'
+			</if>
+		</where>
+	</select>
+	
+	<!-- 根据主键删除（逻辑） -->
+	<delete id="deleteByDebtId">
+		update ic_debt set del_flag = -1 where id=#{id,jdbcType=BIGINT}
+	</delete>
+	
+	<select id="findDebtByOriginalDebtNumber" resultType="java.lang.Integer">
+		select count(*) from ic_debt where original_debt_number = #{originalDebtNumber,jdbcType=VARCHAR} and del_flag>0
+	</select>
+	
+	<!-- 根据用户姓名或用户手机模糊查询对应债权 -->
+	<select id="findDebtIdByMemberInfo" resultType="java.lang.Long">
+		select d.id as id 
+			from ic_debt as d 
+			LEFT JOIN uc_member 
+			as m on m.id = d.lender_id
+			<where>
+				<if test="map != null">
+					<if test="map.trueName != null">
+						m.true_name = #{map.trueName} 
+					</if>
+					<if test="map.mobile != null">
+						and m.mobile = #{map.mobile}
+					</if>
+				</if>
+			</where> 
+	</select>
+	
+	<!-- 根据借款人姓名模糊查询对应债权 -->
+	<select id="findDebtIdByMemberName" resultType="java.lang.Long">
+		select d.id as id 
+			from ic_debt as d 
+			LEFT JOIN uc_member 
+			as m on m.id = d.borrower_id
+			<where>
+				<if test="map != null">
+					<if test="map.borrowerName != null">
+						m.true_name = #{map.borrowerName} 
+					</if>
+				</if>
+			</where> 
+	</select>
+	
+	
+	<!-- 债权信息查询 -->
+	<select id="findDebtInfoByPage" resultMap="ExtendResultMap">
+		SELECT
+			 p.id as project_id,
+			 p.debt_id as id,
+			 p.`name` as project_name,
+			 p.online_time,
+			 p.end_date,
+			 p.remarks,
+			 CONCAT(count(CASE WHEN i.`status` = 1 THEN 1 ELSE null END), '/', count(i.id)) AS repayment,
+			 CASE WHEN d.end_date <![CDATA[ <= ]]> DATE_ADD(CURDATE(), INTERVAL 3 DAY) AND d.end_date <![CDATA[ >= ]]> CURDATE() THEN 1 ELSE 0 END AS end_flag,
+		 	 sum(CASE WHEN i.`status` = 1 THEN 1 ELSE 0 END) as repay,
+		 	 count(i.id) total,
+			 d.lender_id,
+			 d.borrower_id,
+			 d.amount,
+			 d.control_remarks,
+			 d.original_debt_number,
+			 d.serial_number,
+			 d.debt_type,
+			 d.guaranty_type
+			FROM
+			 ic_project AS p
+			LEFT JOIN ic_debt_interest as i on p.debt_id = i.debt_id and i.del_flag > 0  
+			<choose>
+			<when test="map != null and map.innerMember == true">
+        		INNER JOIN ic_debt as d on p.debt_id = d.id
+        		<if test="map.originalDebtNumber != null">
+					and d.original_debt_number = #{map.originalDebtNumber}
+				</if>
+				<if test="map.debtType != null">
+					and d.debt_type = #{map.debtType}
+				</if>
+				<if test="map.guarantyType != null">
+					and d.guaranty_type = #{map.guarantyType}
+				</if>
+				<if test="map.borrowerTrueName != null or map.lenderTrueName != null or map.mobile != null or map.identityNumber != null">
+					INNER JOIN uc_member as m1 ON d.borrower_id = m1.id 
+					
+					INNER JOIN uc_member as m2 ON d.lender_id = m2.id 
+					
+				</if>
+        	</when>
+        	<otherwise>
+        		LEFT JOIN ic_debt AS d ON p.debt_id = d.id
+        	</otherwise>
+        	</choose>
+			WHERE
+			 p.del_flag > 0 and p.invest_type=1  
+			 <if test=" map != null">
+			 	
+			 	<if test=" map.lenderTrueName != null">						     
+						AND m2.true_name = #{map.lenderTrueName}
+				</if>
+							 	
+			 	<if test=" map.borrowerTrueName != null">						     
+						AND m1.true_name = #{map.borrowerTrueName}
+				</if>
+							
+				<if test=" map.mobile != null">	
+					AND (m1.mobile = #{map.mobile} or  m2.mobile = #{map.mobile})
+				</if>
+				<if test=" map.identityNumber != null">	
+					AND (m1.identity_number = #{map.identityNumber} or m2.identity_number = #{map.identityNumber})
+				</if>
+			 	
+			 	<if test="map.endDateSelect != null">
+			 		<choose>
+			        	<when test="map.endDateSelect == 0">
+			        		<if test="map.endDate == 0">
+				         		and p.end_date <![CDATA[ <= ]]>  DATE_ADD(CURDATE(),INTERVAL 1 DAY) and p.end_date <![CDATA[ >= ]]>  CURDATE()
+				        	</if>
+				        	<if test="map.endDate == 1">
+				         		and p.end_date <![CDATA[ <= ]]>  DATE_ADD(CURDATE(),INTERVAL 3 DAY) and p.end_date <![CDATA[ >= ]]>  CURDATE()
+				        	</if>
+				        	<if test="map.endDate == 2">
+				         		and p.end_date <![CDATA[ <= ]]>  DATE_ADD(CURDATE(),INTERVAL 7 DAY) and p.end_date <![CDATA[ >=]]>  CURDATE()
+				        	</if>
+				        	<if test="map.endDate == 3">
+				         		and p.end_date <![CDATA[ <= ]]>  DATE_ADD(CURDATE(),INTERVAL 15 DAY) and p.end_date <![CDATA[ >= ]]>  CURDATE()
+				        	</if>
+				        	<if test="map.endDate == 4">
+				         		and p.end_date <![CDATA[ <= ]]>  DATE_ADD(CURDATE(),INTERVAL 1 MONTH) and p.end_date <![CDATA[ >= ]]>  CURDATE()
+				        	</if>
+				        	<if test="map.endDate == 5">
+				         		and p.end_date <![CDATA[ <= ]]>  DATE_ADD(CURDATE(),INTERVAL 3 MONTH) and p.end_date <![CDATA[ >= ]]>  CURDATE()
+				        	</if>
+			        	</when>
+			        	<when test="map.endDateSelect == 1">
+			        		<if test="map.endDateStart">
+					        	and p.end_date <![CDATA[ >= ]]>  #{map.endDateStart}
+					        </if>
+					        <if test="map.endDateEnd">
+					        	and p.end_date <![CDATA[ <= ]]>  #{map.endDateEnd}
+					        </if>
+			        	</when>
+			        	<otherwise>
+			        		<if test="map.dueDate">
+					        	and p.end_date <![CDATA[ = ]]>  #{map.dueDate}
+					        </if>
+			        	</otherwise>
+			        </choose>
+		        </if>
+		        <if test="map.projectName != null">
+		        	and p.name like "%"#{map.projectName}"%"
+		        </if>
+		        <if test="map.debtId != null">
+					and p.debt_id = #{map.debtId}
+				</if>
+				<if test="map.serialNumber != null">
+					and d.serial_number = #{map.serialNumber}
+				</if>
+			 </if>
+			GROUP BY
+			 p.id
+		<if test=" map != null">
+			<if test="map.repaymentType == 'all'">
+				HAVING repay = total
+			</if>
+			<if test="map.repaymentType == 'part'">
+				HAVING repay != total and repay > 0
+			</if>
+			<if test="map.repaymentType == 'none'">
+				HAVING repay = 0
+			</if>
+			<choose>
+			   	<when test="map.desc!=null">
+			   	 	 order by ${map.desc} desc
+			   	</when>
+			   	<when test="map.asc!=null">
+			   	 	 order by ${map.asc} asc
+			   	</when>
+			   	<otherwise>
+			   		 order by project_id desc
+			   	</otherwise>
+		   	</choose>
+		</if>
+		LIMIT ${map.startRow}, ${map.pageSize}	
+	</select>
+
+	<update id="updateControlRemarksById" parameterType="Debt">
+		update ic_debt
+		set control_remarks = #{controlRemarks,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	
+	<!-- 根据债权id查询债权及项目状态 -->
+	<select id="findDebtAndProjectStatusByDebtId" resultMap="ExtendResultMap">
+		SELECT
+			d.STATUS,
+			p.STATUS AS project_status
+		FROM
+			ic_debt AS d
+		LEFT JOIN (select id,status,debt_id from ic_project where del_flag>0) AS p ON p.debt_id = d.id
+		WHERE d.id = #{id,jdbcType=BIGINT} 
+	</select>
+	
+	<!-- 根据项目id获取企业id-->
+	<select id="selectEnterpriseIdByProjectId" resultMap="BaseResultMap"> 
+		select d.enterprise_id as enterprise_id,d.amount as amount from ic_project as p 
+		inner JOIN ic_debt as d on p.debt_id = d.id 
+		where p.del_flag > 0 and p.id = #{projectId,jdbcType=BIGINT}	
+	</select>
+	
+	<!-- 统计用户出借人身份下的债权数量 -->
+	<select id="countDebtByLenderId" resultType="java.lang.Integer">
+		select 1  from ic_debt as d
+		inner join ic_project as ic on ic.debt_id = d.id
+		where d.lender_id = #{memberId,jdbcType=BIGINT} 
+		and ic.status <![CDATA[ > ]]>  20
+		 limit 1
+	</select>
+	
+	<select id="countDebtByEnterpriseId" resultType="java.lang.Integer">
+		select count(1) from ic_debt where enterprise_id= #{enterpriseId,jdbcType=BIGINT}  and del_flag > 0  
+	</select>
+	<select id="countDebtByLenderEnterpriseId" resultType="java.lang.Integer">
+		select count(1) from ic_debt where lender_enterprise_id= #{lenderEnterpriseId,jdbcType=BIGINT} and del_flag > 0  
+	</select>
+	
+	<select id="findDebtInfoByPageCount" resultType="java.lang.Integer">
+		
+		select count(1) from (
+		SELECT
+			 p.id as project_id,
+			 p.debt_id as id,
+			 p.`name` as project_name,
+			 p.online_time,
+			 p.end_date,
+			 p.remarks,
+			 CONCAT(count(CASE WHEN i.`status` = 1 THEN 1 ELSE null END), '/', count(i.id)) AS repayment,
+			 CASE WHEN d.end_date <![CDATA[ <= ]]> DATE_ADD(CURDATE(), INTERVAL 3 DAY) AND d.end_date <![CDATA[ >= ]]> CURDATE() THEN 1 ELSE 0 END AS end_flag,
+		 	 sum(CASE WHEN i.`status` = 1 THEN 1 ELSE 0 END) as repay,
+		 	 count(i.id) total,
+			 d.lender_id,
+			 d.borrower_id,
+			 d.amount,
+			 d.control_remarks,
+			 d.original_debt_number,
+			 d.serial_number,
+			 d.debt_type,
+			 d.guaranty_type
+			FROM
+			 ic_project AS p
+			LEFT JOIN ic_debt_interest as i on p.debt_id = i.debt_id and i.del_flag > 0  
+			<choose>
+			<when test="map != null and map.innerMember == true">
+        		INNER JOIN ic_debt as d on p.debt_id = d.id
+        		<if test="map.originalDebtNumber != null">
+					and d.original_debt_number = #{map.originalDebtNumber}
+				</if>
+				<if test="map.debtType != null">
+					and d.debt_type = #{map.debtType}
+				</if>
+				<if test="map.guarantyType != null">
+					and d.guaranty_type = #{map.guarantyType}
+				</if>
+				<if test="map.borrowerTrueName != null or map.lenderTrueName != null or map.mobile != null or map.identityNumber != null">
+					INNER JOIN uc_member as m1 ON d.borrower_id = m1.id 
+					
+					INNER JOIN uc_member as m2 ON d.lender_id = m2.id 
+					
+				</if>
+        	</when>
+        	<otherwise>
+        		LEFT JOIN ic_debt AS d ON p.debt_id = d.id
+        	</otherwise>
+        	</choose>
+			WHERE
+			 p.del_flag > 0 and p.invest_type=1  
+			 <if test=" map != null">
+			 	
+			 	<if test=" map.lenderTrueName != null">						     
+						AND m2.true_name = #{map.lenderTrueName}
+				</if>
+							 	
+			 	<if test=" map.borrowerTrueName != null">						     
+						AND m1.true_name = #{map.borrowerTrueName}
+				</if>
+							
+				<if test=" map.mobile != null">	
+					AND (m1.mobile = #{map.mobile} or  m2.mobile = #{map.mobile})
+				</if>
+				<if test=" map.identityNumber != null">	
+					AND (m1.identity_number = #{map.identityNumber} or m2.identity_number = #{map.identityNumber})
+				</if>
+			 	
+			 	<if test="map.endDateSelect != null">
+			 		<choose>
+			        	<when test="map.endDateSelect == 0">
+			        		<if test="map.endDate == 0">
+				         		and p.end_date <![CDATA[ <= ]]>  DATE_ADD(CURDATE(),INTERVAL 1 DAY) and p.end_date <![CDATA[ >= ]]>  CURDATE()
+				        	</if>
+				        	<if test="map.endDate == 1">
+				         		and p.end_date <![CDATA[ <= ]]>  DATE_ADD(CURDATE(),INTERVAL 3 DAY) and p.end_date <![CDATA[ >= ]]>  CURDATE()
+				        	</if>
+				        	<if test="map.endDate == 2">
+				         		and p.end_date <![CDATA[ <= ]]>  DATE_ADD(CURDATE(),INTERVAL 7 DAY) and p.end_date <![CDATA[ >=]]>  CURDATE()
+				        	</if>
+				        	<if test="map.endDate == 3">
+				         		and p.end_date <![CDATA[ <= ]]>  DATE_ADD(CURDATE(),INTERVAL 15 DAY) and p.end_date <![CDATA[ >= ]]>  CURDATE()
+				        	</if>
+				        	<if test="map.endDate == 4">
+				         		and p.end_date <![CDATA[ <= ]]>  DATE_ADD(CURDATE(),INTERVAL 1 MONTH) and p.end_date <![CDATA[ >= ]]>  CURDATE()
+				        	</if>
+				        	<if test="map.endDate == 5">
+				         		and p.end_date <![CDATA[ <= ]]>  DATE_ADD(CURDATE(),INTERVAL 3 MONTH) and p.end_date <![CDATA[ >= ]]>  CURDATE()
+				        	</if>
+			        	</when>
+			        	<when test="map.endDateSelect == 1">
+			        		<if test="map.endDateStart">
+					        	and p.end_date <![CDATA[ >= ]]>  #{map.endDateStart}
+					        </if>
+					        <if test="map.endDateEnd">
+					        	and p.end_date <![CDATA[ <= ]]>  #{map.endDateEnd}
+					        </if>
+			        	</when>
+			        	<otherwise>
+			        		<if test="map.dueDate">
+					        	and p.end_date <![CDATA[ = ]]>  #{map.dueDate}
+					        </if>
+			        	</otherwise>
+			        </choose>
+		        </if>
+		        <if test="map.projectName != null">
+		        	and p.name like "%"#{map.projectName}"%"
+		        </if>
+		        <if test="map.debtId != null">
+					and p.debt_id = #{map.debtId}
+				</if>
+				<if test="map.serialNumber != null">
+					and d.serial_number = #{map.serialNumber}
+				</if>
+			 </if>
+			GROUP BY
+			 p.id
+		<if test=" map != null">
+			<if test="map.repaymentType == 'all'">
+				HAVING repay = total
+			</if>
+			<if test="map.repaymentType == 'part'">
+				HAVING repay != total and repay > 0
+			</if>
+			<if test="map.repaymentType == 'none'">
+				HAVING repay = 0
+			</if>
+		</if>)temp
+	</select>
+	<!-- 是否为原始债权人 -->
+	 <select id="ifOriginators" resultType="java.lang.Integer" >
+	 	select 1 from ic_debt where lender_id=#{memberId,jdbcType=BIGINT} limit 1
+	</select>
+	
+</mapper>

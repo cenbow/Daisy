@@ -1,0 +1,63 @@
+##银行卡管理
+#parse("/common/common.vm")
+#set($title="我的银行卡_$!{title_suffix}")
+#set($css_url=["$cssv2_url/member/member.css"])
+#set($js_url=["$root_js_url/modules/member.js"])
+#set($bankManage="z-current")
+## 用户中心头部
+#parse("/member/head.vm")
+## 用户中心内容
+<div class="g-wrap">
+	<div class="g-uc-bd f-round">
+		<div class="g-uc-wrap">
+			<h3 class="u-uc-lineTitle">银行卡管理</h3>
+			## 页面内容
+			<div class="u-sinapay-banner j-sinapay-banner">
+				<img src="../static/img/common/sinapay_logo_s20151117.png" alt="新浪支付|全程提供账户托管和支付服务">
+			</div>
+			<div class="m-bankcard-list f-cf" id="j-bankcard-list">
+				<ul>
+					#foreach($bank in $bankList)
+						<li class="u-circle-15 u-mbank-grid">
+							<span class="u-mbank-type f-fs14">
+							<img src="$root_url/static/img/member/bank/bank_$!{bank.bankCode}.png" class="f-vam" alt="bank icon"/>$sysServiceUtil.getBankCode($bank.bankCode).remarks
+						</span>
+							<em class="f-fwb u-mbank-num f-fs10" data-type="$!{bank.cardType}">$stringUtil.maskBankCodeNumber($bank.cardNumberFormat)</em>						
+								#if($!{bank.cardType} == 2)
+									<div class="u-mbank-quickbank  #if($!{bank.isSecurity}==1) u-mbank-safecard #end">
+                                    <span><em class="f-fs12">快捷支付已开通</em> <i></i> </span>
+                                    </div>
+								#else
+									#if($sysServiceUtil.getBankCode($bank.bankCode).type==2)
+									<div class="u-mbank-quickbank">
+                                    <span><a href="javascript:void(0)" class=" f-fs12 j-quick-pay"  data-value="$bank.id" >开通快捷支付</a></span>
+                                    </div>
+                                    #else
+                                    <div class="u-mbank-quickbank">
+                                    <span><em></em></span>
+                                    </div>
+                                    #end
+								#end
+							
+							<a href="javascript:void(0)" class="isDelete"  data-value="$bank.id" #if($!{bank.isSecurity}==1)data-type="safecard"#end>删除</a>
+						</li>
+					#end		
+					<li class="u-circle-15">
+						<a href="$root_url/memberBankCard/bankAdd" class="u-bank-add">
+							<em class="u-withdraw-more u-circle-25 f-vam f-ff-ver" target="_blank" href="#">
+		                		<strong>+</strong>
+		              		</em>
+		              		<i>添加银行卡</i>
+						</a>
+              		</li>
+				</ul>
+			</div>
+			## /页面内容
+			<form id= "memberCardForm">
+				#CSRFToken()
+				<input type ="hidden" name="id" id="memberCardID"/>			
+			</form>
+		</div>
+	</div>
+	## /用户中心内容
+</div>

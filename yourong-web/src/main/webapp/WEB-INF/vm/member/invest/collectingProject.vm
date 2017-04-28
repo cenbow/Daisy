@@ -1,0 +1,269 @@
+##募集中项目
+#parse("/common/common.vm")
+#set($title="募集中项目_我的投资_$!{title_suffix}")
+#set($css_url=["$cssv2_url/member/member.css"])
+#set($js_url=["$root_js_url/modules/member/core.js",
+    "$root_js_url/modules/investment.js","$root_js_url/modules/member.js"])
+#set($transaction="z-current")
+#set($isInvestment="true")
+## 用户中心头部
+#parse("/member/head.vm")
+## 用户中心内容
+<style>
+    .m-raise-list .u-selector{
+        padding: 0 12px 0 12px;
+        width: 50px;
+    }
+</style>
+<div class="g-wrap">
+    #if($!{servletUtil.getUnsignContractNum()}>0)
+        <div class="u-investment-tips">您有$!{servletUtil.getUnsignContractNum()}份协议尚未签署</div>
+    #end
+
+    <div class="m-nav-title">
+        <a class="u-title-secondary u-tit-l" href="$root_url/transaction/investment">
+            投资记录
+        </a>
+        <a class="z-current u-cProject-amount f-pos-r" href="$root_url/transaction/collectingProject" id="j-investment-val" data-page="1">
+            正在募集
+            #if($!{count}>0)
+                <i>$!{count}</i>
+            #end
+        </a>
+        <a class="u-title-secondary u-tit-r" href="$root_url/order/order">
+            订单记录
+        </a>
+    </div>
+    <div class="g-uc-bd f-round">
+        <div class="g-uc-wrap f-pos-r">
+            <form id="j-raise-form">
+                <div class="m-recharge-list m-raise-list" id="j-raise-list">
+
+                </div>
+            </form>
+##            详情弹层
+            <div class=" u-floatbox u-order-detail u-raise-detail f-clear j-box-detail" id="j-raise-detail" style="display:none">
+                <s></s>
+                <div class="u-floatbox-content f-round">
+                    <div class="u-plan-table">
+                        <button  class="ui-dialog-close u-detail-close j-dialog-close" title="关闭">×</button>
+                        <div class="u-plan-title f-fs18 f-tac">投资详情</div>
+                        <h4 class="f-cf">
+                            <span>当前项目状态：<span>募集中</span></span>
+                            <span class="f-fr f-ff-ver">投资总额：¥<em class="f-fs24 f-ff-amount" name="formatInvestAmount"></em></span>
+                        </h4>
+##                        进度
+                        <div class="u-raise-tShaft f-dn" id="j-collect-ztShaft">
+                            <div class="u-info-tShaft f-pos-r">
+                                <dl class="u-tShaft-dl01">
+                                    <dt class="z-current"></dt>
+                                    <dd>订单支付</dd>
+                                </dl>
+                                <dl class="u-tShaft-dl02">
+                                    <dt></dt>
+                                    <dd>募集满额</dd>
+                                </dl>
+                                <dl class="u-tShaft-dl03">
+                                    <dt></dt>
+                                    <dd>审核通过</dd>
+                                </dl>
+                                <dl class="u-tShaft-dl04">
+                                    <dt></dt>
+                                    <dd>还款完成</dd>
+                                </dl>
+                                <span class="z-current1"></span>
+                            </div>
+                        </div>
+                        <div class="u-raise-tShaft f-dn" id="j-collect-zrShaft">
+                            <div class="u-info-tShaft f-pos-r">
+                                <dl class="u-tShaft-dl01">
+                                    <dt class="z-current"></dt>
+                                    <dd>订单支付</dd>
+                                </dl>
+                                <dl class="u-tShaft-dl02">
+                                    <dt></dt>
+                                    <dd>转让成功</dd>
+                                </dl>
+                                <dl class="u-tShaft-dl03">
+                                    <dt></dt>
+                                    <dd>还款成功</dd>
+                                </dl>
+                                <span class="z-current1"></span>
+                            </div>
+                        </div>
+                        <div>
+                            <h5>投资信息</h5>
+                            <table id="j-projectInfo">
+                                <tbody>
+                                <tr>
+                                    <td width="90">订单编号</td>
+                                    <td name="orderNo" width="265"></td>
+##                                    <td width="90">预期年化收益</td>
+##                                    <td><em name="totalAnnualizedRate"></em>%</td>
+                                    <td width="90">年化收益</td>
+                                    <td><em name="projectAnnualizedRate"></em>%</td>
+                                </tr>
+                                <tr>
+                                    <td>项目名称</td>
+                                    <td><a href="#" target="_blank" name="projectName"></a></td>
+                                    <td name="timeName"></td>
+                                    <td name="invest-profitPeriod"></td>
+                                </tr>
+                                <tr>
+                                    <td>投资时间</td>
+                                    <td name="transactionTime"></td>
+                                    <td name="interestFrom"></td>
+                                    <td name="endDateStr"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <table id="j-zrProjectInfo">
+                                <tbody>
+                                <tr>
+                                    <td width="90">订单编号</td>
+                                    <td name="orderNo" width="265"></td>
+##                                    <td width="90">预期年化</td>
+##                                    <td><em name="totalAnnualizedRate"></em>%</td>
+                                    <td width="90">预期年化</td>
+                                    <td><em name="projectAnnualizedRate"></em>%</td>
+                                </tr>
+                                <tr>
+                                    <td>项目名称</td>
+                                    <td><a href="#" target="_blank" name="projectName"></a><span href="#" class="u-transfer-flag">转让</span></td>
+                                    <td>认购本金</td>
+                                    <td>￥<em name="formatTransferPrincipal"></em></td>
+
+                                </tr>
+                                <tr>
+                                    <td>剩余期限</td>
+                                    <td><em name="profitPeriod"></em></td>
+                                    <td>产品价值</td>
+                                    <td>￥<em name="formatProjectValue"></em></td>
+                                </tr>
+                                <tr>
+                                    <td name="interestFrom"></td>
+                                    <td name="endDateStr"></td>
+                                    <td width="90">支付金额</td>
+                                    <td>￥<em name="formatInvestAmount"></em></td>
+                                </tr>
+                                <tr>
+                                    <td>认购时间</td>
+                                    <td name="transactionTime"></td>
+                                    <td>预期赚取</td>
+                                    <td>￥<em name="formatTotalInterest"></em></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div>
+                            <h5>投资人信息</h5>
+                            <table id="j-projectUserInfo">
+                                <tbody>
+                                <tr>
+                                    <td width="90">投资人姓名</td>
+                                    <td name="membertName" width="265"></td>
+                                    <td width="90">购买金额</td>
+                                    <td>￥<em name="formatInvestAmount"></em></td>
+                                </tr>
+                                <tr>
+                                    <td>投资人身份证</td>
+                                    <td name="maskIdentityNumber"></td>
+                                    <td>预期收益</td>
+                                    <td>￥<em name="formatExpectAmount"></em></td>
+                                </tr>
+                                <tr>
+                                    <td>协议书</td>
+                                    <td><a href="javascript:void(0);" target="_blank" id="j-collecting-debtProtocol"  class="f-fc-red" >《借款协议》</a>和<a href="javascript:void(0);" id="j-collecting-argreement-link" class="f-fc-red" data-target="j-collecting-argreement-box" data-url="$root_url/static/sinapay-agreement.html" >《委托协议》</a></td>
+                                    <td>联系手机</td>
+                                    <td name="maskMobile"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <table id="j-zrProjectUserInfo">
+                                <tbody>
+                                <tr>
+                                    <td width="90">投资人姓名</td>
+                                    <td name="membertName" width="265"></td>
+                                    <td>身份证号</td>
+                                    <td name="maskIdentityNumber"></td>
+                                </tr>
+                                <tr>
+                                    <td>协议书</td>
+                                    <td>
+                                        <a href="javascript:void(0);" target="_blank" id="j-collecting-trDebtProtocol"  class="f-fc-red" >《债权转让协议》</a>
+                                        <a href="javascript:void(0);" target="_blank" id="j-collecting-trProtocol"  class="f-fc-red" >《债权收益权再转让协议》</a>
+                                        和<a href="javascript:void(0);" id="j-collecting-zrArgreement-link" class="f-fc-red" data-target="j-collecting-argreement-box" data-url="$root_url/static/sinapay-agreement.html" >《委托协议》</a></td>
+                                    <td>联系手机</td>
+                                    <td name="maskMobile"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        ##上上签弹框-一键签署
+            <div class="m-eSignatue-defult f-pos-r f-dn" id="j-eSignatue-all">
+                <h3>选择一键签署</h3>
+                <p>系统将使用您的默认签名，签署全部未签协议</p>
+                <a id="j-eSignatue-all-ok">确&nbsp;&nbsp;&nbsp;&nbsp;定</a>
+                <i></i>
+            </div>
+        ##上上签弹框-普通签署
+        ##                    成功
+            <div class="m-eSignatue-defult f-pos-r f-dn" id="j-eSignatue-result">
+                <h3>恭喜您，协议签署成功！</h3>
+                <p></p>
+                <a>确&nbsp;&nbsp;&nbsp;&nbsp;定</a>
+                <i></i>
+            </div>
+        ##                    失败
+            <div class="m-eSignatue-defult f-pos-r f-dn" id="j-eSignatue-resultfail">
+                <h3>合同正在生成中，请您耐心等待，稍后签署</h3>
+                <p></p>
+                <a>确&nbsp;&nbsp;&nbsp;&nbsp;定</a>
+                <i></i>
+            </div>
+        ##上上签弹框-手动签署弹框
+            <div  class="m-eSignatue-state j-floatlayer f-dn" id="j-eSignatue-state">
+                <div class="u-eSignatue-result2 u-pay-success">
+                    <div class="u-result2-left">
+                        <h3 class="f-fs20" style="color:#333;text-align: center">
+                            跳转至协议签署
+                        </h3>
+                        <h5>请在新打开的协议页面完成签署</h5>
+                        <div style="width: 330px">
+                            <img src="/static/img/products/pay-eSignatue.png">
+                        </div>
+                    </div>
+                    <div class="u-result2-eSignatue">
+                        <div>
+                            <h3>协议签署完成</h3>
+                            <p>如果您已签署完成可
+                                <a id="j-coll-coantract" href="javascript:void(0)" target="_blank">查看协议</a>
+                        ，或返回我的投资！</p>
+                            <a href="/transaction/collectingProject" style="margin-bottom: 30px" class="f-round">返回我的投资</a>
+                            <h3>协议签署中遇到问题</h3>
+                            <p>如果您签署中遇到问题可查询 <a href="http://wpa.b.qq.com/cgi/wpa.php?ln=2&uin=4000266688" target="_blank">在线客服</a>，或重新签署！</p>
+                            <a href="/transaction/collectingProject">重新签署</a>
+                        </div>
+
+                    </div>
+                </div>
+                <p class="f-fs14" ><a style="width: 498px" href="/member/eSignature" target="_blank">使用自动签署具有同等法律效应，一键签署更便捷！&nbsp;&nbsp;&nbsp;&nbsp;设置自动签署<em><i></i></em></a></p>
+                <i></i>
+            </div>
+            <div class="u-shade f-dn">
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="u-agreement-box f-dn" id="j-collecting-argreement-box">
+    <h3 class="f-fs18">委托协议<i></i></h3>
+    <div>
+        <iframe src="" frameborder="0"></iframe>
+    </div>
+</div>
+#CSRFToken('xToken')

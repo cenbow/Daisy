@@ -1,0 +1,20 @@
+ #parse("/common/common.vm")
+ #########################################script##################################### 
+  #set($js_config=[ 
+ "'urlMap':{ 
+   'ajax':'$root_url/directSettlement/ajax?',
+   'getLoanInfo':'$root_url/loanManager/getLoanInfo?id='
+   },
+    'securityType':#buildDictJson('debt_type'),##担保方式
+   'borrowPeriodType':#buildDictJson('borrow_period_type'),##借款周期类型
+   'p2pLoanStatus':#buildDictJson('p2p_loan_status'),##放款状态   
+   'interestStatus':#buildDictJson('debt_interest_status'),  ##债权本息状态
+   'permission':{
+   		'loan':$shiro.hasPermission('loanManager:loan'),
+   		'settlmentExcel':$shiro.hasPermission('directSettlement:settlmentExcel')
+   },
+   'aliyuncsUrl':'https://oss-cn-hangzhou.aliyuncs.com'
+   "])
+#set($css_url=["$root_url/static/assets/css/dropzone.css","$root_url/static/js/lib/My97DatePicker/skin/WdatePicker.css"])
+#set($js_url=["$root_url/static/js/directSettlement.js","$root_url/static/js/lib/My97DatePicker/WdatePicker.js"]) 
+#########################################DOM##################################### 

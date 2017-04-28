@@ -1,0 +1,5 @@
+##rootURL
+#set($root_url = $sysServiceUtil.getRootURL())
+
+##aliyun
+#set($aliyun_url="https://oss-cn-hangzhou.aliyuncs.com")

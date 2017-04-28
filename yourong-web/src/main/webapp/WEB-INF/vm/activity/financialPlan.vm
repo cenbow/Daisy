@@ -1,0 +1,187 @@
+##等本等息
+#parse("/common/common.vm")
+#set($title="轻松玩赚等本等息 坐享收益涨不停_$!{title_suffix}")
+#set($js_url=["$root_js_url/activity/financialPlan.js"])
+##页头
+#set($yrimg_url='https://yrimg.oss-cn-hangzhou.aliyuncs.com')
+#CSRFToken('xToken')
+<style>
+    .g-bd {
+        margin-bottom: 0;
+    }
+    /*页头*/
+    .m-financialPlan-hd{
+        width: 100%;
+        height: 380px;
+        margin-top: -8px;
+        background: url($yrimg_url/activity/financialPlan/financialPlan-hd.jpg) no-repeat center;
+    }
+    /*内容*/
+    .m-financialPlan-step{
+        background: #f7f7f7;
+        padding: 45px 0 55px;
+    }
+    .m-financialPlan-step h2{
+        color: #666;
+        font-weight: bold;
+    }
+    .m-financialPlan-step p{
+        text-indent: 45px;
+        margin: 20px 0 60px;
+        font-size: 14px;
+        color: #999;
+    }
+    .u-financialPlan-step{
+        display: block;
+        height: 160px;
+        width: 990px;
+        background: url("/static/img/activity/financialPlan/financialPlan.png") no-repeat center;
+    }
+    .m-financialPlan-step dl{
+        font-size: 14px;
+        color: #999;
+        width: 240px;
+        text-align: center;
+        display: inline-block;
+        margin-left: 136px;
+        margin-top: 20px;
+    }
+    .m-financialPlan-step dl:first-child{
+        margin-left:-10px;
+    }
+    .m-financialPlan-step dl dt{
+        color: #666;
+        font-weight: bold;
+        display: block;
+        margin: 0 0 10px;
+    }
+    .m-financialPlan-step .g-wrap div{
+        margin: 0 0 70px;
+    }
+    /*流程*/
+    .m-financialPlan-flowPath{
+        background: #fff;
+        padding: 70px 0 90px;
+    }
+    .m-financialPlan-flowPath strong{
+        color: #666;
+    }
+    .m-financialPlan-flowPath strong span{
+        color: #999;
+        margin-left: 35px;
+    }
+    .m-financialPlan-flowPath .g-wrap div{
+        height: 176px;
+        width: 990px;
+        background: url("/static/img/activity/financialPlan/financialPlan-plan.png") no-repeat center;
+    }
+    /*小明小刚*/
+    .m-financialPlan-example{
+        background: #f7f7f7;
+        padding: 90px 0 92px;
+    }
+    .m-financialPlan-example .g-wrap>div{
+        padding: 0 65px;
+    }
+    .m-financialPlan-example h3{
+        color: #666;
+        font-size: 18px;
+        text-align: center;
+        font-weight: bold;
+        margin-bottom: 38px;
+    }
+    .u-financialPlan-xiaoming,
+    .u-financialPlan-xiaogang{
+        display: inline-block;
+        text-align: center;
+        font-size: 16px;
+        color: #999;
+    }
+    .u-financialPlan-xiaoming i,
+    .u-financialPlan-xiaogang i{
+        width: 313px;
+        height: 245px;
+        display: block;
+        margin: 0 0 30px;
+    }
+    .u-financialPlan-xiaoming i{
+        background: url("/static/img/activity/financialPlan/financialPlan-xiaoming.png") no-repeat center;
+    }
+    .u-financialPlan-xiaogang i{
+        background: url("/static/img/activity/financialPlan/financialPlan-xiaogang.png") no-repeat center;
+    }
+    .u-financialPlan-xiaogang{
+        margin: 0 0 0 230px;
+    }
+    .u-financialPlan-btn{
+        background: url("/static/img/activity/financialPlan/financialPlan-btn.png") no-repeat center;
+        height: 60px;
+        width: 990px;
+        line-height: 60px;
+        text-align: center;
+        font-size: 24px;
+        color: #fff;
+        font-weight: bold;
+        display: block;
+        cursor: pointer;
+        margin: 58px 0 0;
+    }
+    .m-financialPlan-example a:link,
+    .m-financialPlan-example a:visited,
+    .m-financialPlan-example a:hover{
+        text-decoration: none;
+        color: #fff;
+    }
+</style>
+##页头
+<div class="m-financialPlan-hd">
+
+</div>
+##什么是等息还款方式
+<div class="m-financialPlan-step">
+    <div class="g-wrap">
+        <h2 class="f-fs20">1.什么是等本等息还款方式？</h2>
+        <p>等本等息还款方式是指用户每月收到相同金额的本金和相同金额的利息。即把借款的本金总额平均分摊到还款期限的每个月中，
+            同时每个月收到的利息收益按全额本金来计算。</p>
+        <span class="u-financialPlan-step"></span>
+        <div>
+            <dl>
+                <dt>收益最大化</dt>
+                <dd>整存零取循环投资，实现收益最大化</dd>
+            </dl>
+            <dl>
+                <dt>资金更灵活</dt>
+                <dd>每月还款本息，提高资金流动性</dd>
+            </dl>
+            <dl>
+                <dt>实际年化高</dt>
+                <dd>每月固定还款，实际年化收益一路走高</dd>
+            </dl>
+        </div>
+        <h2 class="f-fs20">2.如何正确玩赚等本等息还款方式？循环投资+巧用收益券</h2>
+    </div>
+</div>
+##流程
+<div class="m-financialPlan-flowPath">
+    <div class="g-wrap">
+        <strong class="f-fs16">投资流程<span class="f-fs14">年化收益：7.08%</span><span class="f-fs14">期限：12个月</span></strong>
+        <div></div>
+    </div>
+</div>
+##小明小刚100万投资
+<div class="m-financialPlan-example">
+    <div class="g-wrap">
+        <h3>同样投资100万，1年后会发生什么？</h3>
+        <div>
+            <div class="u-financialPlan-xiaoming">
+                <i></i>
+                <span>小明投资100万+2%收益券</span>
+            </div>
+            <div class="u-financialPlan-xiaogang">
+                <i></i>
+                <span>小刚投资100万</span>
+            </div>
+        </div>
+        <a class="u-financialPlan-btn" href="" target="_blank" id="j-financialPlan-btn">快来定制你的理财薪计划，坐享收益涨不停吧！</a>
+    </div>
+</div>

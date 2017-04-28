@@ -1,0 +1,12 @@
+ #parse("/common/common.vm")
+ #########################################script##################################### 
+ #set($js_config=[ 
+ "'urlMap':{ 
+   'excuteTask':'$root_url/sysTime/excuteTask'
+
+   },
+   
+   'timetaskname':#buildDictJson('timetaskname')
+  " ])
+ #set($js_url=["$root_url/static/js/sysTime.js"])
+ #########################################DOM##################################### 

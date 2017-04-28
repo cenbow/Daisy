@@ -1,0 +1,20 @@
+#set($layout = "/layout/iframe.vm")
+#parse("/uc/member/head.vm")
+<form role="form" class="form-horizontal" id="cancleMobile_form"  method="post">
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">数据库会员ID</label>
+        <div class="col-sm-9">
+            <input  class="col-xs-10 col-sm-5" type="text" name="uid"    id="cancleMobile_form_id">
+        </div>
+    </div>
+    <div class="clearfix form-actions">
+        <div class="col-md-offset-3 col-md-9">
+            <button type="button" class="btn btn-info" id="j-cancleMobile-button">
+                <i class="icon-ok bigger-110"></i>
+                解绑
+            </button>
+        </div>
+    </div>
+
+</form>
+

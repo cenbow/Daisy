@@ -1,0 +1,84 @@
+#parse('/common/common.vm')
+#set($css_url=["$root_css_url/modules/products.css","$root_css_url/modules/assignment.css"])
+#set($js_url=["$root_js_url/modules/products.js"])
+
+## 转让项目列表页
+<div class="m-plist-nav">
+  <div class="u-plist-products">
+    <div class="g-wrap f-pos-r" id="j-plist-products">
+      <ul>
+        <li class="z-current u-title">转让专区</li>
+      </ul>
+      <span class="u-litte-arrows" id="j-litte-arrows"></span>
+      <a class="u-goto f-tac" href="#">前往转让专区&gt;&gt;</a>
+    </div>
+  </div>
+
+  <div class="u-plist-type">
+    <div class="g-wrap" id="j-plist-type">
+      <ul style="display:block" class="m-assignment-order f-pos-r">
+        <li>排&nbsp;&nbsp;&nbsp;&nbsp;序</li>
+        <li><a href="#">发标时间<i></i></a></li>
+        <li><a href="#">剩余期限<i></i></a></li>
+        <li><a href="#">预期年化<i></i></a></li>
+        <a href="#" class="u-learn-assignment">了解转让项目&gt;&gt;</a>
+      </ul>
+    </div>
+  </div>
+
+  <div class="u-plist-status f-clear f-cf">
+    <div class="g-wrap f-pos-r">
+      <ul id="j-plist-status">
+
+      </ul>
+      <div class="u-plist-sort" id="j-plist-sort">
+        <a class="u-plist-crosswise f-fl z-current" href="javascript:void(0)"></a>
+        <a class="u-plist-vertical f-fl" href="javascript:void(0)"></a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="g-wrap">
+  <div class="g-mn j-sort-list f-fl">
+    <div class="m-product-box">
+      <div class="m-pbox-wrap">
+        <h3 class="u-pbox-title u-circle-12 f-text-overflow" data-sign="0==1">
+          <a href="/products/detail-989809550.html">
+            <em class="f-fl"><strong>新车融6355期</strong>&nbsp;雷克萨斯ES250汽车合格证质押债权项目</em>
+            <i class="u-newCustomer-tag"></i>                                                                                                                      </a>
+        </h3>
+        <div class="m-pbox-main f-cf">
+          <div class="u-pbox-thumbnail f-fl" style="width:120px;height:120px;">
+            <a href="/products/detail-989809550.html" class="u-thumbnail-wrap"></a>
+            <img src="https://oss-cn-hangzhou.aliyuncs.com//yrimg/98980/95/50/2016/08/18/989809550.jpg" width="120" height="120" alt="项目缩略图">
+          </div>
+          <div class="m-pbox-info m-assig-box f-fr">
+            <em class="u-pbox-data">
+              <em class="f-ff-amount f-fs38 f-fc-red2">10.08</em><span class="f-ff-amount f-fs22 f-fc-red2">%</span>
+              <br>预期年化
+            </em>
+            <strong class="u-pbox-data">
+              <em class="f-ff-amount f-fs38">37</em><span class="f-fs18">天</span>
+              <br>剩余期限
+            </strong>
+            <span class="u-pbox-data">
+              <span class="f-ff-rmb f-fs22">￥</span><em class="f-ff-amount f-fs38">282,000</em>
+              <br>转让价格
+            </span>
+            <div class="u-pbox-process f-clear">
+              <span class="" style="width:83.19%"></span>
+            </div>
+            <div class="u-pbox-meta">
+              <em>当前进度：<span class="f-ff-ver">83.19%</span></em>
+              <span>剩余可投金额 <strong class="f-ff-ver">47,400</strong> 元</span>
+              <a href="/products/detail-989809550.html" class="u-pbox-btn f-round f-bgc-red2 f-fr">立即投资</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

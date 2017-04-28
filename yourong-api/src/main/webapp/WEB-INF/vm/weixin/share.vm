@@ -1,0 +1,3 @@
+#parse("/common/common.vm")
+#set($layout = "/layout/layout.vm")
+$!{weixinShare}

@@ -1,0 +1,572 @@
+/*! normalize.css v1.1.2 | MIT License | git.io/normalize*/
+article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block}audio,canvas,video{display:inline-block;*display:inline;*zoom:1}audio:not([controls]){display:none;height:0}[hidden]{display:none}html{font-size:100%;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}html,button,input,select,textarea{font-family:sans-serif}body{margin:0}a:focus{outline:thin dotted}a:active,a:hover{outline:0}h1{font-size:2em;margin:.67em 0}h2{font-size:1.5em;margin:.83em 0}h3{font-size:1.17em;margin:1em 0}h4{font-size:1em;margin:1.33em 0}h5{font-size:.83em;margin:1.67em 0}h6{font-size:.67em;margin:2.33em 0}abbr[title]{border-bottom:1px dotted}b,strong{font-weight:700}blockquote{margin:1em 40px}dfn{font-style:italic}hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0}mark{background:#ff0;color:#000}p,pre{margin:1em 0}code,kbd,pre,samp{font-family:monospace,serif;_font-family:'courier new',monospace;font-size:1em}pre{white-space:pre;white-space:pre-wrap;word-wrap:break-word}q{quotes:none}q:before,q:after{content:'';content:none}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sup{top:-.5em}sub{bottom:-.25em}dl,menu,ol,ul{margin:1em 0}dd{margin:0 0 0 40px}menu,ol,ul{padding:0 0 0 40px}nav ul,nav ol{list-style:none;list-style-image:none}img{border:0;-ms-interpolation-mode:bicubic}svg:not(:root){overflow:hidden}figure{margin:0}form{margin:0}fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}legend{border:0;padding:0;white-space:normal;*margin-left:-7px}button,input,select,textarea{font-size:100%;margin:0;vertical-align:baseline;*vertical-align:middle}button,input{line-height:normal}button,select{text-transform:none}button,html input[type=button],input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;*overflow:visible}button[disabled],html input[disabled]{cursor:default}input[type=checkbox],input[type=radio]{box-sizing:border-box;padding:0;*height:13px;*width:13px}input[type=search]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box}input[type=search]::-webkit-search-cancel-button,input[type=search]::-webkit-search-decoration{-webkit-appearance:none}button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}textarea{overflow:auto;vertical-align:top}table{border-collapse:collapse;border-spacing:0}
+/*APP 项目详情*/
+
+html {
+    background-color: #eee;
+    
+}
+
+.f-db {
+    display: block;
+}
+
+.f-fl {
+    float: left;
+}
+
+.f-of-h {
+    overflow: hidden;
+}
+
+.f-fc-red {
+    color: #D74148;
+}
+
+.g-wrap {
+    padding: 5.5% 6.25%;
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+}
+
+.m-project-info header {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #666;
+    line-height: 2rem;
+    border-bottom: 0.1rem solid #ccc;
+    margin: 0 0 2.4rem;
+}
+
+.m-project-info div {
+    color: #999;
+    margin: 0 0 2.8rem;
+    line-height: 2rem;
+}
+
+.m-project-info div img,
+.m-project-contract div img {
+    display: block;
+    width: auto;
+    max-width: 100%;
+}
+
+.u-info-table {
+    width: 100%;
+    line-height:2rem;
+    margin: 2.6rem 0 0;
+    font-size:1.4rem;
+}
+
+.u-info-table td:first-child {
+    width: 50%;
+}
+
+.u-info-table td:only-child {
+    width: 100%;
+}
+
+.u-risk-level span em {
+    margin-right: .9375rem;
+}
+
+.m-project-info h3 {
+    color: #808080;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.m-project-info p {
+    margin: 0 0 1.6rem;
+    line-height:2rem;
+}
+
+.m-project-contract div p {
+    text-align: center;
+    color: #999;
+    font-size: 1rem;
+    margin: 1.8rem 0 3.6rem;
+}
+
+.m-project-record {
+    padding-top: 0.8rem;
+}
+
+.u-record-table {
+    width: 100%;
+    font-size: 1.4rem;
+    text-align: left;
+}
+.u-record-table thead{
+border-top: 0.1rem solid #ccc;
+}
+.u-record-table th {
+    color: #666;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 3.5rem;
+    border-right: 0.1rem solid #ccc;
+    border-bottom: 0.1rem solid #ccc;
+    padding: 0;
+    text-align: center;
+    width: 27%;
+}
+.u-record-table th:first-child{
+    width: 42%;
+    text-indent: 1rem;
+    text-align: left;
+}
+.u-record-table th:last-child{
+    width: 28%;
+    line-height: 1em;
+    border-right: none;
+}
+
+
+.u-record-table td{
+    color: #999;
+    line-height: 4rem;
+    height: 4rem;
+    font-size: 14px;
+    border-right: 0.1rem solid #ccc;
+    padding: 0 1rem 0 0;
+    text-align: right;
+}
+.u-record-table td:first-child{
+    text-indent: 1rem;
+    text-align: left;
+    padding: 2px 0 0 0;
+}
+.u-record-table td:last-child {
+    border-right: none;
+    text-align: center;
+    line-height: 1.2em;
+    padding: 0;
+}
+.u-record-table tbody .u-record-null:last-child{
+	border-bottom:none;
+}
+.u-record-null img{
+	margin-top: 30%;
+	margin-bottom: 2em;
+}
+.u-record-table tbody tr:last-child{
+    border-bottom: 0.1rem solid #ccc;
+}
+/**图片加角标**/
+.u-mark-info p{
+	text-align: center;
+    margin-top: 1.8rem;
+	}
+/**投资列表翻页按钮样式**/
+.m-pagenav .u-pnav-prev {
+    width:35px;
+    line-height: 24px;
+    text-align: center;
+    border: 1px solid #cbcbcb;
+    background-color: #cbcbcb;
+}
+.m-pagenav * {
+    margin: 0 2px;
+}
+.u-circle-12 {
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    position: relative;
+    z-index: 2;
+    -moz-border-radius: 12px;
+    -webkit-border-radius: 12px;
+    border-radius: 12px;
+}
+.u-pnav-crt, .u-pnav-link {
+    border: 1px solid #ababab;
+    text-align: center;
+    line-height: 24px;
+    background-color: #ababab;
+    color: #fff;
+}
+a.u-pnav-link, a.u-pnav-prev, a.u-pnav-next {
+    border-color: #cbcbcb;
+    background-color: #cbcbcb;
+    color: #fff;
+    text-decoration: none;
+}
+.u-pnav-gary{
+    color:#666;
+}
+.m-turn-over{
+    margin:10px 0;
+    text-align: center;
+}
+/**经营融**/
+.u-info-RunCompany td{
+    color: #999;
+    margin: 0 0 24px;
+}
+.u-RunCompany-project,
+.u-RunCompany-project:link,
+.u-RunCompany-project:visited{
+    color: #666;
+}
+/*直投项目合同图*/
+.m-project-ztcontract p strong{
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #666;
+    line-height: 2rem;
+    margin: 0 0 2.4rem;
+    border-bottom: 0.1rem solid #CCC;
+    width: 100%;
+    display: block;
+    text-align:left;
+}
+.m-project-ztcontract div img {
+    display: block;
+    width: auto;
+    max-width: 100%;
+}
+.m-project-ztcontract div p em {
+    text-align: center;
+    color: #999;
+    font-size: 1rem;
+    margin: 1.8rem 0 3.6rem;
+    display: block;
+    font-style: normal;
+}
+.m-project-info .u-carPic-info>img{
+    display: block;
+    width: auto;
+    max-width: 100%;
+    margin: 0 auto;
+}
+.u-carPic-info em{
+    text-align: center;
+    color: #999;
+    font-size: 1rem;
+    margin: 1.8rem 0 3.6rem;
+    display: block;
+    font-style: normal;
+}
+.u-collateral-detail {
+    width: 100%
+}
+.u-collateral-detail tr{
+    width: 100%
+}
+.u-mark-info em{
+    text-align: center;
+    color: #999;
+    font-size: 1rem;
+    margin: 1.8rem 0 3.6rem;
+    display: block;
+    font-style: normal;
+}
+
+/*还款计划*/
+li{
+    list-style: none;
+}
+em{
+    font-style: normal;
+}
+i{
+    font-style: normal;
+}
+.f-dn{
+    display: none;
+}
+
+.u-repayment-tiptext {
+    min-height: 230px;
+    text-align: center;
+    line-height: 230px;
+    color: #454545;
+    font-size: 14px;
+    width: 100%;
+    display: none;
+}
+.u-repaymentPlan-periods{
+    margin-top: 10px;
+    padding:20px 3% 20px;
+    background: #ffffff;
+}
+.u-repaymentPlan-periods li{
+    font-size: 0;
+    height: 60px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    padding: 8px 0 0 10px;
+}
+.u-repaymentPlan-periods li span,.u-repaymentPlan-periods li em{
+    display: inline-block;
+}
+.u-repaymentPlan-periods li span{
+    color:#333;
+    font-size: 18px;
+}
+.u-repaymentPlan-periods li span.z-current1{
+    color:#333;
+}
+.u-repaymentPlan-periods li span.z-current2{
+    color:#d74148;
+}
+.u-repaymentPlan-periods li span.z-current3{
+    color:#999;
+}
+.u-repaymentPlan-periods li em{
+    color:#999;
+    font-size: 14px;
+
+}
+.u-repaymentPlan-periods li>em{
+    margin-top: 8px;
+    text-indent: 10%;
+    width: 100%;
+}
+.m-project-repaymentPlan>div>div>h5{
+    margin: 27px 10% 5px;
+    border-top:1px solid #d8d8d8;
+}
+.m-project-repaymentPlan>div>div>h5 span{
+    font-size: 18px;
+    color:#999;
+    text-align: center;
+    margin: -10px auto 0;
+    display: block;
+    width:95px;
+    background: #eee;
+    font-weight: 100;
+}
+/*正在催收表*/
+.u-collection-table{
+    padding: 10px 5% 20px;
+    background: #ffffff;
+    border-bottom: 1px solid #e5e5e5;
+}
+.u-collection-table table{
+    width: 100%;
+}
+
+.u-collection-table td{
+    width: 49%;
+    display: inline-block;
+    margin: 10px 0 0;
+}
+.u-collection-table td.u-first-td{
+    width: 100%;
+
+}
+.u-collection-table td em{
+    display: block;
+    font-size: 16px;
+    color: #999999;
+    line-height: 40px;
+}
+.u-collection-table td span{
+    font-size: 18px;
+    display: block;
+    color: #333333;
+}
+.u-collection-table td span i{
+    font-size: 14px;
+    color:#999;
+}
+.u-repaymentPlan-collectioning{
+    background: #ffffff;
+    padding-top: 45px;
+}
+.u-repaymentPlan-collectioning ul{
+    padding:0 5% 30px;
+}
+.u-repaymentPlan-collectioning ul li{
+    border-left:2px solid #ddd;
+    color:#999;
+    padding-bottom: 25px;
+    padding-left: 25px;
+    position: relative;
+    font-size: 0;
+}
+.u-repaymentPlan-collectioning ul li:first-child{
+    border-left:2px dashed #d74148;
+    color:#333;
+}
+.u-repaymentPlan-collectioning ul li strong{
+    font-size: 18px;
+    display: block;
+    font-weight: 100;
+    margin-bottom: 8px;
+}
+.u-repaymentPlan-collectioning ul li strong em{
+    font-size: 14px;
+}
+.u-repaymentPlan-collectioning ul li span{
+    font-size: 16px;
+    display: block;
+    margin-bottom: 8px;
+}
+.u-repaymentPlan-collectioning ul li i.z-first{
+    width: 24px;
+    height: 24px;
+    display: block;
+    background: url("../../../res/img/product/collectioning.png") no-repeat center;
+    -webkit-background-size:100%;
+    background-size:100%;
+    position: absolute;
+    left: -14px;
+    top: -2px;
+}
+
+.u-repaymentPlan-collectioning ul li>i{
+    width: 24px;
+    height: 24px;
+    display: block;
+    background: url("../../../res/img/product/collection-fail.png") no-repeat center;
+    -webkit-background-size:100%;
+    background-size:100%;
+    position: absolute;
+    left: -14px;
+    top: -2px;
+}
+.u-repaymentPlan-collectioning ul li .z-success{
+    background: url("../../../res/img/product/collection-success.png") no-repeat center;
+    -webkit-background-size:100%;
+}
+.u-repaymentPlan-collectioning ul li>img{
+    width:40%;
+    margin-right: 5%;
+    margin-top: 10px;
+}
+.u-repaymentPlan-logo{
+    width: 50%;
+    margin:20px auto 60px;
+}
+.u-check-result{
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    display: block;
+    color:#999;
+    height:45px;
+    line-height: 45px;
+    background: #ffffff;
+    margin-top: 15px;
+    text-decoration: none;
+}
+.u-check-result i{
+    height: 8px;
+    width: 15px;
+    display: inline-block;
+    background: url("../../../res/img/product/result-open.png") no-repeat center;
+    -webkit-background-size: 100%;
+    background-size: 100%;
+    margin-left: 9px;
+    margin-bottom: 5px;
+    vertical-align: middle;
+}
+.u-check-result i.z-close{
+    background: url("../../../res/img/product/result-close.png") no-repeat center;
+    -webkit-background-size: 100%;
+}
+
+/*催收结果*/
+.m-project-repaymentPlan{
+    padding-bottom:50px;
+}
+.m-repaymentPlan-result .u-collection-table{
+    padding: 0 0 20px;
+}
+
+
+.m-repaymentPlan-result .u-collection-table table{
+    padding: 0 3%;
+    display: inline-block;
+    width: 94%;
+}
+.m-repaymentPlan-result .u-collection-table table tbody{
+    width: 100%;
+    display: block;
+}
+.m-repaymentPlan-result .u-collection-table tbody tr{
+    display: block;
+}
+.m-repaymentPlan-result .u-collection-table td{
+    width: 48%;
+}
+.m-repaymentPlan-result .u-repaymentPlan-collectioning ul li i.z-success{
+    background: url("../../../res/img/product/collection-success.png") no-repeat center;
+    -webkit-background-size:100%;
+}
+/*提前还款*/
+.m-repayment{
+    padding:15px 3% 20px;
+    background: #ffffff;
+}
+.m-repayment em{
+    display: block;
+    font-size: 14px;
+    color:#999;
+}
+.m-repayment span{
+    display: block;
+    font-size: 16px;
+    color:#333;
+    line-height: 24px;
+    margin-bottom: 16px;
+}
+
+.u-imgTips {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    line-height: 12px;
+    font-size: 12px;
+    color: #D74148;
+    text-align: center;
+    border: 1px solid #D74148;
+    border-radius: 50%;
+    margin-left: 4px;
+}
+
+.m-risk-win {
+    position: fixed;
+    top: 40%;
+    left: 10%;
+    width: 80%;
+    background: #fff;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #333;
+    z-index: 1000;
+    text-align: center;
+}
+
+.m-risk-win.u-msite-style {
+    top: 30%;
+    box-shadow:2px 2px 3px #aaaaaa;
+}
+
+.u-main-content {
+    line-height: 30px;
+    padding: 18px 0;
+}
+
+.u-know-btn {
+    padding: 10px;
+    color: #D74148;
+    font-size: 16px;
+    border-top: 1px solid #efefef;
+}
+
+.u-cover {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.3);
+    z-index: 198;
+}

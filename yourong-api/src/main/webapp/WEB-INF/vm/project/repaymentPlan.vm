@@ -1,0 +1,90 @@
+#parse('/common/common.vm')
+#set($title="合同资料")
+#if(!$sysServiceUtil.isDev())
+    #set($siteurl='')
+#else
+    #set($siteurl='/yourong-api')
+#end
+#set($css_url=["$siteurl/static/source/css/detail.css"])
+<style>
+    html {
+        font-size: 62.5%;
+    }
+    .m-project-repaymentPlan{
+        background: #eee;
+        font-size: 1rem;
+        padding: 0;
+    }
+    .u-project-repaymentPlan{
+        width: 100%;
+    }
+    .u-project-repaymentPlan thead{
+        border-top: 0.1rem solid #ccc;
+        text-align: center;
+
+    }
+    .u-project-repaymentPlan thead th {
+        color: #666;
+        font-weight: bold;
+        font-size: 14px;
+        line-height: 3.5rem;
+        border-left: 0.1rem solid #ccc;
+        border-bottom: 0.1rem solid #ccc;
+    }
+    .u-project-repaymentPlan thead th:first-child {
+        border-left:0;
+    }
+    .u-project-repaymentPlan tbody{
+        text-align: center;
+    }
+    .u-project-repaymentPlan tbody td{
+        color: #999;
+        font-size: 1.5rem;
+        border-left: 0.1rem solid #ccc;
+        border-bottom: 0.1rem solid #ccc;
+        padding: 0.2rem 0;
+    }
+    .u-project-repaymentPlan tbody td.u-colorRed{
+        color: #d74148;
+    }
+    .u-project-repaymentPlan tbody td:first-child{
+        border-left:0;
+    }
+</style>
+<section class="m-project-repaymentPlan g-wrap">
+    #if($!{project.status}==52 || $!{project.status}==70)
+        <table class="u-project-repaymentPlan">
+            <thead>
+                <tr>
+                    <th width="17%">期数</th>
+                    <th width="28%">还款时间</th>
+                    <th width="33%">还款金额</th>
+                    <th width="22%">还款状态</th>
+                </tr>
+            </thead>
+            <tbody>
+            	#foreach($interest in $!{project.interests})
+					#if(${interest.payableInterest}>0 && ${interest.payablePrincipal}>0 )
+						#set($repayType="本金+利息")
+					#elseif(${interest.payableInterest}>0 && ${interest.payablePrincipal}<=0 )
+						#set($repayType="利息")
+					#end
+                <tr>
+                    <td >$velocityCount</td>
+                    <td >$!{dateUtil.formatDatetoString($interest.endDate,"yyyy-MM-dd")}<br>$!repayType</br></td>
+                    <td class="#if($!{interest.status}!=1) u-colorRed #end" >￥$!{formulaUtil.formatCurrencyNoUnit($interest.principalAndInterest)}</td>
+                    <td class="#if($!{interest.status}!=1) u-colorRed #end" ><i #if($!{interest.status}==1)class="z-current"#end></i>$!{sysServiceUtil.getDictLabelByValue("$!{interest.status}","debt_interest_status_for_front","")}</td>
+                </tr>
+				#end
+            </tbody>
+        </table>
+     #elseif($!{project.status}==80 || $!{project.status}==90)
+                <table class="u-repayment-tiptext">
+                    <tr><td>项目募集未完成，没有相应还款计划</td></tr>
+                </table>
+	 #else
+                <table class="u-repayment-tiptext">
+			        <tr><td>还款计划将于项目履约后显示</td></tr>
+                </table>
+	 #end
+</section>

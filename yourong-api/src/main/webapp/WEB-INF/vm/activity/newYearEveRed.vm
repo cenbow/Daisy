@@ -1,0 +1,171 @@
+##2017除夕抢压岁包
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$res_url/source/css/activity/newYearEveRed.css"])
+#set($title="有融除夕送你压岁钱_$!{title_suffix}")
+#set($aliyun='http://oss-cn-hangzhou.aliyuncs.com/yrstatic/res')
+<script>
+    var url=window.location.href,title='有融除夕送你压岁钱';
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        window.shareData = {
+            "timeLineLink": url,
+            "sendFriendLink": url,
+            "weiboLink": url,
+            "tTitle": "除夕送你压岁钱",
+            "tContent": "抢到就有588",
+            "fTitle": "除夕送你压岁钱",
+            "fContent": "抢到就有588",
+            "wContent": "除夕送你压岁钱 抢到就有588"
+        };
+        // 发送给好友
+        if(typeof(WeixinJSBridge)!=='undefined'){
+            WeixinJSBridge.on('menu:share:appmessage', function (argv) {
+                WeixinJSBridge.invoke('sendAppMessage', {
+                    "img_url": "../../static/img/weixin/weixin_chuxihuodong.png",
+                    "img_width": "358",
+                    "img_height": "328",
+                    "link": window.shareData.sendFriendLink,
+                    "desc": window.shareData.fContent,
+                    "title": window.shareData.fTitle
+                }, function (res) {
+                    _report('send_msg', res.err_msg);
+                })
+            });
+            // 分享到朋友圈
+            WeixinJSBridge.on('menu:share:timeline', function (argv) {
+                WeixinJSBridge.invoke('shareTimeline', {
+                    "img_url": "../../static/img/weixin/weixin_chuxihuodong.png",
+                    "img_width": "358",
+                    "img_height": "328",
+                    "link": window.shareData.timeLineLink,
+                    "desc": window.shareData.tContent,
+                    "title": window.shareData.tTitle
+                }, function (res) {
+                    _report('timeline', res.err_msg);
+                });
+            });
+        }
+    }, false);
+</script>
+
+#set($encryptionId=$request.getParameter("encryptionId"))
+#set($loginSource=$request.getHeader("loginSource"))
+
+#if($currentUser)
+    #set($logined=true)
+#else
+    #set($logined=false)
+#end
+#set($os=3)
+##  安卓
+#if($loginSource==1)
+    #set($os=1)
+#end
+##  IOS
+#if($loginSource==2)
+    #set($os=2)
+#end
+
+<div class="g-main" id="j-newYearEveRed" os="$!{os}" data-logined="$logined" v-cloak>
+    #if($loginSource==1 || $loginSource==2)
+        <style>
+            .g-ft{  display: none;  }
+        </style>
+    #else
+    ##header，安卓ios，不需要头部
+        <h2 class="u-pageTitle f-pos-r u-section1-title" id="j-title">
+            <a href="$m_url">有融网</a>
+            <span class="u-login-link f-pos-a">
+                #if(!$currentUser)
+                    <a href="{{loginUrl}}">登录</a>
+            <a href="$siteurl/mstation/register">注册</a>
+                #else
+                    <a href="$mCenter_logout_url">退出</a>
+                #end
+            </span>
+        </h2>
+    #end
+
+## top bg
+    <div class="u-top-img-wrap">
+        <img src="$aliyun/img/activity/newYearEveRed/head.png">
+    </div>
+
+## 抢包按钮
+    <div class="f-tac">
+        <a class="u-btn z-actived u-rebBtn" @click="grabBag($event)" :class="{'z-disabled':activityStatus!==4 || surplusCount<1}" v-if="!isShowCountDown">{{grabBagBtnText}}</a>
+        <a class="u-btn z-actived u-rebBtn z-disabled" v-else>
+            开抢倒计时：&nbsp;{{countDownText}}
+        </a>
+    </div>
+
+## content
+    <div class="m-main-wrap">
+        ## 幸运用户
+        <h2 class="f-pos-r">
+            <img src="$aliyun/img/activity/newYearEveRed/title.png" class="f-title f-pos-a">
+          <i class="f-tac f-pos-a">幸运用户</i>
+        </h2>
+        <div class="m-memberListContainer f-pos-r">
+            <ul id="j-luckyMemberList">
+                <li v-for="item in init.grabResult">
+                    <img :src="item.avatars | avatarUrl" width="35" height="35">
+                    <template v-if="item.mobileStr">
+                        恭喜&nbsp;<i>{{item.mobileStr}}</i>&nbsp;抢到{{item.rewardInfo}}
+                    </template>
+                    <template v-else>
+                        虚位以待
+                    </template>
+                </li>
+            </ul>
+        </div>
+
+        ## 活动规则
+        <h2 class="f-pos-r">
+            <img src="$aliyun/img/activity/newYearEveRed/title.png" class="f-title f-pos-a">
+            <i class="f-tac f-pos-a">活动规则</i>
+        </h2>
+        <div class="u-regular f-pos-r">
+            <p><i>1、</i>活动对象：有融网所有用户；</p>
+            <p><i>2、</i>活动时间：<span>{{init.startTime | formatTime 'yyyy年M月d日'}}</span><span>{{changeHourFormat}}</span>点整；</p>
+            <p><i>3、</i>人气值奖励将于抢到后10分钟内发放到您的账户；</p>
+            <p><i>4、</i>如有疑问，请拨打客服热线：<br>400-025-6688；</p>
+            <p><i>5、</i>本活动最终解释权归有融网所有。</p>
+        </div>
+    </div>
+
+##  弹出的提示框
+    <div class="m-dialog" v-show="isShowDialog">
+        <div class="m-dailog-containder animated zoomIn f-pos-r" v-show="isSuccess">
+            <div class="u-cancel" @click="closeDialog(1)">
+                <img src="$aliyun/img/activity/newYearEveRed/disappear.png">
+            </div>
+            <img src="$aliyun/img/activity/newYearEveRed/tips.png">
+            <a href="javascript:void(0)" @click="closeDialog(1)">
+                <img src="$aliyun/img/activity/newYearEveRed/tips-button.png" class="f-tips-button f-pos-a">
+            </a>
+        </div>
+
+        <div class="m-dailog-containder f-text-tips animated zoomIn" v-show="!isSuccess">
+            <div class="u-text-content">网络拥挤，过会再来~</div>
+            <div class="u-text-button" @click="closeDialog(0)">我知道了</div>
+        </div>
+    </div>
+
+</div>
+
+#set($pageScript="
+<script src='$aliyun/lib/js/appHook.js'></script>
+<script src='$aliyun/lib/vue/vue.min.js'></script>
+<script src='$aliyun/lib/vue/vue.extend.js'></script>
+##<script src='$siteurl/res/lib/js/moment.min.js'></script>
+##<script src='$siteurl/res/lib/js/vconsole.min.js'></script>
+<script>
+    var receiveData = $!{data},
+                 os = $!{os};
+    console.log(receiveData)
+
+    seajs.use('$res_url/source/js/activity/newYearEveRed.js?201714020010');
+</script>
+")
+#CSRFToken("xToken")

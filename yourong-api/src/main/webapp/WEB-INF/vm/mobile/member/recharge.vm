@@ -1,0 +1,37 @@
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$m_css_url/modules/recharge.css"])
+#set($type=$request.getParameter("type"))
+#set($investment=$request.getParameter("investment"))
+#set($orderId=$request.getParameter("orderId"))
+#set($title='充值')
+<div id="recharge">
+    <!--header-->
+    <h2 class="u-header f-pos-r">
+        <a href="$siteurl/mCenter/home">返回</a>
+    <span class="f-fs18">
+        充&nbsp;值&nbsp;
+    </span>
+    </h2>
+    <!--/header-->
+    <!--body-->
+    <div>
+        <div class="u-recharge-money">
+            <span class="f-fs16">充值金额</span>
+            <input v-if="$type=='2'" class="f-fs14" placeholder="输入充值金额" name="amount" id="j-recharge-num" maxlength="10" @blur="limitInput('#j-recharge-num')" value="$investment"/>
+            <input v-else class="f-fs14" placeholder="输入充值金额" name="amount" id="j-recharge-num" maxlength="10" @blur="limitInput('#j-recharge-num')" value=""/>
+            <i @click="deleteAll" class="f-fr">x</i>
+        </div>
+        <div v-if="$type=='2'" class="u-recharge-btn" id="j-recharge-btn" @click="limitSubmit(2,'$orderId')"><img src="$res_url/img/member/sinalogo.png" alt="新浪支付"><button type="button">前往新浪充值</button></div>
+
+        <div v-else  class="u-recharge-btn" id="j-recharge-btn" @click="limitSubmit(1,'')"><img src="$res_url/img/member/sinalogo.png" alt="新浪支付"><button type="button">前往新浪充值</button></div>
+    </div>
+    <input type="hidden" id="j-submitAmount">
+</div>
+#set($pageScript="
+<script src='$aliyunOss_url/res/lib/vue/v1/vue.min.js'></script>
+<script>
+    seajs.use('xjs/modules/recharge');
+</script>
+")
+#CSRFToken("xToken")

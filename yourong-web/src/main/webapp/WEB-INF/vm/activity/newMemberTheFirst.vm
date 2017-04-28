@@ -1,0 +1,284 @@
+##新手注册认证活动_我的第一次从有融开始
+#parse('/common/common.vm')
+#set($title="我的第一次_$!{title_suffix}")
+<style>
+.g-act01-hd{
+	width: 100%;
+	height: 493px;
+	margin-top: -8px;
+	text-indent: -9999px;
+	background: url($root_url/static/img/activity/activity_01_tbg.jpg) no-repeat center center;
+}	
+.g-act01-bd{
+	background-color: #5a4747;
+	min-height: 500px;
+	margin: 0 0 -100px;
+}
+.m-act01-reward{
+	color: #fff;
+	margin: -18px 0 66px;
+	overflow: hidden;
+}
+.m-act01-reward h3 {
+	
+	height: 24px;
+	line-height: 24px;
+	margin: 28px 0;
+	text-align: center;
+}.m-act01-reward h3 strong{
+	position: relative;
+	padding: 0 0 0 43px;
+}
+.m-act01-reward h3 sup{
+	position: absolute;
+	left:0;
+	top: 2px;
+	line-height: 14px;
+}
+.u-circle-56 {
+    width: 128px;
+    height: 128px;
+    display: inline-block;
+    position: relative;
+    z-index: 2;
+    -moz-border-radius: 56px;
+    -webkit-border-radius: 56px;
+    border-radius: 56px;
+    behavior: url($root_url/static/lib/ie-css3.htc);
+}
+.u-circle-14 {
+    width: 28px;
+    height: 28px;
+    display: inline-block;
+    position: relative;
+    z-index: 2;
+    -moz-border-radius: 14px;
+    -webkit-border-radius: 14px;
+    border-radius: 14px;
+    behavior: url($root_url/static/lib/ie-css3.htc); 
+}
+.m-act01-reward li{
+	width: 300px;
+	height: 620px;
+	border: 5px solid #867778;
+	float:left;
+	margin-left: 30px;
+	background-color: #5a4747;
+}
+.m-act01-reward li:first-child{
+	margin-left: 0;
+}
+.m-act01-reward li>p{
+	line-height: 1.5em;
+	color: #fff;
+	padding: 5px 30px 0;
+	margin: 0 0 28px;
+}
+.m-act01-reward li>p[type="invite"]{
+	padding: 5px 30px 0 40px;
+}
+.m-act01-reward li[type="investment"] {}
+.u-act01-sbox{
+	height: 60px;
+	width: 235px;
+	margin: 0 0 28px 27px;
+	background-color: #fff;
+	color: #5a4747;
+	position: relative;
+	font-size: 14px;
+}
+.u-act01-sbox>span{
+	display: inline-block;
+	width: 72px;
+	height: 28px;
+	line-height: 28px;
+	position: absolute;
+	right: -12px;
+	top: -10px;
+	text-align: center;
+	font-weight: bold;
+	background-color: #d42e00;
+	color: #fff;
+}
+.u-act01-sbox>span[type="investment"]{
+	width: 122px;
+	right: -22px;
+}
+.u-act01-sbox>i{
+	display: inline-block;
+	width: 48px;
+	height: 60px;
+	line-height: 60px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	color: #9c9191;
+	text-align: center;
+}
+.u-act01-sbox em{
+	height: 18px;
+	line-height: 18px;
+	display: block;
+	margin: 0 0 0 48px;
+	color: #5a4747;
+}
+.u-act01-sbox[size="big"]{
+	height: 94px;
+	text-align: center;
+	line-height: 94px;
+	font-family: Consolas;
+	margin-bottom: 5px;
+}
+.u-act01-sbox p em{
+	line-height: 60px;
+}
+.u-act01-sbox p em[rows="2"]{
+	margin-top: 13px;
+	line-height: 18px;
+}
+.u-act01-sbox p em[rows="2"]+em{
+	line-height: 18px;
+}
+.u-act01-btn{
+	display: block;
+	height: 66px;
+	line-height: 66px;
+	width: 290px;
+	text-align: center;
+	color: #fff;
+	background:url($root_url/static/img/activity/act01_btn.png) no-repeat;
+	position: absolute;
+	bottom: 5px;
+	left: 5px;
+}
+.u-act01-btn:link{color: #fff;}
+.u-act01-btn:hover{
+	text-decoration: none;
+	color: #fff;
+	bottom:3px;
+}
+.u-act01-text{
+	color: #ada3a3;
+	padding: 0 43px 0 0;
+}
+.u-act01-text span{
+	display: block;
+	padding: 0 0 15px;
+}
+.u-act01-text span a:link{
+	color: #ada3a3;
+}
+.u-act01-text span a:visited{
+	color: #ada3a3;
+}
+.u-act01-explain{
+	padding: 0 0 200px;
+}
+.u-act01-explain h3{
+	height: 48px;
+	line-height: 48px;
+	text-indent: 20px;
+	border-top: 2px solid #867778;
+	border-bottom: 2px solid #867778;
+	color: #fff;
+}
+.u-act01-explain ul{
+	padding: 16px 0 0 20px;
+	color: #fff;
+}
+.u-act01-explain li{
+	line-height: 36px;
+}
+</style>
+<div class="g-act01-hd">
+	活动：我的第一次从有融开始
+</div>
+<div class="g-act01-bd">
+	<div class="g-wrap">
+		<ul class="m-act01-reward f-cf">
+			<li class="u-circle-56">
+				<h3 class="f-fs24"><strong><sup class="f-fs14">奖励1</sup>第一次注册</strong></h3>
+				<p>每完成以下一个步骤，获得相应的现金券，<br/>现金券将在5分钟之内发放到您的账户。</p>
+				<div class="u-act01-sbox u-circle-30">
+					<span class="u-circle-14">奖50元</span>
+					<i>1</i>
+					<p>
+						<em rows="2">完成注册并</em>
+						<em>开通新浪支付存钱罐</em>
+					</p>
+				</div>
+				<div class="u-act01-sbox u-circle-30">
+					<span class="u-circle-14">奖10元</span>
+					<i>2</i>
+					<p>
+						<em>首次绑定邮箱</em>
+					</p>
+				</div>
+				<div class="u-act01-sbox u-circle-30">
+					<span class="u-circle-14">奖10元</span>
+					<i>3</i>
+					<p>
+						<em>首次完善信息</em>
+					</p>
+				</div>
+				<a href="$root_url/security/register/" class="u-act01-btn f-fs18">立即注册</a>
+			</li>
+			<li class="u-circle-56">
+				<h3 class="f-fs24"><strong><sup class="f-fs14">奖励2</sup>第一次邀请</strong></h3>
+				<p type="invite">注册认证的用户，成功邀请好友并投资<br/>即可获得好友</p>
+				<div class="u-act01-sbox u-circle-30" size="big">
+					<strong class="f-fs16">投资额<span class="f-fs48">2‰</span>的人气值</strong>
+				</div>
+				<div class="f-tar u-act01-text"><span>人气值积累到一定值可以领取现金券哦</span></div>
+				<a href="$root_url/coupon/inviteFriend" class="u-act01-btn f-fs18">立即邀请</a>
+			</li>
+			<li class="u-circle-56">
+				<h3 class="f-fs24"><strong><sup class="f-fs14">奖励3</sup>第一次投资</strong></h3>
+				<p>在活动期间，注册认证后首次投资，投资额<br/>满足下列条件的用户，即可获得对应的奖励： </p>
+				<div class="u-act01-sbox u-circle-30">
+					<span class="u-circle-14" type="investment">奖0.5%收益券</span>
+					<i>1</i>
+					<p>
+						<em>投资额满1万元</em>
+					</p>
+				</div>
+				<div class="u-act01-sbox u-circle-30">
+					<span class="u-circle-14" type="investment">奖0.6%收益券</span>
+					<i>2</i>
+					<p>
+						<em>投资额满3万元</em>
+					</p>
+				</div>
+				<div class="u-act01-sbox u-circle-30">
+					<span class="u-circle-14" type="investment">奖0.8%收益券</span>
+					<i>3</i>
+					<p>
+						<em>投资额满5万元</em>
+					</p>
+				</div>
+				<div class="u-act01-sbox u-circle-30">
+					<span class="u-circle-14" type="investment">奖1%收益券</span>
+					<i>4</i>
+					<p>
+						<em>投资额满10万元</em>
+					</p>
+				</div>
+                <a href="$root_url/products/list-all-all-all-1-createTimeDesc-1.html"
+                   class="u-act01-btn f-fs18">立即投资</a>
+			</li>
+		</ul>
+		<div class="u-act01-explain">
+			<h3>活动说明</h3>
+			<ul>
+				<li>1.活动时间：2014年11月19日-2015年2月28日；</li>
+				<li>2.本次活动中的现金券及收益券的使用期限详见“我的账号>我的优惠”；</li>
+				<li>3.本次活动中的现金券仅限于投资，不可直接提现（如：用户获得50元现金券，投资1000元，只需支付950元即可）；</li>
+				<li>4.本次活动中的收益券在下次投资时使用，收益券于活动结束后3个工作日内发放；</li>
+				<li>5.本次活动中的现金券及收益券每次投资仅限使用一张；</li>
+				<li>6.邀请的好友投资越多，人气值越高，人气值可兑换现金券，兑换后将在5分钟内发放到您的账户；</li>
+				<li>本次活动最终解释权归有融网所有。</li>
+			</ul>
+		</div>
+	</div>
+</div>
+

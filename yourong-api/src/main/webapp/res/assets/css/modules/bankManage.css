@@ -1,0 +1,244 @@
+/*银行卡管理*/
+.g-uc-wrap {
+    padding: 37px 30px;
+}
+
+.m-bankcard-list {
+    /*padding: 0 0 180px;*/
+    width: 100%;
+    margin: 0 0 210px 0;
+}
+
+.m-bankcard-list ul {
+    margin: 0 auto;
+    padding: 0;
+}
+
+.m-bankcard-list li {
+    width: 100%;
+    height: 108px;
+    border-bottom: 1px solid #dddbd6;
+    position: relative;
+    color: #999;
+}
+.m-bankcard-list .u-card-del{
+    position: absolute;
+    right: -20%;
+    width: 20%;
+    height: 107px;
+    line-height: 107px;
+    text-align: center;
+    display: block;
+    background-color: #d74148;
+    border-top: 1px solid #dddbd6;
+    border-bottom: 1px solid #dddbd6;
+    color: #fff;
+}
+.m-bankcard-list li:nth-child(3n) {
+    margin-right: 0;
+}
+
+.m-bankcard-list li a {
+    text-decoration: none;
+    color: #999;
+}
+
+.m-bankcard-list li span {
+    margin-top: 54px;
+    float: left;
+}
+.u-bankPosition{
+    margin-top: 37px;
+}
+.u-bankNumber{
+    line-height: 1px;
+}
+.u-bankPosition strong{
+    line-height: 3px;
+    display: block;
+}
+.z-bankName{
+    width: 70%;
+    margin-left: 15px;
+    line-height: 19px;
+}
+.m-bankcard-list li img {
+    width: 50px;
+    height: 50px;
+}
+
+.m-bankcard-list li em {
+    display: inline-block;
+}
+
+.m-bankcard-list li > strong {
+    height: 100%;
+    width: 70px;
+    background-color: #d74148;
+}
+
+.m-bankcard-list li > strong {
+    display: none;
+    color: #fff;
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 50px 0 0;
+    font-weight: normal;
+}
+
+.m-bankcard-list strong a {
+    display: inline-block;
+    margin: 0 0 10px 10px;
+    color: #fff;
+    text-decoration: none;
+    border-bottom: 1px solid #fff;
+}
+
+.m-bankcard-list strong a:hover {
+
+}
+
+.m-bankcard-list li:hover > strong {
+    display: block;
+}
+.u-withdraw-more em{
+    padding: 0;
+    background-color: #dddbd6;
+    text-align: center;
+    font-size: 30px;
+    line-height: 50px;
+    cursor: pointer;
+    color: #fff;
+    margin: 0 5% 0 0;
+}
+.u-withdraw-more span{
+    color: #999;
+}
+.u-withdraw-more{
+    margin: 34px 0 24px 25px;
+    line-height: 37px;
+    height: 50px;
+}
+.m-bankcard-list .u-bank-add {
+    display: block;
+    height: 100%;
+}
+
+.m-bankcard-list a.u-bank-add:hover {
+    text-decoration: none;
+}
+
+.m-bankcard-list .u-bank-add i {
+    text-align: center;
+    color: #6b6b6b;
+    text-indent: 3px;
+    padding: 6px 14px 0;
+}
+
+a.u-withdraw-more, a.u-recharge-more, .u-recharge-more {
+    text-align: center;
+    font-size: 30px;
+    line-height: 50px;
+    cursor: pointer;
+    color: #fff;
+    margin-bottom: 20px;
+}
+.u-circle-25 {
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    position: relative;
+    z-index: 2;
+    -moz-border-radius: 25px;
+    -webkit-border-radius: 25px;
+    border-radius: 25px;
+}
+
+.u-font-normal {
+    font-style: normal;
+}
+
+.f-cf:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+
+.f-cf {
+    zoom: 1; /* for IE6 IE7 */
+}
+
+.f-clear {
+    clear: both;
+}
+/*.u-safety-logo{
+    float: right;
+    position: absolute;
+    background: url("../../../img/sprites1.png") no-repeat -193px -200px;
+    width: 50px;
+    height: 50px;
+}*/
+.u-safety-car {
+    float: right;
+
+    background: url("../../../img/sprites1.png") no-repeat -300px -221px;
+    width: 74px;
+    height: 25px;
+    margin-top: 45px;
+    /* background-size: 80%; */
+    display: inline-block;
+    margin-right: 40px;
+}
+.f-fl{
+    float: left;
+}
+.f-fr{
+    float: right;
+}
+.u-shortcut{
+    background: #999;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    width: 74px;
+    height: 23px;
+    margin-top: 45px;
+    color: #fff;
+    margin-right: 40px;
+    font-size: 14px;
+    text-align: center;
+    line-height: 24px;
+    font-style: italic;
+    font-weight: bold;
+}
+/**银行卡管理页增加安全卡说明**/
+.u-bankManage-head em{
+    position: absolute;
+    right: 3%;
+    top: 3px;
+    font-size: 0.8rem;
+    color: #fff;
+}
+.u-security-card .ui-dialog-bd{
+    padding: 0;
+    overflow: hidden;
+}
+.u-security-card .ui-dialog-bd span{
+    font-size: 0.8rem;
+    text-align: center;
+    display: block;
+    padding: 17px 9% 17px;
+    background-color: #fffab0;
+    color: #333;
+}
+.u-security-card .ui-dialog-bd p{
+    font-size: 0.8rem;
+    display: block;
+    text-align: left;
+    width: 80%;
+    height: 90px;
+    padding: 13px 0 0 0;
+}

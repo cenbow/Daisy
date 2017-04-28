@@ -1,0 +1,17 @@
+{
+  "env": {
+    "browser": true,
+    "node":true,
+    "es6": true
+  },
+  "globals": {
+    "lodash": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": false
+    }
+  }
+}

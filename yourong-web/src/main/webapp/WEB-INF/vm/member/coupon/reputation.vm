@@ -1,0 +1,331 @@
+##人气值
+#parse("/common/common.vm")
+#set($title="我的人气值_我的优惠_$!{title_suffix}")
+#set($css_url=["$cssv2_url/member/member.css"])
+#set($js_url=["$root_url/static/lib/js/clipboard.min.js","/static/lib/js/jq/jquery.radialIndicator.js",
+    "$root_js_url/modules/coupon.js","$root_js_url/modules/member.js"])
+
+#set($coupon="z-current")
+#CSRFToken('xToken')
+## 根据时间显示邀请好友注册文案
+#set($serverDateTime=${dateUtil.getCurrentDate().getTime()})
+## 2017/03/25 00:00:00
+#set($oldEndTime=1490371200000)
+## 2017/03/31 00:00:00
+#set($newStartTime=1490889600000)
+## 2017/05/01 00:00:00
+#set($newEndTime=1493568000000)
+## 用户中心头部
+#parse("/member/head.vm")
+## 用户中心内容
+<div class="g-wrap">
+    <div class="m-nav-title">
+        <a href="$coupon_url[2]" class="z-current">
+            我的人气值
+        </a>
+        <a href="$coupon_url[0]" class="u-title-secondary u-tit-r">
+            我的现金券
+        </a>
+        <a href="$coupon_url[1]" class="u-title-secondary u-tit-r">
+            我的收益券
+        </a>
+    </div>
+    <div class="g-uc-bd f-round">
+    ## 页面内容
+        <div class="g-uc-wrap f-cf">
+            <div class="m-reputation-chart f-round">
+                #if($overduepopularity.show)
+                    #if($!{overduepopularity.overduePopularity}>0)
+                        <div class="u-pValue-reset" class="f-pos-r">
+                            您有$!{overduepopularity.overduePopularity}点$!{dateUtil.formatDatetoString(${overduepopularity.incomeTime},"yyyy年MM月dd日")}前获得的人气值，
+                            将于$!{dateUtil.formatDatetoString(${overduepopularity.outlayTime},"yyyy年MM月dd日")}过期，建议您尽快兑换使用噢！
+                            #if($overduepopularity.showRule)
+                                <a href="javascript:" class="f-pos-a">查看人气值过期规则
+                                    <div class="u-tips-text">
+                                        <p>人气值有效期：每年12月31日，用户于一年前获取且至今未使用的人气值将过期失效。</p>
+                                    </div>
+                                </a>
+                            #end
+                        </div>
+                        #else
+                            <div class="u-pValue-reset f-pos-r f-dn" id="j-valueTips-disappear"
+                                 data-userid="$!{currentUser.id}">
+                                您没有人气值将于$!{dateUtil.formatDatetoString(${overduepopularity.outlayTime},"yyyy年MM月dd日")}失效，习惯很好，继续保持噢！
+                                <em>x</em>
+                            </div>
+                    #end
+                #end
+                <div class="u-reputation-count" id="j-rep-count">
+                #*<strong id="j-rep-round" data-point="$!servletUtil.getPopularityBalanceValue()"></strong>*#
+                    <strong id="j-rep-round" data-point="$!servletUtil.getPopularityBalanceValue()">
+                        #set($point=$!servletUtil.getPopularityBalanceValue())
+                        #set($percent=$point/10)
+                        #if($percent>=0.1&&$percent<1)
+                            #set($percent=1)
+                        #elseif($percent<0.1)
+                            #set($percent=0)
+                        #elseif($percent>100)
+                            #set($percent=100)
+                        #else
+                            #set($percent=$point/10)
+                        #end
+
+                        #set($percentPoint=$percent+'.png')
+
+                        <div class="f-bar-red" style="height: 320px;width: 320px;position: absolute;left: 0px;top: 0px;
+                                background: url($root_url/static/img/member/coupon/$percentPoint) no-repeat 0 0;display: none;"></div>
+
+                    </strong>
+                    <span><em class="f-pos-r f-ff-din">$!servletUtil.getPopularityBalanceValue()<strong
+                            class="f-fs20">点</strong>#if($!{servletUtil.getLockPopularityValue()}>0)<i
+                            class="u-icon u-icon-tips j-user-tips" data-align="top"
+                            data-tips="提现手续费冻结：$!{servletUtil.getLockPopularityValue()}点"></i>#end</em></span>
+                    <div>
+                        <a href="#" id="j-exchange-cashCoupon"
+                           class="u-exchange-coupon f-fs14 j-exchage-coupon">兑换现金券</a>
+                        <a href="#" id="j-exchange-profitCoupon"
+                           class="u-exchange-coupon f-fs14 j-exchage-coupon">兑换收益券</a>
+                    </div>
+                    <input type="hidden" id="j-rep-point" data-point="$!servletUtil.getPopularityVaule()">
+                    <p>使用APP兑换，享会员等级优惠哦。</p>
+                </div>
+                <div class="u-reputation-tips">
+                    <p class="u-reputation-what f-dn">
+                        1、人气值获取：人气值可通过每日签到、抢标五重礼、投资分享红包等活动获取。<br>
+                        2、人气值使用：人气值可用于兑换现金券、收益券及更多虚拟商品和超值实物。<br>
+                        3、人气值有效期：每年12月31日，用户于一年前获取且至今未使用的人气值将过期失效。
+                        <span class="u-arrow-down">
+                            <i>◆</i>
+					        <span>◆</span>
+				        </span>
+                    </p>
+                    <p class="u-reputation-rule f-dn">
+                        1、每一位成功注册的用户，均可通过链接或手机号邀请好友。<br>
+                        2、好友注册并投资，您可获得好友投资额*（收益天数/30）*0.3‰ <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;人气值奖励，所获人气值向下取整。 <br>
+                        #if($serverDateTime<$oldEndTime)
+                            3、好友投资直投项目履约后才会有推荐奖励哦！<br>
+                            4、好友成功注册并首次投资，邀请人即可获得一张30元现金券；<br>
+                            5、好友完成新手六重礼，邀请人均可得到相应的里程；积累一定的里程即可领取人气值或现金券奖励。
+                        #end
+                        <span class="u-arrow-down">
+                            <i>◆</i>
+					        <span>◆</span>
+				        </span>
+                    </p>
+                    <span class="j-rep-tips">什么是人气值？</span>
+                    <span class="j-rep-tips">邀请好友注册规则</span>
+                </div>
+                #if(!${servletUtil.isChecked()})
+                    <a href="javascript:void(0);" class="u-myinvite-signIn" id="j-reputation-checkin">
+                        <span></span>
+                        <i class="f-fs16">每日签到</i>
+                    </a>
+                #else
+                #set($checkedPoint=${servletUtil.getPopularityValueForChecked()})
+                    <a href="javascript:void(0);" class="u-myinvite-signInLater #if($checkedPoint>9)z-twoDigit#end">
+                    <span><i class="f-checkin-add">+</i><em class="f-ff-amount">$checkedPoint </em><strong
+                            class="f-ff-din">点</strong></span>
+                        <i class="f-fs14">今日签到人气值</i>
+                    </a>
+                #end
+
+                <div class="u-myinvite-link">
+                    <strong id="j-invite-url" data-url="$domain_url/$!{inviteCode}">www.yrw.com/<br/>$!{inviteCode}
+                    </strong>
+                    <button class="f-round" id="j-copy-invite" data-clipboard-action="copy"
+                            data-clipboard-target="#j-invite-url">点击复制
+                    </button>
+                    <em>邀请好友</em>
+                </div>
+
+                #if($serverDateTime<$oldEndTime)
+                    <a href="$root_url/activity/marathon" class="u-marathon-link">邀请好友攒里程得奖励</a>
+                #end
+
+                #if($serverDateTime>$newStartTime && $serverDateTime<$newEndTime)
+                    <a href="$root_url/activity/inviteFriend/index" class="u-marathon-link" style="margin-left: 4px;">邀好友赢2000元大奖</a>
+                #end
+
+            </div>
+
+            #if($isShowNoviceTask)##是否显示新手任务
+            <div class="m-newcomer-task" id="newcomer">
+                <h5>新手任务</h5>
+                <div class="u-task-list" id="j-reptesk-list">
+                    <div>
+                        <ul class="f-cf">
+                            #foreach($noviceTask in $noviceTaskList)
+                                <li>
+                                    <i class="j-twoDcode-pic #if($noviceTask.isJoin()) z-actived #end"  #if($noviceTask.isWeiXin())
+                                       data-name="weixin" #end #if($noviceTask.app()) data-name="app" #end></i>
+                                    <em>$!{noviceTask.name}</em>
+                                    #if($noviceTask.isJoin())
+                                        #if($noviceTask.isShow())
+                                            <a href="javascript:void (0)" class="z-actived">已获得10点人气值</a>
+                                        #else
+                                            <a href="javascript:void (0)" class="z-actived">任务已完成</a>
+                                        #end
+                                    #else
+                                        <a class="j-task-twoDcode" href="$!noviceTask.url"
+                                           target="_blank">$!noviceTask.btnText</a>
+                                    #end
+                                </li>
+                            #end
+                        </ul>
+                    </div>
+                    <i class="u-direction-l j-direction-btn" data-direction="right"></i>
+                    <i class="u-direction-r j-direction-btn" data-direction="left"></i>
+                </div>
+            </div>
+            #end
+            <div class="m-investment-reputation">
+                <h5>投资赚人气值</h5>
+                <div class="u-investment-quadrupleGift">
+                    <ul class="f-cf j-invest-count">
+                        <li>
+                            <span class="j-first">一羊领头</span>
+                            <div class="j-list-slidedown">
+                            <i class="f-ff-din">8<em class="f-fs14">点</em></i>
+                            <p>每个理财项目，<strong>第一位成功投资</strong>的用户，将获得8点人气值的奖励。</p>
+                            <a href="/activity/quadrupleGift#j-yylt" target="_blank">我要一羊领头</a>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="j-most">一鸣惊人</span>
+                            <div class="j-list-slidedown">
+                            <i class="f-ff-din">
+                                18-58
+                                <em class="f-fs14">点</em></i>
+                            ##                                <p>每个理财项目，<strong>单笔投资金额最高</strong> 的用户，将获得58点人气值的奖励（若有多个最高投资者，则先投资的用户获得奖励）。</p>
+                            <p>每个理财项目，<strong>单笔投资金额最高</strong>的用户，将获得18—58点人气值的奖励（若有多个最高投资者，则先投资的用户获得奖励）；投资期限越长，奖励越高！
+                            </p>
+                            <a href="/activity/quadrupleGift#j-ymjr" target="_blank">我要一鸣惊人</a>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="j-last">一锤定音</span>
+                            <div class="j-list-slidedown">
+                            <i class="f-ff-din">
+                                10-28
+                                <em class="f-fs14">点</em></i>
+                            ##                                <p>每个理财项目，<strong>最后一位成功投资</strong> 的用户，将获得28点人气值的奖励。</p>
+                            <p>每个理财项目，<strong>最后一位成功投资</strong>的用户，将获得10—28点人气值的奖励；投资期限越长，奖励越高！</p>
+                            <a href="/activity/quadrupleGift#j-ycdy" target="_blank">我要一锤定音</a>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="j-mostAndLast">一掷千金</span>
+                            <div class="j-list-slidedown">
+                                <i class="f-ff-din">
+                                    15-48
+                                    <em class="f-fs14">点</em></i>
+                            ##                                <p>每个理财项目， <strong>如用户同时获得一鸣惊人和一锤定音</strong>，将额外获得48点人气值奖励。</p>
+                                <p>每个理财项目，<strong>如用户同时获得一鸣惊人和一锤定音</strong>，将额外获得15—48点人气值；投资期限越长，奖励越高！</p>
+                                <a href="/activity/quadrupleGift#j-yzqj" target="_blank">我要一掷千金</a>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="j-luck">幸运女神</span>
+                            <div class="j-list-slidedown">
+                            <i class="f-ff-din">8<em class="f-fs14">点</em></i>
+                            <p>每个理财项目，项目满额后，<strong>系统将随机抽取一位该项目投资人</strong>，抽中者将获得8点人气值的奖励。</p>
+                            <a href="/activity/quadrupleGift#j-xyns" target="_blank">我要幸运女神</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <i class="u-direction-l j-direction-btn" data-direction="right"></i>
+                <i class="u-direction-r j-direction-btn" data-direction="left"></i>
+            </div>
+            <div class="m-activity-list u-table-list" id="inviteFriends">
+                <h4 id="j-invitefriend-list">
+                    <strong class="f-round j-type-select z-current" id="j-popularity-gain" value="1">人气值流水</strong>
+                    #set($inviteCounts=$!{servletUtil.getReferralMemberByIdCount()})
+                    <strong class="f-round j-type-select" id="j-invite-list">邀请好友列表 #if($inviteCounts>0)<i
+                            class="u-circle-7 f-ff-ver">$inviteCounts</i>#end</strong>
+                </h4>
+                <div class="u-arrow-up u-arrow-i0" id="u-jiantou-up">
+                    <i>◆</i>
+                    <span>◆</span>
+                </div>
+                <form id="j-popularity-form">
+                    <input type="hidden" name="type" value="1">
+                    <div class="u-rtable" id="j-popularity-list">
+
+                    </div>
+                </form>
+            </div>
+
+        ## /页面内容
+        </div>
+        #set($currentPoint=$!{servletUtil.getPopularityBalanceValue()})
+        #if($!cashTemplates && $cashTemplates.size()>0)
+
+        <div class="m-reputation-exchange j-floatlayer f-dn j-reputation-exchange">
+            #if($!{servletUtil.getLockPopularityValue()}>0)<span
+                    class="u-reputation-frozenTips">温馨提醒：您当前人气值$currentPoint点（含提现手续费冻结$!{servletUtil.getLockPopularityValue()}点）</span>#end
+            <ul class="f-cf j-rep-list" id="j-cash-list">
+                #foreach($coupon in $!cashTemplates)
+                    <li data-point="$coupon.formatAmount" data-templateid="${coupon.id}">
+                        <div class="u-rep-card u-rep-card$coupon.formatAmount"></div>
+                        <span>消耗$!{coupon.formatAmount}点人气值</span>
+                        <span>$!{coupon.couponPrivileges}</span>
+                        <span>#if($!{coupon.couponAmountScope})$!{coupon.couponAmountScope}#else—#end</span>
+                        #if($!{coupon.couponDaysScope})<span>$!{coupon.couponDaysScope}</span>#else<span
+                                class="j-couponScope-disabled">-</span>#end
+                        <span>#if($!{coupon.couponValidity})$!{coupon.couponValidity}#else—#end</span>
+                        <i></i>
+                    </li>
+                #end
+            </ul>
+            <div class="u-rep-select">
+                <span></span>
+                <button class="u-btn f-btn-s f-round z-pos-a1 j-exc-button" id="j-cash-button">确定兑换</button>
+                <input type="hidden" id="j-rep-cash-curPoint" class="j-exc-curPoint"/>
+            </div>
+            <button class="u-exchange-close j-exc-close" id="j-exc-cash-close">X</button>
+        </div>
+        #end
+
+        #if($!profitTemplates && $profitTemplates.size()>0)
+            <div class="m-reputation-exchange j-floatlayer f-dn j-reputation-exchange">
+                #if($!{servletUtil.getLockPopularityValue()}&&$!{servletUtil.getLockPopularityValue()}>0)<span
+                        class="u-reputation-frozenTips">温馨提醒：您当前人气值$currentPoint点（含提现手续费冻结$!{servletUtil.getLockPopularityValue()}点）</span>#end
+                <ul class="f-cf j-rep-list" id="j-profit-list">
+                    #foreach($coupon in $!profitTemplates)
+                        <li data-point="$coupon.exchangeAmount" data-templateid="${coupon.id}">
+                            <div class="u-rep-card  u-rep-card$coupon.exchangeAmount"></div>
+                            <span>消耗$!{coupon.exchangeAmount}点人气值</span>
+                            <span>$!{coupon.couponPrivileges}</span>
+                            <span>#if($!{coupon.couponAmountScope})$!{coupon.couponAmountScope}#else—#end</span>
+                            #if($!{coupon.couponDaysScope})<span>$!{coupon.couponDaysScope}</span>#else<span
+                                    class="j-couponScope-disabled">-</span>#end
+                            <span>#if($!{coupon.couponValidity})$!{coupon.couponValidity}#else—#end</span>
+                            <i></i>
+                        </li>
+                    #end
+            </ul>
+            <div class="u-rep-select">
+                <span></span>
+                #if((($currentPoint)-$!{servletUtil.getLockPopularityValue()})>=90)
+                    <button class="u-btn f-btn-s f-round z-pos-a1 j-exc-button" id="j-profit-button">确定兑换</button>
+                #end
+
+                <input type="hidden" id="j-rep-profit-curPoint" class="j-exc-curPoint"/>
+            </div>
+                <button class="u-exchange-close j-exc-close" id="j-exc-profit-close">X</button>
+        </div>
+        #end
+    </div>
+## /用户中心内容
+</div>
+##兑换优惠券左右滑动按钮
+<div class="j-cashCouponSlideBtn-show f-dn u-cashCoupon-slideBtn">
+    <a href="">
+        <div class="j-slideBtn u-prevBtn u-slideBtn" data-direction="right"></div>
+    </a>
+    <a href="">
+        <div class="j-slideBtn u-nextBtn u-slideBtn" data-direction="left"></div>
+    </a>
+
+</div>

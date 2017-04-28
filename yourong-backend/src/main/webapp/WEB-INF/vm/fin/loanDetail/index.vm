@@ -1,0 +1,65 @@
+#parse("/fin/loanDetail/head.vm")
+<div class="col-xs-12"></div>
+<div class="col-xs-12">
+	<div class="table-header">放款明细</div>
+	<div class="table-responsive">
+	<form>
+		<table class="table table-striped table-bordered">
+			<thead>
+				<tr>
+					<td>项目编号</td>
+					<td><input type="text" name="search_projectId"  class="input-medium search_init" /></td>
+					<td>项目名称</td>
+					<td><input type="text" name="search_projectName"  class="input-medium search_init" /></td>
+					<td>出借人手机</td>
+					<td><input type="text" name="search_lenderMobile"  class="input-medium search_init" /></td>
+				</tr><tr>
+					<td>出借人姓名</td>
+					<td><input type="text" name="search_lenderName"  class="input-medium search_init" /></td>
+					<td>上线时间</td>
+					<td>
+						<input type="text" name="search_onlineTimeStart"  class="input-small search_init" onclick="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd'})"/>
+						至
+						<input type="text" name="search_onlineTimeEnd"  class="input-small search_init" onclick="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd'})"/>
+					</td>
+					<td>放款状态</td>
+					<td>
+						#dictSelect("search_loanStatus",$!{sysServiceUtil.getDictList("loan_status")},"请选择")
+					</td>
+				</tr><tr>
+					<td>项目状态：</td>
+					<td>#dictSelect ("search_projectStatus",${sysServiceUtil.getDictList('project_status')} ,"请选择")</td>
+					<td>放款时间</td>
+					<td>
+						<input type="text" name="search_loanTimeStart"  class="input-small search_init" onclick="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd'})"/>
+						至
+						<input type="text" name="search_loanTimeEnd"  class="input-small search_init" onclick="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd'})"/>
+					</td>
+					<td colspan=10><button id = "query_loan" type="button" class="btn btn-info btn-sm btn-primary">查询</button>
+						<button id = "reset_loan" type="button" class="btn btn-info btn-sm btn-primary resetButton">重置</button>
+					</td>
+				</tr>
+			</thead>
+		</table>
+		</form>
+		<table id="loan-detail-table" class="table table-striped table-bordered" cellspacing="0" width="100%">
+			<thead>
+				<tr >
+
+					<th>项目编号</th>
+					<th>项目名称</th>
+					<th>项目状态</th>
+					<th>上线时间</th>
+					<th>销售截止时间</th>
+					<th>出借人姓名</th>
+					<th>项目总额</th>
+					<th>融资金额</th>
+					<th>本金(投资人)</th>
+					<th>现金劵</th>
+					<th>放款状态</th>
+					<th>放款时间</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+</div>

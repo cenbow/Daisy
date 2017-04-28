@@ -1,0 +1,1140 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.uc.dao.MemberMapper">
+	<resultMap id="BaseResultMap" type="Member">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="username" property="username" jdbcType="VARCHAR" />
+		<result column="mobile" property="mobile" jdbcType="BIGINT" />
+		<result column="password" property="password" jdbcType="VARCHAR" />
+		<result column="sex" property="sex" jdbcType="INTEGER" />
+		<result column="birthday" property="birthday" jdbcType="DATE" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="true_name" property="trueName" jdbcType="VARCHAR" />
+		<result column="identity_number" property="identityNumber"
+			jdbcType="VARCHAR" />
+		<result column="member_type" property="memberType" jdbcType="INTEGER" />
+		<result column="email" property="email" jdbcType="VARCHAR" />
+		<result column="short_url" property="shortUrl" jdbcType="VARCHAR" />
+		<result column="avatars" property="avatars" jdbcType="VARCHAR" />
+		<result column="recommend" property="recommend" jdbcType="VARCHAR" />
+		<result column="referral" property="referral" jdbcType="BIGINT" />
+		<result column="register_method" property="registerMethod"
+			jdbcType="INTEGER" />
+		<result column="register_time" property="registerTime"
+			jdbcType="TIMESTAMP" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+		<result column="remarks" property="remarks" jdbcType="VARCHAR" />
+		<result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+		<result column="register_trace_source" property="registerTraceSource" jdbcType="VARCHAR" />
+		<result column="register_trace_no" property="registerTraceNo" jdbcType="VARCHAR" />
+		
+		<result column="sign_way" property="signWay" jdbcType="INTEGER" />
+		<result column="is_auth" property="isAuth" jdbcType="INTEGER" />
+		<result column="ca_no" property="caNo" jdbcType="VARCHAR" />
+		
+		<result column="pay_password_flag" property="payPasswordFlag"
+			jdbcType="INTEGER" />
+		<result column="withhold_authority_flag" property="withholdAuthorityFlag"
+			jdbcType="INTEGER" />
+		<result column="register_ip" property="registerIp" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, username, mobile, password, sex, birthday, status,
+		true_name,
+		identity_number,
+		member_type, email, short_url, avatars,recommend,
+		referral, register_method, register_time,
+		update_time, remarks,
+		del_flag,register_trace_source,register_trace_no,sign_way,is_auth,ca_no,pay_password_flag,withhold_authority_flag 
+	</sql>
+	<insert id="insertSelective" useGeneratedKeys="true"
+		keyProperty="id" parameterType="Member">
+		insert into uc_member
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="username != null">
+				username,
+			</if>
+			<if test="mobile != null">
+				mobile,
+			</if>
+			<if test="password != null">
+				password,
+			</if>
+			<if test="sex != null">
+				sex,
+			</if>
+			<if test="birthday != null">
+				birthday,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="trueName != null">
+				true_name,
+			</if>
+			<if test="identityNumber != null">
+				identity_number,
+			</if>
+			<if test="memberType != null">
+				member_type,
+			</if>
+			<if test="email != null">
+				email,
+			</if>
+			<if test="shortUrl != null">
+				short_url,
+			</if>
+			<if test="avatars != null">
+				avatars,
+			</if>
+			<if test="recommend != null">
+				recommend,
+			</if>
+			<if test="referral != null">
+				referral,
+			</if>
+			<if test="registerMethod != null">
+				register_method,
+			</if>
+			<if test="registerTime != null">
+				register_time,
+			</if>
+			<if test="updateTime != null">
+				update_time,
+			</if>
+			<if test="remarks != null">
+				remarks,
+			</if>
+			<if test="delFlag != null">
+				del_flag,
+			</if>
+			<if test="registerTraceSource != null">
+				register_trace_source,
+			</if>
+			<if test="registerTraceNo != null">
+				register_trace_no,
+			</if>
+			<if test="withholdAuthorityFlag != null">
+				withhold_authority_flag,
+			</if>
+			<if test="registerIp != null">
+				register_ip
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="username != null">
+				#{username,jdbcType=VARCHAR},
+			</if>
+			<if test="mobile != null">
+				#{mobile,jdbcType=BIGINT},
+			</if>
+			<if test="password != null">
+				#{password,jdbcType=VARCHAR},
+			</if>
+			<if test="sex != null">
+				#{sex,jdbcType=INTEGER},
+			</if>
+			<if test="birthday != null">
+				#{birthday,jdbcType=DATE},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=INTEGER},
+			</if>
+			<if test="trueName != null">
+				#{trueName,jdbcType=VARCHAR},
+			</if>
+			<if test="identityNumber != null">
+				#{identityNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="memberType != null">
+				#{memberType,jdbcType=INTEGER},
+			</if>
+			<if test="email != null">
+				#{email,jdbcType=VARCHAR},
+			</if>
+			<if test="shortUrl != null">
+				#{shortUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="avatars != null">
+				#{avatars,jdbcType=VARCHAR},
+			</if>
+			<if test="recommend != null">
+				#{recommend,jdbcType=VARCHAR},
+			</if>
+			<if test="referral != null">
+				#{referral,jdbcType=BIGINT},
+			</if>
+			<if test="registerMethod != null">
+				#{registerMethod,jdbcType=INTEGER},
+			</if>
+			<if test="registerTime != null">
+				#{registerTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="remarks != null">
+				#{remarks,jdbcType=VARCHAR},
+			</if>
+			<if test="delFlag != null">
+				#{delFlag,jdbcType=INTEGER},
+			</if>
+			<if test="registerTraceSource != null">
+				#{registerTraceSource,jdbcType=VARCHAR},
+			</if>
+			<if test="registerTraceNo != null">
+				#{registerTraceNo,jdbcType=VARCHAR},
+			</if>
+			<if test="withholdAuthorityFlag != null">
+				#{withholdAuthorityFlag,jdbcType=INTEGER},
+			</if>
+			<if test="registerIp != null">
+				#{registerIp,jdbcType=VARCHAR}
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="Member">
+		update uc_member
+		<set>
+			<if test="username != null">
+				username = #{username,jdbcType=VARCHAR},
+			</if>
+			<if test="mobile != null">
+				mobile = #{mobile,jdbcType=BIGINT},
+			</if>
+			<if test="password != null">
+				password = #{password,jdbcType=VARCHAR},
+			</if>
+			<if test="sex != null">
+				sex = #{sex,jdbcType=INTEGER},
+			</if>
+			<if test="birthday != null">
+				birthday = #{birthday,jdbcType=DATE},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=INTEGER},
+			</if>
+			<if test="trueName != null">
+				true_name = #{trueName,jdbcType=VARCHAR},
+			</if>
+			<if test="identityNumber != null">
+				identity_number = #{identityNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="memberType != null">
+				member_type = #{memberType,jdbcType=INTEGER},
+			</if>
+			<if test="email != null">
+				email = #{email,jdbcType=VARCHAR},
+			</if>
+			<if test="shortUrl != null">
+				short_url = #{shortUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="avatars != null">
+				avatars = #{avatars,jdbcType=VARCHAR},
+			</if>
+			<if test="recommend != null">
+				recommend = #{recommend,jdbcType=VARCHAR},
+			</if>
+			<if test="referral != null">
+				referral = #{referral,jdbcType=BIGINT},
+			</if>
+			<if test="registerMethod != null">
+				register_method = #{registerMethod,jdbcType=INTEGER},
+			</if>
+			<if test="remarks != null">
+				remarks = #{remarks,jdbcType=VARCHAR},
+			</if>
+			<if test="delFlag != null">
+				del_flag = #{delFlag,jdbcType=INTEGER},
+			</if>
+			<if test="registerTraceSource != null">
+				register_trace_source = #{registerTraceSource,jdbcType=VARCHAR},
+			</if>
+			<if test="registerTraceNo != null">
+				register_trace_no = #{registerTraceNo,jdbcType=VARCHAR},
+			</if>
+			<if test="payPasswordFlag != null">
+				pay_password_flag = #{payPasswordFlag,jdbcType=INTEGER},
+			</if>
+			<if test="withholdAuthorityFlag != null">
+				withhold_authority_flag = #{withholdAuthorityFlag,jdbcType=INTEGER},
+			</if>
+			<if test="signWay != null">
+			   sign_way = #{signWay,jdbcType=INTEGER},
+			</if>
+			<if test="isAuth != null">
+			   is_auth = #{isAuth,jdbcType=INTEGER},
+			</if>
+			<if test="caNo != null">
+			   ca_no = #{caNo,jdbcType=VARCHAR},
+			</if>
+			update_time = now(),
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<delete id="batchDelete" parameterType="java.lang.Long">
+		update uc_member set del_flag = -1
+		where id in
+		<foreach collection="ids" index="index" item="item" open="("
+			separator="," close=")"> #{item}  </foreach>
+	</delete>
+	<select id="findByPage" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from uc_member
+		<if test=" map != null">
+			<where>
+				<if test=" map.id != null">
+					and id = #{map.id}
+				</if>
+				<if test=" map.username != null">
+					and username = #{map.username}
+				</if>
+				<if test=" map.mobile != null">
+					and mobile = #{map.mobile}
+				</if>
+				<if test=" map.password != null">
+					and password = #{map.password}
+				</if>
+				<if test=" map.sex != null">
+					and sex = #{map.sex}
+				</if>
+				<if test=" map.birthday != null">
+					and birthday = #{map.birthday}
+				</if>
+				<if test=" map.status != null">
+					and status = #{map.status}
+				</if>
+				<if test=" map.trueName != null">
+					and true_name = #{map.trueName}
+				</if>
+				<if test=" map.identityNumber != null">
+					and identity_number = #{map.identityNumber}
+				</if>
+				<if test=" map.memberType != null">
+					and member_type = #{map.memberType}
+				</if>
+				<if test=" map.email != null">
+					and email = #{map.email}
+				</if>
+				<if test=" map.shortUrl != null">
+					and short_url = #{map.shortUrl}
+				</if>
+				<if test=" map.avatars != null">
+					and avatars = #{map.avatars}
+				</if>
+				<if test=" map.recommend != null">
+					and recommend = #{map.recommend}
+				</if>
+				<if test=" map.referral != null">
+					and referral = #{map.referral}
+				</if>
+				<if test=" map.registerMethod != null">
+					and register_method = #{map.registerMethod}
+				</if>
+				<if test=" map.registerTime != null">
+					and register_time = #{map.registerTime}
+				</if>
+				<if test=" map.updateTime != null">
+					and update_time = #{map.updateTime}
+				</if>
+				<if test=" map.remarks != null">
+					and remarks = #{map.remarks}
+				</if>
+				<if test=" map.delFlag != null">
+					and del_flag = #{map.delFlag}
+				</if>
+			</where>
+		</if>
+		<if test=" map != null">
+			<if test=" map.desc != null">
+				order by ${map.desc} desc
+			</if>
+			<if test=" map.asc != null">
+				order by ${map.asc} asc
+			</if>
+		</if>
+	</select>
+	<!-- findBypage By Index -->
+
+	<select id="selectForPagin" resultMap="BaseResultMap">
+		SELECT
+		t.*
+		FROM
+		(SELECT id FROM uc_member
+		<if test=" map != null">
+			<where>
+				<if test=" map.id != null">
+					id = #{map.id}
+				</if>
+				<if test=" map.username != null">
+					and username like #{map.username}"%"
+				</if>
+				<if test=" map.mobile != null">
+					and mobile = #{map.mobile}
+				</if>
+				<if test=" map.password != null">
+					and password = #{map.password}
+				</if>
+				<if test=" map.sex != null">
+					and sex = #{map.sex}
+				</if>
+				<if test=" map.birthday != null">
+					and birthday = #{map.birthday}
+				</if>
+				<if test=" map.status != null">
+					and status = #{map.status}
+				</if>
+				<if test=" map.trueName != null">
+					and true_name = #{map.trueName}
+				</if>
+				<if test=" map.identityNumber != null">
+					and identity_number = #{map.identityNumber}
+				</if>
+				<if test=" map.memberType != null">
+					and member_type = #{map.memberType}
+				</if>
+				<if test=" map.email != null">
+					and email = #{map.email}
+				</if>
+				<if test=" map.shortUrl != null">
+					and short_url = #{map.shortUrl}
+				</if>
+				<if test=" map.avatars != null">
+					and avatars = #{map.avatars}
+				</if>
+				<if test=" map.recommend != null">
+					and recommend = #{map.recommend}
+				</if>
+				<if test=" map.referral != null">
+					and referral = #{map.referral}
+				</if>
+				<if test=" map.registerMethod != null">
+					and register_method = #{map.registerMethod}
+				</if>
+				<if test=" map.registerTime != null">
+					and register_time = #{map.registerTime}
+				</if>
+				<if test=" map.updateTime != null">
+					and update_time = #{map.updateTime}
+				</if>
+				<if test=" map.remarks != null">
+					and remarks = #{map.remarks}
+				</if>
+				<if test=" map.registerTraceSource != null">
+					and register_trace_source like
+					#{map.registerTraceSource}"%"
+				</if>
+				<if test=" map.registerTraceNo != null">
+					and register_trace_no like #{map.registerTraceNo}"%"
+				</if>
+				<if test=" map.registerTimeStart !=null">
+					and register_time <![CDATA[>= ]]>
+					#{map.registerTimeStart}
+				</if>
+				<if test=" map.registerTimeEnd !=null">
+					and register_time <![CDATA[ < ]]>
+					DATE_ADD(#{map.registerTimeEnd},INTERVAL 1 DAY)
+				</if>
+				<choose>
+					<when test=" map.delFlag != null">
+						and del_flag = #{map.delFlag}
+					</when>
+					<otherwise>
+						and del_flag >= 0
+					</otherwise>
+				</choose>
+			</where>
+		</if>
+		<if test=" map != null">
+			<if test=" map.desc != null">
+				order by ${map.desc} desc
+			</if>
+			<if test=" map.asc != null">
+				order by ${map.asc} asc
+			</if>
+		</if>
+		LIMIT
+		${map.startRow}, ${map.pageSize}
+		) AS a, uc_member AS t
+		FORCE
+		INDEX(PRIMARY)
+		WHERE a.id = t.id
+
+
+	</select>
+
+	<select id="selectForPaginTotalCount" resultType="java.lang.Integer">
+		select
+		count(1)
+		from uc_member
+		<if test=" map != null">
+			<where>
+				<if test=" map.id != null">
+					id = #{map.id}
+				</if>
+				<if test=" map.username != null">
+					and username = #{map.username}
+				</if>
+				<if test=" map.mobile != null">
+					and mobile = #{map.mobile}
+				</if>
+				<if test=" map.password != null">
+					and password = #{map.password}
+				</if>
+				<if test=" map.sex != null">
+					and sex = #{map.sex}
+				</if>
+				<if test=" map.birthday != null">
+					and birthday = #{map.birthday}
+				</if>
+				<if test=" map.status != null">
+					and status = #{map.status}
+				</if>
+				<if test=" map.trueName != null">
+					and true_name = #{map.trueName}
+				</if>
+				<if test=" map.identityNumber != null">
+					and identity_number = #{map.identityNumber}
+				</if>
+				<if test=" map.memberType != null">
+					and member_type = #{map.memberType}
+				</if>
+				<if test=" map.email != null">
+					and email = #{map.email}
+				</if>
+				<if test=" map.shortUrl != null">
+					and short_url = #{map.shortUrl}
+				</if>
+				<if test=" map.avatars != null">
+					and avatars = #{map.avatars}
+				</if>
+				<if test=" map.recommend != null">
+					and recommend = #{map.recommend}
+				</if>
+				<if test=" map.referral != null">
+					and referral = #{map.referral}
+				</if>
+				<if test=" map.registerMethod != null">
+					and register_method = #{map.registerMethod}
+				</if>
+				<if test=" map.registerTime != null">
+					and register_time = #{map.registerTime}
+				</if>
+				<if test=" map.updateTime != null">
+					and update_time = #{map.updateTime}
+				</if>
+				<if test=" map.remarks != null">
+					and remarks = #{map.remarks}
+				</if>
+				<if test=" map.registerTraceSource != null">
+					and register_trace_source like
+					#{map.registerTraceSource}"%"
+				</if>
+				<if test=" map.registerTraceNo != null">
+					and register_trace_no like #{map.registerTraceNo}"%"
+				</if>
+				<if test=" map.registerTimeStart !=null">
+					and register_time <![CDATA[>= ]]>
+					#{map.registerTimeStart}
+				</if>
+				<if test=" map.registerTimeEnd !=null">
+					and register_time <![CDATA[ < ]]>
+					DATE_ADD(#{map.registerTimeEnd},INTERVAL 1 DAY)
+				</if>
+				<choose>
+					<when test=" map.delFlag != null">
+						and del_flag = #{map.delFlag}
+					</when>
+					<otherwise>
+						and del_flag >= 0
+					</otherwise>
+				</choose>
+			</where>
+		</if>
+	</select>
+
+	<resultMap id="memberBiz" type="com.yourong.core.uc.model.biz.MemberBiz" extends="BaseResultMap">
+		<result column="vip_level" property="vipLevel" jdbcType="INTEGER" />
+		<result column="score" property="score" jdbcType="INTEGER" />
+	</resultMap>
+
+	<select id="selectMemberBizForPagin" resultMap="memberBiz">
+		SELECT
+		a.score,a.vip_level,
+		t.*
+		FROM
+		(SELECT m.id,v.score,v.vip_level FROM uc_member m LEFT JOIN sj_member_vip_new v
+		ON m.id=v.member_id
+		<if test=" map != null">
+			<where>
+				<if test=" map.id != null">
+					m.id = #{map.id}
+				</if>
+				<if test=" map.username != null">
+					and m.username like #{map.username}"%"
+				</if>
+				<if test=" map.mobile != null">
+					and m.mobile = #{map.mobile}
+				</if>
+				<if test=" map.password != null">
+					and m.password = #{map.password}
+				</if>
+				<if test=" map.sex != null">
+					and m.sex = #{map.sex}
+				</if>
+				<if test=" map.birthday != null">
+					and m.birthday = #{map.birthday}
+				</if>
+				<if test=" map.status != null">
+					and m.status = #{map.status}
+				</if>
+				<if test=" map.trueName != null">
+					and m.true_name = #{map.trueName}
+				</if>
+				<if test=" map.identityNumber != null">
+					and m.identity_number = #{map.identityNumber}
+				</if>
+				<if test=" map.memberType != null">
+					and m.member_type = #{map.memberType}
+				</if>
+				<if test=" map.email != null">
+					and m.email = #{map.email}
+				</if>
+				<if test=" map.shortUrl != null">
+					and m.short_url = #{map.shortUrl}
+				</if>
+				<if test=" map.avatars != null">
+					and m.avatars = #{map.avatars}
+				</if>
+				<if test=" map.recommend != null">
+					and m.recommend = #{map.recommend}
+				</if>
+				<if test=" map.referral != null">
+					and m.referral = #{map.referral}
+				</if>
+				<if test=" map.registerMethod != null">
+					and m.register_method = #{map.registerMethod}
+				</if>
+				<if test=" map.registerTime != null">
+					and m.register_time = #{map.registerTime}
+				</if>
+				<if test=" map.updateTime != null">
+					and m.update_time = #{map.updateTime}
+				</if>
+				<if test=" map.remarks != null">
+					and m.remarks = #{map.remarks}
+				</if>
+				<if test=" map.registerTraceSource != null">
+					and m.register_trace_source like
+					#{map.registerTraceSource}"%"
+				</if>
+				<if test=" map.registerTraceNo != null">
+					and m.register_trace_no like #{map.registerTraceNo}"%"
+				</if>
+				<if test=" map.registerTimeStart !=null">
+					and m.register_time <![CDATA[>= ]]>
+					#{map.registerTimeStart}
+				</if>
+				<if test=" map.registerTimeEnd !=null">
+					and m.register_time <![CDATA[ < ]]>
+					DATE_ADD(#{map.registerTimeEnd},INTERVAL 1 DAY)
+				</if>
+				<if test="map.vipLevel!=null">
+					and v.vip_level=#{map.vipLevel}
+				</if>
+				<choose>
+					<when test=" map.delFlag != null">
+						and m.del_flag = #{map.delFlag}
+					</when>
+					<otherwise>
+						and m.del_flag >= 0
+					</otherwise>
+				</choose>
+			</where>
+		</if>
+		<if test=" map != null">
+			<if test=" map.desc != null">
+				order by ${map.desc} desc
+			</if>
+			<if test=" map.asc != null">
+				order by ${map.asc} asc
+			</if>
+		</if>
+		LIMIT
+		${map.startRow}, ${map.pageSize}
+		) AS a, uc_member AS t
+		FORCE
+		INDEX(PRIMARY)
+		WHERE a.id = t.id
+
+
+	</select>
+
+	<select id="selectMemberBizForPaginTotalCount" resultType="java.lang.Integer">
+		select
+		count(1)
+		from uc_member m LEFT JOIN sj_member_vip_new v
+		ON m.id=v.member_id
+		<if test=" map != null">
+			<where>
+				<if test=" map.id != null">
+					m.id = #{map.id}
+				</if>
+				<if test=" map.username != null">
+					and m.username = #{map.username}
+				</if>
+				<if test=" map.mobile != null">
+					and m.mobile = #{map.mobile}
+				</if>
+				<if test=" map.password != null">
+					and m.password = #{map.password}
+				</if>
+				<if test=" map.sex != null">
+					and m.sex = #{map.sex}
+				</if>
+				<if test=" map.birthday != null">
+					and m.birthday = #{map.birthday}
+				</if>
+				<if test=" map.status != null">
+					and m.status = #{map.status}
+				</if>
+				<if test=" map.trueName != null">
+					and m.true_name = #{map.trueName}
+				</if>
+				<if test=" map.identityNumber != null">
+					and m.identity_number = #{map.identityNumber}
+				</if>
+				<if test=" map.memberType != null">
+					and m.member_type = #{map.memberType}
+				</if>
+				<if test=" map.email != null">
+					and m.email = #{map.email}
+				</if>
+				<if test=" map.shortUrl != null">
+					and m.short_url = #{map.shortUrl}
+				</if>
+				<if test=" map.avatars != null">
+					and m.avatars = #{map.avatars}
+				</if>
+				<if test=" map.recommend != null">
+					and m.recommend = #{map.recommend}
+				</if>
+				<if test=" map.referral != null">
+					and m.referral = #{map.referral}
+				</if>
+				<if test=" map.registerMethod != null">
+					and m.register_method = #{map.registerMethod}
+				</if>
+				<if test=" map.registerTime != null">
+					and m.register_time = #{map.registerTime}
+				</if>
+				<if test=" map.updateTime != null">
+					and m.update_time = #{map.updateTime}
+				</if>
+				<if test=" map.remarks != null">
+					and m.remarks = #{map.remarks}
+				</if>
+				<if test=" map.registerTraceSource != null">
+					and m.register_trace_source like
+					#{map.registerTraceSource}"%"
+				</if>
+				<if test=" map.registerTraceNo != null">
+					and m.register_trace_no like #{map.registerTraceNo}"%"
+				</if>
+				<if test=" map.registerTimeStart !=null">
+					and m.register_time <![CDATA[>= ]]>
+					#{map.registerTimeStart}
+				</if>
+				<if test=" map.registerTimeEnd !=null">
+					and m.register_time <![CDATA[ < ]]>
+					DATE_ADD(#{map.registerTimeEnd},INTERVAL 1 DAY)
+				</if>
+				<if test="map.vipLevel!=null">
+					and v.vip_level=#{map.vipLevel}
+				</if>
+				<choose>
+					<when test=" map.delFlag != null">
+						and m.del_flag = #{map.delFlag}
+					</when>
+					<otherwise>
+						and m.del_flag >= 0
+					</otherwise>
+				</choose>
+			</where>
+		</if>
+	</select>
+
+
+	<resultMap id="MemberInfoResultMap" type="Member" extends="BaseResultMap">
+		<association property="memberInfo" javaType="MemberInfo">
+			<id property="id" column="mi_id" jdbcType="INTEGER" />
+			<result property="address" column="mi_address" jdbcType="VARCHAR" />
+			<result property="highEdu" column="mi_high_edu" jdbcType="VARCHAR" />
+			<result property="marriage" column="mi_marriage" jdbcType="VARCHAR" />
+		</association>
+	</resultMap>
+
+	<select id="getMemberInfoByTrueName" resultMap="MemberInfoResultMap">
+		select m.*,
+		mi.address as mi_address,mi.high_edu as mi_high_edu,
+		mi.marriage as
+		mi_marriage,mi.id as mi_id
+		from uc_member as m
+		left join
+		uc_member_info as mi ON
+		mi.member_id = m.id
+		where m.del_flag > 0
+		<if test="map != null">
+			<if test="map.memberType != null">
+				and m.member_type = #{map.memberType,jdbcType=VARCHAR}
+			</if>
+			<if test="map.trueName != null">
+				and m.true_name like #{map.trueName,jdbcType=VARCHAR}"%"
+			</if>
+			<if test="map.identityNumber != null">
+				and m.identity_number like
+				#{map.identityNumber,jdbcType=VARCHAR}"%"
+			</if>
+		</if>
+	</select>
+
+	<!-- 通过会员id查询被推荐会员 -->
+	<select id="getReferralMemberById" resultMap="BaseResultMap"
+		parameterType="BaseQueryParam">
+		select
+		<include refid="Base_Column_List" />
+		from uc_member
+		where referral = #{memberId,jdbcType=BIGINT}
+		order by id desc
+		LIMIT #{startRow,jdbcType=INTEGER}, #{pageSize,jdbcType=INTEGER}
+	</select>
+
+	<!-- 通过会员id查询被推荐会员 -->
+	<select id="getReferralMemberByIdCount" resultType="java.lang.Long"
+		parameterType="BaseQueryParam">
+		select
+		count(0)
+		from uc_member
+		where referral = #{memberId,jdbcType=BIGINT}
+	</select>
+
+	<resultMap id="MemberForLotteryResultMap" type="MemberForLottery">
+		<result column="member_id" property="memberId" jdbcType="BIGINT" />
+		<result column="username" property="username" jdbcType="VARCHAR" />
+		<result column="mobile" property="mobile" jdbcType="BIGINT" />
+		<result column="avatars" property="avatars" jdbcType="VARCHAR" />
+		<result column="register_time" property="registerTime"
+			jdbcType="TIMESTAMP" />
+	</resultMap>
+	<!-- 获取昨日注册送彩票用户 -->
+	<select id="getMembersForLottery" resultMap="MemberForLotteryResultMap">
+		SELECT
+		m.id as member_id,
+		m.username as username,
+		mobile as mobile,
+		m.avatars as
+		avatars,
+		m.register_time as register_time
+		FROM
+		uc_member m INNER JOIN uc_member_info i
+		ON i.member_id=m.id
+		WHERE
+		m.identity_number is not null
+		AND
+		m.email is not null
+
+		AND m.avatars is not NULL
+		AND m.username is not NULL
+	<![CDATA[ AND register_time <= '2014-12-31 23:59:59' ]]>
+	<![CDATA[ AND register_time >= '2014-12-16 00:00:00' ]]>
+	</select>
+
+	<select id="getMaxMemberId" resultType="java.lang.Long">
+		SELECT max(id) FROM
+		uc_member
+	</select>
+	
+	<select id="getMemberMobile" parameterType="java.lang.Long" resultType="java.lang.String">
+		SELECT GROUP_CONCAT(a.mobile) FROM (SELECT mobile FROM uc_member LIMIT #{start,jdbcType=BIGINT},80) a
+	</select>
+	
+	<select id="getMaxMobile" resultType="java.lang.Long">
+		SELECT max(mobile) FROM
+		uc_member
+	</select>
+
+	<!-- 冻结用户 -->
+	<update id="frozenMemberByMobile">
+		update uc_member SET mobile =#{newMobile,jdbcType=BIGINT},STATUS = 0 WHERE
+		mobile = #{mobile,jdbcType=BIGINT}
+	</update>
+
+
+	<!-- 获得今天第一位注册用户 -->
+	<select id="todayFirstRegistered" resultMap="BaseResultMap">
+		select id,register_time from uc_member
+		where <![CDATA[ register_time  >=  curdate() ]]>
+		order by register_time asc limit 0,1
+	</select>
+
+	<!-- 用户查询, 因没有考虑分页，所以一次查询最多返回十条记录， -->
+	<select id="selectMember" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from uc_member
+		<if test=" map != null">
+			<where>
+				<if test=" map.id != null">
+					and id = #{map.id}
+				</if>
+				<if test=" map.username != null">
+					and username = #{map.username}
+				</if>
+				<if test=" map.mobile != null">
+					and mobile = #{map.mobile}
+				</if>
+				<if test=" map.trueName != null">
+					and true_name = #{map.trueName}
+				</if>
+				<if test=" map.identityNumber != null">
+					and identity_number = #{map.identityNumber}
+				</if>
+			</where>
+		</if>
+		limit 0, 10
+	</select>
+	<!-- 统计好友数量 -->
+	<select id="countFriends" resultType="java.lang.Integer">
+		select count(0) from uc_member
+		where referral = #{memberId,jdbcType=BIGINT}
+		<if test=" registerStartTime != null">
+		 <![CDATA[ AND register_time >= #{registerStartTime,jdbcType=VARCHAR} ]]>
+		</if>
+		<if test=" registerEndTime != null">
+		 <![CDATA[ AND register_time <= #{registerEndTime,jdbcType=VARCHAR} ]]>
+		</if>
+	</select>
+
+	<!-- 统计好友开通新浪存钱罐的数量 -->
+	<select id="countFriendsActivateWallet" resultType="java.lang.Integer">
+		select
+		count(0) from uc_member
+		where referral = #{memberId,jdbcType=BIGINT}
+		and true_name is not null and identity_number is not null
+	</select>
+
+	<!-- 统计好友绑定邮箱的数量 -->
+	<select id="countFriendsBindEmail" resultType="java.lang.Integer">
+		select count(0)
+		from uc_member
+		where referral = #{memberId,jdbcType=BIGINT}
+		and email is not null
+	</select>
+
+	<!-- 统计完善信息的好友数量 -->
+	<select id="countFrinedsPerfectInformation" resultType="java.lang.Integer">
+		select
+		count(0) from uc_member as um INNER JOIN uc_member_info as umi on
+		um.id = umi.member_id
+		where referral = #{memberId,jdbcType=BIGINT}
+	</select>
+
+	<!-- 当天生日的用户 -->
+	<select id="selectBirthdayMember" resultMap="BaseResultMap">
+		select
+		id,true_name,mobile,identity_number from uc_member where true_name is not null and
+		DATE_FORMAT(birthday,'%m-%d') = #{birthday,jdbcType=VARCHAR} and
+		del_flag >= 0
+	</select>
+	<!-- 查询同步存钱罐余额的用户 -->
+	<select id="selectActiveForPagin" resultMap="BaseResultMap">
+		SELECT
+		t.*
+		FROM
+		(
+		select b.member_id as id from fin_recharge_log b where b.status=5
+		group by b.member_id order by b.member_id desc
+		LIMIT
+		${map.startRow}, ${map.pageSize}
+		) AS a, uc_member AS t
+
+		WHERE a.id = t.id
+	</select>
+	<!-- 查询同步存钱罐余额的用户 -->
+	<select id="selectActiveForPaginTotalCount" resultType="java.lang.Integer">
+		SELECT
+		count(DISTINCT t.id) FROM uc_member t INNER JOIN fin_recharge_log b ON
+		t.id =b.member_id AND b.status = 5
+	</select>
+
+
+
+	<select id="getMemberId" resultMap="MemberInfoResultMap">
+		select u.id as id
+		from uc_member u
+		where u.del_flag > 0
+		<if test="map != null">
+			<if test=" map.id != null">
+				and id = #{map.id}
+			</if>
+			<if test=" map.username != null">
+				and username = #{map.username}
+			</if>
+			<if test=" map.mobile != null">
+				and mobile = #{map.mobile}
+			</if>
+			<if test=" map.password != null">
+				and password = #{map.password}
+			</if>
+			<if test=" map.sex != null">
+				and sex = #{map.sex}
+			</if>
+			<if test=" map.birthday != null">
+				and birthday = #{map.birthday}
+			</if>
+			<if test=" map.status != null">
+				and status = #{map.status}
+			</if>
+			<if test=" map.trueName != null">
+				and true_name = #{map.trueName}
+			</if>
+			<if test=" map.identityNumber != null">
+				and identity_number = #{map.identityNumber}
+			</if>
+			<if test=" map.memberType != null">
+				and member_type = #{map.memberType}
+			</if>
+			<if test=" map.email != null">
+				and email = #{map.email}
+			</if>
+			<if test=" map.shortUrl != null">
+				and short_url = #{map.shortUrl}
+			</if>
+			<if test=" map.avatars != null">
+				and avatars = #{map.avatars}
+			</if>
+			<if test=" map.recommend != null">
+				and recommend = #{map.recommend}
+			</if>
+			<if test=" map.referral != null">
+				and referral = #{map.referral}
+			</if>
+			<if test=" map.registerMethod != null">
+				and register_method = #{map.registerMethod}
+			</if>
+			<if test=" map.registerTime != null">
+				and register_time = #{map.registerTime}
+			</if>
+			<if test=" map.updateTime != null">
+				and update_time = #{map.updateTime}
+			</if>
+			<if test=" map.remarks != null">
+				and remarks = #{map.remarks}
+			</if>
+			<if test=" map.delFlag != null">
+				and del_flag = #{map.delFlag}
+			</if>
+		</if>
+	</select>
+
+	<select id="registerByRedPackageSuccessful" resultMap="BaseResultMap">
+		SELECT
+		m.id
+		FROM
+		uc_member AS m
+		INNER JOIN mc_activity_lottery_pretreat AS p ON m.mobile =
+		p.mobile
+		AND p.is_member = 0
+		AND m.register_time > p.claim_time
+		INNER
+		JOIN mc_activity  AS a on a.id = p.activity_id
+		WHERE
+		m.id = #{memberId,jdbcType=BIGINT}
+		LIMIT 1
+	</select>
+
+	<!-- 查询实名认证用户 -->
+	<select id="countRealNameMember" resultType="java.lang.Long">
+		select id from
+		uc_member where true_name!=''
+		limit #{map.startNum,jdbcType=BIGINT}, #{map.num,jdbcType=BIGINT}
+	</select>
+	<select id="selectListByMobile" resultMap="MemberInfoResultMap">
+		select m.*,
+		mi.address as mi_address,mi.high_edu as mi_high_edu,
+		mi.marriage as
+		mi_marriage,mi.id as mi_id
+		from uc_member as m
+		left join
+		uc_member_info as mi ON
+		mi.member_id = m.id
+		where m.del_flag > 0
+		and
+		(m.true_name is not null or m.true_name <![CDATA[  <>  ]]>
+		'')
+		<if test="map != null">
+			<if test="map.mobile != null">
+
+				and m.mobile like CONCAT( #{map.mobile},'%' )
+			</if>
+		</if>
+	</select>
+	
+	<!-- 根据原手机号更新会员新手机号码  -->
+	<update id="updateMobileByOldMobile">
+		update uc_member
+		set mobile = #{newMobile,jdbcType=BIGINT},
+			update_time = now()
+		where id = #{memberId,jdbcType=BIGINT} and mobile = #{oldMobile,jdbcType=BIGINT}
+	</update>
+	
+	<!-- 根据身份信息修改手机号码  -->
+	<update id="updateMobileByIdentity">
+		update uc_member
+		set mobile = #{newMobile,jdbcType=BIGINT},
+			update_time = now()
+		where mobile = #{oldMobile,jdbcType=BIGINT} 
+			  and true_name = #{trueName,jdbcType=VARCHAR}
+			  and identity_number = #{identityNumber,jdbcType=VARCHAR}
+	</update>
+	
+	
+	<!-- 根据时间查询注册用户数量 -->
+	<select id="countRegisterNumberByDate" resultType="java.lang.Integer">
+		select count(1) from  uc_member
+		where 
+		<if test=" registerStartTime != null">
+		 <![CDATA[  register_time >= #{registerStartTime,jdbcType=VARCHAR} ]]>
+		</if>
+		<if test=" registerEndTime != null">
+		 <![CDATA[ AND register_time <= #{registerEndTime,jdbcType=VARCHAR} ]]>
+		</if>
+	</select>
+
+	<select id="queryMemberReferralCount" resultType="java.lang.Integer">
+		SELECT COUNT(1) FROM (SELECT m.id mid,t.id tid FROM uc_member m LEFT JOIN tc_transaction t ON m.id=t.member_id WHERE m.referral=#{memberid} AND
+		m.register_time BETWEEN #{starttime} AND #{endtime} GROUP BY m.id)L
+	</select>
+
+	<select id="queryMemberReferralAndTransactionCount" resultType="java.lang.Integer">
+		SELECT COUNT(1) FROM (SELECT m.id mid,t.id tid FROM uc_member m LEFT JOIN tc_transaction t ON m.id=t.member_id WHERE m.referral=#{memberid} AND
+		m.register_time BETWEEN #{starttime} AND #{endtime} GROUP BY m.id)L
+		WHERE L.tid IS NOT NULL
+	</select>
+	
+	<!-- 根据注册日期查询注册用户 -->
+	<select id="selectRegisterNumberByDate" resultMap="BaseResultMap">
+		select <include refid="Base_Column_List" />
+		from uc_member
+		where del_flag >= 0
+			  and register_time <![CDATA[ >= ]]> #{registerStartTime}
+			  and register_time <![CDATA[ <= ]]> #{registerEndTime}
+	</select>
+	
+</mapper>

@@ -1,0 +1,175 @@
+.g-bd {
+    margin-bottom: 0;
+}
+/*页头*/
+.m-PreA-hd{
+    width: 100%;
+    height: 800px;
+    margin-top: -8px;
+    background: url(/static/img/activity/PreA/PreA-hd.jpg) no-repeat center;
+}
+/*融耀时刻文字*/
+.m-PreA-text{
+    padding: 100px 0 20px;
+    height: 500px;
+    background: #fff;
+    color: #cb4046;
+    text-align: center;
+    line-height: 39px;
+}
+.m-PreA-text .u-PreA-star{
+    display: block;
+    margin:54px auto 48px;
+    width: 514px;
+    border-top: 1px solid #d74048;
+}
+.m-PreA-text .u-PreA-star i{
+    display: block;
+    width: 45px;
+    height: 17px;
+    margin: -11px auto 0;
+    background: #fff url("/static/img/activity/PreA/PreA-sprite.png") no-repeat -376px -25px;
+}
+
+/*投资方介绍*/
+.m-PreA-investor{
+    height: 535px;
+    padding: 65px 0 0;
+    background: #d74048;
+    color: #fff;
+}
+.m-PreA-investor h3{
+    font-size: 46px;
+    font-weight: bold;
+    display: block;
+    text-align: center;
+}
+.m-PreA-investor .u-PreA-star{
+    display: block;
+    margin:15px auto 67px;
+    width: 227px;
+    border-top: 1px solid #fff;
+}
+.m-PreA-investor .u-PreA-star i{
+    display: block;
+    width: 45px;
+    height: 17px;
+    margin: -11px auto 0;
+    background: #fff url("/static/img/activity/PreA/PreA-sprite.png") no-repeat -376px -2px;
+}
+.m-PreA-investor dl{
+    display: inline-block;
+    width: 395px;
+    padding: 0 50px;
+    vertical-align: top;
+    font-size: 14px;
+}
+.m-PreA-investor dl dd{
+    line-height: 2em;
+    margin: 28px 0 0;
+}
+.m-PreA-investor dt a{
+    height: 94px;
+    width: 374px;
+    display: block;
+}
+.u-PreA-guanghua dt a{
+    background: url("/static/img/activity/PreA/PreA-sprite.png") no-repeat 0 -99px;
+}
+.u-PreA-qianhe dt a{
+    background: url("/static/img/activity/PreA/PreA-sprite.png") no-repeat 0 0;
+}
+/*莅临嘉宾*/
+.m-PreA-guests{
+    height: 790px;
+    padding: 60px 0 0;
+    background: #fff;
+    color: #d74048;
+}
+.m-PreA-guests h3{
+    font-size: 46px;
+    font-weight: bold;
+    display: block;
+    text-align: center;
+}
+.m-PreA-guests .u-PreA-star{
+    display: block;
+    margin:15px auto 67px;
+    width: 187px;
+    border-top: 1px solid #d74048;
+}
+.m-PreA-guests .u-PreA-star i{
+    display: block;
+    width: 45px;
+    height: 17px;
+    margin: -11px auto 0;
+    background: #fff url("/static/img/activity/PreA/PreA-sprite.png") no-repeat -376px -25px;
+}
+.m-PreA-guests dl{
+    height: 131px;
+    width: 268px;
+    padding: 35px 0 0;
+    display: inline-block;
+    margin: 0 40px 24px 0;
+    text-align: center;
+    border: 1px solid #ebebeb;
+    vertical-align: top;
+}
+.m-PreA-guests dl.z-3th {
+    margin-right: 0;
+}
+.m-PreA-guests dl dt{
+    margin: 0 0 18px;
+    color: #d74048;
+}
+.m-PreA-guests dl dd{
+    color: #999;
+}
+.m-PreA-guests .g-wrap{
+    width: 890px;
+}
+/*精彩回顾*/
+.m-PreA-review{
+    height: 785px;
+    padding: 37px 0 0;
+    background: #d74048;
+    color: #fff;
+}
+.m-PreA-review h3{
+    font-size: 46px;
+    font-weight: bold;
+    display: block;
+    text-align: center;
+}
+.m-PreA-review .u-PreA-star{
+    display: block;
+    margin:15px auto 67px;
+    width: 187px;
+    border-top: 1px solid #fff;
+}
+.m-PreA-review .u-PreA-star i{
+    display: block;
+    width: 45px;
+    height: 17px;
+    margin: -11px auto 0;
+    background: #fff url("/static/img/activity/PreA/PreA-sprite.png") no-repeat -376px -2px;
+}
+.u-review-img{
+    height: 580px;
+    width: 890px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+.u-review-img li{
+    display: inline-block;
+}
+.u-review-img li img{
+    height: 491px;
+    width: 890px;
+    display: block;
+}
+.m-PreA-review p{
+    text-align: center;
+    margin: 18px 0 0;
+    height: 72px;
+}

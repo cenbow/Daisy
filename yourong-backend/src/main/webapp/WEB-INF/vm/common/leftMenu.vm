@@ -1,0 +1,41 @@
+#parse("/common/common.vm")
+<li class="active">
+    <a href="" target-id="00">
+        <i class="icon-dashboard"></i>
+        <span class="menu-text">平台首页</span>
+    </a>
+</li>
+#if($shiro.isAuthenticated())
+    #set($menus = $sysServiceUtil.getTreeMenu())
+    #foreach($temp in  $menus)
+        #if($shiro.hasPermission($temp.permission))
+        <li class="open">
+            <a href="#" class="dropdown-toggle">
+                <i class="$!{temp.icon}"></i>
+                <span class="menu-text"> $temp.name</span>
+                <b class="arrow icon-angle-down"></b>
+            </a>
+            <ul class="submenu" style="display:none;">
+                #foreach($temp1 in $temp.childList)
+                    #if($shiro.hasPermission($!temp1.permission))
+                        <li>
+                            <a href="${root_url}${temp1.href}" target-id="$temp1.id" name="${temp1.name}">
+                                <i class="icon-double-angle-right"></i>
+                                $temp1.name   ##$temp1.permission
+                            </a>
+                        </li>
+                    #end
+                #end
+            </ul>
+        </li>
+        #end
+    #end
+#end
+
+
+
+
+
+
+
+

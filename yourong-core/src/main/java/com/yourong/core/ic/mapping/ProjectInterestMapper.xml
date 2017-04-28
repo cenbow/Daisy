@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.ic.dao.ProjectInterestMapper" >
+  <resultMap id="BaseResultMap" type="ProjectInterest" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="project_id" property="projectId" jdbcType="BIGINT" />
+    <result column="min_invest" property="minInvest" jdbcType="DECIMAL" />
+    <result column="max_invest" property="maxInvest" jdbcType="DECIMAL" />
+    <result column="annualized_rate" property="annualizedRate" jdbcType="DECIMAL" />
+    <result column="gmt_created" property="gmtCreated" jdbcType="TIMESTAMP" />
+    <result column="gmt_modified" property="gmtModified" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, project_id, min_invest, max_invest, annualized_rate, gmt_created, gmt_modified
+  </sql>
+  <insert id="insertSelective" parameterType="ProjectInterest" useGeneratedKeys="true" keyProperty="id" >
+    insert into ic_project_interest
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="projectId != null" >
+        project_id,
+      </if>
+      <if test="minInvest != null" >
+        min_invest,
+      </if>
+      <if test="maxInvest != null" >
+        max_invest,
+      </if>
+      <if test="annualizedRate != null" >
+        annualized_rate,
+      </if>
+        gmt_created,
+        gmt_modified,
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="projectId != null" >
+        #{projectId,jdbcType=BIGINT},
+      </if>
+      <if test="minInvest != null" >
+        #{minInvest,jdbcType=DECIMAL},
+      </if>
+      <if test="maxInvest != null" >
+        #{maxInvest,jdbcType=DECIMAL},
+      </if>
+      <if test="annualizedRate != null" >
+        #{annualizedRate,jdbcType=DECIMAL},
+      </if>
+        now(),
+        now(),
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="ProjectInterest" >
+    update ic_project_interest
+    <set >
+      <if test="projectId != null" >
+        project_id = #{projectId,jdbcType=BIGINT},
+      </if>
+      <if test="minInvest != null" >
+        min_invest = #{minInvest,jdbcType=DECIMAL},
+      </if>
+      <if test="maxInvest != null" >
+        max_invest = #{maxInvest,jdbcType=DECIMAL},
+      </if>
+      <if test="annualizedRate != null" >
+        annualized_rate = #{annualizedRate,jdbcType=DECIMAL},
+      </if>
+        gmt_modified = now(),
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <delete id="batchDelete" parameterType="java.lang.Long" >
+    delete from ic_project_interest
+    where id in  <foreach collection="ids" index="index" item="item" open="(" separator="," close=")"> #{item}  </foreach>  
+  </delete>
+  <select id="findByPage" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from ic_project_interest
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = #{map.id}
+        </if>
+        <if test=" map.projectId != null" >
+          project_id = #{map.projectId}
+        </if>
+        <if test=" map.minInvest != null" >
+          min_invest = #{map.minInvest}
+        </if>
+        <if test=" map.maxInvest != null" >
+          max_invest = #{map.maxInvest}
+        </if>
+        <if test=" map.annualizedRate != null" >
+          annualized_rate = #{map.annualizedRate}
+        </if>
+        <if test=" map.gmtCreated != null" >
+          gmt_created = #{map.gmtCreated}
+        </if>
+        <if test=" map.gmtModified != null" >
+          gmt_modified = #{map.gmtModified}
+        </if>
+      </where>
+    </if>
+  </select>
+  <sql id="Base_Column_List_Pagin" >
+    t.id  as  id,
+t.project_id  as  project_id,
+t.min_invest  as  min_invest,
+t.max_invest  as  max_invest,
+t.annualized_rate  as  annualized_rate,
+t.gmt_created  as  gmt_created,
+t.gmt_modified  as  gmt_modified
+  </sql>
+  <select id="selectForPagin" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List_Pagin" />
+    from  (SELECT id FROM  ic_project_interest
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = #{map.id}
+        </if>
+        <if test=" map.projectId != null" >
+          project_id = #{map.projectId}
+        </if>
+        <if test=" map.minInvest != null" >
+          min_invest = #{map.minInvest}
+        </if>
+        <if test=" map.maxInvest != null" >
+          max_invest = #{map.maxInvest}
+        </if>
+        <if test=" map.annualizedRate != null" >
+          annualized_rate = #{map.annualizedRate}
+        </if>
+        <if test=" map.gmtCreated != null" >
+          gmt_created = #{map.gmtCreated}
+        </if>
+        <if test=" map.gmtModified != null" >
+          gmt_modified = #{map.gmtModified}
+        </if>
+      </where>
+    </if>
+      LIMIT	${map.startRow}, ${map.pageSize}  )  AS a,  ic_project_interest AS t FORCE INDEX(PRIMARY) WHERE a.id = t.id   
+  </select>
+  <select id="selectForPaginTotalCount" resultType="java.lang.Integer" >
+    select count(1) 
+    from ic_project_interest
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = ${map.id}
+        </if>
+        <if test=" map.projectId != null" >
+          project_id = ${map.projectId}
+        </if>
+        <if test=" map.minInvest != null" >
+          min_invest = ${map.minInvest}
+        </if>
+        <if test=" map.maxInvest != null" >
+          max_invest = ${map.maxInvest}
+        </if>
+        <if test=" map.annualizedRate != null" >
+          annualized_rate = ${map.annualizedRate}
+        </if>
+        <if test=" map.gmtCreated != null" >
+          gmt_created = ${map.gmtCreated}
+        </if>
+        <if test=" map.gmtModified != null" >
+          gmt_modified = ${map.gmtModified}
+        </if>
+      </where>
+    </if>
+  </select>
+  
+  <insert id="batchInsertProjectInterest" parameterType="java.util.List" >
+    insert into ic_project_interest (project_id,min_invest,max_invest,annualized_rate,gmt_created,gmt_modified)   values   
+      <foreach collection="list" item="item" index="index"   separator=",">  
+        ( #{item.projectId}, #{item.minInvest}, #{item.maxInvest}, #{item.annualizedRate}, #{item.gmtCreated}, #{item.gmtModified})  
+      </foreach>     
+  </insert>
+</mapper>

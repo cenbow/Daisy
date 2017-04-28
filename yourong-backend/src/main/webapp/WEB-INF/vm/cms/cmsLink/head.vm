@@ -1,0 +1,12 @@
+ #parse("/common/common.vm")
+ #########################################script##################################### 
+ #set($js_config=[ 
+ "'urlMap':{ 
+   'ajax':'$root_url/cmsLink/ajax?', 
+   'query':'$root_url/cmsLink/index?', 
+   'save':'$root_url/cmsLink/save', 
+   'show':'$root_url/cmsLink/show?id=', 
+   'delet':'$root_url/cmsLink/delete'}"
+ ]) 
+ #set($js_url=["$root_url/static/js/cmsLink.js"]) 
+ #########################################DOM##################################### 

@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Versions>
+    <!--versionNum为版本号；systemType为系统类型：1-android 2-ios；VersionInfo为版本更新内容   $用来换行，手机端做转换   -->
+
+    <Version versionNum="1.0.7">
+        <systemType>1</systemType>
+        <VersionInfo>1.支持手势密码，花式登录由你做主。$2.版本更新，第一时间为你送达。$3.抢标升级五重礼，一掷千金有额外奖励。$ 4.孜孜不倦的更新优化，只为成就更好的自己。</VersionInfo>
+    </Version>
+    <Version versionNum="1.0.7">
+        <systemType>2</systemType>
+        <VersionInfo>1.支持手势密码，花式登录由你做主。$2.抢标升级五重礼，一掷千金有额外奖励。$3.孜孜不倦的更新优化，只为成就更好的自己。$ 4.增加3D TOUCH功能，完美匹配IOS9.0。</VersionInfo>
+    </Version>
+
+	<Version versionNum="1.0.8">
+        <systemType>1</systemType>
+        <VersionInfo>1.注册时增加【密码查看】功能。$2.邀请好友增加个人专属二维码。$3.生日专题页APP专版。$ 4.优惠券兑换增加确定操作。</VersionInfo>
+    </Version>
+    <Version versionNum="1.0.8">
+        <systemType>2</systemType>
+        <VersionInfo>1.注册时增加【密码查看】功能。$2.邀请好友增加个人专属二维码。$3.生日专题页APP专版。$ 4.优惠券兑换增加确定操作。</VersionInfo>
+    </Version>
+    <Version versionNum="1.0.9">
+        <systemType>1</systemType>
+        <VersionInfo>1.新春贺喜，投资即可分享红包。$2.日常优化。</VersionInfo>
+    </Version>
+    <Version versionNum="1.0.9">
+        <systemType>2</systemType>
+        <VersionInfo>1.新春贺喜，投资即可分享红包。$2.日常优化。</VersionInfo>
+    </Version>
+    <Version versionNum="1.2.0">
+        <systemType>1</systemType>
+        <VersionInfo>1.新增抢标奖励通知。$2.轻轻一滑，轻松查看我的账户。$3.全新视觉界面尽在我的优惠，马上体验！</VersionInfo>
+    </Version>
+    <Version versionNum="1.2.0">
+        <systemType>2</systemType>
+        <VersionInfo>1.新增抢标奖励通知。$2.轻轻一滑，轻松查看我的账户。$3.全新视觉界面尽在我的优惠，马上体验！</VersionInfo>
+    </Version>
+    <Version versionNum="1.3.0">
+        <systemType>1</systemType>
+        <VersionInfo>1.APP支持直投项目啦。$2.新增回款日历，资金动态一目了然。$3.新版帮助中心，答疑解惑更方便。$4.全新视觉界面等你发现，马上体验!</VersionInfo>
+    </Version>
+    <Version versionNum="1.3.0">
+        <systemType>2</systemType>
+        <VersionInfo>1.APP支持直投项目啦。$2.新增回款日历，资金动态一目了然。$3.新版帮助中心，答疑解惑更方便。$4.全新视觉界面等你发现，马上体验!</VersionInfo>
+    </Version>
+    <Version versionNum="1.4.0">
+        <systemType>1</systemType>
+        <VersionInfo>1.回款日历更贴心。$2.新增发现栏目，有融在此与你相约。$3.我的账户全新改版，账户资金管理更明了。$4.首页、项目列表页换新颜，等你体验！</VersionInfo>
+    </Version>
+    <Version versionNum="1.4.0">
+        <systemType>2</systemType>
+        <VersionInfo>1.回款日历更贴心。$2.新增发现栏目，有融在此与你相约。$3.我的账户全新改版，账户资金管理更明了。$4.首页、项目列表页换新颜，等你体验！</VersionInfo>
+    </Version>
+     <Version versionNum="1.4.1">
+        <systemType>1</systemType>
+        <VersionInfo>1.回款日历更贴心。$2.新增发现栏目，有融在此与你相约。$3.我的账户全新改版，账户资金管理更明了。$4.首页、项目列表页换新颜，等你体验！$5.修复了一些bug</VersionInfo>
+    </Version>
+    
+     <Version versionNum="1.5.0">
+        <systemType>1</systemType>
+        <VersionInfo>1.直投项目在募集中，资金可享受存钱罐收益啦。$2.新增风险测评，了解您的投资类型。$3.我的投资列表换新颜，更多优化等你体验！</VersionInfo>
+    </Version>
+    <Version versionNum="1.5.0">
+        <systemType>2</systemType>
+        <VersionInfo>1.直投项目在募集中，资金可享受存钱罐收益啦。$2.新增风险测评，了解您的投资类型。$3.我的投资列表换新颜，更多优化等你体验！</VersionInfo>
+    </Version>
+    
+    <Version versionNum="1.5.1">
+        <systemType>1</systemType>
+        <VersionInfo>1.回款日历金额显示问题修复啦！</VersionInfo>
+    </Version>
+    
+    <Version versionNum="1.6.0">
+        <systemType>1</systemType>
+        <VersionInfo>1.电子签名全面升级，守护互金时代的契约精神；$2.发现专栏新增活动列表，精彩活动一手掌握；$3.更多功能优化等你发现，不只一点点哦！ </VersionInfo>
+    </Version>
+    <Version versionNum="1.6.0">
+        <systemType>2</systemType>
+        <VersionInfo>1.电子签名全面升级，守护互金时代的契约精神；$2.发现专栏新增活动列表，精彩活动一手掌握；$3.更多功能优化等你发现，不只一点点哦！</VersionInfo>
+    </Version>
+    
+     <Version versionNum="1.6.1">
+        <systemType>1</systemType>
+        <VersionInfo>1.紧急修复红包分享bug！</VersionInfo>
+    </Version>
+     <Version versionNum="1.6.1">
+        <systemType>2</systemType>
+        <VersionInfo>1.紧急修复回款日历跨年资金显示bug！</VersionInfo>
+    </Version>
+    
+     <Version versionNum="1.7.0">
+        <systemType>1</systemType>
+        <VersionInfo>1.资金进出，支付密码全新护航。$2.委托支付，投资理财一步到位。$*请务必更新以保证功能正常使用。</VersionInfo>
+    </Version>
+     <Version versionNum="1.7.0">
+        <systemType>2</systemType>
+        <VersionInfo>1.资金进出，支付密码全新护航。$2.委托支付，投资理财一步到位。</VersionInfo>
+    </Version>
+     <Version versionNum="1.8.0">
+        <systemType>1</systemType>
+        <VersionInfo>1.急用钱？转让功能让资金动起来！$2.自动投标功能上线，助你躺着也赚钱！$3.更多功能优化等你发现；</VersionInfo>
+    </Version>
+     <Version versionNum="1.8.0">
+        <systemType>2</systemType>
+        <VersionInfo>1.急用钱？转让功能让资金动起来！$2.自动投标功能上线，助你躺着也赚钱！$3.更多功能优化等你发现；$4.已适配iOS10；</VersionInfo>
+    </Version>
+     <Version versionNum="1.8.1">
+        <systemType>1</systemType>
+        <VersionInfo>1.优化了可转让项目的显示！</VersionInfo>
+    </Version>
+     <Version versionNum="1.8.1">
+        <systemType>2</systemType>
+        <VersionInfo>1.优化了可转让项目的显示!$2.已知bug修复!</VersionInfo>
+    </Version>
+      <Version versionNum="1.9.0">
+        <systemType>1</systemType>
+        <VersionInfo>1. 玩赚人气值，就在人气值乐园；$2. 新增会员体系，尊享不同特权；$3. 账户中心新增统计功能，各项收益一目了然；$4. 更多精彩等你发现！</VersionInfo>
+    </Version>
+     <Version versionNum="1.9.0">
+        <systemType>2</systemType>
+        <VersionInfo>1. 玩赚人气值，就在人气值乐园；$2. 新增会员体系，尊享不同特权；$3. 账户中心新增统计功能，各项收益一目了然；$4. 更多精彩等你发现！</VersionInfo>
+    </Version>
+     <Version versionNum="1.9.1">
+        <systemType>1</systemType>
+        <VersionInfo>1. 玩赚人气值，就在人气值乐园；$2. 新增会员体系，尊享不同特权；$3. 直投项目快投有奖，抽奖享不停；$4. 账户中心新增统计功能，各项收益一目了然；$5. 有融网2周年，更多精彩等你发现！</VersionInfo>
+    </Version>
+     <Version versionNum="1.9.1">
+        <systemType>2</systemType>
+        <VersionInfo>1. 玩赚人气值，就在人气值乐园；$2. 新增会员体系，尊享不同特权；$3. 直投项目快投有奖，抽奖享不停；$4. 账户中心新增统计功能，各项收益一目了然；$5. 有融网2周年，更多精彩等你发现！</VersionInfo>
+    </Version>
+    <Version versionNum="1.9.2">
+        <systemType>1</systemType>
+        <VersionInfo>1. 玩赚人气值，就在人气值乐园；$2. 新增会员体系，尊享不同特权；$3. 直投快投有奖，抽奖享不停；$4. 修复已知bug。</VersionInfo>
+    </Version>
+    
+     <Version versionNum="1.9.3">
+        <systemType>1</systemType>
+        <VersionInfo>1. APP消息通知，重要信息不错过；$2. 您的反馈可以在APP上收到回复了；</VersionInfo>
+    </Version>
+     <Version versionNum="1.9.3">
+        <systemType>2</systemType>
+        <VersionInfo>1. APP消息通知，重要信息不错过；$2. 您的反馈可以在APP上收到回复了；</VersionInfo>
+    </Version>
+     <Version versionNum="1.9.4">
+        <systemType>2</systemType>
+        <VersionInfo>1. 修复已知bug；</VersionInfo>
+    </Version>
+    
+    <Version versionNum="1.9.5">
+        <systemType>1</systemType>
+        <VersionInfo>1. APP体验优化；$2. 修复已知bug。</VersionInfo>
+    </Version>
+     <Version versionNum="1.9.5">
+        <systemType>2</systemType>
+        <VersionInfo>1. APP体验优化；$2. 修复已知bug。</VersionInfo>
+    </Version>
+    
+    <Version versionNum="1.9.6">
+        <systemType>1</systemType>
+        <VersionInfo>1. 转让功能优化，转让更方便；$2. 有融网喜获国资战略入股。</VersionInfo>
+    </Version>
+     <Version versionNum="1.9.6">
+        <systemType>2</systemType>
+        <VersionInfo>1. 转让功能优化，转让更方便；$2. 有融网喜获国资战略入股。</VersionInfo>
+    </Version>
+    <Version versionNum="1.9.7">
+        <systemType>1</systemType>
+        <VersionInfo>1. 快投有奖2.0全新上线，抽中即送现金！</VersionInfo>
+    </Version>
+    <Version versionNum="1.9.7">
+        <systemType>2</systemType>
+        <VersionInfo>1. 快投有奖2.0全新上线，抽中即送现金！</VersionInfo>
+    </Version>
+    <Version versionNum="1.9.8">
+        <systemType>2</systemType>
+        <VersionInfo>1. 优化投资分享红包功能。</VersionInfo>
+    </Version>
+    
+    <Version versionNum="1.9.9">
+        <systemType>1</systemType>
+        <VersionInfo>1. 快投有奖显示优化；$2. 投资快投项目未中奖有人气值赠送哦！$3. 更有3个月快投项目火热争抢中！</VersionInfo>
+    </Version>
+    <Version versionNum="1.9.9">
+        <systemType>2</systemType>
+        <VersionInfo>1. 快投有奖显示优化；$2. 投资快投项目未中奖有人气值赠送哦！$3. 更有3个月快投项目火热争抢中！</VersionInfo>
+    </Version>
+    
+    <Version versionNum="2.0.0">
+        <systemType>1</systemType>
+        <VersionInfo>【有融网】2.0清新上线,最美好的交互和体验总会在不经意间出现,蓦然回首,有融的颜值和气质又上升了一个新高度~ </VersionInfo>
+    </Version>
+    <Version versionNum="2.0.0">
+        <systemType>2</systemType>
+        <VersionInfo>【有融网】2.0清新上线,最美好的交互和体验总会在不经意间出现,蓦然回首,有融的颜值和气质又上升了一个新高度~ </VersionInfo>
+    </Version>
+    
+     <Version versionNum="2.0.1">
+        <systemType>1</systemType>
+        <VersionInfo>【有融网】2.0清新上线,最美好的交互和体验总会在不经意间出现,蓦然回首,有融的颜值和气质又上升了一个新高度~ </VersionInfo>
+    </Version>
+    
+    <Version versionNum="2.0.2">
+        <systemType>1</systemType>
+        <VersionInfo>部分安卓7.0机型适配 </VersionInfo>
+    </Version>
+    
+     <Version versionNum="2.1.0">
+        <systemType>1</systemType>
+        <VersionInfo>1. 新增小额资产项目；$2. 人气值乐园加载优化。 </VersionInfo>
+    </Version>
+    <Version versionNum="2.1.0">
+        <systemType>2</systemType>
+        <VersionInfo>1. 新增小额资产项目；$2. 人气值乐园加载优化。</VersionInfo>
+    </Version>
+</Versions>

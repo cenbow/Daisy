@@ -1,0 +1,12 @@
+#set($layout = "/layout/iframe.vm")
+#parse("/uc/member/head.vm")
+
+<form role="form" class="form-horizontal" id="member_balance_form" method="post">
+	手机号码：<input name="memberId" id="memberId" datatype="m" nullmsg="请输入手机号码">
+	<button id="query_memberID_balance" type="button" class="btn btn-info btn-sm btn-primary permission-$shiro.hasPermission('member:queryBalanceBtn')" >同步余额</button>
+	<button id="query_memberID_profit" type="button" class="btn btn-warn btn-sm btn-primary permission-$shiro.hasPermission('member:queryProfitBtn')" >同步收益</button>
+</form>
+	
+<hr>
+
+

@@ -1,0 +1,107 @@
+#parse("/common/common.vm")
+#set($layout = "/layout/default.vm")
+
+#if($!transferList.data && $!transferList.data.size()>0)
+    <div class="u-rtable">
+        <div class="u-rtable-wrap f-round">
+            <table>
+                <thead class="u-invest-ntunderline">
+                <tr>
+                    <th width="190">转让项目</th>
+                    <th width="150">产品价值
+                        <i class="u-icon-ques j-user-tips" data-align="top" data-tips="产品价值 = 待收本金 + 当期未收利息"></i>
+                    </th>
+                    <th>转让价格</th>
+                    <th width="90">转让手续费
+                        <i class="u-icon-ques j-user-tips" data-align="top" data-tips="转让价格的千分之一"></i>
+                    </th>
+                    <th width="125">最终获得</th>
+                    <th width="210">转让状态</th>
+                </tr>
+                </thead>
+                <tbody>
+##                    #if($!transferList.data && $!transferList.data.size()>0)
+
+                        #foreach( $!item in $!transferList.data )
+                        <tr>
+                            <td class="u-invest-pjname">
+                                <a class="u-row f-tal u-invest-underline" target="_blank"
+                                   href="$root_url/products/detail-$!{item.id}.html">
+                                    $stringUtil.getShortProjectName($item.transferName)<br/>
+                                    $stringUtil.getSuffixProjectName($item.transferName)
+                                </a>
+                            </td>
+                            <td>
+                                <em class="u-amount f-ff-ver u-withAmount">¥$formulaUtil.getFormatPrice($item.projectValue)</em>
+                                <em class="u-amount f-ff-ver u-amount-tip">(¥$formulaUtil.getFormatPrice($item.residualPrincipal) + ¥$formulaUtil.getFormatPrice($item.currentInterest))</em>
+                            </td>
+                            <td>
+                                <em class="u-amount f-ff-ver u-withAmount">¥$formulaUtil.getFormatPrice($item.transferAmount)</em>
+                            </td>
+                            <td>
+                                <em class="u-amount f-ff-ver u-withAmount">¥$formulaUtil.getFormatPrice($item.transferFee)</em>
+                            </td>
+                            <td>
+                                <em class="u-amount f-ff-ver u-withAmount">¥$formulaUtil.getFormatPrice($item.transferGain)</em>
+                            </td>
+                            <td>
+                                #if(${item.status}==30)
+                                    <em class="f-fc-red">转让中</em> <br>
+                                    转让进度: <em class="f-fc-red">$!{item.transferProgress}%</em>
+                                    剩余时间: ${item.transferRemainTime}
+                                #elseif(${item.status}==51)
+                                    <em class="f-fc-red">转让中</em> <br>
+                                    转让进度: <em class="f-fc-red">100%</em> 剩余时间: ${item.transferRemainTime}
+                                #elseif(${item.status}==52)
+                                    已转让 <br>
+                                    $dateUtil.getStrFromDate(${item.transferSaleComplatedTime},'yyyy-MM-dd HH:mm:ss')
+                                #elseif(${item.status}==70)
+                                    已还款
+                                #elseif(${item.status}==80)
+                                    流标中
+                                #elseif(${item.status}==90)
+                                    流标 <br>
+                                    $dateUtil.getStrFromDate(${item.failTime},'yyyy-MM-dd HH:mm:ss')
+                                #end
+                            </td>
+                        </tr>
+                        #end
+
+##                    #else
+##                    <tr>
+##                        #if(!$!query && !$!query.status)
+##                            <td colspan="6" class="u-table-empty">暂无转让记录</td>
+##                        #end
+##                    </tr>
+##                    #end
+                </tbody>
+            </table>
+        </div>
+    </div>
+#else
+    <div class="z-zr-noData"><div>您还没有相关记录</div></div>
+#end
+
+<script>
+    // 用户提示
+    $(".j-user-tips").on("mouseenter", function () {
+        var content = $(this).data("tips"),
+                skin = $(this).data("skin"),
+                align = $(this).data("align");
+        align = typeof align === "undefined" ? "bottom" : align;
+        content = typeof content === "undefined" ? "" : content;
+        skin = typeof skin === "undefined" ? "u-user-tips" : skin;
+        var d = dialog({
+            align: align,
+            skin: skin,
+            content: content
+        });
+        d.show(this);
+        $(this).data("hoverObj", d);
+    }).on("mouseleave", function () {
+        var d = $(this).data("hoverObj");
+        d.close().remove();
+    });
+</script>
+
+#ajaxPagePlugin($!transferList,"Transfer")

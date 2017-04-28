@@ -1,0 +1,117 @@
+## 银行卡绑定页面
+#parse("/common/common.vm")
+<form role="form" class="form-horizontal" id="memberBankCard_form" method="post" action="$root_url/member/addMemberBankCard">
+    #CSRFToken()
+    <input type="hidden" name="id"/>
+
+    <div class="form-group">
+        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 会员id: </label>
+
+        <div class="col-sm-9">
+            <div class="clearfix">
+                <input type="text" name="memberId" class="col-xs-10 col-sm-5" placeholder="memberId" id="form-field-memberId">
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 银行卡号: </label>
+
+        <div class="col-sm-9">
+            <div class="clearfix">
+                <input type="text" name="cardNumber" class="col-xs-10 col-sm-5" placeholder="cardNumber" id="form-field-cardNumber">
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 持卡人: </label>
+
+        <div class="col-sm-9">
+            <div class="clearfix">
+                <input type="text" name="cardHolder" class="col-xs-10 col-sm-5" placeholder="cardHolder" id="form-field-cardHolder">
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 银行id: </label>
+
+        <div class="col-sm-9">
+            <div class="clearfix">
+                <input type="text" name="bankCode" class="col-xs-10 col-sm-5" placeholder="bankCode" id="form-field-bankId">
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 银行所属省份: </label>
+
+        <div class="col-sm-9">
+            <div class="clearfix">
+                <input type="text" name="bankProvince" class="col-xs-10 col-sm-5" placeholder="bankProvince" id="form-field-bankProvince">
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 银行所属城市: </label>
+
+        <div class="col-sm-9">
+            <div class="clearfix">
+                <input type="text" name="bankCity" class="col-xs-10 col-sm-5" placeholder="bankCity" id="form-field-bankCity">
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 银行所属所在区: </label>
+
+        <div class="col-sm-9">
+            <div class="clearfix">
+                <input type="text" name="bankDistrict" class="col-xs-10 col-sm-5" placeholder="bankDistrict" id="form-field-bankDistrict">
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 开卡行所属开户行(分行)的名称: </label>
+
+        <div class="col-sm-9">
+            <div class="clearfix">
+                <input type="text" name="branchName" class="col-xs-10 col-sm-5" placeholder="branchName" id="form-field-branchName">
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 开卡行所属支行的名称: </label>
+
+        <div class="col-sm-9">
+            <div class="clearfix">
+                <input type="text" name="subBranchName" class="col-xs-10 col-sm-5" placeholder="subBranchName" id="form-field-subBranchName">
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 是否为默认银行卡(0-不是 1-是): </label>
+
+        <div class="col-sm-9">
+            <div class="clearfix">
+                <input type="text" name="isDefault" class="col-xs-10 col-sm-5" placeholder="isDefault" id="form-field-isDefault">
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> -1-已删除的银行卡，1-正常绑定成功: </label>
+
+        <div class="col-sm-9">
+            <div class="clearfix">
+                <input type="text" name="delFlag" class="col-xs-10 col-sm-5" placeholder="delFlag" id="form-field-delFlag">
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 备注: </label>
+
+        <div class="col-sm-9">
+            <div class="clearfix">
+                <input type="text" name="remarks" class="col-xs-10 col-sm-5" placeholder="remarks" id="form-field-remarks">
+            </div>
+        </div>
+    </div>
+    <input type="submit" value="Submit"/>
+</form>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.sh.dao.OrderSubMapper" >
+    <resultMap id="BaseResultMap" type="com.yourong.core.sh.model.OrderSub" >
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="order_id" property="orderId" jdbcType="VARCHAR" />
+        <result column="order_type" property="orderType" jdbcType="VARCHAR" />
+        <result column="goods_id" property="goodsId" jdbcType="VARCHAR" />
+        <result column="source_id" property="sourceId" jdbcType="VARCHAR" />
+        <result column="recharge_card" property="rechargeCard" jdbcType="VARCHAR" />
+        <result column="recharge_amount" property="rechargeAmount" jdbcType="INTEGER" />
+        <result column="recharge_type" property="rechargeType" jdbcType="INTEGER" />
+        <result column="goods_count" property="goodsCount" jdbcType="BIGINT"/>
+        <result column="amount" property="amount" jdbcType="BIGINT" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <sql id="select_sql">
+        SELECT id,order_id,order_type,goods_id,source_id,recharge_card,recharge_amount,recharge_type,goods_count,amount,create_time
+    </sql>
+
+    <insert id="insertOrderSub" parameterType="com.yourong.core.sh.model.OrderSub" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO sh_order_sub(`order_id`,`order_type`,`goods_id`,`source_id`,`recharge_card`,`recharge_amount`,`recharge_type`,`goods_count`,`amount`,`create_time`)
+        VALUES(#{orderId},#{orderType},#{goodsId},#{sourceId},#{rechargeCard},#{rechargeAmount},#{rechargeType},#{goodsCount},#{amount},#{createTime})
+    </insert>
+    
+    <select id="queryOrderSubListByOrderMainId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <include refid="select_sql"/>
+        FROM sh_order_sub WHERE order_id=#{orderId}
+    </select>
+    
+    
+</mapper>

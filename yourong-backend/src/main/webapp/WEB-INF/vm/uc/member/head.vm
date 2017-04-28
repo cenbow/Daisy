@@ -1,0 +1,82 @@
+#parse("/common/common.vm")
+#########################################script#####################################
+#set($searchPermission = $shiro.hasNotPermission("member:searchMember"))
+#set($js_config=[
+    "'urlMap':{
+    'ajax':'$root_url/member/ajax?',
+    'query':'$root_url/member/index?',
+    'save':'$root_url/member/save',
+    'show':'$root_url/member/show?id=',
+    'showMemberInfo':'$root_url/member/showMemberInfo?id=',
+    'delet':'$root_url/member/delete',
+    'findMemberBankCard':'$root_url/member/findMemberBankCard',
+    'findMemberEnterprise':'$root_url/member/findMemberEnterprise',
+    'queryBalance':'$root_url/member/queryBalance',
+    'queryProfit':'$root_url/member/queryProfit',
+    'regedistMember':'$root_url/member/regedistMember',
+    'sendMobileCode':'$root_url/member/sendMobileCode',
+    'changeMobile':'$root_url/member/changeMobile',
+    'getEnterprise':'$root_url/member/geEnterprise',
+    'caEnterprise':'$root_url/member/caEnterprise',
+    'caApply':'$root_url/member/caApply',
+    'saveImage':'$root_url/member/saveImage',
+     
+     
+     'uploadURL':'$root_url/commonUpload/uploadFile',
+    'getEnterpriseDetail':'$root_url/member/getEnterpriseDetail',
+    'addEnterprise':'$root_url/member/addEnterprise',
+    'delEnterprise':'$root_url/member/delEnterprise',
+    'saveUcEnterprise':'$root_url/member/saveUcEnterprise',
+    'saveUcMemberInfo':'$root_url/member/saveUcMemberInfo',
+    'selectMember':'$root_url/member/selectMember',
+    'findMemberInfo':'$root_url/member/findMemberInfo',
+    'cansoleMobile':'$root_url/member/cancleMobile',
+    'cancelMember':'$root_url/member/cancelMember',
+	'delBankCard':'$root_url/member/deleteBankCard',
+	'getAreaList':'$root_url/sysArea/getAreaList',
+	'synThirdPayEaring':'$root_url/member/synThirdPayEaring',
+	'getSysAreasByParentId':'$root_url/sysArea/getSysAreasByParentId',
+	'addReferral':'$root_url/member/addReferral',
+	'showDetail':'$root_url/member/showDetail?id=',
+	'getMemberInfo':'$root_url/member/getMemberInfo?id=',
+	'forzen':'$root_url/forzenBalance/forzen',
+	'showMemberId':'$root_url/member/showMemberId?mobile=',
+	'showMobile':'$root_url/member/showMobile?memberId='
+    },
+    'memberType':#buildDictJson('member_type'),
+    'sex':#buildDictJson('sex'),
+    'status':#buildDictJson('user_status'),
+    'registerMethod':#buildDictJson('register_method'),
+    'marriage':#buildDictJson('marriage'),
+    'occupation':#buildDictJson('profession'),
+    'permission':{
+	    'changeMobile':$shiro.hasPermission('member:changeMobile'),
+	    'saveUcEnterprise': $shiro.hasPermission('member:saveUcEnterprise') ,
+	    'searchMember':$searchPermission,
+	    'show':$shiro.hasPermission('member:show'),
+	    'cancel':$shiro.hasPermission('member:cancelMember'),
+	    'selectMemberSaveUcEnterprise':$shiro.hasPermission('selectMember:saveUcEnterprise'),
+	    'selectMemberChangeMobile':$shiro.hasPermission('selectMember:changeMobile'),
+	    'findMemberInfo':$shiro.hasPermission('selectMember:findMemberInfo'),
+	    'queryBalance':$shiro.hasPermission('member:queryBalanceBtn'),
+	    'queryProfit':$shiro.hasPermission('member:queryProfitBtn'),
+		'addReferral':$shiro.hasPermission('member:addReferral'),
+		'synThirdPayEaring':$shiro.hasPermission('member:synThirdPayEaring'),
+		'addEnterprise':$shiro.hasPermission('member:addEnterprise'),
+		'getEnterpriseDetail':$shiro.hasPermission('member:getEnterpriseDetail'),
+		'delEnterprise':$shiro.hasPermission('member:delEnterprise'),
+		'caApply':$shiro.hasPermission('member:caApply'),
+		'forzenBalance':$shiro.hasPermission('forzenBalance:forzen'),
+		'memberExcel':$shiro.hasPermission('member:memberExcel')
+    }
+
+    "
+])
+#set($css_url=["$root_url/static/js/lib/validform/css/style.css","$root_url/static/assets/css/dropzone.css","$root_url/static/js/lib/My97DatePicker/skin/WdatePicker.css","$root_url/static/js/lib/jcrop/jquery.Jcrop.min.css","$root_url/static/js/lib/colorbox/colorbox.css","$root_url/static/css/project.css","$root_url/static/js/lib/colorbox/colorbox.css"])
+ #if($action == "selectMember")
+	#set($js_url=["$root_url/static/js/lib/My97DatePicker/WdatePicker.js","$root_url/static/js/selectMember.js"])
+ #else
+	#set($js_url=["$root_url/static/js/member.js","$root_url/static/assets/js/dropzone.min.js","$root_url/static/js/dz-upload.js","$root_url/static/js/lib/My97DatePicker/WdatePicker.js","$root_url/static/js/lib/jcrop/jquery.Jcrop.min.js","$root_url/static/js/lib/colorbox/jquery.colorbox-min.js"])
+ #end
+
+#########################################DOM#####################################

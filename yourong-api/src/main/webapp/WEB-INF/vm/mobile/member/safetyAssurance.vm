@@ -1,0 +1,187 @@
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$res_url/lib/frozenui/kit.css","$m_css_url/modules/aboutYR.css",
+    "$res_url/source/css/swiper-3.4.0.min.css"])
+#set($title='安全保障')
+#set($loginSource=$request.getHeader("loginSource"))
+#set($os=3)
+##  安卓
+#if($loginSource==1)
+    #set($os=1)
+#end
+##  IOS
+#if($loginSource==2)
+    #set($os=2)
+#end
+<ul class="u-nav">
+    <li><a href="$siteurl/mstation/aboutYR">关于有融</a></li>
+    <li><a href="$siteurl/mstation/safetyAssurance" class="z-selected">安全保障</a></li>
+    <li><a href="$siteurl/mstation/cooperator">合作伙伴</a></li>
+    <li><a href="$siteurl/mstation/honor">资质荣誉</a></li>
+</ul>
+<div class="m-safety">
+    <div class="u-safe-one f-pos-r">
+        <img src="$res_url/img/post/about/safeOne.png">
+        <div class="u-title f-pos-a">
+            <h3>有融网安全保障体系</h3>
+            <h4>四道风控环环相扣&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;自在理财安心无忧</h4>
+        </div>
+    </div>
+    <h1 class="f-color-gray555"><i class="f-bg-gray60"></i>
+        四道风控严格甄选优质项目
+        <i class="f-bg-gray60"></i></h1>
+    <h2 class="f-color-gray555">100%历史完美兑付</h2>
+    <ul class="u-safety-one">
+        <li>
+            <div class="u-line"><i></i><s></s></div>
+            <h3>严苛的项目甄选&nbsp;&nbsp;&nbsp;全方位信息尽调</h3>
+            <table>
+                <tbody>
+                <tr>
+                    <td><img src="$res_url/img/post/about/safe_icon1_1.png"></td>
+                    <td>基础信息评估<em>严格评估超过15项必备指标，剔除不良借款方</em></td>
+                </tr>
+                <tr>
+                    <td><img src="$res_url/img/post/about/safe_icon1_2.png"></td>
+                    <td>多重征信数据验证<em>收集借款方信用数据，交叉验证提前防范</em></td>
+                </tr>
+                <tr>
+                    <td><img src="$res_url/img/post/about/safe_icon1_3.png"></td>
+                    <td>大数据风控授信<em>综合信用评分体系评估授信，大数据实时监控</em></td>
+                </tr>
+                </tbody>
+            </table>
+
+        </li>
+        <li>
+            <div class="u-line"><i></i><s></s></div>
+            <h3>银行级风控复审&nbsp;&nbsp;&nbsp;第三方法律监控</h3>
+            <p>项目定期复核，高频监控借款方资金情况<br>
+                专业第三方律所全程严格法律风险把控</p>
+        </li>
+        <li>
+            <div class="u-line"><i></i><s></s></div>
+            <h3>项目披露全透明&nbsp;&nbsp;&nbsp;信息真实零隐藏</h3>
+            <p>项目资料详实有效，各类细节一目了然<br>
+                极致披露用户关心信息，实现信息真实对等透明运作</p>
+        </li>
+        <li>
+            <div class="u-line"><i></i></div>
+            <h3>专业级贷后管理&nbsp;&nbsp;&nbsp;项目还款有保障</h3>
+            <p>资金流向跟踪&nbsp;&nbsp;&nbsp;贷后监控评估&nbsp;&nbsp;&nbsp;专业催收管理</p>
+        </li>
+    </ul>
+
+
+    <div class="u-safe-two f-pos-r">
+        <img src="$res_url/img/post/about/safeTwo.png">
+        <div class="u-title f-pos-a">
+            <h1 class="f-color-white"><i class="f-bg-grayb8"></i>
+                新浪支付第三方资金托管
+                <i class="f-bg-grayb8"></i></h1>
+            <h2 class="f-color-white">用户资金与平台完全隔离</h2>
+        </div>
+    </div>
+    <img src="$res_url/img/post/about/pay.png" class="u-sina-pay">
+
+
+    <div class="u-safe-three f-pos-r">
+        <img src="$res_url/img/post/about/safeThree.png">
+        <div class="u-title f-pos-a">
+            <h1 class="f-color-white f-margin-top"><i class="f-bg-grayb8"></i>
+                银行级技术安全管控水平
+                <i class="f-bg-grayb8"></i></h1>
+            <h2 class="f-color-white">网站系统7*24小时全天候实时监控<br>
+                全年不宕机率99.999%<br>
+                多重技术保障共同守护用户信息与资产安全</h2>
+        </div>
+    </div>
+    <div class="u-safety-three">
+        <table>
+            <tbody>
+            <tr>
+                <td><img src="$res_url/img/post/about/safe_icon2_1.png"></td>
+                <td><h5>专业研发团队</h5>
+                    <p>研发团队均来自国内知名互联网公司，拥有丰富经验和技术实力。</p>
+                </td>
+            </tr>
+            <tr>
+                <td><img src="$res_url/img/post/about/safe_icon2_2.png"></td>
+                <td><h5>全面隐私保护</h5>
+                    <p>严格的信息安全制度，多重技术加密存储措施，全面保障用户隐私安全。</p>
+                </td>
+            </tr>
+            <tr>
+                <td><img src="$res_url/img/post/about/safe_icon2_3.png"></td>
+                <td><h5>先进技术保障</h5>
+                    <p>安全稳定的高防服务器，7*24小时实时监控系统，保障交易环境的安全性。</p>
+                </td>
+            </tr>
+            <tr>
+                <td><img src="$res_url/img/post/about/safe_icon2_4.png"></td>
+                <td><h5>行业安全认证</h5>
+                    <p>获得ICP经营许可证、国家信息系统安全等级保护三级认证，国家级高新技术企业认定等资质。</p>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <div class="u-safe-four f-pos-r">
+        <img src="$res_url/img/post/about/safeFour.png">
+        <div class="u-title f-pos-a">
+            <h1 class="f-color-white f-margin-top"><i class="f-bg-grayb8"></i>
+                全方位法律合规保障
+                <i class="f-bg-grayb8"></i></h1>
+            <h2 class="f-color-white">杭州市首批“互联网金融服务”资质平台<br>
+                电子签约平台上上签保障电子合同具备完整司法效力<br>
+                专业第三方律所全程提供法律保障</h2>
+        </div>
+    </div>
+    <div class="u-safety-four">
+        <ul>
+            <li>
+                <img src="$res_url/img/post/about/safe_icon3_1.png">
+                <p>平台运营有法可依</p>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <img src="$res_url/img/post/about/safe_icon3_2.png">
+                <p>专业律所全程监控</p>
+            </li>
+            <li>
+                <img src="$res_url/img/post/about/safe_icon3_3.png">
+                <p>业务形成合法合规</p>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<script src="$res_url/lib/js/jquery.min.js"></script>
+###if($debug)
+##<script src='$siteurl/res/lib/js/vconsole.min.js'></script>
+###end
+<script>
+    var os =$!{os}
+    if (os === 1) {
+        Android.UpdateTitle('安全保障');
+    } else if (os === 2) {
+        var aboutYRTitle = window.encodeURI('关于有融'),
+                safeTitle = window.encodeURI('安全保障'),
+                cooperatorTitle = window.encodeURI('合作伙伴'),
+                honorTitle = window.encodeURI('资质荣誉')
+        $('.u-nav').find('a:eq(0)').attr('href', '$siteurl/mstation/aboutYR?title=' + aboutYRTitle)
+        $('.u-nav').find('a:eq(1)').attr('href', '$siteurl/mstation/safetyAssurance?title=' + safeTitle)
+        $('.u-nav').find('a:eq(2)').attr('href', '$siteurl/mstation/cooperator?title=' + cooperatorTitle)
+        $('.u-nav').find('a:eq(3)').attr('href', '$siteurl/mstation/honor?title=' + honorTitle)
+    }
+    $(window).scroll(function () {
+        var top = $('.u-safety-four').position().top
+        var scrollTop = $(this).scrollTop();
+        if (scrollTop >= (top - 400)) {
+            $('.u-safety-four').addClass('animatedUp')
+        }
+    })
+</script>

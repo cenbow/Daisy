@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.uc.dao.MemberCheckMapper" >
+  <resultMap id="BaseResultMap" type="MemberCheck" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="member_id" property="memberId" jdbcType="BIGINT" />
+    <result column="check_date" property="checkDate" jdbcType="TIMESTAMP" />
+    <result column="gain_popularity" property="gainPopularity" jdbcType="DECIMAL" />
+    <result column="check_source" property="checkSource" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, member_id, check_date, gain_popularity, check_source, create_time
+  </sql>
+  <insert id="insertSelective" parameterType="MemberCheck" keyProperty="id"  useGeneratedKeys="true">
+    insert into uc_member_check
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="memberId != null" >
+        member_id,
+      </if>
+      <if test="checkDate != null" >
+        check_date,
+      </if>
+      <if test="gainPopularity != null" >
+        gain_popularity,
+      </if>
+      <if test="checkSource != null" >
+        check_source,
+      </if>
+        create_time
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="memberId != null" >
+        #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="checkDate != null" >
+        #{checkDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gainPopularity != null" >
+        #{gainPopularity,jdbcType=DECIMAL},
+      </if>
+      <if test="checkSource != null" >
+        #{checkSource,jdbcType=INTEGER},
+      </if>
+      now()
+    </trim>
+  </insert>
+  
+  <select id="queryMemberCheckListByQuery" parameterType="MemberCheckQuery" resultMap="BaseResultMap">
+  		SELECT <include refid="Base_Column_List"/>
+	  FROM uc_member_check
+	    <where >
+	        <if test="memberId != null" >
+	          AND member_id = #{memberId,jdbcType=BIGINT}
+	        </if>
+	        <if test="startTime != null" >
+	         <![CDATA[ AND check_date >= date_format(#{startTime,jdbcType=TIMESTAMP},'%Y-%m-%d') ]]>
+	        </if>
+	        <if test="endTime != null" >
+	         <![CDATA[ AND check_date <= date_format(#{endTime,jdbcType=TIMESTAMP},'%Y-%m-%d') ]]>
+	        </if>
+	         <if test="checkSource != null" >
+	          AND check_source = #{checkSource,jdbcType=INTEGER}
+	        </if>
+	      </where>
+  
+  </select>
+  
+  <!-- 统计会员签到累计人气值 -->
+  <select id="countPopularityValueByMemberId" resultType="java.lang.Integer">
+  		SELECT SUM(gain_popularity) FROM uc_member_check where member_id = #{memberId,jdbcType=BIGINT}
+  </select>
+  
+  <!-- 判断用户当天有没有签到 -->
+  <select id="queryMemberCheckToday" resultMap="BaseResultMap">
+  	SELECT id
+	  FROM uc_member_check
+	  WHERE member_id = #{memberId,jdbcType=BIGINT}
+	  AND check_date = #{todayYMD,jdbcType=VARCHAR}
+  </select>  
+  
+</mapper>

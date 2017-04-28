@@ -1,0 +1,110 @@
+body{
+    overflow-x: hidden;
+}
+.g-bd {
+    margin-bottom: 0;
+}
+.u-midAutumn-bgtop{
+    height: 506px;
+    margin: -8px 0 0;
+    background: url("/static/img/activity/midAutumn/midAutumn_bg_top.jpg") no-repeat top center;
+}
+.u-midAutumn-bgmiddle{
+    height: 410px;
+    background: url("/static/img/activity/midAutumn/midAutumn_bg_middle.jpg") no-repeat top center;
+}
+.u-midAutumn-bgbottom{
+    height: 155px;
+    background: url("/static/img/activity/midAutumn/midAutumn_bg_bottom.jpg") no-repeat top center;
+}
+.u-midAutumn-bgmiddle div h2,
+.u-midAutumn-bgmiddle div p{
+    color: #995426;
+    text-align: center;
+    display: block;
+}
+.u-midAutumn-bgmiddle div h2{
+    padding: 72px 0 0;
+}
+.u-midAutumn-bgmiddle div a{
+    margin: 0 auto;
+    height: 54px;
+    width: 309px;
+    display: block;
+    text-align: center;
+    line-height: 54px;
+    text-decoration: none;
+    color: #fef2b8;
+    position: relative;
+    z-index: 1;
+    background: url("/static/img/activity/midAutumn/midAutumn_btn.png") no-repeat;
+}
+.u-midAutumn-bgbottom>div{
+    padding: 15px 0 0;
+}
+.m-midAutumn-rule {
+    color: #fff;
+    height: 275px;
+    background: #02152d;
+}
+.m-midAutumn-rule h5{
+    padding: 38px 0 0;
+}
+.m-midAutumn-rule p {
+    margin: 7px 0 0;
+    line-height: 30px;
+}
+.u-share-box{
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    width: 156px;
+}
+.u-dialog-box .u-share-box>span{
+    margin: 0;
+    padding: 0;
+    height: 22px;
+    min-width: 65px;
+    display: inline-block;
+}
+.u-dialog-box .u-share-box a span{
+    padding: 0;
+    float: left;
+    min-width: 0;
+    margin: 0;
+}
+.u-dialog-box .u-dialog-wrap {
+    margin: 20px 0 0 0;
+}
+.u-dialog-box .u-share-box a{
+    float: right;
+}
+.u-dialog-box .u-dialog-wrap span{
+    margin-bottom: 18px;
+}
+.m-midAutumn-cloud{
+    position: absolute;
+    top:520px;
+    left: 60px;
+}
+.u-cloud-lfet{
+    left: 0;
+    right: 50%;
+    top: 540px;
+    background: url("/static/img/activity/midAutumn/cloud-left.png") no-repeat top right;
+}
+.u-cloud-right{
+    right: 0;
+    left: 44%;
+    top:505px;
+    background: url("/static/img/activity/midAutumn/cloud-right.png") no-repeat top left;
+}
+.u-cloud-lfet,.u-cloud-right{
+    position: absolute;
+    height: 412px;
+    display: block;
+    width: 50%;
+}
+.u-dialog-share,.u-dialog-share>div{
+    display: inline;
+}

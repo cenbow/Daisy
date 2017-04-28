@@ -1,0 +1,41 @@
+#parse('/common/common.vm')
+#set($layout = "/layout/default.vm")
+#if($!tranList && $!tranList.size()>0)
+	<table class="u-data-table u-assign-data">
+		<thead>
+		<tr>
+			<th class="f-tac u-invest-uName" width="309">投资用户</th>
+			<th class="f-tar" width="332">认购本金</th>
+			<th class="f-tac" width="309">认购时间</th>
+		</tr>
+		</thead>
+		<tbody>
+
+			#foreach($_tran in $!tranList)
+
+				<tr>
+					<td class="u-invest-user">
+						<div class="u-user-wrap">
+							<span class="u-user-head">
+							  <img src="#getMemberAvatar35(${_tran.memberId},"40x40")" alt="用户头像">
+							  <i>&nbsp;</i>
+								#if(${_tran.orderSource}!=0)
+                                    <em></em>
+								#end
+							</span>#getMemberUserName(${_tran.memberId})
+						</div>
+						<div class="u-icon-wrap"></div>
+					</td>
+					<td class="u-assign-amount u-invest-amount">
+						<em>￥${formulaUtil.getFormatPrice($!_tran.transferPrincipal)}</em></td>
+					<td class="u-invest-time">${dateUtil.getDateStrFromDate($!_tran.transactionTime)}
+						<span>${dateUtil.getStrFromDate($!_tran.transactionTime,'HH:mm:ss')}</span></td>
+				</tr>
+
+			#end
+
+		</tbody>
+	</table>
+#else
+	<div class="z-noData">暂无认购记录</div>
+#end

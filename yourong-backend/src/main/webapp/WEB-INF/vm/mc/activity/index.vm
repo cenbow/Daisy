@@ -1,0 +1,44 @@
+#parse("/mc/activity/head.vm") 
+<div class="col-xs-12">
+  <p>
+    <button id = "new_bscBank" type="button" class="btn btn-info btn-sm btn-primary permission-$shiro.hasPermission('bscBank:save')" >新增</button>
+    <!--<button id = "edit_bscBank" type="button" class="btn  btn-pink btn-sm btn-primary permission-$shiro.hasPermission('bscBank:edit')" >修改</button>-->
+    <button id = "delete_bscBank" type="button" class="btn btn-danger btn-sm btn-primary permission-$shiro.hasPermission('bscBank:delete')" >删除</button>
+  </p>
+</div>
+<div class="col-xs-12">
+	<div class="table-header">
+		定制活动管理
+	</div>
+	<div class="table-responsive">
+	<form id="bscBank_form">
+		<table class="table table-striped table-bordered">
+			<thead>
+				<tr>
+					<td width="100">活动名称</td>
+					<td width="200"><input type="text" name="search_activityName"  class="input-medium search_init" /></td>
+					<td >
+						<button id = "query_customActivity" type="button" class="btn btn-info btn-sm btn-primary">查询</button>
+						<button id = "reset_customActivity" type="button" class="btn btn-info btn-sm btn-primary resetButton">重置</button>
+					</td>
+				</tr>
+			</thead>
+		</table>
+	</form> 
+	
+	
+<table id="activity-table" class="table table-striped table-bordered" cellspacing="0" width="100%">
+<thead> 	           
+<tr >
+<th >活动编号</th>
+<th >活动名称</th>
+<th >开始时间</th>
+<th >结束时间</th>
+<th >规则</th>
+<th >操作</th>
+</tr>
+</thead>
+</table>
+</div>
+</div>
+ #parse("/mc/activity/form.vm")

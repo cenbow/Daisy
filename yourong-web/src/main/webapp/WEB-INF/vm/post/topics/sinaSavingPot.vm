@@ -1,0 +1,175 @@
+## 新浪存钱罐
+#set($title="新浪存钱罐-有融网-全透明的互联网理财优选平台") ## title
+#set($keywords="帮助中心,名词解释,债权收益权,年化收益率，有融网") ## SEO 关键词
+#set($description="有融网运用高效的运营管理体系和创新的互联网思维,搭建了一个安全透明的互联网理财服务平台. ") ## SEO 描述
+
+#parse('/common/common.vm')
+#set($css_url=["/static/lib/js/jq/fullpagejs/jquery.fullpage.min.css", "$cssv2_url/post/sinaSavingPot.css"])
+#set($js_url=["/static/lib/js/jq/fullpagejs/jquery.fullpage.min.js", "$root_js_url/post/sinaSavingPot.js"])
+
+<div class="g-sinaSavingPot-wrap" id="fullpage">
+
+## 模块1
+    <div class="section u-section1" id="section1">
+        <div id="j-hd"></div>
+        <div class="g-wrap u-section-body">
+            <div class="u-section1-left" >
+                <span class="u-section1-left-logo"></span>
+                <h1 class="u-section1-left-title">资金有隔离<br/>余额享收益</h1>
+            </div>
+            <div class="u-section1-right">
+                <div class="u-bg"></div>
+
+            ## IE9 箭头
+                <span class="u-arrow"></span>
+
+            ## svg 箭头 有 google的 svg绘图制作的
+                <svg width="180" height="180" class="u-svgArrow">
+                    <g>
+                        <path id="svg_1" d="m2,129c0,0 64,-55 64,-55c0,0 36,0 36,0c0,0 31,-54 31,-54" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#88211e" fill="#d74148"/>
+                        <path id="svg_2" d="m133,20c0,0 -19,6 -19,6c0,0 19,-6 19,-6z" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#88211e" fill="#d74148"/>
+                        <path id="svg_3" d="m133,20l2,18l-2,-18z" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#88211e" fill="#d74148"/>
+                    </g>
+                </svg>
+
+            ## stars
+                <img src="/static/img/post/sinaSavingPot/section1/star1.png" class="u-star1"/>
+                <img src="/static/img/post/sinaSavingPot/section1/star2.png" class="u-star2"/>
+                <img src="/static/img/post/sinaSavingPot/section1/star3.png" class="u-star3"/>
+                <img src="/static/img/post/sinaSavingPot/section1/star2.png" class="u-star4"/>
+            </div>
+        </div>
+    </div>
+
+## 模块2
+    <div class="section section2" id="section2">
+        <div class="g-wrap u-section-body">
+            <div class="u-section2-left">
+                <div class="u-section2-bg"></div>
+                <div class="u-leftManTool"></div>
+                <div class="u-rightManTool"></div>
+            </div>
+            <div class="u-section2-right">
+                <h2 class="u-section2-title">知名品牌值得依赖</h2>
+                <div class="u-section2-right-company"></div>
+                <p class="u-section2-content">有融网联合新浪支付&汇添富基金；
+                    <br/>用户开通新浪支付存钱罐，账户余额自动对接汇添富货币基金；
+                    <br/>享受<span class="f-underline">安全的</span>资金托管，<span class="f-underline">稳定的</span>余额收益。
+                </p>
+            </div>
+        </div>
+    </div>
+
+## 模块3
+    <div class="section section3" id="section3">
+        <div class="g-wrap u-section-body">
+            <div class="u-section3-left">
+                <h2 class="u-section3-title">资金有隔离</h2>
+                <p class="u-section3-content">资金专款专用，专人专户；<br/>
+                    资金流向清晰可控，与平台<span class="f-underline">完全隔离</span>；<br/>
+                    只能提现到用户本人<span class="f-underline">实名认证</span>银行卡中。</p>
+            </div>
+            <div class="u-section3-right">
+                <div class="u-section3-a"></div>
+                <div class="u-section3-b"></div>
+                <div class="u-section3-right-img"></div>
+            </div>
+        </div>
+    </div>
+
+## 模块4
+    <div class="section section4" id="section4">
+        <div class="g-wrap u-section-body">
+            <div class="u-section4-left">
+                <div class="u-section4-bg"></div>
+                <span class="u-clock"></span>
+
+                <img src="/static/img/post/sinaSavingPot/section4/section4_star.png" class="u-section4-star1"/>
+                <img src="/static/img/post/sinaSavingPot/section4/section4_star2.png" class="u-section4-star2"/>
+                <img src="/static/img/post/sinaSavingPot/section4/section4_star2.png" class="u-section4-star3"/>
+                <img src="/static/img/post/sinaSavingPot/section4/section4_star2.png" class="u-section4-star4"/>
+            </div>
+            <div class="u-section4-right">
+                <h2 class="u-section4-title">余额享收益</h2>
+                <p class="u-section4-content">资金不站岗，余额日日计息；会钱生钱的资金托管账户，每天坐等收益；
+                    <br/><span class="f-underline">7日年化收益3.164%</span>（数据更新至2015年12月18日）。
+                </p>
+            </div>
+        </div>
+    </div>
+
+## 模块5
+    <div class="section section5" id="section5">
+        <div class="g-wrap u-section5-body">
+            <div class="u-section5-left">
+                <h1 class="u-section5-title">存取更灵活</h1>
+                <p class="u-section5-content">
+                    一分钱起存，资金<span class="f-underline">极速到账</span>；7*24小时随时存取；<br/>
+                    计息中的余额可随时提现或投资。
+                </p>
+            </div>
+            <div class="u-section5-right">
+                <div class="u-section5-bg"></div>
+                <img src="/static/img/post/sinaSavingPot/section1/star1.png" class="u-star5"/>
+                <img src="/static/img/post/sinaSavingPot/section4/section4_star2.png" class="u-star6"/>
+                <img src="/static/img/post/sinaSavingPot/section4/section4_star2.png" class="u-star7"/>
+            </div>
+        </div>
+    </div>
+
+## 模块6 白底色
+    <div class="section section6" id="section6">
+        <div class="g-wrap u-section6-body">
+            <strong>什么是新浪支付存钱罐?</strong>
+            <p>新浪支付（存钱罐）隶属于新浪旗下，是新浪联手汇添富基金主推的名为“存钱罐”第三方支付机构，同时也具有账户余额增值功能。</p>
+
+            <strong>新浪支付存钱罐安全吗?</strong>
+            <p>新浪支付存钱罐是中国支付清算协会会员，已通过多项技术专利认证，为用户提供专业的资金托管服务。</p>
+
+            <strong>余额收益是如何计算的?</strong>
+            <table class="u-plan-table u-section6-table">
+                <thead class="u-thead">
+                <tr>
+                    <th width="330">购买时间</th>
+                    <th width="330">开始计算收益时间</th>
+                    <th width="330">首次显示收益时间</th>
+                </tr>
+                </thead>
+                <tbody class="u-tbody">
+                <tr>
+                    <td width="330" class="f-text-center">周一15:00—周二15:00前</td>
+                    <td width="330" class="f-pl50">周三</td>
+                    <td width="330" class="f-pl50">周四</td>
+                </tr>
+                <tr>
+                    <td class="f-text-center">周二15:00—周三15:00前</td>
+                    <td class="f-pl50">周四</td>
+                    <td class="f-pl50">周五</td>
+                </tr>
+                <tr>
+                    <td class="f-text-center">周三15:00—周四15:00前</td>
+                    <td class="f-pl50">周五（可享受周六周日收益）</td>
+                    <td class="f-pl50">下周一（显示周五周六周日三天收益）</td>
+                </tr>
+                <tr>
+                    <td class="f-text-center">周四15:00—周五15:00前</td>
+                    <td class="f-pl50">下周一（不享受周六周日收益）</td>
+                    <td class="f-pl50">下周二</td>
+                </tr>
+                <tr>
+                    <td class="f-text-center">周五15:00—下周一15:00前</td>
+                    <td class="f-pl50">下周二</td>
+                    <td class="f-pl50">下周三</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <div class="u-section6-bottom">
+                <a href="/memberBalance/savingPot" class="u-red-btn">查看我的存钱罐</a>
+            </div>
+        </div>
+
+    ##         尾部，只显示一部分，在js中有做处理
+        <div id="j-ft"></div>
+    </div>
+</div>

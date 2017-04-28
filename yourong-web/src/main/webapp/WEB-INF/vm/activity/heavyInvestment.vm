@@ -1,0 +1,427 @@
+##大额投资
+#parse('/common/common.vm')
+#set($title="这次玩大了_$!{title_suffix}")
+
+  <style>
+          .g-bd {
+				margin-bottom: 0;
+				}
+			.g-wrap {
+				width: 990px;
+				margin: 0 auto;
+			}
+			.f-fs32{
+				font-size: 32px;
+			}
+			/**页头**/
+		  	.u-heavyInvestment-hd{
+            	width: 100%;
+            	height: 472px;
+            	margin-top: -8px;
+            	position: relative;
+            	color: #fff;
+            	background: url(/static/img/activity/heavyInvestment/heavyInvestment_hd.jpg) no-repeat center;
+	        }
+	        /**内容**/
+	      	.m-heavyInvestment-body{
+	      		height: 1756px;
+	      		background-color: #fff7d3;
+	      	}
+	      	.m-heavyInvestment-awards h3{ 
+				font-weight: bold;
+				text-align: center;
+				padding-top: 20px;
+				margin-bottom: 75px;
+				color: #f26f66;
+	      	}
+	      	.m-heavyInvestment-redPacket{ 
+				height: 368px;
+	      		margin-bottom: 60px;
+	      	}
+	      	.u-heavyInvestment-10k,.u-heavyInvestment-5k{
+				width: 146px;
+				float: left;
+	      	}
+	      	.u-heavyInvestment-30k,.u-heavyInvestment-20k{
+				width: 183px;
+				float: left;
+	      	}
+	      	.u-heavyInvestment-50k{
+				width: 244px;
+				float: left;
+	      	}
+	      	.u-heavyInvestment-50k,.u-heavyInvestment-10k,.u-heavyInvestment-30k,.u-heavyInvestment-20k{ 
+				margin-right: 22px;
+	      	}
+	      	.u-heavyInvestment-50k, .u-heavyInvestment-10k, .u-heavyInvestment-30k, .u-heavyInvestment-20k,.u-heavyInvestment-5k{ 
+				text-align: center;
+	      	}
+	      	.u-heavyInvestment-10k i{ 
+				background: url(/static/img/activity/heavyInvestment/heavyInvestment_10K.png) no-repeat center;
+				width: 146px;
+				height: 218px;
+				display: block;
+	      	}
+	      	.u-heavyInvestment-30k i{ 
+				background: url(/static/img/activity/heavyInvestment/heavyInvestment_30K.png) no-repeat center;
+				width: 183px;
+				height: 272px;
+				display: block;
+				margin-top: 46px;
+	      	}
+	      	.u-heavyInvestment-50k i{ 
+				background: url(/static/img/activity/heavyInvestment/heavyInvestment_50K.png) no-repeat center;
+				width: 244px;
+				height: 363px;
+				display: block;
+				margin-top: 5px;
+	      	}
+	      	.u-heavyInvestment-20k i{ 
+				background: url(/static/img/activity/heavyInvestment/heavyInvestment_20K.png) no-repeat center;
+				width: 183px;
+				height: 272px;
+				display: block;
+				margin-top: 46px;
+	      	}
+	      	.u-heavyInvestment-5k i{ 
+				background: url(/static/img/activity/heavyInvestment/heavyInvestment_5K.png) no-repeat center;
+				width: 146px;
+				height: 218px;
+				display: block;
+	      	}
+			.u-heavyInvestment-text10k,.u-heavyInvestment-text5k{
+				margin-top: -90px;
+			}
+			.u-heavyInvestment-text30k,.u-heavyInvestment-text20k{
+				margin-top: -120px;
+			}
+			.u-heavyInvestment-text50k{
+				margin-top: -148px;
+			}
+	      	.m-heavyInvestment-redPacket dt{ 
+				color: #fff962;
+				font-weight:bold;
+	      	}
+	      	.m-heavyInvestment-redPacket dd{
+	      		color: #fff;
+	      		margin-top: 7px;
+	      	}
+	      	.u-heavyInvestment-text10k dd,.u-heavyInvestment-text5k dd{
+				margin-top: 3px;
+			}
+			/**举例**/
+			.m-heavyInvestment-awards h4{
+				color: #ba805a;
+				font-weight: bold;
+				margin-bottom: 20px;
+			}
+			.m-heavyInvestment-example{ 
+				height: 60px;
+				width: 990px;
+			}
+			.m-heavyInvestment-example p{ 
+				width: 240px;
+				height: 53px;
+				float: left;
+				color: #b08753;
+				line-height: 2em;
+				padding-top: 7px;
+			}
+			.m-heavyInvestment-example span{ 
+				background: url(/static/img/activity/heavyInvestment/heavyInvestment_dashed.png) no-repeat center;
+				height: 49px;
+				width: 323px;
+				display: block;
+				float: left;
+				text-align: center;
+				line-height: 2em;
+				padding: 6px;
+				color: #b08753;
+			}
+			.m-heavyInvestment-example em{ 
+				float: left;
+				width: 43px;
+				height: 43px;
+				margin: 9px;	
+				background: url(/static/img/activity/heavyInvestment/heavyInvestment_pk.png) no-repeat center;
+			}
+			.m-heavyInvestment-example i{ 
+				color: #ff5c5d;
+			}
+			.m-heavyInvestment-example p strong{ 
+				display: block;
+			}
+			.m-heavyInvestment-example span strong{ 
+				color:  #ff5c5d;
+			}
+			/*名单*/
+			.m-heavyInvestment-list p{ 
+				line-height: 270px;
+				color: #666;
+				margin-left: 355px;
+				font-size: 16px;
+			}
+			.m-heavyInvestment-list{ 
+				height: 285px;
+				width: 935px;
+				background: #fff;
+				margin-top: 104px;
+				padding: 55px 0px 45px 55px;
+			}
+			.m-heavyInvestment-list h5{ 
+				color: #f26f66;
+				font-weight: bold;
+				margin-bottom: 30px;
+			}
+			.m-heavyInvestment-list h5 span{ 
+				font-weight:100;
+				margin-left:10px;
+			}
+			.m-heavyInvestment-list ul{ 
+				width: 935px;
+				height: 220px;
+			}
+			.m-heavyInvestment-box{ 
+				width: 935px;
+				height: 220px;
+				position: relative;
+				overflow: hidden;
+			}
+			/**头像**/
+			.u-heavyInvestment-user{
+				width: 393px;
+				border: hidden;
+				margin-bottom:22px;
+				position: relative;
+				overflow: hidden;
+				text-align: left;
+				float: left;
+				margin-right: 74px;
+				color:#999;
+			}
+			.u-heavyInvestment-user span strong{ 
+				color:#ff5c5d;
+			}
+			.u-user-head {
+				display: inline-block;
+				height: 35px;
+				width: 35px;
+				overflow: hidden;
+				padding: 0 2px 0 0;
+				vertical-align: middle;
+				position: relative;
+				margin-right: 15px;
+			}
+			.u-heavyInvestment-user img {
+				display: inline-block;
+				height: 35px;
+				width: 35px;
+				overflow: hidden;
+			}
+			.u-user-head i {
+				display: inline-block;
+				height: 35px;
+				width: 35px;
+				overflow: hidden;
+				position: absolute;
+				left: 0;
+				top: 0;
+				z-index: 2;
+				background: url(/static/img/common/sprites.png) no-repeat -75px -21px;
+			}
+			.u-heavyInvestment-user .u-user-name {
+				margin-right: 25px;
+				width: 70px;
+				display: inline-block;
+			}
+			.u-heavyInvestment-btn{ 
+				width: 383px;
+				height: 53px;
+				background:url(/static/img/activity/heavyInvestment/heavyInvestment_btn.png) no-repeat center;
+				text-align: center;
+				line-height: 53px;
+				margin-top: 40px;
+				margin-left: 304px;
+			}
+			.m-heavyInvestment-awards a{ 
+				color: #fff;
+			}
+			.m-heavyInvestment-awards a:link{ 
+				color: #fff;
+				text-decoration:none;
+			}
+　　 		.m-heavyInvestment-awards a:visited{ 
+				color: #fff;
+				text-decoration:none;
+			}
+　　		.m-heavyInvestment-awards a:hover{
+				color: #fff;
+				text-decoration:none;
+			}
+
+/**规则**/
+			.u-heavyInvestment-rule{
+				color:#ba805a;
+				margin-top: 70px;
+			}
+			.u-heavyInvestment-rule h6{ 
+				margin-bottom: 24px;
+				font-weight: bold;
+			}
+			.u-heavyInvestment-rule span{ 
+				margin-top: 27px;
+				display: block;
+			}
+			.u-heavyInvestment-rule a:link{  
+				color:#ba805a;
+				text-decoration:underline;
+			}
+			.u-heavyInvestment-rule a:visited{ 
+				color:#ba805a;
+				text-decoration:underline;
+			}
+			.u-heavyInvestment-rule a:hover{  
+				color:#ba805a;
+				text-decoration:underline;
+			}
+	      </style>
+	      
+	      
+	      
+	      <div class="f-mh500 f-cf">
+    <!--head-->
+    	<div class="u-heavyInvestment-hd f-fs14">
+		</div>
+	<!--body-->
+	<!--奖励-->
+	<div class="m-heavyInvestment-body">
+		<div class="m-heavyInvestment-awards g-wrap">
+			<h3 class="f-fs38">奖励岂止于大</h3>
+			<div class="m-heavyInvestment-redPacket f-cf">
+				<div class="u-heavyInvestment-10k">
+					<i></i>
+					<dl class="u-heavyInvestment-text10k">
+						<dt class="f-fs24">58*</dt>
+						<dt class="f-fs16">（投资天数/30天）</dd>
+						<dd class="f-fs12">单笔投资满1万立奖人气值</dd>
+					</dl>
+				</div>
+				<div class="u-heavyInvestment-30k">
+					<i></i>
+					<dl class="u-heavyInvestment-text30k">
+						<dt class="f-fs28">178*</dt>
+						<dt class="f-fs18">（投资天数/30天）</dd>
+						<dd class="f-fs14">单笔投资满3万立奖人气值</dd>
+					</dl>
+				</div>
+				<div class="u-heavyInvestment-50k">
+					<i></i>
+					<dl class="u-heavyInvestment-text50k">
+						<dt class="f-fs32">298*</dt>
+						<dt class="f-fs20">（投资天数/30天）</dd>
+						<dd class="f-fs16">单笔投资满5万立奖人气值</dd>
+					</dl>
+				</div>
+				<div class="u-heavyInvestment-20k">
+					<i></i>
+					<dl class="u-heavyInvestment-text20k">
+						<dt class="f-fs28">118*</dt>
+						<dt class="f-fs18">（投资天数/30天）</dd>
+						<dd class="f-fs14">单笔投资满2万立奖人气值</dd>
+					</dl>
+				</div>
+				<div class="u-heavyInvestment-5k">
+					<i></i>
+					<dl class="u-heavyInvestment-text5k">
+						<dt class="f-fs24">28</dt>
+						<dt class="f-fs16">点人气值</dd>
+						<dd class="f-fs12">单笔投资满5000立奖</dd>
+					</dl>
+				</div>
+			</div>
+			<!--举例-->
+			<h4 class="f-fs24">晚一天，少10块钱，五张彩票，五次五百万的机会！！！</h4>
+			<div class="m-heavyInvestment-example f-cf">
+				<p>
+					<strong>对应奖励*(投资天数/30天)=实际奖励</strong>
+					例：投资同一项目：单笔投资5万,
+				</p>
+				<span class="u-circle-7">
+					小明投资天数为<i>365天</i>，最终获得奖励为：</br>
+					298*365/30天=3625.67≈<strong>3626人气值</strong>；
+				</span>
+				<em>
+				</em>
+				<span class="u-circle-7">
+					小刚投资天数为<i>364天</i>，最终获得奖励为：</br>
+					298*364/30天=3615.73≈<strong>3616人气值</strong>；
+				</span>
+			</div>
+			<!--/举例-->
+			<!--名单-->
+			<div class="m-heavyInvestment-list">	
+				#if("$!singleInvestList" == "" || $!singleInvestList.size() == 0)
+							<p>一大波大人物正在靠近</p>
+			#else
+				<h5 class="f-fs24">这些大人物<span class="f-fs12">(此处仅显示最近100名)</span></h5>
+				<div class="m-heavyInvestment-box">
+				<ul id="j-heavyInvestment-list">
+				#foreach($!{singleInvest} in $!{singleInvestList})
+					<li class="u-heavyInvestment-user">
+						<span class="u-user-head">
+	                        <img src='#getMemberAvatar35($!{singleInvest.memberId},"40x40")' alt="用户头像">
+	                        <i>&nbsp;</i>
+	                    </span>
+	                    <span class="u-user-name">$!{singleInvest.username}</span>
+	                    <span>单笔投资$!{singleInvest.investAmount}元，获得<strong>$!{singleInvest.popularityNum}</strong>人气值</span>
+					</li>
+	
+				#end
+				</ul>
+				</div>
+			#end	
+			</div>
+			<!--/名单-->
+			<a class="u-heavyInvestment-btn f-fs20 u-circle-25 " href="$root_url/products/list-all-all-investing-1-createTimeAsc-1.html" target="_blank"></a>
+			<div class="u-heavyInvestment-rule">
+				<h6 class="f-fs16">活动规则：</h6>
+				<p class="f-fs14">
+1、活动对象：有融网所有用户（APP、WAP等其他投资用户均可参与）；
+</br>2、活动时间：2015年4月22日——2015年7月31日23:59:59；
+</br>3、活动期间，用户单笔投资额满5000元不足10000元时，将获得人气值28点（单笔投资满10000元才有机会翻倍哦）；
+</br>4、活动期间，用户单笔投资额满10000元不足20000元时，将获得人气值58点*(投资天数/30天)；
+</br>5、活动期间，用户单笔投资额满20000元不足30000元时，将获得人气值118点*(投资天数/30天)；
+</br>6、活动期间，用户单笔投资额满30000元不足50000元时，将获得人气值178点*(投资天数/30天)；
+</br>7、活动期间，用户单笔投资额满50000元及以上（含50000元），将获得人气值298点*(投资天数/30天)；
+</br>例：A用户单笔投资50000元，所获奖励为298点人气值，该项目期限为360天，A用户投资的实际天数为360天，则A用户最终获得奖励为：
+</br>298*360/30天=3576人气值（结果为非整数时，以四舍五入值为准）；
+</br>8、投资天数是指用户实际投资项目时该项目剩余的天数（如该项目原期限为360天，用户实际投资该项目时，该项目剩余投资天数为300天，
+</br>用户投资天数以其实际投资时间为准）；
+</br>9、活动期间，单笔投资只能获得一次奖励，活动所得人气值即时发放。人气值可用于兑换现金券，1点人气值=1元现金券，<a href="/coupon/reputation" target="_blank">查看我的人气值</a>；
+</br>10、如有其它疑问，请拨打客服电话：400-025-6688；
+
+			<span>本活动最终解释权归有融网所有</span>
+
+				</p>
+			</div>
+		</div>
+    </div>
+    
+    
+    <script type="text/javascript" >
+    window.onload=function(){
+    var scrollList=$("#j-heavyInvestment-list"),scrollSize=scrollList.find("li").length;
+		if(scrollSize>8){
+			setInterval(function(){
+				var scrollItems=scrollList.find("li:visible");
+				scrollList.animate({marginTop:-57},700,function(){
+				scrollItems.eq(0).appendTo(scrollList);
+				scrollItems.eq(1).appendTo(scrollList);
+				$(this).css("margin-top",0);
+			});
+			},3000);
+		}    
+    };
+
+		
+    </script>

@@ -1,0 +1,57 @@
+#parse('/common/common.vm')
+#set($title="合同资料")
+#if(!$sysServiceUtil.isDev())
+    #set($siteurl='')
+#else
+    #set($siteurl='/yourong-api')
+#end
+#set($css_url=["$siteurl/static/source/css/detail.css"])
+<style>
+	html{
+font-size: 62.5%;
+}
+.m-project-contract p strong{
+	font-size: 1.5rem;
+	font-weight: bold;
+	color: #666;
+	line-height: 2rem;
+	margin: 0px 0px 2.4rem;
+	border-bottom: 0.1rem solid #CCC;
+	width: 100%;
+	display: block;
+	text-align:left;
+}
+</style>
+   <section class="m-project-contract g-wrap">
+       <div>
+			#set($module="")
+			#set($attachIndex=1)
+    	   #foreach($_attach in $contractAttachmentList)					
+				#if($module != $_attach.module)
+					#set($module=$_attach.module)
+					#set($attachIndex=1)
+				#else
+					#set($attachIndex=2)
+				#end
+				#if($_attach.module == "debt_contract" and $attachIndex==1)
+					<p><strong>合同图片</strong></p>
+				#elseif($_attach.module == "debt_legal" and $attachIndex==1)
+					<p><strong>法律意见书</strong></p>
+				#elseif($_attach.module == "debt_base" and $attachIndex==1)
+					<p><strong>其它资料图片</strong></p>
+				#end
+               <img src="$!{aliyun_url}/$!{_attach.fileUrl}" alt="$!{_attach.fileName}">
+    		   <p>$!{_attach.fileName}</p>
+    		#end
+       </div>
+   </section>
+<script>
+    //控制iframe高度
+    window.onload=function(){
+        if(window!==window.top&&window.frames.name==="detailFrame"){
+            window.top.$('#j-detail-frame')
+                    .removeAttr('style')
+                    .height(document.body.scrollHeight);
+        }
+    };
+</script>

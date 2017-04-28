@@ -1,0 +1,596 @@
+##2周年庆
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$res_url/source/css/activity/twoYearAnniversary.css"])
+#set($title="四季变换  有你相伴_$!{title_suffix}")
+<script>
+    var url=window.location.href,title='四季变换  有你相伴';
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        window.shareData = {
+            "timeLineLink": url,
+            "sendFriendLink": url,
+            "weiboLink": url,
+            "tTitle": "四季变换  有你相伴",
+            "tContent": "周年庆四重壕礼   钜惠来袭",
+            "fTitle": "四季变换  有你相伴",
+            "fContent": "周年庆四重壕礼   钜惠来袭",
+            "wContent": "四季变换  有你相伴   周年庆四重壕礼   钜惠来袭"
+        };
+        // 发送给好友
+        if(typeof(WeixinJSBridge)!=='undefined'){
+            WeixinJSBridge.on('menu:share:appmessage', function (argv) {
+                WeixinJSBridge.invoke('sendAppMessage', {
+                    "img_url": "../../static/img/weixin/weixin_twoYearAnniversary.jpg",
+                    "img_width": "358",
+                    "img_height": "328",
+                    "link": window.shareData.sendFriendLink,
+                    "desc": window.shareData.fContent,
+                    "title": window.shareData.fTitle
+                }, function (res) {
+                    _report('send_msg', res.err_msg);
+                })
+            });
+            // 分享到朋友圈
+            WeixinJSBridge.on('menu:share:timeline', function (argv) {
+                WeixinJSBridge.invoke('shareTimeline', {
+                    "img_url": "../../static/img/weixin/weixin_twoYearAnniversary.jpg",
+                    "img_width": "358",
+                    "img_height": "328",
+                    "link": window.shareData.timeLineLink,
+                    "desc": window.shareData.tContent,
+                    "title": window.shareData.tTitle
+                }, function (res) {
+                    _report('timeline', res.err_msg);
+                });
+            });
+        }
+    }, false);
+</script>
+
+#set($encryptionId=$request.getParameter("encryptionId"))
+#set($loginSource=$request.getHeader("loginSource"))
+
+#if($currentUser)
+    #set($logined=true)
+#else
+    #set($logined=false)
+#end
+#set($os=3)
+##  安卓
+#if($loginSource==1)
+    #set($os=1)
+#end
+##  IOS
+#if($loginSource==2)
+    #set($os=2)
+#end
+
+<div class="g-main" id="j-twoYearAnniversary" os="$!{os}" data-logined="$logined" v-cloak>
+    #if($loginSource==1 || $loginSource==2)
+        <style>
+            .g-ft{  display: none;  }
+        </style>
+    #else
+    ##header，安卓ios，不需要头部
+        <h2 class="u-pageTitle f-pos-r u-section1-title" id="j-title">
+            <a href="$m_url">有融网</a>
+            <span class="u-login-link f-pos-a">
+                #if(!$currentUser)
+                    <a href="{{loginUrl}}">登录</a>
+            <a href="$siteurl/mstation/register">注册</a>
+                #else
+                    <a href="$mCenter_logout_url">退出</a>
+                #end
+    </span>
+        </h2>
+    #end
+
+## top bg
+    <div class="u-top-img-wrap">
+        <img src="$res_url/img/activity/twoYearAnniversary/top1.png" class="u-img-responsive">
+        <img src="$res_url/img/activity/twoYearAnniversary/top2.png" class="u-img-responsive" v-show="selectTab === 1">
+        <img src="$res_url/img/activity/twoYearAnniversary/top3.png" class="u-img-responsive" v-show="selectTab === 2">
+        <img src="$res_url/img/activity/twoYearAnniversary/top4.png" class="u-img-responsive" v-show="selectTab === 3">
+        <img src="$res_url/img/activity/twoYearAnniversary/top5.png" class="u-img-responsive" v-show="selectTab === 4">
+    </div>
+
+    <div class="m-main-wrap">
+##        春意盎然
+        <div id="j-tab-spring" class="m-tab-wrap" v-show="selectTab === 1">
+            <div class="m-main-head">
+                <span class="u-head-bg spring-bg"></span>
+            </div>
+            <div class="m-main-content">
+                <h3 class="u-main-text f-mt-30 f-fc-spring">{{initData.eightCouponStartTime | formatTime
+                    'M月d日hh:mm'}}，168元祝福红包限量开抢。存钱罐可用余额≥2000元的用户登录即可领取，先到先得，领完即止。
+                    （抢券活动仅限{{initData.eightCouponStartTime | formatTime 'd日'}}当天，每人限领一张，现金券有效期为领取后1天）</h3>
+                <div class="m-activity-status">
+
+                    <div class="m-activity-time" v-if="!cash88ActivityStatus && !cash88TimeCount && !tenMinuteStatus">
+                        红包开抢时间：{{initData.eightCouponStartTime | formatTime 'd日'}}上午{{initData.eightCouponStartTime | formatTime 'hh:mm'}}
+                    </div>
+
+                    <div class="m-activity-countDown"
+                         v-if="(cash88TimeCount && startCountDown) || (!cash88TimeCount && tenMinuteStatus)">
+                        <i>距离抢券开始</i>
+                        <span class="m-calendar-item">
+                            {{hours}}
+                        </span>
+                        <i class="u-symbol">:</i>
+                        <span class="m-calendar-item">
+                            {{minutes}}
+                        </span>
+                        <i class="u-symbol">:</i>
+                        <span class="m-calendar-item">
+                            {{seconds}}
+                        </span>
+                    </div>
+
+                    <div class="m-activity-start" v-if="startGrabCash">火热开抢中...</div>
+                </div>
+
+                <div class="m-blessRed-wrapper">
+                    <img src="$res_url/img/activity/twoYearAnniversary/blessRed.png" class="u-img-responsive">
+                    <div class="u-blessRed-count" v-if="!cash88ActivityStatus">祝福红包总计 <em v-if="initData.totalCoupon88 == 0">?</em><em v-else>{{initData.totalCoupon88}}</em> 个，仅剩 <em v-if="initData.totalCoupon88 == 0">?</em><em v-else>{{initData.totalCoupon88}}</em> 个</div>
+                    <div class="u-blessRed-count" v-if="cash88ActivityStatus && isTheFirstDay">祝福红包总计 <em v-text="initData.totalCoupon88"></em> 个，仅剩 <em v-text="initData.coupon88Remind"></em> 个</div>
+                    <div class="u-blessRed-count" v-if="cash88ActivityStatus && !isTheFirstDay">祝福红包总计 <em v-text="initData.totalCoupon88"></em> 个，仅剩 <em>0</em> 个</div>
+                    <div class="u-blessRed-rule">
+                        投资额≥4,000元</br>投资期限≥90天可用
+                    </div>
+                </div>
+
+                <a class="u-blessRed-btn" :class="{'z-disabled': getCash88BtnStatus}" v-text="cash88Text(88)" @click="receive88Cash($event)"></a>
+
+                <h3 class="u-main-text f-mt-26 f-fc-spring">活动期间，单笔投资满2000元即可领取以下任意一张现金券，多投多得。</h3>
+
+                <ul class="m-redPacket-list">
+                    <li>
+                        <div class="m-redPacket-container">
+                            <div class="u-redPack">
+                                <span class="u-redPack-value"><em>￥</em>188</span>
+                                <span class="u-redPack-rule">投资额≥18,000元</span>
+                                <span class="u-redPack-rule f-mt2">投资期限≥30天</span>
+                                <a class="u-redPack-btn f-fc-red" @click="receiveCashCoupon(1, $event)">领取</a>
+                            </div>
+                            <div class="u-redPack">
+                                <span class="u-redPack-value"><em>￥</em>100</span>
+                                <span class="u-redPack-rule">投资额≥10,000元</span>
+                                <span class="u-redPack-rule f-mt2">投资期限≥30天</span>
+                                <a class="u-redPack-btn f-fc-red" @click="receiveCashCoupon(2, $event)">领取</a>
+                            </div>
+                            <div class="u-redPack">
+                                <span class="u-redPack-value"><em>￥</em>50</span>
+                                <span class="u-redPack-rule">投资额≥5,000元</span>
+                                <span class="u-redPack-rule f-mt2">投资期限≥30天</span>
+                                <a class="u-redPack-btn f-fc-red" @click="receiveCashCoupon(3, $event)">领取</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="m-redPacket-container f-mt-15">
+                            <div class="u-redPack">
+                                <span class="u-redPack-value"><em>￥</em>188</span>
+                                <span class="u-redPack-rule">投资额≥10,000元</span>
+                                <span class="u-redPack-rule f-mt2">投资期限≥60天</span>
+                                <a class="u-redPack-btn f-fc-red" @click="receiveCashCoupon(4, $event)">领取</a>
+                            </div>
+                            <div class="u-redPack">
+                                <span class="u-redPack-value"><em>￥</em>100</span>
+                                <span class="u-redPack-rule">投资额≥5,000元</span>
+                                <span class="u-redPack-rule f-mt2">投资期限≥60天</span>
+                                <a class="u-redPack-btn f-fc-red" @click="receiveCashCoupon(5, $event)">领取</a>
+                            </div>
+                            <div class="u-redPack f-mt-15">
+                                <span class="u-redPack-value"><em>￥</em>50</span>
+                                <span class="u-redPack-rule">投资额≥3,000元</span>
+                                <span class="u-redPack-rule f-mt2">投资期限≥60天</span>
+                                <a class="u-redPack-btn f-fc-red" @click="receiveCashCoupon(6, $event)">领取</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="m-redPacket-container f-mt-15">
+                            <div class="u-redPack">
+                                <span class="u-redPack-value"><em>￥</em>188</span>
+                                <span class="u-redPack-rule">投资额≥5,000元</span>
+                                <span class="u-redPack-rule f-mt2">投资期限≥90天</span>
+                                <a class="u-redPack-btn f-fc-red" @click="receiveCashCoupon(7, $event)">领取</a>
+                            </div>
+                            <div class="u-redPack">
+                                <span class="u-redPack-value"><em>￥</em>100</span>
+                                <span class="u-redPack-rule">投资额≥3,000元</span>
+                                <span class="u-redPack-rule f-mt2">投资期限≥90天</span>
+                                <a class="u-redPack-btn f-fc-red" @click="receiveCashCoupon(8, $event)">领取</a>
+                            </div>
+                            <div class="u-redPack f-mt-15">
+                                <span class="u-redPack-value"><em>￥</em>50</span>
+                                <span class="u-redPack-rule">投资额≥2,000元</span>
+                                <span class="u-redPack-rule f-mt2">投资期限≥90天</span>
+                                <a class="u-redPack-btn f-fc-red" @click="receiveCashCoupon(9, $event)">领取</a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="u-myData-total f-fc-spring" v-if="logined">
+                    我的领取次数：{{initData.myNumber}}次
+                </div>
+                <div class="u-activity-rule-btn" @click="openRuleDialog">查看活动规则 ></div>
+            </div>
+        </div>
+##        夏日炎炎
+        <div id="j-tab-summer" class="m-tab-wrap" v-show="selectTab === 2">
+            <div class="m-main-head">
+                <span class="u-head-bg summer-bg"></span>
+            </div>
+            <div class="m-main-content">
+                <h3 class="u-main-text f-mt-30 f-fc-summer">活动期间，投资期限≥90天的项目，累计投资额满足以下条件，即可领取专属礼包，多投多得（直投项目履约后计入个人累计投资额）。</h3>
+                <ul class="m-giftPacks-list f-mt-15">
+                    <li>
+                        <div class="m-giftPacks-container z-container-one">
+                            <div class="u-giftPacks">
+                                <div class="u-giftPacks-value">19点人气值+</br>0.5%收益券</div>
+                                <div class="u-giftPacks-rule">累计投资满1W<br>即可领取</div>
+                                <a class="u-giftPacks-btn" :class="{'z-disabled': initData.summerGift.popularity19}" @click="getGiftPacks(1,19,$event)" v-text="giftPacksBtnText(19)"></a>
+                            </div>
+
+                            <div class="u-giftPacks z-center">
+                                <div class="u-giftPacks-value">199点人气值+</br>1%收益券</div>
+                                <div class="u-giftPacks-rule">累计投资满10W<br>即可领取</div>
+                                <a class="u-giftPacks-btn" :class="{'z-disabled': initData.summerGift.popularity199}" @click="getGiftPacks(2,199,$event)" v-text="giftPacksBtnText(199)"></a>
+                            </div>
+
+
+                            <div class="u-giftPacks">
+                                <div class="u-giftPacks-value">659点人气值+</br>1%收益券</div>
+                                <div class="u-giftPacks-rule">累计投资满30W<br>即可领取</div>
+                                <a class="u-giftPacks-btn" :class="{'z-disabled': initData.summerGift.popularity659}" @click="getGiftPacks(3,659,$event)" v-text="giftPacksBtnText(659)"></a>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="m-giftPacks-container z-container-two">
+                            <div class="u-giftPacks">
+                                <div class="u-giftPacks-value">1119点人气值+</br>1.5%收益券</div>
+                                <div class="u-giftPacks-rule">累计投资满50W<br>即可领取</div>
+                                <a class="u-giftPacks-btn" :class="{'z-disabled': initData.summerGift.popularity1119}" @click="getGiftPacks(4,1119,$event)" v-text="giftPacksBtnText(1119)"></a>
+                            </div>
+
+                            <div class="u-giftPacks">
+                                <div class="u-giftPacks-value">2016点人气值+</br>2%收益券</div>
+                                <div class="u-giftPacks-rule">累计投资满80W<br>即可领取</div>
+                                <a class="u-giftPacks-btn" :class="{'z-disabled': initData.summerGift.popularity2016}" @click="getGiftPacks(5,2016,$event)" v-text="giftPacksBtnText(2016)"></a>
+                            </div>
+                            <div class="u-giftPacks">
+                                <div class="u-giftPacks-value">iPhone7 32G+</br>2%收益券</div>
+                                <div class="u-giftPacks-rule">累计投资满150W<br>即可领取</div>
+                                <a class="u-giftPacks-btn" :class="{'z-disabled': initData.summerGift.iphone7}"
+                                   @click="getGiftPacks(6,'iphone7',$event)" v-text="giftPacksBtnText('iphone7')"></a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="u-myData-total f-fc-summer" v-if="logined">
+                     我的累计投资额：<em>￥</em>{{initData.totalMyInvestAmount}}
+                </div>
+                <div class="u-activity-rule-btn" @click="openRuleDialog">查看活动规则 ></div>
+            </div>
+        </div>
+##        秋色宜人
+        <div id="j-tab-autumn" class="m-tab-wrap" v-show="selectTab === 3">
+            <div class="m-main-head">
+                <span class="u-head-bg autumn-bg"></span>
+            </div>
+            <div class="m-main-content">
+                <h3 class="u-main-text f-mt-30 f-fc-autumn">活动期间，用户花费10或30点人气值即可翻牌一次，100%中奖，每人每日限翻一次。</h3>
+                <ul class="m-cards-list">
+                    <li>
+                        <a @click="drawCards(1,$event)">
+                            <div class="u-cards">有</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a @click="drawCards(2,$event)">
+                            <div class="u-cards">融</div>
+                        </a>
+                    </li>
+                 </ul>
+                <ul class="m-cards-list f-mt-0">
+                    <li>
+                        <a @click="drawCards(3,$event)">
+                            <div class="u-cards">二</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a @click="drawCards(4,$event)">
+                            <div class="u-cards">周</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a @click="drawCards(5,$event)">
+                            <div class="u-cards">年</div>
+                        </a>
+                    </li>
+                </ul>
+
+##              现金券
+                <div class="m-open-cards z-position{{initData.position}}" v-if="rewardType === 1">
+                    ## 100现金券
+                    <span class="m-prizes-amount">
+                        <span class="f-ff-ver f-fs24">¥</span>
+                        <em>{{rewardValue}}</em>
+                    </span>
+                    ## 10现金券规则
+                    <span class="m-prizes-rule f-text-overflow" v-if="rewardValue == '10'">
+                        <em style="line-height: 44px">投资额≥2000元</em>
+                    </span>
+                    ## 30现金券规则
+                    <span class="m-prizes-rule f-text-overflow" v-if="rewardValue == '30'">
+			    	    <em>投资额≥2000元</em>
+    			        <em>投资期限≥60天</em>
+                    </span>
+                    ## 50现金券规则
+                    <span class="m-prizes-rule f-text-overflow" v-if="rewardValue == '50'">
+			    	    <em>投资额≥3000元</em>
+    			        <em>投资期限≥60天</em>
+                    </span>
+                    ## 100现金券规则
+                    <span class="m-prizes-rule f-text-overflow" v-if="rewardValue == '100'">
+			    	    <em>投资额≥6000元</em>
+    			        <em>投资期限≥60天</em>
+                    </span>
+                </div>
+
+##              收益券
+                <div class="m-open-cards z-copy z-position{{initData.position}}" v-if="rewardType === 2">
+                    <div class="u-text">
+                        <i>{{rewardValue.split('.')[0]}}.5</i>%<br>收益券
+                    </div>
+                </div>
+
+##              爱奇艺
+                <div class="m-open-cards z-copy z-position{{initData.position}}" v-if="rewardType === 3">
+                    <div class="u-text">
+                        <strong>爱奇艺</strong>
+                        黄金会员月卡
+                    </div>
+                </div>
+
+                <div class="u-reward-list">
+                    <div class="u-list-btn" @click="openPrizesModal(10)"> 10点人气值奖品列表 > </div>
+                    <div class="u-list-btn" @click="openPrizesModal(30)"> 30点人气值奖品列表 > </div>
+                </div>
+                <div class="u-myData-total f-fc-autumn" v-if="logined">
+                    我的人气值：{{initData.myPopularity}}点
+                </div>
+                <div class="u-activity-rule-btn z-autumn" @click="openRuleDialog">查看活动规则 ></div>
+            </div>
+        </div>
+##        冬季欢歌
+        <div id="j-tab-winter" class="m-tab-wrap" v-show="selectTab === 4">
+            <div class="m-main-head">
+                <span class="u-head-bg winter-bg"></span>
+            </div>
+            <div class="m-main-content">
+                <h3 class="u-main-text f-mt-30 f-fc-winter">活动期间，新注册用户首次投资后满足以下条件即可获得现金券一张。</h3>
+                <div class="m-tag-wrap">
+                    <div class="u-tag-bg tag30"></div>
+                    <div class="u-tag-rule">首次投资满 1,000 元</div>
+                </div>
+                <div class="m-tag-wrap">
+                    <div class="u-tag-bg tag50"></div>
+                    <div class="u-tag-rule">首次投资满 2,000 元</div>
+                </div>
+                <div class="m-tag-wrap">
+                    <div class="u-tag-bg tag100"></div>
+                    <div class="u-tag-rule">首次投资满 4,000 元</div>
+                </div>
+                <div class="m-tag-wrap">
+                    <div class="u-tag-bg tag200"></div>
+                    <div class="u-tag-rule">首次投资满 8,000 元</div>
+                </div>
+                <div class="u-activity-rule-btn" @click="openRuleDialog">查看活动规则 ></div>
+            </div>
+        </div>
+    </div>
+
+## 底部导航
+    <ul class="g-main-footer u-activity-nav">
+        <li class="u-spring" :class="{'z-current': selectTab === 1}" @click="goSelectTab(1)">
+            <a href="#">
+                <span class="u-index"></span>
+                <p>春意盎然</p>
+            </a>
+        </li>
+        <li class="u-summer" :class="{'z-current': selectTab === 2}" @click="goSelectTab(2)">
+            <a href="#">
+                <span class="u-index"></span>
+                <p>夏日炎炎</p>
+            </a>
+        </li>
+        <li class="u-autumn" :class="{'z-current': selectTab === 3}" @click="goSelectTab(3)">
+            <a href="#">
+                <span class="u-index"></span>
+                <p>秋色宜人</p>
+            </a>
+        </li>
+        <li class="u-winter" :class="{'z-current': selectTab === 4}" @click="goSelectTab(4)">
+            <a href="#">
+                <span class="u-index"></span>
+                <p>冬季欢歌</p>
+            </a>
+        </li>
+    </ul>
+
+## 人气值选择
+    <div class="m-dialog-container" :class="{'z-show': showSelectPopDialog}">
+        <div class="u-dialog-close" @click="activityDialog('showSelectPopDialog','hide')"></div>
+        <div class="m-pop-content">
+            <h3>请选择人气值点数</h3>
+            <div :class="{'z-actived': selectPopularity === 10}" @click="selectPopValue(10)">10点人气值翻一次</div>
+            <div :class="{'z-actived': selectPopularity === 30}" @click="selectPopValue(30)">30点人气值翻一次</div>
+        </div>
+        <a class="u-confirm-btn" :class="{'z-disabled': selectPopularity === 0}" @click="goPrizeDraw($event)">确&nbsp;&nbsp;定</a>
+    </div>
+
+## 10点人气值奖品列表
+    <div class="m-modal-container" v-show="showTenPrizesDialog">
+        <div class="m-modal-head">
+            <div class="m-modal-logo">
+                <div class="u-modal-title z-title-ten"></div>
+            </div>
+            <div class="m-modal-close" @click="activityDialog('showTenPrizesDialog','hide')"></div>
+        </div>
+        <div class="m-modal-content">
+            <div class="m-modal-main">
+                <ul class="m-prizes-card-list">
+                    <li>
+                        <span class="m-prizes-amount">
+                            <span class="f-ff-ver">¥</span><em>10</em>
+                        </span>
+                        <span class="m-prizes-rule">
+                           <em class="f-center"> 投资额≥2000元</em>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="m-prizes-amount">
+                            <span class="f-ff-ver">¥</span><em>30</em>
+                        </span>
+                        <span class="m-prizes-rule">
+                            <em>投资额≥2000元</em>
+                            <em>投资期限≥60天</em>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="m-prizes-amount">
+                            <span class="f-ff-ver f-fs24">¥</span> <em>50</em>
+                            <em class="u-cnum-a u-cnum-s5"></em>
+                            <em class="u-cnum-a u-cnum-s0"></em>
+                        </span>
+                        <span class="m-prizes-rule ">
+                            <em>投资额≥3000元</em>
+                            <em>投资期限≥60天</em>
+                        </span>
+                    </li>
+                    <li class="z-copy">
+                        <div class="u-text">
+                            <strong>爱奇艺</strong>
+                            黄金会员月卡
+                        </div>
+                    </li>
+                    <li class="z-copy">
+                        <div class="u-text">
+                            <i>0.5</i>%<br>
+                            收益券
+                        </div>
+                    </li>
+                    <li style="background: 0"></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+## 30点人气值奖品列表
+    <div class="m-modal-container" v-show="showThirtyPrizesDialog">
+        <div class="m-modal-head">
+            <div class="m-modal-logo">
+                <div class="u-modal-title  z-title-thirty"></div>
+            </div>
+            <div class="m-modal-close" @click="activityDialog('showThirtyPrizesDialog','hide')"></div>
+        </div>
+        <div class="m-modal-content">
+            <div class="m-modal-main">
+                <ul class="m-prizes-card-list">
+                    <li>
+                        <span class="m-prizes-amount">
+                            <span class="f-ff-ver">¥</span><em>30</em>
+                        </span>
+                        <span class="m-prizes-rule ">
+                             <em>投资额≥2000元</em>
+                             <em>投资期限≥60天</em>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="m-prizes-amount">
+                            <span class="f-ff-ver">¥</span><em>50</em>
+                            <em class="u-cnum-a u-cnum-s3"></em>
+                            <em class="u-cnum-a u-cnum-s0"></em>
+                        </span>
+                        <span class="m-prizes-rule ">
+                            <em>投资额≥3000元</em>
+                            <em>投资期限≥60天</em>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="m-prizes-amount">
+                            <span class="f-ff-ver f-fs24">¥</span><em>100</em>
+                        </span>
+                        <span class="m-prizes-rule ">
+                            <em>投资额≥5000元</em>
+                            <em>投资期限≥60天</em>
+                        </span>
+                    </li>
+                    <li class="z-copy">
+                        <div class="u-text">
+                            <strong>爱奇艺</strong>
+                            黄金会员月卡
+                        </div>
+                    </li>
+                    <li class="z-copy">
+                        <div class="u-text">
+                            <i>1.5</i>%<br>
+                            收益券
+                        </div>
+                    </li>
+                    <li style="background: 0"></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+## 活动规则
+    <div class="m-anniversary-rule" v-show="open">
+        <div class="u-dialog-close" @click="closeRuleDialog"></div>
+        <div class="m-rule-content">
+            <strong class="u-rule-title">活动规则</strong>
+            <p><i>1、</i>活动对象：有融网所有用户；</p>
+            <p><i>2、</i>活动时间：<span>2016年{{initData.startTime | formatTime 'M月d日hh:mm'}}</span>—<span>{{initData.endTime | formatTime 'M月d日hh:mm'}}</span>；</p>
+            <p><i>3、</i>现金券、收益券领取后7天内有效（168元祝福红包除外），现金券使用规则请详见券面；</p>
+            <p><i>4、</i>iPhone 7和爱奇艺会员卡奖励将于活动结束后3个工作日内与您联系，请保持手机畅通，如错过通知则视为放弃获奖资格；</p>
+            <p><i>5、</i>如有其他疑问，请拨打客服热线：400-025-6688；</p>
+            本活动最终解释权归有融网所有。
+        </div>
+    </div>
+
+## 提示弹框
+    <div class="m-dialog-container m-received-dialog" :class="{'z-show': showGiftPacksDialog}">
+        <div class="u-dialog-close" @click="activityDialog('showGiftPacksDialog','hide')"></div>
+        <div class="m-dialog-content">
+            <span v-text="dialogTips"></span><a class="f-fc-red" :href="targetUrls" v-text="dialogOther" @click="andGoPage"></a>
+        </div>
+    </div>
+
+## 普通提示框
+    <div class="m-dialog-container m-received-dialog" :class="{'z-show': showStatusDialog}">
+        <div class="u-dialog-close" @click="activityDialog('showStatusDialog','hide')"></div>
+        <div class="m-dialog-content">
+            <span v-text="dialogTips"></span>
+        </div>
+    </div>
+
+</div>
+
+#set($pageScript="
+<script src='$res_url/build/js/appHook.js'></script>
+<script src='$aliyunOss_url/res/lib/vue/v1/vue.min.js'></script>
+<script src='$siteurl/res/lib/vue/vue.extend.js'></script>
+<script src='$siteurl/res/lib/js/moment.min.js'></script>
+##<script src='$siteurl/res/lib/js/vconsole.min.js'></script>
+<script>
+    var receiveData = $!{data},
+            os = $!{os};
+    log(receiveData)
+
+    seajs.use('$res_url/source/js/activity/twoYearAnniversary.js?201611211343');
+</script>
+")
+#CSRFToken("xToken")

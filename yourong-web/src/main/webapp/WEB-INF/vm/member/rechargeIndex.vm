@@ -1,0 +1,85 @@
+##充值提现页面
+#parse("/common/common.vm")
+#set($title="充值提现_资金记录 _$!{title_suffix}")
+#set($css_url=["$cssv2_url/member/member.css"])
+#set($js_url=["$root_url/static/lib/js/jq/jquery.pagination.js","$root_js_url/modules/rechargeIndex.js","$root_js_url/modules/member.js"])
+#set($capitalinOutLog="z-current")
+## 用户中心头部
+#parse("/member/head.vm")
+## 用户中心内容
+<div class="g-wrap">
+    <div class="m-nav-title j-recharge-tab" id="j-recharge-tab">
+        <a href="/member/capitalInOutLog" class="u-tit-l u-title-secondary">
+            资金流水
+        </a><a href="/memberBalance/rechargeIndex?type=recharge" class="z-current">
+            充值记录
+        </a><a href="/memberBalance/rechargeIndex?type=withdraw" class="u-tit-r u-title-secondary">
+            提现记录
+        </a>
+    </div>
+	<div class="g-uc-bd f-round u-recordlist-pt">
+
+		<div class="m-recharge-list" id="j-recharge-list">
+        	<div class="u-rtable">
+        		<div class="u-rtable-wrap f-round">
+	        		<table id="rechargeTable">
+		        		<thead>
+		        			<tr>
+		        				<th width="105">交易时间</th>
+			        			<th width="232">流水号</th>
+			        			<th width="166">充值金额</th>
+			        			<th width="105">充值银行</th>
+			        			<th width="86">充值状态</th>
+			        			<th width="87">充值类型</th>			        			
+			        			<th>备注</th>
+		        			</tr>
+		        		</thead>
+		        		<tbody>
+		        		#if(${pageRe} <= 0)	 
+		        			<tr>
+							   	<td colspan="7" class="u-table-empty">
+						  			 暂无充值记录
+						   		</td>
+				 			 </tr>
+				 		#end       	
+		        		</tbody>
+		        	</table>
+	        	</div>	        	        				
+				#if(${pageRe} > 0) <div id="rePagination" class="m-pagenav f-tac" data="$!{pageRe}"></div> 
+				#end
+
+        	</div>
+        	<div class="u-rtable f-dn">
+        		<div class="u-rtable-wrap f-round">
+	        		<table id= "withrdTable">
+		        		<thead>
+		        			<tr>
+		        				<th width="110">交易时间</th>
+			        			<th width="240">流水号</th>
+			        			<th width="170">提现金额</th>
+			        			<th width="140">提现账号</th>
+			        			<th width="110">提现状态</th>
+			        			<th>备注</th>
+		        			</tr>
+		        		</thead>
+		        		<tbody>		        			        			
+		        			#if(${pagWh}<=0) 
+		        				<tr>
+								   	<td colspan="6" class="u-table-empty">
+								  		暂无提现记录
+								  	</td>
+				  				</tr>
+				  			#end
+		        		</tbody>
+		        	</table>		        	
+	        	</div>	        	
+				#if(${pagWh} > 0) 
+					<div id="wiPagination" class="m-pagenav f-tac" data= "$!{pagWh}" ></div>
+				   
+				#end		
+        	</div>
+		</div>
+	</div>
+	## /用户中心内容
+</div>
+ #CSRFToken()

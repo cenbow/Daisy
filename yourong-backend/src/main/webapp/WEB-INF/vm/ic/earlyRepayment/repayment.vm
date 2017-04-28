@@ -1,0 +1,40 @@
+<div tabindex="-1" class="modal fade" id="modal-repayment" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog" >
+        <div class="modal-content">
+            <div class="modal-header no-padding">
+                <div class="table-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+                        <span class="white">×</span>
+                    </button>
+                    <span class="modalFormTitle">提前还款</span>
+                </div>
+            </div>
+            <div class="modal-body" style="text-align:center">
+                <form id="repayment_form">
+                			<input type="hidden" id="projectId" name="projectId"/>
+                			<input type="hidden" id="endDate" name="endDate"/>
+            				<div class="form-group">
+									<label class="col-md-4 control-label" for="prepaymentTime" >提前还款日期：</label>
+    							 	<input type="text" id="prepaymentTime" name="prepaymentTime"  datatype="*" errormsg="必填"
+    							 	 onclick="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd'})"/>
+			    			</div>
+			    			
+            				<div class="form-group">
+									<label class="col-md-4 control-label" for="name">实际还款原因备注：</label>
+			    						<textarea id="prepaymentRemarkSys" name="prepaymentRemarkSys" type="text"  placeholder="请填写还款原因"
+			    						 style="width: 341px; height: 89px;"  ></textarea>
+			    			</div>
+			    			<div class="form-group">
+									<label class="col-md-4 control-label" for="name">前台还款原因备注：</label>
+			    						<textarea id="prepaymentRemarkFront" name="prepaymentRemarkFront" type="text"   placeholder="请填写还款原因"
+			    						 style="width: 341px; height: 89px;"  ></textarea>
+			    			</div>
+            	</form>
+            </div>
+			<div class="modal-footer">
+                <button type="button" id="btn_early_repayment" class="btn btn-primary">提交</button> 
+				<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>

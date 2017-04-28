@@ -1,0 +1,199 @@
+#set($css_url=["$root_css_url/modules/products.css","$root_css_url/modules/transferDetail.css"])
+#set($js_url=["$root_js_url/modules/products.js","$root_js_url/modules/transferDetail.js"])
+##转让详情
+<div class="g-wrap f-pos-r">
+  ##头部
+  <div class="m-detail-data f-pos-r m-assignment f-round">
+    <i class="u-assign-shadow"></i>
+    <img class="u-assign-photo" src="${projectInfo.thumbnail}" alt="photo">
+    <div class="m-assign-detail">
+      <div class="u-assign-block u-assign-title f-pos-r f-cf"><em>$!{projectInfo.prefixProjectName}</em> $!{projectInfo.suffixProjectName}<i></i></div>
+      <div class="u-assign-block u-assign-data f-cf">
+        <div class="u-assign-sub">
+          <p class="f-fs48 f-ff-din">
+            #set($balance=${sysServiceUtil.getProjectBalance($projectInfo.transferId)})
+            <i class="f-fs24 f-ff-ver">￥</i>$balance
+              <input type="hidden" id="productBalance" data-balance="$balance">
+              <input type="hidden" id="j-product-amount" data-amount="$projectInfo.totalAmount">
+          </p>
+          <p class="u-assign-stitle">剩余可认购本金</p>
+        </div>
+        <div class="u-assign-sub u-assign-sub2">
+          <p class="f-fs48 f-ff-din">${formulaUtil.getIntegerDefaultZero($projectInfo.annualizedRate)}<i class="f-fs24">${formulaUtil.getDecimalDefaultZero($projectInfo.annualizedRate)}%</i></p>
+            <p class="u-assign-stitle f-pos-r">预期年化
+            <div class="u-assign-question">
+                <div class="f-pos-a u-assign-pop">年化收益因认购时间不同，可能会略大于预期
+          <div class="u-arrow-left">
+            <i>◆</i>
+            <span>◆</span>
+          </div></div></div></p>
+        </div>
+        <div class="u-assign-sub u-assign-sub3">
+          <p class="f-fs18"><span class="f-fs48 f-ff-din">${projectInfo.borrowPeriod}</span> 天</p>
+          <p class="u-assign-stitle">剩余期限</p>
+        </div>
+        <div class="u-assign-sub u-assign-sub4">
+          <p>转让价格<em>￥$formulaUtil.getFormatPrice($projectInfo.transferAmount)</em></p>
+          <p>
+            产品折价<em>￥$formulaUtil.getFormatPrice($projectInfo.discount)</em>
+          </p>
+          <p>
+            原始年化<em>${projectInfo.originalAnnualizedRate}%</em>
+          </p>
+        </div>
+      </div>
+      <div class="u-assign-block f-pb10">
+        #set($process=$sysServiceUtil.getProjectProgress($projectInfo.totalAmount,$projectInfo.transferId))
+        <span class="f-pos-r u-assign-progress"><em style="width:$process"></em></span><br>
+        转让进度<em class="f-ml15">$process</em>
+      </div>
+      <div class="u-assign-block u-assign-bottom">
+        #set($endDate=$projectInfo.endDate)
+        <span>项目到期<em>$dateUtil.getYear($endDate)-$dateUtil.getMonth($endDate)-$dateUtil.getDate($endDate)</em></span>
+          <span>起息方式<em>T（成交日）+0</em></span>
+        <span>还款方式<em>${sysServiceUtil.getDictLabelByValue($projectInfo.profitType,"return_type","")}</em></span>
+        <span>借款合同<em>
+          #if($projectInfo.investType==1)
+              <a href="$root_url/products/transferContract/preview?projectId=$projectInfo.id" target="_blank" data-target="j-argreement-box" onclick="window.event.cancelBubble=true;">债权收益权再转让协议范本</a>
+          #else
+              <a href="$root_url/products/ztTransferContract/preview?projectId=$projectInfo.id" target="_blank" data-target="j-argreement-box" onclick="window.event.cancelBubble=true;">债权转让协议范本</a>
+          #end
+        </em></span>
+      </div>
+    </div>
+  </div>
+  ##投资金额拖动条
+    <div class="u-choise-money u-assign-chosem" >
+      <div class="g-wrap-assign f-pos-r">
+          #parse('/products/transferSelectAmount.vm')
+        #if($projectInfo.status==30)
+
+            <div class="u-choise-countDown f-fs14" id="j-choise-countDown" data-saleendtime="$!{projectInfo.saleEndTime}" data-projectCategory="$!{projectInfo.projectCategory}"></div>
+
+          #else
+
+        #end
+
+      </div>
+    </div>
+  ##详情
+    <div class="g-wrap">
+      ##菜单切换
+      <div class="m-nav-switch" id="j-tab-info">
+        <a href="javascript:void(0);" class=" z-current">项目详情</a>
+        <a href="javascript:void(0);" class="u-tit-r">认购记录</a>
+        <a href="javascript:void(0);" class="u-tit-r">常见问题</a>
+      </div>
+      ##项目详情
+        <div class="m-detail-wrap m-assign-project-detail z-current">
+          <h3>转让流程</h3>
+          <div class="u-assign-process">
+            <span>$dateUtil.getYear($projectInfo.startDate)-$dateUtil.getMonth($projectInfo.startDate)-$dateUtil.getDate($projectInfo.startDate)&nbsp;•</span>
+            <img src="/static/img/products/process.png" alt="">
+            <span>•&nbsp;$dateUtil.getYear($projectInfo.endDate)-$dateUtil.getMonth($projectInfo.endDate)-$dateUtil.getDate($projectInfo.endDate)</span>
+          </div>
+          <h3>还款计划</h3>
+          <div class="u-assign-plan f-pos-r f-cf">
+            <div class="u-assign-plan-title f-fs14 f-fwb">
+              <span>期数</span>
+              <span>还款时间</span>
+              <span>还款金额</span>
+              <span>还款类型</span>
+            </div>
+            <div class="u-assign-plan-table">
+              <table style="table-layout: fixed">
+                #foreach($interest in ${projectInfo.interests})
+                  #set($payAmount=$interest.payablePrincipal+$interest.payableInterest)
+                  #set($payEndTime=$interest.endDate)
+                  #if(${interest.payableInterest}>0 && ${interest.payablePrincipal}>0 )
+                    #set($repayType="本金+利息")
+                  #elseif(${interest.payableInterest}>0 && ${interest.payablePrincipal}<=0 )
+                    #set($repayType="利息")
+                  #end
+                  <tr>
+                    <td>$velocityCount</td>
+                    <td>$dateUtil.getYear($payEndTime)-$dateUtil.getMonth($payEndTime)-$dateUtil.getDate($payEndTime)</td>
+                    <td>
+                      #if($!{interest.payablePrincipal}>0)
+                        ￥$!{interest.payablePrincipal} + ￥$!{interest.payableInterest}
+                      #else
+                        ￥$!{interest.payableInterest}
+                      #end
+                    </td>
+                    <td>$repayType</td>
+                  </tr>
+                #end
+              </table>
+            </div>
+            <h3 class="f-nb">说明</h3>
+            <p class="u-assign-declaration">1、转让项目认购成功后不可再次转让。</p>
+            <p class="u-assign-declaration">2、每期实际收款日期、金额以最终到账为准，本项目最终解释权归浙江小融网络科技股份有限公司版权所有。</p>
+            <h3 class="f-nb">平台免责声明：</h3>
+            <p class="u-assign-declaration">有融网作为交易服务平台进行信息发布，不对任何投资人或任何交易提供任何担保，无论是明示、默示或法定的。有融网平台提供的各种信息及资料仅供参考，投资人应依其独立判断做出决策。投资人据此进行投资交易的，产生的投资风险由投资人自行承担，有融网不承担任何责任。</p>
+          </div>
+          <a class="u-btn-original" href="$root_url/products/detail-$!{projectInfo.id}.html" target="_blank">查看原始项目</a>
+        </div>
+      ##认购记录
+        <div class="m-detail-wrap" id="J_TranferRecord">
+##          <table class="u-data-table u-assign-data">
+##            <thead>
+##            <tr>
+##              <th class="f-tac u-invest-uName" width="309">投资用户</th>
+##              <th class="f-tar" width="332">认购金额</th>
+##              <th class="f-tac" width="309">认购时间</th>
+##            </tr>
+##            </thead>
+##            <tbody>
+##            <tr>
+##              <td class="u-invest-user" width="309">
+##                <div class="u-user-wrap">
+##			            	<span class="u-user-head">
+##	                    <img src="&#9;&#9;&#9;&#9;&#9;&#9;https://oss-cn-hangzhou.aliyuncs.com//yrimg/11085/04/76/2016/08/13/avatar_EPhWIW9DZH_40x40.jpg&#10;&#9;" alt="用户头像">
+##	                    <i>&nbsp;</i>
+##											<em></em>
+##		                </span>w***w
+##                </div>
+##                <div class="u-icon-wrap"></div>
+##              </td>
+##              <td class="u-assign-amount u-invest-amount" width="210"><em>￥6,000</em></td>
+##              <td class="u-invest-time" width="221">2016-08-26<span>09:43:24</span></td>
+##            </tr>
+##            </tbody>
+##          </table>
+        </div>
+      ##常见问题
+        <div class="m-detail-wrap m-assign-question">
+          <div class="u-question f-pos-r">
+            <h3>什么是转让项目？</h3>
+            <p>转让项目是指，已投资的用户（转让人）因个人需求通过有融网平台，将符合条件的投资项目转让给其他投资人（受让人），并与受让人签订项目转让协议，收回本金及利息的操作。</p>
+            <i></i>
+          </div>
+          <div class="u-question f-pos-r">
+            <h3>什么是预期年化收益？</h3>
+            <p>预期年化收益，指投资者在受让该项目后到项目结束时的年化收益率，即赚取金额与支付金额对应的年化。</p>
+            <i></i>
+          </div>
+          <div class="u-question f-pos-r">
+              <h3>投资转让项目何时开始计算收益？</h3>
+              <p>受让人成功投资转让项目后，当天开始计息。</p>
+            <i></i>
+          </div>
+          <div class="u-question f-pos-r">
+              <h3>投资转让项目后，可进行再次转让吗？</h3>
+              <p>转让项目暂不支持二次转让。</p>
+            <i></i>
+          </div>
+          <div class="u-question f-pos-r">
+            <h3>投资转让项目可以使用优惠券吗？</h3>
+            <p>转让项目不支持使用优惠券。</p>
+            <i></i>
+          </div>
+          <div class="u-question f-pos-r">
+            <h3>投资转让项目可以参与优惠活动吗？</h3>
+            <p>转让项目不支持投资分享红包、抢标五重礼优惠活动。但是首次投资送人气值，友情岁月，邀请好友投资返人气值活动，投资转让项目仍然参与（详细请参考活动具体规则）。</p>
+            <i></i>
+          </div>
+        </div>
+
+    </div>
+</div>

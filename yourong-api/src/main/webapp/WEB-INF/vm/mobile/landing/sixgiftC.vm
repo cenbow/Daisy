@@ -1,0 +1,311 @@
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$m_css_url/common.css","$m_css_url/landing/season1.css","$m_css_url/landing/sixgiftB.css"])
+#set($title="注册送大礼包")
+#set($aliyun="https://yrstatic.oss-cn-hangzhou.aliyuncs.com")
+###set($loadJQ=true)
+##<input type="hidden" id="pageTag" value="landingC"/>
+<script>
+    #if($currentUser)
+    window.location.href = '$siteurl/mCenter/home';
+    #end
+</script>
+<style>
+  .u-pageTitle>a {
+    display: inline-block;
+    height: 50px;
+    width: 120px;
+    text-indent: -9999em;
+  }
+  a {
+    text-decoration: none;
+    color: white;
+  }
+
+  .f-fc-6f{
+    color: #6f6f6f;
+  }
+  .f-fc-yellow{
+    color: #fdf54c;
+  }
+  .f-fc-white{
+    color: white;
+  }
+  body{
+    background-color: #e44b4b;
+    font-family: "Microsoft Yahei";
+  }
+
+  .m-reg-form {
+    padding: 1.2rem;
+  }
+
+  .m-reg-form .u-ipt-text {
+    height: 30px;
+    padding: 0;
+    background: #fff;
+    margin-bottom: 25px;
+  }
+
+  .m-reg-form input {
+    border-radius: 0;
+  }
+
+  .m-input-vercode .u-img-vercode {
+    height: 20px;
+    border-left: 1px solid #d6d6d6;
+    padding-left: 5px;
+    top: 2.5rem;
+  }
+
+  .u-tips-vercode {
+    padding: 0;
+    line-height: 32px;
+    height: 32px;
+    margin-top: 1rem;
+  }
+
+  .m-reg-form .u-reg-btn1 {
+    margin: 0;
+    background: #ffdd54;
+    color: #b96d00;
+    /*border: none;*/
+  }
+
+  .u-ipt-group{
+    padding: 0;
+    margin: 0;
+  }
+  .m-reg-form .u-ipt-vercode{
+    width: 100%;
+  }
+
+  .u-status-amount{
+    height: 40px !important;
+    line-height: 40px !important;
+    margin-bottom: 10px;
+  }
+
+  .Validform_wrong{
+    color: white;
+  }
+
+  .m-val-tips{
+    color: white;
+  }
+
+  .m-reg-form .m-third{
+    margin-bottom: 0;
+  }
+  .m-reg-form .m-first{
+    margin-bottom: 0;
+  }
+  .m-reg-form .m-second{
+    margin-top: 2rem;
+  }
+  .m-input-vercode .u-ipt-phonecode {
+    margin: 1rem 0 1rem 0;
+  }
+  .u-tips-voice{
+    padding: 0.6rem;
+    width: 96%;
+  }
+
+</style>
+##header
+<h2 class="u-pageTitle f-pos-r">
+  <a href="$siteurl/mIndex">
+    有融网
+  </a>
+  <div class="u-back">国资背景</div>
+  <span class=" f-pos-a f-fs18 f-ff-ver">
+        <a href="$siteurl/mstation/login">登录</a>
+##        <a href="$siteurl/mstation/register">注册</a>
+    </span>
+</h2>
+##main-banner
+<div class="m-banner">
+  <img src="$siteurl/res/img/landing/sixgiftB/banner2.png" style="width: 100%;vertical-align: bottom"/>
+
+  <div class="u-status-amount f-fs14 f-cf">
+    <em class="f-ff-ver u-amount-money f-fl">
+      累计成功投资:￥
+      <span class="f-ff-din f-fs22">
+        $!{paltformCapitalUtils.getPrefixPaltformTotalInvest()}
+        </span>
+    </em>
+    <em class="f-ff-ver f-fr">
+      注册人数:
+      <span class="f-ff-din f-fs22">
+        $!{paltformCapitalUtils.getPaltformMembers()}
+        </span>
+    </em>
+  </div>
+</div>
+##注册
+<section class="g-bd">
+  <form data-action="$siteurl/mstation/register/saveMember" method="POST" class="m-reg-form j-form-xpost j-validform"
+        data-page="register" id="j-reg-form">
+    #CSRFToken('xToken')
+    #onceToken()
+    <input type="hidden" id="j-reg-mobile"/>
+
+    <div class="u-ipt-group f-pos-r">
+      <input type="tel" name="mobile" oncopy="return false;" onpaste="return false;" id="j-cpn" autocomplete="off"
+             nullmsg="手机号码不能为空" errormsg="请输入正确的手机号码" class="f-round f-ipt-w430 u-ipt-text  u-ipt-str f-fs10 m-first"
+             placeholder="请输入手机号码"/>
+      <span class='m-val-tips'></span>
+
+      <div class="f-mob-sha f-dn" id="j-mobile"></div>
+    </div>
+    <div class="m-input-vercode f-cf f-pos-r">
+			<span class="u-xtips-wrap ">
+				<input type="text" id="j-vercode" autocomplete="off" nullmsg="请输入图形验证码"
+               class="u-ipt-text u-ipt-vercode j-vercode m-second" placeholder="输入图形码"/>
+            </span>
+      <img src="$siteurl/mstation/validateCode" alt="验证码" title="点击重新获取验证码" id="j-img-vercode"
+           class="u-img-vercode"/>
+      <span id="j-phonecode-wrap" class="u-xtips-wrap u-phonecode-wrap z-hide">
+				<input type="text" name="phonecode" autocomplete="off" id="j-phonecode" placeholder="输入手机验证码"
+               class="f-clear f-round u-ipt-text f-ipt-w248 u-ipt-phonecode f-top-ipt"/>
+			</span>
+      <span class="f-round u-tips-vercode f-tips-gray f-fr  f-dn">
+			获得短信验证码
+			</span>
+      <span class="m-val-tips"></span>
+    </div>
+    <div class="u-ipt-group">
+      <input id="j-user-pwd" type="password" name="password" oncopy="return false;" onpaste="return false;"
+             class="f-round u-ipt-text f-ipt-w430 m-third" placeholder="输入密码，长度6-16位，至少包含数字和字母"/>
+    </div>
+  #*  <div class="u-ipt-group">
+          <input type="password" name="repassword" oncopy="return false;" onpaste="return false;" recheck="password" class="f-round f-ipt-w430 u-ipt-text v-pwd-reck" placeholder="再次输入密码" />
+      </div>*#
+  ##		<div class="u-ipt-group f-pos-r">
+  ##			<input type="tel" id="j-refercode" autocomplete="off" value="$!{mobile}" $!{disabled} ignore="ignore" class="f-round f-ipt-w430 u-ipt-text" placeholder="推荐人手机号码，选填   $!{tureName}"/>
+  ##			<span class="m-val-tips">
+  ##			#if($!{tureName})
+  ##				您的推荐人：$!{tureName}
+  ##			#end
+  ##			</span>
+  ##		</div>
+  ##推荐人ID
+    <input type="hidden" name="referCode" id="j-refercode-val" value="$!{shortUrl}">
+    <input type="hidden" name="tid" value="$!{request.getParameter('tid')}">
+    <input type="hidden" name="registerTraceSource" value='$!{session.getAttribute("register_TraceSource")}'/>
+    <input type="hidden" name="registerTraceNo" value='$!{session.getAttribute("register_TraceNo")}'/>
+    <input type="hidden" name="referSource" value="$!{referSource}"/>
+    <input type="hidden" name="checkType" id="j-checkType" value="1"/>
+    <input type="hidden" name="pngCode" id="j-pngcode"/>
+    <input type="hidden" name="loginSource" value="0"/>
+    <label class="f-clear f-mgl-8 f-fc-white">
+      <input type="checkbox" checked="checked" name="agree" id="j-agree"/>&nbsp;我已阅读并同意
+      <a target="_blank" href="$res_url/page/register-agreement.html">《有融网服务协议》</a>
+    </label>
+    <button type="submit" class="u-reg-btn1 j-reg-btn">注册立享<em class="f-fc-brown">568元</em>大礼包</button>
+  </form>
+##        <div id="j-bind-success" class="u-bind-success f-dn">
+##            <i class="u-icon-success"></i>&nbsp;&nbsp;恭喜您绑定成功！
+##        </div>
+</section>
+##main-content
+<div class="m-content">
+  <div class="m-content-body"></div>
+
+  <div class="m-content-head">
+    <div class="m-research"></div>
+    <img src="$siteurl/res/img/landing/sixgiftB/step1.png" style="width: 100%;vertical-align: bottom"/>
+    <img src="$siteurl/res/img/landing/sixgiftB/step2.png" style="width: 100%;vertical-align: bottom"/>
+    <img src="$siteurl/res/img/landing/sixgiftB/step3.png" style="width: 100%;vertical-align: bottom"/>
+    <img src="$siteurl/res/img/landing/sixgiftB/step4.png" style="width: 100%;vertical-align: bottom"/>
+    <img src="$siteurl/res/img/landing/sixgiftB/step5.png" style="width: 100%;vertical-align: bottom"/>
+    <img src="$siteurl/res/img/landing/sixgiftB/step6.png" style="width: 100%;vertical-align: bottom"/>
+  </div>
+
+  <div class="m-content-foot">
+    <div class="m-adventage"></div>
+    <ul>
+      <li class="m-li">
+        <img src="$siteurl/res/img/landing/sixgiftB/icon-1.png"/>
+        <p class="f-sizeL">
+          <em>中国互联网金融协会</em>
+          <em>首批会员单位</em>
+        </p>
+      </li>
+      <li class="m-li">
+        <img src="$siteurl/res/img/landing/sixgiftB/icon-2.png"/>
+        <p class="f-sizeS">
+          <em>国资背景平台</em>
+          <em>值得信赖</em>
+        </p>
+      </li>
+      <li class="m-li">
+        <img src="$siteurl/res/img/landing/sixgiftB/icon-3.png"/>
+        <p class="f-sizeM">
+          <em>浙江股权交易中心</em>
+          <em>成功挂牌</em>
+        </p>
+      </li>
+      <li class="m-li">
+        <img src="$siteurl/res/img/landing/sixgiftB/icon-4.png"/>
+        <p class="f-sizeM">
+          <em>政府重点支持的</em>
+          <em>全透明理财平台</em>
+        </p>
+      </li>
+      <li class="m-li">
+        <img src="$siteurl/res/img/landing/sixgiftB/icon-5.png"/>
+        <p class="f-sizeM">
+          <em>第三方资金托管</em>
+          <em>与平台完全隔离</em>
+        </p>
+      </li>
+      <li class="m-li">
+        <img src="$siteurl/res/img/landing/sixgiftB/icon-6.png"/>
+        <p class="f-sizeM">
+          <em>4道风控严选优质项目</em>
+          <em>历史100％兑付</em>
+        </p>
+      </li>
+    </ul>
+  </div>
+  <h2 class="f-fix">
+    <a href="$siteurl/mIndex">
+      <div class="m-logo">
+        <span style="font-size: 16px;color: #333333">有融网理财</span>
+        <span style="color: #999999">全透明的互联网理财优选平台</span>
+      </div>
+    </a>
+    <span class="m-down">
+
+        <a href="$siteurl/static/page/twoCodeRedict.html">立即下载</a>
+    </span>
+  </h2>
+</div>
+#set($pageScript="
+<script>
+  seajs.config({
+    alias: {
+      'landingRegister': '$m_js_url/landing/register.js?v=${sysServiceUtil.getStaticResourceVersion()}'
+    },
+    preload: ['jquery', 'validform']
+  });
+  seajs.use('landingRegister');
+
+  var foot=getUrlParam('foot')
+  if(foot==1){
+//    $('.g-ft').hide()
+    $('.f-fix').hide()
+  }
+
+  // 获取URL参数
+  function getUrlParam(name) {
+    var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)');
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null) {
+      return unescape(r[2]);
+    }
+    return null; // 返回参数值
+  }
+</script>
+")

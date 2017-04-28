@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.uc.dao.AutoInvestSetMapper" >
+  <resultMap id="BaseResultMap" type="com.yourong.core.uc.model.AutoInvestSet" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="member_id" property="memberId" jdbcType="BIGINT" />
+    <result column="project_type" property="projectType" jdbcType="VARCHAR" />
+    <result column="invest_flag" property="investFlag" jdbcType="INTEGER" />
+    <result column="invest_frequency" property="investFrequency" jdbcType="INTEGER" />
+    <result column="amount" property="amount" jdbcType="DECIMAL" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="period_min" property="periodMin" jdbcType="INTEGER" />
+    <result column="period_max" property="periodMax" jdbcType="INTEGER" />
+    <result column="coupon_type" property="couponType" jdbcType="INTEGER" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="sort_time" property="sortTime" jdbcType="TIMESTAMP" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, member_id, project_type,invest_flag, invest_frequency, amount, start_time, end_time,
+    period_min, period_max, coupon_type, remarks, sort_time ,create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from uc_auto_invest_set
+    where id = #{id,jdbcType=BIGINT} and del_flage >0
+  </select>
+  <insert id="insertSelective" parameterType="com.yourong.core.uc.model.AutoInvestSet" useGeneratedKeys="true" keyProperty="id"  >
+    insert into uc_auto_invest_set
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="memberId != null" >
+        member_id,
+      </if>
+      <if test="projectType != null" >
+        project_type,
+      </if>
+      <if test="investFlag != null" >
+        invest_flag,
+      </if>
+      <if test="investFrequency != null" >
+        invest_frequency,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="periodMin != null" >
+        period_min,
+      </if>
+      <if test="periodMax != null" >
+        period_max,
+      </if>
+      <if test="couponType != null" >
+        coupon_type,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+      <if test="sortTime != null" >
+        sort_time,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="memberId != null" >
+        #{memberId,jdbcType=BIGINT},
+      </if>
+       <if test="projectType != null" >
+        #{projectType,jdbcType=VARCHAR},
+      </if>
+      <if test="investFlag != null" >
+        #{investFlag,jdbcType=INTEGER},
+      </if>
+      <if test="investFrequency != null" >
+        #{investFrequency,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="periodMin != null" >
+        #{periodMin,jdbcType=INTEGER},
+      </if>
+      <if test="periodMax != null" >
+        #{periodMax,jdbcType=INTEGER},
+      </if>
+      <if test="couponType != null" >
+      	#{couponType,jdbcType=INTEGER},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="sortTime != null" >
+        #{sortTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yourong.core.uc.model.AutoInvestSet" >
+    update uc_auto_invest_set
+    <set >
+       <if test="memberId != null" >
+        member_id = #{memberId,jdbcType=VARCHAR},
+      </if>
+       <if test="projectType != null" >
+        project_type= #{projectType,jdbcType=VARCHAR},
+      </if>
+      <if test="investFlag != null" >
+        invest_flag = #{investFlag,jdbcType=INTEGER},
+      </if>
+      <if test="investFrequency != null" >
+        invest_frequency = #{investFrequency,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="periodMin != null" >
+        period_min = #{periodMin,jdbcType=INTEGER},
+      </if>
+      <if test="periodMax != null" >
+        period_max = #{periodMax,jdbcType=INTEGER},
+      </if>
+      <if test="couponType != null" >
+        coupon_type = #{couponType,jdbcType=INTEGER},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="sortTime != null" >
+        sort_time = #{sortTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryMemberIdSelective" parameterType="com.yourong.core.uc.model.AutoInvestSet" >
+    update uc_auto_invest_set
+    <set >
+      <if test="memberId != null" >
+        member_id = #{memberId,jdbcType=VARCHAR},
+      </if>
+       <if test="projectType != null" >
+        project_type= #{projectType,jdbcType=VARCHAR},
+      </if>
+      <if test="investFlag != null" >
+        invest_flag = #{investFlag,jdbcType=INTEGER},
+      </if>
+      <if test="investFrequency != null" >
+        invest_frequency = #{investFrequency,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="periodMin != null" >
+        period_min = #{periodMin,jdbcType=INTEGER},
+      </if>
+      <if test="periodMax != null" >
+        period_max = #{periodMax,jdbcType=INTEGER},
+      </if>
+      <if test="couponType != null" >
+        coupon_type = #{couponType,jdbcType=INTEGER},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="sortTime != null" >
+        sort_time = #{sortTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where member_id = #{memberId,jdbcType=BIGINT}
+  </update>
+   <select id="selectByMemberId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from uc_auto_invest_set
+    where member_id = #{memberId,jdbcType=BIGINT}
+  </select>
+  
+   <select id="countMemberIdSort" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    SELECT id,sort,member_id from(
+	SELECT member_id,id,@a:=@a+1 sort from uc_auto_invest_set u ,(SELECT @a:=0) as a where invest_flag= 1  ORDER BY sort_time) f 
+    where f.member_id = #{memberId,jdbcType=BIGINT} 
+  </select>
+  
+  <!-- 获取当前有效期内开启自动投标用户 -->
+  <select id="selectValidMember" resultType="com.yourong.core.uc.model.biz.AutoInvestMember" >
+    select m.id as memberId, m.identity_number as identityNumber, m.register_ip as registerIp,
+    	m.mobile, m.pay_password_flag as payPasswordFlag,
+ 		ai.id as autoInvestSetId, ai.invest_flag as investFlag, 
+ 		ai.amount, ai.project_type as projectType, ai.invest_frequency as investFrequency,
+ 		ai.period_max as periodMax, ai.period_min as periodMin, ai.start_time as startTime,
+    	ai.end_time as endTime, ai.sort_time as sortTime, ai.coupon_type as couponType
+	from uc_auto_invest_set ai
+	inner join uc_member m on ai.member_id=m.id
+	<where>
+		<if test="investFlag != null">
+			and ai.invest_flag=1
+		</if>
+		<if test="startTime != null">
+			and <![CDATA[date_format(#{startTime,jdbcType=TIMESTAMP},'%Y-%m-%d') >= date_format(ai.start_time,'%Y-%m-%d')]]>
+		</if>
+		<if test="endTime != null">
+			and <![CDATA[date_format(#{endTime,jdbcType=TIMESTAMP},'%Y-%m-%d') <= date_format(ai.end_time,'%Y-%m-%d')]]>
+		</if>
+	</where>
+	 order by sort_time asc
+  </select>
+  
+</mapper>

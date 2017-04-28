@@ -1,0 +1,280 @@
+##玩赚人气值
+#parse('/common/common.vm')
+#set($title="玩赚人气值_$!{title_suffix}")
+
+
+<style>
+.g-bd {
+				margin-bottom: 0;
+				}
+			.g-wrap {
+				width: 990px;
+				margin: 0 auto;
+			}
+			/**页头**/
+		  	.u-securityCard-hd{
+            	width: 100%;
+            	height: 400px;
+            	margin-top: -8px;
+            	text-indent: -9999px;
+            	position: relative;
+            	background: url($root_url/static/img/activity/popularityValues/popularityValues_hd.jpg) no-repeat center;
+	        }
+	        /*内容*/
+	        .m-popularityValues-content{ 
+	        	height: 2250px;
+				background-color: #fef4d6;
+	        }
+	        /*box1问题*/
+			.m-popularityValues-QA{ 
+				padding-top: 36px;
+				height: 447px;
+				background: url($root_url/static/img/activity/popularityValues/popularityValues_box1.png) no-repeat center;
+	        }
+	        .m-popularityValues-QA h3{ 
+				color: #666;
+				font-weight: bold;
+				font-size: 20px;	        
+			}
+	        .m-popularityValues-QA p{ 
+				color:#999; 
+				font-size: 14px;
+	        }
+	        .u-popularityValues-whatIs{
+	        	width: 364px;
+				height: 244px;
+				line-height: 33px;
+				margin-left: 120px;
+				margin-top: 70px;
+				float: left;
+			}
+			.u-popularityValues-acquisition{ 
+				width: 310px;
+				height: 290px;
+				float: right;
+				margin-right: 110px;
+				margin-top: 70px;
+			}
+			.u-popularityValues-acquisition p,.u-popularityValues-acquisition span,.u-popularityValues-acquisition strong{
+			 	color: #999;
+			 	font-size: 14px;
+				margin-bottom: 13px;
+				display: block;
+			}
+			.u-popularityValues-acquisition h3{ 
+				margin-bottom: 13px;
+			}
+			.u-popularityValues-acquisition span{ 
+				font-weight: bold;
+			}
+	        /*box2如何兑换人气值*/
+	        .m-popularityValues-conversion,.m-popularityValues-Ranking{
+	        	padding-top: 113px; 
+				height: 663px;
+				background: url($root_url/static/img/activity/popularityValues/popularityValues_box2.png) no-repeat center;
+	        }
+	        .m-popularityValues-conversion h2{ 
+				font-size: 38px;
+				color: #666;
+				font-weight: bold;
+				display: block;
+				text-align: center;
+	        }
+	        .m-popularityValues-conversion i{ 
+				width: 680px;
+				height: 148px;
+				display: block;
+				margin: 23px 154px 50px;
+				background: url($root_url/static/img/activity/popularityValues/popularityValues_flow20150929.jpg) no-repeat center;
+	        }
+	        .m-popularityValues-conversion p{ 
+				color: #999;
+				line-height: 2em;
+				font-size: 14px;
+				margin-left: 120px;
+			}
+			.m-popularityValues-conversion h3{ 
+				color: #666;
+				font-size: 20px;
+				font-weight: bold;
+				margin: 38px 0px 7px 120px;
+			}
+			.m-popularityValues-conversion span{
+				font-size: 12px;
+				color: #999;
+				display: block;
+				text-align: center;
+                margin-top: 18px;
+			}
+			.u-popularityValues-butbg{
+				display: block;
+				width:328px;
+				height: 80px;
+				margin-top:100px;
+				text-indent: -9999px;
+				background: url($root_url/static/img/activity/popularityValues/popularityValues_btn.png) no-repeat center;	
+			}
+			.u-popularityValues-detailBtn{
+				color:#d74148;
+			}
+			.u-popularityValues-acquisition a{
+				text-decoration:none; 
+				color:#d74148;
+			}
+　　			.u-popularityValues-acquisition a:visited { 
+				text-decoration:none;
+				color:#d74148;
+			}
+　　			.u-popularityValues-acquisition a:hover { 
+				text-decoration:none;
+				color:#d74148;
+			}                                                      
+			/**排行榜**/
+			.m-popularityValues-Ranking{ 
+				padding:78px 70px 87px;
+				width:850px;
+				height:498px;
+			}
+			.u-popularityValues-Ranking{
+				width:404px;
+				height:438px;
+			}
+			.u-popularityValues-Ranking,.u-popularityValues-record{
+				width:404px;
+				height:500px;
+				float:left;
+			}
+			.u-popularityValues-record{
+				margin-left:40px;
+			}
+			.u-popularityValues-Ranking h5,.u-popularityValues-record h5{
+				font-weight:bold;
+				color:#999;
+				margin-bottom:15px;
+			}
+			.u-popularityValues-Ranking table,.u-popularityValues-record table{
+				border-top:2px solid #e9e9e9;
+				border-left:2px solid #e9e9e9;
+				border-right:2px solid #e9e9e9;
+				width:404px;
+			}
+			.u-popularityValues-Ranking table td,.u-popularityValues-record table td{ 
+				border-bottom:2px solid #e9e9e9;
+				height:40px;
+				text-align:center;
+			}
+			.u-popularityValues-Ranking tbady,.u-popularityValues-record tbody{
+				width:404px;	
+			}
+			.u-popularityValues-Ranking table tr,.u-popularityValues-record table tr{
+				width:404px;
+				color:#666;
+			} 
+			.u-popularityValues-Ranking thead td,.u-popularityValues-record thead td{ 
+				font-weight:bold;
+			}
+			.u-popularityValues-Ranking td span,.u-popularityValues-record td span{ 
+				color:#ff5c5d;
+			}
+	</style>		
+			
+			
+			  <div class="f-mh500 f-cf ">
+    <!--head-->
+    	<div class="u-securityCard-hd"></div>
+	<!--body-->
+		<div class="m-popularityValues-content">
+			<!--box1问题-->
+			<div class="m-popularityValues-QA g-wrap f-cf">
+				<div class="u-popularityValues-whatIs">
+					<h3 >什么是人气值</h3>
+					<p >人气值是有融网向用户提供的一种可兑换成优惠券的奖励，<br/>
+						兑换后可直接用于投资。
+					</p>
+					<h3>人气值的用途</h3>
+					<p>1、人气值可兑换优惠券，优惠券可用作投资。</p>
+      				<p>2、人气值可用于报名参加有融网部分活动。</p>
+				</div>
+				<div class="u-popularityValues-acquisition">
+					<h3>如何获得人气值</h3>
+					<p>1、每日签到可随机获得1~6点人气值;</p>
+##					<p>２、邀请好友注册并投资(单笔投资额≥￥500)，<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;推荐人即可获得好友投资额2‰的人气值；</p>
+                    <p>2、好友注册并投资，您可获得好友投资额*（收益<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;天数/30）*0.3‰ 的人气值奖励，所获人气值<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;向下取整；</p>
+      				<p>3、用户可参与有融网推出的活动，赢取人气值。<br/>
+     					 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;例如：一羊领头：8点人气值&nbsp;&nbsp;&nbsp; <a href="/activity/quadrupleGift" class="f-fs12 u-popularityValues-detailBtn">查看详情>></a></p>
+     					<span> 温馨提示:</span>
+     					<strong> 1、邀请好友注册时，<br/>
+     					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;须好友输入推荐人的手机号码；</strong>
+     					<strong>2、好友通过推荐人唯一的邀请链接<br/>
+    					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;进入注册页面成功注册。</strong>
+				</div>
+			</div>
+			<!--box2如何兑换人气值-->
+			<div class="m-popularityValues-conversion g-wrap">
+				<h2>如何兑换人气值</h2>
+				<i></i>
+				<p>
+				Step1：用户登录有融网，进入“账户概览—我的优惠—我的人气值”；<br/>
+				Step2：人气值集满50、100、500、1000可点击领取现金券的按钮，兑换相应面额现金券；<br/>
+				Step3：人气值集满90、180、270、360可点击领取收益券按钮，兑换相应面额收益券。
+				</p>
+				<h3>人气值的使用规则</h3>
+				<p>
+				1、人气值可累计，无上限，永久有效；<br/>
+				2、人气值不可转让、不可折现。<br/>
+                    3、人气值有效期：每年12月31日，用户于一年前获取且至今未使用的人气值将过期失效。
+				</p>
+				<span>关于人气值的最终解释权归有融网所有</span>
+			</div>
+			<div class="m-popularityValues-Ranking g-wrap f-cf">
+				<div class="u-popularityValues-Ranking">
+					<h5 class="f-fs14">人气值排行TOP10</h5>
+					<table>
+						<thead>
+							<tr>
+								<td width="135">排名</td>
+								<td width="135">用户</td>
+								<td width="135">累计人气值</td>
+							</tr>
+						</thead>
+						<tbody>
+							#if($!{popularityTop10}&&${popularityTop10.size()}>0)
+								#foreach($popularity in $!{popularityTop10})
+        							<tr>
+        								<td>$velocityCount</td>
+        								<td>#getMemberUserName(${popularity.memberId})</td>
+        								<td><span>$formulaUtil.getIntegerDefaultZero(${popularity.income})</span>点</td>
+        							</tr>
+								#end
+							#end
+						</tbody>
+					</table>
+				</div>
+				<div class="u-popularityValues-record">
+				<h5 class="f-fs14">人气值兑换记录</h5>
+					<table>
+						<thead>
+							<tr>
+								<td width="124">用户名</td>
+								<td>兑换人气值</td>
+								<td width="192">兑换时间</td>
+							</tr>
+						</thead>
+						<tbody>
+							#if($!{exchangeCoupon} && ${exchangeCoupon.size()}>0)
+								#foreach($exchange in $exchangeCoupon)
+        							<tr>
+        								<td>#getMemberUserName(${exchange.memberId})</td>
+        								<td><span>$formulaUtil.getFormatPrice(${exchange.outlay})</span>点</td>
+        								<td>${dateUtil.getStrFromDate($!exchange.happenTime,"yyyy.MM.dd HH:mm:ss")}</td>
+        							</tr>
+								#end
+							#end
+						</tbody>
+					</table>
+					</div>
+			</div>
+			<a href="/coupon/reputation" class="u-popularityValues-butbg g-wrap">查看我的存钱罐</a>
+		</div>
+		 
+   	    </div>

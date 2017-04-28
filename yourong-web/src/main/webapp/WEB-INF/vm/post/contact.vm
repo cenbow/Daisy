@@ -1,0 +1,106 @@
+#set($title="帮助中心-联系我们-有融网-全透明的互联网理财优选平台")
+#set($keywords="帮助中心,联系我们,有融网")
+#set($description="有融网竭诚为您服务,有任何问题请联系客服,客服热线:400-025-6688。")
+
+
+
+##联系客服
+#parse('/common/common.vm')
+<style>
+    .g-bd{
+		margin-bottom: 150px;
+	}
+		.u-help-navi li{
+			border-left:1px solid #c5c5c5;
+			}
+		.u-help-navi li:first-child{
+			border-left:none;
+		}
+		.u-help-title{
+			margin-top:85px;
+			padding-bottom:11px;
+			color:#666;
+			border-bottom:1px solid #dddbd6;
+		}
+		.u-help-contact{
+			width:988px;
+			height:265px;
+			line-height:265px;
+			border:1px solid #d74148;
+			background:#d74148;
+			color:#fff;
+			text-align:center;
+			}
+			.u-help-clist{
+                height: 50px;
+                text-align: center;
+                border-bottom: 1px solid #d6d6d6;
+                padding: 30px 0 0px 0;
+                color: #666;
+			}
+        .m-help-itel,.m-help-qq{
+			margin-right: 25px;
+		}
+
+        .m-help-qq a,
+        .m-help-qq a:link,
+		.m-help-qq a:visited,
+		.m-help-qq a:hover,
+		.u-help-mail a,
+		.u-help-mail a:link,
+		.u-help-mail a:visited,
+		.u-help-mail a:hover{
+            text-decoration: none;
+            color: #666;
+		}
+        .u-help-mail{
+			text-align: center;
+			color: #666;
+			margin-top: 15px;
+		}
+		.u-help-mail a,
+		.u-help-clist .u-help-mail span{
+			font-weight: bold;
+			font-style: italic;
+		}
+        .m-help-time i{
+			margin-right: 10px;
+		}
+		@-moz-document url-prefix() {    
+		.u-help-clist {
+		  padding: 0px 0px 15px 40px;
+		  }
+		 }
+        </style>
+
+<div class="u-help-title">
+	<h2 class="f-fs18  g-wrap">帮助中心</h2>
+</div>
+<div class="g-wrap ">
+<ul class="u-help-navi u-navi-tab f-fs14 f-tac f-round f-cf" id="j-plist-tab">
+<li><em><a href="$root_url/post/help/guide.html">新手指引</a></em></li>
+<li><em><a href="$root_url/post/help/wiki.html">名词解释</a></em></li>
+<li><em><a href="$root_url/post/help/question.html">常见问题</a></em></li>
+<li class="z-current u-ptab-chock f-nbr"><em><a href="$root_url/post/help/contact.html">联系客服</a></em></li>
+</ul>
+	<div class="u-help-contact f-fs18 f-round">
+    	有融网竭诚为您服务，有任何问题请联系客服。
+	</div>
+	<div class="u-help-clist">
+			<span class="m-help-itel">
+				<i class="u-help-itel f-fs14 f-fwb">服务热线：</i><i class="f-ff-din f-fs30" >400-025-6688</i>
+			</span>
+			<span class="m-help-qq">
+				<i class="u-help-iqq f-fs14 f-fwb">QQ：</i><a class="f-ff-din f-fs30" href="http://wpa.b.qq.com/cgi/wpa.php?ln=2&uin=4000266688" target="_blank">4000266688</a>
+			</span>
+     		<span class="m-help-time"><em class="f-fwb f-fs14">服务时间：</em>
+        #set($curMonth=$dateUtil.getMonth($dateUtil.getCurrentDate()))
+        #if($curMonth<5||$curMonth>9)
+            <i>工作日：9:00-20:00</i>节假日：<i>9:30-17:30 </i>
+        #else
+            <i>工作日：9:00-20:00</i>节假日：<i>9:30-18:00</i>
+        #end
+        </span>
+	</div>
+    <div class="f-fs14 u-help-mail">客服邮箱：<span><a href="mailto:service@yrw.com" class="f-vam-ie">service@yrw.com</a></span></div>
+</div>

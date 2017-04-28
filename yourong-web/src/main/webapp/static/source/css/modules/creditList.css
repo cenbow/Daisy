@@ -1,0 +1,280 @@
+.g-credit-wrap {
+    left: 50%;
+    margin-top: -80px;
+    display: inline-block;
+    position: relative;
+}
+.u-credit-head {
+    margin-top: -10px;
+    height: 400px;
+    background: url(/static/img/products/productsGather/head.png) no-repeat center;
+}
+
+.u-credit-head h1 {
+    top: 114px;
+    position: absolute;
+    text-align: center;
+    font-size: 18px;
+    display: block;
+    width: 100%;
+    color: #fff;
+}
+
+.u-credit-head h2 {
+    top: 160px;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+}
+
+.u-credit-head h2 p {
+    color: #fff;
+    display: inline-block;
+    padding-right: 80px;
+    text-align: left;
+}
+
+.u-credit-head h2 p.f-no-padding {
+    padding: 0;
+}
+
+.u-credit-head h2 p strong {
+    font-weight: 100;
+    font-size: 38px;
+    font-family: "dincond";
+}
+
+.u-credit-head h2 p em {
+    font-weight: 100;
+    font-size: 24px;
+    font-family: "dincond";
+}
+
+.u-credit-head h2 p i {
+    display: block;
+    color: #fff;
+    font-size: 14px;
+    width: 100%;
+    text-align: left;
+    margin-top: -10px;
+}
+
+.u-credit-head h3 {
+    top: 155px;
+    position: absolute;
+    width: 100%;
+    color: #fff;
+    font-size: 28px;
+    font-weight: 100;
+    text-align: center;
+}
+.u-credit-head h4 {
+    top: 260px;
+    position: absolute;
+    width: 100%;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 100;
+    text-align: center;
+}
+.u-credit-head h4 a{
+    color: white;
+    text-decoration: underline;
+}
+.u-credit-list {
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 2px 3.464px 16px 0px rgba(0, 0, 0, 0.039);
+}
+
+.u-credit-list table {
+    min-width: 990px;
+    margin: 40px;
+    border-top: 1px solid #ececec;
+}
+
+.u-credit-list table th, .u-credit-list table td {
+    padding: 18px 0 18px 20px;
+    color: #333;
+    font-size: 14px;
+    border-right: 1px solid #ececec;
+}
+
+.u-credit-list table th {
+    font-weight: bold;
+}
+
+.u-credit-list table td:first-child {
+    padding-right: 20px;
+}
+.u-credit-list table th:last-child, .u-credit-list table td:last-child {
+    border-right: 0;
+}
+
+.u-credit-list table tbody tr:nth-child(odd) {
+    background: #f9f9f9;
+}
+
+.u-credit-list table td a, .u-credit-list table td a:link, .u-credit-list table td a:hover,
+.u-credit-list table td a:visited, .u-credit-list table td a:active {
+    display: block;
+    width: 115px;
+    line-height: 33px;
+    border-radius: 4px;
+    background: #d74147;
+    color: #fff;
+    text-align: center;
+    font-size: 14px;
+    text-indent: 0;
+    text-decoration: none;
+}
+
+.u-credit-list table td a.z-notice {
+    border: 1px solid #da4e53;
+    color: #da4e53;
+    background: transparent;
+}
+
+.u-credit-list table td a.z-completed {
+    background: #bcbcbc;
+}
+
+.u-credit-list table td a i {
+    margin-left: -5px;
+}
+
+.u-no-project {
+    position: relative;
+    height: 380px;
+    text-align: center;
+    background: url(../../../img/products/zr-no-data.png) no-repeat;
+    background-size: 342px 270px;
+    background-position: center;
+    margin-bottom: 60px;
+}
+
+.u-no-project div {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    color: #666;
+    font-size: 18px;
+}
+
+/*已售罄列表样式*/
+.u-completed-list {
+    margin-top: -75px;
+}
+
+.u-completed-list li {
+    padding: 0 20px;
+    background: #fff;
+    width: 950px;
+    display: block;
+    margin-bottom: 20px;
+    box-shadow: 2px 3.464px 16px 0px rgba(0, 0, 0, 0.039);
+}
+
+.u-completed-list li h1 {
+    line-height: 50px;
+    border-bottom: 1px solid #dadada;
+    color: #333333;
+    font-size: 14px;
+    text-align: left;
+}
+
+.u-completed-list li img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin: 15px 0 20px 10px;
+    display: inline-block;
+}
+
+.u-completed-list li .u-right-box {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.u-completed-list li .u-right-box table td {
+    padding-left: 30px;
+    height: 80px;
+    border-left: 1px solid #dadada;
+    color: #333;
+}
+
+.u-completed-list li .u-right-box table td:first-child {
+    border-left: 0;
+}
+
+.u-completed-list li .u-right-box table td:nth-child(2) {
+    color: #e33f4a;
+}
+
+.u-completed-list li .u-right-box table td strong {
+    font-size: 38px;
+    font-weight: 100;
+    font-family: "dincond";
+}
+
+.u-completed-list li .u-right-box table td em {
+    font-size: 24px;
+    font-family: "dincond";
+}
+
+.u-completed-list li .u-right-box table td i {
+    display: block;
+    font-size: 14px;
+    margin-top: -10px;
+}
+
+.u-completed-list .u-pbox-process {
+    width: 780px;
+    margin-left: 30px;
+    background: #c3c3c3;
+    height: 4px;
+    margin-top: 10px;
+    position: relative;
+}
+
+.u-completed-list .u-pbox-process i {
+    height: 4px;
+    position: absolute;
+    top: 0;
+    display: block;
+    background: #d74148;
+}
+
+.u-completed-list p {
+    color: #7d7d7d;
+    margin-left: 30px;
+    margin-top: 10px;
+}
+
+.u-completed-list a.f-button, .u-completed-list a.f-button:link, .u-completed-list a.f-button:hover
+.u-completed-list a.f-button:visited, .u-completed-list a.f-button:active {
+    width: 120px;
+    background: #c3c3c3;
+    line-height: 33px;
+    color: #fff;
+    font-size: 14px;
+    text-align: center;
+    display: block;
+    float: right;
+    margin-top: -15px;
+    text-decoration: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.m-no-project {
+    background: #fff;
+    margin-top: -80px;
+    padding: 50px 0;
+}
+/*\已售罄列表样式*/
+
+
+[v-cloak] {
+    display: none;
+}

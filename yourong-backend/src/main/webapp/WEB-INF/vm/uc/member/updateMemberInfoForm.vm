@@ -1,0 +1,180 @@
+#set($layout = "/layout/iframe.vm")
+#parse("/uc/member/head.vm")
+<div tabindex="-1" class="modal fade" id="modal-table_member_form" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header no-padding">
+                <div class="table-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+                        <span class="white">×</span>
+                    </button>
+                    修改会员信息
+                </div>
+            </div>
+            <div class="modal-body">
+                <form role="form" class="form-horizontal" id="memberInfo_form" method="post">
+                    <input type="hidden" name="id" />
+                    <input type="hidden" name="memberId" class="col-xs-10 col-sm-5" placeholder="memberId" id="form-field-memberId">
+                    <input type="hidden"  name="identity" class="col-xs-10 col-sm-5" placeholder="identity" id="form-field-identity">
+
+                    <div class="form-group">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 用户名: </label>
+                        <div class="col-sm-9">
+                            <div class="clearfix">
+                                <input type="text" name="username" readonly class="col-xs-10 col-sm-5" placeholder="" id="form-field-username" >
+                            </div>
+                        </div>
+                    </div>
+                     <div class="form-group">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 手机号: </label>
+                        <div class="col-sm-9">
+                            <div class="clearfix">
+                                <input type="text" name="mobile" readonly class="col-xs-10 col-sm-5" placeholder="" id="form-field-mobile"  >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 真实姓名: </label>
+                        <div class="col-sm-9">
+                            <div class="clearfix">
+                                <input type="text" name="trueName"  readonly  class="col-xs-10 col-sm-5" placeholder="" id="form-field-trueName">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 身份证号: </label>
+                        <div class="col-sm-9">
+                            <div class="clearfix">
+                                <input type="text" name="identityNumber"  readonly  class="col-xs-10 col-sm-5" placeholder="" id="form-field-identityNumber">
+                            </div>
+                        </div>
+                    </div>
+					
+					
+
+                    <div class="form-group">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 婚姻状况: </label>
+                        <div class="col-sm-9">
+                            <div class="clearfix" id="marriage_temp">
+                                
+                            </div>
+                        </div>
+                    </div>
+                   <div class="form-group">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 学历: </label>
+                        <div class="col-sm-9">
+                            <div class="clearfix">
+                               #dictSelect ("highEdu",${sysServiceUtil.getDictList('education')} ,"请选择","","*")
+                            </div>
+                        </div>
+                   </div>
+                    <div class="form-group">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 户籍地: </label>
+                        <div class="col-sm-9">
+                            <div class="clearfix">
+                             ##parse("/sys/sysArea/areaSelect.vm")
+                             <input type="hidden" name="censusRegisterId" id="censusRegisterId"/>
+							 <input type="hidden" name="censusRegisterName" id="censusRegisterName"/>
+                             <select id="area_prov" style="width:150px;"  datatype="*">
+										#set($areaList = ${sysServiceUtil.getAllAreaList(2)})
+										<option value="">选择省</option>
+										#foreach($!{sysArea} in $!{areaList})
+									        <option value="$!{sysArea.code}">$!{sysArea.name}</option>
+									    #end
+									</select>
+									<select id="area_city" style="width:150px;"  datatype="*">
+										<option value="">选择市</option>
+									</select>
+									<select id="area_dict" style="width:150px;"  >
+										<option value="">选择区</option>
+									</select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 现居地: </label>
+                        <div class="col-sm-9">
+                            <div class="clearfix" id="now_address">
+                            <input type="hidden" id="areaFullName" name="areaFullName" />
+							<input type="hidden" name="city" id="city"/>
+                             ##parse("/sys/sysArea/areaNowSelect.vm")
+									<select id="area_prov_now" style="width:150px;"  datatype="*">
+										#set($areaList = ${sysServiceUtil.getAllAreaList(2)})
+										<option value="">选择省</option>
+										#foreach($!{sysArea} in $!{areaList})
+									        <option value="$!{sysArea.code}">$!{sysArea.name}</option>
+									    #end
+									</select>
+									<select id="area_city_now" style="width:150px;"  datatype="*">
+										<option value="">选择市</option>
+									</select>
+									<select id="area_dict_now" style="width:150px;"  datatype="*">
+										<option value="">选择区</option>
+									</select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 详细地址: </label>
+                        <div class="col-sm-9">
+                            <div class="clearfix">
+                                <input type="text" name="address" class="col-xs-10 col-sm-5" placeholder="" id="form-field-address" >
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 具体身份信息:</label>
+                        <div class="col-sm-9">
+                            <div class="clearfix">
+                                <input type="text" name="detailInfo" class="col-xs-10 col-sm-5" placeholder="" id="form-field-detailInfo"   >
+                            </div>
+                        </div>
+                    </div>
+					
+					 <div class="form-group">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 户口性质：</label>
+                        <div class="col-sm-9">
+                            <div class="clearfix">
+                             ##dictSelect ("registerType",${sysServiceUtil.getDictList('register_type')} ,"请选择")
+                             <select id="registerType" style="width:150px;"  name="registerType">
+										<option value="">请选择</option>
+										<option value="1">农村户口</option>
+										<option value="2">城镇户口</option>
+							 </select>
+                            </div>
+                        </div>
+                    </div>
+ 						<div class="form-group">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 月收入</label>
+                        <div class="col-sm-9">
+                            <div class="clearfix">
+                            ##dictSelect ("income",${sysServiceUtil.getDictList('income')} ,"请选择")元/月
+                            <select id="incomeType" style="width:150px;"  name="income">
+										<option value="">请选择</option>
+										<option value="1">1000元以下</option>
+										<option value="2">1000-2000元</option>
+										<option value="3">2001-4000元</option>
+										<option value="4">4001-6000元</option>
+										<option value="5">6001-8000元</option>
+										<option value="6">8001-10000元</option>
+										<option value="7">10001-20000元</option>
+										<option value="8">20001-40000元</option>
+										<option value="9">40001-60000元</option>
+										<option value="10">60000元以上</option>
+							 </select>元/月
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" id="btn_save_member" class="btn btn-primary">保存</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>

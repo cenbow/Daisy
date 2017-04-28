@@ -1,0 +1,517 @@
+.f-fs-12 {
+    font-size: 12px;
+}
+
+.f-fs-14 {
+    font-size: 14px;
+}
+
+.f-fs-16 {
+    font-size: 16px;
+}
+
+.f-fs-18 {
+    font-size: 18px;
+}
+
+.f-fs-20 {
+    font-size: 20px;
+}
+
+.f-fc-purple {
+    color: #463B63;
+}
+
+.f-fc-orange {
+    color: #fe5725;
+}
+
+.f-fc-white {
+    color: #fff;
+}
+
+.f-clear:before,
+.f-clear:after {
+    display: table;
+}
+
+.f-clear:after {
+    content:" ";
+    height:0;
+    font-size:0;
+    clear: both;
+    visibility:hidden;
+}
+
+.f-pl-50 {
+    padding-left: 50px;
+}
+
+.u-table {
+    width: 100%;
+}
+
+.m-head {
+    position: relative;
+    margin-top: -8px;
+    height: 706px;
+    background: url(../../../../static/img/activity/dayDropGold/banner.png) no-repeat center;
+}
+
+.g-bd {
+    margin-bottom: 0;
+}
+
+.m-activity-container .m-module-item:nth-child(odd) {
+    background-color: #FFF7D1;
+}
+
+.m-activity-container .m-module-item:nth-child(even) {
+    background-color: #ffecb6;
+}
+
+.m-module-item {
+    padding-top: 53px;
+}
+
+.m-module-item:first-child {
+    padding-top: 0;
+}
+
+.m-module-item h1 {
+    margin-bottom: 17px;
+    font-size: 30px;
+    font-weight: bold;
+    vertical-align: middle;
+}
+
+.m-main-content {
+    padding-left: 50px;
+}
+
+.u-index-icon {
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    margin: 0 25px 0 34px;
+    color: #fff;
+    text-align: center;
+    font-size: 45px;
+    vertical-align: inherit;
+    background-color: #f88635;
+    border-radius: 50%;
+}
+
+/*疯狂抢加息*/
+
+.m-jx-module {
+    padding-bottom: 120px;
+}
+
+.u-jx-table {
+    margin-top: 40px;
+    color: #fff;
+    font-size: 14px;
+    text-align: center;
+}
+
+.u-jx-table tr{
+    line-height: 56px;
+    background-color: #ffa359;
+    border-top: 1px solid #ffb982;
+}
+
+.u-jx-table tr:first-child{
+    background-color: #ff8c41;
+    border-top: none;
+}
+
+.u-jx-table tr td {
+    width: 33.333333%;
+    border-left: 1px solid #ffb982;
+}
+
+.u-jx-table tr td:first-child {
+    border-left: none;
+}
+
+.u-money-icon {
+    right: -54px;
+    bottom: 74px;
+}
+
+/*\疯狂抢加息*/
+
+/*任性挑红包*/
+
+.m-hb-module {
+    padding-bottom: 46px;
+}
+
+.m-bag-wrap {
+    margin-top: 30px;
+}
+
+.u-bag-item {
+    margin-right: 58px;
+}
+
+.u-bag-value {
+    top: 134px;
+    left: 70px;
+    width: 122px;
+    line-height: 28px;
+    font-size: 24px;
+    color: #000;
+    text-align: center;
+}
+
+.u-bag-value em {
+    font-size: 35px;
+}
+
+.m-main-content .u-receive-btn {
+    display: inline-block;
+    width: 175px;
+    height: 63px;
+    margin-top: 20px;
+    color: #000;
+    line-height: 53px;
+    text-align: center;
+    background: url(/static/img/activity/dayDropGold/activited_btn.png)no-repeat;
+    background-size: 100% 100%;
+}
+
+.u-receive-btn.z-disabled {
+    background: url(/static/img/activity/dayDropGold/disabled_btn.png)no-repeat;
+    background-size: 100% 100%;
+}
+
+.u-coupon-num {
+    margin-top: 64px;
+}
+
+/*\任性挑红包*/
+
+/*火热夺黄金*/
+
+.m-gold-module {
+    padding-bottom: 66px;
+}
+
+.u-gold-wrap {
+    padding-left: 104px;
+    margin-top: 20px;
+}
+
+.u-gold-wrap p {
+    width: 446px;
+}
+
+.u-invest-amount {
+    width: 867px;
+    margin: 25px 0 0;
+    font-size: 0;
+    text-align: center;
+}
+
+.u-invest-amount span {
+    display: inline-block;
+    width: 50%;
+}
+
+.u-table-head {
+    margin-top: 20px;
+}
+
+.u-head-title {
+    top: 18px;
+    left: 0;
+    width: 867px;
+    color: #fff;
+    text-align: center;
+}
+
+.u-star-icon {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    margin: 0 10px;
+    background: url(/static/img/activity/dayDropGold/star_icon.png)no-repeat;
+    background-size: 100% 100%;
+}
+
+.u-table-wrap {
+    width: 828px;
+    margin: 0 19.5px;
+    padding-bottom: 18px;
+    background-color: #fff;
+}
+
+.u-lucky-table {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.u-lucky-table tr th {
+    height: 48px;
+    color: #463B63;
+    font-size: 16px;
+    text-align: center;
+}
+
+.u-lucky-table tr td {
+    padding: 10px 0;
+}
+
+.u-lucky-table tr .u-name-td {
+    text-align: left;
+    padding: 0 50px;
+}
+
+.u-jp-icon {
+    display: inline-block;
+    width: 25px;
+    height: 32px;
+    margin-right: 24px;
+    vertical-align: inherit;
+}
+
+.u-jp-gold {
+    background: url(/static/img/activity/dayDropGold/gold.png)no-repeat;
+    background-size: 100% 100%;
+}
+
+.u-jp-silver {
+    background: url(/static/img/activity/dayDropGold/silver.png)no-repeat;
+    background-size: 100% 100%;
+}
+
+.u-jp-copper {
+    background: url(/static/img/activity/dayDropGold/copper.png)no-repeat;
+    background-size: 100% 100%;
+}
+
+.u-user-head {
+    display: inline-block;
+    margin-right: 10px;
+    border-radius: 50%;
+    vertical-align: inherit;
+}
+
+.u-no-data {
+    height: 600px;
+    line-height: 600px;
+}
+
+/*\火热夺黄金*/
+
+
+/*活动规则*/
+
+.u-rule-title {
+    margin-top: -18px;
+}
+
+.u-rule-content {
+    padding-bottom: 50px;
+}
+
+.u-rule-content p {
+    line-height: 36px;
+}
+
+.u-rule-table {
+    width: 764px;
+    color: #fff;
+    text-align: center;
+}
+
+.u-rule-table thead tr{
+    line-height: 44px;
+    background-color: #ff8c41;
+    border-bottom: 1px solid #ffb982;
+}
+
+.u-rule-table thead tr th {
+    text-align: center;
+}
+
+.u-rule-table tbody tr{
+    line-height: 40px;
+    background-color: #ffa359;
+    border-top: 1px solid #ffb982;
+}
+
+.u-rule-table tbody tr:first-child {
+    border-top: none;
+}
+
+.u-rule-table tr th,
+.u-rule-table tr td {
+    border-left: 1px solid #ffb982;
+}
+
+.u-rule-table tr td:first-child {
+    border-left: none;
+}
+
+/*\活动规则*/
+
+/*弹框*/
+
+.m-dialog-window {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 475px;
+    height: 500px;
+    margin-left: -237.5px;
+    margin-top: -250px;
+    z-index: 199;
+}
+
+.u-close-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 29px;
+    height: 29px;
+    background: url(/static/img/activity/dayDropGold/close_icon.png)no-repeat;
+    background-size: 100% 100%;
+    cursor: pointer;
+}
+
+.u-dialog-tips {
+    position: absolute;
+    top: 0;
+    left: 47.5px;
+    width: 380px;
+    height: 115px;
+    line-height: 86px;
+    color: #EB4B3F;
+    font-size: 18px;
+    text-align: center;
+    background: url(/static/img/activity/dayDropGold/dialog_bg.png)no-repeat;
+    background-size: 100% 100%;
+}
+
+.u-dialog-img {
+    width: 455px;
+    height: 311px;
+    margin: 62px auto 0;
+}
+
+.z-evil .u-dialog-img {
+    margin-top: 95px;
+}
+
+.z-evil .u-dialog-tips {
+    color: #8b8b8b;
+}
+
+.m-dialog-window .u-invest-btn {
+    display: block;
+    margin: 26px auto 0;
+    width: 413px;
+    height: 62px;
+    line-height: 62px;
+    font-size: 22px;
+    color: #f8562d;
+    text-align: center;
+    background: #FEF127;
+    border-radius: 40px;
+    box-shadow: 0 6px 0 #fea015;
+}
+
+#j-dayDropGold a:hover {
+    text-decoration: none;
+}
+
+/*\弹框*/
+
+/*非模态框*/
+
+.m-tips-window {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 320px;
+    height: 90px;
+    margin-top: -45px;
+    margin-left: -160px;
+    text-align: center;
+    line-height: 90px;
+    color: #fff;
+    font-size: 14px;
+    background-color: rgba(0,0,0,.8);
+    border-radius: 10px;
+    z-index: 999;
+}
+
+/*\非模态框*/
+
+/*遮罩*/
+
+.m-cover-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.6);
+    z-index: 198;
+}
+
+.m-white-cover-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 198;
+}
+
+/*\遮罩*/
+
+[v-cloak] {
+    display: none;
+}
+
+@-webkit-keyframes zoomIn {
+    0% {
+        opacity: 0;
+        -webkit-transform: scale3d(.3, .3, .3);
+        transform: scale3d(.3, .3, .3)
+    }
+
+    50% {
+        opacity: 1
+    }
+}
+
+@keyframes zoomIn {
+    0% {
+        opacity: 0;
+        -webkit-transform: scale3d(.3, .3, .3);
+        transform: scale3d(.3, .3, .3)
+    }
+
+    50% {
+        opacity: 1
+    }
+}
+
+.zoomIn {
+    -webkit-animation-name: zoomIn;
+    animation-name: zoomIn
+}
+
+.animated {
+    -webkit-animation-duration: .5s;
+    animation-duration: .5s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+

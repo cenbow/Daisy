@@ -1,0 +1,33 @@
+##转让记录_我的投资
+#parse("/common/common.vm")
+#set($title="转让记录_我的投资_$!{title_suffix}")
+#set($css_url=["$cssv2_url/member/member.css","$cssv2_url/member/transferInvest.css"])
+#set($js_url=[
+    "$root_url/static/lib/js/vue/vue.js",
+    "$root_js_url/modules/member/core.js",
+    "$root_js_url/modules/investment.js",
+    "$root_js_url/modules/member.js"
+])
+#set($transaction="z-current")
+#set($isInvestment="true")
+## 用户中心头部
+#parse("/member/head.vm")
+## 用户中心内容
+<div class="g-wrap">
+    <div class="m-nav-title">
+        <a class="u-title-secondary u-tit-l" href="/transaction/transfer">项目转让</a>
+        <a class="u-title-secondary u-tit-l u-cProject-amount f-pos-r">转让记录</a>
+    </div>
+    <div class="g-uc-bd f-round">
+        <div class="g-uc-wrap f-pos-r">
+
+            <form>
+                <div class="m-recharge-list m-order-list" id="j-transfer-list"></div>
+            </form>
+        </div>
+    </div>
+## /用户中心内容
+
+</div>
+
+#CSRFToken('xToken')

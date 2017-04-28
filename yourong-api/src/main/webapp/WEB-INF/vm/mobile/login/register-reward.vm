@@ -1,0 +1,68 @@
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($title="注册成功")
+#set($css_url=["$m_css_url/modules/login.css"])
+#set($js_url=["$m_js_url/modules/login.js"])
+##header
+<h2 class="u-header f-pos-r">
+    <a href="$m_url">返回</a>
+    <span class="f-fs18">
+        注册成功
+    </span>
+</h2>
+##/header
+
+##<div class="u-mobile-guide3">
+##    <span></span>
+##    <ul class="f-cf">
+##        <li>1</li>
+##        <li>2</li>
+##        <li>3</li>
+##    </ul>
+##</div>
+<div class="u-regMobile-success f-cf">
+##    <img src="$res_url/img/member/yourongLogo.png" />
+    <dl class="f-fl">
+##        <dt class="f-fs18 f-fc-red f-fwb">${servletUtil.getUserDO().mobile} 恭喜您！</dt>
+        <dt class="f-fs18 f-fc-red f-fwb">恭喜您，获得518大礼包</dt>
+        <dd class="f-fs14 f-fc-gray">更多好礼尽在新手六重礼</dd>
+    </dl>
+</div>
+<div class="u-mobReward-box">
+    <a href="$siteurl/mCenter/coupon#cash">
+        <img src="$res_url/img/member/register-518.png" style="width:68%;"/>
+    </a>
+</div>
+<p class="u-mobReward-tips">大礼包已经发放至您的账户，<a href="$siteurl/mCenter/home">前往查看></a></p>
+<div class="u-mobile-btn">
+##    <a href="$siteurl/mCenter/home">查看我的账户</a>
+##    <a target="_blank" href="$siteurl/static/page/twoCodeRedict.html">下载APP</a>
+  <a href="$siteurl/products/m/list-all-all-1.html">查看投资项目</a>
+</div>
+<img src="$res_url/img/member/sina-bottom.png" style="width: 50%;margin-left: 25%"/>
+<script>
+        #if($stringUtil.equalsIgnoreCases($!{currentUser.registerTraceSource},'PYYD',true))
+        !function (w, d, e) {
+            var _orderno = '$!{currentUser.id}';  //替换此处!;
+            var b = location.href, c = d.referrer, f, s, g = d.cookie, h = g.match(/(^|;)\s*ipycookie=([^;]*)/), i = g.match(/(^|;)\s*ipysession=([^;]*)/);
+            if (w.parent != w) {
+                f = b;
+                b = c;
+                c = f;
+            }
+            ;
+            u = '//stats.ipinyou.com/cvt?a=' + e('qJ.jk.EMZ62T8rjc-YGTg3JlVCg_') + '&c=' + e(h ? h[2] : '') + '&s=' + e(i ? i[2].match(/jump\%3D(\d+)/)[1] : '') + '&u=' + e(b) + '&r=' + e(c) + '&rd=' + (new Date()).getTime() + '&OrderNo=' + e(_orderno) + '&e=';
+            function _() {
+                if (!d.body) {
+                    setTimeout(_(), 100);
+                } else {
+                    s = d.createElement('script');
+                    s.src = u;
+                    d.body.insertBefore(s, d.body.firstChild);
+                }
+            }
+
+            _();
+        }(window, document, encodeURIComponent);
+        #end
+</script>

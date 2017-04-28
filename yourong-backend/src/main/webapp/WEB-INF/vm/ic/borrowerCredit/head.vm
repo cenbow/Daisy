@@ -1,0 +1,24 @@
+ #parse("/common/common.vm")
+ #########################################script##################################### 
+  #set($js_config=[ 
+ "'urlMap':{ 
+   'queryBorrowerCreditList':'$root_url/borrowerCredit/queryBorrowerCreditList',
+   'queryBorrowerCredit':'$root_url/borrowerCredit/queryBorrowerCredit',  
+   'queryBorrowCredit':'$root_url/borrowerCredit/queryBorrowCredit',
+   'pauseOnline':'$root_url/borrowerCredit/pauseOnline',
+   'recoveryOnline':'$root_url/borrowerCredit/recoveryOnline',
+   'addRemark':'$root_url/borrowerCredit/addRemark',
+   'updateCreditAmount':'$root_url/borrowerCredit/updateCreditAmount'
+   },
+   
+   'permission':{ 
+      'pauseOnline':$shiro.hasPermission('borrowerCredit:pauseOnline'),
+      'recoveryOnline':$shiro.hasPermission('borrowerCredit:recoveryOnline'),
+      'addRemark':$shiro.hasPermission('borrowerCredit:addRemark'),
+      'updateCreditAmount':$shiro.hasPermission('borrowerCredit:updateCreditAmount')
+   },
+   'openPlatformKey':#buildDictJson('channel_business')
+   "
+ ])
+#set($css_url=["$root_url/static/assets/css/dropzone.css","$root_url/static/js/lib/jcrop/jquery.Jcrop.min.css","$root_url/static/js/lib/colorbox/colorbox.css","$root_url/static/js/lib/My97DatePicker/skin/WdatePicker.css","$root_url/static/css/project.css","$root_url/static/js/lib/colorbox/colorbox.css"])
+#set($js_url=["$root_url/static/assets/js/dropzone.min.js","$root_url/static/js/dz-upload.js","$root_url/static/js/lib/jcrop/jquery.Jcrop.min.js","$root_url/static/js/lib/colorbox/jquery.colorbox-min.js","$root_url/static/js/borrowercredit.js","$root_url/static/js/lib/My97DatePicker/WdatePicker.js","$root_url/static/js/lib/colorbox/jquery.colorbox-min.js"]) 

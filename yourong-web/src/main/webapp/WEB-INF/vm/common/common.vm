@@ -1,0 +1,45 @@
+#set($root_url = "")
+#set($domain_url = "$sysServiceUtil.getRootURL()")
+
+##资源路径
+#set($srcPath='compress')
+#if($sysServiceUtil.resourceDev())
+    #set($srcPath='source')
+#end
+#set($root_js_url = $root_url+"/static/"+$srcPath+"/js")
+#set($root_css_url = $root_url+"/static/"+$srcPath+"/css")
+#set($cssv2_url = $root_url+"/static/"+$srcPath+"/cssv2")
+##aliyun
+#set($aliyun_url="https://oss-cn-hangzhou.aliyuncs.com")
+##aliyun静态资源地址
+#set($aliyun_yrimg_url="https://yrimg.oss-cn-hangzhou.aliyuncs.com")
+
+##头部纹理背景色
+#if(!$page_hdb_class)
+	#set($page_hdb_class="")
+#end
+##项目列表URL
+#set($products_url=["$root_url/products/list-all-all-investing-1-createTimeAsc-1.html"])
+##在线客服
+#set($onLineService_url="$root_url")
+
+##用户模块链接
+##我的账户
+#set($account_url=["$root_url/member/home","$root_url/memberBalance/rechargeIndex?type=withdraw","$root_url/memberBankCard/bankManage","$root_url/memberBalance/savingPot","$root_url/member/capitalInOutLog"])
+##快捷支付，添加银行卡页面
+#set($memberBankCard_quickBankAdd_url="$root_url/memberBankCard/bankAdd" )
+##我的交易
+#set($transaction_url=["$root_url/order/order","$root_url/transaction/investment","$root_url/transaction/collectingProject"])
+##我的优惠券
+#set($coupon_url=["$root_url/coupon/couponList","$root_url/coupon/profitCouponList","$root_url/coupon/reputation"])
+##我的信息
+#set($profile_url=["$root_url/member/security","$root_url/member/profile","$root_url/member/msgfeed","$root_url/member/messages"])
+
+##网站标题后缀
+#set($title_suffix="有融网-全透明的互联网理财优选平台")
+
+##开发环境判断
+#set($isDev=$sysServiceUtil.isDev())
+
+##解析页面资源hashtable
+#parse('/paths.vm')

@@ -1,0 +1,40 @@
+#parse('/common/common.vm')
+#set($title="合同资料")
+#if(!$sysServiceUtil.isDev())
+    #set($siteurl='')
+#else
+    #set($siteurl='/yourong-api')
+#end
+#set($css_url=["$siteurl/static/source/css/detail.css"])
+<style>
+    html{
+        font-size: 62.5%;
+    }
+
+</style>
+<section class="m-project-ztcontract g-wrap">
+    <div class="u-pinfo-tab f-fs14 j-infotab">
+        #foreach($_categoryName in $!project.contractCategoryName)
+        <p>
+                <strong>$!{_categoryName}</strong>
+                #foreach($_attach in $!project.contractAttachments)
+                    #if($_categoryName == $_attach.module)
+			            <img src="$!{aliyun_url}/$!{_attach.fileUrl}" alt="$!{_attach.fileName}">
+                        <em>$!{_attach.fileName}</em>
+		            #end
+		        #end
+        </p>
+        #end
+    </div>
+                
+</section>
+<script>
+    //控制iframe高度
+    window.onload=function(){
+        if(window!==window.top&&window.frames.name==="detailFrame"){
+            window.top.$('#j-detail-frame')
+                    .removeAttr('style')
+                    .height(document.body.scrollHeight);
+        }
+    };
+</script>

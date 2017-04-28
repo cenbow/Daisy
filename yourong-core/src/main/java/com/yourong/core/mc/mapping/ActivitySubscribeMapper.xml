@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.mc.dao.ActivitySubscribeMapper" >
+    <resultMap id="BaseResultMap" type="ActivitySubscribe" >
+        <result column="id" property="id" jdbcType="BIGINT" />
+        <result column="open_id" property="openId" jdbcType="VARCHAR" />
+        <result column="activity_name" property="activityName" jdbcType="VARCHAR" />
+        <result column="unique_str" property="uniqueStr" jdbcType="VARCHAR" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <sql id="select_sql">
+        SELECT id,open_id,activity_name,unique_str,create_time
+    </sql>
+
+    <select id="querySubscribeByOpenIdAndUniqueStr" resultMap="BaseResultMap">
+        <include refid="select_sql"/>
+        FROM mc_activity_subscribe WHERE open_id=#{openId} AND unique_str= #{uniqueStr}
+    </select>
+
+    <insert id="insertSubscribe">
+        INSERT INTO mc_activity_subscribe(open_id,activity_name,unique_str,create_time)
+        VALUES (#{subscribe.openId},#{subscribe.activityName},#{subscribe.uniqueStr},#{subscribe.createTime})
+    </insert>
+
+</mapper>

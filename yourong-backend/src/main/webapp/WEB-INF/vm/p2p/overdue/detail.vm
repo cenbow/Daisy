@@ -1,0 +1,36 @@
+<div tabindex="-1" class="modal fade" id="collect-modal-table" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog w800">
+        <div class="modal-content">
+            <div class="modal-header no-padding">
+                <div class="table-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+                        <span class="white">×</span>
+                    </button>
+                    <span class="modalFormTitle">催收历程添加</span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <form role="form" class="form-horizontal" id="detail_form" method="post">
+                    <input type="hidden" name="overdueRepayId" id="overdueRepayId"/>
+					<div id="collect" class="collect"></div>
+					<div id="temp"><span class="btn btn-success fileinput-button dropzone_collect_image dz-upload-btn" style="display:none">
+					        <i class="glyphicon glyphicon-plus"></i>
+					        <span>添加图片</span>
+					    </span>
+					    ###图片控件容器
+						<div class="dropzoneImage dropzone dropzoneSort" id="dropzone_collect_image" data-category="collect_image">
+						</div>
+						<div class="fallback"> 
+					</div>
+					<div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" id="update_Collection" class="btn btn-primary">保存</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>

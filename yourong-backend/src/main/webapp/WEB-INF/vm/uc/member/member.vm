@@ -1,0 +1,40 @@
+<div tabindex="-1" class="modal fade" id="new-member-table" style="display: none;" aria-hidden="true">
+	<div class="modal-dialog" style="width:1000px;">
+		<div class="modal-content">
+			<div class="modal-header no-padding">
+				<div class="table-header">
+					<button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+						<span class="white">×</span>
+					</button>
+					<span class="modalFormTitle">新增会员</span>
+				</div>
+			</div>
+			<div class="modal-body">
+				<form role="form" class="form-horizontal" id="add_member_form" method="post">
+					<div class="profile-user-info profile-user-info-striped row">
+						<div class="profile-info-row col-sm-4">
+							<div class="profile-info-name">用户名</div>
+							<div class="profile-info-value">
+								<input type="text" name="" class="input-sm"/>
+							</div>
+						</div>
+						<div class="profile-info-row col-sm-4">
+							<div class="profile-info-name ">手机号</div>
+								<div class="profile-info-value" > 
+									<input type="text" name="" class="input-sm"/>
+								</div>
+						</div>
+						<div class="profile-info-row col-sm-4">
+							<div class="profile-info-name">手机号</div>
+							<div class="profile-info-value"> 
+								<input type="text" name="" class="input-sm"/>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>

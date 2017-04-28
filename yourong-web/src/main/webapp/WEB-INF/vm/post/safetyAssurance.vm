@@ -1,0 +1,185 @@
+##新版安全保障页
+#parse('/common/common.vm')
+#set($title="安全保障_$!{title_suffix}")
+#set($css_url=["$root_css_url/post/safeguard.css"])
+
+<div class="u-top-banner">
+    <div class="g-wrap">
+    <p>有融网安全保障体系</p>
+        <p>四道风控环环相扣 自在理财安心无忧</p>
+    </div>
+</div>
+<div id="mini-nav1">
+    <div class="u-title">
+        <h2>4道风控严格甄选优质项目</h2>
+        <p>100%历史完美兑付</p>
+    </div>
+    <div class="u-content">
+        <div class="u-content-1 flexbox">
+            <img src="/static/img/post/safetyAssurance/img_1.png" alt="">
+            <div class="intro-box">
+                <p class="order01">01</p>
+                <p class="intro-title">严苛的项目甄选 全方位信息尽调</p>
+                <div class="text flexbox">
+                    <div class="item1 marginBottom">
+                        <p class="common-t">基础信息评估</p>
+                        <p class="common_p">平台专业风控团队严格评估借款方背景、银行流水、征信报告等15种必备材料，剔除不良借款方。</p>
+                    </div>
+                    <div class="item2 marginBottom">
+                        <p class="common-t">多重征信数据验证</p>
+                        <p class="common_p">平台全面收集借款方信用数据，交叉验证借款方的真实性，提前进行有效防范。</p>
+                    </div>
+                    <div class="item3">
+                        <p class="common-t">大数据风控授信</p>
+                        <p class="common_p">平台携手百度金融大数据，建立了一套包含数百个评测维度的综合信用评分体系，根据借款人信息及第三方数据综合评估授信。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="u-content-2 flexbox">
+            <div class="intro-box2">
+                <p class="order02">02</p>
+                <p class="intro-title-2">银行级风控复审 第三方法律监控</p>
+                <div class="text-2 flexbox">
+                    <div class="item1 marginBottom">
+                        <p class="common-t">银行级风控复审</p>
+                        <p class="common_p">平台每个项目在借款期内，都需经过定期复核。包括但不限于借款方定期访谈、关联方再核查等多项风控审核，高频监控借款方资金情况。</p>
+                    </div>
+                    <div class="item2">
+                        <p class="common-t">第三方法律监控</p>
+                        <p class="common_p">平台携手专业第三方律所浙江德睦律师事务所，对平台项目全程进行严格的法律风险把控。</p>
+                    </div>
+                </div>
+            </div>
+            <img src="/static/img/post/safetyAssurance/img_2.png" alt="">
+        </div>
+        <div class="u-content-3">
+            <div class="u-content-1 flexbox">
+                <img src="/static/img/post/safetyAssurance/img_3.png" alt="">
+                <div class="intro-box">
+                    <p class="order01">03</p>
+                    <p class="intro-title">项目披露全透明 信息真实零隐藏</p>
+                    <div class="text flexbox">
+                        <div class="item1 marginBottom">
+                            <p class="common-t">项目公开全透明</p>
+                            <p class="common_p">平台每个理财项目背景信息公开、透明，证据资料详实、有效，用户可轻松了解每个项目的安全细节。</p>
+                        </div>
+                        <div class="item2 marginBottom">
+                            <p class="common-t">信息真实零隐藏</p>
+                            <p class="common_p">平台极致披露用户关心的信息，包含平台基础信息、运营数据等，实现信息真实对等，平台透明运作。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="u-content-2 flexbox">
+            <div class="intro-box2">
+                <p class="order02">04</p>
+                <p class="intro-title-2">专业级贷后管理 项目还款有保障</p>
+                <div class="text-2 flexbox">
+                    <div class="item1 marginBottom">
+                        <p class="common-t">资金流向跟踪</p>
+                        <p class="common_p">项目履约后，平台实时跟踪掌握借款方资金流向。</p>
+                    </div>
+                    <div class="item2 marginBottom">
+                        <p class="common-t">贷后监控评估</p>
+                        <p class="common_p">平台拥有完善的贷后监控及评估预警机制，定期针对每个项目进行多维度贷后风险分析，及时更新借款方的真实还款能力，监督其按时还款。</p>
+                    </div>
+                    <div class="item2">
+                        <p class="common-t">专业催收管理</p>
+                        <p class="common_p">平台专业催收团队通过电话、短信、邮件、登门等方式紧密把控借款方动向，督促其及时还款并对可能出现的风险及时预警。</p>
+                    </div>
+                </div>
+            </div>
+            <img src="/static/img/post/safetyAssurance/img_4.png" alt="">
+        </div>
+    </div>
+</div>
+
+<div class="u-sinapay" id="mini-nav2">
+    <h2>新浪支付第三方资金托管</h2>
+    <h4>用户资金与平台完全隔离</h4>
+    <img src="/static/img/post/safetyAssurance/img_5.png" alt="">
+    <div class="description">
+        <div class="desc-left">
+            <p>专人专户专款专用 支付密码保驾护航</p>
+            <p class="f-size14">每位用户均有专属的新浪支付资金托管账户，与平台完全隔离；</p>
+            <p class="f-size14">用户账户资金出入，需本人支付密码确认，账户安全有保障；</p>
+            <p class="f-size14">用户每笔充值、投资、回款、提现，在新浪支付个人中心均有据可查。</p>
+        </div>
+        <div class="desc-right">
+            <p>快捷支付同卡进出 充值提现更安全</p>
+            <p class="f-size14">用户账户中的所有资金，只能提现到充值时绑定的银行卡中，即使账户或手机遗失，也无法提现到他人银行卡，确保资金安全。</p>
+        </div>
+    </div>
+</div>
+
+<div class="u-safePlatform" id="mini-nav3">
+    <div class="u-safePlatform-text">
+        <h2>银行级技术安全管控水平</h2>
+        <p>网站系统7*24小时全天候实时监控，全年不宕机率99.999%</p>
+        <p>专业研发团队、多重技术保障、行业安全认证共同守护用户信息与资产安全</p>
+    </div>
+</div>
+<div id="mini-nav4">
+    <div class="u-safe-reason">
+        <ul class="u-safe-details flexbox">
+            <li>
+                <div class="title">
+                    <img src="/static/img/post/safetyAssurance/team.png" alt="">
+                    <p>专业研发团队</p>
+                </div>
+                <div class="title-desc">
+                    <p>平台研发团队成员均来自国内知名互联网公司，对网络数据安全、资金托管、支付业务等核心技术有丰富经验和技术实力。</p>
+                </div>
+            </li>
+            <li>
+                <div class="title">
+                    <img src="/static/img/post/safetyAssurance/protect.png" alt="">
+                    <p>全面隐私保护</p>
+                </div>
+                <div class="title-desc">
+                    <p>平台制定了严格的信息安全保障制度，所有用户信息均通过多重技术加密措施进行存储，全面保障用户的隐私安全。</p>
+                </div>
+            </li>
+            <li>
+                <div class="title">
+                    <img src="/static/img/post/safetyAssurance/tech.png" alt="">
+                    <p>先进技术保障</p>
+                </div>
+                <div class="title-desc">
+                    <p>平台拥有安全稳定的高防服务器以及应对网络攻击的丰富经验，网站系统实行全天候实时监控保护，保障交易环境的安全性、稳定性。</p>
+                </div>
+            </li>
+            <li class="margin0">
+                <div class="title">
+                    <img src="/static/img/post/safetyAssurance/money_red.png" alt="">
+                    <p>行业安全认证</p>
+                </div>
+                <div class="title-desc">
+                    <p>有融网是全国首批取得ICP经营许可证的互联网金融平台，并通过国家信息系统安全等级保护三级认证，以及国家级高新技术企业认定等资质。</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="u-lawyer-protect">
+        <h2>全方位法律合规保障</h2>
+        <p>获杭州市首批“互联网金融服务”资质</p>
+        <p>携手国内领先电子签约平台上上签保障电子合同具备完整司法效力</p>
+        <p>专业第三方律所全程提供法律保障</p>
+    </div>
+    <ul class="u-protect-details flexbox">
+        <li>
+            <p>平台运营有法可依</p>
+            <p>根据最高人民法院《关于审理民间借贷案件适用法律若干问题的规定》第22条规定：借贷双方通过网络贷款平台形成借贷关系，网络贷款平台的提供者仅提供媒介服务，当事人请求其承担担保责任的，人民法院不予支持。</p>
+        </li>
+        <li>
+            <p>业务形成合法合规</p>
+            <p>平台严格按照相关法律法规开展业务。依据《电子签名法》规定，有融网提供的电子合同合法并具司法效力，投资人通过有融网获得的投资收益为合法收益并受法律保护。</p>
+        </li>
+        <li class="margin0">
+            <p>专业律所全程监控</p>
+            <p>平台与浙江德睦律师事务所合作，由专业第三方律所全程监督平台风控团队的尽职调查工作，并提供专业法律保障。</p>
+        </li>
+    </ul>
+</div>

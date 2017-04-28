@@ -1,0 +1,320 @@
+##月度排行
+#parse('/common/common.vm')
+#set($title="八月壕情榜_$!{title_suffix}")
+#set($css_url=["$root_css_url/activity/monthlyRank.css"])
+#set($js_url=["/static/lib/js/template.js","$root_js_url/activity/monthlyRank.js"])
+<div class="f-mh500 f-cf g-bd">
+    <!-- head -->
+    <div class="u-monthlyRank-hd"></div>
+    <!-- /head -->
+    <!-- 榜上有名、上榜候选人内容 -->
+    <div class="g-montylyRank-wrap">
+        <div class="g-wrap">
+            #*<h2>
+                <strong class="f-fs34">榜上有名</strong>
+                自2015年8月1日——2015年8月31日止，累计投资额达到下列条件的用户，可获得相应的奖励。
+            </h2>*#
+            <div class="f-clear f-cor">
+                <strong class="f-fs34 f-fl">榜上有名</strong>
+                <span class="f-fr f-mt-30 f-mr-160">自2015年8月1日——2015年8月31日止，累计投资额达到下列条件的用户，可获得相应的奖励。</span>
+
+            </div>
+            <div class="f-clear"></div>
+
+            <div id="j-rankList"></div>
+
+            <script id="j-rankList-tpl" type="text/html">
+                <!-- 活动期间累计额 -->
+                <div class="m-monthlyRank-amount f-cf">
+                    <div class="u-montylyRank-80w f-round">
+                        <h2 class="f-fs14">
+                            <i class="f-fs18">2</i>
+                            活动期间，累计投资额<em class="f-fs16">满80万</em>
+                        </h2>
+                        <img class="u-monthlyRank-photo" src="/static/img/activity/monthlyRank/SONY.jpg"/>
+
+                        <div class="m-monthlyRank-price">
+                            <strong class="f-fs14">￥1299.00</strong>
+                            <span class="f-fs12">索尼（SONY）DSC-QX10 镜头数码相机</span>
+                        </div>
+
+                        <div class="m-heavyInvestment-box">
+                            <ul class="j-heavyInvestment-list3 f-cf" id="j-heavyInvestment-list0">
+                                {{if list2.rankingList}}
+                                {{each list2.rankingList as item i}}
+                                <li class="u-heavyInvestment-user f-mar-user">
+                                        <span class="u-user-head f-mar-head">
+                                        <img src='{{if item.avatars}}$aliyun_url/{{item.avatars}}{{else}}/static/img/member/avatar_35x35.png{{/if}}' alt="用户头像">
+                                        <i>&nbsp;</i>
+                                        </span>
+                                    <span>恭喜</span>
+                                    <span class="u-user-name f-mar-name">{{item.username}}</span>
+                                    <span>累计投资<strong class="f-mar-num">￥{{item.totalInvestFormat}}</strong></span>
+                                </li>
+                                {{/each}}
+                                {{else}}
+                                <li><div class="f-fs20 m-monthlyRank-here">我在这，约么？</div></li>
+                                {{/if}}
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="u-montylyRank-150w f-round">
+                        <h2 class="f-fs14">
+                            <i class="f-fs18">1</i>
+                            活动期间，累计投资额<em class="f-fs16">满150万</em>
+                        </h2>
+                        <img class="u-monthlyRank-photo" src="/static/img/activity/monthlyRank/Ninebot.jpg"/>
+
+                        <div class="m-monthlyRank-price">
+                            <strong class="f-fs14">￥2595.00</strong>
+                            <span class="f-fs12">Ninebot One（C+型）电动独轮车</span>
+                        </div>
+                        <div class="m-heavyInvestment-box">
+                            <ul class="j-heavyInvestment-list3 f-cf" id="j-heavyInvestment-list4">
+                                {{if list1.rankingList}}
+                                {{each list1.rankingList as item i}}
+                                <li class="u-heavyInvestment-user f-mar-user">
+                                        <span class="u-user-head f-mar-head">
+                                        <img src='{{if item.avatars}}$aliyun_url/{{item.avatars}}{{else}}/static/img/member/avatar_35x35.png{{/if}}' alt="用户头像">
+                                        <i>&nbsp;</i>
+                                        </span>
+                                    <span>恭喜</span>
+                                    <span class="u-user-name f-mar-name">{{item.username}}</span>
+                                    <span>累计投资<strong class="f-mar-num">￥{{item.totalInvestFormat}}</strong></span>
+                                </li>
+                                {{/each}}
+                                {{else}}
+                                <li><div class="f-fs20 m-monthlyRank-here">我在这，约么？</div></li>
+                                {{/if}}
+                            </ul>
+                        </div>
+
+                    </div>
+
+                    <div class="u-montylyRank-40w f-round">
+                        <h2 class="f-fs14">
+                            <i class="f-fs18">3</i>
+                            活动期间，累计投资额<em class="f-fs16">满40万</em>
+                        </h2>
+                        <img class="u-monthlyRank-photo" src="/static/img/activity/monthlyRank/kindle.jpg"/>
+
+                        <div class="m-monthlyRank-price">
+                            <strong class="f-fs14">￥499.00</strong>
+                            <span class="f-fs12">Kindle 电子书阅读器</span>
+                        </div>
+                        <div class="m-heavyInvestment-box">
+                            <ul id="j-heavyInvestment-list2" class="f-cf">
+                                {{if list3.rankingList}}
+                                {{each list3.rankingList as item i}}
+                                <li class="u-heavyInvestment-user f-mar-user">
+                                        <span class="u-user-head f-mar-head">
+                                        <img src='{{if item.avatars}}$aliyun_url/{{item.avatars}}{{else}}/static/img/member/avatar_35x35.png{{/if}}' alt="用户头像">
+                                        <i>&nbsp;</i>
+                                        </span>
+                                    <span>恭喜</span>
+                                    <span class="u-user-name f-mar-name">{{item.username}}</span>
+                                    <span>累计投资<strong class="f-mar-num">￥{{item.totalInvestFormat}}</strong></span>
+                                </li>
+                                {{/each}}
+                                {{else}}
+                                <li><div class="f-fs20 m-monthlyRank-here">我在这，约么？</div></li>
+                                {{/if}}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- /活动期间累计额-->
+                <h2>
+                    <strong class="f-fs34">上榜候选人</strong>
+                </h2>
+                <div class="m-monthlyRank-candidate">
+
+                    <div class="m-mRank-candidate-list f-cf f-round">
+                        <div class="m-mRank-candidate-title f-fl">
+                            <span>排名</span>
+                            <em>用户名</em>
+                            <em>当前投资总额</em>
+                        </div>
+                        <div class="m-mRank-candidate-title f-fl m-mRank-candidate-70">
+                            <span>排名</span>
+                            <em>用户名</em>
+                            <em>当前投资总额</em>
+                        </div>
+                        <div class="m-mRank-candidate-title f-fr m-mRank-candidate-33">
+                            <span>排名</span>
+                            <em>用户名</em>
+                            <em>当前投资总额</em>
+                        </div>
+                        <div class="m-monthlyRank-list">
+                            <ul id="j-heavyInvestment-list1" class="f-cf">
+                                {{if list4.rankingList}}
+                                    {{each list4.rankingList as item i}}
+                                        {{if (i+1)%3==1}}
+                                        <li class="u-heavyInvestment-user {{if i==3}}z-even{{/if}}">
+                                        {{/if}}
+                                            <div class="u-candidate-wrap">
+                                                <em>{{i+4}}</em>
+                                                <span class="u-user-head">
+                                                    <img src='{{if item.avatars}}$aliyun_url/{{item.avatars}}{{else}}/static/img/member/avatar_35x35.png{{/if}}' alt="用户头像">
+                                                <i>&nbsp;</i>
+                                                </span>
+                                                {{if item.username!=null}}
+                                                <span class="u-user-name">{{item.username}}</span>
+                                                <strong>￥{{item.totalInvestFormat}}</strong>
+                                                {{else}}
+                                                我要上榜！
+                                                {{/if}}
+
+                                            </div>
+                                        {{if !((i+1)%3) || (i+1)==list4.rankingList.length}}
+                                        </li>
+                                        {{/if}}
+                                    {{/each}}
+                                {{else}}
+                                    <li></li>
+                                {{/if}}
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </script>
+
+                #if($currentUser)
+                    #set($logined=1)
+                #else
+                    #set($logined=0)
+                #end
+                <a class="f-fs20 m-monthlyRank-ranking" data-logined="$logined" href="javascript:void(0)" id="j-ranking"></a>
+
+        </div>
+    </div>
+    <!-- /榜上有名、上榜候选人内容 -->
+
+    <div class="m-mRank-line"></div>
+    <!-- 奇偶排行 -->
+    <div class="m-monthlyRank-odd-even">
+        <div class="g-wrap">
+            #*<h2>
+                <strong class="f-fs34">奇偶排行</strong>
+                <span>活动期间，每周四17:00-次日17:00，对用户在这一时段的累计投资额进行排名，前10名获得相应奖励（若投资额相等，先投资的用户排名在前）。</span>
+            </h2>*#
+                <div class="f-clear">
+                    <strong class="f-fs34 f-fl">奇偶排行</strong>
+                    <span class="f-fr f-mt-30 f-mr-60">活动期间，每周四17:00-次日17:00，对用户在这一时段的累计投资额进行排名，前10名获得相应奖励（若投资额相等，先投资的用户排名在前）。</span>
+
+                </div>
+                <div class="f-clear"></div>
+            <span id="j-weekly-countdown" class="f-mt-10">
+                <strong class="f-fs14"></strong><em></em>
+            </span>
+            <div id="j-rankList1"></div>
+            <script id="j-rankList-tpl1" type="text/html">
+            <div>
+
+                <div class="m-mRank-odd-even-list f-cf f-round">
+                    <div class="m-mRank-oeven-title">
+                        <span class="f-fs14">排名</span>
+                        <em>奖励</em>
+                        <span>本轮实时排名</span>
+                        <strong class="f-left-82">本轮投资金额</strong>
+                        <em>上一轮战况</em>
+                        <em>上轮投资总额</em>
+                    </div>
+
+                    <div class="m-monthlyRank-hidden">
+                        <ul class="f-gainList-01" class="f-cf">
+                            {{if weeklyList.length}}
+                            {{each weeklyList as item i}}
+                            <li class="u-mRank-user">
+                                <div class="m-monthlyRank-190 f-fl">
+                                    <em>{{if (i+1)%2}}{{i+1}}（奇）{{else}}{{i+1}}（偶）{{/if}}</em>
+                                    <b>{{item.point}}点人气值</b>
+                                    <div class="f-cf"></div>
+                                </div>
+                                <div class="m-monthlyRank-244 f-fl">
+                                <div class="u-user-head f-fl">
+                                    <img src='{{if item.curAvatar}}$aliyun_url/{{item.curAvatar}}{{else}}/static/img/member/avatar_35x35.png{{/if}}' alt="用户头像">
+                                    <i>&nbsp;</i>
+                                </div>
+                                {{if item.curUsername=='1'}}
+                                <div>壕客来晚啦，奇偶排行已结束~</div>
+                                {{else if item.curUsername=='2'||item.curUsername==null}}
+                                <div>我要拿人气值！</div>
+                                {{else}}
+                                    <div class="u-num f-fl">{{item.curUsername}}</div>
+                                    <span>￥{{item.curTotalInvest}}</span>
+                                {{/if}}
+                                </div>
+                                <div class="m-monthlyRank-244 f-fr g-gr-30">
+                                    <div class="u-user-head f-fl">
+                                        <img src='{{if item.prevAvatar}}$aliyun_url/{{item.prevAvatar}}{{else}}/static/img/member/avatar_35x35.png{{/if}}' alt="用户头像">
+                                        <i>&nbsp;</i>
+                                    </div>
+                                    {{if item.prevUsername=='2'||item.prevUsername==null}}
+                                    <div>虚位以待</div>
+                                    {{else}}
+                                    <div class="u-num f-fl">{{item.prevUsername}}</div>
+                                    <span>￥{{item.prevTotalInvest}}</span>
+                                    {{/if}}
+                                </div>
+                            </li>
+                            {{/each}}
+                            {{else}}
+                            <div class="f-mt-330">虚位以待</div>
+                            {{/if}}
+                        </ul>
+                    </div>
+                </div>
+                <div class="m-monthlyRank-top1 f-cf">
+                    <ul class="f-cf" id="top">
+                        {{if topperList}}
+                        {{each topperList as item i}}
+                        <li class="f-round {{if i==0 || i==1 || i==2}} f-mar-4{{/if}}">
+                            <div class="m-monthlyRank-top1-title">
+                                <strong class="f-fs18">第{{i+1 | HansNumber:'no'}}轮TOP1</strong>
+                                <span class="f-fs12">{{i+1 | HansNumber:'dateArea'}}</span>
+                            </div>
+                            <div class="u-user-wrap">
+                                {{if item.lastUsername}}
+                                    <span class="u-user-head">
+                                        <img src='{{if item.avatar}}$aliyun_url/{{item.avatar}}{{else}}/static/img/member/avatar_35x35.png{{/if}}' alt="用户头像">
+                                        <i>&nbsp;</i>
+                                    </span>
+
+                                {{item.lastUsername}}
+
+                            </div>
+                            <p class="u-quadrupleGift-prize">
+                                投资<em>￥{{item.lastTotalInvest}}</em>
+                            </p> {{else}}
+                            <div class="f-fs14 f-xuwei">虚位以待</div>
+                            {{/if}}
+                        </li>
+                        {{/each}}
+                        {{else}}
+                        <div class="f-fs14 f-xuwei">虚位以待</div>
+                        {{/if}}
+                    </ul>
+                </div>
+            </script>
+            <div class="u-heavyInvestment-rule">
+                <strong class="f-fs14">活动规则</strong>
+                <p class="f-fs12">
+                    1、活动时间：2015年8月1日——2015年8月31日；
+                    <br />2、活动对象：活动期间所有投资用户（各客户端均可参与）；
+                    <br />3、“奇偶排行”投资额计入榜上有名；
+                    <br />4、活动奖励发放说明：
+                    <span>   1）“奇偶排行”人气值于每轮排行结束后即时发放，您可前往
+                        <a href="/member/home" target="_blank">“我的账户”</a>><a href="/coupon/reputation" target="_blank">“我的优惠“</a>><a href="/coupon/reputation" target="_blank">“我的人气值”</a>查看；</span>
+                    <span>   2）“榜上有名”实物奖励将于活动结束后3个工作日内与您电话确认，请保持手机畅通，如错过通知则视为放弃获奖资格；</span>
+                    5、人气值可兑换现金券，1点人气值等于1元现金券，现金券限投资时使用，<a href="/activity/popularityValues" target="_blank">关于人气值</a>；
+                    <br />6、若有其他疑问请拨打客服热线：<em>400-025-6688</em>；
+                    <br />本次活动最终解释权归有融网所有
+                </p>
+            </div>
+        </div>
+    </div>
+    <!-- /奇偶排行 -->
+</div>
+#CSRFToken('xToken')

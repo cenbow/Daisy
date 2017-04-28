@@ -1,0 +1,220 @@
+##关于直投项目
+#parse("/common/common.vm")
+#set($title="精诚所至 直投项目正式版上线啦_$!{title_suffix}")
+
+#set($yrimg_url='https://yrimg.oss-cn-hangzhou.aliyuncs.com')
+<style>
+    h3{
+        font-size: 18px;
+        font-weight: bold;
+        color: #4f4f4f ;
+    }
+    p{
+        color: #999;
+    }
+    .u-aboutP2P-what,
+    .u-aboutP2P-wiki,
+    .u-aboutP2P-QA{
+        padding: 55px 0 55px;
+    }
+    h3 i{
+        height: 20px;
+        display: inline-block;
+        vertical-align: middle;
+        margin: 0 8px 0 0;
+        background: url("/static/img/post/aboutP2P/aboutP2P-icon.png") no-repeat;
+    }
+    p span{
+        text-decoration: underline;
+    }
+    .g-bd {
+        margin-bottom: 0;
+    }
+
+    .m-aboutP2P-hd{
+        width: 100%;
+        height: 380px;
+        margin-top: -8px;
+        background: url($yrimg_url/banner/banner/aboutP2P.jpg) no-repeat center;
+    }
+    /*内容*/
+    .u-aboutP2P-what{
+        background: #fff;
+    }
+
+    .u-aboutP2P-what p{
+        font-size: 14px;
+        margin: 10px 0 70px;
+        text-indent: 30px;
+    }
+
+    .u-aboutP2P-what h3 i{
+        width: 20px;
+        background-position: 0 0;
+    }
+    .u-aboutP2P-what .g-wrap div{
+        height: 114px;
+        width: 990px;
+        background: url("/static/img/post/aboutP2P/aboutP2P-flowpath.png") no-repeat center;
+    }
+    /*名词解释*/
+    .u-aboutP2P-wiki{
+        background: #eee;
+    }
+    .u-aboutP2P-wiki .g-wrap div{
+        margin-top: 35px;
+    }
+    .u-aboutP2P-wiki h3 i{
+        width: 13px;
+        background-position: -23px 0;
+    }
+    .u-aboutP2P-wiki div>strong,
+    .u-aboutP2P-wiki div>p{
+        display: inline-block;
+    }
+    .u-aboutP2P-wiki div>strong{
+         text-indent: 30px;
+         font-size: 14px;
+         color: #666;
+         vertical-align: top;
+     }
+    .u-aboutP2P-wiki div>p{
+        line-height: 2em;
+        color: #999;
+    }
+    /*常见问题*/
+    .u-aboutP2P-QA{
+        background: #fff;
+    }
+    .u-aboutP2P-QA h3 i{
+        width: 20px;
+        background-position: -39px 0;
+    }
+    .u-aboutP2P-QA div>strong{
+        text-indent: 30px;
+        font-size: 14px;
+        color: #666;
+        vertical-align: top;
+    }
+    .u-aboutP2P-QA p em{
+        font-size: 14px;
+        color: #666;
+    }
+    .u-aboutP2P-QA div>strong,
+    .u-aboutP2P-QA div>p{
+        display: inline-block;
+        line-height: 15px;
+    }
+    .u-aboutP2P-QA .g-wrap div{
+        margin-top: 35px;
+    }
+    /*按钮*/
+    .u-aboutP2P-btn{
+        font-size: 24px;
+        text-align: center;
+        line-height: 60px;
+        color: #fff;
+        height: 60px;
+        width: 989px;
+        display: block;
+        text-decoration: none;
+        margin: 77px  0 15px;
+        letter-spacing:10px;
+        background: url("/static/img/post/aboutP2P/aboutP2P-btn.png") no-repeat center;
+    }
+    .u-aboutP2P-btn:link,
+    .u-aboutP2P-btn:visited,
+    .u-aboutP2P-btn:hover{
+        color: #fff;
+        text-decoration: none;
+    }
+</style>
+##页头
+<div class="m-aboutP2P-hd">
+</div>
+##什么是直投项目
+<div class="u-aboutP2P-what">
+    <div class="g-wrap">
+        <h3><i></i>什么是直投模式？</h3>
+        <p>直投模式是指<span>借款人</span>在有融网平台<span>发布借款信息</span>，<span>投资人</span>通过有融网平台直接把<span>资金投向</span>心仪的<span>借款项目</span>中，从而<span>赚取相应收益</span>。</p>
+        <div></div>
+    </div>
+</div>
+##名词解释
+<div class="u-aboutP2P-wiki">
+    <div class="g-wrap">
+        <h3><i></i>名词解释</h3>
+        <div>
+            <strong>募集：</strong>
+            <p>是指借款人通过在有融网平台<span>发布借款需求</span>，<span>吸引投资人进行投资</span>，从而将所筹资金用于开展生产经营活动的行为。</p>
+        </div>
+        <div>
+            <strong>满标：</strong>
+            <p>是指一个借款项目在投标期限内募集到所需资金，<span>进度达到100%等待放款</span>的状态。</p>
+        </div>
+        <div>
+            <strong>放款：</strong>
+            <p>指一个借款项目达到<span>满标状态且通过</span>有融网的满额信用<span>审核</span>后，有融网委托新浪支付将所筹资金划转至借款人的新浪支付存钱罐账户中，划转完毕视为<span>成功放款</span>。</p>
+        </div>
+        <div>
+            <strong>流标：</strong>
+            <p>在借款人募集资金的过程中，有可能出现募集<span>不成功</span>的情形。募集不成功的情形<span>被称为流标</span>。流标在三种情形下出现：
+                <br>（1）该项目在规定的募集期限内未能达到满额状态；
+                <br>（2）该项目在规定的时间内达到满额状态，但有融网风控团队对借款人的满额信用审核未能通过，有融网决定不向借款人放款；
+                <br>（3）借款人在募集过程中主动放弃募集。
+            </p>
+        </div>
+
+        <div>
+            <strong>收益周期：</strong>
+            <p><span>指直投项目的收益期限。</span></p>
+        </div>
+    </div>
+</div>
+##常见问题
+<div class="u-aboutP2P-QA">
+    <div class="g-wrap">
+        <h3><i></i>常见问题</h3>
+        <div>
+            <strong>1、</strong>
+            <p><em class="f-fwb">直投项目，如何算收益？</em>
+                <br><br>起息方式是T（募集完成日）+1，如有特殊情况以实际为准。若项目流标，投资金额会解冻返回到存钱罐账户，没有项目收益。若项目提前回款，收益将按实际天数计息。</p>
+        </div>
+
+        <div>
+            <strong>2、</strong>
+            <p><em class="f-fwb">投资直投项目，为何会出现冻结资金？</em>
+                <br><br>冻结资金出现在直投项目募集过程中，由于借款人募集项目资金需要一定的时间，在该项目最终成功放款之前，投资人的投资资金在该期间处于冻结状况；冻结过程中，<br/>
+                <br>投资人无法进行提现、撤销投资等操作。冻结资金可享受存钱罐收益。</p>
+        </div>
+
+        <div>
+            <strong>3、</strong>
+            <p><em class="f-fwb">直投项目，电子数据保全证书何时可查看？</em>
+                <br><br>直投项目履约后，对用户交易产生的电子合同/凭证在易保全电子数据保全中心进行保全，
+                用户可电脑登录个人中心，在“我的投资-投资记录-详情-协议书”中查看。</p>
+        </div>
+        <div>
+            <strong>4、</strong>
+            <p><em class="f-fwb">投资直投项目，相应的抢标五重礼、邀请好友、投资分享等活动奖励如何发放？</em>
+                <br><br>直投项目履约后发放抢标五重礼、邀请好友、投资分享等活动奖励。</p>
+        </div>
+        <div>
+            <strong>5、</strong>
+            <p><em class="f-fwb">直投项目资金何时计入平台累计成功投资额？</em>
+                <br><br>直投项目履约后，项目资金计入平台累计成功投资额中。</p>
+        </div>
+        <div>
+            <strong>6、</strong>
+            <p><em class="f-fwb">移动端是否支持直投项目？</em>
+                <br><br>有融网APP V1.3.0及以上版本支持直投项目。</p>
+        </div>
+        <div>
+            <strong>7、</strong>
+            <p><em class="f-fwb">直投项目是否对新客专享标开放？</em>
+                <br><br>目前，直投项目暂不对新客专享标开放。如后期开放，会提前告知。</p>
+        </div>
+        <a href="/products/list-direct-all-investing-1.html" target="_blank" class="u-aboutP2P-btn">立即投资</a>
+    </div>
+
+</div>

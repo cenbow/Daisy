@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.uc.dao.MemberReferMapper" >
+  <resultMap id="BaseResultMap" type="MemberRefer" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="referral" property="referral" jdbcType="BIGINT" />
+    <result column="referred" property="referred" jdbcType="BIGINT" />
+    <result column="refer_type" property="referType" jdbcType="INTEGER" />
+    <result column="refer_source" property="referSource" jdbcType="INTEGER" />
+    <result column="refer_link" property="referLink" jdbcType="VARCHAR" />
+    <result column="reward" property="reward" jdbcType="DECIMAL" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, referral, referred, refer_type, refer_source, refer_link, reward, remarks, create_time
+  </sql>
+  <insert id="insertSelective" parameterType="MemberRefer" >
+    insert into uc_member_refer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="referral != null" >
+        referral,
+      </if>
+      <if test="referred != null" >
+        referred,
+      </if>
+      <if test="referType != null" >
+        refer_type,
+      </if>
+      <if test="referSource != null" >
+        refer_source,
+      </if>
+      <if test="referLink != null" >
+        refer_link,
+      </if>
+      <if test="reward != null" >
+        reward,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="referral != null" >
+        #{referral,jdbcType=BIGINT},
+      </if>
+      <if test="referred != null" >
+        #{referred,jdbcType=BIGINT},
+      </if>
+      <if test="referType != null" >
+        #{referType,jdbcType=INTEGER},
+      </if>
+      <if test="referSource != null" >
+        #{referSource,jdbcType=INTEGER},
+      </if>
+      <if test="referLink != null" >
+        #{referLink,jdbcType=VARCHAR},
+      </if>
+      <if test="reward != null" >
+        #{reward,jdbcType=DECIMAL},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="MemberRefer" >
+    update uc_member_refer
+    <set >
+      <if test="referral != null" >
+        referral = #{referral,jdbcType=BIGINT},
+      </if>
+      <if test="referred != null" >
+        referred = #{referred,jdbcType=BIGINT},
+      </if>
+      <if test="referType != null" >
+        refer_type = #{referType,jdbcType=INTEGER},
+      </if>
+      <if test="referSource != null" >
+        refer_source = #{referSource,jdbcType=INTEGER},
+      </if>
+      <if test="referLink != null" >
+        refer_link = #{referLink,jdbcType=VARCHAR},
+      </if>
+      <if test="reward != null" >
+        reward = #{reward,jdbcType=DECIMAL},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <delete id="batchDelete" parameterType="java.lang.Long" >
+    delete from uc_member_refer
+    where id in  <foreach collection="ids" index="index" item="item" open="(" separator="," close=")"> #{item}  </foreach>  
+  </delete>
+  <select id="findByPage" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from uc_member_refer
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = #{map.id}
+        </if>
+        <if test=" map.referral != null" >
+          referral = #{map.referral}
+        </if>
+        <if test=" map.referred != null" >
+          referred = #{map.referred}
+        </if>
+        <if test=" map.referType != null" >
+          refer_type = #{map.referType}
+        </if>
+        <if test=" map.referSource != null" >
+          refer_source = #{map.referSource}
+        </if>
+        <if test=" map.referLink != null" >
+          refer_link = #{map.referLink}
+        </if>
+        <if test=" map.reward != null" >
+          reward = #{map.reward}
+        </if>
+        <if test=" map.remarks != null" >
+          remarks = #{map.remarks}
+        </if>
+        <if test=" map.createTime != null" >
+          create_time = #{map.createTime}
+        </if>
+      </where>
+    </if>
+  </select>
+  <resultMap id="ActivityForKingResultMap" type="ActivityForKing" >
+    <result column="member_id" property="memberId" jdbcType="BIGINT" />
+    <result column="reffer_count" property="refferCount" jdbcType="INTEGER" />
+  </resultMap>
+  <select id="getRefferalCountList" resultMap="ActivityForKingResultMap">
+  	SELECT 
+  	referral as member_id,
+  	COUNT(id) as reffer_count 
+  	from uc_member_refer 
+  	GROUP BY referral 
+  	ORDER BY count(id) DESC LIMIT 5;
+  
+  </select>
+</mapper>

@@ -1,0 +1,137 @@
+##收益着落页
+#parse('/common/common.vm')
+#set($css_url=["$root_css_url/modules/login.css","$root_css_url/landing/aplus.css"])
+#set($title="A+轮着陆页_$!{title_suffix}")
+#set($js_url=["$root_js_url/modules/register.js"])
+
+
+
+<style>
+.u-hotline-tips{
+    display:none;
+}
+</style>
+
+
+<div class="m-aplus-hd">
+    <div class="g-wrap f-pos-r">
+        <form data-action="$root_url/security/register/saveMember" method="POST"
+              class="f-pos-r j-form-xpost j-validform m-regform-land f-fr" data-page="register" id="j-reg-form">
+            #CSRFToken()
+            #onceToken()
+            <input type="hidden" id="j-reg-mobile"/>
+            <div class="u-ipt-group f-pos-r">
+                <input type="text" name="mobile" oncopy="return false;" onpaste="return false;" id="j-cpn"
+                       autocomplete="off" nullmsg="手机号码不能为空" errormsg="请输入正确的手机号码"
+                       class="f-round f-ipt-w430 u-ipt-text u-ipt-str" placeholder="请输入手机号码"/>
+                <span class='m-val-tips'></span>
+                <div class="f-mob-sha f-dn" id="j-mobile"></div>
+            </div>
+            <div class="m-input-vercode f-cf">
+                <span class="u-xtips-wrap">
+				<!--[if (gte IE 7)&(lte IE 9)]>
+                    <em>输入图形码</em>
+                    <![endif]-->
+                    <input type="text" id="j-vercode" autocomplete="off" nullmsg="请输入图形验证码"
+                           class="f-round u-ipt-text f-ipt-w260 j-vercode u-ipt-vercode" placeholder="输入图形码"/>
+			     </span>
+                <img src="$root_url/security/validateCode" alt="验证码" title="点击重新获取验证码" id="j-img-vercode"
+                     class="u-img-vercode"/>
+                <span id="j-phonecode-wrap" class="u-xtips-wrap u-phonecode-wrap z-hide">
+				<!--[if (gte IE 7)&(lte IE 9)]>
+                    <em>输入手机验证码</em>
+                    <![endif]-->
+                    <input type="text" name="phonecode" autocomplete="off" id="j-phonecode" placeholder="输入手机验证码"
+                           class="f-clear f-round u-ipt-text f-ipt-w260 u-ipt-phonecode"/>
+			     </span>
+            ##                <span class="f-round u-tips-vercode f-tips-gray" style="display: none;">
+            ##			获得手机验证码
+            ##			</span>
+                <span class="m-val-tips"> &nbsp; </span>
+                <span class="u-ipt-blank"> &nbsp; </span>
+            </div>
+            <div class="u-ipt-group">
+                <input type="password" name="password" oncopy="return false;" onpaste="return false;"
+                       class="f-round u-ipt-text f-ipt-w430 v-pwd" placeholder="输入密码，长度6-16位，至少包含数字和字母"/>
+                <span class="u-ipt-blank"> &nbsp; </span>
+            </div>
+            <div class="u-ipt-group">
+                <input type="password" name="repassword" oncopy="return false;" onpaste="return false;"
+                       recheck="password" class="f-round f-ipt-w430 u-ipt-text v-pwd-reck" placeholder="再次输入密码"/>
+                <span class="u-ipt-blank"> &nbsp; </span>
+            </div>
+            <input type="hidden" name="tid" value="$!{request.getParameter('tid')}"/>
+            <input type="hidden" name="registerTraceSource" value="$!{session.getAttribute(" register_TraceSource ")}"/>
+            <input type="hidden" name="registerTraceNo" value="$!{session.getAttribute(" register_TraceNo ")}"/>
+            <input type="hidden" name="checkType" id="j-checkType" value="1"/>
+            <input type="hidden" name="pngCode" id="j-pngcode"/>
+            <label class="f-clear f-mgl-8 f-aplus-textcolor">
+                <input type="checkbox" checked="checked" name="agree" id="j-agree"/>&nbsp;我已阅读并同意<a href="#"
+                                                                                                    class=" f-aplus-textcolor"
+                                                                                                    id="j-register-argreement-link"
+                                                                                                    data-target="j-register-argreement"
+                                                                                                    data-url="$root_url/static/register-agreement.html">《有融网服务协议》</a>
+            </label>
+            <br/>
+            <input type="submit" value="注册送80元" class="f-round f-fs18 f-btn-m u-btn u-btn-primary f-aplus-color"/>
+        </form>
+    </div>
+</div>
+
+<div class="m-aplus-body">
+    <div class="m-wrap1">
+        <div class="u-little-hd"><img src="/static/img/landing/aplusLand/aplusLittlehead1.png"></div>
+        <div class="u-aplus-redbag f-aplus-left1"><img src="/static/img/landing/aplusLand/red1.png"></div>
+        <div class="u-aplus-redbag"><img src="/static/img/landing/aplusLand/red2.png"></div>
+        <div class="u-aplus-redbag"><img src="/static/img/landing/aplusLand/red3.png"></div>
+        <div class="u-aplus-redbag f-aplus-right1"><img src="/static/img/landing/aplusLand/red4.png"></div>
+        <div class="u-aplus-redbag f-aplus-left2 f-aplus-forwardright1"><img src="/static/img/landing/aplusLand/red5.png"></div>
+        <div class="u-aplus-redbag f-aplus-forwardright2"><img src="/static/img/landing/aplusLand/red6.png"></div>
+        <div class="u-aplus-redbag f-aplus-right2"><img src="/static/img/landing/aplusLand/red7.png"></div>
+        <div class="m-aplus-circle"></div>
+        <div class="m-aplus-circle f-aplus-position"></div>
+    </div>
+
+    <div class="m-wrap2">
+        <div class="u-little-hd"><img src="/static/img/landing/aplusLand/aplusLittlehead2.png"></div>
+        <div class="u-apluslanding-box1 f-aplus-position">
+            <div class="u-apluslanding-box2 u-aplus-border1">
+                <div class="u-apluslanding-box3_1 u-position-circle1"></div>
+                <h1>安全透明</h1>
+                <h3 class="f-aplus-position2">新浪支付</h3>
+                <h2 class="f-aplus-position1">全程托管</h2>
+
+            </div>
+            <div class="u-apluslanding-box2">
+                <div class="u-apluslanding-box3_2 u-position-circle2"></div>
+                <h4>超低门槛</h4>
+                <h3 class="f-aplus-position3">100元</h3>
+                <h2 class="f-aplus-position1">起投</h2>
+            </div>
+        </div>
+        <div class="m-aplus-diamond"></div>
+        <div class="u-apluslanding-box1">
+            <div class="u-apluslanding-box2">
+                <div class="u-apluslanding-box3_1  u-position-circle3 f-aplus-black "></div>
+                <h1>稳健收益</h1>
+                <h2 class="f-aplus-position2">收益率</h2>
+                <h3 class="f-aplus-position1">7%-15%</h3>
+            </div>
+            <div class="u-apluslanding-box2 u-aplus-border2">
+                <div class="u-apluslanding-box3_2 u-position-circle4 f-aplus-black"></div>
+                <h4>免手续费</h4>
+                <h2 class="f-aplus-position3">充值提现</h2>
+                <h3 class="f-aplus-position1">0手续费</h3>
+            </div>
+        </div>
+    </div>
+    <div class="m-aplus-bottom"></div>
+
+    <!--有融网服务协议-->
+    <div class="u-agreement-box f-dn" id="j-register-argreement">
+        <h3 class="f-fs18">有融网服务协议<i></i></h3>
+        <div>
+            <iframe src="" frameborder="0"></iframe>
+        </div>
+    </div>
+    <!--/有融网服务协议-->

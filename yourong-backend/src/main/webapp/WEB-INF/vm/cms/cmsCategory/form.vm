@@ -1,0 +1,144 @@
+<div tabindex="-1" class="modal fade" id="modal-table" style="display: none;" aria-hidden="true">
+     <div class="modal-dialog w900">
+     <div class="modal-content">
+ <div class="modal-header no-padding">
+             <div class="table-header">
+                  <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+                    <span class="white">×</span>
+              </button>
+			  <span class="modalFormTitle">增加栏目</span>
+       </div>
+  </div>
+   <div class="modal-body">
+    <form role="form" class="form-horizontal" name="cmsCategoryForm" id="cmsCategory_form" method="post" action="$root_url/cmsCategory/save" enctype="multipart/form-data">
+     <input type="hidden" name="id" />
+ <div class="form-group">
+   <label for="form-field-parentId" class="col-sm-2 control-label no-padding-right"> 父级分类: </label>
+  <div class="col-sm-3">
+    <div class="clearfix">    
+     <input type="text" name="parentName" class="col-xs-10 col-sm-10" placeholder="" id="form-field-parentId">
+     <input type="hidden" name="parentId" >
+    </div>
+  </div>
+   <label for="form-field-1" class="col-sm-2 control-label no-padding-right"> 栏目模块: </label>
+  <div class="col-sm-4">
+    <div class="clearfix">
+     #dictSelect ("module",${sysServiceUtil.getDictList('cms_module')} ,"请选择")
+    <!-- <input type="text" name="module" class="col-xs-10 col-sm-10" placeholder="module" id="form-field-module">-->
+    </div>
+  </div>
+</div>
+ <div class="form-group">
+   <label for="form-field-1" class="col-sm-2 control-label no-padding-right"> 栏目名称: </label>
+  <div class="col-sm-3">
+    <div class="clearfix">
+     <input type="text" name="name" class="col-xs-10 col-sm-10" placeholder="" id="form-field-name">
+    </div>
+  </div>
+   <label for="form-field-1" class="col-sm-2 control-label no-padding-right"> 栏目图片: </label>
+  <div class="col-sm-4">
+    <div class="clearfix">
+     <input type="file" name="file" class="col-xs-10 col-sm-10" placeholder="" id="form-field-image">
+    </div>
+  </div>
+</div>
+ <div class="form-group">
+   <label for="form-field-1" class="col-sm-2 control-label no-padding-right"> 链接: </label>
+  <div class="col-sm-3">
+    <div class="clearfix">
+     <input type="text" name="href" class="col-xs-10 col-sm-10" placeholder="" id="form-field-href">
+    </div>
+  </div>
+   <label for="form-field-1" class="col-sm-2 control-label no-padding-right"> 目标: </label>
+  <div class="col-sm-4">
+    <div class="clearfix">
+     <input type="text" name="target" class="col-xs-10 col-sm-10" placeholder="" id="form-field-target">
+    </div>
+  </div>
+</div>
+ <div class="form-group">
+   <label for="form-field-1" class="col-sm-2 control-label no-padding-right"> 关键字: </label>
+  <div class="col-sm-3">
+    <div class="clearfix">
+     <input type="text" name="keywords" class="col-xs-10 col-sm-10" placeholder="" id="form-field-keywords">
+    </div>
+  </div>
+   <label for="form-field-1" class="col-sm-2 control-label no-padding-right"> 排序（升序）: </label>
+  <div class="col-sm-4">
+    <div class="clearfix">
+     <input type="text" name="sort" class="col-xs-10 col-sm-10" placeholder="" id="form-field-sort">
+    </div>
+  </div>
+</div>
+ <div class="form-group">
+   <label for="form-field-1" class="col-sm-2 control-label no-padding-right"> 导航中显示: </label>
+  <div class="col-sm-3">
+    <div class="clearfix">
+     <input type="checkbox" class="ace ace-switch ace-switch-5 col-xs-10 col-sm-10" placeholder="" id="form-field-inMenu" value="0">
+     <span class="lbl"></span>
+     <input type="hidden" name="inMenu" class="switchInput" value="0"/>
+    </div>
+  </div>
+   <label for="form-field-1" class="col-sm-2 control-label no-padding-right"> 分类页中显示: </label>
+  <div class="col-sm-4">
+    <div class="clearfix">
+     <input type="checkbox" class="ace ace-switch ace-switch-5 col-xs-10 col-sm-10" placeholder="" id="form-field-inList"  value="0"> 
+     <span class="lbl"></span>
+     <input type="hidden" name="inList" class="switchInput" value="0"/>
+    </div>
+  </div>
+</div>
+ <div class="form-group">
+   <label for="form-field-1" class="col-sm-2 control-label no-padding-right"> 允许评论: </label>
+  <div class="col-sm-3">
+    <div class="clearfix">
+     <input type="checkbox" class="ace ace-switch ace-switch-5 col-xs-10 col-sm-10" placeholder="" id="form-field-allowComment"  value="0">
+     <span class="lbl"></span>
+     <input type="hidden" name="allowComment" class="switchInput" value="0"/>
+    </div>
+  </div>
+   <label for="form-field-1" class="col-sm-2 control-label no-padding-right"> 需要审核: </label>
+  <div class="col-sm-4">
+    <div class="clearfix">
+     <input type="checkbox" class="ace ace-switch ace-switch-5 col-xs-10 col-sm-10" placeholder="" id="form-field-isAudit"  value="0">
+     <span class="lbl"></span>
+     <input type="hidden" name="isAudit" class="switchInput" value="0"/>
+    </div>
+  </div>
+</div>
+ <!--<div class="form-group">
+    <label for="form-field-1" class="col-sm-2 control-label no-padding-right"> 删除标记: </label>
+  <div class="col-sm-3">
+    <div class="clearfix">
+     <input type="text" name="delFlag" class="col-xs-12 col-sm-12" placeholder="delFlag" id="form-field-delFlag">
+    </div>
+  </div>
+</div>-->
+ <div class="form-group">
+   <label for="form-field-1" class="col-sm-2 control-label no-padding-right"> 描述: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+     <textarea  name="description" class="col-xs-10 col-sm-12" placeholder="" id="form-field-description"></textarea>
+    </div>
+  </div>
+</div>
+<div class="form-group">
+	<label for="form-field-1" class="col-sm-2 control-label no-padding-right"> 备注信息: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+     <textarea name="remarks" class="col-xs-10 col-sm-12" placeholder="" id="form-field-remarks"></textarea>
+    </div>
+  </div>
+</div>
+</form>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+<button type="button" id="save_cmsCategory" class="btn btn-primary">保存</button>
+</div>
+</div>
+<!-- /.modal-content -->
+ </div>
+<!-- /.modal-dialog -->
+</div>
+#parse("/common/modules/categorySelector.vm")

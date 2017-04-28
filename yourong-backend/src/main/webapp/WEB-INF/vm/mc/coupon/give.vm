@@ -1,0 +1,104 @@
+#set($layout = "/layout/iframe.vm")
+#parse("/mc/coupon/head.vm")
+<div class="tabbable tabs-left">
+		<div class="row">
+			<div class="col-xs-12">
+                <h4 class="">优惠券发放</h4>
+                <form id="coupon_send_form" method="post" enctype="multipart/form-data" action="$root_url/coupon/sendCoupon">
+                    <div class="well">
+                        <div class="form-group clearfix">
+                            <label class="col-sm-1 control-label no-padding-right" for="form-field-1">优惠券模板ID：</label>
+                            <div class="col-sm-1">
+                                <input type="text" id="couponTemplateId" name="couponTemplateId" class="col-xs-12 col-sm-12" dataType="*" />
+                            </div>
+
+                        </div>
+                        <div class="form-group clearfix">
+                            <label class="col-sm-1 control-label no-padding-right" for="form-field-1">用户导入：</label>
+                            <div class="col-sm-2">
+                                <input type="file" name="file" class="col-xs-50 col-sm-50 Validform_error" placeholder="" id="form-field-image" datatype="*">
+                            </div>
+							<div class="col-sm-4">excel数据需要存放用户的memberid</div>
+                        </div>
+                        <div class="form-group clearfix">
+                            <label class="col-sm-1 control-label no-padding-right" for="form-field-1">发放成功短信通知：</label>
+                            <div class="col-sm-1">
+                                <input type="text" id="mobile" name="mobile" class="col-xs-12 col-sm-12" dataType="m" />
+                            </div>
+                            <div class="col-sm-4">请输入本人手机号码，优惠券发放成功后会短信通知到操作人</div>
+                        </div>
+
+						<div class="form-group clearfix">
+                            <label class="col-sm-1 control-label no-padding-right" for="form-field-1"></label>
+                            <div class="col-sm-9">
+                                <button  type="button" id="btn_send" class="btn btn-sm btn-info">发放</button>
+                            </div>
+						</div>
+                    </div>
+                </form>
+
+                <hr>
+
+			<h4 class="">赠送优惠券</h4>
+			<form id="coupon_give_form">
+				<div class="well">
+					<div class="form-group clearfix">
+						<label class="col-sm-1 control-label no-padding-right" for="form-field-1">用户手机号：</label>
+						<div class="col-sm-9">
+							<textarea id="mobiles" name="mobiles" style="width:900px;" dataType="*"></textarea><span style="color: #D74147;margin-left: 20px;">支持批量，多个中间采用英文","分隔</span>
+						</div>
+					</div>
+	
+					<div class="form-group clearfix">
+						<label class="col-sm-1 control-label no-padding-right" for="form-field-1">优惠券模板ID：</label>
+						<div class="col-sm-1">
+							<input type="text" id="coupon_template_id" name="couponTemplateId" class="col-xs-12 col-sm-12" dataType="*" />
+						</div>
+						<div class="col-sm-2">
+							<button  type="button" id="btn_give" class="btn btn-sm btn-info">赠送</button>
+						</div>
+	
+					</div>
+				</div>
+			</form>
+					
+					<hr>
+					
+					
+				<h4 class="">赠送人气值</h4>
+				<form id="popularity_give_form">
+				<div class="well">
+					<div class="form-group clearfix">
+						<label class="col-sm-1 control-label no-padding-right" for="form-field-1">用户手机号：</label>
+						<div class="col-sm-2">
+							<input type="text" id="mobile" name="mobile" style="width:200px;" dataType="*" >
+						</div>
+						<div class="col-sm-1">
+							<span style="color: #D74147;">暂时不支持批量</span>
+						</div>
+					</div>
+					<div class="form-group clearfix">
+						<label class="col-sm-1 control-label no-padding-right" for="form-field-1">人气值：</label>
+						<div class="col-sm-2">
+							<input type="text" id="income" name="income" style="width:200px;"  dataType="*"/>
+						</div>
+					</div>
+					
+					<div class="form-group clearfix">
+						<label class="col-sm-1 control-label no-padding-right" for="form-field-1">备注：</label>
+						<div class="col-sm-2">
+							<textarea id="remarks" name="remarks"  dataType="*" class="col-xs-10 col-sm-10" ></textarea>
+						</div>
+						<div class="col-sm-1">
+							<button  type="button" id="btn_givePopularity" class="btn btn-sm btn-info" >赠送</button>
+						</div>
+					</div>
+				<div>
+				</form>
+				
+			</div>
+		</div>
+
+	</form>
+
+</div>

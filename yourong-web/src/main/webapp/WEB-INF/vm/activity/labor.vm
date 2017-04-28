@@ -1,0 +1,301 @@
+##38活动
+#parse("/common/common.vm")
+#set($title="劳动最光荣_$!{title_suffix}")
+#set($css_url=["$root_css_url/activity/labor.css"])
+#set($js_url=[
+  "/static/lib/js/vue/vue.js",
+  "/static/lib/js/vue/vue.extend.js",
+  "$root_js_url/activity/labor.js"
+])
+#set($aliyun='https://yrstatic.oss-cn-hangzhou.aliyuncs.com')
+#if($currentUser)
+  #set($logined=true)
+#else
+  #set($logined=false)
+#end
+#CSRFToken('xToken')
+
+<div id="j-labor" class="m-top" data-logined="$logined" v-cloak>
+  <div class="m-head">
+    <div class="m-head-text">{{init.startTime | formatTime 'M月d日' }} ~ {{init.endTime | formatTime 'M月d日' }}</div>
+  </div>
+
+  <div class="m-body m-body1">
+    <div class="g-wrap">
+      <div class="m-body-title">
+        <div class="m-title-div m-title-left">劳有所得</div>
+        <div class="m-title-div m-title-right">坚持享加息</div>
+      </div>
+      <p class="m-body-introduce">活动期间，用户每连续签到2天即可获得0.51%收益券一张，累计签到7天可额外获得五一劳模奖章和510元现金券一张。</p>
+      <div class="m-body-checkbox">
+        <ul class="m-checkbox-week">
+          <li>周日</li>
+          <li>周一</li>
+          <li>周二</li>
+          <li>周三</li>
+          <li>周四</li>
+          <li>周五</li>
+          <li>周六</li>
+        </ul>
+        <ul class="m-checkbox-date">
+          <li>
+            <span class="m-daytime">23</span>
+          </li>
+          <li>
+            <span class="m-daytime">24</span>
+          </li>
+          <li>
+            <span class="m-daytime">25</span>
+          </li>
+          <li>
+            <span class="m-daytime">26</span>
+          </li>
+          <li>
+            <span class="m-daytime">27</span>
+          </li>
+
+          <li #if($logined)class="m-all-day" :class="{'z-check':signIn[0],'z-no-check':checkSign<0,'z-gocheck':checkSign==0&&!signIn[0]&&$logined}" #else class="m-eightday"#end>
+            <span class="m-daytime">28</span>
+            <span class="dot-right">
+              <span>4月</span>
+            </span>
+            <a href="$root_url/security/login/" class="m-reward-btn" id="j-checkin-btn" @click="checkin" v-show="checkSign==0&&!signIn[0]&&$logined">去签到</a>
+          </li>
+
+          <li #if($logined)class="f-fc-right m-all-day" :class="{'z-check':signIn[1],'z-no-check':checkSign<1,'z-gocheck':checkSign==1&&!signIn[1]&&$logined}" #else class="f-fc-right m-eightday"#end>
+            <span class="m-daytime">29</span>
+            <a href="$root_url/security/login/" class="m-reward-btn" id="j-checkin-btn" @click="checkin" v-show="checkSign==1&&!signIn[1]&&$logined">去签到</a>
+          </li>
+
+          <li #if($logined)class="m-all-day" :class="{'z-check':signIn[2],'z-no-check':checkSign<2,'z-gocheck':checkSign==2&&!signIn[2]&&$logined}" #else class="m-eightday"#end>
+            <span class="m-daytime">30</span>
+            <a href="$root_url/security/login/" class="m-reward-btn" id="j-checkin-btn" @click="checkin" v-show="checkSign==2&&!signIn[2]&&$logined">去签到</a>
+          </li>
+
+          <li #if($logined)class="m-all-day" :class="{'z-check':signIn[3],'z-no-check':checkSign<3,'z-gocheck':checkSign==3&&!signIn[3]&&$logined}" #else class="m-eightday"#end>
+            <span class="m-daytime">1</span>
+            <span class="dot-right">
+              <span>5月</span>
+            </span>
+            <a href="$root_url/security/login/" class="m-reward-btn" id="j-checkin-btn" @click="checkin" v-show="checkSign==3&&!signIn[3]&&$logined">去签到</a>
+          </li>
+
+          <li #if($logined)class="m-all-day" :class="{'z-check':signIn[4],'z-no-check':checkSign<4,'z-gocheck':checkSign==4&&!signIn[4]&&$logined}" #else class="m-eightday"#end>
+            <span class="m-daytime">2</span>
+            <a href="$root_url/security/login/" class="m-reward-btn" id="j-checkin-btn" @click="checkin" v-show="checkSign==4&&!signIn[4]&&$logined">去签到</a>
+          </li>
+
+          <li #if($logined)class="m-all-day" :class="{'z-check':signIn[5],'z-no-check':checkSign<5,'z-gocheck':checkSign==5&&!signIn[5]&&$logined}" #else class="m-eightday"#end>
+            <span class="m-daytime">3</span>
+            <a href="$root_url/security/login/" class="m-reward-btn" id="j-checkin-btn" @click="checkin" v-show="checkSign==5&&!signIn[5]&&$logined">去签到</a>
+          </li>
+
+          <li #if($logined)class="m-all-day" :class="{'z-check':signIn[6],'z-no-check':checkSign<6,'z-gocheck':checkSign==6&&!signIn[6]&&$logined}" #else class="m-eightday"#end>
+            <span class="m-daytime">4</span>
+            <a href="$root_url/security/login/" class="m-reward-btn" id="j-checkin-btn" @click="checkin" v-show="checkSign==6&&!signIn[6]&&$logined">去签到</a>
+          </li>
+
+          <li #if($logined)class="m-all-day" :class="{'z-check':signIn[7],'z-no-check':checkSign<7,'z-gocheck':checkSign==7&&!signIn[7]&&$logined}" #else class="m-eightday"#end>
+            <span class="m-daytime">5</span>
+            <a href="$root_url/security/login/" class="m-reward-btn" id="j-checkin-btn" @click="checkin" v-show="checkSign==7&&!signIn[7]&&$logined">去签到</a>
+          </li>
+
+          <li class="f-fc-right">
+            <span class="m-daytime">6</span>
+          </li>
+        </ul>
+        <div></div>
+      </div>
+      <div class="m-body-laomo">
+        <img src="/static/img/activity/labor/laomo.png" alt="" v-if="init.receiveWorker">
+        <img src="/static/img/activity/labor/laomo-no.png" alt="" v-else>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="m-body m-body2">
+    <div class="g-wrap">
+      <div class="m-body-title">
+        <div class="m-title-div m-title-left">多劳多得</div>
+        <div class="m-title-div m-title-right">专属510</div>
+      </div>
+      <p class="m-body-introduce">活动期间，用户每日累计投资额满{{init.workInvest}}元即可领取510现金大礼包，累计领取7个大礼包的用户即可获得五一先锋奖章。<br> （礼包当日未领取视为自动放弃）</p>
+      <div class="m-body-getbox">
+        <ul>
+          <li #if($logined):class="{'z-gift':giftIn[0],'z-today':giftSign==0&&!giftIn[0],'z-no-get':giftSign<0}" #else class="f-no-login"#end>
+            <img class="m-getbox-date" src="/static/img/activity/labor/4-28.png" alt="">
+            <a href="$root_url/products/list-all-all-investing-1-createTimeDesc-1.html" v-if="giftSign==0&&!giftIn[0]&&$logined"></a>
+          </li>
+          <li #if($logined):class="{'z-gift':giftIn[1],'z-today':giftSign==1&&!giftIn[1],'z-no-get':giftSign<1}" #else class="f-no-login"#end>
+            <img class="m-getbox-date" src="/static/img/activity/labor/4-29.png" alt="">
+            <a href="$root_url/products/list-all-all-investing-1-createTimeDesc-1.html" v-if="giftSign==1&&!giftIn[1]&&$logined"></a>
+          </li>
+          <li #if($logined):class="{'z-gift':giftIn[2],'z-today':giftSign==2&&!giftIn[2],'z-no-get':giftSign<2}" #else class="f-no-login"#end>
+            <img class="m-getbox-date" src="/static/img/activity/labor/4-30.png" alt="">
+            <a href="$root_url/products/list-all-all-investing-1-createTimeDesc-1.html" v-if="giftSign==2&&!giftIn[2]&&$logined"></a>
+          </li>
+          <li #if($logined)class="f-fc-right" :class="{'z-gift':giftIn[3],'z-today':giftSign==3&&!giftIn[3],'z-no-get':giftSign<3}" #else class="f-no-login f-fc-right"#end>
+            <img class="m-getbox-date" src="/static/img/activity/labor/5-1.png" alt="">
+            <a href="$root_url/products/list-all-all-investing-1-createTimeDesc-1.html" v-if="giftSign==3&&!giftIn[3]&&$logined"></a>
+          </li>
+          <li #if($logined):class="{'z-gift':giftIn[4],'z-today':giftSign==4&&!giftIn[4],'z-no-get':giftSign<4}" #else class="f-no-login"#end>
+            <img class="m-getbox-date" src="/static/img/activity/labor/5-2.png" alt="">
+            <a href="$root_url/products/list-all-all-investing-1-createTimeDesc-1.html" v-if="giftSign==4&&!giftIn[4]&&$logined"></a>
+          </li>
+          <li #if($logined):class="{'z-gift':giftIn[5],'z-today':giftSign==5&&!giftIn[5],'z-no-get':giftSign<5}" #else class="f-no-login"#end>
+            <img class="m-getbox-date" src="/static/img/activity/labor/5-3.png" alt="">
+            <a href="$root_url/products/list-all-all-investing-1-createTimeDesc-1.html" v-if="giftSign==5&&!giftIn[5]&&$logined"></a>
+          </li>
+          <li #if($logined):class="{'z-gift':giftIn[6],'z-today':giftSign==6&&!giftIn[6],'z-no-get':giftSign<6}" #else class="f-no-login"#end>
+            <img class="m-getbox-date" src="/static/img/activity/labor/5-4.png" alt="">
+            <a href="$root_url/products/list-all-all-investing-1-createTimeDesc-1.html" v-if="giftSign==6&&!giftIn[6]&&$logined"></a>
+          </li>
+          <li #if($logined)class="f-fc-right" :class="{'z-gift':giftIn[7],'z-today':giftSign==7&&!giftIn[7],'z-no-get':giftSign<7}" #else class="f-no-login f-fc-right"#end>
+            <img class="m-getbox-date" src="/static/img/activity/labor/5-5.png" alt="">
+            <a href="$root_url/products/list-all-all-investing-1-createTimeDesc-1.html" v-if="giftSign==7&&!giftIn[7]&&$logined"></a>
+          </li>
+        </ul>
+      </div>
+      <div class="m-box-goget">
+        <div v-text="tipsList[tipsIndex]" :class="{'z-can': init.workRight && canget}" @click="goget"></div>
+      </div>
+      <div class="m-body-xianfeng">
+        <img src="/static/img/activity/labor/xianfeng.png" alt="" v-if="init.receivePioneer">
+        <img src="/static/img/activity/labor/xianfeng-no.png" alt="" v-else>
+      </div>
+      <div class="m-my-invest" v-if="init.newDate>init.startTime && $logined">
+        <img src="/static/img/activity/labor/icon1.png" alt="">
+        <template v-if="init.invest">今日累计投资额: ￥{{init.invest | amountSplit '' true}}</template>
+        <template v-else>今日累计投资额: {{init.invest | amountSplit '' true}}元</template>
+      </div>
+    </div>
+  </div>
+
+  <div class="m-body m-body3">
+    <div class="g-wrap">
+      <div class="m-body-title">
+        <div class="m-title-div m-title-left">五一荣耀</div>
+        <div class="m-title-div m-title-right">奖章换豪礼</div>
+      </div>
+      <p class="m-body-introduce">五一国际劳动节当天，用户投资6个月及以上项目，累计投资额满51000元可获得五一敬业奖章，集齐3个五一奖章的用户可获得有融网送出的劳动节豪礼一份（包含51点人气值和2张3%收益券）。</p>
+      <ul>
+        <li>
+          <img src="/static/img/activity/labor/medal1.png" alt="" v-if="init.receiveWorker">
+          <img src="/static/img/activity/labor/medal-1-no.png" alt="" v-else>
+        </li>
+        <li>
+          <img src="/static/img/activity/labor/medal2.png" alt="" v-if="init.receivePioneer">
+          <img src="/static/img/activity/labor/medal-2-no.png" alt="" v-else>
+        </li>
+        <li>
+          <img src="/static/img/activity/labor/medal3.png" alt="" v-if="init.receiveDedicated">
+          <img src="/static/img/activity/labor/medal-3-no.png" alt="" v-else>
+        </li>
+      </ul>
+      <div class="m-body-invest" v-if="init.receiveWorker&&init.receivePioneer&&init.receiveDedicated">已集齐3枚五一奖章，奖励已发放</div>
+      <div class="m-body-invest" v-else>集齐3枚奖章便可兑换豪礼哦！<a href="$root_url/products/list-all-all-investing-1-createTimeDesc-1.html">我马上去投资>></a></div>
+    </div>
+  </div>
+
+  <div class="m-bg4">
+    <div class="g-wrap">
+      <h2>活动规则</h2>
+      <div class="m-activity-rule-content">
+        1. 活动对象：有融网所有用户；<br />
+        2. 活动时间：{{init.startTime | formatTime 'yyyy年MM月dd日 hh:mm' }}~{{init.endTime | formatTime 'MM月dd日 hh:mm' }}；<br />
+        3. 现金券使用条件详见下表；<br />
+        <table>
+          <thead>
+          <tr>
+            <td>面额(元)</td>
+            <td>起投金额(元)</td>
+            <td>起投期限(天)</td>
+            <td>有效期</td>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>10</td>
+            <td>2000</td>
+            <td>25</td>
+            <td>领取后3天</td>
+          </tr>
+          <tr>
+            <td>60</td>
+            <td>4000</td>
+            <td>60</td>
+            <td>领取后3天</td>
+          </tr>
+          <tr>
+            <td>120</td>
+            <td>6000</td>
+            <td>90</td>
+            <td>领取后3天</td>
+          </tr>
+          <tr>
+            <td>320</td>
+            <td>8000</td>
+            <td>180</td>
+            <td>领取后3天</td>
+          </tr>
+          <tr>
+            <td>510</td>
+            <td>12000</td>
+            <td>180</td>
+            <td>领取后5天</td>
+          </tr>
+          </tbody>
+        </table>
+        4. 转让专区项目不参与本活动；<br/>
+        5. 如有其他疑问，请拨打客服热线：400-025-6688；<br/>
+        6. 本活动最终解释权归有融网所有。<br/>
+      </div>
+    </div>
+  </div>
+
+  <div class="m-tips-window animated zoomIn" v-show="isShowTips">已领取</div>
+
+##蒙层
+  <div class="u-cover j-cover" v-if="coverShow"></div>
+  <div class="u-cover-white j-cover" v-if="whiteCoverShow"></div>
+
+##  领取提示
+  <div class="m-tips-box f-fudai animated zoomIn" v-show="showDialog">
+    <img src="$aliyun/static/img/springComing/rays_main_bg.png" class="u-response-img u-win-bg">
+    <div class="u-confirm-lottery f-tac">
+      <img src="/static/img/activity/labor/xiaorong.png" class="u-xiaorong-img">
+      <div class="u-reward-content">
+        <img @click="close" src="/static/img/activity/labor/close.png" alt="">
+        <p><em class="f-fc-red">510大礼包</em>已到手~</p>
+        <a href="$root_url/products/list-all-all-investing-1-createTimeDesc-1.html" class="m-invest-btn">我要去投资</a>
+      </div>
+    </div>
+  </div>
+
+##右侧灯笼
+  <div class="u-fr-nav" id="j-nav-toTop">
+    <div class="m-nav-btn m-nav-icon1">
+      <img src="/static/img/activity/labor/medal1.png" alt="" v-if="init.receiveWorker">
+      <img src="/static/img/activity/labor/medal-1-no.png" alt="" v-else>
+    </div>
+    <div class="m-nav-btn m-nav-icon2">
+      <img src="/static/img/activity/labor/medal2.png" alt="" v-if="init.receivePioneer">
+      <img src="/static/img/activity/labor/medal-2-no.png" alt="" v-else>
+    </div>
+    <div class="m-nav-btn m-nav-icon3">
+      <img src="/static/img/activity/labor/medal3.png" alt="" v-if="init.receiveDedicated">
+      <img src="/static/img/activity/labor/medal-3-no.png" alt="" v-else>
+    </div>
+    <div class="m-nav-icon4" :class="{'z-lastgift': init.receiveWorker&&init.receivePioneer&&init.receiveDedicated}">
+
+    </div>
+  </div>
+</div>
+
+</div>
+
+<script>
+  var logined = $logined,
+          isDev =$isDev
+</script>

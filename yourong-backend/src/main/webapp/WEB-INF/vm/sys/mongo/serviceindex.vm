@@ -1,0 +1,66 @@
+#set($layout = "/layout/iframe.vm")
+#parse("/sys/mongo/head.vm")
+<div class="col-xs-12">
+</div>
+<div class="col-xs-12">
+    <div class="table-header">对外项目下载图片日志列表</div>
+    <div class="table-responsive">
+        <form id="interest_form">
+            <table id="debt-table-search" class="table table-striped table-bordered " cellspacing="0" width="100%">
+                <thead>
+                <tr>
+                    <td>
+                        日期：
+                    </td>
+                    <td>
+                        <input type="text" name="createtime" onclick="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd'})"/>
+                    </td>
+                    <td>
+                        outBizNo：
+                    </td>
+                    <td>
+                        <input type="text" name="outBizNo"/>
+                    </td>
+                    <td>
+                        channelKey：
+                    </td>
+                    <td>
+                        <input type="text" name="channelKey"/>
+                    </td>
+                    <td>
+                        开始时间：
+                    </td>
+                    <td>
+                        <input type="text" name="starttime" onclick="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})"/>
+                    </td>
+                    <td>
+                        结束时间：
+                    </td>
+                    <td>
+                        <input type="text" name="endtime" onclick="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="10" style="text-align:center">
+                        <button id = "query_serviceinputlog" type="button" class="btn btn-info btn-sm btn-primary">查询</button>
+                        <button id = "reset_order" type="button" class="btn btn-info btn-sm btn-primary resetButton">重置</button>
+                    </td>
+                </tr>
+                </thead>
+            </table>
+        </form>
+    </div>
+    <div class="table-responsive">
+        <table id="serviceInput-table" class="table table-striped table-bordered" cellspacing="0" width="100%">
+            <thead>
+            <tr>
+                <th>outBizNo</th>
+                <th>channelKey</th>
+                <th>serviceName</th>
+                <th>inputJson</th>
+                <th>创建时间</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,123 @@
+<div tabindex="-1" class="modal fade" id="modal-table_2" style="display: none;" aria-hidden="true">
+     <div class="modal-dialog">
+     <div class="modal-content">
+ <div class="modal-header no-padding">
+             <div class="table-header">
+                  <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+                    <span class="white">×</span>
+              </button>
+    <span class="modalFormTitle">添加模板</span>
+       </div>
+  </div>
+   <div class="modal-body">
+     <form role="form" class="form-horizontal" id="weixin_atten_from" method="post">
+				<div class="row">
+					<div class="col-xs-9 col-sm-9 widget-container-span ui-sortable">
+						<div class="widget-box">
+							<div class="widget-header">
+								<h5>首次关注模板信息<font color="red">(只能有一个模板处于启用状态，创建新模板时请先停用其他模板！)</font></h5>
+							</div>
+						<div class="widget-body">
+							<div class="widget-main">
+								<div  >
+									<div class="form-group clearfix">
+										<label class="col-sm-3 control-label no-padding-right" for="l_member_url" >模板类别</label>
+											<div class="col-sm-5">
+											<select id="templateType_atten" name="templateType">
+												<option value="1">文字</option>
+												<option value="2">图文</option>
+												##<option value="3">视频</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div id="hideTitle">
+									<div class="form-group clearfix">
+										<label class="col-sm-3 control-label no-padding-right" for="l_member_type" >标题</label>
+											<div class="col-sm-5">
+											<input type="text"  name="title"  id="form-field-title" placeholder="" class="col-xs-12 col-sm-12" >
+										</div>
+									</div>
+								</div>
+								
+									<div  id="hideUrl">
+									<div class="form-group clearfix">
+										<label class="col-sm-3 control-label no-padding-right" for="l_member_url" >链接</label>
+											<div class="col-sm-5">
+											<input type="text"  datatype="*"  name="url" id="form-field-url" placeholder="" class="col-xs-12 col-sm-12" >
+										</div>
+									</div>
+								</div>
+							
+							
+								
+							
+							
+						  <div id="h_content">
+							 <div class="form-group clearfix">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-debtPerson">内容</label>
+									<div class="col-sm-3">
+										<textarea datatype="*" type="text" name="textDescribe" id="form-field-textDescribe" ></textarea>
+									</div>
+								</div>
+							</div>
+								<div  >
+									<div class="form-group clearfix">
+										<label class="col-sm-3 control-label no-padding-right" for="l_member_url" >状态</label>
+											<div class="col-sm-5">
+											<select id="status" name="status">
+												<option value="1">启用</option>
+												<option value="0">停用</option>
+											</select>
+										</div>
+									</div>
+								</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+			<input type="hidden" id="j-json-dropzone-weixin-lender" name="lenderAttachmentsData"/>
+	<input type="hidden" name="id" value="$!id"/><!--id-->
+		
+				#set($debtDropzone = [
+	    {"title":"关键字回复相关图片", "category":"weixin_lender","dzId":"dropzone_weixin_lender"}
+ ])
+ </form>
+ <div class="row">
+	<div class="col-xs-9 col-sm-9 widget-container-span ui-sortable" id="weixin_img_atten">
+		<div class="widget-box">
+			<div class="widget-header">
+			</div>
+			<div class="widget-body">
+				<div class="widget-main">
+					<div class="form-group clearfix">
+					
+						###添加文件按钮
+						<span class="btn btn-success fileinput-button dropzone_weixin_lender dz-upload-btn">
+					        <i class="glyphicon glyphicon-plus"></i>
+					        <span>添加文件</span>
+					    </span>
+					    ###图片控件容器
+						<div class="dropzoneImage dropzone dropzoneSort" id="dropzone_weixin_lender" data-category="weixin_lender">
+						</div>	
+						
+						
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+<button type="button" id="save_weixin_atten" class="btn btn-primary">保存</button>
+</div>
+</div>
+<!-- /.modal-content -->
+ </div>
+<!-- /.modal-dialog -->
+</div>

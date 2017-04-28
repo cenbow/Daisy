@@ -1,0 +1,75 @@
+##新浪存钱罐查询验证页面
+#parse("/common/common.vm")
+#set($css_url=["$cssv2_url/member/member.css"])
+##set($js_url=["$root_js_url/modules/member.js"])
+
+#set($layout = "/layout/default.vm")
+#CSRFToken('xToken')
+##$!auditHtml
+##jQuery
+<script src="$root_url/static/lib/js/jq/jquery-1.11.1.min.js"></script>
+<script type="text/javascript">
+    $.extend({
+        // Ajax Post Method
+        xPost: function (config) {
+            var type = "POST",
+                    datatype = "json",
+                    async = true;
+            if (typeof config === "object") {
+                type = config.type ? config.type : type;
+                datatype = config.datatype ? config.datatype : datatype;
+                async = config.async ? config.async : async;
+                var xToken = $("#xToken").val(),
+                        xData = config.data;
+
+                if (typeof xToken !== "undefined" && xToken !== "") {
+                    if (config.hasOwnProperty("data")) {
+                        //拼接的JSON(Object)
+                        if ($.isPlainObject(xData)) {
+                            xData.xToken = xToken;
+                        }
+                        //序列化的表单数据(Array)
+                        else if ($.isArray(xData)) {
+                            //add xToken
+                            var hasToken = false;
+                            $.each(xData, function (index, item) {
+                                if (item.name === 'xToken') {
+                                    hasToken = true;
+                                }
+                            });
+                            !hasToken ? xData.push({name: 'xToken', value: xToken}) : null;
+                        }
+
+                    }
+                    else {
+                        xData = {
+                            xToken: xToken
+                        };
+                    }
+                }
+            }
+            else {
+                throw new Error("xPost: config参数为空或不是对象");
+            }
+            $.ajax({
+                type: type,
+                url: config.url,
+                data: xData,
+                dataType: datatype,
+                async: async,
+                success: config.callback,
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                }
+            });
+        }
+    })
+		window.onload=function(){
+			//document.getElementById("formAuthSavingPot").submit();
+			$.xPost({
+				url:'/member/showMemberInfosSina',
+				callback:function (data) {
+					window.location.href=data.result
+                }
+			})
+		}
+</script>

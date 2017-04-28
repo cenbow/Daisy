@@ -1,0 +1,885 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.ic.dao.DebtInterestMapper" >
+  <resultMap id="BaseResultMap" type="DebtInterest" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="debt_id" property="debtId" jdbcType="BIGINT" />
+    <result column="project_id" property="projectId" jdbcType="BIGINT" />
+    <result column="start_date" property="startDate" jdbcType="DATE" />
+    <result column="end_date" property="endDate" jdbcType="DATE" />
+    <result column="unit_principal" property="unitPrincipal" jdbcType="DECIMAL" />
+    <result column="unit_interest" property="unitInterest" jdbcType="DECIMAL" />
+    <result column="payable_interest" property="payableInterest" jdbcType="DECIMAL" />
+    <result column="payable_principal" property="payablePrincipal" jdbcType="DECIMAL" />
+    <result column="real_pay_principal" property="realPayPrincipal" jdbcType="DECIMAL" />
+    <result column="real_pay_interest" property="realPayInterest" jdbcType="DECIMAL" />
+    <result column="periods" property="periods" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="pay_time" property="payTime" jdbcType="TIMESTAMP" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, debt_id, project_id, start_date, end_date, unit_principal, unit_interest, payable_interest, 
+    payable_principal, real_pay_principal, real_pay_interest, periods, status, pay_time, create_time, 
+    update_time,del_flag
+  </sql>
+  <insert id="insertSelective" parameterType="DebtInterest" >
+    insert into ic_debt_interest
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="debtId != null" >
+        debt_id,
+      </if>
+       <if test="projectId != null" >
+        project_id,
+      </if>
+      <if test="startDate != null" >
+        start_date,
+      </if>
+      <if test="endDate != null" >
+        end_date,
+      </if>
+      <if test="unitPrincipal != null" >
+        unit_principal,
+      </if>
+      <if test="unitInterest != null" >
+        unit_interest,
+      </if>
+      <if test="payableInterest != null" >
+        payable_interest,
+      </if>
+      <if test="payablePrincipal != null" >
+        payable_principal,
+      </if>
+      <if test="realPayPrincipal != null" >
+        real_pay_principal,
+      </if>
+      <if test="realPayInterest != null" >
+        real_pay_interest,
+      </if>
+      <if test="periods != null" >
+        periods,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="payTime != null" >
+        pay_time,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="debtId != null" >
+        #{debtId,jdbcType=BIGINT},
+      </if>
+      <if test="projectId != null" >
+        #{projectId,jdbcType=BIGINT},
+      </if>
+      <if test="startDate != null" >
+        #{startDate,jdbcType=DATE},
+      </if>
+      <if test="endDate != null" >
+        #{endDate,jdbcType=DATE},
+      </if>
+      <if test="unitPrincipal != null" >
+        #{unitPrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="unitInterest != null" >
+        #{unitInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="payableInterest != null" >
+        #{payableInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="payablePrincipal != null" >
+        #{payablePrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="realPayPrincipal != null" >
+        #{realPayPrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="realPayInterest != null" >
+        #{realPayInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="periods != null" >
+        #{periods,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="payTime != null" >
+        #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="DebtInterest" >
+    update ic_debt_interest
+    <set >
+      <if test="debtId != null" >
+        debt_id = #{debtId,jdbcType=BIGINT},
+      </if>
+      <if test="projectId != null" >
+        project_id = #{projectId,jdbcType=BIGINT},
+      </if>
+      <if test="startDate != null" >
+        start_date = #{startDate,jdbcType=DATE},
+      </if>
+      <if test="endDate != null" >
+        end_date = #{endDate,jdbcType=DATE},
+      </if>
+      <if test="unitPrincipal != null" >
+        unit_principal = #{unitPrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="unitInterest != null" >
+        unit_interest = #{unitInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="payableInterest != null" >
+        payable_interest = #{payableInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="payablePrincipal != null" >
+        payable_principal = #{payablePrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="realPayPrincipal != null" >
+        real_pay_principal = #{realPayPrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="realPayInterest != null" >
+        real_pay_interest = #{realPayInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="periods != null" >
+        periods = #{periods,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="payTime != null" >
+        pay_time = #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <delete id="batchDelete" parameterType="java.lang.Long" >
+    delete from ic_debt_interest
+    where id in  <foreach collection="ids" index="index" item="item" open="(" separator="," close=")"> #{item}  </foreach>  
+  </delete>
+  <select id="findByPage" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from ic_debt_interest where del_flag >=0
+    <if test=" map != null" >
+        <if test=" map.id != null" >
+          and id = #{map.id}
+        </if>
+        <if test=" map.debtId != null" >
+          and debt_id = #{map.debtId}
+        </if>
+        <if test=" map.projectId != null" >
+          and project_id = #{map.projectId}
+        </if>
+        <if test=" map.startDate != null" >
+          and start_date = #{map.startDate}
+        </if>
+        <if test=" map.endDate != null" >
+          and end_date = #{map.endDate}
+        </if>
+        <if test=" map.unitPrincipal != null" >
+          and unit_principal = #{map.unitPrincipal}
+        </if>
+        <if test=" map.unitInterest != null" >
+          and unit_interest = #{map.unitInterest}
+        </if>
+        <if test=" map.payableInterest != null" >
+          and payable_interest = #{map.payableInterest}
+        </if>
+        <if test=" map.payablePrincipal != null" >
+          and payable_principal = #{map.payablePrincipal}
+        </if>
+        <if test=" map.realPayPrincipal != null" >
+          and real_pay_principal = #{map.realPayPrincipal}
+        </if>
+        <if test=" map.realPayInterest != null" >
+          and real_pay_interest = #{map.realPayInterest}
+        </if>
+        <if test=" map.status != null" >
+          and status = #{map.status}
+        </if>
+        <if test=" map.payTime != null" >
+          and pay_time = #{map.payTime}
+        </if>
+        <if test=" map.createTime != null" >
+          and create_time = #{map.createTime}
+        </if>
+        <if test=" map.updateTime != null" >
+          and update_time = #{map.updateTime}
+        </if>
+    </if>
+  </select>
+  <sql id="Base_Column_List_Pagin" >
+    t.id  as  id,
+t.debt_id  as  debt_id,
+t.project_id  as  project_id,
+t.start_date  as  start_date,
+t.end_date  as  end_date,
+t.unit_principal  as  unit_principal,
+t.unit_interest  as  unit_interest,
+t.payable_interest  as  payable_interest,
+t.payable_principal  as  payable_principal,
+t.real_pay_principal  as  real_pay_principal,
+t.real_pay_interest  as  real_pay_interest,
+t.periods as periods,
+t.status  as  status,
+t.pay_time  as  pay_time,
+t.create_time  as  create_time,
+t.update_time  as  update_time
+  </sql>
+  <select id="selectForPagin" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List_Pagin" />
+    from  (SELECT id FROM  ic_debt_interest
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = #{map.id}
+        </if>
+        <if test=" map.debtId != null" >
+          debt_id = #{map.debtId}
+        </if>
+        <if test=" map.projectId != null" >
+          project_id = #{map.projectId}
+        </if>
+        <if test=" map.startDate != null" >
+          start_date = #{map.startDate}
+        </if>
+        <if test=" map.endDate != null" >
+          end_date = #{map.endDate}
+        </if>
+        <if test=" map.unitPrincipal != null" >
+          unit_principal = #{map.unitPrincipal}
+        </if>
+        <if test=" map.unitInterest != null" >
+          unit_interest = #{map.unitInterest}
+        </if>
+        <if test=" map.payableInterest != null" >
+          payable_interest = #{map.payableInterest}
+        </if>
+        <if test=" map.payablePrincipal != null" >
+          payable_principal = #{map.payablePrincipal}
+        </if>
+        <if test=" map.realPayPrincipal != null" >
+          real_pay_principal = #{map.realPayPrincipal}
+        </if>
+        <if test=" map.realPayInterest != null" >
+          real_pay_interest = #{map.realPayInterest}
+        </if>
+        <if test=" map.status != null" >
+          status = #{map.status}
+        </if>
+        <if test=" map.payTime != null" >
+          pay_time = #{map.payTime}
+        </if>
+        <if test=" map.createTime != null" >
+          create_time = #{map.createTime}
+        </if>
+        <if test=" map.updateTime != null" >
+          update_time = #{map.updateTime}
+        </if>
+      </where>
+    </if>
+      LIMIT	${map.startRow}, ${map.pageSize}  )  AS a,  ic_debt_interest AS t FORCE INDEX(PRIMARY) WHERE a.id = t.id   
+  </select>
+  <select id="selectForPaginTotalCount" resultType="java.lang.Integer" >
+    select count(1) 
+    from ic_debt_interest
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = ${map.id}
+        </if>
+        <if test=" map.debtId != null" >
+          debt_id = ${map.debtId}
+        </if>
+        <if test=" map.projectId != null" >
+          project_id = ${map.projectId}
+        </if>
+        <if test=" map.startDate != null" >
+          start_date = ${map.startDate}
+        </if>
+        <if test=" map.endDate != null" >
+          end_date = ${map.endDate}
+        </if>
+        <if test=" map.unitPrincipal != null" >
+          unit_principal = ${map.unitPrincipal}
+        </if>
+        <if test=" map.unitInterest != null" >
+          unit_interest = ${map.unitInterest}
+        </if>
+        <if test=" map.payableInterest != null" >
+          payable_interest = ${map.payableInterest}
+        </if>
+        <if test=" map.payablePrincipal != null" >
+          payable_principal = ${map.payablePrincipal}
+        </if>
+        <if test=" map.realPayPrincipal != null" >
+          real_pay_principal = ${map.realPayPrincipal}
+        </if>
+        <if test=" map.realPayInterest != null" >
+          real_pay_interest = ${map.realPayInterest}
+        </if>
+        <if test=" map.status != null" >
+          status = ${map.status}
+        </if>
+        <if test=" map.payTime != null" >
+          pay_time = ${map.payTime}
+        </if>
+        <if test=" map.createTime != null" >
+          create_time = ${map.createTime}
+        </if>
+        <if test=" map.updateTime != null" >
+          update_time = ${map.updateTime}
+        </if>
+      </where>
+    </if>
+  </select>
+  
+  <select id="findInterestsByDebtId" resultMap="BaseResultMap">
+  	select 
+  	 <include refid="Base_Column_List" />
+    from ic_debt_interest
+    where del_flag>0 and debt_id = #{debtId,jdbcType=BIGINT}
+
+  </select>
+  
+  <update id="updateStatusForPayInterestAndPrincipal">
+  	UPDATE 
+  		ic_debt_interest
+  	SET 
+  		status = #{afterStatus,jdbcType=INTEGER},
+  		real_pay_principal = payable_principal,
+  		real_pay_interest = payable_interest,
+  		pay_time = now(),
+  		update_time = now()
+  	WHERE  
+  		status = #{beforeStatus,jdbcType=INTEGER}
+  	AND  
+  		<![CDATA[end_date <= curdate() ]]>
+  
+  </update>
+  
+  <!-- 根据项目获取债权本息期数 -->
+  <select id="findPeriodsByProjectId" resultType="java.lang.Integer">
+  		select COUNT(1) as total_periods 
+  		from ic_debt_interest as i 
+  		LEFT JOIN ic_project as p 
+  		on p.debt_id = i.debt_id 
+  		<if test="map != null">
+  			<where>
+  				<if test="map.projectId != null">
+  					and p.id = #{map.projectId}
+  				</if>
+  				<if test="map.endDate != null">
+  					and i.end_date <![CDATA[ <= ]]> #{map.endDate}
+  				</if>
+  			</where>
+  		</if>
+  </select>
+  
+  <select id="findDebtInterestByProjectId" resultMap="BaseResultMap">
+  	SELECT i.start_date as start_date,i.end_date as end_date
+  	from ic_debt_interest as i 
+  	LEFT JOIN ic_project as p 
+  	on p.debt_id = i.debt_id where i.del_flag >0
+  	<if test="projectId !=null">
+  		and p.id = #{projectId}
+  	</if>
+  </select>
+  
+   <sql id="interest_Column_List_Pagin" >
+p.id   as  project_id,
+p.name  as  project_name,
+p.status  as  project_status,
+p.borrower_id  as  borrower_id,
+p.end_date  as  end_date,
+p.original_project_number  as  original_project_number,
+p.online_time  as  online_time,
+i.payable_interest  as  payable_interest,
+i.payable_principal  as  payable_principal,
+i.status  as  interest_status,
+i.end_date  as  currentDeadline,
+i.id   as  interest_id,
+u.true_name as borrower_name,
+u.mobile  as mobile
+  </sql>
+ 	 <resultMap id="ExtendResultMap" type="com.yourong.core.ic.model.ProjectInterestBiz">
+ 	 	<result column="project_id" property="projectId" jdbcType="BIGINT" />
+ 	 	<result column="interest_id" property="interestId" jdbcType="BIGINT" />
+ 	 	<result column="overdue_id" property="overdueId" jdbcType="BIGINT" />
+ 	    <result column="project_name" property="projectName" jdbcType="VARCHAR" />
+ 	    <result column="project_status" property="projectStatus" jdbcType="INTEGER" />
+ 	    <result column="interest_status" property="interestStatus" jdbcType="INTEGER" />
+ 	    <result column="overdue_status" property="overdueStatus" jdbcType="INTEGER" />
+ 	    <result column="borrower_id" property="borrowerId" jdbcType="BIGINT" />
+ 	    <result column="payable_interest" property="payableInterest" jdbcType="DECIMAL" />
+        <result column="payable_principal" property="payablePrincipal" jdbcType="DECIMAL" />
+		<result column="borrower_name" property="borrowerName" jdbcType="VARCHAR" />
+		<result column="online_time" property="onlineTime" jdbcType="TIMESTAMP" />
+		<result column="end_date" property="endDate" jdbcType="TIMESTAMP" />
+		<result column="mobile" property="mobile" jdbcType="BIGINT" />
+		<result column="original_project_number" property="originalProjectNumber" jdbcType="VARCHAR" />
+		<result column="online_time" property="onlineTime" jdbcType="TIMESTAMP" />
+		<result column="current_dead_line" property="currentDeadline" jdbcType="TIMESTAMP" />
+		<result column="periods" property="periods" jdbcType="VARCHAR" />
+	</resultMap>
+	
+  <select id="findRepayInterestForPagin" resultMap="ExtendResultMap" >
+    select 
+    <include refid="interest_Column_List_Pagin" />
+    from  ic_debt_interest as i 
+    inner join ic_project as p on p.id = i.project_id
+    left join uc_member as u on u.id=p.borrower_id where p.del_flag>0  and p.invest_type = 2
+    <if test=" map != null" >
+        <if test=" map.originalProjectNumber != null" >
+          and p.original_project_number = #{map.originalProjectNumber}
+        </if>
+        <if test=" map.borrowerName != null" >
+          and u.true_name = #{map.borrowerName}
+        </if>
+         <if test=" map.mobile != null" >
+          and u.mobile = #{map.mobile}
+        </if>
+        <if test=" map.createdStartTime != null">
+			and p.online_time <![CDATA[>=]]> #{map.createdStartTime}
+		</if>
+		<if test=" map.createdEndTime != null">
+			and p.online_time <![CDATA[<=]]> #{map.createdEndTime}
+		</if>
+        <if test=" map.debtId != null" >
+          debt_id = #{map.debtId}
+        </if>
+        <if test=" map.startDate != null" >
+          start_date = #{map.startDate}
+        </if>
+        <if test=" map.endDate != null" >
+          end_date = #{map.endDate}
+        </if>
+        <if test=" map.unitPrincipal != null" >
+          unit_principal = #{map.unitPrincipal}
+        </if>
+        <if test=" map.unitInterest != null" >
+          unit_interest = #{map.unitInterest}
+        </if>
+        <if test=" map.payableInterest != null" >
+          payable_interest = #{map.payableInterest}
+        </if>
+        <if test=" map.payablePrincipal != null" >
+          payable_principal = #{map.payablePrincipal}
+        </if>
+        <if test=" map.realPayPrincipal != null" >
+          real_pay_principal = #{map.realPayPrincipal}
+        </if>
+        <if test=" map.realPayInterest != null" >
+          real_pay_interest = #{map.realPayInterest}
+        </if>
+        <if test=" map.status != null" >
+          status = #{map.status}
+        </if>
+        <if test=" map.payTime != null" >
+          pay_time = #{map.payTime}
+        </if>
+        <if test=" map.createTime != null" >
+          create_time = #{map.createTime}
+        </if>
+        <if test=" map.updateTime != null" >
+          update_time = #{map.updateTime}
+        </if>
+    </if>
+      LIMIT	${map.startRow}, ${map.pageSize}  
+  </select>
+  <select id="selectForPaginInterestTotalCount" resultType="java.lang.Integer" >
+    select count(1) 
+    from  ic_debt_interest as i 
+    inner join ic_project as p on p.id = i.project_id
+    left join uc_member as u on u.id=p.borrower_id where p.del_flag>0  and p.invest_type = 2
+    <if test=" map != null" >
+        <if test=" map.originalProjectNumber != null" >
+        and p.original_project_number = #{map.originalProjectNumber}
+        </if>
+        <if test=" map.borrowerName != null" >
+          and u.true_name = #{map.borrowerName}
+        </if>
+         <if test=" map.mobile != null" >
+          and u.mobile = #{map.mobile}
+        </if>
+         <if test=" map.createdStartTime != null">
+			and p.online_time <![CDATA[>=]]> #{map.createdStartTime}
+		</if>
+		<if test=" map.createdEndTime != null">
+			and p.online_time <![CDATA[<=]]> #{map.createdEndTime}
+		</if>
+        <if test=" map.debtId != null" >
+          debt_id = ${map.debtId}
+        </if>
+        <if test=" map.startDate != null" >
+          start_date = ${map.startDate}
+        </if>
+        <if test=" map.endDate != null" >
+          end_date = ${map.endDate}
+        </if>
+        <if test=" map.unitPrincipal != null" >
+          unit_principal = ${map.unitPrincipal}
+        </if>
+        <if test=" map.unitInterest != null" >
+          unit_interest = ${map.unitInterest}
+        </if>
+        <if test=" map.payableInterest != null" >
+          payable_interest = ${map.payableInterest}
+        </if>
+        <if test=" map.payablePrincipal != null" >
+          payable_principal = ${map.payablePrincipal}
+        </if>
+        <if test=" map.realPayPrincipal != null" >
+          real_pay_principal = ${map.realPayPrincipal}
+        </if>
+        <if test=" map.realPayInterest != null" >
+          real_pay_interest = ${map.realPayInterest}
+        </if>
+        <if test=" map.status != null" >
+          status = ${map.status}
+        </if>
+        <if test=" map.payTime != null" >
+          pay_time = ${map.payTime}
+        </if>
+        <if test=" map.createTime != null" >
+          create_time = ${map.createTime}
+        </if>
+        <if test=" map.updateTime != null" >
+          update_time = ${map.updateTime}
+        </if>
+    </if>
+  </select>
+   <select id="findInterestsByProjectId" resultMap="BaseResultMap">
+  	select 
+  	 <include refid="Base_Column_List" />
+    from ic_debt_interest
+    where del_flag>0 and project_id = #{projectId,jdbcType=BIGINT}  ORDER BY end_date desc
+
+  </select>
+  
+   <select id="findInterestlistByProjectId" resultMap="BaseResultMap">
+  	select 
+  	 <include refid="Base_Column_List" />
+    from ic_debt_interest
+    where del_flag>0 and project_id = #{projectId,jdbcType=BIGINT}  ORDER BY end_date asc
+
+  </select>
+   <!-- 根据项目获取直投债权本息期数 -->
+  <select id="findDPeriodsByProjectId" resultType="java.lang.Integer">
+  		select COUNT(1) as total_periods 
+  		from ic_debt_interest 
+  		<if test="map != null">
+  			<where>
+  				<if test="map.projectId != null">
+  					and project_id = #{map.projectId}
+  				</if>
+  				<if test="map.endDate != null">
+  					and end_date <![CDATA[ <= ]]> #{map.endDate}
+  				</if>
+  			</where>
+  		</if>
+  </select>
+  
+  <select id="selectInterestInfoByPrimaryKey" resultMap="ExtendResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="interest_Column_List_Pagin" />
+    from ic_debt_interest as i inner join ic_project as p  on i.project_id=p.id left join uc_member as u on 
+	u.id=p.borrower_id
+    where i.id = #{id,jdbcType=BIGINT}
+  </select>
+  <!-- 还款日期 -->
+   <select id="selectOverdueDyasByProjectId" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from ic_debt_interest where project_id=#{projectId,jdbcType=BIGINT} and status=1 ORDER BY end_date desc LIMIT 1
+  </select>
+   <!-- 最近一期还款时间 -->
+   <select id="selectMinTimeByProjectId" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from ic_debt_interest where project_id=#{projectId,jdbcType=BIGINT} and status=0  AND now() <![CDATA[ > ]]> end_date ORDER BY end_date DESC LIMIT 1
+  </select>
+   <select id="selectMaxTimeByProjectId" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from ic_debt_interest where project_id=#{projectId,jdbcType=BIGINT} and status=0  ORDER BY end_date ASC LIMIT 1
+  </select>
+  <!-- 逾期本金  利息 -->
+   <select id="selectOverdueAmountByProjectId" resultMap="BaseResultMap">
+   select sum(i.payable_principal) as payable_principal,
+	  	sum(i.payable_interest) as payable_interest  from fin_overdue_log as f 
+	  	LEFT JOIN ic_debt_interest as i on i.id=f.interest_id  where f.del_flag>0
+	  	<if test="map != null">
+			    <if test="map.projectId != null">
+  					and f.project_id= #{map.projectId}
+  				</if>
+				<if test="map.status !=null">
+					and f.status =#{map.status}
+				</if>
+	</if>
+   </select>
+   <!-- 获取已经支付的本金和利息 -->
+   <select id="selectHadPayAmountByProjectId" resultMap="BaseResultMap">
+   select sum(payable_principal) as payable_principal,
+	  	sum(payable_interest) as payable_interest  from ic_debt_interest  where del_flag>0
+	  	<if test="map != null">
+			    <if test="map.projectId != null">
+  					and project_id= #{map.projectId}
+  				</if>
+				<if test="map.status !=null">
+					and status =#{map.status}
+				</if>
+	</if>
+   </select>
+   
+     <select id="selectWaitPayAmountByBorrowerId" resultMap="BaseResultMap">
+   		select sum(i.payable_principal) as payable_principal,
+	  	sum(i.payable_interest) as payable_interest  from 
+	  	ic_project as p LEFT JOIN ic_debt_interest as i on
+		p.id = i.project_id
+		left join fin_overdue_log as f on
+		i.id=f.interest_id
+	  	where p.invest_type=2 and i.status=1 and f.status=1
+	  	<if test="map != null">
+				<if test="map.borrowerId != null">
+					and  p.borrower_id = #{map.borrowerId}
+				</if>
+				<if test="map.status != null">
+					and  p.status = #{map.status}
+				</if>
+	</if>
+   </select>
+    <select id="selectNOPayAmountByBorrowerId" resultMap="BaseResultMap">
+   		select sum(i.payable_principal) as payable_principal,
+	  	sum(i.payable_interest) as payable_interest  from 
+	  	ic_project as p LEFT JOIN ic_debt_interest as i on
+		p.id = i.project_id
+	  	where p.invest_type=2 and i.status=0 and i.del_flag>0 
+		and  p.borrower_id = #{borrowerId,jdbcType=BIGINT}
+		and p.status=52
+   </select>
+  <sql id="sql_borrowid_project">
+    SELECT fp.id,fp.invest_type,CASE WHEN fp.open_platform_key IS NULL THEN fp.borrower_id ELSE d.`value` END borrower_id FROM ic_project fp LEFT JOIN
+    sys_dict d ON d.group_name='channel_business' AND d.`key`=fp.open_platform_key
+  </sql>
+   <!-- 查询待支付的 -->
+    <select id="selectWaitPayAmountByMemberId" resultMap="BaseResultMap">
+   		select sum(i.payable_principal) as payable_principal,
+	  	sum(i.payable_interest) as payable_interest  from 
+	  	ic_debt_interest as i left join (<include refid="sql_borrowid_project" />) as p on p.id=i.project_id
+	  	where p.invest_type=2 and i.status=0 and i.del_flag>0 
+	  	and  p.borrower_id = #{borrowerId,jdbcType=BIGINT}	
+   </select>
+   <select id="findInterestsByProjectIdTotalCount" resultType="java.lang.Integer">
+  	select  count(1)
+    from ic_debt_interest
+    where del_flag>0 
+	 <if test="map != null">
+			<if test="map.projectId!= null">
+				and  project_id = #{map.projectId}
+			</if>
+			<if test="map.status != null">
+				and  status = #{map.status}
+			</if>
+	</if>
+  </select>
+  
+  <!-- 获取逾期的本金和利息 -->
+   <select id="selectOverduePayAmountByProjectId" resultMap="ExtendResultMap">
+	  	SELECT sum(i.payable_principal) as payable_principal,sum(i.payable_interest) as payable_interest from  ic_debt_interest as i
+		left join fin_overdue_log as f on i.id=f.interest_id where f.del_flag>0
+	  	<if test="map != null">
+			    <if test="map.projectId != null">
+  					and f.project_id= #{map.projectId}
+  				</if>
+				<if test="map.overdueStatus !=null">
+					and f.status =#{map.overdueStatus}
+				</if>
+				<if test="map.interestStatus !=null">
+					and i.status =#{map.interestStatus}
+				</if>
+				<if test="map.endDate != null">
+  					and i.end_date <![CDATA[ <= ]]> #{map.endDate}
+  				</if>
+	</if>
+   </select>
+   <select id="getOverdueInfoListByMap" resultMap="ExtendResultMap">
+	  	SELECT i.id as interest_id,i.status as interest_status,i.project_id as project_id,
+	  	i.end_date as end_date, f.status as overdue_status ,f.id as overdue_id , i.periods as periods from  ic_debt_interest as i
+		inner join fin_overdue_log as f on i.id=f.interest_id where  f.del_flag>0   and  f.type=1  
+	  	<if test="map != null">
+			    <if test="map.projectId != null">
+  					and f.project_id= #{map.projectId}
+  				</if>
+				<if test="map.overdueStatus !=null">
+					and f.status =#{map.overdueStatus}
+				</if>
+				<if test="map.interestStatus !=null">
+					and i.status =#{map.interestStatus}
+				</if>
+				<if test="map.endDate != null">
+  					and i.end_date <![CDATA[ <= ]]> #{map.endDate}
+  				</if>
+	</if>
+   </select>
+   
+   <!-- 根据项目id和结束时间获取债权本息记录 -->
+   <select id="findDebtInterestByEndDateAndProjectId" resultMap="BaseResultMap">
+   		select  <include refid="Base_Column_List" />
+   		 from ic_debt_interest 
+   		 where project_id = #{projectId,jdbcType=BIGINT} and del_flag >0
+   		 and end_date = #{endDate,jdbcType=TIMESTAMP} limit 1
+   </select>
+
+  <select id="findUnderWriteDebtInterest" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List_Pagin" />   FROM fin_underwrite_log b
+    INNER JOIN  ic_debt_interest t  ON  t.id = b.project_interest_id
+    WHERE  t.end_date <![CDATA[ <= ]]> CURDATE()  AND  b.underwrite_status= 1
+  </select>
+  
+  
+   <!-- 根据项目id获取项目本息记录 -->
+   <select id="findProjectInterestsByProjectId" resultMap="BaseResultMap">
+   		select  <include refid="Base_Column_List" />
+   		 from ic_debt_interest 
+   		 where project_id = #{projectId,jdbcType=BIGINT} and del_flag>0 order by end_date asc
+   </select>
+
+  <!-- 根据项目获取债权本息状态 -->
+  <select id="findStatusByProjectId" resultMap="BaseResultMap">
+  		select 
+		<include refid="Base_Column_List_Pagin" />
+  		from ic_debt_interest as t
+  		LEFT JOIN ic_project as p   		on p.debt_id = t.debt_id 
+		<where>
+  				<if test="map.projectId != null">
+  					and p.id = #{map.projectId}
+  				</if>
+  		</where>
+		order by t.end_date desc
+		limit 0,1
+  </select>
+  
+  <!-- 根据id更新项目本息为已还款  -->
+  <update id="updateStatusById">
+  	update ic_debt_interest 
+  	set status = #{afterStatus,jdbcType=INTEGER},
+  	update_time = now(),
+  	pay_time = now()
+  	where id = #{id,jdbcType=BIGINT}
+  	and status = #{beforeStatus,jdbcType=INTEGER}
+  	and del_flag > 0
+  </update>
+   
+   <!-- 项目下未还款项目本息个数-->
+   <select id="getCountUnReturnByProjectId" resultType="java.lang.Integer">
+   	select count(1) from ic_debt_interest 
+   	where project_id = #{projectId,jdbcType=BIGINT}
+   	and status !=1
+    and del_flag > 0
+   </select>
+   
+   <select id="findOverduesByProjectId" resultType="java.lang.Integer">
+  		select COUNT(1) 
+  		from ic_debt_interest where project_id = #{projectId,jdbcType=BIGINT} and del_flag>0 and status=3 
+   </select>
+   
+   <!-- 更新已逾期的项目本息状态  -->
+   <update id="updateStatusForOverdueProjectInterest" >
+   		update  ic_debt_interest 
+		set status = 3,update_time = now() where status = 0 and id = #{id,jdbcType=BIGINT}
+   </update>
+   
+   <!-- 已逾期的项目本息（未垫资且为直投项目）  -->
+   <select id="selectOverduedProjectInterest" resultMap="BaseResultMap">
+   		select 
+   		<include refid="Base_Column_List_Pagin" />
+		from ic_debt_interest as t 
+		LEFT JOIN  fin_underwrite_log  as u on u.project_interest_id = t.id 
+		LEFT JOIN ic_project as p on p.id = t.project_id  
+		where u.id is null and t.end_date <![CDATA[ < CURDATE()]]>  and p.invest_type = 2 and t.status = 0
+   </select>
+   
+    <!-- 获取逾期本息记录 -->
+    <select id="findOverdueInterestsByProjectId" resultMap="BaseResultMap">
+  		select <include refid="Base_Column_List" />
+  		from ic_debt_interest where project_id = #{projectId,jdbcType=BIGINT} and del_flag>0 and status=3 
+   </select>
+    <!-- 逾期本金  利息 -->
+   <select id="selectOverdueInterestAmountByProjectId" resultMap="BaseResultMap">
+  		select sum(i.payable_principal) as payable_principal,
+	  	sum(i.payable_interest) as payable_interest  from ic_debt_interest as i inner join fin_overdue_log as f  on i.id=f.interest_id 
+	  	 where i.project_id = #{projectId,jdbcType=BIGINT}  and i.status=3  and f.type=2 and f.status !=2 
+   </select>
+   
+   <select id="findOverdueDayByProjectId" resultMap="BaseResultMap">
+  		select <include refid="Base_Column_List" />
+  		from ic_debt_interest where project_id = #{projectId,jdbcType=BIGINT} and del_flag>0 and status=3 order by start_date asc limit 1 
+   </select>
+       <!-- 获取待支付本息记录 -->
+    <select id="findWaitPayInterestsByProjectId" resultMap="BaseResultMap">
+  		select <include refid="Base_Column_List" />
+  		from ic_debt_interest where project_id = #{projectId,jdbcType=BIGINT} and del_flag>0 and status=0
+   </select>
+   <select id="selectRealPayAmountByProjectId" resultMap="BaseResultMap">
+   		select sum(real_pay_principal) as real_pay_principal,
+	  	sum(real_pay_interest) as real_pay_interest  from ic_debt_interest  
+	  	where project_id = #{projectId,jdbcType=BIGINT}
+   </select>
+   <select id="selectWaitPayPrincipalByProjectId" resultMap="BaseResultMap">
+  		select sum(i.payable_principal) as payable_principal,
+	  	sum(i.payable_interest) as payable_interest  from ic_debt_interest as i left join fin_overdue_log as f  on i.id=f.interest_id 
+	  	 where i.project_id = #{projectId,jdbcType=BIGINT}  and i.status=1  and f.id is null  
+   </select>
+   
+   <!-- 还本付息成功后项目本息实际支付值的更新 -->
+   <update id="updateRealPayForPrincipalAndInterestSuccess" >
+   	update ic_debt_interest 
+  	set real_pay_principal =  #{realPayPrincipal,jdbcType=DECIMAL},
+  	real_pay_interest = #{realPayInterest,jdbcType=DECIMAL},
+  	update_time = now(),
+  	pay_time = now()
+  	where id = #{id,jdbcType=BIGINT}
+  	and del_flag > 0
+   </update>
+   
+   <select id="selectCommonOverdueByProjectId" resultMap="BaseResultMap">
+  		select sum(payable_principal) as payable_principal,
+	  	sum(payable_interest) as payable_interest  from  ic_debt_interest  where  status in  (0,3)
+	  	and  project_id = #{projectId,jdbcType=BIGINT}
+   </select>
+</mapper>

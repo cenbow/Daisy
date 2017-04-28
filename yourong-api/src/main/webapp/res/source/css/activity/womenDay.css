@@ -1,0 +1,390 @@
+body {
+    background: #ffcfde;
+}
+
+[v-cloak] {
+    display: none;
+}
+
+img {
+    width: 100%;
+}
+
+.u-crown {
+    width: 17.2%;
+    margin: 0 auto;
+}
+
+.u-award-content h1 {
+    width: 53.3%;
+    margin: 0 auto;
+    top: -0.85rem;
+    color: #ea6675;
+    font-size: 1.25rem;
+    text-align: center;
+    background: #fff;
+    line-height: 2.28rem;
+    border-radius: 30px;
+    z-index: 1;
+    position: relative;
+    font-weight: bold;
+}
+
+.u-award-content h4 {
+    font-size: 0.75rem;
+    text-align: center;
+    color: #fff;
+}
+
+.u-award-content h4 img {
+    display: inline-block;
+    width: 1.25rem;
+    position: relative;
+    top: 0.1rem;
+    margin-right: 0.5rem;
+}
+
+.u-award-content {
+    width: 94.6%;
+    /*height:19.6rem;*/
+    background: #fe93a7;
+    border-radius: 0.78125rem;
+    margin: 0.3rem auto 0;
+    z-index: 0;
+    text-align: center;
+    padding-bottom: 1rem;
+}
+
+.u-award-content .u-check-img {
+    width: 90%;
+    margin: 0 auto 0.5rem;
+}
+
+.u-award-content .u-cash-coupon {
+    width: 10rem;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    color: #ed6d7c;
+    vertical-align: middle;
+}
+
+.u-award-content .u-cash-coupon strong {
+    font-size: 1.5rem;
+    text-align: center;
+    width: 100%;
+    top: 5px;
+    left: 0;
+    position: absolute;
+    font-weight: 100;
+    margin-top: 0.3rem;
+}
+
+.u-award-content .u-cash-coupon strong em {
+    font-size: 3rem;
+}
+
+.u-award-content .u-cash-coupon p {
+    text-align: center;
+    width: 100%;
+    font-size: 0.875rem;
+    color: #ed717f;
+    position: absolute;
+    bottom: 0.5rem;
+    margin: 0;
+}
+.u-award-content .u-button {
+    width: 15.625rem;
+    margin: 0 auto;
+    display: block;
+    margin-bottom: 1rem;
+    line-height: 2.5rem;
+    text-align: center;
+    color: #ea6675;
+    font-size: 0.875rem;
+    background: #fff;
+    border-radius: 30px;
+    box-shadow: #ffcfde 0 6px 0;
+}
+
+.u-award-content .u-button.z-disabled {
+    background: #dcdcdc;
+    color: #777;
+    box-shadow: #bababa 0 6px 0;
+}
+.u-award-content p {
+    color: #fff;
+    width: 97%;
+    font-size: 0.875rem;
+    text-align: left;
+    line-height: 1.5rem;
+    margin: 0.5rem auto 1.5rem;
+}
+
+.u-award-content p em {
+    color: #943135;
+}
+
+.u-regular-button {
+    width: 3.5rem;
+    height: 3.5rem;
+    float: right;
+    text-align: center;
+    margin: 0.625rem 0.9rem 3.8rem 0;
+}
+
+.u-regular-button p {
+    position: absolute;
+    bottom: 0.2rem;
+    margin: 0 auto;
+    text-align: center;
+    left: 1rem;
+    display: inline-block;
+    font-size: 12px;
+    color: #ffffff;
+}
+
+/*非模弹框*/
+.u-forbid-get {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 73%;
+    line-height: 2.5rem;
+    margin-top: -1.25rem;
+    margin-left: -36.5%;
+    text-align: center;
+    background: #fff;
+    color: #fff;
+    font-size: 14px;
+    background-color: rgba(0, 0, 0, .8);
+    border-radius: 10px;
+    z-index: 999;
+}
+
+/*蒙层*/
+.u-shade-cover {
+    background-color: #000;
+    opacity: 0.5;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 10;
+}
+
+.u-shade-cover.f-lucency {
+    background: transparent;
+}
+
+/*弹框样式*/
+.u-tips-box {
+    width: 19.875rem;
+    height: 8.125rem;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-left: -9.9375rem;
+    margin-top: -4.0625rem;
+    background: #fff;
+    z-index: 12;
+    border-radius: 1rem;
+}
+
+.u-tips-box .u-close {
+    width: 1.125rem;
+    height: 1.125rem;
+    position: absolute;
+    right: 0.75rem;
+    top: 0.75rem;
+}
+
+.u-tips-box h5 {
+    text-align: center;
+    width: 100%;
+}
+
+.u-tips-box p {
+    margin-top: 2.7rem;
+    color: #ed6d7c;
+    text-align: center;
+    font-size: 0.75rem;
+    line-height: 1.5rem;
+}
+
+.u-tips-box p em {
+    color: #943135;
+}
+
+.u-tips-box p em.f-congratulate {
+    font-size: 1rem;
+}
+
+.u-regular-text {
+    width: 100%;
+    z-index: 12;
+    position: fixed;
+    background: #ffcfde;
+    height: 100%;
+    top: 0;
+}
+
+.u-regular-text table {
+    font-size: 12px;
+    text-align: center;
+    margin: 1rem 0 1rem 1.6rem;
+}
+
+.u-regular-text table th {
+    color: #d6484e;
+    background: #ffadbc;
+    height: 2.1875rem;
+    border-right: 1px solid #ff93a3;
+}
+
+.u-regular-text table th:first-child {
+    width: 4.5rem;
+}
+
+.u-regular-text table th:nth-child(2) {
+    width: 5.46rem;
+}
+
+.u-regular-text table th:nth-child(3) {
+    width: 6rem;
+}
+
+.u-regular-text table th:last-child {
+    width: 4.5rem;
+    border: 0;
+}
+
+.u-regular-text table td {
+    border-right: 1px solid #ff93a3;
+    color: #ff7489;
+    height: 2.1875rem;
+}
+
+.u-regular-text table td:last-child {
+    border: 0;
+}
+
+.u-regular-text table tbody tr:nth-child(odd) {
+    background: #fff1f4;
+}
+
+.u-regular-text table tbody tr:nth-child(even) {
+    background: #fff;
+}
+
+.u-regular-text h1 {
+    margin-top: 2.5rem;
+    color: #cd454b;
+    font-size: 1.125rem;
+    margin-left: 1.75rem;
+}
+
+.u-regular-text p {
+    color: #cd454b;
+    font-size: 12px;
+    line-height: 1.5rem;
+    margin-left: 1.75rem;
+}
+
+/*底部导航*/
+.m-bottom-nav {
+    width: 100%;
+    background: #f07384;
+    position: fixed;
+    bottom: 0;
+    z-index: 1;
+    display: -moz-box; /* Firefox */
+    display: -webkit-box; /* Safari and Chrome */
+    display: box;
+}
+
+.m-bottom-nav li {
+    padding: 0.4rem 0;
+    color: #ffdfe4;
+    text-align: center;
+    font-size: 0.9375rem;
+    -moz-box-flex: 1.0; /* Firefox */
+    -webkit-box-flex: 1.0; /* Safari and Chrome */
+    box-flex: 1.0;
+}
+
+.m-bottom-nav li.z-selected {
+    background: #943135;
+    color: #fff;
+}
+
+/*M站规则页返回按钮*/
+.u-goback {
+    width: 100%;
+    height: 3rem;
+    background-color: #d74148;
+}
+
+.u-goback i {
+    margin-left: 1.75rem;
+    color: #fff;
+    line-height: 3rem;
+    font-size: 1rem;
+}
+/*弹框出现动画*/
+
+.animated {
+    -webkit-animation-duration: .5s;
+    animation-duration: .5s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+@-webkit-keyframes zoomIn {
+    0% {
+        opacity: 0;
+        -webkit-transform: scale3d(.3, .3, .3);
+        transform: scale3d(.3, .3, .3)
+    }
+
+    50% {
+        opacity: 1
+    }
+}
+
+@keyframes zoomIn {
+    0% {
+        opacity: 0;
+        -webkit-transform: scale3d(.3, .3, .3);
+        transform: scale3d(.3, .3, .3)
+    }
+
+    50% {
+        opacity: 1
+    }
+}
+
+.zoomIn {
+    -webkit-animation-name: zoomIn;
+    animation-name: zoomIn
+}
+
+@media screen and (min-width: 390px) {
+    html {
+        font-size: 18px;
+    }
+}
+
+@media screen and (min-width: 360px) and (max-width: 389px) {
+
+    html {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 359px) {
+    html {
+        font-size: 14px;
+    }
+}

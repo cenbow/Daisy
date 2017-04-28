@@ -1,0 +1,28 @@
+<div tabindex="-1" class="modal fade" id="modal-addremark" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog" >
+        <div class="modal-content">
+            <div class="modal-header no-padding">
+                <div class="table-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+                        <span class="white">×</span>
+                    </button>
+                    <span class="modalFormTitle">添加备注</span>
+                </div>
+            </div>
+            <div class="modal-body" style="text-align:center">
+                <form id="addremark_form">
+        			<input type="hidden" id="id" name=""/>
+	    			
+    				<div class="form-group">
+						<textarea id="borrowercredit_remark" name="remark" type="text" placeholder="添加备注"
+						 style="width: 400px; height: 180px;"></textarea>
+	    			</div>
+            	</form>
+            </div>
+			<div class="modal-footer">
+                <button type="button" id="btn_addremark" class="btn btn-primary">确定</button> 
+				<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>

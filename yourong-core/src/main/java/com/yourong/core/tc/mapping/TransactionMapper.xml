@@ -1,0 +1,3133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.tc.dao.TransactionMapper" >
+  <resultMap id="BaseResultMap" type="Transaction" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="order_id" property="orderId" jdbcType="BIGINT" />
+    <result column="member_id" property="memberId" jdbcType="BIGINT" />
+    <result column="project_id" property="projectId" jdbcType="BIGINT" />
+    <result column="project_name" property="projectName" jdbcType="VARCHAR" />
+    <result column="invest_amount" property="investAmount" jdbcType="DECIMAL" />
+    <result column="used_capital" property="usedCapital" jdbcType="DECIMAL" />
+    <result column="used_coupon_amount" property="usedCouponAmount" jdbcType="DECIMAL" />
+    <result column="annualized_rate" property="annualizedRate" jdbcType="DECIMAL" />
+    <result column="extra_annualized_rate" property="extraAnnualizedRate" jdbcType="DECIMAL" />
+    <result column="bonus_annualized_rate" property="bonusAnnualizedRate" jdbcType="DECIMAL" />
+    <result column="total_days" property="totalDays" jdbcType="INTEGER" />
+    <result column="installment_num" property="installmentNum" jdbcType="INTEGER" />
+    <result column="total_interest" property="totalInterest" jdbcType="DECIMAL" />
+    <result column="received_interest" property="receivedInterest" jdbcType="DECIMAL" />
+    <result column="total_principal" property="totalPrincipal" jdbcType="DECIMAL" />
+    <result column="received_principal" property="receivedPrincipal" jdbcType="DECIMAL" />
+    <result column="total_extra_interest" property="totalExtraInterest" jdbcType="DECIMAL" />
+    <result column="received_extra_interest" property="receivedExtraInterest" jdbcType="DECIMAL" />
+    
+    <result column="extra_project_annualized_rate" property="extraProjectAnnualizedRate" jdbcType="DECIMAL" />
+    <result column="total_extra_project_interest" property="totalExtraProjectInterest" jdbcType="DECIMAL" />
+    <result column="received_extra_project_interest" property="receivedExtraProjectInterest" jdbcType="DECIMAL" />
+    
+    
+    <result column="overdue_fine" property="overdueFine" jdbcType="DECIMAL" />
+    <result column="lease_bonus_amounts" property="leaseBonusAmounts" jdbcType="DECIMAL" />
+    <result column="bonus_annualized_rate" property="bonusAnnualizedRate" jdbcType="DECIMAL" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="transfer_status" property="transferStatus" jdbcType="INTEGER" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="transaction_time" property="transactionTime" jdbcType="TIMESTAMP" />
+    <result column="loan_status" property="loanStatus" jdbcType="INTEGER" />
+    <result column="pay_trade_no" property="payTradeNo" jdbcType="VARCHAR" />
+    <result column="collect_trade_no" property="collectTradeNo" jdbcType="VARCHAR" />
+    <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="sign_status" property="signStatus" jdbcType="INTEGER" />
+    <result column="project_category" property="projectCategory" jdbcType="INTEGER" />
+    <result column="transfer_id" property="transferId" jdbcType="BIGINT" />
+    <result column="transfer_principal" property="transferPrincipal" jdbcType="DECIMAL" />
+    <result column="invest_flag" property="investFlag" jdbcType="INTEGER" />
+    <result column="extra_interest_day" property="extraInterestDay" jdbcType="INTEGER" />
+    <result column="can_transfer_date" property="canTransferDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  <resultMap id="TransactionForOrderResultMap" type="TransactionForOrder"
+		extends="BaseResultMap">
+	<result column="username" property="username" jdbcType="VARCHAR" />
+	<result column="mobile" property="mobile" jdbcType="BIGINT" />
+	<result column="true_name" property="trueName" jdbcType="VARCHAR" />
+	<result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+	<result column="pay_amount" property="payAmount" jdbcType="DECIMAL" />
+	<result column="payed_num" property="payedNum" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <resultMap id="TransactionForProjectResultMap" type="TransactionForProject"
+		extends="BaseResultMap">
+	<result column="username" property="username" jdbcType="VARCHAR" />
+	<result column="mobile" property="mobile" jdbcType="BIGINT" />
+    <result column="avatars" property="avatars" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <resultMap id="TransactionForMemberResultMap" type="TransactionForMemberCenter" >
+    <result column="transaction_id" property="transactionId" jdbcType="BIGINT" />
+    <result column="project_id" property="projectId" jdbcType="BIGINT" />
+    <result column="project_name" property="projectName" jdbcType="VARCHAR" />
+    <result column="annualized_rate" property="annualizedRate" jdbcType="DECIMAL" />
+    <result column="extra_annualized_rate" property="extraAnnualizedRate" jdbcType="DECIMAL" />
+    <result column="extra_project_annualized_rate" property="extraProjectAnnualizedRate" jdbcType="DECIMAL" />
+    <result column="total_extra_project_interest" property="totalExtraProjectInterest" jdbcType="DECIMAL" />
+    <result column="total_extra_interest" property="totalExtraInterest" jdbcType="DECIMAL" />
+    <result column="total_days" property="totalDays" jdbcType="INTEGER" />
+    <result column="invest_amount" property="investAmount" jdbcType="DECIMAL" />
+    <result column="invest_type" property="investType" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="transfer_status" property="transferStatus" jdbcType="INTEGER" />
+    <result column="total_interest" property="totalInterest" jdbcType="DECIMAL" />
+    <result column="received_interest" property="receivedInterest" jdbcType="DECIMAL" />
+    <result column="received_extra_interest" property="receivedExtraInterest" jdbcType="DECIMAL" />
+    <result column="total_principal" property="totalPrincipal" jdbcType="DECIMAL" />
+    <result column="received_principal" property="receivedPrincipal" jdbcType="DECIMAL" />
+    
+    <result column="lease_bonus_amounts" property="leaseBonusAmounts" jdbcType="DECIMAL" />
+    <result column="member_id" property="memberId" jdbcType="BIGINT" />
+    <result column="true_name" property="trueName" jdbcType="VARCHAR" />
+    <result column="identity_number" property="identityNumber" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="BIGINT" />
+    <result column="order_id" property="orderId" jdbcType="BIGINT" />
+    <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+    <result column="overdue_fine" property="overdueFine" jdbcType="DECIMAL" />
+    <result column="sign_status" property="signStatus" jdbcType="INTEGER" />
+    
+    
+    
+    
+    <result column="used_coupon_amount" property="usedCouponAmount" jdbcType="DECIMAL" />
+    
+    <result column="cash_coupon_no" property="cashCouponNo" jdbcType="VARCHAR" />
+    
+    <result column="profit_coupon_no" property="profitCouponNo" jdbcType="VARCHAR" />
+    <result column="order_status" property="orderStatus" jdbcType="INTEGER" />
+    <result column="transaction_time" property="transactionTime" jdbcType="TIMESTAMP" />
+    <result column="end_date" property="endDate" jdbcType="TIMESTAMP" />
+   	<result column="profit_type" property="profitType" jdbcType="VARCHAR" />
+   	<result column="join_lease" property="joinLease" jdbcType="INTEGER" />
+   	<result column="activity_sign" property="activitySign" jdbcType="INTEGER" />
+   	<result column="prepayment" property="prepayment" jdbcType="INTEGER" />
+   	<result column="extra_interest_day" property="extraInterestDay" jdbcType="INTEGER" />
+   	<result column="intereststatus" property="interestStatus" jdbcType="INTEGER" />
+   	<result column="transactionstatus" property="transactionStatus" jdbcType="INTEGER" />
+   	<result column="transferstatus" property="transferStatus" jdbcType="INTEGER" />
+   	<result column="totalRealPayExtraInterest" property="totalRealPayExtraInterest" jdbcType="DECIMAL" />
+   	<result column="totalRealPayInterest" property="totalRealPayInterest" jdbcType="DECIMAL" />
+  </resultMap>
+  
+  <resultMap id="ActivityForInvestMap" type="ActivityForInvest"
+ 		extends="BaseResultMap">
+	<result column="rank_index" property="rankIndex" jdbcType="INTEGER" />
+  </resultMap>
+  
+   <sql id="Transaction_For_Member_Column_List_pagin" >
+    t.id as transaction_id, 
+    t.project_id as project_id, 
+    p.name as project_name, 
+    t.annualized_rate as annualized_rate, 
+    t.extra_annualized_rate as extra_annualized_rate, 
+    t.extra_project_annualized_rate as extra_project_annualized_rate,
+    t.total_extra_project_interest as total_extra_project_interest,
+    t.total_extra_interest as total_extra_interest,
+    t.total_days as total_days, 
+    t.invest_amount as invest_amount, 
+    t.status as status, 
+    t.transfer_status as transferStatus,
+    t.total_interest as total_interest,
+    t.received_interest as received_interest,
+    t.received_extra_interest as received_extra_interest,
+    t.total_principal as total_principal,
+    t.received_principal as received_principal,
+    t.member_id as member_id, 
+     t.order_id as order_id,
+    t.transaction_time as transaction_time,
+    t.lease_bonus_amounts as lease_bonus_amounts,
+    t.bonus_annualized_rate as bonus_annualized_rate,
+    t.used_coupon_amount as used_coupon_amount,
+    t.overdue_fine as overdue_fine,
+    t.sign_status as sign_status,
+    t.transfer_id as transferId,
+    t.project_category as projectCategory,
+    t.transfer_principal as transferPrincipal,
+    t.extra_interest_day  as extra_interest_day,
+    p.end_date as end_date,
+    p.profit_type as profitType,
+    p.join_lease as join_lease
+  </sql>
+  <sql id="Base_Column_List" >
+    id, 
+    order_id, 
+    member_id, 
+    project_id, 
+    project_name, 
+    invest_amount, 
+    used_capital, 
+    used_coupon_amount, 
+    annualized_rate, 
+    extra_annualized_rate, 
+    bonus_annualized_rate, 
+    total_days, 
+    installment_num, 
+    total_interest, 
+    received_interest, 
+    total_principal,
+    received_principal,
+    total_extra_interest,
+    received_extra_interest,
+    total_extra_project_interest,
+    received_extra_project_interest,
+    extra_project_annualized_rate,
+    overdue_fine,
+    lease_bonus_amounts,
+    status, 
+    transfer_status,
+    remarks,
+    transaction_time, 
+    loan_status,
+    pay_trade_no,
+    collect_trade_no,
+    created_time, 
+    update_time,
+    project_category,
+    transfer_id,
+    transfer_principal,
+    extra_interest_day,
+    can_transfer_date,
+    sign_status
+  </sql>
+  <sql id="transaction_for_project_Column_List_pagin" >
+    t.id as id, 
+    t.order_id as order_id,
+    t.member_id as member_id, 
+    t.project_id as project_id, 
+    t.invest_amount as invest_amount,
+    t.annualized_rate as annualized_rate, 
+    t.extra_annualized_rate as extra_annualized_rate, 
+    t.total_extra_project_interest as total_extra_project_interest, 
+    t.transaction_time as transaction_time, 
+    t.total_days as total_days, 
+    t.total_interest as total_interest,
+    t.lease_bonus_amounts as lease_bonus_amounts,
+    t.bonus_annualized_rate as bonus_annualized_rate,
+    t.used_coupon_amount as used_coupon_amount,
+    t.transfer_principal as transferPrincipal,
+    t.extra_interest_day as extra_interest_day,
+    t.extra_project_annualized_rate as extra_project_annualized_rate,
+    m.username as username,
+    m.mobile as mobile,
+    m.avatars as avatars
+  </sql>
+  
+  <!-- 插入交易 -->
+  <insert id="insertSelective" parameterType="Transaction" keyProperty="id" useGeneratedKeys="true">
+    insert into tc_transaction
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="memberId != null" >
+        member_id,
+      </if>
+      <if test="projectId != null" >
+        project_id,
+      </if>
+       <if test="projectName != null" >
+        project_name,
+      </if>
+      <if test="investAmount != null" >
+        invest_amount,
+      </if>
+      <if test="usedCapital != null" >
+        used_capital,
+      </if>
+      <if test="usedCouponAmount != null" >
+        used_coupon_amount,
+      </if>
+      <if test="annualizedRate != null" >
+        annualized_rate,
+      </if>
+      <if test="extraAnnualizedRate != null" >
+        extra_annualized_rate,
+      </if>
+      <if test="bonusAnnualizedRate != null" >
+        bonus_annualized_rate,
+      </if>
+      <if test="totalDays != null" >
+        total_days,
+      </if>
+      <if test="installmentNum != null" >
+        installment_num,
+      </if>
+      <if test="totalInterest != null" >
+        total_interest,
+      </if>
+      <if test="receivedInterest != null" >
+        received_interest,
+      </if>
+      <if test="totalPrincipal != null" >
+        total_principal,
+      </if>
+      <if test="receivedPrincipal != null" >
+        received_principal,
+      </if>
+      <if test="totalExtraInterest != null" >
+        total_extra_interest,
+      </if>
+        received_extra_interest,
+        overdue_fine,
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="transactionTime != null" >
+        transaction_time,
+      </if>
+      <if test="loanStatus != null" >
+        loan_status,
+      </if>
+      <if test="payTradeNo != null" >
+        pay_trade_no,
+      </if>
+      <if test="collectTradeNo != null" >
+        collect_trade_no,
+      </if>
+      <if test="projectCategory != null" >
+    	project_category,
+      </if>
+      <if test="transferId != null" >
+    	transfer_id,
+      </if>
+      <if test="transferPrincipal != null" >
+    	transfer_principal,
+      </if>
+      <if test="extraProjectAnnualizedRate != null" >
+    	extra_project_annualized_rate,
+      </if>
+        <if test="totalExtraProjectInterest != null" >
+        total_extra_project_interest,
+      </if>
+      
+      
+      received_extra_project_interest,
+        created_time,
+        update_time,
+      <if test="extraInterestDay != null" >
+    	extra_interest_day
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="memberId != null" >
+        #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="projectId != null" >
+        #{projectId,jdbcType=BIGINT},
+      </if>
+      <if test="projectName != null" >
+        #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="investAmount != null" >
+        #{investAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="usedCapital != null" >
+        #{usedCapital,jdbcType=DECIMAL},
+      </if>
+      <if test="usedCouponAmount != null" >
+        #{usedCouponAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="annualizedRate != null" >
+        #{annualizedRate,jdbcType=DECIMAL},
+      </if>
+      <if test="extraAnnualizedRate != null" >
+        #{extraAnnualizedRate,jdbcType=DECIMAL},
+      </if>
+      <if test="bonusAnnualizedRate != null" >
+        #{bonusAnnualizedRate,jdbcType=DECIMAL},
+      </if>
+      <if test="totalDays != null" >
+        #{totalDays,jdbcType=INTEGER},
+      </if>
+      <if test="installmentNum != null" >
+        #{installmentNum,jdbcType=INTEGER},
+      </if>
+       <if test="totalInterest != null" >
+        #{totalInterest,jdbcType=DECIMAL},
+      </if>
+       <if test="receivedInterest != null" >
+        #{receivedInterest,jdbcType=DECIMAL},
+      </if>
+       <if test="totalPrincipal != null" >
+        #{totalPrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="receivedPrincipal != null" >
+        #{receivedPrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="totalExtraInterest != null" >
+        #{totalExtraInterest,jdbcType=DECIMAL},
+      </if>
+      0,0,
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="transactionTime != null" >
+        #{transactionTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loanStatus != null" >
+        #{loanStatus,jdbcType=INTEGER},
+      </if>
+      <if test="payTradeNo != null" >
+        #{payTradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="collectTradeNo != null" >
+        #{collectTradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="projectCategory != null" >
+    	#{projectCategory,jdbcType=INTEGER},
+      </if>
+      <if test="transferId != null" >
+    	#{transferId,jdbcType=BIGINT}, 
+      </if>
+      <if test="transferPrincipal != null" >
+    	#{transferPrincipal,jdbcType=DECIMAL}, 
+      </if>
+      <if test="extraProjectAnnualizedRate != null" >
+    	#{extraProjectAnnualizedRate,jdbcType=DECIMAL}, 
+      </if>
+      <if test="totalExtraProjectInterest != null" >
+        #{totalExtraProjectInterest,jdbcType=DECIMAL}, 
+      </if>
+      0,
+     now(),
+     now(),
+       <if test="extraInterestDay != null" >
+        #{extraInterestDay,jdbcType=INTEGER}
+      </if>
+    </trim>
+  </insert>
+  
+  <!-- 更新交易 -->
+  <update id="updateByPrimaryKeySelective" parameterType="Transaction" >
+    update tc_transaction
+    <set >
+     <if test="totalDays != null" >
+        total_days = #{totalDays,jdbcType=INTEGER},
+      </if>
+      <if test="totalInterest != null" >
+        total_interest = #{totalInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="installmentNum != null" >
+        installment_num = #{installmentNum,jdbcType=INTEGER},
+      </if>
+      <if test="receivedInterest != null" >
+        received_interest = #{receivedInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="totalPrincipal != null" >
+        total_principal = #{totalPrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="receivedPrincipal != null" >
+        received_principal = #{receivedPrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="totalExtraInterest != null" >
+        total_extra_interest = #{totalExtraInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="totalExtraProjectInterest != null" >
+        total_extra_project_interest = #{totalExtraProjectInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="receivedExtraInterest != null" >
+        received_extra_interest = #{receivedExtraInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="receivedExtraProjectInterest != null" >
+        received_extra_project_interest = #{receivedExtraProjectInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="overdueFine != null" >
+        overdue_fine = #{overdueFine,jdbcType=DECIMAL},
+      </if>
+      <if test="leaseBonusAmounts != null" >
+        lease_bonus_amounts = #{leaseBonusAmounts,jdbcType=DECIMAL},
+      </if>
+      <if test="bonusAnnualizedRate != null" >
+        bonus_annualized_rate = #{bonusAnnualizedRate,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="transferStatus">
+      	transfer_status = #{transferStatus,jdbcType=INTEGER},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+       <if test="loanStatus != null" >
+        loan_status = #{loanStatus,jdbcType=INTEGER},
+      </if>
+      <if test="payTradeNo != null" >
+        pay_trade_no = #{payTradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="collectTradeNo != null" >
+        collect_trade_no = #{collectTradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="investFlag != null" >
+        invest_flag = #{investFlag,jdbcType=INTEGER},
+      </if>
+      <if test="signStatus != null" >
+        sign_status = #{signStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="canTransferDate != null">
+      	can_transfer_date = #{canTransferDate,jdbcType=TIMESTAMP},
+      </if>
+        update_time = now(),
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <!-- 通过条件查询项目详情页交易记录 -->
+  	<select id="selectTransactionForProjectsByQueryParams" resultMap="TransactionForProjectResultMap" parameterType="TransactionQuery">
+		select
+		<include refid="transaction_for_project_Column_List_pagin" />
+		from (SELECT id FROM tc_transaction
+			<where>
+				<if test=" projectId != null">
+					project_id = #{projectId,jdbcType=BIGINT}
+				</if>
+				<if test=" projectCategory != null">
+					AND project_category = #{projectCategory,jdbcType=BIGINT}
+				</if>
+				 <if test=" transferId != null">
+					AND transfer_id = #{transferId,jdbcType=BIGINT}
+				</if>
+			</where>
+			<!-- 该语句排序不能变，否则将影响结果 -->
+		order by transaction_time desc,id desc LIMIT ${startRow}, ${pageSize} ) AS a, tc_transaction AS t FORCE
+		INDEX(PRIMARY) 
+		left join uc_member as m on t.member_id = m.id
+		WHERE a.id = t.id
+
+	</select>
+	<!-- 通过条件查询项目详情页交易记录总数 -->
+	<select id="selectTransactionForProjectsByQueryParamsTotalCount" resultType="java.lang.Integer" parameterType="TransactionQuery">
+		select count(1)
+		from tc_transaction as t
+		left join uc_member as m on t.member_id = m.id
+			<where>
+				<if test=" projectId != null">
+					project_id = #{projectId,jdbcType=BIGINT}
+				</if>
+				<if test=" projectCategory != null">
+					AND project_category = #{projectCategory,jdbcType=BIGINT}
+				</if>
+				 <if test=" transferId != null">
+					AND transfer_id = #{transferId,jdbcType=BIGINT}
+				</if>
+			</where>
+	</select>
+	
+	<!-- 通过条件查询交易记录 -->
+	 <select id="selectTransactionsByQueryParams" parameterType="TransactionQuery" resultMap="BaseResultMap">
+	  SELECT <include refid="Base_Column_List"/>
+	  FROM tc_transaction
+	    <where >
+	        <if test="projectId != null" >
+	          project_id = #{projectId,jdbcType=BIGINT}
+	        </if>
+	        <if test="memberId != null" >
+	          AND member_id = #{memberId,jdbcType=BIGINT}
+	        </if>
+	        <if test="status != null" >
+	          AND status = #{status,jdbcType=INTEGER}
+	        </if>
+	        <if test="startTime != null" >
+	         <![CDATA[ AND transaction_time >= #{startTime,jdbcType=TIMESTAMP} ]]>
+	        </if>
+	        <if test="endTime != null" >
+	         <![CDATA[ AND transaction_time <= #{endTime,jdbcType=TIMESTAMP} ]]>
+	        </if>
+	         <if test="loanStatus != null" >
+	          AND loan_status = #{loanStatus,jdbcType=INTEGER}
+	        </if>
+	         <if test="payTradeNo != null" >
+	          AND pay_trade_no = #{payTradeNo,jdbcType=VARCHAR}
+	        </if>
+	         <if test="collectTradeNo != null" >
+	          AND collect_trade_no = #{collectTradeNo,jdbcType=VARCHAR}
+	        </if>
+	        <if test="type != null" >
+	        	<if test="type==1">
+	        		 AND status in (1,2,4,5)
+	        	</if>
+	        </if>
+	        <if test=" projectCategory != null">
+					AND project_category = #{projectCategory,jdbcType=BIGINT}
+			</if>
+			 <if test=" transferId != null">
+					AND transfer_id = #{transferId,jdbcType=BIGINT}
+			</if>
+			
+	      </where>
+  </select>
+  <!-- 通过条件查询交易记录  过滤p2p项目-->
+	 <select id="selectTransactionsByQueryParamsFilterP2p" parameterType="TransactionQuery" resultMap="BaseResultMap">
+	  SELECT 
+	t.id, 
+    t.order_id, 
+    t.member_id, 
+    t.project_id, 
+    t.project_name, 
+    t.invest_amount, 
+    t.used_capital, 
+    t.used_coupon_amount, 
+    t.annualized_rate, 
+    t.extra_annualized_rate, 
+    t.bonus_annualized_rate, 
+    t.total_days, 
+    t.installment_num, 
+    t.total_interest, 
+    t.received_interest, 
+    t.total_principal,
+    t.received_principal,
+    t.lease_bonus_amounts,
+    t.status, 
+    t.remarks,
+    t.transaction_time, 
+    t.loan_status,
+    t.pay_trade_no,
+    t.collect_trade_no,
+    t.created_time, 
+    t.update_time
+	FROM tc_transaction as t left join ic_project as p on p.id=t.project_id where p.invest_type=1
+	        <if test="projectId != null" >
+	         and t.project_id = #{projectId,jdbcType=BIGINT}
+	        </if>
+	        <if test="memberId != null" >
+	          AND t.member_id = #{memberId,jdbcType=BIGINT}
+	        </if>
+	        <if test="status != null" >
+	          AND t.status = #{status,jdbcType=INTEGER}
+	        </if>
+	        <if test="startTime != null" >
+	         <![CDATA[ AND t.transaction_time >= #{startTime,jdbcType=TIMESTAMP} ]]>
+	        </if>
+	        <if test="endTime != null" >
+	         <![CDATA[ AND t.transaction_time <= #{endTime,jdbcType=TIMESTAMP} ]]>
+	        </if>
+	         <if test="loanStatus != null" >
+	          AND t.loan_status = #{loanStatus,jdbcType=INTEGER}
+	        </if>
+	         <if test="payTradeNo != null" >
+	          AND t.pay_trade_no = #{payTradeNo,jdbcType=VARCHAR}
+	        </if>
+	         <if test="collectTradeNo != null" >
+	          AND t.collect_trade_no = #{collectTradeNo,jdbcType=VARCHAR}
+	        </if>
+  </select>
+  <!-- 分页查询 -->
+  <select id="findByPage" resultMap="BaseResultMap">
+	  SELECT <include refid="Base_Column_List"/>
+	  FROM tc_transaction
+	  <if test=" map != null" >  
+	    <where >
+	        <if test="map.memberId != null" >
+	          AND member_id = #{map.memberId}
+	        </if>
+	    </where>
+	  </if>
+	  order by id desc
+	  LIMIT ${map.startRow}, ${map.pageSize}
+  </select>
+  <!-- 通过条件查询交易记录总数 -->
+	 <select id="selectTransactionsByQueryParamsTotalCount" parameterType="TransactionQuery" resultType="java.lang.Integer">
+	  SELECT count(0)
+	  FROM tc_transaction
+	    <where >
+	        <if test="projectId != null" >
+	          project_id = #{projectId,jdbcType=BIGINT}
+	        </if>
+	        <if test="memberId != null" >
+	          AND member_id = #{memberId,jdbcType=BIGINT}
+	        </if>
+	        <if test="status != null" >
+	          AND status = #{status,jdbcType=INTEGER}
+	        </if>
+	        <if test="startTime != null" >
+	         <![CDATA[ AND transaction_time >= #{startTime,jdbcType=TIMESTAMP} ]]>
+	        </if>
+	        <if test="endTime != null" >
+	         <![CDATA[ AND transaction_time <= #{endTime,jdbcType=TIMESTAMP} ]]>
+	        </if>
+	         <if test="loanStatus != null" >
+	          AND loan_status = #{loanStatus,jdbcType=INTEGER}
+	        </if>
+	          <if test="payTradeNo != null" >
+	          AND pay_trade_no = #{payTradeNo,jdbcType=VARCHAR}
+	        </if>
+	         <if test="collectTradeNo != null" >
+	          AND collect_trade_no = #{collectTradeNo,jdbcType=VARCHAR}
+	        </if>
+	      </where>
+  </select>
+  
+  <!-- 通过id查询交易 -->
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM tc_transaction
+    WHERE id = #{id,jdbcType=BIGINT}
+  </select>
+  
+  <select id="selectNewTransactions" resultMap="TransactionForProjectResultMap" parameterType="java.lang.Integer">
+  		select
+		<include refid="transaction_for_project_Column_List_pagin" />
+		from  tc_transaction t
+		inner join uc_member m on t.member_id = m.id
+		order by t.id desc
+		limit 0, #{size, jdbcType=INTEGER}
+  </select>
+  
+  <update id="updateReceivedInterestAndPrincipal" parameterType="TransactionQuery">
+  update tc_transaction
+   <set >
+   		<if test="receivedInterest != null" >
+        received_interest += #{receivedInterest,jdbcType=DECIMAL},
+      	</if>
+      	<if test="receivedPrincipal != null" >
+        received_principal += #{receivedPrincipal,jdbcType=DECIMAL},
+     	 </if>
+     	 update_time=now()
+    </set>
+    where id=#{id,jdbcType=BIGINT}
+  </update>
+  
+  <!-- 通过id查询交易 -->
+  <select id="selectByPrimaryKeyLock" resultMap="BaseResultMap" parameterType="java.lang.Long">
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM tc_transaction
+    WHERE id = #{id,jdbcType=BIGINT} for update
+  </select>
+  
+  
+   <!-- 通过条件查询前台会员中心交易记录 -->
+  	<select id="selectAllTransactionForMember" resultMap="TransactionForMemberResultMap" parameterType="TransactionQuery">
+		select
+		<include refid="Transaction_For_Member_Column_List_pagin" />,
+		o.order_no as order_no,
+		o.used_coupon_amount as used_coupon_amount,
+		o.cash_coupon_no as cash_coupon_no,
+		p.prepayment as prepayment,
+		p.invest_type,
+		p.join_lease as join_lease,
+		ifnull(e.activity_sign, 0) as activity_sign,
+        ti2.status as intereststatus,
+        t.status as transactionstatus,
+        t.transfer_status as transferstatus
+		from tc_transaction t
+		inner join ic_project p on t.project_id = p.id
+		inner join tc_order o on t.order_id = o.id
+		LEFT JOIN ic_project_extra e on e.project_id = p.id and e.del_flag = 1
+        <!--查询此交易当期交易本息-->
+--         LEFT JOIN (SELECT t.id tid,MAX(ti.id) iid FROM tc_transaction t LEFT JOIN tc_transaction_interest ti ON t.id=ti.transaction_id GROUP BY t.id) lti ON
+--         t.id=lti.tid LEFT JOIN tc_transaction_interest ti2 ON lti.iid=ti2.id
+        LEFT JOIN tc_transaction_interest ti2 ON ti2.transaction_id=t.id AND NOW() BETWEEN  ti2.start_date AND ti2.end_date
+		<if test=" endDate != null or startDate != null" >
+		inner JOIN (SELECT DISTINCT(transaction_id)
+		from tc_transaction_interest 
+			<where> 
+				<if test="memberId != null">
+					AND member_id = #{memberId,jdbcType=BIGINT}
+				</if>
+				<if test=" startDate != null">
+			and <![CDATA[(( status  <>  1 and end_date  >=  #{startDate,jdbcType=TIMESTAMP}) or (status=1 and DATE(pay_time) >=  #{startDate,jdbcType=TIMESTAMP})) ]]> 		
+				</if> 
+				<if test=" endDate != null">
+			and <![CDATA[(( status <>   1 and end_date  <=  #{endDate,jdbcType=TIMESTAMP}) or (status=1 and DATE(pay_time) <=  #{endDate,jdbcType=TIMESTAMP})) 	]]> 	
+				</if>
+			</where>
+			) as i on i.transaction_id = t.id 
+		</if>
+		
+		where  ((((p.invest_type=2) or (p.invest_type=1 )) and  t.project_category = 1)
+			or (t.project_category = 2))
+		
+		<if test=" memberId != null">
+				AND t.member_id = #{memberId,jdbcType=BIGINT}
+		</if>
+		<if test=" status == null">
+            AND  t.status in (1,2,3)
+<!--						<if test="status == 0">
+                             AND (t.status = #{status,jdbcType=INTEGER})
+                        </if>
+                        <if test="status == 1">
+                            AND (t.status = #{status,jdbcType=INTEGER} OR ti2.status <![CDATA[<>]]>1)
+                        </if>
+                        <if test="status == 2">
+                            AND (t.status = #{status,jdbcType=INTEGER} OR ti2.status=1)
+                        </if>
+                        <if test="status == 3">
+                            AND (t.status = #{status,jdbcType=INTEGER})
+                        </if>-->
+		</if>
+        <if test=" status != null">
+            AND  t.status =#{status,jdbcType=INTEGER}
+        </if>
+		<if test=" signStatus != null">
+						<if test="signStatus == 1">
+							and t.sign_status in (0,1)
+						</if>
+						<if test="signStatus != 1">
+							AND t.sign_status = #{signStatus,jdbcType=INTEGER}
+						</if>
+		</if>	
+		
+		<if test=" investType != null">
+				AND p.invest_type = #{investType,jdbcType=INTEGER}
+		</if>	
+		
+		order by t.id desc
+		LIMIT #{startRow,jdbcType=INTEGER}, #{pageSize,jdbcType=INTEGER}
+		
+	</select>
+	<!-- 通过条件查询前台会员中心交易记录总数 -->
+	<select id="selectAllTransactionForMemberCount" resultType="java.lang.Long"  parameterType="TransactionQuery">
+		select
+		count(0)
+		from tc_transaction t
+		inner join ic_project p on t.project_id = p.id
+		inner join tc_order o on t.order_id = o.id
+
+        <!--查询此交易当期交易本息-->
+--         LEFT JOIN (SELECT t.id tid,MAX(ti.id) iid FROM tc_transaction t LEFT JOIN tc_transaction_interest ti ON t.id=ti.transaction_id GROUP BY t.id) lti ON
+--         t.id=lti.tid LEFT JOIN tc_transaction_interest ti2 ON lti.iid=ti2.id
+        LEFT JOIN tc_transaction_interest ti2 ON ti2.transaction_id=t.id AND NOW() BETWEEN  ti2.start_date AND ti2.end_date
+        <!--查询此交易当期交易本息-->
+		<if test=" endDate != null or startDate != null" >
+		inner JOIN (SELECT DISTINCT(transaction_id)
+		from tc_transaction_interest 
+			<where> 
+				<if test="memberId != null">
+					AND member_id = #{memberId,jdbcType=BIGINT}
+				</if>
+				<if test=" startDate != null">
+			and <![CDATA[(( status  <>  1 and end_date  >=  #{startDate,jdbcType=TIMESTAMP}) or (status=1 and DATE(pay_time) >=  #{startDate,jdbcType=TIMESTAMP})) ]]> 		
+				</if> 
+				<if test=" endDate != null">
+			and <![CDATA[(( status <>   1 and end_date  <=  #{endDate,jdbcType=TIMESTAMP}) or (status=1 and DATE(pay_time) <=  #{endDate,jdbcType=TIMESTAMP})) 	]]> 	
+				</if>
+			</where>
+			) as i on i.transaction_id = t.id 
+		</if>
+		
+		where ((((p.invest_type=2) or (p.invest_type=1 )) and  t.project_category = 1)
+			or ( t.project_category = 2))
+		<if test=" memberId != null">
+			AND t.member_id = #{memberId,jdbcType=BIGINT}
+		</if>
+		<if test=" status != null">
+						<if test="signStatus == 1">
+							and t.sign_status in (1,4)
+						</if>
+						<if test="signStatus != 1">
+                            <if test="status == 1">
+                                AND (t.status = #{status,jdbcType=INTEGER} OR ti2.status <![CDATA[<>]]>1)
+                            </if>
+                            <if test="status == 2">
+                                AND (t.status = #{status,jdbcType=INTEGER} OR ti2.status=1)
+                            </if>
+                            <if test="status == 3">
+                                AND (t.status = #{status,jdbcType=INTEGER})
+                            </if>
+						</if>
+		</if>
+		<if test=" investType != null">
+			AND p.invest_type = #{investType,jdbcType=INTEGER}
+		</if>		
+		<if test=" signStatus != null">
+						<if test="signStatus == 1">
+							and t.sign_status in (0,1)
+						</if>
+						<if test="signStatus != 1">
+							AND t.sign_status = #{signStatus,jdbcType=INTEGER}
+						</if>
+		</if>	
+	</select>
+	
+	<!-- 通过条件查询前台会员中心交易记录   剔除P2P项目数据  start-->
+  	<select id="p2pSelectAllTransactionForMember" resultMap="TransactionForMemberResultMap" parameterType="TransactionQuery">
+		select
+		<include refid="Transaction_For_Member_Column_List_pagin" />,
+		o.order_no as order_no,
+		o.used_coupon_amount as used_coupon_amount,
+		o.cash_coupon_no as cash_coupon_no,
+		 	
+		p.join_lease as join_lease
+		from tc_transaction t
+		inner join ic_project p on t.project_id = p.id
+		inner join tc_order o on t.order_id = o.id
+		LEFT JOIN ic_project_extra e on e.project_id = p.id and e.del_flag = 1
+		<if test=" endDate != null or startDate != null" >
+		inner JOIN (SELECT DISTINCT(transaction_id)
+		from tc_transaction_interest 
+			<where> 
+				<if test=" startDate != null">
+					<![CDATA[ and end_date >= #{startDate,jdbcType=TIMESTAMP}]]> 
+				</if> 
+				<if test=" endDate != null">
+					<![CDATA[ and end_date <= #{endDate,jdbcType=TIMESTAMP}]]> 
+				</if>
+			</where>
+			) as i on i.transaction_id = t.id 
+		</if>
+		
+		where  p.invest_type=1
+		<if test=" memberId != null">
+				AND t.member_id = #{memberId,jdbcType=BIGINT}
+		</if>
+		<if test=" status != null">
+				AND t.status = #{status,jdbcType=INTEGER}
+		</if>
+		<if test=" investType != null">
+				AND p.invest_type = #{investType,jdbcType=INTEGER}
+		</if>	
+				
+		order by t.id desc
+		LIMIT #{startRow,jdbcType=INTEGER}, #{pageSize,jdbcType=INTEGER}
+		
+	</select>
+	
+	<!-- 通过条件查询前台会员中心交易记录总数  剔除P2P项目数据-->
+	<select id="p2pSelectAllTransactionForMemberCount" resultType="java.lang.Long"  parameterType="TransactionQuery">
+		select
+		count(0)
+		from tc_transaction t
+		inner join ic_project p on t.project_id = p.id
+		inner join tc_order o on t.order_id = o.id
+		LEFT JOIN ic_project_extra e on e.project_id = p.id and e.del_flag = 1
+		<if test=" endDate != null or startDate != null" >
+		inner JOIN (SELECT DISTINCT(transaction_id)
+		from tc_transaction_interest 
+			<where> 
+				<if test=" startDate != null">
+					<![CDATA[ and end_date >= #{startDate,jdbcType=TIMESTAMP}]]> 
+				</if> 
+				<if test=" endDate != null">
+					<![CDATA[ and end_date <= #{endDate,jdbcType=TIMESTAMP}]]> 
+				</if>
+			</where>
+			) as i on i.transaction_id = t.id 
+		</if>
+		
+		where  p.invest_type=1
+		<if test=" memberId != null">
+			AND t.member_id = #{memberId,jdbcType=BIGINT}
+		</if>
+		<if test=" status != null">
+						<if test="signStatus == 1">
+							and t.sign_status in (1,4)
+						</if>
+						<if test="signStatus != 1">
+							AND t.status = #{status,jdbcType=INTEGER}
+						</if>
+		</if>
+		<if test=" investType != null">
+			AND p.invest_type = #{investType,jdbcType=INTEGER}
+		</if>		
+	</select>
+	<!-- 通过条件查询前台会员中心交易记录总数  剔除P2P项目数据 end-->
+	
+	<select id="getTransactionForMember" resultMap="TransactionForMemberResultMap" parameterType="java.lang.Long">
+		SELECT
+			<include refid="Transaction_For_Member_Column_List_pagin" />,
+			 o.order_no as order_no,
+			 o.cash_coupon_no as cash_coupon_no,
+			 o.profit_coupon_no as profitCouponNo,
+			o.status as order_status,
+			t.used_coupon_amount,
+			t.remarks,
+			 m.true_name as true_name, 
+		m.identity_number as identity_number, 
+	     m.mobile as mobile
+		FROM tc_transaction t
+			inner join ic_project p on t.project_id = p.id
+			inner join uc_member m on t.member_id = m.id
+			inner join tc_order o on t.order_id = o.id
+		WHERE
+			t.id = #{transactionId,jdbcType=BIGINT}
+			and t.member_id=#{memberId,jdbcType=BIGINT}
+	</select>
+	
+	
+	 <select id="getTransactionByOrderId" resultMap="BaseResultMap" parameterType="java.lang.Long">
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM tc_transaction
+    WHERE order_id = #{orderId,jdbcType=BIGINT}
+  </select>
+  
+  <select id="getTransactionCount" resultType="java.lang.Integer">
+  select count(0)
+  from tc_transaction
+  where member_id = #{memberId,jdbcType=BIGINT}
+  and status =  #{type,jdbcType=INTEGER}
+  </select>
+  
+  <select id="getCouponAmountForPaltform" resultType="java.math.BigDecimal">
+  select sum(used_coupon_amount)
+  from tc_transaction
+  where project_id = #{projectId,jdbcType=BIGINT}
+  </select>
+  
+  <!-- 通过项目id查询投资总额 -->
+  <select id="getTotalAmountByProject" resultType="java.math.BigDecimal">
+  select sum(invest_amount)
+  from tc_transaction
+  where project_id = #{projectId,jdbcType=BIGINT}
+  </select>
+  
+  
+  <select id="getTransactionCountByProject" resultType="java.lang.Integer">
+  select count(0)
+  from tc_transaction
+  where project_id = #{projectId,jdbcType=BIGINT} and project_category = 1
+  </select>
+  
+  <select id="getTransactionCountByTransferProject" resultType="java.lang.Integer">
+  select count(0)
+  from tc_transaction
+  where transfer_id = #{projectId,jdbcType=BIGINT}
+  </select>
+  
+  <select id="getTotalTransactionInterestByProject" resultType="java.math.BigDecimal">
+  select sum(total_interest)
+  from tc_transaction
+  where project_id = #{projectId,jdbcType=BIGINT} and project_category = 1
+  </select>
+  <!-- 通过项目id查询总收益，计算受让人收益-->
+    <select id="getTotalTransactionReceivedInterestByProject" resultType="java.math.BigDecimal">
+  select sum(received_interest)
+  from tc_transaction
+  where project_id = #{projectId,jdbcType=BIGINT} 
+  </select>
+  <select id="getTransactionMemberCountByProject" resultType="java.lang.Integer">
+  SELECT count(DISTINCT(member_id))
+  from tc_transaction
+  where project_id = #{projectId,jdbcType=BIGINT} and project_category = 1
+  </select>
+  
+  <select id="getTransactionMemberCountByTransferId" resultType="java.lang.Integer">
+  SELECT count(DISTINCT(member_id))
+  from tc_transaction
+  where transfer_id = #{transferId,jdbcType=BIGINT}
+  </select>
+   <select id="getTransactionCountByTransferId" resultType="java.lang.Integer">
+  select count(0)
+  from tc_transaction
+  where transfer_id = #{transferId,jdbcType=BIGINT}
+  </select>
+  
+   <select id="getTotalTransactionReceivedInterestByTransferId" resultType="java.math.BigDecimal">
+  select sum(received_interest)+sum(received_principal)-sum(invest_amount)
+  from tc_transaction
+  where transfer_id = #{transferId,jdbcType=BIGINT}
+  </select>
+  
+   <select id="getTotalTransactionInterestByTransferId" resultType="java.math.BigDecimal">
+  select sum(total_interest)+sum(total_principal)-sum(invest_amount)
+  from tc_transaction
+  where transfer_id = #{transferId,jdbcType=BIGINT}
+  </select> 
+  
+  <resultMap id="ActivityForKingResultMap" type="ActivityForKing" >
+    <result column="member_id" property="memberId" jdbcType="BIGINT" />
+    <result column="refferal_invest_amount" property="refferalInvestAmount" jdbcType="DECIMAL" />
+  </resultMap>
+  <select id="getRefferalInvestAmountList" resultMap="ActivityForKingResultMap">
+  	SELECT 
+  	referral as member_id,
+  	sum(invest_amount) as  refferal_invest_amount
+  	from uc_member_refer r,tc_transaction t 
+  	WHERE t.member_id=r.referred 
+  	GROUP BY r.referral 
+  	ORDER BY sum(invest_amount) DESC 
+  	LIMIT 5;
+  
+  </select>
+  
+  <!-- 根据项目id获取最后一笔交易 -->
+  <select id="selectLastTransactionByProject" resultMap="BaseResultMap">
+  	select 
+  	<include refid="Base_Column_List" />
+    FROM tc_transaction
+    where project_id = #{projectId,jdbcType=BIGINT} and project_category = 1 order by transaction_time desc limit 1
+  </select>
+  
+   <select id="selectLastTransactionByProjectOrderById" resultMap="BaseResultMap">
+  	select 
+  	<include refid="Base_Column_List" />
+    FROM tc_transaction
+    where project_id = #{projectId,jdbcType=BIGINT} and project_category = 1 order by transaction_time desc,id desc limit 1
+  </select>
+  <!-- 通过项目查询投资额最高的一笔（额度相同取投资时间最早的） -->
+  <select id="selectMostTransactionByProject" resultMap="BaseResultMap">
+  	select 
+  	<include refid="Base_Column_List" />
+    FROM tc_transaction
+    WHERE
+    	project_id = #{projectId,jdbcType=BIGINT} and project_category = 1
+	ORDER BY
+		invest_amount DESC,
+		transaction_time
+	LIMIT 1;
+  </select>
+  
+    <!-- 通过项目查询投资额最高的一笔（额度相同取投资时间最早的） -->
+  <select id="selectMostTransactionBytransferId" resultMap="BaseResultMap">
+  	select 
+  	<include refid="Base_Column_List" />
+    FROM tc_transaction
+    WHERE
+    	transfer_id = #{transferId,jdbcType=BIGINT} 
+	ORDER BY
+		invest_amount DESC,
+		transaction_time
+	LIMIT 1;
+  </select>
+  
+  <!-- 根据项目获取结算额度 -->
+  <select id="selectAmountByProject" resultMap="BaseResultMap">
+	 select 
+	 	sum(used_capital) as used_capital,
+		sum(used_coupon_amount) as used_coupon_amount
+	 from
+	 tc_transaction
+     <where>
+	     <if test=" projectId != null">
+	    	 project_id = #{projectId,jdbcType=BIGINT} 
+	     </if> 
+	     <if test=" loanStatus != null">
+	     	<choose>
+	     		<when test="loanStatus == 2">
+	     			and loan_status in (1,2) 
+	     		</when>
+	     		<otherwise> 
+	     			and loan_status = #{loanStatus,jdbcType=INTEGER} 
+	     		</otherwise>
+	     	</choose>
+     	 </if>
+     </where>
+  </select>
+  
+  <!-- 通过交易号查询现金券总额 -->
+  <select id="getTotalCouponAmountByQuery" resultType="java.math.BigDecimal" parameterType="transactionQuery">
+	  SELECT 
+	  	sum(used_coupon_amount)
+	  FROM 
+	  	tc_transaction
+	 <where>
+		<if test="collectTradeNo != null" >
+		 collect_trade_no = #{collectTradeNo,jdbcType=VARCHAR}
+		</if>
+		<if test="payTradeNo != null" >
+		 and pay_trade_no = #{payTradeNo,jdbcType=VARCHAR}
+		</if>
+		
+	</where> 
+  </select>
+  
+  <select id="getTotalAmountByQuery" resultType="java.math.BigDecimal" parameterType="transactionQuery">
+	  SELECT 
+	  	sum(invest_amount)
+	  FROM 
+	  	tc_transaction
+	 <where>
+		<if test="collectTradeNo != null" >
+		 collect_trade_no = #{collectTradeNo,jdbcType=VARCHAR}
+		</if>
+		<if test="payTradeNo != null" >
+		 and pay_trade_no = #{payTradeNo,jdbcType=VARCHAR}
+		</if>
+		
+	</where> 
+  </select>
+  
+  <update id="updatePayTradeNoByCollectTradeNo">
+  UPDATE 
+  	tc_transaction
+  SET 
+  	pay_trade_no = #{payTradeNo,jdbcType=VARCHAR},
+  	update_time = now()
+  WHERE
+  	collect_trade_no = #{collectTradeNo,jdbcType=VARCHAR}
+  
+  </update>
+  
+  <update id="updateLoanStatusByPayTradeNo">
+  UPDATE 
+  	tc_transaction
+  SET 
+  	loan_status = #{loanStatus,jdbcType=INTEGER},
+  	update_time = now()
+  WHERE
+  	pay_trade_no = #{payTradeNo,jdbcType=VARCHAR}
+  
+  </update>
+  
+  
+  
+  <resultMap id="TransactionForFirstInvestActResultMap" type="TransactionForFirstInvestAct">
+		<result column="member_id" property="memberId" jdbcType="BIGINT" />
+		<result column="username" property="username" jdbcType="VARCHAR" />
+		<result column="mobile" property="mobile" jdbcType="BIGINT" />
+		<result column="avatars" property="avatars" jdbcType="VARCHAR" />
+		<result column="total_invest" property="totalInvest" jdbcType="DECIMAL" />
+	</resultMap>
+	<!-- 查询投资排行前十列表 -->
+	<select id="selectTopTenInvest" resultMap="TransactionForFirstInvestActResultMap" >
+	SELECT
+		u.id as member_id,
+		u.username as username,
+		u.mobile as mobile,
+		SUM(t.invest_amount) AS total_invest
+	FROM
+		tc_transaction t INNER JOIN uc_member u ON
+		t.member_id= u.id
+	WHERE
+	<![CDATA[t.transaction_time<='2015-03-31 23:59:59']]>
+	GROUP BY
+		t.member_id
+	ORDER BY
+		total_invest DESC
+	LIMIT 10
+	</select>
+	
+  <!-- 获取项目投资日期，及该日期投资总额 -->
+  <select id="findDayTransactionByProject" resultMap="BaseResultMap">
+  	select 
+  	sum(invest_amount)as invest_amount,
+  	date(transaction_time) as transaction_time 
+  	from tc_transaction as t  
+  	where project_id = #{projectId,jdbcType=BIGINT} and project_category = 1
+  	GROUP BY project_id,date(transaction_time)
+  </select>
+	
+	<!-- 用户的交易笔数-->
+	<select id="getTransactionCountByMember" resultType="java.lang.Integer">
+	  select count(0)
+	  from tc_transaction
+	  where member_id = #{memberId,jdbcType=BIGINT}
+	</select>
+	
+	<!-- 首次投资金额-->
+	<select id="firstInvestmentAmount" resultType="java.math.BigDecimal">
+	  select invest_amount
+	  from tc_transaction
+	  where member_id = #{memberId,jdbcType=BIGINT}
+	  <if test=" startTime != null" >
+		 <![CDATA[ AND transaction_time >= #{startTime,jdbcType=VARCHAR} ]]>
+	  </if>
+	  <if test=" endTime != null" >
+		 <![CDATA[ AND transaction_time <= #{endTime,jdbcType=VARCHAR} ]]>
+	  </if>
+	   order by id asc limit 0,1
+	</select>
+	
+	<!-- 累计投资-->
+	<select id="countInvestmentAmount" resultType="java.math.BigDecimal">
+	  select sum(invest_amount)
+	  from tc_transaction
+	  where member_id = #{memberId,jdbcType=BIGINT}
+	</select>
+	
+	<!-- 单笔投资最高金额-->
+	<select id="largestInvestmentAmount" resultType="java.math.BigDecimal">
+	  select max(invest_amount)
+	  from tc_transaction
+	  where member_id = #{memberId,jdbcType=BIGINT}
+	  <if test=" startTime != null" >
+		 <![CDATA[ AND transaction_time >= #{startTime,jdbcType=VARCHAR} ]]>
+	  </if>
+	  <if test=" endTime != null" >
+		 <![CDATA[ AND transaction_time <= #{endTime,jdbcType=VARCHAR} ]]>
+	  </if>
+	</select>
+	
+	<!-- 投资项目多少个-->
+	<select id="countInvestmentProject" resultType="java.lang.Integer">
+	  select count(0)
+	  from tc_transaction
+	  where member_id = #{memberId,jdbcType=BIGINT}
+	</select>
+	
+	<!-- 投资项目多少个-->
+	<select id="getTodayFirstInvestmentMemberId" resultType="java.lang.Long">
+	  select member_id
+	  from tc_transaction
+	  where <![CDATA[ transaction_time  >= curdate()]]>  order by id asc limit 0,1
+	</select>
+	
+	
+	<!-- 统计好友投资笔数-->
+	<select id="countFriendsInvestmentNum" resultType="java.lang.Integer">
+	 select count(1) from uc_member m inner join tc_transaction t on m.id=t.member_id
+	  where m.referral=#{memberId,jdbcType=BIGINT}
+	  <if test=" startTime != null" >
+		 <![CDATA[ AND transaction_time >= #{startTime,jdbcType=VARCHAR} ]]>
+	  </if>
+	  <if test=" endTime != null" >
+		 <![CDATA[ AND transaction_time <= #{endTime,jdbcType=VARCHAR} ]]>
+	  </if>
+	</select>
+	
+	<!-- 好友首次投资金额-->
+	<select id="friendsFirstInvestmentAmount" resultType="java.math.BigDecimal">
+	 select t.invest_amount from uc_member m inner join tc_transaction t on m.id=t.member_id
+		where m.referral=#{memberId,jdbcType=BIGINT}
+		<if test=" startTime != null" >
+		 <![CDATA[ AND transaction_time >= #{startTime,jdbcType=VARCHAR} ]]>
+	  </if>
+	  <if test=" endTime != null" >
+		 <![CDATA[ AND transaction_time <= #{endTime,jdbcType=VARCHAR} ]]>
+	  </if>
+	   order by t.id asc limit 0,1
+	</select>
+	
+	<!-- 好友累计投资金额-->
+	<select id="friendsCountInvestmentAmount" resultType="java.math.BigDecimal">
+	 select sum(t.invest_amount) from uc_member m inner join tc_transaction t on m.id=t.member_id
+		where m.referral=#{memberId,jdbcType=BIGINT}
+	</select>
+	
+	<!-- 好友单笔投资最大金额-->
+	<select id="friendsInvestmentMaxAmount" resultType="java.math.BigDecimal">
+	 select max(t.invest_amount) from uc_member m inner join tc_transaction t on m.id=t.member_id
+		where m.referral=#{memberId,jdbcType=BIGINT}
+		<if test=" startTime != null" >
+		 <![CDATA[ AND transaction_time >= #{startTime,jdbcType=VARCHAR} ]]>
+	  </if>
+	  <if test=" endTime != null" >
+		 <![CDATA[ AND transaction_time <= #{endTime,jdbcType=VARCHAR} ]]>
+	  </if>
+	  order by t.invest_amount desc limit 0,1
+	</select>
+	
+	<!--  好友累计投资项目-->
+	<select id="friendsCountInvestmentProjectNum" resultType="java.lang.Integer">
+	select count(1) from(select project_id from uc_member m inner join tc_transaction t on m.id=t.member_id
+			where m.referral=#{memberId,jdbcType=BIGINT}
+	   	group by t.project_id) as pnum
+	</select>
+	
+	<!-- 项目第一个投资用户 -->
+	<select id="firstInvestmentProjectMember" resultType="java.lang.Long">
+		select member_id from (select member_id,transaction_time from tc_transaction where project_id =#{projectId,jdbcType=BIGINT} order by id asc limit 0,1) 
+		as t where 	
+		 <![CDATA[ t.transaction_time >= #{startTime,jdbcType=VARCHAR} ]]>
+		 <![CDATA[ AND t.transaction_time <= #{endTime,jdbcType=VARCHAR} ]]>
+	</select>
+	
+	<!-- 项目第后一个投资用户 -->
+	<select id="lastInvestmentProjectMember" resultType="java.lang.Long">
+		select member_id from ( select member_id,transaction_time from tc_transaction where project_id= (select id from ic_project where status > 30 and id= #{projectId,jdbcType=BIGINT})
+		 order by id desc limit 0,1) as t where 	
+		 <![CDATA[ t.transaction_time >= #{startTime,jdbcType=VARCHAR} ]]>
+		 <![CDATA[ AND t.transaction_time <= #{endTime,jdbcType=VARCHAR} ]]>
+	</select>
+	
+	<!-- 单笔投资最大金额 -->
+	<select id="investmentMaxAmountProject" resultType="java.math.BigDecimal">
+		select max(invest_amount) from tc_transaction where project_id =#{projectId,jdbcType=BIGINT} and member_id=#{memberId,jdbcType=BIGINT} ORDER BY invest_amount desc,transaction_time asc limit 0,1
+	</select>
+	
+	<!-- 好友单笔投资最大金额 -->
+	<select id="friendsInvestmentMaxAmountProject" resultType="java.math.BigDecimal">
+	 select max(t.invest_amount) from uc_member m inner join tc_transaction t on m.id=t.member_id
+		where m.referral=#{memberId,jdbcType=BIGINT} and t.project_id =#{projectId,jdbcType=BIGINT}
+	  	  order by t.invest_amount desc limit 0,1
+	</select>
+	
+	<!-- 项目整点投资 -->
+	<select id="integralPointInvestmentProject" resultType="java.math.BigDecimal">
+	 select invest_amount from tc_transaction
+		where project_id =#{projectId,jdbcType=BIGINT} and member_id=#{memberId,jdbcType=BIGINT} and 
+		DATE_FORMAT(transaction_time,'%H:%i') = #{punctuality,jdbcType=VARCHAR} and DATE_FORMAT(transaction_time,'%Y-%m-%d %H:%i') <![CDATA[ >= ]]> #{startTime,jdbcType=VARCHAR} and DATE_FORMAT(transaction_time,'%Y-%m-%d %H:%i') <![CDATA[ <= ]]> #{endTime,jdbcType=VARCHAR}
+	  	  order by invest_amount desc limit 0,1
+	</select>
+	
+	<!-- 整点投资 -->
+	<select id="integralPointInvestment" resultType="java.math.BigDecimal">
+	 select invest_amount from tc_transaction
+		where member_id=#{memberId,jdbcType=BIGINT} and DATE_FORMAT(transaction_time,'%H:%i') = #{punctuality,jdbcType=VARCHAR} and DATE_FORMAT(transaction_time,'%Y-%m-%d %H:%i') <![CDATA[ >= ]]> #{startTime,jdbcType=VARCHAR} and DATE_FORMAT(transaction_time,'%Y-%m-%d %H:%i') <![CDATA[ <= ]]> #{endTime,jdbcType=VARCHAR}
+	  	  order by invest_amount desc limit 0,1
+	</select>
+	
+ 	<!-- 获取会员的投资总额 -->
+    <select id = "getTotalInvestAmountByMemberId" resultType= "java.math.BigDecimal" >
+         select
+              sum(invest_amount) as total_invest_amount
+         from tc_transaction
+         where member_id = #{memberId,jdbcType=BIGINT}
+         group by member_id
+    </select >
+  <!-- 获取首次会员的投资-->
+  <select id="getTransactionByMap"  resultMap="BaseResultMap">
+    select  <include refid="Base_Column_List" />
+    from tc_transaction
+    where member_id = #{map.memberId,jdbcType=BIGINT}     LIMIT	${map.startRow}, ${map.pageSize}
+  </select>
+  
+  <!-- 获得用户交易明细-->
+  <select id="getTransactionDetailForMember" resultMap="TransactionForMemberResultMap">
+		SELECT
+			<include refid="Transaction_For_Member_Column_List_pagin" />,
+			 o.order_no as order_no, 
+			o.status as order_status,
+			 m.true_name as true_name, 
+		m.identity_number as identity_number, 
+	     m.mobile as mobile
+		FROM tc_transaction t
+			inner join ic_project p on t.project_id = p.id
+			inner join uc_member m on t.member_id = m.id
+			inner join tc_order o on t.order_id = o.id
+		WHERE
+			t.id = #{transactionId,jdbcType=BIGINT}
+			and 
+			m.id = #{memberId,jdbcType=BIGINT}
+	</select>
+  	
+  	
+  <!-- 获取满足投资总额在某一范围内的用户 -->	
+  <select id="getMemberMeetTotalInvestRange" resultMap="TransactionForFirstInvestActResultMap"  >
+  	SELECT
+		t.total_invest,
+		t.member_id,
+		t.username,
+		t.mobile,
+		t.avatars
+	FROM
+		(
+			SELECT
+				SUM(a.invest_amount) AS total_invest,
+				a.member_id,
+				m.username,
+				m.mobile,
+				m.avatars,
+				max(a.transaction_time) as transaction_time
+			FROM
+				tc_transaction AS a
+			LEFT JOIN uc_member AS m ON m.id = a.member_id
+			WHERE
+				a.status != 3
+			<if test="map != null">
+				<if test="map.startTime !=null">
+					AND <![CDATA[ a.transaction_time >= #{map.startTime}]]>
+				</if>
+				<if test="map.endTime !=null">
+					AND <![CDATA[ a.transaction_time <= #{map.endTime}]]>
+				</if>
+			</if>
+			GROUP BY
+				a.member_id
+		) AS t
+	
+		<if test="map != null">
+			<where>
+				<choose>
+					<when test="map.minAmount !=null">
+						and	<![CDATA[t.total_invest >= #{map.minAmount}]]>
+					</when>
+					<otherwise>
+						and	<![CDATA[t.total_invest > 0]]>
+					</otherwise>
+				</choose>
+				<if test="map.maxAmount !=null">
+					and <![CDATA[t.total_invest < #{map.maxAmount}]]>
+				</if>
+			</where>
+		</if>
+	ORDER BY
+		t.total_invest DESC,
+		t.transaction_time
+        <if test="map != null">
+          <if test="map.transactionOrder !=null">
+            ASC
+          </if>
+          <if test="map.transactionOrder ==null">
+              DESC
+          </if>
+        </if>
+		<if test="map != null">
+			<if test="map.limitNum !=null">
+				 LIMIT #{map.limitNum}
+			</if>
+		</if>
+  </select>
+  
+  <!-- 获取满足投资总额在某一范围内的用户总数 -->	
+  <select id="getCountMemberMeetTotalInvestRange" resultType="java.lang.Integer" >
+  	SELECT
+		count(1)
+	FROM
+		(
+			SELECT
+				SUM(a.invest_amount) AS total_invest,
+				a.member_id,
+				m.username,
+				m.mobile
+			FROM
+				tc_transaction AS a
+			LEFT JOIN uc_member AS m ON m.id = a.member_id
+			<if test="map != null">
+				<where>
+					<if test="map.startTime !=null">
+						<![CDATA[ a.transaction_time >= #{map.startTime}]]>
+					</if>
+					<if test="map.endTime !=null">
+						AND <![CDATA[ a.transaction_time <= #{map.endTime}]]>
+					</if>
+				</where>
+			</if>
+			GROUP BY
+				a.member_id
+		) AS t
+		<if test="map != null">
+			<where>
+				<choose>
+					<when test="map.minAmount !=null">
+						and	<![CDATA[t.total_invest >= #{map.minAmount}]]>
+					</when>
+					<otherwise>
+						and	<![CDATA[t.total_invest > 0]]>
+					</otherwise>
+				</choose>
+				<if test="map.maxAmount !=null">
+					and <![CDATA[t.total_invest < #{map.maxAmount}]]>
+				</if>
+			</where>
+		</if>
+  </select>
+
+  <!-- 用户APP首次投资金额-->
+	<select id="appFirstInvestmentForMember" resultMap="BaseResultMap">
+	  select 
+	  	tct.id, tct.order_id, tct.member_id, tct.project_id, tct.project_name, 
+	    tct.invest_amount,tct.used_capital, tct.used_coupon_amount, 
+	    tct.annualized_rate, tct.extra_annualized_rate, tct.bonus_annualized_rate, 
+	    tct.total_days, tct.installment_num, tct.total_interest, 
+	    tct.received_interest, tct.total_principal,
+	    tct.received_principal, tct.lease_bonus_amounts,
+	    tct.status,  tct.remarks, tct.transaction_time, 
+	    loan_status,  tct.pay_trade_no,
+	    tct.collect_trade_no, tct.created_time, 
+	    tct.update_time	  
+	  from tc_transaction as tct inner join 
+	  tc_order tco on tct.order_id=tco.id
+	  where tct.member_id = #{memberId,jdbcType=BIGINT}
+	  and tco.order_source  <![CDATA[ > ]]> 0
+	  <if test=" startTime != null" >
+		 <![CDATA[ AND tct.transaction_time >= #{startTime,jdbcType=VARCHAR} ]]>
+	  </if>
+	  <if test=" endTime != null" >
+		 <![CDATA[ AND tct.transaction_time <= #{endTime,jdbcType=VARCHAR} ]]>
+	  </if>
+	   order by tct.transaction_time asc limit 0,1
+	</select>
+  
+  <!-- 查询没有创建保全的交易订单 -->
+  <select id="queryNotPreservTransForList" resultMap="BaseResultMap">
+  	SELECT
+		t.id, t.created_time
+	FROM
+		tc_transaction t
+	LEFT JOIN tc_preservation p ON t.id = p.transaction_id
+	WHERE
+		p.id IS NULL
+	<if test=" map.id != null" >
+		AND t.id <![CDATA[ < ]]> #{map.id,jdbcType=VARCHAR}
+	</if>
+	<if test=" map.startTime != null" >
+		AND t.transaction_time <![CDATA[ >= ]]> #{map.startTime, jdbcType=VARCHAR}
+	  </if>
+	  <if test=" map.endTime != null" >
+		AND t.transaction_time <![CDATA[ <= ]]> #{map.endTime,jdbcType=VARCHAR}
+	  </if>
+	ORDER BY
+		t.id DESC
+	LIMIT 0,
+	 #{map.maxNum,jdbcType=BIGINT}
+  </select>
+  
+  <!-- 后台交易查询 -->
+	<select id="queryTansactionForList" resultMap="TransactionForOrderResultMap">
+		SELECT
+			t.id,
+			t.order_id,
+			t.project_id,
+			o.order_no,
+			t.project_name,
+			t.invest_amount,
+			o.profit_coupon_no,
+			o.used_capital,
+			o.used_coupon_amount,
+			t.installment_num,
+			o.pay_amount,
+			t.annualized_rate,
+			t.extra_annualized_rate,
+			t.total_interest,
+			t.received_interest,
+			t.lease_bonus_amounts,
+			t.member_id,
+			m.username,
+			t.transaction_time,
+			t.`status`,
+			t.loan_status,
+			t.update_time,
+			t.remarks,
+			(select count(1) from tc_transaction_interest i where i.transaction_id = t.id and i.status = 1 ) as payed_num
+		FROM
+			tc_transaction AS t
+		LEFT JOIN tc_order as o on t.order_id = o.id
+		<choose>
+		   	<when test="map != null and map.memberSel == 'INNER JOIN'">
+		   	 	 INNER JOIN uc_member AS m ON t.member_id = m.id AND m.del_flag > 0
+		   	 	 <if test="map.memberId != null">
+		   		 	and m.id = #{map.memberId,jdbcType=BIGINT}
+				 </if>
+				 <if test="map.mobile != null">
+		   		 	and m.mobile = #{map.mobile,jdbcType=VARCHAR}
+				 </if>
+		   	</when>
+		   	<otherwise>
+		   		 LEFT JOIN uc_member AS m ON t.member_id = m.id AND m.del_flag > 0
+		   	</otherwise>
+	   	</choose>
+		<if test=" map != null" >
+			<where>
+				<if test="map.orderNo != null">
+					and o.order_no = #{map.orderNo}
+				</if>
+				<if test="map.projectName != null">
+					and t.project_name like CONCAT(CONCAT(#{map.projectName,jdbcType=VARCHAR}),'%')
+				</if>
+				<if test="map.investAmountStart != null">
+					and t.invest_amount <![CDATA[ >= ]]> #{map.investAmountStart}
+				</if>
+				<if test="map.investAmountEnd != null">
+					and t.invest_amount <![CDATA[ <= ]]> #{map.investAmountEnd}
+				</if>
+				<if test="map.payMethod != null">
+					and ${map.payMethod}
+				</if>
+				<if test="map.annualizedSelect != null and map.annualizedSelect == 0">
+					and IFNULL(o.profit_coupon_no,'') = ''
+				</if>
+				<if test="map.annualizedSelect != null and map.annualizedSelect == 1">
+					and IFNULL(o.profit_coupon_no,'') != ''
+				</if>
+				<if test="map.couponStart != null">
+					and t.used_coupon_amount <![CDATA[ >= ]]> #{map.couponStart}
+				</if>
+				<if test="map.couponEnd != null">
+					and t.used_coupon_amount <![CDATA[ <= ]]> #{map.couponEnd}
+				</if>
+				<if test="map.installmentNumStart != null">
+					and t.installment_num <![CDATA[ >= ]]> #{map.installmentNumStart}
+				</if>
+				<if test="map.installmentNumEnd != null">
+					and t.installment_num <![CDATA[ <= ]]> #{map.installmentNumEnd}
+				</if>
+				<if test=" map.transactionTimeStart != null" >
+		            and t.transaction_time <![CDATA[ >= ]]> #{map.transactionTimeStart}
+		        </if>
+		        <if test=" map.transactionTimeEnd != null" >
+		            and t.transaction_time <![CDATA[ <= ]]> #{map.transactionTimeEnd}
+		        </if>
+		        <if test=" map.status != null" >
+		            and t.status = #{map.status}
+		        </if>
+		        <if test=" map.id != null" >
+		            and t.id = #{map.id}
+		        </if>
+		        <if test=" map.projectId != null" >
+		            and t.project_id = #{map.projectId}
+		        </if>
+			</where>
+		</if>	
+		ORDER BY
+			order_id DESC
+		LIMIT ${map.startRow}, ${map.pageSize}
+	</select>
+	
+	<!-- 根据项目ID查询投资用户信息 -->
+	<select id="selectTransactionMemberByPorjectId" resultMap="TransactionForMemberResultMap">
+		SELECT
+			t.member_id,
+			t.annualized_rate,
+			t.invest_amount,
+			t.transaction_time,
+			t.total_interest,
+			t.total_days,
+			m.true_name,
+			m.mobile,
+			m.identity_number
+		FROM
+			(
+				SELECT
+					member_id,
+					annualized_rate,
+					invest_amount,
+					transaction_time,
+					total_interest,
+					total_days
+				FROM
+					tc_transaction
+				WHERE
+					project_id = #{projectId,jdbcType=BIGINT}
+				ORDER BY
+					transaction_time
+			) AS t
+		INNER JOIN uc_member AS m ON t.member_id = m.id
+	</select>
+
+
+  <select id="isMemberInvest" resultType="java.lang.Integer">
+    select 1
+    from tc_transaction
+    where member_id = #{memberId,jdbcType=BIGINT}  limit 1
+  </select>
+  
+  <!-- 判断用户是否投资过直投项目-->
+   <select id="isMemberDirectInvest" resultType="java.lang.Integer">
+    select count(0) from tc_transaction  as tc 
+	inner join ic_project  as ic on ic.id = tc.project_id and ic.invest_type=2
+	where tc.member_id=#{memberId,jdbcType=BIGINT}
+  </select>
+
+  <!-- 根据项目id获取第一笔交易-->
+  <select id="selectFirstTransactionByProject" resultMap="BaseResultMap">
+  	select 
+  	<include refid="Base_Column_List" />
+    FROM tc_transaction
+    where project_id = #{projectId,jdbcType=BIGINT} order by transaction_time asc limit 1
+  </select>
+  
+  <!-- 根据项目id和用户id获取获取幸运女神的交易 -->
+   <select id="selectLuckTransactionByProject" resultMap="BaseResultMap">
+  	select 
+  	<include refid="Base_Column_List" />
+    FROM tc_transaction
+    where project_id = #{projectId,jdbcType=BIGINT} and member_id = #{memberId,jdbcType=BIGINT}  order by transaction_time asc limit 1
+  </select>
+  
+   <!--统计用户租赁分红总额  -->
+   <select id="totalMemberLeaseBonusAmounts" resultType="java.math.BigDecimal">
+       select sum(lease_bonus_amounts) as totalLeaseBonus from tc_transaction where member_id = #{memberId,jdbcType=BIGINT} and lease_bonus_amounts <![CDATA[ > ]]> 0
+        and status in (1,2,4,5) 
+   </select>
+	  
+   <!-- 统计用户投资使用优惠券的总金额 -->
+   <select id="totalMemberUsedCouponAmount" resultType="java.math.BigDecimal">
+       select sum(used_coupon_amount) as totalCouponAmount from tc_transaction where member_id = #{memberId,jdbcType=BIGINT} and used_coupon_amount <![CDATA[ > ]]> 0
+        and status in (1,2,4,5) 
+   </select>
+   
+   <!--统计用户使用优惠券数量  -->
+   <select id="totalMemberUsedCouponNum" resultType="java.lang.Integer">
+       select count(1) as totalCouponAmount from tc_transaction where member_id = #{memberId,jdbcType=BIGINT} and used_coupon_amount <![CDATA[ > ]]> 0 
+        and status in (1,2,4,5) 
+   </select>
+   
+   <!-- 用户首次投资详情 -->
+   <select id="getFirstTransaction" resultMap="BaseResultMap">
+       select 
+  		<include refid="Base_Column_List" />
+    FROM tc_transaction
+    where member_id = #{memberId,jdbcType=BIGINT} order by transaction_time asc limit 1
+   </select>
+
+	
+ <resultMap id="MyRankMap" type="com.yourong.core.mc.model.biz.ActivityMonthlyMyRank">
+	<result column="member_id" property="memberId" jdbcType="BIGINT" />
+	<result column="sums" property="sums" jdbcType="DECIMAL" />
+	<result column="NO" property="no" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <!-- 查看我的排名 -->
+  <select id="findMyRank" resultMap="MyRankMap" >
+  	SELECT
+	*
+	FROM
+		(
+			SELECT
+				a.member_id,
+				a.sums,
+				(SELECT @ROW :=@ROW + 1) AS NO
+			FROM
+				(
+					SELECT
+						member_id,
+						sum(invest_amount) sums
+					FROM
+						tc_transaction
+					<if test="map != null and map.startTime != null and map.endTime != null" >
+						<where>
+							transaction_time BETWEEN #{map.startTime}
+						AND #{map.endTime}
+						</where>
+					</if>
+					GROUP BY
+						member_id
+					ORDER BY
+						sums DESC
+				) a,
+				(SELECT @ROW := 0) AS b
+		) AS c
+	<if test="map != null and map.memberId != null" >
+		<where>
+		member_id = #{map.memberId,jdbcType=BIGINT}
+		</where>
+	</if>
+  </select>
+  
+   <!-- 通过条件查询项目详情页交易记录 没有分页 -->
+  	<select id="selectTransactionDetailByQueryParams" resultMap="TransactionForProjectResultMap" parameterType="TransactionQuery">
+		select
+		<include refid="transaction_for_project_Column_List_pagin" />
+		from (SELECT id FROM tc_transaction
+			<where>
+				<if test=" projectId != null">
+					project_id = #{projectId,jdbcType=BIGINT}
+				</if>
+				<if test=" projectCategory != null">
+					AND project_category = #{projectCategory,jdbcType=BIGINT}
+				</if>
+			</where>
+			<!-- 该语句排序不能变，否则将影响结果 -->
+		order by transaction_time desc,id desc limit 5000) AS a, tc_transaction AS t FORCE
+		INDEX(PRIMARY) 
+		left join uc_member as m on t.member_id = m.id
+		WHERE a.id = t.id
+	</select>
+	
+	<!-- 通过交易id查询交易记录  -->
+  	<select id="selectTransactionDetailById" resultMap="TransactionForProjectResultMap" parameterType="TransactionQuery">
+		select
+		<include refid="transaction_for_project_Column_List_pagin" />
+		from (SELECT id FROM tc_transaction
+			<where>
+				<if test=" id != null">
+					id = #{id,jdbcType=BIGINT}
+				</if>
+			</where>) AS a, tc_transaction AS t FORCE
+		INDEX(PRIMARY) 
+		left join uc_member as m on t.member_id = m.id
+		WHERE a.id = t.id
+	</select>
+	
+	<select id="getInvestHouseList" resultMap="BaseResultMap">
+		SELECT
+			t.member_id,
+			sum(t.invest_amount) AS invest_amount
+		FROM
+			tc_transaction AS t
+		INNER JOIN ic_project AS p ON t.project_id = p.id
+		AND p.del_flag = 1
+		INNER JOIN ic_debt AS d ON p.debt_id = d.id
+		AND d.guaranty_type IN <foreach collection="guarantyType" index="index" item="item" open="(" separator="," close=")"> #{item}  </foreach>  
+		WHERE
+			(t.transaction_time BETWEEN #{startTime,jdbcType=TIMESTAMP}
+		AND #{endTime,jdbcType=TIMESTAMP})
+		<if test="memberId != null" >
+        	AND member_id = #{memberId,jdbcType=BIGINT}
+      	</if>
+		GROUP BY
+			t.member_id
+		ORDER BY
+			sum(t.invest_amount) DESC,
+			max(t.transaction_time)
+		LIMIT #{queryLimit,jdbcType=TIMESTAMP}
+	</select>
+	
+	<select id="getMyInvestHouseRank" resultMap="ActivityForInvestMap">
+		SELECT
+			c.member_id, c.invest_amount, c.rank_index
+		FROM
+			(
+				SELECT
+					@i := @i + 1 as rank_index,
+					a.*
+				FROM
+					(
+						SELECT
+							t.member_id,
+							sum(t.invest_amount) AS invest_amount
+						FROM
+							tc_transaction AS t
+						INNER JOIN ic_project AS p ON t.project_id = p.id
+						AND p.del_flag = 1
+						INNER JOIN ic_debt AS d ON p.debt_id = d.id
+						AND d.guaranty_type IN <foreach collection="guarantyType" index="index" item="item" open="(" separator="," close=")"> #{item}  </foreach>
+						WHERE
+							t.transaction_time BETWEEN #{startTime,jdbcType=TIMESTAMP}
+						AND #{endTime,jdbcType=TIMESTAMP}
+						GROUP BY
+							t.member_id
+						ORDER BY
+							sum(t.invest_amount) DESC,
+							max(t.transaction_time)
+					) a,
+					(SELECT @i := 0) b
+			) c
+		where member_id = #{memberId,jdbcType=BIGINT}
+	</select>
+	
+	
+	<resultMap id="TransactionInterestForMember" type="TransactionInterestForMember" extends="BaseResultMap">
+    	<result column="project_id" property="projectId" jdbcType="BIGINT" />
+    	<result column="transaction_id" property="transactionId" jdbcType="BIGINT" />
+    	<result column="project_name" property="projectName" jdbcType="VARCHAR" />
+    	<result column="payable_principal" property="payablePrincipal" jdbcType="VARCHAR" /><!-- 本金总额 -->
+    	<result column="end_date" property="endDate" jdbcType="VARCHAR" /><!-- 交易时间-->
+  	</resultMap>
+	
+	<!-- 获得用户交易明细-->
+  <select id="getTransactionsDetailForMember" resultMap="TransactionInterestForMember" parameterType="TransactionInterestQuery">
+		SELECT id as transaction_id , project_id, project_name,
+		  CASE project_category
+          WHEN   1
+          THEN total_principal
+          WHEN  2
+          THEN invest_amount
+          END AS payable_principal,
+		total_principal as payable_principal, transaction_time as end_date
+		FROM tc_transaction 
+		WHERE
+			member_id = #{query.memberId,jdbcType=BIGINT}  and status in (1,2,4,5) 
+	    order by transaction_time desc
+		LIMIT #{query.startRow,jdbcType=INTEGER}, #{query.pageSize,jdbcType=INTEGER}
+	</select>
+   <select id="selectProjectInverstforPager">
+      SELECT i.id,t.id,p.id,a.* FROM
+		tc_transaction_interest i
+	INNER JOIN tc_transaction t ON t.id = i.transaction_id
+	INNER JOIN ic_project p ON p.id= t.project_id
+	INNER JOIN tc_hosting_pay_trade a ON i.id = a.source_id AND a.type =2
+	WHERE   t.project_id =#{projectId,jdbcType=BIGINT}
+  </select>
+	<!-- 根据项目id获取用户的投资总额 -->
+    <select id = "getTotalInvestAmountByProjectId" resultType= "java.math.BigDecimal" >
+         select
+              sum(invest_amount) as total_invest_amount
+         from tc_transaction
+         where project_id = #{projectId,jdbcType=BIGINT}
+    </select >
+    
+    <!-- 根据项目ID更新交易 -->
+  <update id="updateTransactionByProjectId">
+	  UPDATE 
+	  	tc_transaction
+	  SET
+		<if test="loanStatus != null">
+			loan_status = #{loanStatus,jdbcType=INTEGER},
+		</if>
+		<if test="status != null">
+			status =  #{status,jdbcType=INTEGER},
+		</if>
+	  	update_time = now()
+	  WHERE
+	  	project_id = #{projectId,jdbcType=BIGINT}
+  </update>
+  
+  <!-- 更新交易状态根据订单id-->
+  <update id="updateStatusByOrderId">
+  	update tc_transaction 
+  	set `status` = #{afterStatus,jdbcType=INTEGER},
+  	remarks = #{remarks,jdbcType=VARCHAR},
+  	update_time = NOW()
+	where order_id =  #{orderId,jdbcType=BIGINT} and status = #{beforeStatus,jdbcType=INTEGER}
+  </update>
+  
+  	<!-- 根据项目ID查询投资成功的用户 -->
+   <select id="selectMemberByProject" resultType="java.lang.Long">
+  	select 
+  	distinct member_id
+    FROM tc_transaction
+    where project_id = #{map.projectId,jdbcType=BIGINT}  limit  #{map.startNum,jdbcType=BIGINT}, #{map.num,jdbcType=BIGINT}
+  </select>
+  
+  <!-- 查询投资成功的用户 -->
+   <select id="selectMemberSucceed" resultType="java.lang.Long">
+  	select 
+  	distinct member_id
+    FROM tc_transaction
+    limit  #{map.startNum,jdbcType=BIGINT}, #{map.num,jdbcType=BIGINT}
+  </select>
+  	
+  <!-- 查询投资成功的用户手机号 -->
+   <select id="selectMemberMobileSucceed" resultType="java.lang.Long">
+  	select 
+  	mobile 
+    FROM uc_member
+    where id = #{memberId,jdbcType=BIGINT}
+  </select>	
+  	
+  	
+  	
+  	<resultMap type="TransactionForActivity" id="TransactionForActivityResultMap" extends="BaseResultMap">
+	    <result column="activity_sign" property="activitySign" jdbcType="INTEGER" />
+  	</resultMap>
+  	
+  	<!-- 活动项目交易查询 -->
+  	<select id="selectForProjectExtra" resultMap="TransactionForActivityResultMap" parameterType="TransactionForActivity">
+  		SELECT
+			t.invest_amount,
+			t.transaction_time,
+			IFNULL(e.activity_sign,0) as activity_sign
+		FROM
+			tc_transaction AS t
+		LEFT JOIN ic_project_extra as e on e.del_flag = 1 and e.project_id = t.project_id
+		WHERE
+			t.id = #{transactionId,jdbcType=BIGINT};
+  	</select>
+  	
+  	<!-- 获取会员的投资总额 -->
+    <select id = "getMemberTotalInvestAmountDirectProject" resultType= "java.math.BigDecimal" >
+        select sum(tc.invest_amount)  as total_invest_amount 
+        from tc_transaction as tc
+		left join ic_project as ic on ic.id=tc.project_id
+		where ic.invest_type=1 
+		and	tc.member_id=#{memberId,jdbcType=BIGINT};
+    </select >
+    
+  	<!-- 获取会员时间范围内的总投资额 -->
+    <select id = "getMemberTotalInvest" resultType= "java.math.BigDecimal" >
+        select if(sum(invest_amount) != 0, sum(invest_amount), 0) as total_invest_amount 
+        from tc_transaction as tc
+		<where>
+			tc.status != 3
+			<if test="memberId != null" >
+				AND tc.member_id=#{memberId,jdbcType=BIGINT}
+			</if>
+			<if test="transactionStartTime != null" >
+				AND tc.transaction_time <![CDATA[ >= ]]> #{transactionStartTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="transactionEndTime != null" >
+				AND tc.transaction_time <![CDATA[ <= ]]> #{transactionEndTime,jdbcType=TIMESTAMP}
+			</if>
+		</where>
+    </select >
+
+    <!-- 获取会员时间范围内的非转让项目总投资额 -->
+    <select id = "getMemberTotalInvestNoTransfer" resultType= "java.math.BigDecimal" >
+        select sum(invest_amount)
+        from tc_transaction
+        <where>
+            status != 3
+            AND
+            project_category = 1
+            <if test="memberId != null" >
+                AND member_id=#{memberId,jdbcType=BIGINT}
+            </if>
+            <if test="transactionStartTime != null" >
+                AND transaction_time <![CDATA[ >= ]]> #{transactionStartTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="transactionEndTime != null" >
+                AND transaction_time <![CDATA[ <= ]]> #{transactionEndTime,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+    </select >
+  	
+  	<resultMap id="DebtForLenderMemberResultMap" type="DebtForLenderMember" >
+	    <result column="project_id" property="projectId" jdbcType="BIGINT" />
+	    <result column="project_name" property="projectName" jdbcType="VARCHAR" />
+	    <result column="end_date" property="endDate" jdbcType="TIMESTAMP" />
+	    <result column="payable_principal" property="payablePrincipal" jdbcType="DECIMAL" />
+	    <result column="payable_interest" property="payableInterest" jdbcType="DECIMAL" />
+	    <result column="borrower_name" property="borrowerName" jdbcType="VARCHAR" />
+	    <result column="total_amount" property="totalAmount" jdbcType="DECIMAL" />
+	    
+	    <result column="total_interest" property="totalInterest" jdbcType="DECIMAL" />
+	    <result column="total_principal" property="totalPrincipal" jdbcType="DECIMAL" />
+	    <result column="project_num" property="projectNum"	jdbcType="INTEGER" />
+	    
+  </resultMap>
+  	
+  	 <sql id="debt_for_member_Column_Max_pagin" >
+    	ic.id as  project_id,
+    	ic.name as  project_name,
+    	max(i.end_date) as end_date,
+    	
+    	ic.total_amount as  total_amount,
+    	u.true_name as borrower_name,
+    	max(i.status) as status
+  </sql>
+  	
+  	 <sql id="debt_for_member_Column_Min_pagin" >
+    	ic.id as  project_id,
+    	ic.name as  project_name,
+    	min(i.end_date) as end_date,
+    	
+    	ic.total_amount as  total_amount,
+    	u.true_name as borrower_name,
+    	max(i.status) as status
+  </sql>
+  
+  		<!-- 获取会员出借人身份名下的债权项目 -->
+    <select id = "getDebtInfoByLenderId" resultMap="DebtForLenderMemberResultMap" parameterType="DebtForLenderQuery">
+       	select * from 
+		(select 
+		<include refid="debt_for_member_Column_Min_pagin" />
+		 from tc_transaction_interest  as i
+		inner join tc_transaction as tc on tc.id = i.transaction_id
+		inner join ic_project as ic on ic.id =  tc.project_id
+		inner join ic_debt as d on d.id = ic.debt_id
+		inner join uc_member as u on u.id = d.borrower_id
+		where 
+		 i.end_date <![CDATA[ >= ]]>CURDATE()
+		 and i.status <![CDATA[ <> ]]> 1
+		 and ic.del_flag = 1
+		 and d.del_flag = 1
+		<if test=" startDate != null">
+				and i.end_date <![CDATA[ >= ]]> #{startDate,jdbcType=TIMESTAMP}
+		</if> 
+		<if test=" endDate != null">
+				and i .end_date <![CDATA[ <= ]]>  #{endDate,jdbcType=TIMESTAMP}
+		</if>
+		<if test=" borrowerName != null">
+			and u.true_name = #{borrowerName,jdbcType=VARCHAR}
+		</if>		
+		and d.lender_id=#{memberId,jdbcType=BIGINT}
+		and ic.status in (30,40,50,60,70)
+		group by ic.id
+		order by end_date asc,ic.online_time desc  )a
+		
+		union all
+		
+		select * from 
+		(select 
+		<include refid="debt_for_member_Column_Max_pagin" />
+		 from tc_transaction_interest  as i
+		inner join tc_transaction as tc on tc.id = i.transaction_id
+		inner join ic_project as ic on ic.id =  tc.project_id
+		inner join ic_debt as d on d.id = ic.debt_id
+		inner join uc_member as u on u.id = d.borrower_id
+		where d.lender_id=#{memberId,jdbcType=BIGINT}
+	     and ic.del_flag = 1
+		 and d.del_flag = 1
+		 and ic.status in (30,40,50,60,70)
+		<if test=" borrowerName != null">
+			and u.true_name = #{borrowerName,jdbcType=VARCHAR}
+		</if>	
+		group by ic.id
+		order by end_date desc,ic.online_time desc  )b
+		where 	b.end_date  <![CDATA[ <= ]]> CURDATE()
+		and  b.status = 1
+		<if test=" startDate != null">
+			and b.end_date<![CDATA[  >= ]]> #{startDate,jdbcType=TIMESTAMP}
+		</if> 
+		<if test=" endDate != null">
+			and b.end_date<![CDATA[  <= ]]>  #{endDate,jdbcType=TIMESTAMP}
+		</if>	
+		LIMIT ${startRow}, ${pageSize}
+    </select >
+    
+    <!-- 获取会员出借人身份名下的债权数量 -->
+    <select id="getDebtInfoByLenderIdCount" resultType="java.lang.Integer"  parameterType="DebtForLenderQuery" >
+    select count(1) from (
+    select * from 
+		(select 
+		<include refid="debt_for_member_Column_Min_pagin" />
+		 from tc_transaction_interest  as i
+		inner join tc_transaction as tc on tc.id = i.transaction_id
+		inner join ic_project as ic on ic.id =  tc.project_id
+		inner join ic_debt as d on d.id = ic.debt_id
+		inner join uc_member as u on u.id = d.borrower_id
+		where 
+		i.end_date   <![CDATA[ >= ]]> CURDATE()
+		 and i.status <![CDATA[ <> ]]> 1
+		 and ic.del_flag = 1
+		 and ic.status in (30,40,50,60,70)
+		 and d.del_flag = 1
+		<if test=" startDate != null">
+			and i.end_date<![CDATA[ >= ]]> #{startDate,jdbcType=TIMESTAMP}
+		</if> 
+		<if test=" endDate != null">
+			and i.end_date<![CDATA[ <= ]]> #{endDate,jdbcType=TIMESTAMP} 
+		</if>
+		<if test=" borrowerName != null">
+			and u.true_name = #{borrowerName,jdbcType=VARCHAR}
+		</if>		
+		and d.lender_id=#{memberId,jdbcType=BIGINT}
+		group by ic.id
+		order by end_date asc,ic.online_time desc   )a
+		
+		union all
+		
+		select * from 
+		(select 
+		<include refid="debt_for_member_Column_Max_pagin" />
+		 from tc_transaction_interest  as i
+		inner join tc_transaction as tc on tc.id = i.transaction_id
+		inner join ic_project as ic on ic.id =  tc.project_id
+		inner join ic_debt as d on d.id = ic.debt_id
+		inner join uc_member as u on u.id = d.borrower_id
+		where  d.lender_id=#{memberId,jdbcType=BIGINT}
+		 and ic.del_flag = 1
+		 and ic.status in (30,40,50,60,70)
+		 and d.del_flag = 1
+		<if test=" borrowerName != null">
+			and u.true_name = #{borrowerName,jdbcType=VARCHAR}
+		</if>	
+		group by ic.id
+		order by end_date desc,ic.online_time desc )b
+		where 	b.end_date  <![CDATA[ <= ]]> CURDATE()
+			and  b.status = 1
+		<if test=" startDate != null">
+			and b.end_date<![CDATA[  >= ]]> #{startDate,jdbcType=TIMESTAMP}
+		</if> 
+		<if test=" endDate != null">
+			and b.end_date<![CDATA[  <= ]]>  #{endDate,jdbcType=TIMESTAMP}
+		</if>	
+     )c
+    </select >
+    
+      <!-- 获取会员出借人身份名下的债权项目数量，本息金额 -->
+    <select id="getStatisticalDataByLenderId" resultMap="DebtForLenderMemberResultMap" parameterType="DebtForLenderQuery">
+    
+	select IFNULL(sum(payable_interest),0) as total_interest,
+	IFNULL(sum(payable_principal),0) as total_principal,	
+	count(0) as project_num
+	from (
+		select IFNULL(sum(i.payable_interest),0) as payable_interest,
+		IFNULL(sum(i.payable_principal),0) as payable_principal ,  
+		ic.id
+		from tc_transaction_interest  as i
+				inner join tc_transaction as tc on tc.id = i.transaction_id
+				inner join ic_project as ic on ic.id =  tc.project_id
+				inner join ic_debt as d on d.id = ic.debt_id
+				inner join uc_member as u on u.id = d.borrower_id
+		where i.end_date <![CDATA[ >= ]]> CURDATE()
+		and i.status  <![CDATA[ <> ]]> 1
+		and d.lender_id=#{memberId,jdbcType=BIGINT}
+		and ic.del_flag = 1
+		and ic.status in (30,40,50,60,70)
+		 and d.del_flag = 1
+	     		<if test=" threeDayFlag  == 0  ">
+		     		<if test=" startDate != null">
+						and i.end_date <![CDATA[ >= ]]> #{startDate,jdbcType=TIMESTAMP}
+					</if> 
+					<if test=" endDate != null">
+						and i.end_date <![CDATA[  <= ]]> #{endDate,jdbcType=TIMESTAMP}
+					</if>	
+				</if>
+				<if test=" threeDayFlag == 1  ">
+	     			and i.end_date <![CDATA[ <= ]]> DATE_ADD(CURDATE(),INTERVAL 2 DAY) 
+	     			and i.end_date <![CDATA[ >= ]]> CURDATE()
+	     		</if>	
+	     			
+		<if test=" borrowerName != null">
+			and u.true_name = #{borrowerName,jdbcType=VARCHAR}
+		</if>	
+		group by ic.id)a
+ 
+    </select >
+    
+    <!-- 交易分页查询数量 -->	
+  <select id="queryTansactionForListCount" resultType="java.lang.Integer" >
+
+		SELECT
+			count(1)
+		FROM
+			tc_transaction AS t
+		LEFT JOIN tc_order as o on t.order_id = o.id
+		<choose>
+		   	<when test="map != null and map.memberSel == 'INNER JOIN'">
+		   	 	 INNER JOIN uc_member AS m ON t.member_id = m.id AND m.del_flag > 0
+		   	 	 <if test="map.memberId != null">
+		   		 	and m.id = #{map.memberId,jdbcType=BIGINT}
+				 </if>
+				 <if test="map.mobile != null">
+		   		 	and m.mobile = #{map.mobile,jdbcType=VARCHAR}
+				 </if>
+		   	</when>
+		   	<otherwise>
+		   		 LEFT JOIN uc_member AS m ON t.member_id = m.id AND m.del_flag > 0
+		   	</otherwise>
+	   	</choose>
+		<if test=" map != null" >
+			<where>
+				<if test="map.orderNo != null">
+					and o.order_no = #{map.orderNo}
+				</if>
+				<if test="map.projectName != null">
+					and t.project_name like CONCAT(CONCAT(#{map.projectName,jdbcType=VARCHAR}),'%')
+				</if>
+				<if test="map.investAmountStart != null">
+					and t.invest_amount <![CDATA[ >= ]]> #{map.investAmountStart}
+				</if>
+				<if test="map.investAmountEnd != null">
+					and t.invest_amount <![CDATA[ <= ]]> #{map.investAmountEnd}
+				</if>
+				<if test="map.payMethod != null">
+					and ${map.payMethod}
+				</if>
+				<if test="map.annualizedSelect != null and map.annualizedSelect == 0">
+					and IFNULL(o.profit_coupon_no,'') = ''
+				</if>
+				<if test="map.annualizedSelect != null and map.annualizedSelect == 1">
+					and IFNULL(o.profit_coupon_no,'') != ''
+				</if>
+				<if test="map.couponStart != null">
+					and t.used_coupon_amount <![CDATA[ >= ]]> #{map.couponStart}
+				</if>
+				<if test="map.couponEnd != null">
+					and t.used_coupon_amount <![CDATA[ <= ]]> #{map.couponEnd}
+				</if>
+				<if test="map.installmentNumStart != null">
+					and t.installment_num <![CDATA[ >= ]]> #{map.installmentNumStart}
+				</if>
+				<if test="map.installmentNumEnd != null">
+					and t.installment_num <![CDATA[ <= ]]> #{map.installmentNumEnd}
+				</if>
+				<if test=" map.transactionTimeStart != null" >
+		            and t.transaction_time <![CDATA[ >= ]]> #{map.transactionTimeStart}
+		        </if>
+		        <if test=" map.transactionTimeEnd != null" >
+		            and t.transaction_time <![CDATA[ <= ]]> #{map.transactionTimeEnd}
+		        </if>
+		        <if test=" map.status != null" >
+		            and t.status = #{map.status}
+		        </if>
+			</where>
+		</if>	  	
+
+  </select>
+  
+  <!-- 投资分页查询数量 -->	
+  <select id="findByPageCount" resultType="java.lang.Integer" >
+	SELECT count(1)
+	  FROM tc_transaction
+	  <if test=" map != null" >  
+	    <where >
+	        <if test="map.memberId != null" >
+	          AND member_id = #{map.memberId}
+	        </if>
+	    </where>
+	  </if>
+  </select>
+  	
+  	<!-- 查询我的交易和我的募集中列表 -->
+  	<select id="selectAllTransactionWithP2P" resultMap="TransactionForMemberResultMap" parameterType="TransactionQuery">
+	  SELECT
+	  	<include refid="Transaction_For_Member_Column_List_pagin" />,
+	  	p.status as projectStatus
+	  FROM tc_transaction as t
+	  INNER JOIN ic_project p ON t.project_id = p.id
+	    <where >
+	        <if test="memberId != null" >
+	          AND t.member_id = #{memberId,jdbcType=BIGINT}
+	        </if>
+	        <if test="queryStatus == 0" >
+	          AND t.status != 0
+	        </if>
+	        <if test="queryStatus == 1" >
+	          AND t.status = 0
+	          AND (p.invest_type = 2 or t.project_category=2)
+	        </if>
+	      </where>
+		ORDER BY t.id desc
+		LIMIT #{startRow,jdbcType=INTEGER}, #{pageSize,jdbcType=INTEGER}
+	</select>
+	<!-- 查询我的交易和我的募集中列表总数 -->
+	
+  	<select id="selectAllTransactionWithP2PCount" resultType="java.lang.Integer" parameterType="TransactionQuery">
+	  SELECT
+	  	count(1)
+	  FROM tc_transaction as t
+	  INNER JOIN ic_project p ON t.project_id = p.id
+	    <where >
+	        <if test="memberId != null" >
+	          AND t.member_id = #{memberId,jdbcType=BIGINT}
+	        </if>
+	        <if test="queryStatus == 0" >
+	          AND t.status != 0
+	        </if>
+	        <if test="queryStatus == 1" >
+	          AND t.status = 0
+	          AND (p.invest_type = 2 or t.project_category=2)
+	        </if>
+	      </where>
+		ORDER BY t.id desc	
+	</select>
+	<!-- 滞纳金 -->
+	<select id="totalTransationLateFeeByProjecdtId" resultMap="BaseResultMap">
+       select sum(total_principal) as total_principal,sum(received_principal) as received_principal,
+       sum(total_interest) as total_interest,sum(received_interest) as received_interest,
+       sum(total_extra_interest) as total_extra_interest,sum(received_extra_interest) as received_extra_interest
+         from tc_transaction where project_id = #{projectId,jdbcType=BIGINT}  
+        and status in (1,2) 
+   </select>
+   
+      <!-- 用户是否投资过某项目 -->
+  <select id="isMemberInvestedProject" resultType="java.lang.Integer">
+    select 1
+    from tc_transaction
+    where member_id = #{memberId,jdbcType=BIGINT} and project_id = #{projectId,jdbcType=BIGINT} limit 1
+  </select>
+  
+ <select id="getTotalAmountByMemberId" resultType="java.math.BigDecimal">
+  select sum(invest_amount)
+  from tc_transaction
+  where member_id = #{memberId,jdbcType=BIGINT}  AND transaction_time <![CDATA[ < ]]> #{transactionTime,jdbcType=TIMESTAMP}
+  </select>
+  
+  <!-- 更新交易时间 -->
+  <update id="updateTransactionTimeByPrimaryKey" parameterType="Transaction" >
+    update tc_transaction
+    <set>
+      <if test="transactionTime != null" >
+        transaction_time = #{transactionTime,jdbcType=TIMESTAMP},
+      </if>
+        update_time = now(),
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  
+   <!-- 查询投资排行前8列表 -->
+	<select id="selectTopEightInvestAmount" resultMap="TransactionForFirstInvestActResultMap" >
+	SELECT
+		u.username as username,
+		u.mobile as mobile,
+		u.avatars as avatars,
+		SUM(t.invest_amount) AS total_invest
+	FROM
+		tc_transaction t INNER JOIN uc_member u ON
+		t.member_id= u.id
+	WHERE    
+			 t.transaction_time <![CDATA[ >= ]]> #{transactionStartTime,jdbcType=TIMESTAMP}
+				AND t.transaction_time <![CDATA[ <= ]]> #{transactionEndTime,jdbcType=TIMESTAMP}
+	GROUP BY
+		t.member_id
+	ORDER BY
+		total_invest DESC,transaction_time asc 
+	LIMIT 8
+	</select>
+	<!-- 查询投资排行前10列表 -->
+	<select id="selectTopTenInvestAmount" resultMap="TransactionForFirstInvestActResultMap" >
+	SELECT
+		u.username as username,
+		u.mobile as mobile,
+		u.avatars as avatars,
+		SUM(t.invest_amount) AS total_invest
+	FROM
+		tc_transaction t INNER JOIN uc_member u ON
+		t.member_id= u.id
+	WHERE   t.transaction_time <![CDATA[ >= ]]> #{transactionStartTime,jdbcType=TIMESTAMP}
+				AND t.transaction_time <![CDATA[ <= ]]> #{transactionEndTime,jdbcType=TIMESTAMP}
+	GROUP BY
+		t.member_id
+	ORDER BY
+		total_invest DESC,transaction_time asc 
+	LIMIT 10
+	</select>
+	
+	 <select id = "getMyTotalInvestByMemberIdAndTime" resultType= "java.math.BigDecimal" >
+        select if(sum(invest_amount) != 0, sum(invest_amount), 0) as total_invest_amount 
+        from tc_transaction as tc
+			  where 
+				 tc.member_id=#{memberId,jdbcType=BIGINT}
+				AND tc.transaction_time <![CDATA[ >= ]]> #{transactionStartTime,jdbcType=TIMESTAMP}
+				AND tc.transaction_time <![CDATA[ <= ]]> #{transactionEndTime,jdbcType=TIMESTAMP}
+    </select >
+    
+    <select id = "countInvestNumbers" resultType="java.lang.Integer">
+        select count(1) 
+        from tc_transaction as tc
+			  where 
+				 tc.transaction_time <![CDATA[ >= ]]> #{transactionStartTime,jdbcType=TIMESTAMP}
+				AND tc.transaction_time <![CDATA[ <= ]]> #{transactionEndTime,jdbcType=TIMESTAMP}
+    </select >
+   <!-- 查询未签署交易 -->
+  <select id="getUnsignContractNum" resultMap="BaseResultMap">
+	  select 
+		<include refid="Base_Column_List"/>
+	    from tc_transaction
+	    where member_id = #{memberId,jdbcType=BIGINT} and sign_status in (0,1)
+  </select>
+  
+   <!-- 查询可签署交易 -->
+  <select id="getSignableContractNum" resultMap="BaseResultMap">
+	  select 
+		<include refid="Base_Column_List"/>
+	    from tc_transaction
+	    where member_id = #{memberId,jdbcType=BIGINT} and sign_status in (1)
+  </select>
+  
+  <!-- 查询募集中可签署交易 -->
+  <select id="getCollectSignableContractNum" resultMap="BaseResultMap">
+	  select 
+		<include refid="Base_Column_List"/>
+	    from tc_transaction
+	    where member_id = #{memberId,jdbcType=BIGINT} and status=0 and sign_status in (1)
+  </select>
+  
+  <!-- 查询我的交易可签署交易 -->
+  <select id="getTransactionSignableContractNum" resultMap="BaseResultMap">
+	  select 
+		<include refid="Base_Column_List"/>
+	    from tc_transaction
+	    where member_id = #{memberId,jdbcType=BIGINT} and status<![CDATA[ <> ]]>0  and sign_status in (1)
+  </select>
+  
+  <!-- 更新签署状态-->
+  <update id="updateSignStatus">
+  	update tc_transaction 
+  	set sign_status = 2,
+  	update_time = NOW()
+	where member_id = #{memberId,jdbcType=BIGINT} and sign_status in (1)
+  </update>
+  
+  
+  <!-- 查询未签署交易，分页 -->
+  	<select id="getUnsignContractNumPage" resultMap="BaseResultMap" parameterType="TransactionQuery">
+	  SELECT
+	  	<include refid="Base_Column_List"/>
+	 from tc_transaction
+	    where member_id = #{memberId,jdbcType=BIGINT} and sign_status in (0,1)
+		ORDER BY id desc
+		LIMIT #{startRow,jdbcType=INTEGER}, #{pageSize,jdbcType=INTEGER}
+	</select>
+	
+	
+  <!-- 合同置为已过期-->
+  <update id="expireContract">
+  	update tc_transaction 
+  	set sign_status = 3,
+  	update_time = NOW()
+	where project_id = #{projectId,jdbcType=BIGINT} and sign_status in (0,1)
+  </update>
+  
+   <!-- 合同置为已过期-->
+  <update id="expireContractForTransfer">
+  	update tc_transaction 
+  	set sign_status = 3,
+  	update_time = NOW()
+	where transfer_id = #{transferId,jdbcType=BIGINT} and sign_status in (0,1)
+  </update>
+  
+   <resultMap id="ContractSignDtoResultMap" type="ContractSignDto"	>
+   
+   	<result column="id" property="id" jdbcType="BIGINT" />
+	<result column="name" property="projectName" jdbcType="VARCHAR" />
+	<result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+	<result column="true_name" property="memberName" jdbcType="VARCHAR" />
+	<result column="mobile" property="memberMoible" jdbcType="VARCHAR" />
+	<result column="sign_status" property="signStatus" jdbcType="INTEGER" />
+	<result column="created_time" property="contractTime" jdbcType="TIMESTAMP" />
+	<result column="sign_way" property="signWay" jdbcType="INTEGER" />
+	<result column="status" property="secondStatus" jdbcType="INTEGER" />
+  </resultMap>
+  
+  
+   <!-- 获取合同签署数据-->
+  <select id="getContractSignByMap"  resultMap="ContractSignDtoResultMap">
+      select  tc.id,ic.name,o.order_no,uc.true_name,uc.mobile,tc.sign_status,tc.created_time,uc.sign_way,tcc.status
+    from tc_transaction as tc
+	left join uc_member as uc on tc.member_id=uc.id
+	left join tc_order as o on tc.order_id= o.id 
+	left join ic_project as ic on tc.project_id=ic.id
+	left join tc_contract as tcc on   tcc.transaction_id=tc.id  
+	where  tcc.type=2 and tcc.del_flag=1
+	<if test=" map != null" >  
+	        <if test="map.projectName != null" >
+	          AND ic.name like #{map.projectName}"%" 
+	        </if>
+	        <if test="map.orderNo != null" >
+	          AND o.order_no = #{map.orderNo}
+	        </if>
+	        <if test="map.name != null" >
+	          AND uc.true_name = #{map.name}
+	        </if>
+	        <if test="map.mobile != null" >
+	          AND uc.mobile = #{map.mobile}
+	        </if>
+	        <if test="map.signStatus != null" >
+	          AND tc.sign_status = #{map.signStatus}
+	        </if>
+	        <if test="map.secondStatus != null" >
+	          AND tcc.status = #{map.secondStatus}
+	        </if>
+	        
+	  </if>
+	  order by tc.id desc
+	  LIMIT ${map.startRow}, ${map.pageSize}
+  </select>
+  
+   <!-- 获取合同签署数据-->
+  <select id="getContractSignByMapCount"  resultType="java.lang.Integer">
+      select  count(1)
+    from tc_transaction as tc
+	left join uc_member as uc on tc.member_id=uc.id
+	left join tc_order as o on tc.order_id= o.id 
+	left join ic_project as ic on tc.project_id=ic.id
+	left join tc_contract as tcc on   tcc.transaction_id=tc.id  
+	where  tcc.type=2  and tcc.del_flag=1
+	<if test=" map != null" >  
+	        <if test="map.projectName != null" >
+	          AND ic.name like #{map.projectName}"%" 
+	        </if>
+	        <if test="map.orderNo != null" >
+	          AND o.order_no = #{map.orderNo}
+	        </if>
+	        <if test="map.name != null" >
+	          AND uc.true_name = #{map.name}
+	        </if>
+	        <if test="map.mobile != null" >
+	          AND uc.mobile = #{map.mobile}
+	        </if>
+	        <if test="map.signStatus != null" >
+	          AND tc.sign_status = #{map.signStatus}
+	        </if>
+	         <if test="map.secondStatus != null" >
+	          AND tcc.status = #{map.secondStatus}
+	        </if>
+	  </if>
+  </select>
+  
+   <!-- 历史合同置为已过期-->
+  <update id="expireHistoryContract">
+  	update tc_transaction 
+  	set sign_status = 3,
+  	update_time = NOW()
+	where status in (2,3)
+  </update>
+  
+   <!-- 获取未还本付息的交易-->
+  <select id="getUnendTransaction" resultMap="BaseResultMap">
+	  select 
+		<include refid="Base_Column_List"/>
+	    from tc_transaction
+	    where  status in (0,1) and sign_status =0
+  </select>
+  
+  
+   <!-- 更新我的交易签署状态-->
+  <update id="updateTransactionSignableContractStatus">
+  	update tc_transaction 
+  	set sign_status = 2,
+  	update_time = NOW()
+	where member_id = #{memberId,jdbcType=BIGINT} and sign_status in (1) and status<![CDATA[ <> ]]>0 
+  </update>
+  
+   <!-- 更新募集中签署状态-->
+  <update id="updateCollectSignableContractStatus">
+  	update tc_transaction 
+  	set sign_status = 2,
+  	update_time = NOW()
+	where member_id = #{memberId,jdbcType=BIGINT} and sign_status in (1) and status = 0 
+  </update>
+  
+  	<!-- 根据项目ID查询投资成功的用户 -->
+   <select id="selectUnSignMember" resultType="java.lang.Long">
+  	select 
+  	distinct member_id
+    FROM tc_transaction
+    where sign_status=1 and TO_DAYS( NOW( ) ) - TO_DAYS( transaction_time) <![CDATA[  <=]]> 1 
+  </select>
+  <select id="getTotalTransactionCount" resultType="java.lang.Integer">
+  select count(0)
+  from tc_transaction
+  where  status  in (2,5) 
+  </select>
+   <!-- 查询战队投资排行前十列表 -->
+	<select id="selectTopTenInvestByGroupType" resultMap="TransactionForFirstInvestActResultMap" >
+	SELECT
+		m.member_id as member_id,
+		u.username as username,
+		u.mobile as mobile,
+		u.avatars as avatars,
+		SUM(t.invest_amount) AS total_invest
+	FROM
+		tc_transaction t INNER JOIN mc_activity_group m ON
+		t.member_id= m.member_id INNER JOIN uc_member as u
+		ON u.id=m.member_id
+	WHERE
+			t.status != 3
+			<if test="activityId != null" >
+				AND m.activity_id=#{activityId,jdbcType=BIGINT}
+			</if>
+			<if test="groupType != null" >
+				AND m.group_type=#{groupType,jdbcType=INTEGER}
+			</if>
+			<if test="transactionStartTime != null" >
+				AND t.transaction_time <![CDATA[ >= ]]> #{transactionStartTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="transactionEndTime != null" >
+				AND t.transaction_time <![CDATA[ <= ]]> #{transactionEndTime,jdbcType=TIMESTAMP}
+			</if>
+	GROUP BY
+		t.member_id
+	ORDER BY
+		total_invest DESC,transaction_time ASC
+	LIMIT 10
+	</select>
+	
+	<select id="selectMaxTransactionTime" resultMap="BaseResultMap" >
+	SELECT
+		max(t.transaction_time) 
+	FROM 
+		tc_transaction t INNER JOIN mc_activity_group m ON
+		t.member_id= m.member_id 
+	WHERE
+			t.status != 3
+			<if test="activityId != null" >
+				AND m.activity_id=#{activityId,jdbcType=BIGINT}
+			</if>
+			<if test="groupType != null" >
+				AND m.group_type=#{groupType,jdbcType=INTEGER}
+			</if>
+			<if test="transactionStartTime != null" >
+				AND t.transaction_time <![CDATA[ >= ]]> #{transactionStartTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="transactionEndTime != null" >
+				AND t.transaction_time <![CDATA[ <= ]]> #{transactionEndTime,jdbcType=TIMESTAMP}
+			</if>
+			limit 1  
+	</select>
+	
+	 <select id = "getTotalInvestByGroupType" resultType= "java.math.BigDecimal">
+        select if(sum(invest_amount) != 0, sum(invest_amount), 0) as total_invest_amount 
+        from tc_transaction as t
+        left join mc_activity_group as m on m.member_id=t.member_id
+		<where>
+			t.status != 3
+			<if test="groupType != null" >
+				AND m.activity_id=#{activityId,jdbcType=BIGINT}
+			</if>
+			<if test="groupType != null" >
+				AND m.group_type=#{groupType,jdbcType=INTEGER}
+			</if>
+			<if test="transactionStartTime != null" >
+				AND t.transaction_time <![CDATA[ >= ]]> #{transactionStartTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="transactionEndTime != null" >
+				AND t.transaction_time <![CDATA[ <= ]]> #{transactionEndTime,jdbcType=TIMESTAMP}
+			</if>
+		</where>
+    </select >
+
+    <select id="queryByPageCollectByTraceSource" resultType="com.yourong.core.tc.model.biz.TraceSourceCollectBiz">
+        SELECT a.id memberid,a.mobile,a.register_time registertime,b.id,sum(b.invest_amount) investcollect from
+        uc_member a
+        left JOIN
+        tc_transaction b
+        on a.id=b.member_id and total_days >= 30 and (b.status =1 OR b.status=2)
+        <if test="query.startdate!=null">
+            AND transaction_time <![CDATA[ >= ]]> #{query.startdate,jdbcType=TIMESTAMP}
+        </if>
+        <if test="query.enddate!=null">
+            AND transaction_time <![CDATA[ <= ]]> #{query.enddate,jdbcType=TIMESTAMP}
+        </if>
+        WHERE
+        <foreach collection="query.channeltrack" item="track" index="index" separator="OR" open="(" close=")">
+            register_trace_no=#{track}
+        </foreach>
+        AND register_trace_source=#{query.channelname}
+        <if test="query.mobile!=null and query.mobile!=''">
+            AND mobile=#{query.mobile}
+        </if>
+        GROUP BY a.id ORDER BY a.register_time DESC LIMIT #{query.startRow,jdbcType=INTEGER}, #{query.pageSize,jdbcType=INTEGER}
+    </select>
+
+    <select id="queryCountCollectByTraceSource" resultType="java.lang.Integer">
+        SELECT COUNT(1) FROM uc_member WHERE
+        <foreach collection="query.channeltrack" item="track" index="index" separator="OR" open="(" close=")">
+            register_trace_no=#{track}
+        </foreach>
+        AND register_trace_source=#{query.channelname}
+        <if test="query.mobile!=null and query.mobile!=''">
+            AND mobile=#{query.mobile}
+        </if>
+    </select>
+
+    <select id="queryLastTransactionByMemberId" resultType="java.util.Date">
+        SELECT transaction_time FROM tc_transaction WHERE total_days >= 30 AND (status = 1 OR status=2) AND member_id=#{memberid} ORDER BY transaction_time LIMIT 0,1
+    </select>
+    
+    
+    	<!-- 获取会员时间范围内的总投资额 -->
+    <select id = "getMemberTotalInvestByStatus" resultType= "java.math.BigDecimal" >
+        select if(sum(invest_amount) != 0, sum(invest_amount), 0) as total_invest_amount 
+        from tc_transaction as tc
+		<where>
+			tc.status = 1
+			<if test="memberId != null" >
+				AND tc.member_id=#{memberId,jdbcType=BIGINT}
+			</if>
+			<if test="transactionStartTime != null" >
+				AND tc.transaction_time <![CDATA[ >= ]]> #{transactionStartTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="transactionEndTime != null" >
+				AND tc.transaction_time <![CDATA[ <= ]]> #{transactionEndTime,jdbcType=TIMESTAMP}
+			</if>
+		</where>
+    </select >
+  <!-- 更新交易 -->
+  <update id="updateByTransferId" parameterType="Transaction" >
+    update tc_transaction
+    <set >
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+        update_time = now(),
+    </set>
+    where transfer_id = #{transferId,jdbcType=BIGINT}
+  </update>
+  
+  <!-- 根据转让项目id查询转让的交易记录 -->
+  <select id="selectByTransferId" resultMap="BaseResultMap">
+  	select 
+  	<include refid="Base_Column_List"/>
+    FROM tc_transaction
+    where transfer_id = #{transferId,jdbcType=BIGINT}
+  </select>
+  
+  <select id="getInvestAmountByTransferId" resultType="java.math.BigDecimal">
+  	select sum(invest_amount) from tc_transaction 
+  	where transfer_id = #{transferId,jdbcType=BIGINT} 
+  </select>
+  
+  	<!-- 通过条件查询前台会员中心募集中的项目，对应的交易数量-->
+  	<select id="selectCollectForMemberCounting"   resultType="java.lang.Integer"  parameterType="CollectingProjectQuery">
+		select
+		 COUNT(DISTINCT id)
+		from tc_transaction 
+			<where>
+				<if test=" memberId != null">
+					AND member_id = #{memberId,jdbcType=BIGINT}
+				</if>
+				<if test="status != null">
+					AND status  in
+					<foreach item="item" index="index" collection="status" 
+	                    open="(" separator="," close=")">
+	                   #{item}
+	            	</foreach>
+				</if>
+			</where>
+	</select>
+	
+	
+	 
+    	<!-- 获取可转让交易数量 -->
+    <select id = "selectCountToTransferList" resultType="java.lang.Integer" >
+        select COUNT(DISTINCT tc.id)
+        from tc_transaction as tc
+        left join ic_project as ic on ic.id=tc.project_id
+        where ic.transfer_flag=1   and tc.project_category=1
+        and tc.status!=0
+			<if test="memberId != null" >
+				AND tc.member_id=#{memberId,jdbcType=BIGINT}
+			</if>
+    </select >
+    
+     	<!-- 获取可转让交易数量 -->
+    <select id = "selectTransctionToTransferList" resultMap="BaseResultMap" >
+        select 
+		tc.id,
+		tc.order_id,
+		tc.member_id,
+		tc.project_id,
+		tc.project_name,
+		tc.status,
+		tc.transfer_status,
+		tc.invest_amount
+        from tc_transaction as tc
+        left join ic_project as ic on ic.id=tc.project_id
+        left join ( select transaction_id , ifnull(max(transfer_start_date),0)as transfer_start_date from ic_transfer_project group by transaction_id)as temp on temp.transaction_id=tc.id
+        where ic.transfer_flag=1   and tc.project_category=1
+        and tc.status!=0 	and !(tc.status=2 and temp.transfer_start_date=0)
+			<if test="memberId != null" >
+				AND tc.member_id=#{memberId,jdbcType=BIGINT}
+			</if>
+		order by field(tc.transfer_status,1,0,2,3),temp.transfer_start_date desc 
+		LIMIT #{startRow,jdbcType=INTEGER}, #{pageSize,jdbcType=INTEGER}
+		
+    </select >
+    
+    
+	<select id="firstInvestmentByMemberId" resultMap="BaseResultMap">
+	  select 
+	  	<include refid="Base_Column_List"/> 
+	  from tc_transaction 
+	  where member_id = #{memberId,jdbcType=BIGINT} 
+	   order by transaction_time asc limit 0,1
+	</select>
+	
+       <select id="getTotalTransactionReceivedInterestByMemberId" resultMap="BaseResultMap">
+  select sum(total_interest) as total_interest ,sum(used_coupon_amount) as used_coupon_amount 
+  from tc_transaction
+  where member_id = #{memberId,jdbcType=BIGINT} 
+  </select>
+	
+	<select id = "getMemberTotalInvestByMemberIdAndTotalDays" resultType= "java.math.BigDecimal" >
+        select if(sum(invest_amount) != 0, sum(invest_amount), 0) as total_invest_amount 
+        from tc_transaction 
+		<where>
+			status in (1,2)  
+			<if test="map.memberId != null" >
+				AND member_id=#{map.memberId}
+			</if>
+			<if test="map.startTime != null" >
+				AND transaction_time <![CDATA[ >= ]]> #{map.startTime}
+			</if>
+			<if test="map.endTime != null" >
+				AND transaction_time <![CDATA[ <= ]]> #{map.endTime}
+			</if>
+			<if test="map.totalDays != null" >
+				AND total_days  <![CDATA[ >= ]]>  #{map.totalDays}
+			</if>
+		</where>
+    </select >
+	
+	 <select id = "getTotalInvestAmount" resultType= "java.math.BigDecimal" >
+        select if(sum(invest_amount) != 0, sum(invest_amount), 0) as total_invest_amount 
+        from tc_transaction as tc
+			  where 
+				 tc.status=0 
+				AND tc.transaction_time <![CDATA[ >= ]]> #{transactionStartTime,jdbcType=TIMESTAMP}
+				AND tc.transaction_time <![CDATA[ <= ]]> #{transactionEndTime,jdbcType=TIMESTAMP}
+    </select >
+    
+    <select id = "getTotalInvestAmountList" resultMap="BaseResultMap" >
+        select if(sum(invest_amount) != 0, sum(invest_amount), 0) as invest_amount ,date_format(transaction_time,'%Y-%m-%d') as transaction_time
+        from tc_transaction 
+			  GROUP BY  date_format(transaction_time,'%Y-%m-%d') 
+			  ORDER BY transaction_time desc LIMIT #{pageSize,jdbcType=INTEGER} 
+    </select >
+	
+	<!-- 获取会员时间范围内的总投资额 -->
+    <select id = "getMemberTotalInvestByMemberId" resultType= "java.math.BigDecimal" >
+        select if(sum(invest_amount) != 0, sum(invest_amount), 0) as total_invest_amount 
+        from tc_transaction as tc
+		<where>
+			tc.status in (1,2)  
+			<if test="memberId != null" >
+				AND tc.member_id=#{memberId,jdbcType=BIGINT}
+			</if>
+			<if test="startTime != null" >
+				AND tc.transaction_time <![CDATA[ >= ]]> #{startTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="endTime != null" >
+				AND tc.transaction_time <![CDATA[ <= ]]> #{endTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="totalDays != null" >
+				AND tc.total_days  <![CDATA[ >= ]]>  #{totalDays,jdbcType=INTEGER}
+			</if>
+		</where>
+    </select >
+  
+	<select id="selectTopTenInvestAmountByActivityId" resultMap="TransactionForFirstInvestActResultMap" >
+	SELECT
+		u.username as username,
+		u.mobile as mobile,
+		u.avatars as avatars,
+		SUM(t.invest_amount) AS total_invest,
+		b.process_id
+	FROM
+		tc_transaction t inner join mc_activity_lottery_result m on m.remark=t.id 
+		INNER JOIN uc_member u ON
+		t.member_id= u.id 
+		 left join (select process_id,audit_time from bsc_audit  where  audit_step = 50  and type =1 and  audit_result=1  group by process_id)  as b  
+  		 on b.process_id = t.project_id   
+	WHERE  t.status in (1,2)  and  t.transaction_time <![CDATA[ >= ]]> #{transactionStartTime,jdbcType=TIMESTAMP}
+				AND t.transaction_time <![CDATA[ <= ]]> #{transactionEndTime,jdbcType=TIMESTAMP} 
+				AND m.activity_id =  #{activityId,jdbcType=BIGINT}  
+				AND b.audit_time   <![CDATA[ <= ]]> #{transactionEndTime,jdbcType=TIMESTAMP}  
+				AND b.process_id is not null 
+	GROUP BY 	
+		t.member_id 
+	ORDER BY
+		total_invest DESC,transaction_time asc  
+	LIMIT 10
+	</select>
+	
+	<select id="getInvestAmountByMemberId" resultType="java.math.BigDecimal">
+  	select sum(invest_amount) from tc_transaction as t inner join  mc_activity_lottery_result as m on m.remark=t.id 
+  	 left join (select process_id,audit_time from bsc_audit  where  audit_step = 50  and type =1 and  audit_result=1  group by process_id)  as b  
+  	 on b.process_id = t.project_id    
+  	where  t.member_id = #{memberId,jdbcType=BIGINT}  and m.activity_id= #{activityId,jdbcType=BIGINT} and  t.status in (1,2)  
+  	 AND  b.audit_time   <![CDATA[ <= ]]> #{activityEndTime,jdbcType=TIMESTAMP}  and b.process_id is not null  
+  	 and  t.transaction_time <![CDATA[ >= ]]> #{startTime,jdbcType=TIMESTAMP}
+	 AND  t.transaction_time <![CDATA[ <= ]]> #{activityEndTime,jdbcType=TIMESTAMP} 
+  </select>
+  
+  <select id="getInvestAmountByMemberIdAndTime" resultType="java.math.BigDecimal">
+  	select sum(invest_amount) from tc_transaction as t 
+  	 left join (select process_id,audit_time from bsc_audit  where  audit_step = 50  and type =1 and  audit_result=1  group by process_id)  as b  
+  	 on b.process_id = t.project_id    where  t.member_id = #{memberId,jdbcType=BIGINT}   and  t.status in (1,2)  and t.project_category=1  
+  	 AND  b.audit_time   <![CDATA[ >= ]]> #{startTime,jdbcType=TIMESTAMP}  and   b.audit_time   <![CDATA[ <= ]]> #{endTime,jdbcType=TIMESTAMP}  and b.process_id is not null  
+  	 and  t.transaction_time <![CDATA[ >= ]]> #{activityStartTime,jdbcType=TIMESTAMP}
+  </select>
+  
+  <resultMap id="TransactionInvestResultMap" type="ActivityFirstInvest">
+		<result column="member_id" property="memberId" jdbcType="BIGINT" />
+		<result column="total_invest" property="totalInvest" jdbcType="DECIMAL" />
+	</resultMap>
+  
+  <select id="selectTopInvestAmountByActivityIdAndTime" resultMap="TransactionInvestResultMap" >
+	SELECT
+		t.member_id as member_id,
+		SUM(t.invest_amount) AS total_invest 
+	FROM
+		tc_transaction as t  left join (select process_id,audit_time from bsc_audit  where  audit_step = 50  and type =1 and  audit_result=1  group by process_id)  as b  
+  		on b.process_id = t.project_id   
+	WHERE  t.status in (1,2)  and t.project_category=1  and  t.transaction_time <![CDATA[ >= ]]> #{activityStartTime,jdbcType=TIMESTAMP}
+				AND b.audit_time   <![CDATA[ >= ]]> #{startTime,jdbcType=TIMESTAMP}  and   b.audit_time   <![CDATA[ <= ]]> #{endTime,jdbcType=TIMESTAMP} 
+				AND b.process_id is not null 
+	GROUP BY 	
+		t.member_id 
+	ORDER BY
+		total_invest DESC,transaction_time asc  
+	LIMIT 8
+	</select>
+
+    <select id="queryMemberTransactionCount" resultType="java.lang.Integer">
+      SELECT COUNT(1) FROM tc_transaction WHERE member_id=#{memberid} AND transaction_time BETWEEN #{starttime} AND #{endtime}
+    </select>
+
+
+
+	<select id="queryMemberNormalTransactionCount" resultType="java.lang.Integer">
+      SELECT COUNT(1) FROM tc_transaction WHERE member_id=#{memberid} AND transaction_time BETWEEN #{starttime} AND #{endtime}
+      and project_category =1 
+    </select>
+
+
+    <select id="queryPageTransactionProjectBiz" resultType="com.yourong.core.tc.model.biz.TransactionProjectBiz">
+        SELECT L.transaction_id transferId,ip.id transferProjectId,ip.transfer_name transferName,L.projectid projectId,L.projectname projectName,ip.transfer_end_date transferEndDate,L.status status,
+        L.transfer_status transferStatus,b.balance transferResidualPrincipal,L.invest_amount totalAmount,ip.residual_principal residualPrincipal,ip.status transferStatus FROM(
+        SELECT p.id projectid,p.`name` projectname,t.id transaction_id,t.invest_amount invest_amount,
+        case when t.status = 2 THEN 4 WHEN t.status = 3 THEN 4 ELSE t.transfer_status END transfer_status,t.status,MAX(tp.id) pid FROM tc_transaction t LEFT JOIN ic_project p ON t.project_id=p.id AND
+        p.transfer_flag=1 LEFT JOIN
+        ic_transfer_project tp ON tp.transaction_id=t.id WHERE t.member_id=#{query.memberId} AND t.project_category=1 GROUP BY t.id)L
+        LEFT JOIN fin_balance b ON
+        L.transaction_id=b.source_id LEFT JOIN ic_transfer_project ip ON ip.id=L.pid
+        WHERE L.projectid IS NOT NULL AND !(L.status <![CDATA[ = ]]> 2 AND L.pid IS NULL) AND (L.status <![CDATA[ <> ]]> 0 )
+        <if test="query.statusList!=null || query.transferStatusList!=null">
+            AND(
+            <if test="query.transferStatusList!=null">
+                <foreach collection="query.statusList" index="index" item="item" separator="OR">
+                    L.`status`=#{item}
+                </foreach>
+            </if>
+            <if test="query.transferStatusList!=null">
+                OR
+                <foreach collection="query.transferStatusList" index="index" item="item" separator="OR">
+                    L.`transfer_status`=#{item}
+                </foreach>
+            </if>
+            )
+        </if>
+        ORDER BY field(L.transfer_status,1,0,2,3,4),ip.transfer_start_date DESC
+        LIMIT #{query.startRow,jdbcType=INTEGER}, #{query.pageSize,jdbcType=INTEGER}
+    </select>
+
+    <select id="queryPageCountTransactionProjectBiz" resultType="java.lang.Integer">
+        SELECT COUNT(1) FROM( SELECT p.id projectid,p.`name` projectname,t.id transaction_id,t.transfer_status transfer_status,
+        t.status,MAX(tp.id) pid FROM tc_transaction t LEFT JOIN ic_project p ON t.project_id=p.id AND p.transfer_flag=1 LEFT JOIN ic_transfer_project tp ON
+        tp.transaction_id=t.id WHERE t.member_id=#{query.memberId} AND t.project_category=1 GROUP BY t.id)L WHERE L.projectid IS NOT NULL AND
+        !(L.status <![CDATA[ = ]]> 2 AND L.pid IS NULL) AND (L.status <![CDATA[ <> ]]> 0 )
+        <if test="query.statusList!=null || query.transferStatusList!=null">
+            AND(
+            <if test="query.transferStatusList!=null">
+                <foreach collection="query.statusList" index="index" item="item" separator="OR">
+                    L.`status`=#{item}
+                </foreach>
+            </if>
+            <if test="query.transferStatusList!=null">
+                OR
+                <foreach collection="query.transferStatusList" index="index" item="item" separator="OR">
+                    L.`transfer_status`=#{item}
+                </foreach>
+            </if>
+            )
+        </if>
+    </select>
+
+    <select id="queryTransactionTotalIncome" parameterType="java.lang.Long" resultType="java.math.BigDecimal">
+        SELECT SUM(t.amount) FROM tc_hosting_pay_trade t RIGHT JOIN (SELECT id FROM ic_transfer_project WHERE transaction_id=#{transactionid})L ON
+        t.source_id=L.id WHERE t.type=12
+    </select>
+
+    <select id="queryTransactionTransferCount" parameterType="java.lang.Long" resultType="java.lang.Integer">
+        SELECT COUNT(1) FROM ic_transfer_project ip LEFT JOIN tc_transaction t ON ip.id=t.transfer_id WHERE ip.transaction_id=#{transactionid}
+        AND t.project_category=2
+    </select>
+    
+     <!-- 更新交易转让状态根据id-->
+  <update id="updateTransferStatusById">
+  	update tc_transaction 
+  	set `transfer_status` = #{afterStatus,jdbcType=INTEGER},
+  	remarks = #{remarks,jdbcType=VARCHAR},
+  	update_time = NOW()
+	where id =  #{id,jdbcType=BIGINT} and transfer_status = #{beforeStatus,jdbcType=INTEGER}
+  </update>
+  
+  	<!-- 查询3个月内投资成功过的用户 -->
+   <select id="selectMemberThreeMonth" resultType="java.lang.Long">
+  	select 
+  	distinct member_id
+    FROM tc_transaction
+    where created_time <![CDATA[ >= ]]> DATE_SUB(CURDATE(),INTERVAL 3 MONTH)  limit  #{map.startNum,jdbcType=BIGINT}, #{map.num,jdbcType=BIGINT}
+  </select>
+  
+   <select id = "findTotalInvestAmount" resultType= "java.math.BigDecimal" >
+        select if(sum(invest_amount) != 0, sum(invest_amount), 0) as total_invest_amount 
+        from tc_transaction as tc
+			  where 
+				 tc.member_id=#{memberId,jdbcType=BIGINT}
+				AND tc.transaction_time <![CDATA[ >= ]]> #{transactionStartTime,jdbcType=TIMESTAMP}
+				AND tc.transaction_time <![CDATA[ <= ]]> #{transactionEndTime,jdbcType=TIMESTAMP}
+				AND tc.transfer_status = 0 
+    </select >
+    <select id="getTransactionByProjectId" resultMap="BaseResultMap">
+         select * from tc_transaction tc where tc.project_id =#{projectId,jdbcType=BIGINT}
+    </select>
+    <select id="getTransactionNoPayAmount"  resultType= "java.math.BigDecimal" >
+         select sum(invest_amount) from tc_transaction where status =0 and member_Id =#{memberId,jdbcType=BIGINT} 
+         and id!=#{transactionId} and created_time > #{limitTime,jdbcType=VARCHAR}
+    </select>
+    
+    <select id="queryMemberTransactionCountEndTime" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM tc_transaction WHERE member_id=#{memberid} AND transaction_time <![CDATA[ < ]]> #{endtime}
+    </select>
+    
+    <select id="queryTransactionForOpen" resultType= "com.yourong.core.os.biz.TransactionsForOpen" >
+    	SELECT
+			md5(t.member_id) AS 'subscribeUserName',
+			t.invest_amount AS 'amount',
+			t.invest_amount AS 'validAmount',
+			date_format(t.transaction_time, '%Y-%m-%d %H:%i:%s') AS 'addDate',
+			1 AS 'status',
+			t.invest_flag AS 'type',
+			CASE o.order_source WHEN 0 THEN 1 WHEN 3 THEN 2 ELSE 3 END AS 'sourceType'
+		FROM
+			tc_transaction AS t
+		LEFT JOIN tc_order AS o ON o.id = t.order_id
+		WHERE
+			t.project_id = #{projectId}
+		ORDER BY t.transaction_time
+    </select>
+
+    <select id="queryMemberInvestSixProjectPeriod" resultType="java.math.BigDecimal">
+        select
+        sum(case when  borrow_period_type = 2 and   borrow_period>=6 then  dd.invest_amount
+        when borrow_period_type =3 then dd.invest_amount
+        else 0 end) as  invest_amount_new
+        from tc_transaction dd
+        inner join ic_project cc on dd.project_id = cc.id
+        where dd.transaction_time <![CDATA[ >= ]]>#{startTime}
+        and dd.transaction_time  <![CDATA[ < ]]> #{endTime} AND dd.member_id=#{memberId}
+    </select>
+</mapper>

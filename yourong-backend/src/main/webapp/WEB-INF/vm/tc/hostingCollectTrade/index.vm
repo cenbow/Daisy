@@ -1,0 +1,81 @@
+#parse("/tc/hostingCollectTrade/head.vm") 
+<div class="col-xs-12">
+  <p>
+    ##<button id = "new_oper" type="button" class="btn btn-info btn-sm btn-primary" >新增</button>
+    ##<button id = "edit_oper" type="button" class="btn  btn-pink btn-sm btn-primary" >修改</button>
+    ##<button id = "delete_oper" type="button" class="btn btn-danger btn-sm btn-primary" >删除</button>
+  </p>
+</div>
+<div class="col-xs-12">
+<div class="table-header">
+	托管代收查询
+</div>
+<div class="table-responsive">
+<form>
+	<table class="table table-striped table-bordered">
+		<thead>
+			<tr>
+				<td>交易订单号</td>
+				<td><input type="text" name="search_tradeNo"  class="input-large search_init" /></td>
+				<td>付款用户ID</td>
+				<td><input type="text" name="search_payerId"  class="input-medium search_init" /></td>
+				<td>来源ID</td>
+				<td><input type="text" name="search_sourceId"  class="input-small search_init" /></td>
+				<td>交易时间</td>
+				<td>
+        			<input type="text" name="search_tradeTimeStart" id="tradeTimeStart" class="input-medium search_init" onclick="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss',maxDate:'#F{$dp.$D(\'tradeTimeEnd\')}'})"/>
+        					至
+					<input type="text" name="search_tradeTimeEnd" id="tradeTimeEnd" class="input-medium search_init" onclick="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'#F{$dp.$D(\'tradeTimeStart\')}'})"/>
+				</td>
+			</tr><tr>
+				<td>代收类型</td>
+				<td>
+					#dictSelect ("search_type",${sysServiceUtil.getDictList('hosting_collect_trade_type')} ,"请选择")
+				</td>
+				<td>交易状态</td>
+				<td>
+					#dictSelect ("search_tradeStatus",${sysServiceUtil.getDictList('hosting_pay_trade_status')} ,"请选择")
+				</td>
+				<td>金额</td>
+				<td >
+					<input type="text" name="search_amountStart" id="amountStart" class="input-small search_init" />
+						至
+					<input type="text" name="search_amountEnd" id="amountEnd" class="input-small search_init" />
+				</td>
+				<td colspan=2 style="text-align:center">
+                    <button id = "query_hostingCollectTrade" type="button" class="btn btn-info btn-sm btn-primary">查询</button>
+                    <button id = "reset_hostingCollectTrade" type="button" class="btn btn-info btn-sm btn-primary resetButton">重置</button>
+                </td>
+			</tr>
+		</thead>
+	</table>
+</form>
+   
+<table id="hostingCollectTrade-table-2" class="table table-striped table-bordered" cellspacing="0" width="100%">
+	<thead> 
+		<tr>
+			<th>
+                <label>
+                    <input class="ace" type="checkbox">
+                    <span class="lbl"></span>
+                </label>
+            </th>
+			<th >编号</th>
+			<th >交易订单号</th>
+			<th >内部订单号</th>
+			<th >来源ID</th>
+			<th >付款用户ID</th>
+			<th >代收类型</th>
+			<th >备注</th>
+			<th >金额</th>
+			<th >支付状态</th>
+			<th >摘要</th>
+			<th >交易状态</th>
+			<th >交易时间</th>
+			<th >操作</th>
+		</tr>
+	</thead>
+</table>
+</div>
+</div>
+#parse("/tc/hostingCollectTrade/tradeDetail.vm")

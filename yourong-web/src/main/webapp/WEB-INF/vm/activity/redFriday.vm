@@ -1,0 +1,77 @@
+##红色星期五
+#parse('/common/common.vm')
+#set($title="50元大放送_$!{title_suffix}")
+#set($css_url=["/static/lib/js/flipclock/flipclock.css","$root_css_url/activity/redFriday.css"])
+#set($js_url=["/static/lib/js/flipclock/flipclock.min.js","$root_js_url/activity/redFriday.js","http://james.padolsey.com/demos/grayscale/grayscale.js"])
+    ##header
+        <div class="u-redFriday-hd">
+            <div class="g-wrap">
+                <div class="u-redFriday-countdown f-dn">
+                    <a  href="javascript:void(0)" #if(!$isLogined)data-logined="false" #else data-logined="true" #end id="j-getCoupon" #if($isReceived)class="z-disabled"#end>
+                        <strong>领取现金券</strong><span>距离本场活动结束 <br/> 仅剩 <em id="j-coupon-countdown">00:00:00</em></span>
+                    </a>
+                    <p>已有<em>13462</em>人领取50元现金券</p>
+                </div>
+                <div class="u-redFriday-countdown2 f-dn">
+                    <p>距下场50元大放送还有</p>
+                    <div id="j-coupon-countdown2">
+
+                    </div>
+                    
+                    <span>已有<em>13462</em>人领取50元现金券</span>
+                </div>
+            </div>
+        </div>
+        <div class="m-redFriday-bd">
+            <div class="u-redFriday-bgtop g-wrap"></div>
+            <div class="u-redFriday-bgmiddle g-wrap">
+
+                ##没有用户领取的时候
+                <div class="f-dn" id="j-user-empty">
+                    <div class="u-redFriday-zerobg" id="j-user-empty">
+                        <img src="/static/img/activity/redFriday/redFriday_zero.png">
+                    </div>
+                    <p>白拿的现金券，还不快去！</p>
+                ##/没有用户领取的时候
+                </div>
+
+                ##有用户领取的时候
+                <div>
+                    <h2>被红包砸中的人<em>(此处仅显示最近100名)</em></h2>
+                    <div class="u-redFriday-list" id="j-user-list">
+                        <ul class="f-cf" id="j-redFriday-list">
+
+                        </ul>
+                    </div>
+                    <a href="/coupon/couponList" target="_blank">查看我的现金券</a>
+                </div>
+
+                <div class="u-redFriday-rule">
+                    <h3>活动规则</h3>
+                    <p>
+                        1、活动对象：有融网所有会员用户；
+                        <br/>2、活动时间：2015年6月12日、19日、26日9:00——18:00；
+                        <br/>3、活动所领取的现金券，自领取之日起5天内有效，现金券可用于投资，每次投资限用一张，不可直接提现；
+                        <br/>4、如有其它疑问，请拨打客服热线：400-025-6688；
+                        <br/>5、有融网禁止任何恶意刷奖及其他手段重复领取奖励的行为，一经发现并证实，将取消获奖资格。
+                        <br/>本活动最终解释权归有融网所有
+                    </p>
+                </div>
+            </div>
+            <div class="u-redFriday-bgbottom g-wrap"></div>
+        </div>
+<div class="bdsharebuttonbox f-dn" id="j-bdshare-box">分享到：<br/>
+    #set($receivedNum2=$!{receivedNum}+1)
+    <a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
+
+<script>
+    window.onload=function(){
+        var couponBtn=$('#j-getCoupon');
+        if(couponBtn.hasClass('z-disabled')){
+            grayscale(couponBtn);
+        }
+
+        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"我是今天第 $!{receivedNum2} 位成功领取有融网50元现金券的用户，福利这么大，你也来领吧！"+environment.globalDomain+"/$!{shortUrl}","bdMini":"1","bdMiniList":["qzone","weixin","sqq"],"bdPic":"http://tp1.sinaimg.cn/5506409884/180/5719816467/1","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    }
+</script>
+#CSRFToken('xToken')

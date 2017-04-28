@@ -1,0 +1,56 @@
+<div tabindex="-1" class="modal fade" id="parse-project-type-form" style="display: none;" aria-hidden="true">
+     <div class="modal-dialog w1200">
+     <div class="modal-content">
+		<div class="modal-header no-padding">
+		</div>
+		<div class="modal-body">
+			<form role="form" class="form-horizontal" id="parse_projectType_form" method="post">
+				<div class="form-group">
+				   <label for="form-field-1" class="col-sm-2 control-label no-padding-right"> 担保方式: </label>
+                   <div class="col-sm-7">
+                     <div class="clearfix">
+						<input type="text" id="parse-guarantyType" name="guarantyType" class="col-xs-10 " placeholder="抵押、质押、信用" id="form-field-guarantyType">
+                     </div>
+                   </div>
+                </div>
+                <div class="form-group">
+                   <label for="form-field-1" class="col-sm-2 control-label no-padding-right"> 担保物类型: </label>
+                   <div class="col-sm-7">
+                     <div class="clearfix">
+						<input type="text" id="parse-guarantyThingType" name="guarantyThingType" class="col-xs-10 " placeholder="汽车、房子、汽车合格证、房屋备案等" id="form-field-guarantyThingType">
+                     </div>
+                   </div>
+                </div>
+                <div class="form-group">
+                    <label for="form-field-1" class="col-sm-2 control-label no-padding-right"> 是否分期: </label>
+                    <div class="col-sm-7">
+						<div class="clearfix">
+							<input type="text" id="parse-instalment"  name="instalment" class="col-xs-10 " placeholder="是否分期" id="form-field-instalment">
+                    	</div>
+					</div>
+					<button id = "query_guaranty_thing" type="button" class="btn btn-info btn-sm btn-primary">查询</button>
+					<button type="button" class="btn btn-info btn-sm btn-primary" data-dismiss="modal" id="close_guaranty_thing">关闭</button>
+                </div>
+				<input type="hidden" id="parse-guarantyInfo" name="project.collateral" value="">
+				<div style="display:none" id="guaranty_thing_detail"  >
+					<!--<div  class="form-group clearfix" >
+						<label class="col-sm-1 control-label no-padding-right" for="form-field-type">房屋类型*</label>
+						<div class="col-sm-2">
+							<input type="text" iname="house_fwlx" class="col-xs-12 col-sm-12" datatype="*" />
+						</div>
+						<label class="col-sm-1 control-label no-padding-right" for="form-field-type">产权证号*</label>
+						<div class="col-sm-2">
+							<input type="text" iname="house_cqzh" class="col-xs-12 col-sm-12" datatype="*"/>
+							<span style="color:red;font-size:12px;">(产权证号中间数字请用*代替)</span>
+						</div>
+						<label class="col-sm-1 control-label no-padding-right" for="form-field-type">登记机构*</label>
+						<div class="col-sm-2">
+							<input type="text" iname="house_djjg" class="col-xs-12 col-sm-12" datatype="*"/>
+						</div>
+					</div>-->
+				</div>
+			</form>
+		</div>
+	</div>
+	</div>
+</div>

@@ -1,0 +1,508 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.fin.dao.WithdrawLogMapper" >
+  <resultMap id="BaseResultMap" type="WithdrawLog" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="withdraw_amount" property="withdrawAmount" jdbcType="DECIMAL" />
+    <result column="arrived_amount" property="arrivedAmount" jdbcType="DECIMAL" />
+    <result column="withdraw_time" property="withdrawTime" jdbcType="TIMESTAMP" />
+    <result column="bank_card_id" property="bankCardId" jdbcType="BIGINT" />
+    <result column="member_id" property="memberId" jdbcType="BIGINT" />
+    <result column="fee" property="fee" jdbcType="DECIMAL" />
+    <result column="notice" property="notice" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="withdraw_no" property="withdrawNo" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="true_name" property="trueName" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="BIGINT" />
+    <result column="withdraw_source" property="withdrawSource" jdbcType="INTEGER" />
+    <result column="process_time" property="processTime" jdbcType="TIMESTAMP" />
+    <result column="withdraw_fee" property="withdrawFee" jdbcType="INTEGER" />
+    <result column="user_ip" property="userIp" jdbcType="VARCHAR" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+  </resultMap>
+     
+  <sql id="Base_Column_List" >
+    id, withdraw_amount, arrived_amount, withdraw_time, bank_card_id, member_id, fee, 
+    notice, status, withdraw_no, update_time,withdraw_source,process_time,withdraw_fee
+  </sql>
+  <insert id="insertSelective" parameterType="WithdrawLog" useGeneratedKeys="true" keyProperty="id">
+    insert into fin_withdraw_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="withdrawAmount != null" >
+        withdraw_amount,
+      </if>
+      <if test="arrivedAmount != null" >
+        arrived_amount,
+      </if>
+      <if test="withdrawTime != null" >
+        withdraw_time,
+      </if>
+      <if test="bankCardId != null" >
+        bank_card_id,
+      </if>
+      <if test="memberId != null" >
+        member_id,
+      </if>
+      <if test="fee != null" >
+        fee,
+      </if>
+      <if test="notice != null" >
+        notice,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="withdrawNo != null" >
+        withdraw_no,
+      </if>
+      <if test="withdrawSource != null" >
+        withdraw_source,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="withdrawFee != null" >
+        withdraw_fee,
+      </if>
+      <if test="outerWithdrawNo != null">
+      	outer_withdraw_no,
+      </if>
+      <if test="userIp != null">
+      	user_ip,
+      </if>
+      <if test="remarks != null">
+      	remarks,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="withdrawAmount != null" >
+        #{withdrawAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="arrivedAmount != null" >
+        #{arrivedAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="withdrawTime != null" >
+        #{withdrawTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bankCardId != null" >
+        #{bankCardId,jdbcType=BIGINT},
+      </if>
+      <if test="memberId != null" >
+        #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="fee != null" >
+        #{fee,jdbcType=DECIMAL},
+      </if>
+      <if test="notice != null" >
+        #{notice,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="withdrawNo != null" >
+        #{withdrawNo,jdbcType=VARCHAR},
+      </if>
+      <if test="withdrawSource != null" >
+        #{withdrawSource,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="withdrawFee != null" >
+        #{withdrawFee,jdbcType=INTEGER},
+      </if>
+      <if test="outerWithdrawNo != null">
+      	#{outerWithdrawNo,jdbcType=VARCHAR},
+      </if>
+      <if test="userIp != null">
+      	#{userIp,jdbcType=VARCHAR}
+      </if>
+      <if test="remarks != null">
+      	#{remarks,jdbcType=VARCHAR}
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="WithdrawLog" >
+    update fin_withdraw_log
+    <set >
+      <if test="withdrawAmount != null" >
+        withdraw_amount = #{withdrawAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="arrivedAmount != null" >
+        arrived_amount = #{arrivedAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="withdrawTime != null" >
+        withdraw_time = #{withdrawTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bankCardId != null" >
+        bank_card_id = #{bankCardId,jdbcType=BIGINT},
+      </if>
+      <if test="memberId != null" >
+        member_id = #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="fee != null" >
+        fee = #{fee,jdbcType=DECIMAL},
+      </if>
+      <if test="notice != null" >
+        notice = #{notice,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="withdrawNo != null" >
+        withdraw_no = #{withdrawNo,jdbcType=VARCHAR},
+      </if>
+      <if test="withdrawSource != null" >
+        withdraw_source = #{withdrawSource,jdbcType=INTEGER},
+      </if>
+      <if test="processTime != null" >
+        process_time = #{processTime,jdbcType=TIMESTAMP},
+      </if>
+       <if test="withdrawFee != null" >
+        withdraw_fee = #{withdrawFee,jdbcType=INTEGER},
+      </if>
+        update_time = now()
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update> 
+  <select id="findByPage" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from fin_withdraw_log
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = #{map.id}
+        </if>
+        <if test=" map.withdrawAmount != null" >
+          withdraw_amount = #{map.withdrawAmount}
+        </if>
+        <if test=" map.arrivedAmount != null" >
+          arrived_amount = #{map.arrivedAmount}
+        </if>
+        <if test=" map.withdrawTime != null" >
+          withdraw_time = #{map.withdrawTime}
+        </if>
+        <if test=" map.bankCardId != null" >
+          bank_card_id = #{map.bankCardId}
+        </if>
+        <if test=" map.memberId != null" >
+          member_id = #{map.memberId}
+        </if>
+        <if test=" map.fee != null" >
+          fee = #{map.fee}
+        </if>
+        <if test=" map.notice != null" >
+          notice = #{map.notice}
+        </if>
+        <if test=" map.status != null" >
+          status = #{map.status}
+        </if>
+        <if test=" map.withdrawNo != null" >
+          withdraw_no = #{map.withdrawNo}
+        </if>
+        <if test=" map.processTime != null" >
+          process_time = #{map.processTime}
+        </if>
+        <if test=" map.updateTime != null" >
+          update_time = #{map.updateTime}
+        </if>
+      </where>
+    </if>
+  </select>
+  <sql id="Base_Column_List_Pagin" >
+    t.id  as  id,
+t.withdraw_amount  as  withdraw_amount,
+t.arrived_amount  as  arrived_amount,
+t.withdraw_time  as  withdraw_time,
+t.bank_card_id  as  bank_card_id,
+t.member_id  as  member_id,
+t.fee  as  fee,
+t.notice  as  notice,
+t.status  as  status,
+t.withdraw_fee as withdrawFee,
+t.withdraw_no  as  withdraw_no,
+t.withdraw_source  as  withdraw_source,
+t.update_time  as  update_time,
+t.process_time as process_time,
+uc.true_name as true_name,
+uc.mobile
+  </sql>
+ 
+<select id="selectForPagin" resultMap="BaseResultMap" >
+	select 
+	<include refid="Base_Column_List_Pagin" />
+	from  fin_withdraw_log t
+	left join  (select distinct(lender_id) 
+			from 
+			(select lender_id from ic_debt where del_flag>0 
+			union all
+			select borrower_id as lender_id from ic_project where del_flag>0 )c
+	)as d on d.lender_id=t.member_id	
+	inner join uc_member as uc on uc.id=t.member_id
+	where  
+	d.lender_id is 
+	<if test=" map.notExistFlag  != null">
+		not  
+	</if> 
+	 null
+    <if test=" map != null" >
+        <if test=" map.id != null" >
+          and t.id = #{map.id}
+        </if>
+        <if test=" map.withdrawAmountMin != null" >
+          and t.withdraw_amount  <![CDATA[>=]]> #{map.withdrawAmountMin}
+        </if>
+         <if test=" map.withdrawAmountMax != null" >
+          and t.withdraw_amount  <![CDATA[<=]]> #{map.withdrawAmountMax}
+        </if>
+        <if test=" map.arrivedAmountMin != null" >
+          and t.arrived_amount <![CDATA[>=]]> #{map.arrivedAmountMin}
+        </if>
+        <if test=" map.arrivedAmountMax != null" >
+          and t.arrived_amount  <![CDATA[<=]]> #{map.arrivedAmountMax}
+        </if>
+        <if test=" map.withdrawTime != null" >
+          and t.date_format(withdraw_time,'%Y-%m-%d') = #{map.withdrawTime}
+        </if>
+        <if test=" map.withdrawTimeStart != null" >
+          and t.withdraw_time <![CDATA[ >= ]]> #{map.withdrawTimeStart}
+        </if>
+        <if test=" map.withdrawTimeEnd != null" >
+          and t.withdraw_time <![CDATA[ <= ]]> #{map.withdrawTimeEnd}
+        </if>
+        <if test=" map.bankCardId != null" >
+          and t.bank_card_id = #{map.bankCardId}
+        </if>
+       
+        <if test=" map.fee != null" >
+          and t.fee = #{map.fee}
+        </if>
+        <if test=" map.notice != null" >
+          and t.notice = #{map.notice}
+        </if>
+        <if test=" map.status != null" >
+          and t.status = #{map.status}
+        </if>
+        <if test=" map.withdrawNo != null" >
+          and t.withdraw_no = #{map.withdrawNo}
+        </if>
+        <if test=" map.updateTimeStart != null" >
+          and t.update_time <![CDATA[ >= ]]> #{map.updateTimeStart}
+        </if>
+        <if test=" map.processTime != null" >
+          and t.process_time = #{map.processTime}
+        </if>
+        <if test=" map.updateTimeEnd != null" >
+          and t.update_time <![CDATA[ <= ]]> #{map.updateTimeEnd}
+        </if>
+        <if test=" map.trueName != null" >
+	      	and uc.true_name = #{map.trueName}
+	    </if>
+	    <if test=" map.memberId != null" >
+	      	and uc.id = #{map.memberId}
+	    </if>
+	    <if test=" map.mobile != null" >
+	      	and uc.mobile = #{map.mobile}
+	    </if>
+    </if>
+        <choose>
+			<when test=" map != null">
+				<if test=" map.desc != null">
+					order by ${map.desc} desc
+				</if>
+				<if test=" map.asc != null">
+					order by ${map.asc} asc
+				</if>
+			</when>
+			<otherwise>
+				 order by withdraw_time desc 
+			</otherwise>
+		</choose>
+		LIMIT	${map.startRow}, ${map.pageSize} 
+  </select>
+  <select id="selectForPaginTotalCount" resultType="java.lang.Integer" >
+    select count(1)  
+	from  fin_withdraw_log t
+	left join  (select distinct(lender_id) 
+			from 
+			(select lender_id from ic_debt where del_flag>0 
+			union all
+			select borrower_id as lender_id from ic_project where del_flag>0 )c
+	)as d on d.lender_id=t.member_id	
+	inner join uc_member as uc on uc.id=t.member_id
+	where  
+	d.lender_id is 
+	<if test=" map.notExistFlag  != null">
+		not  
+	</if> 
+	 null
+    <if test=" map != null" >
+        <if test=" map.id != null" >
+          and t.id = #{map.id}
+        </if>
+        <if test=" map.withdrawAmountMin != null" >
+          and t.withdraw_amount  <![CDATA[>=]]> #{map.withdrawAmountMin}
+        </if>
+         <if test=" map.withdrawAmountMax != null" >
+          and t.withdraw_amount  <![CDATA[<=]]> #{map.withdrawAmountMax}
+        </if>
+        <if test=" map.arrivedAmountMin != null" >
+          and t.arrived_amount <![CDATA[>=]]> #{map.arrivedAmountMin}
+        </if>
+        <if test=" map.arrivedAmountMax != null" >
+          and t.arrived_amount  <![CDATA[<=]]> #{map.arrivedAmountMax}
+        </if>
+        <if test=" map.withdrawTime != null" >
+          and t.date_format(withdraw_time,'%Y-%m-%d') = #{map.withdrawTime}
+        </if>
+        <if test=" map.withdrawTimeStart != null" >
+          and t.withdraw_time <![CDATA[ >= ]]> #{map.withdrawTimeStart}
+        </if>
+        <if test=" map.withdrawTimeEnd != null" >
+          and t.withdraw_time <![CDATA[ <= ]]> #{map.withdrawTimeEnd}
+        </if>
+        <if test=" map.bankCardId != null" >
+          and t.bank_card_id = #{map.bankCardId}
+        </if>
+        
+        <if test=" map.fee != null" >
+          and t.fee = #{map.fee}
+        </if>
+        <if test=" map.notice != null" >
+          and t.notice = #{map.notice}
+        </if>
+        <if test=" map.status != null" >
+          and t.status = #{map.status}
+        </if>
+        <if test=" map.withdrawNo != null" >
+          and t.withdraw_no = #{map.withdrawNo}
+        </if>
+        <if test=" map.updateTimeStart != null" >
+          and t.update_time <![CDATA[ >= ]]> #{map.updateTimeStart}
+        </if>
+        <if test=" map.processTime != null" >
+          and t.process_time = #{map.processTime}
+        </if>
+        <if test=" map.updateTimeEnd != null" >
+          and t.update_time <![CDATA[ <= ]]> #{map.updateTimeEnd}
+        </if>
+        <if test=" map.trueName != null" >
+	      	and uc.true_name = #{map.trueName}
+	    </if>
+	    <if test=" map.memberId != null" >
+	      	and uc.id = #{map.memberId}
+	    </if>
+	    <if test=" map.mobile != null" >
+	      	and uc.mobile = #{map.mobile}
+	    </if>
+    </if>
+  </select>
+  
+  
+  <!-- 前台网站分页 -->
+   <select id="selectForPaginWeb" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List_Pagin" />
+    from  (SELECT id FROM  fin_withdraw_log
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = #{map.id}
+        </if>
+        <if test=" map.withdrawAmount != null" >
+          and withdraw_amount = #{map.withdrawAmount}
+        </if>
+        <if test=" map.arrivedAmount != null" >
+          and arrived_amount = #{map.arrivedAmount}
+        </if>
+        <if test=" map.withdrawTime != null" >
+          and withdraw_time = #{map.withdrawTime}
+        </if>
+        <if test=" map.bankCardId != null" >
+          and bank_card_id = #{map.bankCardId}
+        </if>
+        <if test=" map.memberId != null" >
+          and member_id = #{map.memberId}
+        </if>
+        <if test=" map.fee != null" >
+          and fee = #{map.fee}
+        </if>
+         <!--  -2-失败 -1-拒绝 0-冻结 1-处理中 2-提现待支付 3-支付中 5-操作成功   
+           and status in (-2,-1,0,2,5)     -->         
+        <if test=" map.withdrawNo != null" >
+          and withdraw_no = #{map.withdrawNo}
+        </if>
+        <if test=" map.updateTime != null" >
+          and update_time = #{map.updateTime}
+        </if>
+      </where>
+    </if>
+    order by withdraw_time desc 
+      LIMIT	${map.startRow}, ${map.pageSize} )  AS a,  fin_withdraw_log AS t ,uc_member as uc FORCE INDEX(PRIMARY) WHERE a.id = t.id  
+        and t.member_id = uc.id 
+  </select>
+  <select id="selectForPaginTotalCountWeb" resultType="java.lang.Integer" >
+    select count(1) 
+    from fin_withdraw_log
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = ${map.id}
+        </if>
+        <if test=" map.withdrawAmount != null" >
+         and withdraw_amount = ${map.withdrawAmount}
+        </if>
+        <if test=" map.arrivedAmount != null" >
+         and arrived_amount = ${map.arrivedAmount}
+        </if>
+        <if test=" map.withdrawTime != null" >
+         and withdraw_time = ${map.withdrawTime}
+        </if>
+        <if test=" map.bankCardId != null" >
+          and bank_card_id = ${map.bankCardId}
+        </if>
+        <if test=" map.memberId != null" >
+         and member_id = ${map.memberId}
+        </if>
+        <if test=" map.fee != null" >
+         and fee = ${map.fee}
+        </if>
+        <if test=" map.notice != null" >
+          and notice = ${map.notice}
+        </if>     
+        <!--  -2-失败 -1-拒绝 0-冻结 1-处理中 2-提现待支付 3-支付中 5-操作成功  
+         and status in (-2,-1,0,2,5) --> 
+        <if test=" map.withdrawNo != null" >
+          withdraw_no = ${map.withdrawNo}
+        </if>
+        <if test=" map.updateTime != null" >
+          update_time = ${map.updateTime}
+        </if>
+      </where>
+    </if>
+  </select>
+    
+  <select id="selectSynchronizedWithdraws" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from fin_withdraw_log
+    where status = 3
+    </select>
+    
+     <select id="countWithDrawFree" resultType="java.lang.Integer"  >
+    select 
+    count(1) 
+    from fin_withdraw_log
+    where status in  (3,5)   and  member_id = #{memberId,jdbcType=BIGINT}  and date_format(withdraw_time,'%Y-%m') = #{withdrawTime,jdbcType=VARCHAR}  
+    and remarks = #{remarks,jdbcType=VARCHAR}
+    </select>
+</mapper>

@@ -1,0 +1,136 @@
+body{
+  background: #151246;
+}
+@media screen and (min-width: 390px) {
+  html {
+    font-size: 15.525px;
+  }
+}
+
+@media screen and (min-width: 360px) and (max-width: 389px) {
+
+  html {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 359px) {
+  html {
+    font-size: 12px;
+  }
+}
+/*页头*/
+.m-joinPart-banner{
+  font-size: 0;
+  width: 100%;
+}
+.m-joinPart-banner img{
+  width: 100%;
+}
+
+
+.m-picture-return{
+  width: 93.75%;
+  margin: 0 auto 2rem;
+  background: #201d57;
+  border-radius: 2px;
+  padding-bottom: 20px;
+}
+.u-title img{
+  margin-top: 10px;
+}
+.u-joinPart-picture{
+  width: 92.67%;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+}
+.u-joinPart-picture img{
+  width: 100%;
+}
+.u-joinPart-picture ul{
+  font-size: 0;
+  width: 100%;
+}
+.u-joinPart-picture ul li{
+  display: inline-block;
+}
+.u-joinPart-picture span.left {
+  position: absolute;
+  left: 3%;
+  top: 0;
+}
+.u-joinPart-picture span.right {
+  position: absolute;
+  right: 3%;
+  top: 0;
+}
+.u-joinPart-picture>span {
+  width: 46%;
+  height: 100%;
+  display: block;
+  cursor: pointer;
+}
+.u-joinPart-picture span.left img {
+  position: absolute;
+  top: 35%;
+  left: 4%;
+  width: 10%;
+}
+.u-joinPart-picture span.right img {
+  position: absolute;
+  top: 35%;
+  right: 4%;
+  width: 10%;
+}
+.u-joinPart-picture>div {
+  width: 100%;
+  height: 4rem;
+  padding: 3px 3% 0;
+  background-color: rgba(0,0,0,0.7);
+  position: absolute;
+  bottom: 0;
+}
+.u-joinPart-picture>div em {
+  display: inline-block;
+  color: #fff;
+  /*font-size: 16px;*/
+  margin-right: 3%;
+  border-bottom: 2px solid white;
+  margin-top: 0.3rem;
+}
+.u-joinPart-picture>div em strong {
+  font-weight: 200;
+  margin: 0 12px;
+  font-size: 1.8rem;
+}
+.u-joinPart-picture>div div {
+  color: #fff;
+  display: inline-block;
+  width: 75%;
+  vertical-align: middle;
+}
+.u-joinPart-picture>div div p {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.u-joinPart-meiti div{
+  width: 100%;
+  margin: 0 auto 2rem;
+}
+.u-joinPart-meiti a{
+  display: block;
+  width: 60%;
+  margin: 0 auto;
+}
+.u-joinPart-meiti a img{
+  width: 100%;
+}
+.u-joinPart-meiti p{
+  font-size: 1rem;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  margin-top: 1rem;
+}

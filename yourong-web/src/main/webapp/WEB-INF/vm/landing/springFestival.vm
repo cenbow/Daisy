@@ -1,0 +1,268 @@
+##2016春节活动
+#parse("/common/common.vm")
+#set($title="红运当头_$!{title_suffix}")
+#set($css_url=["$root_css_url/modules/login.css","$root_css_url/activity/springFestival.css"])
+#set($js_url=[
+    "/static/lib/js/jq/jquery.circliful.min.js",
+    "/static/lib/js/jq/snowfall.jquery.min.js",
+    "$root_js_url/modules/register.js",
+    "$root_js_url/landing/springFestival.js"
+])
+<style>
+    /**登录框样式**/
+    .m-regform-land {
+        width: 360px;
+        padding: 65px 0 0;
+    }
+    .m-regform-land .u-ipt-text {
+        width: 342px;
+    }
+    .m-regform-land .u-ipt-vercode {
+        width: 180px;
+    }
+    .m-regform-land .u-img-vercode {
+        left: 100px;
+    }
+    .m-regform-land .u-ipt-phonecode {
+        width: 177px;
+        margin: 0 0 0 4px;
+    }
+    .m-regform-land .m-voice-box .u-tips-vercode {
+        width: 84px;
+    }
+    .m-regform-land input[type='submit'] {
+        width: 360px;
+        margin: 10px 0 0;
+    }
+    .u-ipt-blank {
+        display: inline-block;
+        height: 30px;
+        line-height: 30px;
+        color: #656565;
+        vertical-align: middle;
+    }
+    .m-regform-land .m-val-tips i {
+        margin-left: 0;
+    }
+    .m-regform-land .Validform_checktip {
+        margin: 0;
+    }
+    .m-input-vercode {
+        min-height: 69px;
+    }
+    .m-regform-land .u-icon-success {
+        display: none;
+    }
+    /**登录框样式**/
+    .m-val-tips,.Validform_wrong{
+        color: #fff;
+    }
+    /**页头**/
+    .u-springFestival-hd{
+        width: 100%;
+        height: 650px;
+        margin-top: -8px;
+        background: url(http://yrimg.oss-cn-hangzhou.aliyuncs.com/activity/springFestival/springFestival_hd.jpg) no-repeat center;
+    }
+/**页面高度调整**/
+    .u-springFestival-redBg {
+        height: 1750px;
+        padding-top: 20px;
+    }
+    /**按钮调整**/
+    .u-springFestival-actBody .u-wishWall{
+        display: block;
+    }
+    .act1-right a {
+        display: block;
+    }
+    .act1-right a:link,
+    .act1-right a:hover,
+    .act1-right a:visited{
+        color: #fff;
+        text-decoration: none;
+    }
+    .act1-left .u-btn1{
+        display: block;
+    }
+    .act1-left .u-btn1:link,
+    .act1-left .u-btn1:hover,
+    .act1-left .u-btn1:visited{
+        color: #fff;
+        text-decoration: none;
+    }
+    .u-springFestival-hd .u-btn-primary{
+        background: #f9e95e;
+        color: #d74148;
+        letter-spacing: 4px;
+    }
+    .u-springFestival-hd .f-mgl-8,
+    .u-springFestival-hd .f-mgl-8 a{
+        color: #fff;
+    }
+    /*更改着陆页注册提示的问题*/
+    .m-regform-land .u-hotline-tips{
+        margin:0;
+        color:#fff;
+        line-height:20px;
+    }
+    .m-regform-land  .u-tips-waring{
+        width:360px;
+    }
+</style>
+
+<!--[if (gte IE 7)&(lte IE 9)]>
+<style>
+/*首页项目进度环*/
+.u-ring-bg{
+	position: absolute;
+	top: 10px;
+	left: 40px;
+	z-index: 1;
+	background: url(/static/img/homepage/round/round0.png) no-repeat center;
+	height: 160px;
+	width: 160px;
+}
+</style>
+<![endif]-->
+
+<!-- head -->
+<div class="u-springFestival-hd" id="top">
+    <div class="g-wrap f-pos-r">
+        <form data-action="$root_url/security/register/saveMember" method="POST" class="f-pos-r j-form-xpost j-validform m-regform-land f-fr" data-page="register" id="j-reg-form">
+            #CSRFToken()
+            #onceToken()
+            <input type="hidden" id="j-reg-mobile" />
+            <div class="u-ipt-group f-pos-r">
+                <input type="text" name="mobile" oncopy="return false;" onpaste="return false;" id="j-cpn" autocomplete="off" nullmsg="手机号码不能为空" errormsg="请输入正确的手机号码" class="f-round f-ipt-w430 u-ipt-text u-ipt-str" placeholder="请输入手机号码" />
+                <span class='m-val-tips'></span>
+                <div class="f-mob-sha f-dn" id="j-mobile"></div>
+            </div>
+            <div class="m-input-vercode f-cf">
+                <span class="u-xtips-wrap">
+				<!--[if (gte IE 7)&(lte IE 9)]>
+                    <em>输入图形码</em>
+                    <![endif]-->
+                    <input type="text" id="j-vercode" autocomplete="off" nullmsg="请输入图形验证码" class="f-round u-ipt-text f-ipt-w260 j-vercode u-ipt-vercode" placeholder="输入图形码" />
+			</span>
+                <img src="$root_url/security/validateCode" alt="验证码" title="点击重新获取验证码" id="j-img-vercode" class="u-img-vercode" />
+                <span id="j-phonecode-wrap" class="u-xtips-wrap u-phonecode-wrap z-hide">
+				<!--[if (gte IE 7)&(lte IE 9)]>
+                    <em>输入手机验证码</em>
+                    <![endif]-->
+                    <input type="text" name="phonecode" autocomplete="off" id="j-phonecode" placeholder="输入手机验证码" class="f-clear f-round u-ipt-text f-ipt-w260 u-ipt-phonecode" />
+			</span>
+                <span class="f-round u-tips-vercode f-tips-gray">
+			获得手机验证码
+			</span>
+                <span class="m-val-tips"> &nbsp; </span>
+                <span class="u-ipt-blank"> &nbsp; </span>
+            </div>
+            <div class="u-ipt-group">
+                <input type="password" name="password" oncopy="return false;" onpaste="return false;" class="f-round u-ipt-text f-ipt-w430 v-pwd" placeholder="输入密码，长度6-16位，至少包含数字和字母" />
+                <span class="u-ipt-blank"> &nbsp; </span>
+            </div>
+            <div class="u-ipt-group">
+                <input type="password" name="repassword" oncopy="return false;" onpaste="return false;" recheck="password" class="f-round f-ipt-w430 u-ipt-text v-pwd-reck" placeholder="再次输入密码" />
+                <span class="u-ipt-blank"> &nbsp; </span>
+            </div>
+            <input type="hidden" name="tid"   value="$!{request.getParameter('tid')}" />
+            <input type="hidden" name="registerTraceSource" value="$!{session.getAttribute(" register_TraceSource ")}"/>
+            <input type="hidden" name="registerTraceNo" value="$!{session.getAttribute(" register_TraceNo ")}"/>
+            <input type="hidden" name="checkType" id="j-checkType" value="1" />
+            <input type="hidden" name="pngCode" id="j-pngcode" />
+            <label class="f-clear f-mgl-8">
+                <input type="checkbox" checked="checked" name="agree" id="j-agree" />&nbsp;我已阅读并同意<a href="#" id="j-register-argreement-link" data-target="j-register-argreement" data-url="$root_url/static/register-agreement.html">《有融网服务协议》</a>
+            </label>
+            <br />
+            <input type="submit" value="领取118元红包" class="f-round f-fs18 f-btn-m u-btn u-btn-primary j-reg-btn" />
+        </form>
+    </div>
+</div>
+<div class="u-springFestival-redBg">
+    <div class="u-springFestival-actWrap act1" id="act1">
+        <div class="u-springFestival-actHead">
+            <h2>守岁跨年●许愿领红包</h2>
+            <p>活动期间，用户在活动页面许下新年愿望，即可在<span class="f-bold-red">除夕当天（2月7日）</span>领取<span class="f-bold-red">118元</span>压岁钱红包。<br>
+                扫码关注有融网官方微博、微信，参与新年互动，过完年还有惊喜哦！</p>
+            <div class="u-springFestival-actBody act1-body">
+                <div class="act1-left">
+                    <h2>许愿墙</h2>
+                    <img src="/static/img/activity/springFestival/wishList_all.png" id="j-wishWall" class="u-wishWall"/>
+                    <a  class="u-btn1" href="#top">留言许愿</a>
+                    <br/>
+                    <div class="u-share">
+                        <span class="u-share-text">互动有奖：</span>
+                        <span id="j-share-box" class="u-share-box">
+                            <div class="u-share">
+                                <a class="u-icon-weixin j-popup-trigger"></a>
+                                <div class="u-popup-weixin">
+                                    <img src="/static/img/common/new-weixin-qrcode.png">
+                                </div>
+                                <a class="u-icon-weibo j-popup-trigger"></a>
+                                <div class="u-popup-weibo">
+                                    <img src="/static/img/common/new-weibo-qrcode.png">
+                                </div>
+                            </div>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="act1-right">
+                    <p class="u-act1-text">&nbsp;</p>
+                    <div class="u-giftMoney-card"></div>
+                    <a href="#top" class="u-btn2">
+                       领压岁钱
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="u-springFestival-actWrap act3" id="act3">
+        <div class="u-springFestival-actHead">
+            <h2>恭喜发财●分享抢红包</h2>
+            <p>活动期间，用户每完成一笔<span class="f-bold-red">金额≥1000元</span>的投资（新春专享“如意”项目除外），都可获得“恭喜发财”拼手气红包，<br/>
+                将红包<span class="f-bold-red">分享</span>给好友，即可与好友一起抢红包，红包将以<span class="f-bold-red">随机人气值</span>形式发放；</p>
+
+            <div class="u-springFestival-actBody act3-body">
+                <p class="u-act3-text"></p>
+                <div class="u-act3-img"></div>
+                <div class="u-act3-label">
+                    <p class="u-act3-label-p1">PC端：前往 <span class="f-bold-black"> “我的投资”-“投资记录”</span>、<br/>
+                        点击<span class="f-bold-black">“发红包”</span>扫码分享</p>
+                    <p class="u-act3-label-p2">APP端：前往<span class="f-bold-black">“我的交易”-“我的投资”</span>、<br/>
+                        点击<span class="f-bold-black">“发红包”</span>进行分享</p>
+                </div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="u-springFestival-rule">
+        <h2>活动规则</h2>
+        <p>
+            1、活动对象：有融网所有用户； <br>
+            2、活动时间：<span class="f-fc-white">2016年2月2日10:00—2016年2月8日23:59:59；</span><br>
+            3、守岁跨年：活动期间，用户在活动页面许下新年愿望，即可在<span class="f-fc-white">除夕当天（2月7日）</span>领取<span class="f-fc-white">118元</span>压岁钱红包。<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;关注有融网官方微博、微信，参与新年互动，过完年还有惊喜哦！<br>
+            4、辞旧迎新：用户所获“辞旧迎新”返利人气值，将于5分钟内发放至用户的账户；<br>
+            5、恭喜发财：用户分享“恭喜发财”红包至微信朋友圈，即可与好友一起抢红包，红包将以<span class="f-fc-white">随机人气值</span>形式发放；<br>
+            6、万事如意：投资新春专享项目所获人气值奖励，将于5分钟内发放至用户的账户；<br>
+            7、如有其他疑问，请拨打客服热线：400-025-6688。<br>
+            本活动最终解释权归有融网所有
+        </p>
+    </div>
+</div>
+
+
+<!--有融网服务协议-->
+<div class="u-agreement-box f-dn" id="j-register-argreement">
+    <h3 class="f-fs18">有融网服务协议<i></i></h3>
+    <div>
+        <iframe src="" frameborder="0"></iframe>
+    </div>
+</div>
+<!--/有融网服务协议-->

@@ -1,0 +1,134 @@
+
+##充值页面
+#parse("/common/common.vm")
+#set($title="充值_账户概览_$!{title_suffix}")
+#set($css_url=["$cssv2_url/member/member.css","$root_css_url/modules/delegatePay.css"])
+#set($js_url=["$root_js_url/modules/member.js"])
+#set($account="z-current")
+#set($hasSetPayPassword=${servletUtil.synPayPasswordFlag()})
+#if($request.getParameter('payAmount'))
+	#set($amount = "$request.getParameter('payAmount')" )
+#else
+	#set($amount = '')
+#end
+
+#set($hasSafecard=$!{servletUtil.isHasSarfeCard($payBankCards)})
+<input type="hidden" value="$hasSetPayPassword" id="j-hasSetPayPassword">
+## 用户中心头部
+#parse("/member/head.vm")
+## 用户中心内容
+<div class="g-wrap">
+<div class="m-nav-title">
+    <a class="z-current" href="/memberBalance/rechargePage">
+        充值
+    </a>
+    <a class="u-title-secondary u-tit-r" href="/memberBalance/withdrawPage">
+        <em>提现</em>
+    </a>
+</div>
+</div>
+<div class="g-wrap">
+	<div class="g-uc-bd f-round f-pos-r">
+        <div class="g-uc-wrap">
+				<div class="m-pay-bank">
+					<div class="u-sinapay-banner j-sinapay-banner">
+						<img src="../static/img/common/sinapay_logo_s20151117.png" alt="新浪支付|资金托管解决方案">
+					</div>
+                    <div class="u-recharge-amount d-eBank f-fs14">
+                        <span class="u-amount-span">充值金额</span>
+                        <span class="u-amount-wrap">
+                            <i class="f-ff-ver">¥</i>
+                            <input type="text" name="amount" data-name="sinapay" class="j-paytype u-ipt-amount f-round" id="j-recharge-amount" placeholder="$amount" value="$amount">
+                        </span>
+                    </div>
+
+                    <div class="u-submit-wrap d-eBank" id="j-submitAmount">
+                        #if($!{amount}&&$!{amount}!='')
+                            <a id="member_rechargePage_submit">
+                                <div class="u-submitBtn">
+                                    <img src="../static/img/sina/sinalogo.png" alt="新浪支付" style="vertical-align: middle; margin-top: -10px;">
+
+                                    <span  class="f-fs18">去新浪充值</span>
+                                </div>
+
+                            </a>
+                        #else
+                            <a target="_blank" id="member_rechargePage_submit">
+                                <div class="u-submitBtn">
+                                    <img src="../static/img/sina/sinalogo.png" alt="新浪支付" style="vertical-align: middle; margin-top: -10px;">
+
+                                    <span  class="f-fs18">去新浪充值</span>
+                                </div>
+
+                            </a>
+                        #end
+					</div>
+
+				</div>
+			<div class="u-rechargeTips">
+				<div class="f-fs16 u-tipsTitle">
+                    <img src="../static/img/v2/common/tips.png" alt="" style="vertical-align: middle;margin: -4px 0 0 ;">
+                    充值须知：
+				</div>
+				<p class="f-fs14">
+                    1. 支付安全升级啦！充值请前往新浪支付进行支付密码确认；<br>
+					2. 新浪支付不支持信用卡充值，请使用借记卡充值；<br>
+					3. 如充值金额超出单笔支付限额，可通过多次充值实现；<br>
+					4. 单笔限额、每日限额以各银行为准，请关注您银行卡的充值限制，以免造成不便；<br>
+					5. 充值完成后，请前往“我的账户”-“资金记录”-“充值记录”，查看充值结果。
+				</p>
+
+			</div>
+        ##        跳转到设置支付密码弹窗
+            <div class="u-paymentCipherBlock f-dn" id="j-paymentCipherBlock">
+                <div class="f-fs20 u-tipTitle">
+                    设置支付密码提示
+                </div>
+                <img class="j-close" src="../static/img/member/closeBtn.png" alt="关闭">
+                <p class="f-fs20">
+                    新浪支付全新升级，设置支付密码后方可进行操作
+                </p>
+                <a href="/member/paymentPassword">
+                    <button class="f-fs14">
+                        前往设置
+                    </button>
+                </a>
+            </div>
+			##支付状态层
+            #if($!{amount}&&$!{amount}!='')
+            #else
+            <div class="u-goToSinaBlock f-dn" id="j-goToSinaBlock" style="top: 44%;left: 28%;">
+                <div class="f-fs20 u-tipTitle">跳转到新浪支付</div>
+                <p class="f-fs20">请在打开的新浪页面完成充值</p>
+                <a href="/memberBalance/rechargeIndex?type=recharge"><button class="f-fs14" >查看充值记录</button></a>
+                <a class="j-close"><button class="f-fs14 u-lastButton">充值遇到问题，重新充值</button></a>
+                <div class="u-helpTips">
+                    <a href="http://wpa.b.qq.com/cgi/wpa.php?ln=2&uin=4000266688" target="_blank">
+                    <span class="f-fs14" >
+                        如果您在操作过程中遇到问题，可咨询 在线客服 >
+                    </span>
+                    </a>
+                </div>
+            </div>
+            #end
+		    ## /内容区域
+		</div>
+	</div>
+	## /用户中心内容
+</div>
+<script>
+##    window.onload = function () {
+##        var amount =Number($amount),
+##            submit=$("#member_rechargePage_submit")
+##        if(amount){
+##            submit.removeAttr('target')
+##        }
+##        $("#member_rechargePage_submit").on("click", function () {
+##            if(amount){
+##                window.location.href='/member/pageRelay?from=rechargePage&amount='+amount
+##                $("#j-paymentCipherBlock").hide()
+##                return false
+##            }
+##        })
+##    }
+</script>

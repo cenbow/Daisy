@@ -1,0 +1,344 @@
+.m-assignment {
+  background: #333;
+  padding: 0;
+}
+.m-assignment .u-assign-photo {
+  width: 100%;
+  height: 620px;
+}
+.u-assign-shadow {
+  width: 990px;
+  height: 217px;
+  background: url(/static/img/products/shadow.png) repeat-x;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+.m-assign-detail {
+  color: #fff;
+  position: absolute;
+  bottom: 0;
+  background: rgba(0,0,0,0.6);
+  width: 100%;
+  padding: 5px 0;
+}
+.u-assign-block {
+  padding-left: 40px;
+  border-bottom: 1px solid rgba(255,255,255,0.4);
+}
+.u-assign-title {
+  font-size: 18px;
+  height: 50px;
+  line-height: 50px;
+}
+.u-assign-title i {
+  width: 30px;
+  height: 16px;
+  display: inline-block;
+  background: url(/static/img/products/icon-assi.png) no-repeat center;
+  position: absolute;
+  top: 18px;
+  margin-left: 15px;
+}
+.u-assign-data {
+  border: none;
+  margin-bottom: 15px;
+}
+.u-assign-data .u-invest-user {
+  text-align: center;
+}
+.u-assign-block .u-assign-sub {
+  float: left;
+  margin-top: 15px;
+}
+.u-assign-block .u-assign-sub2 {
+  margin-left: 95px;
+}
+.u-assign-block .u-assign-sub3 {
+  margin-left: 100px;
+  margin-right: 80px;
+}
+.u-assign-stitle {
+  margin-top: -10px;
+  margin-left: 3px;
+}
+.u-assign-sub4 {
+  border-left: 1px dashed #fff;
+
+  padding-left: 65px;
+}
+.u-assign-sub4 p {
+  height: 22px;
+  line-height: 22px;
+}
+.u-assign-sub4 p em {
+  font-weight: bold;
+  margin-left: 10px;
+}
+.u-assign-progress {
+  height: 6px;
+  width: 920px;
+  display: inline-block;
+  background: #fff;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+.u-assign-progress em {
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  background: #d74148;
+  display: block;
+  height: 6px;
+}
+.f-ml15 {
+  margin-left: 15px;
+}
+.f-pb10 {
+  padding-bottom: 10px;
+}
+.u-assign-bottom {
+  height: 50px;
+  line-height: 50px;
+  border: none;
+}
+.u-assign-bottom a {
+  color: #fff;
+}
+.u-assign-bottom em {
+  font-weight: bold;
+  margin-left: 15px;
+}
+
+.u-assign-bottom span:nth-of-type(4) em {
+  border-bottom: 1px solid #fff;
+}
+.u-assign-bottom span+span {
+  margin-left: 30px;
+}
+.g-wrap-assign {
+  width: 950px;
+  margin: 0 auto;
+}
+.u-assign-question {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background: url(/static/img/products/question.png) no-repeat center;
+  margin-left: 56px;
+  margin-top: -14px;
+  position: absolute;
+  cursor: pointer;
+}
+.u-assign-question:hover .u-assign-pop {
+  display: block;
+}
+.u-assign-pop {
+  background: #fff;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 30px;
+  padding: 0 18px;
+  text-align: center;
+  width: 145px;
+  margin-left: 27px;
+  margin-top: -15px;
+  z-index: 1;
+  display: none;
+}
+.u-assign-pop .u-arrow-left {
+  position: absolute;
+}
+.u-assign-pop .u-arrow-left i{
+  color: #bdbdbd;
+  position: absolute;
+  font-size: 30px;
+  display: block;
+  height: 8px;
+  width: 12px;
+  font-style: normal;
+  left: -26px;
+  top: -39px;
+}
+.u-assign-pop .u-arrow-left span {
+  color: #fff;
+  position: absolute;
+  font-size: 30px;
+  display: block;
+  height: 8px;
+  width: 12px;
+  font-style: normal;
+  top: -39px;
+  left: -24px;
+}
+.m-assign-project-detail {
+  padding-top: 30px;
+}
+.u-assign-process {
+  text-align: center;
+  padding: 60px 0;
+}
+.u-assign-process span {
+  position: relative;
+  top: -15px;
+}
+.u-assign-plan-title {
+  margin: 36px auto 0;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  width: 795px;
+  height: 50px;
+  line-height: 50px;
+}
+.u-assign-plan-title span {
+  display: inline-block;
+  text-align: center;
+  border-right: 1px solid #ddd;
+}
+.u-assign-plan-title span:nth-child(1) {
+  width: 130px;
+}
+.u-assign-plan-title span:nth-child(2) {
+  width: 183px;
+}
+.u-assign-plan-title span:nth-child(3) {
+  width: 315px;
+}
+.u-assign-plan-title span:last-child {
+  border-right: none;
+  width: 152px;
+}
+.u-assign-plan-table {
+  height: auto;
+  margin-left: 79px;
+  width: 810px;
+}
+.u-assign-plan-table table {
+  font-size: 14px;
+  color: #666;
+}
+.u-assign-plan-table table tr {
+  height: 50px;
+  line-height: 50px;
+  border-bottom: 1px solid #ddd;
+}
+.u-assign-plan-table table tr td {
+  border-right: 1px solid #ddd;
+  text-align: center;
+}
+.u-assign-plan-table table tr td:nth-child(1) {
+  width: 128px;
+}
+.u-assign-plan-table table tr td:nth-child(2) {
+  width: 187px;
+}
+.u-assign-plan-table table tr td:nth-child(3) {
+  width: 319px;
+  text-align: left;
+  text-indent: 50px;
+}
+.u-assign-plan-table table tr td:last-child {
+  border-right: none;
+  width: 155px;
+}
+.u-assign-plan .f-nb {
+  border: none;
+}
+.u-assign-declaration {
+  font-size: 13px;
+  color: #999;
+  line-height: 28px;
+  margin-left: 18px;
+}
+.u-btn-original {
+  display: block;
+  width: 240px;
+  height: 50px;
+  line-height: 50px;
+  background: #e33f4a;
+  color: #fff;
+  font-size: 18px;
+  text-align: center;
+  border-radius: 25px;
+  margin: 55px auto 65px;
+  letter-spacing: 7px;
+}
+.u-btn-original:link,
+.u-btn-original:visited,
+.u-btn-original:hover,
+.u-btn-original:active {
+  color: #fff;
+  text-decoration: none;
+}
+.m-assign-question {
+  padding-top: 30px;
+}
+.m-assign-question h3,
+.m-assign-question p {
+  border: none;
+  padding-left: 56px;
+}
+.m-assign-question h3 {
+  margin-bottom: -10px;
+}
+.m-assign-question p {
+  color: #999;
+  font-size: 14px;
+  line-height: 25px;
+}
+.m-assign-question i {
+  display: inline-block;
+  position: absolute;
+  width: 24px;
+  height: 19px;
+  background: url(/static/img/products/item1.png) no-repeat center 2px;
+  color: #fff;
+  font-weight: bold;
+  font-size: 12px;
+  text-indent: 11px;
+  top: 12px;
+  left: 21px;
+}
+.u-assign-q {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background: url(/static/img/products/question.png) no-repeat center;
+  cursor: pointer;
+  margin-left: 5px;
+}
+.u-assign-q div {
+  position: absolute;
+  font-size: 12px;
+  background: #fff;
+  color: #333;
+  border: 1px solid #ccc;
+  width: 305px;
+  height: 30px;
+  line-height: 30px;
+  margin-left: -100px;
+  margin-top: 20px;
+  z-index: 1;
+  display: none;
+}
+.u-assign-q:hover div {
+  display: block;
+}
+.u-assign-amount {
+  padding-right: 122px;
+}
+.u-question {
+  margin-bottom: 10px;
+}
+.u-question .u-assign-how {
+  margin-top: 20px;
+}
+/*投资金额拖动条*/
+.g-wrap-assign {
+  width: 950px;
+  margin: 0 auto;
+}

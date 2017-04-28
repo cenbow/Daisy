@@ -1,0 +1,157 @@
+## 新浪存钱罐
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+## 我把zepto.fullpage.css的代码放到 sinaSavingPot.css 里了，这样少一次请求
+#set($css_url=["$res_url/source/css/post/sinaSavingPot.css"])
+
+#if($currentUser)
+    #set($logined=1)
+#else
+    #set($logined=0)
+#end
+
+<div class="wp" id="j-wp">
+    <div class="wp-inner">
+        ## page1
+        <div class="page page1" id="page">
+
+            ## 安卓IOS上不显示头部
+            ## 这里用于标记是M站打开的，即使没有document.referrer
+            #if(!$loginSource)
+            <h2 class="u-pageTitle f-pos-r u-section1-title" id="j-title">
+                <a href="$m_url">有融网</a>
+                <span class="u-login-link f-pos-a">
+                    #if(!$currentUser)
+                        <a href="/yourong-api/mstation/login">登录</a>
+                        <a href="/yourong-api/mstation/register">注册</a>
+                    #else
+                        <a href="$mCenter_logout_url">退出</a>
+                    #end
+                </span>
+            </h2>
+            #end
+
+            <div class="u-section">
+                <div class="u-section1-bg">
+                    <img class="img-responsive" src="$res_url/img/post/sinaSavingPot/section1_bg.png"/>
+                </div>
+                <div class="u-section-content">
+                    <div>
+                        <img src="$res_url/img/post/sinaSavingPot/sinaSavingPotLogo.png" width="50%"
+                             class="u-logo-img"/>
+                    </div>
+                    <h2 style="margin-bottom: 0;">资金有隔离 余额享收益
+                    </h2>
+                </div>
+            </div>
+        </div>
+
+        ## page2
+        <div class="page page2">
+            <div class="u-section">
+                <div class="u-section2-bg" style="position: relative;">
+                    <img class="img-responsive" src="$res_url/img/post/sinaSavingPot/section2_bg.png"/>
+                </div>
+                <div class="u-section-content">
+                    <h2>知名品牌值得依赖</h2>
+                    <p>有融网联合新浪支付&汇添富基金完美护航</p>
+                </div>
+            </div>
+        </div>
+
+        ## page3
+        <div class="page page3">
+            ##计算第三张的图片高度来调整整体的图片位置
+            <div class="u-section u-section3" id="j-section3">
+                <div class="u-section3-bg">
+                    <img class="img-responsive" style="width: 85%;" src="$res_url/img/post/sinaSavingPot/section3_bg.png"/>
+                </div>
+                <div class="u-section-content">
+                    <h2>资金有隔离</h2>
+                    <p>资金专款专用专人专户 资金流向清晰可控</p>
+                </div>
+            </div>
+        </div>
+
+        ## page4
+        <div class="page page4">
+            <div class="u-section">
+                <div class="u-section4-bg">
+                    <div style="position: relative;">
+                        <img class="img-responsive" src="$res_url/img/post/sinaSavingPot/section4_bg.png"/>
+                    </div>
+                </div>
+
+                <div class="u-section-content">
+                    <h2>余额享收益</h2>
+                    <p>资金不站岗 余额日日计息</p>
+                </div>
+            </div>
+        </div>
+
+        ## page5
+        <div class="page page5">
+            <div class="u-section">
+                <div class="u-section5-bg">
+                    <img class="img-responsive" src="$res_url/img/post/sinaSavingPot/section5_bg.png"/>
+                </div>
+                <div class="u-section-content">
+                    <h2>存取更灵活</h2>
+                    <p>一分钱起存 7*24小时随时存取</p>
+
+                    ###andorid ios 上不显示这个按钮
+                    #if(!$loginSource)
+                    <a href="$mCenter_home_url" class="u-section5-btn" id="j-section5-btn">
+                        查看我的存钱罐
+                    </a>
+                    #end
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<span class="start" id="j-backToTop">
+    <img src="$res_url/img/post/sinaSavingPot/backToTop.png"/>
+</span>
+
+<div class="landscape">
+    <img src="$res_url/img/post/sinaSavingPot/landscape.png">
+    <p>为了更好的体验，请将手机/平板竖过来</p>
+</div>
+
+#set($isZepto=true)
+<script>
+    /*
+    * 这段js用原生js写，用于以来 document.referrer这个变量来判断访问页面的是 浏览器还是
+    * app,写在这里可以防止头部在 sea加载 sinaSavingPot.js之前就隐藏头部，体验较好
+    * 现在 IOS上已经有了loginSource 这个变量了，这段可以不需要了
+    */
+    var referrer = document.referrer || '',
+        titleObj = document.getElementById('j-title') || '',
+        section5BtnObj = document.getElementById('j-section5-btn') || '',
+        wpObj = document.getElementById('j-wp');
+
+    if(localStorage && referrer == ''){
+        referrer = localStorage.getItem('thisReferrer') || ''
+    }
+
+    if(localStorage && referrer !== ''){
+        localStorage.setItem('thisReferrer', referrer)
+    }
+
+    if(titleObj !== '' && section5BtnObj !== '' && referrer == ''){
+        wpObj.style.borderTop = '1px solid #bc2c33'
+        titleObj.style.display = 'none'
+        section5BtnObj.style.display = 'none'
+    }
+</script>
+
+#set($pageScript="
+<script src='$res_url/lib/fullpage/zepto.fullpage.js'></script>
+<script>
+    seajs.use('$res_url/source/js/post/sinaSavingPot.js');
+</script>
+")
+

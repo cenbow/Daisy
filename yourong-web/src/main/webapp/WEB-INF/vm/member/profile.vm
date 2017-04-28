@@ -1,0 +1,252 @@
+##个人资料
+#parse("/common/common.vm")
+#set($title="个人资料_我的资料_$!{title_suffix}")
+#set($css_url=["$cssv2_url/member/member.css","$root_url/static/lib/css/jcrop/jquery.Jcrop.min.css","$root_url/static/lib/js/uploadify/uploadify.css"])
+#set($js_url=["$root_js_url/modules/member.js","$root_url/static/lib/js/jcrop/jquery.Jcrop.js","$root_url/static/lib/js/uploadify/jquery.uploadify.min.js?noCache=${dateUtil.getCurrentDate().getTime()}","$root_js_url/modules/avatarUpload.js","$root_js_url/modules/area.js"])
+#set($profile="z-current")
+## 用户中心头部
+#parse("/member/head.vm")
+## /用户中心头部
+<div class="g-wrap">
+	## 用户中心内容
+	<div class="g-uc-bd f-round" id="changeNickname">
+		<div class="g-uc-wrap">
+		## 页面内容
+        <h3 class="u-uc-lineTitle f-fs14 f-pos-r">
+            个人资料
+            <div>
+                <a href="/member/security">我的资料</a>&nbsp;>&nbsp;<span>个人资料</span>
+            </div>
+        </h3>
+		#set($isReceive = $servletUtil.isReceiveMemberInfoCompleteCoupon())
+		<div class="u-profile-tips f-fc-red f-fs14 f-fwb">
+		#if(!$isReceive)
+            完善个人资料可获得10点人气值
+		#end
+		</div>		
+		<div class="u-profile-name f-fs14">
+			<strong>昵&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称</strong>
+			#if($currentUser.username && $currentUser.username !="") 
+				$currentUser.username
+			#else
+				<span id="user-name"></span>
+				<input type="text" name="userName" id="userName" datatype="*,z3-14" nullmsg="请给自己取一个响亮的昵称" errormsg="昵称需为中文、字母或中文字母的组合，长度为3-14个字符（一个汉字为2个字符）。" class="f-round u-ipt-text u-ipt-str" placeholder="输入您的昵称；昵称可用作登录，设置后不可修改。" />
+				#CSRFToken('userNameToken')
+				<input type="button" value="确定" class="f-round f-fs18 f-btn-m2 u-btn u-btn-primary u-btn-user-name" />
+				<span id="u-validform-tips"></span>
+			#end
+		</div>
+		<div class="u-profile-photo f-fs14">
+			<strong>设置头像</strong>
+			<span>为了更加彰显您的个性，来设置头像吧!</span>
+			
+			#set($isConfigAvatar = $servletUtil.getMemberAvatar())
+			
+			#if("$!isConfigAvatar" == "")
+				#set($avatar-edit="")
+				#set($avatar-show="display:none")
+			#else
+				#set($avatar-edit="display:none")
+				#set($avatar-show="")
+			#end
+			
+			<div id="avatar-edit" style="$avatar-edit">
+				  <input type="button" value="头像上传" id="avatarUpload"/>			
+				  <div id="avatarConfig">
+					  <form id="avatarUploadForm" method="post" action="$root_url/member/saveAvatar">
+						  	<div id="prototype-pane">
+						  		<img src="$root_url/static/img/member/upload-file-default.png" class="avatar"/>
+						  	</div>
+						  	<div id="preview-pane" >
+						  		<div style="margin-bottom:10px;color:#999;width:270px;">您上传的图片将会自动生成二种尺寸头像，请注意生成头像是否清楚。</div>
+						  		<div class="preview-avatar-s100">
+						  			<img src="#getMemberAvatar(-1,"70x70")" id="s100"/>
+						  		</div>
+						  		<div class="preview-avatar-s50">
+						  			<img src="#getMemberAvatar(-1,"40x40")" id="s50"/>
+						  		</div>
+						  	</div>
+					  		<div style="clear:both"></div>
+					  		<div class="f-dn">
+							  	<input type="hidden" id="x" name="x"/>
+								<input type="hidden" id="y" name="y"/>
+								<input type="hidden" id="w" name="w"/>
+								<input type="hidden" id="h" name="h"/>
+								<input type="hidden" id="avatars" name="avatars"/>
+								<input type="hidden" id="ossPicUrl" name="ossPicUrl"/>
+							</div>
+							#CSRFToken("avatarToken")
+					  </form>
+					  <input type="button" value="保存头像" class="u-btn-bg" id="saveAvatar"/>
+				  </div>
+			</div>
+			<div id="avatar-show" style="$avatar-show">
+				<ul>
+					<li>
+						<img src="#getMemberAvatar(-1,"70x70")" id="avatar-show-s70"/>
+					</li>
+					<li>
+						<img src="#getMemberAvatar(-1,"40x40")" id="avatar-show-s40"/>
+					</li>
+				</ul>
+				<div style="clear:both"></div>
+				<input type="button" value="修改头像" class="u-btn-bg" id="j-avatar-show"/>
+			</div>
+		</div>
+		
+		<div class="u-profile-table">
+			<h4 class="f-fs14">详细信息</h4>
+			<form id="memberInfoForm" action="" method="post" class="j-validform">
+				<table #if("$!{memberInfo.id}" == "") class="z-editabled" #end>
+					<tbody>
+						#if("$!{memberInfo.sex}" != "")
+						<tr>
+							<td>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别</td>
+							<td>
+								#set($_sex=${sysServiceUtil.getDictLabelByValue("$memberInfo.sex","sex","--")})
+								$_sex
+							</td>
+						</tr>
+						#end
+						#if("$!{memberInfo.birthday}" != "")
+							<tr>
+								<td>生&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日</td>
+								<td>
+									$!{memberInfo.birthday}
+								</td>
+							</tr>
+						#end
+						<tr>
+							<td>婚姻状况</td>
+							<td>
+								#set($marriage=${sysServiceUtil.getDictLabelByValue("$memberInfo.marriage","marriage","--")})
+								<span class="u-pro-text">$marriage</span>
+								<span class="u-pro-input">
+									#set($marriageList=$sysServiceUtil.getDictList("marriage"))
+									#foreach($marriage in $marriageList)
+										#if($!velocityCount == $marriageList.size())
+											<label><input type="radio" name="marriage" datatype="*" nullmsg="该项必填" errormsg="该项必填" value="${marriage.value}" #if(${marriage.value} == $memberInfo.marriage) checked  #end/>${marriage.label}</label>
+										#else
+											<label><input type="radio" name="marriage"  value="${marriage.value}" #if(${marriage.value} == $memberInfo.marriage) checked  #end/>${marriage.label}</label>
+										#end
+									#end
+								</span>
+							</td>
+						</tr>
+						<tr>
+							<td>学&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;历</td>
+							<td>
+								#set($highEdu=${sysServiceUtil.getDictLabelByValue($memberInfo.highEdu,"education","选择")})
+								<span class="u-pro-text">$highEdu</span>
+								<div class="u-pro-input">
+									<div class="u-selector u-scroll-selector j-selector f-w230 f-round f-tal">
+										#if("$!{memberInfo.highEdu}" == "")
+											<button>选择</button>
+										#else
+											<button>$highEdu</button>
+										#end
+										<i></i>
+										<ul class="f-round">
+											<li>选择</li>
+											#set($educationList=$sysServiceUtil.getDictList("education"))
+											#foreach($education in $educationList) 
+												<li value="${education.value}">${education.label}</li>
+											#end
+										</ul>
+										<input type="hidden" class="j-selected-ipt" name="highEdu" value="$!{memberInfo.highEdu}" datatype="*" nullmsg="该项必填" errormsg="该项必填"/>
+									</div>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>职&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;业</td>
+							<td>
+								#set($occupation=${sysServiceUtil.getDictLabelByValue($memberInfo.occupation,"profession","选择")})
+								<span class="u-pro-text">$occupation</span>
+								<div class="u-pro-input">
+									<div class="u-selector u-scroll-selector j-selector f-w230 f-round f-tal" >
+										#if("$!{memberInfo.occupation}" == "")
+											<button>选择</button>
+										#else
+											<button>$occupation</button>
+										#end
+										<i></i>
+										<ul class="f-round">
+											<li>选择</li>
+											#set($professionList=$sysServiceUtil.getDictList("profession"))
+											#foreach($profession in $professionList)
+												<li value="${profession.value}">${profession.label}</li>
+											#end
+										</ul>
+										<input type="hidden" class="j-selected-ipt" name="occupation" value="$!{memberInfo.occupation}" datatype="*" nullmsg="该项必填" errormsg="该项必填"/>
+									</div>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>月&nbsp;&nbsp;收&nbsp;&nbsp;入</td>
+							<td>
+								#set($income=${sysServiceUtil.getDictLabelByValue($memberInfo.income,"income","")})
+								<span class="u-pro-text">$income</span>
+								<div class="u-pro-input">
+									<div class="u-selector u-scroll-selector j-selector f-w230 f-round f-tal" >
+										#if("$!{memberInfo.income}" == "")
+											<button>选择</button>
+										#else
+											<button>$income</button>
+										#end
+										<i></i>
+										<ul class="f-round">
+											<li>选择</li>
+											#set($incomeList=$sysServiceUtil.getDictList("income"))
+											#foreach($_income in $incomeList)
+												<li value="${_income.value}">${_income.label}</li>
+											#end
+										</ul>
+										<input type="hidden" class="j-selected-ipt" name="income" value="$!{memberInfo.income}"/>
+									</div>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>户&nbsp;&nbsp;籍&nbsp;&nbsp;地</td>
+							<td>
+								<span id="censusRegister-address" class="u-pro-text"></span>
+								<div id="censusRegister">#regionPlugin($!{memberInfo.censusRegisterId},3,'censusRegister')
+								<span class="u-pro-input Validform_checktip Validform_wrong region-error" style="display:none" id="j-census-register-error">请选择省市区</span>
+								</div>
+								<input type="hidden" id="j-census-register-name" name="censusRegisterName" />
+								<input type="hidden" id="j-census-register-id" name="censusRegisterId" />
+							</td>
+						</tr>
+						<tr>
+							<td>现&nbsp;&nbsp;居&nbsp;&nbsp;地</td>
+							<td>
+								<span id="region-address" class="f-dn"></span><span class="u-pro-text" id="j-area-address">$!{memberInfo.getFullAddress()}</span>
+								<div id="region">#regionPlugin($!{memberInfo.city})
+									<span class="u-pro-input Validform_checktip Validform_wrong region-error" style="display:none" id="j-area-error">请选择省市区</span>
+								</div>
+								<span class="u-pro-input">
+									详细地址&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" class="u-ipt-amount f-round f-w230" placeholder="" name="address" id="address" value="$!{memberInfo.address}" ignore="ignore" datatype="/^[\u4E00-\u9FA5\uf900-\ufa2dA-Za-z0-9_()\-]{2,30}$/" errormsg="请输入正确的地址信息，长度控制在2~60汉字之间。"/>
+								</span>
+								<input type="hidden" id="areaFullName" name="areaFullName" />
+								<div class="f-dn"><input type="hidden" name="city" id="city"/></div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				#CSRFToken()
+			</form>
+		</div>
+		<div class="u-profile-btn">
+			#if("$!{memberInfo.id}" == "")
+				<button type="button" data="save" class="f-round f-fs18 f-btn-m2 u-btn u-btn-primary" id="j-profile-update">保存</button>
+			#else
+				<button type="button" data="edit" class="f-round f-fs18 f-btn-m2 u-btn u-btn-primary" id="j-profile-update">修改</button>
+			#end
+		</div>
+			## /页面内容
+		</div>
+	</div>
+	## /用户中心内容
+</div>

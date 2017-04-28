@@ -1,0 +1,770 @@
+@media screen and (min-width: 390px) {
+  html {
+    font-size: 22px;
+  }
+}
+
+@media screen and (min-width: 360px) and (max-width: 389px) {
+
+  html {
+    font-size: 20px;
+  }
+  .m-body{
+    padding-bottom: 1rem;
+  }
+}
+
+@media screen and (max-width: 359px) {
+  html {
+    font-size: 17px;
+  }
+  .m-body{
+    padding-bottom: 5rem;
+  }
+  .m-step1 .m-rule-1 {
+    margin-left: 42%;
+  }
+}
+
+[v-cloak] {
+  display: none;
+}
+
+body{
+  font-family: Microsoft Yahei;
+}
+
+.f-fc-pink{
+  color: #f95f5f;
+}
+.f-fc-brown{
+  color: #974b00;
+}
+.f-fc-weight{
+  font-weight: bold;
+}
+.f-fs-16 {
+  font-size: 1rem;
+}
+.f-fc-red{
+  color: #ff5f47;
+}
+.f-fc-99{
+  color: #999999;
+}
+.f-fc-d7{
+  color: #d74148;
+}
+
+.u-head{
+  font-size: 0;
+  position: relative;
+}
+
+.u-head p{
+  font-size: 0.6rem;
+  color: #0096cd;
+  margin-left: 5rem;
+  padding-top: 0.6rem;
+}
+
+.u-head div{
+  width: 11.625rem;
+  height: 1.6rem;
+  text-align: center;
+  font-size: 0.9rem;
+  line-height: 1.6rem;
+  font-weight: bold;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  margin-left: -5.81rem;
+  color: #974b00;
+}
+
+.u-head{
+  background: url("../../../img/activity/inviteFriend/banner.png") repeat center;
+  background-size: 100% 100%;
+  width: 100%;
+  height: 10.8rem;
+}
+
+.m-body{
+  background: url("../../../img/activity/inviteFriend/line.png") repeat center;
+  background-size: 100% 100%;
+  height: 83.6rem;
+}
+
+.m-my-count{
+  text-align: center;
+  font-size: 0.6rem;
+  padding-top: 1rem;
+}
+
+.m-follow .m-look {
+  font-size: 0.7rem;
+  display: block;
+  text-align: center;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #974b00;
+  width: 100px;
+  margin: 0.1rem auto 0;
+  cursor: pointer;
+}
+
+.m-step1{
+  background: url("../../../img/activity/inviteFriend/step1.png") repeat center;
+  background-size: 100% 100%;
+  width: 88%;
+  height: 6.675rem;
+  margin: 1rem auto 0;
+  position: relative;
+}
+
+.m-step2{
+  background: url("../../../img/activity/inviteFriend/step2.png") repeat center;
+  background-size: 100% 100%;
+  width: 88%;
+  height: 7rem;
+  margin: 0.5rem auto;
+}
+
+.m-step-text{
+  color: white;
+  font-size: 0.6rem;
+  text-align: center;
+  line-height: 1rem;
+}
+
+.dot-right {
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 8px solid #974b00;
+  display: inline-block;
+  /*vertical-align: top;*/
+}
+
+.m-rule-1{
+  font-size: 0.6rem;
+  margin-left: 45%;
+  margin-top: 1.5rem;
+}
+.m-rule-2{
+  margin-left: 8%;
+  margin-bottom: 0.5rem;
+}
+.m-rule2-text{
+  width: 88%;
+  font-size: 0.6rem;
+  margin-top: -3px;
+  display: inline-block;
+  line-height: 1rem;
+}
+.m-rule2-text p{
+  margin-left: 0.5rem;
+  text-align: justify;
+}
+.m-invite-click{
+  background: url("../../../img/activity/inviteFriend/invite.png") repeat center;
+  background-size: 100% 100%;
+  width: 13.25rem;
+  height: 4.1rem;
+  margin: 1rem 0 0 12%;
+}
+.m-invite-click div{
+  width: 7.5rem;
+  height: 2.5rem;
+  text-align: center;
+  margin-left: 4rem;
+  line-height: 2.5rem;
+  padding-top: 1.3rem;
+  color: white;
+}
+.m-invite-click img{
+  width: 0.5rem;
+  height: 0.6rem;
+  animation:move 0.5s infinite;
+  -webkit-animation:move 0.5s infinite;
+}
+.m-invite-click a{
+  color: white;
+}
+
+.m-follow{
+  position: relative;
+  overflow: hidden;
+}
+.m-jiantou{
+  width: 3.45rem;
+  position: absolute;
+  right: 1rem;
+  bottom: 3rem;
+}
+
+.m-run-title{
+  background: url("../../../img/activity/inviteFriend/title.png") repeat center;
+  background-size: 100% 100%;
+  width: 11.625rem;
+  height: 1.75rem;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 0.9rem;
+  line-height: 1.85rem;
+  font-weight: bold;
+}
+
+.m-introduce{
+  width: 82%;
+  margin: 1rem auto 1.25rem;
+  background: #64b651;
+  line-height: 1rem;
+  border-radius: 8px;
+  padding: 0.5rem 0.5rem;
+  text-align: justify;
+  color: white;
+  font-size: 0.6rem;
+}
+.m-award{
+  margin: 0 auto;
+  position: relative;
+}
+.m-award1{
+  background: url("../../../img/activity/inviteFriend/award1.png") repeat center;
+  background-size: 100% 100%;
+  width: 16.25rem;
+  height: 5.25rem;
+  margin-bottom: 0.4rem;
+}
+.m-award2{
+  background: url("../../../img/activity/inviteFriend/award2.png") repeat center;
+  background-size: 100% 100%;
+  width: 16.25rem;
+  height: 5.65rem;
+  margin-bottom: 1.6rem;
+}
+.m-award3{
+  background: url("../../../img/activity/inviteFriend/award3.png") repeat center;
+  background-size: 100% 100%;
+  width: 16.25rem;
+  height: 4.35rem;
+}
+.m-award div{
+  font-size: 0.6rem;
+  position: absolute;
+  bottom: 0.8rem;
+  right: 1rem;
+  text-align: center;
+  width: 8rem;
+}
+.m-award div h2{
+  font-weight: bold;
+  line-height: 0.9rem;
+}
+.m-award div p{
+  line-height: 0.9rem;
+}
+.m-cankao{
+  font-size: 0.6rem;
+  text-align: center;
+  margin-top: 1rem;
+  margin-bottom: 0.8rem;
+}
+.m-run h1{
+  text-align: center;
+  font-size: 0.7rem;
+  font-weight: bold;
+  line-height: 1rem;
+}
+.m-box{
+  background: url("../../../img/activity/inviteFriend/rank.png") repeat center;
+  background-size: 100% 100%;
+  width: 18rem;
+  height: 231px;
+  margin: 1rem auto 0;
+  font-size: 0.6rem;
+}
+.m-box img{
+  width: 1.1rem;
+}
+.m-rank-list{
+  width: 100%;
+  height: 132px;
+  overflow: hidden;
+}
+.m-rank-title span{
+  font-weight: bold;
+}
+.m-rank-title span:first-child{
+  margin-left: 1.8rem;
+}
+.m-rank-title span:nth-child(2){
+  margin-left: 3.5rem;
+}
+.m-rank-title span:last-child{
+  /*margin-left: 1.5rem;*/
+  position: absolute;
+  right: 1.2rem;
+}
+.u-user {
+  display: inline-block;
+  vertical-align: top;
+}
+.u-user-head img {
+  display: inline-block;
+  height: 22px;
+  width: 22px;
+  overflow: hidden;
+  border-radius: 50%;
+}
+.u-user .u-name {
+  /* width: 65px; */
+  /*height: 35px;*/
+  color: #999;
+  position: relative;
+  top: -5px;
+}
+.u-invite-num {
+  color: #d74148;
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 3px;
+  margin-left: 1.3rem;
+  width: 40px;
+  text-align: center;
+}
+
+.u-money {
+  color: #d74148;
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 3px;
+  /*margin-left: 2.6rem;*/
+  position: absolute;
+  right: 1.2rem;
+  width: 84px;
+  text-align: center;
+}
+
+.m-rank-title{
+  margin-bottom: 6px;
+  padding-top: 50px;
+  font-size: 12px;
+  position: relative;
+}
+.m-rank-list li{
+  margin-bottom: 6px;
+  height: 27px;
+  position: relative;
+}
+.f-rank-0{
+  background: url('../../../img/activity/inviteFriend/icon1.png') no-repeat center;
+  background-size: 100% 100%;
+}
+.f-rank-1{
+  background: url('../../../img/activity/inviteFriend/icon2.png') no-repeat center;
+  background-size: 100% 100%;
+}
+.f-rank-2{
+  background: url('../../../img/activity/inviteFriend/icon3.png') no-repeat center;
+  background-size: 100% 100%;
+}
+.u-rank {
+  width: 17.5px;
+  height: 23px;
+  display: inline-block;
+  margin-left: 0.7rem;
+}
+
+.m-rule-icon {
+  width: 2.3rem;
+  margin-left: 80%;
+}
+.u-nav-bottom {
+  background: #6dc43d;
+  width: 100%;
+  height: 3rem;
+  font-size: 0.7rem;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+.u-nav-bottom li {
+  width: 50%;
+  padding: 0.3rem 0;
+  float: left;
+  position: relative;
+  /* -webkit-box-sizing: border-box; */
+  text-align: center;
+}
+.u-nav-bottom li a {
+  display: block;
+  text-align: center;
+  color: white;
+}
+.m-nav-icon {
+  width: 1.1rem;
+  height: 1.125rem;
+  display: inline-block;
+}
+.m-nav-icon1 {
+  background: url('../../../img/activity/inviteFriend/bottom1.png') no-repeat center;
+  background-size: 100% 100%;
+}
+.m-nav-icon2 {
+  background: url('../../../img/activity/inviteFriend/bottom2.png') no-repeat center;
+  background-size: 100% 100%;
+}
+.active {
+  background: #58b443;
+}
+.m-rule {
+  position: fixed;
+  width: 94%;
+  left: 50%;
+  top: 50%;
+  margin-left: -47%;
+  margin-top: -8.4rem;
+  font-size: 12px;
+  background: white;
+  color: #974b00;
+  z-index: 200;
+  border-radius: 8px;
+  padding-bottom: 1rem;
+}
+.m-rule h2 {
+  text-align: center;
+  font-weight: bold;
+  line-height: 3rem;
+}
+.m-main-content p {
+  margin-bottom: 2px;
+}
+.m-rule img {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 1.125rem;
+}
+.m-main-content {
+  width: 90%;
+  margin: 0 auto;
+  /*text-align: justify;*/
+}
+
+/* 蒙层 */
+.u-cover {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  z-index: 198;
+  -moz-opacity: 0.75;
+  opacity: .75;
+  filter: alpha(opacity=75);
+}
+
+.m-box .m-nolist{
+  width: 133px;
+  margin-left: 5.25rem;
+  margin-top: 74px;
+}
+
+.u-award-record {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: #f4f5f7;
+  z-index: 50;
+  top: 0;
+}
+
+.u-award-record h1 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  color: #fff;
+  background-color: #d74148;
+  text-align: center;
+}
+
+.u-goback {
+  position: absolute;
+  top: 0;
+  left: 1.625rem;
+}
+
+.u-qrcode-wrap {
+  display: inline-block;
+  position: fixed;
+  width: 94%;
+  /*height: 190px;*/
+  background: #fff;
+  top: 50%;
+  left: 50%;
+  margin-top: -4rem;
+  margin-left: -47%;
+  font-size: 12px;
+  z-index: 998;
+  box-sizing: border-box;
+  padding-bottom: 1rem;
+  padding-top: 1.5rem;
+  border-radius: 10px;
+  text-align: center;
+  overflow: hidden;
+  color: #555555;
+}
+
+.u-qrcode-close img {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 1.125rem;
+}
+
+.u-myinvite-link .u-myinvite-btn {
+  display: inline-block;
+  /*padding: 10px 30px;*/
+  margin-top: 20px;
+  background: white;
+  color: #d74148;
+  border-radius: 15px;
+  outline: 0;
+  cursor: pointer;
+  width: 6.25rem;
+  height: 1.1rem;
+  border: 1px solid #d74148;
+}
+
+.u-vanish-get {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 73%;
+  line-height: 2.5rem;
+  margin-top: -1.25rem;
+  margin-left: -36.5%;
+  text-align: center;
+  color: #fff;
+  font-size: 14px;
+  background-color: rgba(0, 0, 0, .8);
+  border-radius: 10px;
+  z-index: 999;
+  height: 2.5rem;
+}
+
+.z-hidden{
+  display: none;
+}
+
+@-webkit-keyframes zoomIn {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(.3, .3, .3);
+    transform: scale3d(.3, .3, .3)
+  }
+
+  50% {
+    opacity: 1
+  }
+}
+
+@keyframes zoomIn {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(.3, .3, .3);
+    transform: scale3d(.3, .3, .3)
+  }
+
+  50% {
+    opacity: 1
+  }
+}
+
+.zoomIn {
+  -webkit-animation-name: zoomIn;
+  animation-name: zoomIn
+}
+
+.animated {
+  -webkit-animation-duration: .5s;
+  animation-duration: .5s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+.u-award-record .u-no-history {
+  margin: 150px auto 0;
+  width: 6rem;
+}
+
+.u-award-record .u-no-history img {
+  width: 100%;
+}
+
+.u-award-record .u-no-history strong {
+  color: #999;
+  margin: 14px auto;
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 100;
+  display: block;
+}
+.u-award-record ul {
+  color: #000000;
+  width: 100%;
+  /*margin: 3.825rem auto 0;*/
+  background: white;
+  margin-top: 10px;
+}
+.u-award-record ul li {
+  text-align: left;
+  display: block;
+  position: relative;
+  letter-spacing: 1px;
+  padding: 1rem;
+  border-bottom: 1px solid #cccccc;
+}
+.m-record-user{
+  font-size: 0.8rem;
+  display: inline-block;
+  line-height: 1.5rem;
+}
+.u-award-record ul li span{
+  font-size: 0.6rem;
+  position: absolute;
+  right: 1rem;
+  display: inline-block;
+  line-height: 1.5rem;
+}
+.m-record-thing{
+  font-size: 0.6rem;
+  margin-top: 5px;
+}
+
+.m-pointer{
+  width: 2.1rem;
+  margin-top: -15px;
+  margin-left: 3.4rem;
+  /*animation:mypoint 0.5s infinite;*/
+  /*-webkit-animation:mypoint 0.5s infinite;*/
+}
+
+/*手势动画*/
+@keyframes mypoint {
+  0% {
+    -webkit-transform: translate(0,0);
+    transform: translate(0,0);
+  }
+  50%{
+    -webkit-transform: translate(0,10px);
+    transform: translate(0,10px);
+  }
+  100% {
+    -webkit-transform: translate(0,0);
+    transform: translate(0,0);
+  }
+}
+
+@-webkit-keyframes mypoint {
+  0% {
+    -webkit-transform: translate(0,0);
+    transform: translate(0,0);
+  }
+  50%{
+    -webkit-transform: translate(0,10px);
+    transform: translate(0,10px);
+  }
+  100% {
+    -webkit-transform: translate(0,0);
+    transform: translate(0,0);
+  }
+}
+
+/*箭头动画*/
+@keyframes move {
+  0% {
+    -webkit-transform: translate(0,0);
+    transform: translate(0,0);
+  }
+  50%{
+    -webkit-transform: translate(5px,0);
+    transform: translate(5px,0);
+  }
+  100% {
+    -webkit-transform: translate(0,0);
+    transform: translate(0,0);
+  }
+}
+
+@-webkit-keyframes move {
+  0% {
+    -webkit-transform: translate(0,0);
+    transform: translate(0,0);
+  }
+  50%{
+    -webkit-transform: translate(5px,0);
+    transform: translate(5px,0);
+  }
+  100% {
+    -webkit-transform: translate(0,0);
+    transform: translate(0,0);
+  }
+}
+
+.m-run{
+  padding-top: 1.6rem;
+}
+
+.u-record-wrapper .u-inner-title {
+  height: 50px;
+  line-height: 60px;
+  text-align: center;
+  font-size: 0.8rem;
+  color: black;
+}
+.u-award-record .f-mt {
+  margin-top: 0;
+}
+.u-record-wrapper {
+  margin-top: 50px;
+  overflow-y: scroll;
+}
+.f-body{
+  height: 78.6rem;
+}
+
+/*加载更多*/
+.u-reloadMore{
+  width: 90%;
+  margin: 20px 5%;
+  background: #ffffff;
+  font-size: 14px;
+  color: #666666;
+  border-radius: 8px;
+  border: 1px solid #e5e5e5;
+  text-align: center;
+  height: 44px;
+  line-height: 44px;
+}
+.z-loading{
+  background: #f3f3f3;
+}
+/*\加载更多*/
+
+.m-jump{
+  width: 4.8rem;
+  height: 1.6rem;
+  position: absolute;
+  /*background: black;*/
+  top: 2.5rem;
+  left: 2rem;
+}

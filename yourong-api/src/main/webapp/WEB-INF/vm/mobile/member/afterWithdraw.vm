@@ -1,0 +1,71 @@
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$m_css_url/modules/recharge.css"])
+#set($withdrawNo=$request.getParameter("withdrawNo"))
+#set($title='充值')
+<style>
+    [v-cloak]{
+        display: none;
+    }
+</style>
+<div id="afterWitndraw" v-cloak>
+    <!--header-->
+    <h2 class="u-header f-pos-r">
+        <a href="$siteurl/mCenter/withdraw">返回</a>
+    <span class="f-fs18">
+        提&nbsp;&nbsp;现
+    </span>
+    </h2>
+    <div>
+        <div class="u-statusIcon">
+            <img v-if="withdrawData.status===1||withdrawData.status===3" src="$res_url/img/member/afterRechange/ico_ processing.png" alt="">
+            <img v-if="withdrawData.status===-2"  src="$res_url/img/member/afterRechange/ico_fail.png" alt="">
+            <img v-if="withdrawData.status===5"  src="$res_url/img/member/afterRechange/ico_succeed.png" alt="">
+            <div>
+                <span  v-if="withdrawData.status===5" class="f-fs18 f-color3">
+                    提现成功
+                </span>
+                <span v-if="withdrawData.status===-2" class="f-fs18 f-color3">
+                    提现失败
+                </span>
+                <span v-if="withdrawData.status===1||withdrawData.status===3" class="f-fs18 f-color3">
+                    提现申请已提交
+                </span>
+                <p v-if="withdrawData.status===-2" class="f-fs12 f-color6">
+                    网络连接中断，请稍后重试
+                </p>
+                <p v-if="withdrawData.status===1||withdrawData.status===3" class="f-fs12 f-color6">
+                    预计资金将在 <i class="j-arrivalTime"></i> 到达您的银行账户
+                </p>
+            </div>
+        </div>
+        <div class="u-rechangeInfo">
+            <ul>
+                <li><span>提现金额</span><span class="f-color3">&yen;<i v-text="withdrawData.withdrawAmount | amountFormat 'split'"></i></span></li>
+                <li><span>提现卡号</span><span class="f-color3" v-text="withdrawData.bankCardNo"></span></li>
+                <li><span>流水号</span><span class="f-color3" v-text="withdrawData.withdrawNo"></span></li>
+                <li><span>提现时间</span><span class="f-color3" v-text="withdrawData.withdrawTime | dateFormat  'yyyy-MM-dd hh:mm:ss'"></span></li>
+            </ul>
+        </div>
+        <div class="u-statusBtn">
+            <a v-if="withdrawData.status===1 ||withdrawData.status===5||withdrawData.status===3" href="$siteurl/mCenter/home" >
+                完成
+            </a>
+            <a href="$siteurl/mCenter/recharge"  v-if="withdrawData.status===-2" >
+                重新提现
+            </a>
+        </div>
+        <div class="u-functionBtn"  v-if=" withdrawData.status===-2">
+        ##            传一个参数确定去哪
+            <a v-if="withdrawData.status===-2" href="$siteurl/mCenter/home">关闭</a>
+        </div>
+    </div>
+    <input type="hidden" withdrawNo="$withdrawNo" id="j-withdrawNo">
+</div>
+#set($pageScript="
+<script src='$aliyunOss_url/res/lib/vue/v1/vue.min.js'></script>
+<script>
+   seajs.use('xjs/modules/afterWithdraw');
+</script>
+")
+#CSRFToken("xToken")

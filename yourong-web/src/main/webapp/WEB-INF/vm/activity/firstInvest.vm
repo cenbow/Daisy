@@ -1,0 +1,600 @@
+##土豪冲刺
+#parse('/common/common.vm')
+#set($title="土豪冲刺_$!{title_suffix}")
+ <style>
+ 		.g-bd{
+ 			margin-bottom:0px;
+ 			}
+		  .u-beyondTyear-hd{
+            width: 100%;
+            height: 763px;
+            margin-top: -8px;
+            text-indent: -9999px;
+            background: url($root_url/static/img/activity/firstInvest/beyond_newhd.jpg) no-repeat center center;
+            }
+          .u-beyondTyear-hd>p{    	
+			text-indent: 0px;
+			color: #ff5c5d;
+			height: 32px;
+			font-size: 34px;
+			font-weight: bold;
+			width: 638px;
+			padding: 258px 0 0 374px;
+			margin: 0px auto 0;
+          }
+          .u-beyondTyear-bd{ 
+          	text-align: center;
+          	height: 3180px;
+          	background-color: #f6d9a0;
+          }
+          .u-beyondTyear-bd ul li{ 
+          	height: 347px;
+          	width: 878px;
+			margin-bottom: 50px;
+			padding: 50px 47px 69px 65px;
+			display: inline-block;
+          	background-color: #fff;
+          }
+          .u-beyondTyear-bd ul li:first-child{ 
+          	padding:50px 47px 69px 65px;
+          }
+          .u-beyondTyear-text{ 
+          	height: 341px;
+          	width:310px;
+          	float: left;
+          }
+          .u-beyondTyear-text h2{ 
+          	padding:44px 165px 44px 0;
+          	color:#ff5951;
+          }
+          .u-beyondTyear-text p{ 
+          	text-align: left;
+          	color: #666;
+          }
+          .u-beyondTyear-text a{ 
+          	width: 220px;
+          	height: 50px;
+          	display: block;
+          	color: #fff;
+          	line-height: 1.8em;
+          	margin-top:20px; 
+          	background:url($root_url/static/img/activity/firstInvest/beyond_btn.jpg) no-repeat center;
+          	text-align: center;
+          }
+          .u-beyondTyear-text a:visited{ 
+          	color: #fff;
+          }
+          .u-beyondTyear-text a:hover{ 
+          	text-decoration:none;
+          }
+          .u-beyondTyear-table{ 
+          	border:none; 
+          	color: #666;
+          	position: relative;
+          	font-size: 12px;
+          }
+          .u-beyondTyear-table thead{ 
+          	border: none;
+          	text-align: center;
+          	font-weight: bold;
+          }
+          .u-beyondTyear-table tbody{
+          	width: 491px;
+          	display: block;
+          }
+          .u-beyondTyear-table tbody tr{ 
+          	border-bottom: 1px solid #ebe5dd;
+          	display:block;
+          }
+          .u-beyondTyear-table tbody td{ 
+          	border: hidden;
+          	height: 50px;
+          	position: relative;
+          	overflow: hidden;
+          }
+
+          .u-beyondTyear-user .u-user-name{ 
+
+          	display: inline-block;
+          	line-height: 50px;
+          	}
+           .u-user-head {
+            padding: 0 2px 0 0;
+            vertical-align: middle;
+            position: relative;
+           	margin-right: 22px; 
+        }
+        .u-user-head,
+        .u-user-head i,
+        .u-user-head img {
+            display: inline-block;
+            height: 35px;
+            width: 35px;
+            overflow: hidden;
+        }
+        .u-user-head i {
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 2;
+            background: url($root_url/static/img/common/sprites.png) no-repeat -75px -21px;
+        }
+        .u-beyondTyear-user{ 
+        	padding-left: 27px;
+			text-align: left;
+        }
+          .u-beyondTyear-rich{ 
+         	height: 606px;
+          	width: 878px;
+          	margin-top:-222px;
+			margin-bottom: 50px;
+			padding: 38px 47px 46px 66px;
+			display: inline-block;
+          	background-color: #fff;
+          }
+          .u-beyondTyear-rtable{ 
+          	border: 2px solid #cebfab;
+          	width: 461px;
+          	height: 491px;
+          	color: #666;
+          	font-size: 12px;
+          	float: right;
+          }
+          .u-beyondTyear-rtable tr{ 
+          	height: 50px;
+ 			border-top: 1px solid #ebe5dd;
+          }
+          .u-beyondTyear-rtable thead{ 
+          	font-weight: bold;
+          }
+          .u-beyondTyear-ranking{ 
+          	float: right;
+          }
+          .u-beyondTyear-ranking strong{ 
+          	height: 40px;
+          	display: block;
+          }
+          .u-beyondTyear-prize{ 
+          	float: left;
+          	width: 348px;
+          	height: 606px;
+          }
+		  .u-beyondTyear-ranktable{ 
+		  	width: 344px;
+		  	height: 418px;
+		  	border: 2px solid #cebfab;
+		  }
+		  .u-beyondTyear-ranktable thead tr{
+		  	border: none;
+		  	height: 43px;
+		  	font-weight: bold;
+		   }
+		  .u-beyondTyear-ranktable tbody tr{ 
+		  	border: 1px solid #cebfab;
+		  	height: 35px;
+		  }
+		  .u-beyondTyear-ranktable td{ 
+		  	text-align: left;
+		  }
+		  .u-beyondTyear-ranktable td:first-child{
+		  	padding-left: 17px;
+		  	
+		  }
+		  .u-beyondTyear-prize p{ 
+		  	text-align: left;
+		  	line-height: 1.5em;
+		  	margin-top: 10px;
+		  }
+		  .u-beyondTyear-btext{ 
+		  	height: 432px;
+		  	width: 850px;
+		  	display: inline-block;
+		  	margin: 60px 118px 82px 20px;
+		  	text-align: left;
+		  }
+		  .u-beyondTyear-btext strong{ 
+		  	color: #494949;
+		  }
+		  .u-beyondTyear-btext p{ 
+		  	font-size: 13px;
+		  	color: #37341d;
+		  	margin-top: 37px;
+		  	line-height: 1.8em;
+		  }
+		   .u-beyondTyear-over{ 
+		   	
+		   	width: 495px;
+		   	float: right;
+		   
+		   }
+		   .u-beyondTyear-over h4{ 
+		   		text-align: center;
+		   }
+		   .u-beyondTyear-wrap{ 
+		   border: 2px solid #cebfab;
+		   height:306px;
+		   overflow-x:hidden;
+		   overflow-y:auto;
+		   position: relative;
+			}
+		   .u-beyondTyear-over h4{ 
+		   	height: 35px;
+		   	font-weight: bold;
+		   	font-size: 14px;
+		   }
+		   .u-bayondTyear-title01{ 
+		   	padding: 44px 165px 44px 0;
+			width: 143px;
+			height: 34px;
+			background: url($root_url/static/img/activity/firstInvest/beyond_title01.jpg) no-repeat left;
+		   }
+		   		   .u-bayondTyear-title02{ 
+		   	padding: 44px 165px 44px 0;
+			width: 143px;
+			height: 34px;
+			background: url($root_url/static/img/activity/firstInvest/beyond_title02.jpg) no-repeat left;
+		   }
+		   .u-bayondTyear-title03{ 
+		   	padding: 44px 165px 44px 0;
+			width: 143px;
+			height: 34px;
+			background: url($root_url/static/img/activity/firstInvest/beyond_title03.jpg) no-repeat left;
+		   }
+		   .u-bayondTyear-title04{ 
+		   	padding: 44px 165px 44px 0;
+			width: 143px;
+			height: 34px;
+			background: url($root_url/static/img/activity/firstInvest/beyond_title04.jpg) no-repeat left;
+		   }
+		   .u-bayondTyear-title05{ 
+		   	padding: 44px 165px 44px 0;
+			width: 143px;
+			height: 34px;
+			background: url($root_url/static/img/activity/firstInvest/beyond_title05.jpg) no-repeat left;
+		   }
+		   .u-beyondTyear-text p>span,.u-beyondTyear-ranktable td>span,.u-beyondTyear-agg{ 
+		   	color: #d74148;
+		   	font-size: 15px;
+		   }
+		   .u-beyondTyear-btext p>span{ 
+		   	color: #d74148;
+		   }
+		   .u-beyondTyear-wrap>p{ 
+		   	color: #666;
+		   	font-size: 14px;
+		   	margin: 135px auto;
+		   }
+		   .u-beyondTyear-alink:link{ 
+		   	font-weight: bold;
+		   	color: #494949;
+		   	text-decoration: underline;
+		     }
+		     .u-beyondTyear-alink:visited{ 
+		   	font-weight: bold;
+		   	color: #494949;
+		     }
+		   .u-beyondTyear-alink:hover{ 
+		   	cursor:pointer;
+		   	color: #494949;
+		     }
+        </style>
+        
+        
+         <div class="f-mh500 f-cf">
+    	<div class="u-beyondTyear-hd">
+    		<p class="f-fs34" id="j-date-countdown"></p>
+    	</div>
+    	<div class="u-beyondTyear-bd">
+    		
+    		
+    		
+    		
+    		    		<div class="u-beyondTyear-rich f-cf">
+    			<div class="u-beyondTyear-prize">
+							<h2 class="u-bayondTyear-title05">
+							
+						</h2>
+    				<table class="u-beyondTyear-ranktable">
+    					<thead>
+    						<tr>
+    							<td width="95">名次</td>
+    							<td width="250">奖项</td>
+    						</tr>
+    					</thead>
+    					<tbody>
+    						<tr>
+    							<td>第一名</td>
+    							<td>iPhone 6 Plus 64GB（价值<span>6888元</span>）</td>
+    						</tr>
+    						<tr>
+    							<td>第二名</td>
+    							<td>iPhone 6  16GB（价值<span>5288元</span>）</td>
+    						</tr>
+    						<tr>
+    							<td>第三名</td>
+    							<td>iPad Air 2 WLAN 16GB（价值<span>3588元</span>）</td>
+    						</tr>
+    						<tr>
+    							<td>第四名</td>
+    							<td><span>888元</span>现金券+<span>1%</span>收益券</td>
+    						</tr>
+    						<tr>
+    							<td>第五名</td>
+    							<td><span>688元</span>现金券+<span>1%</span>收益券</td>
+    						</tr>
+    						<tr>
+    							<td>第六名</td>
+    							<td><span>588元</span>现金券+<span>0.5%</span>收益券</td>
+    						</tr>
+    						<tr>
+    							<td>第七名</td>
+    							<td><span>388元</span>现金券+<span>0.5%</span>收益券</td>
+    						</tr>
+    						<tr>
+    							<td>第八名</td>
+    							<td><span>288元</span>现金券+<span>0.5%</span>收益券</td>
+    						</tr>
+    						<tr>
+    							<td>第九名</td>
+    							<td><span>188元</span>现金券+<span>0.5%</span>收益券</td>
+    						</tr>
+    						<tr>
+    							<td>第十名</td>
+    							<td><span>88元</span>现金券+<span>0.5%</span>收益券</td>
+    						</tr>
+    					</tbody>
+    				</table>
+    				<p>
+    					截止2015年3月31日，累计投资金额排行<br/>
+						(自上线之日起计算累计投资)
+    				</p>
+    			</div>
+    			<div class="u-beyondTyear-ranking">
+    				<strong>
+    					排行榜
+    				</strong>
+    			<table class="u-beyondTyear-rtable">
+						<thead class="f-fs14">
+							<tr>
+								<td>名次</td>
+								<td>用户名</td>
+								<td>累计投资额</td>
+							</tr>			
+						</thead>
+						<tbody>
+							<tr>
+							#foreach($!{transactionForFirstInvestAct} in $!{transactionForFirstInvestActs})
+								<td width="114">第$!{numberFormatUtil.formatNumberToChinese($!{velocityCount})}名</td>
+								<td width="199" class="u-beyondTyear-user">
+									<span class="u-user-head">
+                                	<img src='#getMemberAvatar35($!{transactionForFirstInvestAct.memberId},"40x40")' alt="用户头像">
+                                	<i>&nbsp;</i>
+                           			</span>
+                           			<span class="u-user-name">$!{transactionForFirstInvestAct.username}</span>
+								</td>
+								<td width="178">￥${formulaUtil.formatCurrencyNoUnit($!{transactionForFirstInvestAct.totalInvest})}</td>
+							</tr>
+							#end
+						</tbody>
+					</table>
+					</div>
+    		</div>
+    		
+    		
+    		
+    		
+    		
+    		<ul>
+    			<li class="c-cf">
+					<div class="u-beyondTyear-text">
+						<h2 class="u-bayondTyear-title01">
+							
+						</h2>
+						<p class="f-fs14">
+							每个理财项目，第一个成功投资的用户，<br/>
+							将获得<span>68</span>点人气值的奖励，<br/>
+							人气值可兑换现金券，<br/>
+							1点人气值等于1元现金券，<br/>	
+							现金券不可直接提现。<br/>
+						</p>
+                        <a class="f-fs24" href="$root_url/products/list-all-all-all-1-createTimeDesc-1.html">立即投资</a>
+					</div>
+
+					<div class="u-beyondTyear-over">
+						<h4>获奖名单</h4>
+						<div class="u-beyondTyear-wrap">
+						#if("$!firstList" == "" || $!firstList.size() == 0)
+						<p>虚位以待，赶紧去抢楼主宝座！</p>
+						
+							#else
+						<table class="u-beyondTyear-table">
+							<tbody>
+							
+							 #foreach($!{first} in $!{firstList})
+								<tr>
+									<td width="188" class="u-beyondTyear-user">
+										<span class="u-user-head">
+	                                	<img src='#getMemberAvatar35($!{first.memberId},"40x40")' alt="用户头像">
+	                                	<i>&nbsp;</i>
+	                           			</span>
+	                           			<span class="u-user-name">$!{first.username}</span>
+			           				</td>
+									<td width="143">获得<span class="u-beyondTyear-agg">68</span>点人气值</td>
+									<td width="160">$!{first.projectName}</td>
+								</tr>
+							#end
+								</tbody>
+							</table>	
+						
+						#end
+						
+						</div>
+					</div>
+				</li>
+    			<li class="c-cf">
+					<div class="u-beyondTyear-text">
+						<h2 class="u-bayondTyear-title02">
+							
+						</h2>
+						<p class="f-fs14">
+						每个理财项目，最后一个成功投资的用户，<br/>
+						将获得<span>78</span>点人气值的奖励，<br/>
+						人气值可兑换现金券，<br/>
+						1点人气值等于1元现金券，<br/>
+						现金券不可直接提现。<br/>
+						</p>
+                        <a class="f-fs24" href="$root_url/products/list-all-all-all-1-createTimeDesc-1.html">立即投资</a>
+					</div>
+										<div class="u-beyondTyear-over">
+						<h4>获奖名单</h4>
+						<div class="u-beyondTyear-wrap">
+							#if("$!lastList" == "" || $!lastList.size() == 0)
+							<p>虚位以待，赶紧去抢楼主宝座！</p>
+							#else
+							<table class="u-beyondTyear-table">
+							<tbody>
+						
+							#foreach($!{last} in $!{lastList})
+								<tr>
+									<td width="188" class="u-beyondTyear-user">
+										<span class="u-user-head">
+	                                	<img src='#getMemberAvatar35($!{last.memberId},"40x40")' alt="用户头像">
+	                                	<i>&nbsp;</i>
+	                           			</span>
+	                           			<span class="u-user-name">$!{last.username}</span>
+			           				</td>
+									<td width="143">获得<span class="u-beyondTyear-agg">78</span>点人气值</td>
+									<td width="160">$!{last.projectName}</td>
+								</tr>
+							#end
+								</tbody>
+						</table>
+							#end
+						
+						</div>
+					</div>
+				</li>
+    			<li class="c-cf">
+					<div class="u-beyondTyear-text">
+							<h2 class="u-bayondTyear-title03">
+							
+						</h2>
+						<p class="f-fs14">
+						每个理财项目，单笔投资金额最高的用户，<br/>
+						将获得<span>88</span>点人气值的奖励，<br/>
+						人气值可兑换现金券，<br/>
+						1点人气值等于1元现金券，<br/>
+						现金券不可直接提现。<br/>
+						(若有多个最高投资者，则取最先投资者)
+						</p>
+                        <a class="f-fs24" href="$root_url/products/list-all-all-all-1-createTimeDesc-1.html">立即投资</a>
+					</div>
+										<div class="u-beyondTyear-over">
+						<h4>获奖名单</h4>
+						<div class="u-beyondTyear-wrap">
+							
+							#if("$!mostList" == "" || $!mostList.size() == 0)
+							<p>虚位以待，赶紧去抢楼主宝座！</p>
+							#else
+							<table class="u-beyondTyear-table">
+							<tbody>
+							#foreach($!{most} in $!{mostList})
+								<tr>
+									<td width="188" class="u-beyondTyear-user">
+										<span class="u-user-head">
+	                                	<img src='#getMemberAvatar35($!{most.memberId},"40x40")' alt="用户头像">
+	                                	<i>&nbsp;</i>
+	                           			</span>
+	                           			<span class="u-user-name">$!{most.username}</span>
+			           				</td>
+									<td width="143">获得<span class="u-beyondTyear-agg">88</span>点人气值</td>
+									<td width="160">$!{most.projectName}</td>
+								</tr>
+							#end
+							</tbody>
+						</table>
+							#end
+							
+						</div>
+					</div>
+				</li>
+    			<li class="c-cf">
+					<div class="u-beyondTyear-text">
+							<h2 class="u-bayondTyear-title04">
+							
+						</h2>
+						<p class="f-fs14">
+						每个理财项目，项目满额后，<br/>
+						系统将随机抽取一位该项目投资人，<br/>
+						抽中者将获得<span>18</span>点人气值的奖励，<br/>
+						人气值可兑换现金券，<br/>
+						1点人气值等于1元现金券，现金券不可直接提现。
+						</p>
+                        <a class="f-fs24" href="$root_url/products/list-all-all-all-1-createTimeDesc-1.html">立即投资</a>
+					</div>
+									<div class="u-beyondTyear-over">
+						<h4>获奖名单</h4>
+						<div class="u-beyondTyear-wrap">
+							#if("$!luckList" == "" || $!luckList.size() == 0)
+							<p>虚位以待，赶紧去抢楼主宝座！</p>
+							#else
+							<table class="u-beyondTyear-table">
+							<tbody>
+						
+							#foreach($!{luck} in $!{luckList})
+								<tr>
+									<td width="188" class="u-beyondTyear-user">
+										<span class="u-user-head">
+	                                	<img src='#getMemberAvatar35($!{luck.memberId},"40x40")' alt="用户头像">
+	                                	<i>&nbsp;</i>
+	                           			</span>
+	                           			<span class="u-user-name">$!{luck.username}</span>
+			           				</td>
+									<td width="143">获得<span class="u-beyondTyear-agg">18</span>点人气值</td>
+									<td width="160">$!{luck.projectName}</td>
+								</tr>
+							#end
+								</tbody>
+						</table>
+							#end
+						
+						</div>
+					</div>
+				</li>
+     		</ul>
+
+    		<div class="u-beyondTyear-btext">
+    		<strong class="f-fs18">活动规则</strong>
+			<p>			
+		1、活动时间：2015年1月1日0点-2015年3月31日23:59:59；<br/>
+		2、活动对象：活动期间所有投资用户；<br/>
+		3、活动期间，每个理财项目，第一位成功投资的用户，将获得68点人气值的奖励；<br/>
+		4、活动期间，每个理财项目，最后一位成功投资的用户，将获得78点人气值的奖励；<br/>
+		5、活动期间，每个理财项目，单笔投资金额最高的用户，将获得88点人气值的奖励，人气值可兑换现金券;<br/><span>（若有多个最高投资者，则按投资时间先后进行奖励）</span>;<br/>
+		6、活动期间，每个理财项目，项目满额后，系统将随机抽取一位该项目投资人，抽中者将获得18点人气值的奖励；<br/>
+		7、人气值可兑换现金券，1点人气值等于1元现金券，现金券不可直接提现，<a class="u-beyondTyear-alink" href="$root_url/coupon/reputation">查看我的人气值</a>;<br/>
+		8、土豪排名：自活动上线之日起到活动结束，将对用户累计总投资额进行排名，并根据排名发放相应的奖励，若投资额相等，则按时间先后进行排名；<br/>
+		<span>9、本次活动中的现金券和收益券将于活动结束之后3个工作日内发放。请前往“我的账户”>“我的优惠“>“我的现金券” >“我的收益券”中查看；</span><br/>
+		10、活动奖励发放规则：<br/>
+		一羊领头、一锤定音、一鸣惊人及幸运女神三项活动中所获得的人气值，系统将于5分钟之内发放到您的账户。请前往“我的账户”>“我的优惠“>“我的人气值”查看；<br/>
+		“土豪排行”的奖品将于活动结束后3个工作日内发放（客服人员会先与获奖用户电话沟通确认获奖名单，请保持手机畅通）；<br/>
+		11、若有其他疑问请拨打客服热线：400 025 6688<br/>
+		<strong>本次活动最终解释权归有融网所有。</strong>
+			</p>    		
+			</div>
+    	</div>  	  
+    </div>
+    <script>
+    	window.onload=function(){
+    		var curDate=new Date(environment.serverDate).getDate(),
+    			endDate=new Date("2015/03/31").getDate(),
+    			days=endDate-curDate+1;
+			if(days<10){
+				if(days<0){
+					days=0;
+				}
+				days="0" + days;
+			}
+    		$("#j-date-countdown").text(days);
+    	}
+    </script>    

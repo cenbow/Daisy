@@ -1,0 +1,17 @@
+#parse("/common/common.vm")
+################################script###################################
+ #set($js_config=[ 
+ "'urlMap':{ 
+   'getParam':'$root_url/appAdvert/getParam?', 
+   'clear':'$root_url/appAdvert/clear?', 
+   
+   },
+   'permission':{
+   		'detail':$shiro.hasPermission('coupon:detail'),
+   }
+   "
+ ])
+#set($css_url=["$root_url/static/js/lib/My97DatePicker/skin/WdatePicker.css"])
+#set($js_url=["$root_url/static/js/appAdvert.js","$root_url/static/js/lib/My97DatePicker/WdatePicker.js"]) 
+##################################DOM######################################
+

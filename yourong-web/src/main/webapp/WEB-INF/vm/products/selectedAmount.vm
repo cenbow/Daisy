@@ -1,0 +1,657 @@
+##投资金额拖动条
+#set($isVerify=${servletUtil.isVerifyTrueName()})
+#set($isShowCupon = $collections3.isNotEmpty($projectInfo.coupons) )
+#set($hasSetPayPassword=${servletUtil.synPayPasswordFlag()})
+##<div>
+##   $!{projectInfo.coupons}
+##</div>
+<input type="hidden" id="hasSetPayPassword" value="$hasSetPayPassword">
+<input type="hidden" id="projectId" value="$!{projectInfo.id}">
+<input type="hidden" id="memberId" value="$!{projectInfo.memberId}">
+<input type="hidden" id="projectCategory" value="$!{projectInfo.projectCategory}">
+#CSRFToken('xToken')
+#onceToken()
+#if($projectInfo.annualizedRateType == 1)
+<div class="m-detail-process" id="j-detail-process" data-type="1" onselectstart="return false;" unselectable="on">
+    <i></i>
+
+    #if($projectInfo.projectInterestList.size()==1)
+        #set($soleProcess="u-sole")
+    #end
+    #foreach($_interestList in $projectInfo.projectInterestList)
+        #set($index = $!velocityCount - 1)
+        #if($!velocityCount == 1)
+            <span class="u-point u-process-s${index} f-fs24"><i></i><s></s></span>
+            <span class="u-point-amount u-process-s${index}"
+                  data-amount="$!{_interestList.minInvest}">$!{_interestList.minInvest}元</span>
+            <span class="u-point u-process-s${velocityCount} f-fs24 $!{soleProcess}-point"><i></i><s></s></span>
+            <span class="u-point-amount u-process-s${velocityCount} $!{soleProcess}-amount"
+                  data-amount="$!{_interestList.maxInvest}">$!{_interestList.maxInvest}元</span>
+        #else
+            <span class="u-point u-process-s${velocityCount} f-fs24"><i></i><s></s></span>
+            <span class="u-point-amount u-process-s${velocityCount}"
+                  data-amount="$!{_interestList.maxInvest}">$!{_interestList.maxInvest}元</span>
+        #end
+        #if ($!{projectInfo.extraType} == 2)
+            <span class="u-rate-percent u-rate-s${velocityCount} $!{soleProcess}-rate j-rate"
+                  data-rate="$!{projectInfo.minAnnualizedRate}">$!{projectInfo.minAnnualizedRate}%</span>
+        #else
+            <span class="u-rate-percent u-rate-s${velocityCount} $!{soleProcess}-rate j-rate"
+                  data-rate="$!{_interestList.annualizedRate}">$!{_interestList.annualizedRate}%</span>
+        #end
+    #end
+
+##foreach($_interestList in $projectInfo.projectInterestList)
+##end
+
+## <div class="u-dynamic-profit u-circle-12 f-fwb u-investment-a" id="j-dynamic-profit">
+##     <div class="u-arrow-up">
+##         <i>◆</i>
+##         <span>◆</span>
+##     </div>
+##                              今日投
+##     <strong id="j-investment" class="f-fc-red2 f-fs14">$!{projectInfo.minInvestAmount}</strong>元，可获收益
+##     <strong id="j-profit" class="f-fc-red2 f-fs14"></strong>元
+## </div>
+
+##区分是否开通了存钱罐
+    #if($isVerify || "$!currentUser" == "")
+        #if(${projectInfo.isActive()} || ${projectInfo.isNotice()})
+            #if($balance>0)
+                #if($!{projectInfo.investType}=='2')
+                    <div class="u-dynamic-profit u-circle-30 f-fwb u-investment-b" id="j-dynamic-profit">
+                        <div class="u-arrow-up" id="j-profit-arrow"><i>◆</i><span>◆</span></div>
+                        我要投&nbsp;&nbsp;<input id="j-investment" class="f-fs14 f-round f-fwb" placeholder="" value=""/>&nbsp;&nbsp;元，年化收益
+                        <strong id="j-profit-percent" class="f-fc-red2 f-fs14">$!{projectInfo.minAnnualizedRate}
+                            %</strong>#if($currentUser)
+                        <div class="u-selector u-coupon-selector j-couponSelector f-round f-tar m-couponBorder" type="new">
+
+                            <button class="f-text-overflow j-esAnnualizedRate">+收益券</button>
+                            <i></i>
+                            <div class="m-coupon-list">
+                                <div class="u-arrow-up">
+                                    <s>◆</s>
+                                    <span>◆</span>
+                                </div>
+                                <ul class="f-round  f-fs12 j-couponList">
+                                    #if(!$!projectUtils.isProjectOfCannotUseCoupon($projectInfo.projectId) && !$!projectUtils.isProjectOfCannotUseProfitCoupon($projectInfo.projectId))
+                                        #if($!isShowCupon)
+                                            <li amount="0" limitAmount="0"><em>不使用收益券</em></li>
+
+                                            #foreach( $!coupon in $!{projectInfo.coupons} )
+                                            ##                                                class="#if($!{coupon.limited}==1)z-disabled #end"
+                                                <li class="#if($!{coupon.limited}==1)z-disabled #end" value="$!{coupon.couponCode}" amount="$!{coupon.amount}" limited="$!{coupon.limited}"
+                                                    limitAmount="$!{coupon.amountScope}" type="$!{coupon.extraInterestType}" interestDays="$!{coupon.extraInterestDay}">
+                                                    #if( $!{coupon.vaildCalcType} ==0 )
+                                                        #if($!{coupon.extraInterestType} == 1)
+                                                        ## 高额收益券
+                                                            <em class="f-fc-red2">+$!{coupon.amount}%</em>(起息日起，加息$!{coupon.extraInterestDay}天)</br>
+                                                            长期有效
+                                                        #else
+                                                        ## 普通收益券
+                                                            <em>+$!{coupon.amount}%</em> 长期有效
+                                                        #end
+                                                    #else
+                                                        #if($!{coupon.extraInterestType} == 1)
+                                                        ## 高额收益券
+                                                            <em class="f-fc-red2">+ $!{coupon.amount}%</em>(起息日起，加息$!{coupon.extraInterestDay}天)</br>
+                                                            #if(!${coupon.isShowCouponValidity()}&&$!{coupon.couponValidity})
+                                                                <span>有效期 $!{coupon.couponValidity}</span>
+                                                            #else
+                                                                有效期 $!{coupon.endDateStr}
+                                                            #end
+                                                        #else
+                                                        ## 普通收益券
+                                                            <em>+ $!{coupon.amount}%</em> #if(!${coupon.isShowCouponValidity()}&&$!{coupon.couponValidity})
+                                                            <span>有效期 $!{coupon.couponValidity}</span>#else
+                                                            有效期 $!{coupon.endDateStr}#end
+                                                        #end
+                                                    #end  <br>
+                                                    #if(!${coupon.isAvailable()})
+                                                        #if($!{coupon.couponPrivileges})
+                                                           <span>$!{coupon.couponPrivileges}</span><br>
+                                                        #end
+                                                        #if($!{coupon.couponAmountScope})
+                                                            <span>$!{coupon.couponAmountScope}</span><br>
+                                                        #end
+                                                        #if($!{coupon.couponDaysScope})
+                                                            <span>$!{coupon.couponDaysScope}</span>
+                                                        #end
+                                                    #else
+                                                        <span>全网通用</span>
+                                                    #end
+                                                </li>
+                                            #end
+                                        #else
+                                            <li amount="0" limitAmount="0">暂无可用收益券</li>
+
+                                        #end
+                                    #end
+                                </ul>
+                            </div>
+                            <input type="hidden" class="j-selected-ipt" id="profitCouponNo-h"/>
+                            <input type="hidden" class="j-limitAmount">
+                        </div>
+                    #end，可获得预期收益
+                        <strong id="j-profit" class="f-fc-red2 f-fs14"></strong>元
+                    ##该项目为可抽奖项目，且lotteryRuleList不为空时，募集状态，中奖励不为0，才显示可获得的抽奖次数
+                    ##是否为快投二期isQuick2Project
+                        #if( $!{projectInfo.isQuickLottery} == true)
+                            #if(${direct.isQuick2Project} == true)
+                                #if($!{direct.status}!=51 && $!{direct.status}!=52 && $!{direct.status}!=70 && $!{direct.status}!=90 && $!{projectInfo.lotteryEndCountDown} > 0  )
+                                    #if($!{projectInfo.lotteryRuleList} && $!{projectInfo.lotteryRuleList.size()}>0)
+                                        #foreach($!lotteryRule in $!{projectInfo.lotteryRuleList})
+                                            <input type="hidden" data-startAmount="$!{lotteryRule.startAmount}"
+                                                   data-endAmount="#if($!{lotteryRule.endAmount} && $!{lotteryRule.endAmount} > 0)
+$!{lotteryRule.endAmount}#else 0 #end" data-number="$!{lotteryRule.number}" class="j-lottery-rule">
+                                        #end
+                                        ，<strong class="f-fc-red2 f-fs14" id="j-lottery-count"></strong>次抽奖机会
+                                    #end
+                                #end
+                            #else
+                                #if($!{direct.status}!=51 && $!{direct.status}!=52 && $!{direct.status}!=70 && $!{direct.status}!=90 )
+                                    #if($!{direct.hasReward}==true)
+                                        #if($!{projectInfo.lotteryRuleList} && $!{projectInfo.lotteryRuleList.size()}>0)
+                                            #foreach($!lotteryRule in $!{projectInfo.lotteryRuleList})
+                                                <input type="hidden" data-startAmount="$!{lotteryRule.startAmount}"
+                                                       data-endAmount="#if($!{lotteryRule.endAmount} && $!{lotteryRule.endAmount} > 0)
+    $!{lotteryRule.endAmount}#else 0 #end" data-number="$!{lotteryRule.number}" class="j-lottery-rule">
+                                            #end
+                                            ，<strong class="f-fc-red2 f-fs14" id="j-lottery-count"></strong>次抽奖机会
+                                        #end
+                                    #end
+                                #end
+                            #end
+                        #end
+                        <span class="f-fs12 j-exAmount f-dn">（含券收益 <em id="j-exAmount"></em>元）</span>
+                        <p>输入金额须为<strong>$!{projectInfo.minInvestAmount}</strong>的整数倍</p>
+                    </div>
+                #else
+                    <div class="u-dynamic-profit u-circle-30 f-fwb u-investment-b" id="j-dynamic-profit">
+                        <div class="u-arrow-up" id="j-profit-arrow"><i>◆</i><span>◆</span></div>
+                        今日投&nbsp;&nbsp;<input id="j-investment" class="f-fs14 f-round f-fwb" placeholder="" value=""/>&nbsp;&nbsp;元，年化收益
+                        <strong id="j-profit-percent" class="f-fc-red2 f-fs14"
+                                val="$!{projectInfo.minAnnualizedRate}">$!{projectInfo.minAnnualizedRate}%</strong>
+                        #if($currentUser)
+                        <div class="u-selector u-coupon-selector j-couponSelector f-round f-tar m-couponBorder" type="new">
+
+                            <button class="f-text-overflow j-esAnnualizedRate">+收益券</button>
+
+                            <i></i>
+                            <div class="m-coupon-list">
+                                <div class="u-arrow-up">
+                                    <s>◆</s>
+                                    <span>◆</span>
+                                </div>
+                                <ul class="f-round  f-fs12 j-couponList">
+
+                                    #if(!$!projectUtils.isProjectOfCannotUseCoupon($projectInfo.projectId) && !$!projectUtils.isProjectOfCannotUseProfitCoupon($projectInfo.projectId))
+                                        #if($!isShowCupon)
+                                            <li amount="0" limitAmount="0"><em>不使用收益券</em></li>
+
+                                            #foreach( $!coupon in $!{projectInfo.coupons} )
+                                            ##                                                class="#if($!{coupon.limited}==1)z-disabled #end"
+                                                <li class="#if($!{coupon.limited}==1)z-disabled #end" value="$!{coupon.couponCode}" amount="$!{coupon.amount}" limited="$!{coupon.limited}"
+                                                    limitAmount="$!{coupon.amountScope}">
+                                                    #if( $!{coupon.vaildCalcType} ==0 )
+                                                        <em>+$!{coupon.amount}%</em> 长期有效
+                                                    #else
+                                                        <em>+ $!{coupon.amount}%</em> #if(!${coupon.isShowCouponValidity()}&&$!{coupon.couponValidity})
+                                                        <span>有效期 $!{coupon.couponValidity}</span>#else
+                                                        有效期 $!{coupon.endDateStr}#end
+                                                    #end <br>
+                                                    #if(!${coupon.isAvailable()})
+                                                        #if($!{coupon.couponPrivileges})
+                                                            <span>$!{coupon.couponPrivileges}</span><br>
+                                                        #end
+                                                        #if($!{coupon.couponAmountScope})
+                                                            <span>$!{coupon.couponAmountScope}</span><br>
+                                                        #end
+                                                        #if($!{coupon.couponDaysScope})
+                                                            <span>$!{coupon.couponDaysScope}</span>
+                                                        #end
+                                                    #else
+                                                        <span>全网通用</span>
+                                                    #end
+                                                </li>
+                                            #end
+                                        #else
+                                            <li amount="0" limitAmount="0">暂无可用收益券</li>
+                                        #end
+
+                                    #end
+
+                                </ul>
+                            </div>
+                            <input type="hidden" class="j-selected-ipt" id="profitCouponNo-h"/>
+                            <input type="hidden" class="j-limitAmount">
+                        </div>
+                        #end
+                        ，可获收益
+                        <strong id="j-profit" class="f-fc-red2 f-fs14"></strong>元
+                        <span class="f-fs12 f-dn j-exAmount">（含券收益 <em id="j-exAmount"></em>元）</span>
+                        <p>输入金额须为<strong>$!{projectInfo.minInvestAmount}</strong>的整数倍</p>
+                    </div>
+                #end
+                <span id="j-process-drag" class="u-process-drag"></span><s id="j-process-crt"></s>
+            #else
+                <div class="u-dynamic-profit u-circle-30 f-fwb u-investment-b z-paying" id="j-dynamic-profit">
+                    <div class="u-arrow-up" id="j-profit-arrow">
+                        <i>◆</i>
+                        <span>◆</span>
+                    </div>
+                    目前已成功支付：<span class="f-fc-red">$!{transactionUtils.getPayedCountByProject(${projectInfo.id})}</span>笔
+                    ($!{transactionUtils.getPayedAmountByProject(${projectInfo.id})}元)；
+                    支付确认中：<span class="f-fc-red">$!{transactionUtils.getPayingCountByProject(${projectInfo.id})}</span>笔
+                    ($!{transactionUtils.getPayingAmountByProject(${projectInfo.id})}元)
+                </div>
+                <button id="j-process-drag" class="u-process-drag z-final"></button>
+                <s id="j-process-crt" class="z-final"></s>
+            #end
+            #if($projectInfo.isNotice())
+                <a href="javascript:void(0)"
+                   class="f-round f-fs18 f-mgl-8 u-btn u-btn-primary f-btn-l3 detail-notice j-index-notice"
+                   id="j-project-notice">距上线&nbsp;&nbsp;<span id="j-project-notice-time" class="u-notice-time"
+                                                              sencond="$!{projectInfo.getNoticeEndTime()}"></span></a>
+                <a href="javascript:void(0)"
+                   class="f-round f-fs18 f-mgl-8 u-btn u-btn-primary f-btn-l3 j-investment-btn" style="display:none"
+                   id="j-now-order" data-state="1">立即投资</a>
+            #else
+                #if(${projectInfo.isNoviceProject()} && ${transactionUtils.hasTransactionByMember(${currentUser.id})} && !${projectInfo.noCheckNovice})
+                    <a href="javascript:void(0)"
+                       class="f-round f-fs18 f-mgl-8 u-btn u-btn-primary f-btn-l3 j-investment-btn" id="j-novice-order"
+                       data-state="1">${projectInfo.getButtonText()}</a>
+                #else
+                ##剩余投资项目少于等于零且状态还在投资中，按钮置为“支付确定中”
+                    #if($balance<=0)
+                        <a href="javascript:void(0)"
+                           class="f-round f-fs18 f-mgl-8 u-btn u-btn-primary f-btn-l3 z-disabled u-btn-paying"
+                           data-state="0">支付确认中<i class="j-user-tips u-circle-tips f-ff-din" data-skin="u-paying-tips"
+                                                  data-tips="订单正在新浪排队支付中，如遇支付失败，您还有机会哦。"></i></a>
+                    #else
+                        <a href="javascript:void(0)"
+                           class="f-round f-fs18 f-mgl-8 u-btn u-btn-primary f-btn-l3 j-investment-btn" id="j-now-order"
+                           data-state="1">${projectInfo.getButtonText()}</a>
+                    #end
+                #end
+            #end
+        #else
+            <div class="u-dynamic-profit u-circle-30 f-fwb u-investment-b #if($projectInfo.status==90)z-fail#end #if($projectInfo.status==40||$projectInfo.status==50||$projectInfo.status==51||$projectInfo.status==60||$projectInfo.status==70) z-last #end z-final"
+                 id="j-dynamic-profit">
+                <div class="u-arrow-up" id="j-profit-arrow">
+                    <i>◆</i>
+                    <span>◆</span>
+                </div>
+                参与本项目投资会员：<span
+                    class="f-fc-red">$!{transactionUtils.getTransactionMemberCountByProject(${projectInfo.id})}</span>人，共投资：<span
+                    class="f-fc-red">$!{transactionUtils.getTransactionCountByProject(${projectInfo.id})}</span>笔；${projectInfo.getTransactionText()}：<span
+                    class="f-fc-red">$!{transactionUtils.getTotalTransactionInterestByProject(${projectInfo.id})}</span>元
+            </div>
+            <button id="j-process-drag" class="u-process-drag #if($projectInfo.status==90)z-fail#end z-final"></button>
+            <s id="j-process-crt" class="z-final #if($projectInfo.status==90)z-fail#end"></s>
+            #if($!{projectInfo.investType}=='2')
+##            直投
+##            判断不可投项目是否为已满额、暂停、待付款
+            <a href="javascript:void(0)" class="f-round f-fs18 f-mgl-8 u-btn u-btn-primary f-btn-l3 j-investment-btn
+                #if($projectInfo.status==40||$projectInfo.status==50||${projectInfo.status}==81)
+                z-ceased
+                 #elseif(${projectInfo.status}==80&&${projectInfo.saleComplatedTime})
+                z-ceased
+
+                #else
+                z-disabled
+                #end
+                " data-state="0" id="j-now-order">${projectInfo.getButtonText()}</a>
+            #else
+            ##            债权
+                <a href="javascript:void(0)"
+                   class="f-round f-fs18 f-mgl-8 u-btn u-btn-primary f-btn-l3 j-investment-btn z-disabled"
+                   data-state="0" id="j-now-order">${projectInfo.getButtonText()}</a>
+            #end
+        #end
+    #else
+        <div class="u-dynamic-profit u-circle-30 f-fwb u-investment-b" id="j-dynamic-profit">
+            <div class="u-arrow-up" id="j-profit-arrow">
+                <i>◆</i>
+                <span>◆</span>
+            </div>
+            今日投&nbsp;&nbsp;<input id="j-investment" class="f-fs14 f-round f-fwb" placeholder="" value=""/>&nbsp;&nbsp;元，年化收益
+            <strong id="j-profit-percent" class="f-fc-red2 f-fs14">$!{projectInfo.minAnnualizedRate}%</strong>
+            #if($currentUser)
+                <div class="u-selector u-coupon-selector j-couponSelector f-round f-tar m-couponBorder" type="new">
+
+                    <button class="f-text-overflow j-esAnnualizedRate">+收益券</button>
+
+                    <i></i>
+                    <div class="m-coupon-list">
+                        <div class="u-arrow-up">
+                            <s>◆</s>
+                            <span>◆</span>
+                        </div>
+                        <ul class="f-round  f-fs12 j-couponList">
+                            #if(!$!projectUtils.isProjectOfCannotUseCoupon($projectInfo.projectId) && !$!projectUtils.isProjectOfCannotUseProfitCoupon($projectInfo.projectId))
+                                #if($!isShowCupon)
+                                    <li amount="0" limitAmount="0"><em>不使用收益券</em></li>
+                                    #foreach( $!coupon in $!{projectInfo.coupons} )
+                                    ##                                                class="#if($!{coupon.limited}==1)z-disabled #end"
+                                        <li class="#if($!{coupon.limited}==1)z-disabled #end"
+                                            value="$!{coupon.couponCode}" amount="$!{coupon.amount}"
+                                            limited="$!{coupon.limited}"
+                                            limitAmount="$!{coupon.amountScope}">
+                                            #if( $!{coupon.vaildCalcType} ==0 )
+                                                <em>+$!{coupon.amount}%</em> 长期有效
+                                            #else
+                                                <em>+ $!{coupon.amount}%</em> #if(!${coupon.isShowCouponValidity()}&&$!{coupon.couponValidity})
+                                                <span>有效期 $!{coupon.couponValidity}</span>#else
+                                                有效期 $!{coupon.endDateStr}#end
+                                            #end <br>
+                                            #if(!${coupon.isAvailable()})
+                                                #if($!{coupon.couponPrivileges})
+                                                    <span>$!{coupon.couponPrivileges}</span><br>
+                                                #end
+                                                #if($!{coupon.couponAmountScope})
+                                                    <span>$!{coupon.couponAmountScope}</span><br>
+                                                #end
+                                                #if($!{coupon.couponDaysScope})
+                                                    <span>$!{coupon.couponDaysScope}</span>
+                                                #end
+                                            #else
+                                                <span>全网通用</span>
+                                            #end
+                                        </li>
+                                    #end
+                                #else
+                                    <li amount="0" limitAmount="0">暂无可用收益券</li>
+                                #end
+                            #end
+                        </ul>
+                    </div>
+                    <input type="hidden" class="j-selected-ipt" id="profitCouponNo-h"/>
+                    <input type="hidden" class="j-limitAmount">
+                </div>
+            #end
+            ，可获收益
+            <strong id="j-profit" class="f-fc-red2 f-fs14"></strong>元
+            <span class="f-fs12 j-exAmount f-dn">（含券收益 <em id="j-exAmount"></em>元）</span>
+            <p>输入金额须为<strong>$!{projectInfo.minInvestAmount}</strong>的整数倍</p>
+        </div>
+        <button id="j-process-drag" class="u-process-drag"></button>
+        <s id="j-process-crt"></s>
+        #if(${projectInfo.isActive()})
+            <a href="$root_url/member/sinapay"
+               class="f-round f-fs18 f-mgl-8 u-btn u-btn-primary f-btn-l3 j-investment-btn" data-state="1">
+                <span class="f-fs12 f-fc-pink">投资前，请先开通</span>
+                <em class="f-fs16">新浪支付存钱罐</em>
+            </a>
+        #else
+            #if($!{projectInfo.investType}=='2')
+            ##            直投
+            ##            判断不可投项目是否为已满额、暂停、待付款
+                <a href="javascript:void(0)"
+                   class="f-round f-fs18 f-mgl-8 u-btn u-btn-primary f-btn-l3 detail-notice j-index-notice"
+                   id="j-project-notice">距上线&nbsp;&nbsp;<span id="j-project-notice-time" class="u-notice-time"
+                                                              sencond="$!{projectInfo.getNoticeEndTime()}"></span></a>
+                <a href="javascript:void(0)"
+                   class="f-round f-fs18 f-mgl-8 u-btn u-btn-primary f-btn-l3 j-investment-btn" style="display:none"
+                   id="j-now-order" data-state="1">立即投资</a>
+            #else
+            ##            债权
+                <a href="javascript:void (0)"
+                   class="f-round f-fs18 f-mgl-8 u-btn u-btn-primary f-btn-l3 j-investment-btn z-disabled"
+                   data-state="0" id="j-now-order">${projectInfo.getButtonText()}</a>
+            #end
+        #end
+    #end
+</div>
+#else
+<div class="m-detail-process m-detail-process2" id="j-detail-process" data-type="2">
+    <i></i>
+
+    <span class="u-point u-process-s0 f-fs24"><i></i><s></s></span>
+    <span class="u-point-amount u-process-s0"
+          data-amount="$!{projectInfo.minInvestAmount}">$!{projectInfo.minInvestAmount}元</span>
+    <span class="u-point u-process-s1 f-fs24"><i></i><s></s></span>
+    <span class="u-point-amount u-process-s1"
+          data-amount="$!{projectInfo.maxInvestAmount}">$!{projectInfo.maxInvestAmount}元</span>
+    <span class="u-point u-process-s2 f-fs24"><i></i><s></s></span>
+    <span class="u-point-amount u-process-s2 u-amount-last"
+          data-amount="$!{projectInfo.totalAmount}">$!{projectInfo.totalAmount}元</span>
+    <span class="u-rate-percent u-rate-s1 j-rate"
+          data-rate="$!{projectInfo.minAnnualizedRate}">$!{projectInfo.minAnnualizedRate}
+        ~ $!{projectInfo.maxAnnualizedRate}%</span>
+    <span class="u-rate-percent u-rate-s2 j-rate"
+          data-rate="$!{projectInfo.maxAnnualizedRate}">$!{projectInfo.maxAnnualizedRate}%</span>
+    <input type="hidden" name="currentUser" value="$!currentUser">
+    #if($isVerify || "$!currentUser" == "")
+        #if(${projectInfo.isActive()} || ${projectInfo.isNotice()})
+            #if($balance>0)
+                <div class="u-dynamic-profit u-circle-30 f-fwb u-investment-b" id="j-dynamic-profit">
+                    <div class="u-arrow-up" id="j-profit-arrow"><i>◆</i><span>◆</span></div>
+                    今日投&nbsp;&nbsp;<input id="j-investment" class="f-fs14 f-round f-fwb" placeholder="" value=""/>&nbsp;&nbsp;元，年化收益
+                    <strong id="j-profit-percent" class="f-fc-red2 f-fs14">$!{projectInfo.minAnnualizedRate}%</strong>
+                    #if($currentUser)
+                    <div class="u-selector u-coupon-selector j-couponSelector f-round f-tar m-couponBorder" type="new">
+
+                        <button class="f-text-overflow j-esAnnualizedRate">+收益券</button>
+
+                        <i></i>
+                        <div class="m-coupon-list">
+                            <div class="u-arrow-up">
+                                <s>◆</s>
+                                <span>◆</span>
+                            </div>
+                            <ul class="f-round  f-fs12 j-couponList">
+                                #if(!$!projectUtils.isProjectOfCannotUseCoupon($projectInfo.projectId) && !$!projectUtils.isProjectOfCannotUseProfitCoupon($projectInfo.projectId))
+                                    #if($!isShowCupon)
+                                        <li amount="0" limitAmount="0"><em>不使用收益券</em></li>
+                                        #foreach( $!coupon in $!{projectInfo.coupons} )
+                                        ##                                                class="#if($!{coupon.limited}==1)z-disabled #end"
+                                            <li class="#if($!{coupon.limited}==1)z-disabled #end" value="$!{coupon.couponCode}" amount="$!{coupon.amount}" limited="$!{coupon.limited}"
+                                                limitAmount="$!{coupon.amountScope}">
+                                                #if( $!{coupon.vaildCalcType} ==0 )
+                                                    <em>+$!{coupon.amount}%</em> 长期有效
+                                                #else
+                                                    <em>+ $!{coupon.amount}%</em> #if(!${coupon.isShowCouponValidity()}&&$!{coupon.couponValidity})
+                                                    <span>有效期 $!{coupon.couponValidity}</span>#else
+                                                    有效期 $!{coupon.endDateStr}#end
+                                                #end  <br>
+                                                #if(!${coupon.isAvailable()})
+                                                    #if($!{coupon.couponPrivileges})
+                                                      <span>$!{coupon.couponPrivileges}</span><br>
+                                                    #end
+                                                    #if($!{coupon.couponAmountScope})
+                                                        <span>$!{coupon.couponAmountScope}</span><br>
+                                                    #end
+                                                    #if($!{coupon.couponDaysScope})
+                                                        <span>$!{coupon.couponDaysScope}</span>
+                                                    #end
+                                                #else
+                                                    <span>全网通用</span>
+                                                #end
+                                            </li>
+                                        #end
+                                    #else
+                                        <li amount="0" limitAmount="0">暂无可用收益券</li>
+                                    #end
+                                #end
+                            </ul>
+                        </div>
+                        <input type="hidden" class="j-selected-ipt" id="profitCouponNo-h"/>
+                        <input type="hidden" class="j-limitAmount">
+                    </div>
+                    #end
+                    ，可获收益
+                    <strong id="j-profit" class="f-fc-red2 f-fs14"></strong>元
+                    <span class="f-fs12 j-exAmount f-dn">（含券收益 <em id="j-exAmount"></em>元）</span>
+                    <p>输入金额须为<strong>$!{projectInfo.minInvestAmount}</strong>的整数倍</p>
+                </div>
+                <button id="j-process-drag" class="u-process-drag"></button>
+                <s id="j-process-crt"></s>
+            #else
+                <div class="u-dynamic-profit u-circle-30 f-fwb u-investment-b z-paying" id="j-dynamic-profit">
+                    <div class="u-arrow-up">
+                        <i>◆</i>
+                        <span>◆</span>
+                    </div>
+                    目前已成功支付：<span class="f-fc-red">$!{transactionUtils.getPayedCountByProject(${projectInfo.id})}</span>笔
+                    ($!{transactionUtils.getPayedAmountByProject(${projectInfo.id})}元)；
+                    支付确认中：<span class="f-fc-red">$!{transactionUtils.getPayingCountByProject(${projectInfo.id})}</span>笔
+                    ($!{transactionUtils.getPayingAmountByProject(${projectInfo.id})}元)
+                </div>
+                <button id="j-process-drag" class="u-process-drag z-final"></button>
+                <s id="j-process-crt" class="z-final"></s>
+            #end
+            #if($projectInfo.isNotice())
+                <a href="javascript:void(0)"
+                   class="f-round f-fs18 f-mgl-8 u-btn u-btn-primary f-btn-l3 detail-notice j-index-notice"
+                   id="j-project-notice">距上线&nbsp;&nbsp;<span id="j-project-notice-time" class="u-notice-time"
+                                                              sencond="$!{projectInfo.getNoticeEndTime()}"></span></a>
+                <a href="javascript:void(0)"
+                   class="f-round f-fs18 f-mgl-8 u-btn u-btn-primary f-btn-l3 j-investment-btn" style="display:none"
+                   id="j-now-order" data-state="1">立即投资</a>
+            #else
+                #if(${projectInfo.isNoviceProject()} && ${transactionUtils.hasTransactionByMember(${currentUser.id})} )
+                    <a href="javascript:void(0)"
+                       class="f-round f-fs18 f-mgl-8 u-btn u-btn-primary f-btn-l3 j-investment-btn" id="j-novice-order"
+                       data-state="1">${projectInfo.getButtonText()}</a>
+                #else
+                ##剩余投资项目少于等于零且状态还在投资中，按钮置为“支付确定中”
+                    #if($balance<=0)
+                        <a href="javascript:void(0)"
+                           class="f-round f-fs18 f-mgl-8 u-btn u-btn-primary f-btn-l3 z-disabled u-btn-paying"
+                           data-state="0">支付确认中<i class="j-user-tips u-circle-tips f-ff-din" data-skin="u-paying-tips"
+                                                  data-tips="订单正在新浪排队支付中，如遇支付失败，您还有机会哦。"></i></a>
+                    #else
+                        <a href="javascript:void(0)"
+                           class="f-round f-fs18 f-mgl-8 u-btn u-btn-primary f-btn-l3 j-investment-btn" id="j-now-order"
+                           data-state="1">${projectInfo.getButtonText()}</a>
+                    #end
+                #end
+            #end
+        #else
+            <div class="u-dynamic-profit u-circle-30 f-fwb u-investment-b z-final" id="j-dynamic-profit">
+                <div class="u-arrow-up" >
+                    <i>◆</i>
+                    <span>◆</span>
+                </div>
+                参与本项目投资会员：<span
+                    class="f-fc-red">$!{transactionUtils.getTransactionMemberCountByProject(${projectInfo.id})}</span>人，共投资：<span
+                    class="f-fc-red">$!{transactionUtils.getTransactionCountByProject(${projectInfo.id})}</span>笔；${projectInfo.getTransactionText()}：<span
+                    class="f-fc-red">$!{transactionUtils.getTotalTransactionInterestByProject(${projectInfo.id})}</span>元
+            </div>
+            <button id="j-process-drag" class="u-process-drag z-final"></button>
+            <s id="j-process-crt" class="z-final"></s>
+            <a href="javascript:void(0)"
+               class="f-round f-fs18 f-mgl-8 u-btn u-btn-primary f-btn-l3 j-investment-btn z-disabled" data-state="0"
+               id="j-now-order">${projectInfo.getButtonText()}</a>
+        #end
+    #else
+        #if(${projectInfo.isActive()})
+            <div class="u-dynamic-profit u-circle-30 f-fwb u-investment-b" id="j-dynamic-profit">
+                <div class="u-arrow-up">
+                    <i>◆</i>
+                    <span>◆</span>
+                </div>
+                今日投&nbsp;&nbsp;<input id="j-investment" class="f-fs14 f-round f-fwb" placeholder="" value=""/>&nbsp;&nbsp;元，年化收益
+                <strong id="j-profit-percent" class="f-fc-red2 f-fs14">$!{projectInfo.minAnnualizedRate}%</strong>
+                #if($currentUser)
+                <div class="u-selector u-coupon-selector j-couponSelector f-round f-tar m-couponBorder" type="new">
+
+                    <button class="f-text-overflow j-esAnnualizedRate">+收益券</button>
+
+                    <i></i>
+                    <div class="m-coupon-list">
+                        <div class="u-arrow-up">
+                            <s>◆</s>
+                            <span>◆</span>
+                        </div>
+                        <ul class="f-round  f-fs12 j-couponList">
+                            #if(!$!projectUtils.isProjectOfCannotUseCoupon($projectInfo.projectId) && !$!projectUtils.isProjectOfCannotUseProfitCoupon($projectInfo.projectId))
+                                #if($!isShowCupon)
+                                    <li amount="0" limitAmount="0"><em>不使用收益券</em></li>
+                                    #foreach( $!coupon in $!{projectInfo.coupons} )
+                                    ##                                                class="#if($!{coupon.limited}==1)z-disabled #end"
+                                        <li class="#if($!{coupon.limited}==1)z-disabled #end" value="$!{coupon.couponCode}" amount="$!{coupon.amount}" limited="$!{coupon.limited}"
+                                            limitAmount="$!{coupon.amountScope}">
+                                            #if( $!{coupon.vaildCalcType} ==0 )
+                                                <em>+$!{coupon.amount}%</em> 长期有效
+                                            #else
+                                                <em>+ $!{coupon.amount}%</em> #if(!${coupon.isShowCouponValidity()}&&$!{coupon.couponValidity})
+                                                <span>有效期 $!{coupon.couponValidity}</span>#else
+                                                有效期 $!{coupon.endDateStr}#end
+                                            #end <br>
+                                            #if(!${coupon.isAvailable()})
+                                                #if($!{coupon.couponPrivileges})
+                                                     <span>$!{coupon.couponPrivileges}</span> <br>
+                                                #end
+                                                #if($!{coupon.couponAmountScope})
+                                                    <span>$!{coupon.couponAmountScope}</span><br>
+                                                #end
+                                                #if($!{coupon.couponDaysScope})
+                                                    <span>$!{coupon.couponDaysScope}</span>
+                                                #end
+                                            #else
+                                                <span>全网通用</span>
+                                            #end
+                                        </li>
+                                    #end
+                                #else
+                                    <li amount="0" limitAmount="0">暂无可用收益券</li>
+                                #end
+                            #end
+                        </ul>
+                    </div>
+                    <input type="hidden" class="j-selected-ipt" id="profitCouponNo-h"/>
+                    <input type="hidden" class="j-limitAmount">
+                </div>
+                #end
+                ，可获收益
+                <strong id="j-profit" class="f-fc-red2 f-fs14"></strong>元
+                <span class="f-fs12 j-exAmount f-dn">（含券收益 <em id="j-exAmount"></em>元）</span>
+                <p>输入金额须为<strong>$!{projectInfo.minInvestAmount}</strong>的整数倍</p>
+            </div>
+            <button id="j-process-drag" class="u-process-drag"></button>
+            <s id="j-process-crt"></s>
+            <a href="$root_url/member/sinapay"
+               class="f-round f-fs18 f-mgl-8 u-btn u-btn-primary f-btn-l3 j-investment-btn" data-state="1">
+                <span class="f-fs12 f-fc-pink">投资前，请先开通</span>
+                <em class="f-fs16">新浪支付存钱罐</em>
+            </a>
+        #else
+            <div class="u-dynamic-profit u-circle-30 f-fwb u-investment-b z-final" id="j-dynamic-profit">
+                <div class="u-arrow-up">
+                    <i>◆</i>
+                    <span>◆</span>
+                </div>
+                参与本项目投资会员：<span
+                    class="f-fc-red">$!{transactionUtils.getTransactionMemberCountByProject(${projectInfo.id})}</span>人，共投资：<span
+                    class="f-fc-red">$!{transactionUtils.getTransactionCountByProject(${projectInfo.id})}</span>笔；${projectInfo.getTransactionText()}：<span
+                    class="f-fc-red">$!{transactionUtils.getTotalTransactionInterestByProject(${projectInfo.id})}</span>元
+            </div>
+            <button id="j-process-drag" class="u-process-drag z-final"></button>
+            <s id="j-process-crt" class="z-final"></s>
+
+            <a href="javascript:void(0)"
+               class="f-round f-fs18 f-mgl-8 u-btn u-btn-primary f-btn-l3 j-investment-btn z-disabled" data-state="0"
+               id="j-now-order">${projectInfo.getButtonText()}</a>
+        #end
+    #end
+</div>
+#end
+##        跳转到设置支付密码弹窗
+<div class="u-paymentCipherBlock f-dn" id="j-paymentCipherBlock">
+    <div class="f-fs20 u-tipTitle">
+        设置支付密码提示
+    </div>
+    <img class="j-closeBtn" src="../static/img/member/closeBtn.png" alt="关闭">
+    <p class="f-fs20">
+        新浪支付全新升级，设置支付密码后，方可进行投资、充值、提现
+    </p>
+    <a href="/member/paymentPassword">
+        <button class="f-fs14">
+            前往设置
+        </button>
+    </a>
+</div>
+## /用户中心内容
+<div class="u-shade j-cover f-dn"></div>

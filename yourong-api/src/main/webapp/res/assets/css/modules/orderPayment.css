@@ -1,0 +1,209 @@
+
+.m-bankcard-border {
+    color: #666;
+    border-bottom: 1px solid #ccc;
+}
+
+.m-submit {
+    margin-bottom: 10px;
+}
+
+.m-submit li {
+    border-bottom: 1px solid #ccc;
+    line-height: 30px;
+    margin-top: 30px;
+    color: #999;
+}
+
+#j-agree {
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+}
+
+.f-fc-red {
+    color: #d8414a;
+}
+
+.m-submit em {
+    color: #d8414a;
+    font-size: 30px;
+    margin-left: 20px;
+    font-family: "dincond", "Microsoft Yahei";
+}
+
+.f-choice {
+    line-height: 50px !important;
+    background: #fff;
+    text-align: right;
+    width: 110%;
+    margin: 0 0 0 -5% !important;
+
+    border: none !important;
+}
+
+.f-pay {
+    background: #fff;
+    width: 110%;
+    border: none !important;;
+    margin: 6px 0 0 -5% !important;
+    line-height: 60px !important;
+}
+
+.f-pay input {
+    text-align: right;
+    width: 40%;
+    font-size: 30px;
+    line-height: 60px;
+    color: #000;
+    font-family: "dincond", "Microsoft Yahei";
+}
+
+.f-mar-center {
+    margin: 0 5%;
+}
+
+.z-indent {
+    text-indent: 10px;
+    color: #999;
+    margin-right: 5%;
+}
+
+.u-btn-primary {
+    background-color: #d74147;
+    border-color: #d74147;
+    outline: 0;
+    position: fixed;
+    bottom: 0;
+}
+
+.f-btn-submit {
+    width: 100%;
+    height: 50px;
+    /* padding: 0 1px; */
+    line-height: 50px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.u-reg-btn.z-disabled {
+    background-color: #aaa;
+    border-color: #aaa;
+    cursor: default;
+}
+
+.u-popup {
+    width: 90%;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    position: absolute;
+    top: 46%;
+    left: 5%;
+    text-align: center;
+    background: #fff;
+    line-height: 40px;
+    z-index: 200;
+}
+
+.u-popup .f-firstLi {
+    border-bottom: 1px solid #CCCCCC;
+}
+
+.u-popup .f-secondLi .f-firstA {
+    width: 100%;
+    height: 100%;
+}
+
+.u-popup .f-secondLi a {
+    width: 46%;
+    color: #000;
+    display: inline-block;
+    border-right: 1px solid #ccc;
+}
+
+.u-popup .f-secondLi .f-secondA {
+    border: none;
+    color: #da404a;
+}
+
+.u-cashCoupon-popup {
+    width: 90%;
+    position: fixed;
+    bottom: 16px;
+    left: 5%;
+    z-index: 200;
+}
+
+.u-cashCoupon {
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow-y: scroll;
+}
+
+.z-disabled {
+    z-index: 1;
+}
+
+.u-cashCoupon .f-gray-bg {
+    background: #000;
+    opacity: 0.1;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.u-cashCoupon .f-color-gray {
+    color: #999 !important;
+}
+
+.u-cashCoupon li {
+    padding: 6px 10px;
+    border-top: 1px solid #ccc;
+    position: relative;
+}
+.u-cashCoupon li :first-child{
+    border-top: none;
+}
+.u-cashCoupon li span {
+    display: block;
+    color: #999;
+}
+
+.u-btn-close {
+    width: 100%;
+    background-color: #fff;
+    line-height: 40px;
+    border-radius: 5px;
+    margin-top: 20px;
+    color: #999;
+
+}
+
+.u-cover {
+    display: none;
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    z-index: 198;
+    -moz-opacity: 0.5;
+    opacity: .50;
+    filter: alpha(opacity=50);
+}
+
+.u-loading {
+
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    top: 46%;
+    left: 46%;
+}

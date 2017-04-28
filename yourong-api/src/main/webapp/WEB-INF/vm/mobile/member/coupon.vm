@@ -1,0 +1,110 @@
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$siteurl/res/lib/fullpage/zepto.fullpage.css","$!m_css_url/modules/member.css"])
+#set($title='我的优惠')
+#set($isZepto = true)
+<div id="cash" data-target="j-cash" xmlns="http://www.w3.org/1999/html"></div>
+<div id="profit" data-target="j-profit"></div>
+<h2 class="u-header f-pos-r">
+    <a href="$siteurl/mCenter/home">返回</a>
+    <span class="f-fs18">
+        我的优惠
+    </span>
+</h2>
+
+<div class="u-cashCoupon-tab f-cf">
+    <span class="ui-badge-wrap"><a href="$siteurl/mCenter/reputationPage">人气值</a></span>
+    <span class="z-current ui-badge-wrap" id="j-cash">现金券
+        <em class="ui-badge-cornernum" id="j-cash-count"></em>
+    </span>
+    <span class="ui-badge-wrap" id="j-profit">收益券
+        <em class="ui-badge-cornernum" id="j-profit-count"></em>
+    </span>
+</div>
+<!--我的优惠券-现金券-->
+<script type="text/html" id="j-cashCoupon-tpl">
+    <div class="m-cashCoupon-list wp">
+        <div class="wp-inner u-coupon-wrap" data-total="{{totalElements}}" id="j-cashCoupon-wrap">{{each data as item i}}<div class="u-coupon-box page"><div class="u-coupon-inner">
+                    <div class="u-cashCoupon-money">￥<span class="f-ff-din" >{{item.amount | amountFormat}}</span></div>
+                    <div class="u-cashCoupon-bg"><s></s></div>
+                    <p>
+                        <em>{{item.couponCode}}</em>
+                        <span>{{item.name}}</span>
+                        {{if item.couponPrivileges}}{{item.couponPrivileges}}<br/>{{/if}}
+                        {{if item.couponAmountScope}}{{item.couponAmountScope}}<br/>{{/if}}
+                        {{if item.couponDaysScope}}{{item.couponDaysScope}}<br/>{{/if}}
+                        {{if item.couponValidity}}{{item.couponValidity}}{{/if}}
+                    </p>
+                </div>
+            {{if item.status==5}}
+            <div class="u-coupon-shade">
+                    <span>
+                    <em>锁定中</em>
+                    您有一笔待支付的订单已使用该券
+                    </span>
+            </div>
+            {{/if}}
+            </div>{{/each}}</div>
+    </div>
+    <div class="m-cashCoupon-point" id="j-cashCoupon-point">
+        <ol style="width: {{25*data.length}}px">
+            {{each data as item i}}
+            <li {{if i==0}}class="z-current"{{/if}}>●</li>
+            {{/each}}
+        </ol>
+    </div>
+</script>
+<div class="m-Coupon z-current" id="j-cashCoupon">
+</div>
+<!--/我的优惠券-现金券-->
+<!--我的优惠券-收益券-->
+<script type="text/html" id="j-profitCoupon-tpl">
+    <div class="m-profitCoupon-list wp">
+        <div class="wp-inner2 u-coupon-wrap" data-total="{{totalElements}}" id="j-profitCoupon-wrap">{{each data as item i}}<div class="u-coupon-box page">
+                <div class="u-coupon-inner">
+                    <div class="u-profitCoupon-money f-ff-din">{{item.amount | profitFormat:'int'}}<span> .{{item.amount | profitFormat:'float'}}%</span></div>
+                    <div class="u-cashCoupon-bg"><s></s></div>
+                    <p>
+                        <em>{{item.couponCode}}</em>
+                        <span>{{item.name}}</span>
+                        {{if item.extraName}}{{item.extraName}}<br/>{{/if}}
+                        {{if item.couponPrivileges}}{{item.couponPrivileges}}<br/>{{/if}}
+                        {{if item.couponAmountScope}}{{item.couponAmountScope}}<br/>{{/if}}
+                        {{if item.couponDaysScope}}{{item.couponDaysScope}}<br/>{{/if}}
+                        {{if item.couponValidity}}{{item.couponValidity}}{{/if}}
+                    </p>
+                </div>
+                {{if item.status==5}}
+                <div class="u-coupon-shade">
+                    <span>
+                    <em>锁定中</em>
+                    您有一笔待支付的订单已使用该券
+                    </span>
+                </div>
+                {{/if}}
+            </div>{{/each}}</div>
+    </div>
+    <div class="m-cashCoupon-point" id="j-profitCoupon-point">
+        <ol style="width: {{25*data.length}}px">
+            {{each data as item i}}
+            <li {{if i==0}}class="z-current"{{/if}}>●</li>
+            {{/each}}
+        </ol>
+    </div>
+</script>
+<div class="m-Coupon" id="j-profitCoupon">
+</div>
+<!--/我的优惠券-收益券-->
+#set($pageScript="
+<script>
+    seajs.config({
+        'alias':{
+            'touch':'$siteurl/res/lib/frozenjs/lib/zepto.touch',
+            'coupon':'$siteurl/res/source/js/modules/coupon'
+        },
+        'preload':['touch','frozen']
+    });
+    seajs.use('coupon');
+</script>")
+
+#CSRFToken("xToken")

@@ -1,0 +1,751 @@
+.g-bd {
+    margin-bottom: 0;
+}
+
+.m-t-10{
+    margin-top: 10px;
+}
+
+.m-l-75 {
+    margin-left: 75px;
+}
+.m-l-30 {
+    margin-left: 52px;
+}
+.m-b-5 {
+    margin-bottom: 5px;
+}
+
+.f-fc-red {
+    color: #d74148 !important;
+}
+.f-fc-white {
+    color: #fff;
+}
+.f-bold-red {
+    color: #d74148 !important;
+    font-weight: bold;
+}
+
+.f-bold {
+    font-weight: bold;
+}
+
+.f-black{
+    color: #666666;
+}
+
+.f-bold-black{
+    font-weight: bold;
+    color: #666666;
+}
+
+.h-34 {
+    height: 34px;
+    line-height: 34px;
+}
+
+/* 微信微博按钮和复二维码浮层 */
+.u-icon-weixin, .u-icon-weibo {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+}
+.u-icon-weixin{
+    background: url(/static/img/activity/springFestival/u-icon-weixin.png) no-repeat center;
+    background-size: 20px 20px;
+}
+.u-icon-weibo{
+    background: url(/static/img/activity/springFestival/u-icon-weibo.png) no-repeat center;
+    background-size: 20px 20px;
+}
+
+.u-popup-weixin, .u-popup-weibo {
+    width: 150px;
+    height: 150px;
+    display: inline-block;
+    box-sizing: border-box;
+    position: absolute;
+    display: none;
+    border: 1px solid #e6e6e6;
+    background: #fff;
+}
+.u-popup-weixin>img,.u-popup-weibo>img{
+    display: inline-block;
+    width: 100%;
+}
+
+.u-springFestival-redBg {
+    height: 2880px;
+    padding-top: 10px;
+    background-color: #d80e1a;
+    position: relative;
+}
+
+.u-springFestival-sideMenu>a{
+    width: 70px;
+    display: inline-block;
+    text-align: center;
+    line-height: 38px;
+    color: #fff;
+    text-decoration: none;
+    outline: none;
+}
+.u-springFestival-sideMenu>a.z-current,
+.u-springFestival-sideMenu>a:active,
+.u-springFestival-sideMenu>a:hover {
+    color: #fbc242;
+}
+
+.u-springFestival-sideMenu>a.backToTop {
+    color: #fa8685;
+    font-size: 10px;
+}
+
+/* act1两个对话框 */
+.u-springFestival-dialog {
+    background: white;
+    display: none;
+    width: 410px;
+    padding: 40px;
+    text-align: center;
+    border-radius: 8px;
+    box-sizing: border-box;
+    position: fixed;
+    top: 200px;
+    border: 1px solid #ccc;
+    z-index: 1000;
+    left: 50%;
+    margin-left: -205px;
+}
+
+
+.u-springFestival-dialog>h1 {
+    font-size: 22px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.u-springFestival-dialog>p {
+    color: #999;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+
+.u-springFestival-dialog>button {
+    width: 88%;
+    background: #d74148;
+    color: white;
+    font-size: 18px;
+    height: 42px;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 4px;
+    cursor: pointer;
+    outline: none;
+    border:none;
+    margin-top: 40px;
+    font-weight: bold;
+}
+.u-dialog2 {
+    padding: 60px 70px!important;
+}
+.u-dialog2>button {
+    line-height: 18px;
+    font-weight: bold;
+    font-size: 18px;
+    margin-top: 20px!important;
+}
+.u-dialog2>p {
+    line-height: 26px;
+}
+
+.u-springFestival-dialog-qrCode {
+    margin-top: 25px;
+    text-align: center;
+    padding-left: 20px;
+}
+
+.u-springFestival-dialog-qrCode>div {
+    float: left;
+}
+.u-springFestival-dialog-qrCode .m-r-60 {
+    margin-right: 60px;
+}
+.u-springFestival-dialog-qrCode .u-qrCode-title{
+    font-size: 10px;
+    color: #999;
+}
+
+.u-springFestival-actWrap {
+    width: 990px;
+    margin: 0 auto 40px;
+    box-sizing: border-box;
+    padding: 40px 50px;
+}
+
+.act1 {
+    height: 640px;
+    background: url(/static/img/activity/springFestival/act1_bg.png) no-repeat center;
+    position: relative;
+    margin-bottom: 55px;
+}
+
+.act1-body {
+    box-sizing: border-box;
+    height: 410px;
+}
+
+.act1-left {
+    display: inline-block;
+    margin-left: 40px;
+    width: 330px;
+    height: 350px;
+    vertical-align: top;
+}
+.act1-left>h2{
+    text-align: center;
+    font-size: 18px;
+    line-height: 35px;
+    color: #666;
+    font-weight: bold;
+}
+
+/* 许愿墙图片 */
+.u-wishWall {
+    width: 311px;
+    height: 237px;
+    margin-top: 10px;
+    display: none;
+    margin-left: 10px;
+}
+
+/* 许愿墙 */
+.u-act1-choose{
+    height: 82px;
+}
+.u-act1-choose{
+    margin-top: 15px;
+    width: 330px;
+    height: 82px;
+    display: none;
+}
+.u-choose {
+    display: inline-block;
+    height: 24px;
+    text-align: center;
+    color: #fff;
+    background: #f8ada8;
+    margin-bottom: 5px;
+    border-radius: 4px;
+}
+
+.u-choose.z-choosed {
+    background: #d74148;
+}
+
+
+.u-choose>i {
+    position:relative;
+    top: -7px;
+}
+.u-choose-1 {
+    width: 135px;
+}
+.u-choose-2 {
+    width: 190px;
+}
+.u-choose-3 {
+    width: 145px;
+}
+.u-choose-4 {
+    width: 180px;
+}
+.u-choose-5 {
+    width: 125px;
+}
+.u-choose-6 {
+    width: 200px;
+}
+
+/* 用户列表没有数据时显示的字 */
+.u-act-noData {
+    font-size: 20px;
+    color: #999;
+    text-align: center;
+    margin-top: 110px;
+}
+/* act4活动未开始 */
+.u-act4-noData{
+    margin-top: 135px;
+}
+
+div.u-act2-noData{
+    font-size: 20px;
+    color: #999;
+    text-align: center;
+    margin-top: 110px;
+    line-height: 45px;
+}
+div.u-act2-noData.hide{
+    display: none;
+}
+
+.u-point {
+    font-size: 10px;
+    display: inline-block;
+    padding: 5px 10px 0;
+}
+
+.act1-left .u-share{
+    text-align: center;
+    height: 30px;
+}
+.act1-left .u-share-box {
+    display: inline-block;
+}
+.act1-left .u-share-text {
+    display: inline-block;
+    line-height: 22px;
+    position: relative;
+    top: -5px;
+    color: #999;
+}
+
+.act1-right {
+    padding-top: 50px;
+    padding-left: 50px;
+    display: inline-block;
+    text-align: center;
+    width: 370px;
+}
+.u-act1-list-wrap {
+    display: inline-block;
+    height: 150px;
+    overflow: hidden;
+}
+
+.u-act1-list>li {
+    height: 50px;
+    line-height: 50px;
+    display: block;
+}
+
+.u-act1-list>li>span{
+    display: inline-block;
+    color: #999;
+}
+
+.u-act1-list .u-list-content {
+    text-align: left;
+    width: 135px;
+}
+
+.u-act1-list .u-list-time {
+    width: 55px;
+    display: inline-block;
+    text-align: right;
+}
+
+.u-act1-list .u-rL2nd-user .u-user-name {
+    width: 70px;
+    margin-left: 10px;
+}
+
+.u-act1-text{
+    font-size: 17px;
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+.u-giftMoney-card {
+    width: 368px;
+    height: 180px;
+    background: url(/static/img/activity/springFestival/card118.jpg) no-repeat center;
+    background-size: 100%;
+}
+
+/* act2 */
+.act2 {
+    height:560px;
+    background: url(/static/img/activity/springFestival/act2_bg.png) no-repeat center;
+}
+
+.act2-body {
+    box-sizing: border-box;
+    height: 350px;
+    padding-right: 0!important;
+}
+
+.u-act2-time {
+    color: #999;
+    display: inline-block;
+    width: 70px;
+}
+
+.u-act2-circle {
+    display: inline-block;
+    vertical-align: top;
+    width: 270px;
+    height: 300px;
+}
+.f-bar-red {
+
+}
+
+.u-act2-circle-content {
+    position: absolute;
+    width: 210px;
+    height: 100px;
+    top: 100px;
+    left: 45px;
+    text-align: center;
+}
+
+.u-act2-circle-content>p {
+    font-size: 60px;
+    color: #d74148;
+}
+
+.u-coupon {
+    display: block;
+    position: absolute;
+    top: 60px;
+    left: 40px;
+    height: 220px;
+    width: 220px;
+}
+
+.u-act2-right {
+    display: inline-block;
+}
+
+.u-act2-list-wrap {
+    width: 570px;
+    height: 250px;
+    box-sizing: border-box;
+    overflow: hidden;
+    margin-left: 20px;
+}
+.u-act2-list-title {
+    font-size: 18px;
+    line-height: 44px;
+    color: #666;
+    display: none;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+.u-act2-list-title i {
+    font-size: 12px;
+}
+
+.u-act2-list>li{
+    height: 50px;
+    line-height: 50px;
+    padding-right: 10px;
+}
+
+/* act3 */
+.act3 {
+    height: 598px;
+    background: url(/static/img/activity/springFestival/act3_bg.png) no-repeat center;
+}
+
+.act3-body {
+    padding-top: 30px!important;
+    padding-bottom: 30px!important;
+    color: #999;
+}
+
+.u-act3-text {
+    font-size: 17px;
+    margin-bottom: 1rem;
+    text-align: center;
+    display: none;
+}
+
+.u-act3-label>p {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+}
+
+.u-act3-label-p1 {
+    margin-top: 1.5rem;
+    left: 115px;
+}
+
+.u-act3-label-p2 {
+    margin-top: 1.5rem;
+    left: 315px;
+}
+
+/* 用户列表样式 */
+.u-user-head {
+    display: inline-block;
+    height: 35px;
+    width: 35px;
+    overflow: hidden;
+    vertical-align: middle;
+    position: relative;
+}
+.u-rL2nd-user {
+    display: inline-block;
+    color: #999;
+}
+.u-rL2nd-user img {
+    display: inline-block;
+    height: 35px;
+    width: 35px;
+    overflow: hidden;
+}
+
+.u-user-head i {
+    display: inline-block;
+    height: 35px;
+    width: 35px;
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 2;
+    background: url(/static/img/common/sprites.png) no-repeat -75px -21px;
+}
+.u-rL2nd-user .u-user-name {
+    display: inline-block;
+    width: 100px;
+    margin: 0 0 0 10px;
+}
+
+.u-act4-list .u-rL2nd-user .u-user-name {
+    width: 85px;
+}
+
+.u-quadrupleGift-list li b{
+    color: #d64148;
+    font-weight: bold;
+}
+.u-giftText{
+    display: inline-block;
+    width: 160px;
+    box-sizing: border-box;
+    color: #999;
+}
+.u-giftText-long {
+    display: inline-block;
+    box-sizing: border-box;
+    width: 220px;
+    color: #999;
+}
+
+.u-rewardInfo {
+    box-sizing: border-box;
+    display: inline-block;
+    width: 160px;
+}
+
+/* act4 */
+.act4 {
+    height: 610px;
+    background: url(/static/img/activity/springFestival/act4_bg.png) no-repeat center;
+}
+
+.act4-body{
+    box-sizing: border-box;
+    height: 380px;
+    padding: 0!important;
+}
+
+.u-act4-left {
+    height: 379px;
+    width: 240px;
+    display: inline-block;
+    border-right: 1px solid #e6e6e6;
+}
+
+.u-act4-left s {
+    display: block;
+    height: 3px;
+    background: url(/static/img/common/sprites.png) repeat-x -213px -166px;
+    overflow: hidden;
+}
+
+.u-act4-left-body {
+    box-sizing: border-box;
+    height: 198px;
+    padding: 20px;
+    position: relative;
+}
+
+.u-act4-left-body-wrap {
+    position: absolute;
+    height: 120px;
+    width: 120px;
+    top: 30px;
+    left: 60px;
+    background: url(/static/img/common/sprites.png) repeat-x -73px -190px;
+}
+
+/* 进度条环 */
+.u-pl-stat {
+    position: absolute;
+    display: inline-block;
+    width: 160px;
+    height: 160px;
+    top: 10px;
+    left: 40px;
+    z-index: 200;
+}
+
+.u-act4-left-head {
+    padding: 25px 20px 15px 20px;
+}
+.u-act4-left-head>a {
+    color: #333!important;
+}
+.u-act4-left-head>a:hover{
+    color: #333!important;
+    text-decoration: none!important;
+}
+
+.u-act4-left-foot {
+    padding: 9% 20px;
+}
+.u-act4-left-head>h3 {
+    color: #666;
+}
+
+.u-act4-icon {
+    width: 60px;
+    height: 16px;
+    display: inline-block;
+    position: relative;
+    top: 3px;
+    background:  url(/static/img/activity/leaseBonus/icon_ruyi.png) no-repeat center;
+}
+
+.u-act4-left-body>img {
+    margin-top: 10px;
+    border-radius: 50%;
+}
+
+.u-act4-left-body>p {
+    margin-top: 10px;
+}
+
+.u-act4-left-foot-btn {
+    width: 200px;
+    height: 30px;
+    border: none;
+    outline: none;
+    color: #fff!important;
+    cursor: pointer;
+    text-decoration: none;
+    line-height: 30px;
+    font-weight: bold;
+    margin: 5px auto 0;
+    color: #fff;
+    text-align: center;
+    background: #d74148;
+    border-radius: 4px;
+    display: inline-block;
+}
+.u-act4-left-foot-btn:hover {
+    color: #fff;
+    text-decoration: none;
+}
+.u-act4-left-foot-btn.z-current {
+    background: #f8ada8;
+    cursor: default;
+}
+
+.u-act4-right {
+    display: inline-block;
+    vertical-align: top;
+    padding-top: 30px;
+}
+
+.u-act4-list-title {
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 5px;
+    display: none;
+    padding-left: 30px;
+    line-height: 44px;
+    color: #666;
+    font-weight: bold;
+}
+
+.u-act4-list-wrap {
+    padding-left: 50px;
+    width: 600px;
+    height: 250px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.u-act4-list>li {
+    height: 50px;
+    line-height: 50px;
+}
+
+.u-act4-link {
+    color: #999!important;
+    cursor: pointer;
+    text-decoration: underline!important;
+    display: inline-block;
+    width: 110px;
+}
+
+.u-act4-time {
+    color: #999;
+    width: 70px;
+    display: inline-block;
+}
+
+/* 每个活动的标题和文字基本样式 */
+.u-springFestival-actHead>h2{
+    color: #d74148;
+    font-size: 24px;
+    line-height: 30px;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+.u-springFestival-actHead>p {
+    color: #999;
+    font-size: 14px;
+    line-height: 21px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.u-springFestival-actBody {
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #e6e6e6;
+    border-radius: 10px;
+    background: white;
+    position: relative;
+}
+
+/* 尾部活动规则 */
+.u-springFestival-rule {
+    width: 998px;
+    margin: 0 auto;
+}
+.u-springFestival-rule h2 {
+    font-size:24px;
+    line-height: 21px;
+    text-align: center;
+    color: #ffa0a6;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+.u-springFestival-rule p {
+    font-size: 14px;
+    line-height:21px;
+    color: #ffa0a6;
+}

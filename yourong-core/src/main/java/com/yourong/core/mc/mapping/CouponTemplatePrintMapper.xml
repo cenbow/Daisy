@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.mc.dao.CouponTemplatePrintMapper" >
+  <resultMap id="BaseResultMap" type="CouponTemplatePrint" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="coupon_template_id" property="couponTemplateId" jdbcType="BIGINT" />
+    <result column="print_time" property="printTime" jdbcType="TIMESTAMP" />
+    <result column="print_num" property="printNum" jdbcType="INTEGER" />
+    <result column="received_num" property="receivedNum" jdbcType="INTEGER" />
+    <result column="used_num" property="usedNum" jdbcType="INTEGER" />
+    <result column="total_amount" property="totalAmount" jdbcType="DECIMAL" />
+    <result column="create_by" property="createBy" jdbcType="BIGINT" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, coupon_template_id, print_time, print_num, received_num ,used_num, total_amount, create_by, 
+    remarks, update_time
+  </sql>
+  <insert id="insertSelective" parameterType="CouponTemplatePrint" useGeneratedKeys="true" keyProperty="id">
+    insert into mc_coupon_template_print
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="couponTemplateId != null" >
+        coupon_template_id,
+      </if>
+        print_time,
+      <if test="printNum != null" >
+        print_num,
+      </if>
+      <if test="receivedNum != null" >
+        received_num,
+      </if>
+      <if test="usedNum != null" >
+        used_num,
+      </if>
+      <if test="totalAmount != null" >
+        total_amount,
+      </if>
+      <if test="createBy != null" >
+        create_by,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+        update_time,
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="couponTemplateId != null" >
+        #{couponTemplateId,jdbcType=BIGINT},
+      </if>
+      now(),
+      <if test="printNum != null" >
+        #{printNum,jdbcType=INTEGER},
+      </if>
+      <if test="receivedNum != null" >
+        #{receivedNum,jdbcType=INTEGER},
+      </if>
+      <if test="usedNum != null" >
+        #{usedNum,jdbcType=INTEGER},
+      </if>
+      <if test="totalAmount != null" >
+        #{totalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+        now()
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="CouponTemplatePrint" >
+    update mc_coupon_template_print
+    <set >
+      <if test="couponTemplateId != null" >
+        coupon_template_id = #{couponTemplateId,jdbcType=BIGINT},
+      </if>
+      <if test="printTime != null" >
+        print_time = #{printTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="printNum != null" >
+        print_num = #{printNum,jdbcType=INTEGER},
+      </if>
+      <if test="printNum != null" >
+        received_num = #{receivedNum,jdbcType=INTEGER},
+      </if>
+      <if test="printNum != null" >
+        used_num = #{usedNum,jdbcType=INTEGER},
+      </if>
+      <if test="totalAmount != null" >
+        total_amount = #{totalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+        update_time = now(),
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <delete id="batchDelete" parameterType="java.lang.Long" >
+    delete from mc_coupon_template_print
+    where id in  <foreach collection="ids" index="index" item="item" open="(" separator="," close=")"> #{item}  </foreach>  
+  </delete>
+  <select id="findByPage" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from mc_coupon_template_print
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = #{map.id}
+        </if>
+        <if test=" map.couponTemplateId != null" >
+          coupon_template_id = #{map.couponTemplateId}
+        </if>
+        <if test=" map.printTime != null" >
+          print_time = #{map.printTime}
+        </if>
+        <if test=" map.printNum != null" >
+          print_num = #{map.printNum}
+        </if>
+        <if test=" map.totalAmount != null" >
+          total_amount = #{map.totalAmount}
+        </if>
+        <if test=" map.createBy != null" >
+          create_by = #{map.createBy}
+        </if>
+        <if test=" map.remarks != null" >
+          remarks = #{map.remarks}
+        </if>
+        <if test=" map.updateTime != null" >
+          update_time = #{map.updateTime}
+        </if>
+      </where>
+    </if>
+  </select>
+  <sql id="Base_Column_List_Pagin" >
+    t.id  as  id,
+t.coupon_template_id  as  coupon_template_id,
+t.print_time  as  print_time,
+t.print_num  as  print_num,
+t.received_num  as  received_num,
+t.used_num  as  used_num,
+t.total_amount  as  total_amount,
+t.create_by  as  create_by,
+t.remarks  as  remarks,
+t.update_time  as  update_time
+  </sql>
+  <select id="selectForPagin" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List_Pagin" />
+    from  (SELECT id FROM  mc_coupon_template_print
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = #{map.id}
+        </if>
+        <if test=" map.couponTemplateId != null" >
+          coupon_template_id = #{map.couponTemplateId}
+        </if>
+        <if test=" map.printTime != null" >
+          print_time = #{map.printTime}
+        </if>
+        <if test=" map.printNum != null" >
+          print_num = #{map.printNum}
+        </if>
+        <if test=" map.totalAmount != null" >
+          total_amount = #{map.totalAmount}
+        </if>
+        <if test=" map.createBy != null" >
+          create_by = #{map.createBy}
+        </if>
+        <if test=" map.remarks != null" >
+          remarks = #{map.remarks}
+        </if>
+        <if test=" map.updateTime != null" >
+          update_time = #{map.updateTime}
+        </if>
+      </where>
+    </if>
+      LIMIT	${map.startRow}, ${map.pageSize}  )  AS a,  mc_coupon_template_print AS t FORCE INDEX(PRIMARY) WHERE a.id = t.id   
+  </select>
+  <select id="selectForPaginTotalCount" resultType="java.lang.Integer" >
+    select count(1) 
+    from mc_coupon_template_print
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = ${map.id}
+        </if>
+        <if test=" map.couponTemplateId != null" >
+          coupon_template_id = ${map.couponTemplateId}
+        </if>
+        <if test=" map.printTime != null" >
+          print_time = ${map.printTime}
+        </if>
+        <if test=" map.printNum != null" >
+          print_num = ${map.printNum}
+        </if>
+        <if test=" map.totalAmount != null" >
+          total_amount = ${map.totalAmount}
+        </if>
+        <if test=" map.createBy != null" >
+          create_by = ${map.createBy}
+        </if>
+        <if test=" map.remarks != null" >
+          remarks = ${map.remarks}
+        </if>
+        <if test=" map.updateTime != null" >
+          update_time = ${map.updateTime}
+        </if>
+      </where>
+    </if>
+  </select>
+  
+  <update id="updateCouponReceiveNum" >
+  	UPDATE mc_coupon_template_print AS p
+	SET p.received_num = IFNULL(p.received_num,0) + 1
+	WHERE
+		p.id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <select id="selectByTemplateId" resultMap="BaseResultMap" >
+  	select 
+  	coupon_template_id,
+    sum(print_num) as print_num,
+	sum(IFNULL(received_num,0)) as received_num
+    from mc_coupon_template_print
+    where coupon_template_id = #{couponTemplateId,jdbcType=BIGINT}
+    limit 1
+  </select>
+  
+  <select id="selectInforByTemplateId" resultMap="BaseResultMap" >
+  	 select (sum(t.print_num)-sum(t.received_num)) as print_num
+  	 from mc_coupon_template_print t 
+  	  where t.coupon_template_id= #{couponTemplateId,jdbcType=BIGINT}
+  </select>
+  
+</mapper>

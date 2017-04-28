@@ -1,0 +1,85 @@
+#set($title="人气值乐园")
+#parse('/common/common.vm')
+#set($css_url=["$root_css_url/post/popularityPark.css"])
+
+<div id="j-park" v-cloak>
+<div class="m-head-background">
+    <div class="u-title z-ie10"></div>
+    <div class="u-balloon z-ie10"></div>
+</div>
+<div class="m-background-one"></div>
+   <div class="m-background-two">
+##    两张券
+    <div class="u-ticket z-one">  </div>
+    <div class="u-ticket z-two">  </div>
+##    左右切换
+    <div class="u-switch z-left" @click="towardsLeft()"> </div>
+    <div class="u-switch z-right" @click="towardsRight()"></div>
+##    苹果手机
+<div class="m-iphone">
+    <img src="/static/img/post/popularityPark/photo-one.png"   :class="{'f-show': position==1 }">
+    <img src="/static/img/post/popularityPark/photo-two.png"   :class="{'f-show': position==2 }">
+    <img src="/static/img/post/popularityPark/photo-three.png" :class="{'f-show': position==3 }">
+    <img src="/static/img/post/popularityPark/photo-four.png"  :class="{'f-show': position==4 }">
+</div>
+##对话框
+    <div class="u-talk-frame" v-if=" position==1"><img src="/static/img/post/popularityPark/text-one.png"></div>
+    <div class="u-talk-frame" v-if=" position==2"><img src="/static/img/post/popularityPark/text-two.png"></div>
+    <div class="u-talk-frame" v-if=" position==3"><img src="/static/img/post/popularityPark/text-three.png"></div>
+    <div class="u-talk-frame"  v-if=" position==4"><img src="/static/img/post/popularityPark/text-four.png"></div>
+##  气球礼物盒子
+    <div class="u-balloon-gift"></div>
+  </div>
+</div>
+
+<script src="/static/lib/js/jq/jquery-1.11.1.min.js"></script>
+<script src="/static/lib/js/vue/vue.js"></script>
+<script>
+        var vm = new Vue({
+            el: '#j-park',
+            data:{
+                position:1,
+            },
+            created: function () {
+                this.cancelAnimation()
+            },
+            methods:{
+                towardsLeft:function(){
+                    this.position--
+                    if(this.position==0){
+                        this.position=4;
+                    }
+                },
+                towardsRight:function(){
+                    this.position++
+                    if(this.position==5){
+                        this. position=1;
+                    }
+                },
+                cancelAnimation:function(){
+                        var lowIE=false
+                        var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串
+                        var isOpera = userAgent.indexOf("Opera") > -1; //判断是否Opera浏览器
+                        var isIE = userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1 && !isOpera; //判断是否IE浏览器
+                        var IE5 = IE55 = IE6 = IE7 = IE8 = IE9 = false;
+                        var reIE = new RegExp("MSIE (\\d+\\.\\d+);");
+                        reIE.test(userAgent);
+                        var fIEVersion = parseFloat(RegExp["$1"]);
+                        if(fIEVersion<10){
+                            lowIE=true
+                        }//判断是否是IE9以下
+                    if(lowIE){
+                        $('.u-title').removeClass('z-ie10');
+                        $('.u-balloon').removeClass('z-ie10');
+                        $('.u-balloon').addClass('f-adjust');
+                    }
+                }
+            }
+        });
+</script>
+
+
+
+
+
+

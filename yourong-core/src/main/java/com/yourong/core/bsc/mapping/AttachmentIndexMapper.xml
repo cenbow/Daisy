@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.bsc.dao.AttachmentIndexMapper" >
+  <resultMap id="BaseResultMap" type="AttachmentIndex" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="attachment_id" property="attachmentId" jdbcType="BIGINT" />
+    <result column="key_id" property="keyId" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, attachment_id, key_id, create_time
+  </sql>
+  <insert id="insertSelective" parameterType="AttachmentIndex" useGeneratedKeys="true" keyProperty="id">
+    insert into bsc_attachment_index
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="attachmentId != null" >
+        attachment_id,
+      </if>
+      <if test="keyId != null" >
+        key_id,
+      </if>
+        create_time
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="attachmentId != null" >
+        #{attachmentId,jdbcType=BIGINT},
+      </if>
+      <if test="keyId != null" >
+        #{keyId,jdbcType=VARCHAR},
+      </if>
+      now()
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="AttachmentIndex" >
+    update bsc_attachment_index
+    <set >
+      <if test="attachmentId != null" >
+        attachment_id = #{attachmentId,jdbcType=BIGINT},
+      </if>
+      <if test="keyId != null" >
+        key_id = #{keyId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <delete id="batchDelete" parameterType="java.lang.Long" >
+    delete from bsc_attachment_index
+    where id in  <foreach collection="ids" index="index" item="item" open="(" separator="," close=")"> #{item}  </foreach>  
+  </delete>
+  <select id="findByPage" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from bsc_attachment_index
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = #{map.id}
+        </if>
+        <if test=" map.attachmentId != null" >
+          attachment_id = #{map.attachmentId}
+        </if>
+        <if test=" map.keyId != null" >
+          key_id = #{map.keyId}
+        </if>
+        <if test=" map.createTime != null" >
+          create_time = #{map.createTime}
+        </if>
+      </where>
+    </if>
+  </select>
+  <sql id="Base_Column_List_Pagin" >
+    t.id  as  id,
+t.attachment_id  as  attachment_id,
+t.key_id  as  key_id,
+t.create_time  as  create_time
+  </sql>
+  <select id="selectForPagin" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List_Pagin" />
+    from  (SELECT id FROM  bsc_attachment_index
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = #{map.id}
+        </if>
+        <if test=" map.attachmentId != null" >
+          attachment_id = #{map.attachmentId}
+        </if>
+        <if test=" map.keyId != null" >
+          key_id = #{map.keyId}
+        </if>
+        <if test=" map.createTime != null" >
+          create_time = #{map.createTime}
+        </if>
+      </where>
+    </if>
+      LIMIT	${map.startRow}, ${map.pageSize}  )  AS a,  bsc_attachment_index AS t FORCE INDEX(PRIMARY) WHERE a.id = t.id   
+  </select>
+  <select id="selectForPaginTotalCount" resultType="java.lang.Integer" >
+    select count(1) 
+    from bsc_attachment_index
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = ${map.id}
+        </if>
+        <if test=" map.attachmentId != null" >
+          attachment_id = ${map.attachmentId}
+        </if>
+        <if test=" map.keyId != null" >
+          key_id = ${map.keyId}
+        </if>
+        <if test=" map.createTime != null" >
+          create_time = ${map.createTime}
+        </if>
+      </where>
+    </if>
+  </select>
+  
+  <insert id="batchInsertAttachmentIndex" parameterType="java.util.List" >
+    insert into bsc_attachment_index (attachment_id,key_id,create_time)   values   
+      <foreach collection="list" item="item" index="index"   separator=",">  
+        ( #{item.attachmentId}, #{item.keyId}, now())  
+      </foreach>     
+  </insert>
+  
+  <select id="queryAttachmentInfoByIndex" resultType="java.util.HashMap">
+  	select CONCAT(a.file_url, a.file_name) as fileDir, a.file_url, a.file_name
+  	from bsc_attachment as a, bsc_attachment_index as b 
+  	where a.id = b.attachment_id and b.key_id = #{keyId,jdbcType=BIGINT} and a.module = #{module,jdbcType=VARCHAR}
+  	order by upload_time desc
+  	limit 0,1
+  </select>
+</mapper>

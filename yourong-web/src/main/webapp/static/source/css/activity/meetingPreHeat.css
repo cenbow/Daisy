@@ -1,0 +1,212 @@
+
+.g-bd {
+    margin-bottom: 0;
+}
+.m-meetingPreHeat-head{
+    width: 100%;
+    height: 429px;
+    margin-top: -8px;
+    color: #fff;
+    background: url(/static/img/activity/meetingPreHeat/meetingPreHeat_head.jpg) no-repeat center;
+}
+.m-meetingPreHeat-body{
+    background: #c93940;
+    height: 2505px;
+}
+/**计划行程**/
+.m-meetingPreHeat-body>div{
+    background: #fff;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    padding: 115px 60px 24px;
+    width: 870px;
+}
+.u-meetingPreHeat-schedule{
+    height: 1px;
+    background-color: #ccc;
+    position: relative;
+    width: 800px;
+    margin: 0 35px;
+}
+.u-meetingPreHeat-schedule>span{
+    display: block;
+    height: 1px;
+    background: #c93940;
+    width: 0;
+}
+.u-meetingPreHeat-schedule i{
+    color: #999;
+    position: absolute;
+    top: -25px;
+}
+.u-meetingPreHeat-dot01{
+    left: -8px;
+}
+.u-meetingPreHeat-dot02{
+    left: 192px;
+}
+.u-meetingPreHeat-dot03{
+    left: 392px;
+}
+.u-meetingPreHeat-dot04{
+    left: 592px;
+}
+.u-meetingPreHeat-dot05{
+    left: 792px;
+}
+.u-meetingPreHeat-schedule dl{
+    color: #999;
+    position: absolute;
+    top: -36px;
+    text-align: center;
+}
+.u-meetingPreHeat-schedule dl dt{
+    margin:0 0 30px 0;
+}
+.u-meetingPreHeat-plan01{
+    left: -34px;
+}
+.u-meetingPreHeat-plan02{
+    left: 149px;
+}
+.u-meetingPreHeat-plan03{
+    left: 350px;
+}
+.u-meetingPreHeat-plan04{
+    left: 558px;
+}
+.u-meetingPreHeat-plan05{
+    left: 765px;
+    width: 75px;
+}
+/**\计划行程**/
+/**周年视频**/
+.m-meetingPreHeat-body h3,
+.u-meetingPreHeat-style h3{
+    color: #d74148;
+    font-weight: bold;
+}
+.m-meetingPreHeat-body h3{
+    margin: 100px 0 16px;
+}
+.u-meetingPreHeat-style h3{
+    margin: 100px 0 0;
+}
+.u-meetingPreHeat-video iframe{
+    width: 100%;
+    border: none;
+}
+/**\周年视频**/
+/**平台互动**/
+.u-meetingPreHeat-interaction{
+    margin: 100px 0 0 0;
+}
+.u-meetingPreHeat-interaction>span{
+    float: left;
+    width: 4px;
+    height: 132px;
+    display: inline-block;
+    background: #e6e6e6;
+}
+.u-meetingPreHeat-weibo,
+.u-meetingPreHeat-weixin{
+    float: left;
+
+}
+.u-meetingPreHeat-weibo{
+    width: 430px;
+}
+.u-meetingPreHeat-weibo>div,
+.u-meetingPreHeat-weixin>div{
+    display: inline-block;
+    color: #d74148;
+}
+.u-meetingPreHeat-interaction img{
+    margin: 0 40px 0 0;
+    display: inline-block;
+}
+.u-meetingPreHeat-weibo>div p,
+.u-meetingPreHeat-weixin>div p{
+    margin: 12px 0 0 0;
+    color: #999;
+    line-height: 28px;
+}
+.u-meetingPreHeat-weixin{
+    margin: 0 0 0 60px;
+}
+/**\平台互动**/
+/**按钮**/
+.u-meetingPreHeat-btn{
+    width: 868px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    color: #fff;
+    background: url("/static/img/activity/meetingPreHeat/meetingPreHeat_btn.png") no-repeat;
+    display: block;
+    letter-spacing:2px;
+    margin: 56px auto 0;
+    text-decoration: none;
+}
+.u-meetingPreHeat-btn:link,
+.u-meetingPreHeat-btn:visited,
+.u-meetingPreHeat-btn:hover{
+    color: #fff;
+    text-decoration: none;
+}
+/**按钮**/
+/**到达方式**/
+.u-meetingPreHeat-style>span{
+    float: left;
+    display: block;
+    margin: 8px 0 18px;
+    width: 100%;
+    color: #d74148;
+}
+.u-meetingPreHeat-eastStation{
+    width: 450px;
+    float: left;
+    margin: 0 100px 0 0;
+}
+.u-meetingPreHeat-airport{
+    width: 318px;
+    float: left;
+}
+.u-meetingPreHeat-HZStation{
+    float: left;
+    margin: 20px 0 0 0;
+}
+.u-meetingPreHeat-style strong{
+    color: #666;
+}
+.u-meetingPreHeat-style p{
+    color: #999;
+}
+.u-meetingPreHeat-style em{
+    float: left;
+    display: block;
+    color: #999;
+    margin: 20px 0 0 0;
+}
+/**\到达方式**/
+/***景点***/
+.u-meetingPreHeat-strategy strong{
+    margin: 0 0 8px 0;
+    display: block;
+}
+.u-meetingPreHeat-strategy dl{
+    width: 239px;
+    float: left;
+    text-align: center;
+    margin: 0 0 0 76px;
+    height: 189px;
+}
+.u-meetingPreHeat-strategy dl:first-child{
+    margin: 0;
+}
+.u-meetingPreHeat-strategy dl dd{
+    line-height: 30px;
+    color: #999;
+}
+/**\景点**/

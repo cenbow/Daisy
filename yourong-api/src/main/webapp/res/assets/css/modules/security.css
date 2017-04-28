@@ -1,0 +1,134 @@
+.m-safety-grap ul{
+    width: 90%;
+    padding: 0 5%;
+}
+.m-safety-grap ul > li{
+    width: 100%;
+
+    padding: 46px 0 46px 0;
+    border-bottom: 1px solid lightgray;
+
+}
+
+.m-safety-grap ul > li > img{
+
+    float: left;
+    width: 20px;
+    height: 20px;
+}
+.m-safety-grap ul > li > span{
+    float: left;
+    margin: 0 0 0 2%;
+}
+.m-safety-grap ul li .f-safety-name{
+    float: right;
+    color: #999;
+
+}
+
+.f-safety-name i{
+    font-size: 12px;
+
+}
+.m-safety-grap ul li em{
+
+    float: right;
+    margin: 8px 0 0 0;
+    color: #fff;
+    background: #999;
+    width: 100px;
+    text-align: center;
+
+}
+.m-safety-grap ul li em a{
+    color: #fff;
+}
+.f-round{
+    border-radius: 13px;
+
+}
+.f-safety-open,.f-safety-number{
+    float: right;
+
+    color: #999;
+}
+.f-safety-key{
+
+    color: #fff;
+    background: #999;
+    width: 100px;  display: block;
+    float: right;
+
+    text-align: center;
+}
+.f-safety-key a{
+    color: #fff;
+    display: block;
+}
+.f-immediately-reputation{
+    width: 182px;
+    float: right;
+    background: #d74248;
+    text-align: center;
+
+}
+.f-immediately-reputation a{
+    color: #fff;
+}
+.f-immediately-open{
+    width: 100px;
+    float: right;
+    background: #d74147;
+    text-align: center;
+}
+.f-immediately-open a{
+    color: #fff;
+}
+.f-immediately-reputation10{
+    width: 198px;
+    float: right;
+    background: #d74147;
+    text-align: center;
+}
+.f-immediately-reputation10 a{
+    color: #fff;
+}
+.f-safety-card{
+    position: absolute;
+    left: 16px;
+    top: 190px;
+    z-index: 300;
+    width: 91%;
+
+}
+.f-safety-card span{
+    background: #fffab0;
+    display: block;
+    text-align: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    line-height: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 20px 0 20px 0;
+}
+.f-safety-step{
+    padding: 20px 0 0 0;
+    background: #fff;
+}
+.f-safety-step > ul > li{
+    margin: 0 0 0 10px;
+    padding: 0;
+    line-height: 35px;
+    border: 0 none;
+    color: #333;
+}
+.f-safety-step input{
+    background: #d74147;
+    color: #fff;
+    line-height: 40px;
+    width: 280px;
+    border-radius: 6px;
+    margin: 20px 0 20px 30px;
+    font-weight: bold;
+}

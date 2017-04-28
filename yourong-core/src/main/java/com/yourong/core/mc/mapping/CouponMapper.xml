@@ -1,0 +1,1182 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.mc.dao.CouponMapper" >
+  <resultMap id="BaseResultMap" type="Coupon" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="coupon_code" property="couponCode" jdbcType="VARCHAR" />
+    <result column="coupon_template_id" property="couponTemplateId" jdbcType="BIGINT" />
+    <result column="coupon_template_print_id" property="couponTemplatePrintId" jdbcType="BIGINT" />
+    <result column="coupon_type" property="couponType" jdbcType="INTEGER" />
+    <result column="amount" property="amount" jdbcType="DECIMAL" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="vaild_calc_type" property="vaildCalcType" jdbcType="INTEGER" />
+    <result column="days" property="days" jdbcType="INTEGER" />
+    <result column="web_scope" property="webScope" jdbcType="INTEGER" />
+    <result column="wap_scope" property="wapScope" jdbcType="INTEGER" />
+    <result column="app_scope" property="appScope" jdbcType="INTEGER" />
+    <result column="amount_scope" property="amountScope" jdbcType="DECIMAL" />
+    <result column="days_scope" property="daysScope" jdbcType="INTEGER" />
+    <result column="start_date" property="startDate" jdbcType="DATE" />
+    <result column="end_date" property="endDate" jdbcType="DATE" />
+    <result column="holder_id" property="holderId" jdbcType="BIGINT" />
+    <result column="receive_time" property="receiveTime" jdbcType="TIMESTAMP" />
+    <result column="used_time" property="usedTime" jdbcType="TIMESTAMP" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="activity_id" property="activityId" jdbcType="BIGINT" />
+    <result column="sender_id" property="senderId" jdbcType="BIGINT" />
+    <result column="use_condition" property="useCondition" jdbcType="VARCHAR" />
+    <result column="project_id" property="projectId" jdbcType="BIGINT" />
+    <result column="transaction_id" property="transactionId" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="extra_interest_type" property="extraInterestType" jdbcType="INTEGER" />
+    <result column="extra_interest_day" property="extraInterestDay" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <resultMap type="com.yourong.core.mc.model.CouponBiz" id="BizResultMap" extends="BaseResultMap">
+  	<result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="BIGINT" />
+    <result column="avatars" property="avatars" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <!-- 前台显示优惠券name -->
+  <resultMap type="Coupon" id="FrontResultMap" extends="BaseResultMap">
+	<result column="name" property="name" jdbcType="VARCHAR" />
+	
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    id, coupon_code, coupon_template_id, coupon_template_print_id, coupon_type, amount, status, vaild_calc_type, 
+    days, web_scope, wap_scope, app_scope, amount_scope, days_scope, start_date, end_date, holder_id, receive_time, used_time, remarks, activity_id, 
+    sender_id, use_condition, project_id, transaction_id, create_time, update_time, extra_interest_type, extra_interest_day
+  </sql>
+  
+  <!-- 前台显示优惠券的显示列 -->
+  <sql id="Front_Column_List">
+  	c.id as id,
+  	c.coupon_code as coupon_code, 
+  	c.coupon_template_id as coupon_template_id, 
+  	c.coupon_template_print_id as coupon_template_print_id, 
+  	c.coupon_type as coupon_type, 
+  	c.amount as amount, 
+  	c.status as status, 
+  	c.vaild_calc_type as vaild_calc_type, 
+    c.days as days, 
+    c.web_scope as web_scope, 
+    c.wap_scope as wap_scope, 
+    c.app_scope as app_scope, 
+    c.amount_scope as amount_scope, 
+    c.days_scope as days_scope, 
+    c.start_date as start_date, 
+    c.end_date as end_date, 
+    c.holder_id as holder_id, 
+    c.receive_time as receive_time, 
+    c.used_time as used_time, 
+    c.remarks as remarks,
+	c.activity_id as activity_id, 
+    c.sender_id as sender_id, 
+    c.use_condition as use_condition, 
+    c.project_id as project_id, 
+    c.transaction_id as transaction_id, 
+    c.create_time as create_time, 
+    c.update_time as update_time,
+    c.extra_interest_type as extra_interest_type,
+    c.extra_interest_day  as extra_interest_day,
+    t.name as name
+  </sql>
+  
+  
+  <insert id="insertSelective" parameterType="Coupon" >
+    insert into mc_coupon
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="couponCode != null" >
+        coupon_code,
+      </if>
+      <if test="couponTemplateId != null" >
+        coupon_template_id,
+      </if>
+      <if test="couponTemplatePrintId != null" >
+        coupon_template_print_id,
+      </if>
+      <if test="couponType != null" >
+        coupon_type,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="vaildCalcType != null" >
+        vaild_calc_type,
+      </if>
+      <if test="days != null" >
+        days,
+      </if>
+      <if test="webScope != null" >
+        web_scope,
+      </if>
+      <if test="wapScope != null" >
+        wap_scope,
+      </if>
+      <if test="appScope != null" >
+        app_scope,
+      </if>
+      <if test="amountScope != null" >
+        amount_scope,
+      </if>
+      <if test="daysScope != null" >
+        days_scope,
+      </if>
+      <if test="startDate != null" >
+        start_date,
+      </if>
+      <if test="endDate != null" >
+        end_date,
+      </if>
+      <if test="holderId != null" >
+        holder_id,
+      </if>
+      <if test="receiveTime != null" >
+        receive_time,
+      </if>
+      <if test="usedTime != null" >
+        used_time,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+      <if test="activityId != null" >
+        activity_id,
+      </if>
+      <if test="senderId != null" >
+        sender_id,
+      </if>
+      <if test="useCondition != null" >
+        use_condition,
+      </if>
+      <if test="projectId != null" >
+        project_id,
+      </if>
+      <if test="transactionId != null" >
+        transaction_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="couponCode != null" >
+        #{couponCode,jdbcType=VARCHAR},
+      </if>
+      <if test="couponTemplateId != null" >
+        #{couponTemplateId,jdbcType=BIGINT},
+      </if>
+      <if test="couponTemplatePrintId != null" >
+        #{couponTemplatePrintId,jdbcType=BIGINT},
+      </if>
+      <if test="couponType != null" >
+        #{couponType,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="vaildCalcType != null" >
+        #{vaildCalcType,jdbcType=INTEGER},
+      </if>
+      <if test="days != null" >
+        #{days,jdbcType=INTEGER},
+      </if>
+      <if test="webScope != null" >
+        #{webScope,jdbcType=INTEGER},
+      </if>
+      <if test="wapScope != null" >
+        #{wapScope,jdbcType=INTEGER},
+      </if>
+      <if test="appScope != null" >
+        #{appScope,jdbcType=INTEGER},
+      </if>
+      <if test="amountScope != null" >
+        #{amountScope,jdbcType=DECIMAL},
+      </if>
+      <if test="daysScope != null" >
+        #{daysScope,jdbcType=INTEGER},
+      </if>
+      <if test="startDate != null" >
+        #{startDate,jdbcType=DATE},
+      </if>
+      <if test="endDate != null" >
+        #{endDate,jdbcType=DATE},
+      </if>
+      <if test="holderId != null" >
+        #{holderId,jdbcType=BIGINT},
+      </if>
+      <if test="receiveTime != null" >
+        #{receiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="usedTime != null" >
+        #{usedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="activityId != null" >
+        #{activityId,jdbcType=BIGINT},
+      </if>
+      <if test="senderId != null" >
+        #{senderId,jdbcType=BIGINT},
+      </if>
+      <if test="useCondition != null" >
+        #{useCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null" >
+        #{projectId,jdbcType=BIGINT},
+      </if>
+      <if test="transactionId != null" >
+        #{transactionId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="Coupon" >
+    update mc_coupon
+    <set >
+      <if test="couponCode != null" >
+        coupon_code = #{couponCode,jdbcType=VARCHAR},
+      </if>
+      <if test="couponTemplateId != null" >
+        coupon_template_id = #{couponTemplateId,jdbcType=BIGINT},
+      </if>
+      <if test="couponTemplatePrintId != null" >
+        coupon_template_print_id = #{couponTemplatePrintId,jdbcType=BIGINT},
+      </if>
+      <if test="couponType != null" >
+        coupon_type = #{couponType,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="vaildCalcType != null" >
+        vaild_calc_type = #{vaildCalcType,jdbcType=INTEGER},
+      </if>
+      <if test="days != null" >
+        days = #{days,jdbcType=INTEGER},
+      </if>
+      <if test="webScope != null" >
+        web_scope = #{webScope,jdbcType=INTEGER},
+      </if>
+      <if test="wapScope != null" >
+        wap_scope = #{wapScope,jdbcType=INTEGER},
+      </if>
+      <if test="appScope != null" >
+        app_scope = #{appScope,jdbcType=INTEGER},
+      </if>
+      <if test="amountScope != null" >
+        amount_scope = #{amountScope,jdbcType=DECIMAL},
+      </if>
+      <if test="daysScope != null" >
+        days_scope = #{daysScope,jdbcType=INTEGER},
+      </if>
+      <if test="startDate != null" >
+        start_date = #{startDate,jdbcType=DATE},
+      </if>
+      <if test="endDate != null" >
+        end_date = #{endDate,jdbcType=DATE},
+      </if>
+      <if test="holderId != null" >
+        holder_id = #{holderId,jdbcType=BIGINT},
+      </if>
+      <if test="receiveTime != null" >
+        receive_time = #{receiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="usedTime != null" >
+        used_time = #{usedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="activityId != null" >
+        activity_id = #{activityId,jdbcType=BIGINT},
+      </if>
+      <if test="senderId != null" >
+        sender_id = #{senderId,jdbcType=BIGINT},
+      </if>
+      <if test="useCondition != null" >
+        use_condition = #{useCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null" >
+        project_id = #{projectId,jdbcType=BIGINT},
+      </if>
+      <if test="transactionId != null" >
+        transaction_id = #{transactionId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <delete id="batchDelete" parameterType="java.lang.Long" >
+    delete from mc_coupon
+    where id in  <foreach collection="ids" index="index" item="item" open="(" separator="," close=")"> #{item}  </foreach>  
+  </delete>
+  <select id="findByPage" resultMap="BaseResultMap" >
+    select 
+    <include refid="Front_Column_List" />
+    from mc_coupon as c 
+    left join uc_member as m on m.id=holder_id
+    left join  mc_coupon_template as t on t.id= c.coupon_template_id
+    <if test=" map != null" >
+      <where >
+      <if test=" map.trueName != null" >
+         and m.true_name = #{map.trueName}
+        </if>
+      <if test=" map.mobile != null" >
+         and m.mobile = #{map.mobile}
+        </if>
+        <if test=" map.templateName != null" >
+         and t.name = #{map.templateName}
+        </if>
+        <if test=" map.id != null" >
+         and c.id = #{map.id}
+        </if>
+        <if test=" map.couponCode != null" >
+         and c.coupon_code = #{map.couponCode}
+        </if>
+        <if test=" map.couponTemplateId != null" >
+         and c.coupon_template_id = #{map.couponTemplateId}
+        </if>
+        <if test=" map.couponTemplatePrintId != null" >
+        and  c.coupon_template_print_id = #{map.couponTemplatePrintId}
+        </if>
+        <if test=" map.couponType != null" >
+        and  c.coupon_type = #{map.couponType}
+        </if>
+        <if test=" map.amount != null" >
+        and  c.amount = #{map.amount}
+        </if>
+        <if test=" map.status != null" >
+        and  c.status = #{map.status}
+        </if>
+        <if test=" map.vaildCalcType != null" >
+        and   c.vaild_calc_type = #{map.vaildCalcType}
+        </if>
+        <if test=" map.days != null" >
+        and   c.days = #{map.days}
+        </if>
+        <if test=" map.webScope != null" >
+        and  c.web_scope = #{map.webScope}
+        </if>
+        <if test=" map.wapScope != null" >
+        and  c.wap_scope = #{map.wapScope}
+        </if>
+        <if test=" map.appScope != null" >
+        and  c.app_scope = #{map.appScope}
+        </if>
+        <if test=" map.amountScope != null" >
+        and  c.amount_scope = #{map.amountScope}
+        </if>
+        <if test=" map.daysScope != null" >
+        and  c.days_scope = #{map.daysScope}
+        </if>
+        <if test=" map.holderId != null" >
+        and  c.holder_id = #{map.holderId}
+        </if>
+        <if test=" map.receiveTime != null" >
+        and c.receive_time = #{map.receiveTime}
+        </if>
+        <if test=" map.usedTime != null" >
+        and  c.used_time = #{map.usedTime}
+        </if>
+        <if test=" map.remarks != null" >
+        and c.remarks = #{map.remarks}
+        </if>
+        <if test=" map.activityId != null" >
+        and  c.activity_id = #{map.activityId}
+        </if>
+        <if test=" map.senderId != null" >
+        and  c.sender_id = #{map.senderId}
+        </if>
+        <if test=" map.useCondition != null" >
+        and  c.use_condition = #{map.useCondition}
+        </if>
+        <if test=" map.projectId != null" >
+        and  c.project_id = #{map.projectId}
+        </if>
+         <if test=" map.startDate != null" >
+          and c.start_date <![CDATA[>=]]> #{map.startDate}
+        </if>
+        <if test=" map.endDate != null" >
+          and c.end_date <![CDATA[<=]]> #{map.endDate}
+        </if>
+        <if test=" map.transactionId != null" >
+       and   c.transaction_id = #{map.transactionId}
+        </if>
+        <if test=" map.createTime != null" >
+        and  c.create_time = #{map.createTime}
+        </if>
+        <if test=" map.updateTime != null" >
+        and  c.update_time = #{map.updateTime}
+        </if>
+      </where>
+      LIMIT	#{map.startRow}, #{map.pageSize}  
+    </if>
+      
+    
+  </select>
+  
+  <sql id="Base_Column_List_Pagin" >
+    t.id  as  id,
+t.coupon_code  as  coupon_code,
+t.coupon_template_id  as  coupon_template_id,
+t.coupon_template_print_id as coupon_template_print_id,
+t.coupon_type  as  coupon_type,
+t.amount  as  amount,
+t.status  as  status,
+t.vaild_calc_type  as  vaild_calc_type,
+t.days  as  days,
+t.web_scope  as  web_scope,
+t.wap_scope  as  wap_scope,
+t.app_scope  as  app_scope,
+t.amount_scope  as  amount_scope,
+t.days_scope  as  days_scope,
+t.start_date  as  start_date,
+t.end_date  as  end_date,
+t.holder_id  as  holder_id,
+t.receive_time  as  receive_time,
+t.used_time  as  used_time,
+t.remarks  as  remarks,
+t.activity_id  as  activity_id,
+t.sender_id  as  sender_id,
+t.use_condition  as  use_condition,
+t.project_id  as  project_id,
+t.transaction_id  as  transaction_id,
+t.create_time  as  create_time,
+t.update_time  as  update_time
+  </sql>
+  <select id="selectForPagin" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List_Pagin" />
+    from  (SELECT id FROM  mc_coupon
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = #{map.id}
+        </if>
+        <if test=" map.couponCode != null" >
+          coupon_code = #{map.couponCode}
+        </if>
+        <if test=" map.couponTemplateId != null" >
+          coupon_template_id = #{map.couponTemplateId}
+        </if>
+        <if test=" map.couponTemplatePrintId != null" >
+          coupon_template_print_id = #{map.couponTemplatePrintId}
+        </if>
+        <if test=" map.couponType != null" >
+          coupon_type = #{map.couponType}
+        </if>
+        <if test=" map.amount != null" >
+          amount = #{map.amount}
+        </if>
+        <if test=" map.status != null" >
+          status = #{map.status}
+        </if>
+        <if test=" map.vaildCalcType != null" >
+          vaild_calc_type = #{map.vaildCalcType}
+        </if>
+        <if test=" map.days != null" >
+          days = #{map.days}
+        </if>
+        <if test=" map.webScope != null" >
+          web_scope = #{map.webScope}
+        </if>
+        <if test=" map.wapScope != null" >
+          wap_scope = #{map.wapScope}
+        </if>
+        <if test=" map.webScope != null" >
+          app_scope = #{map.appScope}
+        </if>
+        <if test=" map.amountScope != null" >
+          amount_scope = #{map.amountScope}
+        </if>
+        <if test=" map.daysScope != null" >
+          days_scope = #{map.daysScope}
+        </if>
+        <if test=" map.startDate != null" >
+          start_date = #{map.startDate}
+        </if>
+        <if test=" map.endDate != null" >
+          end_date = #{map.endDate}
+        </if>
+        <if test=" map.holderId != null" >
+          holder_id = #{map.holderId}
+        </if>
+        <if test=" map.receiveTime != null" >
+          receive_time = #{map.receiveTime}
+        </if>
+        <if test=" map.usedTime != null" >
+          used_time = #{map.usedTime}
+        </if>
+        <if test=" map.remarks != null" >
+          remarks = #{map.remarks}
+        </if>
+        <if test=" map.activityId != null" >
+          activity_id = #{map.activityId}
+        </if>
+        <if test=" map.senderId != null" >
+          sender_id = #{map.senderId}
+        </if>
+        <if test=" map.useCondition != null" >
+          use_condition = #{map.useCondition}
+        </if>
+        <if test=" map.projectId != null" >
+          project_id = #{map.projectId}
+        </if>
+        <if test=" map.transactionId != null" >
+          transaction_id = #{map.transactionId}
+        </if>
+        <if test=" map.createTime != null" >
+          create_time = #{map.createTime}
+        </if>
+        <if test=" map.updateTime != null" >
+          update_time = #{map.updateTime}
+        </if>
+      </where>
+    </if>
+      LIMIT	#{map.startRow}, #{map.pageSize}  )  AS a,  mc_coupon AS t FORCE INDEX(PRIMARY) WHERE a.id = t.id   
+  </select>
+  <select id="selectForPaginTotalCount" resultType="java.lang.Integer" >
+    select count(1) 
+    from mc_coupon as c 
+    left join uc_member as m on m.id=holder_id
+    left join  mc_coupon_template as t on t.id= c.coupon_template_id
+    <if test=" map != null" >
+      <where >
+       <if test=" map.trueName != null" >
+         and m.true_name = #{map.trueName}
+        </if>
+      <if test=" map.mobile != null" >
+         and m.mobile = #{map.mobile}
+        </if>
+        <if test=" map.templateName != null" >
+         and t.name = #{map.templateName}
+        </if>
+        <if test=" map.id != null" >
+        and  c.id = #{map.id}
+        </if>
+        <if test=" map.couponCode != null" >
+        and  c.coupon_code = #{map.couponCode}
+        </if>
+        <if test=" map.couponTemplateId != null" >
+        and  c.coupon_template_id = #{map.couponTemplateId}
+        </if>
+        <if test=" map.couponTemplatePrintId != null" >
+        and  c.coupon_template_print_id = #{map.couponTemplatePrintId}
+        </if>
+        <if test=" map.couponType != null" >
+        and  c.coupon_type = #{map.couponType}
+        </if>
+        <if test=" map.amount != null" >
+        and  c.amount = #{map.amount}
+        </if>
+        <if test=" map.status != null" >
+        and  c.status = #{map.status}
+        </if>
+        <if test=" map.vaildCalcType != null" >
+        and  c.vaild_calc_type = #{map.vaildCalcType}
+        </if>
+        <if test=" map.days != null" >
+        and  c.days = #{map.days}
+        </if>
+        <if test=" map.webScope != null" >
+        and c.web_scope = #{map.webScope}
+        </if>
+        <if test=" map.wapScope != null" >
+        and c.wap_scope = #{map.wapScope}
+        </if>
+        <if test=" map.appScope != null" >
+        and  c.app_scope = #{map.appScope}
+        </if>
+        <if test=" map.amountScope != null" >
+        and  c.amount_scope = #{map.amountScope}
+        </if>
+        <if test=" map.daysScope != null" >
+        and  c.days_scope = #{map.daysScope}
+        </if>
+        <if test=" map.holderId != null" >
+        and  c.holder_id = #{map.holderId}
+        </if>
+        <if test=" map.receiveTime != null" >
+         and c.receive_time = #{map.receiveTime}
+        </if>
+        <if test=" map.usedTime != null" >
+         and c.used_time = #{map.usedTime}
+        </if>
+        <if test=" map.remarks != null" >
+        and  c.remarks = #{map.remarks}
+        </if>
+        <if test=" map.activityId != null" >
+        and  c.activity_id = #{map.activityId}
+        </if>
+        <if test=" map.senderId != null" >
+        and  c.sender_id = #{map.senderId}
+        </if>
+        <if test=" map.useCondition != null" >
+        and c.use_condition = #{map.useCondition}
+        </if>
+        <if test=" map.projectId != null" >
+         and c.project_id = #{map.projectId}
+        </if>
+        <if test=" map.startDate != null" >
+          and c.start_date <![CDATA[>=]]> #{map.startDate}
+        </if>
+        <if test=" map.endDate != null" >
+          and c.end_date <![CDATA[<=]]> #{map.endDate}
+        </if>
+        <if test=" map.transactionId != null" >
+        and  c.transaction_id = #{map.transactionId}
+        </if>
+        <if test=" map.createTime != null" >
+        and  c.create_time = #{map.createTime}
+        </if>
+        <if test=" map.updateTime != null" >
+        and  c.update_time = #{map.updateTime}
+        </if>
+      </where>
+    </if>
+  </select>
+  <select id="getCouponByCouponNo" resultMap="BaseResultMap" parameterType="java.lang.String">
+  	select <include refid="Base_Column_List"/>
+  	from mc_coupon
+  	where coupon_code = #{couponCode,jdbcType=VARCHAR}
+  </select>
+  
+  <!-- 批量插入优惠券 -->
+  <insert id="batchInsertCoupon" parameterType="java.util.List" >
+	    insert into mc_coupon (coupon_code,coupon_template_id,
+	    coupon_template_print_id,coupon_type,
+	    amount,status,
+	    vaild_calc_type,days,
+	    web_scope,
+	    wap_scope,
+	    app_scope,
+	    amount_scope,
+	    days_scope,
+	    start_date,end_date,
+	    use_condition,
+	    create_time,update_time,extra_interest_type,extra_interest_day)   values   
+      <foreach collection="list" item="item" index="index"   separator=",">  
+        ( #{item.couponCode}, 
+        #{item.couponTemplateId},
+        #{item.couponTemplatePrintId},
+        #{item.couponType}, 
+        #{item.amount}, 
+        #{item.status}, 
+        #{item.vaildCalcType}, 
+        #{item.days},
+        #{item.webScope},
+        #{item.wapScope},
+        #{item.appScope},
+        #{item.amountScope},
+        #{item.daysScope},
+        #{item.startDate}, 
+        #{item.endDate},
+        #{item.useCondition},
+        now(),now(),
+        #{item.extraInterestType},
+        #{item.extraInterestDay}
+        )  
+      </foreach>     
+  </insert>
+  
+  <!-- 根据优惠券模板获取一个未领取的优惠券 ，根据印刷的先后顺序获取-->
+  <select id="findUnreceviedCouponByTemplateId" resultMap="BaseResultMap"  parameterType="java.lang.Long">
+  	select 
+    <include refid="Base_Column_List" />
+    from mc_coupon
+    where status=0 and  coupon_template_id = #{couponTemplateId,jdbcType=BIGINT} order by id asc limit 1
+  </select>
+  
+  <!-- 2-按领取后天数计算的优惠券领用 -->
+  <update id="receiveDaysCoupon"  parameterType="Coupon">
+  	update mc_coupon set status=1,start_date = now(),end_date = DATE_ADD(now(),INTERVAL #{days,jdbcType=INTEGER} DAY),
+  	holder_id= #{holderId,jdbcType=BIGINT},receive_time =now(),activity_id=#{activityId,jdbcType=BIGINT}, 
+  	update_time = now(),sender_id = #{senderId,jdbcType=BIGINT},way=#{way,jdbcType=INTEGER},access_source=#{accessSource,jdbcType=INTEGER}
+  	where id =#{id,jdbcType=BIGINT} and status = 0; 
+  </update>
+  
+  <!-- 0-永久 1-按时间计算的优惠券领用 -->
+  <update id="receiveForeverAndTimezoonCoupon"  parameterType="Coupon">
+  	update mc_coupon 
+  	set status=1,holder_id = #{holderId,jdbcType=BIGINT},receive_time =now(),activity_id=#{activityId,jdbcType=BIGINT},update_time = now(),
+  	sender_id = #{senderId,jdbcType=BIGINT},way=#{way,jdbcType=INTEGER},access_source=#{accessSource,jdbcType=INTEGER}
+  	<if test="vaildCalcType==0">
+  		,start_date=now(),end_date=DATE_ADD(now(),INTERVAL 100 YEAR)
+  	</if> 
+  	where id =#{id,jdbcType=BIGINT} and status = 0; 
+  </update>
+  
+  <!-- 使用优惠券 -->
+  <update id="useCoupon" >
+  	update mc_coupon set status=2, used_time = now(),update_time = now(),project_id = #{map.projectId},transaction_id = #{map.transactionId} where coupon_code=#{map.couponNo} 
+  </update>
+  
+  <!-- 获取会员可用优惠券 -->
+  <select id="findUsableCouponsByMemberId" resultMap="BaseResultMap">
+  	select 
+  	<include refid="Base_Column_List" />
+  	 from mc_coupon 
+  	 where holder_id = #{map.holderId} and status = 1 and end_date <![CDATA[ >=  ]]> CURDATE() and coupon_type = #{map.couponType} order by end_date
+  </select>
+  
+  <!-- 前台分页 -->
+	<select id="selectForPaginFront" resultMap="FrontResultMap"
+		parameterType="CouponQuery">
+		select
+		<include refid="Front_Column_List" />
+		from
+		mc_coupon as c 
+		LEFT JOIN mc_coupon_template as t on c.coupon_template_id = t.id
+		<if test="couponQuery != null">
+			<where>
+				<if test="couponQuery.memberId != null">
+					c.holder_id = #{couponQuery.memberId,jdbcType=BIGINT} 
+				</if>
+				<if test="couponQuery.status != null">
+				 	<choose> 
+					 	<when test="couponQuery.status == 1">					
+						and c.status in (1,5)
+						</when>
+						<when test="couponQuery.status == 2 and couponQuery.way==2">					
+						and c.status in (2,4)
+						</when>
+						<otherwise>
+						and c.status = #{couponQuery.status,jdbcType=INTEGER}
+						</otherwise>
+					</choose> 
+				</if>
+				<if test="couponQuery.couponType != null">
+					and c.coupon_type = #{couponQuery.couponType,jdbcType=INTEGER}
+				</if>
+			</where>
+		</if>
+		<if test="couponQuery.status != null">
+			<choose>
+				<when test="couponQuery.status == 1">
+					order by c.receive_time desc
+				</when>
+				<when test="couponQuery.status == 2">
+					order by c.receive_time desc
+				</when>
+				<otherwise>
+					order by c.used_time desc
+				</otherwise>
+			</choose>
+		</if>
+		LIMIT #{couponQuery.startRow,jdbcType=INTEGER},
+		#{couponQuery.pageSize,jdbcType=INTEGER} 
+	</select>
+	
+	<!-- 前台分页 -->
+	<select id="selectForPaginTotalCountFront" resultType="java.lang.Integer">
+		select count(1) from mc_coupon as c 
+		<if test="couponQuery != null">
+			<where>
+				<if test="couponQuery.memberId != null">
+					c.holder_id = #{couponQuery.memberId,jdbcType=BIGINT} 
+				</if>
+				<if test="couponQuery.status != null">
+				 	<choose> 
+					 	<when test="couponQuery.status == 1">					
+						and c.status in (1,5)
+						</when>
+						<when test="couponQuery.status == 2 and couponQuery.way==2">					
+						and c.status in (2,4)
+						</when>
+						<otherwise>
+						and c.status = #{couponQuery.status,jdbcType=INTEGER}
+						</otherwise>
+					</choose> 
+				</if>
+				<if test="couponQuery.couponType != null">
+					and c.coupon_type = #{couponQuery.couponType,jdbcType=INTEGER}
+				</if>
+			</where>
+		</if>
+	</select>
+  
+  <!-- 根据状态获取优惠券总额 -->
+  <select id="findTotalAmountByStatus" resultMap="BaseResultMap" parameterType="CouponQuery">
+  	select sum(amount) as amount
+	from mc_coupon as c 
+ 	where c.coupon_type = #{couponQuery.couponType} 
+		 and c.holder_id = #{couponQuery.memberId} 
+		 and status = #{couponQuery.status}
+  </select>
+  
+  <!--  -->
+  <select id="getCouponByMemberIdAndCouponTemplateId" resultMap="BaseResultMap">
+  select <include refid="Base_Column_List"/>
+  	from mc_coupon
+  	where holder_id = #{memberId,jdbcType=BIGINT}
+  	and coupon_template_id = #{couponTemplateId,jdbcType=BIGINT}
+  
+  </select>
+  
+  <select id="getMemberCouponCount" resultType="java.lang.Integer">
+  select count(0)
+  from mc_coupon
+  where holder_id = #{memberId,jdbcType=BIGINT}
+  and status= #{status,jdbcType=INTEGER}
+  
+  </select>
+  <!-- 获取优惠券数量  过滤p2p -->
+  <select id="getMemberCouponCountFilterP2p" resultType="java.lang.Integer">
+  select count(0)
+  from mc_coupon as m left join ic_project as p on p.id=m.project_id
+  where m.holder_id = #{memberId,jdbcType=BIGINT}
+  and m.status= #{status,jdbcType=INTEGER}
+  and p.invest_type=1
+  
+  </select>
+  <select id="getMemberCouponCountByType" resultType="java.lang.Integer">
+  	select count(0)
+  	from mc_coupon 
+  	where holder_id = #{holderId,jdbcType=BIGINT} 
+  	and coupon_type = #{couponType,jdbcType=INTEGER}
+  </select>
+  
+  <!-- 根据模板id获取最新的几条领取过的优惠券  -->
+  <select id="getCouponsByCouponTemplateId" resultMap="BizResultMap">
+  	SELECT
+	m.username AS username,
+	m.mobile AS mobile,
+	c.receive_time AS receive_time,
+	m.avatars as avatars
+	FROM
+		mc_coupon AS c
+	LEFT JOIN uc_member AS m ON c.holder_id = m.id
+	WHERE
+		c.coupon_template_id = #{couponTemplateId,jdbcType=BIGINT}
+	AND c. STATUS IN (1, 2, 4, 5) 
+	ORDER BY
+	c.receive_time DESC
+	LIMIT #{showNum,jdbcType=INTEGER}
+  </select>
+  
+  <!-- 根据优惠券编号查询优惠券模板印刷Id -->
+  <select id="findPrintIdByCouponCode" resultType="java.lang.Long">
+  	SELECT 
+  		coupon_template_print_id
+	FROM 
+		mc_coupon
+	WHERE coupon_code = #{couponCode,jdbcType=VARCHAR}
+  </select>
+  
+  
+  <!-- 更新优惠券的使用数量 -->
+  <update id="updateUsedNumForCouponTemplatePrint">
+  	UPDATE mc_coupon_template_print AS p
+	SET p.used_num = ifnull(p.used_num,0) + 1
+	WHERE
+		p.id = #{couponTemplatePrintId,jdbcType=BIGINT}
+  </update>
+  
+  <!-- 获得即将过期的优惠券 -->
+  <select id="getExpiringCoupons" resultMap="BaseResultMap">
+  	SELECT 
+  		id,coupon_type, amount,holder_id
+	FROM 
+		mc_coupon
+	where status = 1 and vaild_calc_type in(1,2) and end_date  <![CDATA[ = ]]>DATE_ADD(curdate(),INTERVAL 3 DAY)
+  </select>
+  
+    <select id="countReceivedCouponByActivityId" resultType="java.lang.Integer">
+  SELECT 
+  	count(0)
+  FROM 
+  	mc_coupon
+  WHERE 
+  	holder_id IS NOT NULL
+  AND 
+  	activity_id= #{activityId,jdbcType=BIGINT}
+  
+  </select>
+  
+  <resultMap id="ActivityForRedFridayResultMap" type="ActivityForRedFriday">
+		<result column="member_id" property="memberId" jdbcType="BIGINT" />
+		<result column="username" property="username" jdbcType="VARCHAR" />
+		<result column="mobile" property="mobile" jdbcType="BIGINT" />
+		<result column="coupon_id" property="couponId" jdbcType="BIGINT" />
+	</resultMap>
+  <select id="getReceivedCouponByActivityId" resultMap="ActivityForRedFridayResultMap" >
+  SELECT
+  	m.id as member_id,
+		m.username as username,
+		m.mobile as mobile,
+		c.id as coupon_id
+  FROM 
+  	mc_coupon c inner join uc_member m
+  	on m.id=c.holder_id
+  WHERE 
+  	c.holder_id IS NOT NULL
+  AND 
+  	c.activity_id= #{activityId,jdbcType=BIGINT}
+  ORDER BY 
+  	c.receive_time desc
+  limit 100
+  </select>
+
+	<!-- 领用优惠券根据优惠券模板id -->
+  <update id="receiveCouponByCouponTemplateId" parameterType="Coupon">
+  	UPDATE mc_coupon as c INNER JOIN mc_coupon_template_print as p on c.coupon_template_print_id = p.id 
+	SET 
+	c.STATUS = 1, 
+	c.holder_id = #{holderId,jdbcType=BIGINT}, 
+	c.receive_time = now(), 
+	c.activity_id =#{activityId,jdbcType=BIGINT},
+	c.update_time = now(),
+	c.sender_id = #{senderId,jdbcType=BIGINT},
+	c.update_time = now(),
+	p.update_time = now(),	
+	p.received_num = IFNULL(p.received_num,0) + 1
+	<if test="vaildCalcType==0">
+		,c.start_date=now(),c.end_date=DATE_ADD(now(),INTERVAL 100 YEAR)
+	</if>
+	<if test="vaildCalcType==2">
+		,c.start_date=now(),c.end_date=DATE_ADD(now(),INTERVAL days DAY)
+	</if>
+	WHERE
+	c.id =(
+		select m.id from(
+			SELECT
+				min(c.id) as id
+			FROM
+				mc_coupon as c 
+			WHERE
+				c.coupon_template_id = #{couponTemplateId,jdbcType=BIGINT}
+			AND c.`status` = 0
+		)as m 
+	)
+  </update>
+  
+  <!-- 同一个用户,同一个活动是否领用过优惠券 -->
+  <select id="selectByMemberIdAndActivityId" resultType="java.lang.Integer">
+	  	SELECT
+			1
+		FROM
+			mc_coupon
+		WHERE
+			holder_id = #{holderId,jdbcType=BIGINT}
+		AND activity_id = #{activityId,jdbcType=BIGINT} 
+		and coupon_template_id = #{couponTemplateId,jdbcType=BIGINT} limit 1
+  </select>
+  
+  <!-- 获取不同类型（现金券、优惠券）可用优惠券数量  -->
+  <select id="getMemberActivedCouponCountByType" resultType="java.lang.Integer">
+	  select count(0)
+  		from mc_coupon 
+  		where holder_id = #{holderId,jdbcType=BIGINT} 
+  		and coupon_type = #{couponType,jdbcType=INTEGER}
+		and status = 1
+  </select>
+  
+  <!-- 解锁优惠券 -->
+  <update id="unlockedCouponByCouponNo" >
+  	UPDATE mc_coupon
+		SET STATUS = (
+			CASE
+			WHEN end_date >= CURRENT_DATE() THEN 1	ELSE 4 END
+		),
+		update_time = now()
+		WHERE
+			STATUS = 5
+		AND coupon_code = #{couponNo,jdbcType=VARCHAR}
+  </update>
+  
+  <!-- 将优惠券置为已使用 -->
+  <update id="usedCouponByCouponNo" >
+  	UPDATE mc_coupon
+	SET STATUS = 2,
+	update_time = now()
+	WHERE
+	STATUS = 5
+	AND coupon_code = #{couponNo,jdbcType=VARCHAR}
+  </update>
+  
+  
+  
+  
+  <select id="isReceiveBirthdayCoupon" resultType="java.lang.Integer">
+    select 1
+  	from mc_coupon
+  	where holder_id = #{memberId,jdbcType=BIGINT}
+  	and coupon_template_id = #{couponTemplateId,jdbcType=BIGINT} 
+  	and DATE_FORMAT(receive_time,'%Y-%m-%d')= #{receiveTime,jdbcType=BIGINT}
+  	limit 1
+  </select>
+  
+  
+   <!-- 前台显示优惠券模板name和活动name -->
+  <resultMap type="Coupon" id="UnlockResultMap" extends="BaseResultMap">
+	<result column="name" property="name" jdbcType="VARCHAR" />
+	<result column="activityName" property="activityName" jdbcType="VARCHAR" />
+  </resultMap>
+  
+ 
+
+
+  <!-- 锁定未使用的优惠券 -->
+  <update id="lockedUnUseCouponByCouponNo" >
+    UPDATE mc_coupon
+    SET STATUS =5
+    update_time = now()
+    WHERE
+    STATUS = 1
+    AND coupon_code = #{couponNo,jdbcType=VARCHAR}  and holder_id = #{memberId,jdbcType=BIGINT}
+  </update>
+
+  <select id="selectCouponforUpdate" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from mc_coupon
+    where id =  #{id,jdbcType=BIGINT} for update
+  </select>
+
+<!-- 根据用户ID获取优惠券 -->
+  <select id="selectCouponByMermberId" resultMap="UnlockResultMap"  >
+  	select        
+  	 a.activity_name as activityName,
+  	 <include refid="Front_Column_List" />                       
+  	 from mc_coupon  c                                              
+  	
+				Inner join uc_member u
+			on  u.id=c.holder_id
+			
+				left join mc_activity a
+			on a.id=c.activity_id
+				
+				left join mc_coupon_template t
+			on  t.id=c.coupon_template_id
+		where  c.status = 5
+				<if test=" map.id != null">
+					and u.id = #{map.id}
+				</if>
+				<if test=" map.trueName != null">
+					and u.true_name = #{map.trueName}
+				</if>
+				<if test=" map.mobile!= null">
+					and u.mobile = #{map.mobile}
+				</if>
+  </select>
+  
+  <select id="checkTransactionCouponFromPopularity" resultMap="BaseResultMap">
+  	SELECT
+    m.id, m.amount, m.status
+	FROM
+	    mc_coupon as m
+	INNER JOIN tc_order as o on o.cash_coupon_no = m.coupon_code and o.id = #{orderId,jdbcType=BIGINT}
+	WHERE
+	    m.coupon_type = 1
+	AND m.coupon_template_id in  <foreach collection="ids" index="index" item="item" open="(" separator="," close=")"> #{item}  </foreach>
+	AND m.receive_time between #{receiveStartTime,jdbcType=TIMESTAMP} and #{receiveEndTime,jdbcType=TIMESTAMP}
+	LIMIT 1;
+  </select>
+
+   
+  <select id="selectNewYearCoupon" resultMap="BaseResultMap" >
+  	SELECT
+		c.coupon_template_id,
+		CASE
+	<foreach collection="items" index="index" item="item" open=" " separator=" " close=" ">   
+		WHEN c.coupon_template_id = #{item.templateId}
+		AND DATE(c.receive_time) = #{item.requireTime} THEN
+			1
+	</foreach> 
+		ELSE
+		0
+		END AS amount,
+	 	c. STATUS
+	FROM
+		mc_coupon AS c
+	WHERE
+		c.activity_id = #{activityId,jdbcType=BIGINT}
+	AND c.holder_id = #{memberId,jdbcType=BIGINT}
+	ORDER BY
+		c.coupon_template_id
+  </select>
+  
+  <select id="getCouponByMemberIdAndActivityId" resultMap="BaseResultMap" >
+  	select <include refid="Base_Column_List"/>
+  	from mc_coupon
+  	where holder_id = #{memberId,jdbcType=BIGINT}
+  	and activity_id = #{activityId,jdbcType=BIGINT}
+  </select>
+  
+  <update id="extendCouponEndDate">
+  	UPDATE mc_coupon
+	SET STATUS = #{afterStatus,jdbcType=INTEGER},
+	 end_date = #{endDate,jdbcType=TIMESTAMP},
+	 update_time = now(),
+	 remarks = #{remarks,jdbcType=VARCHAR},
+	 project_id = NULL,transaction_id = NULL 
+	WHERE
+		STATUS = #{beforeStatus,jdbcType=INTEGER}
+	AND coupon_code = #{couponCode,jdbcType=VARCHAR}
+  </update>
+
+  <select id="queryCouponMemberMobileByTemplate"  resultType="com.yourong.core.mc.model.biz.CouponTemplateSMSBiz">
+    SELECT m.id AS memberid, m.mobile AS mobile,count(1) AS num,a.name AS topic FROM mc_coupon_template a JOIN mc_coupon b ON a.id=b.coupon_template_id
+    JOIN uc_member m ON b.holder_id=m.id WHERE b.coupon_template_id =#{templateid} AND b.end_date=#{enddate} AND b.status=1 GROUP BY m.id,a.id
+  </select>
+  
+   <select id="queryCouponExpirationReminderMobile"  resultType="com.yourong.core.mc.model.biz.CouponTemplateSMSBiz">
+    select couTem.name as topic,couTem.amount as amount,couTem.coupon_type as coupontType,cou.holder_id as memberid,m.mobile as mobile,count(0) as num 
+	 from mc_coupon as cou
+	left join mc_coupon_template as couTem on couTem.id=cou.coupon_template_id
+	left join uc_member as  m ON cou.holder_id=m.id 
+	where cou.status = 1 and cou.end_date=#{endDate}
+	group by cou.holder_id,cou.coupon_template_id
+  </select>
+  
+  <!-- 获取自动投标中会员可用优惠券 -->
+  <select id="findUsableAutoInvestCouponsByMemberId" resultMap="BaseResultMap">
+  	select 
+  	 <include refid="Base_Column_List" />
+  	 from mc_coupon 
+  	 where holder_id = #{map.holderId} and status = 1 and end_date <![CDATA[ >=  ]]> CURDATE() and coupon_type = #{map.couponType} 
+  	 <!-- 优先使用收益最高优惠券 -->
+  	 <if test="map.queryType == 1">
+  	 	order by amount desc, days_scope desc, amount_scope desc, end_date asc, receive_time asc 
+  	 </if>
+  	 <!-- 优先使用有效期最短优惠券 -->
+  	 <if test="map.queryType == 2">
+  	 	order by end_date asc, amount desc, days_scope desc, amount_scope desc, receive_time asc 
+  	 </if>
+  	 limit 1
+  </select>
+  
+</mapper>

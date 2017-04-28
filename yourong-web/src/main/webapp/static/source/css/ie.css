@@ -1,0 +1,245 @@
+/*for ie7~ie8*/
+/*ie7字体 bug*/
+
+body, button, input, select, textarea {
+    *font: 12px/1.5 "Hiragino Sans GB", "Microsoft Yahei", \5b8b\4f53, tahoma, arial;
+}
+
+/*ie7按钮黑边框*/
+
+.u-btn-primary {
+    border: none;
+}
+
+/*圆角兼容ie7~8*/
+
+.u-circle-3, .u-circle-7, .u-circle-12, .u-circle-15, .u-circle-18, .u-circle-25, .u-circle-28, .u-circle-30, .u-circle-32, .u-circle-37, .u-circle-40,.u-circle-50, .u-circle-65 {
+    behavior: url(/static/lib/ie-css3.htc);
+}
+
+.u-plist-status .z-current strong {
+    behavior: url(/static/lib/ie-css3.htc);
+}
+
+/*max-width错误*/
+
+.u-pbox-title {
+    *display: inline;
+}
+
+/*ie7~8不用圆角*/
+
+
+/*.m-nav li a,*/
+.m-user-menu .u-user-amount a,
+.m-bankcard-list li,
+.u-detail-proceeds .u-circle-15,
+.m-login-top .u-btn-sign,
+.m-login-top span,
+.m-detail-data .u-pbox-title,
+.u-filter-datePicker input,
+.m-capitalLogs-filter .u-selector,
+.u-pnav-link,
+.u-pnav-crt,
+.u-dynamic-profit {
+    behavior: url(/static/img);
+}
+
+.m-pagenav .u-circle-12 {
+    *behavior: url(/static/img);
+}
+
+/*波浪线遮盖 bug*/
+
+.u-header-bottom {
+    *z-index: -1;
+}
+
+/*头像 div inline-block无效的 bug*/
+
+.m-user-menu .u-user-photo {
+    *display: inline;
+}
+
+/*用户下拉菜单无法显示在最上层*/
+
+.g-hd:hover {
+    *z-index: 10001;
+}
+
+/*ie7无法行内显示*/
+
+.u-selector {
+    *display: inline;
+}
+
+/*ie7详细地址错乱*/
+
+.u-pro-input .u-selector {
+    *margin-right: 3px;
+}
+
+.u-pro-input {
+    *padding: 15px 0 10px;
+    line-height: 50px;
+}
+
+.u-pro-input .u-ipt-amount {
+    *vertical-align: middle;
+}
+
+/*ie7验证提示宽度超出*/
+
+.u-tips-vercode {
+    *width: 150px;
+}
+
+/*收益统计修复*/
+
+.u-profit-total {
+    behavior: url(/static/lib/ie-css3.htc);
+    *margin: 0 0 0 -168px;
+    *width: 274px;
+    *height: 274px;
+    width: 280px \0;
+    height: 280px \0;
+    margin-top: -2px \0;
+}
+
+.u-profit-total > div {
+    *padding-left: 50px;
+}
+
+/*ie7帮助中心菜单栏宽度超出*/
+.u-help-navi {
+    *width: 665px;
+}
+
+/*用户中心标题*/
+
+.u-round-title {
+    *height: 24px;
+}
+
+.u-round-title em {
+    *display: block;
+}
+
+/*收益日历*/
+
+.m-profit-cal > ul {
+    *top: 93px;
+}
+
+.m-profit-cal > ul li {
+    *margin-bottom: -3px;
+}
+
+.m-profit-cal > ul li i {
+    width: 30px;
+    height: 12px;
+    border: none;
+    background: transparent url(/static/img/common/sprites.png) no-repeat -196px -298px;
+    overflow: hidden;
+}
+
+/*银行图标外框方形*/
+
+.u-bank-list li span {
+    behavior: url(/static/img);
+}
+
+.u-recharge-amount input {
+    *vertical-align: middle;
+}
+
+/*验证码模拟提示位置*/
+.u-xtips-wrap em {
+    *line-height: 36px;
+}
+
+.m-reg-box .Validform_checktip {
+    *vertical-align: top;
+}
+
+.m-input-vercode .u-ipt-phonecode {
+    width: 250px;
+}
+
+/*ie7下无下边距*/
+.m-products-list {
+    *padding-bottom: 20px;
+}
+
+.u-addqbank-info {
+    height: auto;
+}
+
+/*银行卡列表*/
+.u-recharge-bank.u-circle-25, .u-pay-qbank.u-circle-25, .u-withdraw-bank {
+    behavior: url(/static/img);
+}
+
+/*memberIndex页收益日历日期*/
+.m-profit-cal .u-home-list {
+    top: 97px;
+    *top: 97px;
+}
+.u-current-cal .u-home-list {
+    top: 67px;
+    *top: 61px;
+}
+.m-profit-cal td {
+    *height: 17px;
+}
+
+/*详情页*/
+.u-area-nav li {
+    *margin-bottom: -4px;
+}
+
+.u-dynamic-profit.z-paying {
+    right: 227px;
+    *right: 225px;
+}
+
+.u-dividend-leaseicon {
+    background-position: -159px -200px;
+}
+
+/*我的消息*/
+.u-msglist-date {
+    *width: 146px;
+}
+
+.m-umsg-filter .u-selector {
+    *vertical-align: middle;
+}
+
+/*着陆页*/
+.u-phonecode-wrap em{
+    min-width:7em;
+    right:auto;
+    left:110px;
+}
+/*v2member*/
+.u-uc-navi ul li{
+    margin: 0 0 4px;
+}
+.u-uc-coupon dl{
+    float: left;
+}
+.m-user-info>strong a{
+    *margin: 0 3px 0 0;
+}
+.m-user-info>em,
+.m-user-info>strong{
+    left: 135px;
+}
+.m-profit-cal .u-cal-year{
+    *line-height: 12px;
+}
+
+.m-contact-info dd span i{
+    *margin-bottom: 25px;
+}

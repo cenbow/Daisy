@@ -1,0 +1,589 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.cms.dao.CmsArticleMapper" >
+  <cache-ref namespace="com.yourong.core.cms.dao.BannerMapper"/>
+  <resultMap id="BaseResultMap" type="CmsArticle" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="category_id" property="categoryId" jdbcType="INTEGER" />
+    <result column="genre" property="genre" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="link" property="link" jdbcType="VARCHAR" />
+    <result column="color" property="color" jdbcType="VARCHAR" />
+    <result column="image" property="image" jdbcType="VARCHAR" />
+    <result column="chosen_image" property="chosenImage" jdbcType="VARCHAR" />
+    <result column="keywords" property="keywords" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="weight" property="weight" jdbcType="INTEGER" />
+    <result column="weight_time" property="weightTime" jdbcType="TIMESTAMP" />
+    <result column="hits" property="hits" jdbcType="INTEGER" />
+    <result column="posid" property="posid" jdbcType="VARCHAR" />
+    <result column="copyfrom" property="copyfrom" jdbcType="VARCHAR" />
+    <result column="relation" property="relation" jdbcType="VARCHAR" />
+    <result column="allow_comment" property="allowComment" jdbcType="INTEGER" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="create_by" property="createBy" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_by" property="updateBy" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+    <result column="publish_state" property="publishState" jdbcType="INTEGER" />
+    <result column="online_time" property="onlineTime" jdbcType="TIMESTAMP" />
+        <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    
+    <association property="categoryName" column="category_id"
+			javaType="java.lang.String"
+			select="com.yourong.core.cms.dao.CmsCategoryMapper.selectNameById"></association>
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="CmsArticle" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARBINARY" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, category_id, genre, title, link, color, image, chosen_image, keywords, description, weight, weight_time,
+    hits, posid, copyfrom, relation, allow_comment, remarks, create_by, create_time, 
+    update_by, update_time, del_flag,publish_state,online_time,end_time
+  </sql>
+  <sql id="Extend_Column_List" >
+    id, category_id, genre, title, link, color, image, chosen_image, keywords, description, weight, weight_time,
+    hits, posid, copyfrom, relation, allow_comment, remarks, create_by, create_time, 
+    update_by, update_time, del_flag, content
+  </sql>
+  <sql id="Blob_Column_List" >
+    content
+  </sql>
+  <insert id="insertSelective" parameterType="CmsArticle" >
+    insert into cms_article
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="categoryId != null" >
+        category_id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="link != null" >
+        link,
+      </if>
+      <if test="color != null" >
+        color,
+      </if>
+      <if test="image != null" >
+        image,
+      </if>
+      <if test="keywords != null" >
+        keywords,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="weight != null" >
+        weight,
+      </if>
+      <if test="weightTime != null" >
+        weight_time,
+      </if>
+      <if test="hits != null" >
+        hits,
+      </if>
+      <if test="posid != null" >
+        posid,
+      </if>
+      <if test="copyfrom != null" >
+        copyfrom,
+      </if>
+      <if test="relation != null" >
+        relation,
+      </if>
+      <if test="allowComment != null" >
+        allow_comment,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+      <if test="createBy != null" >
+        create_by,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateBy != null" >
+        update_by,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="onlineTime != null" >
+        online_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="publishState != null" >
+        publish_state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="categoryId != null" >
+        #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="link != null" >
+        #{link,jdbcType=VARCHAR},
+      </if>
+      <if test="color != null" >
+        #{color,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null" >
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="keywords != null" >
+        #{keywords,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null" >
+        #{weight,jdbcType=INTEGER},
+      </if>
+      <if test="weightTime != null" >
+        #{weightTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hits != null" >
+        #{hits,jdbcType=INTEGER},
+      </if>
+      <if test="posid != null" >
+        #{posid,jdbcType=VARCHAR},
+      </if>
+      <if test="copyfrom != null" >
+        #{copyfrom,jdbcType=VARCHAR},
+      </if>
+      <if test="relation != null" >
+        #{relation,jdbcType=VARCHAR},
+      </if>
+      <if test="allowComment != null" >
+        #{allowComment,jdbcType=INTEGER},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARBINARY},
+      </if>
+       <if test="onlineTime != null" >
+        #{onlineTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+       <if test="publishState != null" >
+        #{publishState,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+
+    <insert id="insertCmsArticle" parameterType="CmsArticle" useGeneratedKeys="true" keyProperty="id">
+        insert into cms_article (id, category_id,genre,
+        title, link, color,
+        image, keywords,
+        description, weight,
+        weight_time, hits,
+        posid, copyfrom,
+        relation, allow_comment,
+        remarks, create_by,
+        create_time, update_by,
+        update_time, del_flag,publish_state,online_time,end_time,
+        content)
+        values (#{id,jdbcType=BIGINT}, #{categoryId,jdbcType=INTEGER}, #{genre,jdbcType=INTEGER},
+        #{title,jdbcType=VARCHAR}, #{link,jdbcType=VARCHAR}, #{color,jdbcType=VARCHAR},
+        #{image,jdbcType=VARCHAR}, #{keywords,jdbcType=VARCHAR},
+        #{description,jdbcType=VARCHAR}, #{weight,jdbcType=INTEGER},
+        #{weightTime,jdbcType=TIMESTAMP}, #{hits,jdbcType=INTEGER},
+        #{posid,jdbcType=VARCHAR}, #{copyfrom,jdbcType=VARCHAR},
+        #{relation,jdbcType=VARCHAR}, #{allowComment,jdbcType=INTEGER},
+        #{remarks,jdbcType=VARCHAR}, #{createBy,jdbcType=VARCHAR},
+        now(), #{updateBy,jdbcType=VARCHAR},
+        now(), 1, #{publishState,jdbcType=INTEGER}, #{onlineTime,jdbcType=TIMESTAMP},#{endTime,jdbcType=TIMESTAMP},
+        #{content,jdbcType=LONGVARBINARY})
+    </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="CmsArticle" >
+    update cms_article
+    <set >
+      <if test="categoryId != null" >
+        category_id = #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="genre != null" >
+        genre = #{genre,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="link != null" >
+        link = #{link,jdbcType=VARCHAR},
+      </if>
+      <if test="color != null" >
+        color = #{color,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null" >
+        image = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="keywords != null" >
+        keywords = #{keywords,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null" >
+        weight = #{weight,jdbcType=INTEGER},
+      </if>
+      <if test="weightTime != null" >
+        weight_time = #{weightTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hits != null" >
+        hits = #{hits,jdbcType=INTEGER},
+      </if>
+      <if test="posid != null" >
+        posid = #{posid,jdbcType=VARCHAR},
+      </if>
+      <if test="copyfrom != null" >
+        copyfrom = #{copyfrom,jdbcType=VARCHAR},
+      </if>
+      <if test="relation != null" >
+        relation = #{relation,jdbcType=VARCHAR},
+      </if>
+      <if test="allowComment != null" >
+        allow_comment = #{allowComment,jdbcType=INTEGER},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARBINARY},
+      </if>
+      <if test="publishState != null" >
+        publish_state = #{publishState,jdbcType=INTEGER},
+      </if>
+      <if test="onlineTime != null" >
+        online_time = #{onlineTime,jdbcType=TIMESTAMP},
+      </if>
+      update_time = now()
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <delete id="batchDelete" parameterType="java.lang.Long" >
+    update cms_article set del_flag = -1
+    where id in  <foreach collection="ids" index="index" item="item" open="(" separator="," close=")"> #{item}  </foreach>  
+  </delete>
+  
+  <select id="findByPage" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from cms_article 
+    <if test=" map != null" >
+      <where>
+        <if test=" map.id != null" >
+          id = #{map.id}
+        </if>
+        <if test=" map.categoryId != null" >
+          and category_id = #{map.categoryId}
+        </if>
+        <if test=" map.title != null" >
+          and title like "%"#{map.title}"%"
+        </if>
+        <if test=" map.link != null" >
+          and link = #{map.link}
+        </if>
+        <if test=" map.color != null" >
+          and color = #{map.color}
+        </if>
+        <if test=" map.image != null" >
+          and image = #{map.image}
+        </if>
+        <if test=" map.keywords != null" >
+          and keywords = #{map.keywords}
+        </if>
+        <if test=" map.description != null" >
+          and description = #{map.description}
+        </if>
+        <if test=" map.weight != null" >
+          and weight = #{map.weight}
+        </if>
+        <if test=" map.weightTime != null" >
+          and weight_time = #{map.weightTime}
+        </if>
+        <if test=" map.hits != null" >
+          and hits = #{map.hits}
+        </if>
+        <if test=" map.posid != null" >
+          and posid = #{map.posid}
+        </if>
+        <if test=" map.copyfrom != null" >
+          and copyfrom = #{map.copyfrom}
+        </if>
+        <if test=" map.relation != null" >
+          and relation = #{map.relation}
+        </if>
+        <if test=" map.allowComment != null" >
+          and allow_comment = #{map.allowComment}
+        </if>
+        <if test=" map.remarks != null" >
+          and remarks = #{map.remarks}
+        </if>
+        <if test=" map.createBy != null" >
+          and create_by = #{map.createBy}
+        </if>
+        <if test=" map.createTime != null" >
+          and create_time = #{map.createTime}
+        </if>
+        <if test=" map.updateBy != null" >
+          and update_by = #{map.updateBy}
+        </if>
+        <if test=" map.updateTime != null" >
+          and update_time = #{map.updateTime}
+        </if>
+        <if test=" map.content != null" >
+          and content = #{map.content}
+        </if>
+      
+        <if test="map.onlineTime != null" >
+     	  and  online_time = #{map.onlineTime}
+   	    </if>
+        
+        <choose>
+        	<when test="map.delFlag!=null">
+        		and del_flag = #{map.delFlag}
+        	</when>
+        	<otherwise>
+        		and del_flag > 0
+        	</otherwise>
+        </choose>
+       </where>
+       	<choose>
+		   	<when test="map.desc!=null">
+		   	 	 order by ${map.desc} desc
+		   	</when>
+		   	<when test="map.asc!=null">
+		   	 	 order by ${map.asc} asc
+		   	</when>
+		   	<otherwise>
+		   		 order by id desc
+		   	</otherwise>
+	   	</choose>
+       </if>
+  </select>
+  
+  <select id="selectArticles" resultType="java.lang.Integer">
+  	select count(1) 
+	from
+  	cms_article where del_flag > 0 and publish_state=1 and category_id = 1
+	and create_time <![CDATA[ > ]]> (SELECT create_time FROM cms_article WHERE id = #{newsId})
+  </select>
+  
+  <!--前台分页  start-->
+  <select id="selectForPaginFront" resultMap="ResultMapWithBLOBs" parameterType="CmsArticleQuery">
+  	select
+	<include refid="Extend_Column_List"/>
+  	from 
+  	cms_article 
+  	where del_flag > 0
+  	and publish_state=1
+	  	<if test="cmsArticleQuery !=null">
+			<if test="cmsArticleQuery.categoryId != null">
+				and category_id =  #{cmsArticleQuery.categoryId}
+			</if>
+          <if test="cmsArticleQuery.genre != null">
+                and genre =  #{cmsArticleQuery.genre}
+          </if>
+	  	</if>
+	  	order by create_time desc	
+	LIMIT #{cmsArticleQuery.startRow,jdbcType=INTEGER},
+		#{cmsArticleQuery.pageSize,jdbcType=INTEGER} 
+  </select>
+  
+  <select id="selectForPaginTotalCountFront" resultType="java.lang.Integer" >
+  	select count(1) 
+  	from
+  	cms_article
+  	where del_flag > 0
+  	and publish_state=1
+	  	<if test="cmsArticleQuery != null">
+			<if test="cmsArticleQuery.categoryId != null">
+				and category_id = #{cmsArticleQuery.categoryId}
+			</if>
+	  	</if>
+  </select>
+  <!--前台分页  end-->
+  
+  <!-- 首页的公告滚动 -->
+  <select id="selectHomeNotice" resultMap="BaseResultMap">
+  	select 
+  	id,title,create_time
+  	from
+  	cms_article
+  	where del_flag>0 
+  	and publish_state=1
+  	<if test="map != null">
+  		<if test="map.categoryId != null">
+  			and category_id = #{map.categoryId}
+  		</if>
+  	</if>
+  	order by create_time desc
+	limit 3
+  </select>
+  
+  <!-- 媒体报道详情信息 -->
+  <select id="selectArticleByIdAndCategoryId" resultMap="ResultMapWithBLOBs">
+  	SELECT 
+	<include refid="Extend_Column_List"/>
+ 	from
+ 	cms_article 
+ 	where del_flag > 0 
+ 	and publish_state=1
+ 	<if test="map != null">
+ 		<if test="map.categoryId != null">
+  			and category_id = #{map.categoryId}
+  		</if>
+  		<if test="map.id != null">
+  			and id = #{map.id}
+  		</if>
+ 	</if>
+  </select>
+  
+  <!-- 文章  前一条 -->
+  <select id="selectPreArticle" resultType="java.lang.Long">
+  	select id
+  	from 
+  	cms_article 
+  	where
+  	create_time > (
+  	SELECT create_time from cms_article where id = #{map.id} )
+  	and del_flag > 0 and publish_state=1 and category_id = #{map.categoryId} 
+  	ORDER BY create_time ASC LIMIT 1 
+  </select>
+  
+  <!-- 文章 后一条 -->
+  <select id="selectNextArticle" resultType="java.lang.Long">
+  	select id
+  	from 
+  	cms_article 
+  	where create_time  <![CDATA[<]]> (SELECT create_time from cms_article where id = #{map.id} ) 
+  	and del_flag > 0 and publish_state=1 and category_id = #{map.categoryId} 
+  	ORDER BY create_time desc LIMIT 1
+  </select>
+   
+  <update id="updateArticlePubState" >
+  
+  update cms_article 
+  set publish_state=1 
+  where online_time <![CDATA[<]]> now()
+   
+  </update>
+  
+   <!-- app弹框公告 -->
+  <select id="selectNoticeArticle" resultMap="ResultMapWithBLOBs">
+  	SELECT 
+	<include refid="Extend_Column_List"/>
+ 	from
+ 	cms_article 
+ 	where del_flag > 0 
+ 	and publish_state=1
+ 	and posid =1
+ 	ORDER BY  weight desc ,create_time desc LIMIT 1 
+ 	
+  </select>
+  
+  
+  <!--根据map查询list-->
+  <select id="selectListByMap" resultMap="BaseResultMap">
+  	select
+	id,title,weight,online_time,end_time,create_time
+  	from 
+  	cms_article 
+  	where del_flag > 0
+  	and publish_state=1
+	 <if test="map != null">
+ 		<if test="map.posid != null">
+  			and posid = #{map.posid}
+  		</if>
+  		<if test="map.id != null">
+  			and id = #{map.id}
+  		</if>
+ 	</if>
+	  	order by weight desc ,create_time desc
+  </select>
+  	
+  <select id="selectHomeArticle" resultMap="BaseResultMap">
+  	select 
+  	id,title,create_time
+  	from
+  	cms_article
+  	where del_flag>0 
+  	and publish_state=1
+  	<if test="map != null">
+  		<if test="map.categoryId != null">
+  			and category_id = #{map.categoryId}
+  		</if>
+  	</if>
+  	order by create_time desc
+	limit 4
+  </select>
+  
+  <select id="selectHomeArticleByCategoryId" resultMap="BaseResultMap">
+  	select 
+  	id,title,create_time
+  	from
+  	cms_article
+  	where del_flag>0 
+  	and publish_state=1
+  	<if test="map != null">
+  		<if test="map.categoryId != null">
+  			and category_id = #{map.categoryId}
+  		</if>
+  	</if>
+  	order by create_time desc 
+	limit 1 
+  </select>
+
+    <update id="updateCmsArticleAttachments">
+        UPDATE cms_article SET image=#{image},chosen_image=#{chosenImage} WHERE id=#{id}
+    </update>
+</mapper>

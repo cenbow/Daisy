@@ -1,0 +1,135 @@
+#parse('/common/common.vm')
+#set($title="$!{projectPackage.name}_$!{title_suffix}")
+#set($css_url=["$root_css_url/modules/creditList.css"])
+
+
+
+<div class="u-credit-head">
+    <div class="g-wrap f-pos-r">
+        <h1>$!{projectPackage.name}
+            #if($!{projectPackage.status} ==1)
+                (募集中)
+            #elseif($!{projectPackage.status} ==2)
+                (已售罄)
+            #end
+        </h1>
+        <h2>
+            <p>
+                <em>￥</em><strong>$!{formulaUtil.getFormatPrice($!{projectPackage.totalAmount})}</strong><br>
+                <i>项目总额</i>
+            </p>
+            <p>
+                #if($!{projectPackage.minAnnualizedRate} == $!{projectPackage.maxAnnualizedRate})
+                    <strong> $formulaUtil.getInteger($!{projectPackage.maxAnnualizedRate})</strong>
+                    <em>$formulaUtil.getDecimalDefaultZero($!{projectPackage.maxAnnualizedRate})</em><em>%</em><br>
+                #else
+                    <strong>$formulaUtil.getInteger( $!{projectPackage.minAnnualizedRate})</strong>
+                    <em>$formulaUtil.getDecimalDefaultZero($!{projectPackage.minAnnualizedRate})</em>
+                    <em>%</em><strong>-</strong>
+                    <strong>$formulaUtil.getInteger($!{projectPackage.maxAnnualizedRate})</strong>
+                    <em>$formulaUtil.getDecimalDefaultZero($!{projectPackage.maxAnnualizedRate})</em>
+                    <em>%</em><br>
+                #end
+
+                <i>年化收益</i>
+            </p>
+            <p class="f-no-padding">
+                #if($!{projectPackage.maxBorrowPeriod} == $!{projectPackage.minBorrowPeriod})
+                    <strong>$!{projectPackage.maxBorrowPeriod}</strong>
+                #else
+                    <strong>$!{projectPackage.minBorrowPeriod}-$!{projectPackage.maxBorrowPeriod}</strong>
+                #end
+                <em>
+                    #if($!{projectPackage.maxBorrowPeriodType} == 1)
+                        天
+                    #elseif($!{projectPackage.maxBorrowPeriodType} == 2)
+                        个月
+                    #elseif($!{projectPackage.maxBorrowPeriodType} == 3)
+                        年
+                    #elseif($!{projectPackage.maxBorrowPeriodType} == 4)
+                        周
+                    #end
+                </em><br>
+                <i>收益周期</i>
+            </p>
+        </h2>
+        <h4>募集金额≤$!{minRewardLimit}的项目，不享受五重礼人气值奖励。<a href="/activity/quadrupleGift" target="_blank">查看详情</a></h4>
+    </div>
+</div>
+
+<div class="g-credit-wrap u-credit-list" id="j-credit" :class="{'f-ie':isIE}" v-cloak>
+    #if($!{pList.size()} > 0)
+        <table>
+            <thead>
+            <tr>
+                <th>项目名称</th>
+                <th width="154">项目总额</th>
+                <th width="154">年化收益</th>
+                <th width="154">收益周期</th>
+                <th width="140">剩余可投金额</th>
+                <th width="154">快速投资</th>
+            </tr>
+            </thead>
+            <tbody>
+                #foreach($p in $pList)
+                <tr>
+                    <td>$!{p.name}</td>
+                    <td>￥$!{formulaUtil.getFormatPrice($p.totalAmount)} </td>
+                    <td>$!{p.annualizedRate}%</td>
+                    <td>$!{p.borrowPeriod}
+                        #if($!{p.borrowPeriodType} == 1)
+                            天
+                        #elseif($!{p.borrowPeriodType} == 2)
+                            个月
+                        #elseif($!{p.borrowPeriodType} == 3)
+                            年
+                        #elseif($!{p.borrowPeriodType} == 4)
+                            周
+                        #end
+                    </td>
+                    <td>￥$!{formulaUtil.getFormatPrice($p.voteAmount)}</td>
+                    <td>
+                        #if($!{p.status} == '30')
+                            <a href="$root_url/products/detail-$!{p.id}.html" target="_blank">$!{p.getButtonText()}</a>
+
+                        #elseif( $!{p.status} == '20')
+                            <a class="z-notice" href="$root_url/products/detail-$!{p.id}.html" target="_blank">
+                                <countdown :time="$!{p.endTime}" lang="zh" :callback="refresh"></countdown>
+                                <i>后上线</i>
+                            </a>
+                        #else
+                            <a class="z-completed" href="$root_url/products/detail-$!{p.id}.html"
+                               target="_blank">$!{p.getButtonText()}</a>
+                        #end
+                    </td>
+                </tr>
+                #end
+            </tbody>
+        </table>
+    #end
+</div>
+
+<script src="/static/lib/js/jq/jquery-1.11.1.min.js"></script>
+<script src="/static/lib/js/vue/vue.js"></script>
+<script src="/static/lib/js/vue/vue.extend.js"></script>
+<script>
+    (function () {
+
+        var vm = new Vue({
+            el: '#j-credit',
+            data: {
+                isIE: false
+            },
+            created: function () {
+                var width = $('#j-credit').width(),
+                        offsetWidth = width / 2
+                $('#j-credit').css('margin-left', -offsetWidth)
+            },
+            methods: {
+                refresh: function () {
+                    window.location.reload()
+                }
+            }
+        });
+    })()
+</script>

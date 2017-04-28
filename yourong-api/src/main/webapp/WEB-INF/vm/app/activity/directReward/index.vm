@@ -1,0 +1,246 @@
+#parse('/mobile/common.vm')
+#set($layout = "/layout/layout.vm")
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta content="telephone=no" name="format-detection"/>
+    <title>快投有奖 详情页</title>
+    <link rel="stylesheet" href="$m_css_url/common.css"/>
+##    <link rel="stylesheet" href="//cdn.bootcss.com/Swiper/3.4.0/css/swiper.min.css"/>
+    <link rel="stylesheet" href="$res_url/source/css/app/activity/directReward/index.css">
+</head>
+<body>
+<div id="app" v-cloak>
+    <div class="u-tipBlock" :class="{'f-dn': !isShow||!showYellowBar}">
+        <div id="tipBlock">
+            <table border="0" align="center">
+                <tr>
+                    <td id="marqueText" style="padding-right: 30px;">
+                        <pre class="adv-text">截止{{init.quickRewardConfig.endDate | formatTime 'yyyy.MM.dd'}}，未中奖额外补贴{{init.quickRewardConfig.popularity}}点人气值！<a
+                                href="https://api.yrw.com/article/detail-640.html">了解一下</a></pre>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="u-closeBtn" @click="closeTip">
+            <img src="$res_url/img/APP/activity/ico_close.png" alt="" width="80%">
+        </div>
+    </div>
+    <div class="f-porelative">
+        <div class="u-redTopLine" v-if="status===1 || status===2"></div>
+        <div class="m-award-list" v-if="status===1 || status===2">
+
+            <div class="u-circle"></div>
+            <div class="u-circle f-right"></div>
+            <div>
+                <ul>
+                    <li>
+                        <div>
+                            <div class="u-today-award">
+                                <div>
+                                    <div class="u-tipTitle">现金奖池总额</div>
+                                </div>
+                                <div>
+                                    <div class="u-giftAmount">
+                                        <span>{{init.ratioAmount}}<em class="f-fs24">&nbsp;元</em></span>
+                                    </div>
+                                </div>
+                                <div v-if="init.status!=50&&init.status!=81">
+                                ##                                倒计时
+                                    <div v-if="(init.quickRewardDate>curTime)||status==2">
+                                        <div v-if="status==1" class="u-todayText f-fs14">
+                                            <countdown style="color: #d74148"
+                                                       :time="(init.quickRewardDate-curTime)/1000"
+                                                       :circulate="true"></countdown>
+                                            后结束！赶快参与，不要让大奖溜走哦
+                                        </div>
+                                        <div v-if="init.flag==2" class="u-todayText f-fs14">
+                                            <countdown style="color: #d74148"
+                                                       :time="(init.onlineTime-curTime)/1000"
+                                                       :circulate="true"></countdown>
+                                            后现金大奖来袭！
+                                        </div>
+                                    </div>
+                                    <div v-else class="u-todayText f-fs14">中奖结果将于履约后公布</div>
+                                </div>
+                                <div v-if="init.status==50||init.status==81" class="u-todayText f-fs14">中奖结果将于履约后公布
+                                </div>
+                            ##                                <div class="u-detailLink f-fs12" @click="showGiftDetail">查看奖励详情</div>
+                                <div class="u-dot"></div>
+                            </div>
+                            <div>
+                                <div>
+                                    <div v-if="init.prizeInPoolList.length">
+                                        <div v-for="item in init.prizeInPoolList"
+                                             class="u-reward-item">
+                                            <span class="u-sign"><i>{{item.level}}</i></span>
+                                            <span class="u-award-money">{{item.level | rewardName}}x{{item.num}}</span>
+                                            <span class="u-award-money"><em>{{item.rewardAmount}}元</em></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="m-swiper-pagination"></div>
+
+        ##                投资按钮的文案
+            #if($platform==1)
+                <a v-if="status==1&&(init.quickRewardDate>curTime)&&init.status!=50&&init.status!=81"
+                   class="u-invest-button" href="javascript:void(0)"
+                   @click="toAndroidProjectList">投资抽现金</a>
+            #else
+                <a v-if="status==1&&(init.quickRewardDate>curTime)&&init.status!=50&&init.status!=81"
+                   class="u-invest-button" href="{{url}}">投资抽现金</a>
+            #end
+            <a v-if="status==2" class="u-invest-button z-unactived" href="javascript:void(0)">即将开始</a>
+            <a v-if="(init.quickRewardDate<curTime)||status==4||init.status==50||init.status==81"
+               class="u-invest-button z-unactived"
+               href="javascript:void(0)">奖励已结束</a>
+            <p> 投资成功即可抽奖，抽中即送现金；奖励将于履约后到账</p>
+        </div>
+    ##名单公布的情况下
+        <div v-if="status===3 ||status===4 ">
+        ##            <div class="m-name-list">
+        ##                <h1> 中奖公布<i>({{init.saleComplatedTime | formatTime 'yyyy-MM-dd'}},募集用时{{init.totalDays}}天)</i></h1>
+        ##                <h2>奖池总额 </h2>
+        ##                <h3><strong>{{init.ratioAmount || 0}}</strong>元</h3>
+        ##                <div class="m-award-list m-prize-list">
+        ##                    <ul>
+        ##                        <li>
+        ##                            <div v-for="item in init.projectForLevel" class="u-reward-item">
+        ##                                <span class="u-sign"><i>{{item.level}}</i></span>
+        ##                                <span class="u-award-money">{{item.level | rewardName}}</span>
+        ##                                <span class="u-award-money">{{item.reward}}元</span>
+        ##                            </div>
+        ##                        </li>
+        ##                    </ul>
+        ##
+        ##                </div>
+        ##                <div class="u-detailLink f-fs12" @click="showGiftDetail">查看奖励详情</div>
+        ##            </div>
+            <div class="m-name-list" :class="{'z-showYellowBar': isShow&&showYellowBar}">
+                <h1> 幸运名单</h1>
+                <div>
+                    <ul class="f-name-list" v-if="init.projectRewardList.length">
+                        <li v-for="item in init.projectRewardList">
+                            <span class="u-user">
+                                <img v-if="item.avatars" :src="item.avatars | avatarUrl">
+                                <img v-else src="$res_url/img/member/avatar.png">
+                            </span>
+                            <span class="u-user-name">
+                                <i>{{item.username}}</i> <br>
+                                <i class="f-fs12 f-color6">{{getAwardList(item.projectForLevelDetail)}}</i>
+                            </span>
+                            <span class="u-award-type">
+                                <em> {{item.reward}}<i class="f-fs14">元</i> </em>
+                            </span>
+                        </li>
+                    </ul>
+                    <div class="u-noWinnerList" v-else>
+                        真遗憾，没有人抽到奖励哦！
+                    </div>
+                </div>
+                <div class="f-textCenter u-tipText">
+                    <p class="f-color6 f-fs16">敬请期待下次快投有奖</p>
+                    <p class="f-color9 f-fs12">投资成功即可抽奖，抽中即送现金；奖励将于履约后到账</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="m-award-explain">
+            <h1> 快投有奖说明</h1>
+            <div class="u-each-other f-left">
+                <h1> 借款人</h1>
+                <p> 提供奖励</p>
+            </div>
+            <div class="u-arrows"></div>
+            <div class="u-each-other ">
+                <h1> 投资人</h1>
+                <em> 利息收益</em>
+                <em> +</em>
+                <em> 抽奖奖励</em>
+            </div>
+            <div class="u-agreement"> 借款人与有融网签订<a href="javascript:void(0)" @click="toggleContractTips(true)">《委托协议》</a>
+            </div>
+            <div class="f-color9 f-fs12 f-textCenter">
+                投资金额越多，抽奖机会越多
+            </div>
+            <table>
+                <tr>
+                    <th>单笔投资金额（元）</th>
+                    <th>抽奖次数</th>
+                </tr>
+                <tr v-for="item in init.lottery">
+                    <td>{{item.startAmount}}<span> <span v-if="item.endAmount">- {{item.endAmount}}</span><span
+                            v-else>以上</span></span></td>
+                    <td v-if="item.number">X+{{item.number}}</td>
+                    <td v-else>X</td>
+                </tr>
+            </table>
+            <div class="u-bottom-text">X = 投资金额 <i>/</i> 项目起投金额</div>
+            <a href="$siteurl/activity/directReward/topic?title={{title}}" class="u-bottom-check "> 查看具体规则</a>
+        </div>
+
+        <div v-if="showContractTips">
+            <div class="u-cover" style="display: block"></div>
+            <div class="u-tips-frame">
+                <p>请返回至“项目详情”-“项目图片”查看</p>
+                <a href="javascript:void(0)" @click="toggleContractTips(false)">
+                    我知道了
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+    #if($data)
+        #set($initData=$!{data})
+    #else
+        #set($initData="{}")
+    #end
+<div data='$!{initData}' id="j-data"></div>
+##    $console
+<script src="$aliyunOss_url/res/lib/vue/v1/vue.min.js"></script>
+<script src="$aliyunOss_url/res/lib/jquery/v3/jquery.min.js"></script>
+##<script src="//cdn.bootcss.com/Swiper/3.4.0/js/swiper.min.js"></script>
+<script src='$res_url/assets/js/common/appHookES5.js'></script>
+<script src='$res_url/lib/js/jquery.circliful.min.js'></script>
+<script type="text/javascript">
+    var speed = 50;
+    //    marquePic2.innerHTML=marquePic1.innerHTML;
+    function Marquee() {
+        if (tipBlock.scrollLeft >= marqueText.scrollWidth) {
+            tipBlock.scrollLeft = 0;
+        } else {
+            tipBlock.scrollLeft++;
+        }
+    }
+    setTimeout(
+            function () {
+                setInterval(Marquee, speed)
+            }, 2000)
+    if (!window.Vue) {
+        document.write('<script src="$res_url/lib/vue/vue.min.js"><\/script>')
+    }
+        $devtools
+    ##    alert($!{platform})
+    var env = {
+        path: '$siteurl',
+        debug:$debug,
+        aliyunPath: '$aliyun_url',
+        time:${dateUtil.getCurrentDate().getTime()},
+        platform:$!{platform}
+    }
+    var environment = env
+</script>
+<script src='$res_url/lib/vue/vue.extend.js'></script>
+<script src='$res_url/source/js/app/activity/directReward/index.js'></script>
+</body>
+</html>

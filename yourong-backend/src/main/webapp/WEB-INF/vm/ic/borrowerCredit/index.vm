@@ -1,0 +1,99 @@
+#set($layout = "/layout/iframe.vm")
+#parse("/ic/borrowerCredit/head.vm")
+<div class="col-xs-12">
+	<div class="table-responsive">
+	<form id="borrowCredit_form">
+		<table id="borrowercredit-table-search" class="table table-striped table-bordered " cellspacing="0" width="100%">
+			<thead>
+				<tr>
+					<td>
+						借款人姓名：
+					</td>
+					<td>
+						<input type="text" name="search_borrowerTrueName" class="input-medium search_init"/>
+					</td>	
+					<td>
+						借款人手机：
+					</td>
+					<td>
+						<input type="text" name="search_borrowerMobile" class="input-medium search_init"/>
+					</td>
+					<td>
+						存续量：
+					</td>
+					<td>
+					    <input type="text" name="search_minPayablePrincipal" placeholder="" class="input-medium search_minPayablePrincipal" 
+					    	 datatype="/^[1-9]*[1-9][0-9]*(.[0-9]{1,10})?$|^0(.[0-9]{1,10})?$/" errormsg= "存续量必须为大于等于0数字">至
+						<input type="text" name="search_maxPayablePrincipal" placeholder="" class="input-medium search_maxPayablePrincipal" 
+							 datatype="/^[1-9]*[1-9][0-9]*(.[0-9]{1,10})?$|^0(.[0-9]{1,10})?$/" errormsg= "存续量必须为大于等于0数字">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						状态：
+					</td>
+					<td>
+						<select class="input-small search_status" type="text" name="search_status" id="status" >
+							<option value="">请选择</option>
+							<option value="1">正常</option>
+			  				<option value="0">超出授信额</option>
+						</select>
+					</td>
+					<td>
+						借款人类型：
+					</td>
+					<td>
+						<select class="input-small search_borrowerType" type="text" name="search_borrowerType" id="borrowerType" >
+							<option value="">请选择</option>
+							<option value="1">个人用户</option>
+			  				<option value="2">企业用户</option>
+			  				<option value="3">渠道商用户</option>
+			  				<option value="4">其他组织用户</option>
+						</select>
+					</td>
+					<td>
+						授信额：
+					</td>
+					<td>
+						<input type="text" name="search_minCreditAmount" class="input-medium search_minCreditAmount" 
+							datatype="/^[1-9]*[1-9][0-9]*(.[0-9]{1,10})?$|^0(.[0-9]{1,10})?$/" errormsg= "授信额必须为大于等于0数字"/>至
+						<input type="text" name="search_maxCreditAmount" class="input-medium search_maxCreditAmount" 
+						    datatype="/^[1-9]*[1-9][0-9]*(.[0-9]{1,10})?$|^0(.[0-9]{1,10})?$/" errormsg= "授信额必须为大于等于0数字"/>
+					</td>
+				</tr>
+				
+				<tr>
+					<td colspan="10" style="text-align:center">
+						<button id = "query_borrowerCredit" type="button" class="btn btn-info btn-sm btn-primary">查询</button>
+						<button id = "reset_borrowerCredit" type="button" class="btn btn-info btn-sm btn-primary resetButton">重置</button>
+					</td>
+				</tr>
+			</thead>
+		</table>
+		</form>
+	</div>
+</div>
+<div class="col-xs-12">
+	<div class="table-header">借款人授信额度展示</div>
+	<input type="hidden" name="id" id="id"/>
+	<div class="table-responsive">
+		<table id="borrowercredit-table" class="table table-striped table-bordered" cellspacing="0" width="100%">
+			<thead>
+				<tr>
+					<th>会员ID</th>
+					<th>借款人类型</th>
+					<th>借款人姓名</th>
+					<th>借款人手机号</th>
+					<th>存续量</th>
+					<th>授信额</th>
+					<th>状态</th>
+					<th>上线提示</th>
+					<th width="15%">备注</th>
+					<th width="14%">操作</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+</div>
+#parse("/ic/borrowerCredit/addremark.vm")
+#parse("/ic/borrowerCredit/editCreditamount.vm")

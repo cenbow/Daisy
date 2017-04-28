@@ -1,0 +1,192 @@
+##银行卡添加
+#parse("/common/common.vm")
+#set($title="添加银行卡_我的账户_$!{title_suffix}")
+#set($css_url=["$cssv2_url/member/member.css"])
+#set($js_url=["$root_js_url/modules/member.js","$root_js_url/modules/area.js"])
+#set($bankManage="z-current")
+## 用户中心头部
+#parse("/member/head.vm")
+## 用户中心内容
+<div class="g-wrap">
+    <div class="g-uc-bd f-round">
+        <div class="g-uc-wrap m-bankcard-add">
+            <h3 class="u-uc-lineTitle f-pos-r">
+                <em id="j-qbank-title">添加银行卡</em>
+                <div>
+                    <a href="/memberBankCard/bankManage">银行卡管理</a>&nbsp;&gt;&nbsp;<span>添加银行卡</span>
+                </div>
+            </h3>
+            <form id="bankAdd_form" class="j-validform">
+                #CSRFToken()
+                	<div class="u-bankadd-banner #if(!$quickCard)f-dn#end">
+                		<p>开通快捷支付并成功充值或支付后，该卡将默认为提现银行卡，可以有效的保障您的资产安全及银行卡安全。</p>
+                	</div>
+                <table>
+                    <tr class="u-addqbank-info">
+                        <td>您的实名认证信息</td>
+                        <td class="u-addqbank-uname">
+							姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名:&nbsp;&nbsp;&nbsp;<span>$!{servletUtil.getMemberMaskTrueName()}</span>
+                            <p>身份证号：<span>${servletUtil.getUserDO().maskIdentityNumber}</span>
+                                <i class="j-user-tips" data-align="top" data-tips="此信息用于校验身份真实性，<br /> 受新浪支付多重安全保障。"></i>
+                            </p>
+                            <input name="cardHolder" type="hidden" value="$!{currentUser.trueName}" />
+                        	<input name="memberId" type="hidden" value="$currentUser.id" />
+                        </td>
+                    </tr>
+                    
+                    #if($!quickCard)
+                    <tr height="69" class="u-qbank-card">
+                        <td>银行卡信息</td>
+                        <td>
+                            <img id="j-qcard-img" src="$root_url/static/img/member/bank/bank_$!{quickCard.bankCode}.png" class="f-vam u-qcard-img" alt="bankIcon" />&nbsp;&nbsp;
+                            <span id="j-qcard-num" class="f-vam u-qcard-name"><em class="f-fs14">${quickCard.getBankCodeRemaks()}</em> <span class="f-fs10">$!{quickCard.cardNumber}</span></span>
+                            <input type="hidden" name="id" value="$!{quickCard.id}"/>
+                            <input type="hidden" name="bankCode" id="bankCode" value="$!{quickCard.bankCode}"/>
+                            <input type="hidden" name="bankProvince" id="bankProvince" value="$!{quickCard.bankProvince}"/>
+                            <input type="hidden" name="bankCity" id="bankCity" value="$!{quickCard.bankCity}"/>
+                            <input id="cardType" type="hidden" value="2" name="cardType"/>
+                            <input type="hidden" name="cardNumber" value="$!{quickCard.cardNumber}"/>
+                            <input type="hidden" name="checkCardNumber" value="$!{quickCard.cardNumber}"/>
+                            
+                        </td>
+                    </tr>
+                    <tr height="69" class="j-qbank-mobile">
+                    	<td>手机号码</td>
+                    	<td id="j-qmobile-input">
+                    		<input id="j-bank-mobile" name="bankMobile" placeholder="此卡在银行预留的手机号码" class="u-ipt-amount u-bank-mobile f-round f-fs12 v-mob" type="text" datatype="mobile" nullmsg="手机号码不能为空" errormsg="请输入正确的手机号码">
+	            			<span class="Validform_checktip"></span>
+	            			<span class="u-recode-tips f-round z-hidden" id="j-recode-tips2" data-time="60">校验码已发送<em>60</em>秒后可重获</span>
+                    	</td>
+                    </tr>
+                    #else
+                    <tr height="69" class="u-bankAdd-select">
+                        <td>选择银行</td>
+                        <td>
+                            <div id="j-bankAdd-select" class="u-selector u-bankAdd-select j-selector f-round f-w100 f-tal f-vam u-scroll-selector">
+                                #if($quickCard)
+                                    <button>${quickCard.getBankCodeRemaks()}</button>
+                                    <input type="hidden" name="id"  value="$!{quickCard.id}"/>
+                                #else
+                                    <button></button>
+                                    <i></i>
+                                    <ul class="f-round">
+                                        #set($banks = $sysServiceUtil.getBankCode())
+                                        #foreach($bank in $banks)
+                                            <li value="$!{bank}" data-type="$bank.type" data-value="$!{bank}">${bank.remarks}#if($bank.type==1) <span class="f-fc-red2">(不支持快捷支付)</span> #end </li>
+                                        #end
+                                    </ul>
+                                #end
+
+                                <input type="hidden" class="v-input-req" name="bankCode" id="bankCode" value="$!{quickCard.bankCode}"/>
+                                ##<input type="hidden" name="id"  value="$!{quickCard.id}"/>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr height="69" class="f-dn">
+                    	<td>银行卡信息</td>
+                    	<td><img id="j-qcard-img" data-src="$root_url/static/img/member/bank/bank_" class="f-vam" alt="bank icon" />&nbsp;&nbsp;<span id="j-qcard-num"></span></td>
+                    </tr>
+                    <tr height="69" class="u-qbank-card">
+                        <td>储蓄卡卡号</td>
+                        <td>
+                            <input name="cardNumber" placeholder=" " class="u-ipt-amount f-round f-fwb f-fs14 f-fc-red2 f-ime-disabled v-bankcard j-bankcard-id" value="$!{quickCard.cardNumber}"
+                                   type="text">
+                        </td>
+                    </tr>
+                    <tr height="69" class="u-qbank-card">
+                        <td>确认卡号</td>
+                        <td>
+                        	<input name="checkCardNumber" placeholder=" " recheck="cardNumber" oncopy="return false;" onpaste="return false;" class="u-ipt-amount f-round f-fwb f-fs14 f-ime-disabled f-fc-red2 v-bank-reck j-bankcard-id" value="$!{quickCard.cardNumber}" type="text">
+                        </td>
+                    </tr>
+                    <tr height="121" class="u-qbank-area">
+                        <td>开户行省市</td>
+                        <td>
+                        ##1，表示默认加载省份
+                        ##2, 只加载省、市信息
+                        <div id="j-qbank-city">
+                            #regionPlugin(1,2,"region")
+                        </div>
+                        	<input type="hidden" name="bankProvince" id="bankProvince" value="$!{quickCard.bankProvince}"/>
+                			<input type="hidden" name="bankCity" id="bankCity" value="$!{quickCard.bankCity}"/>
+                			<input id="cardType" type="hidden" value="1" name="cardType"/>
+                        </td>
+                    </tr>
+                    <tr height="69" class="j-qbank-mobile f-dn">
+                    	<td>手机号码</td>
+                    	<td id="j-qmobile-input">
+                    		&nbsp;&nbsp;<span class="u-recode-tips f-round z-hidden" id="j-recode-tips2" data-time="60">校验码已发送<em>60</em>秒后可重获</span>
+                    	</td>
+                    </tr>
+                    #end
+                    <tr height="69" class="j-qmobile-wrap f-dn">
+                    	<td>动态校验码</td>
+                    	<td>
+                    		<input name="checkCode" disabled="disabled" placeholder="手机安全校验码" class="u-ipt-amount f-round f-w200 v-num" id="j-bank-checkcode">
+							&nbsp;&nbsp;<span class="f-fc-gray3">校验码15分钟内有效，请注意查收。</span>
+                    	</td>
+                    </tr>
+                </table>
+                <input type="hidden" name="ticket" id="ticket">
+				
+                <div class="u-bankcard-btn">
+                	
+                	<label class="u-submit-argreement #if(!$quickCard) z-hidden #end" id="j-submit-argreement">
+                     	<input type="checkbox" checked="checked" name="isAgreement" id="j-qbank-agree">
+                     	我已阅读并同意<a href="#" id="j-qbank-argreement-link" data-url="$root_url/static/page/quickPay-agreement.html" data-target="j-qbank-argreement">《新浪支付快捷支付服务协议》</a>
+                     </label>
+                                      
+                    
+                    #if(!$quickCard)
+                    <input type="button" id="j-submit-select" class="f-round f-fs18 f-btn-m3 u-btn u-btn-primary" value="下一步" />
+                    <div id="j-type-select" class="f-dn u-cardtype-select">
+                    	<input type="button" id="j-select-qcard" class="f-round f-fs14 f-btn-m3 u-btn u-btn-primary f-w230" value="立即开通快捷支付" />
+                    	<input type="button" id="j-select-ncard" class="f-round f-fs14 f-btn-m3 u-btn u-btn-info" value="不，只绑定普通卡" />
+                    </div>
+                    <div>
+                    	<input type="button" value="立即添加" id="j-submit-qcard" class="f-round f-fs18 f-btn-m3 u-btn u-btn-primary z-hidden" />
+                    	<input type="button" value="下一步" id="j-submit-quickNext" class="f-round f-fs18 f-btn-m3 u-btn u-btn-primary z-hidden" />
+                    	<a class="f-round f-fs18 f-btn-m3 u-btn u-btn-cancel z-hidden" href="$root_url/memberBankCard/bankManage" id="j-btn-cancel">取消</a>
+                    </div>
+                    #else
+                    <input type="button" id="j-submit-quickNext" class="f-round f-fs18 f-btn-m3 u-btn u-btn-primary" value="下一步" />
+                    <div>
+                    	<input type="button" value="立即添加" id="j-submit-qcard" class="f-round f-fs18 f-btn-m3 u-btn u-btn-primary z-hidden" />
+                    	<a class="f-round f-fs18 f-btn-m3 u-btn u-btn-cancel z-hidden" href="$root_url/memberBankCard/bankManage" id="j-btn-cancel">取消</a>
+                    </div>
+                    #end
+
+                </div>
+            </form>
+            <div id="j-qmobile-wrap" class="f-dn">
+            #if(!$quickCard)
+            	<div id="j-qbank-mobile">
+            		<input id="j-bank-mobile" name="bankMobile" placeholder="此卡在银行预留的手机号码"  class="u-ipt-amount f-round f-fs12 v-mob"  onkeydown="if(event.keyCode==13){event.keyCode=0;return false}" type="text" datatype="mobile" nullmsg="手机号码不能为空" errormsg="请输入正确的手机号码">
+	            	<span class="Validform_checktip"></span>
+	            </div>
+            #end
+            </div>
+        ## /页面内容
+        </div>
+    </div>
+## /用户中心内容
+</div>
+<div class="u-agreement-box f-dn" id="j-qbank-argreement" style="display: none;">
+	<h3 class="f-fs18">新浪支付快捷支付服务协议<i></i></h3>
+	<div>
+		<iframe src="http://www.yrw.com/static/register-agreement.html" frameborder="0"></iframe>
+	</div>
+</div>
+<script>
+window.onload=function(){
+  //快捷支付协议
+    $("#j-qbank-agree").on("click", function() {
+        if (!$(this).is(":checked")) {
+            $("#j-submit-quickNext").addClass("z-disabled").attr("disabled", true);
+        } else {
+            $("#j-submit-quickNext").removeClass("z-disabled").removeAttr("disabled");
+        }
+    });
+    $("#j-qbank-argreement-link").xArgreement();
+}
+</script>

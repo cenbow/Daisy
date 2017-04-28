@@ -1,0 +1,34 @@
+<div tabindex="-1" class="modal fade" id="coupon-table-detail" style="display: none;" aria-hidden="true">
+	<div class="modal-dialog w700">
+		<div class="modal-content">
+			<div class="modal-header no-padding">
+				<div class="table-header header-color-dark">
+					<button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+						<span class="white">×</span>
+					</button>
+					<span class="modalFormTitle">优惠券详情</span>
+				</div>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-xs-12 ">
+						<div class="table-responsive ">
+							<table id="coupon-table-detail" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+								<tr><td>模板ID</td><td name="couponTemplateId"></td><td>状态</td><td name="status"></td></tr>
+								<tr><td>现金券编号</td><td name="couponCode"></td><td>有效期类型</td><td name="vaildCalcType"></td></tr>
+								<tr><td id="detal_coupon_amount">面值（元）</td><td name="amount"></td><td>有效期</td><td name="vaildCalcTypeContent"></td></tr>
+								<tr><td>发放人ID</td><td name="senderId"></td><td>领取时间</td><td name="receiveTime"></td></tr>
+								<tr><td>持有人ID</td><td name="holderId"></td><td>活动ID</td><td name="activityId"></td></tr>
+								<tr><td>使用条件</td><td name="useCondition"></td><td>使用时间</td><td name="usedTime"></td></tr>
+								<tr><td>项目ID</td><td name="projectId"></td><td>交易ID</td><td name="transactionId"></td></tr>
+								<tr><td>备注</td><td name="remarks"></td><td></td><td></td></tr>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>

@@ -1,0 +1,62 @@
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$res_url/source/css/post/popularity.css"])
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<div id="j-productList" v-cloak>
+    <input id="j-token" type="hidden" htmlToken="$encryptionId">
+    <div>
+        <div class="m-productList">
+            <div id="forInvestment" v-if="productData.goodsListAll.length">
+                <ul class="u-productList">
+                    <li v-for="item in productData.goodsListAll">
+                        <div style="margin-left: 4%">
+                            <a :href="'$siteurl/yrwHtml/productDetail?isAuthorization=Y&goodId='+item.id+'&title='+productDetailTitle"
+                               data-id="item.id">
+                                <div class="u-couponImg f-fs14" :class="{'z-productOver':item.availInventor<1}">
+                                    <img v-if="item.tags==1" class="u-redTips"
+                                         src="$res_url/img/post/popularity/label_new.png" alt="">
+                                    <img v-if="item.tags==2" class="u-redTips"
+                                         src="$res_url/img/post/popularity/label_tejia.png" alt="">
+                                    <img v-if="item.tags==3" class="u-redTips"
+                                         src="$res_url/img/post/popularity/label_recommend.png" alt="">
+                                    <img v-if="item.tags==4" class="u-redTips u-labelRush"
+                                         src="$res_url/img/post/popularity/label_rush.png" alt="">
+                                    <div class="u-imgBlock">
+                                        <img :src="item.image" alt="" width="100%">
+                                    </div>
+                                </div>
+                                <div class="f-fs14 f-color6 u-goodsName"> {{item.goodsName}}</div>
+                                <div class="f-fs12 f-color9">
+                                    <span class="f-fs16 f-coloreDC">{{item.discountPrice}}点</span>
+                                <span class="u-originalPrice"
+                                      v-if="item.price>item.discountPrice">{{item.price}}点</span>
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+##    令牌过期提示
+    <div class="u-checkBox animated zoomIn" v-show="loginTimeOut">
+        <p class="f-color3 f-fs16">
+            登录超时，请重新登录
+        </p>
+        <div class="f-fs16">
+            <span @click="cancleBtn">取消</span> <a href="javascript:void(0)"
+                                                  @click="getNewToken($event)"><span>确定</span></a>
+        </div>
+    </div>
+
+    <div class="u-cover" style="display: block" v-if="coverShow"></div>
+</div>
+<script src='https://yrstatic.oss-cn-hangzhou.aliyuncs.com/res/lib/vue/v1/vue.min.js'></script>
+##<script src='https://oss-cn-hangzhou.aliyuncs.com/yrstatic/res/lib/js/appHookES5.js'></script>
+<script src='https://yrstatic.oss-cn-hangzhou.aliyuncs.com/res/lib/jquery/v3/jquery.min.js'></script>
+##$console
+#set($pageScript="
+<script>
+    seajs.use('$res_url/source/js/popularity/entityProductList.js')
+</script>")

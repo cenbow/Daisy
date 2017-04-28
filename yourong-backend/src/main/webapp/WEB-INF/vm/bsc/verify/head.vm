@@ -1,0 +1,16 @@
+ #parse("/common/common.vm")
+ #########################################script##################################### 
+ #set($js_config=[ 
+ "'urlMap':{ 
+   'verify':'$root_url/verify/verify?' ,
+   'sinaverify':'$root_url/verify/sinaverify?' 
+      },
+    'verify_type':#buildDictJson('verify_type'),##认证类别
+   'permission':{
+	   	
+   	}"
+ ]) 
+
+ #set($css_url=["$root_url/static/js/lib/validform/css/style.css","$root_url/static/js/lib/My97DatePicker/skin/WdatePicker.css","$root_url/static/js/lib/ueditor/themes/default/css/ueditor.min.css"])
+ #set($js_url=["$root_url/static/js/verify.js","$root_url/static/js/lib/My97DatePicker/WdatePicker.js"])
+ #########################################DOM##################################### 

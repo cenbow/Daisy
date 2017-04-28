@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+    <link rel="shortcut icon" href="/favicon.ico"/>
+    <title>有融客户投资风险承受能力评估问卷_有融网-全透明的互联网理财优选平台 </title>
+    <meta name="keywords" content=" 债权转让,债权交易,互联网金融,金融信息服务,有融网   "/>
+    <meta name="description"
+          content=" 有融网运用高效的运营管理体系和创新的互联网思维搭建了一个专业、安全、透明的债权信息披露媒介。  "/>
+    <meta name="baidu-site-verification" content="3Cqhn8z35m"/>
+    <meta property="wb:webmaster" content="aaa54585555ecccb"/>
+    <link rel="stylesheet" href="/static/source/css/common.css"/>
+<link rel="stylesheet" href="/static/lib/css/ui-dialog.css"/>
+                <!--[if (gte IE 6)&(lte IE 8)]>
+    <link rel="stylesheet" href="/static/source/css/ie.css"/>
+    <script type="text/javascript" src="/static/lib/js/json2.js"></script>
+        <script type="text/javascript" src="/static/lib/js/selectivizr.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript">
+        function countAndLook() {
+            var dialogData = {};
+            var radio = "box_";
+            var count = 0;
+            var validatecount = 0;
+            for (var i = 0; i <= 9; i++) {
+                var radios = document.getElementsByName(radio + i);
+                for (var j = 0; j < radios.length; j++) {
+                    if (radios[j].checked) {
+                        count += parseInt(radios[j].value);
+                        validatecount = 1;
+                        break;
+                    }
+                }
+                if (validatecount == 0) {
+                    $.xDialog({
+                        content: '请务必每项都有选择~!'
+                    });
+                    return;
+                }
+                validatecount = 0;
+            }
+
+
+
+            if (count >= 81 && count <= 100) {
+                dialogData ={
+                    type:'success',
+                    content:'您的风险承受能力评估结果为\"激进型\",您属于可以承受高风险类型的投资投资者，您适合投资于能够为您提供高升值能力而投资价值波动大的投资工具。最坏的情况下，您可能失去全部投资本金并需对您投资所导致的任何亏损承担责任',
+                    height:'230',
+                    width:'350'
+                }
+            } else if (count >= 61 && count <= 80) {
+                dialogData = {
+                    type: 'success',
+                    content: "您的风险承受能力评估结果为\"进取型\",您属于可以承担中等至高风险类型的投资者。您适合投资于能够为您提供升值能力，而投资价值有波动的投资工具",
+                    height:'195',
+                    width:'360'
+                }
+            } else if (count >= 41 && count <= 60) {
+                dialogData = {
+                    type: 'success',
+                    content: "您的风险承受能力评估结果为\"平衡型\",您属于可以承担中等风险类型的投资者。您适合投资于能够为您提供温和升值能力，而投资价值有温和波动的投资工具",
+                    height:'195',
+                    width:'360'
+                }
+            } else if (count >= 21 && count <= 40) {
+                dialogData = {
+                    type: 'success',
+                    content: "您的风险承受能力评估结果为\"稳健型\"，您属于可以承担低至中等风险类型的投资者。您适合投资于能够权衡保本而亦有若干升值能力的投资工具。",
+                    height:'195',
+                    width:'360'
+                }
+            } else if (count <= 20) {
+                dialogData =  {
+                    type: 'success',
+                    content: "您的风险承受能力评估结果为\"谨慎型\",您属于可以承担低风险而作风谨慎类型的投资者。您适合投资于以保本为主的投资工具，但您因此会牺牲资本升值的机会。",
+                    height:'195',
+                    width:'360'
+                }
+
+            }
+            if(dialogData.type==='success'){
+                dialogData.callback= function () {
+                    location.reload();
+                }
+            }
+           $.xDialog(dialogData);
+
+        }
+    </script>
+    <style type="text/css">
+        .m-questionnaire-wrap{
+            background: #fff;
+            padding: 30px 50px 50px;
+            -moz-border-radius: 6px;
+            -webkit-border-radius: 6px;
+            border-radius: 6px;
+            margin: 30px  0 0;
+        }
+        .m-questionnaire-wrap label{
+            display: block;
+        }
+        .m-questionnaire-wrap h2{
+            margin: 80px 0 12px 0;
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+        .m-questionnaire-wrap h4{
+            font-size: 16px;
+            color: #333;
+            margin: 0 0 30px 0;
+        }
+        .wz_gb_2010 p{
+            font-size: 14px;
+            color: #999;
+            line-height: 30px;
+            margin-left: 20px;
+        }
+        .wz_gb_2010 p.font_style_bold{
+            display: inline-block;
+            font-size: 14px;
+            color: #666;
+            margin: 30px 0 0 0;
+            line-height: 24px;
+        }
+        .shsj{
+            font-size: 14px;
+            color: #666;
+        }
+        .wz_gb_2010 p.font_style_title{
+            font-size: 15px;
+            color: #333;
+            margin-left: 0;
+            margin-top: 40px;
+            margin-bottom: -30px;
+            font-weight: bold;
+        }
+        .wz_gb_2010 p.font_style_stu{
+            font-size: 15px;
+            color: #333;
+            margin-left: 0;
+            margin-bottom: -30px;
+            font-weight: bold;
+        }
+        .button_tf{
+            width: 170px;
+            height: 40px;
+            font-size: 14px;
+            color: #fff;
+            display: block;
+            text-align: center;
+            line-height: 40px;
+            background: #d74148;
+            -moz-border-radius: 20px;
+            -webkit-border-radius: 20px;
+            border-radius: 20px;
+            border: none;
+            margin: 30px auto 80px;
+            cursor: pointer;
+        }
+        .u-statement{
+            margin: 30px 0 0;
+            font-size: 12px;
+            color: #999;
+        }
+        .u-explain{
+            font-size: 14px;
+            color: #666;
+            text-indent:2em;
+        }
+        .wz_gb_2010 p.font_special{
+            margin: 40px 0 0 0;
+        }
+    </style>
+</head>
+
+
+<body>
+<!-- 头部 -->
+<div class="g-hd f-cb">
+    <div class="u-menu-wrap">&nbsp;</div>
+    <!-- 顶部菜单 -->
+    <div class="g-wrap m-menu">
+        <div class="g-grid-row f-pos-r">
+            <div class="g-grid-5 u-hotline">
+
+                客服热线：<span class="f-fs16 f-fwb">400-025-6688</span>
+            </div>
+            <div class="g-grid-20 f-tar u-menu">
+
+                <div class="u-menu-mobile g-grid-6 f-tal">
+                        <span class="" >
+							关注我们<a href="http://weibo.com/5248978316/" target="_blank" class="u-mIcon-sina"></a>
+                            <i data-imgurl="/static/img/common/weixin_qrcode.jpg" data-direction="centerbottom" class="u-mIcon-wechat j-app-qrcode" id="j-mIcon-wechat" ></i>
+                        </span>
+                                            <span class="j-app-qrcode" data-imgurl="/static/img/common/QR_code.png" data-direction="centerbottom">
+                            <a href="/activity/mobilePhoneApp" target="_blank">手机上有融</a>
+						<a href="javascript:void(0)" class="u-mIcon-app" data-direction="centerbottom"></a>
+						</span>
+                    
+                </div>
+                您好，
+                                欢迎来到有融网！
+                                | <a href="/post/help/question.html">帮助中心</a>
+                | <a href="/post/help/guide.html">新手指引</a>
+
+            </div>
+        </div>
+    </div>
+    <!-- /顶部菜单 -->
+    <div class="u-header-bottom">&nbsp;</div>
+    <div class="g-wrap f-pos-r">
+        <div class="g-grid-row f-pos-r">
+            <h1 class="g-grid-4" class="u-logo-wrap"><a class="u-logo" href="/">有融网</a></h1>
+            <!-- 导航 -->
+            <ul class="g-grid-14 m-nav">
+                <li><a  href="/">首页</a></li>
+                <li><a class=" "                        href="/products/list-all-all-investing-1-createTimeAsc-1.html" >理财项目</a></li>
+                <li><a class="  " href="/post/topics/sinaSavingPot">新浪存钱罐</a></li>
+                <li><a class=" " href="/post/subject/safety.html">安全保障</a></li>
+                <li><a class=" " href="/post/about/index.html">关于有融</a></li>
+            </ul>
+            <!-- /导航 -->
+
+        </div>
+    </div>
+</div>
+<!-- /头部 -->
+<!-- 内容 -->
+<div class="f-mh500 f-cf g-bd">
+    <div class="g-wrap">
+        <div class="m-questionnaire-wrap">
+    <h2 align="center">有融网会员投资风险承受能力评估问卷</h2>
+            <p class="shsj">尊敬的有融网会员：</p>
+            <p class="u-explain">为了便于您了解自身的风险承受能力，选择合适的理财产品，请您填写以下评估问卷，有融网承诺对您的所有个人资料保密。
+               <br> 下列问题可协助评估您对金融工具及投资目标相关风险的态度。请回答所有的问题，并选中各题最合适的答案。我们将根据您的
+                <br> 答案评估您的投资风险承受能力，建议您投资与自己的风险承受能力相匹配的金融产品。为了及时了解您的投资风险承受能力，
+                <br>我们建议您定期评估。</p>
+    <div class="wz_gb_2010" id="zw">
+        <p class="font_special">填写评估问卷大致需要5分钟</p>
+        <p class="font_style_stu">一、财务状况</p>
+        <p class="font_style_bold">1、您的年龄是？</p>
+        <p>
+            <label><input name="box_0" type="radio" value="-2" /> <span style="cursor: pointer">A. 18-30</span></label>
+            <label><input name="box_0" type="radio" value="0" /> <span style="cursor: pointer">B. 31-50</span></label>
+            <label><input name="box_0" type="radio" value="-4" /> <span style="cursor: pointer">C.51-65</span></label>
+            <label><input name="box_0" type="radio" value="-10" /> <span style="cursor: pointer">D.高于65岁（如选D，需着重关注客户投资经验）</span></label>
+        </p>
+        <p class="font_style_bold">2. 您家庭的就业状况是？</p>
+        <p style="cursor: pointer">
+            <label><input name="box_1" type="radio" value="10" /> A. 您与配偶均有稳定收入的工作</label></p>
+        <p style="cursor: pointer">
+            <label><input name="box_1" type="radio" value="5" /> B. 您与配偶其中一人有稳定收入的工作</label></p>
+        <p style="cursor: pointer">
+            <label><input name="box_1" type="radio" value="0" /> C.您与配偶均没有稳定收入的工作或者已退休</label></p>
+        <p class="font_style_bold">3. 在您每年的家庭收入中，可用于作金融投资（储蓄存款除外）的比例为？</p>
+        <p>
+            <label><input name="box_2" type="radio" value="2" /> <span style="cursor: pointer">A.小于10% </span></label>
+            <label><input name="box_2" type="radio" value="4" /> <span style="cursor: pointer">B.10%至25%</span></label>
+            <label><input name="box_2" type="radio" value="8" /> <span style="cursor: pointer">C.25%至50% </span></label>
+            <label><input name="box_2" type="radio" value="10" /> <span style="cursor: pointer">D.大于50%</span></label></p>
+        <p></p>
+        <p class="font_style_title">二、投资经验（任一项选A客户均视为无投资经验客户）</p>
+        <p class="font_style_bold">4.以下哪项最能说明您的投资经验？</p>
+        <p style="cursor: pointer">
+            <label><input name="box_3" type="radio" value="0" /> A.除存款、国债外，我几乎不投资其他金融产品</label></p>
+        <p style="cursor: pointer">
+            <label><input name="box_3" type="radio" value="2" /> B.大部分投资于存款、国债等，较少投资于股票、基金等风险产品</label></p>
+        <p style="cursor: pointer">
+            <label><input name="box_3" type="radio" value="6" /> C.资产均衡地分布于存款、国债、银行理财产品、信托产品、股票、基金等</label></p>
+        <p style="cursor: pointer">
+            <label><input name="box_3" type="radio" value="10" /> D.大部分投资于股票、基金、外汇等高风险产品，较少投资于存款、国债</label></p>
+        <p class="font_style_bold">5.您有多少年投资股票、基金、外汇、金融衍生产品等风险投资品的经验？</p>
+        <p>
+            <label><input name="box_4" type="radio" value="0" /> <span style="cursor: pointer">A.没有经验</span></label>
+                <label><input name="box_4" type="radio" value="2" /> <span style="cursor: pointer">B.少于2年 </span></label>
+                    <label><input name="box_4" type="radio" value="6" /> <span style="cursor: pointer">C.2至5年 </span></label>
+                        <label><input name="box_4" type="radio" value="8" /> <span style="cursor: pointer">D.5至8年</span></label>
+                            <label><input name="box_4" type="radio" value="10" /> <span style="cursor: pointer">E.8年以上 </span></label></p>
+        <p></p>
+        <p class="font_style_title">三、收益预期及风险偏好</p>
+        <p class="font_style_bold">6．以下哪项描述最符合您的投资态度？</p>
+        <p style="cursor: pointer">
+            <label><input name="box_5" type="radio" value="0" /> A.厌恶风险，不希望本金损失，希望获得稳定回报</label></p>
+        <p style="cursor: pointer">
+            <label><input name="box_5" type="radio" value="4" /> B.保守投资，不希望本金损失，愿意承担一定幅度的收益波动</label></p>
+        <p style="cursor: pointer">
+            <label><input name="box_5" type="radio" value="8" /> C.寻求资金的较高收益和成长性，愿意为此承担有限本金损失</label></p>
+        <p style="cursor: pointer">
+            <label><input name="box_5" type="radio" value="10" /> D.希望赚取高回报，愿意为此承担较大本金损失</label></p>
+        <p class="font_style_bold">7.以下情况，您会选择哪一种？</p>
+        <p style="cursor: pointer">
+            <label><input name="box_6" type="radio" value="0" /> A.有100%的机会赢取1000元现金</label></p>
+        <p style="cursor: pointer">
+            <label><input name="box_6" type="radio" value="4" /> B.有50%的机会赢取5万元现金</label></p>
+        <p style="cursor: pointer">
+            <label><input name="box_6" type="radio" value="6" /> C.有25%的机会赢取50万元现金</label></p>
+        <p style="cursor: pointer">
+            <label><input name="box_6" type="radio" value="10" /> D.有10%的机会赢取100万元现金</label></p>
+        <p></p>
+        <p class="font_style_title">四、投资目的及流动性要求</p>
+        <p class="font_style_bold">8. 您计划的投资期限是多久？</p>
+        <p>
+            <label><input name="box_7" type="radio" value="4" /> <span style="cursor: pointer">A.1年以下</span></label>
+                <label><input name="box_7" type="radio" value="6" /> <span style="cursor: pointer">B.1－3年</span></label>
+                    <label><input name="box_7" type="radio" value="8" /> <span style="cursor: pointer">C.3－5年</span></label>
+                        <label><input name="box_7" type="radio" value="10" /> <span style="cursor: pointer">D.5年以上</span></label></p>
+        <p class="font_style_bold">9、您的投资目的是 ？</p>
+        <p>
+            <label><input name="box_8" type="radio" value="2" /> <span style="cursor: pointer">A.资产保值 </span></label>
+                <label><input name="box_8" type="radio" value="6" /> <span style="cursor: pointer">B.资产稳健增长</span></label>
+                    <label><input name="box_8" type="radio" value="10" /> <span style="cursor: pointer">C.资产迅速增长</span></label></p>
+        <p></p>
+        <p class="font_style_title">五、风险损失承受程度</p>
+        <p class="font_style_bold">10.您投资产品的价值出现何种程度的波动时，您会呈现明显的焦虑？</p>
+        <p style="cursor: pointer">
+            <label><input name="box_9" type="radio" value="-5" /> A.本金无损失，但收益未达预期</label></p>
+        <p style="cursor: pointer">
+            <label><input name="box_9" type="radio" value="5" /> B.出现轻微本金损失</label></p>
+        <p style="cursor: pointer">
+            <label><input name="box_9" type="radio" value="10" /> C.本金10％以内的损失</label></p>
+        <p style="cursor: pointer">
+            <label><input name="box_9" type="radio" value="15" /> D.本金20-50％的损失</label></p>
+        <p style="cursor: pointer">
+            <label><input name="box_9" type="radio" value="20" /> E.本金50％以上损失</label></p>
+    </div>
+    <div class="db_bt" id="bt">
+        <input class="button_tf" onclick="countAndLook();" type="button" value="评估结果" />
+    </div>
+
+</div>
+    </div>
+</div>
+
+
+<!-- /内容 -->
+<!-- 底部 -->
+<div class="g-ft">
+    <!-- 向导 -->
+    <div class="m-guide">
+        <div class="g-wrap g-grid-row">
+            <dl class="g-grid-3">
+                <dt><strong><a href="https://www.yrw.com/post/about/index.html">认识有融</a></strong></dt>
+                <dd><a href="https://www.yrw.com/post/about/index.html#j-abput">关于有融</a></dd>
+                <dd><a href="https://www.yrw.com/post/about/index.html#platform">平台原理</a></dd>
+                <dd><a href="https://www.yrw.com/post/about/index.html#qualification">有融资质</a></dd>
+                <dd><a href="https://www.yrw.com/post/about/index.html#contactUs">联系有融</a></dd>
+                                                            </dl>
+            <dl class="g-grid-3">
+                <dt><strong><a href="https://www.yrw.com/post/subject/safety.html">安全保障</a></strong></dt>
+            						<dd><a href="https://www.yrw.com/post/subject/safety.html">投资安全</a></dd>
+            						<dd><a href="https://www.yrw.com/post/subject/safety.html#sectionB">技术保障</a></dd>
+            						<dd><a href="https://www.yrw.com/post/subject/safety.html#sectionC">法律监管</a></dd>
+            						<dd><a href="https://www.yrw.com/post/subject/safety.html#sectionD">信息透明</a></dd>
+            </dl>
+            <dl class="g-grid-4">
+                <dt>有融网微信公众号</dt>
+                <dd><img src="https://www.yrw.com/static/img/v2/homepage/WeChat_twoDimensionCode.png" alt="有融网微信公众号"/></dd>
+            </dl>
+            <dl class="g-grid-4">
+                <dt>有融网APP</dt>
+                <dd><img src="https://www.yrw.com/static/img/v2/homepage/APP_twoDimensionCode20151105.png" alt="有融网APP"/></dd>
+            </dl>
+            <dl class="g-grid-6 m-contact-info">
+                <dt><strong>全国服务热线</strong></dt>
+                <dd>
+                    <span class="f-ff-din f-lh-1em">400<i></i>025<i></i>6688</span>
+                    <br/><em>工作日: 9:00-20:00</em>节假日: <em id="j-server-timezone">9:30-18:00 </em>
+                </dd>
+                     <dd><a class="u-qq-service u-circle-15" href="http://wpa.b.qq.com/cgi/wpa.php?ln=2&uin=4000266688" target="_blank"><i></i>在线客服</a></dd>
+            </dl>
+        </div>
+    </div>
+    <!-- /向导 -->
+    <div class="m-copyright">
+        <div class="g-wrap">&copy;&nbsp;2014-2015&nbsp;YRW.COM&nbsp;浙江小融网络科技股份有限公司 版权所有&nbsp;&nbsp;浙ICP备14032974号-2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;新浪支付全程提供账户托管和支付服务</div>
+    </div>
+<!-- /底部 -->
+
+    <script type="text/javascript">
+    var environment =env= {
+        globalPath: '',
+        globalDomain: 'http://www.yrw.com',
+        mGlobalDomain: 'http://m.yrw.com',
+        serverDate:  1447138500270,
+        aliyunPath: 'https://oss-cn-hangzhou.aliyuncs.com',
+        clientRequstTime: function () {
+            return new Date().getTime()
+        }
+    };
+</script>
+<!-- public script -->
+<script src="/static/lib/js/jq/jquery-1.11.1.min.js"></script>
+
+<script src="/static/lib/js/dialog-min.js"></script>
+
+<script src="/static/lib/js/validform.js"></script>
+
+
+
+<script src="/static/source/js/common.js"></script>
+    <script>
+        (function(){
+            //页面底部工作时间
+            var $timezone=$('#j-server-timezone'),
+                    month=new Date(environment.serverDate).getMonth()+1;
+            if(month<4||month>9){
+                $timezone.text('9:00-17:00');
+            }
+        }());
+    </script>
+    </div>
+</body>
+</html>

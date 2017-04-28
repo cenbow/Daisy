@@ -1,0 +1,226 @@
+##周年庆倒计时活动
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$res_url/source/css/activity/anniversaryCountdown.css"])
+#set($title="有融2周年庆倒计时进行中$!{title_suffix}")
+#set($encryptionId=$request.getParameter("encryptionId"))
+#set($loginSource=$request.getHeader("loginSource"))
+
+<script>
+    var url=window.location.href,title='有融2周年庆倒计时进行中';
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        window.shareData = {
+            "timeLineLink": url,
+            "sendFriendLink": url,
+            "weiboLink": url,
+            "tTitle": "有融2周年庆倒计时进行中",
+            "tContent": "10.19~11.18，现金红包天天抢，先到先得哦！",
+            "fTitle": "有融2周年庆倒计时进行中",
+            "fContent": "10.19~11.18，现金红包天天抢，先到先得哦！",
+            "wContent": "有融2周年庆倒计时进行中  10.19~11.18，现金红包天天抢，先到先得哦！"
+        };
+        // 发送给好友
+        if(typeof(WeixinJSBridge)!=='undefined'){
+            WeixinJSBridge.on('menu:share:appmessage', function (argv) {
+                WeixinJSBridge.invoke('sendAppMessage', {
+                    "img_url": "../../static/img/weixin/weixin_anniversarylast.jpg",
+                    "img_width": "358",
+                    "img_height": "328",
+                    "link": window.shareData.sendFriendLink,
+                    "desc": window.shareData.fContent,
+                    "title": window.shareData.fTitle
+                }, function (res) {
+                    _report('send_msg', res.err_msg);
+                })
+            });
+            // 分享到朋友圈
+            WeixinJSBridge.on('menu:share:timeline', function (argv) {
+                WeixinJSBridge.invoke('shareTimeline', {
+                    "img_url": "../../static/img/weixin/weixin_anniversarylast.jpg",
+                    "img_width": "358",
+                    "img_height": "328",
+                    "link": window.shareData.timeLineLink,
+                    "desc": window.shareData.tContent,
+                    "title": window.shareData.tTitle
+                }, function (res) {
+                    _report('timeline', res.err_msg);
+                });
+            });
+        }
+    }, false);
+</script>
+
+#if($currentUser)
+    #set($logined=true)
+#else
+    #set($logined=false)
+#end
+#set($os=3)
+##  安卓
+#if($loginSource==1)
+    #set($os=1)
+#end
+##  IOS
+#if($loginSource==2)
+    #set($os=2)
+#end
+
+#set($debug=$request.getParameter("debug"))
+#set($isApp=$request.getParameter("app"))
+#set($avatar=$servletUtil.getUserDO().avatars)
+
+<div id="j-countdown" v-cloak>
+<div class="m-hbd">
+    <img src="$res_url/img/activity/anniversaryCountdown/countdown-hbd.png" class="img-responsive">
+</div>
+<div class="u-countdown-days"> 距离周年庆开始仅剩：<i>{{remainDay}}天</i></div>
+    <div class="f-body-color">
+        <div class="u-activity-item-header"><span>现金红包天天抢</span></div>
+    <div class="u-text">
+        {{init.startTime | formatTime 'MM月dd日'}}~{{init.endTime | formatTime 'MM月dd日'}}，每日{{receiveStartTime}}~{{receiveEndTime}}，用户登录即可任意领取10/30/100/200元现金券中的一张，每人每日限领一张，每日共2000张，先到先得。
+    </div>
+        <div v-if="status!==6">
+            <div class="u-countdown-calendar"><i>距离抢券{{countdownStatusText}}</i>
+                <div class="u-calender">
+                    {{hours}}
+                </div>
+                <i class="f-colon">:</i>
+                <div class="u-calender">
+                    {{minutes}}
+                </div>
+                <i class="f-colon">:</i>
+                <div class="u-calender">
+                    {{seconds}}
+                </div>
+            </div>
+        </div>
+
+
+<div class="u-redbag">
+    <img src="$res_url/img/activity/anniversaryCountdown/redbag.png" class="img-responsive">
+    <div class="u-number">10
+        <i >元</i>
+    </div>
+</div>
+        <div class="u-redbag">
+            <img src="$res_url/img/activity/anniversaryCountdown/redbag.png" class="img-responsive">
+            <div class="u-number">30
+                <i >元</i>
+            </div>
+        </div>
+        <div class="u-redbag f-remain">仅剩{{init.coupon10}}张 </div>
+        <div class="u-redbag f-remain">仅剩{{init.coupon30}}张 </div>
+
+        <a href="{{loginUrl}}" class="u-redbag f-button" :class="{'z-disabled': status===2||status===6 || init.coupon10<1}" @click="getCoupon(10, $event)"
+           v-text="couponText(10)"></a>
+        <a href="{{loginUrl}}" class="u-redbag f-button" :class="{'z-disabled': status===2||status===6 || init.coupon30<1}" @click="getCoupon(30, $event)"
+           v-text="couponText(30)"></a>
+
+
+
+        <div class="u-redbag ">
+            <img src="$res_url/img/activity/anniversaryCountdown/redbag.png" class="img-responsive">
+            <div class="u-number f-bigger">100
+                <i class="f-adjust">元</i>
+            </div>
+        </div>
+        <div class="u-redbag">
+            <img src="$res_url/img/activity/anniversaryCountdown/redbag.png" class="img-responsive">
+            <div class="u-number f-bigger">200
+                <i class="f-adjust">元</i>
+            </div>
+        </div>
+        <div class="u-redbag f-remain"> 仅剩{{init.coupon100}}张</div>      <div class="u-redbag f-remain">仅剩{{init.coupon200}}张 </div>
+
+        <a href="{{loginUrl}}"  class="u-redbag f-button" :class="{'z-disabled': status===2||status===6 || init.coupon100<1}" @click="getCoupon(100,$event)"
+           v-text="couponText(100)"></a>
+
+
+        <a href="{{loginUrl}}"  class="u-redbag f-button" :class="{'z-disabled': status===2||status===6 || init.coupon200<1}" @click="getCoupon(200, $event)"
+           v-text="couponText(200)"></a>
+
+
+        <div class="u-use-rule">  现金券使用规则  </div>
+        <div class="u-rule">
+            <table>
+                <tr>
+                    <th>面额(元)</th>
+                    <th>起投金额(元)</th>
+                    <th>起投期限(天)</th>
+                </tr>
+                <tr class="f-backgd-color1">
+                    <td>10</td>
+                    <td>2000</td>
+                    <td>0</td>
+                </tr>
+                <tr class="f-backgd-color2">
+                    <td>30</td>
+                    <td>3000</td>
+                    <td>30</td>
+                </tr>
+                <tr class="f-backgd-color1">
+                    <td>100</td>
+                    <td>6000</td>
+                    <td>60</td>
+                </tr>
+                <tr class="f-backgd-color2">
+                    <td>200</td>
+                    <td>8000</td>
+                    <td>90</td>
+                </tr>
+            </table>
+        </div>
+        <div class="u-activity-item-header f-mt28"><span>投资壕礼天天送</span></div>
+        <div class="u-text">10月20日00:00~{{init.endTime | formatTime 'MM月dd日'}}23:59，用户单笔投资满足以下条件，即可获得对应面额的现金券，多投多得。</br>
+            1）单笔投资满2000元，可获得88元现金券一张；</br>
+            2）单笔投资满4000元，可获得188元现金券一张。
+        </div>
+        <div class="u-activity-gift-bg"></div>
+        <div class="u-use-rule">  现金券使用规则  </div>
+        <div class="u-rule">
+            <table>
+                <tr>
+                    <th>面额(元)</th>
+                    <th>起投金额(元)</th>
+                    <th>起投期限(天)</th>
+                </tr>
+                <tr class="f-backgd-color1">
+                    <td>88</td>
+                    <td>4000</td>
+                    <td>60</td>
+                </tr>
+                <tr class="f-backgd-color2">
+                    <td>188</td>
+                    <td>6000</td>
+                    <td>90</td>
+                </tr>
+            </table>
+        </div>
+
+<div class="u-bottom-button"  @click="openCheck" >查看活动规则  ></div>
+    </div>
+    <div class="u-anniversary-cover" v-if="open"></div>
+     <div class="u-tip" v-if="open">
+         <div class="f-cross" @click="closeCheck"></div>
+           <h1>活动规则</h1>
+      <p>
+         1. 活动对象：有融网所有用户；<br>
+         2. 活动时间：2016年 {{init.startTime | formatTime 'MM月dd日'}} — {{init.endTime | formatTime 'MM月dd日'}}；<br>
+         3. 现金券领取后1天内有效；<br>
+         4. 如有其它疑问，请拨打客服热线:<i>400-025-6688；</i><br>
+          本活动最终解释权归有融网所有。</p>
+     </div>
+</div>
+
+    #set($pageScript="
+        <script src='$res_url/build/js/appHook.js'></script>
+        <script src='$res_url/lib/vue/vue.min.js'></script>
+        <script src='$res_url/lib/vue/vue.extend.js'></script>
+        <script>
+            var receiveData = $!{data}
+                logined=$logined
+                os=$os
+            seajs.use('$res_url/source/js/activity/anniversaryCountdown.js?201610191310');
+        </script>
+    ")
+#CSRFToken("xToken")

@@ -1,0 +1,204 @@
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($title='未签署项目')
+<style>
+    body {
+        width: 100%;
+        height: 100%;
+        background: #eeeeee;
+    }
+    [v-cloak]{
+        display: none;
+    }
+    .u-automaticSignatureTip {
+        width: 100%;
+        background: #ffffff;
+        text-align: center;
+        height: 80px;
+        font-size: 16px;
+        color: #333333;
+        padding-top: 17px;
+        margin-bottom: 30px;
+    }
+
+    .u-automaticSignatureTip > div:last-child {
+        font-size: 12px;
+        color: #666666;
+        margin-top: 10px;
+    }
+    .u-projectBlock{
+        width: 96%;
+        margin:10px auto 0;
+    }
+    .u-projectBlock ul{
+        width: 100%;
+    }
+    .u-projectBlock ul li{
+        position: relative;
+        background: #ffffff;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+    .u-projectBlock ul li span{
+        display: inline-block;
+    }
+    .u-memberAvatar{
+        width: 32px;
+        height: 32px;
+    }
+    .u-memberAvatar img{
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        vertical-align: middle;
+    }
+    .z-color3{
+        color: #333333;
+    }
+    .z-color6{
+        color: #666666;
+    }
+    .z-color9{
+        color: #999999;
+    }
+    .u-splitters{
+        border-bottom: 1px solid #EFEFEF;
+        width: 85%;
+        margin-left: 15%;
+    }
+    .u-investAmount{
+        margin-left: 15%;
+    }
+    .u-signatureBtn{
+        width: 100px;
+        height: 30px;
+        line-height: 30px;
+        border-radius: 15px;
+        color: #ffffff;
+        background: #d74148;
+        text-align: center;
+        display: inline-block;
+        position: absolute;
+        top: 55px;
+        right: 8px;
+    }
+    .u-firstLine{
+        line-height: 40px;
+        margin-left: 8px;
+    }
+    .u-lastLine{
+        line-height:60px;
+    }
+    .u-aboutSignature {
+        width: 90%;
+        background: #fff;
+        border-radius: 5px;
+        text-align: center;
+        position: fixed;
+        top: 40%;
+        left: 5%;
+        padding: 10px 0 0;
+        z-index: 200;
+    }
+    .u-aboutSignature p:first-child{
+        padding: 20px 10px;
+        line-height: 30px;
+    }
+    .u-aboutSignature .f-clickBtn {
+        border-top: 1px solid #ccc;
+        line-height: 40px;
+    }
+
+    .u-aboutSignature .f-clickBtn span {
+        display: inline-block;
+        width: 48%;
+        height: 30px;
+        margin: 5px 0;
+        border-right: 1px solid #ccc;
+    }
+    .u-aboutSignature .f-clickBtn span:last-child{
+        border: none;
+        color: #d74148;
+    }
+    .u-projectBlock .u-tipText{
+        width: 100%;
+        margin: 45% auto;
+        text-align: center;
+        color: #999999;
+    }
+</style>
+<div id="j-eSignatureProjectList" v-cloak>
+<!--header-->
+<h2 class="u-header f-pos-r">
+    <a href="$siteurl/mCenter/myTransaction" id="j-backUrl">返回</a>
+    <span class="f-fs20" id="j-title">未签署项目</span>
+    <span class="f-fr j-signAllBtn" @click="showTips('#j-choiceTips')">一键签署</span>
+</h2>
+<!--/header-->
+
+<div v-if="signWay===0" class="u-automaticSignatureTip">
+    <div>
+        使用自动签署具有同等法律效应
+    </div>
+    <div>
+        一键签名更便捷，前往 <a href="$siteurl/mCenter/eSignature">设置自动签署</a>
+    </div>
+</div>
+<div class="m-unsignedProjectList">
+    <div class="u-projectBlock">
+        <ul v-if="projectListData.data!=''">
+            <li v-for="item in projectListData.data">
+                <div class="u-firstLine">
+                    <span class="u-memberAvatar">
+                            <img v-if="item.thumbnail" :src="item.thumbnail" alt="">
+                            <img v-else src="$res_url/img/member/login_avatar.png" alt="">
+
+                    </span>
+                    <span class="u-projectName f-fs14 z-color3" v-text="item.prefixProjectName"></span>
+                    <span class="u-investTime f-fs14 z-color6" v-text="item.transactionTimeStr"></span>
+                </div>
+                <div class="u-splitters"></div>
+                <div class="u-lastLine">
+                    <sapn class="u-investAmount f-fs16 z-color3">&yen;<i v-text="item.investAmount | amountFormat 'split'"></i></sapn>
+                    <sapn class="u-signatureBtn f-fs14" @click="signOne(item.id)">签署协议</sapn>
+                </div>
+            </li>
+        </ul>
+        <div class="u-tipText" v-else>
+            <img src="$res_url/img/logoGray.png" alt=""/>
+            <div>您没有未签署项目</div>
+        </div>
+    </div>
+##            分页的代码
+    <div v-if="pageNavi.totalPageCount>1" class="m-pagenav f-tar">
+        <span v-if="pageNavi.pageNo===1" class="u-pnav-prev u-circle-12">上一页</span>
+        <a v-else href="javascript:void(0)" class="u-pnav-prev u-circle-12"
+           data-pageno="{{pageNavi.pageNo-1}}" @click="gotoPage(pageNavi.pageNo-1)">上一页</a>
+                <span v-for="item in pageNavi.list">
+                <span v-if="item.index===pageNavi.pageNo"
+                      class="u-pnav-crt u-circle-12">{{item.index}}</span>
+                <a v-else href="javascript:void(0)" class="u-pnav-link u-circle-12" data-pageno="{{item.index}}" @click="gotoPage(item.index)">{{item.index}}</a>
+                </span>
+                <span v-if="pageNavi.pageNo==pageNavi.totalPageCount"
+                      class="u-pnav-prev u-circle-12">下一页</span>
+        <a v-else href="javascript:void(0)" class="u-pnav-prev u-circle-12"
+           data-pageno="{{pageNavi.pageNo+1}}" @click="gotoPage(pageNavi.pageNo+1)">下一页</a>
+    </div>
+##            分页的代码
+</div>
+##选择一键签署时的弹窗
+    <div id="j-choiceTips" class="u-aboutSignature  f-dn">
+        <p class="f-fs16 z-color6">选择一键签署，系统将使用您的默认签名签署全部未签协议</p>
+        <p class="f-clickBtn">
+            <span class="f-fs16 z-color6" @click="closeTips('#j-choiceTips')">取消</span>
+            <span class="f-fs16" @click="signAll">确定</span>
+        </p>
+    </div>
+</div>
+
+#CSRFToken('xToken')
+#set($pageScript="
+<script>
+
+    seajs.use('$siteurl/res/source/js/modules/eSignatureProjects.js');
+</script>")

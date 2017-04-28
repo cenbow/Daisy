@@ -1,0 +1,351 @@
+.g-bd {
+    margin-bottom: 0;
+}
+
+.m-doubleDan-hd {
+    width: 100%;
+    height: 620px;
+    margin-top: -8px;
+    color: #fff;
+    background: url("http://yrimg.oss-cn-hangzhou.aliyuncs.com/activity/doubledan/doubleDan-hd.jpg") no-repeat center;
+}
+
+.m-doubleDan-Christmas {
+    background: #dc3333;
+    height: 502px;
+}
+
+.u-Christmas-bg {
+    height: 438px;
+    width: 930px;
+    background: url("http://yrimg.oss-cn-hangzhou.aliyuncs.com/activity/doubledan/doubleDan-Christmas-bg.png") no-repeat center;
+    padding: 55px 30px 0;
+}
+
+.u-NewYear-bg {
+    height: 855px;
+    width: 930px;
+    background: url("http://yrimg.oss-cn-hangzhou.aliyuncs.com/activity/doubledan/doubleDan-NewYear-hd.png") no-repeat center;
+    padding: 55px 30px 0;
+    margin: 0 0 60px;
+}
+
+.m-doubleDan-NewYear {
+    background: #dc3333;
+    height: 970px;
+}
+
+.u-Christmas-bg h2,
+.u-NewYear-bg h2 {
+    font-weight: bold;
+    color: #e12627;
+    text-align: center;
+}
+
+.u-Christmas-bg h3,
+.u-NewYear-bg h3 {
+    color: #666;
+    text-align: center;
+}
+
+.u-Christmas-lottery {
+    border: 1px solid #f5f1f1;
+    margin: 45px 0 0;
+}
+
+.u-Christmas-lottery>div {
+    float: left;
+    height: 255px;
+    width: 153px;
+    border-left: 1px solid #f5f1f1;
+    display: inline-block;
+}
+
+.u-Christmas-lottery>div:first-child {
+    border-left: none;
+}
+
+.u-Christmas-lottery>div i {
+    color: #f7fca0;
+    height: 88px;
+    width: 97px;
+    background: url("http://yrimg.oss-cn-hangzhou.aliyuncs.com/activity/doubledan/doubleDan-sprit.png") no-repeat -124px 0;
+    display: block;
+    margin: 23px auto 42px;
+    text-align: center;
+    padding: 22px 0 0;
+}
+
+.u-Christmas-lottery>div i.z-initial {
+    height: 88px;
+    width: 97px;
+    background: url("http://yrimg.oss-cn-hangzhou.aliyuncs.com/activity/doubledan/doubleDan-sprit.png") no-repeat 0 0;
+    display: block;
+    margin: 23px auto 42px;
+    text-align: center;
+    padding: 22px 0 0;
+}
+
+.u-Christmas-lottery>div i.z-empty {
+    padding: 30px 0 0;
+    height: 80px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.u-Christmas-lottery>div span {
+    height: 39px;
+    width: 110px;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    line-height: 39px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    background: url("http://yrimg.oss-cn-hangzhou.aliyuncs.com/activity/doubledan/doubleDan-sprit.png") no-repeat 0 -119px;
+}
+
+.u-Christmas-lottery>div span.z-current {
+    cursor: default;
+    background: url("http://yrimg.oss-cn-hangzhou.aliyuncs.com/activity/doubledan/doubleDan-sprit.png") no-repeat -141px -119px;
+}
+
+.u-NewYear-lottery {
+    margin: 75px 0 0;
+}
+
+.u-NewYear-lottery>div {
+    background: #fff;
+    width: 298px;
+    height: 296px;
+    margin: 0 0 39px 15px;
+    border: 1px solid #ffd5ab;
+    display: inline-block;
+    float: left;
+}
+
+.u-NewYear-lottery>div:first-child,
+.u-NewYear-lottery>div.z-4ml {
+    margin-left: 0;
+}
+
+.u-NewYear-lottery>div h4 {
+    height: 34px;
+    width: 224px;
+    text-align: center;
+    color: #c46f18;
+    font-size: 14px;
+    margin: -21px 0 0 37px;
+    display: inline-block;
+    line-height: 28px;
+    background: url("http://yrimg.oss-cn-hangzhou.aliyuncs.com/activity/doubledan/doubleDan-sprit.png") no-repeat 0 -209px;
+}
+
+.u-newyear-gift {
+    position: relative;
+    margin: 40px 81px 0 40px;
+    width: 209px;
+    height: 153px;
+    font-size: 14px;
+}
+
+.u-newyear-gift-1,
+.u-newyear-gift-2,
+.u-newyear-gift-3,
+.u-newyear-gift-4,
+.u-newyear-gift-5,
+.u-newyear-gift-6 {
+    background: url("http://yrimg.oss-cn-hangzhou.aliyuncs.com/activity/doubledan/doubleDan-sprit.png") no-repeat;
+}
+
+.u-newyear-gift-1 {
+    background-position: -14px -468px;
+}
+
+.u-newyear-gift-2 {
+    background-position: -312px -468px;
+}
+
+.u-newyear-gift-3 {
+    background-position: -620px -468px;
+}
+
+.u-newyear-gift-4 {
+    background-position: 0 -726px;
+}
+
+.u-newyear-gift-5 {
+    background-position: -315px -726px;
+}
+
+.u-newyear-gift-6 {
+    height: 159px;
+    width: 223px;
+    background: url("http://yrimg.oss-cn-hangzhou.aliyuncs.com/activity/doubledan/doubleDan-sprit.png") no-repeat -616px -718px;
+}
+
+.z-opened-1,
+.z-opened-2,
+.z-opened-3,
+.z-opened-4,
+.z-opened-5,
+.z-opened-6 {
+    height: 153px;
+    width: 209px;
+}
+
+.u-newyear-gift-1.z-opened-1,
+.u-newyear-gift-2.z-opened-2,
+.u-newyear-gift-3.z-opened-3,
+.u-newyear-gift-4.z-opened-4,
+.u-newyear-gift-5.z-opened-5 {
+    background: url("http://yrimg.oss-cn-hangzhou.aliyuncs.com/activity/doubledan/doubleDan-sprit.png") no-repeat;
+}
+
+.u-newyear-gift-1.z-opened-1 {
+    background-position: -295px 0;
+}
+
+.u-newyear-gift-2.z-opened-2 {
+    background-position: -595px 0;
+}
+
+.u-newyear-gift-3.z-opened-3 {
+    background-position: -895px 0;
+}
+
+.u-newyear-gift-4.z-opened-4 {
+    background-position: 17px -275px;
+}
+
+.u-newyear-gift-5.z-opened-5 {
+    background-position: -299px -275px;
+}
+
+.u-newyear-gift-6.z-opened-6 {
+    height: 159px;
+    width: 223px;
+    background: url("http://yrimg.oss-cn-hangzhou.aliyuncs.com/activity/doubledan/doubleDan-sprit.png") no-repeat -613px -275px;
+}
+
+.u-newyear-gift span {
+    position: absolute;
+    top: 57px;
+    left: 32px;
+}
+
+.u-newyear-gift span i {
+    font-size: 44px;
+    font-weight: bold;
+}
+
+.u-NewYear-lottery .u-newyear-btn {
+    width: 141px;
+    height: 40px;
+    display: block;
+    text-align: center;
+    cursor: pointer;
+    line-height: 40px;
+    font-size: 14px;
+    color: #fff;
+    margin: 20px auto 0;
+    background: url("http://yrimg.oss-cn-hangzhou.aliyuncs.com/activity/doubledan/doubleDan-sprit.png") no-repeat 0 -164px;
+}
+
+.u-NewYear-lottery>div .z-current {
+    cursor: default;
+    background: url("http://yrimg.oss-cn-hangzhou.aliyuncs.com/activity/doubledan/doubleDan-sprit.png") no-repeat -150px -164px;
+}
+
+.m-doubleDan-rule {
+    padding: 150px 0 0;
+    background: #dc3333;
+    color: #fff;
+    height: 470px;
+}
+
+.m-doubleDan-rule h2 {
+    font-weight: bold;
+    margin: 0 0 15px;
+}
+
+.m-doubleDan-rule p {
+    line-height: 35px;
+}
+
+.u-NewYear-bg>i {
+    width: 16px;
+    height: 10px;
+    display: block;
+    padding: 10px;
+    position: absolute;
+    top: 107px;
+    right: 209px;
+    cursor: pointer;
+    background: url("/static/img/activity/doubleDan/doubleDan-NewYear-example-arrows.png") no-repeat center;
+}
+
+.u-doubleDan-example {
+    height: 270px;
+    width: 830px;
+    position: absolute;
+    top: 255px;
+    left: 78px;
+}
+
+.u-example-left {
+    display: inline-block;
+    height: 270px;
+    width: 30px;
+    background: url("/static/img/activity/doubleDan/doubleDan-NewYear-example-bleft.png") no-repeat center;
+}
+
+.u-example-right {
+    display: inline-block;
+    height: 270px;
+    width: 30px;
+    background: url("/static/img/activity/doubleDan/doubleDan-NewYear-example-bright.png") no-repeat center;
+}
+
+.u-example-center {
+    display: inline-block;
+    height: 120px;
+    width: 715px;
+    padding: 90px 0 60px 55px;
+    background: url("/static/img/activity/doubleDan/doubleDan-NewYear-example-background.png") repeat-x center;
+}
+
+.u-example-center dl {
+    vertical-align: top;
+    display: inline-block;
+    margin: 0 0 0 62px;
+}
+
+.u-example-center dl:first-child {
+    margin-left: 0;
+}
+
+.u-example-center dl dt {
+    color: #dc3333;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0 0 5px 0;
+}
+
+.u-example-center dl dd {
+    color: #999;
+    line-height: 20px;
+}
+
+.u-example-center>i {
+    width: 22px;
+    height: 22px;
+    display: block;
+    padding: 10px;
+    position: absolute;
+    top: 17px;
+    right: -10px;
+    cursor: pointer;
+    background: url("/static/img/activity/doubleDan/doubleDan-NewYear-example-close.png") no-repeat center;
+}

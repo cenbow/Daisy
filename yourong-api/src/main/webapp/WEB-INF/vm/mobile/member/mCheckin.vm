@@ -1,0 +1,53 @@
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$m_css_url/modules/member.css"])
+#set($title='每日签到')
+<!--header-->
+<h2 class="u-header f-pos-r">
+    <a href="$siteurl/mCenter/home">返回</a>
+    <span class="f-fs18">
+        签到
+    </span>
+</h2>
+<!--/header-->
+<!--body-->
+<div class="u-checkin-title">
+    <h3>每天签到 领取人气值</h3>
+
+    <p class="f-fs18">人气值可兑换优惠券</p>
+</div>
+<div class="m-checkin-plane" id="j-checkin-plane" data-birthdayActivity="$!{servletUtil.isBirthdayActivity()}">
+    <div class="u-checkin-circle" id="j-check-circle">
+        <div class="z-uncheck f-dn" id="j-uncheck-box">
+            <img src="$siteurl/res/img/checkin/checkin_circle_icon.png" alt="Checkin Icon"/>
+
+            <p class="f-fs14">摇一摇签到</p>
+            <span>累计签到 <em></em> 点</span>
+        </div>
+
+        <div class="z-checked f-dn">
+            <span class="f-ff-din"><i>+</i><em></em></span>
+            <strong>今日已签到</strong>
+
+        </div>
+    </div>
+    <p class="u-birthday-x10 f-dn" id="j-birthday-x10">今天签到人气值翻10倍啦</p>
+</div>
+<div class="m-checkin-dice z-disabled" id="j-checkin-dice">
+    <img src="$siteurl/res/img/checkin/dice_animate.gif" alt="骰子"/>
+
+    <p>
+        <span>恭喜您获得 <em id='j-checkin-point'></em> 点人气值</span>
+        <strong>明天继续哦</strong>
+    </p>
+</div>
+#if($!{servletUtil.isBirthdayActivity()})
+<strong class="j-birthday-gift u-link-button z-disabled"><a target="_blank" href="http://192.168.0.195:8081/activity/birthdayGift">领取生日礼包</a></strong>
+#end
+
+<!--/body-->
+#set($pageScript="
+    <script>
+        seajs.use('xjs/modules/checkin');
+    </script>
+")

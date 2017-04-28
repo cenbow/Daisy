@@ -1,0 +1,79 @@
+#parse("/msg/template/head.vm")
+<div class="col-xs-12">
+	<div class="col-xs-9 col-sm-9 widget-container-span ui-sortable">
+		<form id="msg-mailTemplate-form" method="post">
+			<div class="widget-main">
+				<div class="form-group clearfix">
+					<label class="col-sm-1 control-label no-padding-right" for="name">模板名称：</label>
+				</div>
+				<div class="form-group clearfix">
+					<div class="col-sm-9">
+						<input type="text" id="templateName" name="templateName" label="info" placeholder="邮件模板名称" dataType="*1-25" value="$!{messageTemplate.templateName}"/>
+					</div>
+				</div>
+				<div class="form-group clearfix">
+					<label class="col-sm-1 control-label no-padding-right" for="name">模板标题：</label>
+				</div>
+				<div class="form-group clearfix">
+					<div class="col-sm-9">
+						<input type="text" id="templateSubject" name="templateSubject" label="info" placeholder="模板标题" dataType="*1-50" value="$!{messageTemplate.templateSubject}"/>
+					</div>
+				</div>
+				<div class="form-group clearfix">
+					<label class="col-sm-1 control-label no-padding-right" for="name">邮件类型：</label>
+				</div>
+				<div class="form-group clearfix">
+					<div class="col-sm-9">
+						<select id="templateType" name="templateType" dataType="*">
+							<option value="" >请选择</option>
+							<option value="0" #if(${messageTemplate.templateType} == 0) selected #end>触发</option>
+							<option value="1" #if(${messageTemplate.templateType} == 1) selected #end>批量</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group clearfix">
+					<label class="col-sm-1 control-label no-padding-right" for="name">模板内容：</label>
+				</div>
+				<div class="form-group clearfix">
+					<div class="col-sm-9">
+						<textarea name="content" placeholder="" id="form-field-content" style="width:860px;height:200px;" dataType="*">$!{messageTemplate.content}</textarea>
+						<input type="hidden" name="id" value="$!{messageTemplate.id}"/>
+						<input type="hidden" name="templateCode" value="$!{messageTemplate.templateCode}"/>
+					</div>
+				</div>
+    			<div class="col-xs-9 col-sm-9 widget-container-span ui-sortable">
+            		<div class="modal-footer">
+        				<button type="button" id = "save_mailTemplate" class="btn btn-primary">保存</button>
+    				</div>
+    			</div>
+    			<div id="contentDiv" style="display: none">
+    				$!{messageTemplate.content}
+    			</div>
+			</div>
+		</form>
+	</div>
+</div>
+
+<script>
+
+$(function(){
+	var content = $("#contentDiv").html();
+	loadUmeditor(content);
+})
+
+function loadUmeditor(content) {
+        var url = config.urlMap.ueditor;
+        $.getScript(url + 'ueditor.config.js');
+        $.getScript(url + 'ueditor.all.min.js', function() {
+            //实例化编辑器
+            postEditor =UE.getEditor('form-field-content', {
+                initialFrameWidth: 860,
+                initialFrameHeight: 350,
+                initialContent:content,
+				toolbars: [
+     					['fullscreen', 'source', 'undo','link', 'unlink','forecolor' //字体颜色
+				]]
+            });
+        });
+}
+</script>

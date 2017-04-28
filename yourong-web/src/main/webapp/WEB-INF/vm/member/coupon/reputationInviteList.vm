@@ -1,0 +1,64 @@
+#parse("/common/common.vm")
+#set($layout = "/layout/default.vm")
+<div class="u-rtable-wrap f-round">
+	<table class="u-invite-table">
+		<thead>
+
+			<tr>
+				<th width="190">注册时间</th>
+				<th width="170">被推荐用户</th>
+				<th width="175">开通新浪支付存钱罐</th>
+				<th width="150">邮箱绑定</th>
+				<th width="150">是否投资</th>
+				<th width="150">贡献人气值</th>
+			</tr>
+		</thead>
+		<tbody>
+			#if($!result.data && $!result.data.size()>0)
+				#foreach($invite in ${result.data})
+				<tr>
+					<td>$!{invite.referralRegisterTime}</td>
+					<td>$stringUtil.maskMobile($!{invite.mobile})</td>
+					<td>
+						#if($!{invite.savingPotOpen}) 
+						<span class="u-ckbox z-checked j-ckbox" id="notify_8_2">
+							<input type="checkbox" name="project_notice_message" checked="checked" value="1">
+						</span>
+						#else
+						<span class="u-ckbox z-checked j-ckbox" disabled="disabled" id="notify_9_2">
+							<input type="checkbox" name="withdraw_success_message" checked="checked" value="1">
+						</span>
+						#end
+					</td>
+					<td>
+						#if($!{invite.emailBind})
+						<span class="u-ckbox z-checked j-ckbox" id="notify_8_2">
+							<input type="checkbox" name="project_notice_message" checked="checked" value="1">
+						</span>
+						#else 
+						<span class="u-ckbox z-checked j-ckbox" disabled="disabled" id="notify_9_2">
+							<input type="checkbox" name="withdraw_success_message" checked="checked" value="1">
+						</span>
+						#end
+					</td>
+					<td>
+						#if($!{invite.investment})
+						<span class="u-ckbox z-checked j-ckbox" id="notify_8_2">
+							<input type="checkbox" name="project_notice_message" checked="checked" value="1">
+						</span>
+						#else 
+						<span class="u-ckbox z-checked j-ckbox" disabled="disabled" id="notify_9_2">
+							<input type="checkbox" name="withdraw_success_message" checked="checked" value="1">
+						</span>
+						#end
+					</td>
+					<td>$!{invite.contributePopularityValue}点</td>
+				</tr>
+				#end
+			#else
+			<tr><td colspan="6" class="u-table-empty">暂无邀请好友记录</td></tr>
+			#end
+		</tbody>
+	</table>
+</div>
+#ajaxPagePlugin($!result,"Invite")

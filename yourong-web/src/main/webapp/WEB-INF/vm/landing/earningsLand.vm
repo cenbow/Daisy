@@ -1,0 +1,800 @@
+##收益着落页 
+#parse('/common/common.vm') 
+#set($css_url=["$root_css_url/modules/login.css"]) 
+#set($title="注册狂送30元_$!{title_suffix}")
+#set($js_url=["$root_url/static/lib/js/jq/jquery.circliful.min.js","$root_js_url/modules/register.js"])
+
+<style>
+    .u-earnings-hd {
+        width: 100%;
+        height: 450px;
+        margin-top: -8px;
+        background: url($root_url/static/img/activity/earningsLand/earnings_focus.jpg) no-repeat center center;
+    }
+    .u-earnings-box01 {
+        height: 340px;
+        background-color: #fff;
+        color: #666;
+    }
+    .u-earnings-box01 ul {
+        padding: 70px 0 0;
+        width: 990px;
+    }
+    .u-earnings-box01 ul>li {
+        padding-bottom: 69px;
+        height: 200px;
+        float: left;
+        text-align: center;
+    }
+    .u-earnings-box01 ul>li>i {
+        width: 79px;
+        height: 62px;
+        display: block;
+        text-align: center;
+        margin: 0 auto 38px;
+    }
+    .u-earnings-box01 ul>li p {
+        margin-top: 23px;
+        line-height: 1.5em;
+        color: #999;
+    }
+    .u-earnings-pro {
+        width: 132px;
+        margin-left: 55px;
+    }
+    .u-earnings-income {
+        width: 182px;
+        margin-left: 91px;
+    }
+    .u-earnings-diver {
+        width: 181px;
+        margin-left: 70px;
+    }
+    .u-earnings-free {
+        width: 215px;
+        margin: 0 10px 0 53px;
+    }
+    .u-earnings-icon01 {
+        background: url($root_url/static/img/activity/earningsLand/earnings_icon01.png) no-repeat center center;
+    }
+    .u-earnings-icon02 {
+        background: url($root_url/static/img/activity/earningsLand/earnings_icon02.png) no-repeat center center;
+    }
+    .u-earnings-icon03 {
+        background: url($root_url/static/img/activity/earningsLand/earnings_icon03.png) no-repeat center center;
+    }
+    .u-earnings-icon04 {
+        background: url($root_url/static/img/activity/earningsLand/earnings_icon04.png) no-repeat center center;
+    }
+    .u-earnings-box02 {
+        height: 506px;
+        background-color: #d74148;
+        text-align: center;
+    }
+    .u-earnings-box02 .u-circle-15 {
+        width: 990px;
+        height: 384px;
+        margin: 60px auto;
+        border: 1px solid #ee9296;
+        background-color: #d74148;
+    }
+    .u-earnings-box02 table {
+        width: 100%;
+        height: 385px;
+        color: #f0c2c3;
+        text-align: center;
+        margin-bottom: -3px;
+    }
+    .u-earnings-box02 tr.z-last td {
+        border-bottom: none;
+    }
+    .u-earnings-box02 table tr td {
+        border-left: 1px solid #ee9296;
+        border-bottom: 1px solid #ee9296;
+        height: 47px;
+    }
+    .u-earnings-box02 tr td:first-child {
+        border-left: none;
+    }
+    .u-earnings-nfont {
+        height: 88px;
+    }
+    .u-earnings-thead>td {
+        ##width: 210px;
+    }
+    .u-earnings-thead td:first-child {
+        width: 150px;
+    }
+    .u-earnings-box03 {
+        height: 513px;
+        background-color: #fff;
+        text-align: center;
+        color: #666;
+    }
+    .u-earnings-fonts {
+        padding-top: 60px;
+        line-height: 3em;
+    }
+    .u-eaarnings-imeat {
+        background: url($root_url/static/img/activity/earningsLand/earnings_01.png) no-repeat center center;
+    }
+    .u-eaarnings-iparis {
+        background: url($root_url/static/img/activity/earningsLand/earnings_02.png) no-repeat center center;
+    }
+    .u-eaarnings-icar {
+        background: url($root_url/static/img/activity/earningsLand/earnings_03.png) no-repeat center center;
+    }
+    .u-eaarnings-iapple {
+        background: url($root_url/static/img/activity/earningsLand/earnings_04.png) no-repeat center center;
+    }
+    .u-eaarnings-imask {
+        background: url($root_url/static/img/activity/earningsLand/earnings_05.png) no-repeat center center;
+    }
+    .u-earnings-year {
+        width: 928px;
+        height: 262px;
+        margin: 57px auto 77px;
+    }
+    .u-earnings-year li {
+        width: 133px;
+        height: 262px;
+        margin-left: 64px;
+        float: left;
+        font-size: 18px;
+    }
+    
+    
+    .u-earnings-year li:first-child {
+        margin-left: 0px;
+    }
+    .u-earnings-year>ol>li>i {
+        height: 130px;
+        width: 130px;
+        display: block;
+        margin-bottom: 15px;
+    }
+    .u-earnings-year li>span {
+        background-color: #999;
+        color: #fff;
+        margin-top: 18px;
+        height: 25px;
+        line-height: 1.7em;
+    }
+    .u-earnings-fbox01 {
+        width: 120px;
+    }
+    .u-earnings-fbox02 {
+        width: 130px;
+    }
+
+    .u-earnings-fbox03 {
+        width: 110px;
+    }
+    .u-earnings-fbox04 {
+        width: 110px;
+    }
+    .u-earnings-fbox05 {
+        width: 110px;
+    }
+    .u-earnings-box04 {
+        height: 564px;
+        width: 990px;
+        color: #666;
+        margin: 0 auto;
+    }
+    .u-earnings-box04 h2 {
+        color: #666;
+        margin: 58px 890px 20px 0;
+        font-weight: bold;
+        clear: both;
+        display: block;
+        float: left;
+    }
+    .u-earnings-box04>ul>li {
+        width: 235px;
+        height: 530px;
+        border-color: #fff;
+        background-color: #fff;
+        margin: 0 0 20px 10px;
+        float: left;
+        display: block;
+    }
+    .u-earnings-box04 h4 {
+        font-weight: bold;
+        color: #666;
+        text-align: center;
+        padding: 25px 10px 12px 20px;
+    }
+    .u-earnings-box04>ul>li:first-child {
+        margin: 0 0 20px 0;
+    }
+    .u-earnings-box04 h4 a {
+        color: #666;
+        text-decoration: none;
+        display: block;
+        height: 40px;
+    }
+    .u-earnings-box04 h4 a span {
+        color: #999;
+        display: block;
+    }
+    .u-earnings-amount,
+    .u-earnings-process {
+        color: #999;
+        height: 40px;
+        line-height: 40px;
+    }
+    .u-earnings-process {
+        display: none;
+    }
+    .u-pl-photo {
+        text-align: center;
+    }
+    .u-pl-photo s {
+        display: block;
+        height: 3px;
+        background: url() repeat-x -213px -166px;
+        overflow: hidden;
+    }
+    .u-earnings-box04 li ul {
+        color: #999;
+        margin: 0 11px 20px;
+    }
+    .u-earnings-box04 li li {
+        height: 25px;
+        overflow: hidden;
+        border-bottom: 1px solid #dddbd6;
+        padding:13px 0 17px 10px;
+    }
+    .u-earnings-btn {
+        display: inline-block;
+        background-color: #e33f4a;
+        width: 140px;
+        height: 30px;
+        line-height: 28px;
+        border: hidden;
+        text-align: center;
+        color: #fff;
+        margin: 0 0 0 76px;
+    }
+    .u-earnings-btn:link {
+        color: #fff;
+        text-decoration: none;
+    }
+    .u-earnings-btn:visited {
+        color: #fff;
+        text-decoration: none;
+    }
+    .u-earnings-btn:hover {
+        color: #fff;
+        text-decoration: none;
+    }
+    .u-earnings-f48 {
+    	font-style: italic;
+        font-size: 48px;
+        margin-left: 16px;
+        *margin-left: 14px;
+        vertical-align: top;
+    }
+    .m-regform-land {
+        width: 360px;
+        padding: 65px 0 0;
+    }
+    .m-regform-land .u-ipt-text {
+        width: 342px;
+    }
+    .m-regform-land .u-ipt-vercode {
+        width: 180px;
+    }
+    .m-regform-land .u-img-vercode {
+        left: 100px;
+    }
+    .m-regform-land .u-ipt-phonecode {
+        width: 177px;
+        margin: 0 0 0 4px;
+    }
+    .m-regform-land .m-voice-box .u-tips-vercode {
+        width: 84px;
+    }
+    .m-regform-land input[type='submit'] {
+        width: 360px;
+        margin: 10px 0 0;
+    }
+    .u-ipt-blank {
+        display: inline-block;
+        height: 30px;
+        line-height: 30px;
+        color: #656565;
+        vertical-align: middle;
+    }
+    .m-regform-land .m-val-tips i {
+        margin-left: 0;
+    }
+    .m-regform-land .Validform_checktip {
+        margin: 0;
+    }
+    .m-input-vercode {
+        min-height: 69px;
+    }
+    .m-regform-land .u-icon-success {
+        display: none;
+    }
+    .u-hotline-tips {
+        width: auto;
+        padding: 0;
+        line-height: 30px;
+    }
+    .u-pl-photo s {
+        display: block;
+        height: 3px;
+        background: url($root_url/static/img/common/sprites.png) repeat-x -213px -166px;
+        overflow: hidden;
+    }
+    .u-pl-wrap i {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: url($root_url/static/img/common/sprites.png) repeat-x -73px -190px;
+    }
+    .u-pl-wrap {
+        margin: 30px auto 5px;
+        position: relative;
+        display: block;
+        outline: none;
+    }
+    .u-pl-wrap,
+    .u-pl-wrap i {
+        display: block;
+        height: 120px;
+        width: 120px;
+    }
+    .u-pl-wrap .u-pl-stat {
+        position: absolute;
+        top: -20px;
+        left: -20px;
+    }
+    .u-pl-amount {
+display: none;
+}
+    .u-earnings-box04 li:hover .u-pl-amount {
+display: block;
+}
+    .u-earnings-box04 li:hover .u-pl-process{
+        display: none;
+    }
+    .u-pl-process, .u-pl-amount, .u-pl-process2 {
+color: #999;
+height: 40px;
+line-height: 40px;
+}
+
+.u-pl-btn {
+	display: inline-block;
+	width: 138px;
+	height: 28px;
+	line-height: 28px;
+	border-color: #999;
+	text-align: center;
+	color: #999;
+	margin: 0 0 0 76px;
+}
+.u-pl-btn.z-closed {
+	color: #fff;
+	background-color: #f8ada8;
+	border-color: #f8ada8;
+}
+
+.u-pl-btn:link {
+	color: #fff;
+}
+
+.u-pl-btn.z-disabled {
+	color: #999;
+}
+
+.u-pl-btn:hover {
+	color: #fff;
+	text-decoration: none;
+}
+
+.u-pl-btn.z-disabled:hover {
+	color: #999;
+}
+.u-pl-btn.z-actived {
+	color: #fff;
+	background-color: #e33f4a;
+	border-color: #e33f4a;
+}
+.u-earnings-cfont{
+	color:#fff;
+}
+.u-earnings-ptop30{
+	padding:36px 0 0 0;
+}
+.u-earnings-ptop26{
+	padding:27px 0 0 0;
+}
+.u-earnings-up{
+	position: absolute;
+	top:10px;
+	*top:14px;
+	top:14px\0;
+	left:0;	
+	font-size:18px;
+}
+.u-earnings-mmoney{
+	position: relative;
+	margin-bottom: 30px;
+	height: 40px;
+	text-align: left;
+}
+.u-earnings-mmoney.z-last{
+	margin-left: 20px;
+}
+    /*更改着陆页注册提示的问题*/
+    .m-regform-land .u-hotline-tips{
+        margin:0;
+        color:#fff;
+        line-height:20px;
+    }
+    .m-regform-land  .u-tips-waring{
+        width:360px;
+    }
+</style>
+
+
+<!--[if (gte IE 7)&(lte IE 9)]>
+<style>
+/*首页项目进度环*/
+.u-ring-bg{ 
+	position: absolute;
+	top: -20px;
+	left: -20px;
+	z-index: 1;
+	background: url(/static/img/homepage/round/round0.png) no-repeat center;
+	height: 160px; 
+	width: 160px;
+	}
+</style>
+<![endif]-->
+#if($currentUser)	
+<script type="text/javascript">
+	var login_url = '$root_url' +"/member/home"
+	window.location.href = login_url;
+		
+</script>
+#else
+<div class="u-earnings-hd">
+    <div class="g-wrap">
+        <form data-action="$root_url/security/register/saveMember" method="POST" class="f-pos-r j-form-xpost j-validform m-regform-land f-fr" data-page="register" id="j-reg-form">
+            #CSRFToken()
+            #onceToken()
+            <input type="hidden" id="j-reg-mobile" />
+            <div class="u-ipt-group f-pos-r">
+                <input type="text" name="mobile" oncopy="return false;" onpaste="return false;" id="j-cpn" autocomplete="off" nullmsg="手机号码不能为空" errormsg="请输入正确的手机号码" class="f-round f-ipt-w430 u-ipt-text u-ipt-str" placeholder="请输入手机号码" />
+                <span class='m-val-tips'></span>
+                <div class="f-mob-sha f-dn" id="j-mobile"></div>
+            </div>
+            <div class="m-input-vercode f-cf">
+                <span class="u-xtips-wrap">
+				<!--[if (gte IE 7)&(lte IE 9)]>
+				<em>输入图形码</em>
+				<![endif]-->
+				<input type="text" id="j-vercode" autocomplete="off" nullmsg="请输入图形验证码" class="f-round u-ipt-text f-ipt-w260 j-vercode u-ipt-vercode" placeholder="输入图形码" />
+			</span>
+                <img src="$root_url/security/validateCode" alt="验证码" title="点击重新获取验证码" id="j-img-vercode" class="u-img-vercode" />
+                <span id="j-phonecode-wrap" class="u-xtips-wrap u-phonecode-wrap z-hide">
+				<!--[if (gte IE 7)&(lte IE 9)]>
+				<em>输入手机验证码</em>
+				<![endif]-->
+				<input type="text" name="phonecode" autocomplete="off" id="j-phonecode" placeholder="输入手机验证码" class="f-clear f-round u-ipt-text f-ipt-w260 u-ipt-phonecode" />
+			</span>
+                <span class="f-round u-tips-vercode f-tips-gray">
+			获得手机验证码
+			</span>
+                <span class="m-val-tips"> &nbsp; </span>
+                <span class="u-ipt-blank"> &nbsp; </span>
+            </div>
+            <div class="u-ipt-group">
+                <input type="password" name="password" oncopy="return false;" onpaste="return false;" class="f-round u-ipt-text f-ipt-w430 v-pwd" placeholder="输入密码，长度6-16位，至少包含数字和字母" />
+                <span class="u-ipt-blank"> &nbsp; </span>
+            </div>
+            <div class="u-ipt-group">
+                <input type="password" name="repassword" oncopy="return false;" onpaste="return false;" recheck="password" class="f-round f-ipt-w430 u-ipt-text v-pwd-reck" placeholder="再次输入密码" />
+                <span class="u-ipt-blank"> &nbsp; </span>
+            </div>
+
+            <input type="hidden" name="tid"   value="$!{request.getParameter('tid')}" />
+            <input type="hidden" name="registerTraceSource" value="$!{session.getAttribute(" register_TraceSource ")}"/>
+            <input type="hidden" name="registerTraceNo" value="$!{session.getAttribute(" register_TraceNo ")}"/>
+            <input type="hidden" name="checkType" id="j-checkType" value="1" />
+            <input type="hidden" name="pngCode" id="j-pngcode" />
+            <label class="f-clear f-mgl-8">
+                <input type="checkbox" checked="checked" name="agree" id="j-agree" />&nbsp;我已阅读并同意<a href="#" class="f-fc-red" id="j-register-argreement-link" data-target="j-register-argreement" data-url="$root_url/static/register-agreement.html">《有融网服务协议》</a>
+            </label>
+            <br />
+            <input type="submit" value="注册立送30元现金券" class="f-round f-fs18 f-btn-m u-btn u-btn-primary j-reg-btn" />
+        </form>
+    </div>
+
+</div>
+<div class="u-earnings-box01">
+    <ul class="g-wrap f-cf">
+        <li class="u-earnings-pro">
+            <i class="u-earnings-icon01"></i>
+            <strong class="f-fs16">全方位的资金保障</strong>
+            <p class="f-fs13">专业的第三方资金托管
+                <br/>四重资金保障机制
+                <br/>全方位风险管控体系</p>
+        </li>
+        <li class="u-earnings-income">
+            <i class="u-earnings-icon02"></i>
+            <strong class="f-fs16">高收益、稳回报</strong>
+            <p class="f-fs13">项目一一对应，均真实安全有效
+                <br/>最高可达14.79%年化收益率
+                <br/>资金不站岗，可用余额有收益</p>
+        </li>
+        <li class="u-earnings-diver">
+            <i class="u-earnings-icon03"></i>
+            <strong class="f-fs16">低门槛、多样化、更灵活</strong>
+            <p class="f-fs13">
+                百元起投，门槛低
+                <br/>项目多样化，
+                <br/>多种项目可供选择
+            </p>
+        </li>
+        <li class="u-earnings-free">
+            <i class="u-earnings-icon04"></i>
+            <strong class="f-fs16">手续费全免政策</strong>
+            <p class="f-fs13">用户投资过程中所有充值 支付 提现的
+                <br/>手续费均由有融网承担</p>
+        </li>
+    </ul>
+</div>
+<div class="u-earnings-box02 f-fs14">
+    <div class="g-wrap u-circle-15">
+        <table>
+            <tr class="u-earnings-thead">
+                <td class="bordernone"></td>
+                <td class="bordernone">宝宝类</td>
+                <td class="bordernone">银行理财</td>
+                <td class="bordernone u-earnings-cfont">有融网</td>
+                <td class="bordernone">国资系银行系P2P</td>
+            </tr>
+            <tr class="u-earnings-nfont">
+                <td class="u-earnings-ptop30">年收益率</td>
+                <td class="f-ff-din f-fs30 u-earnings-ptop30">4%—4.5%</td>
+                <td class="f-ff-din f-fs40 u-earnings-ptop30">5%—7%</td>
+                <td class="f-ff-din f-fs42 u-earnings-cfont u-earnings-ptop26">9.58%—14.79%</td>
+                <td class="f-ff-din f-fs30 u-earnings-ptop30">8%—12%</td>
+            </tr>
+            <tr>
+                <td>银行活期的</td>
+                <td>12倍</td>
+                <td>17倍</td>
+                <td class="u-earnings-cfont">40倍</td>
+                <td>34倍</td>
+            </tr>
+            <tr>
+                <td>投资门槛</td>
+                <td>无</td>
+                <td>5万起投</td>
+                <td class="u-earnings-cfont">1千起投</td>
+                <td>千元起投是主流，<br>具体不同项目起投金额不一</td>
+            </tr>
+            <tr>
+                <td>资金期限</td>
+                <td>无限制</td>
+                <td>依产品而定</td>
+                <td class="u-earnings-cfont">周期灵活 </td>
+                <td>3-12个月不等</td>
+            </tr>
+            <tr>
+                <td>安全性</td>
+                <td>无担保公司，亏损性小</td>
+                <td>亏损性小</td>
+                <td class="u-earnings-cfont">新浪支付合作，安全有保障</td>
+                <td>第三方担保机构+<br>融资性机构担保</td>
+            </tr>
+            <tr class="f-fs14 z-last">
+                <td>推荐指数</td>
+                <td>★★★</td>
+                <td>★★★★</td>
+                <td class="u-earnings-cfont">★★★★★</td>
+                <td>★★★★</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="u-earnings-box03">
+    <div class="u-earnings-fonts">
+        <strong class="f-fs22">加入有融网1年</strong>
+        <p class="f-fs22">可以比小伙伴多获得什么？</p>
+    </div>
+    <div class="u-earnings-year f-cf">
+        <ol>
+            <li>
+                <i class="u-eaarnings-imeat"></i>
+                <p class="f-fs18">投<i class="f-fs30 f-ff-din">1</i>万</p>
+                <p class="u-earnings-mmoney"><span class="u-earnings-up">赚</span><i class="u-earnings-f48 f-ff-din">1,200</i>
+                </p>
+                <span class="u-circle-12 f-fs14 u-earnings-fbox01">烤肉自助吃起来</span>
+            </li>
+            <li>
+                <i class="u-eaarnings-iparis"></i>
+                <p class="f-fs18">投<i class="f-fs30 f-ff-din">5</i>万</p>
+                <p class="u-earnings-mmoney"><span class="u-earnings-up">赚</span><i class="u-earnings-f48 f-ff-din">6,000</i>
+                </p>
+                <span class="u-circle-12 f-fs14 u-earnings-fbox02">巴黎时装周走起来</span>
+            </li>
+            <li>
+                <i class="u-eaarnings-icar"></i>
+                <p class="f-fs18">投<i class="f-fs30 f-ff-din">100</i>万</p>
+                <p class="u-earnings-mmoney"><span class="u-earnings-up">赚</span><i class="u-earnings-f48 f-ff-din">120,000</i>
+                </p>
+                <span class="u-circle-12 f-fs14 u-earnings-fbox03">B级车开起来</span>
+            </li>
+            <li>
+                <i class="u-eaarnings-iapple"></i>
+                <p class="f-fs18">投<i class="f-fs30 f-ff-din">10</i>万</p>
+                <p class="u-earnings-mmoney"><span class="u-earnings-up">赚</span><i class="u-earnings-f48 f-ff-din">12,000</i>
+                </p>
+                <span class="u-circle-12 f-fs14 u-earnings-fbox04">肾6买起来</span>
+            </li>
+            <li>
+                <i class="u-eaarnings-imask"></i>
+                <p class="f-fs18">投<i class="f-fs30 f-ff-din">1</i>千</p>
+                <p class="u-earnings-mmoney z-last"><span class="u-earnings-up">赚</span><i class="u-earnings-f48 f-ff-din">120</i>
+                </p>
+                <span class="u-circle-12 f-fs14 u-earnings-fbox05">面膜贴起来</span>
+            </li>
+        </ol>
+    </div>
+</div>
+<div class="u-earnings-box04">
+    <h2 class="f-fs14">推荐理财项目</h2>
+    <ul>
+        #foreach($project in $!projectList )
+	    	#if($project.isNotice())
+	    		<li class="f-round">
+					<h4 class="f-fs14">
+						<a href="javascript:void(0)" class="j-index-notice">
+							$!{project.prefixProjectName}
+							<span class="f-fs12 f-text-overflow">$!{project.suffixProjectName}</span>
+						</a>
+					</h4>
+					<div class="u-pl-photo">
+						<s></s>
+						<a class="u-pl-wrap j-index-notice"  href="javascript:void(0)">
+							<img src="#getProjectThumbnail($!{project.thumbnail})" alt="$!{project.suffixProjectName}">
+							<span class="u-ring-bg"></span>
+							<i></i>
+							<span class="j-pl-stat u-pl-stat" data-dimension="160" data-fontsize="14" data-percent="0" data-fgcolor="#e33f4a" data-bordersize="5" data-bgcolor="#eee"></span>
+						</a>
+						<div class="u-pl-process f-tac f-fs12">上线时间 ${dateUtil.getLongStrFromDate($!project.onlineTime)}</div>
+						<div class="u-pl-amount f-tac f-fs12">上线时间  ${dateUtil.getLongStrFromDate($!project.onlineTime)}</div>
+						<s></s>
+					</div>
+					
+					<ul>
+						<li class="u-pl-total">项目总额&nbsp;
+						<span class="f-fs14 f-ff-ver">￥</span><span class="f-ff-din f-fs28">${formulaUtil.getIntegerDefaultZero($project.totalAmount)}</span><span class="f-ff-din f-fs24">${formulaUtil.getDecimalDefaultZero($project.totalAmount)}</span></li>
+						<li>年化收益&nbsp;
+							<span class="f-ff-din f-fs28">${formulaUtil.getIntegerDefaultZero($project.minAnnualizedRate)}</span><span class="f-ff-din f-fs24">${formulaUtil.getDecimalDefaultZero($project.minAnnualizedRate)}</span><span class="f-fs20 f-ff-ver">~</span><span class="f-ff-din f-fs28">${formulaUtil.getIntegerDefaultZero($project.maxAnnualizedRate)}</span><span class="f-ff-din f-fs24">${formulaUtil.getDecimalDefaultZero($project.maxAnnualizedRate)}%</span>
+						</li>
+						<li class="u-pl-date">收益天数&nbsp;
+							<span class="f-ff-din f-fs28">${project.getNoticeProjectEarningsTotalDays()}</span><span class="f-fs14">天</span>
+						</li>
+					</ul>
+					#if($project.noticeIsReady())
+						<a href="javascript:void(0)" class="u-pl-btn f-round z-disabled j-index-notice" id="j-project-notice" data="$root_url/products/detail-$!{project.id}.html">距上线&nbsp;&nbsp;<span id="j-project-notice-time" sencond="$!{project.getNoticeEndTime()}"></span></a>
+					#else
+						<a href="javascript:void(0)" class="u-earnings-btn f-round z-actived j-index-notice">敬请期待</a>
+					#end
+				</li>
+	    	#elseif($project.isActive())
+		        <li class="f-round">
+		            <h4 class="f-fs14">
+		              <a href="$root_url/products/detail-$!{project.id}.html">
+		              	$!{project.prefixProjectName}
+		              	<span class="f-fs12 f-text-overflow">$!{project.suffixProjectName}</span>
+		              </a>
+		          </h4>
+		            <div class="u-pl-photo">
+		                <s></s>
+		                #set($_process=${sysServiceUtil.getProjectNumberProgress($!project.totalAmount,$!project.id)})
+		                <a class="u-pl-wrap" href="$root_url/products/detail-$!{project.id}.html">
+		                    <img src="#getProjectThumbnail($!{project.thumbnail})" alt="$!{project.suffixProjectName}">
+		                    #set($round=$sysServiceUtil.getProgressCeil($project.totalAmount,$project.id))
+		                    <span class="u-ring-bg" style="background-image:url($root_url/static/img/homepage/round/round$!{round}.png)"></span>
+		                    <i></i>
+		                    <span class="j-pl-stat u-pl-stat circliful" data-dimension="160" data-fontsize="14" data-percent="$!{_process}" data-fgcolor="#e33f4a" data-bordersize="5" data-bgcolor="#ccc"></span>
+		                </a>
+		                #set($_process=${sysServiceUtil.getProjectProgress($!project.totalAmount,$!project.id)})
+		                #set($balance=${sysServiceUtil.getProjectBalance($project.id)})
+		                <div class="u-pl-process f-tac f-fs12">当前进度${_process}</div>
+		                <div class="u-pl-amount f-tac f-fs12">剩余可投金额$!{balance} 元</div>
+		                <s></s>
+		            </div>
+		            <ul>
+		                <li class="u-pl-total">项目总额&nbsp;
+		                    <span class="f-fs14 f-ff-ver">￥</span><span class="f-ff-din f-fs28">${formulaUtil.getIntegerDefaultZero($project.totalAmount)}</span><span class="f-ff-din f-fs24">${formulaUtil.getDecimalDefaultZero($project.totalAmount)}</span>
+		                </li>
+		                <li>年化收益&nbsp;
+		                    <span class="f-ff-din f-fs28 f-fc-red2">${formulaUtil.getIntegerDefaultZero($project.minAnnualizedRate)}</span>
+		                    <span class="f-ff-din f-fs24 f-fc-red2">${formulaUtil.getDecimalDefaultZero($project.minAnnualizedRate)}</span>
+		                    <span class="f-fs20 f-ff-ver f-fc-red2">~</span>
+		                    <span class="f-ff-din f-fs28 f-fc-red2">${formulaUtil.getIntegerDefaultZero($project.maxAnnualizedRate)}</span>
+		                    <span class="f-ff-din f-fs24 f-fc-red2">${formulaUtil.getDecimalDefaultZero($project.maxAnnualizedRate)}%</span>
+		                </li>
+		                <li class="u-pl-date">收益天数&nbsp;
+		                    <span class="f-ff-din f-fs28">${project.getEarningsDaysByStatus()}</span><span class="f-fs14">天</span>
+		                </li>
+		            </ul>
+		            #if($project.isStop())
+						<a href="$root_url/products/detail-$!{project.id}.html" class="u-pl-btn f-round z-closed">${project.getButtonText()}</a>
+					#else
+						<a href="$root_url/products/detail-$!{project.id}.html" class="u-earnings-btn f-round z-actived">${project.getButtonText()}</a>
+					#end
+		        </li>
+	        #else
+	        	<li class="f-round">
+		            <h4 class="f-fs14">
+		              <a href="$root_url/products/detail-$!{project.id}.html">
+		              	$!{project.prefixProjectName}
+		                <span class="f-fs12 f-text-overflow">$!{project.suffixProjectName}</span>
+		              </a>
+		          </h4>
+		            <div class="u-pl-photo">
+		                <s></s>
+		                <a class="u-pl-wrap" href="$root_url/products/detail-$!{project.id}.html">
+		                    <img src="#getProjectThumbnail($!{project.thumbnail})" alt="$!{project.suffixProjectName}">
+		                    <span class="u-ring-bg" style="background-image:url($root_url/static/img/homepage/round/round_finish.png)"></span>
+		                    <i></i>
+		                    <span class="j-pl-stat u-pl-stat" data-dimension="160" data-percent="100" data-fgcolor="#f8ada8" data-bordersize="5" data-bgcolor="#f8ada8"></span>
+		                </a>
+		                #set($_process=${sysServiceUtil.getProjectProgress($!project.totalAmount,$!project.id)})
+		                #set($balance=${sysServiceUtil.getProjectBalance($project.id)})
+		                <div class="u-pl-process2 f-tac f-fs12">当前进度${_process}</div>
+		                <s></s>
+		            </div>
+		            <ul>
+		                <li class="u-pl-total">项目总额&nbsp;
+		                    <span class="f-fs14 f-ff-ver">￥</span><span class="f-ff-din f-fs28">${formulaUtil.getIntegerDefaultZero($project.totalAmount)}</span><span class="f-ff-din f-fs24">${formulaUtil.getDecimalDefaultZero($project.totalAmount)}</span>
+		                </li>
+		                <li>年化收益&nbsp;
+		                    <span class="f-ff-din f-fs28 f-fc-red2">${formulaUtil.getIntegerDefaultZero($project.minAnnualizedRate)}</span>
+		                    <span class="f-ff-din f-fs24 f-fc-red2">${formulaUtil.getDecimalDefaultZero($project.minAnnualizedRate)}</span>
+		                    <span class="f-fs20 f-ff-ver f-fc-red2">~</span>
+		                    <span class="f-ff-din f-fs28 f-fc-red2">${formulaUtil.getIntegerDefaultZero($project.maxAnnualizedRate)}</span>
+		                    <span class="f-ff-din f-fs24 f-fc-red2">${formulaUtil.getDecimalDefaultZero($project.maxAnnualizedRate)}%</span>
+		                </li>
+		                <li class="u-pl-date">收益天数&nbsp;
+		                    <span class="f-ff-din f-fs28">${project.getEarningsDaysByStatus()}</span><span class="f-fs14">天</span>
+		                </li>
+		            </ul>
+		            <a href="$root_url/products/detail-$!{project.id}.html" class="u-pl-btn f-round z-closed">${project.getButtonText()}</a>
+		        </li>
+	        #end
+        #end
+    </ul>
+</div>
+<div class="u-agreement-box f-dn" id="j-register-argreement">
+    <h3 class="f-fs18">有融网服务协议<i></i></h3>
+    <div>
+        <iframe src="" frameborder="0"></iframe>
+    </div>
+</div>
+###if($stringUtil.equalsIgnoreCases($!{currentUser.registerTraceSource},'JX',true))
+####mediav
+##<script type="text/javascript">
+##window.onload=function(){
+##	var _mvq = window._mvq || [];
+##	window._mvq = _mvq;
+##	_mvq.push(['$setAccount', 'm-135590-0']);
+##	_mvq.push(['$setGeneral', 'register', '', '', '']);
+##	_mvq.push(['$logConversion']);
+##}
+##</script>
+###end
+#end

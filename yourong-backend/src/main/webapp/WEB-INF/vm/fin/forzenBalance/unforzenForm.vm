@@ -1,0 +1,72 @@
+#set($layout = "/layout/iframe.vm")
+<div tabindex="-1" class="modal fade" id="modal-unforzen-table" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header no-padding">
+                <div class="table-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+                        <span class="white">×</span>
+                    </button>
+                    解冻操作
+                </div>
+            </div>
+            <div class="modal-body">
+                <form role="form" class="form-horizontal" id="unforzen_form" method="post">
+                   ## <input type="hidden" name="id" />
+					<input type="hidden" name="forzenNo" />
+					<input type="hidden" name="memberId" />
+                    <div class="form-group">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 姓名: </label>
+                        <div class="col-sm-9">
+                            <div class="clearfix">
+                                ##<input type="text" name="forzen_trueName" readonly class="col-xs-10 col-sm-5" placeholder="" id="forzen_trueName" >
+                                <span id="forzen_trueName"></span>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="form-group">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 手机号: </label>
+                        <div class="col-sm-9">
+                            <div class="clearfix">
+                                ##<input type="text" name="mobile" readonly class="col-xs-10 col-sm-5" placeholder="" id="form-field-mobile"  >
+                                <span id="forzen_mobile"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 剩余冻结余额: </label>
+                        <div class="col-sm-9">
+                            <div class="clearfix">
+                                <input type="hidden"  id="forzen_balance">
+                                <span id="forzen_balance_h"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 解冻金额: </label>
+                        <div class="col-sm-9">
+                            <div class="clearfix">
+                                <input type="text" name="amount"    datatype="/^[1-9]*[1-9][0-9]*(.[0-9]{1,2})?$|^(0.[0-9]{1,2})$/" errormsg= "金额不能小于0.01元" class="col-xs-10 col-sm-5" placeholder="" id="form-field-amount">
+                            </div>
+                        </div>
+                    </div>
+					
+                    <div class="form-group">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 解冻原因: </label>
+                        <div class="col-sm-9">
+                            <div class="clearfix">
+                            	 <textarea name="unforzenReason"  datatype="*" placeholder="" nullmsg= "请填写解冻原因" id="form-field-unforzenReason"></textarea>
+                            </div>
+                        </div>
+                   </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="btn_cancel">关闭</button>
+                <button type="button" id="btn_save_unforzen" class="btn btn-primary">保存</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>

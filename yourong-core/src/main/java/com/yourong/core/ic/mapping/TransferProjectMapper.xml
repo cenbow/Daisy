@@ -1,0 +1,701 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.ic.dao.TransferProjectMapper">
+	<resultMap id="BaseResultMap" type="TransferProject">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="project_id" property="projectId" jdbcType="BIGINT" />
+		<result column="member_id" property="memberId" jdbcType="BIGINT" />
+		<result column="transaction_id" property="transactionId" jdbcType="BIGINT" />
+		<result column="transfer_start_date" property="transferStartDate" jdbcType="TIMESTAMP" />
+		<result column="transfer_end_date" property="transferEndDate" jdbcType="TIMESTAMP" />
+		<result column="transfer_sale_complated_time" property="transferSaleComplatedTime" jdbcType="TIMESTAMP" />
+		<result column="transfer_name" property="transferName" jdbcType="VARCHAR" />
+		<result column="transfer_annualized_rate" property="transferAnnualizedRate" jdbcType="DECIMAL" />
+		
+		
+		
+		<result column="unit_transfer_amount" property="unitTransferAmount"	jdbcType="DECIMAL" />
+		<result column="unit_subscription_amount" property="unitSubscriptionAmount"	jdbcType="DECIMAL" />
+		
+		<result column="subscription_principal" property="subscriptionPrincipal"	jdbcType="DECIMAL" />
+		
+		
+		
+		
+		<result column="current_interest" property="currentInterest"	jdbcType="DECIMAL" />
+		<result column="residual_principal" property="residualPrincipal"	jdbcType="DECIMAL" />
+		<result column="residual_interest" property="residualInterest"	jdbcType="DECIMAL" />
+		
+		<!-- <result column="project_value" property="projectValue"	jdbcType="DECIMAL" /> -->
+		<!--<result column="unit_project_value" property="unitProjectValue"	jdbcType="DECIMAL" /> -->
+		<!-- <result column="days" property="days"	jdbcType="INTEGER" /> -->
+		<!-- <result column="unit_income" property="unitIncome"	jdbcType="DECIMAL" /> -->
+				
+		<result column="discount" property="discount"	jdbcType="DECIMAL" />
+		<result column="transfer_rate" property="transferRate"	jdbcType="DECIMAL" />
+		
+		
+		<result column="transferred_principal" property="transferredPrincipal"	jdbcType="DECIMAL" />
+		
+		<result column="transaction_amount" property="transactionAmount"	jdbcType="DECIMAL" />
+		<result column="transfer_amount" property="transferAmount"	jdbcType="DECIMAL" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="fail_flag" property="failFlag" jdbcType="INTEGER" />
+		<result column="profit_type" property="profitType" jdbcType="VARCHAR" />
+		<result column="interest_from" property="interestFrom"	jdbcType="INTEGER" />
+		<result column="thumbnail" property="thumbnail"		jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="fail_time" property="failTime" jdbcType="TIMESTAMP" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+		<result column="remarks" property="remarks" jdbcType="VARCHAR" />
+		<result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+			id, project_id, member_id, transaction_id, transfer_start_date, transfer_end_date,current_interest,residual_principal,residual_interest,transferred_principal,
+			subscription_principal,
+			transfer_sale_complated_time, transfer_name, transfer_annualized_rate, unit_transfer_amount,unit_subscription_amount,discount,transfer_rate,
+			transaction_amount ,transfer_amount, status, fail_flag, profit_type, interest_from, thumbnail,create_time,fail_time,update_time,remarks,del_flag
+		</sql>
+		
+		<sql id="Fornt_Base_Column_List">
+			itp.id, itp.project_id, itp.member_id, itp.transaction_id, 
+			itp.transfer_start_date, itp.transfer_end_date,itp.current_interest,itp.residual_principal,itp.residual_interest,itp.subscription_principal,
+			itp.transfer_sale_complated_time, itp.transfer_name, itp.transfer_annualized_rate, itp.unit_transfer_amount,
+			itp.unit_subscription_amount,itp.discount, 
+			itp.transaction_amount ,itp.transfer_amount, itp.status, itp.fail_flag, itp.profit_type, itp.interest_from, itp.thumbnail,itp.create_time,
+			itp.fail_time,itp.update_time,itp.remarks,itp.del_flag
+		</sql>
+
+	  <!-- 通过id查询转让项目 -->
+  	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+	    SELECT 
+	    <include refid="Base_Column_List" />
+	    FROM ic_transfer_project
+	    WHERE id = #{id,jdbcType=BIGINT}
+  	</select>
+  	
+  	  <!-- 通过id查询转让项目  锁行-->
+  	<select id="selectByPrimaryKeyForLock" resultMap="BaseResultMap" parameterType="java.lang.Long">
+	    SELECT 
+	    <include refid="Base_Column_List" />
+	    FROM ic_transfer_project
+	    WHERE id = #{id,jdbcType=BIGINT} for update
+  	</select>
+  	
+	  <!-- 通过交易id查询转让项目 -->
+  	<select id="selectByTransactionId" resultMap="BaseResultMap" parameterType="java.lang.Long">
+	    SELECT 
+	    <include refid="Base_Column_List" />
+	    FROM ic_transfer_project
+	    WHERE transaction_id = #{transactionId,jdbcType=BIGINT} and del_flag =1 
+	    order by id desc limit 1
+  	</select>
+  	
+  	  <!-- 通过交易id查询转让项目 -->
+  	<select id="selectByTransactionIdForLock" resultMap="BaseResultMap" parameterType="java.lang.Long">
+	    SELECT 
+	    <include refid="Base_Column_List" />
+	    FROM ic_transfer_project
+	    WHERE transaction_id = #{transactionId,jdbcType=BIGINT} 
+	    and status = 30
+	    and del_flag =1  for update
+  	</select>
+  	
+  	
+    <!-- 通过交易ID查询转让项目 -->
+  	<select id="selectByTransactionIdToday" resultMap="BaseResultMap" parameterType="java.lang.Long">
+	    SELECT 
+	    <include refid="Base_Column_List" />
+	    FROM ic_transfer_project
+	    WHERE transaction_id = #{transactionId,jdbcType=BIGINT}
+	    and to_days(create_time)=to_days(now())  
+	    and del_flag =1 
+  	</select>
+  	
+  	  <!-- 通过交易ID查询转让项目 -->
+  	<select id="selectByTransactionIdStatus" resultMap="BaseResultMap" parameterType="java.lang.Long">
+	    SELECT 
+	    <include refid="Base_Column_List" />
+	    FROM ic_transfer_project
+	    WHERE transaction_id = #{transactionId,jdbcType=BIGINT}
+	    and status = 30
+	    and del_flag =1 
+  	</select>
+  	
+  	
+  	
+  	<insert id="insert" parameterType="com.yourong.core.ic.model.TransferProject" flushCache="true" useGeneratedKeys="true" keyProperty="id">
+    insert into ic_transfer_project
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      
+      <if test="projectId != null" >
+        project_id,
+      </if>
+      <if test="memberId != null" >
+        member_id,
+      </if>
+      <if test="transactionId != null" >
+        transaction_id,
+      </if>
+      <if test="transferStartDate != null" >
+        transfer_start_date,
+      </if>
+      <if test="transferEndDate != null" >
+        transfer_end_date,
+      </if>
+      <if test="transferSaleComplatedTime != null" >
+        transfer_sale_complated_time,
+      </if>
+      <if test="transferName != null" >
+        transfer_name,
+      </if>
+      <if test="transferAnnualizedRate != null" >
+        transfer_annualized_rate,
+      </if>
+      <if test="unitTransferAmount != null" >
+        unit_transfer_amount,
+      </if>
+      <if test="unitSubscriptionAmount != null" >
+        unit_subscription_amount,
+      </if>
+      <if test="discount != null" >
+        discount,
+      </if>
+        <if test="transactionAmount != null" >
+        transaction_amount,
+      </if>
+       <if test="transferRate != null" >
+        transfer_rate,
+      </if>
+      <if test="residualPrincipal != null" >
+        residual_principal,
+      </if>
+       <if test="residualInterest != null" >
+        residual_interest,
+      </if>
+      <if test="currentInterest != null" >
+        current_interest,
+      </if>
+      
+      <if test="transferAmount != null" >
+        transfer_amount,
+      </if>
+      <if test="transferredPrincipal != null" >
+        transferred_principal,
+      </if>
+      <if test="subscriptionPrincipal != null" >
+        subscription_principal,
+      </if>
+      
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="failFlag != null" >
+        fail_flag,
+      </if>
+      <if test="profitType != null" >
+        profit_type,
+      </if>
+      <if test="interestFrom != null" >
+        interest_from,
+      </if>
+      <if test="thumbnail != null" >
+        thumbnail,
+      </if>
+        create_time,
+        update_time,
+       <if test="remarks != null" >
+        remarks,
+      </if>
+        del_flag,
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+     
+      <if test="projectId != null" >
+        #{projectId,jdbcType=BIGINT},
+      </if>
+      <if test="memberId != null" >
+        #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="transactionId != null" >
+         #{transactionId,jdbcType=BIGINT},
+      </if>
+      <if test="transferStartDate != null" >
+        #{transferStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="transferEndDate != null" >
+         #{transferEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="transferSaleComplatedTime != null" >
+          #{transferSaleComplatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="transferName != null" >
+        #{transferName,jdbcType=VARCHAR},
+      </if>
+      <if test="transferAnnualizedRate != null" >
+       #{transferAnnualizedRate,jdbcType=DECIMAL},
+      </if>
+      <if test="unitTransferAmount != null" >
+       #{unitTransferAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="unitSubscriptionAmount != null" >
+        #{unitSubscriptionAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="discount != null" >
+        #{discount,jdbcType=DECIMAL},
+      </if>
+      <if test="transactionAmount != null" >
+        #{transactionAmount,jdbcType=DECIMAL},
+      </if>
+        <if test="transferRate != null" >
+         #{transferRate,jdbcType=DECIMAL},
+      </if>
+      <if test="residualPrincipal != null" >
+         #{residualPrincipal,jdbcType=DECIMAL},
+      </if>
+       <if test="residualInterest != null" >
+        #{residualInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="currentInterest != null" >
+        #{currentInterest,jdbcType=DECIMAL},
+      </if>
+        <if test="transferAmount != null" >
+       #{transferAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="transferredPrincipal != null" >
+        #{transferredPrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="subscriptionPrincipal != null" >
+          #{subscriptionPrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+       #{status,jdbcType=INTEGER},
+      </if>
+      <if test="failFlag != null" >
+        #{failFlag,jdbcType=INTEGER},
+      </if>
+      <if test="profitType != null" >
+         #{profitType,jdbcType=VARCHAR},
+      </if>
+      <if test="interestFrom != null" >
+         #{interestFrom,jdbcType=INTEGER},
+      </if>
+      <if test="thumbnail != null" >
+        #{thumbnail,jdbcType=VARCHAR},
+      </if>
+        now(),
+        now(),
+       <if test="remarks != null" >
+         #{remarks,jdbcType=VARCHAR},
+      </if>
+        1,
+    </trim>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.yourong.core.ic.model.TransferProject">
+		update ic_transfer_project
+		<set>
+		  <if test="projectId != null" >
+	       project_id = #{projectId,jdbcType=BIGINT},
+	      </if>
+	      <if test="memberId != null" >
+	       member_id =  #{memberId,jdbcType=BIGINT},
+	      </if>
+	      <if test="transactionId != null" >
+	        transaction_id =  #{transactionId,jdbcType=BIGINT},
+	      </if>
+	      <if test="transferStartDate != null" >
+	        transfer_start_date  =   #{transferStartDate,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="transferEndDate != null" >
+	        transfer_end_date =  #{transferEndDate,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="transferSaleComplatedTime != null" >
+	         transfer_sale_complated_time =  #{transferSaleComplatedTime,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="transferName != null" >
+	       transfer_name =  #{transferName,jdbcType=VARCHAR},
+	      </if>
+	      <if test="transferAnnualizedRate != null" >
+	       transfer_annualized_rate = #{transferAnnualizedRate,jdbcType=DECIMAL},
+	      </if>
+	      <if test="unitTransferAmount != null" >
+	       unit_transfer_amount =  #{unitTransferAmount,jdbcType=DECIMAL},
+	      </if>
+	      <if test="unitSubscriptionAmount != null" >
+	      unit_subscription_amount =  #{unitSubscriptionAmount,jdbcType=DECIMAL},
+	      </if>
+	      <if test="discount != null" >
+	       discount =  #{discount,jdbcType=DECIMAL},
+	      </if>
+	      <if test="transferAmount != null" >
+	       transfer_amount = #{transferAmount,jdbcType=DECIMAL},
+	      </if>
+	      <if test="transactionAmount != null" >
+	       transaction_amount = #{transactionAmount,jdbcType=DECIMAL},
+	      </if>
+	      <if test="status != null" >
+	       status =  #{status,jdbcType=INTEGER},
+	      </if>
+	      <if test="failFlag != null" >
+	       fail_flag = #{failFlag,jdbcType=INTEGER},
+	      </if>
+	      <if test="profitType != null" >
+	        profit_type =  #{profitType,jdbcType=VARCHAR},
+	      </if>
+	      <if test="interestFrom != null" >
+	        interest_from =  #{interestFrom,jdbcType=INTEGER},
+	      </if>
+	      <if test="thumbnail != null" >
+	        thumbnail = #{thumbnail,jdbcType=VARCHAR},
+	      </if>
+	      <if test="remarks != null" >
+	        remarks =   #{remarks,jdbcType=VARCHAR},
+	      </if>
+	      <if test="failTime != null" >
+	        fail_time =   #{failTime,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="transferredPrincipal">
+	      	transferred_principal = #{transferredPrincipal,jdbcType=DECIMAL},
+	      </if>
+	       update_time =  now()
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+  	
+  	
+  	  <!-- 查询转让项目列表    只显示30：投资中-->
+  	<select id="selectTransferList" resultMap="BaseResultMap" parameterType="TransferProjectQuery">
+	    SELECT 
+	    <include refid="Base_Column_List" />
+	    FROM ic_transfer_project
+	    where del_flag =1 and status =30
+	    
+	      order by field(status,30),
+	    <if test="transferProjectQuery.orderSource !=null">
+		
+			<if test="transferProjectQuery.orderSource == 'createTimeAsc'">
+				create_time asc 
+			</if>
+			<if test="transferProjectQuery.orderSource == 'createTimeDesc'">
+				create_time desc 
+			</if>
+			<if test="transferProjectQuery.orderSource == 'daysAsc'">
+				days asc
+			</if>
+		    <if test="transferProjectQuery.orderSource == 'daysDesc'">
+				days desc 
+			</if>
+		    <if test="transferProjectQuery.orderSource == 'rateAsc'">
+				transfer_annualized_rate asc
+			</if>
+			<if test="transferProjectQuery.orderSource == 'rateDesc'">
+				transfer_annualized_rate desc
+			</if>
+		</if>
+	    
+	    LIMIT #{transferProjectQuery.startRow,jdbcType=INTEGER},#{transferProjectQuery.pageSize,jdbcType=INTEGER}
+  	</select>
+  	
+  	<!-- 转让项目列表 -->
+	<select id="selectCountTransferList" resultType="java.lang.Integer">
+		select count(1) 
+		FROM ic_transfer_project
+	    where del_flag =1  and status =30
+	</select>
+  	
+  	<!-- 通过用户ID查询转让项目 -->
+  	<select id="selectTransferInfoByMemberId" resultMap="BaseResultMap" parameterType="TransferRecordQuery">
+	    SELECT 
+	    <include refid="Base_Column_List" />
+	    FROM ic_transfer_project
+	    WHERE member_id = #{query.memberId,jdbcType=BIGINT}
+	    and del_flag =1 
+	    order by create_time desc
+	     LIMIT #{query.startRow,jdbcType=INTEGER},#{query.pageSize,jdbcType=INTEGER}
+  	</select>
+  	
+  	<select id="selectCountTransferInfoByMemberId" resultType="java.lang.Integer">
+		select count(1) 
+		FROM ic_transfer_project
+	    WHERE member_id = #{query.memberId,jdbcType=BIGINT}
+	    and del_flag =1 
+	</select>
+  	
+  	<!-- 更新项目状态 -->
+  	<update id="updateProjectStatus" >
+  		update ic_transfer_project set status = #{status,jdbcType=INTEGER}, update_time=now()  where id = #{id,jdbcType=BIGINT} and status = #{currentStatus,jdbcType=INTEGER}
+  	</update>
+  	
+  	
+  	<!-- 查询首页投资中的项目列表 -->
+	<select id="findIndexInvestingProjectList" resultMap="BaseResultMap">
+		SELECT
+		  <include refid="Fornt_Base_Column_List" />
+		  ,fin.available_balance/itp.transaction_amount as progress
+	    FROM ic_transfer_project as itp
+	    left join fin_balance as fin  on fin.source_id=itp.id
+		Where status = 30  and del_flag=1 
+		ORDER BY  progress asc,
+			transfer_start_date desc
+		LIMIT 0, 
+		<choose>
+			<when test="map!=null and map.num != null">
+				#{map.num,jdbcType=INTEGER}
+			</when>
+			<otherwise>
+				8
+			</otherwise>
+		</choose>
+	</select>
+	
+	
+		<!-- 查询首页投资中的项目列表 -->
+	<select id="findIndexNotInvestingProjectList" resultMap="BaseResultMap">
+		SELECT
+		  <include refid="Base_Column_List" />
+	    FROM ic_transfer_project
+		Where status in ('50','51','52','70') and del_flag=1  
+		
+		ORDER BY 
+			transfer_start_date desc
+		LIMIT 0, 
+		<choose>
+			<when test="map!=null and map.num != null">
+				#{map.num,jdbcType=INTEGER}
+			</when>
+			<otherwise>
+				8
+			</otherwise>
+		</choose>
+	</select>
+	
+	
+	<!-- 查询项目列表 -->
+	<select id="queryTransferProjectListByMap" resultMap="BaseResultMap">
+		SELECT
+		  <include refid="Base_Column_List" />
+	    FROM ic_transfer_project
+			<if test=" map != null">
+				<where>
+					<if test=" map.id != null">
+						and id  = #{map.id}
+					</if>
+					<if test=" map.status != null">
+						and status = #{map.status}
+					</if>
+					<if test=" map.fail != null">
+						and transfer_end_date <![CDATA[<=]]> now()
+					</if>
+					<if test=" map.projectId != null">
+						and project_id =  #{map.projectId}
+					</if>
+					<if test=" map.failFlag != null">
+						and fail_flag =  #{map.failFlag}
+					</if>
+					<if test=" map.transactionId != null">
+						and transaction_id =  #{map.transactionId}
+					</if>
+				</where>
+			</if>
+			
+		order by transfer_start_date desc
+	</select>
+	
+	
+	<!-- 查询转让项目列表 用户中心--> 
+  	<select id="selectTransferListForMember" resultMap="BaseResultMap" parameterType="TransferProjectQuery">
+	    SELECT 
+	    <include refid="Base_Column_List" />
+	    FROM ic_transfer_project
+	    where del_flag =1 and member_id = #{transferProjectQuery.memberId,jdbcType=BIGINT}
+	      order by create_time desc
+	    LIMIT #{transferProjectQuery.startRow,jdbcType=INTEGER},#{transferProjectQuery.pageSize,jdbcType=INTEGER}
+  	</select>
+  	
+  	<!-- 转让项目列表 -->
+	<select id="selectCountTransferListForMember" resultType="java.lang.Integer">
+		select count(1) 
+		FROM ic_transfer_project
+	    where del_flag =1 and member_id = #{transferProjectQuery.memberId,jdbcType=BIGINT}
+	</select>
+	
+	<select id="totalTransferProjectByMemberId" resultMap="BaseResultMap">
+  	SELECT
+		SUM(residual_principal) as project_value,
+		SUM(discount) as discount,
+		SUM(transfer_amount) as transfer_amount 
+	FROM
+		ic_transfer_project
+	where  
+	  member_id = #{memberId,jdbcType=BIGINT} and status=52  and del_flag =1  
+  </select>
+  
+  <select id="totalTransferProjectByMemberIdNum" resultMap="BaseResultMap">
+  	SELECT
+		<include refid="Base_Column_List" /> 
+	FROM
+		ic_transfer_project 
+	where  
+	  member_id = #{memberId,jdbcType=BIGINT} and status=52  and del_flag =1  
+  </select>
+  
+  	<update id="updateStatusByProjectId">
+  		update ic_transfer_project set status = #{newStatus,jdbcType=INTEGER}, update_time=now()  where project_id = #{projectId,jdbcType=BIGINT} and status = #{oldStatus,jdbcType=INTEGER} and del_flag = 1
+  	</update>
+  	
+  	
+  	
+  	<select id="getTransferDetailForMember" resultMap="BaseResultMap" parameterType="TransactionInterestQuery">
+  	select <include refid="Base_Column_List" /> 
+  	 from ic_transfer_project  where status=52  and del_flag =1   
+  	 <if test="query != null">
+  	 		<if test="query.memberId != null">
+  	 			and member_id = #{query.memberId}
+  	 		</if>
+  	 		<if test="query.status != null">
+				<if test="query.status   == 1">
+					 and discount > 0
+				</if>
+				<if test="query.status   == 2">
+					 and transfer_amount  > 0
+				</if>
+			 </if>
+  	 </if>
+  	<choose>
+		<otherwise>
+		</otherwise>  	 		    
+	 </choose>
+  	  LIMIT #{query.startRow,jdbcType=INTEGER}, #{query.pageSize,jdbcType=INTEGER}
+  </select> 
+  
+  
+  <select id="selectByTransactionIdAndMemberId" resultMap="BaseResultMap" parameterType="java.lang.Long">
+	    SELECT 
+	    <include refid="Base_Column_List" />
+	    FROM ic_transfer_project
+	    WHERE transaction_id = #{transactionId,jdbcType=BIGINT} and member_id = #{memberId,jdbcType=BIGINT} and status=52 and transfer_sale_complated_time is not null 
+	    order by id desc limit 1 
+  	</select>
+  	
+  	<select id="selectTransferByMemberId" resultMap="BaseResultMap" parameterType="java.lang.Long">
+	    SELECT 
+	    <include refid="Base_Column_List" />
+	    FROM ic_transfer_project
+	    WHERE  member_id = #{memberId,jdbcType=BIGINT} and status in  ( 52,70) 
+  	</select>
+
+	<select id="queryTransferProjectByPage" resultType="com.yourong.core.ic.model.biz.TransferProjectPageBiz">
+		SELECT * FROM(SELECT tp.id,tp.transfer_name transferName,m1.true_name transferMember,tp.transfer_amount transferAmount,tp.transfer_rate transferRate,tp.transfer_end_date transferEndDate,tp.status status,
+		p.name projectName,m2.true_name borrowName FROM ic_transfer_project tp LEFT JOIN uc_member m1 ON tp.member_id=m1.id LEFT JOIN ic_project p ON
+		tp.project_id=p.id LEFT JOIN uc_member m2 ON m2.id=p.borrower_id
+	    GROUP BY tp.id)L
+		<where>
+			<if test="query.id!=null">
+				AND L.id=#{query.id}
+			</if>
+			<if test="query.transferName!=null">
+				AND L.transferName like #{query.transferName}"%"
+			</if>
+			<if test="query.transferMember!=null">
+				AND L.transferMember=#{query.transferMember}
+			</if>
+			<if test="query.status!=null">
+				AND
+				<foreach collection="query.status" index="index" item="item" open="(" separator="OR" close=")">
+					L.`status`=#{item}
+				</foreach>
+			</if>
+			<if test="query.projectName!=null">
+				AND L.projectName=#{query.projectName}
+			</if>
+			<if test="query.borrowName!=null">
+				AND L.borrowName=#{query.borrowName}
+			</if>
+			<if test=" query.transferEndDateStart != null" >
+		 		<![CDATA[ AND date_format(L.transferEndDate,'%Y-%m-%d') >= date_format(#{query.transferEndDateStart,jdbcType=TIMESTAMP},'%Y-%m-%d') ]]>
+			</if>
+			<if test=" query.transferEndDateEnd != null" >
+		 		<![CDATA[ AND date_format(L.transferEndDate,'%Y-%m-%d') <= date_format( #{query.transferEndDateEnd,jdbcType=TIMESTAMP},'%Y-%m-%d') ]]>
+		 	</if>
+		</where>
+		order by L.id desc
+		LIMIT #{query.startRow,jdbcType=INTEGER}, #{query.pageSize,jdbcType=INTEGER}
+	</select>
+
+	<select id="queryTransferProjectCountByPage" resultType="java.lang.Integer">
+		SELECT COUNT(1) FROM(SELECT tp.id,tp.transfer_name transferName,m1.true_name transferMember,tp.transfer_rate transferRate,tp.transfer_end_date transferEndDate,tp.status,p.name projectName,
+		m2.true_name borrowName,SUM(h.amount) income,SUM(h2.amount) serviceFee FROM
+		ic_transfer_project tp LEFT JOIN uc_member m1 ON tp.member_id=m1.id LEFT JOIN ic_project p ON tp.project_id=p.id LEFT JOIN uc_member m2 ON m2.id=p.borrower_id LEFT JOIN tc_hosting_pay_trade h ON
+		tp.id=h.source_id AND h.type=12 LEFT JOIN tc_hosting_pay_trade h2 ON tp.id=h2.source_id AND h2.type=13 GROUP BY tp.id)L
+		<where>
+			<if test="query.id!=null">
+				AND L.id=#{query.id}
+			</if>
+			<if test="query.transferName!=null">
+				AND L.transferName like #{query.transferName}"%"
+			</if>
+			<if test="query.transferMember!=null">
+				AND L.transferMember=#{query.transferMember}
+			</if>
+			<if test="query.status!=null">
+				AND
+				<foreach collection="query.status" index="index" item="item" open="(" separator="OR" close=")">
+					L.`status`=#{item}
+				</foreach>
+			</if>
+			<if test="query.projectName!=null">
+				AND L.projectName=#{query.projectName}
+			</if>
+			<if test="query.borrowName!=null">
+				AND L.borrowName=#{query.borrowName}
+			</if>
+			<if test=" query.transferEndDateStart != null" >
+		 		<![CDATA[ AND date_format(L.transferEndDate,'%Y-%m-%d') >= date_format(#{query.transferEndDateStart,jdbcType=TIMESTAMP},'%Y-%m-%d') ]]>
+			</if>
+			<if test=" query.transferEndDateEnd != null" >
+		 		<![CDATA[ AND date_format(L.transferEndDate,'%Y-%m-%d') <= date_format(#{query.transferEndDateEnd,jdbcType=TIMESTAMP},'%Y-%m-%d') ]]>
+		 	</if>
+		</where>
+	</select>
+
+	<select id="queryPageTransactionProjectDetailBiz" resultType="com.yourong.core.ic.model.biz.TransactionProjectDetailBiz">
+		SELECT p.id id,p.transfer_name transferName,p.`status` status,p.discount discount,p.residual_principal residualPrincipal,
+		p.subscription_principal subscriptionPrincipal,p.transfer_start_date transferStartDate,p.transfer_end_date transferEndDate,p.transfer_rate transferRate,
+		p.fail_flag failFlag,p.fail_time failTime,t.transfer_principal transferedAmount,hp.amount totalIncome,hp2.amount transferFee,p.remarks remarks
+		FROM ic_transfer_project p LEFT JOIN
+		(SELECT SUM(amount) amount,source_id FROM tc_hosting_pay_trade WHERE type=12 GROUP BY source_id) hp
+		ON hp.source_id=p.id LEFT JOIN
+		(SELECT SUM(amount) amount,source_id FROM tc_hosting_pay_trade WHERE type=13 GROUP BY source_id) hp2 ON hp2.source_id=p.id LEFT JOIN
+		(SELECT SUM(transfer_principal) transfer_principal,transfer_id FROM tc_transaction WHERE project_category=2 GROUP BY transfer_id) t ON t.transfer_id=p.id
+	    WHERE p.transaction_id=#{query.transactionId} AND p.member_id=#{query.memberId} AND p.status <![CDATA[ <> ]]> 30 GROUP BY p.id ORDER BY p.id DESC
+		LIMIT #{query.startRow,jdbcType=INTEGER}, #{query.pageSize,jdbcType=INTEGER}
+	</select>
+
+	<select id="queryInvestmentedTransactionProjectDetailBiz" resultType="com.yourong.core.ic.model.biz.TransactionProjectDetailBiz">
+		SELECT p.id id,p.transfer_name transferName,p.`status` status,p.discount discount,p.residual_principal residualPrincipal,
+		p.subscription_principal subscriptionPrincipal,p.transfer_amount transferAmount,p.transfer_start_date transferStartDate,
+		p.transfer_end_date transferEndDate,p.transfer_rate transferRate,p.fail_flag failFlag,p.fail_time failTime,
+		t.transfer_principal transferedAmount,hp.amount totalIncome,hp2.amount transferFee,p.remarks remarks FROM ic_transfer_project p LEFT JOIN
+		(SELECT SUM(amount) amount,source_id FROM tc_hosting_pay_trade WHERE type=12 GROUP BY source_id) hp
+		ON hp.source_id=p.id LEFT JOIN
+		(SELECT SUM(amount) amount,source_id FROM tc_hosting_pay_trade WHERE type=13 GROUP BY source_id) hp2 ON hp2.source_id=p.id LEFT JOIN
+		(SELECT SUM(transfer_principal) transfer_principal,transfer_id FROM tc_transaction WHERE project_category=2 GROUP BY transfer_id) t ON t.transfer_id=p.id
+		 WHERE p.transaction_id=#{transactionId} AND p.member_id=#{memberId} AND p.status <![CDATA[ = ]]> 30
+	</select>
+
+	<select id="queryPageCountTransactionProjectDetailBiz" resultType="java.lang.Integer">
+		SELECT COUNT(1) FROM ic_transfer_project WHERE transaction_id=#{query.transactionId} AND member_id=#{query.memberId} AND status <![CDATA[ <> ]]> 30
+	</select>
+	
+	<!-- 查询会员总转让本金 -->
+	<select id="getTotalTransferPrincipal" resultType="java.math.BigDecimal">
+		SELECT
+			IFNULL(sum(transferred_principal),0) amount
+		FROM
+			ic_transfer_project
+		WHERE
+			member_id = #{memberId,jdbcType=BIGINT}
+	</select>
+</mapper>

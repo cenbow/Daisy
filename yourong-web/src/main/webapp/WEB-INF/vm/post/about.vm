@@ -1,0 +1,167 @@
+#set($title="关于有融-有融网-全透明的互联网理财优选平台")
+#set($keywords="关于有融,有融网")
+#set($description="有融网运用高效的运营管理体系和创新的互联网思维,搭建了一个安全透明的互联网理财服务平台.")
+
+
+#parse('/common/common.vm')
+#set($css_url=["$root_css_url/post/about.css"])
+#set($js_url=["/static/lib/js/vue/vue.js","$root_js_url/post/about.js"])
+#set($isAboutNavi="z-current")
+
+## video
+<div class="g-main" id="j-about" v-cloak>
+    <div class="g-wrap f-clear">
+        <div class="u-head-nav">
+            <a href="$root_url/about/index.html" class="z-selected">有融简介</a><a
+                href="$root_url/about/disclosure">信息披露</a><a
+                href="$root_url/about/honor">资质荣誉</a>
+            <a href="$root_url/about/cooperator">合作伙伴</a><a href="$root_url/article/news#notice">平台动态</a>
+            <a href="$root_url/about/join">加入有融</a>
+        </div>
+    </div>
+
+
+    <div class="u-hd" id="j-hd">
+    ##        <video autoplay="autoplay" loop="loop" muted="muted" class="u-video" id="j-video">
+    ##            <source src="https://yrstatic.oss-cn-hangzhou.aliyuncs.com/static/file/newAbout.webm" type="video/webm">
+    ##        </video>
+    ##    ##   图片替代视频
+        <div class="u-bg"></div>
+        <div class="m-hd-content">
+            <h1>理财，就享自在</h1>
+            <p>有融网，一家全透明的互联网理财优选平台，中国互联网金融协会首批会员单位。</p>
+            <p>平台由浙江小融网络科技股份有限公司研发运营，隶属杭州信有诚互联网金融服务有限公司（注册资金2亿2千万元整），
+                是杭州市西湖区政府重点支持的互联网金融企业。</p>
+        </div>
+    </div>
+
+## 为什么选择我们
+    <div class="u-select-us" id="j-why-us" :class="{'firstAnimation':addAnimation}">
+        <h3>为什么选择我们</h3>
+        <ul>
+            <li>
+              <div>
+                <img src="$root_url/static/img/post/newAbout/four.png">
+                <h5>4道风控关卡<br>甄选优质项目</h5>
+              </div>
+                <p>从甄选、复审、披露到贷后管理，多重风控关卡环环相扣，共同守护每个项目的诞生。</p>
+            </li>
+            <li>
+              <div>
+                <img src="$root_url/static/img/post/newAbout/zero.png">
+                <h5>项目公开透明<br>信息真实0隐藏</h5>
+              </div>
+                <p>每个理财项目背景信息公开、透明，证据资料详实、有效。</p>
+            </li>
+            <li>
+              <div>
+                <img src="$root_url/static/img/post/newAbout/three.png">
+                <h5>第3方资金托管<br>资金流向清晰可控</h5>
+              </div>
+                <p>与新浪支付存钱罐合作，专人专户、专款专用，余额享收益，资金有隔离。</p>
+            </li>
+            <li>
+              <div>
+                <img src="$root_url/static/img/post/newAbout/one.png">
+                <h5>1键式安心体验<br>轻松自在享收益</h5>
+              </div>
+                <p>专业客服5秒响应，人性化理财体验，一键查询资金明细，轻松自在享受收益。</p>
+            </li>
+        </ul>
+    </div>
+
+## 我们的成长
+    <div class="u-grow-up" id="j-grow-up">
+        <div class="g-about-wrap">
+            <h3>我们的成长</h3>
+            <ul class="u-time-line j-grow-up">
+                <li v-for="(index,item) in initData" :class="{'f-fireFox':isFirefox}">
+                    <div class="u-fixed-top" v-if="isFixed">
+                        <h2>{{item.eventYear}}</h2>
+                    </div>
+                    <i v-if="index!=0"></i>
+                    <h1 v-if="item.isFirst">{{item.eventYear}}</h1>
+                    <i></i>
+                    <div class="u-circle"></div>
+                    <a class="u-content" :href="item.link"><s></s>
+                        <table>
+                            <td>
+                            <strong>{{item.eventMonth}}月</strong>
+                                <em>{{item.eventDate}}日</em></td>
+                            <td>
+                                {{{item.eventContent}}}
+                            </td>
+                        </table>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+##高层人员
+    <div class="u-leaders">
+        <div class="g-about-wrap">
+            <ul>
+                <li v-for="(index,item) in leaderList" :class="{'f-dn':showNO!==(index+1)}">
+                    <img :src="'$aliyun_url/'+item.manageHref">
+                    <strong>{{item.manageName}}</strong>
+                    <em>{{item.manageJob}}</em>
+                    <div>{{{item.manageContent}}}</div>
+                </li>
+            </ul>
+            <div class="u-switch-over">
+                <s @click="pageOver(0)"></s>{{showNO}}/{{leaderListLen}}<s @click="pageOver(1)"></s>
+            </div>
+        </div>
+    </div>
+    <div class="u-about-us">
+
+        <img src="$root_url/static/img/post/newAbout/logo_red_big.png">
+
+        <div class="u-right-img"></div>
+
+        <div class="g-about-wrap">
+            <div class="u-left-content">
+                <h1>我们的故事</h1>
+                <p>有融网源自“有容乃大”之意，寓意有融网的发展如海一般宽广、有深度。</p>
+                <p>有融网Logo是笑脸与拥抱的结合。拥抱寓意着信任与透明，笑脸则代表着有融网的贴心服务，带给投资人自在安心的投资理财体验。</p>
+            </div>
+            <div class="u-right-content">
+                <h1>我们的品牌文化</h1>
+                <p> 品牌口号：理财，就享自在<br>
+                    品牌使命：让财富更自由<br>
+                    品牌主张：全流程真实透明，让理财更自在<br>
+                    品牌愿景：让用户享受自在理财，<br>
+                    <em>成为用户首选的互联网理财平台</em></p>
+            </div>
+        </div>
+    </div>
+    <div class="u-contact-us" id="contactUs">
+        <div class="u-position" :class="{'towardUp':addAnimation2,'f-top0':isIE}">
+            <h1>联系有融</h1>
+            <table>
+                <tbody>
+                <tr>
+                    <td width="90">公司总部:</td>
+                    <td>浙江省杭州市西湖区古墩路87号浙商财富中心3号楼12F</td>
+                </tr>
+                <tr>
+                    <td>业务合作:</td>
+                    <td>business@yrw.com</td>
+                </tr>
+                <tr>
+                    <td>媒体合作:</td>
+                    <td>media@yrw.com</td>
+                </tr>
+                <tr>
+                    <td>人力资源:</td>
+                    <td>hr@yrw.com</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+

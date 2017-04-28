@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.sh.dao.GoodsMapper" >
+    <resultMap id="BaseResultMap" type="com.yourong.core.sh.model.Goods" >
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
+        <result column="goods_des" property="goodsDes" jdbcType="VARCHAR" />
+        <result column="goods_type" property="goodsType" jdbcType="INTEGER" />
+        <result column="source_id" property="sourceId" jdbcType="BIGINT" />
+        <result column="recharge_amount" property="rechargeAmount" jdbcType="INTEGER"/>
+        <result column="tags" property="tags" jdbcType="INTEGER"/>
+        <result column="inventor" property="inventor" jdbcType="INTEGER" />
+        <result column="freeze_inventor" property="freezeInventor" jdbcType="INTEGER" />
+        <result column="auto_inventory" property="autoInventory" jdbcType="INTEGER" />
+        <result column="auto_inventory_count" property="autoInventoryCount" jdbcType="INTEGER" />
+        <result column="sort" property="sort" jdbcType="INTEGER" />
+        <result column="price" property="price" jdbcType="DECIMAL" />
+        <result column="discount" property="discount" jdbcType="FLOAT" />
+        <result column="level_need" property="levelNeed" jdbcType="INTEGER" />
+        <result column="recharge_type" property="rechargeType" jdbcType="INTEGER" />
+        <result column="status" property="status" jdbcType="INTEGER" />
+        <result column="status_time" property="statusTime" jdbcType="TIMESTAMP" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+        <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+        <result column="exchange" property="exchange" jdbcType="INTEGER" />
+        <result column="discount_info" property="discountInfo" jdbcType="VARCHAR" />
+        <result column="shelves_time" property="shelvesTime" jdbcType="TIMESTAMP" />
+        <result column="off_shelves_time" property="offShelvesTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <sql id="select_sql">
+        SELECT id,goods_name,goods_des,goods_type,source_id,recharge_amount,tags,inventor,freeze_inventor,auto_inventory,auto_inventory_count,sort,price,discount,level_need,recharge_type,status_time,status,
+        create_time,update_time,del_flag,discount_info,shelves_time,off_shelves_time
+    </sql>
+
+    <select id="queryGoodsById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <include refid="select_sql"/>
+        FROM sh_goods WHERE id=#{id}
+    </select>
+
+    <select id="queryPageGoods" resultMap="BaseResultMap">
+        <include refid="select_sql"/>,a.goods_count AS exchange
+        FROM sh_goods g LEFT JOIN (SELECT s.goods_id goods_id, SUM(s.goods_count) goods_count FROM sh_order_sub s LEFT JOIN sh_order_main m ON s.order_id=m.id WHERE m.status=2 GROUP BY s.goods_id)a ON g.id=a.goods_id
+        WHERE goods_type=#{query.goodsType,jdbcType=INTEGER} AND del_flag=1 ORDER BY sort DESC LIMIT #{query.startRow,jdbcType=INTEGER}, #{query.pageSize,jdbcType=INTEGER}
+    </select>
+    
+    <select id="queryGoodsList" resultMap="BaseResultMap">
+        <include refid="select_sql"/>,a.goods_count AS exchange
+        FROM sh_goods g LEFT JOIN (SELECT s.goods_id goods_id, SUM(s.goods_count) goods_count FROM sh_order_sub s LEFT JOIN sh_order_main m ON s.order_id=m.id WHERE m.status=2)a ON g.id=a.goods_id
+        WHERE goods_type=#{query.goodsType,jdbcType=INTEGER} and status=2
+        ORDER BY sort DESC
+        <if test="query != null">
+			<if test="query.limitSize != null">
+				limit #{query.limitSize,jdbcType=INTEGER}
+			</if>
+		</if>
+    </select>
+
+    <select id="queryCountPageGoods" resultType="java.lang.Integer">
+        SELECT COUNT(1) FROM sh_goods WHERE goods_type=#{query.goodsType,jdbcType=INTEGER}
+    </select>
+
+	<!-- 上架时设置定时上架时间为空，下架时设置定时下架时间为空 -->
+    <update id="updateStatusById">
+        UPDATE sh_goods SET status=#{status},status_time=#{date},update_time=#{date},
+        <if test="status != null and status=='1'.toString()">off_shelves_time= null </if> 
+        <if test="status != null and status=='2'.toString()">shelves_time = null </if>
+        WHERE id=#{id}
+    </update>
+
+    <update id="updateSortById">
+        UPDATE sh_goods SET sort=#{sort},update_time=#{date} WHERE id=#{id}
+    </update>
+
+    <update id="updateGoodsInfo" parameterType="com.yourong.core.sh.model.Goods">
+        UPDATE sh_goods SET goods_name=#{goodsName},goods_des=#{goodsDes},goods_type=#{goodsType},source_id=#{sourceId},recharge_amount=#{rechargeAmount},tags=#{tags},
+        inventor=#{inventor},auto_inventory=#{autoInventory},auto_inventory_count=#{autoInventoryCount},price=#{price},level_need=#{levelNeed},recharge_type=#{rechargeType},
+        discount=#{discount},update_time=#{updateTime},discount_info=#{discountInfo},shelves_time=#{shelvesTime},off_shelves_time=#{offShelvesTime} WHERE id=#{id}
+    </update>
+
+    <insert id="insertGoods" parameterType="com.yourong.core.sh.model.Goods" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO sh_goods (goods_name,goods_des,goods_type,source_id,recharge_amount,tags,inventor,freeze_inventor,auto_inventory,auto_inventory_count,sort,price,discount,level_need,
+        recharge_type,status,create_time,update_time,del_flag,discount_info,shelves_time,off_shelves_time)
+        VALUES (#{goodsName},#{goodsDes},#{goodsType},#{sourceId},#{rechargeAmount},#{tags},#{inventor},#{freezeInventor},#{autoInventory},#{autoInventoryCount},#{sort},#{price},#{discount},#{levelNeed},
+        #{rechargeType},#{status},#{createTime},#{updateTime},#{delFlag},#{discountInfo},#{shelvesTime},#{offShelvesTime})
+    </insert>
+     <update id="updateInventor" parameterType="com.yourong.core.sh.model.Goods">
+        UPDATE sh_goods SET inventor=#{inventor},freeze_inventor=#{freezeInventor},update_time=now()  WHERE id=#{id}
+    </update>
+    
+    <select id="selectByPrimaryKeyLock" resultMap="BaseResultMap">
+        <include refid="select_sql"/>
+        FROM sh_goods 
+        WHERE id = #{id,jdbcType=BIGINT} for update 
+    </select>
+
+    <select id="selectAutoInventory" resultMap="BaseResultMap">
+        <include refid="select_sql"/>
+        FROM sh_goods
+        WHERE auto_inventory=1
+    </select>
+    
+    <select id="queryShelvesGoods" resultMap="BaseResultMap">
+        SELECT id,status,shelves_time,off_shelves_time
+        FROM sh_goods
+        WHERE  now()> shelves_time or  now()> off_shelves_time
+    </select>
+
+    <update id="autoInventory">
+        UPDATE sh_goods SET inventor=inventor+#{inventory},update_time=#{updatetime} WHERE id=#{goodsId}
+    </update>
+    
+    <update id="deleteById">
+        UPDATE sh_goods SET del_flag=-1,update_time=now() WHERE id=#{id}
+    </update>
+</mapper>

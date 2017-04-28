@@ -1,0 +1,199 @@
+##用户中心－页面模板
+#parse("/common/common.vm")
+#set($title="我的存钱罐_$!{title_suffix}")
+#set($css_url=["$cssv2_url/member/member.css","$root_css_url/modules/delegatePay.css"])
+#set($js_url=["$root_js_url/modules/member.js","$root_url/static/lib/js/jq/jquery.pagination.js"])
+#set($hasSetPayPassword=${servletUtil.synPayPasswordFlag()})
+#set($hasGetRealnameAuth=${servletUtil.isVerifyTrueName()})
+#set($hasWithholdAuthority=${servletUtil.synWithholdAuthorityFlag()})
+#set($isSinaPayNavi="z-current")
+
+##页面入口标识
+#set($entry=["member","savingPot"])
+
+## 用户中心头部
+#parse("/member/head.vm")
+## 用户中心内容
+<div class="g-wrap">
+    <div class="m-nav-title">
+        <a class="z-current" href="/memberBalance/savingPot">
+            存钱罐概览
+        </a>
+        <a class="u-title-secondary u-tit-r #if($hasSetPayPassword==0)z-unSetPWD #end" href="/member/paymentPassword">
+            支付密码
+        </a>
+        <a class="u-title-secondary u-tit-r #if($hasWithholdAuthority!=1)z-unSet #end" href="/member/delegatePay">
+            委托支付
+        </a>
+    </div>
+	<div class="g-uc-bd f-round">
+
+		#set($savingPot=$!{result.result})
+		<div class="g-uc-wrap">
+			## 页面内容
+			<div class="u-savingpot-support">
+				<div class="f-round">
+					<img src="$root_url/static/img/v2/member/savingpot_sinapay.png" alt="新浪支付 资金托管解决方案">
+					<p>
+						有融网使用新浪支付的第三方资金托管，每位会员将拥有一个<br>
+						独立的新浪支付存钱罐账户用于有融网投资，保证资金安全。<a href="$root_url/post/topics/sinaSavingPot" target="_blank">了解更多</a>
+					</p>
+				</div>
+				<p class="f-round">
+                    姓名：$!{savingPot.truename}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;身份证号码：<strong>$!{savingPot.identityNumber}</strong>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;您的新浪支付存钱罐账号:&nbsp;&nbsp;<strong>$!{savingPot.sinaMemberId}</strong>
+                    <a  class="u-sinapay-verify u-circle-15" target="_blank" href="$root_url/member/auditMemberInfos" >前往新浪支付个人中心</a>
+				</p>
+			</div>
+			<div class="u-savingpot-data">
+				<em class="u-spot-d1">
+					<span class="f-fs18 f-ff-rmb">¥</span><span class="f-fs36 f-ff-amount f-lh-1em">${formulaUtil.getIntegerDefaultZero($!{savingPot.savingPotBalance})}</span><span class="f-fs24 f-ff-amount">${formulaUtil.getDecimalDefaultZero($!{savingPot.savingPotBalance})}</span>
+					<span class="f-db">存钱罐余额</span>
+				</em>
+				<em class="u-spot-d2">
+					<span class="f-fs18 f-ff-rmb">¥</span><span class="f-fs36 f-ff-amount f-lh-1em">${formulaUtil.getIntegerDefaultZero($!{savingPot.totalBonus})}</span><span class="f-fs24 f-ff-amount">${formulaUtil.getDecimalDefaultZero($!{savingPot.totalBonus})}</span>
+					<span class="f-db">累计收益</span>
+				</em>
+				<em class="u-spot-d3">
+					<span class="f-fs18 f-ff-rmb">¥</span><span class="f-fs36 f-ff-amount f-lh-1em">${formulaUtil.getIntegerDefaultZero($!{savingPot.yesterdayBonus})}</span><span class="f-fs24 f-ff-amount">${formulaUtil.getDecimalDefaultZero($!{savingPot.yesterdayBonus})}</span>
+					<span class="f-db">昨日收益</span>
+				</em>
+				<em class="u-spot-d3 f-pos-r">
+					<span class="f-fs18 f-ff-rmb">¥</span><span class="f-fs36 f-ff-amount f-lh-1em">${formulaUtil.getIntegerDefaultZero($!{savingPot.lastWeekBonus})}</span><span class="f-fs24 f-ff-amount">${formulaUtil.getDecimalDefaultZero($!{savingPot.lastWeekBonus})}</span>
+					<strong class="f-db" id="j-profit-weekly">近一周收益<i></i></strong>
+				</em>
+				<em class="u-spot-d3 f-pos-r">
+					<span class="f-fs18 f-ff-rmb">¥</span><span class="f-fs36 f-ff-amount f-lh-1em">${formulaUtil.getIntegerDefaultZero($!{savingPot.lastMonthBonus})}</span><span class="f-fs24 f-ff-amount">${formulaUtil.getDecimalDefaultZero($!{savingPot.lastMonthBonus})}</span>
+					<strong class="f-db" id="j-profit-monthly">近一月收益<i></i></strong>
+				</em>
+				#if($hasSetPayPassword!=1)
+                    <a class="u-savingpot-wbtn u-circle-15 j-toSetPassword" href="javascript:void(0)">充&nbsp;&nbsp;&nbsp;值</a>
+                    <a class="u-savingpot-rbtn u-circle-15 j-toSetPassword" href="javascript:void(0)">提&nbsp;&nbsp;&nbsp;现</a>
+				#else
+                    <a class="u-savingpot-wbtn u-circle-15" href="/memberBalance/rechargePage">充&nbsp;&nbsp;&nbsp;值</a>
+                    <a class="u-savingpot-rbtn u-circle-15" href="/memberBalance/withdrawPage">提&nbsp;&nbsp;&nbsp;现</a>
+				#end
+
+			</div>
+			<div class="m-column-chart j-column-chart">
+				<h3 class="f-fs14">七日年化收益率(%)</h3>
+				<table>
+					<thead></thead>
+					<tbody>
+						<tr>
+							<td>&nbsp;</td>
+						</tr>
+						<tr>
+							<td></td>
+						</tr>
+						<tr>
+							<td></td>
+						</tr>
+						<tr>
+							<td></td>
+						</tr>
+						<tr>
+							<td></td>
+						</tr>
+						<tr>
+							<td></td>
+						</tr>
+					</tbody>
+				</table>
+				<ul>
+					#if($!fin)
+						#foreach($earing in $fin)
+						<li>
+							<span class="u-col-bar u-circle-3" style="height:57%"><span class="u-col-data" data-rate="$!{earing.servenEaring}">$!{earing.servenEaring}</span></span>
+							<span class="u-col-title u-circle-7">$!{earing.formatDate}</span>
+						</li>
+						#end
+					#end
+				</ul>
+			</div>
+			<div class="u-earningsTime-list">
+				<h4>收益时间表</h4>
+				<table>
+					<thead>
+						<tr>
+							<th width="215">购买时间</th>
+                            <th width="236">开始计算收益时间</th>
+                            <th width="296">首次显示收益时间</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td width="215">周一15:00—周二15:00前</td>
+                            <td width="236">周三</td>
+                            <td width="296">周四</td>
+						</tr>
+                        <tr>
+                            <td>周二15:00—周三15:00前</td>
+                            <td>周四</td>
+                            <td>周五</td>
+                        </tr>
+                        <tr>
+                            <td>周三15:00—周四15:00前</td>
+                            <td>周五（可享受周六周日收益）</td>
+                            <td>下周一（显示周五周六周日三天收益）</td>
+                        </tr>
+                        <tr>
+                            <td>周四15:00—周五15:00前</td>
+                            <td>下周一（不享受周六周日收益）</td>
+                            <td>下周二</td>
+                        </tr>
+                        <tr>
+                            <td>周五15:00—下周一15:00前</td>
+                            <td>下周二</td>
+                            <td>下周三</td>
+                        </tr>
+					</tbody>
+				</table>
+			</div>
+			## /页面内容
+		</div>
+##	##        跳转到设置支付密码弹窗
+##        <div class="u-paymentCipherBlock f-dn" id="j-paymentCipherBlock">
+##            <div class="f-fs20 u-tipTitle">
+##                设置支付密码提示
+##            </div>
+##            <img class="j-closeBtn" src="../static/img/member/closeBtn.png" alt="关闭">
+##            <p class="f-fs20">
+##                新浪支付全新升级，设置支付密码后方可进行操作
+##            </p>
+##            <a href="/member/paymentPassword">
+##                <button class="f-fs14">
+##                    前往设置
+##                </button>
+##            </a>
+##        </div>
+
+	</div>
+	## /用户中心内容
+</div>
+<div class="u-cover f-dn j-cover"></div>
+#if($savingPot.lastWeekBonusLists)
+<div class="u-stat-more f-dn" id="j-show-weekly">
+    <ul class="f-ff-ver">
+    #foreach($bonusBiz in $savingPot.lastWeekBonusLists)
+        <li>
+            <span style="width:$!{formulaUtil.getFormartPercentage($!{bonusBiz.percent})}%">
+                $dateUtil.getDateStrFromDate(${bonusBiz.bonusDate})
+                <strong>$!{bonusBiz.bonusAmount}</strong>
+            </span>
+        </li>
+    #end
+    </ul>
+</div>
+#end
+
+#if($savingPot.lastMonthBonusLists)
+<div class="u-stat-more f-dn" id="j-show-monthly">
+    <ul class="f-ff-ver">
+        #foreach($bonus in $savingPot.lastMonthBonusLists)
+            <li><span style="width:$!{formulaUtil.getFormartPercentage($!{bonus.percent})}%">$dateUtil.getDateStrFromDate(${bonus.bonusDate})<strong>$!{bonus.bonusAmount}</strong></span></li>
+        #end
+    </ul>
+</div>
+#end
+

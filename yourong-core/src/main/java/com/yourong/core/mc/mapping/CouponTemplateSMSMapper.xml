@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.mc.dao.CouponTemplateSMSMapper" >
+
+    <resultMap id="BaseResultMap" type="com.yourong.core.mc.model.CouponTemplateSMS" >
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="coupon_template_id" property="templateId" jdbcType="BIGINT" />
+        <result column="valid_days" property="validDays" jdbcType="INTEGER" />
+        <result column="status" property="status" jdbcType="INTEGER" />
+        <result column="create_time" property="createTime" jdbcType="DATE" />
+        <result column="update_time" property="updateTime" jdbcType="DATE" />
+        <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+    </resultMap>
+
+    <select id="queryByTemplateId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        SELECT id,coupon_template_id,valid_days,status,create_time,update_time,del_flag FROM mc_coupon_template_sms WHERE coupon_template_id=#{templateid} AND del_flag=1
+    </select>
+
+    <insert id="insert" parameterType="com.yourong.core.mc.model.CouponTemplateSMS">
+        INSERT INTO mc_coupon_template_sms (`coupon_template_id`,`valid_days`,`status`,`create_time`,`update_time`,`del_flag`)
+        VALUES(#{templateId,jdbcType=BIGINT},#{validDays,jdbcType=INTEGER},#{status,jdbcType=INTEGER},#{createTime},#{updateTime},#{delFlag,jdbcType=INTEGER})
+    </insert>
+
+    <insert id="updateById" parameterType="com.yourong.core.mc.model.CouponTemplateSMS">
+        UPDATE mc_coupon_template_sms
+        <set>
+            <if test="templateId!=null">
+                coupon_template_id=#{templateId,jdbcType=BIGINT},
+            </if>
+            <if test="validDays!=null">
+                valid_days=#{validDays,jdbcType=INTEGER},
+            </if>
+            <if test="status!=null">
+                status=#{status,jdbcType=INTEGER},
+            </if>
+            <if test="updateTime!=null">
+                update_time=#{updateTime},
+            </if>
+            <if test="delFlag!=null">
+                del_flag=#{delFlag,jdbcType=INTEGER},
+            </if>
+        </set>
+        WHERE id=#{id,jdbcType=BIGINT}
+    </insert>
+
+    <select id="queryAllValid" resultMap="BaseResultMap">
+        SELECT id,coupon_template_id,valid_days,status,create_time,update_time,del_flag FROM mc_coupon_template_sms WHERE status=1 AND del_flag=1
+    </select>
+</mapper>

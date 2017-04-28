@@ -1,0 +1,265 @@
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$res_url/source/css/post/popularity.css"])
+#set($tradeNo=$request.getParameter("tradeNo"))
+#set($title='会员中心')
+#set($isZepto = true)
+#if($currentUser)
+    #set($logined=true)
+#else
+    #set($logined=false)
+#end
+#CSRFToken('xToken')
+##  安卓
+#if($loginSource==1)
+    #set($os=1)
+#end
+##  IOS
+#if($loginSource==2)
+    #set($os=2)
+#end
+##
+<style>
+[v-cloak]{
+    display: none;
+}
+#if($loginSource==1 || $loginSource==2)
+.g-ft{
+    display: none;
+}
+#else
+</style>
+##header，安卓ios，不需要头部
+<h2 class="u-header f-pos-r">
+    <a class="f-fs16" href="$m_url">返回</a>
+    <span class="f-fs18">
+        会员中心
+    </span>
+</h2>
+#end
+<div id="j-memberCenter">
+    <div class="u-myGradeInfo">
+        <div class="u-myGradeProcess">
+            <ul class="f-fl">
+                <li>
+                    <span></span>
+                    <div class="u-imgBlock"><img src="$res_url/img/post/popularity/parks_V0.png" alt="" width="60%"></div>
+                </li>
+                <li class="z-myGrade">
+                    <span></span>
+                    <div class="u-imgBlock ">
+##                        当前的等级
+                        <img src="$res_url/img/member/login_avatar.png" alt="" width="100%">
+                        <img class="u-memberGradeImg" src="$res_url/img/post/popularity/member_v1.png" alt="">
+                    </div>
+                </li>
+                <li class="z-unactived">
+                    <span></span>
+                    <div class="u-imgBlock">
+                        <img class="f-dn" src="$res_url/img/post/popularity/parks_V2.png" alt="" width="60%">
+##                        没到的等级，没有选择
+                        <img src="$res_url/img/post/popularity/unparks_V2.png" alt="" width="60%">
+                    </div>
+                </li>
+                <li class="z-unactived">
+                    <span></span>
+                    <div class="u-imgBlock">
+                        <img class="f-dn" src="$res_url/img/post/popularity/parks_V3.png" alt="" width="60%">
+##                        选中高亮
+                        <img src="$res_url/img/post/popularity/clickparks_V3.png" alt="" width="60%">
+                    </div>
+                </li>
+                <li>
+                    <span></span>
+                    <div class="u-imgBlock"><img src="$res_url/img/post/popularity/parks_V4.png" alt="" width="60%"></div>
+                </li>
+                <li>
+                    <span></span>
+                    <div class="u-imgBlock"><img src="$res_url/img/post/popularity/parks_V5.png" alt="" width="60%"></div>
+                    <span class="u-lastSpan"></span>
+                </li>
+            </ul>
+        </div>
+        <div class="u-myGradeDetail">
+            <a href="$siteurl/mCenter/growthRecord?from='成长记录'">
+            <div class="u-myGrade">425</div>
+            <p class="f-fs12">我的成长值</p>
+            </a>
+            <p class="f-fs12">再积累<em>172</em>分，升级到<em>V4</em> <a class="u-promotionTip" href="$siteurl/mstation/post/growthSystem?from='会员成长体系'">如何升级?</a> </p>
+        </div>
+    </div>
+    <div class="m-contentInfo">
+        <div class="u-memberGrade00 u-gradeGift f-dn">
+            <ul>
+                <li>
+                    <a href="$siteurl//mstation/post/upgradePacks?from='升级礼包'">
+                    <img src="$res_url/img/post/popularity/ico_updategift.png" alt="">
+                    <div>
+                        <p class="f-fs18 f-color6">升级礼包</p>
+                        <p class="f-fs12 f-color9">50元现金券</p>
+                    </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="$siteurl//mstation/post/birthdayGift?from='生日礼包'">
+                    <img src="$res_url/img/post/popularity/ico_birthdaygift.png" alt="">
+                    <div>
+                        <p class="f-fs18 f-color6">生日礼包</p>
+                        <p class="f-fs12 f-color9">当天签到人气值翻10倍，送50元现金券、0.5%收益券</p>
+                    </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="u-memberGrade01 u-gradeGift f-dn">
+            <ul>
+                <li>
+                    <a href="$siteurl//mstation/post/upgradePacks?from='升级礼包'">
+                    <img src="$res_url/img/post/popularity/ico_updategift.png" alt="">
+                    <div>
+                        <p class="f-fs18 f-color6">升级礼包</p>
+                        <p class="f-fs12 f-color9">50元现金券</p>
+                    </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="$siteurl//mstation/post/birthdayGift?from='生日礼包'">
+                    <img src="$res_url/img/post/popularity/ico_birthdaygift.png" alt="">
+                    <div>
+                        <p class="f-fs18 f-color6">生日礼包</p>
+                        <p class="f-fs12 f-color9">当天签到人气值翻10倍，送50元现金券、0.5%收益券</p>
+                    </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="u-memberGrade02 u-gradeGift">
+            <ul>
+                <li>
+                    <a href="$siteurl//mstation/post/membershipPrivileges?from='优惠兑换现金券'">
+                    <img src="$res_url/img/post/popularity/ico_perexchange.png" alt="">
+                    <div>
+                        <p class="f-fs18 f-color6">优惠兑换现金券</p>
+                        <p class="f-fs12 f-color9">人气值兑换现金券9.6折</p>
+                    </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="$siteurl//mstation/post/upgradePacks?from='升级礼包'">
+                    <img src="$res_url/img/post/popularity/ico_updategift.png" alt="">
+                    <div>
+                        <p class="f-fs18 f-color6">升级礼包</p>
+                        <p class="f-fs12 f-color9">50元现金券</p>
+                    </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="$siteurl//mstation/post/birthdayGift?from='生日礼包'">
+                    <img src="$res_url/img/post/popularity/ico_birthdaygift.png" alt="">
+                    <div>
+                        <p class="f-fs18 f-color6">生日礼包</p>
+                        <p class="f-fs12 f-color9">当天签到人气值翻10倍，送50元现金券、0.5%收益券</p>
+                    </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="u-memberGrade03 u-gradeGift f-dn">
+            <ul>
+                <li>
+                    <a href="$siteurl//mstation/post/membershipPrivileges?from='优惠兑换现金券'">
+                    <img src="$res_url/img/post/popularity/ico_perexchange.png" alt="">
+                    <div>
+                        <p class="f-fs18 f-color6">优惠兑换现金券</p>
+                        <p class="f-fs12 f-color9">人气值兑换现金券9.6折</p>
+                    </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="$siteurl//mstation/post/upgradePacks?from='升级礼包'">
+                    <img src="$res_url/img/post/popularity/ico_updategift.png" alt="">
+                    <div>
+                        <p class="f-fs18 f-color6">升级礼包</p>
+                        <p class="f-fs12 f-color9">50元现金券</p>
+                    </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="$siteurl//mstation/post/birthdayGift?from='生日礼包'">
+                    <img src="$res_url/img/post/popularity/ico_birthdaygift.png" alt="">
+                    <div>
+                        <p class="f-fs18 f-color6">生日礼包</p>
+                        <p class="f-fs12 f-color9">当天签到人气值翻10倍，送50元现金券、0.5%收益券</p>
+                    </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="u-memberGrade04 u-gradeGift f-dn">
+            <ul>
+                <li>
+                    <a href="$siteurl//mstation/post/membershipPrivileges?from='优惠兑换现金券'">
+                    <img src="$res_url/img/post/popularity/ico_perexchange.png" alt="">
+                    <div>
+                        <p class="f-fs18 f-color6">优惠兑换现金券</p>
+                        <p class="f-fs12 f-color9">人气值兑换现金券9.6折</p>
+                    </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="$siteurl//mstation/post/upgradePacks?from='升级礼包'">
+                    <img src="$res_url/img/post/popularity/ico_updategift.png" alt="">
+                    <div>
+                        <p class="f-fs18 f-color6">升级礼包</p>
+                        <p class="f-fs12 f-color9">50元现金券</p>
+                    </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="$siteurl//mstation/post/birthdayGift?from='生日礼包'">
+                    <img src="$res_url/img/post/popularity/ico_birthdaygift.png" alt="">
+                    <div>
+                        <p class="f-fs18 f-color6">生日礼包</p>
+                        <p class="f-fs12 f-color9">当天签到人气值翻10倍，送50元现金券、0.5%收益券</p>
+                    </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="u-memberGrade05 u-gradeGift f-dn">
+            <ul>
+                <li>
+                    <a href="$siteurl//mstation/post/membershipPrivileges?from='优惠兑换现金券'">
+                    <img src="$res_url/img/post/popularity/ico_updategift.png" alt="">
+                    <div>
+                        <p class="f-fs18 f-color6">优惠兑换现金券</p>
+                        <p class="f-fs12 f-color9">人气值兑换现金券9.6折</p>
+                    </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="$siteurl//mstation/post/birthdayGift?from='生日礼包'">
+                    <img src="$res_url/img/post/popularity/ico_birthdaygift.png" alt="">
+                    <div>
+                        <p class="f-fs18 f-color6">生日礼包</p>
+                        <p class="f-fs12 f-color9">当天签到人气值翻10倍，送50元现金券、0.5%收益券</p>
+                    </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+#set($pageScript="
+<script>
+    seajs.config({
+        'alias':{
+            'touch':'$siteurl/res/lib/frozenjs/lib/zepto.touch',
+            'memberCenter':'$siteurl/res/source/js/modules/memberCenter'
+        },
+        'preload':['touch','frozen']
+    });
+    seajs.use('memberCenter');
+</script>")
+
+#CSRFToken("xToken")

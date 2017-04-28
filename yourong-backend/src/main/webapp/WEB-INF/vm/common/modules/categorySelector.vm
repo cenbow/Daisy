@@ -1,0 +1,37 @@
+#parse("/common/common.vm")
+#set($modules_js_url=["$root_url/static/js/lib/ztree/jquery.ztree.core-3.5.min.js"])
+##分类菜单选择
+	<link href="$root_url/static/css/ztree/zTreeStyle.css" rel="stylesheet">
+    <div tabindex="-1" class="modal" id="modal-categoryTree" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog w400">
+            <div class="modal-content">
+                <div class="modal-header no-padding">
+                    <div class="table-header">
+                        <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+                            <span class="white">×</span>
+                        </button>
+                        选择分类
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <form role="form" class="form-horizontal" id="sysUser_form" method="post">
+                        <div class="form-group">
+                            <label for="form-field-1" class="col-sm-3 control-label no-padding-right"></label>
+                            <div class="col-sm-9">
+                                <div class="clearfix ztree" id="categoryTree">
+                                   	
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+<!--                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" id="save_sysUser" class="btn btn-primary">保存</button>
+                </div>-->
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>

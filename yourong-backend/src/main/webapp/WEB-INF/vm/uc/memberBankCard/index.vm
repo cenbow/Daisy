@@ -1,0 +1,66 @@
+#parse("/uc/memberBankCard/head.vm") 
+<div class="col-xs-12">
+  ##<p>
+    ##<button id = "new_sysDict" type="button" class="btn btn-info btn-sm btn-primary" >新增</button>
+    ##<button id = "edit_sysDict" type="button" class="btn  btn-pink btn-sm btn-primary" >修改</button>
+    ##<button id = "delete_sysDict" type="button" class="btn btn-danger btn-sm btn-primary" >删除</button>
+  ##</p>
+</div>
+<div class="col-xs-12">
+	<div class="table-header">
+		查询条件
+	</div>
+	<div class="table-responsive">
+    	<form id="memberBankCard_form">
+    		<table class="table table-striped table-bordered">
+    			<thead>
+    				<tr>
+    					<td align="right">姓名：</td>
+    					<td><input type="text" id="search_username" name="search_trueName"  class="input-medium search_init" /></td>
+    					<td align="right">会员ID：</td>
+    					<td><input type="text" id="search_memberId" name="search_memberId"  class="input-medium search_init" /></td>
+    					<td align="right">预留手机号：</td>
+    					<td><input type="text" id="search_bankMobile" name="search_bankMobile"  class="input-medium search_init" /></td>
+    					<td align="right">卡类型：</td>
+    					<td>
+    						<select id="search_cardType" name="search_cardType">
+    							<option value>请选择</option>
+    							<option value="1">一般卡</option>
+    							<option value="2">快捷支付卡</option>
+    						</select>
+    					</td>
+    					<td align="right">安全卡：</td>
+    					<td>
+    						<select id="search_isSecurity" name="search_isSecurity">
+    							<option value>请选择</option>
+    							<option value="1">是</option>
+    							<option value="0">否</option>
+    						</select>
+    					</td>
+    					<td colspan=12>
+    						<button id = "query_memberCard" type="button" class="btn btn-info btn-sm btn-primary">查询</button>
+    						<button id = "reset_loan" type="button" class="btn btn-info btn-sm btn-primary resetButton">重置</button>
+    					</td>
+    				</tr>
+    			</thead>
+    		</table>
+    	</form> 
+    	
+        <table id="memberBankCard-table-2" class="table table-striped table-bordered" cellspacing="0" width="100%" >
+            <thead> 	           
+            <tr >
+                <th width="50"><label><input class="ace" type="checkbox"> <span class="lbl"></span></label></th>
+                <th >编号</th>
+                <th >姓名</th>
+                <th >会员ID</th>
+                <th >持有卡银行</th>
+                <th >持有卡卡号</th>
+                <th >预留手机号</th>
+                <th >卡类型</th>
+                <th >是否安全卡</th>
+                <th >操作</th>
+            </tr>
+            </thead>
+        </table>
+	</div>
+</div>

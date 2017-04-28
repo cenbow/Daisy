@@ -1,0 +1,128 @@
+#parse("/common/common.vm")
+#set($layout = "/layout/default.vm")
+
+
+<div class="u-rtable">
+    <div class="u-rtable-wrap f-round">
+        <table>
+            <thead>
+            <tr>
+                <th width="190">项目名称</th>
+                <th width="95">投资金额</th>
+                <th width="95">已转本金</th>
+                <th width="95">累计获得</th>
+                <th width="115">本次转让进度
+                    <i class="u-icon-ques j-transfer-degree" data-align="top" data-tips="本次已转让本金/本次转让本金"></i>
+                </th>
+                <th width="110">
+                    #set($statusList=['','已结束','持有中','转让中'])
+                    #set($status=${query.status})
+                    #if($status)
+                        #set($statusText=$statusList[$status])
+                    #else
+                        #set($statusText='全部状态')
+                    #end
+                    <div class="u-selector  f-round  j-transferStatus-selector"
+                         style="margin-left:15px;paddding-left:10px;">
+                        <button>$!{statusText}</button>
+                        <i></i>
+                        <ul class="f-round">
+                            <li value="">全部状态</li>
+                            <li value="2">持有中</li>
+                            <li value="3">转让中</li>
+                            <li value="1">已结束</li>
+                        </ul>
+                        <input type="hidden" name="status" value="$!{status}">
+                </th>
+                <th width="110">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+                #if($!projectBizPage.data && $!{projectBizPage.data.size()}>0)
+                    #foreach( $!item in $!projectBizPage.data )
+                    <tr>
+                        <td class="u-invest-pjname">
+                            <a class="u-row f-tal u-invest-underline" target="_blank"
+                               href="$root_url/products/detail-$!{item.projectId}.html">
+                                <strong class="f-transferProject-name">$stringUtil.getShortProjectName($!{item.projectName})</strong><br>
+                                <em class="f-color-b7">交易号：$!{item.transferId}</em>
+                            </a>
+                        </td>
+                        <td>#if($!{item.totalAmount})￥$formulaUtil.getFormatPrice($!{item.totalAmount})#else
+                            ￥0 #end</td>
+                        <td>#if($!{item.transferredAmount})￥$formulaUtil.getFormatPrice($!{item.transferredAmount})#else
+                            ￥0 #end</td>
+                        <td>#if($item.totalIncome)￥$!formulaUtil.getFormatPrice($item.totalIncome)#else ￥0 #end</td>
+                        #if($item.transferStatus==1)
+                            <td style="padding:0 0 0 25px; text-align: left;">
+                                <em class="f-ff-ver u-withAmount">
+                                    ￥$!formulaUtil.getFormatPrice($item.transferSchedule)/<br>
+                                    <em class="f-color-b7">#if($item.residualPrincipal)
+                                        ￥$!formulaUtil.getFormatPrice($item.residualPrincipal)#else ￥0 #end
+                                    </em>
+                                </em>
+                            </td>
+                        #else
+                            <td>-</td> #end
+                        <td data-residualTime="$!item.residualTime" data-status="$!item.statusDes"
+                            style="text-align: left;padding-left:25px;">
+                            $!item.statusDes<br>
+                            #if($!{item.statusDes}=='转让中')
+                                <strong class="f-fc-red2"> 剩余时间：$!{item.residualTime}</strong>
+                            #end
+                        </td>
+                        <td>
+                            #if( $!{item.transferStatus}!=0|| $!{item.transferProjectId} )
+                                <a href="javascript:void(0);" class="transfer-detail f-pos-r j-transfer-detail"
+                                   data-tid="$!{item.transferId}" data-status="$!{item.statusDes}">转让记录</a>&nbsp;
+                            #end
+
+                            #if($!{item.transferStatus}==1)
+                                <a href="javascript:void(0);" class="transfer-ending f-pos-r "
+                                   data-tid="$!{item.transferId}">终止转让</a>
+                            #elseif($!{item.transferStatus}==2)
+                                <a href="javascript:void(0);" class="transfer-link f-pos-r "
+                                   data-tid="$!{item.transferId}">继续转让</a>
+                            #elseif($!{item.transferStatus}==0)
+                                #if($!{item.status}!=2&&$!{item.status}!=3)
+                                    <a href="javascript:void(0);" class="transfer-link f-pos-r"
+                                       data-tid="$!{item.transferId}">发起转让</a>
+                                #end
+                            #end
+                        </td>
+                    </tr>
+                    #end
+                #else
+                <tr>
+                    <td colspan="7" class="u-table-empty">暂无记录</td>
+                </tr>
+                #end
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<script>
+    //用户提示
+    $(".j-transfer-degree").on("mouseenter", function () {
+        var content = $(this).data("tips"),
+                skin = $(this).data("skin"),
+                align = $(this).data("align");
+        align = typeof align === "undefined" ? "bottom" : align;
+        content = typeof content === "undefined" ? "" : content;
+        skin = typeof skin === "undefined" ? "u-user-tips" : skin;
+        var d = dialog({
+            align: align,
+            skin: skin,
+            content: content
+        });
+        d.show(this);
+        $(this).data("hoverObj", d);
+    }).on("mouseleave", function () {
+        var d = $(this).data("hoverObj");
+        d.close().remove();
+    });
+</script>
+
+#ajaxPagePlugin($!projectBizPage,'TransferProject')

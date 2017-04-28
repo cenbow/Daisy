@@ -1,0 +1,64 @@
+##国资战略入股有融网
+#parse("/common/common.vm")
+#set($title="国资战略入股有融网_$!{title_suffix}")
+#set($css_url=["$root_css_url/activity/joinPart.css"])
+#set($js_url=["$root_js_url/activity/joinPart.js"])
+
+##页头
+#set($yrimg_url='https://yrstatic.oss-cn-hangzhou.aliyuncs.com')
+##body
+<div class="m-join-hd">
+  <div class="m-top1"></div>
+  <div class="m-top2"></div>
+  <div class="m-top3"></div>
+  <div class="m-top4"></div>
+  <div class="m-top5"></div>
+</div>
+
+##精彩瞬间
+<div class="m-join-picture">
+  <div class="g-wrap u-pic-box">
+    <div class="u-title">
+      <i class="u-title-left"></i><span>现场精彩回顾</span><i class="u-title-right"></i>
+    </div>
+    <div class="u-join-picture" id="j-join-picture">
+      <ul style="width:4700px;">
+          <li class="z-active " id="j-first-page"><img src="$yrimg_url/static/img/joinPart/picture1.png"></li>
+          <li><img src="$yrimg_url/static/img/joinPart/picture2.png"></li>
+          <li><img src="$yrimg_url/static/img/joinPart/picture3.png"></li>
+          <li><img src="$yrimg_url/static/img/joinPart/picture4.png"></li>
+          <li><img src="$yrimg_url/static/img/joinPart/picture5.png"></li>
+      </ul>
+      <span class="z-left" data-click="left"></span>
+      <span class="z-right" data-click="right"></span>
+      <div>
+        <em><strong class="f-fs36" id="j-mun">1</strong></em>
+        <div >
+          <p id="j-title"></p>
+          <span id="j-text"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+##精彩瞬间
+<div class="m-join-meiti">
+  <div class="g-wrap u-mei-box">
+    <div class="u-title">
+      <i class="u-title-left"></i><span>权威媒体报道</span><i class="u-title-right"></i>
+    </div>
+    <div class="u-join-meiti">
+      <ul>
+          <li><a href="http://news.xinhuanet.com/itown/2017-01/09/c_135965862.htm" target="_blank"><img
+                  src="$yrimg_url/static/img/joinPart/meiti1.png"></a></li>
+          <li><a href="http://news.dichan.sina.com.cn/2017/01/10/1201029.html" target="_blank"><img
+                  src="$yrimg_url/static/img/joinPart/meiti2.png"></a></li>
+          <li><a href="http://finance.jrj.com.cn/biz/2017/01/09171721944386.shtml" target="_blank"><img
+                  src="$yrimg_url/static/img/joinPart/meiti3.png"></a></li>
+          <li><a href="http://finance.caijing.com.cn/20170109/4221799.shtml" target="_blank"><img
+                  src="$yrimg_url/static/img/joinPart/meiti4.png"></a></li>
+      </ul>
+    </div>
+  </div>
+</div>

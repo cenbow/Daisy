@@ -1,0 +1,174 @@
+#set($layout='/v3/layout.vm')
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$res_url/source/css/activity/Again/againReview.css"])
+
+#set($isNeedYRWtoken=$request.getParameter("isNeedYRWtoken"))
+
+#if($currentUser)
+    #set($logined=true)
+#else
+    #set($logined=false)
+#end
+
+###set($os=3)
+####  安卓
+###if($loginSource==1)
+##    #set($os=1)
+###end
+####  IOS
+###if($loginSource==2)
+##    #set($os=2)
+###end
+##
+#if($isNeedYRWtoken)
+<style>
+    .g-ft{
+        display: none;
+    }
+</style>
+#else
+##header，安卓ios，不需要头部
+<h2 class="u-pageTitle f-pos-r">
+    <a href="$siteurl/mIndex">有融网</a>
+        <span class=" f-pos-a f-fs18 f-ff-ver">
+            #if(!$currentUser)
+                <a href="$siteurl/mstation/login" id="j-login">登录</a>
+                <a href="$siteurl/mstation/register" id="j-register">注册</a>
+            #else
+                <a href="$mCenter_logout_url">退出</a>
+            #end
+        </span>
+</h2>
+#end
+<style>
+
+</style>
+##页头
+<div class="g-wrap" id="j-os" data-os="$os">
+    <div class="m-Again-banner">
+        <img src="$res_url/img/activity/Again/Again-hd01.jpg" alt="" width="100%"/>
+        <img src="$res_url/img/activity/Again/Again-hd02.jpg" alt="" width="100%"/>
+        <img src="$res_url/img/activity/Again/Again-hd03.jpg" alt="" width="100%"/>
+    </div>
+##    直播
+##    <div class="m-Again-video">
+##        <div class="u-title">
+##            <img src="$res_url/img/activity/Again/Again-title-left.png" alt="" width="100%"/><span>精彩回顾</span><img src="$res_url/img/activity/Again/Again-title-right.png" alt=""/>
+##        </div>
+##        <div class="u-Again-video">
+####            <iframe height=600 width=960 src="http://player.youku.com/embed/XMTYzMzg3ODM4NA==" frameborder=0 allowfullscreen></iframe>
+##            <video class="x-video-player" id="youku-html5player-video" style="width: 100%; height: 100%; display: block; position: relative;" preload="none" src="http://k.youku.com/player/getFlvPath/sid/046820379620312558941_00/st/mp4/fileid/0300080100577CB0D5B44F382AFE091309E3D1-29BC-D4B7-59EC-F57ABACAADF0?K=dc544a485ecb03e2261f1d83&amp;hd=1&amp;myp=0&amp;ts=123.72&amp;ypp=0&amp;ep=ciaSEkuNVckJ4yHfiz8bYinqfXMOXP4J9h%2BFidJjALshT%2B%2FM6z6lwu%2B0SolBHvtoBFcGGeryq9mSaTQVYfJK2xsQq0raPvrl94WQ5dtWw%2BFyF2pHA7mhtFSeRjH4&amp;ctype=12&amp;ev=1&amp;token=0519&amp;oip=1019167586"></video>
+##        ##            <video src="http://k.youku.com/player/getFlvPath/sid/546762383869512b70710_05/st/mp4/fileid/0300080F05577653035C79382AFE09815E04C5-5E98-B25C-4603-9831D2F06232?K=700416cc87a55ba1282b8b51&amp;hd=1&amp;myp=0&amp;ts=383.08&amp;ypp=0&amp;ep=dyaSHU%2BPVcYD7SXWjT8bNSvic3YPXP4J9h%2BFidIUAL4hT%2B%2B5nD3RxJjDSfZBHvtoBFcGGePwrqXnbjMRYfU2oGAQrUytSvrk%2BPDg5aRbx5F0ZG82dM%2FUtlScRjL4&amp;ctype=12&amp;ev=1&amp;token=2529&amp;oip=1019167586" controls="controls">
+####            </video>
+####            <video class="x-video-player" id="youku-html5player-video" style="width: 100%; height: 100%; display: block; position: relative;" preload="none" src="http://k.youku.com/player/getFlvPath/sid/546762383869512b70710_05/st/mp4/fileid/0300080F05577653035C79382AFE09815E04C5-5E98-B25C-4603-9831D2F06232?K=700416cc87a55ba1282b8b51&amp;hd=1&amp;myp=0&amp;ts=383.08&amp;ypp=0&amp;ep=dyaSHU%2BPVcYD7SXWjT8bNSvic3YPXP4J9h%2BFidIUAL4hT%2B%2B5nD3RxJjDSfZBHvtoBFcGGePwrqXnbjMRYfU2oGAQrUytSvrk%2BPDg5aRbx5F0ZG82dM%2FUtlScRjL4&amp;ctype=12&amp;ev=1&amp;token=2529&amp;oip=1019167586"></video>
+##
+####            <video id="tenvideo_video_player_0" width="100%"  x-webkit-airplay="true" webkit-playsinline="true" preload="none" poster="http://i.gtimg.cn/qqlive/images/20150608/black.png" src="http://ugclx.video.gtimg.com/flv/21/25/d0310sqy9g4.m701.mp4?vkey=02853697A70ED716999746EA1EE6320C8C4B2D252960F9A4119BEE56B1A4AC5BA4293C4B3C0B5A18839944BA90FF3FE32C895148B92490671E2A9655EE28CDE9CF178819D381DF47D8C59B984702161DB7EC43B1DB0BDD40&amp;br=29&amp;platform=2&amp;fmt=auto&amp;level=0&amp;sdtfrom=v5010"></video>
+##
+####            <iframe id="j-meetingPreHeat-youku" height="300px" width=100% src="http://yunxi.tv/livestream/b04af2990abd46b6828ed8434c8a1ac7?utm_source=backend&utm_medium=frame&utm_campaign=yunxi&frame=1" frameborder=0 allowFullScreen></iframe>
+##        </div>
+##    </div>
+##融资概况
+    <div class="m-Again-introduce">
+        <div class="g-wrap">
+            <div class="u-title">
+              <img src="$res_url/img/activity/Again/Again-title-left.png" alt=""
+                   width="100%"/><span>融资概况</span><img
+                    src="$res_url/img/activity/Again/Again-title-right.png" alt=""/>
+            </div>
+            <div class="u-Again-introduce">
+                <p>
+                    2016年6月28下午，有融网A+轮融资发布会在杭州城中香格里拉酒店隆重举办。发布会以“融耀A+gain”为主题，寓意有融网继完成Pre-A轮融资，在不到6个月的时间内，又获得鼎立控股集团A+轮融资。此次融资金额为5000万，将用于有融网平台优质资产端的开拓和核心风控技术的提高，以及平台的合规发展等日常运营。融资发布会现场，投资机构、业界代表、有融网用户代表，以及众多知名媒体记者等近百位嘉宾共同见证了这一互联网金融领域的盛事。
+                </p>
+            </div>
+        </div>
+    </div>
+##    投资方介绍
+    <div class="m-Again-investor">
+        <div class="u-title">
+            <img src="$res_url/img/activity/Again/Again-title-left.png" alt="" width="100%"/><span>投资方介绍</span><img src="$res_url/img/activity/Again/Again-title-right.png" alt="" width="100%"/>
+        </div>
+        <div class="u-Again-investor">
+            <strong>鼎立控股集团 </strong>
+            <p>
+                鼎立控股集团是一家集矿产、制造、房地产开发、医药、建筑、旅游、金融等于一体的大型现代化企业集团，总资产近百亿元。下辖实业、置业、医药、建设四大集团、拥有一家上市公司——上海鼎立科技发展(集团)股份有限公司(A股代码600614、B股代码900907)。曾荣获“全国守合同重信用企业”、“中华民族品牌奖”、“全国民营企业500强”、“全国十佳诚信单位”、“中国首批信用体系建设先进单位”等百余项国家级荣誉。近几年来，鼎立控股在金融业领域不断拓展，相继参股湖州银行、上海浦东新区长江鼎立小额贷款有限公司，在加快产业升级以及发展金融业方面不断迈出坚实的步伐。
+                <a href="http://www.dingligroup.com/">了解更多 >></a>
+            </p>
+        </div>
+    </div>
+##精彩瞬间
+    <div class="m-Again-picture">
+        <div class="g-wrap">
+            <div class="u-title">
+                <img src="$res_url/img/activity/Again/Again-title-left.png" alt="" width="100%"/><span>精彩瞬间</span><img src="$res_url/img/activity/Again/Again-title-right.png" alt="" width="100%"/>
+            </div>
+            <div class="u-Again-picture" id="j-Again-picture">
+                <ul>
+                    <li class="z-active " id="j-first-page" ><img src="http://yrimg.oss-cn-hangzhou.aliyuncs.com/activity/Again/APP/H5(1300)_03.jpg"></li>
+                    <li><img src="http://yrimg.oss-cn-hangzhou.aliyuncs.com/activity/Again/APP/H5(1200)_03.jpg"></li>
+                    <li><img src="http://yrimg.oss-cn-hangzhou.aliyuncs.com/activity/Again/APP/H5(1100)_03.jpg"></li>
+                    <li><img src="http://yrimg.oss-cn-hangzhou.aliyuncs.com/activity/Again/APP/H5(1000)_03.jpg"></li>
+                    <li><img src="http://yrimg.oss-cn-hangzhou.aliyuncs.com/activity/Again/APP/H5(900)_03.jpg"></li>
+                    <li><img src="http://yrimg.oss-cn-hangzhou.aliyuncs.com/activity/Again/APP/H5(800)_03.jpg"></li>
+                    <li><img src="http://yrimg.oss-cn-hangzhou.aliyuncs.com/activity/Again/APP/H5(700)_03.jpg"></li>
+                    <li><img src="http://yrimg.oss-cn-hangzhou.aliyuncs.com/activity/Again/APP/H5(600)_03.jpg"></li>
+                    <li><img src="http://yrimg.oss-cn-hangzhou.aliyuncs.com/activity/Again/APP/H5(500)_03.jpg"></li>
+                    <li><img src="http://yrimg.oss-cn-hangzhou.aliyuncs.com/activity/Again/APP/H5(400)_03.jpg"></li>
+                    <li><img src="http://yrimg.oss-cn-hangzhou.aliyuncs.com/activity/Again/APP/H5(300)_03.jpg"></li>
+                    <li><img src="http://yrimg.oss-cn-hangzhou.aliyuncs.com/activity/Again/APP/H5(200)_03.jpg"></li>
+                    <li><img src="http://yrimg.oss-cn-hangzhou.aliyuncs.com/activity/Again/APP/H5(100)_03.jpg"></li>
+                </ul>
+                <span class="left" data-click="left"><img src="$res_url/img/activity/Again/pageturning-left.png" alt="" width="100%"/></span>
+                <span class="right" data-click="right"><img src="$res_url/img/activity/Again/pageturning-right.png" alt="" width="100%"/></span>
+                <div>
+                    <em>第<strong class="f-fs36" id="j-mun">1</strong>张</em>
+                    <div >
+                        <p id="j-title"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+##    媒体合作
+    <div class="m-Again-media">
+        <div class="u-title">
+            <img src="$res_url/img/activity/Again/Again-title-left.png" alt="" width="100%"/><span>媒体报道</span><img src="$res_url/img/activity/Again/Again-title-right.png" alt="" width="100%"/>
+        </div>
+        <div class="u-Again-media">
+            <ul>
+                <li><a href="http://www.wdzj.com/news/pingtai/30231.html"><img src="$res_url/img/activity/Again/media-01wdzj.jpg" width="100%"></a></li>
+                <li><a href="http://industry.caijing.com.cn/20160630/4141173.shtml"><img src="$res_url/img/activity/Again/media-02cjw.jpg" width="100%"></a></li>
+                <li><a href="http://www.01caijing.com/wd/4360.htm"><img src="$res_url/img/activity/Again/media-03lycj.jpg" width="100%"></a></li>
+            </ul>
+            <ul>
+                    <li><a href="http://yueyu.cntv.cn/2016/06/30/ARTIBlJJ3D1C1RVbRXIJ8Q1z160630.shtml"><img src="$res_url/img/activity/Again/media-04cctv.jpg" width="100%"></a></li>
+                    <li><a href="http://ent.ifeng.com/a/20160629/42643233_0.shtml"><img src="$res_url/img/activity/Again/media-05fhw.jpg" width="100%"></a></li>
+                    <li><a href="http://money.163.com/16/0629/17/BQOAJF2000253B0H.html"><img src="$res_url/img/activity/Again/media-06wy.jpg" width="100%"></a></li>
+            </ul>
+            <ul>
+                <li><a href="http://zj.qq.com/a/20160630/012355.htm"><img src="$res_url/img/activity/Again/media-07tx.jpg" width="100%"></a></li>
+                <li><a href="http://finance.591hx.com/article/2016-07-01/0000619749s.shtml"><img src="$res_url/img/activity/Again/media-08hxcj.jpg" width="100%"></a></li>
+                <li><a href="http://finance.jrj.com.cn/biz/2016/06/30154321135469.shtml"><img src="$res_url/img/activity/Again/media-09jrj.jpg" width="100%"></a></li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+
+#set($pageScript="
+<script src='$res_url/build/js/appHook.js'></script>
+##<script src='$res_url/lib/js/vconsole.min.js'></script>
+<script>
+        seajs.use('$m_js_url/activity/againReview.js')
+</script>
+")
+##<script>
+##    (function(){
+##        //“意见反馈”区别调用不同app
+##        var i=$("#j-os").data("os");
+##        alert(i)
+##    })()
+##
+##</script>
+#CSRFToken('xToken')

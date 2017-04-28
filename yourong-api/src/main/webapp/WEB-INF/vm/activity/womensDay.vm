@@ -1,0 +1,199 @@
+##38女神节活动
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$res_url/source/css/activity/womenDay.css"])
+#set($title="女神节，绽放你的美$!{title_suffix}")
+
+#set($aliyun='https://oss-cn-hangzhou.aliyuncs.com/yrstatic/res')
+
+#set($encryptionId=$request.getParameter("encryptionId"))
+#set($loginSource=$request.getHeader("loginSource"))
+
+#if($currentUser)
+    #set($logined=true)
+#else
+    #set($logined=false)
+#end
+#set($os=3)
+##  安卓
+#if($loginSource==1)
+    #set($os=1)
+#end
+##  IOS
+#if($loginSource==2)
+    #set($os=2)
+#end
+
+<div class="g-main" id="j-womenDay" v-cloak>
+    #if($loginSource==1 || $loginSource==2)
+        <style>
+            .g-ft {
+                display: none;
+            }
+        </style>
+    #else
+    ##header，安卓ios，不需要头部
+        <h2 class="u-pageTitle f-pos-r u-section1-title" id="j-title">
+            <a href="$m_url">有融网</a>
+            <span class="u-login-link f-pos-a">
+                #if(!$currentUser)
+                    <a href="{{loginUrl}}">登录</a>
+            <a href="$siteurl/mstation/register">注册</a>
+                #else
+                    <a href="$mCenter_logout_url">退出</a>
+                #end
+    </span>
+        </h2>
+    #end
+##    非模态弹框
+    <div class="u-forbid-get animated zoomIn" v-show="abnormalTips">{{cantGetText[tipsNo]}}</div>
+
+##    蒙层
+    <div class="u-shade-cover f-lucency" v-show="abnormalTips"></div>
+    <div class="u-shade-cover" v-show="acquireBag"></div>
+##    弹框样式
+    <div class="u-tips-box zoomIn animated f-pos-r" v-show="acquireBag=='succeed'">
+        <div class="u-close" @click="closeTips()">
+            <img src="$res_url/img/activity/womenDay/close.png">
+        </div>
+        <p><em class="f-congratulate">女神，节日快乐~</em><br>专属礼包已发放，记得去查收哦~</p>
+    </div>
+    <div class="u-tips-box zoomIn animated f-pos-r" v-show="acquireBag=='goShow'">
+        <div class="u-close" @click="acquireBag=''"><img src="$res_url/img/activity/womenDay/close.png"></div>
+        <p>快去我的账户中<em>开通新浪存钱罐</em>，<br>亮出女神身份哦~</p>
+    </div>
+##    弹框样式
+##活动规则样式
+    <div class="u-regular-text" v-if="activityRegular">
+        #if($os > 2)
+            <div class="u-goback"><i @click="activityRegular=false">返回</i></div>
+        #end
+        <h1>活动规则</h1>
+        <p>1.活动对象：有融网所有用户；</p>
+        <p>2.活动时间：{{init.startDate | formatTime 'yyyy年M月d日hh:mm'}}~{{init.endDate | formatTime 'M月d日hh:mm'}}；</p>
+        <p>3.现金券使用条件详见下表：</p>
+        <table>
+            <thead>
+            <tr>
+                <th>面额</th>
+                <th>起投金额(元)</th>
+                <th>起投期限(天)</th>
+                <th>有效期</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>38</td>
+                <td>2000</td>
+                <td>60</td>
+                <td>领取后1天</td>
+            </tr>
+            <tr>
+                <td>48</td>
+                <td>2000</td>
+                <td>90</td>
+                <td>领取后1天</td>
+            </tr>
+            <tr>
+                <td>68</td>
+                <td>4000</td>
+                <td>60</td>
+                <td>领取后5天</td>
+            </tr>
+            <tr>
+                <td>138</td>
+                <td>6000</td>
+                <td>90</td>
+                <td>领取后5天</td>
+            </tr>
+            <tr>
+                <td>458</td>
+                <td>10000</td>
+                <td>180</td>
+                <td>领取后5天</td>
+            </tr>
+            </tbody>
+        </table>
+        <p>4.转让专区项目不参与本活动；</p>
+        <p>5.如有其他疑问，请拨打客服热线：400-025-6688；</p>
+        <p>6.本活动最终解释权归有融网所有。</p>
+    </div>
+##活动规则样式
+    <div class="m-banner">
+        <img src="$res_url/img/activity/womenDay/banner.png">
+    </div>
+
+
+    <div class="u-crown"><img src="$res_url/img/activity/womenDay/crown.png"></div>
+
+
+    <div class="u-award-content f-pos-r" v-show="pageNo===1">
+        <h1>签到惊喜随机送</h1>
+        <p>活动期间，用户每日签到即可获得<em> 38 或 48 元现金券</em>中的一张，及<em> 1% 收益券</em>一张。</p>
+        <img src="$res_url/img/activity/womenDay/gift_bag.png" class="u-check-img">
+    </div>
+
+
+    <div class="u-award-content f-pos-r" v-show="pageNo===2">
+        <h1>累投豪礼日日拿</h1>
+        <p>活动期间，用户每日累计投资额达到以下额度，即可获得对应现金券奖励。</p>
+        <div class="u-cash-coupon f-pos-r">
+            <img src="$res_url/img/activity/womenDay/cash_coupon.png">
+            <strong class="f-ff-din">¥<em>458</em></strong>
+            <p>累计投资满12000元</p>
+        </div>
+        <div class="u-cash-coupon f-pos-r">
+            <img src="$res_url/img/activity/womenDay/cash_coupon.png">
+            <strong class="f-ff-din">¥<em>138</em></strong>
+            <p>累计投资满6000元</p>
+        </div>
+        <div class="u-cash-coupon f-pos-r">
+            <img src="$res_url/img/activity/womenDay/cash_coupon.png">
+            <strong class="f-ff-din">¥<em>68</em></strong>
+            <p>累计投资满2000元</p>
+        </div>
+
+        <h4 v-show="logined && currentTime<=init.endDate">
+            <img src="$res_url/img/activity/womenDay/white_crown.png">
+            我的今日累计投资额：￥{{init.investment | amountSplit '' true}}
+        </h4>
+    </div>
+
+    <div class="u-award-content f-pos-r" v-show="pageNo===3">
+        <h1>女神节专属礼包</h1>
+        <p>3月8日女神节当日，<em>女性用户</em>登录即可领取女神节专属礼包，有融给你女神节独一无二的爱~</p>
+        <img src="$res_url/img/activity/womenDay/roses.png">
+        <a href="javascript:" class="u-button" @click="getBag($event)"
+           :class="{'z-disabled':buttonTextNo===1||buttonTextNo===2}"
+           v-text="buttonText[buttonTextNo]"></a>
+    </div>
+
+
+    <a href="#regular" class="u-regular-button f-pos-r" @click="activityRegular=true">
+        <img src="$res_url/img/activity/womenDay/regular_crown.png">
+    </a>
+##    底部悬浮导航
+
+    <ul class="m-bottom-nav">
+        <li :class="{'z-selected':pageNo===1}" @click="pageNo=1">签到惊喜<br>随机送</li>
+        <li @click="pageNo=2" :class="{'z-selected':pageNo===2}">累投豪礼<br>日日拿</li>
+        <li @click="pageNo=3" :class="{'z-selected':pageNo===3}">女神节<br>专属礼包</li>
+    </ul>
+</div>
+
+
+#set($pageScript="
+<script src='$aliyun/lib/js/appHookES5.js'></script>
+##<script src='$res_url/assets/js/common/appHookES5.js'></script>
+<script src='$aliyun/lib/vue/vue.min.js'></script>
+<script src='$aliyun/lib/vue/vue.extend.js'></script>
+##<script src='$siteurl/res/lib/js/vconsole.min.js'></script>
+<script>
+    var logined =$!{logined}
+    var receiveData = $!{data},
+            os = $!{os};
+    //    console.log(receiveData)
+    seajs.use('$res_url/source/js/activity/womenDay.js');
+</script>
+")
+#CSRFToken("xToken")

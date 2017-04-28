@@ -1,0 +1,7 @@
+#set($root_url = $link.getContextURL())
+#set($web_root_url=$sysServiceUtil.getWebRootURL())
+#set($pic_url="https://oss-cn-hangzhou.aliyuncs.com")
+###excel导出
+#set($swf_url="$root_url/static/js/lib/TableTools-2.2.4/swf/copy_csv_xls.swf")
+##LigerUI 路径
+#set($ligerui_url="$root_url/static/LigerUI")

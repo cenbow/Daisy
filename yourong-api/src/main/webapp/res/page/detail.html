@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    <title>项目详情</title>
+    <link rel="stylesheet" href="/res/lib/frozenui/1.2.1/css/frozen.css" media="all">
+    <link href="/res/source/css/common.css"  rel="stylesheet">
+
+</head>
+<body>
+<!--header-->
+<h2 class="u-header f-pos-r">
+    <a href="$m_url">返回</a>
+    <span class="f-fs18">
+        新车融152-1期<em>（租赁分红）</em>
+    </span>
+</h2>
+<!--header-->
+<div class="u-detail-alReturn">
+    <span class="u-project-name">
+        宝马535Li汽车合格证质押债权项目
+    </span>
+    <span class="u-project-alReturn f-ff-din">10.02~12.56%</span>
+    <p>年化收益</p>
+</div>
+<div class="u-detail-proceeds f-cf">
+    <span class="u-border-r u-border-b">
+        <em>￥199,000</em>
+        <p>项目总额</p>
+    </span>
+    <span class="u-border-b">
+         <em>36天</em>
+        <p>收益天数</p>
+    </span>
+    <span class="u-border-r">
+         <em>T(成交日)+1</em>
+        <p>起息方式</p>
+    </span>
+    <span>
+         <em>2015-04-25</em>
+        <p>还款日期</p>
+    </span>
+</div>
+<div class="u-detail-people">
+    投资会员：27人；预期总收益：4,526.47元
+</div>
+<div class="u-detail-way">
+    还款方式：按日计息，按月付息，到期还本
+</div>
+<div class="u-detail-tab f-cf" id="j-detail-tab">
+    <span class="z-current  j-detail-select" data-url="/project/detail-989800193.html">项目信息</span>
+    <span class=" j-detail-select" data-url="/project/contract-989800193.html">合同资料</span>
+    <span class=" j-detail-select" data-url="/project/record-989800193.html">投资记录</span>
+</div>
+<iframe id="j-detail-frame" src="/project/detail-989800193.html" name="detailFrame" frameborder="0" width="100%">
+</iframe>
+<!--body-->
+<script src='/res/lib/js/zepto.min.js'></script>
+<script>
+    $("#j-detail-tab").on('click','span',function(){
+        var _this=$(this);
+        _this.addClass("z-current").siblings().removeClass("z-current");
+        $("#j-detail-frame").prop("src",_this.data('url'));
+    });
+</script>
+</body>
+</html>
+
+

@@ -1,0 +1,357 @@
+#set($title="关于有融-有融网-全透明的互联网理财优选平台")
+#set($keywords="关于有融,有融网")
+#set($description="有融网运用高效的运营管理体系和创新的互联网思维,搭建了一个安全透明的互联网理财服务平台.")
+
+##关于我们
+#parse('/common/common.vm')
+#set($css_url=["$root_css_url/post/about.css"])
+#set($js_url=["$root_js_url/post/about.js"])
+#set($isAboutNavi="z-current")
+
+## video
+<div class="g-main">
+    <div class="u-hd" id="j-hd">
+        <video autoplay="autoplay" loop="loop" muted="muted" class="u-video" id="j-video" >
+            <source src="$aliyun_yrimg_url/img/about-video.webm" type="video/webm">
+        </video>
+
+        <div class="u-bg z-hide" id="j-bg">
+            <div class="u-hd-1"></div>
+            <div class="u-hd-2"></div>
+            <div class="u-hd-3"></div>
+            <div class="u-hd-4"></div>
+            <div class="u-hd-5"></div>
+            <div class="u-hd-6"></div>
+        </div>
+
+        <div class="u-upper" id="j-prepend-video">
+            <div class="u-hd-cover" id="j-hd-cover"></div>
+
+            <div class="m-hd-content">
+                <div class=g-wrap">
+                    <div class="m-hd-container">
+                        <h1 class="u-hd-title">我们的信念</h1>
+                        <div class="u-hd-text u-hd-text-left">
+                            <span style="padding-top: 20px;">我们始终奉行 </span> <br>
+                            <span>“全流程真实透明，让理财更自在”的品牌主张 </span> <br>
+                            <span>以“让财富更自由”为不变的使命 </span> <br>
+                            <span>让所有为收益和风险焦虑的投资人 </span> <br>
+                            <span>都能发自内心地感受到 </span> <br>
+                            <span style="padding-bottom: 20px;">理财，就享自在</span>
+                        </div>
+
+                        <div class="u-hd-text u-hd-text-right">
+                            <span style="padding-top: 20px;">我们始终坚持</span> <br>
+                            <span>全透明的互联网理财优选平台的定位</span> <br>
+                            <span>旨在为用户打造全流程真实透明的理财环境</span> <br>
+                            <span>怀着让用户享受自在理财</span> <br>
+                            <span>让有融网成为</span> <br>
+                            <span>用户首选的理财平台的美好愿景</span> <br>
+                            <span style="padding-bottom: 20px;">我们，一直在努力</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+## 我们的成长
+    <div class="u-grow-up">
+        <div class="g-wrap">
+            <h3 class="u-title">我们的成长</h3>
+            <div class="u-indicator">
+                <span class="u-indicator-length" style="width: 89px;"></span>
+            </div>
+
+            <div class="f-fs0">
+                <div class="u-grow-img"></div>
+                <div class="u-grow-circle">
+                    未来有无限可能 <br>
+                    邀您与我们 <br>
+                    一起期待！
+                </div>
+            </div>
+
+            <div class="u-event-list">
+                <ul class="u-event-list-2014">
+                    <li>
+                        <div>
+                            <h4 class="f-fc-red">11月19日 21点18分</h4>
+                            <span>有融网正式<strong>上线公测</strong></span>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <h4 class="f-fc-red">11月19日</h4>
+                            <span>有融网迎来<strong>第一位</strong>投资人、</span>
+                            <span>第一笔投资</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <h4 class="f-fc-red">12月19日</h4>
+                            <span>有融网为投资人</span>
+                            <span><strong>第一次</strong>还本付息</span>
+                        </div>
+                    </li>
+                </ul>
+
+                <ul class="u-event-list-2015">
+                    <li>
+                        <div>
+                            <h4 class="f-fc-red">5月15日</h4>
+                            <span>有融网平台投资总额</span>
+                            <span><strong>突破5000万元</strong></span>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <h4 class="f-fc-red">5月30日</h4>
+                            <span>有融网<strong>APP正式上线，</strong></span>
+                            <span>有融网正式覆盖PC端、移动端</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <h4 class="f-fc-red">6月20日</h4>
+                            <span>有融网注册会员<strong>突破10万人</strong></span>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <h4 class="f-fc-red">6月29日</h4>
+                            <span>有融网平台投资总额<strong>突破1亿元</strong></span>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <h4 class="f-fc-red">10月15日</h4>
+                            <span>有融网启用全新域名<strong>YRW.com</strong></span>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <h4 class="f-fc-red">11月19日</h4>
+                            <span>有融网举办<strong>一周年</strong>庆典</span>
+                            <span>暨首届投资人答谢会</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <h4 class="f-fc-red">11月26日</h4>
+                            <span>有融网<strong>成功挂牌</strong>浙江股权交易中心</span>
+                        </div>
+                    </li>
+                </ul>
+
+                <ul class="u-event-list-2016">
+                    <li>
+                        <div>
+                            <h4 class="f-fc-red">1月13日</h4>
+                            <span>有融网完成<strong>Pre-A轮融资</strong></span>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <h4 class="f-fc-red">2月28日</h4>
+                            <span>有融网平台投资总额<strong>突破10亿元</strong></span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+## 我们的原理
+    <div class="u-theory">
+        <div class="g-wrap">
+            <h3 class="u-title">我们的原理</h3>
+            <div class="u-indicator">
+                <span class="u-indicator-length" style="width: 89px;"></span>
+            </div>
+
+            <div class="mb-80">
+                <span class="u-theory-name">债权转让项目</span>
+                <span class="u-theory-img-1"></span>
+            </div>
+
+            <div>
+                <span class="u-theory-name">直投项目</span>
+                <span class="u-theory-img-2"></span>
+            </div>
+        </div>
+    </div>
+
+## 为什么选择我们
+    <div class="u-why-us">
+        <div class="g-wrap">
+            <h3 class="u-title">
+                为什么选择我们
+                <span class="u-check" id="j-check">查看相关资质</span>
+            </h3>
+            <div class="u-indicator">
+                <span class="u-indicator-length" style="width: 124px;"></span>
+            </div>
+
+            <ul class="u-reason-list">
+                <li>
+##                    <div class="u-red-circle f-ff-din">4</div>
+                    <div class="u-whyUs-robot4"></div>
+                    <div class="u-reason-content">
+                        <h4>4道风控关卡 <br>
+                            甄选优质项目</h4>
+                        <p>从甄选、复审、披露到贷后管理 <br>
+                            风控关卡环环相扣，<br>
+                            共同守护每一个项目的诞生。</p>
+                    </div>
+                </li>
+
+                <li>
+##                    <div class="u-red-circle f-ff-din">0</div>
+                    <div class="u-whyUs-robot0"></div>
+                    <div class="u-reason-content">
+                        <h4>项目公开透明 <br>
+                            信息真实0隐藏</h4>
+                        <p>每个理财项目背景信息 <br>
+                            公开、透明，<br>
+                            证据资料详实、有效。</p>
+                    </div>
+                </li>
+
+                <li>
+##                    <div class="u-red-circle f-ff-din">3</div>
+                    <div class="u-whyUs-robot3"></div>
+                    <div class="u-reason-content">
+                        <h4>第3方资金托管 <br>
+                            资金流向清晰可控</h4>
+                        <p>与新浪支付存钱罐合作，<br>
+                            专人专户、专款专用，<br>
+                            余额享收益，不设资金池。</p>
+                    </div>
+                </li>
+
+                <li>
+##                    <div class="u-red-circle f-ff-din">1</div>
+                    <div class="u-whyUs-robot1"></div>
+                    <div class="u-reason-content">
+                        <h4>1键式安心体验<br>
+                            轻松自在享收益</h4>
+                        <p>专业客服5秒响应，人性化理财体验，<br>
+                            一键查询资金明细，<br>
+                            轻松自在享受收益。</p>
+                    </div>
+                </li>
+            </ul>
+
+            <div class="u-slider z-hide" id="j-slider">
+                <ul class="g-wrap f-cf" id="j-qualification-photo">
+                    <li class="z-active">
+                        <span><img src="$root_url/static/img/post/about_qualification_b01.jpg" alt="信有诚_营业执照"/></span>
+                        <em>杭州信有诚互联网金融服务有限公司营业执照</em>
+                    </li>
+                    <li>
+                        <span><img src="$root_url/static/img/post/about_qualification_b02.jpg" alt="信有诚_税务登记证"/></span>
+                        <em>杭州信有诚互联网金融服务有限公司税务登记证</em>
+                    </li>
+                    <li>
+                        <span><img src="$root_url/static/img/post/about_qualification_b03.jpg" alt="信有诚_组织机构代码证"/></span>
+                        <em>杭州信有诚互联网金融服务有限公司组织机构代码证</em>
+                    </li>
+                    <li>
+                        <span><img src="$root_url/static/img/post/about_qualification_b04.jpg" alt="小融_营业执照"/></span>
+                        <em>浙江小融网络科技股份有限公司营业执照</em>
+                    </li>
+                    <li>
+                        <span><img src="$root_url/static/img/post/ICP.jpg" alt="小融_ICP许可证"/></span>
+                        <em>浙江小融网络科技股份有限公司ICP许可证</em>
+                    </li>
+                </ul>
+                <div class="u-closeBtn" id="j-closeBtn"></div>
+                <div class="u-imgbtn-prev j-changeBtns" data-direction="prev" id="j-imgbtn-prev"></div>
+                <div class="u-imgbtn-next j-changeBtns" data-direction="next" id="j-imgbtn-next"></div>
+            </div>
+
+        </div>
+    </div>
+
+## 我们的伙伴
+    <div class="u-partners">
+        <div class="g-wrap">
+            <h3 class="u-title">我们的伙伴</h3>
+            <div class="u-indicator">
+                <span class="u-indicator-length" style="width: 89px;"></span>
+            </div>
+
+            <div class="m-partner-main">
+                <h4>战略入股方</h4>
+                <a href="$root_url/post/subject/partner.html#ghkj" target="_blank">
+                    <div class="u-logo-main u-logo-ghkj"></div>
+                </a>
+
+                <h5>中国光华科技基金会</h5>
+                <p class="u-partner-content">
+                    成立于1993年，是在民政部登记注册、共青团中央主管的全国性5A公募基金会。<br>
+                    早期通过颁发“光华科技奖”，奖励在我国科技领域做出突出成绩的科技人员，<br>
+                    为科技事业发展做出了积极贡献。<br>
+                    于2016年1月13日战略入股有融网。
+                </p>
+            </div>
+
+            <div class="m-partner-main m-partner-main-right">
+                <h4>Pre-A轮投资方</h4>
+                <a href="$root_url/post/subject/partner.html#qhjj" target="_blank">
+                    <div class="u-logo-main u-logo-qhjj"></div>
+                </a>
+
+                <h5>浙江千合并购基金管理有限公司</h5>
+                <p class="u-partner-content">
+                    成立于2013年3月，是浙江省投融资协会旗下的平台公司之一。<br>
+                    是以产业并购基金发行管理为主营业务的专业基金管理机构。<br>
+                    认可并大力支持有融网深耕汽车金融领域，是有融网Pre-A轮融资的投资方。
+                </p>
+            </div>
+
+            <div class="u-other-partners m-partner">
+                <h4>重要合作方</h4>
+                <ul  class="u-partner-list j-partner-list">
+                ##                <li class="u-partner-ghkj" title="中国光华科技基金会"><a href="$root_url/post/subject/partner.html#ghkj" target="_blank">中国光华科技基金会</a></li>
+                ##                <li class="u-partner-qhjj" title="千合基金管理"><a href="$root_url/post/subject/partner.html#qhjj" target="_blank">千合基金管理</a></li>
+                    <li class="u-partner-xhq" title="杭州市西湖区政府"><a href="$root_url/post/subject/partner.html#xhq" target="_blank">杭州市西湖区政府</a></li>
+                    <li class="u-partner-zjdx" title="浙江大学"><a href="$root_url/post/subject/partner.html#zjdx" target="_blank">浙江大学</a></li>
+                    <li class="u-partner-dbs" title="华夏邓白氏"><a href="$root_url/post/subject/partner.html#dbs" target="_blank">华夏邓白氏</a></li>
+                    <li class="u-partner-sina" title="新浪支付存钱罐"><a href="$root_url/post/subject/partner.html#sina" target="_blank">新浪支付存钱罐</a></li>
+                    <li class="u-partner-dm" title="浙江德睦律师事务所"><a href="$root_url/post/subject/partner.html#dm" target="_blank">浙江德睦律师事务所</a></li>
+                    <li class="u-partner-lgw" title="绿狗网"><a href="$root_url/post/subject/partner.html#lgw" target="_blank">绿狗网</a></li>
+                    <li class="u-partner-bca" title="杭州佰驰汽车销售有限公司"><a href="$root_url/post/subject/partner.html#bca" target="_blank">杭州佰驰汽车销售有限公司</a></li>
+##                    <li class="u-partner-ygbx" title="阳光保险"><a href="$root_url/post/subject/partner.html#ygbx" target="_blank">阳光保险</a></li>
+                    <li class="u-partner-sjaq" title="数据保全中心"><a href="$root_url/post/subject/partner.html#sjaq" target="_blank">数据保全中心</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+## 联系有融
+    <div class="u-about-contact" id="contactUs">
+        <div class="g-wrap">
+            <h3 class="u-title">联系有融</h3>
+            <div class="u-indicator">
+                <span class="u-indicator-length" style="width: 70px;"></span>
+            </div>
+
+            <div class="u-map">
+                <p>
+                    <em class="f-fwb">公司总部：浙江省杭州市西湖区古墩路87号<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;浙商财富中心3号楼12F
+                    </em><br/><br/>
+
+                    业务合作：<strong class="f-ff-ver">business@yrw.com  </strong><br/>
+                    媒体合作：<strong class="f-ff-ver">media@yrw.com</strong><br/>
+                    人力资源：<strong class="f-ff-ver">hr@yrw.com</strong>
+                </p>
+            </div>
+        </div>
+    </div>
+
+</div>

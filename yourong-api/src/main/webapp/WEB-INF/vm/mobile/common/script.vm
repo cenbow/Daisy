@@ -1,0 +1,65 @@
+<!-- global script -->
+##<script src="https://cdnjs.cloudflare.com/ajax/libs/seajs/3.0.2/sea.js"></script>
+##<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+#if($isZepto)
+<script src="$aliyunOss_url/res/lib/zepto/1.1.6/zepto.min.js"></script>
+<script src="$res_url/lib/js/zepto.fx.js"></script>
+#else
+<script src="$aliyunOss_url/res/lib/jquery/v2/jquery.min.js"></script>
+#end
+<script src="$res_url/lib/js/sea.js"></script>
+<!-- /global script -->
+
+<!-- environment -->
+<script type="text/javascript">
+    seajs.config({
+        paths: {
+            'lib':'$res_url/lib',
+            'xjs':'$res_url/source/js',
+            'xcss':'$res_url/source/css',
+            'cdnlib': '//cdn.bootcss.com',
+            'oss': 'https://yrstatic.oss-cn-hangzhou.aliyuncs.com/res'
+        },
+        alias: {
+            'zepto':'cdnlib/zepto/1.1.6/zepto.min.js',
+            'jquery': 'oss/jquery/2.2.1/jquery.min.js',
+            'unslider':'cdnlib/unslider/2.0.3/js/unslider-min.js',
+            'vue':'cdnlib/vue/1.0.17/vue.min.js',
+            'frozen': 'cdnlib/FrozenUI/1.3.0/js/frozen.js',
+            'lodash':'cdnlib/lodash.js/4.6.1/lodash.min.js',
+            'base': 'xjs/base',
+            'wxShare':'xjs/common/wxShare',
+            'validform':'lib/js/validform',
+            'template':'lib/js/template'
+        }
+    })
+    var environment = {
+        globalPath : '$siteurl',
+        globalDomain : '$sysServiceUtil.getRootURL()',
+        mGlobalDomain : '$sysServiceUtil.getMRootURL()',
+        serverDate :  '${dateUtil.getCurrentDate().getTime()}',
+        aliyunPath: '$aliyun_url',
+        debug:$debug
+    }
+    #if($debug)
+    window.log = console.log.bind(console)
+    #else
+    window.log = function(){}
+    #end
+
+</script>
+<!-- /environment -->
+<!-- pagescript -->
+$!pageScript
+<!-- /pagescript -->
+#if(!$debug)
+<!-- stats -->
+<div class="f-dn">
+    <script type="text/javascript">
+        var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+        document.write(unescape("%3Cspan id='cnzz_stat_icon_1255767947'%3E%3C/span%3E%3Cscript src='" +
+                cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1255767947' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+</div>
+<!-- /stats -->
+#end

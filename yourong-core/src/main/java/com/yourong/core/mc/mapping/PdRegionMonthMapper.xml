@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.mc.dao.PdRegionMonthMapper" >
+  <resultMap id="BaseResultMap" type="PdRegionMonth" >
+    <result column="month" property="month" jdbcType="VARCHAR" />
+    <result column="province" property="province" jdbcType="VARCHAR" />
+    <result column="register_member_rate" property="registerMemberRate" jdbcType="DECIMAL" />
+    <result column="invest_amount_rate" property="investAmountRate" jdbcType="DECIMAL" />
+  </resultMap>
+  
+  <select id="selectPdRegionMonth" resultMap="BaseResultMap">
+  	SELECT
+	month,	 province ,register_member_rate,invest_amount_rate 
+	FROM
+		sj_pd_region_month  
+	where month=#{month, jdbcType=VARCHAR} 
+	ORDER BY 
+		register_member_rate  DESC 
+  </select>
+  
+</mapper>

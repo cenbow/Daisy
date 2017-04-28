@@ -1,0 +1,82 @@
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$m_css_url/modules/blindEmail.css"])
+#set($title='绑定邮箱')
+#set($from=$request.getParameter("from"))
+<style>
+    .u-inputEmail{
+        width: 100%;
+        border-bottom: 1px solid #cccccc;
+        padding: 30px 20px 10px;
+        color: #cccccc;
+    }
+    .u-inputEmail input{
+        color: #666666;
+    }
+    .u-tipMsg{
+        color: #d74148;
+        width: 100%;
+        line-height: 30px;
+        text-align: center;
+    }
+    .u-button{
+        width: 90%;
+        margin:10px auto;
+    }
+    .u-button .u-reload{
+        display: inline-block;
+        width: 30%;
+        line-height: 40px;
+        text-align: center;
+        border: 1px solid #CECECE;
+        border-radius: 4px;
+        color: #999999;
+    }
+    .u-button .u-sendAgain{
+        display: inline-block;
+        width: 65%;
+        line-height: 40px;
+        background: #d74148;
+        color: #ffffff;
+        text-align: center;
+        border-radius: 4px;
+        margin-left: 2%;
+    }
+</style>
+<div id="j-blindEmail" v-cloak>
+    <!--header-->
+    <h2 class="u-header f-pos-r">
+        <a href="$from" id="j-backUrl">返回</a>
+        <span class="f-fs20" id="j-title" v-text="pageTitle"></span>
+        <span class="f-fs12 f-fr"  @click="saveEmail('#j-changeEmail','#j-inputEmail')">保存</span>
+    </h2>
+    <!--/header-->
+    <div class="u-inputEmail" id="j-changeEmail">
+        <input v-if="!isBindEmail" class="f-inputEmail f-fs16" type="email" id="j-inputEmail" placeholder="您的邮箱地址"
+               @keyup.enter="saveEmail('#j-changeEmail')"/>
+        <input v-else class="f-inputEmail f-fs16" type="email" id="j-inputEmail" placeholder="您的新邮箱地址"
+               @keyup.enter="saveEmail('#j-changeEmail')"/>
+    </div>
+    <div class="f-fs12 u-tipMsg" :class="{'f-dn':!isSend}">该邮箱还未验证，请登录您的邮箱查收邮件并验证。</div>
+    <div class="u-button" :class="{'f-dn':!isSend}">
+        <span class="u-reload f-fs16" @click="checkEmail('#j-inputEmail')">
+            刷新
+        </span>
+        <span class="u-sendAgain f-fs16"  @click="saveEmail('#j-changeEmail','#j-inputEmail')">
+        重新发送验证邮件
+        </span>
+    </div>
+</div>
+#set($pageScript="
+<script src='$aliyunOss_url/res/lib/vue/v1/vue.min.js'></script>
+<script>
+    seajs.config({
+        alias: {
+            'regionSelector': 'xjs/modules/regionSelector'
+        }
+    })
+    seajs.use('$siteurl/res/source/js/modules/blindEmail.js')
+</script>
+")
+#CSRFToken("xToken")
+

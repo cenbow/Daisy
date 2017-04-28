@@ -1,0 +1,21 @@
+.u-cashCoupon-tab span, .u-reputation-tab span {
+    width: 50%;
+    height: 55px;
+    float: left;
+    color: #999;
+    display: block;
+    line-height: 55px;
+    text-align: center;
+    background-color: #fff;
+    border-bottom: 3px solid #fff;
+}
+.ui-badge-wrap {
+    position: relative;
+}
+.m-cashCoupon-point{
+    height: 100px;
+    width: 70%;
+    padding: 0 15%;
+    overflow: hidden;
+
+}

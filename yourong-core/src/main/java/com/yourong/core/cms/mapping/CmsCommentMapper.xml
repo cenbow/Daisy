@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.cms.dao.CmsCommentMapper">
+	<resultMap id="BaseResultMap" type="CmsComment">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="category_id" property="categoryId" jdbcType="BIGINT" />
+		<result column="article_id" property="articleId" jdbcType="BIGINT" />
+		<result column="title" property="title" jdbcType="VARCHAR" />
+		<result column="content" property="content" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="ip" property="ip" jdbcType="VARCHAR" />
+		<result column="audit_user_id" property="auditUserId" jdbcType="BIGINT" />
+		<result column="audit_time" property="auditTime" jdbcType="TIMESTAMP" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, category_id, article_id, title, content, name, ip, audit_user_id,
+		audit_time,
+		create_time, del_flag
+	</sql>
+	<insert id="insertSelective" parameterType="CmsComment">
+		insert into cms_comment
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="categoryId != null">
+				category_id,
+			</if>
+			<if test="articleId != null">
+				article_id,
+			</if>
+			<if test="title != null">
+				title,
+			</if>
+			<if test="content != null">
+				content,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="ip != null">
+				ip,
+			</if>
+			<if test="auditUserId != null">
+				audit_user_id,
+			</if>
+			<if test="auditTime != null">
+				audit_time,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="delFlag != null">
+				del_flag,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="categoryId != null">
+				#{categoryId,jdbcType=BIGINT},
+			</if>
+			<if test="articleId != null">
+				#{articleId,jdbcType=BIGINT},
+			</if>
+			<if test="title != null">
+				#{title,jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				#{content,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="ip != null">
+				#{ip,jdbcType=VARCHAR},
+			</if>
+			<if test="auditUserId != null">
+				#{auditUserId,jdbcType=BIGINT},
+			</if>
+			<if test="auditTime != null">
+				#{auditTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="delFlag != null">
+				#{delFlag,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="CmsComment">
+		update cms_comment
+		<set>
+			<if test="categoryId != null">
+				category_id = #{categoryId,jdbcType=BIGINT},
+			</if>
+			<if test="articleId != null">
+				article_id = #{articleId,jdbcType=BIGINT},
+			</if>
+			<if test="title != null">
+				title = #{title,jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				content = #{content,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="ip != null">
+				ip = #{ip,jdbcType=VARCHAR},
+			</if>
+			<if test="auditUserId != null">
+				audit_user_id = #{auditUserId,jdbcType=BIGINT},
+			</if>
+			<if test="auditTime != null">
+				audit_time = #{auditTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="delFlag != null">
+				del_flag = #{delFlag,jdbcType=INTEGER},
+			</if>
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<delete id="batchDelete" parameterType="java.lang.Long">
+		delete from cms_comment
+		where id in
+		<foreach collection="ids" index="index" item="item" open="("
+			separator="," close=")"> #{item}  </foreach>
+	</delete>
+	<select id="findByPage" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from cms_comment where del_flag >=0
+		<if test=" map != null">
+			<if test=" map.id != null">
+				and id = #{map.id}
+			</if>
+			<if test=" map.categoryId != null">
+				and category_id = #{map.categoryId}
+			</if>
+			<if test=" map.articleId != null">
+				and article_id = #{map.articleId}
+			</if>
+			<if test=" map.title != null">
+				and title = #{map.title}
+			</if>
+			<if test=" map.content != null">
+				and content = #{map.content}
+			</if>
+			<if test=" map.name != null">
+				and name = #{map.name}
+			</if>
+			<if test=" map.ip != null">
+				and ip = #{map.ip}
+			</if>
+			<if test=" map.auditUserId != null">
+				and audit_user_id = #{map.auditUserId}
+			</if>
+			<if test=" map.auditTime != null">
+				and audit_time = #{map.auditTime}
+			</if>
+			<if test=" map.createTime != null">
+				and create_time = #{map.createTime}
+			</if>
+			<if test="map.desc!=null">
+				order by ${map.desc} desc
+			</if>
+			<if test="map.asc!=null">
+				order by ${map.asc} asc
+			</if>
+		</if>
+	</select>
+</mapper>

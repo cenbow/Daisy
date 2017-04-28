@@ -1,0 +1,15 @@
+ #parse("/common/common.vm")
+ #########################################script##################################### 
+ #set($js_config=[ 
+ "'urlMap':{ 
+   'ajax':'$root_url/sysRole/ajax?', 
+   'ajaxTree':'$root_url/sysRole/ajaxTree?id=',
+   'updateRoleTree':'$root_url/sysRole/updateRoleTree?',    
+   'query':'$root_url/sysRole/index?', 
+   'save':'$root_url/sysRole/save', 
+   'show':'$root_url/sysRole/show?id=', 
+   'delet':'$root_url/sysRole/delete'}"
+ ]) 
+#set($css_url=["$root_url/static/css/ztree/zTreeStyle.css"])
+#set($js_url=["$root_url/static/js/sysRole.js","$root_url/static/js/lib/ztree/jquery.ztree.core-3.5.min.js","$root_url/static/js/lib/ztree/jquery.ztree.excheck-3.5.min.js","$root_url/static/js/page/roleTree.js"])
+ #########################################DOM##################################### 

@@ -1,0 +1,165 @@
+##帮助中心
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+
+#set($css_url=["$res_url/source/css/post/help.css","$res_url/lib/frozenui/1.2.1/css/frozen.css",
+    "$m_css_url/common.css"])
+<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport"/>
+
+#if($link.getContextPath() == '')
+    #set($siteurl='')
+#else
+    #set($siteurl=$link.getContextPath() )
+#end
+<style>
+    body {
+        background: #f3f3f3;
+    }
+</style>
+
+##第二层
+<div class="m-question">
+    <input class="j-siteurl-link" hidden="hidden" data-siteurl="$siteurl">
+    <ul id="j-question-type">
+        #foreach($commonQuestion in $commonQuestionMap.entrySet())
+            #if($commonQuestion.key == "clientAccountQuestion")
+                <li data-type="account">
+                    #foreach($accountQuestion in $commonQuestion.value.entrySet())
+                        <div>
+                            <h4><em></em>$!{accountQuestion.key}<i class="#if($velocityCount==1)z-unfold#end"></i></h4>
+                            <div class="u-help-hot #if($velocityCount!=1)f-dn#end">
+                                <table>
+                                    <tbody>
+                                        #foreach($labelQuestion in $accountQuestion.value)
+                                        <tr data-answerno="$!{labelQuestion.id}">
+                                            <td width="97%"><span>$!{labelQuestion.content}</span></td>
+                                            <td width="3%"><em></em></td>
+                                        </tr>
+                                        #end
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    #end
+                </li>
+            #end
+
+            #if($commonQuestion.key == "clientFundQuestion")
+                <li data-type="fund">
+                    #foreach($fundQuestion in $commonQuestion.value.entrySet())
+                        <div>
+                            <h4><em></em>$!{fundQuestion.key}<i class="#if($velocityCount==1)z-unfold#end"></i></h4>
+                            <div class="u-help-hot #if($velocityCount!=1)f-dn#end">
+                                <table>
+                                    <tbody>
+                                        #foreach($labelQuestion in $fundQuestion.value)
+                                        <tr data-answerno="$!{labelQuestion.id}">
+                                            <td width="97%"><span>$!{labelQuestion.content}</span></td>
+                                            <td width="3%"><em></em></td>
+                                        </tr>
+                                        #end
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    #end
+                </li>
+            #end
+
+            #if($commonQuestion.key == "clientInvestQuestion")
+                <li data-type="invest">
+                    #foreach($investQuestion in $commonQuestion.value.entrySet())
+                        <div>
+                            <h4><em></em>$!{investQuestion.key}<i class="#if($velocityCount==1)z-unfold#end"></i></h4>
+                            <div class="u-help-hot #if($velocityCount!=1)f-dn#end">
+                                <table>
+                                    <tbody>
+                                        #foreach($labelQuestion in $investQuestion.value)
+                                        <tr data-answerno="$!{labelQuestion.id}">
+                                            <td width="97%"><span>$!{labelQuestion.content}</span></td>
+                                            <td width="3%"><em></em></td>
+                                        </tr>
+                                        #end
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    #end
+                </li>
+            #end
+
+            #if($commonQuestion.key == "clientFunctionQuestion")
+                <li data-type="function">
+                    #foreach($functionQuestion in $commonQuestion.value.entrySet())
+                        <div>
+                            <h4><em></em>$!{functionQuestion.key}<i class="#if($velocityCount==1)z-unfold#end"></i></h4>
+                            <div class="u-help-hot #if($velocityCount!=1)f-dn#end">
+                                <table>
+                                    <tbody>
+                                        #foreach($labelQuestion in $functionQuestion.value)
+                                        <tr data-answerno="$!{labelQuestion.id}">
+                                            <td width="97%"><span>$!{labelQuestion.content}</span></td>
+                                            <td width="3%"><em></em></td>
+                                        </tr>
+                                        #end
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    #end
+                </li>
+            #end
+
+            #if($commonQuestion.key == "clientActivityQuestion")
+                <li data-type="activity">
+                    #foreach($activityQuestion in $commonQuestion.value.entrySet())
+                        <div>
+                            <h4><em></em>$!{activityQuestion.key}<i class="#if($velocityCount==1)z-unfold#end"></i></h4>
+                            <div class="u-help-hot #if($velocityCount!=1)f-dn#end">
+                                <table>
+                                    <tbody>
+                                        #foreach($labelQuestion in $activityQuestion.value)
+                                        <tr data-answerno="$!{labelQuestion.id}">
+                                            <td width="97%"><span>$!{labelQuestion.content}</span></td>
+                                            <td width="3%"><em></em></td>
+                                        </tr>
+                                        #end
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    #end
+                </li>
+            #end
+        #end
+
+
+    </ul>
+    <div class="u-help-more-wrapper j-help-more-wrapper">
+        <a class="j-help-more"
+           data-os="$os">没有你想要找的问题？</a>
+    </div>
+</div>
+<script src="$res_url/lib/js/sea.js"></script>
+<script src="$res_url/lib/js/zepto.min.js"></script>
+<script>
+    seajs.use('$res_url/source/js/post/help');
+</script>
+<script>
+    (function () {
+        //“意见反馈”区别调用不同app
+        var u = navigator.userAgent;
+        var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+        var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+        $(".j-help-more").on("click", function () {
+            if (isAndroid) {
+                Android.ToActivity("feedback", null);
+            } else if (isiOS) {
+                $(event.currentTarget).attr('href', 'yrw-skip://invokeMethod=feedback')
+            } else {
+                location.href = 'javascript:'
+            }
+        })
+    })()
+
+</script>

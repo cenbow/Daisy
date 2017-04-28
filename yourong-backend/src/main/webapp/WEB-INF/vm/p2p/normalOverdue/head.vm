@@ -1,0 +1,36 @@
+ #parse("/common/common.vm")
+ #########################################script##################################### 
+  #set($js_config=[ 
+ "'urlMap':{ 
+   'uploadURL':'$root_url/commonUpload/uploadFile',
+   'ajaxOverdue':'$root_url/normalOverdue/ajaxOverdue?', 
+   'save':'$root_url/normalOverdue/save?', 
+   'update':'$root_url/normalOverdue/update?', 
+   'showCollectInfo':'$root_url/normalOverdue/showCollectInfo?overdueRepayId=',
+   'findCollectProcess':'$root_url/normalOverdue/findCollectProcess?id=',
+   'find':'$root_url/normalOverdue/find?overdueRepayId=',
+   'findImage':'$root_url/normalOverdue/findImage?collectId=',
+   'showCollectRecord':'$root_url/normalOverdue/showCollectRecord',
+   'getPayRecord':'$root_url/overdueManager/getPayRecord',
+    'queryCollect':'$root_url/normalOverdue/queryCollect?id='
+   },
+   'securityType':#buildDictJson('debt_type'),##担保方式
+   'borrowPeriodType':#buildDictJson('borrow_period_type'),##借款周期类型
+   'projectStatus':#buildDictJson('project_status'),##项目状态   
+   'guarantyType':#buildDictJson('guaranty_type'),
+   'type':#buildDictJson('state_type'),##逾期类型
+   'marriage':#buildDictJson('marriage'),##婚姻
+   'education':#buildDictJson('education'),##学历
+   'interestStatus':#buildDictJson('debt_interest_status'),  ##债权本息状态
+   'repayStatus':#buildDictJson('repay_status'),
+   'permission':{
+   		'normalExcel':$shiro.hasPermission('normalOverdue:normalExcel'),##导出excel
+   		'edit':$shiro.hasPermission('normalOverdue:edit'),##编辑
+   		'add':$shiro.hasPermission('normalOverdue:add'),##添加
+   		'find':$shiro.hasPermission('normalOverdue:find')##查看催收历程
+   },
+   'aliyuncsUrl':'https://oss-cn-hangzhou.aliyuncs.com'
+   "])
+#set($css_url=["$root_url/static/js/lib/My97DatePicker/skin/WdatePicker.css","$root_url/static/assets/css/dropzone.css"])
+#set($js_url=["$root_url/static/js/normalOverdue.js","$root_url/static/js/lib/My97DatePicker/WdatePicker.js","$root_url/static/assets/js/dropzone.min.js","$root_url/static/js/dz-upload.js"]) 
+#########################################DOM##################################### 

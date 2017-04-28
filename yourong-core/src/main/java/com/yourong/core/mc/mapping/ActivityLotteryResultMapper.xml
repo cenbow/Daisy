@@ -1,0 +1,1054 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yourong.core.mc.dao.ActivityLotteryResultMapper">
+  <resultMap id="BaseResultMap" type="ActivityLotteryResult">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="activity_id" jdbcType="BIGINT" property="activityId" />
+    <result column="lottery_id" jdbcType="BIGINT" property="lotteryId" />
+    <result column="member_id" jdbcType="BIGINT" property="memberId" />
+    <result column="reward_info" jdbcType="VARCHAR" property="rewardInfo" />
+    <result column="reward_type" jdbcType="INTEGER" property="rewardType" />
+    <result column="reward_id" jdbcType="VARCHAR" property="rewardId" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="lottery_status" jdbcType="VARCHAR" property="lotteryStatus" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="chip" jdbcType="INTEGER" property="chip" />
+    <result column="reward_result" jdbcType="VARCHAR" property="rewardResult" />
+  </resultMap>
+  
+  <resultMap id="quickLotteryRewardMap" type="LotteryRewardBiz">
+    <id column="id" jdbcType="BIGINT" property="projectId" />
+    <result column="name" jdbcType="VARCHAR" property="projectName" />
+    <result column="chip" jdbcType="INTEGER" property="chip" />
+    <result column="reward_info" jdbcType="VARCHAR" property="rewardInfo" />
+    <result column="status" jdbcType="INTEGER" property="rewardStatus" />
+   	<result column="mobile" jdbcType="VARCHAR" property="memberMobile" />
+   	<result column="avatars" jdbcType="VARCHAR" property="memberAvatars" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+    id, activity_id, lottery_id, member_id, reward_info, reward_type, reward_id, status, lottery_status,
+    remark, create_time, update_time, chip, reward_result
+  </sql>
+  <insert id="insertSelective" parameterType="ActivityLotteryResult">
+    insert into mc_activity_lottery_result
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="activityId != null">
+        activity_id,
+      </if>
+      <if test="memberId != null">
+        member_id,
+      </if>
+      <if test="rewardInfo != null">
+        reward_info,
+      </if>
+      <if test="rewardType != null">
+        reward_type,
+      </if>
+      <if test="rewardId != null">
+        reward_id,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="lotteryStatus != null">
+        lottery_status,
+      </if>
+      <if test="chip != null">
+        chip,
+      </if>
+      <if test="rewardResult != null">
+        reward_result,
+      </if>
+      	lottery_id,
+		create_time,
+		update_time
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="activityId != null">
+        #{activityId,jdbcType=BIGINT},
+      </if>
+      <if test="memberId != null">
+        #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="rewardInfo != null">
+        #{rewardInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="rewardType != null">
+        #{rewardType,jdbcType=INTEGER},
+      </if>
+      <if test="rewardId != null">
+        #{rewardId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="lotteryStatus != null">
+        #{lotteryStatus,jdbcType=INTEGER},
+      </if>
+      <if test="chip != null">
+        #{chip,jdbcType=INTEGER},
+      </if>
+      <if test="rewardResult != null">
+        #{rewardResult,jdbcType=VARCHAR},
+      </if>
+      (select id from mc_activity_lottery where activity_id=#{activityId,jdbcType=BIGINT} and member_id=#{memberId,jdbcType=BIGINT}
+      <if test="cycleStr != null">
+        and cycle_constraint = #{cycleStr,jdbcType=VARCHAR}
+      </if>
+      ), now(), now()
+    </trim>
+  </insert>
+  
+  
+   <insert id="insertSelectiveS" parameterType="ActivityLotteryResult">
+    insert into mc_activity_lottery_result
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="activityId != null">
+        activity_id,
+      </if>
+      <if test="memberId != null">
+        member_id,
+      </if>
+       <if test="lotteryId != null">
+        lottery_id,
+      </if>
+      <if test="rewardInfo != null">
+        reward_info,
+      </if>
+      <if test="rewardType != null">
+        reward_type,
+      </if>
+      <if test="rewardId != null">
+        reward_id,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="chip != null">
+        chip,
+      </if>
+      <if test="rewardResult != null">
+        reward_result,
+      </if>
+		create_time,
+		update_time
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="activityId != null">
+        #{activityId,jdbcType=BIGINT},
+      </if>
+      <if test="memberId != null">
+        #{memberId,jdbcType=BIGINT},
+      </if>
+       <if test="lotteryId != null">
+        #{lotteryId,jdbcType=BIGINT},
+      </if>
+      <if test="rewardInfo != null">
+        #{rewardInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="rewardType != null">
+        #{rewardType,jdbcType=INTEGER},
+      </if>
+      <if test="rewardId != null">
+        #{rewardId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="chip != null">
+        #{chip,jdbcType=INTEGER},
+      </if>
+      <if test="rewardResult != null">
+        #{rewardResult,jdbcType=VARCHAR},
+      </if>
+       now(), now()
+    </trim>
+  </insert>
+  
+  <select id="countNewLotteryResult" resultType="java.lang.Integer">
+  	select count(1)
+  	from mc_activity_lottery_result
+    where activity_id = #{activityId,jdbcType=BIGINT} 
+    <if test="remark != null">
+    	and remark = #{remark,jdbcType=VARCHAR}
+    </if>
+     <if test="rewardType != null">
+    	and reward_type = #{rewardType,jdbcType=INTEGER}
+    </if>
+    <if test="memberId != null">
+	    and member_id = #{memberId,jdbcType=BIGINT}
+	</if>
+	<if test="rewardId != null">
+	    and reward_id = #{rewardId,jdbcType=VARCHAR}
+	</if>
+	<if test="lotteryStatus != null" >
+	    and lottery_status = #{lotteryStatus,jdbcType=INTEGER}
+	</if>
+  </select>
+  
+  <select id="queryNewLotteryResult" resultMap="BaseResultMap">
+  	select 
+     create_time, member_id, reward_info, chip, reward_result, reward_id
+    from mc_activity_lottery_result
+    where activity_id = #{activityId,jdbcType=BIGINT} 
+    <if test="remark != null">
+    	and remark = #{remark,jdbcType=VARCHAR}
+    </if>
+    and reward_type > 0
+    order by create_time desc
+	limit 0, #{rowNum,jdbcType=BIGINT}
+  </select>
+  
+  <select id="getLotteryResultBySelective" resultMap="BaseResultMap">
+  	 select 
+    	<include refid="Base_Column_List" />
+     from mc_activity_lottery_result
+     <where>
+		<if test="activityId != null">
+	        and activity_id = #{activityId,jdbcType=BIGINT}
+		</if>
+		<if test="id != null">
+	        and id = #{id,jdbcType=BIGINT}
+		</if>
+		<if test="memberId != null">
+	        and member_id = #{memberId,jdbcType=BIGINT}
+		</if>
+		<if test="rewardId != null">
+	        and reward_id = #{rewardId,jdbcType=VARCHAR}
+		</if>
+		<if test="remark != null">
+	        and remark = #{remark,jdbcType=VARCHAR}
+		</if>
+		<if test="rewardResult != null">
+	        and reward_result = #{rewardResult,jdbcType=VARCHAR}
+		</if>
+		<if test="rewardType != null">
+	        and reward_type = #{rewardType,jdbcType=INTEGER}
+		</if>
+		 <if test="status != null" >
+	        and status = #{status,jdbcType=INTEGER}
+	    </if>
+	    <if test="lotteryStatus != null" >
+	        and lottery_status = #{lotteryStatus,jdbcType=INTEGER}
+	    </if>
+	    
+		<if test="lotteryId != null">
+	        and lottery_id = #{lotteryId,jdbcType=BIGINT}
+		</if>
+     </where>
+      <if test="number != null" >
+	     order by id  desc    limit 0, #{number,jdbcType=BIGINT} 
+	  </if>
+  </select>
+  
+  <select id="queryNewLotteryResultAndProject" resultMap="BaseResultMap">
+  	select 
+     r.create_time, r.member_id, r.reward_info, r.chip, r.reward_result, r.reward_id, p.name as remark
+    from mc_activity_lottery_result as r
+    left join ic_project as p on p.id = r.reward_id
+    where activity_id = #{activityId,jdbcType=BIGINT} 
+    <if test="remark != null">
+    	and remark = #{remark,jdbcType=VARCHAR}
+    </if>
+    and reward_type > 0
+    order by create_time desc
+	limit 0, #{rowNum,jdbcType=BIGINT}
+  </select>
+  
+  <!-- 按奖励类型汇总结果-->
+  <select id="sumRewrdsByMemberActivity" resultType="java.lang.Integer">
+  	select 
+     IFNULL(SUM(r.reward_result),0)
+    from mc_activity_lottery_result as r
+    where activity_id = #{activityId,jdbcType=BIGINT} 
+    	and member_id = #{memberId,jdbcType=BIGINT} 
+    	and reward_type = #{rewardType,jdbcType=INTEGER} 
+  </select>
+  
+  <!-- 根据奖励类型排行-->
+  <select id="topByRewardType" resultMap="BaseResultMap">
+	  SELECT
+			r.member_id,
+			r.reward_type,
+			IFNULL(SUM(r.reward_result), 0) AS reward_result,
+			MAX(r.create_time) AS create_time
+		FROM
+			mc_activity_lottery_result AS r
+		WHERE
+			r.reward_type = #{rewardType,jdbcType=INTEGER} 
+		AND r.activity_id = #{activityId,jdbcType=BIGINT}
+		GROUP BY
+			r.member_id,
+			r.reward_type
+		ORDER BY
+			reward_result DESC,
+			create_time ASC
+		LIMIT 10
+	</select>
+	
+	<select id="inviteFriendList" resultMap="BaseResultMap">
+		SELECT
+			m.id as member_id,
+			GROUP_CONCAT(r.remark) AS remark
+		FROM
+			uc_member AS m
+		LEFT JOIN mc_activity_lottery_result AS r ON r.activity_id = #{activityId,jdbcType=BIGINT}
+		AND r.reward_type = 5
+		AND m.id = r.reward_id
+		WHERE
+			m.referral = #{memberId,jdbcType=BIGINT}
+	 	<if test="startTime != null" >
+          AND m.register_time <![CDATA[ >= ]]> #{startTime,jdbcType=TIMESTAMP} 
+        </if>
+        <if test="endTime != null" >
+          AND m.register_time <![CDATA[ <= ]]> #{endTime,jdbcType=TIMESTAMP}
+        </if>
+		GROUP BY
+			m.id
+		ORDER BY
+			m.register_time DESC
+		LIMIT #{startNo,jdbcType=INTEGER} ,
+		 5
+	</select>
+	
+	<select id="inviteFriendListTotal" resultType="Integer">
+		SELECT
+			count(m.id)
+		FROM
+			uc_member AS m
+		WHERE
+			m.referral = #{memberId,jdbcType=BIGINT}
+	 	<if test="startTime != null" >
+          AND m.register_time <![CDATA[ >= ]]> #{startTime,jdbcType=TIMESTAMP} 
+        </if>
+        <if test="endTime != null" >
+          AND m.register_time <![CDATA[ <= ]]> #{endTime,jdbcType=TIMESTAMP}
+        </if>
+	</select>
+	
+	
+  <select id="sumRewrdsByMemberActivityRewardId" resultType="java.lang.Integer">
+  	select 
+     IFNULL(SUM(r.reward_result),0)
+    from mc_activity_lottery_result as r
+    where activity_id = #{activityId,jdbcType=BIGINT}  
+    	and member_id = #{memberId,jdbcType=BIGINT}  
+    	and reward_type = 1  
+    	and reward_id = #{rewardId,jdbcType=VARCHAR}
+    	and remark!='counActivityBeginAomount'
+  </select>
+  
+   <select id="countRewrdsByMemberActivityRewardId" resultType="java.lang.Integer">
+  	select 
+    count(1)
+    from mc_activity_lottery_result 
+    where activity_id = #{activityId,jdbcType=BIGINT}  
+    	and member_id = #{memberId,jdbcType=BIGINT}  
+    	and reward_type = 1  
+    	and reward_id = #{rewardId,jdbcType=VARCHAR}
+    	and remark = #{remark,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getLotteryResultByMemberId" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from mc_activity_lottery_result 
+    where activity_id = #{activityId,jdbcType=BIGINT}  
+    	and member_id = #{memberId,jdbcType=BIGINT}  
+    	and remark = #{remark,jdbcType=VARCHAR}
+  </select>
+  
+   <select id="countLotteryResultByMemberIdAndRemark" resultType="java.lang.Integer">
+  	select 
+    count(1)
+    from mc_activity_lottery_result 
+    where activity_id = #{activityId,jdbcType=BIGINT}  
+    	and member_id = #{memberId,jdbcType=BIGINT}  
+    	and reward_type = 3  
+    	and reward_result = #{rewardResult,jdbcType=VARCHAR} 
+    	and remark = #{remark,jdbcType=VARCHAR}
+  </select>
+  
+  
+   <select id="getLotteryResultByRemark" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from mc_activity_lottery_result 
+    where activity_id = #{activityId,jdbcType=BIGINT}  
+    	and remark = #{remark,jdbcType=VARCHAR}
+  </select>
+  
+   <update id="updateLotteryResultRewardResultByActivityId">
+    update mc_activity_lottery_result
+    set reward_result = #{rewardResult,jdbcType=VARCHAR}
+    where activity_id = #{activityId,jdbcType=BIGINT}  and remark = #{remark,jdbcType=VARCHAR} 
+  </update> 
+  
+  <select id="getLotteryResultByGuessTime" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from mc_activity_lottery_result 
+    where activity_id = #{activityId,jdbcType=BIGINT}  
+    	and remark = #{remark,jdbcType=VARCHAR}
+    	and reward_result = #{rewardResult,jdbcType=VARCHAR} 
+    	<if test="guessStartTime != null" >
+          AND create_time <![CDATA[ >= ]]> #{guessStartTime,jdbcType=TIMESTAMP} 
+        </if>
+        <if test="guessEndTime != null" >
+          AND create_time <![CDATA[ <= ]]> #{guessEndTime,jdbcType=TIMESTAMP}
+        </if>
+  </select>
+  
+   <select id="getLotteryResultGuessMedalType" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from mc_activity_lottery_result 
+    where activity_id = #{activityId,jdbcType=BIGINT}  
+    	and member_id = #{memberId,jdbcType=BIGINT}  
+    	and reward_id = #{rewardId,jdbcType=VARCHAR} 
+    	<if test="guessStartTime != null" >
+          AND create_time <![CDATA[ >= ]]> #{guessStartTime,jdbcType=TIMESTAMP} 
+        </if>
+        <if test="guessEndTime != null" >
+          AND create_time <![CDATA[ <= ]]> #{guessEndTime,jdbcType=TIMESTAMP}
+        </if>
+        limit 1 
+  </select>
+  
+  <select id="getLotteryResultBySelectiveOrderBy" resultMap="BaseResultMap">
+  	 select 
+    	<include refid="Base_Column_List" />
+     from mc_activity_lottery_result
+     <where>
+		<if test="activityId != null">
+	        and activity_id = #{activityId,jdbcType=BIGINT}
+		</if>
+		<if test="memberId != null">
+	        and member_id = #{memberId,jdbcType=BIGINT}
+		</if>
+		<if test="rewardId != null">
+	        and reward_id = #{rewardId,jdbcType=VARCHAR}
+		</if>
+		<if test="remark != null">
+	        and remark = #{remark,jdbcType=VARCHAR}
+		</if>
+		<if test="rewardType != null">
+	        and reward_type = #{rewardType,jdbcType=INTEGER}
+		</if>
+		<if test="rewardResult != null">
+	        and reward_result = #{rewardResult,jdbcType=VARCHAR}
+		</if>
+		order  by update_time  desc limit 10 
+     </where>
+  </select>
+  
+   <update id="updateBatchLotteryResultRewardResultByActivityId" parameterType="ActivityLotteryResult" >
+    update mc_activity_lottery_result 
+    <set> update_time = now(),
+	    <if test="status != null" >
+	        status = #{status,jdbcType=INTEGER},
+	    </if>
+	    <if test="chip != null" >
+	        chip = #{chip,jdbcType=INTEGER},
+	    </if>
+    </set>
+    	where activity_id = #{activityId,jdbcType=BIGINT}
+    	<if test="memberId != null">
+	    	and member_id = #{memberId,jdbcType=BIGINT}
+	    </if>
+	    <if test="remark != null">
+	    	and remark = #{remark,jdbcType=VARCHAR}
+	    </if>
+	    <if test="rewardId != null">
+	        and reward_id = #{rewardId,jdbcType=VARCHAR}
+		</if>
+		 <if test="rewardResult != null" >
+	        and  reward_result = #{rewardResult,jdbcType=VARCHAR}
+	    </if>
+	    <if test="rewardType != null">
+	        and reward_type = #{rewardType,jdbcType=INTEGER}
+		</if>
+  </update>
+  
+   <update id="updateResultInfoByActivityId" >
+    update mc_activity_lottery_result 
+    <set> update_time = now(),
+	    <if test="rewardResult != null" >
+	        reward_result = #{rewardResult,jdbcType=VARCHAR},
+	    </if>
+    </set>
+    	where activity_id = #{activityId,jdbcType=BIGINT}
+	    <if test="remark != null">
+	    	and remark  like '%${remark}%'
+	    </if>
+  </update>
+  
+  
+   <select id="countLotteryResultByActivityIdAndRemark" resultType="java.lang.Integer">
+  	select 
+    count(1)
+    from mc_activity_lottery_result 
+    where activity_id = #{activityId,jdbcType=BIGINT}  
+    	and member_id = #{memberId,jdbcType=BIGINT}  
+    	and reward_type = 1  
+    	and status= 1 
+    	and remark = #{remark,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="countLotteryResultByActivityIdAndRewardId" resultType="java.lang.Integer">
+  	select 
+    count(1)
+    from mc_activity_lottery_result 
+    where activity_id = #{activityId,jdbcType=BIGINT}  
+    	and member_id = #{memberId,jdbcType=BIGINT}  
+    	and reward_type = 1  
+    	and status= 1 
+    	and reward_id = #{rewardId,jdbcType=VARCHAR}
+  </select>
+  
+  
+  <select id="checkExistBet" resultType="Integer">
+  	select  count(1)  from  mc_activity_lottery_result 
+    where activity_id = #{activityId,jdbcType=BIGINT} and member_id = #{memberId,jdbcType=BIGINT} and remark = #{remark,jdbcType=VARCHAR}
+   </select>
+   
+    <select id="countBetLotteryResult" resultType="java.lang.Integer">
+  	select count(1)
+  	from mc_activity_lottery_result
+     where activity_id = #{activityId,jdbcType=BIGINT} 
+     and  member_id = #{memberId,jdbcType=BIGINT} 
+     and  reward_type=1 
+  </select>
+  
+   <select id="countRemindBetLotteryResult" resultType="java.lang.Integer">
+  	select count(1)
+  	from mc_activity_lottery_result as r left join mc_activity_group as g on r.member_id=g.member_id 
+     where g.activity_id = #{activityId,jdbcType=BIGINT} 
+     and  r.reward_id = #{rewardId,jdbcType=VARCHAR} 
+     and  g.group_type = #{groupType,jdbcType=INTEGER}  
+     and  r.remark =  #{remark,jdbcType=VARCHAR}
+     and  r.reward_type=3
+  </select>
+  
+  <select id="queryBetBingoMember" resultMap="BaseResultMap">
+  	select 
+     <include refid="Base_Column_List" /> 
+    from mc_activity_lottery_result
+    <if test=" map != null" >
+    <where>
+        <if test=" map.activityId != null" >
+        	and activity_id = #{map.activityId}
+        </if>
+        <if test=" map.rewardType != null" >
+          	and reward_type = #{map.rewardType}
+        </if>
+         <if test=" map.remark != null" >
+          	and remark = #{map.remark}
+        </if>
+         <if test=" map.createdStartTime != null">
+			and create_time <![CDATA[>=]]> #{map.createdStartTime}
+		</if>
+		<if test=" map.createdEndTime != null">
+			and create_time <![CDATA[<=]]> #{map.createdEndTime}
+		</if>
+		    and remark in (1,2) 
+    </where>  
+    </if>
+  </select>
+  
+   <select id="countLastBetTotal" resultType="java.lang.Integer">
+  	select count(1)
+  	from mc_activity_lottery_result where activity_id = #{activityId,jdbcType=BIGINT}  and reward_type=1 and  remark =  #{remark,jdbcType=VARCHAR}
+  	
+  </select>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="ActivityLotteryResult">
+		update mc_activity_lottery_result 
+		<set>  
+			<if test="status != null">
+				status = #{status,jdbcType=INTEGER},
+			</if>
+			<if test="chip != null">
+				chip = #{chip,jdbcType=INTEGER},
+			</if>
+			<if test="lotteryStatus != null">
+				lottery_status = #{lotteryStatus,jdbcType=INTEGER},
+			</if>
+			<if test="rewardResult != null">
+       			 reward_result= #{rewardResult,jdbcType=VARCHAR},
+      		 </if>
+			<if test="rewardInfo != null">
+       			 reward_info= #{rewardInfo,jdbcType=VARCHAR},
+      		 </if>
+			update_time=now()
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	
+	<select id="getLotteryResultBySelectiveAndLotteryStatus" resultMap="BaseResultMap">
+  	 select 
+    	<include refid="Base_Column_List" />
+     from mc_activity_lottery_result
+     <where>
+		<if test="activityId != null">
+	        and activity_id = #{activityId,jdbcType=BIGINT}
+		</if>
+		<if test="memberId != null">
+	        and member_id = #{memberId,jdbcType=BIGINT}
+		</if>
+		<if test="rewardId != null">
+	        and reward_id = #{rewardId,jdbcType=VARCHAR}
+		</if>
+		<if test="remark != null">
+	        and remark = #{remark,jdbcType=VARCHAR}
+		</if>
+		<if test="rewardType != null">
+	        and reward_type = #{rewardType,jdbcType=INTEGER}
+		</if>
+		<if test="lotteryStatus != null">
+	        and lottery_status = #{lotteryStatus,jdbcType=INTEGER}
+		</if>
+		<if test="rewardResult != null">
+	        and reward_result = #{rewardResult,jdbcType=VARCHAR}
+		</if>
+		order  by create_time  asc  
+     </where>
+  </select>
+  
+   <select id="getActivityLotteryResultByProject" resultMap="BaseResultMap" >
+	SELECT member_id,id,@a:=@a+1 sort from mc_activity_lottery_result  ,(SELECT @a:=0) as a  
+    where  remark = #{remark,jdbcType=VARCHAR}  and  activity_id = #{activityId,jdbcType=BIGINT} 
+    and reward_type = #{rewardType,jdbcType=INTEGER}  ORDER BY  id 
+  </select>
+  
+  
+  <select id="countLotteryResultByProjectId" resultType="java.lang.Integer">
+  	 select 
+    	<include refid="Base_Column_List" />
+     from mc_activity_lottery_result
+     <where>
+		<if test="activityId != null">
+	        and activity_id = #{activityId,jdbcType=BIGINT}
+		</if>
+		<if test="memberId != null">
+	        and member_id = #{memberId,jdbcType=BIGINT}
+		</if>
+		<if test="rewardId != null">
+	        and reward_id = #{rewardId,jdbcType=VARCHAR}
+		</if>
+		<if test="remark != null">
+	        and remark = #{remark,jdbcType=VARCHAR}
+		</if>
+		<if test="chip != null">
+	        and chip = #{chip,jdbcType=INTEGER}
+		</if>
+		<if test="lotteryStatus != null">
+	        and lottery_status = #{lotteryStatus,jdbcType=INTEGER}
+		</if>
+		<if test="rewardResult != null">
+	        and reward_result = #{rewardResult,jdbcType=VARCHAR}
+		</if>
+     </where>
+  </select>
+   <resultMap id="ProjectForMemberMap" type="ProjectForRewardMember"
+ 		extends="BaseResultMap">
+	<result column="member_id" property="memberId" jdbcType="BIGINT" />
+	<result column="avatars" property="avatars" jdbcType="VARCHAR" />
+	<result column="username" property="username" jdbcType="VARCHAR" />
+	<result column="reward" property="reward" jdbcType="VARCHAR" />
+   </resultMap>
+  <select id="findProjectRewardByProjectId" resultMap="ProjectForMemberMap">
+  	 select 
+    	m.member_id,
+    	u.username,
+    	u.avatars,
+    	u.mobile,
+    	sum(m.reward_info)+0 as reward
+     from mc_activity_lottery_result as m inner join uc_member as u 
+     on m.member_id=u.id  
+     <where>
+		<if test="activityId != null">
+	        and m.activity_id = #{activityId,jdbcType=BIGINT}
+		</if>
+		<if test="memberId != null">
+	        and m.member_id = #{memberId,jdbcType=BIGINT}
+		</if>
+		<if test="rewardId != null">
+	        and m.reward_id = #{rewardId,jdbcType=VARCHAR}
+		</if>
+		<if test="remark != null">
+	        and m.remark = #{remark,jdbcType=VARCHAR}
+		</if>
+		<if test="rewardType != null">
+	        and m.reward_type = #{rewardType,jdbcType=INTEGER}
+		</if>
+		<if test="rewardResult != null">
+	        and m.reward_result = #{rewardResult,jdbcType=VARCHAR}
+		</if>
+		 group by  m.member_id 
+     </where>
+      order by reward desc 
+  </select>
+  
+   <resultMap id="ProjectForLevelMap" type="ProjectForLevel"
+ 		extends="BaseResultMap">
+	<result column="level" property="level" jdbcType="INTEGER" />
+	<result column="number" property="number" jdbcType="INTEGER" />
+	<result column="reward" property="reward" jdbcType="VARCHAR" />
+   </resultMap>
+  
+   <select id="getRewardLevelByProjectId" resultMap="ProjectForLevelMap">
+  	 select 
+     sum(reward_info) as reward ,chip as level ,count(0) as number 
+     from mc_activity_lottery_result
+     <where>
+		<if test="activityId != null">
+	        and activity_id = #{activityId,jdbcType=BIGINT}
+		</if>
+		<if test="memberId != null">
+	        and member_id = #{memberId,jdbcType=BIGINT}
+		</if>
+		<if test="rewardId != null">
+	        and reward_id = #{rewardId,jdbcType=VARCHAR}
+		</if>
+		<if test="remark != null">
+	        and remark = #{remark,jdbcType=VARCHAR}
+		</if>
+		<if test="rewardType != null">
+	        and reward_type = #{rewardType,jdbcType=INTEGER}
+		</if>
+		<if test="rewardResult != null">
+	        and reward_result = #{rewardResult,jdbcType=VARCHAR}
+		</if>
+		<if test="chip != null">
+	        and chip = #{chip,jdbcType=INTEGER}
+		</if>
+		 group by chip  
+     </where>
+  </select>
+  
+  
+   <select id="sumRewardInfoByProjectId" resultType= "java.math.BigDecimal">
+  	 select 
+    	sum(chip) as chip  
+     from mc_activity_lottery_result 
+     <where>
+		<if test="activityId != null">
+	        and activity_id = #{activityId,jdbcType=BIGINT}
+		</if>
+		<if test="memberId != null">
+	        and member_id = #{memberId,jdbcType=BIGINT}
+		</if>
+		<if test="rewardId != null">
+	        and reward_id = #{rewardId,jdbcType=VARCHAR}
+		</if>
+		<if test="remark != null">
+	        and remark = #{remark,jdbcType=VARCHAR}
+		</if>
+		<if test="rewardType != null">
+	        and reward_type = #{rewardType,jdbcType=INTEGER}
+		</if>
+		<if test="rewardResult != null">
+	        and reward_result = #{rewardResult,jdbcType=VARCHAR}
+		</if>
+		<if test="chip != null">
+	        and chip = #{chip,jdbcType=INTEGER}
+		</if>
+     </where>
+  </select>
+  
+  
+   <select id="sumRewardInfoByMemberId" resultMap="BaseResultMap">
+  	 select 
+  	 id,
+  	 activity_id,
+  	 lottery_id,
+  	 member_id,
+  	 chip,
+     sum(reward_info)  as reward_info,
+     reward_result,
+     reward_type,
+     reward_id,
+     status,
+     remark,
+     lottery_status 
+     from mc_activity_lottery_result
+     <where>
+		<if test="activityId != null">
+	        and activity_id = #{activityId,jdbcType=BIGINT}
+		</if>
+		<if test="memberId != null">
+	        and member_id = #{memberId,jdbcType=BIGINT}
+		</if>
+		<if test="rewardId != null">
+	        and reward_id = #{rewardId,jdbcType=VARCHAR}
+		</if>
+		<if test="remark != null">
+	        and remark = #{remark,jdbcType=VARCHAR}
+		</if>
+		<if test="rewardType != null">
+	        and reward_type = #{rewardType,jdbcType=INTEGER}
+		</if>
+		<if test="rewardResult != null">
+	        and reward_result = #{rewardResult,jdbcType=VARCHAR}
+		</if>
+		<if test="chip != null">
+	        and chip = #{chip,jdbcType=INTEGER}
+		</if>
+		<if test="lotteryStatus != null">
+	        and lottery_status = #{lotteryStatus,jdbcType=INTEGER}
+		</if>
+		 group by member_id  
+     </where>
+  </select>
+  
+  
+   <select id="getRewardInfoLevelByProjectId" resultMap="ProjectForLevelMap">
+  	 select 
+     reward_info as reward ,chip as level ,count(0) as number 
+     from mc_activity_lottery_result
+     <where>
+		<if test="activityId != null">
+	        and activity_id = #{activityId,jdbcType=BIGINT}
+		</if>
+		<if test="memberId != null">
+	        and member_id = #{memberId,jdbcType=BIGINT}
+		</if>
+		<if test="rewardId != null">
+	        and reward_id = #{rewardId,jdbcType=VARCHAR}
+		</if>
+		<if test="remark != null">
+	        and remark = #{remark,jdbcType=VARCHAR}
+		</if>
+		<if test="rewardType != null">
+	        and reward_type = #{rewardType,jdbcType=INTEGER}
+		</if>
+		<if test="rewardResult != null">
+	        and reward_result = #{rewardResult,jdbcType=VARCHAR}
+		</if>
+		<if test="chip != null">
+	        and chip = #{chip,jdbcType=INTEGER}
+		</if>
+		 group by chip  
+     </where>
+  </select>
+  
+  
+   <update id="updateLotteryRewardResultByActivityId" parameterType="ActivityLotteryResult" >
+    update mc_activity_lottery_result 
+    <set> update_time = now(),
+	    <if test="status != null" >
+	        status = #{status,jdbcType=INTEGER},
+	    </if>
+	    <if test="chip != null" >
+	        chip = #{chip,jdbcType=INTEGER},
+	    </if>
+	     <if test="rewardResult != null" >
+	         reward_result = #{rewardResult,jdbcType=VARCHAR}
+	    </if>
+    </set>
+    	where activity_id = #{activityId,jdbcType=BIGINT}
+    	<if test="memberId != null">
+	    	and member_id = #{memberId,jdbcType=BIGINT}
+	    </if>
+	    <if test="remark != null">
+	    	and remark = #{remark,jdbcType=VARCHAR}
+	    </if>
+	    <if test="rewardId != null">
+	        and reward_id = #{rewardId,jdbcType=VARCHAR}
+		</if>
+		<if test="activityId != null">
+	        and activity_id = #{activityId,jdbcType=BIGINT}
+		</if>
+		
+  </update>
+  
+  <!-- 查询快投项目现金奖励最高的金额 -->
+  <select id="getMaxRewardForQuickProject" resultMap="BaseResultMap">
+  	SELECT
+		sum(reward_info) AS reward_info, member_id
+	FROM
+		mc_activity_lottery_result
+	WHERE
+		reward_result = 'winnerLottery'
+		AND remark = #{remark,jdbcType=VARCHAR}
+	GROUP BY member_id
+  </select>
+  
+  <!-- 历史快投中奖名单 -->
+  <select id="getLotteryReward" resultMap="quickLotteryRewardMap">
+	SELECT 
+	    p.id ,p.name,r.chip,r.reward_info,r.status,u.mobile,u.avatars
+	  FROM 
+	    mc_activity_lottery_result r
+	    LEFT JOIN ic_project p ON r.remark = p.id and p.status>50
+	    LEFT JOIN ic_project_extra e ON e.project_id = p.id and e.extra_type = 1 and e.activity_sign = 2 and e.del_flag = 1
+	    LEFT JOIN uc_member u ON u.id = r.member_id
+	  WHERE r.reward_result='winnerLottery'
+	    AND r.remark=p.id 
+	    AND u.id=r.member_id
+	    ORDER BY r.create_time DESC
+		limit 0, #{rowNum,jdbcType=BIGINT}
+  </select>
+  
+  <!-- 指定快投项目中奖名单 -->
+  <select id="getProjectLotteryReward" resultMap="quickLotteryRewardMap">
+  	SELECT
+		p.id,
+		p.name,
+		r.chip,
+		r.reward_info,
+		r.status,
+		u.mobile,
+		u.avatars
+	FROM
+		mc_activity_lottery_result r
+	LEFT JOIN ic_project p ON r.remark = p.id
+	LEFT JOIN ic_project_extra e ON e.project_id = p.id and e.extra_type = 1 and e.activity_sign = 2 and e.del_flag = 1
+	LEFT JOIN uc_member u ON u.id = r.member_id
+	WHERE
+	  r.remark = #{projectId,jdbcType=VARCHAR}
+	AND	r.reward_result = 'winnerLottery'
+	AND u.id = r.member_id
+	ORDER BY
+		r.chip ASC
+  </select>
+
+    <select id="queryActivityGrabResult" parameterType="java.lang.Long" resultType="com.yourong.core.mc.model.biz.ActivityGrabResultBiz">
+        SELECT m.mobile,m.avatars,r.reward_info rewardInfo FROM mc_activity_lottery_result r LEFT JOIN uc_member m ON r.member_id=m.id WHERE r.activity_id=#{activityId}
+        ORDER BY r.create_time DESC
+    </select>
+
+    <select id="queryLotteryResultByActivityAndMemberId" resultType="java.lang.Integer">
+        SELECT COUNT(1) FROM mc_activity_lottery_result WHERE activity_id=#{activityId} AND member_id=#{memberId}
+    </select>
+    
+    <!-- 当前用户可用抽奖次数  -->
+     <select id="sumRewardInfoResultByProjectId" resultMap="BaseResultMap">
+  	 select 
+     sum(reward_info)  as reward_info
+     from mc_activity_lottery_result
+     where activity_id = #{activityId,jdbcType=BIGINT} 
+     and remark = #{remark,jdbcType=VARCHAR}
+     and reward_result = #{rewardResult,jdbcType=VARCHAR} 
+  </select>
+    <select id="queryAvailableLotteryNum" resultType="java.lang.Integer">
+	    SELECT 
+	      count(*)
+	    FROM 
+	      mc_activity_lottery_result r
+	      LEFT JOIN ic_project p ON r.remark = p.id 
+	      LEFT JOIN ic_project_extra e ON e.project_id = p.id and e.extra_type = 1 and e.activity_sign = 2 and e.del_flag = 1
+	    WHERE r.lottery_status=0
+	    AND r.member_id = #{memberId,jdbcType=BIGINT}
+	    AND r.create_time>'2017-01-24'
+    </select>
+    
+    
+     <update id="updateLotteryResultStatus" parameterType="ActivityLotteryResult" >
+    update mc_activity_lottery_result 
+    <set> update_time = now(),
+	   lottery_status=1 
+    </set>
+		where id in (select id  from  (select id from mc_activity_lottery_result  
+		where activity_id = #{activityId,jdbcType=BIGINT}
+    	<if test="memberId != null">
+	    	and member_id = #{memberId,jdbcType=BIGINT}
+	    </if>
+	    <if test="remark != null">
+	    	and remark = #{remark,jdbcType=VARCHAR}
+	    </if>
+	    <if test="rewardId != null">
+	        and reward_id = #{rewardId,jdbcType=VARCHAR}
+		</if>
+		<if test="rewardType != null">
+	        and reward_type = #{rewardType,jdbcType=INTEGER}
+		</if>
+		<if test="lotteryStatus != null">
+	        and lottery_status = #{lotteryStatus,jdbcType=INTEGER}
+		</if>
+		order by id desc limit #{number,jdbcType=INTEGER}) t )
+  </update>
+  
+  
+  <select id="queryLotteryResultByRemark" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" /> 
+    from mc_activity_lottery_result
+    where activity_id = #{activityId,jdbcType=BIGINT}  
+    <if test="remark != null">
+    	and remark = #{remark,jdbcType=VARCHAR}
+    </if>
+    and member_id = #{memberId,jdbcType=BIGINT}
+	limit 1 
+  </select>
+  
+   <select id="activityLotteryResultForPaginTotalCount" resultType="java.lang.Integer" parameterType="ActivityLotteryResultQuery">
+  	 select 
+    	count(1)  
+     from mc_activity_lottery_result
+     <if test="activityLotteryResultQuery !=null"> 
+     <where>
+		<if test="activityLotteryResultQuery.activityId != null">
+	        and activity_id = #{activityLotteryResultQuery.activityId,jdbcType=BIGINT}
+		</if>
+		<if test="activityLotteryResultQuery.memberId != null">
+	        and member_id = #{activityLotteryResultQuery.memberId,jdbcType=BIGINT}
+		</if>
+		<if test="activityLotteryResultQuery.remark != null">
+	        and remark = #{activityLotteryResultQuery.remark,jdbcType=VARCHAR}
+		</if>
+     </where>
+     </if>
+  </select>
+  
+   <select id="activityLotteryResultForPage"  resultMap="BaseResultMap"  parameterType="ActivityLotteryResultQuery">
+  	 select 
+     <include refid="Base_Column_List" /> 
+     from  mc_activity_lottery_result
+     <if test="activityLotteryResultQuery !=null"> 
+     <where>
+		<if test="activityLotteryResultQuery.activityId != null">
+	        and activity_id = #{activityLotteryResultQuery.activityId,jdbcType=BIGINT}
+		</if>
+		<if test="activityLotteryResultQuery.memberId != null">
+	        and member_id = #{activityLotteryResultQuery.memberId,jdbcType=BIGINT}
+		</if>
+		<if test="activityLotteryResultQuery.remark != null">
+	        and remark = #{activityLotteryResultQuery.remark,jdbcType=VARCHAR}
+		</if>
+     </where>
+     </if>
+     order by id desc  
+     LIMIT #{activityLotteryResultQuery.startRow,jdbcType=INTEGER},
+		#{activityLotteryResultQuery.pageSize,jdbcType=INTEGER}
+  </select>
+  
+</mapper>

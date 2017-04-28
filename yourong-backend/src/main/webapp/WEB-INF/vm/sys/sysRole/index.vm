@@ -1,0 +1,48 @@
+#parse("/sys/sysRole/head.vm") 
+<div class="col-xs-12">
+  <p>
+    <button id = "new_sysRole" type="button" class="btn btn-info btn-sm btn-primary" >新增</button>
+    <button id = "edit_sysRole" type="button" class="btn  btn-pink btn-sm btn-primary" >修改</button>
+    <button id = "delete_sysRole" type="button" class="btn btn-danger btn-sm btn-primary" >删除</button>
+  </p>
+</div>
+<div class="col-xs-12">
+     <div class="table-header">
+     		表头信息
+     </div>
+   <div class="table-responsive">
+     	<table id="sysRole-table-2" class="table table-striped table-bordered" cellspacing="0" width="100%">
+     	       <thead> 
+     	           <tr>  
+     	            <th></th>
+ <th><input type="text" name="search_id"  class="input-small search_init" /></th>
+ <th><input type="text" name="search_officeId"  class="input-small search_init" /></th>
+ <th><input type="text" name="search_name"  class="input-small search_init" /></th>
+ <th><input type="text" name="search_dataScope"  class="input-small search_init" /></th>
+ <th><input type="text" name="search_createBy"  class="input-small search_init" /></th>
+ <th><input type="text" name="search_createDate"  class="input-small search_init" /></th>
+ <th><input type="text" name="search_updateBy"  class="input-small search_init" /></th>
+ <th><input type="text" name="search_updateDate"  class="input-small search_init" /></th>
+ <th><input type="text" name="search_remarks"  class="input-small search_init" /></th>
+ <th><input type="text" name="search_delFlag"  class="input-small search_init" /></th>
+         <th><button id = "query_sysRole" type="button" class="btn btn-info btn-sm btn-primary">查询</button></th>
+                    </tr>
+ <tr >
+ <th ><label><input class="ace" type="checkbox"> <span class="lbl"></span></label></th>
+<th >编号</th>
+<th >归属机构</th>
+<th >角色名称</th>
+<th >数据范围</th>
+<th >创建者</th>
+<th >创建时间</th>
+<th >更新者</th>
+<th >更新时间</th>
+<th >备注信息</th>
+<th >删除标记</th>
+<th ></th>
+ </tr>
+ </thead>
+ </table>
+ </div>
+ </div>
+ #parse("/sys/sysRole/form.vm")

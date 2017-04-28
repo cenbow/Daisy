@@ -1,0 +1,25 @@
+ #parse("/common/common.vm")
+ #########################################script##################################### 
+ #set($js_config=[ 
+ "'urlMap':{ 
+   'ajax':'$root_url/paymentPlatform/ajax?', 
+   'save':'$root_url/paymentPlatform/save',
+   'del':'$root_url/paymentPlatform/del',
+   'saveMaint':'$root_url/paymentPlatform/saveMaint',
+   'delMaint':'$root_url/paymentPlatform/delMaint',
+   'getBankList':'$root_url/bscBank/getBankList',
+   'ueditor':'$root_url/static/js/lib/ueditor/'
+   },
+   'permission':{
+	   	'add': $shiro.hasPermission('paymentPlatform:add'),
+		'edit': $shiro.hasPermission('paymentPlatform:edit'),
+		'del': $shiro.hasPermission('paymentPlatform:del'),
+		'addMaint': $shiro.hasPermission('paymentPlatform:addMaint'),
+		'editMaint': $shiro.hasPermission('paymentPlatform:editMaint'),
+		'showMaint': $shiro.hasPermission('paymentPlatform:showMaint'),
+		'delMaint': $shiro.hasPermission('paymentPlatform:delMaint')
+   	}"
+ ]) 
+ #set($css_url=["$root_url/static/js/lib/validform/css/style.css","$root_url/static/js/lib/My97DatePicker/skin/WdatePicker.css","$root_url/static/js/lib/ueditor/themes/default/css/ueditor.min.css"])
+ #set($js_url=["$root_url/static/js/paymentPlatform.js","$root_url/static/js/lib/My97DatePicker/WdatePicker.js"])
+ #########################################DOM##################################### 

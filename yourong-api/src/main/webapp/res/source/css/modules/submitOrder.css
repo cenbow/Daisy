@@ -1,0 +1,169 @@
+body{
+    height: 100%!important;
+}
+.m-bankcard-grap {
+    width: 90%;
+    margin: 33px 5% 0 5%;
+}
+
+.m-bankcard-border {
+    color: #666;
+    border-bottom: 1px solid #ccc;
+}
+
+.m-submit li {
+    border-bottom: 1px solid #ccc;
+    line-height: 30px;
+    margin-top: 30px;
+    color: #999;
+}
+
+.m-submit em {
+    color: #d8414a;
+    font-size: 22px;
+    margin-left: 20px;
+    font-family: "dincond";
+}
+
+.m-submit span {
+    color: #d8414a;
+    font-family: "dincond", "Microsoft Yahei";
+    font-size: 48px;
+    margin-left: 20px;
+
+}
+
+#j-agree {
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+}
+
+.f-fc-red {
+    color: #d8414a!important;
+}
+
+.f-choice {
+    line-height: 50px !important;
+    background: #fff;
+    text-align: right;
+    width: 110%;
+    margin: 6px 0 0 -5% !important;
+    border: none !important;
+}
+
+.z-indent {
+    text-indent: 10px;
+    color: #999;
+    margin-right: 5%;
+}
+
+.u-btn-primary {
+    background-color: #d74147;
+    border-color: #d74147;
+    outline: 0;
+    position: fixed;
+    bottom: 0;
+}
+
+.f-btn-submit {
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.f-agree-pos {
+    margin-top: 20px;
+    color: #999;
+}
+
+.u-reg-btn.z-disabled {
+    background-color: #aaa;
+    border-color: #aaa;
+    cursor: default;
+}
+
+.u-cashCoupon-popup {
+    width: 90%;
+    position: fixed;
+    bottom: 16px;
+    left: 5%;
+    z-index: 200;
+}
+
+.u-cashCoupon {
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow-y: scroll;
+}
+.u-cashCoupon .f-gray-bg {
+    background: #000;
+    opacity: 0.1;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+.u-cashCoupon .f-color-gray{
+    color: #999!important;
+}
+.u-cashCoupon li {
+    padding: 6px 10px;
+    border-top: 1px solid #ccc;
+    position: relative;
+}
+.u-cashCoupon li:first-child {
+    border-top: none;
+}
+.u-cashCoupon li span {
+    display: block;
+    color: #999;
+}
+
+.u-btn-close {
+    width: 100%;
+    background-color: #fff;
+    line-height: 40px;
+    border-radius: 5px;
+    margin-top: 20px;
+    color: #999;
+
+}
+
+.u-cover {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    z-index: 198;
+    -moz-opacity: 0.5;
+    opacity: .50;
+    filter: alpha(opacity=50);
+}
+
+.u-contract{
+    position: absolute;
+    top: 0;
+    left: auto;
+    z-index: 10001;
+}
+.u-contract-back{
+    height: 40px;
+    width:100%;
+    position: fixed;
+    bottom:0;
+    left:auto;
+    text-align: center;
+    background: #d74147;
+    line-height: 40px;
+    color: #fff;
+}

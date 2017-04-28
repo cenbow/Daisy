@@ -1,0 +1,123 @@
+#parse('/common/common.vm')
+#set($title="$!{article.title}")
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    <style>
+              html{
+            font-size: 62.5%;
+        }
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+        /*媒体报道*/
+
+        .u-newsdetail-body {
+            background-color: #fff;
+            border-color: #fff;
+            padding:1rem 0;
+        }
+        .u-newsdetail-head {
+            height: 80px;
+            line-height: 2em;
+            text-align: center;
+            padding: 2rem 0 1.8rem;
+            color: #666;
+        }
+
+        .u-newsdetail-alink,.u-newsdetail-alink:link,.u-newsdetail-alink:visited,.u-newsdetail-alink:hover {
+            color: #666;
+            text-decoration: underline;
+
+        }
+        .u-newsdetail-content {
+            color: #666;
+            padding: 1rem 0;
+            font-size: 1rem;
+            border-top: 1px solid #dddbd6;
+        }
+
+        .u-newsdetail-close a:link {
+            color: #fefefe;
+        }
+
+        .u-newsdetail-close a:visited {
+            color: #fefefe;
+        }
+
+        .u-newsdetail-close a:hover {
+            color: #fefefe;
+        }
+
+        .u-newsdetail-content p {
+            margin-bottom: 2rem;
+            line-height: 2.2rem;
+            text-indent: 2em;
+            padding: 0 1rem;
+            font-size: 1.5rem;
+            color: #666;
+            text-align: justify;
+        }
+
+        .u-newsdetail-content p:last-child {
+            margin-bottom: 0px;
+        }
+        .u-newsdetail-head h3{
+            font-size: 2rem;
+            line-height: 2rem;
+        }
+        .m-notice-content>div img{
+            display: block;
+            width: 100%;
+        }
+		/**公告**/
+        body, button, input, select, textarea {
+            font: 12px/1.5 tahoma, arial, "Hiragino Sans GB", "Microsoft Yahei", \5b8b\4f53;
+        }
+        body{
+            padding: 2rem 3%;
+            margin: 0;
+            color: #666;
+        }
+        .m-notice-content h3{
+            font-size: 1.7rem;
+            text-align: center;
+			display:block;
+			margin-bottom:1.5rem;
+        }
+
+        .m-notice-content p{
+            text-indent: 3rem;
+            font-size: 1.5rem;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    #if($!{article})
+    	#if(${article.id} == 2)
+    		<div class="u-newsdetail-body f-round j-news-list">
+                <div class="u-newsdetail-head">
+                    <h3>$!{article.title}</h3>
+                    <p>$!newsDetail.copyfrom $!newsDetail.createDateStr&nbsp;&nbsp;&nbsp;&nbsp;<a href="$!article.link" target="_blank" class="u-newsdetail-alink">原文链接</a></p>
+                </div>
+                <div class="u-newsdetail-content">
+					$!{article.contentHtml}
+				</div>
+			</div>
+    	#else
+    		<div class="m-notice-content">
+                <h3>$!{article.title}</h3>
+                <div>
+					$!{article.contentHtml}
+                </div>
+            </div>
+    	#end
+    #else
+    	暂无内容
+    #end
+</body>
+</html>

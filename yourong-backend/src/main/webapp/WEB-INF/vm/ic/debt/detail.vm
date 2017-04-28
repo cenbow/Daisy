@@ -1,0 +1,517 @@
+#set($layout = "/layout/iframe.vm")
+#parse("/ic/debt/head.vm")
+<form id="debt_form">
+	<div class="row">
+		<div class="col-xs-9 col-sm-9 widget-container-span ui-sortable">
+			<div class="widget-box">
+				<div class="widget-header">
+					<h5>债权基本信息</h5>
+				</div>
+				<div class="widget-body">
+					<div class="widget-main">
+						<div class="form-group clearfix well">
+						<div class="col-sm-6">
+							<label class="col-sm-3 control-label no-padding-right" for="form-field-originalDebtNumber">原始债权编号*</label>
+							<div class="col-sm-5">
+								<input type="text"  name="originalDebtNumber" id="form-field-originalDebtNumber" placeholder="" class="col-xs-12 col-sm-12" datatype="*" sucmsg="&nbsp;">
+							</div>
+							<!--<label class="col-sm-1 control-label no-padding-right" for="form-field-2">所属地区*</label>-->
+							##areaProvSelect("area",${sysServiceUtil.getAllAreaList(2)} ,"省","市","区")
+						</div>
+					</div>
+					<h4 class="">债权信息</h4>
+					<div class="well">
+						<div class="form-group clearfix">
+							<label class="col-sm-1 control-label no-padding-right" for="form-field-debtType" >担保方式*</label>
+							<div class="col-sm-3">
+								<select name="debtType" class="form-control" id="form-field-debtType" datatype="*">
+									<option value="">选择</option>
+									<option value="pledge">质押</option>
+									<option value="collateral">抵押</option>
+									<option value="credit">信用</option>
+								</select>
+							</div>
+						</div>
+						<!--抵押物类型-->
+						<div class="form-group clearfix thingType" id="collateral_type" style="display:none">
+							<label class="col-sm-1 control-label no-padding-right" for="form-field-type">抵押类型*</label>
+							<div class="col-sm-3">
+								<select class="form-control" name="debtCollateral.collateralType" id="collateral_type_sel"  datatype="*">
+									<option value="">选择</option>
+									<option value="car">汽车</option>
+									<option value="house">房产</option>
+								</select>
+							</div>
+						</div>
+						<!--质押物类型-->
+						<div class="form-group clearfix thingType" id="pledge_type" style="display:none">
+							<label class="col-sm-1 control-label no-padding-right" for="form-field-type">质押类型*</label>
+							<div class="col-sm-3">
+								<select class="form-control" name="debtPledge.pledgeType" id="pledge_type_sel" datatype="*" >
+									<option value="">选择</option>
+									<option value="car">汽车</option>
+									<option value="newCar">汽车合格证</option>
+									<option value="equity">股权融</option>
+								</select>
+							</div>
+						</div>
+						<!--保证措施 -->
+						<div class="form-group clearfix thingType" id="credit_type" style="display:none">
+							<label class="col-sm-1 control-label no-padding-right" for="form-field-type">保证措施*</label>
+							<div class="col-sm-3">
+								<select class="form-control" name="" id="credit_type_sel"  datatype="*" >
+									<option value="">选择</option>
+									<option value="houseRecord">房屋备案</option>
+									<option value="carPayIn">车贷垫资</option>
+									<option value="carBusiness">车商融</option>
+									<option value="runCompany">经营融（担保）</option>
+								</select>
+							</div>
+						</div>
+						<!--抵押物==房产详情-->
+						<input type="hidden" id="coll_id" name="debtCollateral.id">
+						<input type="hidden" id="coll_detail" name="debtCollateral.collateralDetails"><!--抵押物详情-->
+						<input type="hidden" id="coll_value" name="debtCollateral.collateralValuation"><!--市场估值-->
+						<div style="display:none" class="thingDetail" id="house_detail">
+							<div  class="form-group clearfix" >
+								<label class="col-sm-1 control-label no-padding-right" for="form-field-type">房屋类型*</label>
+								<div class="col-sm-2">
+									<input type="text" iname="house_fwlx" class="col-xs-12 col-sm-12" />
+								</div>
+								<label class="col-sm-1 control-label no-padding-right" for="form-field-type">产权证号*</label>
+								<div class="col-sm-2">
+									<input type="text" iname="house_cqzh" class="col-xs-12 col-sm-12" />
+									<span style="color:red;font-size:12px;">(产权证号中间数字请用*代替)</span>
+								</div>
+								<label class="col-sm-1 control-label no-padding-right" for="form-field-type">登记机构*</label>
+								<div class="col-sm-2">
+									<input type="text" iname="house_djjg" class="col-xs-12 col-sm-12" />
+								</div>
+							</div>
+							<div  class="form-group clearfix" >
+								<label class="col-sm-1 control-label no-padding-right" for="form-field-type">登记日期*</label>
+								<div class="col-sm-2">
+									<input type="text" iname="house_djrq" class="col-xs-12 col-sm-12" onclick="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd',onpicked:autoEndDate})"/>
+								</div>
+								<label class="col-sm-1 control-label no-padding-right" for="form-field-type">建筑面积*</label>
+								<div class="col-sm-2">
+									<input type="text" iname="house_jzmj" class="col-xs-12 col-sm-12" />
+								</div>
+								<label class="col-sm-1 control-label no-padding-right" for="form-field-type">土地取得方式*</label>
+								<div class="col-sm-2">
+									<input type="text" iname="house_tdqdfs" class="col-xs-12 col-sm-12" />
+								</div>
+							</div>
+							<div  class="form-group clearfix" >
+								<label class="col-sm-1 control-label no-padding-right" for="form-field-type">房屋坐落*</label>
+								<div class="col-sm-2">
+									<input type="text" iname="house_fwzl" class="col-xs-12 col-sm-12" />
+								</div>
+								<label class="col-sm-1 control-label no-padding-right" for="form-field-type">评估价格*</label>
+								<div class="col-sm-2">
+									<input type="text" id="house_scgz" iname="house_gj" class="col-xs-10 col-sm-10" /><span class="input-text">&nbsp;万</span>
+								</div>
+								<label class="col-sm-1 control-label no-padding-right" for="form-field-type">评估机构*</label>
+								<div class="col-sm-2">
+									<input type="text" iname="house_jg" class="col-xs-12 col-sm-12" />
+								</div>
+							</div>
+						</div>
+
+						<!--抵押物==抵押物为汽车 是否为分期-->
+						<div class="form-group clearfix">
+    						<div style="display:none" class="carInstalment" id="car_instalment" >
+    							<label for="form-field-1" class="col-sm-2 control-label no-padding-right"> 是否分期: </label>
+    							<div class="col-sm-2">
+        							<div class="clearfix">
+                              	    	<input type="checkbox" class="ace ace-switch ace-switch-5 col-xs-10 col-sm-12" placeholder="0:否 1:是" id="form-field-instalment" value="0">
+                                      <span class="lbl"></span>
+                                      <input type="hidden" id="instalment" name="instalment" class="switchInput" value="0"/>
+                                	</div>
+    							</div>
+    						</div>
+						</div>
+						
+						<!--抵押物==汽车详情-->
+						<!--质押物==汽车详情-->
+						<input type="hidden" id="pled_id" name="debtPledge.id">
+						<input type="hidden" id="pled_detail" name="debtPledge.pledgeDetails"><!--质押物详情-->
+						<input type="hidden" id="pled_value" name="debtPledge.pledgeValuation"><!--市场估值-->
+						<div style="display:none" class="thingDetail" id="car_detail">
+							<div  class="form-group clearfix" >
+								<label class="col-sm-1 control-label no-padding-right" for="form-field-type">车型*</label>
+								<div class="col-sm-2">
+									<input type="text" iname="car_cx" class="col-xs-12 col-sm-12" />
+								</div>
+								<label class="col-sm-1  control-label no-padding-right" for="form-field-type">登记日期*</label>
+								<div class="col-sm-2">
+									<input type="date" iname="car_djrq" class="col-xs-12 col-sm-12" />
+								</div>
+								<label class="col-sm-1 control-label no-padding-right" for="form-field-type">行驶公里*</label>
+								<div class="col-sm-2">
+									<input type="text" iname="car_xsgl" class="col-xs-9 col-sm-9" />
+									<span class="input-text">&nbsp;公里</span>
+								</div>
+							</div>
+							<div  class="form-group clearfix" >
+								<label class="col-sm-1 control-label no-padding-right" for="form-field-type">市场估值*</label>
+								<div class="col-sm-2">
+									<input type="text" id="car_scgz" iname="car_gz" class="col-xs-10 col-sm-10" /><span class="input-text">&nbsp;万</span>
+								</div>
+								<label class="col-sm-1 control-label no-padding-right" for="form-field-type">评估机构*</label>
+								<div class="col-sm-2">
+									<input type="text" iname="car_jg" class="col-xs-12 col-sm-12" />
+								</div>
+							</div>
+						</div>
+
+						<!--质押物==汽车合格证-->
+						<div style="display:none" id="newCar_detail">
+							<div  class="form-group clearfix" >
+								<label class="col-sm-2 control-label no-padding-right" for="form-field-type">质押物信息描述*</label>
+							</div>
+							<div class="form-group clearfix">
+								<div class="col-sm-11">
+									<textarea iname="car_ms" class="col-xs-12 col-sm-12" datatype="*" style="height: 109px;"></textarea>
+								</div>
+							</div>
+						</div>
+						
+						<!-- 信用==房屋备案-->
+						<input type="hidden" id="credit_debt_type_value" name="debtCollateral.debtType">
+						<div style="display:none" id="houseRecord_detail">
+							<div  class="form-group clearfix" >
+								<label class="col-sm-2 control-label no-padding-right" for="form-field-type">借款人财产保障信息*</label>
+							</div>
+							<div class="form-group clearfix">
+								<div class="col-sm-11">
+									<textarea iname="houseRecord_info" class="col-xs-12 col-sm-12" datatype="*0-1000" style="height: 109px;"></textarea>
+								</div>
+							</div>
+						</div>
+
+						<!-- 信用==购车垫资-->
+						<div style="display:none" id="carPayIn_detail">
+							<div  class="form-group clearfix" >
+								<label class="col-sm-2 control-label no-padding-right" for="form-field-type">车贷垫资基本信息*</label>
+							</div>
+							<div class="form-group clearfix">
+								<div class="col-sm-11">
+									<textarea iname="carPayIn_info" class="col-xs-12 col-sm-12" datatype="*0-1000" style="height: 109px;"></textarea>
+								</div>
+							</div>
+						</div>
+						
+						<!-- 信用==基本信息（车商融）-->
+						<div style="display:none" id="base_detail">
+							<div  class="form-group clearfix" >
+								<label class="col-sm-2 control-label no-padding-right" for="form-field-type">财产保障信息*</label>
+							</div>
+							<div class="form-group clearfix">
+								<div class="col-sm-11">
+									<textarea iname="base_info" class="col-xs-12 col-sm-12" datatype="*0-1000" style="height: 109px;"></textarea>
+								</div>
+							</div>
+						</div>
+						
+						<!-- 信用==基本信息（购车分期）-->
+						<div style="display:none" id="buyCar_detail">
+							<div  class="form-group clearfix" >
+								<label class="col-sm-2 control-label no-padding-right" for="form-field-type">购车分期基本信息*</label>
+							</div>
+							<div class="form-group clearfix">
+								<div class="col-sm-11">
+									<textarea iname="base_info" class="col-xs-12 col-sm-12" datatype="*0-1000" style="height: 109px;"></textarea>
+								</div>
+							</div>
+						</div>
+						
+						<!-- 信用==基本信息（经营融）-->
+						<div style="display:none" id="runCompany_detail">
+							<div  class="form-group clearfix" >
+								<label class="col-sm-2 control-label no-padding-right" for="form-field-type">授信情况说明*</label>
+							</div>
+							<div class="form-group clearfix">
+								<div class="col-sm-11">
+									<textarea iname="base_info" class="col-xs-12 col-sm-12" datatype="*0-1000" style="height: 109px;"></textarea>
+									</br>
+								</div>
+							</div>	
+							<div  class="form-group clearfix" >
+								<div class="col-sm-11">
+									<label class="col-sm-2 control-label no-padding-right" for="form-field-type">担保企业</label>
+									<input type="text" iname="db_company" class="col-xs-4 col-sm-4" datatype="*0-100" ></textarea><span style="color:red">*非必填</span>
+								</div>
+							</div>
+						</div>
+						
+						<input type="hidden" name="annualizedRate" id="j-annualizedRate" class="autoFill autoRate">
+						
+						<hr>
+						<div class="form-group clearfix">
+							<label class="col-sm-1 control-label no-padding-right" for="form-field-amount">债权总额*</label>
+							<div class="col-sm-3">
+								<input type="text" name="amount" id="form-field-amount" placeholder="" class="col-xs-10 col-sm-10 autoFill autoAmount" datatype="n"><span class="input-text">&nbsp;元</span></div>
+															
+							<div style="display:block" id="d_annualized_rate">
+    							<label class="col-sm-1 control-label no-padding-right" for="form-field-annualizedRate">年化利率*</label>
+    							<div class="col-sm-3">
+    								<input type="text" id="form-field-annualizedRate" placeholder="" class="col-xs-12 col-sm-9 j-rate j-annl" datatype="*"><span class="input-text">&nbsp;%</span></div>
+							</div>
+							
+							<div style="display:none" id="d_monthly_rate" >
+    							<label class="col-sm-1 control-label no-padding-right" for="form-field-monthlyRate">月利率*</label>
+    							<div class="col-sm-3">
+    								<input type="text" id="form-field-monthlyRate" placeholder="" class="col-xs-12 col-sm-9 j-rate j-mon" datatype="*"><span class="input-text">&nbsp;%</span></div>
+							</div>
+							
+							<label class="col-sm-1 control-label no-padding-right" for="form-field-interestFrom">起息日*</label>
+							<div class="col-sm-3">
+								#dictSelect ("interestFrom",${sysServiceUtil.getDictList('interest_from')} ,"请选择","interest_from","*")
+							</div>
+						</div>
+						<div class="form-group clearfix">
+							<label class="col-sm-1 control-label no-padding-right" for="form-field-returnType">还款方式*</label>
+							<div class="col-sm-3">
+								#dictSelect ("returnType",${sysServiceUtil.getDictList('return_type')} ,"请选择","form-field-returnType","*")
+							</div>
+							<label class="col-sm-1 control-label no-padding-right" for="form-field-startDate">借款周期*</label>
+							<div class="col-sm-3">
+								<input type="text" name="startDate" id="form-field-startDate" class="col-xs-10 col-sm-10 autoFill autoStartDate" datatype="*" ><span class="input-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;至</span></div>
+							<div class="col-sm-3">
+								<input type="text" name="endDate" id="form-field-endDate" class="col-xs-10 col-sm-10 autoFill autoEndDate" datatype="*"></div>
+						</div>
+						<div class="form-group clearfix">
+							<label class="col-sm-1 control-label no-padding-right" for="form-field-loanUse">借款用途*</label>
+							<div class="col-sm-10">
+								<textarea id="form-field-loanUse" name="loanUse" class="col-xs-12 col-sm-12" datatype="*"></textarea>
+							</div>
+						</div>
+						<div class="form-group clearfix">
+							<label class="col-sm-1 control-label no-padding-right" for="form-field-offlineAnnualizedRate">线下付息率*</label>
+							<div class="col-sm-3">
+								<input type="text" id="form-field-offlineAnnualizedRate" name="offlineAnnualizedRate" class="col-xs-11 col-sm-11" datatype="*">%
+							</div>
+						</div>
+					</div>
+					<h4>原始债权人信息</h4>
+					<div class="well">
+						<input type="hidden" name="lenderId" id="lender_member_id"/>
+						<div class="form-group clearfix">
+							<label class="col-sm-1 control-label no-padding-right" for="l_member_type">类型*</label>
+							<div class="col-sm-2">
+								#dictSelect ("lenderMemberType",${sysServiceUtil.getDictList('member_type')} ,"请选择","l_member_type")
+							</div>
+						</div>
+						<div class="form-group clearfix"  id="lender-member-detail">
+							<div class="personalInfo" id="l_personal_info" style="display:none">
+								<label class="col-sm-1 control-label no-padding-right" for="form-field-debtPersonName">姓名*</label>
+								<div class="col-sm-2">
+									<input type="text" id="lender_member_name" class="col-xs-12 col-sm-10 autoc-lender-name" datatype="*"></div>
+								
+							</div>
+						</div>
+						
+						<!--原始债权人==企业用户信息-->
+						<div class="form-group clearfix" id="lender-company-detail" >
+							<div class="personalInfo" id="l_company_info" style="display:none">
+								<label class="col-sm-1 control-label no-padding-right" for="l_company_legalName">企业法人姓名*</label>
+								<div class='col-sm-2'>
+									<input type="text" id="l_company_legalName" style="width:180px;" class="col-xs-12 col-sm-10" datatype="*">
+								</div>                               
+							</div>
+						</div>
+				</div>
+				<h4>借款人信息</h4>
+				<div class="well">
+					<input type="hidden" name="borrowerId" id="borrow_member_id"/>
+					<input type="hidden" name="enterpriseId" id="b_company_id"/>
+					<div class="form-group clearfix">
+						<label class="col-sm-1 control-label no-padding-right" for="form-field-debtPerson">类型*</label>
+						<div class="col-sm-1">
+							#dictSelect ("borrowMemberType",${sysServiceUtil.getDictList('member_type')} ,"请选择","b_member_type")
+						</div>
+					</div>
+					<div class="form-group clearfix" id="borrower-member-detail">
+						<div id="b_personal_info" style="display:none">
+							<label class="col-sm-1 control-label no-padding-right" for="form-field-debtPersonName">姓名*</label>
+							<div class="col-sm-2">
+								<input type="text" id="borrow_member_name" class="col-xs-12 col-sm-10 autoc-borrow-name"></div>
+							<!--<div class="col-sm-1">
+								<button class="btn btn-sm btn-info">新增</button>
+							</div>-->
+						</div>
+					</div>
+					<!--借款人==企业用户信息-->
+						<div class="form-group clearfix" id="borrower-company-detail" >
+							<div id="b_company_info" style="display:none">
+								<label class="col-sm-1 control-label no-padding-right" for="b_company_name">法人姓名*</label>
+								<div class='col-sm-2'>
+									<input type="text" id="b_company_name" class="col-xs-12 col-sm-12">
+								</div>
+							</div>
+						</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+<div class="row">
+<div class="col-xs-9 col-sm-9 widget-container-span ui-sortable">
+	<div class="widget-box">
+		<div class="widget-header">
+			<h5>债权本息表</h5>
+		</div>
+		<div class="widget-body">
+			<div class="widget-main">
+				<div class="form-group clearfix">
+					<label class="col-sm-3 control-label ">
+						<span>借款期限：</span>
+						<span id="start_date"></span>
+						<span id="end_date"></span>
+					</label>
+					<label class="col-sm-3 control-label ">
+						<span>年化利率：</span>
+						<span id="auto_rate"></span>%
+					</label>
+					<label class="col-sm-3 control-label ">
+						<span>借款总额：</span>
+						<span id="auto_amount"></span>元
+					</label>
+				</div>
+				<table id="sample-table-1" class="table table-striped table-bordered table-hover">
+					<thead>
+						<tr>
+							<th>期次</th>
+							<th>计息分期</th>
+							<th class="hidden-480">日息（元）</th>
+
+							<th> <i class="icon-time bigger-110 hidden-480"></i>
+								天数
+							</th>
+							<th class="hidden-480">付款日</th>
+
+							<th>应收利息（元）</th>
+							<th>应收本金（元）</th>
+							<th>状态</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr>
+							<td >1 <input type="hidden" name="debtInterests[0].id"/></td>
+							<td>
+								<input type="text" id="interest_s_date_1" name="debtInterests[0].startDate" class="" readOnly/>
+								<span class="input-text">至</span>
+								<input type="text" id="interest_e_date_1" name="debtInterests[0].endDate" class="i_e_date"/>
+							</td>
+							<td ></td>
+							<td ></td>
+							<td ></td>
+							<td ></td>
+							<td ></td>
+							<td >
+								<select name="debtInterests[0].status">
+									<option value="0">待支付</option>
+									<option value="1">已支付</option>
+								</select>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="form-group clearfix text-center">
+					<div class="col-sm-12">
+						<button class="btn btn-sm" id="add_interestIssue">
+							<span class="no-text-shadow" >+ 增加期次</span>
+						</button>
+						<button class="btn btn-sm" id="del_interestIssue">
+							<span class="no-text-shadow" >+ 删除期次</span>
+						</button>
+					</div>
+				</div>
+				<div class="form-group clearfix">
+					<div class="col-sm-12">
+						<button class="btn btn-sm" id="cal_interest">计算</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+    <input type="hidden" id="j-json-dropzone-debt-sign" name="signAttachmentsData"/>
+	<input type="hidden" id="j-json-dropzone-debt-lender" name="lenderAttachmentsData"/>
+	<input type="hidden" id="j-json-dropzone-debt-borrower" name="borrowAttachmentsData"/>
+	<input type="hidden" id="j-json-dropzone-debt-collateral" name="thingAttachmentsData"/>
+	<input type="hidden" id="j-json-dropzone-debt-contract" name="contractAttachmentsData"/>
+	<input type="hidden" id="j-json-dropzone-debt-legal" name="legalAttachmentsData"/>
+	<input type="hidden" id="j-json-dropzone-debt-base" name="baseAttachmentsData"/>
+	<input type="hidden" name="id" value="$!id"/><!--债权id-->
+</form>
+
+#set($debtDropzone = [
+        {"title":"项目形象图", "category":"debt_sign","dzId":"dropzone_debt_sign"},
+	    {"title":"原始债权人相关图片", "category":"debt_lender","dzId":"dropzone_debt_lender"},
+	    {"title":"借款人相关图片", "category":"debt_borrower","dzId":"dropzone_debt_borrower"},
+	    {"title":"抵（质）押、信用相关图片", "category":"debt_collateral","dzId":"dropzone_debt_collateral"},
+	    {"title":"合同相关图片", "category":"debt_contract","dzId":"dropzone_debt_contract"},
+	    {"title":"法律意见书", "category":"debt_legal","dzId":"dropzone_debt_legal"},
+	    {"title":"其他资料图片", "category":"debt_base","dzId":"dropzone_debt_base"}
+ ])
+		
+#foreach($dropzone in $debtDropzone)
+<div class="row">
+	<div class="col-xs-9 col-sm-9 widget-container-span ui-sortable">
+		<div class="widget-box">
+			<div class="widget-header">
+				<h5>${dropzone.title}</h5>
+			</div>
+			<div class="widget-body">
+				<div class="widget-main">
+					<div class="form-group clearfix">
+					
+						###添加文件按钮
+						<span class="btn btn-success fileinput-button ${dropzone.dzId} dz-upload-btn" style="display:none">
+					        <i class="glyphicon glyphicon-plus"></i>
+					        <span>添加文件</span>
+					    </span>
+					    ###图片控件容器
+						<div class="dropzoneImage dropzone dropzoneSort" id="${dropzone.dzId}" data-category="${dropzone.category}">
+						</div>	
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+#end
+
+
+<div class="row">
+	<div class="col-xs-9 col-sm-9 widget-container-span ui-sortable">
+		#if($action)
+			#if($action=="show")
+			<div class="modal-footer">
+				<button type="button" id="edit_debt" class="btn btn-primary">保存</button>
+			</div>
+			#end
+		#else
+			<div class="modal-footer">
+				<button type="button" id="save_debt" class="btn btn-primary">添加</button>
+			</div>
+		#end
+	</div>
+</div>
+
+<script type="text/javascript">
+	jQuery(function($){
+		#if($action)
+			#if($action=="detail")
+				detailDebtById($!id);
+			#end
+		#end
+	});
+</script>
+

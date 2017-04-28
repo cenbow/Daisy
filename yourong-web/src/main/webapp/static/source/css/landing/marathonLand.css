@@ -1,0 +1,1058 @@
+.z-hide{
+    display: none!important;
+}
+
+.g-bd{
+    margin-bottom: 0;
+}
+
+.m-marathon-hd{
+    width: 100%;
+    height: 600px;
+    margin-top: -8px;
+    position: relative;
+    background:url(http://yrimg.oss-cn-hangzhou.aliyuncs.com/banner/banner/marathon-land-hd.jpg) no-repeat top center;
+    /*background:url(/static/img/landing/marathonLand/marathon-land-hd.jpg) no-repeat top center;*/
+}
+.u-marathon-01{
+    width: 100%;
+    height: 300px;
+    background:url(/static/img/landing/marathonLand/marathon-land-01.jpg) no-repeat top center;
+}
+.u-marathon-02{
+    width: 100%;
+    height: 300px;
+    background:url(/static/img/landing/marathonLand/marathon-land-02.jpg) no-repeat top center;
+}
+.u-marathon-03{
+    width: 100%;
+    height: 160px;
+    background:url(/static/img/landing/marathonLand/marathon-land-03.jpg) no-repeat top center;
+}
+.u-marathon-register{
+    height: 76px;
+    width: 591px;
+    display: block;
+    color: #ffffff;
+    line-height: 76px;
+    background: #d74148;
+    text-align: center;
+    margin:0 auto 75px;
+    font-size: 22px;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+}
+.u-marathon-register:link,
+.u-marathon-register:visited,
+.u-marathon-register:hover,
+.u-marathon-register:active{
+    text-decoration: none;
+    color: #ffffff;
+}
+
+/* 主体部分 */
+.g-main{
+    background: #fff4d4;
+    padding-bottom: 90px;
+}
+
+.u-title{
+    font-size: 30px;
+    color: #645016;
+    margin-bottom: 40px!important;
+}
+.u-title small{
+    font-size: 14px;
+}
+.u-square{
+    font-size: 20px;
+}
+
+.u-marathon-02 a,.u-marathon-03 a{
+    width: 200px;
+    height: 60px;
+    display: block;
+    font-size: 18px;
+    font-weight: bold;
+    color: #645016;
+    position: absolute;
+    text-align: center;
+    line-height: 60px;
+}
+.u-marathon-02 a{
+    bottom: 50px;
+    left: 20px;
+    padding: 0 0 0 45px;
+}
+.u-marathon-03 a{
+    top: -10px;
+    left: 20px;
+    padding: 0 0 0 45px;
+}
+
+.u-marathon-02 a:link,
+.u-marathon-02 a:visited,
+.u-marathon-02 a:hover,
+.u-marathon-02 a:active,
+.u-marathon-03 a:link,
+.u-marathon-03 a:visited,
+.u-marathon-03 a:hover,
+.u-marathon-03 a:active{
+    text-decoration: none;
+    color: #645016;
+}
+
+/* 两个按钮 */
+/*.m-btns{*/
+    /*overflow: hidden;*/
+    /*margin-top: 40px;*/
+/*}*/
+
+/*.u-btn{*/
+    /*display: inline-block;*/
+    /*width: 405px;*/
+    /*height: 76px;*/
+    /*line-height: 76px;*/
+    /*color: #fff;*/
+    /*text-align: center;*/
+    /*border-radius: 50px;*/
+    /*background: #fe4d3d;*/
+    /*font-size: 22px;*/
+    /*cursor: pointer;*/
+/*}*/
+/*.z-pull-left{*/
+    /*float: left;*/
+/*}*/
+/*.z-pull-right{*/
+    /*float: right;*/
+/*}*/
+
+
+/* 三重好礼 */
+.g-threeGifts{
+    margin-bottom: 80px;
+    overflow: hidden;
+}
+
+.m-threeGifts-list{
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.m-gift{
+    width: 300px;
+    display: inline-block;
+    background: #fae6ac;
+    height: 435px;
+    border-radius: 10px;
+    padding-top: 44px;
+    box-sizing: border-box;
+    text-align: center;
+    vertical-align: top;
+}
+
+.m-gift1{
+    margin-right: 40px;
+}
+.m-gift2{
+    margin-right: 40px;
+}
+
+.m-gift .u-gift-circle{
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
+    background: #fff;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.u-gift-circle1{
+    display: inline-block;
+    width: 171px;
+    height: 100px;
+    background: url('/static/img/landing/marathonLand/cashBag.png') no-repeat center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -50px;
+    margin-left: -85px;
+}
+
+.u-gift-circle2{
+    display: inline-block;
+    width: 126px;
+    height: 145px;
+    background: url('/static/img/landing/marathonLand/popularityBag.png') no-repeat center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -72px;
+    margin-left: -63px;
+}
+
+.u-gift-circle3{
+    display: inline-block;
+    width: 162px;
+    height: 129px;
+    background: url('/static/img/landing/marathonLand/chests.png') no-repeat center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -65px;
+    margin-left: -81px;
+}
+
+.m-gift p {
+    color: #3c2d02;
+    font-size: 12px;
+    line-height: 22px;
+}
+.u-share{
+    display: inline-block;
+    position: relative;
+}
+.u-share-text{
+    font-size: 12px;
+    font-weight: bold;
+}
+
+
+/* 微信微博按钮和复二维码浮层 */
+.u-icon-weixin, .u-icon-weibo {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    position: relative;
+    top: 3px;
+}
+.u-icon-weixin{
+    background: url(/static/img/activity/springFestival/u-icon-weixin.png) no-repeat center;
+    background-size: 20px 20px;
+}
+.u-icon-weibo{
+    background: url(/static/img/activity/springFestival/u-icon-weibo.png) no-repeat center;
+    background-size: 20px 20px;
+}
+
+.u-popup-weixin, .u-popup-weibo {
+    width: 150px;
+    height: 150px;
+    display: inline-block;
+    box-sizing: border-box;
+    position: absolute;
+    border: 1px solid #e6e6e6;
+    background: #fff;
+    top: -152px;
+    left: -108px;
+    transition: all 0.5s ease;
+    opacity: 0;
+}
+.u-popup-weixin.z-fadeIn,
+.u-popup-weibo.z-fadeIn{
+    opacity: 1;
+}
+
+.u-popup-weixin>img,.u-popup-weibo>img{
+    display: inline-block;
+    width: 100%;
+}
+
+
+/* 如何获得里程 */
+.g-howTwoGet{
+    margin-bottom: 60px;
+}
+.u-getMethods-img{
+    display: inline-block;
+    margin: 0 auto;
+    width: 100%;
+    height: 169px;
+    background: url('/static/img/landing/marathonLand/howTo.png') no-repeat center;
+}
+
+.u-getMethods{
+    overflow: hidden;
+    color: #645016;
+    font-size: 0;
+}
+
+.u-getMethods li{
+    display: inline-block;
+    width: 20%;
+    box-sizing: border-box;
+    padding-top: 20px;
+}
+
+.u-getMethods li small{
+    font-size: 14px;
+    display: block;
+}
+.u-getMethods li strong{
+    font-size: 19px;
+}
+
+
+/* 好友助力记录 */
+.g-assist{
+    overflow: hidden;
+    box-sizing: border-box;
+    margin-bottom: 60px;
+}
+.m-assist-table{
+    text-align: center;
+    color: #763800;
+    width: 100%;
+}
+
+.m-assist-table tr,
+.m-assist-table td{
+    border: 1px solid #763800;
+    transition: all 0.5s ease-in-out;
+}
+
+.m-assist-table tr.z-fadeOut {
+    opacity: 0;
+}
+
+.m-assist-table tr:nth-child(1){
+    transition-delay: 0.1s;
+}
+.m-assist-table tr:nth-child(2){
+    transition-delay: 0.2s;
+}
+.m-assist-table tr:nth-child(3){
+    transition-delay: 0.3s;
+}
+.m-assist-table tr:nth-child(4){
+    transition-delay: 0.4s;
+}
+.m-assist-table tr:nth-child(5){
+    transition-delay: 0.5s;
+}
+
+.m-assist-table td{
+    padding-top: 15px;
+    padding-bottom: 15px;
+    text-align: center;
+}
+
+.u-table-header td {
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+.u-table-header td span {
+    font-size: 14px;
+    display: block;
+}
+
+.u-table-header td strong {
+    font-size: 19px;
+}
+
+.u-table-avatar{
+    text-align: left!important; padding-left: 50px
+}
+
+.u-assist-header img{
+    vertical-align: middle;
+    width: 35px;
+    height: 35px;
+    border-radius: 20px;
+    margin-right: 10px;
+}
+
+.m-assist-table span.u-mission-status{
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+}
+.m-assist-table span.u-mission-status.z-notComplete{
+    background: url('/static/img/activity/marathon/notComplete.png') no-repeat center;
+}
+
+.m-assist-table span.u-mission-status.z-complete{
+    background: url('/static/img/activity/marathon/complete.png') no-repeat center;
+}
+
+
+/* 分页按钮 */
+.m-pagination{
+    margin-top: 30px;
+    text-align: center;
+}
+.m-pagination li{
+    display: inline-block;
+    width: 26px;
+    height: 26px;
+    line-height: 26px;
+    border-radius: 15px;
+    background: #fae6ac;
+    color: #645016;
+    font-size: 12px;
+    cursor: pointer;
+}
+.m-pagination li.u-prev,
+.m-pagination li.u-next {
+    width: 65px;
+}
+.m-pagination li.z-current{
+    background: #f9db84;
+}
+
+/* 友情榜 */
+.g-userList{
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.m-userList {
+    background: #fff4d4;
+    width: 988px;
+    height: 334px;
+}
+.m-userList table{
+    border-top:1px solid #645016;
+    border-left:1px solid #645016;
+}
+.m-userList table tr{
+    height: 66px;
+}
+.m-userList table th{
+    text-align: center;
+    color: #645016;
+}
+.m-userList table th,.m-userList table td{
+    border-right:1px solid #645016;
+    border-bottom:1px solid #645016;
+}
+.m-userList tr td:first-child div{
+    padding:0 0 0 57px;
+}
+.m-userList tr td em{
+    height: 32px;
+    width: 32px;
+    display: block;
+    margin: 0 auto;
+}
+.m-userList tr td em.z-finish{
+    background:url('/static/img/landing/marathonLand/marathon-icon.png') no-repeat 0 0;
+}
+.m-userList tr td em.z-unfinish{
+    background:url('/static/img/landing/marathonLand/marathon-icon.png') no-repeat 0 -38px;
+}
+.u-gainList-container{
+    background: #fff;
+    text-align: center;
+    overflow: hidden;
+    width: 700px;
+    margin: 50px auto;
+    height: 250px;
+}
+.u-gainList {
+    overflow: hidden;
+    color: #9f9f9f;
+    height: 300px;
+}
+
+.u-gainList li {
+    height: 35px;
+    margin-bottom: 18px;
+    text-align: left;
+    overflow: hidden;
+}
+
+.u-user-head img {
+    vertical-align: middle;
+    width: 35px;
+    height: 35px;
+    border-radius: 20px;
+    margin-left: 10px;
+}
+
+.u-gainList li .u-user-name {
+    width: 80px;
+    margin-left: 10px;
+}
+
+.u-gainList li .u-useTime {
+    width: 190px;
+    margin-left: 60px;
+    margin-right: 50px;
+}
+
+.u-gainList li .u-giftText {
+    width: 200px;
+}
+
+.u-gainList span {
+    display: inline-block;
+}
+
+.u-giftText b {
+    color: #d94d53;
+}
+
+
+
+/* 底部规则 */
+.g-rule{
+    background: #f8e5b4;
+    color: #763800;
+    line-height: 30px;
+    padding: 60px 0;
+}
+
+
+/*注册*/
+.m-regform-land {
+    width: 360px;
+    padding: 20px;
+    background-color:rgba(64,176,219,0.5);
+}
+.m-regform-land .u-ipt-text {
+    width: 342px;
+}
+.m-regform-land .u-ipt-vercode {
+    width: 180px;
+}
+.m-regform-land .u-img-vercode {
+    left: 100px;
+}
+.m-regform-land .u-ipt-phonecode {
+    width: 177px;
+    margin: 0 0 0 4px;
+}
+.m-regform-land .m-voice-box .u-tips-vercode {
+    width: 84px;
+}
+.m-regform-land input[type='submit'] {
+    width: 360px;
+    margin: 10px 0 0;
+}
+
+
+/*项目*/
+/**项目**/
+/**项目块**/
+/***新手项目模块***/
+.m-seasonFour-products{
+    height: 505px;
+    background-color: #fff4d4;
+    color: #666;
+    padding: 55px 0 85px;
+    position: relative;
+}
+.u-newCustomer-item {
+    background: #fff url(/static/img/activity/newCustomer/newCustomer_angle.png) no-repeat left top;
+    height: 234px;
+    width: 740px;
+    float: left;
+    margin-bottom: 10px;
+}
+.u-pl-wrap {
+    margin: 30px auto 5px;
+    position: relative;
+    display: block;
+    outline: 0;
+}
+.u-newCustomer-pic {
+    float: left;
+    margin: 60px 0 30px 67px;
+}
+.u-pl-wrap, .u-pl-wrap i {
+    display: block;
+    height: 120px;
+    width: 120px;
+}
+.u-pl-wrap img {
+    height: 120px;
+    width: 120px;
+    overflow: hidden;
+}
+.u-pl-wrap i {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: url(/static/img/common/sprites.png) repeat-x -73px -190px;
+}
+.u-pl-wrap .u-pl-stat {
+    position: absolute;
+    top: -20px;
+    left: -20px;
+}
+.u-pl-wrap .u-pl-stat {
+    display: block;
+}
+.u-newCustomer-particulars {
+    width: 504px;
+    height: 128px;
+    padding: 50px 20px 50px 27px;
+    display: inline-block;
+}
+.u-newCustomer-list {
+    width: 240px;
+    height: 230px;
+    background-color: #fff;
+    margin-left: 10px;
+    float: right;
+}
+
+.u-newCustomer-pic {
+    float: left;
+    margin: 60px 0 30px 67px;
+}
+
+.u-newCustomer-particulars > span {
+    padding-bottom: 8px;
+    padding-right: 263px;
+    width: 504px;
+    height: 22px;
+    border-bottom: 1px solid #ccc;
+}
+
+.u-newCustomer-particulars > span > strong {
+    margin: 0 5px;
+    color: #464646;
+}
+
+.u-newCustomer-particulars > span > em {
+    color: #7d7d7d;
+}
+
+.u-newCustomer-process {
+    height: 3px;
+    line-height: 3px;
+    width: 504px;
+    zoom: 1;
+    background-color: #ccc;
+    margin: 8px 6px 0 0;
+}
+
+.u-newCustomer-process > span {
+    display: inline-block;
+    height: 3px;
+    overflow: hidden;
+    background-color: #e33f4a;
+    min-width: 0;
+}
+.u-newCustomer-process .z-finished {
+    background-color: #f8ada8;
+}
+.u-newCustomer-meta {
+    padding: 14px 0 0;
+    position: relative;
+}
+
+.u-newCustomer-meta > em {
+    margin: 0 25px 0 0;
+}
+
+.u-newCustomer-meta > em, .u-newCustomer-meta > span {
+    color: #9b9b9b;
+}
+
+.u-newCustomer-meta a {
+    color: #fff;
+    margin: 8px 3px 0 0;
+}
+
+.u-newCustomer-btn {
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    width: 120px;
+    text-align: center;
+    color: #fff;
+    font-weight: 700;
+    position: absolute;
+    right: 1px;
+    top: 10px;
+}
+.u-newCustomer-btn.z-closed {
+    color: #FFF;
+    background-color: #F8ADA8;
+    border-color: #F8ADA8;
+}
+.u-newCustomer-meta a:visited {
+    text-decoration: none;
+}
+
+.u-newCustomer-meta a:hover {
+    text-decoration: none;
+}
+
+.u-newCustomer-info {
+    height: 30px;
+    color: #666;
+    margin-top: 19px;
+}
+
+.m-newCustomer-info > span {
+    padding-top: 28px;
+    display: inline-block;
+    width: 168px;
+}
+
+.m-newCustomer-info > em {
+    padding-top: 28px;
+    display: inline-block;
+    width: 190px;
+}
+
+.u-newCustomer-days {
+    font-weight: 400;
+}
+
+.m-newCustomer-info > strong {
+    padding-top: 28px;
+    display: inline-block;
+    width: 120px;
+    font-weight: 400;
+}
+
+.u-newCustomer-data01 {
+    display: inline-block;
+    width: 157px;
+    margin-right: 8px;
+}
+
+.u-newCustomer-data {
+    display: inline-block;
+    width: 193px;
+    margin-right: 10px;
+}
+
+.u-newCustomer-list strong {
+    width: 220px;
+    color: #444;
+    margin-top: 20px;
+    padding: 0 0 10px 20px;
+    display: block;
+    border-bottom: 1px solid #cecece;
+}
+
+.u-newCustomer-list th span {
+    display: inline-block;
+    border-bottom: 2px solid #afafaf;
+}
+
+.u-newCustomer-sus {
+    width: 70px;
+    text-align: center;
+    padding: 12px 0px 12px 8px;
+}
+
+.u-newCustomer-smn {
+    width: 72px;
+    padding: 12px 8px 12px 0;
+}
+
+.u-newCustomer-sin {
+    width: 65px;
+    padding: 12px 8px 12px 0;
+}
+
+.u-newCustomer-list th {
+    height: 36px;
+    text-align: center;
+}
+
+.u-newCustomer-list td {
+    height: 25px;
+    width: 78px;
+}
+
+.u-newCustomer-list tbody {
+    margin-top: 3px;
+}
+
+.u-newCustomer-red {
+    color: #e33f4a;
+}
+
+.u-newCustomer-right {
+    text-align: right;
+    padding-right: 13px;
+}
+
+.u-newCustomer-left {
+    padding-left: 20px;
+    text-align: left;
+}
+
+.u-newCustomer-itemNm {
+    width: 504px;
+    font-size: 16px;
+    display: block;
+    height: 30px;
+    padding: 0 0 5px 0px;
+    border-bottom: 1px solid #ccc;
+}
+
+.u-newCustomer-itemNm:link {
+    text-decoration: none;
+    color: #333;
+}
+
+.u-newCustomer-itemNm:visited {
+    color: #333;
+}
+
+.u-newCustomer-itemNm:hover {
+    text-decoration: none;
+    color: #333;
+    cursor: pointer;
+}
+
+.u-newCustomer-btn.z-disabled {
+    background-color: #aaa;
+    border-color: #aaa;
+}
+
+.u-newCustomer-itemNm strong {
+    color: #464646;
+}
+
+.u-newCustomer-itemNm em {
+    color: #7d7d7d;
+}
+.u-pbox-footer {
+
+    height: 8px;
+    overflow: hidden;
+}
+/***新手项目模块***/
+/***常规项目模块***/
+.m-product-box {
+    background-color: #fff;
+    margin-bottom: 8px;
+    position: relative;
+    width: 740px;
+}
+
+.m-pbox-wrap {
+    padding: 30px 20px 0;
+}
+
+.u-pbox-title {
+    display: inline-block;
+    height: 22px;
+    line-height: 22px;
+    margin: 0 30px 13px 0;
+    padding: 0 4px 0 16px;
+    position: relative;
+    color: #7d7d7d;
+    font-size: 14px;
+    width: auto;
+    min-width: 100px;
+    max-width: 655px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+}
+.u-pbox-title {
+    padding-right: 15px;
+}
+.u-pbox-title a {
+    display: block;
+    height: 22px;
+    color: #7d7d7d;
+}
+
+.u-pbox-title a:hover {
+    text-decoration: none;
+}
+
+.u-pbox-title strong, .u-pbox-title a strong {
+    color: #464646;
+}
+
+.u-pbox-title span {
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    width: 15px;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    right: -15px;
+}
+
+.u-pbox-title .u-newCustomer-link {
+    position: relative;
+    padding-right: 66px;
+}
+
+.u-pbox-title .u-newCustomer-tag {
+    float:left;
+    display: inline-block;
+    width: 60px;
+    height: 22px;
+    overflow: hidden;
+    cursor: pointer;
+    margin:0 0 0 5px;
+    background: url(/static/img/products/newCustomer/tag.png) no-repeat 0 3px;
+}
+
+.m-pbox-main {
+    margin: 0 0 24px;
+    height: 150px;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+.u-pbox-thumbnail {
+    padding: 14px 10px;
+    position: relative;
+}
+
+.u-thumbnail-wrap {
+    height: 120px;
+    width: 120px;
+    overflow: hidden;
+    display: block;
+    background: url(/static/img/common/sprites.png) no-repeat -260px 0;
+    position: absolute;
+    left: 10px;
+    top: 14px;
+}
+
+.m-pbox-info>span {
+    padding-top: 28px;
+    display: inline-block;
+    width: 168px;
+    margin-left: 4px;
+    border-right: 1px solid #ccc;
+}
+
+.m-pbox-info>em {
+    padding-top: 28px;
+    display: inline-block;
+    width: 190px;
+    margin-left: 24px;
+    border-right: 1px solid #ccc;
+}
+
+.m-pbox-info>strong {
+    padding-top: 28px;
+    display: inline-block;
+    width: 120px;
+    font-weight: normal;
+    margin-left: 24px;
+}
+
+.m-pbox-info>span>em, .m-pbox-info>em>em, .m-pbox-info>strong>em {
+    line-height: 1em;
+}
+
+.m-pbox-info {
+    line-height: 1em;
+}
+
+.u-pbox-process {
+    height: 3px;
+    *width: 534px;
+    line-height: 3px;
+    zoom: 1;
+    background-color: #ccc;
+    margin: 8px 6px 0 0;
+}
+
+.u-pbox-process span {
+    display: block;
+    height: 3px;
+    overflow: hidden;
+    min-width: 0;
+}
+
+.u-pbox-meta {
+    padding: 14px 0 0;
+    position: relative;
+}
+
+.u-pbox-meta>em {
+    margin: 0 25px 0 0;
+}
+
+.u-pbox-meta>em, .u-pbox-meta>span {
+    color: #9b9b9b;
+}
+
+.u-pbox-meta a {
+    color: #fff;
+    margin-right: 10px;
+}
+
+.u-pbox-meta a:hover {
+    text-decoration: none;
+    color: #fff;
+}
+
+.u-pbox-btn {
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    width: 120px;
+    text-align: center;
+    color: #fff;
+    font-weight: bold;
+    position: absolute;
+    right: 1px;
+    top: 10px;
+    *top: 14px;
+}
+.u-pbox-btn.z-closed{
+    color: #FFF;
+    background-color: #F8ADA8;
+    border-color: #F8ADA8;
+}
+.m-product-box .u-arrow-down {
+    position: absolute;
+    display: block;
+    width: 12px;
+    height: 7px;
+    overflow: hidden;
+    left: 60px;
+    top: 52px;
+    z-index: 10;
+}
+
+/***常规项目模块***/
+/***二维码***/
+
+.u-seasonFour-recode img{
+    position: absolute;
+    right: 0;
+    top: -590px;
+}
+/***二维码***/
+
+.u-btn-primary {
+    letter-spacing: 5px;
+}
+.u-ipt-blank {
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    color: #656565;
+    vertical-align: middle;
+}
+.u-marathon-hd{
+    position: relative;
+}
+.m-regform-land{
+    position: absolute;
+    right: -25px;
+    top:30px;
+}
+/*更改着陆页注册提示的问题*/
+.m-regform-land .u-hotline-tips{
+    margin:0;
+    color:#fff;
+    line-height:20px;
+}
+.m-regform-land  .u-tips-waring{
+    width:360px;
+}

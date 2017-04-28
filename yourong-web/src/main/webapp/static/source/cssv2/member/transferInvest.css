@@ -1,0 +1,556 @@
+[v-cloak] {
+    display: none;
+}
+
+/*我的投资发起转让弹框*/
+.u-plan-table .u-icon-assign {
+    display: inline-block;
+    width: 25px;
+    height: 22px;
+    background: url(/static/img/member/icon-assi.png) no-repeat center;
+    position: relative;
+    margin-left: 5px;
+    left: 0;
+    top: 5px;
+}
+
+.u-project-state {
+    color: #d74148;
+    margin-right: 35px;
+}
+
+.u-project-state strong {
+    text-decoration: underline;
+}
+
+.u-plan-table h4.f-transfer {
+    height: 36px;
+    line-height: 36px;
+    font-size: 14px;
+}
+
+.u-plan-table table.f-transfering {
+    margin-top: -10px;
+    border-top: 0;
+    margin-bottom: 25px;
+    border-bottom: solid 2px #cdcdcd;
+}
+
+.u-plan-table table.f-project-transfer {
+    border-top: solid 2px #cdcdcd;
+    border-bottom: solid 2px #cdcdcd;
+}
+
+.u-order-detail table.f-project-transfer td {
+    padding: 0 0 0 40px;
+}
+
+.u-order-detail table.f-project-transfer td.f-startTransfer {
+    padding: 0 0 0 25px;
+}
+
+.u-plan-table .u-icon-ques {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    position: relative;
+    background: url(/static/img/member/icon-question.png);
+    top: 1px;
+    left: 0;
+    cursor: pointer;
+}
+
+.u-plan-table .u-icon-ques div {
+    position: absolute;
+    background: #fff;
+    color: #333;
+    height: 30px;
+    line-height: 30px;
+    border: 1px solid #ccc;
+    width: 300px;
+    padding-left: 10px;
+    margin-left: 10px;
+    margin-top: 10px;
+    cursor: pointer;
+    display: none;
+}
+
+.u-plan-table .u-never-transfered {
+    color: #333;
+    font-size: 14px;
+    text-align: center;
+    background: #efefef;
+    line-height: 242px;
+}
+
+.u-plan-table .u-transferTable-lastLine {
+    display: inline-block;
+    padding-left: 20px;
+    color: #666;
+    width: 525px;
+    line-height: 30px;
+    height: 30px;
+    margin-bottom: 43px;
+    border-bottom: 2px solid #cdcdcd;
+}
+
+.u-plan-table .u-transferTable-lastLine em {
+    border-right: 1px solid #dddbd6;
+    height: 30px;
+    width: 90px;
+    margin-right: 20px;
+    display: inline-block;
+}
+.u-plan-table .u-icon-ques span {
+    position: absolute;
+    background: #fff;
+    color: #999;
+    line-height: 18px;
+    width: 150px;
+    padding: 10px;
+    margin-left: 10px;
+    margin-top: -25px;
+    cursor: pointer;
+    border-radius: 3px;
+    box-shadow: 0 0 20px #999;
+    display: none;
+}
+
+.u-plan-table .u-icon-ques span .u-rate-regular {
+    text-align: left;
+    width: 100%;
+    display: block;
+    font-weight: 100;
+}
+
+.u-plan-table .u-icon-ques span .u-rate-regular em {
+    float: right;
+}
+.u-plan-table .u-icon-ques:hover span {
+    display: block;
+}
+
+.u-plan-table .u-icon-ques:hover div {
+    display: block;
+}
+
+.u-plan-table .u-assign-gain {
+    display: inline-block;
+    text-align: left;
+    padding: 0;
+}
+
+.u-plan-table .u-assign-gain + a {
+    color: #333;
+    text-decoration: underline;
+    margin-right: 55px;
+}
+
+.u-plan-table td .u-assign-input {
+    width: 135px;
+    height: 20px;
+    border-radius: 3px;
+    outline: none;
+    border: 1px solid #9c9c9c;
+    padding-left: 3px;
+}
+
+.u-plan-table td .u-assign-input + span {
+    display: inline-block;
+    text-align: left;
+    margin-left: 10px;
+}
+
+.u-plan-table .u-page-switch {
+    text-align: center;
+    font-size: 16px;
+    margin-top: -20px;
+}
+
+.u-plan-table .u-page-switch .u-forth-button {
+    display: inline-block;
+    margin: 0 20px;
+    color: #999;
+    cursor: default;
+}
+
+.u-plan-table .u-page-switch .u-forth-button.z-abled {
+    color: #d74148;
+    cursor: pointer;
+}
+
+.f-project-process .u-zr-progress {
+    display: inline-block;
+    height: 6px;
+    width: 272px;
+    background: #ccc;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.f-project-process .u-zr-progress em {
+    display: block;
+    height: 6px;
+    background: #d74148;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+}
+
+.f-project-process .f-progress-value {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.u-button-rank {
+    margin: 15px auto;
+    text-align: center;
+}
+
+.u-assign-confirmbtn {
+    display: inline-block;
+    width: 140px;
+    height: 40px;
+    line-height: 40px;
+    background: #d74148;
+    color: #fff;
+    font-size: 18px;
+    text-align: center;
+    margin: 0 30px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    outline: none;
+}
+
+.u-assign-confirmbtn.z-disabled {
+    background-color: #ccc;
+    cursor: default;
+}
+
+.u-assign-confirmbtn.f-cancel {
+    background-color: #fff;
+    color: #999;
+    border: 1px solid #ccc;
+}
+
+.u-assign-confirminput {
+    text-indent: 45px;
+    font-size: 12px;
+    line-height: 20px;
+    height: 20px;
+    margin-top: -5px;
+}
+
+.u-assign-check {
+    text-indent: 255px;
+}
+
+.u-assign-check a:hover {
+    text-decoration: none;
+}
+
+.u-assign-confirminput {
+    padding: 0 0 0 25px;
+}
+
+.u-assign-confirminput input {
+    margin-right: 5px;
+    vertical-align: -3px;
+}
+
+.u-assign-confirminput strong {
+    color: #e33f4a;
+}
+
+.u-plan-table .u-assign-process {
+    height: 6px;
+    width: 380px;
+    display: inline-block;
+    background: #ddd;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    overflow: hidden;
+    text-align: left;
+    padding: 0;
+    margin-right: 25px;
+}
+
+.u-plan-table .u-assign-process em {
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    background: #d74148;
+    display: block;
+    height: 6px;
+}
+
+.u-plan-table .u-assign-tip {
+    padding-top: 0;
+    margin-top: -5px;
+}
+
+.j-transfer-detail s {
+    display: none;
+    width: 21px;
+    height: 30px;
+    overflow: hidden;
+    background: url(/static/img/common/sprites.png) no-repeat -150px -57px;
+    position: absolute;
+    top: -10px;
+    left: -24px;
+    z-index: 1002;
+}
+.u-assign-hover {
+    text-decoration: underline;
+}
+
+.u-assign-posa {
+    position: absolute;
+    padding: 15px 10px;
+    border: 1px solid #ccc;
+    background: #fff;
+    z-index: 1;
+    right: 12px;
+    border-radius: 3px;
+}
+
+.u-assign-posa i {
+    width: 0;
+    height: 0;
+    border-top: 7px solid transparent;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-bottom: 10px solid #ccc;
+    background: none;
+    top: -17px;
+    left: 58%;
+}
+
+.u-assign-posa i + i {
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 8px solid #fff;
+    background: none;
+    top: -13px;
+    left: 58%;
+    margin-left: -13px;
+}
+
+.u-assign-posa p {
+    padding: 0;
+    text-indent: 0;
+    font-weight: normal;
+    line-height: 20px;
+}
+
+.u-assign-posa p span {
+    margin-left: 20px;
+}
+
+.u-assign-alert {
+    position: fixed;
+    border: 1px solid #999;
+    border-radius: 6px;
+    background: #fff;
+    font-size: 20px;
+    padding: 72px 68px;
+    top: 50%;
+    left: 50%;
+    margin: -120px 0 0 -200px;
+    z-index: 1011;
+}
+
+.u-assign-alert.f-transfer {
+    top: 60%;
+    left: 50%;
+    padding: 0;
+    min-width: 400px;
+    max-width: 460px;
+    height: 240px;
+    border: 0;
+    text-align: center;
+    box-shadow: 0 0 40px #999;
+}
+
+.u-assign-alert p a.f-transfer {
+    font-size: 14px;
+    display: block;
+    text-decoration: underline;
+    color: #d74148;
+    text-align: left;
+    margin: 1px 0 -15px 0;
+}
+
+.u-assign-alert p {
+    text-align: center;
+    padding: 0;
+    margin-bottom: 50px;
+}
+
+.u-assign-alert.f-transfer p {
+    min-height: 30px;
+    margin: 70px 30px 45px;
+}
+
+.u-assign-alert p.f-transfer {
+    margin: 63px 60px 42px;
+    text-align: center;
+}
+
+.u-assign-alert p.f-transfer .u-alert-content {
+    display: inline-block;
+    text-align: left;
+}
+
+.u-assign-alert button {
+    border: none;
+    outline: none;
+    border-radius: 4px;
+    font-size: 16px;
+    width: 100px;
+    height: 38px;
+    line-height: 38px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.u-assign-alert button.u-assgin-btnCon {
+    color: #fff;
+    background: #d74148;
+}
+
+.u-assign-alert button.u-assign-btnCan, .u-assign-alert button.u-assign-btnCan2 {
+    color: #999;
+    background: #fff;
+    border: 1px solid #999;
+    margin-left: 61px;
+}
+
+.u-assign-alert button.u-assign-btnCan2 {
+    margin-left: 115px;
+}
+
+.f-color-white a {
+    color: #fff;
+}
+
+.u-plan-table .f-fc-red {
+    color: #d74147;
+}
+
+.u-assign-floatbox {
+    background: #fff;
+    border: 5px solid #6b6b6b;
+    padding: 0 45px;
+    height: 120px;
+    line-height: 120px;
+    width: 180px;
+}
+
+.u-assign-floatbox p span {
+    text-decoration: underline;
+    font-size: 30px;
+    display: inline-block;
+    margin: 0 5px;
+}
+
+.u-transfer-cover {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #000;
+    opacity: 0.4;
+    display: none;
+    z-index: 110;
+}
+
+.u-transfer-tips {
+    text-indent: 20px;
+    margin-top: -8px;
+    padding-bottom: 15px;
+    color: #666;
+}
+
+.u-order-detail.f-transfer .f-round {
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+}
+
+.m-transfer-box .u-transfer-table {
+    width: 545px;
+    margin: 0 auto;
+}
+
+.u-transfer-flag {
+    display: inline-block;
+    background: url(/static/img/v2/member/all-transfered.png);
+    width: 72px;
+    height: 59px;
+    margin-top: -25px;
+    left: 83px;
+    position: absolute;
+    z-index: 1;
+}
+
+.u-transfer-flag.z-part-transfered {
+    background: url(/static/img/v2/member/part-transfered.png);
+}
+
+.u-transfer-title {
+    position: relative;
+    top: 10px;
+}
+
+.u-gotoTransfer {
+    position: absolute;
+    color: #666;
+    font-size: 14px;
+    right: 30px;
+    top: 15px;
+    z-index: 51;
+    border-bottom: 1px solid #cccccc;
+}
+
+.u-gotoTransfer a, .u-gotoTransfer a:hover {
+    color: #666;
+}
+
+.z-zr-noData {
+    position: relative;
+    height: 380px;
+    text-align: center;
+    background: url(../../../img/products/zr-no-data.png) no-repeat;
+    background-size: 342px 270px;
+    background-position: center;
+}
+
+.z-zr-noData div {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    color: #666;
+    font-size: 18px;
+}
+
+.f-transferProject-name {
+    font-weight: 100;
+    color: #7a7a7a;
+}
+
+.f-color-b7 {
+    color: #b7b7b7;
+}
+
+.u-floatbox.f-transferDetail {
+    z-index: 90;
+}

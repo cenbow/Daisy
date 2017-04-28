@@ -1,0 +1,32 @@
+#parse('/common/common.vm')
+#set($layout = "/layout/default.vm")
+#set($isDev=$sysServiceUtil.isDev())
+<!doctype html>
+<html lang="zh-CN">
+<head>
+#if(!$isDev)
+    <meta http-equiv="refresh" content="0;url=https://www.yrw.com/?from=/landing/page/demo">
+#end
+    <meta charset="UTF-8">
+    <title>Frontend 有融网</title>
+</head>
+<body>
+<h1>FRONTEND DEMO</h1>
+<script>
+    (function () {
+        var _this=this
+        this.log=function(){}
+        if(this.chrome||this.mozInnerScreenX){
+            this.log=console.log.bind(console)
+        }else if(this.console){
+            console.log=this.log
+        }else{
+            this.console={
+                log:_this.log
+            }
+        }
+    })(window)
+</script>
+<script src="/static/lib/js/base/lodash.js"></script>
+</body>
+</html>

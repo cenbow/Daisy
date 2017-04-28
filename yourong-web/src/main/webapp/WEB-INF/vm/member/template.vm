@@ -1,0 +1,32 @@
+##用户中心－页面模板
+#parse("/common/common.vm")
+#set($css_url=["$cssv2_url/member/member.css"])
+#set($js_url=["$root_js_url/modules/member.js"])
+## 用户中心头部
+#parse("/member/head.vm")
+## 用户中心内容
+<div class="g-wrap">
+	<div class="g-uc-bd f-round">
+		<div class="u-uc-menu f-round f-cf">
+			<ul class="f-fr">
+				<li class="z-current"><a href="$root_url/member/memberIndex">账户总览</a></li>
+				<li><a href="$root_url/member/rechargeIndex">充值提现</a></li>
+				##<li><a href="#">资产统计</a></li>
+			</ul>
+			<i class="u-arrow-i2"></i>
+		</div>
+		<div class="g-uc-wrap">
+			<h3 class="u-round-title">
+				<em class="u-circle-12">收益统计</em>
+				<span class="u-arrow-down">
+                	<i>◆</i>
+                	<span>◆</span>
+            	</span>
+			</h3>
+			## 页面内容
+
+			## /页面内容
+		</div>
+	</div>
+	## /用户中心内容
+</div>

@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    <title>我的优惠</title>
+    <link rel="stylesheet" href="/res/lib/frozenui/1.2.1/css/frozen.css" media="all"/>
+    <link href="/res/source/css/common.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/res/lib/fullpage/zepto.fullpage.css"/>
+    <style>
+
+        .u-header {
+            z-index: 2;
+            text-align: center;
+            color: #fff;
+            height: 50px;
+            line-height: 50px;
+            margin: 0;
+            padding: 0 1rem;
+            background-color: #d74148;
+            background-size: auto 50%;
+        }
+
+        .u-header a {
+            position: absolute;
+            left: 1rem;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        .u-header a:link,
+        .u-header a :visited,
+        .u-header a :hover {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .u-header span {
+            font-weight: bold;
+        }
+
+        .f-pos-r {
+            position: relative;
+        }
+
+        body {
+            font-size: 16px;
+            background: #fff;
+            margin: 0;
+        }
+
+        /**公共**/
+        .u-cashCoupon-tab {
+            width: 100%;
+        }
+
+        .u-cashCoupon-tab span {
+            width: 49.5%;
+            height: 55px;
+            float: left;
+            color: #999;
+            display: block;
+            line-height: 55px;
+            text-align: center;
+        }
+
+        .u-cashCoupon-tab .z-current {
+            color: #d74148;
+            border-bottom: 3px solid #d74148;
+        }
+
+        .m-cashCoupon-list, .m-profitCoupon-list {
+            height: 430px;
+            overflow: hidden;
+            padding: 52px 0 0;
+            background-color: #eee;
+        }
+
+        .m-cashCoupon-list .u-coupon-wrap, .m-profitCoupon-list .u-coupon-wrap {
+            padding: 0;
+            margin: 0;
+        }
+
+        .m-cashCoupon-list .u-coupon-inner, .m-profitCoupon-list .u-coupon-inner {
+            margin: 0 15%;
+            background-color: #fff;
+            -moz-border-radius: 10px;
+            -webkit-border-radius: 10px;
+            border-radius: 10px;
+        }
+
+        .m-cashCoupon-list .u-coupon-box, .m-profitCoupon-list .u-coupon-box {
+            height: 352px;
+
+        }
+
+        .u-cashCoupon-money {
+            color: #de3c47;
+            font-size: 1.5rem;
+            letter-spacing: -6px;
+            text-align: center;
+            padding-top: 1.5rem;
+            padding-bottom: 0.5rem;
+        }
+
+        .u-cashCoupon-money span {
+            font-size: 8rem;
+        }
+
+        .u-cashCoupon-bg {
+            height: 19px;
+            width: 100%;
+            background: url("/res/img/reputation_bg01.png") repeat-x;
+            background-size: 68%;
+            margin-top: -3rem;
+            position: relative;
+        }
+
+        .u-cashCoupon-bg s {
+            height: 19px;
+            width: 41px;
+            display: block;
+            background: url("/res/img/reputation_bg02.png") no-repeat center;
+            background-size: 68%;
+            margin: 0 auto;
+            position: absolute;
+            left: 41%;
+            top: -3px;
+        }
+
+        .m-cashCoupon-list p, .m-profitCoupon-list p {
+            text-align: center;
+            color: #999;
+            font-size: 0.8rem;
+            line-height: 2em;
+            height: 118px;
+        }
+
+        .m-cashCoupon-list p em, .m-profitCoupon-list p em {
+            color: #ccc;
+            display: block;
+        }
+
+        .m-cashCoupon-list p span, .m-profitCoupon-list p span {
+            display: block;
+            font-size: 1.2rem;
+        }
+
+        .m-cashCoupon-point {
+            margin-top: -118px;
+        }
+
+        .m-cashCoupon-point ol {
+            padding-left: 39%;
+        }
+
+        .m-cashCoupon-point li {
+            float: left;
+            margin: 0 2%;
+            font-size: 2rem;
+            color: #999;
+        }
+
+        .m-cashCoupon-point .z-current {
+            color: #d74148;
+        }
+
+        /**收益券**/
+        .u-profitCoupon-money {
+            color: #de3c47;
+            font-size: 8rem;
+            text-align: center;
+            padding-top: 1.5rem;
+            padding-bottom: 0.5rem;
+        }
+
+        .u-profitCoupon-money span {
+            font-size: 3rem;
+            margin-left: -15px;
+        }
+
+        .m-Coupon {
+            display: none;
+        }
+
+        .m-Coupon.z-current {
+            display: block;
+        }
+        .ui-badge-cornernum{
+            background: #de3c47;
+            height: 20px;
+            min-width: 10px;
+            top: 8px;
+            right: 10px;
+            line-height: 21px;
+            text-align: center;
+            font-size: 1rem;
+
+        }
+        .z-current .ui-badge-cornernum{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<h2 class="u-header f-pos-r">
+    <a href="$m_url">返回</a>
+    <span class="f-fs18">
+        我的优惠
+    </span>
+</h2>
+
+<div class="u-cashCoupon-tab f-cf">
+    <span class="z-current ui-badge-wrap">我的现金券<em class="ui-badge-cornernum">9</em></span>
+    <span class="ui-badge-wrap">我的收益券<em class="ui-badge-cornernum">11</em></span>
+</div>
+<div class="m-Coupon z-current">
+    <div class="m-cashCoupon-list wp">
+        <div class="wp-inner u-coupon-wrap">
+            <div class="u-coupon-box page">
+                <div class="u-coupon-inner">
+                    <div class="u-cashCoupon-money">￥<span class="f-ff-din">1000</span></div>
+                    <div class="u-cashCoupon-bg"><s></s></div>
+                    <p>
+                        <em>YRCA20140711102212709559</em>
+                        <span>人气值兑换现金券100</span>
+                        APP投资可用 投资金额≥10000元<br/>
+                        有效期至2014-10-30
+                    </p>
+                </div>
+            </div>
+            <div class="u-coupon-box page">
+                <div class="u-coupon-inner">
+                    <div class="u-cashCoupon-money">￥<span class="f-ff-din">1000</span></div>
+                    <div class="u-cashCoupon-bg"><s></s></div>
+                    <p>
+                        <em>YRCA20140711102212709559</em>
+                        <span>人气值兑换现金券100</span>
+                        APP投资可用 投资金额≥10000元<br/>
+                        有效期至2014-10-30
+                    </p>
+                </div>
+            </div>
+            <div class="u-coupon-box page">
+                <div class="u-coupon-inner">
+                    <div class="u-cashCoupon-money">￥<span class="f-ff-din">1000</span></div>
+                    <div class="u-cashCoupon-bg"><s></s></div>
+                    <p>
+                        <em>YRCA20140711102212709559</em>
+                        <span>人气值兑换现金券100</span>
+                        APP投资可用 投资金额≥10000元<br/>
+                        有效期至2014-10-30
+                    </p>
+                </div>
+            </div>
+            <div class="u-coupon-box page">
+                <div class="u-coupon-inner">
+                    <div class="u-cashCoupon-money">￥<span class="f-ff-din">1000</span></div>
+                    <div class="u-cashCoupon-bg"><s></s></div>
+                    <p>
+                        <em>YRCA20140711102212709559</em>
+                        <span>人气值兑换现金券100</span>
+                        APP投资可用 投资金额≥10000元<br/>
+                        有效期至2014-10-30
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="m-cashCoupon-point">
+        <ol>
+            <li class="z-current">●</li>
+            <li>●</li>
+            <li>●</li>
+        </ol>
+    </div>
+</div>
+<div class="m-Coupon">
+    <div class="m-profitCoupon-list wp">
+        <div class="wp-inner u-coupon-wrap">
+            <div class="u-coupon-box page">
+                <div class="u-coupon-inner">
+                    <div class="u-profitCoupon-money">1<span class="f-ff-din">.00%</span></div>
+                    <div class="u-cashCoupon-bg"><s></s></div>
+                    <p>
+                        <em>YRCA20140711102212709559</em>
+                        <span>人气值兑换现金券100</span>
+                        APP投资可用 投资金额≥10000元<br/>
+                        有效期至2014-10-30
+                    </p>
+                </div>
+            </div>
+            <div class="u-coupon-box page">
+                <div class="u-coupon-inner">
+                    <div class="u-profitCoupon-money">1<span class="f-ff-din">.00%</span></div>
+                    <div class="u-cashCoupon-bg"><s></s></div>
+                    <p>
+                        <em>YRCA20140711102212709559</em>
+                        <span>人气值兑换现金券100</span>
+                        APP投资可用 投资金额≥10000元<br/>
+                        有效期至2014-10-30
+                    </p>
+                </div>
+            </div>
+            <div class="u-coupon-box page">
+                <div class="u-coupon-inner">
+                    <div class="u-profitCoupon-money">1<span class="f-ff-din">.00%</span></div>
+                    <div class="u-cashCoupon-bg"><s></s></div>
+                    <p>
+                        <em>YRCA20140711102212709559</em>
+                        <span>人气值兑换现金券100</span>
+                        APP投资可用 投资金额≥10000元<br/>
+                        有效期至2014-10-30
+                    </p>
+                </div>
+            </div>
+            <div class="u-coupon-box page">
+                <div class="u-coupon-inner">
+                    <div class="u-profitCoupon-money">1<span class="f-ff-din">.00%</span></div>
+                    <div class="u-cashCoupon-bg"><s></s></div>
+                    <p>
+                        <em>YRCA20140711102212709559</em>
+                        <span>人气值兑换现金券100</span>
+                        APP投资可用 投资金额≥10000元<br/>
+                        有效期至2014-10-30
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="m-cashCoupon-point">
+        <ol>
+            <li class="z-current">●</li>
+            <li>●</li>
+            <li>●</li>
+        </ol>
+    </div>
+</div>
+<script src="/res/lib/js/zepto.min.js"></script>
+<script src="/res/lib/fullpage/zepto.fullpage.js"></script>
+<script>
+    $('.wp-inner').fullpage({dir: 'h'});
+
+    $(".u-cashCoupon-tab").on('click', 'span', function () {
+        var _this = $(this),
+                index = $(this).index();
+        _this.addClass("z-current").
+                siblings().removeClass("z-current");
+        $('.m-Coupon').eq(index).addClass("z-current")
+                .siblings().removeClass("z-current");
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,255 @@
+##A+轮融资
+#parse("/common/common.vm")
+#set($title="融耀A+gain_$!{title_suffix}")
+#set($css_url=["$root_css_url/activity/againReview.css?201611281037"])
+#set($js_url=["$root_js_url/activity/againReview.js"])
+
+##页头
+#set($yrimg_url='https://yrimg.oss-cn-hangzhou.aliyuncs.com')
+##body
+
+<div class="m-Again-hd">
+    <div class="m-top1"></div>
+    <div class="m-top2"></div>
+    <div class="m-top3"></div>
+    <div class="m-top4"></div>
+    <div class="space">
+        <div class="stars">
+            <div class="star"></div>
+            <div class="star star1"></div>
+            <div class="star star2"></div>
+            <div class="star star3"></div>
+            <div class="star star4"></div>
+            <div class="star star5"></div>
+            <div class="star star6"></div>
+            <div class="star star7"></div>
+            <div class="star star8"></div>
+            <div class="star star9"></div>
+            <div class="star star10"></div>
+            <div class="star star11"></div>
+            <div class="star star12"></div>
+            <div class="star star13"></div>
+            <div class="star star14"></div>
+            <div class="star star15"></div>
+        </div>
+    </div>
+    <div class="m-text">
+    </div>
+</div>
+##现场回顾
+<div class="m-Again-video">
+    <div class="g-wrap f-pos-r">
+        <div class="u-title">
+            <i class="u-title-left"></i><span>精彩回顾</span><i class="u-title-right"></i>
+        </div>
+        <div   class="u-Again-video">
+            <iframe height=600 width=960 src="http://player.youku.com/embed/XMTYzMzg3ODM4NA==" frameborder=0 allowfullscreen></iframe>
+##            <embed  style="width: 960px; height: 600px;" wmode="window" flashvars="vid=d0310sqy9g4&amp;tpid=3&amp;showend=1&amp;showcfg=1&amp;searchbar=1&amp;shownext=1&amp;list=2&amp;autoplay=1&amp;outhost=http%3A%2F%2Fv.qq.com%2Fpage%2Fd%2Fg%2F4%2Fd0310sqy9g4.html&amp;openbc=0&amp;fakefull=1&amp;title=%20%E6%9C%89%E8%9E%8D%E7%BD%91A%2B%E8%BD%AE%E8%9E%8D%E8%B5%84%E5%8F%91%E5%B8%83%E4%BC%9A" src="http://imgcache.qq.com/tencentvideo_v1/player/TencentPlayer.swf?max_age=86400&amp;v=20140714" quality="high" name="tenvideo_flash_player_1467364169747" id="tenvideo_flash_player_1467364169747" bgcolor="#000000" width="650px" height="472px" align="middle" allowscriptaccess="always" allowfullscreen="true" type="application/x-shockwave-flash" pluginspage="http://get.adobe.com/cn/flashplayer/">
+##            <iframe name="againVideo" id="j-Again-video" height=100% width=100% src="http://yunxi.tv/livestream/b04af2990abd46b6828ed8434c8a1ac7?utm_source=backend&utm_medium=frame&utm_campaign=yunxi&frame=1" frameborder=0 allowFullScreen></iframe>
+        </div>
+    </div>
+</div>
+##融资概况
+<div class="m-Again-introduce">
+    <div class="g-wrap">
+        <div class="u-title">
+            <i class="u-title-left"></i><span>融资概况</span><i class="u-title-right"></i>
+        </div>
+        <div class="u-Again-introduce">
+            <p>
+                2016年6月28下午，有融网A+轮融资发布会在杭州城中香格里拉酒店隆重举办。发布会以“融耀A+gain”为主题，寓意有融网继完成Pre-A轮融资，在不到6个月的时间内，又获得鼎立控股集团A+轮融资。此次融资金额为5000万，将用于有融网平台优质资产端的开拓和核心风控技术的提高，以及平台的合规发展等日常运营。融资发布会现场，投资机构、业界代表、有融网用户代表，以及众多知名媒体记者等近百位嘉宾共同见证了这一互联网金融领域的盛事。
+            </p>
+        </div>
+    </div>
+</div>
+##投资方介绍
+<div class="m-Again-investor">
+    <div class="g-wrap">
+        <div class="u-title">
+            <i class="u-title-left"></i><span>投资方介绍</span><i class="u-title-right"></i>
+        </div>
+        <div class="u-Again-investor">
+            <div class="u-investor-logo"></div>
+            <div class="u-investor-text">
+                <h3>鼎立控股集团</h3>
+                <p>鼎立控股集团是一家集矿产、制造、房地产开发、医药、建筑、旅游、金融等于一体的大型现代化企业集团，总资产近百亿元。下辖实业、置业、医药、建设四大集团、拥有一家上市公司——上海鼎立科技发展(集团)股份有限公司(A股代码600614、B股代码900907)。曾荣获“全国守合同重信用企业”、“中华民族品牌奖”、“全国民营企业500强”、“全国十佳诚信单位”、“中国首批信用体系建设先进单位”等百余项国家级荣誉。近几年来，鼎立控股在金融业领域不断拓展，相继参股湖州银行、上海浦东新区长江鼎立小额贷款有限公司，在加快产业升级以及发展金融业方面不断迈出坚实的步伐。
+                </p>
+                <a href="http://www.dingligroup.com/" target="_blank">了解更多 >></a>
+            </div>
+        </div>
+    </div>
+</div>
+##助阵大咖
+<div class="m-Again-honoredGuest">
+    <div class="g-wrap">
+        <div class="u-title">
+            <i class="u-title-left"></i><span>莅临嘉宾</span><i class="u-title-right"></i>
+        </div>
+        <div class="u-Again-honoredGuest">
+            <ul>
+                <li>
+                    <strong>许继石</strong>
+                    <p>鼎立控股集团</p>
+                </li>
+                <li>
+                    <strong>俞智浩</strong>
+                    <p>鼎立控股集团</p>
+                    <span>财务总监</span>
+                </li>
+                <li>
+                    <strong>王凤林</strong>
+                    <p>共青团中央直属、
+                        <br>5A级基金会中国光华科技基金会
+                    </p>
+                    <span>科技事业中心主任</span>
+                </li>
+                <li>
+                    <strong>周志刚</strong>
+                    <p>浙江省交易所联合会</p>
+                    <span>秘书长</span>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <strong>李有星</strong>
+                    <p>浙江大学互联网金融研究院</p>
+                    <span>副院长</span>
+                </li>
+                <li>
+                    <strong>周杭峰</strong>
+                    <p>鼎立控股集团</p>
+                    <span>兴鑫典当行董事长</span>
+                </li>
+                <li>
+                    <strong>申屠旭民</strong>
+                    <p>鼎立控股集团</p>
+                    <span>鼎立报总编</span>
+                </li>
+                <li>
+                    <strong>朱徳友</strong>
+                    <p>鼎立控股集团</p>
+                    <span>法务部长</span>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <strong>李鹏</strong>
+                    <p>共青团直属、
+                        <br>5A级基金会中国光华科技基金会</p>
+                    <span>科技事业中心副主任</span>
+                </li>
+
+                <li>
+                    <strong>钱国友</strong>
+                    <p>浙江千合并购基金管理有限公司</p>
+                    <span>财务总监</span>
+                </li>
+                <li>
+                    <strong>戚健明</strong>
+                    <p>浙江互联网金融委员会</p>
+                    <span>会长</span>
+                </li>
+
+                <li>
+                    <strong>邵建良</strong>
+                    <p>浙江互联网金融委员会</p>
+                    <span>秘书长</span>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <strong>赖家洲</strong>
+                    <p>北京银讯财富信息技术有限公司</p>
+                    <span>网贷天眼副总裁</span>
+                </li>
+
+                <li>
+                    <strong>易莉华</strong>
+                    <p>网贷之家</p>
+                    <span>公关总监</span>
+                </li>
+                <li>
+                    <strong>王华</strong>
+                    <p>北京新浪支付科技有限公司</p>
+                    <span>新浪金融|金融合作经理</span>
+                </li>
+
+                <li>
+                    <strong>陈爱华</strong>
+                    <p>浙江敬业会计师事务所</p>
+                    <span>经理</span>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <strong>张其</strong>
+                    <p>浙江德睦律师事务所
+                        </p>
+                    <span>资深律师</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+##精彩瞬间
+<div class="m-Again-picture">
+    <div class="g-wrap">
+        <div class="u-title">
+            <i class="u-title-left"></i><span>精彩瞬间</span><i class="u-title-right"></i>
+        </div>
+        <div class="u-Again-picture" id="j-Again-picture">
+            <ul>
+                <li class="z-active " id="j-first-page"><img src="http://yrimg.oss-cn-hangzhou.aliyuncs.com/activity/Again/web/againR-pic13.jpg"></li>
+                <li><img src="http://yrimg.oss-cn-hangzhou.aliyuncs.com/activity/Again/web/againR-pic12.jpg"></li>
+                <li><img src="http://yrimg.oss-cn-hangzhou.aliyuncs.com/activity/Again/web/againR-pic11.jpg"></li>
+                <li><img src="http://yrimg.oss-cn-hangzhou.aliyuncs.com/activity/Again/web/againR-pic10.jpg"></li>
+                <li><img src="http://yrimg.oss-cn-hangzhou.aliyuncs.com/activity/Again/web/againR-pic09.jpg"></li>
+                <li><img src="http://yrimg.oss-cn-hangzhou.aliyuncs.com/activity/Again/web/againR-pic08.jpg"></li>
+                <li><img src="http://yrimg.oss-cn-hangzhou.aliyuncs.com/activity/Again/web/againR-pic07.jpg"></li>
+                <li><img src="http://yrimg.oss-cn-hangzhou.aliyuncs.com/activity/Again/web/againR-pic06.jpg"></li>
+                <li><img src="http://yrimg.oss-cn-hangzhou.aliyuncs.com/activity/Again/web/againR-pic05.jpg"></li>
+                <li><img src="http://yrimg.oss-cn-hangzhou.aliyuncs.com/activity/Again/web/againR-pic04.jpg"></li>
+                <li><img src="http://yrimg.oss-cn-hangzhou.aliyuncs.com/activity/Again/web/againR-pic03.jpg"></li>
+                <li><img src="http://yrimg.oss-cn-hangzhou.aliyuncs.com/activity/Again/web/againR-pic02.jpg"></li>
+                <li><img src="http://yrimg.oss-cn-hangzhou.aliyuncs.com/activity/Again/web/againR-pic01.jpg"></li>
+            </ul>
+            <span class="z-left" data-click="left"></span>
+            <span class="z-right" data-click="right"></span>
+            <div>
+                <em>第<strong class="f-fs36" id="j-mun">1</strong>张</em>
+                <div >
+                    <p id="j-title"></p>
+                    <span id="j-text"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+##合作媒体
+<div class="m-Again-media">
+    <div class="g-wrap">
+        <div class="u-title">
+            <i class="u-title-left"></i><span>媒体报道</span><i class="u-title-right"></i>
+        </div>
+        <div class="u-Again-media">
+            <a class="z-wdzj" href="http://www.wdzj.com/news/pingtai/30231.html" target="_blank"></a>
+            <a class="z-cjw" href="http://industry.caijing.com.cn/20160630/4141173.shtml" target="_blank"></a>
+            <a class="z-lycj" href="http://www.01caijing.com/wd/4360.htm" target="_blank"></a>
+            <a class="z-fhw" href="http://ent.ifeng.com/a/20160629/42643233_0.shtml" target="_blank"></a>
+            <a class="z-wy" href="http://money.163.com/16/0629/17/BQOAJF2000253B0H.html" target="_blank"></a>
+            <a class="z-cctv" href="http://yueyu.cntv.cn/2016/06/30/ARTIBlJJ3D1C1RVbRXIJ8Q1z160630.shtml" target="_blank"></a>
+            <a class="z-jrj" href="http://finance.jrj.com.cn/biz/2016/06/30154321135469.shtml" target="_blank"></a>
+            <a class="z-tx" target="_blank" href="http://zj.qq.com/a/20160630/012355.htm"></a>
+            <a class="z-hxcj" href="http://finance.591hx.com/article/2016-07-01/0000619749s.shtml" target="_blank"></a>
+        </div>
+    </div>
+</div>
+
+<script>
+    //页面跳转https替换成http
+    if(location.href.indexOf('https')!==-1){
+        window.location=location.href.replace(/https/g,'http');
+    }
+
+</script>

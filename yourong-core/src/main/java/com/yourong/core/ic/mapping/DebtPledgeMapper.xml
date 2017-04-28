@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.ic.dao.DebtPledgeMapper" >
+  <resultMap id="BaseResultMap" type="DebtPledge" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="debt_id" property="debtId" jdbcType="BIGINT" />
+    <result column="pledge_type" property="pledgeType" jdbcType="VARCHAR" />
+    <result column="pledge_details" property="pledgeDetails" jdbcType="VARCHAR" />
+    <result column="pledge_verify" property="pledgeVerify" jdbcType="VARCHAR" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+    <result column="pledge_valuation" property="pledgeValuation" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, debt_id, pledge_type, pledge_details, pledge_verify, remarks, create_time, update_time,pledge_valuation,del_flag
+  </sql>
+  <insert id="insertSelective" parameterType="DebtPledge" >
+    insert into ic_debt_pledge
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="debtId != null" >
+        debt_id,
+      </if>
+      <if test="pledgeType != null" >
+        pledge_type,
+      </if>
+      <if test="pledgeDetails != null" >
+        pledge_details,
+      </if>
+      <if test="pledgeVerify != null" >
+        pledge_verify,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+      <if test="pledgeValuation != null" >
+        pledge_valuation,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="debtId != null" >
+        #{debtId,jdbcType=BIGINT},
+      </if>
+      <if test="pledgeType != null" >
+        #{pledgeType,jdbcType=VARCHAR},
+      </if>
+      <if test="pledgeDetails != null" >
+        #{pledgeDetails,jdbcType=VARCHAR},
+      </if>
+      <if test="pledgeVerify != null" >
+        #{pledgeVerify,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=INTEGER},
+      </if>
+      <if test="pledgeValuation != null" >
+        #{pledgeValuation,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="DebtPledge" >
+    update ic_debt_pledge
+    <set >
+      <if test="debtId != null" >
+        debt_id = #{debtId,jdbcType=BIGINT},
+      </if>
+      <if test="pledgeType != null" >
+        pledge_type = #{pledgeType,jdbcType=VARCHAR},
+      </if>
+      <if test="pledgeDetails != null" >
+        pledge_details = #{pledgeDetails,jdbcType=VARCHAR},
+      </if>
+      <if test="pledgeVerify != null" >
+        pledge_verify = #{pledgeVerify,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=INTEGER},
+      </if>
+      <if test="pledgeValuation != null" >
+        pledge_valuation = #{pledgeValuation,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <delete id="batchDelete" parameterType="java.lang.Long" >
+    delete from ic_debt_pledge
+    where id in  <foreach collection="ids" index="index" item="item" open="(" separator="," close=")"> #{item}  </foreach>  
+  </delete>
+  <select id="findByPage" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from ic_debt_pledge
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = #{map.id}
+        </if>
+        <if test=" map.debtId != null" >
+          debt_id = #{map.debtId}
+        </if>
+        <if test=" map.pledgeType != null" >
+          pledge_type = #{map.pledgeType}
+        </if>
+        <if test=" map.pledgeDetails != null" >
+          pledge_details = #{map.pledgeDetails}
+        </if>
+        <if test=" map.pledgeVerify != null" >
+          pledge_verify = #{map.pledgeVerify}
+        </if>
+        <if test=" map.remarks != null" >
+          remarks = #{map.remarks}
+        </if>
+        <if test=" map.createTime != null" >
+          create_time = #{map.createTime}
+        </if>
+        <if test=" map.updateTime != null" >
+          update_time = #{map.updateTime}
+        </if>
+        <if test=" delFlag != null" >
+          del_flag = #{map.delFlag}
+        </if>
+        <if test=" pledgeValuation != null" >
+          pledge_valuation = #{map.pledgeValuation}
+        </if>
+      </where>
+    </if>
+  </select>
+  <sql id="Base_Column_List_Pagin" >
+    t.id  as  id,
+t.debt_id  as  debt_id,
+t.pledge_type  as  pledge_type,
+t.pledge_details  as  pledge_details,
+t.pledge_verify  as  pledge_verify,
+t.remarks  as  remarks,
+t.create_time  as  create_time,
+t.update_time  as  update_time
+  </sql>
+  <select id="selectForPagin" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List_Pagin" />
+    from  (SELECT id FROM  ic_debt_pledge
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = #{map.id}
+        </if>
+        <if test=" map.debtId != null" >
+          debt_id = #{map.debtId}
+        </if>
+        <if test=" map.pledgeType != null" >
+          pledge_type = #{map.pledgeType}
+        </if>
+        <if test=" map.pledgeDetails != null" >
+          pledge_details = #{map.pledgeDetails}
+        </if>
+        <if test=" map.pledgeVerify != null" >
+          pledge_verify = #{map.pledgeVerify}
+        </if>
+        <if test=" map.remarks != null" >
+          remarks = #{map.remarks}
+        </if>
+        <if test=" map.createTime != null" >
+          create_time = #{map.createTime}
+        </if>
+        <if test=" map.updateTime != null" >
+          update_time = #{map.updateTime}
+        </if>
+      </where>
+    </if>
+      LIMIT	${map.startRow}, ${map.pageSize}  )  AS a,  ic_debt_pledge AS t FORCE INDEX(PRIMARY) WHERE a.id = t.id   
+  </select>
+  <select id="selectForPaginTotalCount" resultType="java.lang.Integer" >
+    select count(1) 
+    from ic_debt_pledge
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = ${map.id}
+        </if>
+        <if test=" map.debtId != null" >
+          debt_id = ${map.debtId}
+        </if>
+        <if test=" map.pledgeType != null" >
+          pledge_type = ${map.pledgeType}
+        </if>
+        <if test=" map.pledgeDetails != null" >
+          pledge_details = ${map.pledgeDetails}
+        </if>
+        <if test=" map.pledgeVerify != null" >
+          pledge_verify = ${map.pledgeVerify}
+        </if>
+        <if test=" map.remarks != null" >
+          remarks = ${map.remarks}
+        </if>
+        <if test=" map.createTime != null" >
+          create_time = ${map.createTime}
+        </if>
+        <if test=" map.updateTime != null" >
+          update_time = ${map.updateTime}
+        </if>
+        <if test=" map.pledgeValuation != null" >
+          pledge_valuation = ${map.pledgeValuation}
+        </if>
+      </where>
+    </if>
+  </select>
+  
+  <!-- 根据债权id获取质押物信息 -->
+  <select id="findPledgeByDebtId" resultMap="BaseResultMap">
+  	select 
+  	<include refid="Base_Column_List" />
+  	from ic_debt_pledge
+  	where del_flag > 0 and  debt_id = #{debtId,jdbcType=BIGINT} 
+  </select>
+  
+  <!-- 根据债权id删除质押物信息 -->
+  <delete id="deletePledgeByDebtId" >
+  	delete 
+  	from ic_debt_pledge
+  	where debt_id = #{debtId,jdbcType=BIGINT} 
+  </delete>  
+</mapper>

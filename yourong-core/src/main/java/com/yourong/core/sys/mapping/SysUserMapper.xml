@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.sys.dao.SysUserMapper" >
+  <resultMap id="BaseResultMap" type="SysUser" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="office_id" property="officeId" jdbcType="BIGINT" />
+    <result column="login_name" property="loginName" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="no" property="no" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="user_type" property="userType" jdbcType="INTEGER" />
+    <result column="login_ip" property="loginIp" jdbcType="VARCHAR" />
+    <result column="login_time" property="loginTime" jdbcType="TIMESTAMP" />
+    <result column="avatars" property="avatars" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <resultMap type="SysUser" id="SysUserRole" extends="BaseResultMap">
+  	<collection property="roles" ofType="SysRole">  
+            <id property="id" column="role_id" />  
+            <result property="name" column="role_Name" />  
+            <result property="dataScope" column="role_data_scope" />  
+             <result property="createDate" column="role_create_date" />  
+              <result property="updateDate" column="role_update_date" />  
+              <result property="remarks" column="role_remarks" />  
+              <result property="delFlag" column="role_del_flag" /> 
+            <!--  <result property="createTime" column="groupCreateTime" />  -->
+        </collection>  
+  </resultMap>
+  
+  
+  
+  
+  
+  <select id="selectSysUserRole" resultMap="SysUserRole" parameterType="java.lang.Long">
+  	SELECT user.*,role.id AS role_id ,role.name AS role_Name ,role.data_scope AS role_data_scope,
+	role.create_date AS role_create_date ,role.update_date AS role_update_date, 
+	role.remarks AS role_remarks ,role.del_flag AS role_del_flag
+	 FROM  sys_user as user
+  	LEFT JOIN sys_user_role ur ON  user.id = ur.user_id
+  	LEFT JOIN sys_role  role ON ur.role_id = role.id 
+  	where user.id =  #{id,jdbcType=BIGINT}
+  </select>
+  
+  
+  
+  
+   <select id="selectSysUserRoleByLoginName" resultMap="SysUserRole" parameterType="java.lang.String">
+  	SELECT user.*,role.id AS role_id ,role.name AS role_Name ,role.data_scope AS role_data_scope,
+	role.create_date AS role_create_date ,role.update_date AS role_update_date, 
+	role.remarks AS role_remarks ,role.del_flag AS role_del_flag
+	 FROM  sys_user as user
+  	LEFT JOIN sys_user_role ur ON  user.id = ur.user_id
+  	LEFT JOIN sys_role  role ON ur.role_id = role.id 
+  	where user.login_name =  #{loginName,jdbcType=VARCHAR}
+  </select>
+  
+  
+  
+  
+  <sql id="Base_Column_List" >
+    id, office_id, login_name, password, no, name, email, phone, mobile, status, user_type, 
+    login_ip, login_time, avatars, create_time, update_time, remarks, del_flag
+  </sql>
+  <insert id="insertSelective" parameterType="SysUser" >
+    insert into sys_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="officeId != null" >
+        office_id,
+      </if>
+      <if test="loginName != null" >
+        login_name,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="no != null" >
+        no,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="userType != null" >
+        user_type,
+      </if>
+      <if test="loginIp != null" >
+        login_ip,
+      </if>
+      <if test="loginTime != null" >
+        login_time,
+      </if>
+      <if test="avatars != null" >
+        avatars,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="officeId != null" >
+        #{officeId,jdbcType=BIGINT},
+      </if>
+      <if test="loginName != null" >
+        #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="no != null" >
+        #{no,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="userType != null" >
+        #{userType,jdbcType=INTEGER},
+      </if>
+      <if test="loginIp != null" >
+        #{loginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="loginTime != null" >
+        #{loginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="avatars != null" >
+        #{avatars,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="SysUser" >
+    update sys_user
+    <set >
+      <if test="officeId != null" >
+        office_id = #{officeId,jdbcType=BIGINT},
+      </if>
+      <if test="loginName != null" >
+        login_name = #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="no != null" >
+        no = #{no,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="userType != null" >
+        user_type = #{userType,jdbcType=INTEGER},
+      </if>
+      <if test="loginIp != null" >
+        login_ip = #{loginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="loginTime != null" >
+        login_time = #{loginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="avatars != null" >
+        avatars = #{avatars,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <delete id="batchDelete" parameterType="java.lang.Long" >
+    update sys_user set del_flag = -1 
+    where id in  <foreach collection="ids" index="index" item="item" open="(" separator="," close=")"> #{item}  </foreach>  
+  </delete>
+  <select id="findByPage" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user 
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          and id = #{map.id}
+        </if>
+        <if test=" map.officeId != null" >
+          and office_id = #{map.officeId}
+        </if>
+        <if test=" map.loginName != null" >
+          and login_name = #{map.loginName}
+        </if>
+        <if test=" map.password != null" >
+          and password = #{map.password}
+        </if>
+        <if test=" map.no != null" >
+          and no = #{map.no}
+        </if>
+        <if test=" map.name != null" >
+          and name = #{map.name}
+        </if>
+        <if test=" map.email != null" >
+          and email = #{map.email}
+        </if>
+        <if test=" map.phone != null" >
+          and phone = #{map.phone}
+        </if>
+        <if test=" map.mobile != null" >
+          and mobile = #{map.mobile}
+        </if>
+        <if test=" map.status != null" >
+          and status = #{map.status}
+        </if>
+        <if test=" map.userType != null" >
+          and user_type = #{map.userType}
+        </if>
+        <if test=" map.loginIp != null" >
+          and login_ip = #{map.loginIp}
+        </if>
+        <if test=" map.loginTime != null" >
+          and date_format(login_time,'%Y-%m-%d') = #{map.loginTime}
+        </if>
+        <if test=" map.loginTimeStart != null" >
+          and login_time <![CDATA[ >= ]]> #{map.loginTimeStart}
+        </if>
+        <if test=" map.loginTimeEnd != null" >
+          and login_time <![CDATA[ < ]]> DATE_ADD(#{map.loginTimeEnd},INTERVAL 1 DAY)
+        </if>
+        <if test=" map.avatars != null" >
+          and avatars = #{map.avatars}
+        </if>
+        <if test=" map.createTime != null" >
+          and date_format(create_time,'%Y-%m-%d') = #{map.createTime}
+        </if>
+        <if test=" map.createTimeStart != null" >
+          and create_time <![CDATA[ >= ]]> #{map.createTimeStart}
+        </if>
+        <if test=" map.createTimeEnd != null" >
+          and create_time <![CDATA[ < ]]> DATE_ADD(#{map.createTimeEnd},INTERVAL 1 DAY)
+        </if>
+        <if test=" map.updateTime != null" >
+          and update_time = #{map.updateTime}
+        </if>
+        <if test=" map.remarks != null" >
+          and remarks = #{map.remarks}
+        </if>
+        <choose>
+        	<when test=" map.delFlag != null">
+        		and del_flag = #{map.delFlag}
+        	</when>
+        	<otherwise>
+        		and del_flag >= 0
+        	</otherwise>
+        </choose>
+      </where>     
+      
+      
+    </if>
+      <if test=" map != null" >
+   		<if test=" map.desc != null" >
+          order by  ${map.desc}  desc
+       </if>      	
+      	<if test=" map.asc != null" >
+          order by ${map.asc}  asc
+       </if>
+        </if>
+  </select>
+  
+  <select id="checkLoginNameExists" resultMap="BaseResultMap">
+  		select id, login_name from sys_user  		
+  		<if test=" loginName != null" >
+  			<where>
+  				login_name = #{loginName}
+  				<if test=" id >= 0 ">
+  					and id != #{id}
+  				</if>
+  			</where>
+  		</if>
+  </select>
+</mapper>

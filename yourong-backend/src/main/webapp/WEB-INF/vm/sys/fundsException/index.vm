@@ -1,0 +1,56 @@
+#set($layout = "/layout/iframe.vm")
+#parse("/sys/fundsException/head.vm")
+#if($shiro.hasPermission("transaction:directHostPay"))
+<form role="form" class="form-horizontal" id="direct_host_pay" method="post">
+	会员ID：<input name="memberId"  datatype="*" nullmsg="请输入会员ID"/>
+	金额：<input name="amount"  datatype="*" nullmsg=""/>
+	中间账户类型： <select name="type"  >
+                      <option value = "1">投资专用</option>
+                    <option value = "2">还款专用</option>
+              </select>
+    备注：<input name="remark"  datatype="*" nullmsg=""/>
+	<button id="direct_host_pay_btn" type="button" class="btn btn-warn btn-sm btn-primary" >直接代付</button>
+</form>
+#end
+
+<hr>
+#if($shiro.hasPermission("transaction:directHostCollect"))
+<form role="form" class="form-horizontal" id="direct_host_collect" method="post">
+	会员ID：<input name="memberId"  datatype="*" nullmsg="请输入会员ID"/>
+	金额：<input name="amount"  datatype="*" nullmsg=""/>
+	中间账户类型： <select name="type"  >
+                      <option value = "1">投资专用</option>
+                    <option value = "2">还款专用</option>
+              </select>
+    备注：<input name="remark"  datatype="*" nullmsg=""/>
+	<button id="direct_host_collect_btn" type="button" class="btn btn-warn btn-sm btn-primary" >直接代收</button>
+</form>
+#end
+
+<hr>
+#if($shiro.hasPermission("transaction:createBatchPay"))	
+<form role="form" class="form-horizontal" id="create_remote_batch_pay" method="post">
+                项目ID：<input name="projectId"  datatype="*" nullmsg="请输入项目ID"/>
+	  <button id="create_remote_batch_pay_btn" type="button" class="btn btn-warn btn-sm btn-primary" >创建远程批付</button><span style="color:red"></span>
+</form>
+#end
+</hr>
+
+<hr>
+#if($shiro.hasPermission("transaction:createBatchPay"))	
+<form role="form" class="form-horizontal" id="create_host_batch_pay" method="post">
+                代收交易号：<input name="tradeNo"  datatype="*" nullmsg="请输入代收交易号"/>
+	  <button id="create_host_batch_pay_btn" type="button" class="btn btn-warn btn-sm btn-primary" >创建本地批付</button><span style="color:red"></span>
+</form>
+#end
+</hr>
+
+<hr>
+#if($shiro.hasPermission("sysException:refundTradeCollection"))
+<form role="form" class="form-horizontal" id="refund_trade_collect" method="post">
+	代收交易号：<input name="tradeNo"  datatype="*" nullmsg="请输入代收交易号"/>
+    原因：<input name="remark"  datatype="*" nullmsg=""/>
+	<button id="refund_trade_collect_btn" type="button" class="btn btn-warn btn-sm btn-primary" >根据代收交易号发起退款</button>
+</form>
+#end
+</hr>

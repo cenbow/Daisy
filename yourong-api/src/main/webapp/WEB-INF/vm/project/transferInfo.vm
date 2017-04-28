@@ -1,0 +1,127 @@
+#parse('/common/common.vm')
+#set($title="$!{project.name}")
+#if(!$sysServiceUtil.isDev())
+    #set($siteurl='')
+#else
+    #set($siteurl='/yourong-api')
+#end
+#set($css_url=["$siteurl/static/source/css/transferDetail.css"])
+#set($debt = ${project.debtDto})
+#if($debt.isCollateral  || $debt.isCreditDebt)
+    #set($debtCollateral = ${debt.debtCollateral})
+#else
+    #set($debtPledge = ${debt.debtPledge})
+#end
+<div class="g-wrap">
+##    <div>
+##        <div class="u-title">转让信息</div>
+##        <div class="u-projectInfo">
+##            <ul>
+##                <li><span>产品价值：</span><span class="j-invest-Amount" data-amount="${project.ProjectValue}">&yen;${project.ProjectValue}</span></li>
+##                <li><span>转让价格：</span><span class="j-invest-Amount" data-amount="${project.transferAmount}">&yen;${project.transferAmount}</span></li>
+##                <li><span>折价：</span><span class="j-invest-Amount" data-amount="${project.discount}">&yen;${project.discount}</span></li>
+##                <li><span>原始年化：</span><span>
+##                        ${project.originalAnnualizedRate}%
+##                    </span></li>
+##                <li><span>项目到期日：</span><span>$!{dateUtil.formatDatetoString(${project.endDate},"yyyy-MM-dd")}</span></li>
+##            </ul>
+##        </div>
+    </div>
+    <div>
+        <div class="u-title">转让流程</div>
+        <div class="u-projectProcess">
+            <div>
+                <img src="$siteurl/static/img/projectInfo/Group8.png" alt="">
+                <p>
+                    发布 <br>
+                    债权转让
+                </p>
+            </div>
+            <div>
+                <img src="$siteurl/static/img/projectInfo/Group15.png" alt="">
+            </div>
+            <div>
+                <img src="$siteurl/static/img/projectInfo/Group9.png" alt="">
+                <p>
+                    投资成功<br>
+                    当日计息
+                </p>
+            </div>
+            <div>
+                <img src="$siteurl/static/img/projectInfo/Group15.png" alt="">
+            </div>
+            <div>
+                <img src="$siteurl/static/img/projectInfo/Group10.png" alt="">
+                <p>
+                    进入 <br>
+                    理财期
+                </p>
+            </div>
+            <div>
+                <img src="$siteurl/static/img/projectInfo/Group15.png" alt="">
+            </div>
+            <div>
+                <img src="$siteurl/static/img/projectInfo/Group11.png" alt="">
+                <p>
+                    资金 <br>
+                    全部回款
+                </p>
+            </div>
+        </div>
+        <div class="u-projectDate">
+            <span>$!{dateUtil.formatDatetoString(${project.transferStartDate},"yyyy-MM-dd")}</span>
+            <span class="f-fr">$!{dateUtil.formatDatetoString(${project.endDate},"yyyy-MM-dd")}</span>
+        </div>
+    </div>
+
+    <div>
+        <div class="u-title">说明</div>
+        <div class="u-projectDescription">
+            <p>1、转让项目认购成功后不可再次转让；  </p>
+            <p> 2、每期实际收款日期、金额以最终到账为准，本项目最终解释权归浙江小融网络科技股份有限公司 版权所有。</p>
+        </div>
+    </div>
+    <div>
+        <div class="u-title">平台免责声明</div>
+        <div class="u-projectDescription">
+        <p>
+            有融网作为交易服务平台进行信息发布，不对任何投资人或任何交易提供任何担保，无论是明示、默示或法定的。
+        </p>
+        <p>
+            有融网平台提供的各种信息及资料仅供参考，投资人应依其独立判断做出决策。投资人据此进行投资交易的，产生的投资风险由投资人自行承担，有融网不承担任何责任。
+        </p>
+        </div>
+    </div>
+</div>
+<script src="https://yrstatic.oss-cn-hangzhou.aliyuncs.com/res/lib/zepto/1.1.6/zepto.min.js"></script>
+<script>
+    //控制iframe高度
+    window.onload=function(){
+        if(window!==window.top&&window.frames.name==="detailFrame"){
+            window.top.$('#j-detail-frame')
+                    .removeAttr('style')
+                    .height(document.body.scrollHeight);
+        }
+
+
+        $(".j-invest-Amount").each(function(){
+            var amount=$(this).data("amount"),
+                    formatAmount=splitAmount(amount-0)
+            $(this).text('￥'+formatAmount)
+        })
+
+
+        //金额格式化
+
+        function splitAmount(amount) {
+            if (!amount) {
+                return 0
+            }
+            var n = amount + "",
+                    reg = /(-?\d+)(\d{3})/
+            return n.replace(reg, "$1,$2")
+        };
+    };
+
+
+</script>

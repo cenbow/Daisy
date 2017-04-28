@@ -1,0 +1,313 @@
+#set($articlecommon ={"title":"文章图片", "category":"article_common","dzId":"dropzone_article_common"})
+#set($articlechosen ={"title":"文章精选图片", "category":"article_chosen","dzId":"dropzone_article_chosen"})
+<link href="$root_url/static/js/lib/validform/css/style.css" rel="stylesheet">
+<div tabindex="-1" class="modal fade" id="modal-table" style="display: none;" aria-hidden="true">
+     <div class="modal-dialog w900">
+     <div class="modal-content">
+ <div class="modal-header no-padding">
+             <div class="table-header">
+                  <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+                    <span class="white">×</span>
+              </button>
+    		  <span class="modalFormTitle">增加文章</span>
+       </div>
+  </div>
+   <div class="modal-body">
+    <form enctype="multipart/form-data"  role="form" class="form-horizontal" name="cmsArticleForm" id="cmsArticle_form" method="post"  action="$root_url/cmsArticle/save">
+        <input type="hidden" id="j-json-dropzone_article_common" name="commonAttachmentsData"/>
+        <input type="hidden" id="j-json-dropzone_article_chosen" name="chosenAttachmentsData"/>
+        <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="formTab">
+        <li class="active">
+            <a data-toggle="tab" href="#formBaseAttr">基本属性</a>
+        </li>
+        <li class="">
+            <a data-toggle="tab" href="#formAdditionAttr">附加属性</a>
+        </li>
+        </ul>
+        <div class="tab-content">
+        <div id="formBaseAttr" class="tab-pane active">
+            <input type="hidden" name="id" />
+            <div class="form-group">
+              <label for="form-field-categoryId" class="col-sm-2 control-label no-padding-right"> 栏目分类: </label>
+             <div class="col-sm-3">
+               <div class="clearfix">
+##                <input type="text" class="col-xs-12 col-sm-12" placeholder="请选择" id="form-field-categoryId" datatype="*" name="categoryName">
+                   <select name="categoryId" id="categoryId">
+##                       <option value="1">网站公告</option>
+##                       <option value="2">媒体报道</option>
+##                       <option value="3">平台动态</option>
+                   </select>
+##                    #dictSelect ("categoryId",${sysServiceUtil.getDictList('goods_tags')} ,"categoryId")
+##                <input type="hidden" name="categoryId" >
+               </div>
+               </div>
+             <label for="form-field-title" class="col-sm-2 control-label no-padding-right"> 标题: </label>
+             <div class="col-sm-4">
+               <div class="clearfix">
+                 <input type="text" name="title" class="col-xs-10 col-sm-12" placeholder="" id="form-field-title">
+               </div>
+             </div>
+           </div>
+            <div class="form-group" id="genre_group">
+                <label for="form-field-title" class="col-sm-2 control-label no-padding-right"> 类别: </label>
+                <div class="col-sm-4">
+                    <div class="clearfix">
+                        <select name="genre" id="genre">
+                            <option value="1">银行公告</option>
+                            <option value="2">活动公告</option>
+                            <option value="3">其他公告</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+           <div class="form-group">
+           <label for="form-field-image" class="col-sm-2 control-label no-padding-right"> 文章图片: </label>
+          <div class="col-sm-10">
+##            <div class="clearfix">
+##             <input type="file" name="file" id="form-field-image" placeholder=""  >
+##            </div>
+            <div>
+                <div class="widget-box">
+                    <div class="widget-header">
+                        <h5>${articlecommon.title}</h5>
+                    </div>
+                    <div class="widget-body">
+                        <div class="widget-main">
+                            <div class="form-group clearfix">
+                            ###添加文件按钮
+                                <span class="btn btn-success fileinput-button ${articlecommon.dzId} dz-upload-btn">
+                                    <i class="glyphicon glyphicon-plus"></i>
+                                    <span>添加文件</span>
+                                </span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="btn btn-primary delImage" id="del-${articlecommon.dzId}">一键删除</span>
+                            ###图片控件容器
+                                <div class="dropzoneImage dropzone dropzoneSort" id="${articlecommon.dzId}" data-category="${articlecommon.category}">
+                                    <div class="fallback">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+
+            <div class="form-group" id="articlechosen_group">
+                <label for="form-field-image" class="col-sm-2 control-label no-padding-right"> 精选图片: </label>
+                <div class="col-sm-10">
+                ##            <div class="clearfix">
+                ##             <input type="file" name="file" id="form-field-image" placeholder=""  >
+                ##            </div>
+                    <div>
+                        <div class="widget-box">
+                            <div class="widget-header">
+                                <h5>${articlechosen.title}</h5>
+                            </div>
+                            <div class="widget-body">
+                                <div class="widget-main">
+                                    <div class="form-group clearfix">
+                                    ###添加文件按钮
+                                        <span class="btn btn-success fileinput-button ${articlechosen.dzId} dz-upload-btn">
+                                    <i class="glyphicon glyphicon-plus"></i>
+                                    <span>添加文件</span>
+                                </span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="btn btn-primary delImage" id="del-${articlechosen.dzId}">一键删除</span>
+                                    ###图片控件容器
+                                        <div class="dropzoneImage dropzone dropzoneSort" id="${articlechosen.dzId}" data-category="${articlechosen.category}">
+                                            <div class="fallback">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <div class="form-group">
+            <label for="form-field-keywords" class="col-sm-2 control-label no-padding-right"> 关键字: </label>
+            <div class="col-sm-4">
+                <div class="clearfix">
+                    <input type="text" name="keywords" class="col-xs-10 col-sm-12" placeholder="" id="form-field-keywords">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+        <label for="form-field-content" class="col-sm-2"> 文章内容: </label>
+       <div class="col-sm-12">
+         <div class="clearfix">
+             <div id="col-xs-12 col-sm-12">
+                 <textarea name="articleContent" placeholder="" id="articleContent"></textarea>
+             </div>
+         </div>
+       </div>
+      </div>
+        </div>
+        <div id="formAdditionAttr" class="tab-pane">
+        <div class="form-group">
+        <label for="form-field-link" class="col-sm-2 control-label no-padding-right"> 文章链接: </label>
+       <div class="col-sm-3">
+         <div class="clearfix">
+          <input type="text" name="link" class="col-xs-12 col-sm-12" placeholder="" id="form-field-link">
+         </div>
+       </div>
+       <label for="form-field-color" class="col-sm-2 control-label no-padding-right"> 标题颜色: </label>
+       <div class="col-sm-4">
+         <div class="clearfix">
+          <input type="text" name="color" class="col-xs-10 col-sm-12" placeholder="" id="form-field-color">
+         </div>
+       </div>
+     </div>
+
+      <div class="form-group">
+        
+       <label for="form-field-weight" class="col-sm-2 control-label no-padding-right"> 权重 : </label>
+       <div class="col-sm-3">
+         <div class="clearfix">
+          <input type="text" name="weight" class="col-xs-10 col-sm-12" placeholder="" id="form-field-weight" datatype="n" ignore="ignore" errormsg="请填写数字" sucmsg="&nbsp;">
+         </div>
+       </div>
+        <label for="form-field-weightTime" class="col-sm-2 control-label no-padding-right"> 权重期限: </label>
+       <div class="col-sm-4">
+         <div class="clearfix">
+          <input type="date" name="weightTime" class="col-xs-12 col-sm-12" placeholder="" id="form-field-weightTime">
+         </div>
+       </div>
+     </div>
+      <div class="form-group">
+       <label for="form-field-hits" class="col-sm-2 control-label no-padding-right"> 点击数: </label>
+       <div class="col-sm-3">
+         <div class="clearfix">
+          <input type="text" name="hits" class="col-xs-10 col-sm-12" placeholder="" id="form-field-hits" datatype="n" ignore="ignore" errormsg="请填写数字" sucmsg="&nbsp;">
+         </div>
+       </div>
+        <label for="form-field-posid" class="col-sm-2 control-label no-padding-right"> 推荐位，多选: </label>
+       <div class="col-sm-4">
+         <div class="clearfix">
+          #dictSelect ("posid",${sysServiceUtil.getDictList('cms_posid')} ,"请选择")
+          ##<input type="text" name="posid" class="col-xs-12 col-sm-12" placeholder="" id="form-field-posid">
+         </div>
+       </div>
+     </div>
+      <div class="form-group">
+       <label for="form-field-copyfrom" class="col-sm-2 control-label no-padding-right"> 文章来源: </label>
+       <div class="col-sm-3">
+         <div class="clearfix">
+          <input type="text" name="copyfrom" class="col-xs-10 col-sm-12" placeholder="" id="form-field-copyfrom">
+         </div>
+       </div>
+        <label for="form-field-relation" class="col-sm-2 control-label no-padding-right"> 相关文章: </label>
+       <div class="col-sm-4">
+         <div class="clearfix">
+          <input type="text" name="relation" class="col-xs-12 col-sm-12" placeholder="" id="form-field-relation">
+         </div>
+       </div>
+     </div>
+      <div class="form-group">
+       <label for="form-field-allowComment" class="col-sm-2 control-label no-padding-right"> 允许评论: </label>
+       <div class="col-sm-3">
+         <div class="clearfix">
+          <input type="checkbox" class="ace ace-switch ace-switch-5 col-xs-10 col-sm-12" placeholder="0:否 1:是" id="form-field-allowComment" value="0">
+          <span class="lbl"></span>
+          <input type="hidden" name="allowComment" class="switchInput" value="0"/>
+         </div>
+       </div>
+        <label for="form-field-relation" class="col-sm-2 control-label no-padding-right"> 上线时间: </label>
+       <div class="col-sm-4">
+         <div class="clearfix">
+		<input type="text"  id="onlineTime" name="onlineTime"  id="form-field-onlineTime"
+		 class="col-xs-12 col-sm-12"  placeholder="此项不填即为立即上线" 
+		onclick="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd HH:mm'})"/>
+         </div>
+       </div>
+     </div>
+     
+      <div class="form-group">
+      <label for="form-field-relation" class="col-sm-2 control-label no-padding-right"> 结束时间: </label>
+       <div class="col-sm-3">
+         <div class="clearfix">
+		<input type="text"  id="endTime" name="endTime"  id="form-field-onlineTime"
+		 class="col-xs-12 col-sm-12"  placeholder="" 
+		onclick="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd HH:mm'})"/>
+         </div>
+       </div>
+     </div>
+     
+     <div class="form-group">
+     <label for="form-field-remarks" class="col-sm-2 control-label no-padding-right"> 备注信息: </label>
+   <div class="col-sm-9">
+     <div class="clearfix">
+      <textarea name="remarks" class="col-xs-12 col-sm-12" placeholder="" id="form-field-remarks"></textarea>
+     </div>
+   </div>
+  </div>
+  <div class="form-group">
+     <label for="form-field-description" class="col-sm-2 control-label no-padding-right"> 描述: </label>
+   <div class="col-sm-9">
+     <div class="clearfix">
+      <textarea name="description" class="col-xs-12 col-sm-12" placeholder="" id="form-field-description"></textarea>
+     </div>
+   </div>
+  </div>
+        </div>
+    </div>
+
+ 
+ <!--<div class="form-group">
+  <label for="form-field-1" class="col-sm-2 control-label no-padding-right"> 删除标记: </label>
+  <div class="col-sm-4">
+    <div class="clearfix">
+     <input type="text" name="delFlag" class="col-xs-10 col-sm-12" placeholder="1:未删除 -1:已删除" id="form-field-delFlag">
+    </div>
+  </div>
+  <label for="form-field-1" class="col-sm-2 control-label no-padding-right"> 创建者: </label>
+  <div class="col-sm-4">
+    <div class="clearfix">
+     <input type="text" name="createBy" class="col-xs-10 col-sm-12" placeholder="createBy" id="form-field-createBy">
+    </div>
+  </div>
+</div>
+  <div class="form-group">
+  <label for="form-field-1" class="col-sm-2 control-label no-padding-right"> 创建时间: </label>
+  <div class="col-sm-3">
+    <div class="clearfix">
+     <input type="text" name="createTime" class="col-xs-12 col-sm-12" placeholder="createTime" id="form-field-createTime">
+    </div>
+  </div>
+  <label for="form-field-1" class="col-sm-2 control-label no-padding-right"> 更新者: </label>
+  <div class="col-sm-4">
+    <div class="clearfix">
+     <input type="text" name="updateBy" class="col-xs-10 col-sm-12" placeholder="updateBy" id="form-field-updateBy">
+    </div>
+  </div>
+</div>
+ <div class="form-group">
+	<label for="form-field-1" class="col-sm-2 control-label no-padding-right"> 更新时间: </label>
+  <div class="col-sm-3">
+    <div class="clearfix">
+     <input type="text" name="updateTime" class="col-xs-12 col-sm-12" placeholder="updateTime" id="form-field-updateTime">
+    </div>
+  </div>
+</div>-->
+ 
+
+</form>
+
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+<button type="button" id="save_cmsArticle" class="btn btn-primary">保存</button>
+</div>
+</div>
+<!-- /.modal-content -->
+ </div>
+<!-- /.modal-dialog -->
+</div>
+<script type="text/javascript">
+    jQuery(function($){
+        setCategory();
+    });
+</script>
+#parse("/common/modules/categorySelector.vm")

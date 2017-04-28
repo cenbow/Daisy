@@ -1,0 +1,97 @@
+#set($layout = "/layout/iframe.vm")
+#parse("/co/job/jobhead.vm")
+
+<div tabindex="-1" class="modal fade" id="add-job-modal-table" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog w1100">
+        <div class="modal-content">
+            <div class="modal-header no-padding">
+                <div class="table-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+                        <span class="white">×</span>
+                    </button>
+                    <span class="modalFormTitle" id="jobTitle">添加岗位</span>
+                </div>
+            </div>
+
+            <div class="modal-body">
+                <form  class="form-horizontal" id="jobForm">
+                    <div id="num_1">
+                        <div class="form-group">
+                            <label for="form-field-parentId" class="col-sm-2 control-label no-padding-right">岗位名称:</label>
+                            <div class="col-sm-6">
+                                <div class="clearfix">
+                                    <input type="text" name="jobName" id="jobName" class="col-xs-8 col-sm-8 exclude valid-other" placeholder="" dataType="*" >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="form-field-parentId" class="col-sm-2 control-label no-padding-right">岗位类别:</label>
+                            <div class="col-sm-6">
+                                <div class="clearfix">
+                                    <select name="categoryId" id="categoryId">
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" id="rechargeAmount_group">
+                            <label for="form-field-parentId" class="col-sm-2 control-label no-padding-right">招聘人数:</label>
+                            <div class="col-sm-6">
+                                <div class="clearfix">
+                                    <input type="text" name="hiringCount" dataType="/^\d+$/" errormsg="请输入正整数！" id="hiringCount" >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="form-field-parentId" class="col-sm-2 control-label no-padding-right">岗位内容:</label>
+                            <div class="col-sm-6">
+                                <div class="clearfix">
+                                    <textarea name="jobContent" id="jobContent"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" id="id" name="id" >
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" id="submit_job" data-page="1" class="btn btn-primary">保存</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div tabindex="-1" class="modal fade" id="add-job-info-table" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog w1100">
+        <div class="modal-content">
+            <div class="modal-header no-padding">
+                <div class="table-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+                        <span class="white">×</span>
+                    </button>
+                    <span class="modalFormTitle" id="couponTemplateTitle">岗位信息</span>
+                </div>
+            </div>
+
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-12 ">
+                        <div class="table-responsive ">
+                            <div id="jobinfo">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    jQuery(function($){
+        setCategory('categoryId','-1');
+    });
+</script>
+
+
+

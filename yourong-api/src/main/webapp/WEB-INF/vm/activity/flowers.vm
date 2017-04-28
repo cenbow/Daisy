@@ -1,0 +1,90 @@
+##订阅号送花领取礼包活动
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$res_url/source/css/activity/flowers.css"])
+#set($subTitle="四月花芳菲，女神你最美")
+
+#set($aliyun='https://yrstatic.oss-cn-hangzhou.aliyuncs.com')
+#if($currentUser)
+    #set($logined=true)
+#else
+    #set($logined=false)
+#end
+
+
+<div id="j-send-flowers" v-cloak>
+    <img src="$res_url/img/activity/flowers/head.png" alt="" width="100%">
+
+    <div class="u-left-flower"><img src="$res_url/img/activity/flowers/left-flower.png"></div>
+    <div class="m-send-flowers f-pos-r">
+        <img src="$res_url/img/activity/flowers/background.png">
+        <div class="u-women-img" :class="{'rock':hasSent}">
+            <img :src="'$aliyun/res/img/activity/headPortrait/'+imgName+'.png'">
+            <p v-text="womenWord"></p>
+            <p class="f-right" v-text="womenName"></p>
+        </div>
+        <div class="u-actived-flower">
+            <div class="u-circle">
+                <img src="$res_url/img/activity/flowers/flower.png" @click="sendFlowers" :class="{'send':hasSent}">
+            </div>
+            <p>点击给女神送花</p>
+        </div>
+    </div>
+    <img src="$res_url/img/activity/flowers/title.png">
+    <div class="u-regular">
+        <table>
+            <tbody>
+            <tr>
+                <td>1、</td>
+                <td>活动对象：有融网所有用户</td>
+            </tr>
+            <tr>
+                <td>2、</td>
+                <td>活动时间：{{init.startTime | formatTime 'yyyy年M月d日hh:mm'}}-{{init.endTime | formatTime
+                    'yyyy年M月d日hh:mm'}}
+                </td>
+            </tr>
+            <tr>
+                <td>3、</td>
+                <td>活动内容：每天都有不同的有融女神来做客，献花后可以领取666礼包;每天可领取一次哦！</td>
+            </tr>
+            <tr>
+                <td>4、</td>
+                <td>现金券使用条件见券面，领取后1天内有效。</td>
+            </tr>
+            <tr>
+                <td>5、</td>
+                <td>本活动最终解释权归有融网所有</td>
+            </tr>
+            </tbody>
+
+        </table>
+    </div>
+    <div class="u-bottom">右上角分享给好友一起送花给她<i>^</i></div>
+
+    <div class="u-shade-cover" v-if="hasReceived||hasSent" :class="{'show':hasSent,'f-show':hasReceived}"></div>
+    <div class="u-thanks-box" v-if="hasReceived||hasSent" :class="{'animation':hasSent,'f-show':hasReceived}">
+        <div class="u-close" @click="hasReceived=false,hasSent=false"><img
+                src="$res_url/img/activity/flowers/close.png"></div>
+        <div class="u-head">
+            <img :src="'$aliyun/res/img/activity/headPortrait/'+imgName+'.png'">
+        </div>
+        <p>谢谢！我也有礼物送给你～</p>
+        <img src="$res_url/img/activity/flowers/giftImg.png" class="u-img">
+        <a class="u-button" href="javascript:" @click="getBag" v-text="buttonText"></a>
+    </div>
+    <div class="u-forbid-get animated fadeIn" v-show="abnormalTips">网络异常，过会再来~</div>
+    <div class="u-forbid-get animated fadeIn" v-show="isNotIng" v-text="tipsText"></div>
+</div>
+
+
+#set($pageScript="
+<script src='$aliyun/res/lib/vue/vue.min.js'></script>
+<script src='$aliyun/res/lib/vue/vue.extend.js'></script>
+<script>
+    var receiveData = $!{data},
+            logined =$logined
+    seajs.use('$res_url/source/js/activity/flowers.js');
+</script>
+")
+#CSRFToken("xToken")

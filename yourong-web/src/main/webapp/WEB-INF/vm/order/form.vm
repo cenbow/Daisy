@@ -1,0 +1,105 @@
+##订单页面
+#parse("/common/common.vm")
+    <form role="form" class="form-horizontal" id="member_form" method="post" action="$root_url/order/save">
+    #CSRFToken()
+     <input type="hidden" name="id" />
+     
+ <div class="form-group">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 用户id: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+     <input type="text" name="memberId" class="col-xs-10 col-sm-5" placeholder="memberId" id="form-field-username">
+    </div>
+  </div>
+</div>
+ <div class="form-group">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 项目id: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+     <input type="text" name="projectId" class="col-xs-10 col-sm-5" placeholder="projectId" id="form-field-mobile">
+    </div>
+  </div>
+</div>
+ <div class="form-group">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 银行编码: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+     <input type="text" name="bankCode" class="col-xs-10 col-sm-5" placeholder="bankCode" id="form-field-password">
+    </div>
+  </div>
+</div>
+ <div class="form-group">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 投资额: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+     <input type="text" name="investAmount" class="col-xs-10 col-sm-5" placeholder="investAmount" id="form-field-sex">
+    </div>
+  </div>
+</div>
+ <div class="form-group">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 使用资金账户金额: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+     <input type="text" name="usedCapital" class="col-xs-10 col-sm-5" placeholder="usedCapital" id="form-field-birthday">
+    </div>
+  </div>
+</div>
+ <div class="form-group">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 使用奖励金额: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+     <input type="text" name="usedCouponAmount" class="col-xs-10 col-sm-5" placeholder="status" id="form-field-status">
+    </div>
+  </div>
+</div>
+ <div class="form-group">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 年化收益率: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+     <input type="text" name="annualizedRate" class="col-xs-10 col-sm-5" placeholder="annualizedRate" id="form-field-trueName">
+    </div>
+  </div>
+</div>
+ <div class="form-group">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 支付金额: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+     <input type="text" name="payAmount" class="col-xs-10 col-sm-5" placeholder="payAmount" id="form-field-identityNumber">
+    </div>
+  </div>
+</div>
+ <div class="form-group">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 状态: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+     <input type="text" name="status" class="col-xs-10 col-sm-5" placeholder="1:待支付 2：已支付，投资失败 3：已支付，投资成功 4：支付失败" id="form-field-memberType">
+    </div>
+  </div>
+</div>
+ <div class="form-group">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 支付方式: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+     <input type="text" name="payMethod" class="col-xs-10 col-sm-5" placeholder="1-新浪支付，2-盛付通" id="form-field-email">
+    </div>
+  </div>
+</div>
+ <div class="form-group">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 备注: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+     <input type="text" name="remarks" class="col-xs-10 col-sm-5" placeholder="remarks" id="form-field-shortUrl">
+    </div>
+  </div>
+</div>
+ <div class="form-group">
+   <label for="form-field-1" class="col-sm-3 control-label no-padding-right">收益券优惠券: </label>
+  <div class="col-sm-9">
+    <div class="clearfix">
+     <input type="text" name="profitCouponNo" class="col-xs-10 col-sm-5" placeholder="profitCouponNo" id="form-field-avatars">
+    </div>
+  </div>
+</div>
+<input type="submit" value="Submit" />
+</form>
+$!{message}

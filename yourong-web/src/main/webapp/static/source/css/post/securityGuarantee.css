@@ -1,0 +1,505 @@
+body{
+    background: #fff;
+}
+.m-topBanner{
+    width: 100%;
+    height: 498px;
+    margin-top: -8px;
+    text-indent: -9999px;
+    position: relative;
+    background: url("/static/img/post/securityGuarantee/security-banner.png") no-repeat center;
+}
+.m-navBar{
+    width: 100%;
+    border-bottom: 1px solid #f4f9fb;
+    float: left;
+}
+.m-navBar ul{
+    float: right;
+}
+.m-navBar li{
+    float: left;
+    margin-left: 50px;
+    height: 50px;
+    line-height: 50px;
+    width: 80px;
+    text-align: center;
+    font-size: 18px;
+    color: #828282;
+}
+.m-navBar li a{
+    color: #828282;
+    text-decoration: none;
+    width: 80px;
+    height: 50px;
+}
+.m-navBar .z-clicked{
+
+    border-bottom: 2px solid #ef6168;
+}
+.m-navBar .z-clicked a{
+    color: #ef6168;
+}
+.m-technologySecurity{
+   float: left;
+    margin: 56px 0 20px 0;
+}
+.u-technologyText{
+    margin: 70px 0 0 70px;
+    text-align: center;
+    width: 434px;
+    float: left;
+}
+.u-technologyText strong{
+color: #575757;
+    font-size: 32px;
+    display: block;
+}
+.u-technologyText span{
+    color: #828282;
+    line-height: 30px;
+    font-size: 18px;
+}
+
+.u-technologyImg{
+    width: 386px;
+    height: 258px;
+    float: right;
+    margin-right: 68px;
+}
+.m-creditorProcess{
+    width: 100%;
+    height: 410px;
+    background: url("/static/img/post/securityGuarantee/white-block01.png") no-repeat center;
+    clear: both;
+    margin-top: 80px;
+}
+.u-creditorProcess{
+    float: left;
+    margin: 106px 0 0 74px;
+    text-align: center;
+    font-size: 18px;
+    color: #828282;
+    position: relative;
+    z-index: 2;
+}
+.u-creditorProcess.z-clicked{
+    color: #ef6168!important;
+}
+.u-firstCreditor{
+    margin-left: 100px;
+}
+.u-lastCreditor{
+    margin-left: 50px;
+}
+.u-outsideRound{
+    width: 86px;
+    height: 86px;
+    background: #fff;
+    border:8px solid #ffeaeb;
+    border-radius: 50%;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.u-insideRound{
+    width: 82px;
+    height: 82px;
+    background:#fff;
+    border-radius: 50%;
+    text-align: center;
+
+}
+/* 五个圆形icon */
+.u-icon{
+    width: 85px;
+    height: 85px;
+    border-radius: 50px;
+    display: inline-block;
+    cursor: pointer;
+    background-size: 100%;
+}
+
+.u-processArrow{
+    width: 100%;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+
+}
+.u-processArrow img{
+    margin-top: -24px!important;
+}
+.u-seeDetail li{
+    cursor: pointer;
+    width: 180px;
+    height: 30px;
+    border-radius: 15px;
+    float: left;
+    background: #fff;
+    text-align: center;
+    border: 1px solid #ef6168;
+    line-height: 30px;
+    color: #ef6168;
+    margin-left: 56px;
+    margin-top: 20px;
+    font-size: 14px;
+    position: relative;
+}
+.u-seeDetail .z-clickedBg{
+    background: #ef6168;
+    color: #fff;
+}
+.u-seeDetail .z-clickedBg i{
+    background: url("/static/img/post/securityGuarantee/magnifier.png") no-repeat center;
+}
+.u-seeDetail li i{
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    background: url("/static/img/post/securityGuarantee/magnifier-unclick.png") no-repeat center;
+    position: absolute;
+    right: 10px;
+    top:10px;
+}
+.u-littleTips{
+    float: right;
+    color: #828282;
+}
+.u-littleTips i{
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    background: url("/static/img/post/securityGuarantee/magnifier-gray.png") no-repeat center;
+    margin: 0 4px;
+}
+.m-directProcessBlock{
+    height: 726px;
+    background: #edf2f5;
+    border-radius: 10px;
+}
+.m-directProcess{
+    width: 100%;
+    height: 558px;
+    background: url("/static/img/post/securityGuarantee/direct-process.png") no-repeat center;
+    margin-top: 104px;
+    position: relative;
+}
+.m-directProcess .u-tipMsg02{
+    width: 140px;
+    height: 30px;
+    position: absolute;
+    top:210px;
+    left: 360px;
+    background: #edf2f5;
+}
+.m-directProcess .u-tipText1{
+    color: #828282;
+    cursor: default;
+    position: absolute;
+    top:390px;
+    right: 130px;
+    font-size: 14px;
+}
+.m-directProcess .u-tipText1 i{
+    display: inline-block;
+    width: 8px;
+    height:8px;
+    border-radius: 50%;
+    background: #828282;
+    margin-right: 6px;
+}
+.m-directProcess .u-tipMsg01{
+    width: 130px;
+    height: 50px;
+    background: #edf2f5;
+    position: absolute;
+    top: 390px;
+    right: 320px;
+}
+.m-directProcess  .u-tipText{
+    color: #828282;
+    cursor: default;
+    font-size: 14px;
+}
+.m-directProcess .u-tipText i{
+    display: inline-block;
+    width: 8px;
+    height:8px;
+    border-radius: 50%;
+    background: #828282;
+    margin-right: 6px;
+}
+.u-qualificationCertification{
+    width: 100px!important;
+    height: 50px!important;
+    position: absolute;
+    top:140px;
+    left: 550px;
+}
+.u-detailTips{
+    width: 310px;
+    height: 68px;
+    margin: 20px auto;
+    padding-left: 50px;
+}
+.u-detailTips ul{
+    float: left;
+    margin-left: 75px;
+
+}
+.u-detailTips ul:first-child{
+margin: 0;
+}
+.u-detailTips ul li{
+    line-height: 30px;
+    color: #54b9ea;
+    cursor: pointer;
+    position: relative;
+}
+.u-detailTips ul span{
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #54b9ea;
+    text-align: center;
+    line-height: 16px;
+    margin-right: 6px;
+}
+.u-detailTips ul span i{
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    background: url("/static/img/post/securityGuarantee/magnifier.png") no-repeat center;
+    margin-top: 2px;
+}
+.u-detailTips ul .u-tipText1{
+    color: #828282;
+    cursor: default;
+}
+.u-detailTips ul .u-tipText1 i{
+    display: inline-block;
+    width: 8px;
+    height:8px;
+    border-radius: 50%;
+    background: #828282;
+    margin-right: 6px;
+}
+/*资金安全*/
+.m-fundSecurity{
+    width: 100%;
+    height: 1104px;
+    background: #edf3f5;
+    margin-top: 82px;
+}
+.m-technologySafety img,
+.m-fundSecurity img{
+    margin-left: -154px;
+}
+.m-technologySafety{
+    width: 100%;
+    height: 822px;
+    position: relative;
+    margin: auto;
+}
+.m-technologySafety .u-imgBlock{
+    width: 1290px;
+    height: 825px;
+    background: url("/static/img/post/securityGuarantee/technologySecurity.png") no-repeat center;
+    background-size: 100%;
+    margin-left: -154px;
+}
+.u-hoverBlock{
+    width: 158px;
+    height: 24px;
+    position: relative;
+    cursor: pointer;
+}
+
+/* 鼠标移上去的tooltip */
+.u-toolTip{
+    position: absolute;
+    border: 4px solid #54b9ea;
+    border-radius: 10px;
+    background: #fff;
+    padding: 20px;
+    box-sizing: border-box;
+    width: 300px;
+    left: -320px;
+    display: none;
+    z-index: 100;
+}
+
+/* 第一块的 tooltip位置略有不同 */
+.u-seeDetail .u-toolTip{
+    width: 220px;
+    left: -20px;
+    top: 50px;
+}
+
+.u-seeDetail .u-toolTip .u-toolTip-arrow{
+    display: inline-block!important;
+    position: absolute;
+    width: 21px!important;
+    height: 18px!important;
+    background: url("/static/img/post/securityGuarantee/arrow-up.png") no-repeat center!important;
+    margin-right: 0!important;
+    border-radius: 0!important;
+    top: -18px;
+    left: 100px;
+    right: 0;
+    bottom:0;
+
+}
+
+.u-toolTip.z-show{
+    display: inline-block;
+}
+
+
+.u-toolTip-title{
+    color: #54b9ea;
+    font-size: 18px;
+    font-weight: bold;
+}
+.u-toolTip-text{
+    margin-bottom: 15px;
+    color: #828282;
+    font-size: 14px;
+}
+.u-toolTip-arrow{
+    display: inline-block!important;
+    position: absolute;
+    width: 20px!important;
+    height: 21px!important;
+    background: url("/static/img/post/securityGuarantee/tooltip-arrow.png") no-repeat center!important;
+    right: -20px;
+    bottom: 45px;
+    margin-right: 0!important;
+    border-radius: 0!important;
+}
+
+
+.u-privacyProtection{
+    position: absolute;
+    top:710px;
+    left: 386px;
+    z-index: 1000;
+}
+.u-technicalSupport{
+    position: absolute;
+    top:710px;
+    left: 728px;
+    z-index: 1000;
+}
+.m-lawSecurity{
+    width: 100%;
+    height: 950px;
+    background: #edf3f5;
+}
+.u-lawSecurity{
+    width: 140%;
+    height:950px;
+    background: url("/static/img/post/securityGuarantee/lawSecurity.png") no-repeat center;
+    margin-left: -20%;
+}
+.u-mainContent{
+    padding-top: 364px;
+    width: 990px;
+    margin: auto;
+}
+.u-navBar >ul>li{
+    float: left;
+    margin-left: 8px;
+    width: 260px;
+    height: 60px;
+    line-height: 60px;
+    font-size: 20px;
+    background: #ef6168;
+    text-align: center;
+    border-radius: 0 0 6px 6px;
+    color: #ad4348;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.u-navBar >ul>li::after{
+    content: "";
+    display: inline-block;
+    width: 0;
+    height: 0;
+    top: 0;
+    right: -29px;
+    position: absolute;
+    border-bottom: 30px solid #d74148;
+    border-right: 30px solid transparent;
+}
+
+.u-navBar .z-clicked{
+    color: #fff;
+    height: 80px;
+    line-height: 80px;
+    font-size: 24px;
+}
+
+.u-textBlock{
+width: 990px;
+    height: 520px;
+    background: #fff;
+    margin-top: 30px;
+    border-radius: 6px;
+}
+.u-textBlock p{
+    padding-top: 106px;
+    line-height: 30px;
+    width: 872px;
+    margin: auto;
+    color: #828282;
+}
+.u-textBlock .u-detailMsgBlock{
+    width: 906px;
+    height:310px;
+    background: #edf3f5;
+    border-radius: 4px;
+    margin:20px auto;
+}
+.u-textBlock .u-detailMsg span{
+    display: block;
+    width: 870px;
+    margin: auto;
+    line-height: 30px;
+    font-size: 14px;
+    color: #8b8b8b;
+}
+.u-textBlock .u-detailMsg span:first-child{
+    color: #54b9ea;
+    padding-top: 10px;
+}
+.u-textBlock .u-detailMsg span i{
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background: #54b9ea;
+    border-radius: 50%;
+    color: #fff;
+    text-align: center;
+    line-height: 16px;
+    margin-right: 6px;
+}
+.u-linkToDml {
+    width: 320px;
+    height: 200px;
+    display: block;
+    padding: 90px 0 0 550px;
+    background: url("/static/img/post/securityGuarantee/gotoLook.png") no-repeat center;
+    text-decoration: none;
+}
+.u-linkToDml span{
+    display: block;
+    color: #54b9ea;
+    margin: 114px 0 0 -230px;
+    text-decoration: none;
+}
+.u-linkToDml span strong{
+    font-weight: 100;
+}

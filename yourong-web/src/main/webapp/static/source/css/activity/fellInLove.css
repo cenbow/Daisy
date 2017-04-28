@@ -1,0 +1,399 @@
+.g-bd {
+    margin-bottom: 0;
+}
+/*520活动*/
+.m-fellInLove-hd{
+    width: 100%;
+    height: 350px;
+    margin-top: -8px;
+    background: url("/static/img/activity/fellInLove/fellInLove-hd.jpg") no-repeat center;
+}
+/*body*/
+.m-fellInLove-body{
+    background: #ee5951;
+}
+.m-fellInLove-cashCoupon h1{
+    color: #fff;
+    font-size: 22px;
+    text-align: center;
+}
+/*一、礼金天天送*/
+.m-fellInLove-cashCoupon{
+    padding-top: 100px;
+}
+.m-fellInLove-cashCoupon p{
+    color: #fff;
+    font-size: 14px;
+    text-align: center;
+    margin-top: 13px;
+}
+.u-fellInLove-progress{
+    margin: 100px 0 70px;
+    opacity: 0;
+}
+/*二、真爱大礼包*/
+.u-fellInLove-gift{
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+    height: 482px;
+    width: 990px;
+    background: #fff;
+}
+.u-fellInLove-gift h1,.u-fellInLove-prize h1,.u-fellInLove-list h1{
+    font-size: 22px;
+    text-align: center;
+    color: #ee5951;
+    padding-top: 45px;
+    font-weight: bold;
+}
+.u-fellInLove-gift p,.u-fellInLove-prize>p{
+    text-align: center;
+    color: #999;
+    margin-top: 15px;
+    margin-bottom: 35px;
+    font-size: 14px;
+}
+.u-fellInLove-gift i{
+    display: block;
+    height: 300px;
+    width: 990px;
+    background: url("/static/img/activity/fellInLove/fellInLove-sprites.png") 0px 0px;
+}
+/*巅峰豪礼*/
+.m-fellInLove-prize{
+    margin-top: 80px;
+}
+.u-fellInLove-prize{
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+    height: 570px;
+    width: 990px;
+    background: #fff;
+}
+.u-fellInLove-prize dl{
+    display: inline-block;
+    text-align: center;
+}
+.u-fellInLove-prize .u-prize-wrap{
+    width: 840px;
+    margin: 0 auto;
+}
+.u-fellInLove-prize dl dt{
+    font-size: 20px;
+    color: #999;
+    margin-bottom: 22px;
+    font-weight: bold;
+}
+.u-fellInLove-prize dd em{
+    height: 180px;
+    width: 180px;
+    display: block;
+    background: url("/static/img/activity/fellInLove/fellInLove-sprites.png");
+}
+.u-fellInLove-prize dd em.u-prize-watch{
+    background-position: 0 -319px;
+}
+.u-fellInLove-prize dd em.u-prize-ticket{
+    background-position: -183px -319px;
+}
+.u-fellInLove-prize dd em.u-prize-toothbrush{
+    background-position: -369px -319px;
+}
+.u-fellInLove-prize dd strong,.u-fellInLove-prize dd span{
+    display: block;
+}
+.u-fellInLove-prize dd strong{
+    color: #ff5951;
+    font-size: 20px;
+    font-weight: 100;
+    margin-top: 15px;
+}
+.u-fellInLove-prize dd strong i{
+    font-size: 16px;
+}
+.u-fellInLove-prize dd span{
+    color: #666;
+    font-weight: bold;
+}
+.u-fellInLove-ticket{
+    margin: 0 150px;
+}
+/*倒计时*/
+.u-fellInLove-countdown{
+    border-top: 1px solid #e6e6e6;
+    margin: 18px 13px 0;
+    width: 964px;
+    padding: 25px 0;
+}
+/*活动开始前文案*/
+.u-fellInLove-countdown .u-content{
+    text-align: center;
+    font-size: 20px;
+    color: #999;
+    letter-spacing: 5px;
+}
+/*活动开始时倒计时*/
+.u-fellInLove-countdown .u-countdown p{
+    text-align: center;
+    font-size: 22px;
+    color: #999;
+    display: inline-block;
+    margin-left: 278px;
+}
+/*活动结束后名单*/
+.u-fellInLove-countdown .u-ranking{
+    padding: 0 0 0 35px;
+    color: #999;
+}
+.u-fellInLove-countdown .u-ranking div{
+    margin-left: 100px;
+    display: inline-block;
+}
+.u-fellInLove-countdown .u-ranking div:first-child{
+    margin-left: 0;
+}
+.u-ranking-prize{
+    margin-left: 8px;
+}
+.u-ranking-prize strong{
+    color: #ee5951;
+    font-weight: 100;
+}
+/*按钮 */
+.m-fellInLove-body>span{
+    display: block;
+    margin: 15px auto 26px;
+    color: #fff;
+}
+.m-fellInLove-body>a{
+    display: block;
+    height: 46px;
+    text-decoration: none;
+    text-align: center;
+    line-height: 45px;
+    font-size: 20px;
+    color: #c38000;
+    font-weight: bold;
+    letter-spacing: 3px;
+    background: url("/static/img/activity/fellInLove/fellInLove-sprites.png") 0 -502px;
+}
+.m-fellInLove-body>a.z-current{
+    color: #999;
+    background: url("/static/img/activity/fellInLove/fellInLove-sprites.png") 0 -554px;
+}
+/*排行榜*/
+.u-fellInLove-list{
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+    height: 470px;
+    width: 990px;
+    background: #fff;
+    margin-top: 80px;
+}
+.u-fellInLove-list table tr td:first-child{
+    color: #999;
+}
+.u-fellInLove-list table thead{
+    color: #999;
+    font-size: 14px;
+}
+.m-fellInLove-list table thead th{
+    font-weight: bold;
+}
+
+.u-fellInLove-list table tr td:last-child{
+    color: #ee5951;
+}
+.u-fellInLove-list .u-list-beforeActive{
+    margin-left: 0;
+}
+.u-list-beforeActive p{
+    text-align: center;
+    font-size: 18px;
+    color: #999;
+    padding-top: 105px;
+    letter-spacing: 4px;
+    display: block
+}
+/*规则*/
+.m-fellInLove-rule{
+    margin-top: 76px;
+}
+.m-fellInLove-rule h2{
+    font-size: 22px;
+    color: #fff;
+    padding-top: 45px;
+}
+.m-fellInLove-rule p{
+    line-height: 30px;
+    font-size: 14px;
+    color: #fff;
+    padding: 0 0 77px;
+}
+.m-fellInLove-rule p span{
+    display: block;
+    line-height: 23px;
+    margin: 0 0 0 23px;
+}
+/*用户头像*/
+.u-fellInLove-list .u-user-wrap {
+    width: 115px;
+    display: inline-block;
+    color: #999;
+}
+.u-user-head {
+    position: relative;
+    padding: 0 10px 0 0;
+    vertical-align: middle;
+    display: inline-block;
+    height: 35px;
+    width: 35px;
+    overflow: hidden;
+}
+.u-user-head img {
+    display: inline-block;
+    height: 35px;
+    width: 35px;
+    overflow: hidden;
+}
+.u-user-head i {
+    display: inline-block;
+    height: 35px;
+    width: 35px;
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 2;
+    background: url(/static/img/common/sprites.png) no-repeat -75px -21px;
+}
+/*表单*/
+.u-fellInLove-list tr td:first-child,
+.u-fellInLove-list tr th:first-child{
+    text-align: center;
+}
+.u-fellInLove-list table{
+    display: inline-block;
+    vertical-align: top;
+}
+.u-fellInLove-list table:first-child{
+    margin-right: 66px;
+}
+.u-fellInLove-list>div{
+    margin-left: 74px;
+    margin-top: 38px;
+}
+.u-fellInLove-list table tbody tr{
+    height: 60px;
+}
+/*进度条*/
+.u-progress-plan{
+    height: 14px;
+    width: 986px;
+    background: #de443c;
+    overflow: hidden;
+    -moz-border-radius: 9px;
+    -webkit-border-radius: 9px;
+    border-radius: 9px;
+    border: 2px solid #de443c;
+}
+.u-progress-plan span{
+    width: 986px;
+    height: 14px;
+    background: #fff891;
+    display: block;
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+    border-radius: 7px;
+    position: absolute;
+    -webkit-box-shadow: inset 0 -8px 10px #fff05d;
+    -moz-box-shadow: inset 0 -8px 10px #fff05d;
+    box-shadow: inset 0 -8px 10px #fff05d;
+}
+.u-progress-content{
+    height: 27px;
+    width: 27px;
+    background: #fff891;
+    -moz-border-radius: 14px;
+    -webkit-border-radius: 14px;
+    border-radius: 14px;
+    border: 1px solid #de443c;
+    position: absolute;
+    top: -6px;
+    -webkit-box-shadow: inset 0 -8px 10px #fff05d;
+    -moz-box-shadow: inset 0 -8px 10px #fff05d;
+    box-shadow: inset 0 -8px 10px #fff05d;
+}
+.u-progress-content span{
+    width: 95px;
+    height: 48px;
+    display: block;
+    color: #a56100;
+    font-size: 14px;
+    text-align: center;
+    background: #ffff83;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    position: relative;
+    top: -62px;
+    left: -30px;
+    padding-top: 3px;
+
+}
+.u-progress-content span i{
+    font-size: 26px;
+    position: absolute;
+    top: 31px;
+    left: 37px;
+    color: #ffff83;
+}
+/*倒计时样式调整*/
+.flip-clock-label {
+    display: none;
+}
+.u-fellInLove-countdown .u-activity-countdown{
+    width: 300px;
+    display: inline-block;
+    margin: 0;
+    height: 25px;
+}
+.u-fellInLove-countdown .flip-clock-wrapper ul.flip{
+    width: 23px;
+    height: 32px;
+    background: #ffa7a2;
+    margin: 0 1px 0;
+}
+.u-fellInLove-countdown .flip-clock-wrapper .flip {
+    box-shadow: 0 2px 5px rgba(255, 167, 162, 0.7);
+}
+.u-fellInLove-countdown .u-activity-countdown .flip-clock-divider{
+    width: 7px;
+    height: 50px;
+}
+.u-fellInLove-countdown .u-activity-countdown .flip-clock-dot{
+    left: 2px;
+    width: 3px;
+    height: 3px;
+    background: #999;
+    box-shadow: 0 0 5px rgba(153, 153, 153, 0.5);
+}
+.u-fellInLove-countdown .u-activity-countdown .flip-clock-dot.top{
+    top: 22px;
+}
+.u-fellInLove-countdown .u-activity-countdown .flip-clock-dot.bottom{
+    bottom: 36px;
+}
+.u-fellInLove-countdown .u-activity-countdown ul li{
+    line-height: 34px;
+
+}
+.u-fellInLove-countdown .u-activity-countdown ul li a div div.inn{
+    font-size: 22px;
+    color: #fff;
+    text-shadow: 0 1px 2px #ffa7a2;
+    background-color: #ffa7a2;
+}

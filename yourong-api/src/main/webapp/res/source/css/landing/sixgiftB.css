@@ -1,0 +1,208 @@
+.f-fc-brown{
+  color: #854e00;
+}
+
+.m-content{
+  overflow: hidden;
+}
+.m-content-head{
+  width: 96%;
+  margin: 40px auto;
+  border-radius: 15px;
+  background-color: #fff6d2;
+  padding-bottom: 50px;
+  position: relative;
+  padding-top: 30px;
+}
+.m-content-head p{
+  text-align: center;
+  margin-top: 10px;
+  color: #666666;
+}
+.m-content-head .m-new{
+  margin-top: 20px;
+}
+.m-content-head p em{
+  font-size: 20px;
+}
+.m-content-head p i{
+  font-size: 14px;
+  color: #cccccc;
+}
+.m-content-head ul .m-gift-box{
+  /*float: left;*/
+  background: url("../../../img/landing/sixgiftB/giftred.png") no-repeat center;
+  width: 30%;
+  height: 158px;
+  background-size: 100% 100%;
+  margin: 15px 0 0 2%;
+  display: inline-block;
+}
+.m-content-head ul .m-last{
+  margin-right: 0;
+}
+.m-content-head .m-gift-title{
+  margin-top: 70px;
+}
+.m-gift-box p{
+  font-size: 14px;
+  color: #fdf54c;
+}
+
+.m-content-foot{
+  width: 96%;
+  margin: 50px auto 100px;
+  /*overflow: hidden;*/
+  border-radius: 15px;
+  background-color: #fff6d2;
+  position: relative;
+  height: 500px;
+  padding-top: 50px;
+}
+.m-content-foot p{
+  text-align: center;
+  color: #CCCCCC;
+  font-size: 12px;
+  margin: 0 auto;
+}
+.m-content-foot p em{
+  display: block;
+  color: #854e00;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+.m-content-foot li{
+  width: 50%;
+  /*height: 200px;*/
+  text-align: center;
+  float: left;
+  margin-bottom: 20px;
+}
+.m-li img{
+  width: 50%;
+}
+/*.m-li-2 img{*/
+  /*width: 80%;*/
+  /*height: 118px;*/
+/*}*/
+/*.m-li-3 img{*/
+  /*width: 67.2%;*/
+  /*height: 118px;*/
+/*}*/
+/*.m-li-4 img{*/
+  /*width: 80%;*/
+  /*height: 118px;*/
+/*}*/
+.f-sizeL{
+  width: 100%;
+}
+.f-sizeM{
+  width: 84%;
+}
+.f-sizeS{
+  width: 80%;
+}
+.m-adventage{
+  background: url("../../../img/landing/sixgiftB/title2.png") no-repeat center;
+  background-size: 100% 100%;
+  color: #666666;
+  text-align: center;
+  width: 60%;
+  height: 45px;
+  position: absolute;
+  top: -22.5px;
+  left: 50%;
+  margin-left: -30%;
+}
+.m-newpeople{
+  background: url("../../../img/landing/sixgiftB/title1.png") no-repeat center;
+  background-size: 100% 100%;
+  color: #666666;
+  text-align: center;
+  width: 60%;
+  height: 45px;
+  position: absolute;
+  top: -22.5px;
+  left: 50%;
+  margin-left: -30%;
+}
+.f-fix{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 64px;
+  background: white;
+  opacity: 0.94;
+}
+/*.f-fix a{*/
+  /*padding-left: 50px;*/
+/*}*/
+.f-fix .m-logo{
+  padding-left: 50px;
+  margin-top: 10px;
+  margin-left: 20px;
+  height: 43px;
+  width: 60%;
+  overflow: hidden;
+  background: url("https://yrstatic.oss-cn-hangzhou.aliyuncs.com/res/img/sixgiftB/Icon-new.png") no-repeat 1px center;
+  background-size: 40px 40px;
+}
+.m-logo span{
+  display: block;
+  font-size: 12px;
+}
+.m-down a{
+  position: absolute;
+  right: 10px;
+  bottom: 15px;
+  background: #D74048;
+  border-radius: 4px;
+  color: white;
+  height: 30px;
+  line-height: 30px;
+  width: 80px;
+  text-align: center;
+}
+.u-back{
+  display: inline-block;
+  width: 25%;
+  color: white;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  background: #b23339;
+  margin-left: -10px;
+  border-radius: 5px;
+}
+
+.m-content-body {
+  width: 96%;
+  margin: 20px auto 40px;
+  /*padding-bottom: 50px;*/
+  /*background: url("../../../img/landing/sixgiftB/newuser.png") no-repeat center;*/
+  background: url("https://yrstatic.oss-cn-hangzhou.aliyuncs.com/res/img/sixgiftB/newuser.png") no-repeat center;
+  background-size: 100% 100%;
+  height: 199px;
+}
+
+.f-top-ipt{
+  margin-top: 2rem;
+}
+.m-research{
+  background: url("../../../img/landing/sixgiftB/step.png") no-repeat center;
+  background-size: 100% 100%;
+  color: #666666;
+  text-align: center;
+  width: 100%;
+  height: 45px;
+  position: absolute;
+  top: -22.5px;
+  left: 0;
+}
+.f-new-get{
+  width: 42%;
+  border: none;
+}
+#j-agree{
+  -webkit-appearance: checkbox;
+}

@@ -1,0 +1,3 @@
+#set($layout = "/layout/iframe.vm")
+#parse("/fin/capital/head.vm")
+<button id="platform_balance_sysnc" type="button" class="btn btn-default" >平台余额同步</button>

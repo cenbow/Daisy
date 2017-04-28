@@ -1,0 +1,233 @@
+##520活动
+#parse("/common/common.vm")
+#set($title="我们相爱吧_5.20-5.22 真爱礼金巅峰壕礼等你来领_$!{title_suffix}")
+#set($css_url=[
+    "/static/lib/js/flipclock/flipclock.css",
+    "$root_css_url/activity/fellInLove.css"
+])
+##页面入口标识
+#set($entry=["activity","fellInLove"])
+
+#if($currentUser)
+    #set($logined=true)
+#else
+    #set($logined=false)
+#end
+#CSRFToken('xToken')
+<style>
+
+</style>
+##页头
+<div class="m-fellInLove-hd">
+
+</div>
+    ##body
+        <div class="m-fellInLove-body">
+        ##一、礼金天天送
+            <div class="m-fellInLove-cashCoupon">
+                <div class="g-wrap">
+                    <h1>一、礼金天天送</h1>
+                    <p>5月20日至22日，每日上午10:00开始发放5200张现金券，单笔投资满2000元即可随机获得面额为50/100元现金券中的一张，发完即止。</p>
+                    <div class="u-fellInLove-progress f-pos-r">
+                        <div class="u-progress-plan f-pos-r">
+                            <span id="j-progress-plan"></span>
+                        </div>
+                        <div class="u-progress-content" id="j-progress-content">
+                            <span>
+                                5200张
+                                <br>还剩<em id="j-coupon-val"></em>张
+                                <i>◆</i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        ##二、真爱大礼包
+            <div class="m-fellInLove-gift">
+                <div class="g-wrap">
+                    <div class="u-fellInLove-gift">
+                        <h1>二、真爱大礼包</h1>
+                        <p>活动期间（<strong>5月20日10：00~5月22日17：00</strong>）累计投资每满52000元即可直接获得520真爱大礼包，多投多得哦；
+                            <br>礼包包含<strong>2张200元现金券</strong>、<strong>1张100元现金券</strong>、<strong>20点人气值</strong></p>
+                        <i></i>
+                    </div>
+                </div>
+            </div>
+        ##三、巅峰献壕礼
+    <div class="m-fellInLove-prize">
+        <div class="g-wrap">
+            <div class="u-fellInLove-prize">
+                <h1>三、巅峰献壕礼</h1>
+                <p><strong>5月20日10：00 ~ 5月22日17：00</strong>，累计投资额排名前三的用户可获得以下实物大奖；四到十名用户可获得52点人气值
+                   <br> （若投资额相等，先达到该投资额的用户排名靠前） </p>
+                <div class="u-prize-wrap">
+                    <dl>
+                        <dt>第一名</dt>
+                        <dd><em class="u-prize-watch"></em></dd>
+                        <dd><strong><i>￥</i>1,959.00</strong><span>DW（丹尼尔惠灵顿）情侣腕表</span></dd>
+                    </dl><dl class="u-fellInLove-ticket">
+                        <dt>第二名</dt>
+                        <dd><em class="u-prize-ticket"></em></dd>
+                        <dd><strong><i>￥</i>998.00</strong><span>上海迪士尼情侣套票</span></dd>
+                    </dl><dl>
+                        <dt>第三名</dt>
+                        <dd><em class="u-prize-toothbrush"></em></dd>
+                        <dd><strong><i>￥</i>299.00</strong><span>飞利浦亲密爱人电动牙刷套装</span></dd>
+                    </dl>
+                </div>
+                <div class="u-fellInLove-countdown">
+##                    活动开始前
+                    <div class="u-content f-dn" id="j-countdown-content">虚位以待</div>
+##    活动中
+                    <div class="u-countdown f-dn" id="j-countdown-countdown">
+                        <p>距离巅峰揭晓还剩</p>
+                        <div class="u-activity-countdown" id="j-activity-countdown">
+                        </div>
+                    </div>
+##                    活动后
+                    <div class="u-ranking f-dn" id="j-countdown-ranking"></div>
+                    <script type="text/html" id="j-countdown-ranking-tpl">
+                        {{if rankList&&rankList.length>0}}
+                            {{each rankList as item i}}
+                                {{if i>-1&&i<3}}
+                                <div><span class="u-user-head">
+                                             {{if item.avatar}}
+                                                <img src="https://oss-cn-hangzhou.aliyuncs.com/{{item.avatar}}" alt="用户头像">
+                                                {{else}}
+                                                <img src="/static/img/member/avatar_35x35.png" alt="用户头像">
+                                                {{/if}}
+                                            <i>&nbsp;</i>
+                                            <em></em>
+                                        </span>
+                                恭喜{{item.lastUsername}}<span class="u-ranking-prize">获得<strong>{{if i==0}}情侣腕表一对{{else if i==1}}情侣套票一份{{else if i==2}}牙刷套装一对{{/if}}</strong></span></div>
+                                {{/if}}
+                            {{/each}}
+                        {{/if}}
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+    <span class="g-wrap">备注：奖品也可兑换成人气值，人气值=奖品标注价格</span>
+    <a class="g-wrap" id="j-fellInLove-btn" data-logined="$logined"></a>
+    ##巅峰榜
+    <div class="m-fellInLove-list">
+        <div class="g-wrap">
+            <div class="u-fellInLove-list">
+                <h1>巅峰榜</h1>
+                <div class="f-dn u-list-beforeActive" id="j-list-beforeActive">
+                    <p>— 敬请期待 —</p>
+                </div>
+                <div  class="f-dn" id="j-fellInLove-list"></div>
+                <script type="text/html" id="j-fellInLove-list-tpl">
+                    {{if rankList&&rankList.length>0}}
+                        <table>
+                            <thead>
+                            <tr>
+                                <th width="38">排名</th>
+                                <th width="82"></th>
+                                <th width="178">用户名</th>
+                                <th width="122">投资额</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {{each rankList as item i}}
+                            {{if i>-1&&i<5}}
+                            <tr>
+                                <td>{{i+1}}</td>
+                                <td></td>
+                                <td>
+                                    <div class="u-user-wrap">
+		            	                <span class="u-user-head">
+		                                    {{if item.lastTotalInvest}}
+                                                {{if item.avatar}}
+                                                <img src="https://oss-cn-hangzhou.aliyuncs.com/{{item.avatar}}" alt="用户头像">
+                                                {{else}}
+                                                <img src="/static/img/member/avatar_35x35.png" alt="用户头像">
+                                                {{/if}}
+                                            {{else}}
+                                            <img src="/static/img/member/avatar_35x35.png" alt="用户头像">
+                                            {{/if}}
+		                                    <i>&nbsp;</i>
+											<em></em>
+									    </span>
+                                        {{item.lastUsername}}
+                                    </div>
+                                </td>
+                                <td>{{if item.lastTotalInvest}}¥{{item.lastTotalInvest}}{{else}} {{/if}}</td>
+                            </tr>
+                            {{/if}}
+                            {{/each}}
+
+                            </tbody>
+                        </table>
+                        <table>
+                            <thead>
+                            <tr>
+                                <th width="38">排名</th>
+                                <th width="82"></th>
+                                <th width="178">用户名</th>
+                                <th width="122">投资额</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {{each rankList as item i}}
+                            {{if i>4&&i<11}}
+                            <tr>
+                                <td>{{i+1}}</td>
+                                <td></td>
+                                <td>
+                                    <div class="u-user-wrap">
+		            	               <span class="u-user-head">
+		                                    {{if item.lastTotalInvest}}
+                                            {{if item.avatar}}
+                                            <img src="https://oss-cn-hangzhou.aliyuncs.com/{{item.avatar}}" alt="用户头像">
+                                            {{else}}
+                                            {{/if}}
+                                            <img src="/static/img/member/avatar_35x35.png" alt="用户头像">
+                                            {{else}}
+                                            <img src="/static/img/member/avatar_35x35.png" alt="用户头像">
+                                            {{/if}}
+		                                    <i>&nbsp;</i>
+											<em></em>
+									    </span>
+                                            {{item.lastUsername}}
+                                    </div>
+                                </td>
+                                <td>{{if item.lastTotalInvest}}¥{{item.lastTotalInvest}}{{else}}{{/if}}</td>
+                            </tr>
+                            {{/if}}
+                            {{/each}}
+
+                            </tbody>
+                        </table>
+                    {{/if}}
+                </script>
+
+            </div>
+        </div>
+    </div>
+    <div class="m-fellInLove-rule">
+        <div class="g-wrap">
+            <h2>四、活动规则</h2>
+            <p>
+                1、活动对象：有融网所有用户；
+                <br>2、活动时间：<strong>2016年5月20日10：00~2016年5月22日17：00</strong>；
+                <br>3、现金券领取后<strong>7天</strong>内有效；
+                <br>现金券使用规则：
+                <span>
+                    面额为50元的现金券，起投金额2000元，起投期限30天
+                    <br>面额为100元的现金券，起投金额4000元，起投期限60天
+                    <br>面额为200元的现金券，起投金额8000元，起投期限90天
+                </span>
+                4、巅峰献壕礼活动奖励发放说明：
+                <span>
+                    (1)人气值于活动结束后3个工作日内发放；
+                    <br>(2)实物奖励将于活动结束后3个工作日内与您联系，请保持手机畅通，如错过通知则视为放弃获奖资格；
+                </span>
+                5、如有其他疑问，请拨打客服热线：400-025-6688；
+                <br>本活动最终解释权归有融网所有
+            </p>
+        </div>
+    </div>
+</div>

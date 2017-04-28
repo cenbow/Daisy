@@ -1,0 +1,71 @@
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($title='收银台')
+#set($loginSource=$request.getParameter("loginSource"))
+#if($currentUser)
+    #set($logined=true)
+#else
+    #set($logined=false)
+#end
+#CSRFToken('xToken')
+##  安卓
+#if($loginSource==1)
+    #set($os=1)
+#end
+##  IOS
+#if($loginSource==2)
+    #set($os=2)
+#end
+##
+#if($loginSource==1 || $loginSource==2)
+<style>
+    .g-ft{
+        display: none;
+    }
+</style>
+#else
+##header，安卓ios，不需要头部
+<h2 class="u-header f-pos-r">
+    <a class="f-fs16" href="$siteurl/mstation/post/cashierDesk"><img src="$res_url/img/post/cashierDesk/goBack.png" alt=""> <strong>返回</strong></a>
+</h2>
+#end
+<style>
+    body{
+        font-size: 0;
+        width: 100%;
+        height: 100%;
+        background: #ffffff;
+    }
+    .u-header a img{
+        width: 8px;
+        height: 13px;
+    }
+    .u-linkBtn{
+        width: 100%;
+        height:50px ;
+        text-align: center;
+        color: #ffffff;
+        background: #d74148;
+        position: fixed;
+        bottom: 0;
+        line-height: 50px;
+        font-family:'Microsoft YaHei UI';
+    }
+    .u-processImg{
+        margin-bottom: 50px;
+    }
+</style>
+<div>
+    <div class="u-processImg">
+        <img src="$res_url/img/post/cashierDesk/investmentProcess01.png" alt="investmentProcess01" width="100%">
+        <img src="$res_url/img/post/cashierDesk/investmentProcess02.png" alt="investmentProcess02" width="100%">
+        <img src="$res_url/img/post/cashierDesk/investmentProcess03.png" alt="investmentProcess03" width="100%">
+        <img src="$res_url/img/post/cashierDesk/investmentProcess04.png" alt="investmentProcess04" width="100%">
+        <img src="$res_url/img/post/cashierDesk/investmentProcess05.png" alt="investmentProcess05" width="100%">
+    </div>
+
+    <div>
+        <a class="u-linkBtn f-fs14" href="$siteurl/mstation/post/openedInvestProcess?loginSource=$os">查看已开通委托支付投资流程</a>
+    </div>
+
+</div>

@@ -1,0 +1,73 @@
+##我的借款-募集中
+#parse("/common/common.vm")
+#set($layout = "/layout/default.vm")
+##set($js_url=["$root_js_url/modules/member/core.js","$root_js_url/modules/borrow.js"])
+<div class="u-rtable-wrap f-round">
+	<table class="">
+		<thead>
+
+			<tr>
+				<th width="92">项目名称</th>
+				<th width="68">借款类型</th>
+				<th width="143">借款金额</th>
+				<th width="68">年化利率</th>
+				<th width="101">项目费用</th>
+				<th width="69">借款周期</th>
+				<th width="">募集周期</th>
+				<th width="88">募集进度</th>
+				<th width="98">
+					 <div class="u-selector j-selector f-round">
+                        <button>全部状态</button> <i></i>
+                        <ul class="f-round">
+                            <li value="">全部状态</li>
+                            <li value="30">投资中</li>
+                            <li value="40">已暂停</li>
+                            <li value="50">已满额</li>
+                            <li value="60">已截止</li>
+                            ##<li value="81">审核通过</li>
+                        </ul>
+                        <input type="hidden" class="j-selected-ipt"  value="">
+                    </div>
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			#if($!result.data && $!result.data.size()>0)
+				#foreach($popularity in ${result.data})
+				<tr>
+					<td><a target="_blank" href="$root_url/products/detail-$!{popularity.projectId}.html">$!{popularity.prefixProjectName}</a></td>
+					<td>$!{popularity.securityTypeName}</td>
+					<td class="f-fs20">$!{popularity.formatTotalAmount}</td>
+					<td>$!{popularity.annualizedRate}%</td>
+
+                    <td class="u-project-cost j-projectcost-detail">$!{popularity.projectFeeStr}
+                        <em>明细</em>
+                        <div class="u-projectcost-detail j-projectcost-box f-dn">
+                            <em class="u-projectcost-arrow"></em>
+                            <div>
+                                <h3>项目费用</h3>
+                                <ul>
+                                    <li><span>项目管理费</span><span>#if($!{popularity.formatManageFee})$!{popularity.formatManageFee}#else 0 #end</span></li>
+                                    <li><span>保证金</span><span>#if($!{popularity.guaranteeFee})$!{popularity.guaranteeFee}#else 0 #end</span></li>
+                                    <li><span>风险金</span><span>#if($!{popularity.riskFee})$!{popularity.riskFee}#else 0 #end</span></li>
+                                    <li><span>线下介绍费</span><span>#if($!{popularity.introducerFee})$!{popularity.introducerFee}#else 0 #end</span></li>
+                                </ul>
+                                <span>总计 <em>#if($!{popularity.projectFeeStr})$!{popularity.projectFeeStr}#else 0 #end</em></span>
+                            </div>
+                        </div>
+                    </td>
+					<td>$!{popularity.borrowPeriod} $!{popularity.borrowPeriodStr}</td>
+					<td>$!{popularity.formatOnlineDate}至$!{popularity.formatSaleEndDate}</td>
+					<td class="f-fs20">$!{popularity.progress}%</td>
+					<td>
+					$!{popularity.projectStatusStr}
+					</td>
+				</tr>
+				#end
+			#else
+			<tr><td colspan="9" class="u-table-empty">暂无“获取记录”</td></tr>
+			#end
+		</tbody>
+	</table>
+</div>
+#ajaxPagePlugin($!result,"Gain")

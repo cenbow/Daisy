@@ -1,0 +1,452 @@
+.g-bd {
+    margin-bottom: 0;
+}
+
+.g-wrap {
+    width: 990px;
+    margin: 0 auto;
+}
+.f-mh500{
+    background-color: #f9f1cd;
+}
+/*抽奖*/
+.m-yl-lottery{
+    height:1110px;
+    background:#f9f1cd url(/static/img/activity/yiRoadLottery/yiRoad_tbg.jpg) no-repeat center top;
+    margin: -8px 0 0;
+}
+.m-lottery-box{
+    width: 1074px;
+    height: 622px;
+    background: url(/static/img/activity/yiRoadLottery/lottery_table_bg.png) no-repeat center top;
+    position: absolute;
+    bottom:57px;
+    left:50%;
+    margin: 0 0 0 -537px;
+}
+/*x重礼box*/
+.u-yl-box{
+    width: 982px;
+    border: 4px solid #eee4b7;
+    margin: 0 0 52px;
+    background-color: #fff;
+
+}
+.u-yl-box h3{
+    width: 215px;
+    height: 52px;
+    line-height: 52px;
+    background: url(/static/img/activity/yiRoadLottery/yiRoad_gift_title.jpg) no-repeat;
+    margin: 40px 0 0 50px;
+    color: #fbf087;
+    overflow: hidden;
+}
+.u-yl-box h3 span{
+    display: block;
+    width: 148px;
+    height: 20px;
+    margin: 17px 0 0 55px;
+}
+/*盒子高度和标题*/
+.m-yl-gift02{
+    height: 435px;
+}
+.m-yl-gift03{
+    height: 465px;
+}
+.m-yl-gift04{
+    height: 300px;
+}
+.m-yl-gift05{
+    height: 360px;
+}
+.m-yl-gift02 h3 span{
+    background: url(/static/img/activity/yiRoadLottery/yiRoad_title02.jpg) no-repeat;
+}
+.m-yl-gift03 h3 span{
+    background: url(/static/img/activity/yiRoadLottery/yiRoad_title03.jpg) no-repeat;
+}
+.m-yl-gift04 h3 span{
+    background: url(/static/img/activity/yiRoadLottery/yiRoad_title04.jpg) no-repeat;
+}
+.m-yl-gift05 h3 span{
+    background: url(/static/img/activity/yiRoadLottery/yiRoad_title05.jpg) no-repeat;
+}
+.m-yl-wrap{
+    background: #f9f1cd;
+}
+/*转盘*/
+.u-lottery-rotate{
+    height: 559px;
+    width: 559px;
+    background: url(/static/img/activity/yiRoadLottery/lottery_rotate_bg.png) no-repeat;
+    position: absolute;
+    left:28px;
+    top:34px;
+}
+.u-lotter-arrow{
+    width: 172px;
+    height: 216px;
+    background: url(/static/img/activity/yiRoadLottery/lottery_arrow.png) no-repeat;
+    position: absolute;
+    left:215px;
+    top:180px;
+    cursor: pointer;
+}
+.u-lotter-arrow span{
+    position: absolute;
+    bottom: 36px;
+    left: 0;
+    text-align: center;
+    display: inline-block;
+    width:172px;
+    text-align: center;
+    color: #fd5d5d;
+}
+.u-lotter-arrow.z-disabled{
+    cursor: default;
+}
+/**二重礼**/
+.m-yl-gift02 .u-activity-rules{
+    margin: 35px 10px 0 90px;
+    width: 325px;
+    color: #666;
+    float: left;
+    line-height: 2em;
+}
+.m-yl-gift02 .u-activity-rules span{
+    color: #ff5c5d;
+    font-weight: bold;
+}
+.m-yl-gift02 table{
+    width: 535px;
+    border: none;
+    float: right;
+    margin-top: -20px;
+}
+.m-yl-gift02>div{
+    margin-top: -15px;
+}
+.m-yl-gift02 table thead{
+    color: #ff5c5d;
+    font-size: 14px;
+    font-weight: bold;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+}
+.m-yl-gift02 tbody td{
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+}
+.m-yl-gift02 .u-yltable-patch{
+    padding:0 15px;
+}
+.u-yl-dark em{
+    color: #ff5c5d;
+    font-weight: bold;
+}
+.u-yl-tint em{
+    color: #fe9f9d;
+}
+.u-yl-dark span{
+    color: #666;
+    font-weight: bold;
+}
+.u-yl-tint span{
+    color: #999;
+}
+.u-yl-dark i{
+    width: 90px;
+    font-weight: bold;
+    text-align: right;
+    display: inline-block;
+}
+    /**三重礼**/
+.m-yl-gift03 p{
+    margin: 35px 30px 0 0;
+    width: 325px;
+    color: #666;
+    float: left;
+    line-height: 2em;
+}
+.m-yl-gift03 p span {
+    color: #ff5c5d;
+    font-weight: bold;
+}
+.u-share-box a{
+    float: right;
+}
+.u-share-box {
+    width: 195px;
+    color: #ff5c5d;
+    font-size: 20px;
+}
+.u-share-box span{
+    float: left;
+}
+.u-yl-left{
+    width: 280px;
+    padding-left: 90px;
+    float: left;
+}
+.u-yl-left img{
+    margin-top: 35px;
+    margin-left: 35px;
+}
+.u-yl-right{
+    width: 290px;
+    float: left;
+    margin-left: 220px;
+}
+.u-yl-right h4{
+    color: #ff5c5d;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+.u-yl-right div{
+    height: 235px;
+    position: relative;
+    overflow: hidden;
+}
+/***人气值列表***/
+.u-yl-list {
+    color: #666;
+    height: 226px;
+    padding-top: 8px;
+    padding-bottom: 9px;
+}
+.u-yl-list li {
+    margin-bottom: 12px;
+}
+.u-yl-list .u-yl-empty {
+    height: 226px;
+    line-height: 226px;
+    text-align: center;
+    font-size: 18px;
+    color: #999;
+}
+.u-yl-user {
+    text-align: left;
+}
+.u-user-head {
+    display: inline-block;
+    height: 35px;
+    width: 35px;
+    overflow: hidden;
+    padding: 0 2px 0 0;
+    vertical-align: middle;
+    position: relative;
+    margin-right: 5px;
+}
+.u-yl-user img {
+    display: inline-block;
+    height: 35px;
+    width: 35px;
+    overflow: hidden;
+}
+.u-user-head i {
+    display: inline-block;
+    height: 35px;
+    width: 35px;
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 2;
+    background: url(/static/img/common/sprites.png) no-repeat -75px -21px;
+}
+.u-yl-user .u-yl-fix {
+    width: 90px;
+    display: inline-block;
+}
+.u-yl-user .u-user-name {
+    margin-right: 0;
+}
+.u-yl-user span em{
+    color: #ff5c5d;
+}
+/**四重礼**/
+.m-yl-gift04>div{
+    width: 446px;
+    float: left;
+    margin: 35px 30px 0 90px;
+}
+.m-yl-gift04 h5,.m-yl-gift04 p span{
+    font-weight: bold;
+    color: #ff5c5d;
+}
+.m-yl-gift04 p{
+    line-height: 2em;
+}
+.m-yl-gift04 img{
+    margin: -50px 0 0 40px;
+}
+/**五重礼**/
+.m-yl-gift05 p{
+    width: 510px;
+    float: left;
+    line-height: 2em;
+    margin: 35px 90px 0 90px;
+}
+.m-yl-gift05 p span{
+    color: #ff5c5d;
+    font-weight: bold;
+}
+.m-yl-gift05>div{
+    width: 180px;
+    float: left;
+    color: #ff5c5d;
+    text-align: center;
+}
+.m-yl-gift05 div span{
+    font-weight: bold;
+}
+/**规则**/
+.m-yl-rule h5, .m-yl-rule p span{
+    font-weight: bold;
+}
+.m-yl-rule p span{
+    color: #ff5c5d;
+}
+.m-yl-rule p em{
+    color: #624525;
+    font-weight: bold;
+}
+.m-yl-rule {
+    height: 290px;
+    color: #624525;
+}
+.m-yl-rule p{
+    line-height: 1.7em;
+}
+.m-yl-rule p a{
+    color: #624525;
+    font-weight: bold;
+    text-decoration:underline;
+}
+.m-yl-rule p a:link, .m-yl-rule p a:visited, .m-yl-rule p a:hover{
+    color: #624525;
+    font-weight: bold;
+    text-decoration:underline;
+}
+/**抽奖排行**/
+.u-lottery-list {
+    position: absolute;
+    right: 110px;
+    top: 145px;
+}
+.u-lottery-list h4{
+    color: #999;
+}
+.m-lottery-box>p{
+    position: absolute;
+    bottom: 40px;
+    right: 150px;
+    color: #b36e20;
+    width: 360px;
+}
+.u-yl-tips {
+    height: 380px;
+    width: 990px;
+    position: relative;
+}
+.u-yl-tips .u-tips-day{
+    color: #fff;
+    position: absolute;
+    right: 196px;
+    text-align: center;
+    bottom: 102px;
+    width: 61px;
+    letter-spacing: 1px;
+}
+.u-tips-money div{
+    font-weight: bold;
+}
+.u-yl-tips .u-tips-money{
+    position: absolute;
+    bottom: 11px;
+    right: 13px;
+    text-align: center;
+    color: #976518;
+    font-weight: bold;
+    line-height: 18px;
+    width: 145px;
+    height: 90px;
+}
+.u-yl-tips .u-tips-money i{
+    font-weight: bold;
+    font-size: 26px;
+    line-height: 1.8em;
+    letter-spacing: 1px;
+}
+.u-yl-tips i em{
+    font-weight: bold;
+    letter-spacing:1px
+}
+.f-fs10{
+    font-size: 10px;
+}
+.u-yl-tips .u-tips-money em {
+    font-weight: bold;
+}
+/***夺魁倒计时***/
+.flip-clock-wrapper {
+    margin-left: 85px;
+    width: 30%;
+    position: absolute;
+    top: 320px;
+    left: 3px;
+}
+.flip-clock-wrapper ul{
+    position: relative;
+    float: left;
+    margin: 2px;
+    width: 30px;
+    height: 44px;
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 44px;
+    border-radius: 6px;
+    background: #ff5c5d;
+}
+.flip-clock-wrapper ul li {
+    width: 100%;
+    height: 100%;
+    line-height: 44px;
+}
+.flip-clock-divider {
+    float: left;
+    display: inline-block;
+    position: relative;
+    width: 16px;
+    height: 55px;
+}
+.flip-clock-dot {
+    background: #ff5c5d;
+    width: 6px;
+    height: 6px;
+}
+.flip-clock-wrapper ul li a div div.inn {
+    color: #fff;
+    text-shadow: 0 1px 2px #ff5c5d;
+    background-color: #ff5c5d;
+    font-size: 34px;
+}
+.flip-clock-wrapper ul li a div {
+    font-size: 30px;
+}
+.flip-clock-divider .flip-clock-label{
+    display: none;
+}
+
+.m-yl-gift02 .u-yl-countdown {
+    color: #ff5c5d;
+    position: absolute;
+    left: 90px;
+    top: 310px;
+}
+.u-time-end em{
+
+}

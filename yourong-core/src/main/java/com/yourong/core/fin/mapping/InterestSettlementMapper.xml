@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.fin.dao.InterestSettlementMapper" >
+  <resultMap id="BaseResultMap" type="com.yourong.core.fin.model.biz.InterestSettlementBiz" >
+  	<id column="project_id" property="projectId" jdbcType="BIGINT" />
+    <result column="project_name" property="projectName" jdbcType="VARCHAR" />
+    <result column="total_amount" property="totalAmount" jdbcType="DECIMAL" />
+    <result column="interest_from" property="interestFrom" jdbcType="INTEGER" />
+    <result column="offline_annualized_rate" property="offlineAnnualizedRate" jdbcType="DECIMAL" />
+    <result column="debt_id" property="debtId" jdbcType="BIGINT" />
+    <result column="start_date" property="startDate" jdbcType="TIMESTAMP" />
+    <result column="end_date" property="endDate" jdbcType="TIMESTAMP" />
+    <result column="used_coupon_amount" property="usedCouponAmount" jdbcType="DECIMAL" />
+    <result column="payable_interest" property="payableInterest" jdbcType="DECIMAL" />
+    <result column="extra_interest" property="extraInterest" jdbcType="DECIMAL" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="transaction_time" property="transactionTime" jdbcType="TIMESTAMP" />
+    <result column="profit_type" property="profitType" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+   	p.id as project_id,
+   	p.name as project_name,
+	p.total_amount as total_amount,
+	p.interest_from as interest_from,
+	p.start_date as start_date,
+	p.end_date as end_date,
+	p.status,
+	p.profit_type as profit_type,
+	d.offline_annualized_rate as offline_annualized_rate,
+	p.debt_id as debt_id,
+	sum(t.used_coupon_amount) as used_coupon_amount,
+	sum(t.total_interest) AS payable_interest,
+	sum(t.total_extra_interest) AS extra_interest,
+	max((case when p.status >= 50 then t.transaction_time  else '0000-00-00 00:00:00' end)) as transaction_time
+  </sql>
+  
+  <!-- 线上线下利息营收结算分页 ==========================start============================ -->
+  <select id="selectForPagin" resultMap="BaseResultMap" >
+    SELECT
+	<include refid="Base_Column_List"/>
+	from ic_project as p 
+	<choose>
+		<when test=" map != null and map.trueName != null">
+			INNER JOIN ic_debt as d on p.debt_id = d.id
+			INNER JOIN uc_member as m on m.id = d.lender_id and m.true_name = #{map.trueName}
+		</when>
+		<otherwise>
+			LEFT JOIN ic_debt as d on p.debt_id=d.id
+		</otherwise>
+	</choose>
+	left join tc_transaction as t on t.project_id=p.id
+	where p.del_flag >0 and  p.invest_type=1
+	<if test="map!=null">
+		<if test="map.projectName != null">
+			and p.name like #{map.projectName}"%"
+		</if>
+		<if test="map.endDate != null">
+			and date_format(p.end_date,'%Y-%m') = #{map.endDate}
+		</if>
+		<if test="map.transactionFinishDate != null">
+			and p.status >= 50
+			and date_format(p.sale_complated_time,'%Y-%m') = #{map.transactionFinishDate}
+		</if>
+	</if>
+	group by p.id 
+	<choose>
+		<when test=" map != null">
+			<if test=" map.desc != null">
+				order by ${map.desc} desc
+			</if>
+			<if test=" map.asc != null">
+				order by ${map.asc} asc
+			</if>
+		</when>
+		<otherwise>
+			order by p.id desc
+		</otherwise>
+	</choose>
+  	LIMIT ${map.startRow}, ${map.pageSize}   
+  </select>
+  <select id="selectForPaginTotalCount" resultType="java.lang.Integer" >
+  SELECT
+	COUNT(0)
+	from ic_project as p 
+	<choose>
+		<when test=" map != null and map.trueName != null">
+			INNER JOIN ic_debt as d on p.debt_id = d.id
+			INNER JOIN uc_member as m on m.id = d.lender_id and m.true_name = #{map.trueName}
+		</when>
+		<otherwise>
+			LEFT JOIN ic_debt as d on p.debt_id=d.id
+		</otherwise>
+	</choose>
+	where p.del_flag >0 and  p.invest_type=1
+	<if test="map!=null">
+		<if test="map.projectName != null">
+			and p.name like #{map.projectName}"%"
+		</if>
+		<if test="map.endDate != null">
+			and date_format(p.end_date,'%Y-%m') = #{map.endDate}
+		</if>
+		<if test="map.transactionFinishDate != null">
+			and p.status >= 50
+			and date_format(p.sale_complated_time,'%Y-%m') = #{map.transactionFinishDate}
+		</if>
+	</if>
+  </select>
+  <!-- 线上线下利息营收结算分页 ==========================end======================== -->
+  
+</mapper>

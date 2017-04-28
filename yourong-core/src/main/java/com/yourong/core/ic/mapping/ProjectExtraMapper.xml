@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.ic.dao.ProjectExtraMapper" >
+  <resultMap id="BaseResultMap" type="com.yourong.core.ic.model.ProjectExtra" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="project_id" property="projectId" jdbcType="BIGINT" />
+    <result column="extra_type" property="extraType" jdbcType="INTEGER" />
+    <result column="activity_sign" property="activitySign" jdbcType="INTEGER" />
+    <result column="extra_information" property="extraInformation" jdbcType="VARCHAR" />
+    <result column="extra_information_two" property="extraInformationTwo" jdbcType="VARCHAR" />
+    <result column="extra_amount" property="extraAmount" jdbcType="DECIMAL" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+    <result column="activity_id" property="activityId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, project_id,extra_type, activity_sign,extra_information,extra_information_two,extra_amount, create_time, update_time, remark, del_flag ,activity_id 
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from ic_project_extra
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  
+  <update id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    update  ic_project_extra set del_flag=-1
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <insert id="insert" parameterType="com.yourong.core.ic.model.ProjectExtra" >
+    insert into ic_project_extra (project_id, activity_sign,extra_type, extra_information,extra_information_two,extra_amount,
+      create_time, update_time, remark, 
+      del_flag)
+    values (#{projectId,jdbcType=BIGINT}, #{activitySign,jdbcType=INTEGER},#{extraType,jdbcType=INTEGER}, #{extraInformation,jdbcType=VARCHAR}, 
+    #{extraInformationTwo,jdbcType=VARCHAR}, #{extraAmount,jdbcType=DECIMAL}, 
+      now(), now(), #{remark,jdbcType=VARCHAR}, 
+      1)
+  </insert>
+  <insert id="insertSelective" parameterType="com.yourong.core.ic.model.ProjectExtra" >
+    insert into ic_project_extra
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="projectId != null" >
+        project_id,
+      </if>
+      <if test="activitySign != null" >
+        activity_sign,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="projectId != null" >
+        #{projectId,jdbcType=BIGINT},
+      </if>
+      <if test="activitySign != null" >
+        #{activitySign,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yourong.core.ic.model.ProjectExtra" >
+    update ic_project_extra
+    <set >
+      <if test="projectId != null" >
+        project_id = #{projectId,jdbcType=BIGINT},
+      </if>
+      <if test="activitySign != null" >
+        activity_sign = #{activitySign,jdbcType=INTEGER},
+      </if>
+       <if test="activityId != null" >
+        activity_id = #{activityId,jdbcType=BIGINT},
+      </if>
+      <if test="extraInformation != null" >
+        extra_information = #{extraInformation,jdbcType=VARCHAR},
+      </if>
+      <if test="extraInformationTwo != null" >
+        extra_information_two = #{extraInformationTwo,jdbcType=VARCHAR},
+      </if>
+      <if test="extraAmount != null" >
+        extra_amount = #{extraAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yourong.core.ic.model.ProjectExtra" >
+    update ic_project_extra
+    set project_id = #{projectId,jdbcType=BIGINT},
+      activity_sign = #{activitySign,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR},
+      del_flag = #{delFlag,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <delete id="batchDelete" parameterType="java.lang.Long" >
+    delete from ic_project_extra
+    where id in  <foreach collection="ids" index="index" item="item" open="(" separator="," close=")"> #{item}  </foreach>  
+  </delete>
+  <select id="findByPage" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from ic_project_extra
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = #{map.id}
+        </if>
+        <if test=" map.projectId != null" >
+          project_id = #{map.projectId}
+        </if>
+        <if test=" map.activitySign != null" >
+          activity_sign = #{map.activitySign}
+        </if>
+        <if test=" map.createTime != null" >
+          create_time = #{map.createTime}
+        </if>
+        <if test=" map.updateTime != null" >
+          update_time = #{map.updateTime}
+        </if>
+        <if test=" map.remark != null" >
+          remark = #{map.remark}
+        </if>
+        <if test=" map.delFlag != null" >
+          del_flag = #{map.delFlag}
+        </if>
+      </where>
+    </if>
+  </select>
+  <sql id="Base_Column_List_Pagin" >
+    t.id  as  id,
+t.project_id  as  project_id,
+t.activity_sign  as  activity_sign,
+t.create_time  as  create_time,
+t.update_time  as  update_time,
+t.remark  as  remark,
+t.del_flag  as  del_flag
+  </sql>
+  <select id="selectForPagin" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List_Pagin" />
+    from  (SELECT id FROM  ic_project_extra
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = #{map.id}
+        </if>
+        <if test=" map.projectId != null" >
+          project_id = #{map.projectId}
+        </if>
+        <if test=" map.activitySign != null" >
+          activity_sign = #{map.activitySign}
+        </if>
+        <if test=" map.createTime != null" >
+          create_time = #{map.createTime}
+        </if>
+        <if test=" map.updateTime != null" >
+          update_time = #{map.updateTime}
+        </if>
+        <if test=" map.remark != null" >
+          remark = #{map.remark}
+        </if>
+        <if test=" map.delFlag != null" >
+          del_flag = #{map.delFlag}
+        </if>
+      </where>
+    </if>
+      LIMIT	${map.startRow}, ${map.pageSize}  )  AS a,  ic_project_extra AS t FORCE INDEX(PRIMARY) WHERE a.id = t.id   
+  </select>
+  <select id="selectForPaginTotalCount" resultType="java.lang.Integer" >
+    select count(1) 
+    from ic_project_extra
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = ${map.id}
+        </if>
+        <if test=" map.projectId != null" >
+          project_id = ${map.projectId}
+        </if>
+        <if test=" map.activitySign != null" >
+          activity_sign = ${map.activitySign}
+        </if>
+        <if test=" map.createTime != null" >
+          create_time = ${map.createTime}
+        </if>
+        <if test=" map.updateTime != null" >
+          update_time = ${map.updateTime}
+        </if>
+        <if test=" map.remark != null" >
+          remark = ${map.remark}
+        </if>
+        <if test=" map.delFlag != null" >
+          del_flag = ${map.delFlag}
+        </if>
+      </where>
+    </if>
+  </select>
+  
+  <select id="getProjectActivitySign" resultMap="BaseResultMap" >
+  	select <include refid="Base_Column_List" /> from ic_project_extra where project_id = #{projectId,jdbcType=BIGINT} and del_flag = 1 and  activity_sign = 2
+  </select>
+  
+   <select id="getNewProjectExtra" resultMap="BaseResultMap" >
+  	select <include refid="Base_Column_List" /> from ic_project_extra where activity_sign = 2 and del_flag = 1 order by id desc limit 1 
+  </select>
+  
+    <select id="getProjectQucikReward" resultMap="BaseResultMap" >
+  	select <include refid="Base_Column_List" /> from ic_project_extra where project_id = #{projectId,jdbcType=BIGINT} and del_flag = 1 and activity_sign=2
+  </select>
+  
+  
+   <select id="getProjectExtraByMap" resultType="java.lang.Integer"  >
+    select  count(1) 
+    from  ic_project_extra as icpe
+    left join ic_project as ic on ic.id=icpe.project_id
+    where ic.del_flag = 1 and icpe.del_flag = 1
+    <if test=" map != null" >
+        <if test=" map.status != null" >
+          and ic.status = #{map.status}
+        </if>
+        <if test=" map.statusCode == 1" >
+          and ic.status in (30,40,50,81)
+        </if>
+        
+        <if test=" map.activitySign != null" >
+          and icpe.activity_sign = #{map.activitySign}
+        </if>
+    </if>
+  </select>
+  
+  <select id="getProjectExtraNoticeByMap" resultType="java.lang.Integer"  >
+    select  count(1) 
+    from  ic_project_extra as icpe
+    left join ic_project_notice as icn on icn.project_id=icpe.project_id
+    where icn.del_flag = 1 and icpe.del_flag = 1 and icn.status=10
+    <if test=" map != null" >
+        <if test=" map.activitySign != null" >
+          and icpe.activity_sign = #{map.activitySign}
+        </if>
+    </if>
+  </select>
+  
+   <select id="getProjectExtraInforByMap" resultMap="BaseResultMap"  >
+    select  <include refid="Base_Column_List" />
+    from  ic_project_extra 
+    where del_flag = 1
+    <if test=" map != null" >
+        <if test=" map.extraType != null" >
+          and extra_type = #{map.extraType}
+        </if>
+        <if test=" map.projectId != null" >
+          and project_id = #{map.projectId}
+        </if>
+        <if test=" map.activitySign != null" >
+          and activity_sign = #{map.activitySign}
+        </if>
+    </if>
+  </select>
+  
+  <select id="getProjectExtraListByMap" resultMap="BaseResultMap"  >
+    select  <include refid="Base_Column_List" />
+    from  ic_project_extra 
+    where del_flag = 1
+    <if test=" map != null" >
+        <if test=" map.extraType != null" >
+          and extra_type = #{map.extraType}
+        </if>
+        <if test=" map.projectId != null" >
+          and project_id = #{map.projectId}
+        </if>
+        <if test=" map.activitySign != null" >
+          and activity_sign = #{map.activitySign}
+        </if>
+    </if>
+  </select>
+  
+  	<select id="getQuickProjectLately" resultType="java.lang.Long">
+		SELECT icpe.project_id as id 
+	 	from  ic_project_extra as icpe
+	    left join ic_project as ic on ic.id=icpe.project_id
+	    where ic.del_flag = 1 and icpe.del_flag = 1 
+	    and ic.status in (51,52,81,70)
+	    and icpe.activity_sign = 2
+	    order by sale_complated_time desc 
+	</select>
+	
+	 <select id="getExtraProjectNumByStatus" resultType="java.lang.Integer"  >
+    select  count(1) 
+    from  ic_project_extra as icpe
+    left join ic_project as ic on ic.id=icpe.project_id
+    where ic.del_flag = 1 and icpe.del_flag = 1 
+    <if test=" map != null" >
+        <if test=" map.activitySign != null" >
+          and icpe.activity_sign = #{map.activitySign}
+        </if>
+        <if test=" map.statusCode == 30" >
+           and ic.status in (30)
+        </if>
+    </if>
+  </select>
+</mapper>

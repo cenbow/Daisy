@@ -1,0 +1,416 @@
+#set($title="融合创新_共筑互联网金融生态圈-【有融网】全透明的互联网理财优选平台！")
+
+
+##合作伙伴
+#parse('/common/common.vm')
+<style>
+    .g-bd {
+        margin-bottom: 0;
+    }
+
+    /* top bg */
+    .g-main{
+        font-family: "微软雅黑";
+        background: #fff;
+    }
+
+    .u-hd {
+        height: 414px;
+        margin-top: -8px;
+        text-indent: -9999px;
+        background: url(/static/img/post/partner/hd.png) no-repeat center;
+    }
+
+    .g-section-left{
+        display: inline-block;
+        vertical-align: top;
+        width: 516px;
+        box-sizing: border-box;
+        padding-left: 22px;
+    }
+    .g-section-right{
+        display: inline-block;
+        vertical-align: top;
+        width: 470px;
+        box-sizing: border-box;
+
+    }
+
+    /* logos */
+    i.u-logos{
+        display: inline-block;
+        width: 240px;
+        height: 42px;
+        margin-bottom: 30px;
+    }
+
+    /* 其他合作伙伴的logo */
+    .g-rest-partners{
+        background: #eee;
+        padding-top: 50px;
+        padding-bottom: 60px;
+        box-sizing: border-box;
+    }
+
+    .g-rest-partners h3{
+        color: #666;
+        font-size: 14px;
+        margin-bottom: 16px;
+        font-weight: bold;
+    }
+
+    .g-partners-logos{
+        font-size: 0;
+    }
+    .g-partners-logos i{
+        display: inline-block;
+        width: 152px;
+        height: 52px;
+        margin-right: 10px;
+        margin-bottom: 20px;
+        font-size: 0;
+    }
+
+    /* logos */
+    .u-logo-dl{
+        background: url(/static/img/post/partner/sprite.png) no-repeat 0 -684px;
+    }
+    .u-logo-ghkj{
+        background: url(/static/img/post/partner/sprite.png) no-repeat 0 -513px;
+    }
+    .u-logo-qhjj{
+        height: 45px!important;
+        margin-bottom: 25px!important;
+        background: url(/static/img/post/partner/logo_qhjj.png) no-repeat;
+    }
+    .u-logo-xihu{
+        background: url(/static/img/post/partner/sprite.png) no-repeat 0 -459px;
+    }
+    .u-logo-xlzf{
+        position: relative;
+        top: 3px;
+        background: url(/static/img/post/partner/sprite.png) no-repeat 0 -399px;
+    }
+    .u-logo-zjdx{
+        height: 49px!important;
+        margin-bottom: 21px!important;
+        background: url(/static/img/post/partner/logo_zjdx.png) no-repeat;
+    }
+    .u-logo-dzsj{
+        /*position: relative;*/
+        /*height: 46px!important;*/
+        /*margin-bottom: 24px!important;*/
+        background: url(/static/img/post/partner/sprite.png) no-repeat 0 -622px;
+    }
+    .u-logo-dm{
+        background: url(/static/img/post/partner/sprite.png) no-repeat 0 -199px;
+    }
+    .u-logo-lg{
+        background: url(/static/img/post/partner/sprite.png) no-repeat 0 -133px;
+    }
+    .u-logo-hx{
+        background: url(/static/img/post/partner/sprite.png) no-repeat 0 -68px;
+    }
+    .u-logo-bc{
+        background: url(/static/img/post/partner/sprite.png) no-repeat 0 -275px;
+    }
+
+    .u-h2{
+        font-size: 18px;
+        font-weight: bold;
+        color: #666;
+        margin-bottom: 10px;
+    }
+
+    .u-content{
+        font-size: 13px;
+        line-height: 24px;
+        color: #999;
+    }
+
+    /* 西湖区政府的三张图片 */
+    .g-partner-pics ul {
+        width: 240px;
+        height: 91px;
+        margin-left: 3px;
+        margin-top: 15px;
+    }
+
+    .g-partner-pics ul > li {
+        width: 66px;
+        height: 91px;
+        float: left;
+        margin-left: 11px;
+        display: block;
+        cursor: pointer;
+        border: 1px solid #999;
+    }
+
+    .g-partner-pics ul > li:first-child {
+        margin-left: 0px;
+    }
+
+    .u-partner-picmini01 {
+        background: url(/static/img/post/partner/cooperationMini01.jpg) no-repeat;
+    }
+
+    .u-partner-picmini02 {
+        background: url(/static/img/post/partner/cooperationMini02.jpg) no-repeat;
+    }
+
+    .u-partner-picmini03 {
+        background: url(/static/img/post/partner/cooperationMini03.jpg) no-repeat;
+    }
+
+    .u-partner-zjdx-mini1 {
+        background: url(/static/img/post/partner/zjdx_agreement1.png) no-repeat;
+    }
+    .u-partner-zjdx-mini2{
+        background: url(/static/img/post/partner/zjdx_agreement2.png) no-repeat;
+    }
+
+    /* 重要告知按钮 */
+    .u-message{
+        color: #d74148!important;
+        display: inline-block;
+        text-decoration: none;
+    }
+
+    ## 其他合作伙伴
+    .u-partner-info>div{
+        border: 1px solid #cfcfcf;
+        border-radius: 4px;
+        text-indent: 2em;
+        padding: 30px 40px;
+        font-size: 12px;
+        color: #666;
+        background: #fff;
+        line-height: 20px;
+        position: relative;
+        display: none;
+    }
+    .u-partner-info>div.z-active{
+        display: block;
+    }
+    /* 提示框箭头 */
+    i.u-arrow-up{
+        display: inline-block;
+        width: 15px;
+        height: 8px;
+        background: url(/static/img/post/partner/sprite.png) no-repeat 0 0;
+        position: absolute;
+        top: -8px;
+    }
+    i.u-arrow-up-1{
+        left: 70px;
+    }
+    i.u-arrow-up-2{
+        left: 235px;
+    }
+    i.u-arrow-up-3{
+        left: 400px;
+    }
+    i.u-arrow-up-4{
+        left: 560px;
+    }
+    i.u-arrow-up-5{
+        left: 715px;
+    }
+    .m-t-100{
+        margin-top:100px;
+    }
+    .m-b-100{
+        margin-bottom: 100px;
+    }
+    .pt-100{
+        padding-top: 100px;
+    }
+    .pb-100{
+        padding-bottom: 100px;
+    }
+.u-last-box{
+    padding-bottom: 100px;
+}
+</style>
+
+<div class="f-mh500 f-cf g-main">
+    <div class="u-hd"></div>
+
+    <div class="g-wrap">
+        <div class="g-section-right pt-100" id="dljt">
+            <i class="u-logos u-logo-dl"></i>
+            <h2 class="u-h2">A+轮投资，合作共赢探多元化发展</h2>
+            <p class="u-content">
+                鼎立控股集团是一家集实业、置业、医药、金融业为一体的大型现代化企业集团，<br>
+                同时也是上市公司鼎立股份（600614）的控股大股东，总资产近百亿元。<br>
+                曾荣获“中华民族品牌奖”、“全国民营企业500强”、“全国十佳诚信单位”、<br>
+                “中国首批信用体系建设先进单位”等百余项国家级荣誉，是有融网A+轮融资的投资方。</p>
+        </div>
+        <div class="g-section-left pt-100" id="ghkj">
+            <i class="u-logos u-logo-ghkj"></i>
+            <h2 class="u-h2">战略入股，探索“科技+金融”服务新模式</h2>
+            <p class="u-content">中国光华科技基金会是在民政部登记注册、共青团中央主管的全国性<br>
+                5A公募基金会。早期通过颁发“光华科技奖”，奖励在我国科技领域<br>
+                做出突出成绩的科技人员，为科技事业发展做出了积极贡献。<br>
+                中国光华科技基金会于2016年1月13日战略入股有融网。</p>
+        </div>
+
+
+    </div>
+
+    <div class="g-wrap">
+        <div class="g-section-right pt-100" id="qhjj">
+            <i class="u-logos u-logo-qhjj"></i>
+            <h2 class="u-h2">Pre-A轮战略投资，支持深耕汽车金融</h2>
+            <p class="u-content">浙江千合并购基金管理有限公司是浙江省投融资协会旗下的平台公司之一,<br>
+                是一家以产业并购基金发行管理为主营业务的专业基金管理机构。凭借专业的<br>
+                眼光和精准的判断，致力于为协会各会员单位提供多元的融资、投资方案，<br>
+                认可并大力支持有融网深耕汽车金融领域,是有融网Pre-A轮融资的投资方。</p>
+        </div>
+        <div class="g-section-left g-partner-pics  pt-100" id="xhq">
+            <i class="u-logos u-logo-xihu"></i>
+            <h2 class="u-h2">政策支持，是最坚实的后盾</h2>
+            <p class="u-content">有融网是杭州市西湖区政府重点引进扶持的互联网金融信息服务平台。<br>
+                西湖区政府给予有融网在政策等方面的大力支持，是有融网成长过程中最坚强的后盾，<br>
+                也是有融网致力于打造多元化、综合性的互联网金融信息服务平台的有力保障。</p>
+            <ul id="j-partner-cooperation">
+                <li class="u-partner-picmini01"
+                    data-img="$root_url/static/img/post/partner/cooperationAgreement01.jpg"></li>
+                <li class="u-partner-picmini02"
+                    data-img="$root_url/static/img/post/partner/cooperationAgreement02.jpg"></li>
+                <li class="u-partner-picmini03"
+                    data-img="$root_url/static/img/post/partner/cooperationAgreement03.jpg"></li>
+            </ul>
+        </div>
+
+
+    </div>
+
+    <div class="g-wrap u-last-box">
+        <div class="g-section-right g-partner-pics pt-100" id="zjdx">
+            <i class="u-logos u-logo-zjdx"></i>
+            <h2 class="u-h2">产学研合作，推动互联网金融健康发展</h2>
+            <p class="u-content">浙江大学是一所享誉海内外的综合型、研究型大学，注重精研学术和科技创新，<br>
+                建设了一批开放性、国际化的高端学术平台，汇聚了各学科的学者大师和<br>
+                高水平研究团队。浙江大学与有融网在互联网金融投资理财领域开展合作，<br>
+                为国内互联网金融企业打造信息披露标准与风险控制标准规范，<br>
+                积极推动行业健康发展。</p>
+            <ul id="j-partner-cooperation2">
+                <li class="u-partner-zjdx-mini1"
+                    data-img="$root_url/static/img/post/partner/zjdx_agreement1.jpg"></li>
+                <li class="u-partner-zjdx-mini2"
+                    data-img="$root_url/static/img/post/partner/zjdx_agreement2.jpg"></li>
+            </ul>
+        </div>
+
+        <div class="g-section-left  pt-100" id="sina">
+            <i class="u-logos u-logo-xlzf"></i>
+            <h2 class="u-h2">资金安全，是给投资者的切实保障</h2>
+            <p class="u-content">新浪支付存钱罐是新浪联合汇添富基金合作主推的一款具备货基收益功能的<br>
+                账户余额增值产品，为有融网用户提供全程资金托管服务，用户的投资资金<br>
+                与平台完全隔离，真正实现专人专户、专款专用，为您的资金提供银行级别的<br>
+                安全保障，给予您最温暖的安全感。</p>
+        </div>
+
+
+    </div>
+##    <div class="g-wrap">
+##        <div class="g-section-right pt-100 pb-100" id="sjaq">
+##            <i class="u-logos u-logo-dzsj"></i>
+##            <h2 class="u-h2">用户最安全的交易数据保险箱</h2>
+##            <p class="u-content">电子数据保全是有融网对用户在投资交易过程中电子数据保障的另一得力举措。<br>
+##                用户在有融网投资交易全过程中产生的电子合同、交易过程等电子数据均由<br>
+##                电子数据保全中心运用专利技术运算、加密固定及载明保全生成的标准时间、<br>
+##                运算值、档案编号等，以确保电子数据的原始性、客观性。<br>
+##                为用户提供事前防范及事后维权证据的有效性、合法性提供切实保障。</p>
+##        </div>
+##    </div>
+
+    <div class="g-rest-partners">
+        <div class="g-wrap">
+            <h3>其他合作伙伴</h3>
+        </div>
+        <div class="g-wrap g-partners-logos" id="j-partnersLogos">
+            <i class="u-logo-lg" id="ssq"></i>
+            <i class="u-logo-dzsj" id="dl"></i>
+            <i class="u-logo-dm" id="dm"></i>
+            <i class="u-logo-hx" id="dbs"></i>
+            <i class="u-logo-bc" id="bca"></i>
+        </div>
+
+        <div class="g-wrap u-partner-info" id="j-partnersInfo">
+            <div class="z-active">
+                <i class="u-arrow-up u-arrow-up-1"></i>
+                上上签是一家提供电子合同签名的专业服务平台，它通过先进的CA认证技术、电子数据碎片式存储技术、防篡改技术，
+                保障有融网投资人、借款人在交易过程中签署可靠的电子签名，形成一份具有司法效力的电子合同，有效保障各方权益。
+            </div>
+            <div>
+                <i class="u-arrow-up u-arrow-up-2"></i>
+                电子数据保全是有融网对用户在投资交易中电子数据保障的另一得力举措。
+                用户在有融网投资交易过程中产生的电子合同、交易过程等电子数据均由电子数据保全中心运用专利技术运算、加密固定等，
+                以确保电子数据的原始性、客观性。
+            </div>
+            <div>
+                <i class="u-arrow-up u-arrow-up-3"></i>
+                浙江德睦律师事务所专业资深律师对平台业务模式和债权形成流程制定进行严格的法律风险把控，
+                并起草了一整套借贷、担保和债权收益权转让的系列合同文本，全过程、全方位提供法律服务和保障。
+            </div>
+            <div>
+                <i class="u-arrow-up u-arrow-up-4"></i>
+                华夏邓白氏是由美国邓白氏集团和中国信用信息行业先锋华夏国际信用集团强强联手打造。
+                华夏邓白氏以其专业、严谨的尽调体系和国际化视野，与鹏元征信双管齐下，
+                为有融网提供全方位、多角度的项目尽调，力图打造最高格局的征信调查体系。
+            </div>
+            <div>
+                <i class="u-arrow-up u-arrow-up-5"></i>
+                杭州佰驰汽车销售有限公司负责对有融网平台所有质押车辆进行价格评估，并签订协议，
+                承诺如若项目发生逾期，杭州佰驰汽车销售有限公司将按照其评估协议中的转让价款
+                无条件进行受让项目债权，转让款优先用于偿还项目投资人本息。
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="u-agreement-box f-dn" id="j-register-argreement">
+    <h3 class="f-fs18">重要告知<i></i></h3>
+
+    <div>
+        <iframe src="" frameborder="0"></iframe>
+    </div>
+</div>
+
+<script>
+    window.onload = function () {
+        //合作合同大图
+        $("#j-partner-cooperation, #j-partner-cooperation2").find("li").on("click", function () {
+            var bigImg = $(this).data("img"),
+                    imgDialog = dialog({
+                        content: "<img id='j-partner-bigImg' src='" + bigImg + "' alt='政策支持，是最坚实的后盾' />",
+                        width: 680
+                    });
+            xShade("show");
+            imgDialog.show();
+            $(".ui-popup").css("top", $(window).scrollTop());
+            //图片关闭
+            $("#j-partner-bigImg").on("click", function () {
+                imgDialog.close().remove();
+                xShade("hide");
+            });
+        });
+        //点击背景隐藏
+        $("body").on("click", ".u-shade", function () {
+            $(".ui-popup").remove();
+            xShade("hide");
+        });
+
+        //注册协议的初始化
+        $("#j-register-argreement-link").xArgreement();
+
+        // 其他合作伙伴点击切换介绍
+        var $partnersInfo = $('#j-partnersInfo').find('div'), index;
+        $('#j-partnersLogos').on('mouseenter', 'i', function(){
+            index = $(this).index();
+                $partnersInfo.removeClass('z-active').eq(index).addClass('z-active');
+        })
+    }
+</script>

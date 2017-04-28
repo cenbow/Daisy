@@ -1,0 +1,20 @@
+#parse("/mobile/common.vm")
+#set($title='有融网分享抢红包')
+#CSRFToken("xToken")
+
+<style>
+
+    p {
+        margin-top: 200px;
+        background-color: #d64148;
+        font-size: 20px;
+        padding: 2rem;
+        text-align: center;
+    }
+    a {
+        color: #fff;
+        font-weight: bold;
+        text-decoration: underline;
+    }
+</style>
+<p data-appid="$appid" id="j-appid">页面访问出错</p>

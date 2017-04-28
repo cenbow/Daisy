@@ -1,0 +1,148 @@
+##第一步
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$m_css_url/common.css","$m_css_url/landing/season1.css","$m_css_url/landing/inviteRegister.css"])
+#set($title="518大礼包")
+<input type="hidden" id="pageTag" value="inviteRegister"/>
+
+
+<div class="u-invite-banner">
+    <img class="big" src="$siteurl/res/img/landing/inviteRegister/bg.png" alt="">
+    <img class="left" src="$siteurl/res/img/landing/inviteRegister/left.png" alt="">
+    <img class="right" src="$siteurl/res/img/landing/inviteRegister/right.png" alt="">
+    <img class="redpackage" src="$siteurl/res/img/landing/inviteRegister/redpackage.png" alt="">
+    <div class="u-title top-tips">
+        <p>您的好友&nbsp;&nbsp;$!{mobile}&nbsp;&nbsp;邀您一起来赚钱~</p>
+        <h2 class="f-nbold">送您<b>518</b>大礼包</h2>
+    </div>
+
+</div>
+
+<section class="g-bd">
+    <div class="m-input-box">
+        <input type="tel" name="mobile" oncopy="return false;" onpaste="return false;" id="j-cpn-pre" autocomplete="off"
+               nullmsg="手机号码不能为空" errormsg="请输入正确的手机号码" class="f-round f-ipt-w430 u-ipt-text u-ipt-str f-bg"
+               placeholder="输入手机号"/>
+        <div class="f-round f-ipt-w430 u-ipt-text u-ipt-str m-get-gift">领取礼包</div>
+    ##                    <div class="arrow-up">
+    ##                        <img src="$siteurl/res/img/landing/inviteRegister/arrow1.png" alt="">
+    ##                        <p>向上滑动了解更多</p>
+    ##                    </div>
+    </div>
+    <div class="m-register-box z-hidden">
+        <h3 class="u-register-head">注册有融网</h3>
+        <form data-action="$siteurl/mstation/register/saveMember" method="POST"
+              class="m-reg-form j-form-xpost j-validform" data-page="register" id="j-reg-form">
+            #CSRFToken('xToken')
+            #onceToken()
+            <input type="hidden" id="j-reg-mobile"/>
+            <div class="u-ipt-group f-pos-r f-input-border">
+                <input type="tel" name="mobile" oncopy="return false;" onpaste="return false;" id="j-cpn"
+                       autocomplete="off" nullmsg="手机号码不能为空" errormsg="请输入正确的手机号码"
+                       class="u-ipt-text u-ipt-str f-no-border" placeholder="请输入手机号码"/>
+                <span class='m-val-tips'></span>
+                <div class="f-mob-sha f-dn" id="j-mobile"></div>
+            </div>
+            <div class="m-input-vercode f-cf f-pos-r">
+    <span class="u-xtips-wrap">
+        <input type="text" id="j-vercode" autocomplete="off" nullmsg="输入右侧验证码" class="u-ipt-text u-ipt-vercode j-vercode" placeholder="输入右侧验证码" />
+    </span>
+                <img src="$siteurl/mstation/validateCode" alt="验证码" title="点击重新获取验证码" id="j-img-vercode"
+                     class="u-img-vercode"/>
+                <span id="j-phonecode-wrap" class="u-xtips-wrap u-phonecode-wrap z-hide">
+        <input type="text" name="phonecode" autocomplete="off" id="j-phonecode" placeholder="输入手机验证码" class="f-clear f-round u-ipt-text f-ipt-w248 u-ipt-phonecode" />
+    </span>
+                <span class="f-round u-tips-vercode f-tips-gray f-dn">
+    获得手机验证码
+    </span>
+                <span class="m-val-tips"></span>
+            </div>
+            <div class="u-ipt-group f-pos-r">
+                <input type="password" id="j-user-pwd" name="password" oncopy="return false;" onpaste="return false;"
+                       class="f-round u-ipt-text f-ipt-w200" placeholder="请输入密码" maxlength="16"/>
+                <i class="f-pos-a u-icon u-closed-eyes" id="j-look-pwd"></i>
+            </div>
+
+
+            <input type="hidden" name="referCode" id="j-refercode-val" value="$!{shortUrl}">
+            <input type="hidden" name="tid" value="$!{request.getParameter('tid')}">
+            <input type="hidden" name="registerTraceSource" value='$!{session.getAttribute("register_TraceSource")}'/>
+            <input type="hidden" name="registerTraceNo" value='$!{session.getAttribute("register_TraceNo")}'/>
+            <input type="hidden" name="referSource" value="$!{referSource}"/>
+            <input type="hidden" name="checkType" id="j-checkType" value="1"/>
+            <input type="hidden" name="pngCode" id="j-pngcode"/>
+            <input type="hidden" name="loginSource" value="0"/>
+
+        ##                        <a class="down-link" href="http://m.yrw.com/landing/downloadG">
+            <button type="submit" class="u-reg-btn1 j-reg-btn j-reg-btn-a">
+                注册即送518大礼包
+            </button>
+        ##                        </a>
+            <img class="m-close-btn" src="$res_url/img/member/ico_close.png"/>
+        </form>
+    </div>
+
+##蒙层
+    <div class="m-cover z-hidden"></div>
+
+</section>
+
+<div class="u-more">
+    <div class="u-title marginTop">
+        <h2>理财，就享自在</h2>
+        <div class="u-content">
+        ##投资总数/注册人数
+            <div class="u-amount-cover u-status-amount f-fs14 f-cf">
+                <em class="f-ff-ver u-amount-money f-fl">
+                    <p>$!{paltformCapitalUtils.getPrefixPaltformTotalInvest()}元</p>
+                    <p class="tips">用户累计投资额</p>
+                </em>
+                <em class="f-ff-ver f-fr">
+                    <p>$!{paltformCapitalUtils.getPaltformMembers()}人</p>
+                    <p class="tips">已注册有融网</p>
+                </em>
+            </div>
+        </div>
+    </div>
+    <div class="u-title">
+        <h2>稳定收益</h2>
+        <div class="u-content">
+            <div class="desc-p">
+                <p>预期年化最高可达<i>15%</i></p>
+                <p><i>10.08%</i>新手专享标</p>
+                <p><i>100元</i>起投低门槛</p>
+            </div>
+            <img src="$siteurl/res/img/landing/inviteRegister/profits.png" alt="">
+        </div>
+    </div>
+    <div class="u-title">
+        <h2>平台优势</h2>
+        <div class="u-content">
+            <img class="img-h" src="$siteurl/res/img/landing/inviteRegister/diamond.png" alt="">
+            <div class="desc-p textAlign">
+                <p>国资战略入股平台</p>
+                <p>中国互联网金融协会会员单位</p>
+                <p>第三方资金托管 与平台完全隔离</p>
+                <p>4道风控严选优质理财项目</p>
+                <p>稳健运营2年多 历史100%完美兑付</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+#set($pageScript="
+<script>
+    $(document).ready(function () {
+        $('body').height($('body')[0].clientHeight);
+    });
+    seajs.config({
+        alias:{
+            'landingRegister':'$m_js_url/landing/register.js?v=${sysServiceUtil.getStaticResourceVersion()}'
+        },
+        preload: ['validform']
+    });
+    seajs.use('landingRegister');
+</script>
+")

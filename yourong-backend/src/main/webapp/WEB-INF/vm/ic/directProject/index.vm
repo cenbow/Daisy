@@ -1,0 +1,116 @@
+#set($layout = "/layout/iframe.vm")
+#parse("/ic/directProject/head.vm")
+<div class="col-xs-12">
+	<div class="table-responsive">
+		<form id="directProjectSearchForm">
+			<table id="direct-project-table-search" class="table table-striped table-bordered" cellspacing="0" width="100%">
+			<thead>
+				<tr>
+					<td>项目编号：</td>
+					<td><input type="text" name="search_id" class="input-medium search_init"/></td>
+					<td>原始直投编号：</td>
+					<td><input type="text" name="search_originalProjectNumber" class="input-medium search_init"/></td>
+					<td>项目名称：</td>
+					<td><input type="text" name="search_name" class="input-medium search_init"/></td>
+					<td>借款人姓名：</td>
+					<td><input type="text" name="search_borrowerName" class="input-medium search_init"/></td>
+					<td>总金额：</td>
+					<td>
+						<input type="text" name="search_totalAmountStart" class="input-medium search_init"/>至
+						<input type="text" name="search_totalAmountEnd" class="input-medium search_init"/>
+					</td>
+				</tr>
+				<tr>
+					<td>担保方式：</td>
+					<td>#dictSelect ("search_securityType",${sysServiceUtil.getDictList('direct_type')} ,"请选择")
+					</td>
+					<td>状态：</td>
+					<td>#dictSelect ("search_status",${sysServiceUtil.getDictList('project_status')} ,"请选择")</td>
+					<td>上线时间：</td>
+					<td>
+						<input type="text" name="search_onlineTimeStart" onclick="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd'})"/>
+						至
+						<input type="text" name="search_onlineTimeEnd" onclick="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd'})"/>
+					</td>
+					<td>募集周期：</td>
+					<td>
+						<input type="text" name="search_startSaleTime" onclick="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd'})"/>
+						至
+						<input type="text" name="search_endSaleTime" onclick="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd'})"/>
+					</td>
+					<td>项目到期日</td>
+					<td>
+						<input type="text" name="search_endDateStartTime" onclick="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd'})"/>
+						至
+						<input type="text" name="search_endDateEndTime" onclick="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd'})"/>
+					</td>
+					
+				</tr>
+				#if($searchPermission)
+				<tr>
+					<td>添加时间：</td>
+					<td>
+						<input type="text" name="search_createTimeStart" onclick="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd'})"/>
+						至
+						<input type="text" name="search_createTimeEnd" onclick="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd'})"/>
+					</td>
+					<td>添加人姓名：</td>
+					<td><input type="text" name="search_publishName" class="input-medium search_init"/></td>
+					<td>审核人姓名：</td>
+					<td><input type="text" name="search_operateName" class="input-medium search_init"/></td>
+					<td>借款周期：</td>
+					<td><input type="text" name="search_borrowPeriod" class="col-sm-2 col-xs-2  search_init"/>
+					#dictSelect ("search_borrowPeriodType",${sysServiceUtil.getDictList('borrow_period_type')},"请选择" )
+					</td>
+					<td colspan="6"></td>
+				</tr>
+				#end
+				<tr>
+					<td colspan="11" style="text-align:center">
+						<button id = "query_direct_project" type="button" class="btn btn-info btn-sm btn-primary">查询</button>
+						<button id = "reset_direct_project" type="button" class="btn btn-info btn-sm btn-primary resetButton">重置</button>
+					</td>
+				</tr>
+			</table>
+			</thead>
+		</form>
+	</div>
+</div>
+<div class="col-xs-12">
+	<div class="table-responsive">
+		<table id="direct-project-table" class="table table-striped table-bordered" cellspacing="0" width="100%">
+			<thead>
+				<tr>
+					<th>
+						<label>
+							<input class="ace" type="checkbox">
+							<span class="lbl"></span>
+						</label>
+					</th>
+					<th>编号</th>
+					<th width="110">原始直投编号</th>
+					<th with="120">项目名称</th>
+					<th>担保方式</th>
+					<th>借款金额</th>
+					<th>借款人</th>
+					<th>借款利率</th>
+					<th>起息方式</th>
+					<th>借款周期</th>
+					<th>添加时间</th>
+					<th>上线时间</th>
+					<th>上线提示</th>
+					<th>募集周期</th>
+					<th>募集进度</th>
+					<th>满标时间</th>
+					<th>添加人</th>
+					<th>审核人</th>
+					<th>状态</th>
+					<th>操作</th>
+					<th>备注</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+</div>
+#parse("/ic/directProject/addRemarks.vm")
+#parse("/ic/directProject/payRecord.vm")

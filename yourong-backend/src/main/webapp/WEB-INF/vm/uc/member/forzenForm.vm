@@ -1,0 +1,89 @@
+#set($layout = "/layout/iframe.vm")
+#parse("/uc/member/head.vm")
+<div tabindex="-1" class="modal fade" id="modal-table_forzen_form" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header no-padding">
+                <div class="table-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+                        <span class="white">×</span>
+                    </button>
+                    冻结操作
+                </div>
+            </div>
+            <div class="modal-body">
+                <form role="form" class="form-horizontal" id="forzen_form" method="post">
+                    <input type="hidden" name="id" />
+					<input type="hidden" name="memberId" />
+					<input  type="hidden"  id="forzen_balance">
+                    <div class="form-group">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 姓名: </label>
+                        <div class="col-sm-9">
+                            <div class="clearfix">
+                               ## <input type="text" name="forzen_trueName" readonly class="col-xs-10 col-sm-5" placeholder="" id="forzen_trueName" >
+                                <span id="forzen_trueName"/>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="form-group">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 手机号: </label>
+                        <div class="col-sm-9">
+                            <div class="clearfix">
+                                ##<input type="text" name="mobile" readonly class="col-xs-10 col-sm-5" placeholder="" id="form-field-mobile"  >
+                                <span id="forzen_mobile"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 存钱罐可用余额: </label>
+                        <div class="col-sm-9">
+                            <div class="clearfix">
+                                 <span id="forzen_balance_x"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 冻结金额: </label>
+                        <div class="col-sm-9">
+                            <div class="clearfix">
+                                <input type="text" name="amount"    datatype="/^[1-9]*[1-9][0-9]*(.[0-9]{1,2})?$|^(0.[0-9]{1,2})$/" errormsg= "金额不能小于0.01元" class="col-xs-10 col-sm-5 vailAmount" placeholder="" id="form-field-amount">
+                            </div>
+                        </div>
+                    </div>
+					
+					
+
+                   <div class="form-group">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 冻结类型: </label>
+                        <div class="col-sm-9">
+                            <div class="clearfix">
+                               ##dictSelect ("type",${sysServiceUtil.getDictList('forzen_type')} ,"请选择","","*")
+                               <select name="type" class="col-xs-6" id="type" datatype="*" nullmsg= "请选择冻结类型">
+									<option value="">请选择</option>
+									<option value="1">资金风险</option>
+									<option value="2">账户风险</option>
+									<option value="3">其他</option>
+								</select>
+                            </div>
+                        </div>
+                   </div>
+                   
+                    <div class="form-group">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 冻结原因: </label>
+                        <div class="col-sm-9">
+                            <div class="clearfix">
+                            	 <textarea name="forzenReason"  datatype="*" placeholder="" nullmsg= "请填写冻结原因" id="form-field-forzenReason"></textarea>
+                            </div>
+                        </div>
+                   </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" id="btn_save_forzen" class="btn btn-primary">保存</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>

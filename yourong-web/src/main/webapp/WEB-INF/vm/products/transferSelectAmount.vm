@@ -1,0 +1,200 @@
+
+##投资金额拖动条
+#set($isVerify=${servletUtil.isVerifyTrueName()})
+#set($isShowCupon = $collections3.isNotEmpty($projectInfo.coupons) )
+#set($hasSetPayPassword=${servletUtil.synPayPasswordFlag()})
+
+<input type="hidden" id="hasSetPayPassword" value="$hasSetPayPassword">
+<input type="hidden" id="projectId" value="$!{projectInfo.id}">
+<input type="hidden" id="memberId" value="$!{projectInfo.memberId}">
+<input type="hidden" id="projectCategory" value="$!{projectInfo.projectCategory}">
+<input type="hidden" id="transferId" value="$!{projectInfo.transferId}">
+<input type="hidden" id="investAmount" value="$!{projectInfo.projectValue}">
+<input type="hidden" id="transferAnnualizedRate" value="$!{projectInfo.transferAnnualizedRate}">
+#CSRFToken('xToken')
+#onceToken()
+<input type="hidden" id="j-transfer-info"
+       data-value="$!{projectInfo.projectValue}"
+       data-balance="$!{projectInfo.totalAmount}"
+       data-process="$!{process}"
+       data-transferamount="$!{projectInfo.transferAmount}">
+<div class="m-detail-process" id="j-detail-process" data-type="1">
+    <i></i>
+    <span class="u-point u-process-s0 f-fs24"><i></i><s></s></span>
+    <span class="u-point-amount u-process-s0"
+          data-amount="$!{projectInfo.minInvestAmount}">$!{projectInfo.minInvestAmount}元</span>
+    <span class="u-point u-process-s1 f-fs24 u-sole-point"><i></i><s></s></span>
+    <span class="u-point-amount u-process-s1 u-sole-amount"
+          data-amount="$!{projectInfo.totalAmount}">$!{projectInfo.totalAmount}元</span>
+    <span class="u-rate-percent u-rate-s1 u-sole-rate j-rate"
+          data-rate="$!{projectInfo.maxAnnualizedRate}">$!{projectInfo.maxAnnualizedRate}%</span>
+
+    ##区分是否开通了存钱罐
+    #if($isVerify || "$!currentUser" == "")
+        #if(${projectInfo.isActive()} || ${projectInfo.isNotice()})
+            #if($balance>0)
+                #if($!{projectInfo.investType}=='2')
+                    <div class="u-dynamic-profit u-circle-30 f-fwb u-investment-b" id="j-dynamic-profit">
+                        <div class="u-arrow-up" id="j-profit-arrow"><i>◆</i><span>◆</span></div>
+                        认购本金&nbsp;&nbsp;<input id="j-investment" class="f-fs14 f-round f-fwb" placeholder="" value=""/>&nbsp;&nbsp;元，
+                        #if($!{projectInfo.discount}&&$!{projectInfo.discount}!=0)
+                            折价<strong id="j-transfer-discount" class="f-fc-red2 f-fs14"></strong>元
+                        #end
+                        需支付<strong id="j-needPay" class="f-fc-red2 f-fs14"></strong>元
+                        预期赚取<strong id="j-transfer-profit" class="f-fc-red2 f-fs14"></strong>元
+                        <p>输入金额须为<strong>$!{projectInfo.minInvestAmount}</strong>的整数倍</p>
+                    </div>
+                #else
+                    <div class="u-dynamic-profit u-circle-30 f-fwb u-investment-b" id="j-dynamic-profit">
+                        <div class="u-arrow-up" id="j-profit-arrow"><i>◆</i><span>◆</span></div>
+                        认购本金&nbsp;&nbsp;<input id="j-investment" class="f-fs14 f-round f-fwb" placeholder="" value=""/>&nbsp;&nbsp;元，
+                        #if($!{projectInfo.discount}&&$!{projectInfo.discount}!=0)
+                            折价<strong id="j-transfer-discount" class="f-fc-red2 f-fs14"></strong>元
+                        #end
+                        需支付<strong id="j-needPay" class="f-fc-red2 f-fs14"></strong>元
+                        预期赚取<strong id="j-transfer-profit" class="f-fc-red2 f-fs14"></strong>元
+                        <p>输入金额须为<strong>$!{projectInfo.minInvestAmount}</strong>的整数倍</p>
+                    </div>
+                #end
+                <span id="j-process-drag" class="u-process-drag"></span><s id="j-process-crt"></s>
+            #else
+                <div class="u-dynamic-profit u-circle-30 f-fwb u-investment-b z-paying" id="j-dynamic-profit">
+                    <div class="u-arrow-up" id="j-profit-arrow">
+                        <i>◆</i>
+                        <span>◆</span>
+                    </div>
+                    目前已成功支付：<span class="f-fc-red">$!{transactionUtils.getPayedCountByTransferProject(${projectInfo.transferId})}</span>笔
+                    ($!{transactionUtils.getPayedAmountByTransferProject(${projectInfo.transferId})}元)；
+                    支付确认中：<span class="f-fc-red">$!{transactionUtils.getPayingCountByTransferProject(${projectInfo.transferId})}</span>笔
+                    ($!{transactionUtils.getPayingAmountByTransferProject(${projectInfo.transferId})}元)
+                </div>
+                <button id="j-process-drag" class="u-process-drag z-final"></button>
+                <s id="j-process-crt" class="z-final"></s>
+            #end
+
+            #if(${projectInfo.status}==30)
+                <a href="javascript:void(0)"
+                   class="f-round f-fs18 f-mgl-8 u-btn u-btn-primary f-btn-l3 j-investment-btn"
+                   id="j-now-order" data-state="1">立即认购</a>
+            #else
+                <a href="javascript:void(0)"
+                   class="f-round f-fs18 f-mgl-8 u-btn u-btn-primary f-btn-l3 j-investment-btn">已结束</a>
+            #end
+
+        #else
+            <div class="u-dynamic-profit u-circle-30 f-fwb u-investment-b #if($projectInfo.status==90)z-fail#end #if($projectInfo.status==40||$projectInfo.status==50||$projectInfo.status==51||$projectInfo.status==60||$projectInfo.status==70) z-last #end z-final"
+                 id="j-dynamic-profit">
+                <div class="u-arrow-up" id="j-profit-arrow">
+                    <i>◆</i>
+                    <span>◆</span>
+                </div>
+                参与本项目投资会员：<span
+                    class="f-fc-red">$!{transactionUtils.getTransactionMemberCountByTransferId(${projectInfo.transferId})}</span>人，共投资：<span
+                    class="f-fc-red">$!{transactionUtils.getTransactionCountByTransferId(${projectInfo.transferId})}</span>笔；${projectInfo.getTransactionText()}：<span
+                    class="f-fc-red">$!{transactionUtils.getTotalTransactionInterestByByTransferId(${projectInfo.transferId})}</span>元
+            </div>
+            <button id="j-process-drag" class="u-process-drag #if($projectInfo.status==90)z-fail#end z-final"></button>
+            <s id="j-process-crt" class="z-final #if($projectInfo.status==90)z-fail#end"></s>
+            #if($!{projectInfo.investType}=='2')
+            ##            直投
+            ##按钮两种文案，30投资中
+                #if(${projectInfo.status}==30)
+                    <a href="javascript:void(0)"
+                       class="f-round f-fs18 f-mgl-8 u-btn u-btn-primary f-btn-l3 j-investment-btn"
+                       id="j-now-order" data-state="1">立即认购</a>
+                #else
+                    <a href="javascript:void(0)"
+                       class="f-round f-fs18 f-mgl-8 u-btn u-btn-primary f-btn-l3 z-disabled">已结束</a>
+                #end
+            #else
+            ##            债权
+                #if(${projectInfo.status}==30)
+                    <a href="javascript:void(0)"
+                       class="f-round f-fs18 f-mgl-8 u-btn u-btn-primary f-btn-l3 j-investment-btn"
+                       id="j-now-order" data-state="1">立即认购</a>
+                #else
+                    <a href="javascript:void(0)"
+                       class="f-round f-fs18 f-mgl-8 u-btn u-btn-primary f-btn-l3  z-disabled">已结束</a>
+                #end
+            #end
+        #end
+    #else
+        #if(${projectInfo.isActive()})
+            <div class="u-dynamic-profit u-circle-30 f-fwb u-investment-b" id="j-dynamic-profit">
+                <div class="u-arrow-up" id="j-profit-arrow">
+                    <i>◆</i>
+                    <span>◆</span>
+                </div>
+                认购本金&nbsp;&nbsp;<input id="j-investment" class="f-fs14 f-round f-fwb" placeholder="" value=""/>&nbsp;&nbsp;元，
+                #if($!{projectInfo.discount}&&$!{projectInfo.discount}!=0)
+                    折价<strong id="j-transfer-discount" class="f-fc-red2 f-fs14"></strong>元
+                #end
+                需支付<strong id="j-needPay" class="f-fc-red2 f-fs14"></strong>元
+                预期赚取<strong id="j-transfer-profit" class="f-fc-red2 f-fs14"></strong>元
+                <p>输入金额须为<strong>$!{projectInfo.minInvestAmount}</strong>的整数倍</p>
+            </div>
+            <button id="j-process-drag" class="u-process-drag"></button>
+            <s id="j-process-crt"></s>
+            <a href="$root_url/member/sinapay"
+               class="f-round f-fs18 f-mgl-8 u-btn u-btn-primary f-btn-l3 j-investment-btn" data-state="1">
+                <span class="f-fs12 f-fc-pink">投资前，请先开通</span>
+                <em class="f-fs16">新浪支付存钱罐</em>
+            </a>
+        #else
+            <div class="u-dynamic-profit u-circle-30 f-fwb u-investment-b #if($projectInfo.status==90)z-fail#end  #if($projectInfo.status==40||$projectInfo.status==50||$projectInfo.status==51||$projectInfo.status==60||$projectInfo.status==70) z-last #end z-final"
+                 id="j-dynamic-profit">
+                <div class="u-arrow-up" id="j-profit-arrow">
+                    <i>◆</i>
+                    <span>◆</span>
+                </div>
+                参与本项目投资会员：<span
+                    class="f-fc-red">$!{transactionUtils.getTransactionMemberCountByTransferId(${projectInfo.transferId})}</span>人，共投资：<span
+                    class="f-fc-red">$!{transactionUtils.getTransactionCountByTransferId(${projectInfo.transferId})}</span>笔；${projectInfo.getTransactionText()}：<span
+                    class="f-fc-red">$!{transactionUtils.getTotalTransactionInterestByByTransferId(${projectInfo.transferId})}</span>元
+            </div>
+            <button id="j-process-drag"
+                    class="u-process-drag z-final  #if($projectInfo.status==90)z-fail #end"></button>
+            <s id="j-process-crt" class=" #if($projectInfo.status==90)z-fail#end z-final"></s>
+            #if($!{projectInfo.investType}=='2')
+            ##按钮两种文案，30投资中
+                #if(${projectInfo.status}==30)
+                    <a href="javascript:void(0)"
+                       class="f-round f-fs18 f-mgl-8 u-btn u-btn-primary f-btn-l3 j-investment-btn"
+                       id="j-now-order" data-state="1">立即认购</a>
+                #else
+                    <a href="javascript:void(0)"
+                       class="f-round f-fs18 f-mgl-8 u-btn u-btn-primary f-btn-l3 z-disabled">已结束</a>
+                #end
+            #else
+            ##            债权
+            ##按钮两种文案，30投资中
+                #if(${projectInfo.status}==30)
+                    <a href="javascript:void(0)"
+                       class="f-round f-fs18 f-mgl-8 u-btn u-btn-primary f-btn-l3 j-investment-btn"
+                       id="j-now-order" data-state="1">立即认购</a>
+                #else
+                    <a href="javascript:void(0)"
+                       class="f-round f-fs18 f-mgl-8 u-btn u-btn-primary f-btn-l3 z-disabled">已结束</a>
+                #end
+            #end
+        ##              <a href="#" class="f-round f-fs18 f-mgl-8 u-btn u-btn-primary f-btn-l3 j-investment-btn z-disabled" data-state="0" id="j-now-order">${projectInfo.getButtonText()}</a>
+        #end
+    #end
+</div>
+##跳转到设置支付密码弹窗
+<div class="u-paymentCipherBlock f-dn" id="j-paymentCipherBlock">
+    <div class="f-fs20 u-tipTitle">
+        设置支付密码提示
+    </div>
+    <img class="j-closeBtn" src="../static/img/member/closeBtn.png" alt="关闭">
+    <p class="f-fs20">
+        新浪支付全新升级，设置支付密码后，方可进行投资、充值、提现
+    </p>
+    <a href="/member/paymentPassword">
+        <button class="f-fs14">
+            前往设置
+        </button>
+    </a>
+</div>
+## /用户中心内容
+<div class="u-shade j-cover f-dn"></div>

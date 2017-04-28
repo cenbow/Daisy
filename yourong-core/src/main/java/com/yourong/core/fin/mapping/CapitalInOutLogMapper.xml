@@ -1,0 +1,872 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.fin.dao.CapitalInOutLogMapper" >
+  <resultMap id="BaseResultMap" type="CapitalInOutLog" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="member_id" property="memberId" jdbcType="BIGINT" />
+    <result column="pay_account_type" property="payAccountType" jdbcType="INTEGER" />
+    <result column="balance" property="balance" jdbcType="DECIMAL" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="income" property="income" jdbcType="DECIMAL" />
+    <result column="outlay" property="outlay" jdbcType="DECIMAL" />
+    <result column="source_id" property="sourceId" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="happen_time" property="happenTime" jdbcType="TIMESTAMP" />
+    <result column="true_name" property="trueName" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="BIGINT" />
+  </resultMap>
+  
+   <resultMap id="BonusBizResultMap" type="BonusBiz" >
+    <result column="member_id" property="memberId" jdbcType="BIGINT" />
+    <result column="bonus_date" property="bonusDate" jdbcType="TIMESTAMP" />
+    <result column="bonus_amount" property="bonusAmount" jdbcType="DECIMAL" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    id, member_id, pay_account_type, balance, type, income, outlay, source_id, remark, 
+    happen_time
+  </sql>
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="id"  parameterType="CapitalInOutLog" >
+    insert into fin_capital_in_out_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="memberId != null" >
+        member_id,
+      </if>
+      <if test="payAccountType != null" >
+        pay_account_type,
+      </if>
+      <if test="balance != null" >
+        balance,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="income != null" >
+        income,
+      </if>
+      <if test="outlay != null" >
+        outlay,
+      </if>
+      <if test="sourceId != null" >
+        source_id,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>     
+        happen_time
+      
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="memberId != null" >
+        #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="payAccountType != null" >
+        #{payAccountType,jdbcType=INTEGER},
+      </if>
+      <if test="balance != null" >
+        #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="income != null" >
+        #{income,jdbcType=DECIMAL},
+      </if>
+      <if test="outlay != null" >
+        #{outlay,jdbcType=DECIMAL},
+      </if>
+      <if test="sourceId != null" >
+        #{sourceId,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>      
+      <choose>
+			<when test=" happenTime != null">
+				 #{happenTime,jdbcType=TIMESTAMP}
+			</when>
+			<otherwise>
+				now()
+			</otherwise>
+		</choose>      
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="CapitalInOutLog" >
+    update fin_capital_in_out_log
+    <set >
+      <if test="memberId != null" >
+        member_id = #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="payAccountType != null" >
+        pay_account_type = #{payAccountType,jdbcType=INTEGER},
+      </if>
+      <if test="balance != null" >
+        balance = #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="income != null" >
+        income = #{income,jdbcType=DECIMAL},
+      </if>
+      <if test="outlay != null" >
+        outlay = #{outlay,jdbcType=DECIMAL},
+      </if>
+      <if test="sourceId != null" >
+        source_id = #{sourceId,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="happenTime != null" >
+        happen_time = #{happenTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <delete id="batchDelete" parameterType="java.lang.Integer" >
+    delete from fin_capital_in_out_log
+    where id in  <foreach collection="ids" index="index" item="item" open="(" separator="," close=")"> #{item}  </foreach>  
+  </delete>
+  <select id="findByPage" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from fin_capital_in_out_log
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = #{map.id}
+        </if>
+        <if test=" map.memberId != null" >
+          member_id = #{map.memberId}
+        </if>
+        <if test=" map.payAccountType != null" >
+          pay_account_type = #{map.payAccountType}
+        </if>
+        <if test=" map.balance != null" >
+          balance = #{map.balance}
+        </if>
+        <if test=" map.type != null" >
+          type = #{map.type}
+        </if>
+        <if test=" map.income != null" >
+          income = #{map.income}
+        </if>
+        <if test=" map.outlay != null" >
+          outlay = #{map.outlay}
+        </if>
+        <if test=" map.sourceId != null" >
+          source_id = #{map.sourceId}
+        </if>
+        <if test=" map.remark != null" >
+          remark = #{map.remark}
+        </if>
+        <if test=" map.happenTime != null" >
+          happen_time = #{map.happenTime}
+        </if>
+      </where>
+    </if>
+  </select>
+  <select id="queryLogByPage" resultMap="BaseResultMap" >
+    select 
+    	c.id, c.member_id, c.pay_account_type, c.balance, c.type, c.income, c.outlay, c.source_id, c.remark, c.happen_time,
+	    m.true_name, m.mobile 
+    from fin_capital_in_out_log as c left join uc_member as m on c.member_id = m.id
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          and c.id = #{map.id}
+        </if>
+        <if test=" map.memberId != null" >
+          and c.member_id = #{map.memberId}
+        </if>
+        <if test=" map.payAccountType != null" >
+          and c.pay_account_type = #{map.payAccountType}
+        </if>
+        <if test=" map.balance != null" >
+          and c.balance = #{map.balance}
+        </if>
+        <if test=" map.balanceStart != null" >
+          and c.balance <![CDATA[ >= ]]> #{map.balanceStart}
+        </if>
+        <if test=" map.balanceEnd != null" >
+          and c.balance <![CDATA[ <= ]]> #{map.balanceEnd}
+        </if>
+        <if test=" map.type != null" >
+          and c.type = #{map.type}
+        </if>
+        <if test=" map.income != null" >
+          and c.income = #{map.income}
+        </if>
+        <if test=" map.outlay != null" >
+          and c.outlay = #{map.outlay}
+        </if>
+        <if test=" map.sourceId != null" >
+          and c.source_id = #{map.sourceId}
+        </if>
+        <if test=" map.remark != null" >
+          and c.remark = #{map.remark}
+        </if>
+        <if test=" map.happenTime != null" >
+          and c.happen_time = #{map.happenTime}
+        </if>
+         <if test=" map.happenTimeStart != null" >
+          and c.happen_time <![CDATA[ >= ]]> #{map.happenTimeStart}
+        </if>
+        <if test=" map.happenTimeEnd != null" >
+          and c.happen_time <![CDATA[ < ]]> DATE_ADD(#{map.happenTimeEnd},INTERVAL 1 DAY)
+        </if>
+        <if test=" map.trueName != null" >
+          and m.true_name = #{map.trueName}
+        </if>
+        <if test=" map.mobile != null" >
+          and m.mobile = #{map.mobile}
+        </if>
+      </where>
+    </if>
+    order by c.id desc
+  </select>
+  <sql id="Base_Column_List_Pagin" >
+    t.id  as  id,
+t.member_id  as  member_id,
+t.pay_account_type  as  pay_account_type,
+t.balance  as  balance,
+t.type  as  type,
+t.income  as  income,
+t.outlay  as  outlay,
+t.source_id  as  source_id,
+t.remark  as  remark,
+t.happen_time  as  happen_time
+  </sql>
+  <select id="selectForPagin" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List_Pagin" />
+    from  (SELECT id FROM  fin_capital_in_out_log
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = #{map.id}
+        </if>
+        <if test=" map.memberId != null" >
+          member_id = #{map.memberId}
+        </if>
+        <if test=" map.payAccountType != null" >
+          pay_account_type = #{map.payAccountType}
+        </if>
+        <if test=" map.balance != null" >
+          balance = #{map.balance}
+        </if>
+        <if test=" map.type != null" >
+          type = #{map.type}
+        </if>
+        <if test=" map.income != null" >
+          income = #{map.income}
+        </if>
+        <if test=" map.outlay != null" >
+          outlay = #{map.outlay}
+        </if>
+        <if test=" map.sourceId != null" >
+          source_id = #{map.sourceId}
+        </if>
+        <if test=" map.remark != null" >
+          remark = #{map.remark}
+        </if>
+        <if test=" map.happenTime != null" >
+          happen_time = #{map.happenTime}
+        </if>
+      </where>
+    </if>
+      LIMIT	${map.startRow}, ${map.pageSize}  )  AS a,  fin_capital_in_out_log AS t FORCE INDEX(PRIMARY) WHERE a.id = t.id   
+  </select>
+  <select id="selectForPaginTotalCount" resultType="java.lang.Integer" >
+    select count(1) 
+    from fin_capital_in_out_log
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = ${map.id}
+        </if>
+        <if test=" map.memberId != null" >
+          member_id = ${map.memberId}
+        </if>
+        <if test=" map.payAccountType != null" >
+          pay_account_type = ${map.payAccountType}
+        </if>
+        <if test=" map.balance != null" >
+          balance = ${map.balance}
+        </if>
+        <if test=" map.type != null" >
+          type = ${map.type}
+        </if>
+        <if test=" map.income != null" >
+          income = ${map.income}
+        </if>
+        <if test=" map.outlay != null" >
+          outlay = ${map.outlay}
+        </if>
+        <if test=" map.sourceId != null" >
+          source_id = ${map.sourceId}
+        </if>
+        <if test=" map.remark != null" >
+          remark = ${map.remark}
+        </if>
+        <if test=" map.happenTime != null" >
+          happen_time = ${map.happenTime}
+        </if>
+      </where>
+    </if>
+  </select>
+  
+  <select id="selectBonusByQuery" resultMap="BonusBizResultMap" parameterType="CapitalInOutLogQuery">
+  select 
+    member_id as member_id,
+    happen_time as bonus_date,
+    income as bonus_amount
+    from fin_capital_in_out_log
+     <where >
+		<if test=" memberId != null" >
+		  member_id = #{memberId,jdbcType=BIGINT}
+		</if>
+		<if test=" type != null" >
+		  AND type = #{type,jdbcType=BIGINT}
+		</if>
+		<if test=" startTime != null" >
+		 <![CDATA[ AND happen_time >= #{startTime,jdbcType=TIMESTAMP} ]]>
+		</if>
+		<if test=" endTime != null" >
+		 <![CDATA[ AND happen_time <= #{endTime,jdbcType=TIMESTAMP} ]]>
+		  </if>
+	</where>  
+	order by happen_time desc
+  </select>
+  
+<select id="selectByHappenTime" resultMap="BaseResultMap">
+  select 
+    <include refid="Base_Column_List" />
+    from fin_capital_in_out_log
+     <where >
+		<if test=" memberId != null" >
+		  member_id = #{memberId,jdbcType=BIGINT}
+		</if>
+		<if test=" payAccountType != null" >
+		  AND pay_account_type = #{payAccountType,jdbcType=INTEGER}
+		</if>		
+		<if test=" type != null" >
+		  AND type = #{type,jdbcType=INTEGER}
+		</if>
+		<if test=" startTime != null" >
+		 <![CDATA[ AND happen_time >= #{startTime,jdbcType=TIMESTAMP} ]]>
+		</if>
+		<if test=" endTime != null" >
+		 <![CDATA[ AND happen_time <= #{endTime,jdbcType=TIMESTAMP} ]]>
+		  </if>
+	</where>  
+  </select>
+  
+  <!-- 资金流水前台分页    start-->
+  
+  <resultMap id="ResultMapForFront" type="com.yourong.core.fin.model.biz.CapitalInOutForMemberCenter" >
+    <result column="pay_account_type" property="payAccountType" jdbcType="INTEGER" />
+    <result column="balance" property="balance" jdbcType="DECIMAL" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="income" property="income" jdbcType="DECIMAL" />
+    <result column="outlay" property="outlay" jdbcType="DECIMAL" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="happen_time" property="happenTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  
+  <select id="selectForPaginCapitalInOutLog" resultMap="ResultMapForFront">
+ 	select 
+ 		pay_account_type, balance, type, income, outlay, remark,happen_time
+ 	from fin_capital_in_out_log 
+ 	where member_id = #{capitalQuery.memberId,jdbcType=BIGINT} 
+ 	<if test=" capitalQuery.startTime != null">
+ 		<![CDATA[ and happen_time >= #{capitalQuery.startTime,jdbcType=TIMESTAMP}]]>
+ 	</if>
+ 	<if test=" capitalQuery.endTime != null">
+ 		<![CDATA[ and happen_time <= DATE_ADD(#{capitalQuery.endTime,jdbcType=TIMESTAMP},INTERVAL 1 DAY)]]>
+ 	</if>
+ 	<if test="capitalQuery.type!=null and capitalQuery.type!=0">
+ 		<choose>
+ 			<when test="capitalQuery.type == 14">
+	 			and type in (13,14,17,20,21,23,27)
+	 		</when>
+	 		<otherwise>
+	 			and type = #{capitalQuery.type}
+	 		</otherwise>
+ 		</choose>
+ 	</if>
+ 	<if test=" capitalQuery.loaningRepayment != true">
+ 		and type <![CDATA[ <>]]> 19
+ 	</if>
+ 	<if test=" capitalQuery.projectLoan != true">
+ 		and type <![CDATA[ <>]]> 11
+ 	</if>
+ 	<if test=" capitalQuery.projectRepayment != true">
+ 		and type <![CDATA[ <>]]> 12
+ 	</if> 
+ 	ORDER BY happen_time DESC
+    LIMIT #{capitalQuery.startRow,jdbcType=INTEGER},
+	#{capitalQuery.pageSize,jdbcType=INTEGER} 
+  </select>
+  
+  <!-- app和m站，临时剔除P2P数据  start-->
+    <select id="p2pSelectForPaginCapitalInOutLog" resultMap="ResultMapForFront">
+ 	select 
+ 		fin.pay_account_type, fin.balance, fin.type, fin.income, fin.outlay, fin.remark,fin.happen_time
+ 	from fin_capital_in_out_log as fin
+ 	left join tc_transaction as tc on tc.id=fin.source_id
+	left join ic_project as ic on ic.id = tc.project_id
+ 	where fin.member_id = #{capitalQuery.memberId,jdbcType=BIGINT} 
+ 	and  ((fin.type <![CDATA[ <]]> 18 and fin.type <![CDATA[ <> ]]> 5 )or (  fin.type=5 and ic.invest_type=1))
+ 	<if test=" capitalQuery.startTime != null">
+ 		<![CDATA[ and fin.happen_time >= #{capitalQuery.startTime,jdbcType=TIMESTAMP}]]>
+ 	</if>
+ 	<if test=" capitalQuery.endTime != null">
+ 		<![CDATA[ and fin.happen_time <= DATE_ADD(#{capitalQuery.endTime,jdbcType=TIMESTAMP},INTERVAL 1 DAY)]]>
+ 	</if>
+ 	<if test="capitalQuery.type!=null and capitalQuery.type!=0">
+ 		<choose>
+ 			<when test="capitalQuery.type == 14">
+	 			and fin.type in (13,14,17,20)
+	 		</when>
+	 		<otherwise>
+	 			and fin.type = #{capitalQuery.type}
+	 		</otherwise>
+ 		</choose>
+ 	</if>
+ 	<if test=" capitalQuery.loaningRepayment != true">
+ 		and fin.type <![CDATA[ <>]]> 19
+ 	</if>
+ 	<if test=" capitalQuery.projectLoan != true">
+ 		and fin.type <![CDATA[ <>]]> 11
+ 	</if>
+ 	<if test=" capitalQuery.projectRepayment != true">
+ 		and fin.type <![CDATA[ <>]]> 12
+ 	</if>
+ 	ORDER BY happen_time DESC
+    LIMIT #{capitalQuery.startRow,jdbcType=INTEGER},
+	#{capitalQuery.pageSize,jdbcType=INTEGER} 
+  </select>
+   <select id="p2pSelectForPaginCapitalInOutLogCount" resultType="java.lang.Integer">
+  	select 
+ 		count(0)
+ 		from fin_capital_in_out_log as fin
+ 	left join tc_transaction as tc on tc.id=fin.source_id
+	left join ic_project as ic on ic.id = tc.project_id
+ 	where fin.member_id = #{capitalQuery.memberId,jdbcType=BIGINT} 
+ 	and  ((fin.type <![CDATA[ <]]> 18 and fin.type <![CDATA[ <> ]]> 5 )or (  fin.type=5 and ic.invest_type=1))
+ 	<if test=" capitalQuery.startTime != null">
+ 		<![CDATA[ and fin.happen_time >= #{capitalQuery.startTime,jdbcType=TIMESTAMP}]]>
+ 	</if>
+ 	<if test=" capitalQuery.endTime != null">
+ 		<![CDATA[ and fin.happen_time <= DATE_ADD(#{capitalQuery.endTime,jdbcType=TIMESTAMP},INTERVAL 1 DAY)]]>
+ 	</if>
+ 	<if test="capitalQuery.type!=null and capitalQuery.type!=0">
+ 		<choose>
+ 			<when test="capitalQuery.type == 14">
+	 			and fin.type in (13,14,17,20)
+	 		</when>
+	 		<otherwise>
+	 			and fin.type = #{capitalQuery.type}
+	 		</otherwise>
+ 		</choose>
+ 	</if>
+ 	<if test=" capitalQuery.loaningRepayment != true">
+ 		and fin.type <![CDATA[ <>]]> 19
+ 	</if>
+ 	<if test=" capitalQuery.projectLoan != true">
+ 		and fin.type <![CDATA[ <>]]> 11
+ 	</if>
+ 	<if test=" capitalQuery.projectRepayment != true">
+ 		and fin.type <![CDATA[ <>]]> 12
+ 	</if>
+  </select>
+  <!-- app和m站，临时剔除P2P数据  end  -->
+  <select id="selectForPaginCapitalInOutLogCount" resultType="java.lang.Integer">
+  	select 
+ 		count(0)
+ 	from fin_capital_in_out_log 
+ 	where member_id = #{capitalQuery.memberId,jdbcType=BIGINT} 
+ 	<if test=" capitalQuery.startTime != null">
+ 		<![CDATA[ and happen_time >= #{capitalQuery.startTime,jdbcType=TIMESTAMP}]]>
+ 	</if>
+ 	<if test=" capitalQuery.endTime != null">
+ 		<![CDATA[ and happen_time <= DATE_ADD(#{capitalQuery.endTime,jdbcType=TIMESTAMP},INTERVAL 1 DAY)]]>
+ 	</if>
+ 	<if test="capitalQuery.type!=null and capitalQuery.type!=0">
+ 		<choose>
+ 			<when test="capitalQuery.type == 14">
+	 			and type in (13,14,17,20,21,23,27)
+	 		</when>
+	 		<otherwise>
+	 			and type = #{capitalQuery.type}
+	 		</otherwise>
+ 		</choose>
+ 	</if>
+ 	
+ 	<if test=" capitalQuery.loaningRepayment != true">
+ 		and type <![CDATA[ <>]]> 19
+ 	</if>
+ 	<if test=" capitalQuery.projectLoan != true">
+ 		and type <![CDATA[ <>]]> 11
+ 	</if>
+ 	<if test=" capitalQuery.projectRepayment != true">
+ 		and type <![CDATA[ <>]]> 12
+ 	</if>
+ 	
+ 	
+  </select>
+  
+  <!-- 资金流水前台分页  end-->
+  
+  
+  <!-- 出借人资金流水   -->
+  <select id="queryLenderLogByPage" resultMap="BaseResultMap" >
+    select 
+    	c.id, c.member_id, c.pay_account_type, c.balance, c.type, c.income, c.outlay, c.source_id, c.remark, c.happen_time,
+	    m.true_name, m.mobile 
+    from fin_capital_in_out_log as c left join uc_member as m on c.member_id = m.id
+	inner join (select DISTINCT lender_id from ic_debt where del_flag > 0 ) as ic on ic.lender_id=c.member_id
+    where c.type in (1,10,11,12,2)  
+    <if test=" map != null" >
+        <if test=" map.id != null" >
+          and c.id = #{map.id}
+        </if>
+        <if test=" map.memberId != null" >
+          and c.member_id = #{map.memberId}
+        </if>
+        <if test=" map.payAccountType != null" >
+          and c.pay_account_type = #{map.payAccountType}
+        </if>
+        <if test=" map.balance != null" >
+          and c.balance = #{map.balance}
+        </if>
+       <!--  <if test=" map.balanceStart != null" >
+          and c.balance <![CDATA[ >= ]]> #{map.balanceStart}
+        </if>
+        <if test=" map.balanceEnd != null" >
+          and c.balance <![CDATA[ <= ]]> #{map.balanceEnd}
+        </if> -->
+        <if test=" map.type != null" >
+          and c.type = #{map.type}
+        </if>
+        <if test="map.type == 11 and map.incomeOrOutlayStart !=null">
+          and c.income <![CDATA[ >=]]> #{map.incomeOrOutlayStart}
+        </if>
+        <if test="map.type == 11 and map.incomeOrOutlayEnd !=null">
+          and c.income <![CDATA[ <=]]> #{map.incomeOrOutlayEnd}
+        </if>
+        <if test="map.type == 2 and map.incomeOrOutlayStart !=null">
+          and c.outlay <![CDATA[>=]]> #{map.incomeOrOutlayStart}
+        </if>
+        <if test="map.type == 2 and map.incomeOrOutlayEnd !=null">
+          and c.outlay <![CDATA[<=]]> #{map.incomeOrOutlayEnd}
+        </if>
+        
+        <if test="map.type == null ">
+        	<choose>
+		        <when test="map.incomeOrOutlayStart !=null and map.incomeOrOutlayEnd !=null">
+		        	<![CDATA[ and (CASE WHEN c.income > 0 THEN c.income <= #{map.incomeOrOutlayEnd} AND c.income >= #{map.incomeOrOutlayStart} END
+		        	or CASE WHEN c.outlay > 0 THEN	c.outlay <= #{map.incomeOrOutlayEnd} AND c.outlay >= #{map.incomeOrOutlayStart} END) ]]>
+		        </when>
+	        	<when test="map.incomeOrOutlayStart !=null">
+		        	and (c.income <![CDATA[ >=]]> #{map.incomeOrOutlayStart} or  c.outlay <![CDATA[>=]]> #{map.incomeOrOutlayStart})
+	        	</when>
+		        <when test="map.incomeOrOutlayEnd !=null">
+		        	and (c.income <![CDATA[ <=]]> #{map.incomeOrOutlayEnd} or  c.outlay <![CDATA[<=]]> #{map.incomeOrOutlayEnd})
+		        </when>
+        	</choose>
+        </if>
+        
+        
+        <if test=" map.sourceId != null" >
+          and c.source_id = #{map.sourceId}
+        </if>
+        <if test=" map.remark != null" >
+          and c.remark = #{map.remark}
+        </if>
+        <if test=" map.happenTime != null" >
+          and c.happen_time = #{map.happenTime}
+        </if>
+         <if test=" map.happenTimeStart != null" >
+          and c.happen_time <![CDATA[ >= ]]> #{map.happenTimeStart}
+        </if>
+        <if test=" map.happenTimeEnd != null" >
+          and c.happen_time <![CDATA[ < ]]> DATE_ADD(#{map.happenTimeEnd},INTERVAL 1 DAY)
+        </if>
+        <if test=" map.trueName != null" >
+          and m.true_name = #{map.trueName}
+        </if>
+        <if test=" map.mobile != null" >
+          and m.mobile = #{map.mobile}
+        </if>
+    </if>
+    <choose>
+	   	<when test="map.desc!=null">
+	   	 	 order by ${map.desc} desc
+	   	</when>
+	   	<when test="map.asc!=null">
+	   	 	 order by ${map.asc} asc
+	   	</when>
+	   	<otherwise>
+	   		 order by c.id desc
+	   	</otherwise>
+   	</choose>
+   	LIMIT ${map.startRow}, ${map.pageSize}
+  </select>
+  
+  <select id="selectFinCapitalInOutLogList" resultMap="BaseResultMap" >
+    select 
+    	c.id, c.member_id, c.pay_account_type, c.balance, c.type, c.income, c.outlay, c.source_id, c.remark, c.happen_time,
+	    m.true_name, m.mobile 
+    from fin_capital_in_out_log as c left join uc_member as m on c.member_id = m.id
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          and c.id = #{map.id}
+        </if>
+        <if test=" map.memberId != null" >
+          and c.member_id = #{map.memberId}
+        </if>
+        <if test=" map.payAccountType != null" >
+          and c.pay_account_type = #{map.payAccountType}
+        </if>
+        <if test=" map.balance != null" >
+          and c.balance = #{map.balance}
+        </if>
+        <if test=" map.balanceStart != null" >
+          and c.balance <![CDATA[ >= ]]> #{map.balanceStart}
+        </if>
+        <if test=" map.balanceEnd != null" >
+          and c.balance <![CDATA[ <= ]]> #{map.balanceEnd}
+        </if>
+        <if test=" map.type != null" >
+          and c.type = #{map.type}
+        </if>
+        <if test=" map.income != null" >
+          and c.income = #{map.income}
+        </if>
+        <if test=" map.outlay != null" >
+          and c.outlay = #{map.outlay}
+        </if>
+        <if test=" map.sourceId != null" >
+          and c.source_id = #{map.sourceId}
+        </if>
+        <if test=" map.remark != null" >
+          and c.remark = #{map.remark}
+        </if>
+        <if test=" map.happenTime != null" >
+          and c.happen_time = #{map.happenTime}
+        </if>
+         <if test=" map.happenTimeStart != null" >
+          and c.happen_time <![CDATA[ >= ]]> #{map.happenTimeStart}
+        </if>
+        <if test=" map.happenTimeEnd != null" >
+          and c.happen_time <![CDATA[ < ]]> DATE_ADD(#{map.happenTimeEnd},INTERVAL 1 DAY)
+        </if>
+        <if test=" map.trueName != null" >
+          and m.true_name = #{map.trueName}
+        </if>
+        <if test=" map.mobile != null" >
+          and m.mobile = #{map.mobile}
+        </if>
+      </where>
+    </if>
+    <choose>
+		<when test=" map != null">
+			<if test=" map.desc != null">
+				order by ${map.desc} desc
+			</if>
+			<if test=" map.asc != null">
+				order by ${map.asc} asc
+			</if>
+		</when>
+		<otherwise>
+			order by id desc
+		</otherwise>
+	  </choose>
+    LIMIT ${map.startRow}, ${map.pageSize}
+  </select>
+  
+  <select id="selectFinCapitalInOutLogListCount" resultType="java.lang.Integer">
+  	select 
+ 		count(0)
+    from fin_capital_in_out_log as c left join uc_member as m on c.member_id = m.id
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          and c.id = #{map.id}
+        </if>
+        <if test=" map.memberId != null" >
+          and c.member_id = #{map.memberId}
+        </if>
+        <if test=" map.payAccountType != null" >
+          and c.pay_account_type = #{map.payAccountType}
+        </if>
+        <if test=" map.balance != null" >
+          and c.balance = #{map.balance}
+        </if>
+        <if test=" map.balanceStart != null" >
+          and c.balance <![CDATA[ >= ]]> #{map.balanceStart}
+        </if>
+        <if test=" map.balanceEnd != null" >
+          and c.balance <![CDATA[ <= ]]> #{map.balanceEnd}
+        </if>
+        <if test=" map.type != null" >
+          and c.type = #{map.type}
+        </if>
+        <if test=" map.income != null" >
+          and c.income = #{map.income}
+        </if>
+        <if test=" map.outlay != null" >
+          and c.outlay = #{map.outlay}
+        </if>
+        <if test=" map.sourceId != null" >
+          and c.source_id = #{map.sourceId}
+        </if>
+        <if test=" map.remark != null" >
+          and c.remark = #{map.remark}
+        </if>
+        <if test=" map.happenTime != null" >
+          and c.happen_time = #{map.happenTime}
+        </if>
+         <if test=" map.happenTimeStart != null" >
+          and c.happen_time <![CDATA[ >= ]]> #{map.happenTimeStart}
+        </if>
+        <if test=" map.happenTimeEnd != null" >
+          and c.happen_time <![CDATA[ < ]]> DATE_ADD(#{map.happenTimeEnd},INTERVAL 1 DAY)
+        </if>
+        <if test=" map.trueName != null" >
+          and m.true_name = #{map.trueName}
+        </if>
+        <if test=" map.mobile != null" >
+          and m.mobile = #{map.mobile}
+        </if>
+      </where>
+    </if>
+  </select>
+  
+  <select id="queryLenderLogByPageCount" resultType="java.lang.Integer">
+  	
+  	select 
+    	count(1)
+    from fin_capital_in_out_log as c left join uc_member as m on c.member_id = m.id
+	inner join (select DISTINCT lender_id from ic_debt where del_flag > 0 ) as ic on ic.lender_id=c.member_id
+    where c.type in (1,10,11,12,2)  
+    <if test=" map != null" >
+        <if test=" map.id != null" >
+          and c.id = #{map.id}
+        </if>
+        <if test=" map.memberId != null" >
+          and c.member_id = #{map.memberId}
+        </if>
+        <if test=" map.payAccountType != null" >
+          and c.pay_account_type = #{map.payAccountType}
+        </if>
+        <if test=" map.balance != null" >
+          and c.balance = #{map.balance}
+        </if>
+       <!--  <if test=" map.balanceStart != null" >
+          and c.balance <![CDATA[ >= ]]> #{map.balanceStart}
+        </if>
+        <if test=" map.balanceEnd != null" >
+          and c.balance <![CDATA[ <= ]]> #{map.balanceEnd}
+        </if> -->
+        <if test=" map.type != null" >
+          and c.type = #{map.type}
+        </if>
+        <if test="map.type == 11 and map.incomeOrOutlayStart !=null">
+          and c.income <![CDATA[ >=]]> #{map.incomeOrOutlayStart}
+        </if>
+        <if test="map.type == 11 and map.incomeOrOutlayEnd !=null">
+          and c.income <![CDATA[ <=]]> #{map.incomeOrOutlayEnd}
+        </if>
+        <if test="map.type == 2 and map.incomeOrOutlayStart !=null">
+          and c.outlay <![CDATA[>=]]> #{map.incomeOrOutlayStart}
+        </if>
+        <if test="map.type == 2 and map.incomeOrOutlayEnd !=null">
+          and c.outlay <![CDATA[<=]]> #{map.incomeOrOutlayEnd}
+        </if>
+        
+        <if test="map.type == null ">
+        	<choose>
+		        <when test="map.incomeOrOutlayStart !=null and map.incomeOrOutlayEnd !=null">
+		        	<![CDATA[ and (CASE WHEN c.income > 0 THEN c.income <= #{map.incomeOrOutlayEnd} AND c.income >= #{map.incomeOrOutlayStart} END
+		        	or CASE WHEN c.outlay > 0 THEN	c.outlay <= #{map.incomeOrOutlayEnd} AND c.outlay >= #{map.incomeOrOutlayStart} END) ]]>
+		        </when>
+	        	<when test="map.incomeOrOutlayStart !=null">
+		        	and (c.income <![CDATA[ >=]]> #{map.incomeOrOutlayStart} or  c.outlay <![CDATA[>=]]> #{map.incomeOrOutlayStart})
+	        	</when>
+		        <when test="map.incomeOrOutlayEnd !=null">
+		        	and (c.income <![CDATA[ <=]]> #{map.incomeOrOutlayEnd} or  c.outlay <![CDATA[<=]]> #{map.incomeOrOutlayEnd})
+		        </when>
+        	</choose>
+        </if>
+        <if test=" map.sourceId != null" >
+          and c.source_id = #{map.sourceId}
+        </if>
+        <if test=" map.remark != null" >
+          and c.remark = #{map.remark}
+        </if>
+        <if test=" map.happenTime != null" >
+          and c.happen_time = #{map.happenTime}
+        </if>
+         <if test=" map.happenTimeStart != null" >
+          and c.happen_time <![CDATA[ >= ]]> #{map.happenTimeStart}
+        </if>
+        <if test=" map.happenTimeEnd != null" >
+          and c.happen_time <![CDATA[ < ]]> DATE_ADD(#{map.happenTimeEnd},INTERVAL 1 DAY)
+        </if>
+        <if test=" map.trueName != null" >
+          and m.true_name = #{map.trueName}
+        </if>
+        <if test=" map.mobile != null" >
+          and m.mobile = #{map.mobile}
+        </if>
+    </if>
+  	
+  </select>
+  
+  <select id="queryTransferAmountByMemberId"  resultType="java.math.BigDecimal">
+  	SELECT
+		SUM(income) as income 
+	FROM
+		fin_capital_in_out_log
+	where  
+	  member_id = #{memberId,jdbcType=BIGINT} and type=25 and pay_account_type=1 
+  </select>
+  
+  <select id="queryTransferAmountByMemberIdNum"  resultType="java.lang.Integer">
+  	SELECT
+		count(1)  
+	FROM
+		fin_capital_in_out_log
+	where  
+	  member_id = #{memberId,jdbcType=BIGINT} and type=25 and pay_account_type=1  and income>0 
+  </select>
+  
+  <select id="getTotalTransferAmountForMemberTransfer" resultMap="BaseResultMap" parameterType="CapitalInOutLogQuery">
+  	select  <include refid="Base_Column_List" />  
+  	 from fin_capital_in_out_log  where type=25 and pay_account_type=1    
+  	 <if test="query != null">
+  	 		<if test="query.memberId != null">
+  	 			and  member_id = #{query.memberId} 
+  	 		</if>
+  	 </if>
+  	<choose>
+		<otherwise>
+		order by happen_time desc 
+		</otherwise>  	 		    
+	 </choose>
+  	  LIMIT #{query.startRow,jdbcType=INTEGER}, #{query.pageSize,jdbcType=INTEGER}
+  </select> 
+  
+</mapper>

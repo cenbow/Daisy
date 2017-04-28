@@ -1,0 +1,24 @@
+##媒体报道 
+#parse("/common/common.vm")
+#set($layout = "/layout/default.vm")
+<div class="m-news-list f-round j-news-list">
+	#if($!newsPage && $!newsPage.data && $!newsPage.data.size()>0)
+		<ul>
+			#foreach($!news in $!newsPage.data)
+				<li><img class="u-news-thumbnail" 
+						#if( $news.image )
+							src="$aliyun_url/$news.image"
+						#else
+							src="$root_url/static/img/default.jpg"
+						#end
+						alt="新闻标题"/> <strong>$!news.title</strong> <span>$!news.copyfrom&nbsp;$!news.createDateStr<a
+						href="$!news.contentlink" target="_blank">原文链接</a></span>
+					<div>
+						$!news.contentHtml
+					</div>
+				</li>
+			#end
+		</ul>
+	#end
+	#ajaxPagePlugin($!newsPage,"ArticleNews")
+</div>

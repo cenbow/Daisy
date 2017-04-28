@@ -1,0 +1,347 @@
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$m_css_url/modules/member.css","$m_css_url/modules/myTransaction.css"])
+#set($title='我的交易')
+<style>
+    a {
+        color: #fff;
+    }
+    [v-cloak]{
+        display: none;
+    }
+</style>
+<div id="j-myInvestList" v-cloak>
+    <!--header-->
+    #set($pid=$request.getParameter("pid"))
+    #set($investAmount=$request.getParameter("investAmount"))
+    <h2 class="u-header f-pos-r">
+        <a href="$siteurl/mCenter/home">返回</a>
+    <span class="f-fs22">
+        我的交易
+    </span>
+    </h2>
+    <!--/header-->
+    <!--body-->
+    <ul class="u-grid-transaction j-grid-transaction">
+        <li class="f-inverst " :class="{'f-red-color':isCurrent==0}" @click="changeTab(0)"><i @click="getList('investList')">我的投资</i></li>
+        <li :class="{'f-red-color':isCurrent==1}" @click="changeTab(1)"><i @click="getList('cProjectList')"> 正在募集</i></li>
+        <li :class="{'f-red-color':isCurrent==2}" @click="changeTab(2)"><i @click="getList('orderList')">我的订单</i></li>
+    </ul>
+    <div class="m-progectsList">
+    ##        我的投资
+        <div id="myInvest">
+        <div class="m-invest-list u-invest-list " id="j-investList" v-if="isCurrent==0">
+            <div v-if="investList.data!=''">
+            <div v-for="item in investList.data">
+                <a href="$siteurl/mCenter/investmentDetail?transactionId={{item.transactionId}}">
+                <div class="u-projectBlock">
+                    <div class="u-investDetail">
+                        <div class="u-projectName">
+                            <em v-text="item.name | formatName"></em>期
+                            <em  v-if="item.flag===2" class="z-redColor u-payWay">逾期</em>
+                            <em  v-if="item.flag===1" class="z-redColor u-payWay">提前还款</em>
+                        </div>
+                        <div class="u-investTime"> <em v-text="item.transactionTime | dateFormat 'yyyy-MM-dd hh:mm:ss'"></em></div>
+                        <div class="u-projectStatus " v-if="item.status==0">募集中</div>
+                        <div class="u-projectStatus z-redColor" v-if="item.status==1">履约中</div>
+                        <div class="u-projectStatus " v-if="item.status==2">已还款</div>
+                        <div class="u-projectStatus " v-if="item.status==3">流标</div>
+                    </div>
+                    <div class="u-investAmount">
+                        <span>投资金额</span><span class="u-amount f-fr">¥
+                         <i v-if="item.projectCategory==2" v-text="item.transferPrincipal | amountFormat 'split' "></i>
+                        <i v-else v-text="item.investAmount | amountFormat 'split' "></i>
+                    </span>
+                    </div>
+                </div>
+                </a>
+            </div>
+            </div>
+            <div v-else style="margin: 50% 30%;width: 40%; color: #999999; text-align: center">
+                <img src="$res_url/img/logoGray.png" alt=""/>
+
+                <p> 您还没有相关记录</p>
+            </div>
+        </div>
+        </div>
+    ##    正在募集
+        <div id="cProjects">
+            <div class="m-cProject-list u-invest-list" id="j-cProjectList" v-if="isCurrent==1">
+                <div v-if="cProjectList.data!=''">
+                <div v-for="item in cProjectList.data">
+                <a href="$siteurl/mCenter/investmentDetail?transactionId={{item.transactionId}}">
+                <div class="u-projectBlock">
+                    <div class="u-investDetail">
+                        <div class="u-projectName"> <em v-text="item.name | formatName"></em>期</div>
+                        <div class="u-investTime"> <em v-text="item.transactionTime | dateFormat 'yyyy-MM-dd hh:mm:ss'"></em></div>
+                        <div v-if="item.projectStatus==30" class="u-projectStatus z-redColor">募集中</div>
+                        <div v-if="item.projectStatus==40" class="u-projectStatus">已暂停</div>
+                        <div v-if="item.projectStatus==50||item.projectStatus==81" class="u-projectStatus">已投满</div>
+                        <div v-if="item.projectStatus==80&&item.saleComplatedFlag==true" class="u-projectStatus">已投满
+                        </div>
+                        <div v-if="item.projectStatus==60" class="u-projectStatus">已截止
+                        </div>
+                        <div v-if="item.projectStatus==80&&item.saleComplatedFlag==false" class="u-projectStatus">已截止
+                        </div>
+                        <div v-if="item.projectStatus==80&&item.projectCategory==2" class="u-projectStatus z-redColor">募集中</div>
+
+                    </div>
+                    <div class="u-investAmount">
+                        <span>投资金额</span><span class="u-amount f-fr">¥
+                        <i v-if="item.projectCategory==2" v-text="item.transferPrincipal | amountFormat 'split' "></i>
+                        <i v-else v-text="item.investAmount | amountFormat 'split' "></i>
+                    </span>
+                    </div>
+                </div>
+                    </a>
+                </div>
+                </div>
+                <div v-else style="margin: 50% 30%;width: 40%; color: #999999; text-align: center">
+                    <img src="$res_url/img/logoGray.png" alt=""/>
+
+                    <p> 您还没有相关记录</p>
+                </div>
+
+            </div>
+        </div>
+    ##    我的订单
+        <div id="myOrder">
+        <div class="m-order-list u-invest-list" id="j-orderList" v-if="isCurrent==2">
+            <div v-if="orderList.data!=0">
+            <div v-for="item in orderList.data">
+                <div class="u-projectBlock u-orderBlock">
+                    <div class="u-investDetail">
+                        <div class="u-projectName"> <em v-text="item.name | formatName"></em>期
+                            <span class="f-fr z-redColor" v-if="item.status==0">待支付</span>
+                            <span class="f-fr z-redColor" v-if="item.status==8">待确认</span>
+                            <span class="f-fr" v-if="item.status==1">支付中</span>
+                            <span class="f-fr" v-if="item.status==2 || item.status==4">支付失败</span>
+                            <span class="f-fr" v-if="item.status==3">已支付</span>
+                            <span class="f-fr" v-if="item.status==9">已取消</span>
+                        </div>
+                        <div class="u-investTime" v-text="item.orderTime | dateFormat 'yyyy-MM-dd hh:mm:ss'"></div>
+                    <span class="f-fr" v-if="item.status==0">
+                        <i class="u-payBtn u-gotoPay" orderId="{{item.orderId}}">
+                            <a v-if="item.projectCategory==2" @click="isTransfer" class=" z-redColor">支付</a>
+                        <a v-else href="$siteurl/mCenter/orderPayment?orderId={{item.orderId}}" class=" z-redColor">支付</a>
+                        </i>
+                        <i class="u-payBtn u-canclePay" id="j-cancleOrder" orderId="{{item.orderId}}"
+                           @click="cancleOrder('#j-cancleOrder')">取消</i>
+                    </span>
+                         <span class="f-fr" v-if="item.status==8">
+                             <i class="u-payBtn u-gotoPay" orderId="{{item.orderId}}">
+                                 <a v-if="item.projectCategory==2" @click="isTransfer"  class=" z-redColor">继续支付</a>
+                                 <a v-else href="$siteurl/mCenter/orderPayment?orderId={{item.orderId}}" class=" z-redColor">继续支付</a>
+                             </i>
+                         </span>
+                        <div><span class="u-amount ">¥ <i v-text="item.investAmount | amountFormat 'split'"></i></span></div>
+                        <div class="f-fs14" v-if="item.remarks==='用户取消'">备注：用户取消</div>
+                        <div class="f-fs14" v-if="item.status==2 || item.status==4">备注：<em v-text="item.remarks"></em></div>
+                    </div>
+
+                </div>
+            </div>
+            </div>
+            <div v-else style="margin: 50% 30%;width: 40%; color: #999999; text-align: center">
+                <img src="$res_url/img/logoGray.png" alt=""/>
+
+                <p> 您还没有相关记录</p>
+            </div>
+        </div>
+        </div>
+    ##            分页的代码
+        <div v-if="pageNavi.totalPageCount>1" class="m-pagenav f-tar">
+            <span v-if="pageNavi.pageNo===1" class="u-pnav-prev u-circle-12">上一页</span>
+            <a v-else href="javascript:void(0)" class="u-pnav-prev u-circle-12"
+               data-pageno="{{pageNavi.pageNo-1}}" @click="gotoPage(pageNavi.pageNo-1)">上一页</a>
+                <span v-for="item in pageNavi.list">
+                <span v-if="item.index===pageNavi.pageNo"
+                      class="u-pnav-crt u-circle-12">{{item.index}}</span>
+                <a v-else href="javascript:void(0)" class="u-pnav-link u-circle-12" data-pageno="{{item.index}}" @click="gotoPage(item.index)">{{item.index}}</a>
+                </span>
+                <span v-if="pageNavi.pageNo==pageNavi.totalPageCount"
+                      class="u-pnav-prev u-circle-12">下一页</span>
+            <a v-else href="javascript:void(0)" class="u-pnav-prev u-circle-12"
+               data-pageno="{{pageNavi.pageNo+1}}" @click="gotoPage(pageNavi.pageNo+1)">下一页</a>
+        </div>
+    ##            分页的代码
+    </div>
+
+</div>
+
+
+##旧页面
+##    <div class="u-content f-dn">
+##    ##我的投资列表
+##        <div class="m-invest-list u-invest-list " id="j-investList">
+##
+##            <script type="text/html" id="j-investList-tpl">
+##                <ul class="f-cf j-investList">
+##
+##                    {{if length}}
+##                    {{each list as item i}}
+##                    <li class="u-carList" class="j-transaction">
+##                        <div class="m-circle f-cf">
+##                            <div class="u-circle-7 f-fl" {{if item.status===2}}style="background:#d74248;"{{/if}}>
+##                                <div class="u-circle-3"></div>
+##                            </div>
+##                            <h4 class="u-title f-fs13"><em> {{item.transactionTime | dateFormat:'yyyy-MM-dd
+##                                hh:mm:ss'}}</em>
+##                                <em class="j-dataIndex" data-index="{{i}}">&nbsp;&nbsp; {{item.preName}}</em>
+##                                {{if joinLease===1}}
+##                                <span class="f-fs12">租赁分红</span>
+##                                {{else if joinLease===0}}
+##                                {{/if}}
+##                            </h4>
+##                        </div>
+##
+##                        <div class="u-carList-investment">
+##                            投资额 &yen;
+##                            {{item.investAmount | amountFormat:'split'}}
+##                            <br/>
+##                            {{if item.status===1}}
+##                            <span>  履约中 </span>
+##                            {{else if item.status===2}}
+##                            <span>  已还款 </span>
+##                            {{/if}}
+##                            <i><a class="j-details" data-index="{{i}}">详情</a></i>
+##                            <i><a class="j-earnings" data-index="{{i}}">收益表</a></i>
+##
+##                        ## cc add 添加了发红包按钮，这里只链接到下载app的地方
+##                            {{if item.redPackageStatus===1}}
+##                            <i class="z-redPackage"><a href="$siteurl/activity/popRedPackage/downloadApp"
+##                                                       class="j-redPackageStatus" data-index="{{i}}">发红包</a></i>
+##                            {{else if item.redPackageStatus===2}}
+##                            <i><a class="j-redPackageStatus" data-index="{{i}}">红包已抢完</a></i>
+##                            {{/if}}
+##
+##                        </div>
+##                    </li>
+##                    {{/each}}
+##                    {{else}}
+##                    <div style="margin: 50% 30%;width: 100%;">
+##                        <img src="$res_url/img/logoGray.png" alt=""/>
+##
+##                        <p> 您还没有相关记录</p>
+##                    </div>
+##                    {{/if}}
+##
+##                </ul>
+##
+##                <div class="m-pagenav f-tar">
+##                    {{if pageNo==1}}
+##                    <span class="u-pnav-prev u-circle-12">上一页</span>
+##                    {{else}}
+##                    <a href="javascript:void(0)" class="u-pnav-prev u-circle-12" data-pageno="{{pageNo-1}}">上一页</a>
+##                    {{/if}}
+##                    {{each countArray as item i}}
+##                    {{if item.index==pageNo}}
+##                    <span class="u-pnav-crt u-circle-12">{{item.index}}</span>
+##                    {{else}}
+##                    <a href="javascript:void(0)" class="u-pnav-link u-circle-12" data-pageno="{{item.index}}">{{item.index}}</a>
+##                    {{/if}}
+##                    {{/each}}
+##                    {{if pageNo==totalPageCount}}
+##                    <span class="u-pnav-prev u-circle-12">下一页</span>
+##                    {{else}}
+##                    <a href="javascript:void(0)" class="u-pnav-prev u-circle-12" data-pageno="{{pageNo+1}}">下一页</a>
+##                    {{/if}}
+##                </div>
+##            </script>
+##
+##        </div>
+##
+##
+##
+##
+##    ##我的订单列表
+##        <div class="m-order-list f-dn u-invest-list" id="j-orderList">
+##
+##            <script type="text/html" id="j-orderList-tpl">
+##                <ul class="f-cf">
+##
+##                    {{if length}}
+##                    {{ each list as item i}}
+##                    <li class="u-carList">
+##                        <div class="m-circle f-cf">
+##                            <div class="u-circle-red7 f-fl" {{if item.status===3}}style="background:#e53f49;"{{/if}}>
+##                                <div class="u-circle-white3" {{if
+##                                     item.status===3}}style='background:none;'{{/if}}></div>
+##                            </div>
+##                            <h4 class="u-title f-fs13">
+##                                <em>{{item.orderTime | dateFormat:'yyyy-MM-dd hh:mm:ss'}}</em>
+##                                <em> &nbsp;&nbsp;{{item.preName}}</em>
+##                            </h4>
+##                        </div>
+##
+##                        <div class="u-carList-investment">
+##                            订单金额&nbsp;&nbsp;&nbsp;&nbsp; &yen;{{item.investAmount | amountFormat:'split'}}<br/>
+##
+##                            {{if item.status===0}}
+##                            <span class="j-pay-status">  待支付</span>
+##                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+##                            <i class="f-order-pay  j-order-pay" orderId="{{item.orderId}}"><a
+##                                    href="$siteurl/mCenter/orderPayment?orderId={{item.orderId}}">支付</a></i>
+##                            <i class="f-order-pay  j-order-close" orderId="{{item.orderId}}"><a href="#">取消</a></i>
+##
+##                            {{else if item.status===1}}
+##                            <span class="j-pay-status"> 支付中</span>
+##                            {{else if item.status===2 || item.status===4}}
+##                            <span class="j-pay-status"> 支付失败</span>
+##                            <i class="j-close-detail " data-index="{{i}}">详情</i>
+##                            {{else if item.status===3}}
+##                            <span class="j-pay-status"> 已支付</span>
+##                            {{else if item.status===9}}
+##                            <span class="j-pay-status">  已取消</span>
+##                            {{/if}}
+##                            {{if item.remarks==='用户取消'}}
+##                            <i class="j-close-detail " data-index="{{i}}">详情</i>
+##                            {{/if}}
+##
+##                        </div>
+##                    </li>
+##                    {{/each}}
+##                    {{else}}
+##                    <div style="margin: 50% 30%;width: 100%;">
+##                        <img src="$res_url/img/logoGray.png" alt=""/>
+##
+##                        <p> 您还没有相关记录</p>
+##                    </div>
+##                    {{/if}}
+##                </ul>
+##                <div class="m-pagenav f-tar">
+##                    {{if pageNo==1}}
+##                    <span class="u-pnav-prev u-circle-12">上一页</span>
+##                    {{else}}
+##                    <a href="javascript:void(0)" class="u-pnav-prev u-circle-12" data-pageno="{{pageNo-1}}">上一页</a>
+##                    {{/if}}
+##                    {{each countArray as item i}}
+##                    {{if item.index==pageNo}}
+##                    <span class="u-pnav-crt u-circle-12">{{item.index}}</span>
+##                    {{else}}
+##                    <a href="javascript:void(0)" class="u-pnav-link u-circle-12" data-pageno="{{item.index}}">{{item.index}}</a>
+##                    {{/if}}
+##                    {{/each}}
+##                    {{if pageNo==totalPageCount}}
+##                    <span class="u-pnav-prev u-circle-12">下一页</span>
+##                    {{else}}
+##                    <a href="javascript:void(0)" class="u-pnav-prev u-circle-12" data-pageno="{{pageNo+1}}">下一页</a>
+##                    {{/if}}
+##                </div>
+##
+##            </script>
+##        </div>
+##
+##    </div>
+
+##遮罩层
+<div class="u-cover j-cover"></div>
+
+
+<!--/body-->
+#CSRFToken('xToken')
+#set($pageScript="
+<script>
+
+    seajs.use('$siteurl/res/source/js/modules/transactionList.js');
+</script>")

@@ -1,0 +1,295 @@
+.img-responsive{
+    display: inline-block;
+    width: 100%;
+    height: auto;
+    position: relative;
+    text-align: center
+}
+.u-countdown-days{
+    width:100%;
+    margin:0 auto;
+    position:relative;
+    top:-3.4rem;
+    color:#feffff;
+    text-indent: 4.5rem;
+    font-weight:bold;
+    font-size:1.125rem;
+}
+.u-countdown-days i{
+    font-size:1.3125rem;
+}
+.f-body-color{
+    background-color:#cce54c;
+    margin-top:-2.5rem;
+    padding-top:0.5rem;
+    padding-bottom:3.6rem;
+}
+.u-activity-item-header {
+    width: 100%;
+    height: 2.15625rem;
+    margin: .5rem 0 1.5625rem;
+    color: #fff;
+    font-size: 1.0625rem;
+    background: url("../../../img/activity/anniversaryCountdown/activity_tag.png") no-repeat;
+    background-size: 14.25rem 2.15625rem;
+    background-position: center;
+    text-align: center;
+}
+.u-activity-item-header.f-mt28 {
+    margin-top: 1.75rem;
+}
+.u-activity-item-header span {
+    display: inline-block;
+    height: 1.75rem;
+    width: 11.3125rem;
+    line-height: 1.75rem;
+}
+.u-text{
+    width:82.7%;
+    margin-left:7.6%;
+    color:#5f7f00;
+    font-size:0.875rem;
+    line-height:1.6rem;
+}
+.u-countdown-calendar{
+    width:19.4rem;
+    margin:0 auto;
+    background-color:#9a6500;
+    border:1px solid #9a6500;
+    border-radius: 2px;
+    color:#ffffff;
+    font-size:1.0625rem;
+    font-weight: bold;
+    text-indent: 0.7rem;
+    padding:0.15rem;
+    margin-top:1.40625rem;
+    margin-bottom:0.8rem;
+}
+.u-countdown-calendar .u-calender{
+    width:3.2rem;
+    height:2.4rem;
+    text-align: left;
+    position:relative;
+    /*left:0.8rem;*/
+    color:#ff353e;
+    font-size:1.0625rem;
+    line-height:3rem;
+    margin:0;
+     top:-0.5rem;
+    display: inline-block;
+    background: url(../../../img/activity/anniversaryCountdown/countdown.png) center no-repeat;
+    background-size:100% ;
+    letter-spacing: 0.7rem;
+}
+
+.u-countdown-calendar i{
+    position:relative;
+    top:-0.4rem;
+}
+.u-countdown-calendar i.f-colon{
+    top:-0.6rem;
+}
+.u-countdown-number{
+    margin-left:9.05rem;
+    margin-top:-2.9rem;
+}
+.u-countdown-number li{
+    color:#ff353e;
+    font-size:1.0625rem;
+    position:relative;
+    width:2rem;
+    letter-spacing:0.95rem;
+    margin-left:1.3rem;
+    display: inline-block;
+}
+
+.u-redbag{
+    width:25.87%;
+    height:5.16rem;
+    margin-top:1.0625rem;
+    margin-left:3.6rem;
+    display: inline-block;
+    color:#ee5858;
+    vertical-align:middle;
+}
+
+.u-redbag.f-remain{
+    height:auto;
+    margin-top:0;
+    text-align: center;
+    font-size:0.875rem;
+}
+.u-redbag.f-button{
+    height:auto;
+    background: #ee5858;
+    line-height:1.7rem;
+    border:1px solid #ee5858;
+    border-radius:14px;
+    color:#fffe5e;
+    font-size:0.84rem;
+    text-align: center;
+    margin-top:0.3rem;
+}
+.u-redbag.f-button.z-disabled{
+    background-color: #acacac;
+    color:#fff;
+    border:1px solid #acacac;
+}
+.u-redbag .u-number{
+    position:relative;
+    width:100%;
+    text-indent:1.8rem;
+    margin-top:-4.8rem;
+    font-size:1.56rem;
+ }
+.u-redbag .u-number.f-bigger{
+ text-indent: 1.2rem;
+}
+.u-redbag .u-number i{
+      font-size:0.75rem;
+    display: inline-block;
+    margin-left:-2rem;
+}
+.u-redbag .u-number i.f-adjust{
+    margin-left:-1.5rem;
+}
+.u-use-rule{
+    width:34.7%;
+    margin:1.75rem auto 1.25rem;
+    color:#5f7f00;
+    font-size:1.0625rem;
+    font-weight:bold;
+}
+.u-rule table{
+    width:84.3%;
+    margin:0 auto;
+    font-size:0.875rem;
+    margin-bottom:1.53rem;
+}
+.u-rule table th,
+.u-rule table td{
+    width:33.3%;
+    height:2.16rem;
+    text-align: center;
+}
+.u-rule table th{
+    color:#fff;
+    background-color:#90a71c;
+}
+.u-rule table td{
+    color:#799712;
+}
+.u-rule table th:first-child{
+    border-right:1px solid #799712;
+}
+.u-rule table th:last-child{
+    border-left:1px solid #799712;
+}
+.u-rule table td:first-child{
+    border-right:1px solid #799712;
+}
+.u-rule table td:last-child{
+    border-left:1px solid #799712;
+}
+.f-backgd-color1{
+    background-color:#c7e047 ;
+}
+.f-backgd-color2{
+    background-color:#bad33a ;
+}
+
+.u-activity-gift-bg {
+    width: 14.625rem;
+    height: 7.59375rem;
+    margin: 1.25rem auto 0;
+    background: url(../../../img/activity/anniversaryCountdown/activity_bg.png) no-repeat;
+    background-size: 14.625rem 7.59375rem;
+}
+
+.u-bottom-button{
+    width:34.5%;
+    height:2.03rem;
+    border:1px solid #799712;
+    border-radius:2rem;
+    margin:2.1875rem auto 0;
+    color:#799712;
+    font-size:0.75rem;
+    text-align: center;
+    line-height:2rem;
+    font-weight:bold;
+}
+
+.u-tip{
+    position: fixed;
+    bottom:4.9rem;
+    z-index: 200;
+    width:85%;
+   left:1.8rem;
+    background-color: #fff;
+    font-size:0.75rem;
+    color:#666;
+    border:1px solid #fff;
+    border-radius:10px;
+
+}
+.u-tip h1{
+    font-size:1.0625rem;
+    width:100%;
+    margin: 0 auto 0.7rem auto;
+    text-align:center;
+    font-weight:bold;
+}
+.u-tip .f-cross{
+    width:1.125rem;
+    height:1.125rem;
+    position:relative;
+    margin-top:1.5%;
+    left:92%;
+    display: block;
+    background: url(../../../img/activity/anniversaryCountdown/cancel.png) center no-repeat;
+    background-size:100% ;
+}
+.u-tip p{
+    width:85%;
+    margin:0 auto;
+    line-height:1.3rem;
+    margin-bottom:1.7rem;
+}
+.u-tip p i{
+    display: inline-block;
+}
+.u-anniversary-cover {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    z-index: 198;
+    -moz-opacity: 0.3;
+    opacity: .30;
+}
+[v-cloak]{
+    display: none;
+}
+@media screen and (min-width: 390px) {
+    html{
+        font-size: 17.6px;
+
+    }
+
+}
+
+@media screen and (min-width: 360px) and (max-width:389px) {
+
+
+}
+
+@media screen and (max-width:359px) {
+
+    html{
+        font-size:13.65px;
+    }
+
+
+}

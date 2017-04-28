@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.uc.dao.MemberLoginMapper" >
+  <resultMap id="BaseResultMap" type="MemberLogin" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="member_id" property="memberId" jdbcType="BIGINT" />
+    <result column="login_time" property="loginTime" jdbcType="TIMESTAMP" />
+    <result column="login_ip" property="loginIp" jdbcType="VARCHAR" />
+    <result column="login_type" property="loginType" jdbcType="INTEGER" />
+    <result column="user_agent" property="userAgent" jdbcType="VARCHAR" />
+    <result column="login_source" property="loginSource" jdbcType="INTEGER" />
+    <result column="device" property="device" jdbcType="VARCHAR" />
+    <result column="position" property="position" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, member_id, login_time, login_ip, login_type, user_agent, login_source, device,position, create_time
+  </sql>
+  <insert id="insertSelective" parameterType="MemberLogin" >
+    insert into uc_member_login
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="memberId != null" >
+        member_id,
+      </if>
+      <if test="loginTime != null" >
+        login_time,
+      </if>
+      <if test="loginIp != null" >
+        login_ip,
+      </if>
+      <if test="loginType != null" >
+        login_type,
+      </if>
+      <if test="userAgent != null" >
+        user_agent,
+      </if>
+      <if test="loginSource != null" >
+        login_source,
+      </if>
+      <if test="device != null" >
+        device,
+      </if>
+      <if test="position != null" >
+        position,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="memberId != null" >
+        #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="loginTime != null" >
+        #{loginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginIp != null" >
+        #{loginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="loginType != null" >
+        #{loginType,jdbcType=INTEGER},
+      </if>
+      <if test="loginSource != null" >
+        #{loginSource,jdbcType=INTEGER},
+      </if>
+      <if test="device != null" >
+        #{device,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null" >
+        #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="MemberLogin" >
+    update uc_member_login
+    <set >
+      <if test="memberId != null" >
+        member_id = #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="loginTime != null" >
+        login_time = #{loginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginIp != null" >
+        login_ip = #{loginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="loginType != null" >
+        login_type = #{loginType,jdbcType=INTEGER},
+      </if>
+      <if test="userAgent != null" >
+        user_agent = #{userAgent,jdbcType=VARCHAR},
+      </if>
+      <if test="loginSource != null" >
+        login_source = #{loginSource,jdbcType=INTEGER},
+      </if>
+      <if test="device != null" >
+        device = #{device,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null" >
+        position = #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>  
+  <select id="findByPage" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from uc_member_login
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = #{map.id}
+        </if>
+        <if test=" map.memberId != null" >
+          member_id = #{map.memberId}
+        </if>
+        <if test=" map.loginTime != null" >
+          login_time = #{map.loginTime}
+        </if>
+        <if test=" map.loginIp != null" >
+          login_ip = #{map.loginIp}
+        </if>
+        <if test=" map.loginType != null" >
+          login_type = #{map.loginType}
+        </if>
+        <if test=" map.userAgent != null" >
+          user_agent = #{map.userAgent}
+        </if>
+        <if test=" map.loginSource != null" >
+          login_source = #{map.loginSource}
+        </if>
+        <if test=" map.device != null" >
+          device = #{map.device}
+        </if>
+        <if test=" map.position != null" >
+          position = #{map.position}
+        </if>
+        <if test=" map.createTime != null" >
+          create_time = #{map.createTime}
+        </if>
+      </where>
+    </if>
+  </select>
+  <sql id="Base_Column_List_Pagin" >
+    t.id  as  id,
+t.member_id  as  member_id,
+t.login_time  as  login_time,
+t.login_ip  as  login_ip,
+t.login_type  as  login_type,
+t.user_agent  as  userAgent,
+t.login_source  as  login_source,
+t.device  as  device,
+    t.position  as  position,
+t.create_time  as  create_time
+  </sql>
+  <select id="selectForPagin" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List_Pagin" />
+    from  (SELECT id FROM  uc_member_login
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = #{map.id}
+        </if>
+        <if test=" map.memberId != null" >
+          member_id = #{map.memberId}
+        </if>
+        <if test=" map.loginTime != null" >
+          login_time = #{map.loginTime}
+        </if>
+        <if test=" map.loginIp != null" >
+          login_ip = #{map.loginIp}
+        </if>
+        <if test=" map.loginType != null" >
+          login_type = #{map.loginType}
+        </if>
+        <if test=" map.userAgent != null" >
+          user_agent = #{map.userAgent}
+        </if>
+        <if test=" map.loginSource != null" >
+          login_source = #{map.loginSource}
+        </if>
+        <if test=" map.device != null" >
+          device = #{map.device}
+        </if>
+        <if test=" map.position != null" >
+          position = #{map.position}
+        </if>
+        <if test=" map.createTime != null" >
+          create_time = #{map.createTime}
+        </if>
+      </where>
+    </if>
+      LIMIT	${map.startRow}, ${map.pageSize}  )  AS a,  uc_member_login AS t FORCE INDEX(PRIMARY) WHERE a.id = t.id   
+  </select>
+  <select id="selectForPaginTotalCount" resultType="java.lang.Integer" >
+    select count(1) 
+    from uc_member_login
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+          id = ${map.id}
+        </if>
+        <if test=" map.memberId != null" >
+          member_id = ${map.memberId}
+        </if>
+        <if test=" map.loginTime != null" >
+          login_time = ${map.loginTime}
+        </if>
+        <if test=" map.loginIp != null" >
+          login_ip = ${map.loginIp}
+        </if>
+        <if test=" map.loginType != null" >
+          login_type = ${map.loginType}
+        </if>
+        <if test=" map.userAgent != null" >
+          user_agent = ${map.userAgent}
+        </if>
+        <if test=" map.loginSource != null" >
+          login_source = ${map.loginSource}
+        </if>
+        <if test=" map.device != null" >
+          device = ${map.device}
+        </if>
+        <if test=" map.position != null" >
+          position = ${map.position}
+        </if>
+        <if test=" map.createTime != null" >
+          create_time = ${map.createTime}
+        </if>
+      </where>
+    </if>
+  </select>
+</mapper>

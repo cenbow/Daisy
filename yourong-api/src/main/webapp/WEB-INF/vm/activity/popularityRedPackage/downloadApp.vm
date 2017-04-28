@@ -1,0 +1,58 @@
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+
+<style>
+    .m-Tips-content{
+        padding: 30px 16% 40px 16%;
+        color: #999;
+        text-align: center;
+    }
+
+    .m-Tips-content p {
+        margin: 24px 0 5px;
+    }
+    .u-content{
+        font-size: 24px;
+    }
+
+    .u-download{
+        background: #da404a;
+        color: #fff!important;
+        border-radius: 40px!important;
+        border: 0!important;
+        padding: 6px 15px;
+        margin: 0 auto;
+        box-sizing: border-box;
+        height: 40px!important;
+        line-height: 40px;
+    }
+
+    ## 只有在这里不需要footer
+    .g-ft{
+        height: 100px!important;
+    }
+
+    .g-ft .u-download-btn,
+    .g-ft .u-safety-logo {
+        display: none!important;
+    }
+</style>
+
+##header
+<h2 class="u-header f-pos-r">
+    <a href="$siteurl/mCenter/myTransaction">返回</a>
+    <span class="f-fs18">
+        提&nbsp;示
+    </span>
+</h2>
+##/header
+##content
+
+<div class="m-Tips-content">
+    <p class="u-content">下载APP，分享红包</p>
+
+    <img src="$siteurl/res/img/common/QR_code.png" width="90%">
+    <a class="u-download" href="https://itunes.apple.com/cn/app/you-rong-wang/id996844386?mt=8">有融网 for iPhone下载</a>
+    <a class="u-download-android u-download" href="http://www.yrw.com/download/apk">有融网 for Android下载</a>
+</div>
+##/content

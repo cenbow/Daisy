@@ -1,0 +1,33 @@
+ #parse("/common/common.vm")
+ #########################################script##################################### 
+  #set($js_config=[ 
+ "'urlMap':{ 
+   'ajaxRepayment':'$root_url/repaymentManager/ajaxRepayment?', 
+   'getThirdAccountMoney':'$root_url/repaymentManager/getThirdAccountMoney',
+   'queryBalance':'$root_url/member/queryBalance?',
+   'queryBorrowerBalance':'$root_url/repaymentManager/queryBalance?',
+   'cancelUnderWrite':'$root_url/repaymentManager/cancelUnderWrite?',
+   'saveRepayment':'$root_url/repaymentManager/saveRepayment', 
+   'synchronizedBalance':'$root_url/repaymentManager/synchronizedBalance?',
+   'queryInversts':'$root_url/repayment/projectInversts?projectId='
+   },
+    'securityType':#buildDictJson('debt_type'),##担保方式
+   'borrowPeriodType':#buildDictJson('borrow_period_type'),##借款周期类型
+   'projectStatus':#buildDictJson('project_status'),##项目状态   
+   'guarantyType':#buildDictJson('guaranty_type'),
+   'sex':#buildDictJson('sex'),##性别
+   'marriage':#buildDictJson('marriage'),##婚姻
+   'education':#buildDictJson('education'),##学历
+   'interestStatus':#buildDictJson('debt_interest_status'),  ##债权本息状态
+   'status':#buildDictJson('pay_status'),
+   'permission':{
+   		'repayUser':$shiro.hasPermission('repaymentManager:repayUser'),##选择垫资人
+   		'queryBalance':$shiro.hasPermission('repaymentManager:queryBalance'),##显示余额
+   		'showDirectProjectInverst':$shiro.hasPermission('repaymentManager:projectInversts'),
+   		'repayExcel':$shiro.hasPermission('repaymentManager:repayExcel')##导出excel
+   },
+   'aliyuncsUrl':'https://oss-cn-hangzhou.aliyuncs.com'
+   "])
+#set($css_url=["$root_url/static/assets/css/dropzone.css","$root_url/static/js/lib/My97DatePicker/skin/WdatePicker.css"])
+#set($js_url=["$root_url/static/js/repayInterest.js","$root_url/static/js/lib/My97DatePicker/WdatePicker.js"]) 
+#########################################DOM##################################### 

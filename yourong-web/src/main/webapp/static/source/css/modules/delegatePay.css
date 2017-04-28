@@ -1,0 +1,151 @@
+.m-nav-title a{
+    position: relative;
+}
+.z-unSet::after{
+    content: '未开通';
+    font-family: 'Microsoft YaHei';
+    font-size: 12px;
+    color: #ffffff;
+    text-align: center;
+    background: #d74148;
+    border-radius: 8px;
+    width: 50px;
+    height: 16px;
+    position: absolute;
+    top: -8px;
+    right: -4px;
+    line-height: 16px;
+}
+.z-unSetPWD::after{
+    content: '未设置';
+    font-family: 'Microsoft YaHei';
+    font-size: 12px;
+    color: #ffffff;
+    text-align: center;
+    background: #d74148;
+    border-radius: 8px;
+    width: 50px;
+    height: 16px;
+    position: absolute;
+    top: -8px;
+    right: -4px;
+    line-height: 16px;
+}
+.m-delegatePay .u-sinapay-flag{
+    padding:11px 0 10px;
+    border-bottom:solid 1px #c5c5c5;
+}
+.m-delegate-box{
+    padding:40px 0 0;
+}
+.m-delegate-box .u-status{
+    background: #ffffff;
+    border: 1px solid #c5c5c5;
+    border-radius: 4px;
+    width: 248px;
+    height: 125px;
+    left: 0;
+    top: 40px;
+    text-align: center;
+    padding-top: 25px;
+    line-height: 30px;
+    color: #666666;
+}
+.m-delegate-box .u-status button{
+    width:180px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    color: #fff;
+    background:#d74148;
+    border:none;
+    border-radius:20px;
+    margin-top: 10px;
+}
+.m-delegate-box .u-status .u-closeDelegatePay{
+    background: #ffffff;
+    border: 1px solid #d74143;
+    color: #d74148;
+}
+.m-delegate-box .u-tips{
+    margin:0 0 0 260px;
+    background:url(/static/img/member/sinapot_tips_bg.png) no-repeat;
+    height:151px;
+}
+.m-delegate-box .u-tips p{
+    padding:55px 0 0 30px;
+    color: #666;
+}
+.m-delegate-box .u-tips p a{
+    color: #d74148;
+    text-decoration: underline;
+}
+
+.u-tipTitle{
+    text-align: left;
+    margin: 30px 0 0 40px;
+}
+
+.u-goToSinaBlock{
+    background:#ffffff;
+    border:1px solid #979797;
+    border-radius:8px;
+    width:740px;
+    height:370px;
+    font-family:MicrosoftYaHei;
+    color:#737373;
+    letter-spacing:0px;
+    text-align:center;
+    position: fixed;
+    top:40%;
+    left: 30%;
+    z-index: 1000;
+}
+.u-goToSinaBlock p{
+    margin: 53px 0 67px;
+    color: #333333;
+}
+.u-goToSinaBlock button{
+    border:1px solid #d74148;
+    border-radius:4px;
+    line-height: 40px;
+    color: #d74148;
+    width:220px;
+    height:40px;
+    background: #ffffff;
+    margin-bottom: 50px;
+}
+.u-goToSinaBlock .u-lastButton{
+    margin-left: 20px;
+}
+.u-goToSinaBlock .u-helpTips{
+    background:#d74148;
+    height:70px;
+    line-height: 70px;
+    border-bottom-left-radius:8px;
+    border-bottom-right-radius: 8px;
+}
+.u-goToSinaBlock .u-helpTips span{
+    display: inline-block;
+    background:#c73d43;
+    border:1px solid #c0343a;
+    border-radius:20px;
+    width:460px;
+    height:40px;
+    line-height: 40px;
+    color: #ffffff;
+    margin-top: 15px;
+}
+
+.u-autoInvest-tips{
+    display: block;
+    width:350px;
+    height:30px;
+    font-size:13px;
+    line-height:30px;
+    text-align: center;
+    color:#fff;
+    background: #d74148;
+    position:relative;
+    margin-top:10px;
+}

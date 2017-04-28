@@ -1,0 +1,68 @@
+
+body {
+    margin: 0;
+    padding: 0 0 2rem 0;
+    background: #ee2533;
+    text-align: center;
+}
+
+/* 取消手机浏览器蓝色框 */
+* {
+   -webkit-tap-highlight-color: transparent;
+   -webkit-appearance: none;
+}
+.u-title-1 {
+    color: #fffd01;font-size: 2.3rem; margin-top: 55px;
+}
+
+.u-content {
+    color: #fffd01;font-size: 1.3rem;
+}
+
+img {
+    display: block;
+}
+
+.u-share-btn {
+    background: #fffd01;
+    color: #906703;
+    display: inline-block;
+    text-align: center;
+    width: 60%;
+    font-size: 1.3rem;
+    font-weight: bold;
+    padding: 0.6rem 1rem 0.4rem;
+    border-radius: 2.5rem;
+    margin-top: -2rem;
+}
+
+.u-share {
+    z-index: 2000;
+    width: 100%;
+    position: fixed;
+    bottom: 4rem;
+    color: #fff;
+    margin-top: -300px;
+}
+
+.u-share-text {
+    font-size: 1.2rem;
+}
+
+.u-share-btns {
+    width: 60%;
+    margin: 0 auto;
+}
+.u-share-part{
+    display: inline-block;
+    max-width: 70px;
+}
+
+/* 需要用到的背景 */
+.g-bg1 {
+    margin-top: -220px;
+    height: 530px;
+    background: url(../../../../img/weixin/activity/springFestival/springFestival_bg1.png) no-repeat center;
+    -webkit-background-size: 100%;
+    background-size: 100%;
+}

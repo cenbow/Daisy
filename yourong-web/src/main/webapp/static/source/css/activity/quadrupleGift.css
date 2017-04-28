@@ -1,0 +1,475 @@
+.g-bd {
+    margin-bottom: 0;
+}
+.g-wrap {
+    width: 990px;
+    margin: 0 auto;
+    position: relative;
+}
+.f-bce{
+    background-color: #e6e6e6;
+}
+.f-bcf{
+    background-color: #f4f4f4;
+}
+/**页头**/
+.u-quadrupleGift-hd{
+    width: 100%;
+    height: 385px;
+    margin-top: -10px;
+    text-indent: -9999px;
+    position: relative;
+    background: url(/static/img/activity/quadrupleGift/quadrupleGift_banner.jpg) no-repeat center;
+}
+.u-quadrupleGift-hd img{
+    position: absolute;
+    right: -4px;
+    top: 170px;
+}
+/**四重活动**/
+.m-quadrupleGift-wrap{
+    height: 458px;
+    padding: 50px 0;
+}
+.m-quadrupleGift-wrap h2{
+    color: #666;
+    margin-bottom: 20px;
+}
+.m-quadrupleGift-wrap h2 i{
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    color: #fff;
+    line-height: 30px;
+    text-align: center;
+    font-weight: bold;
+    margin-right: 10px;
+    background: url("/static/img/activity/quadrupleGift/quadrupleGift_point.png") no-repeat center;
+}
+.m-quadrupleGift-wrap h2 strong {
+    color: #d74148;
+    margin-right: 10px;
+}
+.m-quadrupleGift-wrap h2 em{
+    color: #d74148;
+    font-weight: bold;
+}
+.m-quadrupleGift-wrap h2 .z-redBottom{
+    border-bottom: 1px solid #d74148;
+}
+.u-quadrupleGift-box{
+    height: 380px;
+}
+.u-quadrupleGift-products{
+    width: 240px;
+    height: 380px;
+    float: left;
+    text-align: center;
+    position: relative;
+}
+.u-quadrupleGift-products ul li{
+    width: 240px;
+    height: 380px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: #fff;
+}
+.u-quadrupleGift-products li.z-current{
+    z-index: 51;
+}
+.u-quadrupleGift-products ol {
+    position: relative;
+    margin: 385px auto 0;
+    z-index: 61;
+    display: inline-block;
+    text-align: center;
+}
+.u-quadrupleGift-products ol li {
+    float: left;
+    font-size: 18px;
+    color: #666;
+    width: 18px;
+    margin: 0 5px;
+    cursor: pointer;
+    text-align: center;
+}
+.u-quadrupleGift-products ol .z-current {
+    color: #d74147;
+}
+/***理财项目***/
+.u-quadrupleGift-products h4 {
+    text-align: left;
+    font-weight: bold;
+    color: #666;
+    padding: 25px 10px 12px 20px;
+}
+.u-quadrupleGift-products h4 a {
+    color: #666;
+    display: block;
+    height: 40px;
+    text-decoration: none;
+}
+.u-quadrupleGift-products h4 a span {
+    color: #999;
+    display: block;
+}
+.u-quadrupleGift-products h4 a:link,
+.u-quadrupleGift-products h4 a:visited,
+.u-quadrupleGift-products h4 a:hover{
+    color: #666;
+    text-decoration: none;
+}
+.f-text-overflow {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.u-pl-photo s {
+    display: block;
+    height: 3px;
+    background: url(/static/img/common/sprites.png) repeat-x -213px -166px;
+    overflow: hidden;
+}
+.u-pl-wrap, .u-pl-wrap i {
+    display: block;
+    height: 120px;
+    width: 120px;
+}
+.u-pl-wrap {
+    margin: 30px auto 5px;
+    position: relative;
+    display: block;
+    outline: 0;
+}
+.u-pl-wrap img {
+    height: 120px;
+    width: 120px;
+    overflow: hidden;
+}
+.u-pl-wrap i {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: url(/static/img/common/sprites.png) repeat-x -73px -190px;
+}
+.u-pl-wrap .u-pl-stat {
+    display: block;
+    position: absolute;
+    top: -20px;
+    left: -20px;
+}
+.u-pl-process, .u-pl-amount, .u-pl-process2 {
+    color: #999;
+    height: 40px;
+    line-height: 40px;
+}
+.u-pl-amount {
+    display: none;
+}
+.u-pl-process, .u-pl-amount, .u-pl-process2 {
+    color: #999;
+    height: 40px;
+    line-height: 40px;
+}
+.u-pl-tips{
+    color: #999;
+    height: 50px;
+    line-height: 50px;
+    position: relative;
+    text-align: left;
+    padding: 0 0 0 20px;
+}
+.u-pl-tips span{
+    color: #d64148;
+}
+.u-pl-tips em{
+    color: #d64148;
+    position: absolute;
+    right: 20px;
+    top: 0;
+}
+.u-pl-tips strong{
+    position: absolute;
+    left: 20px;
+    top: 0;
+}
+.u-pl-tips i{
+    width: 70px;
+    display: inline-block;
+    margin-right: 10px;
+}
+.u-pl-btn a{
+    width: 200px;
+    height: 30px;
+    display: block;
+    line-height: 30px;
+    margin: 0 auto;
+    color: #fff;
+    text-align: center;
+    background:#D74148;
+}
+.u-pl-btn a:link,
+.u-pl-btn a:visited,
+.u-pl-btn a:hover{
+    color: #fff;
+    text-decoration: none;
+}
+.u-pl-btn a.z-disabled{
+    background-color: #fff;
+    border-color: #999;
+    color: #999;
+}
+.u-pl-btn a.z-closed{
+    color: #FFF;
+    background-color: #F8ADA8;
+    border-color: #F8ADA8;
+}
+/**获奖名单**/
+.u-quadrupleGift-list h3{
+    color: #666;
+    font-weight: bold;
+    margin-bottom: 40px;
+}
+.u-quadrupleGift-list .u-list-wrap{
+    width: 615px;
+    height: 240px;
+    position: relative;
+    overflow: hidden;
+}
+.u-quadrupleGift-list ul{
+    width: 615px;
+    position: relative;
+}
+.u-quadrupleGift-list li {
+    display: block;
+    color: #999;
+    margin-bottom: 14px;
+}
+.u-quadrupleGift-list li div{
+    border: hidden;
+    height: 50px;
+    display: inline;
+}
+.u-quadrupleGift-list li a{
+    color: #999;
+    text-decoration: underline;
+}
+.u-quadrupleGift-list li a:link,
+.u-quadrupleGift-list li a:visited,
+.u-quadrupleGift-list li a:hover{
+    color: #999;
+    text-decoration: underline;
+}
+.u-user-head {
+    display: inline-block;
+    height: 35px;
+    width: 35px;
+    overflow: hidden;
+    vertical-align: middle;
+    position: relative;
+}
+.u-rL2nd-user img {
+    display: inline-block;
+    height: 35px;
+    width: 35px;
+    overflow: hidden;
+}
+.u-user-head i {
+    display: inline-block;
+    height: 35px;
+    width: 35px;
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 2;
+    background: url(/static/img/common/sprites.png) no-repeat -75px -21px;
+}
+.u-rL2nd-user .u-user-name {
+    display: inline-block;
+    width: 110px;
+    margin: 0 0 0 20px;
+}
+.u-quadrupleGift-list li b{
+    color: #d64148;
+    font-weight: bold;
+}
+.u-quadrupleGift-list .u-giftText{
+    display: inline-block;
+    width: 300px;
+}
+.u-quadrupleGift-box>img{
+    width: 10px;
+    height: 380px;
+    float: left;
+}
+.u-quadrupleGift-list{
+    width: 680px;
+    height: 300px;
+    float: left;
+    padding: 40px 0 40px 60px;
+    background-color: #fff;
+}
+/**抢标风云榜**/
+.m-quadrupleGift-list{
+    height: 410px;
+    padding: 50px 0 80px;
+}
+.m-quadrupleGift-list h5{
+    margin-bottom: 14px;
+    font-size: 24px;
+    color: #d74148;
+    font-weight: bold;
+}
+.u-quadrupleGift-slist{
+    width: 243px;
+    height: 380px;
+    float: left;
+    color: #666;
+    background-color: #fff;
+}
+.u-quadrupleGift-piece{
+    overflow: hidden;
+    height: 380px;
+}
+.u-quadrupleGift-piece>ul{
+    width: 1240px;
+}
+.u-quadrupleGift-piece img{
+    float: left;
+    height: 380px;
+}
+.u-quadrupleGift-slist h6{
+    color: #d64148;
+    font-weight: bold;
+    margin: 20px 0 3px 30px;
+}
+.u-quadrupleGift-slist b{
+    margin-left: 30px;
+}
+.u-quadrupleGift-slist s {
+    display: block;
+    margin-top: 15px ;
+    height: 3px;
+    background: url(/static/img/common/sprites.png) repeat-x -213px -166px;
+    overflow: hidden;
+}
+.u-quadrupleGift-slist ul{
+    color: #999;
+    padding-left: 30px;
+    padding-top: 7px;
+}
+.u-quadrupleGift-slist li{
+    margin-top:20px ;
+}
+.u-quadrupleGift-slist li .u-user-wrap {
+    width: 115px;
+    display: inline-block;
+}
+.u-user-head {
+    position: relative;
+    padding: 0 10px 0 0;
+    vertical-align: middle;
+}
+.u-user-head, .u-user-head i, .u-user-head img {
+    display: inline-block;
+    height: 35px;
+    width: 35px;
+    overflow: hidden;
+}
+.u-quadrupleGift-prize{
+    padding-left: 45px;
+    margin-top: -4px;
+    line-height: 1.3em;
+}
+.u-quadrupleGift-prize em{
+    color: #d64148;
+    font-weight: bold;
+}
+/**规则**/
+.m-quadrupleGift-rule{
+    height: 200px;
+    padding: 50px 0 80px;
+}
+.u-quadrupleGift-rule h6{
+    color: #333333;
+    font-weight: bold;
+}
+.u-quadrupleGift-rule p{
+    color: #666666;
+    line-height: 2em;
+    font-size: 14px;
+}
+.u-quadrupleGift-rule p em{
+    color: #666666;
+    font-weight: bold;
+}
+.u-quadrupleGift-rule p a{
+    color: #666666;
+    font-weight: bold;
+    text-decoration: underline;
+}
+.u-quadrupleGift-rule p a:link,
+.u-quadrupleGift-rule p a:visited,
+.u-quadrupleGift-rule p a:hover{
+    color: #666666;
+    font-weight: bold;
+    text-decoration: underline;
+}
+.m-quadrupleGift-list>.g-wrap{
+    position: relative;
+}
+.m-quadrupleGift-list>.g-wrap>i{
+    width: 30px;
+    height: 30px;
+    display: block;
+    cursor: pointer;
+    position: absolute;
+    top:240px;
+}
+.m-quadrupleGift-list>.g-wrap .u-direction-l{
+    left: -15px;
+    background: url("/static/img/v2/member/reputation_direction_LR.png") no-repeat 0 0;
+}
+.m-quadrupleGift-list>.g-wrap .u-direction-r{
+    right: -15px;
+    background: url("/static/img/v2/member/reputation_direction_LR.png") no-repeat -44px 0;
+}
+.u-popularityValueLevel{
+    width: 556px;
+    height: 78px;
+    text-align: center;
+    background: #fff;
+    border: 1px solid #bfbfbf;
+    border-radius: 5px;
+    position: absolute;
+    top: 40px;
+    left: 240px;
+    z-index: 100;
+    padding: 6px;
+}
+.u-popularityValueLevel::after{
+    content: '';
+    width: 20px;
+    height: 10px;
+    position: absolute;
+    top:-10px;
+    background:url("/static/img/activity/quadrupleGift/arrowGray.png") ;
+}
+.u-popularityValueLevel table tr td{
+    width: 112px;
+    line-height: 34px;
+    background: #eeeeee;
+    border-right: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+}
+.u-popularityValueLevel table .u-firstTr td{
+    line-height: 42px;
+}
+.u-popularityValueLevel table tr td em{
+    color: #d64148;
+}
+.z-show{
+    display: block;
+}

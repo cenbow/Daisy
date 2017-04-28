@@ -1,0 +1,22 @@
+#parse("/common/common.vm")
+<style>
+.u-page-line {
+    width: 100%;
+    height: 8px;
+    background: url($root_url/static/img/common/page_line.png) repeat-x;
+    position: absolute;
+    top: 440px;
+    left: 0;
+}
+.u-error-page {
+    padding: 185px 0 235px;
+}
+.u-error-page img {
+    display: block;
+    margin: 0 auto;
+}
+</style>
+<div class="u-error-page f-pos-r">
+	<img src="$root_url/static/img/common/error_404.png" alt="无法找到此页面" />
+	<div class="u-page-line"></div>
+</div>

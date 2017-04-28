@@ -1,0 +1,131 @@
+#parse("/fin/payPrincipalInterest/head.vm")
+<div class="col-xs-12"></div>
+<div class="col-xs-12">
+	<div class="table-header">表头信息</div>
+	<div class="table-responsive">
+	<form>
+		<table class="table table-striped table-bordered">
+			<thead>
+				<tr>
+					<td>项目编号</td>
+					<td><input type="text" name="search_projectId"  class="input-small search_init" /></td>
+					<td>项目名称</td>
+					<td><input type="text" name="search_projectName"  class="input-small search_init" /></td>
+					<td>出借人手机</td>
+					<td><input type="text" style="width:110px" name="search_mobile"  class="input-small search_init" /></td>
+					<td>出借人姓名</td>
+					<td><input type="text" name="search_trueName"  class="input-small search_init" /></td>
+					<td>上线时间</td>
+					<td>
+						<input type="text" name="search_onlineTimeStart"  class="input-small search_init" onclick="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd'})"/>
+						至
+						<input type="text" name="search_onlineTimeEnd"  class="input-small search_init" onclick="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd'})"/>
+					</td>
+					<td>放款状态</td>
+					<td>
+						#dictSelect("search_status",$!{sysServiceUtil.getDictList("pay_status")},"请选择")
+					</td>
+					
+					
+				</tr>
+				<tr>
+					<td>
+						<select name="search_endDateSelect" id="endDateSelect">
+							<option value="">请选择</option>
+							<option value="0">距离到期日</option>
+							<option value="1">到期日区间</option>
+							<option value="2">到期日</option>
+						</select>
+					</td>
+					<td id="end_date_search" style="display:none">
+						#dictSelect("search_endDate",$!{sysServiceUtil.getDictList("pay_differdate")},"请选择")
+					</td>
+					<td id="end_date_start_search" style="display:none">
+						<input type="text" id="search_endDateStart" name="search_endDateStart"  class="input-small search_init" onclick="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd'})"/>
+						至
+						<input type="text" id="search_endDateEnd" name="search_endDateEnd"  class="input-small search_init autoFill autoEndDate" onclick="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd',onpicked:autoEndDate})"/>
+					</td>
+					<td id="due_date_search" style="display:none">
+						<input type="text" name="search_dueDate"  class="input-small search_init" onclick="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd'})"/>
+					</td>
+					<td>借款人姓名</td>
+					<td><input type="text" name="search_borrowerName"  class="input-small search_init" /></td>
+					<td>项目类型</td>
+					<td>#dictSelect ("search_projectType",${sysServiceUtil.getDictList('project_type')} ,"请选择")</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td width="140"><button id = "query_pay" type="button" class="btn btn-info btn-sm btn-primary">查询</button>
+						<button id = "reset_pay" type="button" class="btn btn-info btn-sm btn-primary resetButton">重置</button>
+					</td>
+				</tr>
+			</thead>
+		</table>
+		</form>
+		<table id="payPrincipalInterest-table" class="table table-striped table-bordered" cellspacing="0" width="100%">
+			<thead>
+				<tr >
+					<th width="80">项目编号</th>
+					<th width="240">项目名称</th>
+					<th width="100">项目类型</th>
+					<th width="100">借款人姓名</th>
+					<th width="70">出借人手机</th>
+					<th width="130">出借人姓名</th>
+					<th width="120">上线时间</th>
+					<th width="70">期数</th>
+					<th width="120">还款到期日</th>
+					<th width="100">距离到期</th>
+					<th width="160">支付本金</th>
+					<th>总支付利息</th>
+					<th>出借人支付投资人利息</th>
+					<th>平台贴息</th>
+					<th width="90">还款状态</th>
+					<th>垫资第三方</th>
+					<th width="90">操作</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+</div>
+
+<div style="margin-left: 10px" >
+	<span style="font-size: 15px;">已还本付息项目:</span><span style="font-size: 20px;">$!{repayCount}</span>个&nbsp;&nbsp;&nbsp;
+	<span style="font-size: 15px;">履约中项目：</span><span style="font-size: 20px;">$!{fullCount}</span>个
+</div>
+<div class="col-xs-5">
+	<table class="table table-striped table-bordered">
+		<tr>
+			<td>待付本金</td>
+			<td>￥$!{waitPayInterestBiz.payablePrincipal}</td>
+			<td>待付利息</td>
+			<td>￥$!{waitPayInterestBiz.payableInterest}</td>
+			<td>待付贴息</td>
+			<td>￥$!{waitPayInterestBiz.extraInterest}</td>
+			<td>待付付息</td>
+			<td>￥$!{waitPayInterestBiz.userInterestStr}</td>
+		</tr>
+		<tr >
+			<td>已付本金</td>
+			<td style="background-color: #7EC0EE;">￥$!{paidInterestBiz.payablePrincipal}</td>
+			<td>已付利息</td>
+			<td style="background-color: #7EC0EE;">￥$!{paidInterestBiz.payableInterest}</td>
+			<td>已付贴息</td>
+			<td style="background-color: #7EC0EE;">￥$!{paidInterestBiz.extraInterest}</td>
+			<td>已付付息</td>
+			<td style="background-color: #7EC0EE;">￥$!{paidInterestBiz.userInterestStr}</td>
+		</tr>
+		<tr>
+			<td>本金总计</td>
+			<td style="background-color: #FFEC8B;">￥$!{allInterestBiz.payablePrincipal}</td>
+			<td>利息总计</td>
+			<td style="background-color: #FFEC8B;">￥$!{allInterestBiz.payableInterest}</td>
+			<td>平台总贴息</td>
+			<td style="background-color: #FFEC8B;">￥$!{allInterestBiz.extraInterest}</td>
+			<td>出借人付息</td>
+			<td style="background-color: #FFEC8B;">￥$!{allInterestBiz.userInterestStr}</td>
+		</tr>
+	</table>
+</div>
+#parse("/fin/payPrincipalInterest/seleteUnderwriter.vm")

@@ -1,0 +1,68 @@
+#parse('/common/common.vm')
+#set($title="信有融_$!{title_suffix}")
+#set($css_url=["$root_css_url/modules/creditList.css"])
+
+
+
+<div class="u-credit-head">
+    <div class="g-wrap f-pos-r">
+        <h3>已售罄项目集合</h3>
+    </div>
+</div>
+<div class="g-wrap u-completed-list">
+    #if($!{list.size()}>0)
+        <ul>
+            #foreach($p in $list)
+                <li><h1>$!{p.name}</h1>
+                    <a href="$root_url/products/showProjectPackage-$!{p.id}.html"><img
+                            src="#getProjectThumbnail($!{p.imgurl})"></a>
+                    <div class="u-right-box f-pos-r">
+                        <table>
+                            <tbody>
+                            <tr>
+                                <td width="220"><em>￥</em><strong>$!{p.totalAmount}</strong><i>项目总额</i></td>
+                                <td width="280">
+                                    #if($!{p.minAnnualizedRate} == $!{p.maxAnnualizedRate})
+                                        <strong>${formulaUtil.getIntegerDefaultZero($p.maxAnnualizedRate)}</strong><em>${formulaUtil.getDecimalDefaultZero($p.maxAnnualizedRate)}
+                                        %</em>
+                                    #else
+                                        <strong>${formulaUtil.getIntegerDefaultZero($p.minAnnualizedRate)}</strong><em>${formulaUtil.getDecimalDefaultZero($p.minAnnualizedRate)}
+                                        %</em><strong>-</strong>
+                                        <strong>${formulaUtil.getIntegerDefaultZero($p.maxAnnualizedRate)}</strong><em>${formulaUtil.getDecimalDefaultZero($p.maxAnnualizedRate)}
+                                        %</em>
+                                    #end
+                                    <i>年化利率</i></td>
+                                <td width="220"><strong> #if($!{p.minBorrowPeriod} == $!{p.maxBorrowPeriod})
+                                    $!{p.maxBorrowPeriod}
+                                #else
+                                    $!{p.minBorrowPeriod} - $!{p.maxBorrowPeriod}
+                                #end</strong><em>                             #if($!{p.maxBorrowPeriodType} == 1)
+                                    天
+                                #elseif($!{p.maxBorrowPeriodType} == 2)
+                                    个月
+                                #elseif($!{p.maxBorrowPeriodType} == 3)
+                                    年
+                                #elseif($!{p.maxBorrowPeriodType} == 4)
+                                    周
+                                #end</em><i>收益周期</i></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="u-pbox-process">
+                            <i style="width:$!{p.progress}%"></i>
+                        </div>
+                        <p>当前进度：$!{p.progress}% &nbsp;&nbsp;&nbsp;&nbsp; 剩余可投金额
+                            $!{formulaUtil.getFormatPrice($!{p.voteAmount})} 元 </p>
+                        <a class="f-button" href="$root_url/products/showProjectPackage-$!{p.id}.html">已售罄</a>
+                    </div>
+                </li>
+            #end
+        </ul>
+    #else
+        <div class="m-no-project">
+            <div class="u-no-project">
+                <div>暂无已售罄集合</div>
+            </div>
+        </div>
+    #end
+</div>

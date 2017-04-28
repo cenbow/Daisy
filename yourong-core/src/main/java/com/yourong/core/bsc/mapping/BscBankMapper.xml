@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.bsc.dao.BscBankMapper" >
+  <cache-ref namespace="com.yourong.core.cms.dao.BannerMapper"/>
+  <resultMap id="BaseResultMap" type="BscBank" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="simple_name" property="simpleName" jdbcType="VARCHAR" />
+    <result column="full_name" property="fullName" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, simple_name, full_name, code, status, create_time, update_time
+  </sql>
+  <insert id="insertSelective" parameterType="BscBank" >
+    insert into bsc_bank
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="simpleName != null" >
+        simple_name,
+      </if>
+      <if test="fullName != null" >
+        full_name,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+        create_time,
+        update_time
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="simpleName != null" >
+        #{simpleName,jdbcType=VARCHAR},
+      </if>
+      <if test="fullName != null" >
+        #{fullName,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      now(), now()
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="BscBank" >
+    update bsc_bank
+    <set >
+      <if test="simpleName != null" >
+        simple_name = #{simpleName,jdbcType=VARCHAR},
+      </if>
+      <if test="fullName != null" >
+        full_name = #{fullName,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+        update_time = now()
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <delete id="batchDelete" parameterType="java.lang.Long" >
+    delete from bsc_bank
+    where id in  <foreach collection="ids" index="index" item="item" open="(" separator="," close=")"> #{item}  </foreach>  
+  </delete>
+  <select id="findByPage" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from bsc_bank
+    <if test=" map != null" >
+      <where >
+        <if test=" map.id != null" >
+           and id = #{map.id}
+        </if>
+        <if test=" map.simpleName != null" >
+          and simple_name = #{map.simpleName}
+        </if>
+        <if test=" map.fullName != null" >
+          and full_name = #{map.fullName}
+        </if>
+        <if test=" map.code != null" >
+          and code = #{map.code}
+        </if>
+        <if test=" map.status != null" >
+          and status = #{map.status}
+        </if>
+        <if test=" map.createTime != null" >
+          and create_time = #{map.createTime}
+        </if>
+        <if test=" map.updateTime != null" >
+          and update_time = #{map.updateTime}
+        </if>
+      </where>
+    </if>
+    <choose>
+		<when test=" map != null">
+			<if test=" map.desc != null">
+				order by ${map.desc} desc
+			</if>
+			<if test=" map.asc != null">
+				order by ${map.asc} asc
+			</if>
+		</when>
+		<otherwise>
+			order by p.id desc
+		</otherwise>
+	</choose>
+  </select>
+  
+  <!-- 查询银行 -->
+  <select id="selectBscBank" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from bsc_bank
+   	<where>
+    	<if test=" simpleName != null" >
+          or simple_name = #{simpleName}
+        </if>
+        <if test=" fullName != null" >
+          or full_name = #{fullName}
+        </if>
+        <if test=" code != null" >
+          or code = #{code}
+        </if>
+    </where>
+    limit 1
+  </select>
+  
+  <select id="getBankList" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from bsc_bank
+    where status = 1
+    order by code
+  </select>
+</mapper>

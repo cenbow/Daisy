@@ -1,0 +1,38 @@
+#parse("/common/common.vm")
+#set($js_url=["$root_js_url/activity/transferContract.js"])
+<style>
+    .g-ft{
+        display: none;
+    }
+    .g-hd{
+        display: none;
+    }
+    .u-ios-href{
+        width: 30%;
+        height: 200px;
+        text-align: center;
+        color: #333;
+        background: #fff;
+        position: fixed;
+        top:30%;
+        left:40%;
+        z-index: 100;
+    }
+    .u-ios-href a{
+        font-size: 2rem;
+        color: #d74148;
+    }
+    .f-dn{
+        display: none;
+    }
+</style>
+<div data-os=${loginSource} data-result=${result} id="j-test"></div>
+<div class="f-pos-r">
+    <div class="u-shade">
+
+    </div>
+</div>
+
+
+
+

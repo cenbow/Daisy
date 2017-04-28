@@ -1,0 +1,9 @@
+#parse("/common/common.vm")
+ #########################################script##################################### 
+ #set($js_config=[ 
+ "'urlMap':{ 
+   'sys':'$root_url/loan/synchronizedBaseBalance?'   
+   }   
+   "]) 
+ #set($js_url=["$root_url/static/js/capital.js"]) 
+ #########################################DOM##################################### 

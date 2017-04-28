@@ -1,0 +1,25 @@
+#parse("/common/common.vm")
+#########################################script#####################################
+#set($js_config=[
+    "'urlMap':{
+    'uploadURL':'$root_url/commonUpload/uploadFile',
+    'ajax':'$root_url/shoporder/ajax',
+    'queryremark':'$root_url/shoporder/queryremark',
+    'remark':'$root_url/shoporder/remark',
+    'sendremark':'$root_url/shoporder/sendremark',
+    'updatesendremark':'$root_url/shoporder/updatesendremark',
+    'recharge':'$root_url/shoporder/recharge',
+    'balance':'$root_url/shoporder/balance'
+    },
+    'permission':{
+    'orderExcel':$shiro.hasPermission('shoporder:orderExcel'),
+    'failgive':$shiro.hasPermission('shoporder:failgive'),
+    'sendRemark':$shiro.hasPermission('shoporder:sendRemark'),
+    'Remark':$shiro.hasPermission('shoporder:Remark')
+    },
+    'status':#buildDictJson('order_standard_status'),
+    'orderSource':#buildDictJson('source_sys')
+    "])
+#set($css_url=["$root_url/static/js/lib/My97DatePicker/skin/WdatePicker.css","$root_url/static/assets/css/dropzone.css","$root_url/static/js/lib/jcrop/jquery.Jcrop.min.css","$root_url/static/js/lib/colorbox/colorbox.css","$root_url/static/js/lib/colorbox/colorbox.css"])
+#set($js_url=["$root_url/static/js/shoporder.js","$root_url/static/js/lib/My97DatePicker/WdatePicker.js","$root_url/static/assets/js/dropzone.min.js","$root_url/static/js/dz-upload.js","$root_url/static/js/lib/jcrop/jquery.Jcrop.min.js","$root_url/static/js/lib/colorbox/jquery.colorbox-min.js"])
+#########################################DOM#####################################

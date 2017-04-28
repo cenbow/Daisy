@@ -1,0 +1,268 @@
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$m_css_url/modules/member.css","$m_css_url/modules/orderPayment.css"])
+#set($title='订单支付')
+##VueTemplate
+#set($orderId=$request.getParameter("orderId"))
+#set($pid=$request.getParameter("pid"))
+#set($type=$request.getParameter("type"))
+##新页面
+<div id="payment" orderid="$!{orderId}" pid="$pid" type="$type" v-cloak>
+    <div class="u-contract" id="j-contract"></div>
+    <div id="orderInfo" style="height: 110%">
+        <h2 class="u-header f-pos-r">
+            <a href="{{goBackUrl}}">返回</a>
+        <span class="f-fs22" id="j-orderId">
+        订单支付
+    </span>
+        </h2>
+        <div class="g-wrap">
+            <div class="u-orderInfo">
+                <div class="u-orderInfoTitle">
+                    <i></i>
+                    <span class="f-color3">订单信息</span>
+                <span class="f-fs18 f-fr">
+                    <img v-if="!detailInfoOpened" src="$res_url/img/member/downChevron.png" alt="" @click="detailInfoOpen">
+                    <img v-else src="$res_url/img/member/upChevron.png" alt="" @click="detailInfoOpen">
+                </span>
+                </div>
+                <div class="u-investInfo">
+                    <span class="f-color6 f-fs14"><em v-text="order.prefixProjectName.split('期')[0]"></em>期</span> <br>
+                    <span class="f-color9 f-fs12">订单编号 <i v-text="order.orderNo"></i></span>
+                </div>
+                <div v-if="detailInfoOpened" class="u-investDetailInfo">
+                    <ul>
+                        <li><span>投资本金</span> <span v-text="order.investAmount | amountSplit"></span></li>
+                        <li><span>年化收益</span><span><i v-text="order.annualizedRate"></i>% </span></li>
+                        <li v-if="order.extraAnnualizedRate"><span>用收益券</span><span
+                                v-text="order.extraAnnualizedRate.toFixed(2)"></span>% <span v-if="order.extraName"
+                                                                                             class="f-fs12">({{order.extraName}})</span>
+                        </li>
+                        <li v-if="order.investType===2"><span>收益周期</span><span v-text="order.profitPeriod"></span></li>
+                        <li v-if="order.investType===1"><span>收益天数</span><span v-text="order.profitPeriod"></span></li>
+                        <li>
+                            <span>预期收益</span>
+                        <span>&yen;
+                            <em v-text="order.totalExpectAmount"></em>
+                        <i v-if="order.extraAnnualizedRate">(含券收益 <em v-text="order.extraExpectAmount"></em>元)</i>
+                    </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="u-payInfo f-color9">
+                <div class="u-orderInfo">
+                    <div class="u-orderInfoTitle">
+                        <i></i>
+                        <span class="f-color3">支付信息</span>
+                    </div>
+
+                </div>
+                <div class="f-fs14 u-investAmount"><span>投资本金</span> <span class="f-fs50 f-colorRed f-fr f-fontDin" v-text="order.investAmount | amountSplit"></span></div>
+                <div class="f-fs14 u-usePiggyBalance">
+                    <span>使用存钱罐余额</span>
+                    <input v-if="order.orderSavingPotAmount||order.orderPayAmount" class="f-fs50 f-fontDin" type="number" disabled="disabled" v-model="order.orderSavingPotAmount"/>
+                    <input v-else class="f-fs50 f-fontDin" type="text" @keyup="limitInputAmount" @keydown="stopIllegalInput" v-model="inputAmount" id="j-inputAmount"/>
+                </div>
+                <div class="f-fs14 u-piggyBalance"><span>存钱罐可用余额</span><span class="f-fr" v-text="order.savingPotBalance | amountSplit"></span></div>
+                <div>
+                    <div v-if="order.orderUsedCashNo||order.orderSavingPotAmount||order.orderPayAmount">
+                        <div class="f-fs14 u-cashCouponList"  :class="{'f-dn':!order.orderUsedCashNo}" >
+                            <span type="button" class=" f-fr"  disabled="disabled">+{{order.orderUsedCashAmount}}元现金券</span>
+                        </div>
+                    </div>
+                    <div class="f-fs14 u-cashCouponList" v-else>
+                        <span v-if="order.coupons.length" class=" f-fr" @click="toggleCouponsPopup"><em v-text="couponBtnText"></em></span>
+                        <span v-else class=" f-fr f-colorC">暂无可用现金券</span>
+                    </div>
+                </div>
+                <div class="f-fs14 u-additionalAmount " :class="{'f-dn':quickpayAmount==0}">
+                    <span>还需支付</span>
+                    <span class="f-fs50 f-colorRed f-fontDin f-fr" v-if="order.orderPayAmount" v-text="order.orderPayAmount" style="line-height: 120px;"></span>
+                    <sapn class="f-fs50 f-colorRed f-fontDin f-fr" v-else v-text="quickpayAmount" style="line-height: 120px;"></sapn>
+                </div>
+                <div v-if="!isWithholdAuthority&&quickpayAmount!=0&&!order.orderPayAmount" class="f-fs14 u-gotoRecharge" @click="gotoRecharge">前往充值</div>
+            </div>
+            <div class=" f-fs12 f-agree-pos u-agreementCheck">
+                <input type="checkbox" checked="checked" name="agree" id="j-agreementCheck" v-model="agreementChecked">&nbsp;我已阅读并同意
+                <a class="f-fc-red" id="j-contract-btn" href="javascript:void(0)" @click="getContract">《{{order.contractTitle}}》</a>
+                <form id="j-previewForm" url="$siteurl/security/transaction/contract/preview" method="POST">
+                    <input type="hidden" name="investAmount" value="{{order.investAmount}}">
+                    <input type="hidden" name="projectId" value="{{order.projectId}}">
+                    <input type="hidden" name="annualizedRate" value="{{order.annualizedRate}}" id="j-rate">
+                </form>
+            </div>
+            <div v-if="isNeedSina&&isWithholdAuthority" class="u-balanceTips f-fs12 f-color9">
+                当前余额不足，需前往新浪收银台充值，充值成功即完成投资
+            </div>
+            <div v-if="quickpayAmount==0&&!isWithholdAuthority" class="u-balanceTips f-fs12 f-color9">
+                开通委托支付后，余额充足时，无需输入支付密码，投资一步到位。
+                <a @click="gotoSetPaymentCipher(1,2)">前往开通</a>
+            </div>
+        </div>
+    ##    支付按钮
+        <div v-if="!isWithholdAuthority" class="u-submitBtn j-submitBtn" :class="{'z-disabled':btnDisabled}" @click="payOrder">
+            <img src="$res_url/img/member/sinalogo.png" alt="">
+            去新浪支付
+        </div>
+        <div v-if="!isWithholdAuthority&&inputAmount==0&&quickpayAmount==0" class="u-submitBtn j-submitBtn" :class="{'z-disabled':btnDisabled}" @click="payOrder">
+            完成支付
+        </div>
+##        第一次次支付过程中关闭委托
+        <div v-if="!isWithholdAuthority&&order.orderPayAmount&&quickpayAmount!=0" class="u-submitBtn j-submitBtn"  @click="spcialOrderPay">
+            <img src="$res_url/img/member/sinalogo.png" alt="">
+            继续支付
+        </div>
+        <div v-if="isWithholdAuthority&&!isNeedSina" class="u-submitBtn j-submitBtn" :class="{'z-disabled':btnDisabled}" @click="payOrder">
+            完成支付
+        </div>
+        <div v-if="isWithholdAuthority&&isNeedSina" class="u-submitBtn j-submitBtn" :class="{'z-disabled':btnDisabled}"  @click="payOrder">
+            <img src="$res_url/img/member/sinalogo.png" alt="">
+            继续支付
+        </div>
+    ##现金券弹窗
+        <div class="u-cashCoupon-popup f-dn" :class="{'f-dn':!couponsPopupOpened}" id="j-cashCoupons">
+            <ul class="u-cashCoupon">
+                <li class="f-colorRed" @click="selectCoupon" data-index="-1">不使用现金券</li>
+                <li v-for="(index,item) in order.coupons" class="f-colorRed" v-bind:class="{'z-disabled':!item.isAvailable||item.amount>order.investAmount-0,'f-color-gray':!item.isAvailable||item.amount>order.investAmount-0}" data-code="{{item.couponCode}}" data-amount="{{item.amount}}" data-index="{{index}}" data-expdate="{{item.couponValidity}}" @click="selectCoupon">
+                    {{item.amount}}元
+                <span class="f-rule f-fs12">
+                    {{item.couponValidity}}
+
+                    <br v-if="item.couponAmountScope"/>
+                    {{item.couponAmountScope}}
+
+                    <br v-if="item.couponDaysScope"/>
+                    {{item.couponDaysScope}}
+                </span>
+                    <div class="f-gray-bg z-show " v-if="!item.isAvailable||item.amount>order.investAmount-0"></div>
+                </li>
+            </ul>
+        </div>
+    ##确认支付后提示框
+        <div class=" u-paySuccess f-fs12 " :class="{'f-dn':!paySuccess}">
+            <img src="$res_url/img/member/loading.gif" alt="">
+            <span>处理中...</span>
+            <div class="u-countdown"><i>{{paySucessCount}}</i></div>
+        </div>
+    ##    遮罩层
+        <div class="u-cover j-cover" @click="toggleCouponsPopup(false)"></div>
+    </div>
+</div>
+##旧页面
+##<div id="payment" orderid="$!{orderId}" pid="$pid">
+##    <h2 class="u-header f-pos-r">
+##        <a href="{{path}}/mCenter/home">返回</a>
+##        <span class="f-fs22" id="j-orderId">
+##        订单支付
+##    </span>
+##    </h2>
+##    <div class="g-wrap">
+##        <ul class="m-submit" id="j-orderPay-info">
+##            <li class="f-fs14"> 订单编号<span class="f-fr f-fs14" v-text="order.orderNo"></span></li>
+##            <li >投资本金<em class="f-fr f-fs28 j-annualizedRate" v-text="order.investAmount | amountSplit"></em></li>
+##
+##            <li class="f-fs14 f-pay">
+##                <div class="f-mar-center">
+##                    使用存钱罐余额
+##                    <input v-if="order.orderSavingPotAmount||order.orderPayAmount" class=" f-fr j-pay-amount f-color-gray" type="number" disabled="disabled" v-model="order.orderSavingPotAmount"/>
+##                    <input v-else class="f-fr" type="text" @keyup="limitInputAmount" @keydown="stopIllegalInput" v-model="inputAmount" id="j-inputAmount"/>
+##                </div>
+##            </li>
+##            <li class="f-fs14 ">存钱罐可用余额<span class="f-fr f-fs16" v-text="order.savingPotBalance | amountSplit"></span></li>
+##            <li class="f-choice f-fs14" v-if="order.orderUsedCashNo||order.orderSavingPotAmount||order.orderPayAmount">
+##                <input type="button" class="f-fs16 z-indent f-dn" :class="{'f-dn':!order.orderUsedCashNo}"  disabled="disabled" value="+{{order.orderUsedCashAmount}}元   {{order.orderCashEndDate}}"/>
+##            </li>
+##            <li class="f-choice f-fs14" v-if="order.coupons.length" @click="toggleCouponsPopup(true)">
+##                <input type="button" v-model="couponBtnText" class="z-indent"/>
+##            </li>
+##        </ul>
+##        ##快捷支付
+##        <div class="u-quickPay z-quickPay-show m-submit f-dn" :class="{'f-dn':!(quickpayAmount&&order.bankCardList.length)}">
+##
+##            <ul class=" m-submit" id="j-quickPay-info">
+##                <li class="f-fs14">还需支付
+##                    <em class="f-fr f-fs28 " v-if="order.orderPayAmount" v-text="order.orderPayAmount"></em>
+##                    <em class="f-fr f-fs28 " v-else v-text="quickpayAmount||''"></em>
+##                </li>
+##                <li class=" f-quickPay" v-for="(index,item) in order.bankCardList" @click="selectBankcard" :class="{'z-clicked':bankcardIndex===index&&order.bankCardList.length>1}" data-index="{{index}}">
+##                    <div class="f-mar-center">
+##                    <img class="f-bankImg" :src="path+'/res/img/bankAdd/bank_'+item.bankCode+'.png'" alt=""/>
+##                    <p class="f-fs18 f-backCardMsg">
+##                        <span class="j-bankName" v-text="item.bankCode | bankNameFormat"></span><br/>
+##                        <span v-text="item.cardNumber"></span>
+##                    </p>
+##                    <div class="f-safeCard f-fr" v-if="item.isSecurity===1"></div>
+##                    <div class="u-shortcut f-fr" v-else>快捷支付</div>
+##                    </div>
+##                </li>
+##            </ul>
+##            <div class=" f-fs12">
+##                <input type="checkbox" checked="checked" name="agree" id="j-agreementCheck" v-model="agreementChecked">
+##                <label for="j-agreementCheck">
+##                    &nbsp;我已阅读并同意
+##                    <a class="f-fc-red" target="_blank" href="{{path}}/res/page/quickPay-agreement.html">《新浪支付快捷支付服务协议》</a>
+##                </label>
+##            </div>
+##        </div>
+##    </div>
+##    ##现金券弹窗
+##    <div class="u-cashCoupon-popup f-dn" :class="{'f-dn':!couponsPopupOpened}" id="j-cashCoupons">
+##        <ul class="u-cashCoupon">
+##            <li class="f-fc-red" @click="selectCoupon" data-index="-1">不使用现金券</li>
+##            <li v-for="(index,item) in order.coupons" class="f-fc-red" v-bind:class="{'z-disabled':!item.isAvailable||item.amount>order.investAmount-0,'f-color-gray':!item.isAvailable||item.amount>order.investAmount-0}" data-code="{{item.couponCode}}" data-amount="{{item.amount}}" data-index="{{index}}" data-expdate="{{item.couponValidity}}" @click="selectCoupon">
+##                {{item.amount}}元
+##                <span class="f-rule f-fs12">
+##                    {{item.couponValidity}}
+##
+##                    <br v-if="item.couponAmountScope"/>
+##                    {{item.couponAmountScope}}
+##
+##                    <br v-if="item.couponDaysScope"/>
+##                    {{item.couponDaysScope}}
+##                </span>
+##                <div class="f-gray-bg z-show " v-if="!item.isAvailable||item.amount>order.investAmount-0"></div>
+##            </li>
+##        </ul>
+##        <button class="u-btn-close j-btn-close" @click="toggleCouponsPopup(false)">取消</button>
+##    </div>
+##    <button type="submit" @click="payOrder" class="f-fs18 f-btn-submit u-btn-primary u-reg-btn" :class="{'z-disabled':btnDisabled}">确 认 支 付</button>
+##    ##余额不足提示框
+##    <div id="f-openBank" class="u-popup f-fs14 f-dn" :class="{'f-dn':!balanceNotEnough}">
+##        <ul>
+##            <li class="f-firstLi"> 您还未开通快捷支付 <br/>开通后请到“我的订单”中支付</li>
+##            <li class="f-secondLi"><a class="f-firstA" href="$siteurl/mCenter/bankManage">去开通</a> </li>
+##        </ul>
+##    </div>
+##    ##确认支付后提示框
+##    <div class=" u-paySuccess f-fs12 f-dn"  :class="{'f-dn':!paySuccess}">
+##    <img src="$res_url/img/member/loading.gif" alt="">
+##        <span>支付中...</span>
+##        <div class="u-countdown"><i>{{paySucessCount}}</i></div>
+##    </div>
+##    ##快捷支付发送短信弹窗
+##    <div class="u-popup f-verificationCode f-fs12 f-dn" :class="{'f-dn':!smsDialog.opened}">
+##        <div class="j-number">请输入正确的验证码</div>
+##        <ul>
+##            <li class=" j-tipMsg f-fs16 f-firstLi">已向您尾号为 <em class="j-mobile"  v-text="smsDialog.mobile"></em>的手机发送验证码 </li>
+##            <li class="f-fs14 f-verificationCode-input">
+##                <span>验证码</span>
+##                <input class="u-verificationCode" type="number" v-model="smsDialog.validCode" maxlength="6" name="smsCode" />
+##                <span v-if="smsDialog.isCountdown"><em v-text="smsDialog.countNum"></em>秒后可重发</span><span v-if="smsDialog.isResent" @click="resendSMS">重新获取</span>
+##            </li>
+##            <li class="f-secondLi f-fs14"><a href='{{smsDialog.cancelUrl}}'>取消</a>
+##                <a href="javascript:void(0)" class="f-secondA j-transactionLink">
+##                    <span @click="checkSMSCode">立即支付</span>
+##                </a>
+##            </li>
+##        </ul>
+##    </div>
+##
+##</div>
+
+#set($pageScript="
+<script src='$aliyunOss_url/res/lib/vue/v1/vue.min.js'></script>
+<script>
+    seajs.use('$siteurl/res/source/js/modules/orderPayment2.js')
+</script>")
+#CSRFToken("xToken")

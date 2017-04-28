@@ -1,0 +1,772 @@
+[v-cloak] {
+    display: none;
+}
+
+.g-main img {
+    display: block;
+}
+
+.m-head img {
+    width: 100%;
+}
+
+.m-head .u-time {
+    position: absolute;
+    width: 100%;
+    top: 9.375rem;
+    text-align: center;
+    color: #fff;
+    font-size: 14px;
+}
+
+.m-head .u-luck-bags {
+    position: absolute;
+    width: 100%;
+    top: 15rem;
+
+}
+
+.m-head .u-luck-bags .u-position-center {
+    width: 22.2rem;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.m-head .u-luck-bags a {
+    width: 6.4rem;
+    height: 15.875rem;
+    background: url(https://yrstatic.oss-cn-hangzhou.aliyuncs.com/res/img/activity/fiveBillion/fudai.png) no-repeat center;
+    display: inline-block;
+    background-size: 100% 100%;
+    position: relative;
+    margin-right: 0.5rem;
+    vertical-align: middle;
+    margin-bottom: 1.25rem;
+}
+
+.m-head .u-luck-bags a p {
+    color: #333;
+    font-size: 0.8125rem;
+    text-align: center;
+    width: 100%;
+    margin-top: 7.5rem;
+    min-height: 3.75rem;
+}
+
+.m-head .u-luck-bags a.f-no-margin {
+    margin-right: 0;
+}
+
+.m-head .u-luck-bags a .u-get-button {
+    width: 5.5rem;
+    line-height: 2rem;
+    background: #d52020;
+    color: #fff;
+    font-size: 0.875rem;
+    text-align: center;
+    bottom: 0;
+    border-radius: 30px;
+    margin: 1rem auto 0;
+    left: -2px;
+    position: relative;
+}
+
+.m-head .u-luck-bags a .u-get-button.f-disabled {
+    background: #bcbcbc;
+}
+
+.m-head .u-luck-bags div.f-use-regular {
+    color: #f1dea7;
+    text-align: center;
+    width: 42%;
+    display: block;
+    font-size: 0.75rem;
+    margin: 0 auto;
+}
+
+.m-lottery-game {
+    top: 0;
+    width: 100%;
+}
+
+.m-lottery-game img {
+    width: 100%;
+
+}
+
+.m-lottery-game h1 {
+    width: 41.7%;
+    margin: 1.125rem auto 1.5625rem;
+
+}
+
+.m-lottery-game h2 {
+    width: 100%;
+    text-align: center;
+    height: 2.5rem;
+    color: #fff;
+    font-size: 12px;
+}
+
+.m-lottery-game h2 strong {
+    font-size: 1.125rem;
+}
+
+.m-lottery-game h2 em {
+    color: #f1dea7;
+    margin-left: 1.25rem;
+    text-decoration: underline;
+}
+
+.m-lottery-game h3 {
+    font-size: 1rem;
+    text-align: center;
+    width: 100%;
+    color: #fff;
+    margin-top: 1.6rem;
+}
+
+.m-lottery-game h4 {
+    font-size: 12px;
+    text-align: center;
+    width: 100%;
+    color: #fff;
+    margin-bottom: 1rem;
+}
+
+.m-lottery-game h4 em {
+    color: #f1dea7;
+}
+
+.m-lottery-game .u-award-history {
+    font-size: 12px;
+    width: 50%;
+    margin: 0.75rem auto 4.2rem;
+    color: #f1dea7;
+    text-align: center;
+    display: block;
+}
+
+.m-lottery-game .u-award-userlist {
+    width: 83.5%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.m-lottery-game .u-award-userlist h6 {
+    width: 100%;
+    position: absolute;
+    text-align: center;
+    top: 1rem;
+}
+
+.m-lottery-game .u-award-userlist h6 img {
+    width: 10.3rem;
+    display: inline-block;
+}
+
+/*导航*/
+.u-nav {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    text-align: center;
+    z-index: 2;
+}
+
+.u-nav li {
+    position: relative;
+    display: inline-block;
+    width: 32%;
+}
+
+.u-nav li img {
+    width: 100%;
+    bottom: 1.25rem;
+}
+
+.u-nav li img.f-active {
+    margin-bottom: 0.6rem;
+}
+
+/*\导航*/
+/*抽奖九宫格*/
+.u-lottery {
+    width: 82.7%;
+    height: 82.7%;
+    margin: 0 auto;
+}
+
+.u-lottery td {
+    text-align: center;
+    width: 5.6rem;
+    height: 5.6rem;
+}
+
+.u-lottery td img {
+    width: 5.6rem;
+    height: 5.6rem;
+    border: 3px solid #dcc488;
+    border-radius: 8px;
+    margin: 2px 2px;
+}
+
+.u-lottery tr td:first-child img {
+    margin-right: 5px;
+}
+
+.u-lottery td img.f-active {
+    border-color: #843aff;
+}
+
+.u-lottery td.f-button img {
+    width: 6.0625rem;
+    height: 6.0625rem;
+    border: 0;
+    transform: scale(1);
+}
+
+.u-lottery td.f-button img.f-press {
+    animation: button 1s;
+}
+
+@keyframes button {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(0.8);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+/*\抽奖九宫格*/
+
+/*中奖列表*/
+.u-userlist {
+    position: absolute;
+    top: 3.9rem;
+    overflow: hidden;
+    height: 13rem;
+    margin-left: 1.5rem;
+}
+
+.u-userlist li {
+    color: #333333;
+    height: 2.6rem;
+    text-align: left;
+    font-size: 12px;
+}
+
+.u-userlist li img {
+    display: inline-block;
+}
+
+.u-userlist li strong {
+    color: #e8333c;
+}
+
+.u-userlist li em {
+    color: #999999;
+    display: block;
+}
+
+.u-userlist li .u-user-message {
+    display: inline-block;
+    text-align: left;
+    margin-left: 0.5rem;
+}
+
+.u-userlist li img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50px;
+}
+
+.u-regular-button {
+    position: relative;
+    display: block;
+    border-radius: 30px;
+    background: #dcc488;
+    width: 36.5%;
+    text-align: center;
+    line-height: 1.75rem;
+    font-size: 12px;
+    color: #000;
+    margin: 0 auto;
+}
+
+/*\中奖列表*/
+/*活动规则*/
+.u-regular-content {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    bottom: 0;
+    background: #fff;
+    z-index: 50;
+    overflow-y: scroll;
+}
+
+.u-regular-content h1, .u-award-record h1 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    color: #fff;
+    background-color: #d74148;
+    text-align: center;
+}
+
+.u-regular-content .u-inner-title,
+.u-record-wrapper .u-inner-title {
+    height: 50px;
+    line-height: 60px;
+    text-align: center;
+}
+
+.u-goback {
+    position: absolute;
+    top: 0;
+    left: 1.625rem;
+}
+
+.u-regular-content table {
+    margin: 1rem 0;
+    width: 21rem;
+}
+
+.u-regular-content table thead {
+    border-top: 1px solid #e9e9e9;
+}
+
+.u-regular-content th, .u-regular-content td {
+    width: 7.5rem;
+    padding-left: 1rem;
+    text-align: left;
+    border-right: 1px solid #e9e9e9;
+}
+
+.u-regular-content th {
+    height: 2.5rem;
+}
+
+.u-regular-content th:last-child, .u-regular-content td:last-child {
+    border: 0;
+}
+
+.u-regular-content td {
+    border-top: 0;
+    height: 1.25rem;
+}
+
+.u-regular-content tbody tr:nth-child(odd) {
+    background-color: #fafafa;
+}
+
+.u-regular-content .u-content-list {
+    line-height: 1.5rem;
+    font-size: 0.75rem;
+    color: #333;
+    width: 88%;
+    margin: 3.825rem auto 1.25rem;
+}
+
+.u-regular-content .u-content-list.f-mt {
+    margin-top: 0;
+}
+
+/*\活动规则*/
+/*中奖纪录弹框*/
+.u-award-record {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: #f4f5f7;
+    z-index: 50;
+    top: 0;
+}
+
+.u-record-wrapper {
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.u-award-record ul {
+    color: #303030;
+    width: 89.3%;
+    margin: 3.825rem auto 0;
+}
+
+.u-record-wrapper.f-mt ul {
+    margin-top: 0;
+}
+
+.u-award-record ul li {
+    text-align: left;
+    margin-top: 1rem;
+    display: block;
+}
+
+.u-award-record ul li i {
+    color: #9a9a9a;
+    float: right;
+}
+
+.u-award-record .u-no-history {
+    margin: 150px auto 0;
+    width: 6.6rem;
+}
+
+.u-award-record .u-no-history img {
+    width: 100%;
+}
+
+.u-award-record .u-no-history strong {
+    color: #999;
+    margin: 14px auto;
+    width: 6.6rem;
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: 100;
+    display: block;
+}
+
+/*\中奖纪录弹框*/
+/*提示弹框出现的阴影层*/
+.u-shade-cover {
+    background-color: #000;
+    opacity: 0.5;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 10;
+}
+
+.u-shade-cover.z-white {
+    background-color: transparent;
+}
+
+/*\提示弹框出现的阴影层*/
+/*各种提示弹框*/
+.m-tips-box {
+    background: #fff;
+    position: fixed;
+    top: 35%;
+    left: 18%;
+    z-index: 11;
+    min-width: 63%;
+    padding: 2rem 0;
+    border-radius: 8px;
+}
+
+.m-tips-box.f-fudai {
+    left: 18%;
+}
+
+.m-tips-box.f-fixed-width {
+    width: 15rem;
+}
+.m-tips-box .u-disappear-buttton {
+    width: 1.625rem;
+    height: 1.625rem;
+    right: -10px;
+    top: -10px;
+}
+
+.m-tips-box .u-disappear-buttton img {
+    width: 100%;
+}
+
+.m-tips-box .u-big-award, .m-tips-box .u-ticket-award, .m-tips-box .u-confirm-lottery {
+    text-align: center;
+    width: 100%;
+}
+
+.m-tips-box .u-big-award h1 {
+    text-align: center;
+    color: #333333;
+    font-size: 0.75rem;
+}
+
+.m-tips-box .u-big-award img {
+    width: 50%;
+    margin: 1.7rem auto 0;
+}
+
+.m-tips-box .u-big-award h2 {
+    color: #d51419;
+    font-size: 0.75rem;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.m-tips-box .u-big-award p {
+    font-size: 12px;
+    text-align: center;
+    color: #999999;
+    width: 100%;
+}
+
+.m-tips-box .u-ticket-award p {
+    color: #333333;
+    font-size: 0.75rem;
+    text-align: center;
+    line-height: 1.5rem;
+}
+
+.m-tips-box .u-ticket-award p strong {
+    color: #d41419;
+    font-size: 1rem;
+}
+
+.m-tips-box .u-confirm-lottery p {
+    text-align: center;
+    padding: 0 1rem;
+    color: #333333;
+    font-size: 0.75rem;
+    width: 13rem;
+}
+
+.m-tips-box .u-confirm-lottery a {
+    width: 11.1875rem;
+    border-radius: 5px;
+    background: #d41f20;
+    color: #fff;
+    font-size: 0.75rem;
+    line-height: 2.5rem;
+    margin: 1.7rem auto 0;
+    display: block;
+}
+
+.m-tips-box .u-text-tips {
+    padding: 0 1rem;
+    color: #333;
+    text-align: center;
+    font-size: 0.75rem;
+}
+
+.m-tips-box.f-tickets-regular {
+    width: 18.3rem;
+    left: 5%;
+}
+
+.m-tips-box.f-tickets-regular p {
+    margin-left: 1rem;
+    font-size: 12px;
+    color: #333;
+}
+
+.m-tips-box.f-tickets-regular table {
+    color: #333;
+    font-size: 12px;
+    margin-top: 1rem;
+    margin-left: 1rem;
+    border-top: 1px solid #e9e9e9;
+}
+
+.m-tips-box.f-tickets-regular table th {
+    line-height: 1.875rem;
+    border-right: 1px solid #e9e9e9;
+    width: 5.5rem;
+}
+
+.m-tips-box.f-tickets-regular table tr th:last-child, .m-tips-box.f-tickets-regular table td:last-child {
+    border: 0;
+}
+
+.m-tips-box.f-tickets-regular table td {
+    height: 1.125rem;
+    line-height: 1.125rem;
+    text-align: center;
+    border-right: 1px solid #e9e9e9;
+}
+
+.m-tips-box.f-tickets-regular table tbody tr:nth-child(odd) {
+    background: #fafafa;
+}
+
+.u-abnormal-tips {
+    width: 100%;
+    position: fixed;
+    top: 45%;
+    text-align: center;
+    height: 2rem;
+    z-index: 20;
+}
+
+.u-abnormal-tips p {
+    display: inline-block;
+    padding: 0 1.5rem;
+    font-size: 0.75rem;
+    background: #000;
+    color: #fff;
+    opacity: 0.6;
+    line-height: 2rem;
+    border-radius: 0.5rem;
+}
+
+.animated {
+    -webkit-animation-duration: .5s;
+    animation-duration: .5s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+.u-no-luckperson {
+    display: inline-block;
+    margin-left: 0.5rem;
+    position: relative;
+    top: -13px;
+}
+
+@-webkit-keyframes zoomIn {
+    0% {
+        opacity: 0;
+        -webkit-transform: scale3d(.3, .3, .3);
+        transform: scale3d(.3, .3, .3)
+    }
+
+    50% {
+        opacity: 1
+    }
+}
+
+@keyframes zoomIn {
+    0% {
+        opacity: 0;
+        -webkit-transform: scale3d(.3, .3, .3);
+        transform: scale3d(.3, .3, .3)
+    }
+
+    50% {
+        opacity: 1
+    }
+}
+
+.zoomIn {
+    -webkit-animation-name: zoomIn;
+    animation-name: zoomIn
+}
+
+/*\各种提示弹框*/
+
+/*加载更多*/
+.u-reloadMore{
+    width: 90%;
+    margin: 20px 5%;
+    background: #ffffff;
+    font-size: 14px;
+    color: #666666;
+    border-radius: 8px;
+    border: 1px solid #e5e5e5;
+    text-align: center;
+    height: 44px;
+    line-height: 44px;
+}
+.z-loading{
+    background: #f3f3f3;
+}
+/*\加载更多*/
+
+@media screen and (min-width: 390px) {
+    body {
+        font-size: 18px;
+    }
+
+    .m-head .u-time {
+        top: 10.5rem;
+    }
+
+    .m-head .u-luck-bags {
+        top: 18rem;
+    }
+
+    .m-lottery-game .u-award-history {
+        margin: 0.75rem auto 2rem;
+    }
+
+    .m-lottery-game .u-award-userlist h6 {
+        top: 2rem;
+    }
+
+    .u-userlist {
+        top: 5.5rem;
+        margin-left: 2.5rem;
+    }
+
+    .m-tips-box.f-tickets-regular {
+        left: 15%;
+    }
+}
+
+@media screen and (min-width: 360px) and (max-width: 389px) {
+
+    body {
+        font-size: 16px;
+    }
+
+    .m-tips-box.f-tickets-regular {
+        left: 10%;
+    }
+}
+
+@media screen and (max-width: 359px) {
+    body {
+        font-size: 14px;
+    }
+
+    .m-head .u-time {
+        top: 8rem;
+    }
+
+    .m-head .u-luck-bags {
+        top: 13rem;
+    }
+
+    .m-head .u-luck-bags a {
+        margin-right: 0;
+    }
+
+    .m-head .u-luck-bags .u-position-center {
+        width: 20rem;
+    }
+
+    .u-regular-content table {
+        width: 18rem;
+    }
+
+    .u-regular-content th, .u-regular-content td {
+        width: 5.5rem;
+    }
+
+    .u-regular-content thead th:first-child {
+        width: 4rem;
+    }
+
+    .u-regular-content tr td:first-child {
+        width: 4rem;
+    }
+
+    .m-lottery-game .u-award-userlist {
+        width: 94%;
+    }
+
+    .m-tips-box .u-confirm-lottery a {
+        width: 10rem;
+    }
+
+    .m-tips-box, .m-tips-box.f-fudai {
+        left: 13%;
+    }
+
+    .m-tips-box.f-object {
+        left: 18%;
+    }
+}

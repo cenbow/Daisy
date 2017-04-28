@@ -1,0 +1,40 @@
+#set($layout = "/layout/iframe.vm")
+#parse("/co/job/categoryhead.vm")
+
+<div tabindex="-1" class="modal fade" id="add-categoryForm-modal-table" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog w500">
+        <div class="modal-content">
+            <div class="modal-header no-padding">
+                <div class="table-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+                        <span class="white">×</span>
+                    </button>
+                    <span class="modalFormTitle" id="categoryTitle">添加岗位类别</span>
+                </div>
+            </div>
+
+            <div class="modal-body">
+                <form  class="form-horizontal" id="categoryForm">
+                    <div id="num_1">
+                        <div class="form-group">
+                            <label for="form-field-parentId" class="col-sm-2 control-label no-padding-right">类别名称:</label>
+                            <div class="col-sm-6">
+                                <div class="clearfix">
+                                    <input type="text" name="categoryName" id="categoryName" class="col-xs-12 col-sm-12 exclude valid-other" placeholder="" dataType="*" >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" id="id" name="id" >
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="submit_category" data-page="1" class="btn btn-primary">保存</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+

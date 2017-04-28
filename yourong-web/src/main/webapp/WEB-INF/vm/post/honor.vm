@@ -1,0 +1,166 @@
+#set($title="资质荣誉-有融网-全透明的互联网理财优选平台")
+#set($keywords="关于有融,有融网")
+#set($description="有融网运用高效的运营管理体系和创新的互联网思维,搭建了一个安全透明的互联网理财服务平台.")
+
+#parse('/common/common.vm')
+#set($css_url=["$root_css_url/post/honor.css"])
+
+
+
+<div id="j-imgcontent">
+    <div class="g-wrap f-clear">
+        <div class="u-head-nav">
+            <a href="$root_url/about/index.html">有融简介</a><a href="$root_url/about/disclosure">信息披露</a><a
+                href="$root_url/about/honor" class="z-selected">资质荣誉</a>
+            <a href="$root_url/about/cooperator">合作伙伴</a><a href="$root_url/article/news#notice">平台动态</a><a
+                href="$root_url/about/join">加入有融</a>
+        </div>
+    </div>
+    <div class="u-banner">
+        <div class="g-wrap">
+            <h1>资质荣誉</h1>
+            <p>口碑源于服务&nbsp;&nbsp; &nbsp;&nbsp;诚信铸就荣誉</p>
+        </div>
+    </div>
+
+
+    <div class="g-about-wrap u-word">
+        <img src="$root_url/static/img/post/newAbout/yinhao.png">
+        <p>我们始终以全透明的互联网理财优选平台为定位，旨在为用户打造全流程真实透明的理财环境，<br>
+            怀着让用户享受自在理财，让有融网成为用户首选的互联网理财平台的美好愿景，我们一直在努力。<br>
+            口碑源于服务，诚信铸就荣誉。不断收获的荣誉及业界认可，也印证着有融网的综合实力与品牌影响力。</p>
+    </div>
+
+    <div class="f-bg-gray">
+
+        <div class="m-qualification">
+            <h1>平台资质</h1>
+            <ul>
+                <li>
+                    <p>杭州信有诚互联网金融服务有限公司营业执照</p>
+                    <img src="https://yrstatic.oss-cn-hangzhou.aliyuncs.com/static/img/honor/about_qualification_new2.png"
+                         class="u-img-vertical">
+                </li>
+                <li>
+                    <p>浙江小融网络科技股份有限公司营业执照</p>
+                    <img src="$root_url/static/img/post/about/about_qualification_b04.png" class="u-img-vertical">
+                </li>
+
+
+                <li>
+                    <p>浙江小融网络科技股份有限公司ICP许可证</p>
+                    <img src="https://yrstatic.oss-cn-hangzhou.aliyuncs.com/static/img/honor/ICP.jpg"
+                         class="u-img-vertical">
+                </li>
+                <li>
+                    <p>浙江小融网络科技股份有限公司<br>
+                        信息系统安全等级保护备案证明</p>
+                    <img src="https://yrstatic.oss-cn-hangzhou.aliyuncs.com/static/img/honor/INFOSEC1.png"
+                         class="u-img-sidelong">
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class=" m-honor">
+        <h1>荣誉证书</h1>
+        <ul>
+            <li><h2>中国互联网金融协会会员证书</h2>
+                <img src="https://yrstatic.oss-cn-hangzhou.aliyuncs.com/static/img/honor/Internet__finance.png"
+                     class="u-img-vertical">
+            </li>
+            <li><h2>国家级高新技术企业证书</h2>
+                <img src="https://yrstatic.oss-cn-hangzhou.aliyuncs.com/static/img/honor/guojiagaoxin.png"
+                     class="u-img-vertical">
+            </li>
+            <li>
+                <h2>中国金融科技最具竞争力企业</h2>
+                <img src="https://yrstatic.oss-cn-hangzhou.aliyuncs.com/static/img/honor/zuijujinzhengli.png"
+                     class="u-img-vertical">
+            </li>
+            <li><h2>杭州市高新技术企业证书</h2>
+                <img src="https://yrstatic.oss-cn-hangzhou.aliyuncs.com/static/img/honor/technology.jpg"
+                     class="u-img-vertical">
+            </li>
+            <li>
+                <h2>中国互联网电子商务诚信示范企业</h2>
+                <img src="https://yrstatic.oss-cn-hangzhou.aliyuncs.com/static/img/honor/chengxinshifan.png"
+                     class="u-img-vertical">
+            </li>
+            <li>
+                <h2>中国互联网络信息中心可信网站验证单位</h2>
+                <img src="https://yrstatic.oss-cn-hangzhou.aliyuncs.com/static/img/honor/kexinwangzhan.png"
+                     class="u-img-vertical">
+            </li>
+            <li>
+                <h2 class="m-h2-br">中国科学院计算机网络信息中心<br>可信网站示范单位</h2>
+                <img src="https://yrstatic.oss-cn-hangzhou.aliyuncs.com/static/img/honor/kexinwangzhan2.png"
+                     class="u-img-vertical">
+            </li>
+            <li>
+                <h2>中国电子商务协会（安全联盟）信誉单位</h2>
+                <img src="https://yrstatic.oss-cn-hangzhou.aliyuncs.com/static/img/honor/anquanlianmeng.png"
+                     class="u-img-small">
+            </li>
+            <li>
+                <h2 class="m-h2-br">ITrust互联网信用评价中心信用<br>AA优良企业</h2>
+                <img src="https://yrstatic.oss-cn-hangzhou.aliyuncs.com/static/img/honor/xinyongpingjia.png"
+                     class="u-img-small">
+            </li>
+            <li>
+                <h2>浙江省投融资协会会员证书</h2>
+                <img src="https://yrstatic.oss-cn-hangzhou.aliyuncs.com/static/img/honor/tourongzi.png"
+                     class="u-img-vertical">
+            </li>
+            <li>
+                <h2>中国互联网金融行业十强企业</h2>
+                <img src="https://yrstatic.oss-cn-hangzhou.aliyuncs.com/static/img/honor/shiqiang.png"
+                     class="u-img-vertical">
+            </li>
+        </ul>
+    </div>
+    <div class="u-shade-cover"></div>
+</div>
+
+
+<script src="/static/lib/js/jq/jquery-1.11.1.min.js"></script>
+<script type="text/javascript">
+    $("#j-imgcontent").on("click", 'img', function () {
+        var width = $(this).width();
+        if (width <= 500) {
+            if (width == 345) {
+                $(this).width(660)
+                $(this).css('top', 100)
+                $(this).css('margin-left', -330)
+            } else if (width == 252) {
+                $(this).width(600)
+                $(this).css('top', -10)
+                $(this).css('margin-left', -300)
+            } else if (width == 250) {
+                $(this).width(700)
+                $(this).css('top', 200)
+                $(this).css('margin-left', -350)
+            } else if (width == 135) {
+                $(this).width(520)
+                $(this).css('top', 100)
+                $(this).css('margin-left', -260)
+            }
+            $(this).addClass('u-img-larger')
+            $('.u-shade-cover').show()
+        } else {
+            if (width == 660) {
+                $(this).width(345)
+            } else if (width == 600) {
+                $(this).width(252)
+            } else if (width == 700) {
+                $(this).width(250)
+            } else if (width == 520) {
+                $(this).width(135)
+            }
+            $(this).removeClass('u-img-larger')
+            $('.u-shade-cover').hide()
+            $(this).css('margin-left', 'auto')
+            $(this).css('top', 0)
+        }
+    });
+
+</script>

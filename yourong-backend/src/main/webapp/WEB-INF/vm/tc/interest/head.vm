@@ -1,0 +1,18 @@
+#parse("/common/common.vm")
+################################script###################################
+ #set($js_config=[ 
+ "'urlMap':{ 
+   'ajax':'$root_url/interest/ajax?', 
+   'detail':'$root_url/coupon/detail?'
+   },
+   'status':#buildDictJson('transaction_interest_status'),  ##状态
+   'type':#buildDictJson('coupon_type'),  ##优惠券类型
+   'permission':{
+   		'infoExcel':$shiro.hasPermission('interest:infoExcel')
+   }
+   "
+ ])
+#set($css_url=["$root_url/static/js/lib/My97DatePicker/skin/WdatePicker.css"])
+#set($js_url=["$root_url/static/js/interest.js","$root_url/static/js/lib/My97DatePicker/WdatePicker.js"]) 
+##################################DOM######################################
+

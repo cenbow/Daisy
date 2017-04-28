@@ -1,0 +1,63 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.uc.dao.MemberVipMapper">
+	<resultMap id="BaseResultMap" type="MemberVip">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="member_id" property="memberId" jdbcType="BIGINT" />
+		<result column="month" property="month" jdbcType="INTEGER" />
+		<result column="score" property="score" jdbcType="INTEGER" />
+		<result column="vip_level" property="vipLevel" jdbcType="INTEGER" />
+		<result column="last_score" property="lastScore" jdbcType="INTEGER" />
+		<result column="last_vip_level" property="lastVipLevel" jdbcType="INTEGER" />
+		<result column="increased_score" property="increasedScore" jdbcType="INTEGER" />
+		<result column="need_increase_score" property="needSncreaseScore" jdbcType="INTEGER" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+		
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, member_id, month, score, vip_level, last_score, last_vip_level,
+		increased_score,need_increase_score,update_time
+	</sql>
+	
+	
+	<select id="selectRecentMemberVipByMemberId" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from sj_member_vip
+		where member_id = #{memberId,jdbcType=BIGINT}
+		order by update_time desc 
+		limit 1
+		
+	</select>
+	
+	<!-- 获取用户成长记录      start-->
+	<select id="selectMemberVipList"  resultMap="BaseResultMap"  parameterType="BaseQueryParam">
+		select <include refid="Base_Column_List"/>
+		from sj_member_vip
+		where member_id = #{memberId,jdbcType=BIGINT} and score<![CDATA[>]]>0
+		order by id desc 
+		
+	LIMIT #{startRow,jdbcType=INTEGER}, #{pageSize,jdbcType=INTEGER}
+	</select>
+	
+	<select id="selectMemberVipListCount" resultType="java.lang.Long" parameterType="BaseQueryParam">
+		select count(0)
+		from sj_member_vip
+		where member_id = #{memberId,jdbcType=BIGINT} and score<![CDATA[>]]>0
+	</select>
+	
+	
+	<select id="memberLevelUpHandle"  resultMap="BaseResultMap"  parameterType="Map">
+		select <include refid="Base_Column_List"/>
+		from sj_member_vip_new
+		order by id asc 
+	  limit  #{map.startNum,jdbcType=BIGINT}, #{map.num,jdbcType=BIGINT}
+	</select>
+	
+	<select id="selectMemberVipNewByMemberId" resultType="java.lang.Integer">
+		select vip_level 
+		from sj_member_vip_new
+		where member_id = #{memberId,jdbcType=BIGINT} limit 1 
+	</select>
+	
+	
+</mapper>

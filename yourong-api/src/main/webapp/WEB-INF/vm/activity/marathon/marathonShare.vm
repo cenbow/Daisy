@@ -1,0 +1,65 @@
+#parse("/mobile/common.vm")
+#set($title='里程拉新_$!{title_suffix}')
+#CSRFToken("xToken")
+#set($css_url=["$res_url/source/css/activity/springFestival/springFestivalShare.css"])
+#if($currentUser)
+    #set($logined=true)
+#else
+    #set($logined=false)
+#end
+
+#set($appid=$!{sysServiceUtil.getWeixinAppID()})
+##
+##<h3 class="u-title-1" id="j-logined" data-logined="$logined">喊好友一起来<br>拼手气</h3>
+##<div class="g-bg1" id="j-bg1"></div>
+##<div class="u-content" id="j-appid" data-appid="$appid">点击右上角分享抢红包</div>
+
+<style>
+    body{
+        background: #d74148;
+    }
+    .u-img-responsive{
+        display: inline-block;
+        width: 100%;
+        height: auto;
+    }
+</style>
+
+<img src="$res_url/img/weixin/activity/marathon/weixin1.png" id="j-logined" data-logined="$logined" class="u-img-responsive">
+<img src="$res_url/img/weixin/activity/marathon/weixin2.png" id="j-appid" data-appid="$appid" class="u-img-responsive">
+<img src="$res_url/img/weixin/activity/marathon/weixin3.png" class="u-img-responsive">
+<img src="$res_url/img/weixin/activity/marathon/weixin4.png" class="u-img-responsive">
+<img src="$res_url/img/weixin/activity/marathon/weixin5.png" class="u-img-responsive">
+
+<script src="$res_url/lib/js/sea.js"></script>
+#if(!$loadJQ)
+<script src='$res_url/lib/js/zepto.min.js'></script>
+#else
+<script src="$res_url/lib/js/jquery.min.js"></script>
+#end
+<script>
+    seajs.config({
+        paths: {
+            'lib':'$res_url/lib',
+            'xjs':'$res_url/source/js',
+            'xcss':'$res_url/source/css'
+        },
+        alias: {
+            'zepto': 'lib/js/zepto.min',
+            'jquery':'lib/js/jquery.min',
+            'base': 'xjs/base',
+            // 这里加入微信模块
+            'wxSDK':'http://res.wx.qq.com/open/js/jweixin-1.0.0.js',
+            'wxShare':'../../common/wxShare'
+        }
+    });
+
+    var environment = {
+        globalPath : '$siteurl',
+        globalDomain : '$sysServiceUtil.getRootURL()',
+        mGlobalDomain : '$sysServiceUtil.getMRootURL()',
+        serverDate :  '${dateUtil.getCurrentDate().getTime()}',
+    };
+
+    seajs.use('$res_url/source/js/activity/marathon/marathonShare');
+</script>

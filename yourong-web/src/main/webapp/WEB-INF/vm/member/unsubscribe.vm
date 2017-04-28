@@ -1,0 +1,72 @@
+##用户中心－页面模板
+#parse("/common/common.vm")
+#set($title="取消订阅_$!{title_suffix}")
+#set($css_url=["$cssv2_url/member/member.css"])
+#set($js_url=["$root_js_url/modules/member.js"])
+<style>
+.m-unsubscribe-body{
+	text-align: center;
+}
+.m-unsubscribe-finish{ 
+	color: #666;
+	width: 750px;
+	height: 275px;
+	display: block;
+	background-color: #fff;
+	margin: 160px auto 226px;
+}
+.m-unsubscribe-finish>p{ 
+	text-align: center;
+	padding-top: 45px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #dbdbdb;
+}
+.m-unsubscribe-finish span{ 
+	color: #d74148;
+	font-weight: bold;	
+	display: block;			
+}
+.m-unsubscribe-finish em{ 
+	text-align: center;
+	margin: 0 auto;
+	display: block;
+	margin-top: 23px;
+	line-height: 22px;
+}
+.m-unsubscribe-finish>em>p{ 
+	margin-top: 12px;
+}
+.m-unsubscribe-finish em a{ 
+	display: inline;
+	color: #d74148;
+	text-decoration: underline;
+}
+.m-unsubscribe-finish em a:link{ 
+	color: #d74148;
+	text-decoration:underline;
+}
+.m-unsubscribe-finish em a:visited { 
+	color: #d74148;
+	text-decoration:underline;
+}
+.m-unsubscribe-finish em a:hover{ 
+	color: #d74148;
+	text-decoration:underline;
+}
+</style>
+<div class="m-unsubscribe-body f-cf g-wrap">
+	<div class="g-wrap f-fs14 m-unsubscribe-finish u-circle-25">
+		<p class="f-fs18">
+			亲爱的用户：
+			<span class="f-fs30">	
+			退订成功！
+			</span>
+		</p>
+		<em>
+			您今后不会再收到有融网的相关订阅邮件，
+			请继续支持有融网，您的支持是我们前进的动力！<br>
+			<p>如需重新订阅，请登录<a href="${root_url}/member/home">我的账户</a>><a href="${root_url}/member/profile">我的信息</a>><a href="${root_url}/member/msgfeed">消息订阅</a>管理即可</p>
+		</em>
+
+	</div>
+</div>	

@@ -1,0 +1,73 @@
+
+<!--
+##移动端注册页2
+#parse('/common/common.vm')
+#set($layout = "/layout/default.vm")
+-->
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <title>开通新浪存钱罐 - 有融网</title>
+    <link rel="stylesheet" href="$root_css_url/modules/mLandingRegister.css?v=${sysServiceUtil.getStaticResourceVersion()}" />
+</head>
+##//FIXME 将样式移动到mRegister.css 03
+
+<body>
+    <header id="g-hd" class="u-mobile-head">
+        <h1>注册-有融网</h1>
+        <p>注册就送<strong>50</strong>元</p>
+    </header>
+    <div class="u-mobile-guide2">
+    	<span></span>
+    	<ul>
+    		<li>1</li>
+    		<li>2</li>
+    		<li>3</li>
+    	</ul>
+    </div>
+    <section id="g-bd">
+        <form id="memberIdentity_form" method="POST" class="m-reg-form j-validform">
+			#CSRFToken()
+			<input type="hidden" id="j-reg-mobile"/>
+            <div class="u-tips-login f-dn" id="j-sinapay-error">
+
+            </div>
+        <div class="u-ipt-group f-pos-r">
+            <input type="text" name="trueName" class="f-round u-ipt-text f-w350 v-rname" placeholder="真实姓名" />
+		<span class='m-val-tips'></span>
+		<div class="f-mob-sha f-dn" id="j-mobile"></div>
+        </div>
+		<div class="u-ipt-group">
+            <input type="text" name="identityNumber" class="f-round u-ipt-text f-w350 v-idcard" placeholder="身份证号" />
+            <input type="hidden" name="id" value="$!{id}" class="f-round u-ipt-text f-w390" placeholder="身份证号" />
+		</div>
+		<label class="f-clear f-mgl-8 f-ss13">
+            <input type="checkbox" checked="checked" name="agree" id="j-pay-agree" />&nbsp;我已阅读并同意
+		<a class="f-fc-red" target="_blank" href="$root_url/static/sinapay-agreement.html">《新浪支付服务使用协议》</a>
+		</label>
+			<input type="hidden" id="pageId" value="landingSinapay">
+            <input id="memberIdentity_form_button"   type="button" value="立即认证并开通资金托管账户" class="u-reg-btn j-reg-btn" />
+    	</form>
+ 		<div class="u-mobile-tips">
+			<h5>安全提示</h5>
+			<p>
+				为了保证有融网用户的资金安全，您的资金<br/>由新浪支付存钱罐进行第三方托管。
+			</p>
+		</div>
+    </section>
+    <footer id="g-ft">
+        &copy;2015 浙江小融网络科技股份有限公司 版权所有<br />新浪支付全程提供账户托管和支付服务
+    </footer>
+  		<script type="text/javascript">
+			 var environment = {		
+				globalPath : '',
+				serverDate :  '${dateUtil.getCurrentDate().getTime()}'
+			 };
+  		</script>
+ 		<script src="/static/lib/js/jq/jquery-1.11.1.min.js"></script>
+ 		<script src="/static/lib/js/validform.js"></script>
+        <script src="$root_js_url/modules/mLanding/sinapay.js?v=${sysServiceUtil.getStaticResourceVersion()}"></script>
+</body>
+</html>

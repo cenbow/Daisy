@@ -1,0 +1,82 @@
+ #parse("/common/common.vm")
+ #########################################script##################################### 
+  #set($searchPermission = $shiro.hasPermission("directProject:searchProject"))
+  #set($js_config=[ 
+ "'urlMap':{ 
+   'ajax':'$root_url/directProject/ajax?', 
+   'query':'$root_url/directProject/index?',
+   'uploadURL':'$root_url/commonUpload/uploadFile',
+   'searchMember':'$root_url/debt/searchMember?',
+   'searchMemberByMobile':'$root_url/directProject/searchMemberByMobile?',
+   'findMemberInfo':'$root_url/member/findMemberInfo?',
+   'searchEnterprise':'$root_url/debt/searchEnterprise?',
+   'searchRegisNo':'$root_url/debt/searchRegisNo?',
+   'projectTypeSearch':'$root_url/projectType/search?',
+   'save':'$root_url/directProject/save?',
+   'edit':'$root_url/directProject/edit?id=',
+   'detail':'$root_url/directProject/detail?id=',
+   'emergencyAll':'$root_url/directProject/emergencyAll?id=',
+   'emergencyPart':'$root_url/directProject/emergencyPart?id=',
+   'find':'$root_url/directProject/find?',
+   'findOpen':'$root_url/directProject/findopen?',
+   'update':'$root_url/directProject/update?',
+   'start':'$root_url/directProject/start?',
+   'stop':'$root_url/directProject/stop?',
+   'review':'$root_url/directProject/review?',
+   'waitReview':'$root_url/directProject/waitReview?',
+   'riskReview':'$root_url/directProject/riskReview?',
+   'getPayRecord':'$root_url/loanManager/getPayRecord',
+   'riskReview':'$root_url/directProject/riskReview?',
+   'del':'$root_url/directProject/delete?',
+   'uotTime':'$root_url/directProject/updateOnlineTimeAndEndDate',
+   'uEndTime':'$root_url/directProject/updateEndDate',
+   'delProjectRedis':'$root_url/directProject/delProjectRedis',
+   'lose':'$root_url/directProject/lose',
+   'queryMemberOrEnterpriseCredit':'$root_url/borrowerCredit/queryMemberOrEnterpriseCredit', ##查询个人用户或企业用户的借款授信额度信息
+   'queryCreditGradeByBorrowerId':'$root_url/borrowerCreditGrade/queryByBorrowerId', ##查询个人用户百度等级
+   'queryChannelCredit':'$root_url/borrowerCredit/queryChannelCredit', ##查询渠道商用户的借款授信额度信息
+   'addRemarks':'$root_url/directProject/addRemark',
+   'findTransferRate':'$root_url/directProject/findTransferRate',
+   'packageProject':'$root_url/directProject/packageIndex', ## 项目打包
+   'addProjectNumber':'$root_url/directProject/addProjectNumber', ##添加资产包
+   'packageAjax':'$root_url/directProject/packageAjax',
+   'removeProjectPackageAjax':'$root_url/directProject/deleteProjectFromPackage',
+    'getPackage':'$root_url/directProject/getPackage',
+    'auditProjectFromPackage':'$root_url/directProject/auditProjectFromPackage',
+    'packageProjectAjax':'$root_url/directProject/packageProjectAjax'
+   },
+   'borrowPeriodType':#buildDictJson('borrow_period_type'),##借款周期类型
+   'projectStatus':#buildDictJson('project_status'),##项目状态   
+   'returnType':#buildDictJson('return_type'),##还款方式
+   'securityType':#buildDictJson('direct_type'),##担保方式
+   'interestFrom':#buildDictJson('interest_from'),##起息日
+   'highEdu':#buildDictJson('education'),##学历
+   'registerType':#buildDictJson('register_type'),##户口性质
+   'income':#buildDictJson('income'),##户口性质
+   'guarantyType':#buildDictJson('guaranty_type'),##项目类型
+   'sex':#buildDictJson('sex'),##性别
+   'marriage':#buildDictJson('marriage'),##婚姻
+   'interestStatus':#buildDictJson('debt_interest_status'),  ##债权本息状态
+   'permission':{ 
+      'edit':$shiro.hasPermission('directProject:edit'),##编辑页面
+	  'detail':$shiro.hasPermission('directProject:detail'),##查看页面
+	  'emergencyAll':$shiro.hasPermission('directProject:emergencyAll'),##紧急修改全部
+	  'emergencyPart':$shiro.hasPermission('directProject:emergencyAll'),##紧急修改部分
+	  'start':$shiro.hasPermission('directProject:start'),##恢复直投项目到募集中
+	  'stop':$shiro.hasPermission('directProject:stop'),##直投项目暂定
+	  'review':$shiro.hasPermission('directProject:review'),##审核项目
+	  'waitReview':$shiro.hasPermission('directProject:waitReview'),##提交待审
+	  'riskReview':$shiro.hasPermission('directProject:riskReview'),##提交待审
+	  'del':$shiro.hasPermission('directProject:delete'),##删除
+	  'uotTime':$shiro.hasPermission('directProject:updateOnlineTimeAndEndDate'),##修改上线时间和销售截止时间
+	  'uEndTime':$shiro.hasPermission('directProject:updateEndDate'),##修改销售截止时间
+	  'lose':$shiro.hasPermission('directProject:lose'),##流标
+	  'delProjectRedis' : $shiro.hasPermission('directProject:delProjectRedis'),
+	  'payRecord':$shiro.hasPermission('loanManager:getPayRecord'),##还款记录
+	  'directExcel':$shiro.hasPermission('directProject:directExcel'),##导出excel
+      'remark':$shiro.hasPermission('directProject:addRemark') ##备注
+   }
+   "
+ ])
+#set($css_url=["$root_url/static/assets/css/dropzone.css","$root_url/static/js/lib/jcrop/jquery.Jcrop.min.css","$root_url/static/js/lib/colorbox/colorbox.css","$root_url/static/js/lib/My97DatePicker/skin/WdatePicker.css","$root_url/static/css/project.css","$root_url/static/js/lib/colorbox/colorbox.css"])
+#set($js_url=["$root_url/static/assets/js/dropzone.min.js","$root_url/static/js/dz-upload.js","$root_url/static/js/lib/jcrop/jquery.Jcrop.min.js","$root_url/static/js/lib/colorbox/jquery.colorbox-min.js","$root_url/static/js/directProject.js?v=201703151347","$root_url/static/js/lib/My97DatePicker/WdatePicker.js","$root_url/static/js/lib/colorbox/jquery.colorbox-min.js"])

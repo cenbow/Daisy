@@ -1,0 +1,22 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.uc.dao.VipDiscountMapper">
+	<resultMap id="BaseResultMap" type="VipDiscount">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="vip_level" property="vipLevel" jdbcType="INTEGER" />
+		<result column="rank_preference_discount" property="rankPreferenceDiscount" jdbcType="DECIMAL" />
+		<result column="infomation" property="infomation" jdbcType="VARCHAR" />
+		<result column="level_up_gift" property="levelUpGift" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, vip_level, rank_preference_discount,infomation,level_up_gift
+	</sql>
+	
+	<!-- 获得vip优惠信息 -->
+	<select id="getVipDiscountByVip" resultMap="BaseResultMap">
+		select 
+		<include refid="Base_Column_List" />
+		from uc_vip_discount
+		where vip_level=#{vipLevel,jdbcType=INTEGER}
+	</select>
+	
+</mapper>

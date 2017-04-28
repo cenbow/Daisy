@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.uc.dao.MemberOpenMapper" >
+  <resultMap id="BaseResultMap" type="MemberOpen" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="member_id" property="memberId" jdbcType="BIGINT" />
+    <result column="open_id" property="openId" jdbcType="VARCHAR" />
+    <result column="open_platform_key" property="openPlatformKey" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, member_id, open_id, open_platform_key, status, create_time, update_time, del_flag
+  </sql>
+  <insert id="insertSelective" parameterType="MemberInfo" >
+    insert into uc_member_open
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="memberId != null" >
+        member_id,
+      </if>
+      <if test="openId != null" >
+        open_id,
+      </if>
+      <if test="openPlatformKey != null" >
+        open_platform_key,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+        create_time,
+        update_time,
+        del_flag
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="memberId != null" >
+        #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="openId != null" >
+        #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="openPlatformKey != null" >
+        #{openPlatformKey,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+       now(),
+       now(),
+       1
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="MemberInfo" >
+    update uc_member_open
+    <set >
+      <if test="province != null" >
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="postalCode != null" >
+        postal_code = #{postalCode,jdbcType=INTEGER},
+      </if>
+      <if test="qq != null" >
+        qq = #{qq,jdbcType=BIGINT},
+      </if>
+      <if test="occupation != null" >
+        occupation = #{occupation,jdbcType=VARCHAR},
+      </if>
+      <if test="marriage != null" >
+        marriage = #{marriage,jdbcType=VARCHAR},
+      </if>
+      <if test="income != null" >
+        income = #{income,jdbcType=VARCHAR},
+      </if>
+      <if test="highEdu != null" >
+        high_edu = #{highEdu,jdbcType=VARCHAR},
+      </if>
+      <if test="school != null" >
+        school = #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="areaFullName != null" >
+        area_full_name=#{areaFullName,jdbcType=VARCHAR},
+      </if>
+      <if test="censusRegisterName != null" >
+        census_register_name=#{censusRegisterName,jdbcType=VARCHAR},
+      </if>
+      <if test="censusRegisterId != null" >
+        census_register_id=#{censusRegisterId,jdbcType=VARCHAR},
+      </if>
+       <if test="registerType != null" >
+        register_type = #{registerType,jdbcType=INTEGER},
+      </if>
+       <if test="detailInfo != null" >
+        detail_info = #{detailInfo,jdbcType=VARCHAR},
+      </if>
+       <if test="evaluationScore != null" >
+        evaluation_score = #{evaluationScore,jdbcType=INTEGER},
+      </if>
+       update_time = now()
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <select id="queryMemberOpenByMemberIdAndKey" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/>
+        FROM uc_member_open WHERE member_id=#{memberId} AND open_platform_key=#{key} and del_flag > 0
+  </select>
+  
+  <select id="queryMemberOpenByMember" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/>
+        FROM uc_member_open WHERE member_id=#{memberId}  and del_flag > 0
+  </select>
+  
+  
+</mapper>

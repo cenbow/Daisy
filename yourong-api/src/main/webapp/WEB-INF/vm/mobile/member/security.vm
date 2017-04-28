@@ -1,0 +1,417 @@
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$m_css_url/modules/security.css"])
+#set($bindEmail=$request.getParameter("form"))
+#set($title='安全认证')
+<div id="j-security">
+    <!--header-->
+    <h2 class="u-header f-pos-r">
+        #if($bindEmail=='1')
+            <a href="$siteurl/mCenter/home" id="j-backUrl">返回</a>
+        #else
+            <a href="{{backUrl}}" id="j-backUrl">返回</a>
+        #end
+        <span class="f-fs20" id="j-title" v-text="pageTitle || '安&nbsp;全&nbsp;认&nbsp;证'"></span>
+    </h2>
+    <!--/header-->
+    <!--body-->
+    <div class="m-safety-grap">
+        <component :is="currentView" keep-alive></component>
+    </div>
+</div>
+
+<template id="t-security" class="f-dn">
+    <ul id="j-securityInfo" class="f-securityList">
+
+    ##    手机号码
+        <li class="u-phoneNum">
+            <span class=" u-titleLine">手机号码</span>
+
+            <span class="f-safety-number u-floatRight">{{mobile}}
+            </span>
+
+        </li>
+    ##    登录密码
+        <li class="u-loginPassword">
+            <span class="u-titleLine ">登录密码</span>
+
+            <span class=" j-changePassword u-floatRight" @click="gotoPassword">
+                修改
+                <i class="f-fs18"> ></i>
+            </span>
+        </li>
+
+    ##    电子邮箱
+        <li class="u-bindEmail">
+            <span class="u-titleLine">电子邮箱</span>
+            <div v-if="!isBindEmail">
+               <span class="u-floatRight "  v-if="isSend">
+                   <span >请前往邮箱验证</span>
+                   <i class="f-fs18"> ></i>
+               </span>
+                <div v-else>
+                <a href="{{bindEmailUrl}}" class="u-floatRight">未绑定
+                    <i class="f-fs18"> ></i>
+                </a>
+                </div>
+            </div>
+            <div v-else>
+                <div class="u-floatRight " v-if="isSend">
+                    <span class=" ">请前往邮箱验证
+                        <i class="f-fs18"> ></i>
+                    </span>
+                </div>
+                <div v-else>
+                    <div class="f-safety-name  f-color9">{{email}}</div>
+                <a  href="{{bindEmailUrl}}" class="u-floatRight f-sinaVerification j-changeEmail">更换
+                <i class="f-fs18"> ></i>
+                </a>
+                </div>
+            </div>
+        ##绑定邮箱
+##            <div class="u-inputEmail j-inputEmail-show f-dn" id="j-changeEmail">
+##                <p class="f-fs22" v-if="!isBindEmail">绑定邮箱</p>
+##                <p class="f-fs22" v-else>修改邮箱</p>
+##                <input v-if="!isBindEmail" class="f-inputEmail f-fs16" type="email" id="j-inputEmail" placeholder="请输入您的邮箱地址"
+##                       @keyup.enter="saveEmail('#j-changeEmail')"/>
+##                <input v-else class="f-inputEmail f-fs16" type="email" id="j-inputEmail" placeholder="请输入您的新邮箱地址"
+##                       @keyup.enter="saveEmail('#j-changeEmail')"/>
+##                <p class="f-clickBtn">
+##                    <span @click="cancelEmail('#j-changeEmail')">取消</span>
+##                    <span class="z-colorRed z-noBorder"  @click="saveEmail('#j-changeEmail','#j-inputEmail')">保存</span>
+##                </p>
+##            </div>
+        </li>
+    ##    支付密码
+        <li class="j-show-dialog">
+            <a href="$siteurl/mCenter/setPayPassword">
+            <span class="u-titleLine">支付密码</span>
+
+            <span  class="u-floatRight" v-if="!isPayPassword">未设置
+                <i class="f-fs18"> ></i>
+            </span>
+            <span v-else class="f-safety-open u-floatRight">修改 <i class="f-fs18"> ></i></span>
+            </a>
+        </li>
+    ##    委托支付
+        <li class="u-delegatePay j-show-dialog">
+            <a href="$siteurl/mCenter/paymentCipher">
+            <span class="u-titleLine">委托支付</span>
+
+            <span class="u-floatRight " v-if="!isWithholdAuthority">未开通
+                <i class="f-fs18"> ></i>
+            </span>
+            <span v-else class="f-safety-open u-floatRight">已开通 <i class="f-fs18"> ></i></span>
+            </a>
+        </li>
+
+    ##        新浪存钱罐
+        <li>
+            <span class="u-titleLine">新浪存钱罐</span>
+
+            <span class="u-floatRight" v-if="!isVerifyTrueName">
+                <a class="f-color9" href="$siteurl/mCenter/sinapay" class="j-openSinaMember">
+                    未开通
+                    <i class="f-fs18"> ></i>
+                </a>
+            </span>
+            <span class=" f-name"  v-else style="display: block">
+                <span class="f-safety-name  f-color9">
+                    <span >{{name}}</span>
+                    <i>{{memberSinaId}}</i>
+                </span>
+            </span>
+            <span class="u-floatRight" v-if="isVerifyTrueName">
+                <a class="f-color9" @click="auditMemberInfos('#j-sinaVerificationInfo')">新浪验证
+                    <i class="f-fs18"> ></i>
+                </a>
+            </span>
+        </li>
+    ##    安全银行卡
+        <li>
+            <span class="u-titleLine">安全银行卡</span>
+
+            <span v-if="!isSecurity" class="u-floatRight  j-openSecurityCard"
+                  @click="bindSecurityCard('#j-cardLayer')">立即开通
+                <i class="f-fs18"> ></i>
+            </span>
+            <span v-else class="f-safety-open u-floatRight">已开通</span>
+        ##安全卡开通快捷支付
+            <div class="f-safety-card f-dn u-safetyCard" id="j-cardLayer">
+                <span class="f-toolTip">安全卡是：快捷支付状态下充值、提现<br/>同卡进出的银行卡安全设置</span>
+
+                <div class="f-safety-step">
+                    <ul>
+                        <li>开通步骤：</li>
+                        <li>1、银行卡开通快捷支付</li>
+                        <li>2、用该卡成功交易(充值)</li>
+                        <li>3、该卡即升级为安全卡</li>
+                    </ul>
+                    <a v-if="safecard===true" href="$siteurl/mCenter/recharge">
+                        <button class="u-openQuickPayBtn">去充值</button>
+                    </a>
+                    <a v-else href="$siteurl/mCenter/bankAdd">
+                        <button class="u-openQuickPayBtn">立即开通快捷卡</button>
+                    </a>
+                </div>
+            </div>
+        </li>
+
+    ##        电子签名
+##        <li class="u-loginPassword">
+##            <a href="$siteurl/mCenter/eSignature">
+##                <span class="u-titleLine">电子签名</span>
+##
+##            <span class=" u-floatRight" >
+##                <i class="f-fs18"> ></i>
+##            </span>
+##            </a>
+##        </li>
+
+    ##    个人资料
+        <li class="u-selfInfo" v-if="!isCompletedInfo" @click="gotoPersonal">
+            <span class="u-titleLine">个人资料</span>
+
+            <div class=" u-floatRight" >
+                <i class="f-fs18"> ></i>
+            </div>
+        </li>
+    </ul>
+</template>
+
+<template id="t-personal" class="f-dn">
+    <div>
+        <ul class="f-personalDataList" id="j-personalDataList">
+            <li class="f-avatar">
+                <span class="f-fs18">头像</span>
+                <img class="f-fr" v-if="avatar" :src="avatar" alt="头像" id="j-avatar"/>
+                <img class="f-fr" v-else src="$res_url/img/member/avatar.png" alt="头像" id="j-avatar"/>
+            </li>
+            <li>
+                <span class="f-fs18">昵称</span>
+                    <span class="f-safety-key f-round f-fs14 f-fr j-setNickname " v-if="!isSetNickname"
+                          @click="openNicknameLayer('#j-setNickname')">设置昵称</span>
+                <span class="f-fs18 f-nickname j-nickname f-fr" v-else>{{userName}}</span>
+            </li>
+
+            <li>
+                <span class="f-fs18">详细信息</span>
+                <span class="f-safety-key f-round f-fs14 f-fr"  @click="gotoDetail">修改信息</span>
+            </li>
+        </ul>
+    ##设置昵称弹窗
+        <div class="u-popup f-setNickname f-dn" id="j-setNickname">
+            <ul>
+                <li class="f-firstLi f-fs14 ">昵称只有一次机会哦&nbsp;确定后不能修改</li>
+                <input type="text" placeholder="输入高大上的昵称" id="j-inputNickname" datatype="*,z3-14"
+                       errormsg="昵称需为中文、字母或中文字母的组合，长度为3-14个字符（一个汉字为2个字符）。"/>
+                <li class="f-secondLi">
+                    <a id="j-cancleNickname" href="javascript:void(0)"
+                       @click="cancleNickname('#j-setNickname')">取消</a>
+                    <a href="javascript:void(0)" class="f-secondA j-transactionLink" id=" j-sureNickname"
+                       @click="saveNickname('#j-inputNickname','#j-setNickname')">
+                        <span >确定</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</template>
+
+<template id="t-detail" class="f-dn">
+    <div>
+        <form id="j-previewFor" action="" method="post" class="j-validform">
+        ##现居地
+            <input type="hidden" name="city" value="{{city}}">
+            <input type="hidden" name="areaFullName" value="{{formatAreaFullName}}">
+            <input type="hidden" name="address" value="{{address}}">
+        ##户籍地
+            <input type="hidden" name="censusRegisterId" value="{{censusRegisterId}}">
+            <input type="hidden" name="censusRegisterName" value="{{formatCensusRegisterName}}">
+
+            <input type="hidden"  name="highEdu" value="{{highEdu}}"/>
+            <input type="hidden"  name="occupation" value="{{occupation}}"/>
+            <input type="hidden"  name="income" value="{{income}}"/>
+            <ul class="u-detailInformation">
+            ##                性别
+                <li v-if="sex!==null">
+                    <span class="f-fs18 f-selectName">性别</span>
+                    <span v-if="sex===0" class="f-fr f-color9">女</span>
+                    <span v-if="sex===1" class="f-fr f-color9">男</span>
+                </li>
+            ##                生日
+                <li v-if="birthday">
+                    <span class="f-fs18 f-selectName ">生日</span>
+                <span class="f-fr f-color9">
+                    {{birthday}}
+                </span>
+                </li>
+
+            ##学历
+                <li>
+                    <span class="f-fs18 f-selectName">学历</span>
+                <span class="f-fr u-select">
+                    <select id="j-education" dir="rtl" v-model="highEdu">
+                        <option dir="ltr" value="0">选择</option>
+                        <option dir="ltr" value="1">小学</option>
+                        <option dir="ltr" value="2">初中</option>
+                        <option dir="ltr" value="3">中专</option>
+                        <option dir="ltr" value="4">高中</option>
+                        <option dir="ltr" value="5">大专</option>
+                        <option dir="ltr" value="6">本科</option>
+                        <option dir="ltr" value="7">硕士</option>
+                        <option dir="ltr" value="8">博士</option>
+                    </select>
+
+
+                </span>
+                </li>
+            ##    职业
+                <li>
+                    <span class="f-fs18 f-selectName">职业</span>
+                <span class="f-fr u-select">
+                    <select id="j-occupation" dir="rtl" v-model="occupation">
+                        <option dir="ltr" value="0">选择</option>
+                        <option dir="ltr" value="1">企业主</option>
+                        <option dir="ltr" value="2">个体户</option>
+                        <option dir="ltr" value="3">上班族</option>
+                        <option dir="ltr" value="4">无固定职业</option>
+                    </select>
+
+                </span>
+                </li>
+            ##    月收入
+
+                <li>
+                    <span class="f-fs18 f-selectName">月收入</span>
+                <span class="f-fr u-select">
+                    <select id="j-income" class="f-income" dir="rtl" v-model="income">
+                        <option dir="ltr" value="0">选择</option>
+                        <option dir="ltr" value="1">1000元以下</option>
+                        <option dir="ltr" value="2">1000~2000元</option>
+                        <option dir="ltr" value="3">2001~4000元</option>
+                        <option dir="ltr" value="4">4001~6000元</option>
+                        <option dir="ltr" value="5">6001~8000元</option>
+                        <option dir="ltr" value="6">8001~10000元</option>
+                        <option dir="ltr" value="7">10001~20000元</option>
+                        <option dir="ltr" value="8">20001~40000元</option>
+                        <option dir="ltr" value="9">40001~60000元</option>
+                        <option dir="ltr" value="10">60000元以上</option>
+                    </select>
+
+                </span>
+                </li>
+            ##    户籍地
+                <li>
+                    <span class="f-fs18 f-selectName">户籍地</span>
+                <span class="f-fr  f-color9  u-select">
+              <i class="f-fs14 " @click="openSelectLayer('#j-domicile')"> {{formatCensusRegisterName | removePunctuation}}</i>
+        <i v-if="!formatCensusRegisterName" class="j-domicile  f-choiceBtn" @click="openSelectLayer('#j-domicile')">选择</i>
+                </span>
+
+                </li>
+            ##    现居地
+                <li>
+                    <span class="f-fs18 f-selectName">现居地</span>
+            <span class="f-fr f-color9  u-select">
+                <template v-if="formatAreaFullName">
+                <i class="f-fs14 " @click="openSelectLayer('#j-residence')">
+               {{formatAreaFullName | removePunctuation}}
+                </i>
+                    <br/>
+                <span v-if="!address" class="f-detailAddress f-fs12 f-round f-fr j-sureDetailAddress" @click="openDetailAddressLayer('#j-detailAddress')"> 详细地址</span>
+                <span v-else class="j-sureDetailAddress "  @click="openDetailAddressLayer('#j-detailAddress')">{{address}}</span>
+                </template>
+                <i v-else class="j-residence f-choiceBtn" @click="openSelectLayer('#j-residence')">选择</i>
+            </span>
+
+                </li>
+            </ul>
+        ##详细地址弹窗
+            <div class="u-popup f-setNickname f-dn" id="j-detailAddress">
+                <ul>
+                    <li class="f-firstLi f-fs16 ">输入详细地址</li>
+                    <input type="text" placeholder="请输入地址" id="j-inputAddress" onkeyup="value=value.replace(/[^\w\u4E00-\u9FA5]/g, '')"/>
+                    <li class="f-secondLi">
+                        <a id="j-cancleDetailAddress" href="javascript:void(0)"
+                           @click="cancleDetailAddress('#j-detailAddress')">取消</a>
+                        <a href="javascript:void(0)" class="f-secondA j-transactionLink" id=" j-sureDetailAddress"
+                           @click="sureDetailAddress('#j-detailAddress')">
+                            <span>确定</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </form>
+        <button id="j-preservationBtn" class="u-preservationBtn j-reg-btn"  @click="submitDetailInfo">保存</button>
+    </div>
+</template>
+
+##修改密码
+<template id="t-password" class="f-dn">
+    <div class="u-password" id="j-password">
+        <form action="" id="j-regPassword-form" method="post" class="j-validform">
+            <div class="f-inputPassword j-inputPassword">
+                <span class="f-fl">原密码</span>
+                <input class="j-oldPwd " @blur="checkPwd" type="password" name="oldPassword" placeholder="输入当前密码" v-model="oldPassword" lazy/>
+            </div>
+            <p class="f-dn f-fs14 f-errorTip z-colorRed">长度6-16位至少包含数字和字母</p>
+
+            <div class="f-inputPassword j-inputPassword">
+                <span class="f-fl">新密码</span>
+                <input class="j-newPwd " @blur="checkPwd" type="password" name="password" placeholder="输入新密码" v-model="password" lazy/>
+            </div>
+            <p class="f-dn f-fs14 f-errorTip z-colorRed">长度6-16位至少包含数字和字母</p>
+
+            <div class="f-inputPassword j-inputPassword">
+                <span class="f-fl">确认新密码</span>
+                <input class="j-pwd-reck" @blur="checkPwd" type="password" name="checkNewPassword" placeholder="确认新密码" v-model="checkNewPassword" lazy/>
+
+            </div>
+            <p class="f-dn f-fs14 f-errorTip z-colorRed">您两次输入的密码不一致</p>
+            <span class="f-reminder f-fs12 ">密码长度6-16位，至少包含数字和字母</span>
+
+            <div>
+                <input class="u-saveNewPasswordBtn" type="button" value="确认" @click="submitPwd"/>
+            </div>
+        </form>
+    </div>
+##设置密码成功后弹窗
+    <div class="u-popup f-popup f-dn " id="j-setPwdSuccess">
+        <ul>
+            <li class=" f-fs18">您的密码已修改，请重新登录</li>
+            <li class="f-secondLi">
+                <a  href="$siteurl/mCenter/logout" id="j-quit">退出</a>
+                <a href="$siteurl/mCenter/logout" class="f-secondA " >
+                    <span >重新登录</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</template>
+
+<div id="j-sinaVerificationInfo" class="f-dn">
+    <iframe name="sinaVerificationInfo" id="sinaVerificationInfo" frameborder="0"></iframe>
+    <span id="j-goback" class="u-contract-back f-fs24">返回</span>
+</div>
+
+##遮罩层
+<div class="u-cover j-cover"></div>
+##户籍地选择
+<div class="f-backBtn j-backBtn f-dn">取消</div>
+<div class="u-domicile f-selectArea f-dn" id="j-domicile"></div>
+##现居地选择
+<div class="u-residence f-selectArea f-dn" id="j-residence"></div>
+<!--/body-->
+#set($pageScript="
+<script src='$aliyunOss_url/res/lib/vue/v1/vue.min.js'></script>
+<script>
+    seajs.config({
+        alias: {
+            'regionSelector': 'xjs/modules/regionSelector'
+        }
+    })
+    seajs.use('$siteurl/res/source/js/modules/security.js')
+</script>
+")
+#CSRFToken("xToken")

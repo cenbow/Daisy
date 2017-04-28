@@ -1,0 +1,36 @@
+<script src="$root_url/static/lib/js/vendor.js"></script>
+<script src="$root_url/static/lib/js/system.js"></script>
+<script type="text/javascript">
+    var environment = env = {
+        globalPath: '',
+        globalDomain: '$sysServiceUtil.getRootURL()',
+        mGlobalDomain: '$sysServiceUtil.getMRootURL()',
+        serverDate:  ${dateUtil.getCurrentDate().getTime()},
+        aliyunPath: '$aliyun_url'
+    }
+#if($isDev)
+    window.log=function(){};
+    window.chrome&&(window.log=console.log.bind(console));
+#else
+    window.log=function(){};
+#end
+</script>
+#if($!{entry.size()}>2)
+    #foreach($plugin in $entry[2])
+        <script src="$plugin"></script>
+    #end
+#end
+<script>
+    System.config({
+        defaultJSExtensions: false,
+        map:{
+            lib:'/static/lib',
+            'lib/jquery.circliful':'lib/js/jq/jquery.circliful.min.js'
+        }
+    })
+    System.config({
+        map:#include('/../../static/dist/js/assets.json')
+    })
+    System.import('common/common')
+    System.import('entry/$entry[0]/$entry[1]')
+</script>

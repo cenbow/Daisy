@@ -1,0 +1,133 @@
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+
+#if($currentUser)
+    #set($logined=true)
+#else
+    #set($logined=false)
+#end
+#set($isiOS=false)
+#CSRFToken('xToken')
+
+<style>
+    @media screen and (min-width: 390px) {
+        html {
+            font-size: 18px;
+        }
+    }
+
+    @media screen and (min-width: 360px) and (max-width: 389px) {
+        html {
+            font-size: 16px;
+        }
+    }
+
+    @media screen and (max-width: 359px) {
+        html {
+            font-size: 14px;
+        }
+    }
+
+    .g-wrap {
+        width: 90%;
+        margin: auto;
+        padding-bottom: 60px;
+    }
+
+    .u-title {
+        font-size: 1.125rem;
+        font-weight: 400;
+        color: #333333;
+        line-height: 40px;
+        border-bottom: 1px solid #e5e5e5;
+        margin-top: 12px;
+    }
+
+    .u-littleTitle {
+        font-size: 0.875rem;
+        color: #666666;
+        line-height: 60px;
+        font-weight: 400;
+    }
+
+    .u-littleTitle em {
+        color: #d74148;
+
+    }
+
+    .u-explaneImg {
+        width: 80%;
+        margin-left: 20px;
+    }
+
+    .u-focusWechatBtn {
+        width: 100%;
+        text-align: center;
+        height: 44px;
+        line-height: 44px;
+        background: #FFFFFF;
+        box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.50);
+        padding: 8px 0;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+    }
+
+    .u-focusWechatBtn a {
+        width: 90%;
+        margin: auto;
+        background: #D74148;
+        border-radius: 8px;
+        height: 44px;
+        display: block;
+        color: #ffffff;
+
+    }
+</style>
+<div class="g-wrap">
+    <div class="u-title">
+        如何添加服务号？
+    </div>
+    <div class="u-content">
+        <div class="u-littleTitle">1、在“通讯录”页面，点击右上角的添加按钮</div>
+        <div class="u-explaneImg">
+            <img src="$res_url/img/post/weixinService/add_wechat_1.png" width="100%" alt="">
+        </div>
+        <div class="u-littleTitle">2、点击“公众号”栏目</div>
+        <div class="u-explaneImg">
+            <img src="$res_url/img/post/weixinService/add_wechat_2.png" width="100%" alt="">
+        </div>
+        <div class="u-littleTitle">3、搜索“<em>有融网</em>”，点击进入，关注有融网</div>
+        <div class="u-explaneImg">
+            <img src="$res_url/img/post/weixinService/add_wechat_3.png" width="100%" alt="">
+        </div>
+        <div class="u-explaneImg">
+            <img src="$res_url/img/post/weixinService/add_wechat_4.png" width="100%" alt="">
+        </div>
+    </div>
+</div>
+<div class="u-focusWechatBtn">
+    <a class="u-clickBtn" id="j-share-link">打开微信</a>
+</div>
+#set($pageScript="
+<script>
+
+    (function () {
+        var u = navigator.userAgent;
+        var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+        var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+        if (isiOS) {
+            $('#j-share-link').attr('href', 'yrw-skip://invokeMethod=wechat')
+        } else {
+            //安卓app跳转
+            $('#j-share-link').on('click', function () {
+                if (isAndroid) {
+                    Android.ToActivity('wechat', null)
+                }
+
+            })
+        }
+
+    })()
+</script>
+")

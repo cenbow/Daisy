@@ -1,0 +1,132 @@
+[v-cloak]{
+    display: none;
+}
+.f-fcolor9B{
+    color: #999 !important;
+}
+
+.f-fc-red {
+    color: #D74148;
+}
+.u-topTitle{
+    width: 100%;
+    text-align: center;
+    padding: 15px 0 0;
+}
+
+.u-topTitle span {
+    display: inline-block;
+    font-size: 1rem;
+    color: #333;
+}
+
+.u-topTitle .u-icon {
+    display: inline-block;
+    width: 19px;
+    height: 11px;
+    margin: 0 12px;
+}
+
+.u-topTitle .u-left-icon {
+    background: url(../../../../../res/img/activity/newSixGift/title_left_icon.png) no-repeat;
+    background-size: 100% 100%;
+}
+
+.u-topTitle .u-right-icon {
+    background: url(../../../../../res/img/activity/newSixGift/title_right_icon.png) no-repeat;
+    background-size: 100% 100%;
+}
+.u-top-img-wrap .u-img-responsive {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+}
+.m-task-list .m-task-item {
+    position: relative;
+    -webkit-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.m-item-content {
+    margin-left: 17.86667%;
+    border-bottom: 1px solid #E5E5E5;
+}
+.m-task-item .m-task-item-wrap {
+    position: relative;
+    width: 100%;
+}
+.m-task-item-wrap .u-task-icon {
+    position: absolute;
+    top: 18px;
+    width: 10.66667%;
+    margin-left: 4%;
+    margin-right: 3.2%;
+    vertical-align: middle;
+}
+.m-task-item-wrap .m-task-conc {
+    display: inline-block;
+    width: 68%;
+    padding: 16px 0 14px;
+    overflow: hidden;
+    vertical-align: middle;
+}
+.m-task-item-wrap .m-task-conc h2 {
+    color: #333;
+    font-size: 15px;
+}
+.m-task-item-wrap .m-task-conc span {
+    color: #999;
+    font-size: 12px;
+}
+.m-task-item-wrap .u-task-btn {
+    position: absolute;
+    top: 19px;
+    right: 4%;
+    width: 20%;
+    height: 39px;
+    color: #D74148;
+    font-size: 15px;
+    line-height: 38px;
+    text-align: right;
+    vertical-align: middle;
+}
+
+.m-task-item-wrap .u-space-icon {
+    display: inline-block;
+    width: 9px;
+    height: 10px;
+    margin-left: 5px;
+}
+
+.m-task-item-wrap .u-left-arrow {
+    background: url(../../../../../res/img/activity/newSixGift/left_arrow.png) no-repeat;
+    background-size: 100% 100%;
+}
+.m-task-item-wrap .z-disabled{
+    color: #999;
+}
+.u-loginedBlock{
+    width: 60%;
+    position: fixed;
+    top: 46%;
+    left: 20%;
+    border: 1px solid #666666;
+    text-align: center;
+    border-radius: 10px;
+    background: #ffffff;
+    color: #666666;
+    z-index: 1000;
+}
+.u-loginedBlock p{
+    padding: 20px 0;
+}
+.u-loginedBlock button{
+    width: 100%;
+    padding: 10px 0;
+    border-top: 1px solid #C5C5C5;
+}
+.z-show{
+    display: block!important;
+}

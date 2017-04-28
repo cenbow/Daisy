@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.uc.dao.ThirdCompanyMapper" >
+  <resultMap id="BaseResultMap" type="com.yourong.core.uc.model.ThirdCompany" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="member_id" property="memberId" jdbcType="BIGINT" />
+    <result column="company_name" property="companyName" jdbcType="VARCHAR" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, member_id, company_name, remarks, update_time, create_time, del_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from uc_third_company
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from uc_third_company
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.yourong.core.uc.model.ThirdCompany" >
+    insert into uc_third_company (id, member_id, company_name, 
+      remarks, update_time, create_time, 
+      del_flag)
+    values (#{id,jdbcType=BIGINT}, #{memberId,jdbcType=BIGINT}, #{companyName,jdbcType=VARCHAR}, 
+      #{remarks,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{delFlag,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yourong.core.uc.model.ThirdCompany" >
+    insert into uc_third_company
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="memberId != null" >
+        member_id,
+      </if>
+      <if test="companyName != null" >
+        company_name,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="memberId != null" >
+        #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="companyName != null" >
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yourong.core.uc.model.ThirdCompany" >
+    update uc_third_company
+    <set >
+      <if test="memberId != null" >
+        member_id = #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="companyName != null" >
+        company_name = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yourong.core.uc.model.ThirdCompany" >
+    update uc_third_company
+    set member_id = #{memberId,jdbcType=BIGINT},
+      company_name = #{companyName,jdbcType=VARCHAR},
+      remarks = #{remarks,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      del_flag = #{delFlag,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+   <select id="getThirdCompanyList" resultMap="BaseResultMap">
+    select member_id,company_name,id
+    from uc_third_company where 
+    del_flag >= 0 order by id 
+  </select>
+  
+  <select id="getCompanyByMemberId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from uc_third_company
+    where member_id = #{underwriteMemberId,jdbcType=BIGINT}
+  </select>
+  <!-- 获取第三方垫资公司id -->
+   <select id="getThirdCompanyId" resultMap="BaseResultMap"  >
+   	SELECT c.id as id,c.member_id as member_id,c.company_name as company_name 
+   	from fin_underwrite_log as f 
+		INNER JOIN ic_debt_interest  as i on i.id = f.project_interest_id
+		INNER JOIN ic_project as p on p.id = i.project_id
+		INNER JOIN uc_third_company as c 
+	on c.member_id=f.underwrite_member_id
+	where f.underwrite_status = 1
+	  and 	i.id = #{interestId,jdbcType=BIGINT}
+	  and    p.id = #{projectId,jdbcType=BIGINT}
+	  and i.end_date  <![CDATA[<=]]> now() limit 1
+  </select>
+  
+  	<!-- 是否为垫资人 -->       
+	 <select id="ifAdvancer" resultType="java.lang.Integer" >
+	 	select 1 from uc_third_company where member_id=#{memberId,jdbcType=BIGINT} limit 1
+	</select>
+  
+</mapper>

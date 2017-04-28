@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.mc.dao.CouponSendLogMapper" >
+    <resultMap id="BaseResultMap" type="com.yourong.core.mc.model.CouponSendLog" >
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="member_id" property="memberId" jdbcType="BIGINT" />
+        <result column="template_id" property="templateId" jdbcType="BIGINT" />
+        <result column="sms_content" property="smsContent" jdbcType="VARCHAR" />
+        <result column="sign" property="sign" jdbcType="VARCHAR" />
+        <result column="send_status" property="sendStatus" jdbcType="INTEGER" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        id, member_id, template_id, sms_content, sign, send_status, create_time, update_time
+    </sql>
+
+    <select id="queryPageNoSendList" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/>
+        FROM mc_coupon_send_log WHERE template_id=#{templateId} AND sign=#{sign} AND send_status=0
+        LIMIT #{startRow,jdbcType=INTEGER}, #{pageSize,jdbcType=INTEGER}
+    </select>
+
+    <select id="queryCountNoSendList" resultType="java.lang.Integer">
+        SELECT COUNT(1)
+        FROM mc_coupon_send_log WHERE template_id=#{templateId} AND sign=#{sign} AND send_status=0
+    </select>
+
+    <select id="querySendCount" resultType="java.lang.Integer">
+        SELECT COUNT(1) FROM mc_coupon_send_log WHERE template_id=#{templateId} AND sign=#{sign} AND send_status=1
+    </select>
+
+    <insert id="insertCouponSendLog" parameterType="com.yourong.core.mc.model.CouponSendLog">
+        INSERT INTO mc_coupon_send_log(`member_id`,`template_id`,`sms_content`,`sign`,`send_status`,`create_time`,`update_time`)
+        VALUES (#{memberId},#{templateId},#{smsContent},#{sign},#{sendStatus},#{createTime},#{updateTime})
+    </insert>
+
+    <update id="updateSendStatusById">
+        UPDATE mc_coupon_send_log SET send_status=#{sendStatus},update_time=#{updateTime} WHERE id=#{id}
+    </update>
+</mapper>

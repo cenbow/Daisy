@@ -1,0 +1,16 @@
+##用户中心－页面模板
+#parse("/common/common.vm")
+#set($title="提现申请已提交_我的账户_$!{title_suffix}")
+#set($css_url=["$cssv2_url/member/member.css"])
+#set($js_url=["$root_js_url/modules/member.js"])
+
+<div class="g-wrap u-page-tips f-round u-page-t1">
+	<div class="u-tips-box">
+		<i class="u-icon u-icon-info f-icon-35"></i>
+		<p class="f-fs18 f-fwb">
+			您的提现申请已提交，预计资金将在<span>$dateUtil.isJudgeAfterFifteen() 23:59:59前</span>到达您的银行账户。
+		</p>
+		<a href="$account_url[1]" class="f-round f-fs14">查看提现记录</a>
+		<a href="$account_url[0]" class="f-round f-fs14">返回帐户管理</a>
+	</div>
+</div>

@@ -1,0 +1,1587 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yourong.core.tc.dao.TransactionInterestMapper" >
+  <resultMap id="BaseResultMap" type="TransactionInterest" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="interest_id" property="interestId" jdbcType="BIGINT" />
+    <result column="project_id" property="projectId" jdbcType="BIGINT" />
+    <result column="transaction_id" property="transactionId" jdbcType="BIGINT" />
+    <result column="start_date" property="startDate" jdbcType="TIMESTAMP" />
+    <result column="end_date" property="endDate" jdbcType="TIMESTAMP" />
+    <result column="member_id" property="memberId" jdbcType="BIGINT" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="unit_principal" property="unitPrincipal" jdbcType="DECIMAL" />
+    <result column="unit_interest" property="unitInterest" jdbcType="DECIMAL" />
+    <result column="payable_interest" property="payableInterest" jdbcType="DECIMAL" />
+    <result column="payable_principal" property="payablePrincipal" jdbcType="DECIMAL" />
+    <result column="extra_interest" property="extraInterest" jdbcType="DECIMAL" />
+    <result column="extra_project_interest" property="extraProjectInterest" jdbcType="DECIMAL" />
+    <result column="real_pay_principal" property="realPayPrincipal" jdbcType="DECIMAL" />
+    <result column="real_pay_interest" property="realPayInterest" jdbcType="DECIMAL" />
+    <result column="real_pay_extra_interest" property="realPayExtraInterest" jdbcType="DECIMAL" />
+    <result column="real_pay_extra_project_interest" property="realPayExtraProjectInterest" jdbcType="DECIMAL" />
+    <result column="overdue_fine" property="overdueFine" jdbcType="DECIMAL" />
+    <result column="pay_type" property="payType" jdbcType="INTEGER" />
+    <result column="topay_date" property="topayDate" jdbcType="TIMESTAMP" />
+    <result column="pay_time" property="payTime" jdbcType="TIMESTAMP" />
+    <result column="periods" property="periods" jdbcType="VARCHAR" />
+    <result column="trade_no" property="tradeNo" jdbcType="VARCHAR" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="project_id" property="projectId" jdbcType="BIGINT" />
+    <result column="extra_end_day" property="extraEndDay" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, interest_id, project_id, transaction_id, start_date, end_date, member_id, status, unit_principal, unit_interest, 
+    payable_interest, payable_principal, extra_interest,extra_project_interest, real_pay_principal, real_pay_interest,real_pay_extra_interest,real_pay_extra_project_interest, 
+    overdue_fine, pay_type, topay_date, periods, pay_time, trade_no, remarks,
+    create_time, update_time,project_id,extra_end_day
+  </sql>
+  
+   <resultMap id="TransactionInterestForPayResultMap" type="TransactionInterestForPay" extends="BaseResultMap">
+    <result column="project_id" property="projectId" jdbcType="BIGINT" />
+    <result column="payer_id" property="payerId" jdbcType="BIGINT" />
+    <result column="interest_id" property="interestId" jdbcType="BIGINT" />
+    <result column="open_platform_key" property="openPlatformKey" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <resultMap id="TransactionInterestForMember" type="TransactionInterestForMember" extends="BaseResultMap">
+    <result column="project_id" property="projectId" jdbcType="BIGINT" />
+    <result column="project_name" property="projectName" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <resultMap id="TransactionInterestDetailForCalendar" type="TransactionInterestDetailForCalendar" extends="BaseResultMap">
+    <result column="project_id" property="projectId" jdbcType="BIGINT" />
+    <result column="project_name" property="projectName" jdbcType="VARCHAR" />
+    <result column="totalPayableInterest" property="totalPayableInterest" jdbcType="DECIMAL" />
+    <result column="totalPayablePrincipal" property="totalPayablePrincipal" jdbcType="DECIMAL" />
+    <result column="transactionId" property="transactionId" jdbcType="BIGINT" />
+    <result column="count_ym" property="countYm" jdbcType="VARCHAR" />
+    <result column="repaymentStatus" property="repaymentStatus" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <resultMap id="TransactionInterestForMonth" type="TransactionInterestForMonth" extends="BaseResultMap">
+    <result column="totalPayableInterest" property="totalPayableInterest" jdbcType="DECIMAL" />
+    <result column="totalPayablePrincipal" property="totalPayablePrincipal" jdbcType="DECIMAL" />
+    <result column="count_ym" property="countYM" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <resultMap id="TransactionInterestForDate" type="TransactionInterestForDate" extends="BaseResultMap">
+    <result column="dateStr" property="dateStr" jdbcType="VARCHAR" />
+    <result column="repaymentStatus" property="repaymentStatus" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <resultMap id="TransactionInterestForLateFeeMap" type="com.yourong.core.tc.model.biz.TransactionInterestForLateFee" extends="BaseResultMap">
+    <result column="total_principal" property="totalPrincipal" jdbcType="DECIMAL" />
+    <result column="total_interest" property="totalInterest" jdbcType="DECIMAL" />
+    <result column="total_extra_interest" property="totalExtraInterest" jdbcType="DECIMAL" />
+    <result column="received_principal" property="receivedPrincipal" jdbcType="DECIMAL" />
+    <result column="received_interest" property="receivedInterest" jdbcType="DECIMAL" />
+    <result column="received_extra_interest" property="receivedExtraInterest" jdbcType="DECIMAL" />
+  </resultMap>
+  
+   <sql id="Base_Column_List__Pagin" >
+    t.id, t.transaction_id, t.start_date, t.end_date, t.member_id, t.status, t.unit_principal, t.unit_interest, 
+    t.payable_interest, t.payable_principal, t.extra_interest, t.real_pay_principal, t.real_pay_interest, t.pay_time, t.trade_no, t.remarks,
+    t.create_time, t.update_time
+  </sql>
+  
+  
+  
+    <!--前台分页 -->
+  <select id="findByPage" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List__Pagin" />
+    from tc_transaction_interest  as t
+    left join tc_transaction as tc on  tc.id=t.transaction_id
+    <if test=" map != null" >
+      <where>
+      	<if test=" map.projectId != null" >
+          tc.project_id = #{map.projectId}
+        </if>
+        <if test=" map.id != null" >
+          t.id = #{map.id}
+        </if>
+        <if test=" map.transactionId != null" >
+          and t.transaction_id = #{map.transactionId}
+        </if>
+        <if test=" map.startDate != null" >
+          and t.start_date = #{map.startDate}
+        </if>
+        <if test=" map.endDate != null" >
+          and t.end_date = #{map.endDate}
+        </if>
+        <if test=" map.memberId != null" >
+          and t.member_id = #{map.memberId}
+        </if>
+        <if test=" map.status != null" >
+          and t.status = #{map.status}
+        </if>
+        <if test=" map.unitPrincipal != null" >
+          and t.unit_principal = #{map.unitPrincipal}
+        </if>
+        <if test=" map.unitInterest != null" >
+          and t.unit_interest = #{map.unitInterest}
+        </if>
+        <if test=" map.payableInterest != null" >
+          and t.payable_interest = #{map.payableInterest}
+        </if>
+        <if test=" map.payablePrincipal != null" >
+          and t.payable_principal = #{map.payablePrincipal}
+        </if>
+        <if test=" map.extraInterest != null" >
+          and t.extra_interest = #{map.extraInterest}
+        </if>
+        <if test=" map.realPayPrincipal != null" >
+          and t.real_pay_principal = #{map.realPayPrincipal}
+        </if>
+        <if test=" map.realPayInterest != null" >
+          and t.real_pay_interest = #{map.realPayInterest}
+        </if>
+        <if test=" map.payTime != null" >
+          and t.pay_time = #{map.payTime}
+        </if>
+        <if test=" map.tradeNo != null" >
+          and t.trade_no = #{map.tradeNo}
+        </if>
+        <if test=" map.remarks != null" >
+          and t.remarks like "%"#{map.remarks}"%"
+        </if>
+        <if test=" map.createTime != null" >
+          and t.create_time = #{map.createTime}
+        </if>
+        <if test=" map.updateTime != null" >
+          and t.update_time = #{map.updateTime}
+        </if>
+        <if test=" map.payTimeStart != null" >
+          and t.pay_time <![CDATA[>=]]> #{map.payTimeStart}
+        </if> <if test=" map.payTimeEnd != null" >
+          and t.pay_time <![CDATA[<=]]>  #{map.payTimeEnd}
+        </if>
+       </where>
+       </if>
+       <choose>
+			<when test=" map != null">
+				<if test=" map.desc != null">
+					order by ${map.desc} desc
+				</if>
+				<if test=" map.asc != null">
+					order by ${map.asc} asc
+				</if>
+			</when>
+			<otherwise>
+				order by t.id desc
+			</otherwise>
+		</choose>
+		
+		LIMIT ${map.startRow}, ${map.pageSize}
+ </select>
+  
+  
+  <!--插入交易本息  -->
+  <insert id="insertSelective" parameterType="TransactionInterest" keyProperty="id" useGeneratedKeys="true">
+    insert into tc_transaction_interest
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="interestId != null" >
+        interest_id,
+      </if>
+      <if test="projectId != null" >
+        project_id,
+      </if>
+      <if test="transactionId != null" >
+        transaction_id,
+      </if>
+      <if test="startDate != null" >
+        start_date,
+      </if>
+      <if test="endDate != null" >
+        end_date,
+      </if>
+      <if test="memberId != null" >
+        member_id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="unitPrincipal != null" >
+        unit_principal,
+      </if>
+      <if test="unitInterest != null" >
+        unit_interest,
+      </if>
+      <if test="payableInterest != null" >
+        payable_interest,
+      </if>
+      <if test="payablePrincipal != null" >
+        payable_principal,
+      </if>
+      <if test="extraInterest != null" >
+        extra_interest,
+      </if>
+      <if test="realPayPrincipal != null" >
+        real_pay_principal,
+      </if>
+      <if test="realPayInterest != null" >
+        real_pay_interest,
+      </if>
+      <if test="realPayExtraInterest != null" >
+        real_pay_extra_interest,
+      </if>
+      <if test="extraProjectInterest != null" >
+        extra_project_interest,
+      </if>
+      <if test="extraProjectInterest != null" >
+        real_pay_extra_project_interest,
+      </if>
+      <if test="overdueFine != null" >
+        overdue_fine,
+      </if>
+      <if test="payType != null" >
+        pay_type,
+      </if>
+      <if test="topayDate != null" >
+        topay_date,
+      </if>
+      <if test="periods != null" >
+        periods,
+      </if>
+      <if test="payTime != null" >
+        pay_time,
+      </if>
+      <if test="tradeNo != null" >
+        trade_no,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+        create_time,
+        update_time,
+      <if test="extraEndDay != null" >
+        extra_end_day
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="interestId != null" >
+        #{interestId,jdbcType=BIGINT},
+      </if>
+      <if test="projectId != null" >
+        #{projectId,jdbcType=BIGINT},
+      </if>
+      <if test="transactionId != null" >
+        #{transactionId,jdbcType=BIGINT},
+      </if>
+      <if test="startDate != null" >
+        #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null" >
+        #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memberId != null" >
+        #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="unitPrincipal != null" >
+        #{unitPrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="unitInterest != null" >
+        #{unitInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="payableInterest != null" >
+        #{payableInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="payablePrincipal != null" >
+        #{payablePrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="extraInterest != null" >
+        #{extraInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="realPayPrincipal != null" >
+        #{realPayPrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="realPayInterest != null" >
+        #{realPayInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="realPayExtraInterest != null" >
+        #{realPayExtraInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="extraProjectInterest != null" >
+        #{extraProjectInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="realPayExtraProjectInterest != null" >
+        #{realPayExtraProjectInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="overdueFine != null" >
+        #{overdueFine,jdbcType=DECIMAL},
+      </if>
+      <if test="payType != null" >
+        #{payType,jdbcType=INTEGER},
+      </if>
+      <if test="topayDate != null" >
+        #{topayDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="periods != null" >
+        #{periods,jdbcType=VARCHAR},
+      </if>
+      <if test="payTime != null" >
+        #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tradeNo != null" >
+        #{tradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+     now(),
+     now(),
+      <if test="extraEndDay != null" >
+        #{extraEndDay,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  
+  <!-- 更新交易本息 -->
+  <update id="updateByPrimaryKeySelective" parameterType="TransactionInterest" >
+    update tc_transaction_interest
+    <set >
+      <if test="startDate != null" >
+        start_date = #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null" >
+        end_date = #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memberId != null" >
+        member_id = #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="unitPrincipal != null" >
+        unit_principal = #{unitPrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="unitInterest != null" >
+        unit_interest = #{unitInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="payableInterest != null" >
+        payable_interest = #{payableInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="payablePrincipal != null" >
+        payable_principal = #{payablePrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="realPayPrincipal != null" >
+        real_pay_principal = #{realPayPrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="realPayInterest != null" >
+        real_pay_interest = #{realPayInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="realPayExtraInterest != null" >
+        real_pay_extra_interest = #{realPayExtraInterest,jdbcType=DECIMAL},
+      </if>
+       <if test="realPayExtraProjectInterest != null" >
+        real_pay_extra_project_interest = #{realPayExtraProjectInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="overdueFine != null" >
+        overdue_fine = #{overdueFine,jdbcType=DECIMAL},
+      </if>
+      <if test="payType != null" >
+        pay_type = #{payType,jdbcType=INTEGER},
+      </if>
+      <if test="topayDate != null" >
+        topay_date = #{topayDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="periods != null" >
+        periods = #{periods,jdbcType=VARCHAR},
+      </if>
+      <if test="payTime != null" >
+        pay_time = #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tradeNo != null" >
+        trade_no = #{tradeNo,jdbcType=VARCHAR},
+      </if>
+       <if test="extraEndDay != null" >
+        extra_end_day = #{extraEndDay,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+        update_time = now(),
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+<!-- 根据条件查询交易本息记录 -->  
+  <select id="selectTransactionInterestsByQueryParams" parameterType="TransactionInterestQuery" resultMap="BaseResultMap">
+  SELECT <include refid="Base_Column_List"/>
+  FROM tc_transaction_interest
+    <where >
+        <if test=" transactionId != null" >
+          transaction_id = #{transactionId,jdbcType=BIGINT}
+        </if>
+        <if test=" memberId != null" >
+          AND member_id = #{memberId,jdbcType=BIGINT}
+        </if>
+        <if test=" status != null" >
+          AND status = #{status,jdbcType=INTEGER}
+        </if>
+        <if test=" noStatus != null" >
+          AND status  <![CDATA[<>]]> #{noStatus,jdbcType=INTEGER}
+        </if>
+        <if test=" payType != null" >
+          AND pay_type = #{payType,jdbcType=INTEGER}
+        </if>
+        <if test=" startTime != null" >
+         <![CDATA[ AND pay_time >= #{startTime,jdbcType=TIMESTAMP} ]]>
+        </if>
+        <if test=" endTime != null" >
+         <![CDATA[ AND pay_time <= #{endTime,jdbcType=TIMESTAMP} ]]>
+        </if>
+         <if test=" endDate != null" >
+         <![CDATA[ AND end_date >= #{endDate,jdbcType=TIMESTAMP} ]]>
+        </if>
+          <if test=" transactionTime != null" >
+         <![CDATA[ AND end_date = #{transactionTime,jdbcType=TIMESTAMP} ]]>
+        </if>
+      </where>
+  </select>
+  <!-- 过滤p2p -->
+   <select id="selectTransactionInterestsByQueryParamsFilterP2p" parameterType="TransactionInterestQuery" resultMap="BaseResultMap">
+  SELECT 
+   t.id,  t.transaction_id,  t.start_date,  t.end_date,  t.member_id,  t.status,  t.unit_principal,  t.unit_interest, 
+     t.payable_interest,  t.payable_principal,  t.extra_interest,  t.real_pay_principal,  t.real_pay_interest,  t.pay_time,  t.trade_no,  t.remarks,
+    t. create_time,  t.update_time
+  FROM tc_transaction_interest as t left join tc_transaction as s on s.id=t.transaction_id
+  left join ic_project as p on p.id=s.project_id where p.invest_type=1
+        <if test=" transactionId != null" >
+         and  t.transaction_id = #{transactionId,jdbcType=BIGINT}
+        </if>
+        <if test=" memberId != null" >
+          AND t.member_id = #{memberId,jdbcType=BIGINT}
+        </if>
+        <if test=" status != null" >
+          AND t.status = #{status,jdbcType=INTEGER}
+        </if>
+        <if test=" startTime != null" >
+         <![CDATA[ AND t.pay_time >= #{startTime,jdbcType=TIMESTAMP} ]]>
+        </if>
+        <if test=" endTime != null" >
+         <![CDATA[ AND t.pay_time <= #{endTime,jdbcType=TIMESTAMP} ]]>
+        </if>
+  </select>
+  <!-- 更具条件查询交易本息记录总数 -->  
+  <select id="selectTransactionInterestsByQueryParamsTotalCount" parameterType="TransactionInterestQuery" resultType="java.lang.Integer">
+  SELECT count(0)
+  FROM tc_transaction_interest
+    <where >
+        <if test=" transactionId != null" >
+          transaction_id = #{transactionId,jdbcType=BIGINT}
+        </if>
+        <if test=" memberId != null" >
+          AND member_id = #{memberId,jdbcType=BIGINT}
+        </if>
+        <if test=" status != null" >
+          AND status = #{status,jdbcType=INTEGER}
+        </if>
+        <if test=" startTime != null" >
+         <![CDATA[ AND pay_time >= #{startTime,jdbcType=TIMESTAMP} ]]>
+        </if>
+        <if test=" endTime != null" >
+         <![CDATA[ AND pay_time <= #{endTime,jdbcType=TIMESTAMP} ]]>
+        </if>
+        <if test=" payType != null" >
+          AND pay_type = #{payType,jdbcType=INTEGER}
+        </if>
+      </where>
+  </select>
+  
+  <!-- 通过id查询交易本息 -->
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM tc_transaction_interest
+    WHERE id = #{id,jdbcType=BIGINT}
+  </select>
+  <!-- 加锁通过id查询交易本息 -->
+  <select id="selectByPrimaryKeyForLock" resultMap="BaseResultMap" parameterType="java.lang.Long">
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM tc_transaction_interest
+    WHERE id = #{id,jdbcType=BIGINT} FOR UPDATE
+  </select>
+  
+  <!-- 查询需要还本付息的本息记录  -->
+  <select id="selectToBePaidTransactionInterests" resultMap="TransactionInterestForPayResultMap">
+	  SELECT
+		t.project_id AS projectId,
+		d.lender_id AS payerId,
+	 	i.id AS transactionInterestId,
+	 	i.start_date AS startDate,
+		i.end_date AS endDate,
+		i. status AS status,
+		i.real_pay_interest AS payableInterest,
+		i.real_pay_principal AS payablePrincipal,
+       IFNULL(i.real_pay_extra_interest,0.0)  AS extraInterest
+	FROM
+		tc_transaction_interest i
+	INNER JOIN tc_transaction t ON t.id = i.transaction_id
+	INNER JOIN ic_project p ON p.id= t.project_id
+	INNER JOIN ic_debt d ON d.id=p.debt_id
+
+	WHERE
+		i. `STATUS` = 0
+	<!-- AND  <![CDATA[i.end_date < now() ]]> -->
+	AND  <![CDATA[i.end_date <= curdate() ]]>
+  </select>
+
+
+
+
+
+
+    <!-- 通过项目id更新本息记录本息记录（用于还本付息）  -->
+  <update id="updateStatusToPayingForPayInterest">
+  	UPDATE tc_transaction_interest i
+  	INNER JOIN tc_transaction t
+  	ON t.id=i.transaction_id
+  	SET i.`status` = #{afterStatus,jdbcType=INTEGER},
+  	i.`trade_no` = #{tradeNo,jdbcType=VARCHAR},
+  	i.update_time = now()
+  	WHERE
+		i. `status` = #{beforeStatus,jdbcType=INTEGER}
+	<!-- AND  <![CDATA[i.end_date < now() ]]> -->
+	AND  (<![CDATA[i.end_date <= curdate() ]]> or (i.pay_type = 1 and <![CDATA[ i.topay_date = curdate() ]]>))
+	AND t.project_id= #{projectId,jdbcType=BIGINT}
+  </update>
+  
+    <!--还本付息更新本息记录状态（包含更新为待支付和已支付）  -->
+  <update id="updateStatusForPayInterest">
+  	UPDATE tc_transaction_interest
+  	SET `status` = #{afterStatus,jdbcType=INTEGER},
+  	update_time = now()
+  	WHERE
+		`status` = #{beforeStatus,jdbcType=INTEGER}
+	<!-- AND  <![CDATA[i.end_date < now() ]]> -->
+	AND  <![CDATA[end_date <= curdate() ]]>
+	AND trade_no= #{tradeNo,jdbcType=VARCHAR}
+  </update>
+  
+  <!-- 更新本息记录状态  -->
+  <update id="updateStatusAndRealPayForPaySuccess" parameterType="java.util.HashMap">
+  	UPDATE tc_transaction_interest
+  	SET status = #{afterStatus,jdbcType=INTEGER},
+  		<!-- real_pay_principal = payable_principal,  -->
+  		<!-- real_pay_interest = payable_interest,  -->
+  		<!-- real_pay_extra_interest = extra_interest,  -->
+  		<!-- real_pay_extra_project_interest = extra_project_interest,-->
+  		pay_time = now(),
+  		update_time = now()
+  	WHERE id=#{id,jdbcType=BIGINT}
+  	AND status = #{beforeStatus,jdbcType=INTEGER}
+  </update>
+  
+
+  
+  <!-- 通过项目id查询支付中本息记录  -->
+  <select id="selectPayingTransactionInterestsByTradeNo" resultMap="BaseResultMap">
+  SELECT 
+  	 i.id, 
+  	 i.transaction_id, 
+  	 i.project_id, 
+  	 i.start_date, 
+  	 i.end_date, 
+  	 i.member_id, 
+  	 i.status, 
+  	 i.unit_principal, 
+  	 i.unit_interest, 
+    i.payable_interest, 
+    i.payable_principal, 
+    i.extra_interest, 
+    i.real_pay_principal, 
+    i.real_pay_interest,
+    i.overdue_fine,
+     i.pay_time, 
+     i.remarks,
+     i.trade_no,
+    i.create_time, 
+    i.update_time,
+    i.pay_type
+  FROM 
+  	tc_transaction_interest i
+  	WHERE 
+  		i.trade_no=#{tradeNo,jdbcType=VARCHAR}
+  	AND	
+  		i.`status` = #{status,jdbcType=INTEGER}
+   <!--	FOR UPDATE-->
+  </select>
+
+  <select id="selectExtraInterestByProject" resultType="java.math.BigDecimal">
+  	select sum(i.extra_interest) 
+  	FROM 
+  	tc_transaction_interest i
+   INNER JOIN 
+   	tc_transaction t
+  	ON 
+  		t.id=i.transaction_id
+  	WHERE 
+  		t.project_id=#{projectId,jdbcType=BIGINT}
+  	AND	
+  		i.`status` = #{status,jdbcType=INTEGER}
+  </select>
+  
+  <!-- 查询最近一笔还本人付息数据 -->
+  <select id="queryLastPayTransactionInterest" resultMap="BaseResultMap">
+  	SELECT 
+    <include refid="Base_Column_List" />
+    FROM tc_transaction_interest
+    WHERE member_id = #{memberId,jdbcType=BIGINT} and status = 0 order by end_date asc limit 1
+  </select>
+  
+  <!-- 获取一个项目的付息时间金额表 -->
+  <select id="queryInterestByProjectId" resultMap="BaseResultMap">
+  	SELECT
+		ti.end_date,
+		SUM(
+			ti.real_pay_interest + ti.real_pay_principal
+		) as payable_interest
+	FROM
+		tc_transaction_interest ti
+	INNER JOIN tc_transaction AS t ON t.project_id = #{projectId,jdbcType=BIGINT}
+	AND t.id = ti.transaction_id
+	GROUP BY
+		ti.end_date
+	ORDER BY
+		ti.end_date;
+  </select>
+  <!-- 查询当前还款的期数 -->
+  <select id="queryRepayPeriods" resultType="java.lang.String">
+  	select CONCAT(sum(case when <![CDATA[i.end_date <= #{endDate,jdbcType=TIMESTAMP} ]]> then 1 else 0 end),'/',count(i.id))period 
+  	from 
+  	(select * from tc_transaction_interest as i where transaction_id = #{transactionId,jdbcType=BIGINT} )as i
+  </select>
+
+  <!-- 查询会员待收（本金+利息+使用收益劵的利息） -->
+  <select id="queryCollectedAmount"  resultType="java.math.BigDecimal">
+  SELECT SUM(real_pay_interest+real_pay_principal) FROM  tc_transaction_interest
+   WHERE member_id =  #{memberId,jdbcType=BIGINT}  AND STATUS IN (0,2,3,4)
+  </select>
+  <!-- 查询用户本息 -->
+  <select id="queryTransactionInterestForMember" resultMap="TransactionInterestForMember" parameterType="TransactionInterestQuery">
+  	select ti.transaction_id, tc.project_id, tc.project_name, ti.real_pay_interest as payable_interest, ti.real_pay_principal as payable_principal, ti.status, ti.start_date, ti.end_date from tc_transaction  as tc 
+  	 inner join tc_transaction_interest as ti on tc.id = ti.transaction_id 
+  	 inner join ic_project as ic on ic.id=tc.project_id
+  	 <if test="query != null">
+  	 	<where>
+  	 		<if test="query.memberId != null">
+  	 			and tc.member_id = #{query.memberId}
+  	 		</if>
+ 	 		and (ti.status = 0 or ti.status = 4)
+  	 		<!-- 查询待收本金 -->
+  	 		<if test="query.isPrincipal()">
+  	 			and ti.real_pay_principal > 0
+  	 		</if>
+  	 		<if test="query.investType!=null">
+  	 			and ic.invest_type=#{query.investType}
+  	 		</if>
+  	 	</where>
+  	 </if>
+  	  order by ti.end_date asc
+  	  LIMIT #{query.startRow,jdbcType=INTEGER}, #{query.pageSize,jdbcType=INTEGER}
+  </select>
+  
+  <!-- 查询用户本息 -->
+  <select id="queryTransactionInterestForMemberTotalCount" resultType="java.lang.Integer">
+  	select count(*) from tc_transaction  as tc 
+  	 inner join tc_transaction_interest as ti on tc.id = ti.transaction_id 
+  	 inner join ic_project as ic on ic.id=tc.project_id
+  	 <if test="query != null">
+  	 	<where>
+  	 		<if test="query.memberId != null">
+  	 			and tc.member_id = #{query.memberId}
+  	 		</if>
+ 			and (ti.status = 0 or ti.status = 4)
+  	 		<!-- 查询待收本金 -->
+  	 		<if test="query.isPrincipal()">
+  	 			and ti.real_pay_principal > 0
+  	 		</if>
+  	 		<if test="query.investType!=null">
+  	 			and ic.invest_type=#{query.investType}
+  	 		</if>
+  	 	</where>
+  	 </if>
+  </select>
+  
+   <!-- 查询用户本息 ，剔除P2P项目-->
+  <select id="p2pQueryTransactionInterestForMemberTotalCount" resultType="java.lang.Integer">
+  	select count(*) from tc_transaction  as tc 
+  	inner join ic_project as ic on ic.id=tc.project_id and ic.invest_type=1
+  	 inner join tc_transaction_interest as ti on tc.id = ti.transaction_id 
+  	 <if test="query != null">
+  	 	<where>
+  	 		<if test="query.memberId != null">
+  	 			and tc.member_id = #{query.memberId}
+  	 		</if>
+ 			and (ti.status = 0 or ti.status = 4)
+  	 		<!-- 查询待收本金 -->
+  	 		<if test="query.isPrincipal()">
+  	 			and ti.real_pay_principal > 0
+  	 		</if>
+  	 	</where>
+  	 </if>
+  </select>
+  
+  <!-- 查询用户本息 -->
+  <select id="p2pQueryTransactionInterestForMember" resultMap="TransactionInterestForMember" parameterType="TransactionInterestQuery">
+  	select ti.transaction_id, tc.project_id, tc.project_name, ti.real_pay_interest as payable_interest, ti.real_pay_principal as payable_principal, ti.status, ti.start_date, ti.end_date from tc_transaction  as tc 
+  	 inner join ic_project as ic on ic.id=tc.project_id and ic.invest_type=1
+  	 inner join tc_transaction_interest as ti on tc.id = ti.transaction_id 
+  	 <if test="query != null">
+  	 	<where>
+  	 		<if test="query.memberId != null">
+  	 			and tc.member_id = #{query.memberId}
+  	 		</if>
+ 	 		and (ti.status = 0 or ti.status = 4)
+  	 		<!-- 查询待收本金 -->
+  	 		<if test="query.isPrincipal()">
+  	 			and ti.real_pay_principal > 0
+  	 		</if>
+  	 	</where>
+  	 </if>
+  	  order by ti.end_date asc
+  	  LIMIT #{query.startRow,jdbcType=INTEGER}, #{query.pageSize,jdbcType=INTEGER}
+  </select>
+  
+  <!--统计用户投资使用收益券获得的利息  -->
+   <select id="totalMemberExtraInterest" resultType="java.math.BigDecimal">
+       select sum(real_pay_extra_interest) as totalExtraInterest from tc_transaction_interest where member_id = #{memberId,jdbcType=BIGINT} and real_pay_extra_interest <![CDATA[ > ]]> 0
+   </select>
+   
+   <!-- 根据日期获得用户还本付息详情 -->
+   <select id="getMemberInterestDetailByDate" resultMap="TransactionInterestDetailForCalendar" parameterType="Map">
+    	select tt.project_id, tt.project_name,
+    	tt.id as transactionId,
+    	sum(real_pay_principal) as totalPayablePrincipal,
+    	sum(real_pay_interest) as totalPayableInterest, 
+    	IF(SUM(IF(ti.`status` = 1, 0, 1)) = 0, 1, 0) as repaymentStatus
+ 			from tc_transaction as tt
+			left JOIN
+			tc_transaction_interest as ti
+			on tt.id=ti.transaction_id
+				<if test=" map != null">
+					<where>
+						<if test=" map.memberId != null" >
+							and ti.member_id= #{map.memberId}
+						</if>
+						<if test=" map.endDate != null" >
+							and ti.end_date = #{map.endDate}
+						</if>
+						<if test=" map.payType != null" >
+							and ti.pay_type= #{map.payType}
+						</if>
+						<if test=" map.status != null" >
+							and ti.status= #{map.status}
+						</if>
+						<if test=" map.payTime != null" >
+							and ti.pay_time= #{map.payTime}
+						</if>
+					</where>
+				</if>
+			 group by tt.id;
+   </select>
+   
+   <!-- 当前还款的笔数 -->
+   <select id="getCurrentInterestNum" resultType="java.lang.Integer">
+	   select rowNum from (
+			select (select @i := @i + 1) as rowNum,a.end_date from (
+				select ti.end_date from tc_transaction as tt
+			left JOIN
+			tc_transaction_interest as ti
+			on tt.id=ti.transaction_id
+			where tt.member_id=#{memberId,jdbcType=BIGINT} and tt.id=#{transactionId,jdbcType=BIGINT}
+			group by end_date ) a,(SELECT @i := 0)b ) as c 
+		where end_date = #{endDate,jdbcType=VARCHAR}
+   </select>
+   
+   <!-- 获得项目还款的总笔数 -->
+   <select id="getTotalInterestNum" resultType="java.lang.Integer">
+	   select count(1) from (
+			select tt.id from tc_transaction as tt
+			left JOIN
+			tc_transaction_interest as ti
+			on tt.id=ti.transaction_id
+			where tt.member_id=#{memberId,jdbcType=BIGINT} and tt.id=#{transactionId,jdbcType=BIGINT} group by end_date
+		) as temp_tab
+  </select>
+  
+   
+    <!-- 查询用户本息明细 -->
+  <select id="getTransactionInterestDetailForMember" resultMap="TransactionInterestForMember" parameterType="TransactionInterestQuery">
+  	select ti.transaction_id, tc.project_id, tc.project_name,
+    ti.real_pay_interest payable_interest,
+    ti.real_pay_principal payable_principal
+  	, ti.status, ti.start_date, ti.end_date
+  	 from tc_transaction  as tc 
+  	 inner join tc_transaction_interest as ti on tc.id = ti.transaction_id 
+  	 <if test="query != null">
+  	 	<where>
+  	 		<if test="query.memberId != null">
+  	 			and tc.member_id = #{query.memberId}
+  	 		</if>
+  	 		<if test="query.status != null">
+	 	 		<choose>
+					<when test="query.status == 0">
+					    and (ti.status = 0 or ti.status = 4)
+					</when>
+					<otherwise>
+					    and ti.status = #{query.status}
+					</otherwise>  	 		    
+				 </choose>
+			 </if>
+  	 		<!-- 查询待收本金 -->
+  	 		<if test="query.isPrincipal()">
+  	 			and ti.real_pay_principal > 0
+  	 		</if>
+  	 	</where>
+  	 </if>
+  	<choose>
+		<when test="query.isAsc()">
+		    order by ti.end_date asc
+		</when>
+		<otherwise>
+		     order by ti.end_date desc
+		</otherwise>  	 		    
+	 </choose>
+  	  LIMIT #{query.startRow,jdbcType=INTEGER}, #{query.pageSize,jdbcType=INTEGER}
+  </select>
+ <select id="getTransactionInterestDetailForMemberFilterP2P" resultMap="TransactionInterestForMember" parameterType="TransactionInterestQuery">
+  	select ti.transaction_id, tc.project_id, tc.project_name,ti.pay_type,
+    ti.real_pay_interest  payable_interest,
+    ti.real_pay_principal payable_principal
+  	, ti.status, ti.start_date, 
+  	
+  	 CASE ti.status
+          WHEN   1
+          THEN ti.pay_time
+          ELSE ti.end_date
+		  END AS end_date
+  	 from tc_transaction  as tc 
+  	 inner join tc_transaction_interest as ti on tc.id = ti.transaction_id 
+  	 <where>
+  	 <if test="query != null">
+  	 		<if test="query.memberId != null">
+  	 			and tc.member_id = #{query.memberId}
+  	 		</if>
+  	 		<if test="query.status != null">
+	 	 		<choose>
+					<when test="query.status == 0">
+					    and (ti.status = 0 or ti.status = 4)
+					</when>
+					<otherwise>
+					    and ti.status = #{query.status}
+					</otherwise>  	 		    
+				 </choose>
+			 </if>
+  	 		<!-- 查询待收本金 -->
+  	 		<if test="query.isPrincipal()">
+  	 			and ti.real_pay_principal > 0
+  	 		</if>
+  	 </if>
+  	 </where>
+  	<choose>
+		<when test="query.isAsc()">
+		    order by ti.end_date asc
+		</when>
+		<otherwise>
+		     order by ti.end_date desc
+		</otherwise>  	 		    
+	 </choose>
+  	  LIMIT #{query.startRow,jdbcType=INTEGER}, #{query.pageSize,jdbcType=INTEGER}
+  </select>
+  <!-- 查询当前要还款的项目-->
+  <select id="queryToBePaidTransactionInterests"  resultType="java.lang.Long">
+    SELECT
+    distinct t.project_id AS projectId
+    FROM
+    tc_transaction_interest i
+    INNER JOIN tc_transaction t ON t.id = i.transaction_id
+    WHERE
+    i. STATUS  in (0,3,4)
+	AND  <![CDATA[i.end_date <= curdate() ]]>
+  </select>
+  <!-- 查询当前要还款的项目-->
+  <select id="queryIDToBePaidTransactionInterests"  resultType="java.lang.Long">
+    SELECT
+     i.id
+    FROM
+    tc_transaction_interest i
+    INNER JOIN tc_transaction t ON t.id = i.transaction_id
+    WHERE
+     <![CDATA[i.end_date <= curdate() ]]> and t.project_id = #{projectId,jdbcType=BIGINT}
+  </select>
+
+  <!-- 查询需要还本付息的本息记录- 包括直投项目  -->
+  <select id="selectAllProjectToBePaidTransactionInterests" resultMap="TransactionInterestForPayResultMap">
+    SELECT
+    t.project_id AS projectId,
+          CASE p.invest_type
+          WHEN   1
+          THEN d.lender_id
+          WHEN  2
+          THEN p.borrower_id
+          END AS payerId,
+    p.open_platform_key AS open_platform_key,
+    i.id AS transactionInterestId,
+    i.start_date AS startDate,
+    i.end_date AS endDate,
+    i. status AS status,
+    i.real_pay_interest AS payableInterest,
+    i.real_pay_principal AS payablePrincipal,
+    IFNULL(i.real_pay_extra_interest,0.0)  AS extraInterest,
+    IFNULL(i.real_pay_extra_project_interest,0.0)  AS extraProjectInterest,
+    IFNULL(i.overdue_fine,0.0)  AS overdueFine,
+    i.interest_id as interest_id
+    FROM
+    tc_transaction_interest i
+    INNER JOIN tc_transaction t ON t.id = i.transaction_id
+    INNER JOIN ic_project p ON p.id= t.project_id
+    LEFT  JOIN ic_debt d ON d.id=p.debt_id
+    WHERE
+    i. `STATUS` = 0
+    <!-- AND  <![CDATA[i.end_date < now() ]]> -->
+    AND  <![CDATA[i.end_date <= curdate() ]]> and pay_type = 0
+  </select>
+  
+  <!-- 获取一个项目的付息时间金额表，和本息标志 -->
+  <select id="queryInterestAndPrincipalFlagByProjectId" resultMap="BaseResultMap">
+  	SELECT
+		ti.end_date,
+		SUM(
+			ti.real_pay_interest
+		) as payable_interest,
+		SUM(
+			ti.real_pay_principal
+		) as payable_principal
+	FROM
+		tc_transaction_interest ti
+	INNER JOIN tc_transaction AS t ON t.project_id = #{projectId,jdbcType=BIGINT}
+	AND t.id = ti.transaction_id
+	GROUP BY
+		ti.end_date
+	ORDER BY
+		ti.end_date;
+  </select>
+
+	 <select id="findByPageCount" resultType="java.lang.Integer">
+	 		select 
+			    count(1)
+			    from tc_transaction_interest  as t
+			    left join tc_transaction as tc on  tc.id=t.transaction_id
+			    <if test=" map != null" >
+			      <where>
+			      	<if test=" map.projectId != null" >
+		          tc.project_id = #{map.projectId}
+		        </if>
+		        <if test=" map.id != null" >
+		          t.id = #{map.id}
+		        </if>
+		        <if test=" map.transactionId != null" >
+		          and t.transaction_id = #{map.transactionId}
+		        </if>
+		        <if test=" map.startDate != null" >
+		          and t.start_date = #{map.startDate}
+		        </if>
+		        <if test=" map.endDate != null" >
+		          and t.end_date = #{map.endDate}
+		        </if>
+		        <if test=" map.memberId != null" >
+		          and t.member_id = #{map.memberId}
+		        </if>
+		        <if test=" map.status != null" >
+		          and t.status = #{map.status}
+		        </if>
+		        <if test=" map.unitPrincipal != null" >
+		          and t.unit_principal = #{map.unitPrincipal}
+		        </if>
+		        <if test=" map.unitInterest != null" >
+		          and t.unit_interest = #{map.unitInterest}
+		        </if>
+		        <if test=" map.payableInterest != null" >
+		          and t.payable_interest = #{map.payableInterest}
+		        </if>
+		        <if test=" map.payablePrincipal != null" >
+		          and t.payable_principal = #{map.payablePrincipal}
+		        </if>
+		        <if test=" map.extraInterest != null" >
+		          and t.extra_interest = #{map.extraInterest}
+		        </if>
+		        <if test=" map.realPayPrincipal != null" >
+		          and t.real_pay_principal = #{map.realPayPrincipal}
+		        </if>
+		        <if test=" map.realPayInterest != null" >
+		          and t.real_pay_interest = #{map.realPayInterest}
+		        </if>
+		        <if test=" map.payTime != null" >
+		          and t.pay_time = #{map.payTime}
+		        </if>
+		        <if test=" map.tradeNo != null" >
+		          and t.trade_no = #{map.tradeNo}
+		        </if>
+		        <if test=" map.remarks != null" >
+		          and t.remarks like "%"#{map.remarks}"%"
+		        </if>
+		        <if test=" map.createTime != null" >
+		          and t.create_time = #{map.createTime}
+		        </if>
+		        <if test=" map.updateTime != null" >
+		          and t.update_time = #{map.updateTime}
+		        </if>
+		        <if test=" map.payTimeStart != null" >
+		          and t.pay_time <![CDATA[>=]]> #{map.payTimeStart}
+		        </if> <if test=" map.payTimeEnd != null" >
+		          and t.pay_time <![CDATA[<=]]>  #{map.payTimeEnd}
+		        </if>
+		       </where>
+		       </if>
+	 </select>
+
+  <!-- 统计代收金额 -->
+  <select id="selectTransactionInterestsByMonth" resultMap="TransactionInterestForMonth">
+  	SELECT
+		DATE_FORMAT(i.end_date, '%Y%m') AS count_ym,
+		sum(
+			IFNULL(i.real_pay_principal, 0)
+		) AS totalPayablePrincipal,
+		sum(
+			IFNULL(i.real_pay_interest, 0)
+		) AS totalPayableInterest
+	FROM
+		tc_transaction_interest AS i
+	WHERE
+		i.member_id = #{memberId,jdbcType=BIGINT}
+	AND i.status != 1
+	<if test="startYM != null" >
+	AND i.end_date <![CDATA[ >= ]]> #{startYM,jdbcType=VARCHAR}
+	</if>
+	<if test="endYM != null" >
+	AND i.end_date <![CDATA[ < ]]> #{endYM,jdbcType=VARCHAR}
+	</if>
+	GROUP BY
+		count_ym
+	ORDER BY
+		count_ym
+  </select>
+  
+  <!-- 根据结束日期分组查询交易本息，status: 1 当天全部已还款，0 存在未还-->
+  <select id="selectTransactionInterestsByEndDate" resultMap="TransactionInterestForDate">
+  	SELECT
+		i.end_date as dateStr, IF(SUM(IF(i.`status` = 1, 0, 1)) = 0, 1, 0) as repaymentStatus
+	FROM
+		tc_transaction_interest AS i
+	WHERE
+		i.member_id = #{memberId,jdbcType=BIGINT}
+	<if test="startYM != null" >
+	AND i.end_date <![CDATA[ >= ]]> #{startYM,jdbcType=VARCHAR}
+	</if>
+	<if test="endYM != null" >
+	AND i.end_date <![CDATA[ < ]]> #{endYM,jdbcType=VARCHAR}
+	</if>
+	GROUP BY i.end_date
+	ORDER BY i.end_date
+  </select>
+  
+   <!-- 用户，指定日期是否有还款 -->
+  <select id="ifPayByEndDateAndMemberId"  resultType="java.lang.Integer" >
+  	select 1 from tc_transaction_interest 
+	where member_id=#{map.memberId}
+	and status =1
+	and end_date =#{map.endDate}
+	limit 1 
+  </select>
+  
+  
+  <!-- 查询最近一笔还本人付息数据 -->
+  <select id="selectTransactionInterestsByProjectId" resultMap="BaseResultMap">
+	  select 
+		sum(
+		real_pay_principal
+		)as real_pay_principal,
+		sum(
+		real_pay_interest
+		)as real_pay_interest,
+		sum(
+		real_pay_extra_interest
+		)as real_pay_extra_interest
+		from tc_transaction_interest 
+		where status=0
+			<if test=" map != null" >
+				<if test=" map.projectId != null" >
+				and project_id=#{map.projectId}
+				</if>
+			</if>
+		group by project_id
+  </select>
+  
+  
+    <!-- 查询需要提前还本付息的本息记录- 包括直投项目  -->
+  <select id="selectAllProjectToBePrePaidTransactionInterests" resultMap="TransactionInterestForPayResultMap">
+    SELECT
+    t.project_id AS projectId,
+          CASE p.invest_type
+          WHEN   1
+          THEN d.lender_id
+          WHEN  2
+          THEN p.borrower_id
+          END AS payerId,
+    p.open_platform_key AS open_platform_key,
+    i.id AS transactionInterestId,
+    i.start_date AS startDate,
+    i.end_date AS endDate,
+    i. status AS status,
+    i.real_pay_interest AS payableInterest,
+    i.real_pay_principal AS payablePrincipal,
+    IFNULL(i.real_pay_extra_interest,0.0)  AS extraInterest,
+    IFNULL(i.real_pay_extra_project_interest,0.0)  AS extraProjectInterest,
+    IFNULL(i.overdue_fine,0.0)  AS overdueFine,
+    i.interest_id as interest_id
+    FROM
+    tc_transaction_interest i
+    INNER JOIN tc_transaction t ON t.id = i.transaction_id
+    INNER JOIN ic_project p ON p.id= t.project_id
+    LEFT  JOIN ic_debt d ON d.id=p.debt_id
+    WHERE
+    i. `STATUS` = 0
+    AND  <![CDATA[ i.topay_date = curdate() ]]> and pay_type = 1
+  </select>
+  
+  <!-- 交易对应不属于某一状态的本息个数 -->
+  <select id="getCountTransationInterestByTransationIdAndStatus" resultType="java.lang.Integer">
+  	SELECT COUNT(1) 
+  	from tc_transaction_interest 
+  	where transaction_id = #{transactionId,jdbcType=BIGINT} and status != #{status,jdbcType=INTEGER}
+  </select>
+  
+  <!-- 项目本息对应不属于某一状态的交易本息个数  -->
+  <select id="getCountByProjectInterestNotStatus" resultType="java.lang.Integer">
+  	SELECT COUNT(1) 
+  	from tc_transaction_interest 
+  	where interest_id = #{interestId,jdbcType=BIGINT} 
+  	and status <![CDATA[<>]]> 1
+  </select>
+  <!-- 统计滞纳金 -->
+  <select id="totalOverdueFine" resultType="java.math.BigDecimal">
+       select sum(overdue_fine) as overdue_fine from tc_transaction_interest where project_id = #{projectId,jdbcType=BIGINT} 
+  </select>
+  <!-- 根据项目本息id更新还款类型 -->
+  <update id="updatePayTypeByInterestId">
+  	update tc_transaction_interest
+  	 set pay_type = #{afterPayType,jdbcType=INTEGER} ,update_time = now()
+  	 where pay_type = #{beforePayType,jdbcType=INTEGER} 
+  	 and interest_id = #{interestId,jdbcType=BIGINT}
+  </update>
+  
+  <!-- 获取还本付息最后一期 -->
+  <select id="getPreTransactionInterest" resultMap="BaseResultMap">
+	  select 
+		<include refid="Base_Column_List" />
+		from tc_transaction_interest 
+		<if test=" map != null" >
+			<where >
+				<if test=" map.projectId != null" >
+					and project_id=#{map.projectId}
+				</if>
+				<if test=" map.transactionId != null" >
+					and transaction_id=#{map.transactionId}
+				</if>
+				<if test=" map.memberId != null" >
+					and member_id=#{map.memberId}
+				</if>
+			</where>
+		</if>
+		order by end_date desc   limit 1
+  </select>
+  
+  
+  <!-- 根据项目本息查询交易本息记录 -->
+  <select id="getByProjectInterestId" resultMap="TransactionInterestForLateFeeMap">
+  	SELECT
+		i.id as id,
+		i.project_id as projectId,
+		i.transaction_id as transaction_id,
+		i.real_pay_interest as payable_interest,
+		i.real_pay_principal as payable_principal,
+		i.real_pay_extra_interest as extra_interest
+	FROM
+		tc_transaction_interest as i
+		WHERE
+		i.interest_id = #{interestId,jdbcType=BIGINT}
+  </select>
+  
+  
+  <select id="selectUnreturnPrincipalAndInterestByTransactionId" resultMap="BaseResultMap">
+	  	SELECT
+		sum(
+			real_pay_interest - ifnull(real_pay_extra_interest,0) - ifnull(real_pay_extra_project_interest,0) 
+		) AS payable_interest,
+		sum(real_pay_principal) AS payable_principal
+	FROM
+		tc_transaction_interest
+	WHERE
+		transaction_id = #{transactionId,jdbcType=BIGINT} 
+	AND STATUS = 0
+  </select>
+  
+     <!-- 查询需要逾期还本付息的本息记录- 包括直投项目  -->
+  <select id="selectAllProjectToBeOverPaidTransactionInterests" resultMap="TransactionInterestForPayResultMap">
+    SELECT
+    t.project_id AS projectId,
+          CASE p.invest_type
+          WHEN   1
+          THEN d.lender_id
+          WHEN  2
+          THEN p.borrower_id
+          END AS payerId,
+    p.open_platform_key AS open_platform_key,
+    i.id AS transactionInterestId,
+    i.start_date AS startDate,
+    i.end_date AS endDate,
+    i. status AS status,
+    i.real_pay_interest AS payableInterest,
+    i.real_pay_principal AS payablePrincipal,
+    IFNULL(i.real_pay_extra_interest,0.0)  AS extraInterest,
+    IFNULL(i.real_pay_extra_project_interest,0.0)  AS extraProjectInterest,
+    IFNULL(i.overdue_fine,0.0)  AS overdueFine,
+    i.interest_id as interest_id
+    FROM
+    tc_transaction_interest i
+    INNER JOIN tc_transaction t ON t.id = i.transaction_id
+    INNER JOIN ic_project p ON p.id= t.project_id
+    LEFT  JOIN ic_debt d ON d.id=p.debt_id
+    WHERE
+    i. `STATUS` = 0
+    AND  <![CDATA[ i.topay_date = curdate() ]]> and pay_type = 2
+  </select>
+  
+    <!-- 更新本息记录状态  -->
+  <update id="updateStatusForPaySuccess" >
+  	UPDATE tc_transaction_interest
+  	SET status = #{afterStatus,jdbcType=INTEGER},
+  		pay_time = now(),
+  		update_time = now()
+  	WHERE id=#{id,jdbcType=BIGINT}
+  	AND status = #{beforeStatus,jdbcType=INTEGER}
+  </update>
+  
+  <resultMap id="CalenderTransactionInterestDetailMap" type="CalenderTransactionInterestDetail" extends="BaseResultMap">
+    <result column="project_id" property="projectId" jdbcType="BIGINT" />
+    <result column="project_name" property="projectName" jdbcType="VARCHAR" />
+    <result column="transactionId" property="transactionId" jdbcType="BIGINT" />
+  </resultMap>
+   
+   
+   <!-- 根据日期获得用户还本付息详情 -->
+   <select id="getMemberInterestDetailByDateNew" resultMap="CalenderTransactionInterestDetailMap" parameterType="Map">
+    	select 
+    		tt.project_id as project_id,  
+    		tt.project_name as project_name,
+    		tt.id as transactionId,
+			ti.real_pay_interest as payable_interest,
+			ti.real_pay_principal as payable_principal,
+			ti.real_pay_extra_interest as extra_interest,
+			ti.real_pay_principal as real_pay_principal,
+			ti.real_pay_interest as real_pay_interest,
+			ti.periods as periods,
+			ti.pay_type as pay_type,
+			ti.status as status,
+			ti.end_date as end_date,
+			ti.topay_date as topay_date,
+			ti.pay_time as pay_time
+ 			from tc_transaction as tt
+			left JOIN
+			tc_transaction_interest as ti
+			on tt.id=ti.transaction_id
+				<if test=" map != null">
+					<where>
+						<if test=" map.memberId != null" >
+							and ti.member_id= #{map.memberId}
+						</if>
+						<if test=" map.endDate != null" >
+							and ti.end_date = #{map.endDate}
+						</if>
+						<if test=" map.payType != null" >
+							and ti.pay_type= #{map.payType}
+						</if>
+						<if test=" map.status != null" >
+							and ti.status= #{map.status}
+						</if>
+						<if test=" map.payTime != null" >
+							and <![CDATA[ ((DATE(ti.pay_time) = #{map.payTime} and ti.status =1) or (ti.end_date=#{map.payTime} and ti.status<>1)) ]]>
+						</if>
+					</where>
+				</if>
+			order by FIELD('ti.status',1,0,2,3,4)
+   </select>
+  
+  <!-- 获取实际实付金额根据项目本息id-->
+  <select id="getRealPayByInterestId" resultMap="BaseResultMap">
+	  	SELECT
+		sum(real_pay_principal) real_pay_principal,
+		sum(
+			real_pay_interest - real_pay_extra_interest
+		) real_pay_interest
+	FROM
+		tc_transaction_interest
+	WHERE
+		interest_id = #{interestId,jdbcType=BIGINT} 
+	AND STATUS = 1
+  </select>
+  
+  <select id="selectUnreturnPrincipalAndInterestByProjectId" resultMap="BaseResultMap">
+	  	SELECT
+		sum(
+			real_pay_interest - ifnull(real_pay_extra_interest,0) - ifnull(real_pay_extra_project_interest,0) 
+		) AS payable_interest,
+		sum(real_pay_principal) AS payable_principal
+	FROM
+		tc_transaction_interest
+	WHERE
+		project_id = #{projectId,jdbcType=BIGINT} 
+	AND STATUS = 0
+  </select>
+   <!-- 用户，指定日期是否有还款 -->
+  <select id="sumExtraInterest"  resultType="java.math.BigDecimal" >
+  	SELECT
+		SUM(real_pay_extra_interest)
+	FROM
+		tc_transaction_interest i
+	INNER JOIN tc_transaction t ON t.id = i.transaction_id
+	WHERE
+		t.project_id = #{projectId,jdbcType=BIGINT};
+  </select>
+  
+   <!-- 查询当日交易本息所关联的借款人代收号 -->
+  <select id="selectCurrentDateCollectTradeNos"  resultType="java.lang.String" >
+  	SELECT
+		trade_no
+	FROM
+		tc_transaction_interest
+	WHERE
+		`status` =  #{status,jdbcType=INTEGER}
+	AND end_date = CURRENT_DATE
+	GROUP BY
+		trade_no;
+  </select>
+   <select id="getCountInterestByMemberId" resultType="java.lang.Integer">
+  	SELECT COUNT(1) 
+  	from tc_transaction_interest 
+  	where  status = #{status,jdbcType=INTEGER}
+  	AND 
+  	end_date <![CDATA[ = ]]> #{startTime,jdbcType=TIMESTAMP}
+  </select>
+  
+
+  <select id="findByPageBorrowRepayInterest" resultType="BorrowRepayInterestBiz">
+      SELECT z.*,m.true_name borrowerName,m.mobile borrowerMobile FROM (
+      SELECT (case when p.invest_type=1 then  d.lender_id else p.borrower_id end) borrowerId,i.end_date endDate,SUM(i.real_pay_principal) payablePrincipal,
+      SUM(i.real_pay_interest) payableInterest,SUM(i.real_pay_extra_interest) extraInterest,SUM(i.real_pay_extra_project_interest) payExtraProjectInterest,GROUP_CONCAT(DISTINCT p.id) ProjectIds from tc_transaction_interest i
+      LEFT JOIN ic_project p on i.project_id=p.id
+      LEFT JOIN ic_debt d ON p.debt_id=d.id
+      WHERE  i.end_date=#{query.endDate}
+       GROUP BY borrowerId)z
+      JOIN uc_member m on z.borrowerId=m.id
+      <where>
+          <if test="query.borrowId!=null">
+              AND m.id=#{query.borrowId}
+          </if>
+          <if test="query.borrowName!=null">
+              AND m.true_name=#{query.borrowName}
+          </if>
+          <if test="query.borrowMobile!=null">
+              AND m.mobile=#{query.borrowMobile}
+          </if>
+      </where>
+      LIMIT #{query.startRow,jdbcType=INTEGER}, #{query.pageSize,jdbcType=INTEGER}
+  </select>
+
+  <select id="findByDayCollectBorrowRepayInterest" parameterType="java.util.Date" resultType="com.yourong.core.tc.model.biz.BorrowRepayInterestCollect">
+    SELECT end_date endDate,SUM(xhbj) payablePrincipal,SUM(xhlx) payableInterest,SUM(pttx) extraInterest FROM
+    (SELECT A.project_id, SUM(A.xhbj) xhbj,SUM(A.xhlx) xhlx,SUM(pttx) pttx,B.borrower_id borrower_id,A.end_date FROM
+    (SELECT project_id,SUM(real_pay_principal) xhbj,SUM(real_pay_interest) xhlx,SUM(real_pay_extra_interest) pttx,end_date FROM tc_transaction_interest WHERE end_date= #{enddate} GROUP BY project_id) A
+    LEFT JOIN ic_project B ON A.project_id=B.id WHERE borrower_id IS NOT NULL GROUP BY borrower_id)C
+  </select>
+
+  <select id="findByPageCountBorrowRepayInterest" resultType="java.lang.Integer">
+    SELECT COUNT(1) FROM (
+      SELECT z.*,m.true_name borrowerName,m.mobile borrowerMobile FROM (
+      SELECT (case when p.invest_type=1 then  d.lender_id else p.borrower_id end) borrowerId,i.end_date endDate,SUM(i.real_pay_principal) payablePrincipal,
+      SUM(i.real_pay_interest) payableInterest,SUM(i.real_pay_extra_interest) extraInterest from tc_transaction_interest i
+      LEFT JOIN ic_project p on i.project_id=p.id
+      LEFT JOIN ic_debt d ON p.debt_id=d.id
+      WHERE  i.end_date=#{query.endDate}
+      GROUP BY borrowerId)z
+      JOIN uc_member m on z.borrowerId=m.id
+      <where>
+          <if test="query.borrowId!=null">
+              AND m.id=#{query.borrowId}
+          </if>
+          <if test="query.borrowName!=null">
+              AND m.true_name=#{query.borrowName}
+          </if>
+          <if test="query.borrowMobile!=null">
+              AND m.mobile=#{query.borrowMobile}
+          </if>
+      </where>
+    ) A
+  </select>
+
+  <select id="selectWaitRepayNum" resultType="java.lang.Integer">
+      SELECT COUNT(1) FROM (SELECT project_id, SUM(status) status FROM (SELECT project_id, CASE status WHEN 1 THEN 0 ELSE 2 END status FROM tc_transaction_interest
+      WHERE project_id IN <foreach collection="projectids" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+      AND end_date=#{enddate}) A GROUP BY project_id) B WHERE status>0
+  </select>
+
+  <select id="selectEndRepayNum" resultType="java.lang.Integer">
+      SELECT COUNT(1) FROM (SELECT project_id, SUM(status) status FROM (SELECT project_id, CASE status WHEN 1 THEN 0 ELSE 2 END status FROM tc_transaction_interest
+      WHERE project_id IN <foreach collection="projectids" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+      AND end_date=#{enddate}) A GROUP BY project_id) B WHERE status=0
+  </select>
+
+  <select id="selectDayCollectWaitRepayNum" resultType="java.lang.Integer">
+    SELECT COUNT(1) FROM (SELECT borrower_id,project_id FROM
+    (SELECT A.project_id, SUM(A.xhbj) xhbj,SUM(A.xhlx) xhlx,SUM(pttx) pttx,B.borrower_id borrower_id,A.end_date FROM
+    (SELECT project_id,SUM(real_pay_principal) xhbj,SUM(real_pay_interest) xhlx,SUM(real_pay_extra_interest) pttx,end_date FROM tc_transaction_interest WHERE end_date= #{enddate} GROUP BY project_id) A
+    LEFT JOIN ic_project B ON A.project_id=B.id WHERE borrower_id IS NOT NULL GROUP BY borrower_id)C) E  LEFT JOIN ic_project D  ON D.id=E.project_id AND D.borrower_id=E.borrower_id AND D.status!=70
+  </select>
+
+  <select id="selectDayInterestByBorrerId" resultType="com.yourong.core.tc.model.biz.BorrowInterestDetailBiz">
+      SELECT A.productId,A.projectName,A.interestId,A.periods,A.endDate,SUM(A.payablePrincipal) payablePrincipal,
+      SUM(A.payableInterest) payableInterest,SUM(A.extraInterest) extraInterest,SUM(A.payExtraProjectInterest) payExtraProjectInterest,SUM(A.status) status FROM
+      (SELECT i.id productId,i.name projectName,t.id interestId,t.periods periods,t.end_date endDate,t.real_pay_principal payablePrincipal,
+      t.real_pay_interest payableInterest,t.real_pay_extra_interest extraInterest,t.real_pay_extra_project_interest  payExtraProjectInterest, CASE t.status WHEN 1 THEN 0 ELSE 2 END status FROM ic_project i
+      LEFT JOIN tc_transaction_interest t ON i.id=t.project_id WHERE t.project_id IN
+      <foreach collection="productids" index="index" item="item" open="(" separator="," close=")">#{item}</foreach> AND t.end_date=#{query.endDate} 
+      AND t.id IS NOT NULL) A GROUP BY productId LIMIT #{query.startRow,jdbcType=INTEGER}, #{query.pageSize,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectCountDayInterestByBorrerId" resultType="java.lang.Integer">
+    SELECT COUNT(1) FROM (SELECT A.productId,A.projectName,A.interestId,A.periods,A.endDate,SUM(A.payablePrincipal) payablePrincipal,
+      SUM(A.payableInterest) payableInterest,SUM(A.extraInterest) extraInterest,SUM(A.status) status FROM
+      (SELECT i.id productId,i.name projectName,t.id interestId,t.periods periods,t.end_date endDate,t.real_pay_principal payablePrincipal,
+      t.real_pay_interest payableInterest,t.real_pay_extra_interest extraInterest, CASE t.status WHEN 1 THEN 0 ELSE 2 END status FROM ic_project i
+      LEFT JOIN tc_transaction_interest t ON i.id=t.project_id WHERE t.project_id IN <foreach collection="productids" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+      AND t.end_date=#{query.endDate}
+      AND t.id IS NOT NULL) A GROUP BY productId) A
+  </select>
+  
+   <select id="selectRealPayByEndDate" resultMap="BaseResultMap">
+	  	SELECT
+		sum(real_pay_principal) real_pay_principal,
+		sum(real_pay_interest)  real_pay_interest 
+	FROM
+		tc_transaction_interest
+	WHERE
+		end_date <![CDATA[ = ]]> #{startTime,jdbcType=TIMESTAMP}
+	AND STATUS = 1
+  </select>
+  
+  <select id="selectWaitPayByEndDate" resultMap="BaseResultMap">
+	  	SELECT
+		sum(real_pay_interest ) AS payable_interest,
+		sum(real_pay_principal) AS payable_principal
+	FROM
+		tc_transaction_interest
+	WHERE
+		end_date <![CDATA[ = ]]> #{startTime,jdbcType=TIMESTAMP}
+	AND 
+	status = #{status,jdbcType=INTEGER}
+  </select>
+  <!-- 根据交易ID更新交易本息 -->
+  <update id="updateByTransactionId" parameterType="TransactionInterest" >
+    update tc_transaction_interest
+    <set >
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+        update_time = now(),
+    </set>
+    where transaction_id = #{transactionId, jdbcType=BIGINT}
+  </update>
+  
+  <!--查询交易对应的所有可转让（status=待支付）的交易本息  -->
+  <select id="selectToTransferInterestByTransactionId" resultMap="BaseResultMap">
+  	SELECT
+		<include refid="Base_Column_List" />
+	FROM
+		tc_transaction_interest
+	WHERE
+		status = #{status,jdbcType=INTEGER}
+		and transaction_id = #{transactionId,jdbcType=BIGINT}
+  </select>
+  
+  
+   <select id="totalTransferAmount" resultType="java.math.BigDecimal">
+       select sum(real_pay_principal) as payable_principal from tc_transaction_interest where member_id = #{memberId,jdbcType=BIGINT}  and status =5 
+   </select>
+   
+    <select id="totalTransferAmountNum" resultType="java.lang.Integer">
+       select count(1)  from tc_transaction_interest where member_id = #{memberId,jdbcType=BIGINT}  and status =5  and payable_principal > 0  
+   </select>
+  
+   <!--统计用户投资使用收益券获得的利息  -->
+   <select id="totalMemberExtraInterestT" resultType="java.math.BigDecimal">
+       select sum(real_pay_extra_interest) as totalExtraInterest from tc_transaction_interest where member_id = #{memberId,jdbcType=BIGINT} and extra_interest <![CDATA[ > ]]> 0
+   </select>
+   
+   
+    <select id="getTransactionInterestDetailForMemberTransfer" resultMap="TransactionInterestForMember" parameterType="TransactionInterestQuery">
+  	select ti.transaction_id, tc.project_id, tc.project_name,ti.pay_type,
+     ti.payable_principal, ti.status, ti.start_date, ti.end_date
+  	 from tc_transaction  as tc 
+  	 inner join tc_transaction_interest as ti on tc.id = ti.transaction_id 
+  	 where ti.status=5 and ti.payable_principal > 0 
+  	 <if test="query != null">
+  	 		<if test="query.memberId != null">
+  	 			and tc.member_id = #{query.memberId}
+  	 		</if>
+  	 </if>
+  	<choose>
+		<when test="query.isAsc()">
+		    order by ti.end_date asc
+		</when>
+		<otherwise>
+		     order by ti.end_date desc
+		</otherwise>  	 		    
+	 </choose>
+  	  LIMIT #{query.startRow,jdbcType=INTEGER}, #{query.pageSize,jdbcType=INTEGER}
+  </select> 
+  
+  <!-- 查询提前还款 -->
+  <select id="queryEarlyInterest" parameterType="TransactionInterestQuery" resultMap="BaseResultMap">
+  	SELECT
+		<include refid="Base_Column_List" />
+	FROM
+		tc_transaction_interest
+	WHERE
+		pay_type = 1
+		<if test=" transactionId != null" >
+          and transaction_id = #{transactionId,jdbcType=BIGINT}
+        </if>
+        <if test="curdate == true">
+          and topay_date = CURDATE()
+        </if>
+  </select>
+
+    <select id="queryFirstInterest" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        SELECT
+            <include refid="Base_Column_List" />
+        FROM tc_transaction_interest WHERE transaction_id=#{transactionId} ORDER BY start_date LIMIT 0,1
+    </select>
+
+    <select id="queryTotalInterestByTransactionId" parameterType="java.lang.Long" resultType="com.yourong.core.tc.model.biz.TransactionForMemberCenter">
+        SELECT SUM(real_pay_extra_interest) as totalRealPayExtraInterest,SUM(real_pay_interest) as totalRealPayInterest FROM tc_transaction_interest WHERE transaction_id=#{transactionId}
+    </select>
+    
+    <select id="totalMemberTransferAmount" resultType="java.math.BigDecimal">
+       select sum(t.real_pay_principal) collectingAmount  from tc_transaction_interest t,tc_transaction a 
+          WHERE t.transaction_id =a.id and t.member_id=#{memberId,jdbcType=BIGINT} and t.`status` in (0,4) and a.id!=#{transactionId} and a.created_time>#{limitTime}
+    </select>
+</mapper>

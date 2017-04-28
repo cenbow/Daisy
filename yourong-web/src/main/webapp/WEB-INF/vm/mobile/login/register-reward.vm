@@ -1,0 +1,38 @@
+#parse('/mobile/common.vm')
+#set($layout = "/mobile/layout.vm")
+#set($css_url=["$m_css_url/modules/login.css"])
+#set($js_url=["$m_js_url/modules/login.js"])
+##header
+<h2 class="u-header f-pos-r">
+    <a href="$m_url">返回</a>
+    <span class="f-fs18">
+        注册成功
+    </span>
+</h2>
+##/header
+
+<div class="u-mobile-guide3">
+    <span></span>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+</div>
+<div class="u-regMobile-success">
+    <img src="/static/img/landing/wap/yourongLogo.png" />
+    <dl class="f-fl">
+        <dt class="f-fs18 f-fc-red f-fwb">${servletUtil.getUserDO().mobile} 恭喜您！</dt>
+        <dd class="f-fs14 f-fc-gray">成功开通了新浪支付存钱罐</dd>
+    </dl>
+</div>
+<div class="u-mobReward-box" >
+    <a href="/m/tips">
+        <img src="/static/img/landing/wap/register_coupon_30.png" width="80%" height="80%"/>
+    </a>
+</div>
+<p class="u-mobReward-tips">现金券将于5分钟内发送到您的账户,<br/>请点击我的账户查看现金券。</p>
+<div class="u-mobile-btn">
+    <a href="/member/m/home">查看我的账户</a>
+    <a target="_blank" href="/static/page/twoCodeRedict.html">下载APP</a>
+</div>

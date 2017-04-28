@@ -1,0 +1,956 @@
+##订单支付
+#parse('/common/common.vm')
+#set($title="订单支付_理财项目_$!{title_suffix}")
+#set($css_url=["$root_css_url/modules/orderPay.css"])
+
+#set($js_url=[
+	"$root_url/static/lib/js/vue/vue.js",
+	"$root_url/static/lib/js/vue/vue.extend.js",
+	"$root_js_url/modules/orderPay.js"
+])
+
+#if(${result.success})
+	#set($hasWithholdAuthority=${servletUtil.synWithholdAuthorityFlag()})
+	#set($payOrderBiz = ${result.result})
+	#CSRFToken('xToken')
+<div id="j-orderPay" v-cloak>
+    <div class="g-wrap f-round m-pay-info">
+
+		#if($payOrderBiz)
+			#if(${payOrderBiz.orderPayAmount} && ${payOrderBiz.orderPayAmount} != '0.00')
+			##是否显示充值银行
+				#set($isRechargeOnBlank = false)
+			##是否显示未使用优惠劵
+				#set($isShowCupon = false )
+			##灰显 已经使用的优惠劵
+				#set($isUserdCupon = $stringUtil.isNotBlank($payOrderBiz.orderUsedCashNo) )
+			##需要充值支付
+				#set($needPayAmountOnBank =  ${payOrderBiz.orderPayAmount} )
+			##是否第一次创建订单
+			##set($isFirstCreaterOrder =  false )
+			#else
+				#set($isRechargeOnBlank =  $payOrderBiz.investAmount - $payOrderBiz.savingPotBalance  <= 0 )
+			##是否显示未使用优惠劵
+				#set($isShowCupon = $collections3.isNotEmpty($payOrderBiz.coupons) )
+			##需要充值支付
+				#set($needPayAmountOnBank =  ${payOrderBiz.payAmountInit} )
+			##是否第一次创建订单
+			##set($isFirstCreaterOrder =  true )
+			#end
+		#end
+
+	## 未开通委托余额支付 已开通充值支付锁定余额和券
+		#set($lockBalance=false)
+
+		#if( ${payOrderBiz.orderPayAmount} && ${payOrderBiz.orderPayAmount} > 0)
+			#set($payPageSavingPot = $!{payOrderBiz.orderSavingPotAmount} )
+		#else
+			#set($payPageSavingPot = $!{payOrderBiz.usedCapitalInit} )
+		#end
+
+		#if($!{payOrderBiz.orderSavingPotAmount})
+			#set($isFirstCreaterOrder =  false )
+		#else
+			#set($isFirstCreaterOrder =  true )
+		#end
+		#if(($hasWithholdAuthority<1&&$!{payOrderBiz.orderSavingPotAmount})||($hasWithholdAuthority==1&&$!{payOrderBiz.orderSavingPotAmount}))
+			#set($lockBalance=true)
+
+		#end
+
+	## 预期收益 
+		#set($extraAmount=$!{payOrderBiz.extraExpectAmount})
+		#set($expectAmount=$!{payOrderBiz.expectAmount})
+		#if($extraAmount)
+			#set($profitAmount=$expectAmount - $extraAmount)
+		#else
+			#set($profitAmount=$expectAmount)
+		#end
+
+	## 年化收益率
+		#set($expectRate=${payOrderBiz.annualizedRate})
+		#set($extraRate=$!{payOrderBiz.extraAnnualizedRate})
+		#if($extraRate)
+			#set($totalRate=$expectRate+$extraRate)
+		#else
+			#set($totalRate=$expectRate)
+		#end
+
+		#if($payOrderBiz.orderStatus==0||$payOrderBiz.orderStatus==8)
+            <dl class="u-pay-now">
+                <dt class="f-fs18"><i class="u-icon f-icon-35 u-icon-success2">&nbsp;</i>订单确认成功！立即支付</dt>
+                <dd>请您在提交订单30分钟内完成支付，否则订单会自动取消。</dd>
+            </dl>
+		#end
+	##投资流程
+        #set($projectCategory=$!{payOrderBiz.projectCategory})
+		#set($isDirectProject=$!{payOrderBiz.isDirectProject})
+        #if($projectCategory==1)
+            #if($isDirectProject)
+                <div>
+                    <div class="m-new-tShaft">
+                        <span class="u-infoTitle">投资流程</span>
+                        <div class="u-info-tShaft f-pos-r">
+                            <dl class="u-tShaft-dl01">
+                                <dt></dt>
+                                <dd>订单支付</dd>
+                            </dl>
+                            <dl class="u-tShaft-dl02">
+                                <dt></dt>
+                                <dd>募集满额</dd>
+                            </dl>
+                            <dl class="u-tShaft-dl03">
+                                <dt></dt>
+                                <dd>审核通过</dd>
+                            </dl>
+                            <dl class="u-tShaft-dl04">
+                                <dt></dt>
+                                <dd>还款成功</dd>
+                            </dl>
+                            <span class="z-current0"></span>
+                        </div>
+                    </div>
+                </div>
+            #end
+        #elseif($projectCategory==2)
+            <div>
+                <div class="m-new-tShaft">
+                    <span class="u-infoTitle">投资流程</span>
+                    <div class="u-info-tShaft u-info-transfer f-pos-r">
+                        <dl class="u-tShaft-dl01">
+                            <dt></dt>
+                            <dd>订单支付</dd>
+                        </dl>
+                        <dl class="u-tShaft-dl02">
+                            <dt></dt>
+                            <dd>投资成功</dd>
+                        </dl>
+                        <dl class="u-tShaft-dl03">
+                            <dt></dt>
+                            <dd>还款完成</dd>
+                        </dl>
+                        <span class="z-current0"></span>
+                    </div>
+                </div>
+            </div>
+        #end
+
+	##订单信息
+        <div class="m-order-info #if($projectCategory==2)m-transferOrder-info#end #if($!{extraRate})z-high-extend#end"
+        :class="{'z-extend':detailExtend}">
+            <h3>订单信息</h3>
+            #if($projectCategory==1)
+            <table>
+                    <thead>
+                    <tr>
+                        <th width="86px">项目名称</th>
+                        <th width="340px">
+                            <a class="u-invest-underline" target="_blank"
+                               href="$root_url/products/detail-$!{payOrderBiz.projectId}.html">${payOrderBiz.projectName}</a>
+                        </th>
+                        <th width="86px" class="f-c-c9">投资本金</th>
+                        <th width="230px" class="f-fs16 f-fc-red2">￥<i
+                                class="f-ff-din f-fs36" v-text="init.amount | amountSplit '' true"></i></th>
+                    </tr>
+                    </thead>
+                    <body>
+                    <tr>
+                        <td>订单编号</td>
+                        <td>${payOrderBiz.orderNo}</td>
+                        <td class="f-c-c9">年化收益</td>
+                        <td>
+                            #if($!{extraRate})
+                                ##$totalRate ($expectRate+$extraRate)%
+                                $!{expectRate}%
+                            #else
+                                $!{totalRate}%
+                            #end
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>购买时间</td>
+                        <td>${payOrderBiz.orderTime}</td>
+
+                        #if($!{extraRate})
+                            <td class="f-c-c9">用券收益</td>
+                            <td>$!{extraRate}% #if($!{payOrderBiz.extraInterestDay}>0)(起息日起，加息$!{payOrderBiz.extraInterestDay}天)#end</td>
+                        #else
+                            #if($isDirectProject)
+                                <td class="f-c-c9">收益周期</td>
+                                <td>${payOrderBiz.profitPeriod}</td>
+                            #else
+                                <td class="f-c-c9">收益天数</td>
+                                <td>${payOrderBiz.profitDays}天</td>
+                            #end
+                        #end
+                    </tr>
+                    <tr>
+                        #if($isDirectProject)
+                            <td>起息方式</td>
+                            <td>T(募集完成日)＋${payOrderBiz.interestFrom}</td>
+                        #else
+                            <td></td>
+                            <td></td>
+                        #end
+
+                        #if($!{extraRate})
+                            #if($isDirectProject)
+                                <td class="f-c-c9">收益周期</td>
+                                <td>${payOrderBiz.profitPeriod}</td>
+                            #else
+                                <td class="f-c-c9">收益天数</td>
+                                <td>${payOrderBiz.profitDays}天</td>
+                            #end
+                        #else
+                            <td class="f-c-c9">预期收益</td>
+                            <td>
+                                ￥
+                                #if($extraAmount)
+                                    {{$expectAmount | amountSplit}} (含券收益￥{{$extraAmount | amountSplit}})
+                                #else
+                                    {{$expectAmount | amountSplit}}
+                                #end
+                            </td>
+                        #end
+                    </tr>
+                    #if($!{extraRate})
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td class="f-c-c9">预期收益</td>
+                            <td>
+                                ￥
+                                #if($extraAmount)
+                                    {{$expectAmount | amountSplit}} (含券收益￥{{$extraAmount | amountSplit}})
+                                #else
+                                    {{$expectAmount | amountSplit}}
+                                #end
+                            </td>
+                        </tr>
+                    #end
+                    </body>
+                </table>
+            #elseif($projectCategory==2)
+            <table>
+                    <thead>
+                    <tr>
+                        <th width="96px">项目名称</th>
+                        <th width="340px">
+                            <a class="u-invest-underline" target="_blank"
+                               href="$root_url/products/detail-$!{payOrderBiz.transferId}.html">
+                                $stringUtil.getShortProjectName($payOrderBiz.projectName)
+                            </a>
+                        </th>
+                        <th width="86px" class="f-c-c9">支付金额</th>
+                        <th width="220px" class="f-fs16 f-fc-red2">￥<i
+                                class="f-ff-din f-fs36" v-text="init.amount | amountSplit '' true"></i></th>
+                    </tr>
+                    </thead>
+                    <body>
+                    <tr>
+                        <td>订单编号</td>
+                        <td>${payOrderBiz.orderNo}</td>
+                        <td class="f-c-c9">认购本金</td>
+                        <td>￥$!{payOrderBiz.transferPrincipal}</td>
+                    </tr>
+                    <tr>
+                        <td>剩余期限</td>
+                        <td>${payOrderBiz.profitDays}天</td>
+                        <td class="f-c-c9">预期赚取</td>
+                        <td>￥$!{expectAmount}</td>
+                    </tr>
+                    <tr>
+                        <td>认购时间</td>
+                        <td>${payOrderBiz.orderTime}</td>
+                        <td class="f-c-c9">预期年化</td>
+                        <td class="f-justify-left">$!{expectRate}%</td>
+                    </tr>
+                    <tr>
+                        <td>起息方式</td>
+                        <td>T(成交日)＋${payOrderBiz.interestFrom}</td>
+                        <td class="f-c-c9">项目到期日</td>
+                        <td colspan="3" class="f-justify-left">${payOrderBiz.originalProEndDate}</td>
+                    </tr>
+                    <tr></tr>
+                    </body>
+            </table>
+            #end
+            <table>
+                <thead>
+                <tr>
+                    <th width="86px">项目名称</th>
+                    <th width="340px">
+                        <a class="u-invest-underline" target="_blank"
+                           href="$root_url/products/detail-$!{payOrderBiz.projectId}.html">${payOrderBiz.projectName}</a>
+                    </th>
+                    <th width="86px" class="f-c-c9">投资本金</th>
+                    <th width="230px" class="f-fs16 f-fc-red2">￥<i
+                            class="f-ff-din f-fs36" v-text="init.amount | amountSplit '' true"></i></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>订单编号</td>
+                    <td>${payOrderBiz.orderNo}</td>
+                    <td class="f-c-c9">年化收益</td>
+                    <td>
+						#if($extraRate)
+							$totalRate ($expectRate+$extraRate)%
+						#else
+							$totalRate%
+						#end
+                    </td>
+                </tr>
+                <tr>
+                    <td>购买时间</td>
+                    <td>${payOrderBiz.orderTime}</td>
+					#if($isDirectProject)
+                        <td class="f-c-c9">收益周期</td>
+                        <td>${payOrderBiz.profitPeriod}</td>
+					#else
+                        <td class="f-c-c9">收益天数</td>
+                        <td>${payOrderBiz.profitDays}天</td>
+					#end
+                </tr>
+                <tr>
+					#if($isDirectProject)
+                        <td>起息方式</td>
+                        <td>T(募集完成日)＋${payOrderBiz.interestFrom}</td>
+					#else
+                        <td></td>
+                        <td></td>
+					#end
+
+                    <td class="f-c-c9">预期收益</td>
+                    <td>
+                        ￥
+						#if($extraAmount)
+                            {{$expectAmount | amountSplit}} (含券收益¥{{$extraAmount | amountSplit}})
+						#else
+                            {{$expectAmount | amountSplit}}
+						#end
+
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <span @click="extendDetail" class="f-unselectable">展开详情<i :class="{'z-open':detailExtend}"></i></span>
+        </div>
+
+	##支付信息
+        <div class="m-balance">
+            <div class="u-balanceTitle">
+                <p>
+                    支付信息
+                </p>
+            </div>
+            <div class="u-balance-wrap">
+                <div class="u-select-balance f-fs12 f-pos-r">
+                    <span class="u-pay-checkbox f-vam z-checked z-disabled" v-if="init.lockBalance"></span>
+                        <span class="u-pay-checkbox f-vam" v-else :class="{'z-checked':useBalance}" v-model="useBalance"
+                              @click="switchCheckbox('useBalance',useBalance)"></span>
+                    使用新浪支付存钱罐
+					<span class="u-amount-wrap u-amount-sinapay f-vam">
+	                	<i class="f-ff-ver">&yen;</i>
+	                	<input type="text" placeholder="" #if($!{lockBalance}) readonly #end
+                               class="u-ipt-amount f-round f-fs14" value="$payPageSavingPot" v-if="useBalance" v-model="usedBalance | amount" @keydown="limitAmountInput" @keyup="limitMaxBalance($event)" id="j-usedBalance"/>
+                        <input type="text" name="sinapay" class="u-ipt-amount f-round f-fs14" value="0.00" readonly v-else/>
+
+	              	</span>
+					<span class="u-amount-tips f-vam">存钱罐可用余额：&nbsp;<span class="f-ff-ver">&yen;</span>
+                        <em>${payOrderBiz.savingPotBalance}</em>
+                    </span>
+                    <div class="u-input-cover" v-if="!useBalance"></div>
+                    <div class="z-input-disabled" v-if="init.lockBalance"></div>
+                </div>
+                #if($projectCategory==2)
+                <input type="hidden" v-model="useCoupon" value="0" number>
+                #else
+                <div class="u-select-balance f-fs12 f-pos-r">
+                        <span class="u-pay-checkbox f-vam z-checked" :class="{'z-checked':useCoupon,'z-disabled':init.lockBalance}"
+                              v-model="useCoupon" @click="switchCheckbox('useCoupon',useCoupon)"></span>
+                        使用现金券&nbsp;&nbsp;
+                        <div class="f-vam u-selector u-scroll-selector j-selector f-round f-tar f-w200">
+                            #if(!$isFirstCreaterOrder&&$!{payOrderBiz.orderUsedCashAmount})
+                                <button value="$!{payOrderBiz.orderUsedCashAmount}">+$!{payOrderBiz.orderUsedCashAmount}元
+                                    #if($!{payOrderBiz.isLongTimeCashCounpons()})
+                                        长期有效
+                                    #else
+                                        有效期 $!{payOrderBiz.orderCashEndDate}
+                                    #end </button><i></i>
+                                <input type="hidden" v-model="selectedCoupon.amount" value="$!{payOrderBiz.orderUsedCashAmount}">
+                                <input type="hidden" v-model="selectedCoupon.code" value="$!{payOrderBiz.orderUsedCashNo}">
+                            #else
+                                #set($coupons=$!{payOrderBiz.coupons})
+                                #if($coupons.size()!=0)
+                                    <button class="f-text-overflow" v-html="tips.selectedCoupon"></button>
+                                    <i></i>
+                                    <ul class="f-round m-coupon-list">
+                                        <li @click="selectCoupon('',0,0)">
+                                            <input type="hidden" v-model="tips.selectCoupon" value="请选择现金券">
+                                            <em v-text="tips.selectCoupon">请选择现金券</em>
+                                        </li>
+                                        #foreach( $coupon in $coupons )
+                                            #if(${coupon.amount}>$!{payOrderBiz.investAmount})
+                                                #set($limitBigAmount=1)
+                                            #else
+                                                #set($limitBigAmount=0)
+                                            #end
+                                            <li data-value="${coupon.amount}"
+                                                data-number="${coupon.couponCode}"
+                                                class="#if($!{coupon.limited}==1||$limitBigAmount==1)z-disabled#end" value=""
+                                                @click="selectCoupon('${coupon.couponCode}',${coupon.amount},'$!{coupon.limited}',$limitBigAmount,$event)">
+                                                +${coupon.amount}元
+                                                #if( $!{coupon.vaildCalcType} ==0 )
+                                                    长期有效
+                                                #else
+                                                    #if(!${coupon.isShowCouponValidity()} && $!{coupon.couponValidity})
+                                                        有效期 $!{coupon.couponValidity}
+                                                    #else
+                                                        有效期 ${coupon.endDateStr}
+                                                    #end
+                                                #end
+                                                #if(!${coupon.isAvailable()})
+                                                    #if($!{coupon.couponPrivileges})
+                                                        <span>$!{coupon.couponPrivileges}</span>
+                                                    #end
+                                                    #if($!{coupon.couponAmountScope})
+                                                        <span>$!{coupon.couponAmountScope}</span>
+                                                    #end
+                                                    #if($!{coupon.couponDaysScope})
+                                                        <span>$!{coupon.couponDaysScope}</span>
+                                                    #end
+                                                #else
+                                                    <span>全网通用</span>
+                                                #end
+                                            </li>
+                                        #end
+                                    </ul>
+                                    <input type="hidden" class="j-selected-ipt"/>
+                                #else
+                                    <button class="z-disabled">暂无可用现金券</button>
+                                #end
+                            #end
+                        </div>
+                        <div class="u-input-cover" v-if="!useCoupon"></div>
+                        <div class="z-input-disabled" v-if="init.lockBalance"></div>
+                    </div>
+                #end
+            </div>
+            <div class="u-balance-residue" v-if="needPay&&needPay!=='0.00'">还需支付<span class="f-fc-red2 f-fs14">￥<i class="f-fs36 f-ff-din" v-text="needPay | amountSplit"></i></span>
+            </div>
+        </div>
+
+	##提示
+	##余额不足,未开通委托
+        <div class="u-balance-tips" v-if="status===10">余额不足？前往新浪支付充值
+            <a class="u-balance-recharge j-updateLink" href="{{relayUrl}}" target="_blank" @mouseEnter="flushUsedBalance" @click="gotoPay(10)" data-status="10">前往充值</a>
+        </div>
+	## 余额不足,已开通委托
+        <div class="u-balance-tips" v-if="status===20||status===70">
+            余额不足？前往新浪收银台充值，充值成功即完成投资。
+        </div>
+	##余额充足,未开通委托
+        <div class="u-balance-tips" v-if="status===30">
+            开通委托支付后，余额充足时，无需输入支付密码，投资一步到位。
+            <a class="f-fc-red2 j-updateLink" target="_blank" href="{{relayUrl}}" @click="gotoDelegate" data-status="31">前往开通</a>
+        </div>
+	##余额充足,已开通委托 不显示提示
+
+	##提交按钮
+        <div class="u-submit-wrap2 j-updateLink" @mouseEnter="getWithholdAuthorityStatus" data-status="32">
+		##余额不足,未开通委托
+            <a href="{{relayUrl}}" target="_blank" v-if="status===10" class="z-disabled j-updateLink" data-status="10" @mouseEnter="flushUsedBalance"><i></i>去新浪支付</a>
+		##余额不足,已开通委托
+            <a href="{{relayUrl}}" target="_blank" v-if="status===20" class="j-updateLink" data-status="20" @click="gotoPay(20)" :class="{'z-disabled':!submitAvailabled}" @mouseEnter="flushUsedBalance"><i></i>继续支付</a>
+            <a href="{{relayUrl}}" target="_blank" v-if="status===70" class="j-updateLink" data-status="70" @click="gotoPay(70)" :class="{'z-disabled':!submitAvailabled}" @mouseEnter="flushUsedBalance"><i></i>继续支付</a>
+		##余额充足,未开通委托
+            <a href="{{relayUrl}}" target="_blank" v-if="status===30" class="j-updateLink" data-status="30" @click="gotoPay(30)" :class="{'z-disabled':!submitAvailabled}" @mouseEnter="flushUsedBalance"><i></i>去新浪支付</a>
+            <a href="{{relayUrl}}" target="_blank" v-if="status===60" class="j-updateLink" data-status="60" @click="gotoPay(60)" :class="{'z-disabled':!submitAvailabled}" @mouseEnter="flushUsedBalance"><i></i>去新浪支付</a>
+		##余额充足,已开通委托
+            <a href="{{relayUrl}}" v-if="status===40" @click="gotoPay(40)" class="j-updateLink" data-status="40" :class="{'z-disabled':!submitAvailabled}" @mouseEnter="flushUsedBalance">完成支付</a>
+            <br/>
+            #if($!{payOrderBiz.projectCategory}==1)
+                #if($isDirectProject)
+                    <label>
+                        <input type="checkbox" checked="checked" v-if="status" v-model="submitAvailabled"/>
+                        <input type="checkbox" disabled="disabled" checked="checked" v-else/>
+                        我同意按如下<a href="/products/p2pContract/preview?projectId=$!{payOrderBiz.projectId}" target="_blank">《借款协议》</a>的内容生成借款协议
+                    </label>
+                #else
+                    <label>
+                        <input type="checkbox" checked="checked" v-if="status" v-model="submitAvailabled"/>
+                        <input type="checkbox" disabled="disabled" checked="checked" v-else/>
+                        我同意按如下<a href="/transaction/contract/preview?projectId=$!{payOrderBiz.projectId}&annualizedRate=${payOrderBiz.annualizedRate}&investAmount=$!{payOrderBiz.investAmount}" target="_blank" data-target="j-qbank-argreement">《债权收益权转让协议范本》</a>的格式和条款生成债权转让协议
+                    </label>
+                #end
+            #else
+                #if($isDirectProject)
+                    <label>
+                        <input type="checkbox" checked="checked" v-if="status" v-model="submitAvailabled"/>
+                        <input type="checkbox" disabled="disabled" checked="checked" v-else/>
+                        我同意按如下<a href="/transaction/ztTransferContract/preview?projectId=$!{payOrderBiz.projectId}" target="_blank">《债权转让协议范本》</a>的内容生成借款协议
+                    </label>
+                #else
+                    <label>
+                        <input type="checkbox" checked="checked" v-if="status" v-model="submitAvailabled"/>
+                        <input type="checkbox" disabled="disabled" checked="checked" v-else/>
+                        我同意按如下<a href="/transaction/transferContract/preview?projectId=$!{payOrderBiz.projectId}&annualizedRate=${payOrderBiz.annualizedRate}&investAmount=$!{payOrderBiz.investAmount}" target="_blank" data-target="j-qbank-argreement">《债权收益权再转让协议范本》</a>的格式和条款生成债权转让协议
+                    </label>
+                #end
+            #end
+
+        </div>
+    </div>
+
+##已开通委托-余额支付
+    <div class="m-pay-state" v-if="layer===40" style="margin-left: -350px;">
+        <div class="u-state-bank">
+            <h3 class="f-fs18 f-fwb">余额支付</h3>　
+            <p class="f-fs14">新浪支付存钱罐正在为您安全支付中，倒计时<em class="u-count-down" v-text="countdown"></em>秒</p>
+            <div>
+                <a class="f-round u-pay-state" href="$transaction_url[1]" id="">查看我的投资</a>
+                <a class="f-round" href="$products_url[0]">继续投资</a>
+            </div>
+        </div>
+        <p class="f-fs14"><a href="http://wpa.b.qq.com/cgi/wpa.php?ln=2&uin=4000266688" target="_blank">如果您在操作过程中遇到问题，可咨询
+            在线客服<em><i></i></em></a></p>
+    </div>
+##未开通委托-余额支付
+    <div class="m-pay-state" v-if="layer===30" style="margin-left: -350px;">
+        <div class="u-state-bank">
+            <h3>跳转到新浪支付</h3>　
+            <p>请在打开的新浪页面完成支付</p>
+            <div>
+                <a class="f-round j-already-recharge" @click="getOrderStatus">已完成支付</a>
+                <a class="f-round" @click="rePay">支付遇到问题，重新支付</a>
+            </div>
+        </div>
+        <p class="f-fs14"><a href="http://wpa.b.qq.com/cgi/wpa.php?ln=2&uin=4000266688" target="_blank">如果您在操作过程中遇到问题，可咨询
+            在线客服<em><i></i></em></a></p>
+    </div>
+##未开通委托-前往充值
+    <div class="m-pay-state" v-if="layer===10" style="margin-left: -350px;">
+        <div class="u-state-bank">
+            <h3>跳转到新浪支付</h3>　
+            <p>请在打开的新浪页面完成充值</p>
+            <div>
+                <a class="f-round j-already-recharge" @click="rePay">继续订单支付</a>
+                <a class="f-round" @click="rePay">充值遇到问题，重新充值</a>
+            </div>
+        </div>
+        <p class="f-fs14"><a href="http://wpa.b.qq.com/cgi/wpa.php?ln=2&uin=4000266688" target="_blank">如果您在操作过程中遇到问题，可咨询
+            在线客服<em><i></i></em></a></p>
+    </div>
+##未开通委托-前往开通委托
+    <div class="m-pay-state" v-if="layer===50" style="margin-left: -350px;">
+        <div class="u-state-bank">
+            <h3>跳转到新浪支付</h3>　
+            <p>请在打开的新浪页面完成委托支付开通</p>
+            <div>
+                <a class="f-round j-already-recharge" href="#" @click="rePay">继续订单支付</a>
+                <a class="f-round" href="{{relayUrl}}" target="_blank" @click="gotoDelegate">开通遇到问题，重新开通</a>
+            </div>
+        </div>
+        <p class="f-fs14"><a href="http://wpa.b.qq.com/cgi/wpa.php?ln=2&uin=4000266688" target="_blank">如果您在操作过程中遇到问题，可咨询
+            在线客服<em><i></i></em></a></p>
+    </div>
+##已开通委托-前往充值支付
+    <div class="m-pay-state" v-if="layer===20||layer===60||layer===70" style="margin-left: -350px;">
+        <div class="u-state-bank">
+            <h3>跳转到新浪支付</h3>　
+            <p>请在打开的新浪页面完成支付</p>
+            <div>
+                <a class="f-round j-already-recharge" href="#" @click='getOrderStatus'>已完成支付</a>
+                <a class="f-round" href="$root_url/order/to/pay?orderNo=${payOrderBiz.orderNo}">支付遇到问题，重新支付</a>
+            </div>
+        </div>
+        <p class="f-fs14"><a href="http://wpa.b.qq.com/cgi/wpa.php?ln=2&uin=4000266688" target="_blank">如果您在操作过程中遇到问题，可咨询
+            在线客服<em><i></i></em></a></p>
+    </div>
+##支付状态提示
+##失败
+    <div id="error-pay-investment" class="m-pay-state j-floatlayer" v-if="init.orderStatus===2">
+        <div class="u-pay-result u-pay-error">
+            <div>
+                <h3 class="f-fs18">对不起，您的投资失败了！</h3>
+                <p class="f-fs14">失败原因：<em id="error-message">下手太慢项目被人抢先一步投资</em></p>
+                <a href="$products_url[0]" class="f-round">重新投资</a>
+                <a href="$account_url[0]" class="f-round">查看账户余额</a>
+            </div>
+        </div>
+    </div>
+    <div class="m-pay-state j-floatlayer" v-if="init.orderStatus===4">
+        <div class="u-pay-result u-pay-error">
+
+            <div>
+                <h3 class="f-fs18">对不起，您的投资失败了！</h3>
+                <p class="f-fs14">失败原因：网银支付失败</p>
+                <a href="$account_url[1]" class="f-round">重新充值</a>
+                <a href="$account_url[0]" class="f-round">查看账户余额</a>
+            </div>
+        </div>
+    </div>
+##处理中
+    <div class="m-pay-state j-floatlayer" id="process-investment" v-if="init.orderStatus===1||init.orderStatus===18">
+        <div class="u-pay-result u-pay-doing">
+		##		<i class="u-icon u-icon-doing f-icon-35"></i>
+##            <h3>{{projectName}} 投资处理中！</h3>
+##            <p class="f-fs18">请稍后到我的账户中查看</p>
+##            <div>
+##                <a href="$products_url[0]" class="f-round">继续投资</a>
+##                <a href="$transaction_url[1]" class="f-round">查看我的投资</a>
+##            </div>
+            #set($isLottery = ${transactionUtils.isQuickLotteryProject(${payOrderBiz.projectId})})
+            #if($isLottery && $!{payOrderBiz.lotteryEndCountDown} && $!{payOrderBiz.lotteryEndCountDown} > 0)
+              <a class="m-lottery-img" href="/post/directActivator">
+                  <span>立即<br>抽奖</span>
+              </a>
+            #end
+            <h3 class="f-fs20 m-new-h">
+                <i name="prefixProjectName" v-text="projectName"></i><span>投资处理中！</span>
+            </h3>
+            <div class="m-project-operation">
+                <a href="$products_url[0]" class="f-round">继续投资</a>
+                <a href="$transaction_url[1]" class="f-round">查看我的投资</a>
+            </div>
+        </div>
+        <p class="f-fs14"><a href="http://wpa.b.qq.com/cgi/wpa.php?ln=2&uin=4000266688" target="_blank">如果您在操作过程中遇到问题，可咨询 在线客服<em><i></i></em></a></p>
+    </div>
+##成功
+#if($projectCategory==2)
+    <div id="success-pay-investment-directProject" class="m-pay-state j-floatlayer" v-if="init.orderStatus===3">
+        <div class="u-pay-result2 u-pay-success">
+            <div class="u-result2-left">
+                <h3 class="f-fs20">
+                ##				<i class="u-icon u-icon-success2 f-icon-35"></i>
+                    <i name="prefixProjectName" v-text="projectName" class="f-vam"></i>
+                    <span class="f-vam">订单支付成功</span>
+                </h3>
+                <div class="m-ztPay-state">
+                    <div class="u-new-tShaft">
+                        <div class="u-info-tShaft m-success-transfer f-pos-r">
+                            <dl class="u-tShaft-dl01">
+                                <dt class="z-current"></dt>
+                                <dd>订单支付</dd>
+                            </dl>
+                            <dl class="u-tShaft-dl02">
+                                <dt></dt>
+                                <dd>投资成功</dd>
+                            </dl>
+                            <dl class="u-tShaft-dl03">
+                                <dt></dt>
+                                <dd>还款完成</dd>
+                            </dl>
+                            <span class="z-current0"></span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="u-result2-right m-transferResult-right">
+                <table id="sucess-inverstment-return">
+
+                    <tr>
+                        <td>认购本金</td>
+                        <td><strong name="investAmountStr">￥$!{payOrderBiz.transferPrincipal}</strong></td>
+                    </tr>
+                    <tr>
+                        <td>支付金额</td>
+                        <td><strong>￥{{init.amount | amountSplit '' true}}</strong></td>
+                    </tr>
+                    <tr>
+                        <td>预期年化</td>
+                        <td>
+                            <strong name="totalAnnualizedRate">$expectRate</strong>%
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>预期赚取</td>
+                        <td>
+                            <strong name="totalInterestStr">￥{{$expectAmount | amountSplit}}</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>起息方式</td>
+                        <td>T(成交日)+<strong>${payOrderBiz.interestFrom}</strong></td>
+                    </tr>
+                    <tr>
+                        <td>认购时间</td>
+                        <td><strong>${payOrderBiz.orderTime}</strong></td>
+                    </tr>
+                </table>
+                <div>
+                    <a href="$products_url[0]" class="f-round">继续投资</a>
+                    <a href="$transaction_url[1]" class="f-round">查看我的投资</a>
+                </div>
+            </div>
+        </div>
+    ##	判断是否设置过自动签署  0手动，1自动
+        #if(${servletUtil.getMemberSignWay()}==0)
+        ##        <p class="f-fs14"><span  class="j-contract-hand">您已经投资成功，快去签署协议吧！&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;签署协议<em><i></i></em></span><a id="j-blank-href" target="_blank"></a></p>
+            <p class="f-fs14"><a class="j-contract-hand" target="_blank" href="{{transitUrl}}">您已经投资成功，快去签署协议吧！&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;签署协议<em><i></i></em></a>
+            </p>
+        #elseif(${servletUtil.getMemberSignWay()}==1)
+            <p class="f-fs14"><a class="j-contract-auto"
+                                 target="_blank">您的协议已签署完成！&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;查看协议<em><i></i></em></a>
+            </p>
+        #end
+    </div>
+#else
+    #if(!$isDirectProject)
+    ##非p2p项目投资成功时弹框
+    <div id="success-pay-investment" class="m-pay-state j-floatlayer" v-if="init.orderStatus===3">
+            <div class="u-pay-result2 u-pay-success">
+                <div class="u-result2-left">
+                    <h3 class="f-fs18">
+                    ##				<i class="u-icon u-icon-success2 f-icon-35"></i>
+                        <i name="prefixProjectName">{{projectName}}</i><span>订单已支付成功！</span>
+                    </h3>
+                    <div>
+                        <img src="/static/img/products/pay-success.png">
+                    </div>
+                </div>
+                <div class="u-result2-right">
+                    <table id="sucess-inverstment-return">
+                    ##                <tr>
+                    ##                    <td>项目名称</td>
+                    ##                    <td name="projectName"></td>
+                    ##                </tr>
+                        <tr>
+                            <td>投资本金</td>
+                            <td><strong name="investAmountStr">$!{payOrderBiz.investAmount}</strong>元</td>
+                        </tr>
+                        <tr>
+                            <td>年化收益率</td>
+                            <td><strong name="totalAnnualizedRate">
+                                #if($extraRate)
+                                    $totalRate ($expectRate+$extraRate)
+                                #else
+                                    $totalRate
+                                #end
+                            </strong>%</td>
+                        </tr>
+                        <tr>
+                            <td>预期收益</td>
+                            <td>
+                                <strong name="totalInterestStr">
+                                    ￥ #if($extraAmount){{$expectAmount | amountSplit}} (含券收益￥{{$extraAmount | amountSplit}})
+                                #else{{$expectAmount | amountSplit}}#end
+                                </strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>购买时间</td>
+                            <td><strong name="transactionTimeStr">${payOrderBiz.orderTime}</strong></td>
+                        </tr>
+                    </table>
+                    <div>
+                        <a href="$products_url[0]" class="f-round">继续投资</a>
+                        <a href="$transaction_url[1]" class="f-round">查看我的投资</a>
+                    </div>
+                </div>
+            </div>
+        ##	判断是否设置过自动签署  0手动，1自动
+            #if(${servletUtil.getMemberSignWay()}==0)
+                <p class="f-fs14"><a class="j-contract-hand" target="_blank" href="{{transitUrl}}">您已经投资成功，快去签署协议吧！&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;签署协议<em><i></i></em></a>
+                </p>
+            #elseif(${servletUtil.getMemberSignWay()}==1)
+                <p class="f-fs14"><a class="j-contract-auto" href="{{contractUrl}}"
+                                     target="_blank">您的协议已签署完成！&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;查看协议<em><i></i></em></a>
+                </p>
+            #end
+        </div>
+    #else
+    ##p2p项目投资成功时弹框
+    ##zt=直投项目
+    <div id="success-pay-investment-directProject" class="m-pay-state j-floatlayer" v-if="init.orderStatus===3">
+            <div class="u-pay-result2 u-pay-success">
+                #set($isLottery = ${transactionUtils.isQuickLotteryProject(${payOrderBiz.projectId})})
+                #if($isLottery && $!{payOrderBiz.lotteryEndCountDown} && $!{payOrderBiz.lotteryEndCountDown} > 0)
+                  <a class="m-lottery-img" href="/post/directActivator">
+                      <span>立即<br>抽奖</span>
+                  </a>
+                #end
+                <div class="u-result2-left">
+                    <h3 class="f-fs20">
+                    ##				<i class="u-icon u-icon-success2 f-icon-35"></i>
+                        <i name="prefixProjectName" v-text="projectName"></i><span>订单已支付成功！</span>
+                    </h3>
+                    <h5>请等待项目募集完成...</h5>
+                    <div class="m-ztPay-state">
+                        <div class="u-new-tShaft">
+                            <div class="u-info-tShaft f-pos-r">
+                                <dl class="u-tShaft-dl01">
+                                    <dt class="z-current"></dt>
+                                    <dd>订单支付</dd>
+                                </dl>
+                                <dl class="u-tShaft-dl02">
+                                    <dt></dt>
+                                    <dd>募集满额</dd>
+                                </dl>
+                                <dl class="u-tShaft-dl03">
+                                    <dt></dt>
+                                    <dd>审核通过</dd>
+                                </dl>
+                                <dl class="u-tShaft-dl04">
+                                    <dt></dt>
+                                    <dd>还款成功</dd>
+                                </dl>
+                                <span class="z-current1"></span>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+                <div class="u-result2-right #if($!{extraRate})z-extra#end">
+                    <table id="sucess-inverstment-return">
+
+                        <tr>
+                            <td>投资本金</td>
+                            <td><strong name="investAmountStr">$!{payOrderBiz.investAmount}</strong>元</td>
+                        </tr>
+                        <tr>
+                            <td>年化收益率</td>
+                            <td><strong name="totalAnnualizedRate">
+                                #if($extraRate)
+                                    ##$totalRate ($expectRate+$extraRate)
+                                    $!{expectRate}
+                                #else
+                                    $totalRate
+                                #end
+                            </strong>%</td>
+                        </tr>
+                        #if($!{extraRate})
+                            <tr>
+                                <td>用券收益</td>
+                                <td><strong name="totalAnnualizedRate">
+                                    $!{extraRate} %#if($!{payOrderBiz.extraInterestDay}>0)(起息日起，加息$!{payOrderBiz.extraInterestDay}天)#end
+                                </strong></td>
+                            </tr>
+                        #end
+                        <tr>
+                            <td>预期收益</td>
+                            <td><strong name="totalInterestStr">
+                                ￥
+                                #if($extraAmount)
+                                    {{$expectAmount | amountSplit}} (含券收益￥{{$extraAmount | amountSplit}})
+                                #else
+                                    {{$expectAmount | amountSplit}}
+                                #end
+                            </strong></td>
+                        </tr>
+                        <tr>
+                            <td>起息方式</td>
+                            <td>T(募集完成日)+<strong>${payOrderBiz.interestFrom}</strong></td>
+                        </tr>
+                        <tr>
+                            <td>投资时间</td>
+                            <td><strong>${payOrderBiz.orderTime}</strong></td>
+                        </tr>
+                    </table>
+                    <div>
+                        <a href="$products_url[0]" class="f-round">继续投资</a>
+                        <a href="$transaction_url[1]" class="f-round">查看我的投资</a>
+                    </div>
+                </div>
+            </div>
+        ##	判断是否设置过自动签署  0手动，1自动
+            #if(${servletUtil.getMemberSignWay()}==0)
+            ##        <p class="f-fs14"><span  class="j-contract-hand">您已经投资成功，快去签署协议吧！&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;签署协议<em><i></i></em></span><a id="j-blank-href" target="_blank"></a></p>
+                <p class="f-fs14"><a class="j-contract-hand" target="_blank" href="{{transitUrl}}">您已经投资成功，快去签署协议吧！&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;签署协议<em><i></i></em></a>
+                </p>
+            #elseif(${servletUtil.getMemberSignWay()}==1)
+                <p class="f-fs14"><a class="j-contract-auto"
+                                     target="_blank">您的协议已签署完成！&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;查看协议<em><i></i></em></a>
+                </p>
+            #end
+        </div>
+    #end
+#end
+
+##手动签署新弹框
+    <div class="u-settings-auto m-pay-state j-floatlayer f-dn" id="j-settings-auto">
+        <div class="u-pay-result2 u-pay-success">
+            <div class="u-result2-left">
+                <h3 class="f-fs20" style="color:#333;text-align: center">
+                    跳转至协议签署
+                </h3>
+                <h5>请在新打开的协议页面完成签署</h5>
+                <div style="width: 330px">
+                    <img src="/static/img/products/pay-eSignatue.png">
+                </div>
+            </div>
+            <div class="u-result2-eSignatue">
+                <div>
+                    <h3>协议签署完成</h3>
+                    <p>如果您已签署完成可 <a class="j-contract-auto" href='{{contractUrl}}' target="_blank">查看协议</a>，或继续投资！</p>
+                    <a href="$products_url[0]" style="margin-bottom: 30px" class="f-round">继续投资</a>
+                    <h3>协议签署中遇到问题</h3>
+                    <p>如果您签署中遇到问题可查询 <a href="http://wpa.b.qq.com/cgi/wpa.php?ln=2&uin=4000266688"
+                                        target="_blank">在线客服</a>，或重新签署！
+                    </p>
+                    <a id="j-again-sign" href="{{transitUrl}}" target="_blank">重新签署</a>
+                </div>
+
+            </div>
+        </div>
+        <p class="f-fs14"><a style="width: 498px" href="/member/eSignature" target="_blank">使用自动签署具有同等法律效应，一键签署更便捷！&nbsp;&nbsp;&nbsp;&nbsp;设置自动签署<em><i></i></em></a>
+        </p>
+        <a href="/transaction/investment"></a>
+    </div>
+
+    <div class="u-pay-cover" v-if="layer>0||(init.orderStatus>0&&init.orderStatus!=8)"></div>
+</div>
+#else
+<div class="g-wrap f-round m-pay-info">
+    <div class="u-page-tips">
+        <div class="u-tips-box">
+            <i class="u-icon u-icon-error2 f-icon-35"></i>
+            <p class="f-fs18 f-fwb">
+				#if(${result.getResultCode().getMsg()})
+					${result.getResultCode().getMsg()}
+				#else
+                    网络异常，请刷新浏览器
+				#end
+            </p>
+        </div>
+    </div>
+</div>
+#end
+
+#if(${result.success})
+<iframe frameborder="0" class="f-dn" name="payFrame" id="j-payFrame"></iframe>
+<script>
+    var ORDER_INFO = {
+        payAmount:'$!{payOrderBiz.orderPayAmount}',
+        projectId:'$!{payOrderBiz.projectId}',
+        firstOrder:$!{isFirstCreaterOrder},
+        orderStatus:${payOrderBiz.orderStatus},
+        usedCashAmount:'$!{payOrderBiz.orderUsedCashAmount}',
+        orderNo:'${payOrderBiz.orderNo}',
+        orderId:'${payOrderBiz.orderId}',
+        amount:$!{payOrderBiz.investAmount},##投资金额
+        usedBalance:'$!{$payPageSavingPot}',
+        signType:${servletUtil.getMemberSignWay()},
+        projectName:'$!{payOrderBiz.projectName}',
+        isDirect:#if($!{isDirectProject}) true #else false #end,
+        balance:$!{payOrderBiz.savingPotBalance},##存钱罐余额
+        lockBalance:$!{payOrderBiz.orderStatus}!=0||$!{lockBalance},##是否锁定余额
+            delegated:#if($hasWithholdAuthority<1) false #else true #end ##是否委托
+    }
+
+		#if(!$sysServiceUtil.isDev())
+		##品友-投资成功转化
+        !function(w,d,e){
+            var _orderno='${payOrderBiz.orderNo}';
+            var _money='${payOrderBiz.investAmount}';
+            var _productList='$!{payOrderBiz.projectId},1;';
+            var b=location.href,c=d.referrer,f,s,g=d.cookie,h=g.match(/(^|;)\s*ipycookie=([^;]*)/),i=g.match(/(^|;)\s*ipysession=([^;]*)/);if (w.parent!=w){f=b;b=c;c=f;};u='//stats.ipinyou.com/cvt?a='+e('qJ.lq.8rVcp1CIGvRRC_jch4xZcP')+'&c='+e(h?h[2]:'')+'&s='+e(i?i[2].match(/jump\%3D(\d+)/)[1]:'')+'&u='+e(b)+'&r='+e(c)+'&rd='+(new Date()).getTime()+'&OrderNo='+e(_orderno)+'&Money='+e(_money)+'&ProductList='+e(_productList)+'&e=';
+            function _(){if(!d.body){setTimeout(_(),100);}else{s= d.createElement('script');s.src = u;d.body.insertBefore(s,d.body.firstChild);}}_();
+        }(window,document,encodeURIComponent);
+		#end
+</script>
+#end

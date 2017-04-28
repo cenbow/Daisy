@@ -1,0 +1,543 @@
+.g-bd {
+  margin-bottom: 0;
+}
+
+.f-fc-6 {
+  color: #666666;
+}
+
+.f-fc-red {
+  color: #ff4d49;
+}
+
+.f-fc-yellow {
+  color: #fdff66;
+}
+
+.f-color {
+  width: 100%;
+  /*padding-bottom: 80px;*/
+  /*margin-bottom: -80px;*/
+  background-color: #35a783;
+  position: relative;
+  border-top: none;
+}
+
+.f-pointer {
+  cursor: pointer;
+}
+
+.m-december-body {
+  width: 100%;
+  height: 3303px;
+  margin: -8px auto 0;
+  /*border:1px solid #fffdf4;*/
+  /*border-radius: 20px;*/
+  /*background-color:#fffdf4 ;*/
+  background: url(/static/img/activity/December/new-body.png) no-repeat center;
+  /*overflow: hidden;*/
+  position: relative;
+  z-index: 2;
+}
+
+.m-december-content {
+  width: 990px;
+  /*margin: 723px auto 0;*/
+  position: relative;
+  margin: 0 auto;
+  padding-top: 723px;
+}
+
+.u-click {
+  width: 919px;
+  height: 382px;
+  margin: 0 auto;
+  background: url(/static/img/activity/December/hongbao-bg.png) no-repeat center;
+  overflow: hidden;
+  position: relative;
+}
+
+.u-click .u-man {
+  position: absolute;
+  bottom: 45px;
+  left: 130px;
+  z-index: 2;
+}
+
+.u-click .u-animal {
+  position: absolute;
+  bottom: 40px;
+  right: 300px;
+  z-index: 2;
+}
+
+.u-click .u-hongbao {
+  position: absolute;
+  bottom: 65px;
+  left: 240px;
+  z-index: 1;
+}
+
+.m-body-p {
+  width: 840px;
+  margin: 0 auto;
+}
+
+.u-p-title {
+  font-size: 18px;
+  margin-top: 30px;
+  font-weight: 600;
+}
+
+.u-p-content {
+  font-size: 14px;
+  margin-top: 10px;
+  line-height: 28px;
+}
+
+.u-p-click {
+  text-align: center;
+  margin-top: 140px;
+  width: 340px;
+  font-size: 24px;
+  /*margin-left: 240px;*/
+  z-index: 2;
+  position: relative;
+}
+
+.u-award {
+  width: 920px;
+  height: 385px;
+  border-radius: 40px;
+  background: white;
+  margin: 28px auto 0;
+  overflow: hidden;
+}
+
+.u-award table {
+  border-collapse: collapse;
+  width: 840px;
+  height: 245px;
+  margin: 20px auto 0;
+}
+
+.u-award table tr {
+  height: 49px;
+}
+
+.u-award table th, .u-award table td {
+  width: 210px;
+  text-align: center;
+  color: #666666;
+  font-size: 14px;
+  border: 1px solid #e6e6e6;
+}
+
+.u-award table th {
+  border: none;
+}
+
+.u-award table th {
+  font-size: 18px;
+  background: #35a783;
+  color: white;
+}
+
+.u-day-rank {
+  width: 920px;
+  height: 1556px;
+  border-radius: 40px;
+  background: white;
+  margin: 28px auto 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.u-my-mes {
+  text-align: center;
+  font-size: 20px;
+  color: #666666;
+  margin-top: 35px;
+}
+
+.u-icon-title {
+  width: 182px;
+  height: 49px;
+  background: url(/static/img/activity/December/icon.png) no-repeat center;
+  margin: 55px auto 0;
+  text-align: center;
+}
+
+.u-icon-title span {
+  color: white;
+  font-size: 20px;
+  line-height: 40px;
+}
+
+.u-box {
+  height: 280px;
+}
+
+.u-box .u-list {
+  width: 35%;
+  height: 280px;
+  margin: 0 0 0 120px;
+  float: left;
+}
+
+.u-box .u-list:last-child {
+  margin-left: 100px;
+}
+
+.u-box .u-list h1 {
+  color: #666666;
+  width: 53px;
+  text-align: left;
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 25px;
+  display: inline-block;
+}
+
+.u-box .u-list h1:nth-child(2) {
+  margin-left: 12px;
+}
+
+.u-box .u-list .u-rank {
+  width: 25px;
+  height: 30px;
+  color: #999999;
+  font-size: 12px;
+  margin-left: 1px;
+  text-align: center;
+  display: inline-block;
+}
+
+.u-box .u-list .u-rank-num {
+  position: relative;
+}
+
+.u-box .u-list .u-rank-num span {
+  position: absolute;
+  top: 0;
+  font-size: 16px;
+  left: 5px;
+  line-height: 30px;
+}
+
+.u-box .u-list .u-rank.f-rank-0 {
+  background: url(/static/img/activity/october/sign.png) center;
+  background-position: 0 0;
+}
+
+.u-box .u-list .u-rank.f-rank-1 {
+  background: url(/static/img/activity/october/sign.png) center;
+  background-position: -58px 0;
+}
+
+.u-box .u-list .u-rank.f-rank-2 {
+  background: url(/static/img/activity/october/sign.png) center;
+  background-position: -129px 0;
+}
+
+.u-box .u-list .u-rank.f-text {
+  height: 20px;
+  width: 22px;
+  position: relative;
+  top: -12px;
+}
+
+.u-user-head img {
+  display: inline-block;
+  height: 35px;
+  width: 35px;
+  overflow: hidden;
+}
+
+.u-user-head i {
+  display: inline-block;
+  height: 35px;
+  width: 35px;
+  overflow: hidden;
+  position: relative;
+  left: -39px;
+  top: 0;
+  z-index: 2;
+  background: url(/static/img/common/sprites.png) no-repeat -75px -21px;
+}
+
+.u-active .u-user {
+  margin-left: 40px;
+  width: 150px;
+  display: inline-block;
+}
+
+.u-active .u-user .u-name {
+  width: 65px;
+  height: 35px;
+  font-size: 12px;
+  line-height: 55px;
+  color: #999;
+  position: relative;
+  top: -13px;
+  left: -30px;
+}
+
+.u-active .u-money {
+  color: #d74148;
+  font-size: 16px;
+  display: inline-block;
+  position: relative;
+  top: -16px;
+  vertical-align: middle;
+}
+
+.u-active {
+  width: 100%;
+  height: 300px;
+  top: 10px;
+  margin-top: 20px;
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+}
+
+.f-active {
+  height: 245px;
+  overflow: hidden;
+}
+
+[v-cloak] {
+  display: none;
+}
+
+.m-december-foot {
+  width: 100%;
+  height: 510px;
+  background: url(/static/img/activity/December/foot.png) no-repeat center;
+  margin-top: -310px;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  background-size: cover;
+}
+
+.u-champion {
+  width: 750px;
+  height: 365px;
+  margin: 0 auto;
+  color: #666666;
+}
+
+.u-champion ol li {
+  float: left;
+  width: 125px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.u-champion li h1 {
+  font-size: 18px;
+  margin-top: 20px;
+}
+
+.u-cha-head img {
+  display: inline-block;
+  height: 35px;
+  width: 35px;
+  overflow: hidden;
+  margin-left: 40px;
+}
+
+.u-cha-head i {
+  display: inline-block;
+  height: 35px;
+  width: 35px;
+  overflow: hidden;
+  position: relative;
+  left: -39px;
+  top: 0;
+  z-index: 2;
+  background: url(/static/img/common/sprites.png) no-repeat -75px -21px;
+}
+
+.u-cha-money, .u-cha-user {
+  margin-top: 10px;
+}
+
+.u-cha-num {
+  width: 85px;
+  height: 25px;
+  border-radius: 15px;
+  background: #ff4d49;
+  color: white;
+  margin: 10px 0 0 20px;
+  font-size: 14px;
+}
+
+.u-more-btn {
+  text-align: center;
+  width: 80px;
+  margin: 0 auto 0;
+  color: #999999;
+  font-size: 14px;
+}
+
+.u-more-btn img {
+  margin-top: 10px;
+}
+
+.m-december-rule {
+  width: 135px;
+  height: 45px;
+  margin: 45px auto 0;
+  border-radius: 30px;
+  color: white;
+  border: 1px solid white;
+  font-size: 18px;
+  text-align: center;
+  line-height: 45px;
+}
+
+.u-rule-content {
+  width: 840px;
+  height: 560px;
+  /*margin: 0 auto;*/
+  border-radius: 10px;
+  /*position: absolute;*/
+  /*bottom: 100px;*/
+  /*left: 40px;*/
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  margin-left: -420px;
+  margin-top: -280px;
+  background: white;
+  z-index: 2;
+  display: none;
+  box-shadow: 0 0 15px 0 rgba(153, 153, 153, 0.6);
+}
+
+.u-rule-content table {
+  border-collapse: collapse;
+}
+
+.u-rule-content table th, .u-rule-content table td {
+  border: 1px solid #cccccc;
+  text-align: center;
+  color: #999999;
+  width: 120px;
+}
+
+.u-rule-content li {
+  color: #999999;
+  font-size: 14px;
+  line-height: 36px;
+  margin-left: 40px;
+  width: 760px;
+}
+
+.u-rule-content h4 {
+  font-size: 18px;
+  margin-left: 40px;
+  margin-top: 20px;
+  position: relative;
+}
+
+.u-rule-content img {
+  position: absolute;
+  right: 20px;
+}
+
+.m-december-tip {
+  width: 420px;
+  height: 200px;
+  border-radius: 10px;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  margin-top: -100px;
+  margin-left: -250px;
+  background: white;
+  z-index: 2;
+  box-shadow: 0 0 15px 0 rgba(153, 153, 153, 0.6);
+  text-align: center;
+  line-height: 200px;
+  font-size: 20px;
+  color: #666666;
+  display: none;
+}
+
+.m-december-tip img {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.u-snowman {
+  position: absolute;
+  bottom: -200px;
+  left: -50px;
+}
+
+.u-active-more {
+  overflow: auto;
+}
+
+.u-countdown {
+  text-align: center;
+  margin-top: 140px;
+  width: 340px;
+  font-size: 24px;
+  /*margin-left: 240px;*/
+  z-index: 2;
+  position: relative;
+}
+
+.f-cannot {
+  color: #feabb7;
+}
+
+.z-visib {
+  visibility: hidden;
+}
+
+.f-center-img {
+  background: url(/static/img/activity/December/return.png) no-repeat center;
+  width: 31px;
+  height: 29px;
+  position: absolute;
+  right: 20px;
+  display: inline-block;
+}
+
+.f-center-img:hover {
+  background: url(/static/img/activity/December/return3.png) no-repeat center;
+}
+
+.f-tip-img {
+  background: url(/static/img/activity/December/return.png) no-repeat center;
+  width: 31px;
+  height: 29px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.f-tip-img:hover {
+  background: url(/static/img/activity/December/return3.png) no-repeat center;
+}
+
+#j-total {
+  position: relative;
+  z-index: 4;
+}
+
+.z-get {
+  cursor: pointer;
+}
+
+.u-box-click {
+  width: 344px;
+  margin-left: 240px;
+}

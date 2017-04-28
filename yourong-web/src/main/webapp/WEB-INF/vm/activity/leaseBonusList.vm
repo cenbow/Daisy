@@ -1,0 +1,63 @@
+#parse("/common/common.vm")
+#set($layout = "/layout/default.vm")
+    <!--项目表-->
+        #if($!leaseBonusPage.data && $!leaseBonusPage.data.size()>0)
+        <h3 class="f-fs18">租赁分红项目列表</h3>
+        <ul class="f-cf u-lease-list">
+            #foreach( $!leaseBonus in $!{leaseBonusPage.data} ) 
+            <li class="f-round j-item-detail" data-id="$!{leaseBonus.id}" data-pid="$!{leaseBonus.projectId}">
+                <h4 class="f-fs14">
+					<a href="$root_url/products/detail-$!{leaseBonus.projectId}.html">
+						$!leaseBonus.prefixProjectName <span class="f-fs12 f-text-overflow">$!leaseBonus.suffixProjectName</span>
+					</a>
+				</h4>
+                <div class="u-pl-photo">
+                    <s></s>
+                    <a class="u-pl-wrap" href="$root_url/products/detail-$!{leaseBonus.projectId}.html"> 
+                    	<img src="#getProjectThumbnail($!{leaseBonus.thumbnail})" alt="$!leaseBonus.suffixProjectName"> 
+                    	<span class="u-ring-bg" style="background-image:url($root_url/static/img/homepage/round/round0.png)"></span>
+                    	<i></i>
+                       
+                    </a> 
+                    <s></s>
+                </div>
+                <ul>                
+ ##                   <li class="u-dividend-lease">
+ ##                   #if($!leaseBonus.leaseStatus==1)$!leaseBonus.leaseStatusStr:&nbsp;
+ ##                   <span>￥$!leaseBonus.totalIncomeStr</span>
+ ##                   #else<em>待租</em>
+ ##                   #end
+ ##                   <a href="$root_url/products/detail-$!{leaseBonus.projectId}.html#j-leaseBonus-mode" class="u-circle-12">详情</a>
+ ##                   </li>
+                    <li class="u-dividend-lease">
+                    	#if($!{leaseBonus.leaseStatus}==0)##待租
+                    		<span>租赁状况：<em>待租中</em></span>
+                    		<span>分红状况：<em>待分红</em></span>
+                    	#elseif($!{leaseBonus.leaseStatus}==1 && $!{leaseBonus.bonusStatus}==0)##已租 待分红
+							<span>租赁状况：<em>已租赁<i>$!{leaseBonus.leasePeriods}</i>次，当前待租中</em></span>
+							<span>分红状况：<em>待分红</em></span>
+						#elseif($!{leaseBonus.leaseStatus}==1 && $!{leaseBonus.bonusStatus}==1)##已租 已分红
+							<span>租赁状况：<em>已租赁<i>$!{leaseBonus.leasePeriods}</i>次，当前待租中</em></span>
+							<span>分红状况：<em>已分红<i>$!{leaseBonus.bonusPeriods}</i>次</em></span>
+						#elseif($!{leaseBonus.leaseStatus}==3 && $!{leaseBonus.bonusStatus}==0)##已租 待分红
+							<span>租赁状况：<em>已租赁<i>$!{leaseBonus.leasePeriods}</i>次，租赁结束</em></span>
+							<span>分红状况：<em>待分红</em></span>
+						#elseif($!{leaseBonus.leaseStatus}==3 && $!{leaseBonus.bonusStatus}==1)##已租 已分红
+							<span>租赁状况：<em>已租赁<i>$!{leaseBonus.leasePeriods}</i>次，租赁结束</em></span>
+							<span>分红状况：<em>已分红<i>$!{leaseBonus.bonusPeriods}</i>次</em></span>
+						#elseif($!{leaseBonus.leaseStatus}==2)##未分红
+							<span>租赁状况：<em>未出租</em></span>
+							<span>分红状况：<em>未分红</em></span>
+						#end
+						<span>分红总额：#if($!{leaseBonus.totalIncomeStr}=="0.00" && $!{leaseBonus.leaseStatus}==2)<i>￥0</i>#elseif($!{leaseBonus.totalIncomeStr}=="0.00" && $!{leaseBonus.bonusStatus}==0)￥0#else<i>￥$!{leaseBonus.totalIncomeStr}</i>#end</span>
+						<a href="$root_url/products/detail-$!{leaseBonus.projectId}.html#j-leaseBonus-mode" class="u-circle-12">详情</a> 
+                    </li>
+                </ul>
+            </li>
+           #end
+        </ul>
+        #ajaxPagePlugin($!leaseBonusPage)
+        #else
+            <span class="f-fs18 u-project-none">敬请期待</span>
+        #end
+        <!-- floatbox -->

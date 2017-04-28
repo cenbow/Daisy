@@ -1,0 +1,1002 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.springframework.org/schema/beans" xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xmlns:jaxrs="http://cxf.apache.org/jaxrs" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:bean="http://www.springframework.org/schema/util" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+           http://cxf.apache.org/jaxrs                   http://cxf.apache.org/schemas/jaxrs.xsd
+           http://cxf.apache.org/jaxws                   http://cxf.apache.org/schemas/jaxws.xsd
+           http://www.springframework.org/schema/beans   http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+           http://www.springframework.org/schema/util    http://www.springframework.org/schema/util/spring-util-2.0.xsd
+       ">
+
+	<!-- 启动触发器的配置开始 -->
+	<bean name="startQuertz" lazy-init="false" class="org.springframework.scheduling.quartz.SchedulerFactoryBean"  destroy-method="destroy">
+		<property name="triggers">
+			<list>
+				<!--按分钟执行的定时任务集合-->
+				<ref bean="MinuteTaskJobTrigger"/>
+				<!-- 定时还款项目  每天凌晨执行  -->
+				<ref bean="projectAutoRepaymentJobTrigger" />
+				<!-- 定时优惠券过期   每天执行一次 -->
+				<ref bean="couponAutoExpireJobTrigger" />
+				<!-- 还本付息定时创建原始债权人还款代收和平台垫付代收 -->
+				<ref bean="createHostingCollectTradeForPayInterestAndPrincipalJobTrigger" />
+				<!-- 同步存钱罐  -->
+				<ref bean="createPiggyBankEaringsTaskJobTrigger" />
+				<!-- 同步代付交易  -->
+				<ref bean="synchronizedHostingPayTradeJobTrigger" />
+				<!-- 同步提现记录  -->
+				<ref bean="synchronizedWithdrawTaskJobTrigger" />
+				<!-- 定时发送还本付息到期通知 每天执行一次 -->
+				<ref bean="noticeForPayPrincipalAndInterestJobTrigger" />
+				<!-- 电子数据保全  -->
+				<ref bean="regularPreservationJobTrigger" />
+				<!-- 定时检查当天生日的用户  -->
+				<ref bean="birthdayJobTrigger"/>
+				<!-- 更新redis值 -->
+				<ref bean="synchronizedRedisValueJobTrigger"/>
+				<!-- 定时监控优惠券数量 -->
+				<ref bean="CouponInforJobTrigger"/>
+				<!-- 定时更新文章发布状态 -->
+				<ref bean="PublishCmsArticleJobTrigger"/>
+				<!-- 定时监控支付确认中项目 -->
+				<ref bean="ProjectMonitorTrigger"/>
+				<!-- 定时监控网站公告开关 -->
+				<ref bean="WebMaintenAnnounceDetailTrigger"/>
+				<!-- 定时发送短信开关 -->
+				<ref bean="SendMessageDetailTrigger"/>
+				<!-- 余额提醒定时发送短信开关 -->
+				<ref bean="SendSmsRemindTaskJobTrigger"/>
+				<!-- 定时生成逾期记录 -->
+				<ref bean="GenerateOverdueTaskJobTrigger"/>
+				<!-- 还本付息监控定时任务 -->
+				<ref bean="repaymentMonitorTaskJobTrigger"/>
+				<!--短信提醒未签署合同定时任务 -->
+				<ref bean="contractUnsignTaskJobTrigger"/>
+				<!-- 玩转奥运猜奥运送现金券和人气值定时任务  每天执行一次 -->
+				<!-- <ref bean="PlayOlympicJobTrigger" /> -->
+				<!-- 会员自动投标定时任务 -->
+				<ref bean="memberAutoInvestTaskJobTrigger"/>
+				<!--统计战队投资总额奖励人气值定时任务-->
+				<!-- <ref bean="JulyTeamPopularityRewardTaskJobTrigger"/> -->
+				<!--优惠券发送到期短信-->
+				<ref bean="templateSMSTaskJobTrigger"/>
+				<!--优惠券过期提醒发送app站内信-->
+				<ref bean="CouponExpirationReminderTaskJobTrigger"/>
+				
+				<!-- 转让项目流标定时任务 -->
+				<ref bean="transferProjectFailTaskJobTrigger"/>
+				<!--下载图片-->
+				<ref bean="downLoadImgTaskJobTrigger"/>
+				<!--人气值商品自动增加库存-->
+				<ref bean="shopGoodsAutoInventoryTaskTrigger"/>
+				<!--直投项目发起代收完成/撤销-->
+				<ref bean="afterHandlePreAuthTradeTaskTrigger"/>
+				
+				<!-- 减少直投项目借款人的存续量任务-->
+				<ref bean="reduceBorrowerCreditTrigger"/>
+				<!--除夕抢压岁钱发放人气值任务-->
+				<ref bean="newYearGrabTrigger"/>
+			</list>
+		</property>
+	</bean>
+	<!-- 启动触发器的配置结束 -->
+
+
+	<!-- 定时发布项目   每分钟执行一次  Start-->
+	<bean id="projectAutoStartJobTrigger"
+		class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="projectAutoStartJobDetail" />
+		</property>
+		<property name="cronExpression">
+			<!-- 线上需改回-->
+			<value>${projectAutoStartJobTrigger.cronExpression}</value>
+		</property>
+	</bean>
+
+	<bean id="projectAutoStartJobDetail"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="projectAutoStartTask" />
+		</property>
+		<property name="targetMethod">
+			<value>work</value>
+		</property>
+		<!-- 不允许并行处理 -->
+		<property name="concurrent" value="false" />
+	</bean>
+
+	<bean id="projectAutoStartTask" class="com.yourong.backend.jobs.ProjectAutoStartTask" />
+	<!-- 定时发布项目   每分钟执行一次  End-->
+	
+	
+	<!-- 定时还款项目  每天凌晨执行  Start-->
+	<bean id="projectAutoRepaymentJobTrigger"
+		class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="projectAutoRepaymentJobDetail" />
+		</property>
+		<property name="cronExpression">
+			<value>${projectAutoRepaymentJobTrigger.cronExpression}</value>
+		</property>
+	</bean>
+
+	<bean id="projectAutoRepaymentJobDetail"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="projectAutoRepaymentTask" />
+		</property>
+		<property name="targetMethod">
+			<value>work</value>
+		</property>
+	</bean>
+
+	<bean id="projectAutoRepaymentTask" class="com.yourong.backend.jobs.ProjectAutoRepaymentTask" />
+	<!-- 定时还款项目   每天凌晨执行  End-->
+	
+	
+	<!-- 定时关闭订单  每分钟执行  Start-->
+	<bean id="closeOrderJobTrigger"
+		class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="closeOrderJobDetail" />
+		</property>
+		<property name="cronExpression">
+			<value>${closeOrderJobTrigger.cronExpression}</value>
+		</property>
+	</bean>
+
+	<bean id="closeOrderJobDetail"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="closeOrderTask" />
+		</property>
+		<property name="targetMethod">
+			<value>work</value>
+		</property>
+	</bean>
+
+	<bean id="closeOrderTask" class="com.yourong.backend.jobs.CloseOrderTask" />
+	<!--  定时关闭订单  每分钟执行  End-->
+	
+	
+	<!-- 定时优惠券过期   每天执行一次  Start-->
+	<bean id="couponAutoExpireJobTrigger"
+		class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="couponAutoExpireJobDetail" />
+		</property>
+		<property name="cronExpression">
+			<value>${couponAutoExpireJobTrigger.cronExpression}</value>
+		</property>
+	</bean>
+
+	<bean id="couponAutoExpireJobDetail"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="coponAutoExpireTask" />
+		</property>
+		<property name="targetMethod">
+			<value>work</value>
+		</property>
+	</bean>
+	
+	<bean id="coponAutoExpireTask" class="com.yourong.backend.jobs.CoponAutoExpireTask" />
+	<!-- 定时优惠券过期   每分钟执行一次  End-->
+	
+	<!-- 还本付息定时创建原始债权人还款代收和平台垫付代收   每分钟执行一次  Start-->
+	<bean id="createHostingCollectTradeForPayInterestAndPrincipalJobTrigger"
+		class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="createHostingCollectTradeForPayInterestAndPrincipalJobDetail" />
+		</property>
+		<property name="cronExpression">
+			<value>${createHostingCollectTradeForPayInterestAndPrincipalJobTrigger.cronExpression}</value>
+		</property>
+	</bean>
+
+	<bean id="createHostingCollectTradeForPayInterestAndPrincipalJobDetail"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="createHostingCollectTradeForPayInterestAndPrincipalTask" />
+		</property>
+		<property name="targetMethod">
+			<value>work</value>
+		</property>
+	</bean>
+	
+	<bean id="createHostingCollectTradeForPayInterestAndPrincipalTask" class="com.yourong.backend.jobs.CreateHostingCollectTradeForPayInterestAndPrincipalTask" />
+	<!-- 还本付息定时创建原始债权人还款代收和平台垫付代收   每分钟执行一次  End-->
+	
+	
+	<!-- 同步存钱罐收益 -->
+	<bean id="piggyBankEaringsTask" class="com.yourong.backend.jobs.PiggyBankEaringsTask" />
+	
+	<bean id="createPiggyBankEaringsTaskJobTrigger"
+		class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="createpiggyBankEaringsTaskPrincipalJobDetail" />
+		</property>
+		<property name="cronExpression">
+			<value>${piggyBankEaringsTask.cronExpression}</value>
+		</property>
+	</bean>
+
+	<bean id="createpiggyBankEaringsTaskPrincipalJobDetail"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="piggyBankEaringsTask" />
+		</property>
+		<property name="targetMethod">
+			<value>work</value>
+		</property>
+	</bean>	
+	<!-- 同步存钱罐收益 -->
+	
+	
+	<!-- 同步代收交易 -->
+	
+	<bean id="synchronizedHostingCollectTradeJobTrigger"
+		class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="synchronizedHostingCollectTradeJobDetail" />
+		</property>
+		<property name="cronExpression">
+			<value>${synchronizedHostingCollectTradeTask.cronExpression}</value>
+		</property>
+	</bean>
+
+	<bean id="synchronizedHostingCollectTradeJobDetail"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="synchronizedHostingCollectTradeTask" />
+		</property>
+		<property name="targetMethod">
+			<value>work</value>
+		</property>
+	</bean>	
+	
+	<bean id="synchronizedHostingCollectTradeTask" class="com.yourong.backend.jobs.SynchronizedHostingCollectTradeTask" />
+	<!-- 同步代收交易 -->
+	
+	<!-- 同步代付交易 -->
+	
+	<bean id="synchronizedHostingPayTradeJobTrigger"
+		class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="synchronizedHostingPayTradeJobDetail" />
+		</property>
+		<property name="cronExpression">
+			<value>${synchronizedHostingPayTradeTask.cronExpression}</value>
+		</property>
+	</bean>
+
+	<bean id="synchronizedHostingPayTradeJobDetail"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="synchronizedHostingPayTradeTask" />
+		</property>
+		<property name="targetMethod">
+			<value>work</value>
+		</property>
+	</bean>	
+	
+	<bean id="synchronizedHostingPayTradeTask" class="com.yourong.backend.jobs.SynchronizedHostingPayTradeTask" />
+	<!-- 同步代付交易 -->
+	
+	<!-- 同步提现记录 start -->
+	
+	<bean id="synchronizedWithdrawTaskJobTrigger"
+		class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="synchronizedWithdrawTaskJobDetail" />
+		</property>
+		<property name="cronExpression">
+			<value>${synchronizedWithdrawTask.cronExpression}</value>
+		</property>
+	</bean>
+
+	<bean id="synchronizedWithdrawTaskJobDetail"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="synchronizedWithdrawTask" />
+		</property>
+		<property name="targetMethod">
+			<value>work</value>
+		</property>
+	</bean>	
+	
+	<bean id="synchronizedWithdrawTask" class="com.yourong.backend.jobs.SynchronizedWithdrawTask" />
+	<!-- 同步提现记录 end -->
+	
+	<!-- 活动定时上线&结束 start -->
+	
+	<!-- 定时banner过期   每分钟执行一次  Start-->
+	<bean id="bannerAutoExpireJobTrigger"
+		class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="bannerAutoExpireJobDetail" />
+		</property>
+		<property name="cronExpression">
+			<value>${bannerAutoExpireJobTrigger.cronExpression}</value>
+		</property>
+	</bean>
+
+	<bean id="bannerAutoExpireJobDetail"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="bannerAutoExpireTask" />
+		</property>
+		<property name="targetMethod">
+			<value>work</value>
+		</property>
+	</bean>
+	
+	<bean id="bannerAutoExpireTask" class="com.yourong.backend.jobs.BannerAutoExpireTask" />
+	<!-- 定时banner过期   每分钟执行一次 End-->
+	
+	<!-- 定时发送还本付息到期通知   每天执行一次   Start-->
+	<bean id="noticeForPayPrincipalAndInterestJobTrigger"
+		class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="noticeForPayPrincipalAndInterestJobDetail" />
+		</property>
+		<property name="cronExpression">
+			<value>${noticeForPayPrincipalAndInterestJobTrigger.cronExpression}</value>
+		</property>
+	</bean>
+
+	<bean id="noticeForPayPrincipalAndInterestJobDetail"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="noticeForPayPrincipalAndInterestTask" />
+		</property>
+		<property name="targetMethod">
+			<value>work</value>
+		</property>
+	</bean>
+	
+	<bean id="noticeForPayPrincipalAndInterestTask" class="com.yourong.backend.jobs.NoticeForPayPrincipalAndInterestTask" />
+	<!-- 定时发送还本付息到期通知   每天执行一次 End-->
+	
+	
+	<bean id="activityTaskJobTrigger"
+		class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="activityTaskJobDetail" />
+		</property>
+		<property name="cronExpression">
+			<value>${activityTaskJobTrigger.cronExpression}</value>
+		</property>
+	</bean>
+
+	<bean id="activityTaskJobDetail"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="activityTask" />
+		</property>
+		<property name="targetMethod">
+			<value>work</value>
+		</property>
+	</bean>	
+	
+	<bean id="activityTask" class="com.yourong.backend.jobs.ActivityTask" />
+	<!-- 活动定时上线&结束 end -->
+	
+	<!-- 定时处理消息   每分钟执行一次  Start-->
+	<bean id="customMessageAutoStartJobTrigger"
+		class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="customMessageAutoStartJobDetail" />
+		</property>
+		<property name="cronExpression">
+			<value>${customMessageAutoStartJobTrigger.cronExpression}</value>
+		</property>
+	</bean>
+
+	<bean id="customMessageAutoStartJobDetail"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="customMessageAutoStartTask" />
+		</property>
+		<property name="targetMethod">
+			<value>work</value>
+		</property>
+		<!-- 不允许并行处理 -->
+		<property name="concurrent" value="false" />
+	</bean>
+
+	<bean id="customMessageAutoStartTask" class="com.yourong.backend.jobs.CustomMessageTask" />
+	<!-- 定时处理消息   每分钟执行一次  End-->
+	
+	<!-- 定时创建数据保全  每天执行一次  Start-->
+	<bean id="regularPreservationJobTrigger"
+		class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="regularPreservationJobDetail" />
+		</property>
+		<property name="cronExpression">
+			<value>${regularPreservationJobTrigger.cronExpression}</value>
+		</property>
+	</bean>
+
+	<bean id="regularPreservationJobDetail"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="regularPreservationTask" />
+		</property>
+		<property name="targetMethod">
+			<value>work</value>
+		</property>
+	</bean>
+	<bean id="regularPreservationTask" class="com.yourong.backend.jobs.RegularPreservationTask" />
+	<!-- 定时创建数据保全  每天执行一次  End-->
+	
+	<!-- 定时刷新支付管理平台状态   每分钟执行一次  Start-->
+	<bean id="paymentPlatformStatusAutoFlushJobTrigger"
+		class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="paymentPlatformStatusAutoFlushJobDetail" />
+		</property>
+		<property name="cronExpression">
+			<!-- 线上需改回-->
+			<value>${paymentPlatformStatusAutoFlushJobTrigger.cronExpression}</value>
+		</property>
+	</bean>
+
+	<bean id="paymentPlatformStatusAutoFlushJobDetail"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="paymentPlatformTask" />
+		</property>
+		<property name="targetMethod">
+			<value>work</value>
+		</property>
+		<!-- 不允许并行处理 -->
+		<property name="concurrent" value="false" />
+	</bean>
+
+	<bean id="paymentPlatformTask" class="com.yourong.backend.jobs.PaymentPlatformTask" />
+	<!-- 定时刷新支付管理平台状态   每分钟执行一次  End-->
+	
+	<!-- 定时检查当天生日的用户 每天上午9点执行  Start-->
+	<bean id="birthdayJobTrigger"
+		class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="birthdayJobDetail" />
+		</property>
+		<property name="cronExpression">
+			<value>${birthdayTaskJobTrigger.cronExpression}</value>
+		</property>
+	</bean>
+
+	<bean id="birthdayJobDetail"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="birthdayTask" />
+		</property>
+		<property name="targetMethod">
+			<value>work</value>
+		</property>
+	</bean>
+
+	<bean id="birthdayTask" class="com.yourong.backend.jobs.BirthdayTask" />
+	<!-- 定时检查当天生日的用户 每天上午9点执行  End-->
+
+
+	<!-- 同步redis值，后台有开关  start-->
+	<bean id="synchronizedRedisValueJobTrigger"
+		  class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="synchronizedRedisValueJobDetail" />
+		</property>
+		<property name="cronExpression">
+			<value>${synchronizedRedisValueTaskJobTrigger.cronExpression}</value>
+		</property>
+	</bean>
+	<bean id="synchronizedRedisValueJobDetail"
+		  class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="synchronizedRedisTask" />
+		</property>
+		<property name="targetMethod">
+			<value>work</value>
+		</property>
+	</bean>
+	<bean id="synchronizedRedisTask" class="com.yourong.backend.jobs.RedisAutoCompareValueTask" />
+	<!-- 同步redis值，后台有开关  end-->
+	
+	
+	
+	
+	<!-- 定时检查优惠券数量  Start-->
+	<bean id="CouponInforJobTrigger"
+		class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="couponInforJobDetail" />
+		</property>
+		<property name="cronExpression">
+			<value>${couponInforJobTrigger.cronExpression}</value>
+		</property>
+	</bean>
+
+	<bean id="couponInforJobDetail"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="couponInforTask" />
+		</property>
+		<property name="targetMethod">
+			<value>work</value>
+		</property>
+	</bean>
+
+	<bean id="couponInforTask" class="com.yourong.backend.jobs.CouponInforTask" />
+	<!-- 定时检查优惠券数量  End-->
+	
+	<!-- 定时更新文章发布状态 Start-->
+	<bean id="PublishCmsArticleJobTrigger"
+		class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="publishCmsArticleDetail" />
+		</property>
+		<property name="cronExpression">
+			<value>${publishCmsArticleJobTrigger.cronExpression}</value>
+		</property>
+	</bean>
+
+	<bean id="publishCmsArticleDetail"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="publishCmsArticleTask" />
+		</property>
+		<property name="targetMethod">
+			<value>work</value>
+		</property>
+	</bean>
+
+	<bean id="publishCmsArticleTask" class="com.yourong.backend.jobs.PublishCmsArticleTask" />
+	<!-- 定时更新文章发布状态  End-->
+	
+	<!-- 定时监控支付确认中的项目 Start-->
+	<bean id="ProjectMonitorTrigger"
+		class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="projectMonitorDetail" />
+		</property>
+		<property name="cronExpression">
+			<value>${projectMonitorTrigger.cronExpression}</value>
+		</property>
+	</bean>
+
+	<bean id="projectMonitorDetail"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="projectMonitorTask" />
+		</property>
+		<property name="targetMethod">
+			<value>work</value>
+		</property>
+	</bean>
+
+	<bean id="projectMonitorTask" class="com.yourong.backend.jobs.ProjectMonitorTask" />
+	<!-- 定时监控支付确认中的项目   End-->
+	
+	<!-- 定时监控网站公告开关 Start-->
+	<bean id="WebMaintenAnnounceDetailTrigger"
+		class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="webMaintenAnnounceDetail" />
+		</property>
+		<property name="cronExpression">
+			<value>${webMaintenAnnounceDetailTrigger.cronExpression}</value>
+		</property>
+	</bean>
+
+	<bean id="webMaintenAnnounceDetail"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="webMaintenAnnounceTask" />
+		</property>
+		<property name="targetMethod">
+			<value>work</value>
+		</property>
+	</bean>
+
+	<bean id="webMaintenAnnounceTask" class="com.yourong.backend.jobs.WebMaintenAnnounceTask" />
+	<!-- 定时监控网站公告开关   End-->
+	
+	
+	
+	<!-- 定时短信发送 Start-->
+	<bean id="SendMessageDetailTrigger"
+		class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="sendMessageDetail" />
+		</property>
+		<property name="cronExpression">
+			<value>${sendMessageDetailTrigger.cronExpression}</value>
+		</property>
+	</bean>
+
+	<bean id="sendMessageDetail"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="sendMessageTask" />
+		</property>
+		<property name="targetMethod">
+			<value>work</value>
+		</property>
+	</bean>
+
+	<bean id="sendMessageTask" class="com.yourong.backend.jobs.sendMessageTask" />
+	<!-- 定时短信发送开关   End-->
+	
+	
+	<!-- 余额提醒定时短信发送 Start-->
+	<bean id="SendSmsRemindTaskJobTrigger"
+		class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="sendSmsRemindTaskDetail" />
+		</property>
+		<property name="cronExpression">
+			<value>${sendSmsRemindTaskJobTrigger.cronExpression}</value>
+		</property>
+	</bean>
+
+	<bean id="sendSmsRemindTaskDetail"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="sendSmsRemindTask" />
+		</property>
+		<property name="targetMethod">
+			<value>work</value>
+		</property>
+	</bean>
+
+	<bean id="sendSmsRemindTask" class="com.yourong.backend.jobs.SendSmsRemindTask" />
+	<!-- 余额提醒定时短信发送开关   End-->
+	
+	<!-- 定时生成逾期数据（交易逾期状态，逾期记录） Start-->
+	<bean id="GenerateOverdueTaskJobTrigger"
+		class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="generateOverdueTaskDetail" />
+		</property>
+		<property name="cronExpression">
+			<value>${generateOverdueTaskJobTrigger.cronExpression}</value>
+		</property>
+	</bean>
+
+	<bean id="generateOverdueTaskDetail"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="generateOverdueTask" />
+		</property>
+		<property name="targetMethod">
+			<value>work</value>
+		</property>
+	</bean>
+
+	<bean id="generateOverdueTask" class="com.yourong.backend.jobs.GenerateOverdueTask" />
+	<!--  定时生成逾期数据（交易逾期状态，逾期记录）   End-->
+	
+	
+	
+	<!-- 定时任务整合 Start-->
+		<!-- 按分钟执行定时任务集合 Start-->
+		<bean id="MinuteTaskJobTrigger"
+			class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+			<property name="jobDetail">
+				<ref bean="minuteTaskDetail" />
+			</property>
+			<property name="cronExpression">
+				<value>${minuteTaskJobTrigger.cronExpression}</value>
+			</property>
+		</bean>
+		<bean id="minuteTaskDetail"
+			class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+			<property name="targetObject">
+				<ref bean="taskContainer" />
+			</property>
+			<property name="targetMethod">
+				<value>workByMinute</value>
+			</property>
+		</bean>
+		<!-- 按分钟执行定时任务集合   End-->
+	<bean id="taskContainer" class="com.yourong.backend.jobs.TaskContainer" />
+	<!-- 定时任务整合 End-->
+	
+	
+		<!-- 还本付息监控定时任务 Start-->
+	<bean id="repaymentMonitorTaskJobTrigger"
+		class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="repaymentMonitorTaskDetail" />
+		</property>
+		<property name="cronExpression">
+			<value>${repaymentMonitorTaskJobTrigger.cronExpression}</value>
+		</property>
+	</bean>
+
+	<bean id="repaymentMonitorTaskDetail"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="repaymentMonitorTask" />
+		</property>
+		<property name="targetMethod">
+			<value>work</value>
+		</property>
+	</bean>
+
+	<bean id="repaymentMonitorTask" class="com.yourong.backend.jobs.RepaymentMonitorTask" />
+	<!-- 还本付息监控定时任务  End-->
+	
+		<!-- 未签署合同提醒  Start-->
+	<bean id="contractUnsignTaskJobTrigger"
+		class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="contractUnsignTaskDetail" />
+		</property>
+		<property name="cronExpression">
+			<value>${contractUnsignTaskJobTrigger.cronExpression}</value>
+		</property>
+	</bean>
+
+	<bean id="contractUnsignTaskDetail"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="contractUnsignTask" />
+		</property>
+		<property name="targetMethod">
+			<value>work</value>
+		</property>
+	</bean>
+
+	<bean id="contractUnsignTask" class="com.yourong.backend.jobs.ContractUnsignTask" />
+	<!-- 未签署合同提醒  End-->
+	
+	<!-- 会员自动投标定时任务 Start-->
+	<bean id="memberAutoInvestTaskJobTrigger"
+		class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="memberAutoIntestDetail" />
+		</property>
+		<property name="cronExpression">
+			<value>${memberAutoInvestTaskJobTrigger.cronExpression}</value>
+		</property>
+	</bean>
+
+	<bean id="memberAutoIntestDetail"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="memberAutoInvestTask" />
+		</property>
+		<property name="targetMethod">
+			<value>work</value>
+		</property>
+	</bean>
+
+	<bean id="memberAutoInvestTask" class="com.yourong.backend.jobs.MemberAutoInvestTask" />
+	<!-- 会员自动投标定时任务  End-->
+	
+
+	<!--优惠券短信提醒任务-->
+	<bean id="templateSMSTask" class="com.yourong.backend.jobs.TemplateSMSTask"/>
+
+	<bean id="templateSMSDetail"
+		  class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="templateSMSTask" />
+		</property>
+		<property name="targetMethod">
+			<value>run</value>
+		</property>
+	</bean>
+
+	<bean id="templateSMSTaskJobTrigger"
+		  class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="templateSMSDetail" />
+		</property>
+		<property name="cronExpression">
+			<value>${templateSMSTaskJobTrigger.cronExpression}</value>
+		</property>
+	</bean>
+	
+	<!--优惠券到期提醒发送app消息-->
+	<bean id="CouponExpirationReminderTask" class="com.yourong.backend.jobs.CouponExpirationReminderTask"/>
+
+	<bean id="couponExpirationReminderDetail"
+		  class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="CouponExpirationReminderTask" />
+		</property>
+		<property name="targetMethod">
+			<value>run</value>
+		</property>
+	</bean>
+
+	<bean id="CouponExpirationReminderTaskJobTrigger"
+		  class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="couponExpirationReminderDetail" />
+		</property>
+		<property name="cronExpression">
+			<value>${couponExpirationReminderTaskJobTrigger.cronExpression}</value>
+		</property>
+	</bean>
+	
+	
+	
+	<!-- 转让项目流标定时任务 Start-->
+	<bean id="transferProjectFailTaskJobTrigger"
+		class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="transferProjectFailDetail" />
+		</property>
+		<property name="cronExpression">
+			<value>${transferProjectFailTaskJobTrigger.cronExpression}</value>
+		</property>
+	</bean>
+
+	<bean id="transferProjectFailDetail"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="transferProjectFailTask" />
+		</property>
+		<property name="targetMethod">
+			<value>work</value>
+		</property>
+	</bean>
+
+	<bean id="transferProjectFailTask" class="com.yourong.backend.jobs.TransferProjectFailTask" />
+	<!-- 转让项目流标定时任务  End-->
+
+	<!-- 下载图片任务 Start-->
+	<bean id="downLoadImgTaskJobTrigger"
+		  class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="downLoadImgDetail" />
+		</property>
+		<property name="cronExpression">
+			<value>${downLoadImgTaskJobTrigger.cronExpression}</value>
+		</property>
+	</bean>
+
+	<bean id="downLoadImgDetail"
+		  class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="downLoadImgTask" />
+		</property>
+		<property name="targetMethod">
+			<value>run</value>
+		</property>
+	</bean>
+
+	<bean id="downLoadImgTask" class="com.yourong.backend.jobs.DownLoadImgTask" />
+	<!-- 下载图片任务  End-->
+
+	<!-- 人气值商品自动增加库存 Start-->
+	<bean id="shopGoodsAutoInventoryTaskTrigger"
+		  class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="shopGoodsAutoInventoryDetail" />
+		</property>
+		<property name="cronExpression">
+			<value>${shopGoodsAutoInventoryTaskTrigger.cronExpression}</value>
+		</property>
+	</bean>
+
+	<bean id="shopGoodsAutoInventoryDetail"
+		  class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="shopGoodsAutoInventoryTask" />
+		</property>
+		<property name="targetMethod">
+			<value>run</value>
+		</property>
+	</bean>
+
+	<bean id="shopGoodsAutoInventoryTask" class="com.yourong.backend.jobs.ShopGoodsAutoInventoryTask" />
+	<!-- 下载图片任务  End-->
+
+	<!-- 人气值商品自动增加库存 Start-->
+	<bean id="afterHandlePreAuthTradeTaskTrigger"
+		  class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="afterHandlePreAuthTradeDetail" />
+		</property>
+		<property name="cronExpression">
+			<value>${afterHandlePreAuthTradeTaskTrigger.cronExpression}</value>
+		</property>
+	</bean>
+
+	<bean id="afterHandlePreAuthTradeDetail"
+		  class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="afterHandlePreAuthTradeTask" />
+		</property>
+		<property name="targetMethod">
+			<value>run</value>
+		</property>
+	</bean>
+
+	<bean id="afterHandlePreAuthTradeTask" class="com.yourong.backend.jobs.AfterHandlePreAuthTradeTask" />
+	<!-- 下载图片任务  End-->
+	
+	
+    <!-- 减少直投项目借款人的存续量任务 Start-->
+	<bean id="reduceBorrowerCreditTrigger"
+		  class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="reduceBorrowerCreditDetail" />
+		</property>
+		<property name="cronExpression">
+			<value>${reduceBorrowerCreditTrigger.cronExpression}</value>
+		</property>
+	</bean>
+
+	<bean id="reduceBorrowerCreditDetail"
+		  class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="reduceBorrowerCreditTask" />
+		</property>
+		<property name="targetMethod">
+			<value>work</value>
+		</property>
+	</bean>
+
+	<bean id="reduceBorrowerCreditTask" class="com.yourong.backend.jobs.ReduceBorrowerCreditTask" />
+	<!-- 减少直投项目借款人的存续量任务  End-->
+
+	<!--除夕抢人气值发放人气值任务 Start-->
+	<bean id="newYearGrabTrigger"
+		  class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="newYearGrabDetail" />
+		</property>
+		<property name="cronExpression">
+			<value>${newYearGrabTrigger.cronExpression}</value>
+		</property>
+	</bean>
+
+	<bean id="newYearGrabDetail"
+		  class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="newYearGrabTask" />
+		</property>
+		<property name="targetMethod">
+			<value>run</value>
+		</property>
+	</bean>
+
+	<bean id="newYearGrabTask" class="com.yourong.backend.jobs.NewYearGrabTask" />
+	<!--除夕抢人气值发放人气值任务 end-->
+	
+	<!-- 对商品进行定时上下架start -->
+	<bean id="shelvesGoodsTrigger"
+		class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="shelvesGoodsTaskDetail" />
+		</property>
+		<property name="cronExpression">
+			<value>${shelvesGoodsTrigger.cronExpression}</value>
+		</property>
+	</bean>
+
+	<bean id="shelvesGoodsTaskDetail"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="shelvesGoodsTask" />
+		</property>
+		<property name="targetMethod">
+			<value>work</value>
+		</property>
+	</bean>	
+	
+	<bean id="shelvesGoodsTask" class="com.yourong.backend.jobs.ShelvesGoodsTask" />
+	<!-- 对商品进行定时上下架 end -->
+</beans>

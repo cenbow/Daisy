@@ -1,0 +1,10 @@
+##新浪存钱罐查询验证页面
+#parse("/common/common.vm")
+
+$!auditHtml
+
+<script type="text/javascript">
+		window.onload=function(){
+			document.getElementById("formAuthSavingPot").submit();
+		}		
+</script>

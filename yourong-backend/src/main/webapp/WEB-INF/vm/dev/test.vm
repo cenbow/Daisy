@@ -1,0 +1,18 @@
+#set($layout = "/layout/newIframe.vm")
+##<!-- MAIN CONTENT -->
+##<div class="container">
+##    <div class="row">
+##        <div class="span3">
+##        </div>
+##        <div class="span9">
+##            <a data-trigger="modal" href="lipsum.html" data-title="Modal title" class="btn">Launch demo modal</a>
+##            <a data-trigger="confirm" href="#" class="btn">Launch demo confirm</a>
+##        </div>
+##    </div>
+##</div>
+##<!-- FOOTER  -->
+##<footer class="footer">
+##    <div class="container">
+##
+##    </div>
+##</footer>

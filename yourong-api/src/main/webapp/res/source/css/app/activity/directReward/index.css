@@ -1,0 +1,746 @@
+body {
+    background: #F3F3F3;
+
+}
+
+[v-cloak] {
+    display: none;
+}
+
+.f-color9 {
+    color: #999999;
+}
+
+.f-color6 {
+    color: #666666;
+}
+
+.f-color3 {
+    color: #333333;
+}
+
+.f-textCenter {
+    text-align: center;
+}
+
+.f-porelative {
+    position: relative;
+}
+.u-redTopLine {
+    width: 92%;
+    margin: 20px auto -17px;
+    height: 10px;
+    background: #d74148;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.m-award-list, .m-daily-list {
+    background: #fff;
+    width: 92%;
+    margin: 10px auto;
+    border-radius: 5px;
+    padding-bottom: 1rem;
+}
+
+.m-award-list .u-today-award {
+    height: 14rem;
+    padding: 1rem 0 0;
+    /*margin: 0 0.8rem 1.8rem;*/
+    text-align: center;
+    width: 100%;
+}
+
+.m-award-list .u-today-award .u-tipTitle {
+    font-size: 16px;
+    color: #333;
+    text-align: center;
+}
+
+.m-award-list .u-today-award .u-giftAmount {
+    font-family: "dincond", "Microsoft Yahei";
+    font-size: 70px;
+    color: #D74148;
+    letter-spacing: -2.9px;
+    padding: 0.5rem 0;
+}
+.m-award-list .u-today-award .u-todayText {
+    color: #9b9b9b;
+    line-height: 20px;
+}
+
+.u-detailLink {
+    color: #5d78a5;
+    line-height: 20px;
+    margin: 2px 0 8px 0;
+    text-align: center;
+}
+.m-award-list .u-dot {
+    line-height: 0;
+    border-bottom: 1px dashed #ccc;
+    width: 90%;
+    position: absolute;
+    top: 14rem;
+}
+.u-today-award h1 {
+    display: block;
+    text-align: center;
+    font-size: 0.875rem;
+    color: #D74148;
+    font-weight: 100;
+    padding-bottom: 0.1rem;
+}
+
+.u-today-award h1 i {
+    color: #FFFFFF;
+    font-size: 0.75rem;
+    display: inline-block;
+    height: 16px;
+    line-height: 16px;
+    background: #d74148;
+    padding: 0 4px;
+    margin-right: 8px;
+    border-radius: 2px;
+}
+.u-today-award h1 em{
+    font-weight: 300;
+}
+
+.u-today-award h1 span {
+    font-size: 0.875rem;
+    text-decoration: line-through;
+    margin-left: 4px;
+    font-weight: 300;
+}
+.u-today-award h2 {
+    color: #D74148;
+    text-align: center;
+    font-size: 1.25rem;
+    margin-top: 0.875rem;
+    font-weight: 300;
+    padding-bottom: 2.5rem;
+}
+
+.u-today-award h1 strong {
+    font-size: 2.6rem;
+    font-weight: 300;
+}
+
+.m-award-list .u-reward-item {
+    padding: 0 0 0 1.5rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.m-award-list ul .u-tips {
+    width: 100%;
+    color: #999999;
+    font-size: 1rem;
+    display: block;
+    text-align: center;
+    padding: 50px 0;
+}
+
+.m-award-list ul.z-finished {
+    height: 12.5rem;
+}
+
+.m-award-list ul .u-sign {
+    width: 1.6rem;
+    height: 1.6rem;
+    background: url(../../../../../img/APP/directReaward/reward.png) no-repeat;
+    background-size: 100%;
+    text-align: center;
+    position: relative;
+    display: inline-block;
+}
+
+.m-award-list ul .u-award-money {
+    width: 6rem;
+    margin-left: 1rem;
+    margin-right: 6.5rem;
+    text-align: left;
+    display: inline-block;
+    font-size: 0.875rem;
+    position: relative;
+}
+.m-award-list ul .u-award-money em{
+    font-weight: 300;
+}
+.m-award-list ul .u-award-money:last-child {
+    margin: 0;
+    text-align: right;
+    width: 6rem;
+    color: #666;
+    font-size: 1rem;
+    display: inline-block;
+    position: absolute;
+    right: 2.6rem;
+}
+
+.m-award-list .u-sign i {
+    width: 100%;
+    color: #fff;
+    font-size: 0.7rem;
+    position: relative;
+    bottom: -5px;
+    text-align: center;
+    line-height: 10px;
+}
+
+.m-swiper-pagination {
+    text-align: center;
+}
+
+.m-swiper-pagination span {
+    width: 0.375rem;
+    height: 0.375rem;
+    margin-right: 0.2rem;
+    border: 1px solid #D74148;
+    background-color: #fff;
+    border-radius: 30px;
+    display: inline-block;
+}
+
+.m-swiper-pagination .swiper-pagination-bullet-active {
+    background: #D74148;
+}
+
+.u-invest-button {
+    display: block;
+    width: 73.3%;
+    height: 2.5rem;
+    text-align: center;
+    background: #D74148;
+    border-radius: 4px;
+    color: #FFFFFF;
+    font-size: 1rem;
+    line-height: 2.5rem;
+    margin: 1.25rem auto 0.75rem;
+}
+
+.u-invest-button.z-unactived {
+    background: #dddddd;
+}
+.m-award-list p {
+    width: 100%;
+    text-align: center;
+    color: #999;
+    font-size: 0.75rem;
+}
+
+.u-circle {
+    width: 1.4rem;
+    height: 1.4rem;
+    background: #F3F3F3;
+    border: 1px solid #F3F3F3;
+    border-radius: 30px;
+    position: absolute;
+    top: 13.2rem;
+    left: 0;
+    z-index: 101;
+}
+
+.u-circle.f-right {
+    left: auto;
+    right: 0;
+}
+
+.m-fail-text {
+    text-align: center;
+    color: #999;
+    font-size: 0.875rem;
+    margin: 2rem auto 1.25rem;
+}
+
+.m-award-explain {
+    background: #fff;
+    width: 92%;
+    margin: 0 auto 1.5rem;
+    border-radius: 10px;
+    padding-bottom: 1.5rem;
+    border: 1px solid #E5E5E5;
+}
+
+.m-award-explain h1 {
+    width: 100%;
+    padding: 1.3rem 0 1rem;
+    text-align: center;
+    color: #333;
+    font-size: 1.0625rem;
+}
+
+.m-award-explain .u-each-other {
+    width: 6.2rem;
+    height: 6.2rem;
+    border: 1px solid #D74148;
+    border-radius: 60px;
+    display: inline-block;
+    top: 0;
+    vertical-align: middle;
+}
+
+.m-award-explain .u-each-other.f-left {
+    margin-left: 1.7rem;
+}
+
+.m-award-explain .u-arrows {
+    position: relative;
+    top: 1.2rem;
+    margin: 0 1.2rem;
+    display: inline-block;
+    width: 2.5rem;
+    height: 2.75rem;
+    background: url(../../../../../img/APP/directReaward/toRight.png) no-repeat;
+    background-size: 100%;
+}
+
+.m-award-explain .u-each-other h1 {
+    font-size: 1.3rem;
+    text-align: center;
+    color: #D74148;
+    padding-bottom: 0;
+}
+
+.m-award-explain .u-each-other p {
+    font-size: 0.875rem;
+    text-align: center;
+    color: #D74148;
+}
+
+.m-award-explain .u-each-other em {
+    display: block;
+    font-size: 0.75rem;
+    color: #D74148;
+    text-align: center;
+    line-height: 0.75rem;
+}
+
+.m-award-explain .u-agreement {
+    text-align: center;
+    color: #999;
+    font-size: 0.75rem;
+    margin: 0.75rem auto;
+}
+
+.m-award-explain .u-agreement a {
+    color: #5D78A5;
+}
+.m-award-explain table {
+    width: 95%;
+    font-size: 0.875rem;
+    text-align: center;
+    line-height: 3rem;
+    margin: 10px auto;
+}
+
+.m-award-explain table th {
+    height: 3rem;
+    width: 50%;
+    color: #fff;
+    background: #C6C6C6;
+    font-weight: 300;
+}
+
+.m-award-explain table td {
+    height: 3rem;
+    width: 50%;
+    color: #5A5855;
+}
+
+.m-award-explain .u-bottom-text {
+    color: #999;
+    margin: 1rem auto;
+    text-align: center;
+    font-size: 12px;
+}
+
+.m-award-explain .u-bottom-text i {
+    position: relative;
+    top: 2px;
+    line-height: 16px;
+    font-size: 16px;
+}
+.m-award-explain .u-bottom-check {
+    display: block;
+    color: #5D78A5;
+    text-align: center;
+    text-decoration: none;
+    font-size: 0.75rem;
+    width: 100%;
+    margin-top: 0.5rem;
+    position: relative;
+}
+
+.m-name-list {
+    background: #fff;
+    width: 92%;
+    margin: 10px auto;
+    border-radius: 5px;
+    padding-bottom: 1rem;
+}
+
+.m-name-list.z-showYellowBar {
+    margin: 30px auto;
+}
+.m-daily-list {
+    border-top: 2px solid #D74148;
+}
+
+.m-name-list ul li {
+    width: 100%;
+    vertical-align: middle;
+    border-bottom: 1px solid #F5F5F5;
+    padding: 5px 0;
+}
+
+.m-name-list h1 {
+    color: #333333;
+    text-align: center;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    padding-top: .75rem;
+    padding-bottom: .75rem;
+    border: 1px solid #F5F5F5;
+}
+
+.m-name-list h1 i {
+    display: block;
+    color: #999;
+    font-size: 12px;
+}
+
+.m-name-list h2 {
+    color: #333;
+    text-align: center;
+    width: 100%;
+    line-height: 1.5rem;
+    font-size: 0.875rem;
+}
+
+.m-name-list h3 {
+    color: #D74148;
+    text-align: center;
+    width: 100%;
+}
+
+.m-name-list h3 strong {
+    font-size: 2.25rem;
+    font-weight: 300;
+}
+
+.m-name-list .u-user img {
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 1px solid #fff;
+    border-radius: 30px;
+    vertical-align: middle;
+}
+
+.m-name-list .u-tipText {
+    width: 96%;
+    margin: 0 auto;
+    padding-top: 1rem;
+}
+
+.m-name-list .u-tipText p:nth-child(2) {
+    margin-top: .1875rem;
+}
+
+.m-name-list .u-user-name {
+    color: #333333;
+    font-size: 0.875rem;
+    width: 9rem;
+    margin-left: 0.6rem;
+    text-align: left;
+    display: inline-block;
+    position: relative;
+    /*top: -1rem;*/
+    vertical-align: middle;
+}
+
+.m-name-list .u-award-type {
+    width: 6rem;
+    font-size: 1.25rem;
+    text-align: right;
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    margin-right: 0.2rem;
+}
+
+.m-name-list ul {
+    margin-left: 1rem;
+}
+
+.m-name-list .u-noWinnerList {
+    width: 100%;
+    text-align: center;
+    padding: 40px 0;
+    color: #999999;
+    font-size: 1rem;
+    border-bottom: 1px solid #f5f5f5;
+}
+
+/*.u-award-type i {*/
+/*color: #666666;*/
+/*}*/
+
+.u-award-type em {
+    display: block;
+    color: #D74148;
+}
+
+.u-tips-frame {
+    width: 16.875rem;
+    height: 7.5rem;
+    border: 1px solid #fff;
+    border-radius: 10px;
+    background: #fff;
+    position: fixed;
+    top: 35%;
+    left: 15%;
+    z-index: 201;
+}
+
+.u-tips-frame p {
+    color: #333333;
+    text-align: center;
+    margin: 1.8rem auto;
+    font-size: 0.875rem;
+}
+.u-tips-frame a {
+    display: block;
+    border-top: 1px solid #E5E5E5;
+    color: #0076FF;
+    text-align: center;
+    font-size: 1.0625rem;
+    width: 100%;
+    line-height: 2.5rem;
+}
+
+.m-prize-list {
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.m-prize-list .u-reward-item {
+    padding-left: 0;
+}
+
+.u-giftBlock {
+    padding: 30px;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    z-index: 1000;
+    background-color: #FFFFFF;
+    overflow-y: scroll;
+}
+
+.u-giftBlock .u-giftList {
+    height: 80px;
+    vertical-align: text-top;
+}
+
+.u-giftBlock .u-giftList span {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.u-giftBlock .u-giftList .u-leftBlock i {
+    width: 6px;
+    height: 6px;
+    border: 2px solid #cccccc;
+    border-radius: 50%;
+    display: block;
+    margin-top: 6px;
+}
+
+.u-giftBlock .u-giftList .u-leftBlock i.z-received {
+    border: 2px solid #D74148;
+    background-color: #D74148;
+}
+
+.u-giftBlock .u-giftList .u-leftBlock em {
+    display: block;
+    width: 1px;
+    height: 60px;
+    background-color: #dddddd;
+    margin-left: 4px;
+    margin-top: 2px;
+}
+
+.u-giftBlock .u-giftList .u-leftBlock em.z-received {
+    background-color: #D74148;
+}
+
+.u-giftBlock .u-giftList .u-rightBlock {
+    margin-left: 10px;
+}
+
+.u-giftBlock .u-giftList .u-rightBlock .u-investDate {
+    font-size: 1.125rem;
+    color: #333333;
+    margin-bottom: 2px;
+}
+
+.u-giftBlock .u-giftList .u-rightBlock .u-giftAmount {
+    font-size: 0.875rem;
+    color: #999999;
+}
+
+.u-giftBlock .u-giftList .u-rightBlock .u-giftAmount.z-received {
+    color: #d0011b;
+}
+
+.u-giftBlock .u-closeBtn {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #cccccc;
+    border-radius: 50%;
+    text-align: center;
+    vertical-align: middle;
+    color: #cccccc;
+    font-size: 24px;
+    line-height: 50px;
+    margin-top: 40px;
+    position: absolute;
+    bottom: 0;
+    left: 35%;
+
+}
+
+.circliful {
+    position: relative;
+}
+
+.circle-text, .circle-info, .circle-text-half, .circle-info-half {
+    width: 100%;
+    position: absolute;
+    text-align: center;
+    display: inline-block;
+    color: #d74148;
+}
+
+.circle-info, .circle-info-half {
+    color: #999;
+}
+
+.circliful .fa {
+    margin: -10px 3px 0 3px;
+    position: relative;
+    bottom: 4px;
+}
+
+.u-circleNone {
+    width: 80px;
+    height: 80px;
+    background: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 80px;
+    margin: 20px 0 20px 34%;
+    color: #d74148;
+}
+
+@media screen and (min-width: 390px) {
+    html {
+        font-size: 18px;
+    }
+
+    .m-award-list table th i {
+        bottom: -8px;
+    }
+
+    .u-today-award h1 {
+        margin-bottom: 1px;
+    }
+
+    .u-circleNone {
+        margin: 20px 0 20px 39%;
+    }
+}
+
+@media screen and (min-width: 360px) and (max-width: 389px) {
+    html {
+        font-size: 16px;
+    }
+
+    .u-circleNone {
+        margin: 20px 0 20px 38%;
+    }
+}
+
+@media screen and (max-width: 359px) {
+    html {
+        font-size: 14px;
+    }
+
+    .m-award-list table th i {
+        bottom: -4px;
+    }
+
+}
+
+.u-tipBlock {
+    background: #FFF5EB;
+    font-size: 12px;
+    padding: 5px 0;
+    position: absolute;
+    top: 0;
+    line-height: 0;
+    height: 30px;
+    width: 100%;
+    z-index: 100;
+}
+
+#icon-adv {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 30px;
+    height: 30px;
+}
+
+#tipBlock {
+    overflow: hidden;
+    width: 100%;
+    height: 30px;
+    position: absolute;
+    top: 5px;
+    /*right: 30px;*/
+}
+
+.adv-text {
+    color: #d74148;
+    line-height: 30px;
+    border-radius: 0px;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    border: none;
+    background: transparent;
+}
+
+.adv-text a {
+    color: #d74148;
+    text-decoration: underline;
+}
+.u-closeBtn {
+    height: 30px;
+    background: #FFF5EB;
+    width: 30px;
+    position: absolute;
+    top: 5px;
+    right: 0;
+    text-align: center
+}
+
+.u-closeBtn img {
+    vertical-align: middle;
+    margin-top: 10%
+}
+
+

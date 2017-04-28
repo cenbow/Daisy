@@ -1,0 +1,76 @@
+<div tabindex="-1" class="modal fade" id="modal-table-changeMobile" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog" >
+        <div class="modal-content">
+            <div class="modal-header no-padding">
+                <div class="table-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+                        <span class="white">×</span>
+                    </button>
+                    <span class="modalFormTitle">更换手机</span>
+                </div>
+            </div>
+            <div class="modal-body">
+##                <div class="profile-user-info profile-user-info-striped">
+##                    <div class="profile-info-row">
+##                        <div class="profile-info-name"> 用户名 :</div>
+##                        <div class="profile-info-value">
+##                            <span id="username" class="editable editable-click">alexdoe</span>
+##                        </div>
+##                    </div>
+##                    <div class="profile-info-row">
+##                        <div class="profile-info-name"> 真实姓名： </div>
+##                        <div class="profile-info-value">
+##                            <span id="username" class="editable editable-click">alexdoe</span>
+##                        </div>
+##                    </div>
+##                    <div class="profile-info-row">
+##                        <div class="profile-info-name"> 手机号码：</div>
+##                        <div class="profile-info-value">
+##                            <span id="age" class="editable editable-click">38</span>
+##                        </div>
+##                    </div>
+##                    <div class="profile-info-row">
+##                        <div class="profile-info-name"> Joined </div>
+##
+##                        <div class="profile-info-value">
+##                            <span id="signup" class="editable editable-click">20/06/2010</span>
+##                        </div>
+##                    </div>
+##                    <div class="profile-info-row">
+##                        <div class="profile-info-name"> Last Online </div>
+##
+##                        <div class="profile-info-value">
+##                            <span id="login" class="editable editable-click">3 hours ago</span>
+##                        </div>
+##                    </div>
+##                </div>
+##                <div >
+                <form role="form" class="form-horizontal" id="changerMobile_form" method="post">
+                    <input type="hidden" name="id"  id="changerMobile_form_id"/>
+                    <div class="form-group">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 新手机号码: </label>
+                        <div class="col-sm-9">
+                            <div class="clearfix">
+                                <input type="text" name="newMobile" class="col-xs-10 col-sm-5" placeholder="新手机" id="form-field-group-newMobile"  datatype="m" errormsg="手机号码格式不对！" >
+                                <button type="button" id="btn_mobile_send_code" class="btn btn-sm btn-primary" >发送验证码</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 验证码: </label>
+                        <div class="col-sm-9">
+                            <div class="clearfix">
+                                <input type="text" name="token" class="col-xs-10 col-sm-5" placeholder="验证码" id="form-field-group-token">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" id="btn_change_mobile" class="btn btn-primary">更换手机</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+</div>

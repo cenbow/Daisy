@@ -1,0 +1,71 @@
+#set($layout = "/layout/iframe.vm")
+<div tabindex="-1" class="modal fade" id="modal-table-settle-detail" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header no-padding">
+                <div class="table-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+                        <span class="white">×</span>
+                    </button>
+                   项目费用
+                </div>
+            </div>
+            <div class="modal-body">
+                <form role="form" class="form-horizontal" id="detail_settle_form" method="post">
+                    <input type="hidden" name="id" />
+					
+					 <div class="form-group">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 项目管理费：</label>
+                        <div class="col-sm-9">
+                            <div class="clearfix">
+                                ##<input type="text" name="formatManageFee" class="col-xs-10 col-sm-5" readonly placeholder="" id="form-field-formatManageFee"  >
+                                <span id="detail_formatManageFee"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 保证金：</label>
+                        <div class="col-sm-9">
+                            <div class="clearfix">
+                                ##<input type="text" name="guaranteeFee" class="col-xs-10 col-sm-5" readonly placeholder="" id="form-field-guaranteeFee"  >
+                                <span id="detail_guaranteeFee"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right">风险金：</label>
+                        <div class="col-sm-9">
+                            <div class="clearfix">
+                                ##<input type="text" name="riskFee" class="col-xs-10 col-sm-5" readonly placeholder="" id="form-field-riskFee"  >
+                                <span id="detail_riskFee"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 线下介绍费：</label>
+                        <div class="col-sm-9">
+                            <div class="clearfix">
+                                <span id="detail_introducerFee"></span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                     <div class="form-group">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> <font color="red">总计</font>：</label>
+                        <div class="col-sm-9">
+                            <div class="clearfix">
+                                ##<input type="text" name="projectFeeStr" class="col-xs-10 col-sm-5" readonly placeholder="" id="form-field-projectFeeStr"  >
+                                 <span id="detail_projectFeeStr"></span>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">确定</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
